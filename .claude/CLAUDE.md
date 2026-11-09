@@ -20,7 +20,8 @@ an equation or a number in matches that one moved match fixes, moved on
 every screen and judged by the server — or said aloud and judged by the
 host, and **Timeline** deals five dated events everyone puts in order on their
 own screen, the years held back until the reveal. **Black square** hides three
-to nine answers to a theme behind a grid, the less obvious paying more, beside one
+to nine answers — four by default — dealt from a broad theme's pool of twelve
+to twenty behind a grid, the less obvious paying more, beside one
 black word that costs whoever lands on it the round, and **Petit Bac** deals a
 letter and a sheet of categories everyone fills on their own screen, then
 votes on what counts, a word nobody else wrote paying double. **Shades**

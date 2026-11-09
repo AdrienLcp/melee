@@ -22,9 +22,10 @@ one part.
   four of them — one obvious, two between, one rare — so a theme met again
   hides other answers, and the table says plenty before it lands on the
   four. A rare answer pays three times an obvious one, by the answer rather
-  than by its place on the grid. A hundred broad themes written by hand join
-  the bank — green vegetables, citrus fruits, cheeses, dog breeds, the solar
-  system, rooms of a house, clothes, board games, Disney films — and the Wikidata themes are cut to the sixty a table knows:
+  than by its place on the grid. Two hundred broad themes written by hand
+  join the bank — green vegetables, cheeses, dog breeds, the solar system,
+  rooms of a house, clothes, board games, Disney films, Pokémon, things that
+  sting — and the Wikidata themes are cut to the sixty a table knows:
   famous directors, Pixar and Marvel, presidents, Europe's capitals. Easy
   deals the broad themes alone; mixed and hard bring the lists of works.
 

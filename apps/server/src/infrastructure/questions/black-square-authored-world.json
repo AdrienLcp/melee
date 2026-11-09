@@ -1,0 +1,5761 @@
+[
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Siamese",
+          "fr": "Siamois"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Persian",
+          "fr": "Persan"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maine Coon",
+          "fr": "Maine coon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Chat nu"]
+        },
+        "labels": {
+          "en": "Sphynx",
+          "fr": "Sphynx"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bengal",
+          "fr": "Bengal"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ragdoll",
+          "fr": "Ragdoll"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["British"],
+          "fr": []
+        },
+        "labels": {
+          "en": "British Shorthair",
+          "fr": "British shorthair"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chartreux",
+          "fr": "Chartreux"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Birman"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sacred Birman",
+          "fr": "Sacré de Birmanie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Norwegian Forest Cat"],
+          "fr": ["Chat des forêts norvégiennes"]
+        },
+        "labels": {
+          "en": "Norwegian Forest",
+          "fr": "Norvégien"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scottish Fold",
+          "fr": "Scottish fold"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Abyssinian",
+          "fr": "Abyssin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Russian Blue",
+          "fr": "Bleu russe"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Savannah",
+          "fr": "Savannah"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Devon Rex",
+          "fr": "Devon rex"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Angora"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turkish Angora",
+          "fr": "Angora turc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Exotic"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Exotic Shorthair",
+          "fr": "Exotic shorthair"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Burmese",
+          "fr": "Burmese"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Tabby cat"],
+        "fr": ["Chat tigré"]
+      },
+      "labels": {
+        "en": "Tabby",
+        "fr": "Tigré"
+      },
+      "why": {
+        "en": "A coat pattern found in many breeds, not a breed.",
+        "fr": "Un motif de robe qu'on trouve dans bien des races, pas une race."
+      }
+    },
+    "id": "cat-breeds",
+    "labels": {
+      "en": "Cat breeds",
+      "fr": "Races de chats"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tiger",
+          "fr": "Tigre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gorilla",
+          "fr": "Gorille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jaguar",
+          "fr": "Jaguar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Parrot",
+          "fr": "Perroquet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Toucan",
+          "fr": "Toucan"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chimp"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chimpanzee",
+          "fr": "Chimpanzé"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Orangutang"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Orangutan",
+          "fr": "Orang-outan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sloth",
+          "fr": "Paresseux"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chameleon",
+          "fr": "Caméléon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anaconda",
+          "fr": "Anaconda"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Boa constrictor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boa",
+          "fr": "Boa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Macaw",
+          "fr": "Ara"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dart frog", "Poison frog"],
+          "fr": ["Grenouille dendrobate"]
+        },
+        "labels": {
+          "en": "Poison dart frog",
+          "fr": "Dendrobate"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tapir",
+          "fr": "Tapir"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Okapi",
+          "fr": "Okapi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ocelot",
+          "fr": "Ocelot"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bonobo",
+          "fr": "Bonobo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gibbon",
+          "fr": "Gibbon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mandrill",
+          "fr": "Mandrill"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Lionne"]
+      },
+      "labels": {
+        "en": "Lion",
+        "fr": "Lion"
+      },
+      "why": {
+        "en": "The king of the jungle lives on the savanna.",
+        "fr": "Le roi de la jungle vit dans la savane."
+      }
+    },
+    "id": "jungle-animals",
+    "labels": {
+      "en": "Jungle animals",
+      "fr": "Animaux de la jungle"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Trout",
+          "fr": "Truite"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pike",
+          "fr": "Brochet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carp",
+          "fr": "Carpe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Poisson-chat"]
+        },
+        "labels": {
+          "en": "Catfish",
+          "fr": "Silure"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Perch",
+          "fr": "Perche"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Goldfish",
+          "fr": "Poisson rouge"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Piranha",
+          "fr": "Piranha"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Zander"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pikeperch",
+          "fr": "Sandre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Roach",
+          "fr": "Gardon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tench",
+          "fr": "Tanche"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bream",
+          "fr": "Brème"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Barbel",
+          "fr": "Barbeau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Guppy",
+          "fr": "Guppy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chub",
+          "fr": "Chevesne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gudgeon",
+          "fr": "Goujon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grayling",
+          "fr": "Ombre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bleak",
+          "fr": "Ablette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rudd",
+          "fr": "Rotengle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Char"],
+          "fr": ["Omble"]
+        },
+        "labels": {
+          "en": "Arctic char",
+          "fr": "Omble chevalier"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Mexican walking fish"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Axolotl",
+        "fr": "Axolotl"
+      },
+      "why": {
+        "en": "It lives in lakes, but it is an amphibian.",
+        "fr": "Il vit dans les lacs, mais c'est un amphibien."
+      }
+    },
+    "id": "freshwater-fish",
+    "labels": {
+      "en": "Freshwater fish",
+      "fr": "Poissons d'eau douce"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Roo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kangaroo",
+          "fr": "Kangourou"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Koala bear"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Koala",
+          "fr": "Koala"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Platypus",
+          "fr": "Ornithorynque"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Emu",
+          "fr": "Émeu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wombat",
+          "fr": "Wombat"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tasmanian devil",
+          "fr": "Diable de Tasmanie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dingo",
+          "fr": "Dingo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wallaby",
+          "fr": "Wallaby"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Echidna",
+          "fr": "Échidné"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kookaburra",
+          "fr": "Kookaburra"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cassowary",
+          "fr": "Casoar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Crocodile", "Saltie"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Saltwater crocodile",
+          "fr": "Crocodile marin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Frill-necked lizard"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Frilled lizard",
+          "fr": "Lézard à collerette"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Quokka",
+          "fr": "Quokka"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Numbat",
+          "fr": "Numbat"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cockatoo",
+          "fr": "Cacatoès"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Diable cornu"]
+        },
+        "labels": {
+          "en": "Thorny devil",
+          "fr": "Moloch"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Oiseau-lyre"]
+        },
+        "labels": {
+          "en": "Lyrebird",
+          "fr": "Ménure"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Taipan",
+          "fr": "Taïpan"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Kiwi",
+        "fr": "Kiwi"
+      },
+      "why": {
+        "en": "A bird of New Zealand, not Australia.",
+        "fr": "Un oiseau de Nouvelle-Zélande, pas d'Australie."
+      }
+    },
+    "id": "australian-animals",
+    "labels": {
+      "en": "Australian animals",
+      "fr": "Animaux d'Australie"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Hibou"]
+        },
+        "labels": {
+          "en": "Owl",
+          "fr": "Chouette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bat",
+          "fr": "Chauve-souris"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hedgehog",
+          "fr": "Hérisson"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Racoon"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Raccoon",
+          "fr": "Raton laveur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Phalène"]
+        },
+        "labels": {
+          "en": "Moth",
+          "fr": "Papillon de nuit"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Badger",
+          "fr": "Blaireau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lightning bug"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Firefly",
+          "fr": "Luciole"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Moufette"]
+        },
+        "labels": {
+          "en": "Skunk",
+          "fr": "Mouffette"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hamster",
+          "fr": "Hamster"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Boar"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wild boar",
+          "fr": "Sanglier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Blatte"]
+        },
+        "labels": {
+          "en": "Cockroach",
+          "fr": "Cafard"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aye-aye",
+          "fr": "Aye-aye"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tarsier",
+          "fr": "Tarsier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kiwi",
+          "fr": "Kiwi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Slow loris"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Loris",
+          "fr": "Loris"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aardvark",
+          "fr": "Oryctérope"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Genet",
+          "fr": "Genette"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Nightingale",
+        "fr": "Rossignol"
+      },
+      "why": {
+        "en": "It sings at night in spring, but lives by day.",
+        "fr": "Il chante la nuit au printemps, mais vit le jour."
+      }
+    },
+    "id": "nocturnal-animals",
+    "labels": {
+      "en": "Nocturnal animals",
+      "fr": "Animaux nocturnes"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Cacti"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cactus",
+          "fr": "Cactus"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Aloe"],
+          "fr": ["Aloès"]
+        },
+        "labels": {
+          "en": "Aloe vera",
+          "fr": "Aloe vera"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Orchid",
+          "fr": "Orchidée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rubber plant", "Weeping fig"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ficus",
+          "fr": "Ficus"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Swiss cheese plant"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Monstera",
+          "fr": "Monstera"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Boston fern"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fern",
+          "fr": "Fougère"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mother-in-law's tongue"],
+          "fr": ["Langue de belle-mère"]
+        },
+        "labels": {
+          "en": "Snake plant",
+          "fr": "Sansevieria"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Chlorophytum"]
+        },
+        "labels": {
+          "en": "Spider plant",
+          "fr": "Plante araignée"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Fleur de lune"]
+        },
+        "labels": {
+          "en": "Peace lily",
+          "fr": "Spathiphyllum"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Devil's ivy"],
+          "fr": ["Scindapsus"]
+        },
+        "labels": {
+          "en": "Pothos",
+          "fr": "Pothos"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yucca",
+          "fr": "Yucca"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Saintpaulia"]
+        },
+        "labels": {
+          "en": "African violet",
+          "fr": "Violette africaine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Étoile de Noël"]
+        },
+        "labels": {
+          "en": "Poinsettia",
+          "fr": "Poinsettia"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "ZZ plant",
+          "fr": "Zamioculcas"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calathea",
+          "fr": "Calathea"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Dragon tree"],
+          "fr": ["Dragonnier"]
+        },
+        "labels": {
+          "en": "Dracaena",
+          "fr": "Dracaena"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Philodendron",
+          "fr": "Philodendron"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Peperomia",
+          "fr": "Peperomia"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anthurium",
+          "fr": "Anthurium"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Bonsai",
+        "fr": "Bonsaï"
+      },
+      "why": {
+        "en": "A way of growing a tree small, not a kind of plant.",
+        "fr": "Une façon de cultiver un arbre en miniature, pas une plante."
+      }
+    },
+    "id": "houseplants",
+    "labels": {
+      "en": "Houseplants",
+      "fr": "Plantes d'intérieur"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oxygen",
+          "fr": "Oxygène"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hydrogen",
+          "fr": "Hydrogène"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carbon",
+          "fr": "Carbone"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Iron",
+          "fr": "Fer"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gold",
+          "fr": "Or"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Helium",
+          "fr": "Hélium"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nitrogen",
+          "fr": "Azote"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Silver",
+          "fr": "Argent"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Copper",
+          "fr": "Cuivre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sodium",
+          "fr": "Sodium"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calcium",
+          "fr": "Calcium"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Uranium",
+          "fr": "Uranium"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mercury",
+          "fr": "Mercure"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Neon",
+          "fr": "Néon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Sulfur"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sulphur",
+          "fr": "Soufre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Phosphorus",
+          "fr": "Phosphore"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Potassium",
+          "fr": "Potassium"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lithium",
+          "fr": "Lithium"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Silicon",
+          "fr": "Silicium"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Steel",
+        "fr": "Acier"
+      },
+      "why": {
+        "en": "An alloy of iron and carbon, not an element.",
+        "fr": "Un alliage de fer et de carbone, pas un élément."
+      }
+    },
+    "id": "chemical-elements",
+    "labels": {
+      "en": "Chemical elements",
+      "fr": "Éléments chimiques"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Ursa Major"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Great Bear",
+          "fr": "Grande Ourse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ursa Minor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Little Bear",
+          "fr": "Petite Ourse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Orion",
+          "fr": "Orion"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cassiopeia",
+          "fr": "Cassiopée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Scorpio"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scorpius",
+          "fr": "Scorpion"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Leo",
+          "fr": "Lion"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Andromeda",
+          "fr": "Andromède"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pegasus",
+          "fr": "Pégase"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Twins"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gemini",
+          "fr": "Gémeaux"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Swan"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cygnus",
+          "fr": "Cygne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Taurus",
+          "fr": "Taureau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Crux"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Southern Cross",
+          "fr": "Croix du Sud"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Draco",
+          "fr": "Dragon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Perseus",
+          "fr": "Persée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hercules",
+          "fr": "Hercule"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lyra",
+          "fr": "Lyre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Centaurus",
+          "fr": "Centaure"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cepheus",
+          "fr": "Céphée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Great Dog"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Canis Major",
+          "fr": "Grand Chien"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Polaris", "Pole Star"],
+        "fr": ["Polaire"]
+      },
+      "labels": {
+        "en": "North Star",
+        "fr": "Étoile polaire"
+      },
+      "why": {
+        "en": "A single star, at the tip of the Little Bear.",
+        "fr": "Une seule étoile, au bout de la Petite Ourse."
+      }
+    },
+    "id": "constellations",
+    "labels": {
+      "en": "Constellations",
+      "fr": "Constellations"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Pacific Ocean"],
+          "fr": ["Océan Pacifique"]
+        },
+        "labels": {
+          "en": "Pacific",
+          "fr": "Pacifique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Atlantic Ocean"],
+          "fr": ["Océan Atlantique"]
+        },
+        "labels": {
+          "en": "Atlantic",
+          "fr": "Atlantique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Indian Ocean",
+          "fr": "Océan Indien"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mediterranean Sea"],
+          "fr": ["Mer Méditerranée"]
+        },
+        "labels": {
+          "en": "Mediterranean",
+          "fr": "Méditerranée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Arctic"],
+          "fr": ["Arctique"]
+        },
+        "labels": {
+          "en": "Arctic Ocean",
+          "fr": "Océan Arctique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "North Sea",
+          "fr": "Mer du Nord"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Red Sea",
+          "fr": "Mer Rouge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Black Sea",
+          "fr": "Mer Noire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Caribbean"],
+          "fr": ["Caraïbes", "Mer des Antilles"]
+        },
+        "labels": {
+          "en": "Caribbean Sea",
+          "fr": "Mer des Caraïbes"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Baltic"],
+          "fr": ["Baltique"]
+        },
+        "labels": {
+          "en": "Baltic Sea",
+          "fr": "Mer Baltique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Antarctic Ocean"],
+          "fr": ["Océan Antarctique"]
+        },
+        "labels": {
+          "en": "Southern Ocean",
+          "fr": "Océan Austral"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Adriatic"],
+          "fr": ["Adriatique"]
+        },
+        "labels": {
+          "en": "Adriatic Sea",
+          "fr": "Mer Adriatique"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Aegean"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aegean Sea",
+          "fr": "Mer Égée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sea of Japan",
+          "fr": "Mer du Japon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coral Sea",
+          "fr": "Mer de Corail"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bering Sea",
+          "fr": "Mer de Béring"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yellow Sea",
+          "fr": "Mer Jaune"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arabian Sea",
+          "fr": "Mer d'Arabie"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Dead Sea",
+        "fr": "Mer Morte"
+      },
+      "why": {
+        "en": "A landlocked salt lake, whatever its name says.",
+        "fr": "Un lac salé sans issue, quoi que dise son nom."
+      }
+    },
+    "id": "seas-and-oceans",
+    "labels": {
+      "en": "Seas and oceans",
+      "fr": "Mers et océans"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Morocco",
+          "fr": "Maroc"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Algeria",
+          "fr": "Algérie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Egypt",
+          "fr": "Égypte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "South Africa",
+          "fr": "Afrique du Sud"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nigeria",
+          "fr": "Nigeria"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kenya",
+          "fr": "Kenya"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Senegal",
+          "fr": "Sénégal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tunisia",
+          "fr": "Tunisie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Madagascar",
+          "fr": "Madagascar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ivory Coast",
+          "fr": "Côte d'Ivoire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cameroon",
+          "fr": "Cameroun"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mali",
+          "fr": "Mali"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ethiopia",
+          "fr": "Éthiopie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Burkina"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Burkina Faso",
+          "fr": "Burkina Faso"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Niger",
+          "fr": "Niger"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gabon",
+          "fr": "Gabon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Namibia",
+          "fr": "Namibie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mauritania",
+          "fr": "Mauritanie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Botswana",
+          "fr": "Botswana"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chad",
+          "fr": "Tchad"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Reunion Island"],
+        "fr": ["Île de la Réunion"]
+      },
+      "labels": {
+        "en": "Réunion",
+        "fr": "La Réunion"
+      },
+      "why": {
+        "en": "A French overseas department, not a country.",
+        "fr": "Un département français d'outre-mer, pas un pays."
+      }
+    },
+    "id": "african-countries",
+    "labels": {
+      "en": "African countries",
+      "fr": "Pays d'Afrique"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "China",
+          "fr": "Chine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Japan",
+          "fr": "Japon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "India",
+          "fr": "Inde"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thailand",
+          "fr": "Thaïlande"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vietnam",
+          "fr": "Viêt Nam"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "South Korea",
+          "fr": "Corée du Sud"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "North Korea",
+          "fr": "Corée du Nord"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Indonesia",
+          "fr": "Indonésie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Philippines",
+          "fr": "Philippines"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cambodia",
+          "fr": "Cambodge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pakistan",
+          "fr": "Pakistan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nepal",
+          "fr": "Népal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mongolia",
+          "fr": "Mongolie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Laos",
+          "fr": "Laos"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bhutan",
+          "fr": "Bhoutan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sri Lanka",
+          "fr": "Sri Lanka"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kazakhstan",
+          "fr": "Kazakhstan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Burma"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Myanmar",
+          "fr": "Birmanie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bangladesh",
+          "fr": "Bangladesh"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Singapore",
+          "fr": "Singapour"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Hong Kong",
+        "fr": "Hong Kong"
+      },
+      "why": {
+        "en": "A region of China, not a country of its own.",
+        "fr": "Une région de la Chine, pas un pays à part entière."
+      }
+    },
+    "id": "asian-countries",
+    "labels": {
+      "en": "Asian countries",
+      "fr": "Pays d'Asie"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brazil",
+          "fr": "Brésil"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Argentina",
+          "fr": "Argentine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chile",
+          "fr": "Chili"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Peru",
+          "fr": "Pérou"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Colombia",
+          "fr": "Colombie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Venezuela",
+          "fr": "Venezuela"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bolivia",
+          "fr": "Bolivie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Uruguay",
+          "fr": "Uruguay"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ecuador",
+          "fr": "Équateur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paraguay",
+          "fr": "Paraguay"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Guyana",
+          "fr": "Guyana"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Surinam"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Suriname",
+          "fr": "Suriname"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Guyane française"]
+      },
+      "labels": {
+        "en": "French Guiana",
+        "fr": "Guyane"
+      },
+      "why": {
+        "en": "A French region, not a country.",
+        "fr": "Une région française, pas un pays."
+      }
+    },
+    "id": "south-american-countries",
+    "labels": {
+      "en": "South American countries",
+      "fr": "Pays d'Amérique du Sud"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "California",
+          "fr": "Californie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Texas",
+          "fr": "Texas"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Florida",
+          "fr": "Floride"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "New York",
+          "fr": "New York"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hawaii",
+          "fr": "Hawaï"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alaska",
+          "fr": "Alaska"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nevada",
+          "fr": "Nevada"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arizona",
+          "fr": "Arizona"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Louisiana",
+          "fr": "Louisiane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Colorado",
+          "fr": "Colorado"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Georgia",
+          "fr": "Géorgie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Michigan",
+          "fr": "Michigan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Washington",
+          "fr": "Washington"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Montana",
+          "fr": "Montana"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oregon",
+          "fr": "Oregon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kentucky",
+          "fr": "Kentucky"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tennessee",
+          "fr": "Tennessee"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wyoming",
+          "fr": "Wyoming"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vermont",
+          "fr": "Vermont"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Idaho",
+          "fr": "Idaho"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Puerto Rico",
+        "fr": "Porto Rico"
+      },
+      "why": {
+        "en": "A US territory, not a state.",
+        "fr": "Un territoire américain, pas un État."
+      }
+    },
+    "id": "us-states",
+    "labels": {
+      "en": "US states",
+      "fr": "États américains"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paris",
+          "fr": "Paris"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "London",
+          "fr": "Londres"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["NYC"],
+          "fr": []
+        },
+        "labels": {
+          "en": "New York",
+          "fr": "New York"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tokyo",
+          "fr": "Tokyo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rome",
+          "fr": "Rome"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["LA"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Los Angeles",
+          "fr": "Los Angeles"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Peking"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Beijing",
+          "fr": "Pékin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Moscow",
+          "fr": "Moscou"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sydney",
+          "fr": "Sydney"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Rio"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rio de Janeiro",
+          "fr": "Rio de Janeiro"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Istanbul",
+          "fr": "Istanbul"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dubai",
+          "fr": "Dubaï"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shanghai",
+          "fr": "Shanghai"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Buenos Aires",
+          "fr": "Buenos Aires"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Seoul",
+          "fr": "Séoul"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bangkok",
+          "fr": "Bangkok"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cairo",
+          "fr": "Le Caire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "São Paulo",
+          "fr": "São Paulo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mexico City",
+          "fr": "Mexico"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mumbai",
+          "fr": "Bombay"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Manhattan",
+        "fr": "Manhattan"
+      },
+      "why": {
+        "en": "A borough of New York, not a city of its own.",
+        "fr": "Un quartier de New York, pas une ville à part."
+      }
+    },
+    "id": "world-cities",
+    "labels": {
+      "en": "Big cities of the world",
+      "fr": "Grandes villes du monde"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Eiffel Tower",
+          "fr": "Tour Eiffel"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Statue of Liberty",
+          "fr": "Statue de la Liberté"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Coliseum"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Colosseum",
+          "fr": "Colisée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Great Wall"],
+          "fr": ["Muraille de Chine", "Grande Muraille de Chine"]
+        },
+        "labels": {
+          "en": "Great Wall of China",
+          "fr": "Grande Muraille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pyramids", "Pyramid", "Great Pyramid"],
+          "fr": ["Pyramides", "Pyramide", "Pyramides d'Égypte"]
+        },
+        "labels": {
+          "en": "Pyramids of Giza",
+          "fr": "Pyramides de Gizeh"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Taj Mahal",
+          "fr": "Taj Mahal"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tower of Pisa"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Leaning Tower of Pisa",
+          "fr": "Tour de Pise"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arc de Triomphe",
+          "fr": "Arc de Triomphe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Big Ben",
+          "fr": "Big Ben"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sagrada Família",
+          "fr": "Sagrada Família"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Machu Picchu",
+          "fr": "Machu Picchu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Christ du Corcovado"]
+        },
+        "labels": {
+          "en": "Christ the Redeemer",
+          "fr": "Christ Rédempteur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stonehenge",
+          "fr": "Stonehenge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Petra",
+          "fr": "Pétra"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Angkor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Angkor Wat",
+          "fr": "Angkor Vat"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mount Rushmore",
+          "fr": "Mont Rushmore"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Parthenon"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Acropolis",
+          "fr": "Acropole"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Forbidden City",
+          "fr": "Cité interdite"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Burj Khalifa",
+          "fr": "Burj Khalifa"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alhambra",
+          "fr": "Alhambra"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Grand Canyon",
+        "fr": "Grand Canyon"
+      },
+      "why": {
+        "en": "Carved by a river, built by nobody.",
+        "fr": "Creusé par une rivière, bâti par personne."
+      }
+    },
+    "id": "famous-monuments",
+    "labels": {
+      "en": "Famous monuments",
+      "fr": "Monuments célèbres"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Quake"],
+          "fr": ["Séisme"]
+        },
+        "labels": {
+          "en": "Earthquake",
+          "fr": "Tremblement de terre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tidal wave"],
+          "fr": ["Raz-de-marée"]
+        },
+        "labels": {
+          "en": "Tsunami",
+          "fr": "Tsunami"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hurricane",
+          "fr": "Ouragan"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tornado",
+          "fr": "Tornade"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Flooding"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Flood",
+          "fr": "Inondation"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Eruption", "Volcano"],
+          "fr": ["Volcan"]
+        },
+        "labels": {
+          "en": "Volcanic eruption",
+          "fr": "Éruption volcanique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Avalanche",
+          "fr": "Avalanche"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Forest fire", "Bushfire"],
+          "fr": ["Incendie", "Incendie de forêt"]
+        },
+        "labels": {
+          "en": "Wildfire",
+          "fr": "Feu de forêt"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drought",
+          "fr": "Sécheresse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Landslide",
+          "fr": "Glissement de terrain"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Typhoon",
+          "fr": "Typhon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cyclone",
+          "fr": "Cyclone"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Storm",
+          "fr": "Tempête"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Vague de chaleur"]
+        },
+        "labels": {
+          "en": "Heatwave",
+          "fr": "Canicule"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mudslide",
+          "fr": "Coulée de boue"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hail"],
+          "fr": ["Orage de grêle"]
+        },
+        "labels": {
+          "en": "Hailstorm",
+          "fr": "Grêle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sandstorm",
+          "fr": "Tempête de sable"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blizzard",
+          "fr": "Blizzard"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Meteorite", "Asteroid"],
+          "fr": ["Astéroïde"]
+        },
+        "labels": {
+          "en": "Meteorite impact",
+          "fr": "Chute de météorite"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Oil spill",
+        "fr": "Marée noire"
+      },
+      "why": {
+        "en": "A disaster, but a man-made one.",
+        "fr": "Une catastrophe, mais causée par l'homme."
+      }
+    },
+    "id": "natural-disasters",
+    "labels": {
+      "en": "Natural disasters",
+      "fr": "Catastrophes naturelles"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nile",
+          "fr": "Nil"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Amazon",
+          "fr": "Amazone"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Seine",
+          "fr": "Seine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mississippi",
+          "fr": "Mississippi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thames",
+          "fr": "Tamise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Danube",
+          "fr": "Danube"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rhine",
+          "fr": "Rhin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Loire",
+          "fr": "Loire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rhône",
+          "fr": "Rhône"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ganges",
+          "fr": "Gange"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Yangtze River", "Chang Jiang"],
+          "fr": ["Yangzi", "Yang-Tsé"]
+        },
+        "labels": {
+          "en": "Yangtze",
+          "fr": "Yangzi Jiang"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Volga",
+          "fr": "Volga"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Congo",
+          "fr": "Congo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mekong",
+          "fr": "Mékong"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zambezi",
+          "fr": "Zambèze"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Euphrates",
+          "fr": "Euphrate"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tigris",
+          "fr": "Tigre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Indus",
+          "fr": "Indus"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jordan",
+          "fr": "Jourdain"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Huang He"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yellow River",
+          "fr": "Fleuve Jaune"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Victoria"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Lake Victoria",
+        "fr": "Lac Victoria"
+      },
+      "why": {
+        "en": "The Nile flows out of it, but it is a lake.",
+        "fr": "Le Nil en sort, mais c'est un lac."
+      }
+    },
+    "id": "rivers",
+    "labels": {
+      "en": "Rivers of the world",
+      "fr": "Fleuves du monde"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alps",
+          "fr": "Alpes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Himalayas",
+          "fr": "Himalaya"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pyrenees",
+          "fr": "Pyrénées"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rockies"],
+          "fr": ["Montagnes Rocheuses"]
+        },
+        "labels": {
+          "en": "Rocky Mountains",
+          "fr": "Rocheuses"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Andes Mountains"],
+          "fr": ["Cordillère des Andes"]
+        },
+        "labels": {
+          "en": "Andes",
+          "fr": "Andes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Atlas Mountains"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Atlas",
+          "fr": "Atlas"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Carpathian Mountains"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carpathians",
+          "fr": "Carpates"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Appalachian Mountains"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Appalachians",
+          "fr": "Appalaches"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ural Mountains"],
+          "fr": ["Monts Oural"]
+        },
+        "labels": {
+          "en": "Urals",
+          "fr": "Oural"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Caucasus",
+          "fr": "Caucase"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dolomites",
+          "fr": "Dolomites"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Apennines",
+          "fr": "Apennins"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Karakoram",
+          "fr": "Karakoram"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hindu Kush",
+          "fr": "Hindou Kouch"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sierra Nevada",
+          "fr": "Sierra Nevada"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Altai",
+          "fr": "Altaï"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drakensberg",
+          "fr": "Drakensberg"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tian Shan",
+          "fr": "Tian Shan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Tatra Mountains", "Tatra"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tatras",
+          "fr": "Tatras"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Everest"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Mount Everest",
+        "fr": "Mont Everest"
+      },
+      "why": {
+        "en": "A single peak, in the Himalayas.",
+        "fr": "Un seul sommet, dans l'Himalaya."
+      }
+    },
+    "id": "mountain-ranges",
+    "labels": {
+      "en": "Mountain ranges",
+      "fr": "Chaînes de montagnes"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corsica",
+          "fr": "Corse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sicily",
+          "fr": "Sicile"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Madagascar",
+          "fr": "Madagascar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Greenland",
+          "fr": "Groenland"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Iceland",
+          "fr": "Islande"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cuba",
+          "fr": "Cuba"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bali",
+          "fr": "Bali"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tahiti",
+          "fr": "Tahiti"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crete",
+          "fr": "Crète"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sardinia",
+          "fr": "Sardaigne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jamaica",
+          "fr": "Jamaïque"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cyprus",
+          "fr": "Chypre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Borneo",
+          "fr": "Bornéo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sumatra",
+          "fr": "Sumatra"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zanzibar",
+          "fr": "Zanzibar"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Rapa Nui"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Easter Island",
+          "fr": "Île de Pâques"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Mallorca"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Majorca",
+          "fr": "Majorque"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tasmania",
+          "fr": "Tasmanie"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Australia",
+        "fr": "Australie"
+      },
+      "why": {
+        "en": "Counted as a continent, not an island.",
+        "fr": "Comptée comme un continent, pas une île."
+      }
+    },
+    "id": "islands",
+    "labels": {
+      "en": "Islands",
+      "fr": "Îles"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Mallard"],
+          "fr": ["Colvert"]
+        },
+        "labels": {
+          "en": "Duck",
+          "fr": "Canard"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Swan",
+          "fr": "Cygne"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Gull"],
+          "fr": ["Goéland"]
+        },
+        "labels": {
+          "en": "Seagull",
+          "fr": "Mouette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pingouin"]
+        },
+        "labels": {
+          "en": "Penguin",
+          "fr": "Manchot"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pelican",
+          "fr": "Pélican"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Flamant"]
+        },
+        "labels": {
+          "en": "Flamingo",
+          "fr": "Flamant rose"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Goose",
+          "fr": "Oie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Heron",
+          "fr": "Héron"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cormorant",
+          "fr": "Cormoran"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kingfisher",
+          "fr": "Martin-pêcheur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Puffin",
+          "fr": "Macareux"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Albatross",
+          "fr": "Albatros"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grebe",
+          "fr": "Grèbe"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Egret",
+          "fr": "Aigrette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ibis",
+          "fr": "Ibis"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Spoonbill",
+          "fr": "Spatule"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gannet",
+          "fr": "Fou de Bassan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Teal",
+          "fr": "Sarcelle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coot",
+          "fr": "Foulque"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Platypus",
+        "fr": "Ornithorynque"
+      },
+      "why": {
+        "en": "Duck-billed, egg-laying and a swimmer, but a mammal.",
+        "fr": "Bec de canard, ponte et nage, mais c'est un mammifère."
+      }
+    },
+    "id": "water-birds",
+    "labels": {
+      "en": "Water birds",
+      "fr": "Oiseaux aquatiques"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cobra",
+          "fr": "Cobra"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Python",
+          "fr": "Python"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Adder"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Viper",
+          "fr": "Vipère"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Crotale"]
+        },
+        "labels": {
+          "en": "Rattlesnake",
+          "fr": "Serpent à sonnette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Boa constrictor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boa",
+          "fr": "Boa"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anaconda",
+          "fr": "Anaconda"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mamba"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Black mamba",
+          "fr": "Mamba noir"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grass snake",
+          "fr": "Couleuvre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "King cobra",
+          "fr": "Cobra royal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coral snake",
+          "fr": "Serpent corail"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sea snake",
+          "fr": "Serpent de mer"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corn snake",
+          "fr": "Serpent des blés"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Taipan",
+          "fr": "Taïpan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boomslang",
+          "fr": "Boomslang"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Water moccasin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cottonmouth",
+          "fr": "Mocassin d'eau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gaboon viper",
+          "fr": "Vipère du Gabon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fer-de-lance",
+          "fr": "Fer-de-lance"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Krait",
+          "fr": "Bongare"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Blindworm"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Slow worm",
+        "fr": "Orvet"
+      },
+      "why": {
+        "en": "No legs, but a lizard.",
+        "fr": "Sans pattes, mais c'est un lézard."
+      }
+    },
+    "id": "snakes",
+    "labels": {
+      "en": "Snakes",
+      "fr": "Serpents"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Sahara Desert"],
+          "fr": ["Désert du Sahara"]
+        },
+        "labels": {
+          "en": "Sahara",
+          "fr": "Sahara"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Gobi Desert"],
+          "fr": ["Désert de Gobi"]
+        },
+        "labels": {
+          "en": "Gobi",
+          "fr": "Gobi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Atacama Desert"],
+          "fr": ["Désert d'Atacama"]
+        },
+        "labels": {
+          "en": "Atacama",
+          "fr": "Atacama"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Kalahari Desert"],
+          "fr": ["Désert du Kalahari"]
+        },
+        "labels": {
+          "en": "Kalahari",
+          "fr": "Kalahari"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Namib Desert"],
+          "fr": ["Désert du Namib"]
+        },
+        "labels": {
+          "en": "Namib",
+          "fr": "Namib"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mojave Desert", "Mohave"],
+          "fr": ["Désert des Mojaves"]
+        },
+        "labels": {
+          "en": "Mojave",
+          "fr": "Mojave"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arabian Desert",
+          "fr": "Désert d'Arabie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sinai Desert"],
+          "fr": ["Désert du Sinaï"]
+        },
+        "labels": {
+          "en": "Sinai",
+          "fr": "Sinaï"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Negev Desert"],
+          "fr": ["Désert du Néguev"]
+        },
+        "labels": {
+          "en": "Negev",
+          "fr": "Néguev"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Thar Desert", "Great Indian Desert"],
+          "fr": ["Désert du Thar"]
+        },
+        "labels": {
+          "en": "Thar",
+          "fr": "Thar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sonoran Desert"],
+          "fr": ["Désert de Sonora"]
+        },
+        "labels": {
+          "en": "Sonoran",
+          "fr": "Sonora"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Taklimakan"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Taklamakan",
+          "fr": "Taklamakan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Empty Quarter"],
+          "fr": ["Quart vide"]
+        },
+        "labels": {
+          "en": "Rub' al Khali",
+          "fr": "Rub al-Khali"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Antarctic"],
+          "fr": ["Antarctide"]
+        },
+        "labels": {
+          "en": "Antarctica",
+          "fr": "Antarctique"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Karakum",
+          "fr": "Karakoum"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Great Victoria Desert"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Great Victoria",
+          "fr": "Grand désert Victoria"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Chihuahuan Desert"],
+          "fr": ["Désert de Chihuahua"]
+        },
+        "labels": {
+          "en": "Chihuahuan",
+          "fr": "Chihuahua"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Patagonian Desert"],
+          "fr": ["Désert de Patagonie"]
+        },
+        "labels": {
+          "en": "Patagonian",
+          "fr": "Patagonie"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Sahel",
+        "fr": "Sahel"
+      },
+      "why": {
+        "en": "A semi-arid strip south of the Sahara, not a desert.",
+        "fr": "Une bande semi-aride au sud du Sahara, pas un désert."
+      }
+    },
+    "id": "deserts",
+    "labels": {
+      "en": "Deserts",
+      "fr": "Déserts"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Granite",
+          "fr": "Granit"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Marble",
+          "fr": "Marbre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Limestone",
+          "fr": "Calcaire"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Quartz",
+          "fr": "Quartz"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chalk",
+          "fr": "Craie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Slate",
+          "fr": "Ardoise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Basalt",
+          "fr": "Basalte"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sandstone",
+          "fr": "Grès"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Flint",
+          "fr": "Silex"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Obsidian",
+          "fr": "Obsidienne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pumice stone"],
+          "fr": ["Ponce"]
+        },
+        "labels": {
+          "en": "Pumice",
+          "fr": "Pierre ponce"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mica",
+          "fr": "Mica"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gypsum",
+          "fr": "Gypse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Feldspar",
+          "fr": "Feldspath"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Fool's gold"],
+          "fr": ["Or des fous"]
+        },
+        "labels": {
+          "en": "Pyrite",
+          "fr": "Pyrite"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gneiss",
+          "fr": "Gneiss"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Graphite",
+          "fr": "Graphite"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calcite",
+          "fr": "Calcite"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Talc",
+          "fr": "Talc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Schist",
+          "fr": "Schiste"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Amber",
+        "fr": "Ambre"
+      },
+      "why": {
+        "en": "Fossilised tree resin, not a mineral.",
+        "fr": "De la résine d'arbre fossilisée, pas un minéral."
+      }
+    },
+    "id": "rocks-and-minerals",
+    "labels": {
+      "en": "Rocks and minerals",
+      "fr": "Roches et minéraux"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ibex",
+          "fr": "Bouquetin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Marmot",
+          "fr": "Marmotte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chamois",
+          "fr": "Chamois"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Eagle"],
+          "fr": ["Aigle"]
+        },
+        "labels": {
+          "en": "Golden eagle",
+          "fr": "Aigle royal"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yak",
+          "fr": "Yack"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ounce"],
+          "fr": ["Panthère des neiges"]
+        },
+        "labels": {
+          "en": "Snow leopard",
+          "fr": "Léopard des neiges"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Llama",
+          "fr": "Lama"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bighorn", "Bighorn sheep"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mouflon",
+          "fr": "Mouflon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lammergeier"],
+          "fr": ["Gypaète"]
+        },
+        "labels": {
+          "en": "Bearded vulture",
+          "fr": "Gypaète barbu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cougar", "Mountain lion"],
+          "fr": ["Couguar"]
+        },
+        "labels": {
+          "en": "Puma",
+          "fr": "Puma"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Condor",
+          "fr": "Condor"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Chèvre des montagnes"]
+        },
+        "labels": {
+          "en": "Mountain goat",
+          "fr": "Chèvre des Rocheuses"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alpaca",
+          "fr": "Alpaga"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Panda"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Giant panda",
+          "fr": "Panda géant"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vicuña",
+          "fr": "Vigogne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ptarmigan",
+          "fr": "Lagopède"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Ermine"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stoat",
+          "fr": "Hermine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mountain hare",
+          "fr": "Lièvre variable"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pika",
+          "fr": "Pika"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Tétras"]
+        },
+        "labels": {
+          "en": "Black grouse",
+          "fr": "Tétras lyre"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Abominable snowman"],
+        "fr": ["Abominable homme des neiges"]
+      },
+      "labels": {
+        "en": "Yeti",
+        "fr": "Yéti"
+      },
+      "why": {
+        "en": "A legend: nobody has ever caught one.",
+        "fr": "Une légende : personne n'en a jamais attrapé."
+      }
+    },
+    "id": "mountain-animals",
+    "labels": {
+      "en": "Mountain animals",
+      "fr": "Animaux de montagne"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cow",
+          "fr": "Vache"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Goat",
+          "fr": "Chèvre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rhino"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rhinoceros",
+          "fr": "Rhinocéros"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bull",
+          "fr": "Taureau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ram",
+          "fr": "Bélier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Water buffalo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Buffalo",
+          "fr": "Buffle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Antelope",
+          "fr": "Antilope"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ibex",
+          "fr": "Bouquetin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bison",
+          "fr": "Bison"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yak",
+          "fr": "Yack"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gazelle",
+          "fr": "Gazelle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chamois",
+          "fr": "Chamois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oryx",
+          "fr": "Oryx"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kudu",
+          "fr": "Koudou"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Gnu"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wildebeest",
+          "fr": "Gnou"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Musk ox",
+          "fr": "Bœuf musqué"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Markhor",
+          "fr": "Markhor"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Springbok",
+          "fr": "Springbok"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Impala",
+          "fr": "Impala"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Stag", "Red deer"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Deer",
+        "fr": "Cerf"
+      },
+      "why": {
+        "en": "Antlers, shed every year, not horns.",
+        "fr": "Des bois, qui tombent chaque année, pas des cornes."
+      }
+    },
+    "id": "horned-animals",
+    "labels": {
+      "en": "Horned animals",
+      "fr": "Animaux à cornes"
+    },
+    "tier": "easy"
+  }
+]

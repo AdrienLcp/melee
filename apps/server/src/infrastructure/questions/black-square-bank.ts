@@ -9,10 +9,16 @@ import {
 } from '@melee/core/round/difficulty-draw'
 
 import culture from './black-square-authored-culture.json' with { type: 'json' }
+import everyday from './black-square-authored-everyday.json' with {
+  type: 'json'
+}
 import food from './black-square-authored-food.json' with { type: 'json' }
 import home from './black-square-authored-home.json' with { type: 'json' }
+import leisure from './black-square-authored-leisure.json' with { type: 'json' }
 import nature from './black-square-authored-nature.json' with { type: 'json' }
 import pilots from './black-square-authored-pilots.json' with { type: 'json' }
+import table from './black-square-authored-table.json' with { type: 'json' }
+import world from './black-square-authored-world.json' with { type: 'json' }
 import bank from './black-square-bank.json' with { type: 'json' }
 
 const bilingualSchema = z.object({ en: z.string(), fr: z.string() })
@@ -110,10 +116,14 @@ export const bankedBlackSquareThemes = (): readonly BlackSquareTheme[] => {
 /** The hand-written themes, one file a domain so each can be authored and checked alone. */
 export const authoredBlackSquareSources = {
   culture,
+  everyday,
   food,
   home,
+  leisure,
   nature,
-  pilots
+  pilots,
+  table,
+  world
 } as const satisfies Record<string, readonly unknown[]>
 
 export const parseAuthoredBlackSquareThemes = (

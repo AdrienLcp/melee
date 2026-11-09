@@ -1,0 +1,5849 @@
+[
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Tambours"]
+        },
+        "labels": {
+          "en": "Drum",
+          "fr": "Tambour"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Drums", "Drum set"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drum kit",
+          "fr": "Batterie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Xylophone",
+          "fr": "Xylophone"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cymbals"],
+          "fr": ["Cymbales"]
+        },
+        "labels": {
+          "en": "Cymbal",
+          "fr": "Cymbale"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Triangle",
+          "fr": "Triangle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Tambour de basque"]
+        },
+        "labels": {
+          "en": "Tambourine",
+          "fr": "Tambourin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Maraca"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maracas",
+          "fr": "Maracas"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Castanet"],
+          "fr": ["Castagnette"]
+        },
+        "labels": {
+          "en": "Castanets",
+          "fr": "Castagnettes"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bongo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bongos",
+          "fr": "Bongos"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Kettledrum", "Kettledrums"],
+          "fr": ["Timbale"]
+        },
+        "labels": {
+          "en": "Timpani",
+          "fr": "Timbales"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gong",
+          "fr": "Gong"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Djembe",
+          "fr": "Djembé"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Conga"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Congas",
+          "fr": "Congas"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Marimba",
+          "fr": "Marimba"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Vibes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vibraphone",
+          "fr": "Vibraphone"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Glockenspiel",
+          "fr": "Glockenspiel"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Snare"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Snare drum",
+          "fr": "Caisse claire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bass drum",
+          "fr": "Grosse caisse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cajón",
+          "fr": "Cajón"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Didjeridoo"]
+      },
+      "labels": {
+        "en": "Didgeridoo",
+        "fr": "Didgeridoo"
+      },
+      "why": {
+        "en": "A wind instrument: the player buzzes their lips into a long tube.",
+        "fr": "Un instrument à vent : on y fait vibrer ses lèvres dans un long tube."
+      }
+    },
+    "id": "percussion-instruments",
+    "labels": {
+      "en": "Percussion instruments",
+      "fr": "Percussions"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Toy Story",
+          "fr": "Toy Story"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Nemo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Finding Nemo",
+          "fr": "Le Monde de Nemo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cars",
+          "fr": "Cars"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Incredibles",
+          "fr": "Les Indestructibles"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Monstres et compagnie"]
+        },
+        "labels": {
+          "en": "Monsters, Inc.",
+          "fr": "Monstres et Cie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ratatouille",
+          "fr": "Ratatouille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Up",
+          "fr": "Là-haut"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Wally"],
+          "fr": []
+        },
+        "labels": {
+          "en": "WALL-E",
+          "fr": "WALL-E"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Inside Out",
+          "fr": "Vice-versa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coco",
+          "fr": "Coco"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brave",
+          "fr": "Rebelle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Mille et une pattes"]
+        },
+        "labels": {
+          "en": "A Bug's Life",
+          "fr": "1001 pattes"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Luca",
+          "fr": "Luca"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Soul",
+          "fr": "Soul"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Onward",
+          "fr": "En avant"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Elemental",
+          "fr": "Élémentaire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Arlo"]
+        },
+        "labels": {
+          "en": "The Good Dinosaur",
+          "fr": "Le Voyage d'Arlo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turning Red",
+          "fr": "Alerte rouge"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Zootropolis"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Zootopia",
+        "fr": "Zootopie"
+      },
+      "why": {
+        "en": "Made by Walt Disney Animation Studios, not by Pixar.",
+        "fr": "Réalisé par les studios d’animation Disney, pas par Pixar."
+      }
+    },
+    "id": "pixar-films",
+    "labels": {
+      "en": "Pixar films",
+      "fr": "Films Pixar"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Vader"],
+          "fr": ["Vador"]
+        },
+        "labels": {
+          "en": "Darth Vader",
+          "fr": "Dark Vador"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Joker",
+          "fr": "Joker"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lord Voldemort"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Voldemort",
+          "fr": "Voldemort"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hannibal"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hannibal Lecter",
+          "fr": "Hannibal Lecter"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thanos",
+          "fr": "Thanos"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scar",
+          "fr": "Scar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Freddy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Freddy Krueger",
+          "fr": "Freddy Krueger"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Count Dracula"],
+          "fr": ["Comte Dracula"]
+        },
+        "labels": {
+          "en": "Dracula",
+          "fr": "Dracula"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sauron",
+          "fr": "Sauron"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ursula",
+          "fr": "Ursula"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jafar",
+          "fr": "Jafar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cruella De Ville"],
+          "fr": ["Cruella d'Enfer"]
+        },
+        "labels": {
+          "en": "Cruella de Vil",
+          "fr": "Cruella"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chucky",
+          "fr": "Chucky"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maleficent",
+          "fr": "Maléfique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Hook"],
+          "fr": ["Crochet"]
+        },
+        "labels": {
+          "en": "Captain Hook",
+          "fr": "Capitaine Crochet"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Norman Bates",
+          "fr": "Norman Bates"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hans Gruber",
+          "fr": "Hans Gruber"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Agent Smith",
+          "fr": "Agent Smith"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Michael Myers",
+          "fr": "Michael Myers"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jack Torrance",
+          "fr": "Jack Torrance"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Victor Frankenstein"],
+        "fr": ["Docteur Frankenstein"]
+      },
+      "labels": {
+        "en": "Frankenstein",
+        "fr": "Frankenstein"
+      },
+      "why": {
+        "en": "Frankenstein is the scientist who made the creature, and the creature has no name.",
+        "fr": "Frankenstein est le savant qui crée la créature, et la créature n’a pas de nom."
+      }
+    },
+    "id": "film-villains",
+    "labels": {
+      "en": "Film villains",
+      "fr": "Méchants de cinéma"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Harry"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Harry Potter",
+          "fr": "Harry Potter"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hermione"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hermione Granger",
+          "fr": "Hermione Granger"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ron"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ron Weasley",
+          "fr": "Ron Weasley"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Albus Dumbledore"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dumbledore",
+          "fr": "Dumbledore"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rubeus Hagrid"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hagrid",
+          "fr": "Hagrid"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lord Voldemort", "Tom Riddle"],
+          "fr": ["Tom Jedusor"]
+        },
+        "labels": {
+          "en": "Voldemort",
+          "fr": "Voldemort"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Snape"],
+          "fr": ["Rogue"]
+        },
+        "labels": {
+          "en": "Severus Snape",
+          "fr": "Severus Rogue"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Draco"],
+          "fr": ["Drago"]
+        },
+        "labels": {
+          "en": "Draco Malfoy",
+          "fr": "Drago Malefoy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sirius"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sirius Black",
+          "fr": "Sirius Black"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dobby",
+          "fr": "Dobby"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ginny"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ginny Weasley",
+          "fr": "Ginny Weasley"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Neville"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Neville Longbottom",
+          "fr": "Neville Londubat"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Minerva McGonagall"],
+          "fr": []
+        },
+        "labels": {
+          "en": "McGonagall",
+          "fr": "McGonagall"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Luna"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Luna Lovegood",
+          "fr": "Luna Lovegood"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Bellatrix"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bellatrix Lestrange",
+          "fr": "Bellatrix Lestrange"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Umbridge"],
+          "fr": ["Ombrage"]
+        },
+        "labels": {
+          "en": "Dolores Umbridge",
+          "fr": "Dolores Ombrage"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Lupin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Remus Lupin",
+          "fr": "Remus Lupin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hedwig",
+          "fr": "Hedwige"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Cedric"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cedric Diggory",
+          "fr": "Cedric Diggory"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Wormtail"],
+          "fr": ["Queudver"]
+        },
+        "labels": {
+          "en": "Peter Pettigrew",
+          "fr": "Peter Pettigrow"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Hogwarts",
+        "fr": "Poudlard"
+      },
+      "why": {
+        "en": "The school of witchcraft: a place, not a character.",
+        "fr": "L’école de sorcellerie : un lieu, pas un personnage."
+      }
+    },
+    "id": "harry-potter-characters",
+    "labels": {
+      "en": "Harry Potter characters",
+      "fr": "Personnages de Harry Potter"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Luke"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Luke Skywalker",
+          "fr": "Luke Skywalker"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Vader", "Anakin", "Anakin Skywalker"],
+          "fr": ["Vador"]
+        },
+        "labels": {
+          "en": "Darth Vader",
+          "fr": "Dark Vador"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Han Solo",
+          "fr": "Han Solo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Leia"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Princess Leia",
+          "fr": "Princesse Leia"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Master Yoda"],
+          "fr": ["Maître Yoda"]
+        },
+        "labels": {
+          "en": "Yoda",
+          "fr": "Yoda"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chewie"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chewbacca",
+          "fr": "Chewbacca"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["D2-R2"]
+        },
+        "labels": {
+          "en": "R2-D2",
+          "fr": "R2-D2"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Z-6PO"]
+        },
+        "labels": {
+          "en": "C-3PO",
+          "fr": "C-3PO"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Obi-Wan", "Ben Kenobi"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Obi-Wan Kenobi",
+          "fr": "Obi-Wan Kenobi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Palpatine", "Darth Sidious"],
+          "fr": ["Dark Sidious"]
+        },
+        "labels": {
+          "en": "Emperor Palpatine",
+          "fr": "Empereur Palpatine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Darth Maul",
+          "fr": "Dark Maul"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Jabba"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jabba the Hutt",
+          "fr": "Jabba le Hutt"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boba Fett",
+          "fr": "Boba Fett"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Padmé"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Padmé Amidala",
+          "fr": "Padmé Amidala"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Jar Jar"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jar Jar Binks",
+          "fr": "Jar Jar Binks"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rey",
+          "fr": "Rey"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kylo Ren",
+          "fr": "Kylo Ren"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Qui-Gon"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Qui-Gon Jinn",
+          "fr": "Qui-Gon Jinn"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mace Windu",
+          "fr": "Mace Windu"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Baby Yoda"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grogu",
+          "fr": "Grogu"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Mr Spock"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Spock",
+        "fr": "Spock"
+      },
+      "why": {
+        "en": "The Vulcan officer of Star Trek, the other saga among the stars.",
+        "fr": "L’officier vulcain de Star Trek, l’autre saga des étoiles."
+      }
+    },
+    "id": "star-wars-characters",
+    "labels": {
+      "en": "Star Wars characters",
+      "fr": "Personnages de Star Wars"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Wolfgang Amadeus Mozart"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mozart",
+          "fr": "Mozart"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ludwig van Beethoven"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Beethoven",
+          "fr": "Beethoven"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Johann Sebastian Bach"],
+          "fr": ["Jean-Sébastien Bach"]
+        },
+        "labels": {
+          "en": "Bach",
+          "fr": "Bach"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Antonio Vivaldi"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vivaldi",
+          "fr": "Vivaldi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Frédéric Chopin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chopin",
+          "fr": "Chopin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tchaikovsky",
+          "fr": "Tchaïkovski"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Claude Debussy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Debussy",
+          "fr": "Debussy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Franz Schubert"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Schubert",
+          "fr": "Schubert"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Giuseppe Verdi"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Verdi",
+          "fr": "Verdi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Richard Wagner"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wagner",
+          "fr": "Wagner"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Maurice Ravel"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ravel",
+          "fr": "Ravel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Handel",
+          "fr": "Haendel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Johannes Brahms"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brahms",
+          "fr": "Brahms"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Joseph Haydn"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Haydn",
+          "fr": "Haydn"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Erik Satie"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Satie",
+          "fr": "Satie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Franz Liszt"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Liszt",
+          "fr": "Liszt"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Gustav Mahler"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mahler",
+          "fr": "Mahler"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Igor Stravinsky"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stravinsky",
+          "fr": "Stravinski"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Georges Bizet"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bizet",
+          "fr": "Bizet"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Sergei Rachmaninoff"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rachmaninoff",
+          "fr": "Rachmaninov"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Luciano Pavarotti"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Pavarotti",
+        "fr": "Pavarotti"
+      },
+      "why": {
+        "en": "A tenor who sang the composers, and composed nothing himself.",
+        "fr": "Un ténor qui chantait les compositeurs, sans rien composer lui-même."
+      }
+    },
+    "id": "classical-composers",
+    "labels": {
+      "en": "Classical composers",
+      "fr": "Compositeurs classiques"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Friends",
+          "fr": "Friends"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["GoT"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Game of Thrones",
+          "fr": "Game of Thrones"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Simpsons"],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Simpsons",
+          "fr": "Les Simpson"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Breaking Bad",
+          "fr": "Breaking Bad"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stranger Things",
+          "fr": "Stranger Things"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Lost, les disparus"]
+        },
+        "labels": {
+          "en": "Lost",
+          "fr": "Lost"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Prison Break",
+          "fr": "Prison Break"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["House MD"],
+          "fr": []
+        },
+        "labels": {
+          "en": "House",
+          "fr": "Dr House"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Desperate Housewives",
+          "fr": "Desperate Housewives"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Walking Dead",
+          "fr": "The Walking Dead"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["HIMYM"],
+          "fr": []
+        },
+        "labels": {
+          "en": "How I Met Your Mother",
+          "fr": "How I Met Your Mother"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Money Heist",
+          "fr": "La Casa de Papel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grey's Anatomy",
+          "fr": "Grey's Anatomy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Office",
+          "fr": "The Office"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Sopranos",
+          "fr": "Les Soprano"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Aux frontières du réel"]
+        },
+        "labels": {
+          "en": "The X-Files",
+          "fr": "X-Files"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Twin Peaks",
+          "fr": "Twin Peaks"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Seinfeld",
+          "fr": "Seinfeld"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Wire",
+          "fr": "Sur écoute"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mad Men",
+          "fr": "Mad Men"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "The Godfather",
+        "fr": "Le Parrain"
+      },
+      "why": {
+        "en": "A film trilogy for the cinema, never a TV series.",
+        "fr": "Une trilogie de cinéma, jamais une série."
+      }
+    },
+    "id": "tv-series",
+    "labels": {
+      "en": "Cult TV series",
+      "fr": "Séries cultes"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pikachu",
+          "fr": "Pikachu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Charmander",
+          "fr": "Salamèche"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bulbasaur",
+          "fr": "Bulbizarre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Squirtle",
+          "fr": "Carapuce"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mewtwo",
+          "fr": "Mewtwo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jigglypuff",
+          "fr": "Rondoudou"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Charizard",
+          "fr": "Dracaufeu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Eevee",
+          "fr": "Évoli"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Snorlax",
+          "fr": "Ronflex"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Meowth",
+          "fr": "Miaouss"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Psyduck",
+          "fr": "Psykokwak"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gengar",
+          "fr": "Ectoplasma"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Magikarp",
+          "fr": "Magicarpe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mew",
+          "fr": "Mew"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lucario",
+          "fr": "Lucario"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Onix",
+          "fr": "Onix"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gyarados",
+          "fr": "Léviator"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Togepi",
+          "fr": "Togepi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dragonite",
+          "fr": "Dracolosse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ditto",
+          "fr": "Métamorph"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Ash Ketchum"],
+        "fr": ["Sacha Ketchum"]
+      },
+      "labels": {
+        "en": "Ash",
+        "fr": "Sacha"
+      },
+      "why": {
+        "en": "The trainer who catches them, not a Pokémon himself.",
+        "fr": "Le dresseur qui les attrape, pas un Pokémon lui-même."
+      }
+    },
+    "id": "pokemon",
+    "labels": {
+      "en": "Pokémon",
+      "fr": "Pokémon"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Super Mario"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mario",
+          "fr": "Mario"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Luigi",
+          "fr": "Luigi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Peach"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Princess Peach",
+          "fr": "Princesse Peach"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bowser",
+          "fr": "Bowser"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yoshi",
+          "fr": "Yoshi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Toad",
+          "fr": "Toad"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["DK"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Donkey Kong",
+          "fr": "Donkey Kong"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wario",
+          "fr": "Wario"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Waluigi",
+          "fr": "Waluigi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Daisy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Princess Daisy",
+          "fr": "Princesse Daisy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Koopa"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Koopa Troopa",
+          "fr": "Koopa Troopa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boo",
+          "fr": "Boo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Goombas"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Goomba",
+          "fr": "Goomba"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Diddy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Diddy Kong",
+          "fr": "Diddy Kong"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rosalina",
+          "fr": "Harmonie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shy Guy",
+          "fr": "Maskass"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lakitu",
+          "fr": "Lakitu"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Toadette",
+          "fr": "Toadette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Birdo",
+          "fr": "Birdo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Piranha Plant",
+          "fr": "Plante Piranha"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Sonic the Hedgehog"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Sonic",
+        "fr": "Sonic"
+      },
+      "why": {
+        "en": "Sega's hedgehog: he races Mario at the Olympics but belongs to another studio.",
+        "fr": "Le hérisson de Sega : il affronte Mario aux Jeux olympiques mais appartient à un autre studio."
+      }
+    },
+    "id": "mario-characters",
+    "labels": {
+      "en": "Mario characters",
+      "fr": "Personnages de Mario"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Novels"],
+          "fr": ["Romans"]
+        },
+        "labels": {
+          "en": "Novel",
+          "fr": "Roman"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Poems"],
+          "fr": ["Poèmes"]
+        },
+        "labels": {
+          "en": "Poetry",
+          "fr": "Poésie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Sci-fi"],
+          "fr": ["SF"]
+        },
+        "labels": {
+          "en": "Science fiction",
+          "fr": "Science-fiction"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Fantastique"]
+        },
+        "labels": {
+          "en": "Fantasy",
+          "fr": "Fantasy"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Detective novel", "Crime novel"],
+          "fr": ["Roman policier"]
+        },
+        "labels": {
+          "en": "Crime fiction",
+          "fr": "Polar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Theater", "Drama", "Plays"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Theatre",
+          "fr": "Théâtre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Fairy tales"],
+          "fr": ["Contes"]
+        },
+        "labels": {
+          "en": "Fairy tale",
+          "fr": "Conte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Biography",
+          "fr": "Biographie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fables"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fable",
+          "fr": "Fable"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thriller",
+          "fr": "Thriller"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Short stories"],
+          "fr": ["Nouvelles"]
+        },
+        "labels": {
+          "en": "Short story",
+          "fr": "Nouvelle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tragedy",
+          "fr": "Tragédie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Comedy",
+          "fr": "Comédie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Autobiography",
+          "fr": "Autobiographie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Essay",
+          "fr": "Essai"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Epic poem"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Epic",
+          "fr": "Épopée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dystopia",
+          "fr": "Dystopie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Satire",
+          "fr": "Satire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Memoirs"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Memoir",
+          "fr": "Mémoires"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Historical novel",
+          "fr": "Roman historique"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Manga",
+        "fr": "Manga"
+      },
+      "why": {
+        "en": "A form of Japanese comics, which spans every genre.",
+        "fr": "Une forme de bande dessinée japonaise, qui couvre tous les genres."
+      }
+    },
+    "id": "literary-genres",
+    "labels": {
+      "en": "Literary genres",
+      "fr": "Genres littéraires"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Clowns"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Clown",
+          "fr": "Clown"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Juggling"],
+          "fr": ["Jonglage"]
+        },
+        "labels": {
+          "en": "Juggler",
+          "fr": "Jongleur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Acrobats", "Acrobatics"],
+          "fr": ["Acrobaties"]
+        },
+        "labels": {
+          "en": "Acrobat",
+          "fr": "Acrobate"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Trapeze"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Trapeze artist",
+          "fr": "Trapéziste"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tamer"],
+          "fr": ["Dompteuse"]
+        },
+        "labels": {
+          "en": "Lion tamer",
+          "fr": "Dompteur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tightrope"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tightrope walker",
+          "fr": "Funambule"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ringmaster",
+          "fr": "Monsieur Loyal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Magic"],
+          "fr": ["Magie"]
+        },
+        "labels": {
+          "en": "Magician",
+          "fr": "Magicien"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Circus tent"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Big top",
+          "fr": "Chapiteau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fire breather"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fire-eater",
+          "fr": "Cracheur de feu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Unicycle",
+          "fr": "Monocycle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Contortion"],
+          "fr": ["Contorsion"]
+        },
+        "labels": {
+          "en": "Contortionist",
+          "fr": "Contorsionniste"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Knife thrower",
+          "fr": "Lanceur de couteaux"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Human cannonball",
+          "fr": "Homme-canon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Stilts"],
+          "fr": ["Échasses"]
+        },
+        "labels": {
+          "en": "Stilt walker",
+          "fr": "Échassier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Circus ring"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ring",
+          "fr": "Piste"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sword swallower",
+          "fr": "Avaleur de sabres"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Big wheel"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Ferris wheel",
+        "fr": "Grande roue"
+      },
+      "why": {
+        "en": "A funfair ride: a circus has a ring, not rides.",
+        "fr": "Un manège de fête foraine : le cirque a une piste, pas de manèges."
+      }
+    },
+    "id": "circus-acts",
+    "labels": {
+      "en": "At the circus",
+      "fr": "Au cirque"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chanel",
+          "fr": "Chanel"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Christian Dior"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dior",
+          "fr": "Dior"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Vuitton", "LV"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Louis Vuitton",
+          "fr": "Louis Vuitton"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gucci",
+          "fr": "Gucci"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zara",
+          "fr": "Zara"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hermès",
+          "fr": "Hermès"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Prada",
+          "fr": "Prada"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Saint Laurent", "YSL"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yves Saint Laurent",
+          "fr": "Yves Saint Laurent"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Versace",
+          "fr": "Versace"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Giorgio Armani"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Armani",
+          "fr": "Armani"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["H and M"],
+          "fr": []
+        },
+        "labels": {
+          "en": "H&M",
+          "fr": "H&M"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lacoste",
+          "fr": "Lacoste"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ralph Lauren",
+          "fr": "Ralph Lauren"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Givenchy",
+          "fr": "Givenchy"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Balenciaga",
+          "fr": "Balenciaga"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Burberry",
+          "fr": "Burberry"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Dolce and Gabbana", "D&G"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dolce & Gabbana",
+          "fr": "Dolce & Gabbana"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calvin Klein",
+          "fr": "Calvin Klein"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kenzo",
+          "fr": "Kenzo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Levi's",
+          "fr": "Levi's"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Rolex",
+        "fr": "Rolex"
+      },
+      "why": {
+        "en": "A watchmaker that has never made clothes.",
+        "fr": "Un horloger qui n’a jamais fait de vêtements."
+      }
+    },
+    "id": "fashion-brands",
+    "labels": {
+      "en": "Fashion brands",
+      "fr": "Marques de mode"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Apple",
+          "fr": "Apple"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Alphabet"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Google",
+          "fr": "Google"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Microsoft",
+          "fr": "Microsoft"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Amazon",
+          "fr": "Amazon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Facebook"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Meta",
+          "fr": "Meta"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Samsung",
+          "fr": "Samsung"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tesla",
+          "fr": "Tesla"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Netflix",
+          "fr": "Netflix"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sony",
+          "fr": "Sony"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "IBM",
+          "fr": "IBM"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Intel",
+          "fr": "Intel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nvidia",
+          "fr": "Nvidia"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Huawei",
+          "fr": "Huawei"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Xiaomi",
+          "fr": "Xiaomi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oracle",
+          "fr": "Oracle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "OpenAI",
+          "fr": "OpenAI"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alibaba",
+          "fr": "Alibaba"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tencent",
+          "fr": "Tencent"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dell",
+          "fr": "Dell"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Windows",
+        "fr": "Windows"
+      },
+      "why": {
+        "en": "Microsoft's operating system: a product, not a company.",
+        "fr": "Le système d’exploitation de Microsoft : un produit, pas une entreprise."
+      }
+    },
+    "id": "tech-companies",
+    "labels": {
+      "en": "Tech companies",
+      "fr": "Géants de la tech"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Albert Einstein"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Einstein",
+          "fr": "Einstein"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Isaac Newton"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Newton",
+          "fr": "Newton"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Curie"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Marie Curie",
+          "fr": "Marie Curie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Charles Darwin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Darwin",
+          "fr": "Darwin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Galileo Galilei"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Galileo",
+          "fr": "Galilée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Louis Pasteur"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pasteur",
+          "fr": "Pasteur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hawking"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stephen Hawking",
+          "fr": "Stephen Hawking"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Nicolaus Copernicus"],
+          "fr": ["Nicolas Copernic"]
+        },
+        "labels": {
+          "en": "Copernicus",
+          "fr": "Copernic"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Archimedes",
+          "fr": "Archimède"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Tesla"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nikola Tesla",
+          "fr": "Nikola Tesla"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Johannes Kepler"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kepler",
+          "fr": "Kepler"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fleming"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alexander Fleming",
+          "fr": "Alexander Fleming"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Antoine Lavoisier"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lavoisier",
+          "fr": "Lavoisier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Gregor Mendel"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mendel",
+          "fr": "Mendel"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Michael Faraday"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Faraday",
+          "fr": "Faraday"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Dmitri Mendeleev"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mendeleev",
+          "fr": "Mendeleïev"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Bohr"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Niels Bohr",
+          "fr": "Niels Bohr"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Turing"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alan Turing",
+          "fr": "Alan Turing"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["André-Marie Ampère"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ampère",
+          "fr": "Ampère"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Nostradamus",
+        "fr": "Nostradamus"
+      },
+      "why": {
+        "en": "An astrologer whose prophecies are no science.",
+        "fr": "Un astrologue dont les prophéties n’ont rien de scientifique."
+      }
+    },
+    "id": "famous-scientists",
+    "labels": {
+      "en": "Famous scientists",
+      "fr": "Scientifiques célèbres"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wheel",
+          "fr": "Roue"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Printing"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Printing press",
+          "fr": "Imprimerie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Ampoule électrique"]
+        },
+        "labels": {
+          "en": "Light bulb",
+          "fr": "Ampoule"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Phone"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Telephone",
+          "fr": "Téléphone"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["The web"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Internet",
+          "fr": "Internet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Computer",
+          "fr": "Ordinateur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Steam engine",
+          "fr": "Machine à vapeur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Airplane", "Plane"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aeroplane",
+          "fr": "Avion"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Automobile"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Car",
+          "fr": "Voiture"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["TV"],
+          "fr": ["Télé"]
+        },
+        "labels": {
+          "en": "Television",
+          "fr": "Télévision"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Radio",
+          "fr": "Radio"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Compass",
+          "fr": "Boussole"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Camera"],
+          "fr": ["Appareil photo"]
+        },
+        "labels": {
+          "en": "Photography",
+          "fr": "Photographie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paper",
+          "fr": "Papier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gunpowder",
+          "fr": "Poudre à canon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Lunette astronomique"]
+        },
+        "labels": {
+          "en": "Telescope",
+          "fr": "Télescope"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Microscope",
+          "fr": "Microscope"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Writing",
+          "fr": "Écriture"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Cinématographe"]
+        },
+        "labels": {
+          "en": "Cinema",
+          "fr": "Cinéma"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Fire",
+        "fr": "Feu"
+      },
+      "why": {
+        "en": "Fire was found and tamed, never invented.",
+        "fr": "Le feu a été découvert et maîtrisé, jamais inventé."
+      }
+    },
+    "id": "inventions",
+    "labels": {
+      "en": "Great inventions",
+      "fr": "Grandes inventions"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Jack-o'-lantern", "Pumpkins"],
+          "fr": ["Citrouilles"]
+        },
+        "labels": {
+          "en": "Pumpkin",
+          "fr": "Citrouille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Witches"],
+          "fr": ["Sorcières"]
+        },
+        "labels": {
+          "en": "Witch",
+          "fr": "Sorcière"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ghosts"],
+          "fr": ["Fantômes"]
+        },
+        "labels": {
+          "en": "Ghost",
+          "fr": "Fantôme"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Skeletons"],
+          "fr": ["Squelettes"]
+        },
+        "labels": {
+          "en": "Skeleton",
+          "fr": "Squelette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Candy", "Candies"],
+          "fr": ["Bonbon"]
+        },
+        "labels": {
+          "en": "Sweets",
+          "fr": "Bonbons"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Vampires"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vampire",
+          "fr": "Vampire"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bats"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bat",
+          "fr": "Chauve-souris"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Spiders"],
+          "fr": ["Araignées"]
+        },
+        "labels": {
+          "en": "Spider",
+          "fr": "Araignée"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Zombies"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zombie",
+          "fr": "Zombie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mummies"],
+          "fr": ["Momies"]
+        },
+        "labels": {
+          "en": "Mummy",
+          "fr": "Momie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Black cat",
+          "fr": "Chat noir"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fancy dress", "Costumes"],
+          "fr": ["Déguisements"]
+        },
+        "labels": {
+          "en": "Costume",
+          "fr": "Déguisement"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Werewolves"],
+          "fr": ["Loups-garous"]
+        },
+        "labels": {
+          "en": "Werewolf",
+          "fr": "Loup-garou"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Broom"],
+          "fr": ["Balai de sorcière"]
+        },
+        "labels": {
+          "en": "Broomstick",
+          "fr": "Balai"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cauldron",
+          "fr": "Chaudron"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Spider web"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cobweb",
+          "fr": "Toile d'araignée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Skulls"],
+          "fr": ["Crânes"]
+        },
+        "labels": {
+          "en": "Skull",
+          "fr": "Crâne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Grave", "Tombstone"],
+          "fr": ["Tombe"]
+        },
+        "labels": {
+          "en": "Gravestone",
+          "fr": "Pierre tombale"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Trick-or-treating"],
+          "fr": ["Des bonbons ou un sort"]
+        },
+        "labels": {
+          "en": "Trick or treat",
+          "fr": "Un bonbon ou un sort"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Dia de los Muertos"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Day of the Dead",
+        "fr": "Fête des morts"
+      },
+      "why": {
+        "en": "A Mexican festival honouring the dead, held after Halloween and distinct from it.",
+        "fr": "Une fête mexicaine en l’honneur des défunts, qui suit Halloween sans en être."
+      }
+    },
+    "id": "halloween",
+    "labels": {
+      "en": "Halloween",
+      "fr": "Halloween"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Xmas"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Christmas",
+          "fr": "Noël"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Easter",
+          "fr": "Pâques"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Birthday",
+          "fr": "Anniversaire"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Halloween",
+          "fr": "Halloween"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["New Year's Eve", "New Year's Day"],
+          "fr": ["Saint-Sylvestre", "Jour de l'an"]
+        },
+        "labels": {
+          "en": "New Year",
+          "fr": "Nouvel An"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wedding",
+          "fr": "Mariage"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Valentines"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Valentine's Day",
+          "fr": "Saint-Valentin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mother's Day",
+          "fr": "Fête des mères"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Father's Day",
+          "fr": "Fête des pères"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carnival",
+          "fr": "Carnaval"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Chanukah"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hanukkah",
+          "fr": "Hanoukka"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Eid al-Fitr"],
+          "fr": ["Aïd el-Fitr"]
+        },
+        "labels": {
+          "en": "Eid",
+          "fr": "Aïd"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Diwali",
+          "fr": "Diwali"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lunar New Year"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chinese New Year",
+          "fr": "Nouvel An chinois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thanksgiving",
+          "fr": "Thanksgiving"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Christening"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Baptism",
+          "fr": "Baptême"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["April Fools"],
+          "fr": []
+        },
+        "labels": {
+          "en": "April Fools' Day",
+          "fr": "Poisson d'avril"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Twelfth Night"],
+          "fr": ["Fête des rois"]
+        },
+        "labels": {
+          "en": "Epiphany",
+          "fr": "Épiphanie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "St Patrick's Day",
+          "fr": "Saint-Patrick"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Housewarming party"],
+          "fr": ["Pendaison de crémaillère"]
+        },
+        "labels": {
+          "en": "Housewarming",
+          "fr": "Crémaillère"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Ramadan",
+        "fr": "Ramadan"
+      },
+      "why": {
+        "en": "A month of fasting; the celebration is Eid, which ends it.",
+        "fr": "Un mois de jeûne ; la fête, c’est l’Aïd, qui le clôt."
+      }
+    },
+    "id": "celebrations",
+    "labels": {
+      "en": "Holidays and celebrations",
+      "fr": "Fêtes et célébrations"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Beatles",
+          "fr": "The Beatles"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Stones"],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Rolling Stones",
+          "fr": "The Rolling Stones"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Queen",
+          "fr": "Queen"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nirvana",
+          "fr": "Nirvana"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "AC/DC",
+          "fr": "AC/DC"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Metallica",
+          "fr": "Metallica"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Led Zeppelin",
+          "fr": "Led Zeppelin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pink Floyd",
+          "fr": "Pink Floyd"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "U2",
+          "fr": "U2"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Guns and Roses"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Guns N' Roses",
+          "fr": "Guns N' Roses"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coldplay",
+          "fr": "Coldplay"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Red Hot", "RHCP"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Red Hot Chili Peppers",
+          "fr": "Red Hot Chili Peppers"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Linkin Park",
+          "fr": "Linkin Park"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Who",
+          "fr": "The Who"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Doors",
+          "fr": "The Doors"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Deep Purple",
+          "fr": "Deep Purple"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aerosmith",
+          "fr": "Aerosmith"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Foo Fighters",
+          "fr": "Foo Fighters"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Radiohead",
+          "fr": "Radiohead"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Elvis"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Elvis Presley",
+        "fr": "Elvis Presley"
+      },
+      "why": {
+        "en": "A solo singer, the king of rock and of no band.",
+        "fr": "Un chanteur solo, le roi du rock et d’aucun groupe."
+      }
+    },
+    "id": "rock-bands",
+    "labels": {
+      "en": "Rock bands",
+      "fr": "Groupes de rock"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Snow White",
+          "fr": "Blanche-Neige"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cinderella",
+          "fr": "Cendrillon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["The Little Mermaid"],
+          "fr": ["La Petite Sirène"]
+        },
+        "labels": {
+          "en": "Ariel",
+          "fr": "Ariel"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Belle",
+          "fr": "Belle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jasmine",
+          "fr": "Jasmine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rapunzel",
+          "fr": "Raiponce"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mulan",
+          "fr": "Mulan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pocahontas",
+          "fr": "Pocahontas"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Moana",
+          "fr": "Vaiana"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sleeping Beauty"],
+          "fr": ["La Belle au bois dormant"]
+        },
+        "labels": {
+          "en": "Aurora",
+          "fr": "Aurore"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anna",
+          "fr": "Anna"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tiana",
+          "fr": "Tiana"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Merida",
+          "fr": "Mérida"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Raya",
+          "fr": "Raya"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Elsa",
+        "fr": "Elsa"
+      },
+      "why": {
+        "en": "Crowned at the start of Frozen: a queen, not a princess.",
+        "fr": "Couronnée au début de La Reine des neiges : une reine, pas une princesse."
+      }
+    },
+    "id": "disney-princesses",
+    "labels": {
+      "en": "Disney princesses",
+      "fr": "Princesses Disney"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Merlin l’Enchanteur"]
+        },
+        "labels": {
+          "en": "Merlin",
+          "fr": "Merlin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gandalf",
+          "fr": "Gandalf"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Harry"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Harry Potter",
+          "fr": "Harry Potter"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Albus Dumbledore"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dumbledore",
+          "fr": "Dumbledore"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lord Voldemort"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Voldemort",
+          "fr": "Voldemort"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hermione"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hermione Granger",
+          "fr": "Hermione Granger"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Saruman",
+          "fr": "Saroumane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jafar",
+          "fr": "Jafar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dr Strange"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Doctor Strange",
+          "fr": "Docteur Strange"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sabrina Spellman"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sabrina",
+          "fr": "Sabrina"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gargamel",
+          "fr": "Gargamel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Baba Yaga",
+          "fr": "Baba Yaga"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Madam Mim",
+          "fr": "Madame Mim"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Circe",
+          "fr": "Circé"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Elphaba",
+          "fr": "Elphaba"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Glinda",
+          "fr": "Glinda"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Prospero",
+          "fr": "Prospero"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Morgane"]
+        },
+        "labels": {
+          "en": "Morgan le Fay",
+          "fr": "Fée Morgane"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Harry Houdini"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Houdini",
+        "fr": "Houdini"
+      },
+      "why": {
+        "en": "An escape artist and illusionist: stagecraft, no spell.",
+        "fr": "Un illusionniste et roi de l’évasion : de l’adresse, aucun sort."
+      }
+    },
+    "id": "famous-wizards",
+    "labels": {
+      "en": "Famous wizards and witches",
+      "fr": "Sorciers célèbres"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Sherlock"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sherlock Holmes",
+          "fr": "Sherlock Holmes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Poirot"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hercule Poirot",
+          "fr": "Hercule Poirot"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lieutenant Columbo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Columbo",
+          "fr": "Columbo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Gadget"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Inspector Gadget",
+          "fr": "Inspecteur Gadget"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Marple"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Miss Marple",
+          "fr": "Miss Marple"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Commissaire Maigret"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maigret",
+          "fr": "Maigret"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Clouseau"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Inspector Clouseau",
+          "fr": "Inspecteur Clouseau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Thompson and Thomson"],
+          "fr": ["Dupont et Dupond", "Dupondt"]
+        },
+        "labels": {
+          "en": "Thomson and Thompson",
+          "fr": "Dupond et Dupont"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jessica Fletcher",
+          "fr": "Jessica Fletcher"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Adrian Monk"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Monk",
+          "fr": "Monk"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Case Closed", "Conan"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Detective Conan",
+          "fr": "Détective Conan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Marlowe"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Philip Marlowe",
+          "fr": "Philip Marlowe"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sam Spade",
+          "fr": "Sam Spade"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Dupin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Auguste Dupin",
+          "fr": "Auguste Dupin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nancy Drew",
+          "fr": "Alice Roy"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Father Brown",
+          "fr": "Père Brown"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Benoit Blanc",
+          "fr": "Benoit Blanc"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Lupin"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Arsène Lupin",
+        "fr": "Arsène Lupin"
+      },
+      "why": {
+        "en": "A gentleman burglar: the one the detectives chase.",
+        "fr": "Un gentleman cambrioleur : celui que les détectives poursuivent."
+      }
+    },
+    "id": "fictional-detectives",
+    "labels": {
+      "en": "Fictional detectives",
+      "fr": "Détectives de fiction"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Parachuting"],
+          "fr": ["Saut en parachute"]
+        },
+        "labels": {
+          "en": "Skydiving",
+          "fr": "Parachutisme"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bungee"],
+          "fr": ["Élastique"]
+        },
+        "labels": {
+          "en": "Bungee jumping",
+          "fr": "Saut à l’élastique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Surfing",
+          "fr": "Surf"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Skate"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Skateboarding",
+          "fr": "Skateboard"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paragliding",
+          "fr": "Parapente"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Climbing"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rock climbing",
+          "fr": "Escalade"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Snowboarding",
+          "fr": "Snowboard"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "BMX",
+          "fr": "BMX"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "BASE jumping",
+          "fr": "BASE jump"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Wingsuit flying"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wingsuit",
+          "fr": "Wingsuit"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Kiteboarding"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kitesurfing",
+          "fr": "Kitesurf"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["White-water rafting"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rafting",
+          "fr": "Rafting"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Motocross",
+          "fr": "Motocross"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Plongée en apnée"]
+        },
+        "labels": {
+          "en": "Freediving",
+          "fr": "Apnée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hang glider"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hang gliding",
+          "fr": "Deltaplane"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Canyoneering"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Canyoning",
+          "fr": "Canyoning"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Free running"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Parkour",
+          "fr": "Parkour"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Highline"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Slacklining",
+          "fr": "Slackline"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ice climbing",
+          "fr": "Cascade de glace"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Bobsled"],
+        "fr": ["Bob"]
+      },
+      "labels": {
+        "en": "Bobsleigh",
+        "fr": "Bobsleigh"
+      },
+      "why": {
+        "en": "An Olympic winter sport raced on an ice track, not an extreme sport.",
+        "fr": "Un sport olympique d’hiver couru sur une piste de glace, pas un sport extrême."
+      }
+    },
+    "id": "extreme-sports",
+    "labels": {
+      "en": "Extreme sports",
+      "fr": "Sports extrêmes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pelé",
+          "fr": "Pelé"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Diego Maradona"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maradona",
+          "fr": "Maradona"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Zinedine Zidane"],
+          "fr": ["Zizou"]
+        },
+        "labels": {
+          "en": "Zidane",
+          "fr": "Zidane"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lionel Messi"],
+          "fr": ["Leo Messi"]
+        },
+        "labels": {
+          "en": "Messi",
+          "fr": "Messi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ronaldo", "CR7"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cristiano Ronaldo",
+          "fr": "Cristiano Ronaldo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ronaldinho",
+          "fr": "Ronaldinho"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Michel Platini"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Platini",
+          "fr": "Platini"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cruyff", "Cruijff"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Johan Cruyff",
+          "fr": "Johan Cruyff"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Franz Beckenbauer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Beckenbauer",
+          "fr": "Beckenbauer"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Henry"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thierry Henry",
+          "fr": "Thierry Henry"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Zlatan", "Ibrahimovic"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zlatan Ibrahimović",
+          "fr": "Zlatan Ibrahimović"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Beckham"],
+          "fr": []
+        },
+        "labels": {
+          "en": "David Beckham",
+          "fr": "David Beckham"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Kylian Mbappé"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mbappé",
+          "fr": "Mbappé"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Eusébio",
+          "fr": "Eusébio"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Ferenc Puskás"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Puskás",
+          "fr": "Puskás"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Alfredo Di Stéfano"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Di Stéfano",
+          "fr": "Di Stéfano"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "George Best",
+          "fr": "George Best"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Yashin"],
+          "fr": ["Yachine"]
+        },
+        "labels": {
+          "en": "Lev Yashin",
+          "fr": "Lev Yachine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Garrincha",
+          "fr": "Garrincha"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Kopa"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Raymond Kopa",
+          "fr": "Raymond Kopa"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Mourinho"],
+        "fr": []
+      },
+      "labels": {
+        "en": "José Mourinho",
+        "fr": "José Mourinho"
+      },
+      "why": {
+        "en": "A coach whose own playing never left the Portuguese lower leagues.",
+        "fr": "Un entraîneur dont la carrière de joueur n’a jamais quitté les divisions inférieures portugaises."
+      }
+    },
+    "id": "legendary-footballers",
+    "labels": {
+      "en": "Football legends",
+      "fr": "Footballeurs de légende"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Mario"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Super Mario",
+          "fr": "Super Mario"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Zelda"],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Legend of Zelda",
+          "fr": "The Legend of Zelda"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pokémon",
+          "fr": "Pokémon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["COD"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Call of Duty",
+          "fr": "Call of Duty"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["GTA"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grand Theft Auto",
+          "fr": "Grand Theft Auto"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["EA Sports FC"],
+          "fr": []
+        },
+        "labels": {
+          "en": "FIFA",
+          "fr": "FIFA"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sonic",
+          "fr": "Sonic"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Final Fantasy",
+          "fr": "Final Fantasy"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Assassin's Creed",
+          "fr": "Assassin's Creed"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Street Fighter",
+          "fr": "Street Fighter"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lara Croft"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tomb Raider",
+          "fr": "Tomb Raider"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Halo",
+          "fr": "Halo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The Sims",
+          "fr": "Les Sims"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Resident Evil",
+          "fr": "Resident Evil"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Metal Gear Solid"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Metal Gear",
+          "fr": "Metal Gear"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mortal Kombat",
+          "fr": "Mortal Kombat"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Crash"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crash Bandicoot",
+          "fr": "Crash Bandicoot"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Donkey Kong",
+          "fr": "Donkey Kong"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Uncharted",
+          "fr": "Uncharted"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Doom",
+          "fr": "Doom"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Fortnite",
+        "fr": "Fortnite"
+      },
+      "why": {
+        "en": "One game that changes by the season, not a series of games.",
+        "fr": "Un seul jeu qui change au fil des saisons, pas une saga."
+      }
+    },
+    "id": "video-game-series",
+    "labels": {
+      "en": "Video game series",
+      "fr": "Sagas de jeux vidéo"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nike",
+          "fr": "Nike"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Adidas",
+          "fr": "Adidas"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Puma",
+          "fr": "Puma"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Reebok",
+          "fr": "Reebok"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Asics",
+          "fr": "Asics"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "New Balance",
+          "fr": "New Balance"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Under Armor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Under Armour",
+          "fr": "Under Armour"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Le Coq Sportif",
+          "fr": "Le Coq Sportif"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kappa",
+          "fr": "Kappa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fila",
+          "fr": "Fila"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Umbro",
+          "fr": "Umbro"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Converse",
+          "fr": "Converse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Salomon",
+          "fr": "Salomon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mizuno",
+          "fr": "Mizuno"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wilson",
+          "fr": "Wilson"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Babolat",
+          "fr": "Babolat"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rossignol",
+          "fr": "Rossignol"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hoka",
+          "fr": "Hoka"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "The North Face",
+          "fr": "The North Face"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lotto",
+          "fr": "Lotto"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Redbull"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Red Bull",
+        "fr": "Red Bull"
+      },
+      "why": {
+        "en": "On every race car and every extreme sport, but it sells energy drinks.",
+        "fr": "Sur toutes les voitures de course et tous les sports extrêmes, mais elle vend des boissons énergisantes."
+      }
+    },
+    "id": "sports-brands",
+    "labels": {
+      "en": "Sports brands",
+      "fr": "Marques de sport"
+    },
+    "tier": "easy"
+  }
+]

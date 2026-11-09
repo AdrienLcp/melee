@@ -200,8 +200,8 @@ describe('the black-square bank', () => {
 })
 
 describe('the authored black-square themes', () => {
-  it('[blacksquare] writes at least a hundred broad themes by hand', () => {
-    expect(authoredBlackSquareThemes().length).toBeGreaterThanOrEqual(100)
+  it('[blacksquare] writes at least two hundred broad themes by hand', () => {
+    expect(authoredBlackSquareThemes().length).toBeGreaterThanOrEqual(200)
   })
 })
 

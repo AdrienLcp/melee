@@ -633,17 +633,21 @@ describe('drawQuestion', () => {
     }
   })
 
-  it('[difficulty] gives the four tiered subjects no more than their share of a mixed evening', () => {
-    const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_300 })
-    const tiered = drawn.filter((question) =>
-      TIERED_RUBRICS.has(question.category)
-    ).length
+  it(
+    '[difficulty] gives the four tiered subjects no more than their share of a mixed evening',
+    TWO_THOUSAND_DRAWS,
+    () => {
+      const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_300 })
+      const tiered = drawn.filter((question) =>
+        TIERED_RUBRICS.has(question.category)
+      ).length
 
-    expect(tiered / drawn.length).toBeCloseTo(
-      TIERED_RUBRICS.size / questionCategories.length,
-      1
-    )
-  })
+      expect(tiered / drawn.length).toBeCloseTo(
+        TIERED_RUBRICS.size / questionCategories.length,
+        1
+      )
+    }
+  )
 
   it('[difficulty] mixes heard-of and obscure half and half', () => {
     expect(DEFAULT_QUIZ_SETTINGS.difficulty).toBe('mixed')

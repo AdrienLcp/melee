@@ -1,0 +1,5464 @@
+[
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rake",
+          "fr": "Râteau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shovel",
+          "fr": "Pelle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Secateurs", "Pruners"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pruning shears",
+          "fr": "Sécateur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mower"],
+          "fr": ["Tondeuse à gazon"]
+        },
+        "labels": {
+          "en": "Lawnmower",
+          "fr": "Tondeuse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wheelbarrow",
+          "fr": "Brouette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Watering can",
+          "fr": "Arrosoir"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Spade",
+          "fr": "Bêche"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Houe"]
+        },
+        "labels": {
+          "en": "Hoe",
+          "fr": "Binette"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Hose"],
+          "fr": ["Tuyau"]
+        },
+        "labels": {
+          "en": "Garden hose",
+          "fr": "Tuyau d'arrosage"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Hedge cutter"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hedge trimmer",
+          "fr": "Taille-haie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pitchfork", "Fork"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Garden fork",
+          "fr": "Fourche"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Souffleur de feuilles", "Souffleuse"]
+        },
+        "labels": {
+          "en": "Leaf blower",
+          "fr": "Souffleur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Déplantoir"]
+        },
+        "labels": {
+          "en": "Trowel",
+          "fr": "Transplantoir"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["String trimmer", "Weed eater", "Brush cutter"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Strimmer",
+          "fr": "Débroussailleuse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scythe",
+          "fr": "Faux"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sickle",
+          "fr": "Faucille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Dibble"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dibber",
+          "fr": "Plantoir"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Gnome"],
+        "fr": ["Nain"]
+      },
+      "labels": {
+        "en": "Garden gnome",
+        "fr": "Nain de jardin"
+      },
+      "why": {
+        "en": "An ornament that stands in the garden: it does no work in it.",
+        "fr": "Un ornement planté dans le jardin : il n'y travaille pas."
+      }
+    },
+    "id": "garden-tools",
+    "labels": {
+      "en": "Garden tools",
+      "fr": "Outils de jardinage"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Sailing boat"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sailboat",
+          "fr": "Voilier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Canoe",
+          "fr": "Canoë"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kayak",
+          "fr": "Kayak"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ferryboat"],
+          "fr": ["Bac", "Traversier"]
+        },
+        "labels": {
+          "en": "Ferry",
+          "fr": "Ferry"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yacht",
+          "fr": "Yacht"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Raft",
+          "fr": "Radeau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rowboat"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rowing boat",
+          "fr": "Barque"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pedal boat"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pedalo",
+          "fr": "Pédalo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gondola",
+          "fr": "Gondole"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Catamaran",
+          "fr": "Catamaran"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Liner", "Cruise ship"],
+          "fr": ["Bateau de croisière"]
+        },
+        "labels": {
+          "en": "Ocean liner",
+          "fr": "Paquebot"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Motorboat"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Speedboat",
+          "fr": "Hors-bord"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dinghy", "Inflatable boat"],
+          "fr": ["Zodiac"]
+        },
+        "labels": {
+          "en": "Inflatable dinghy",
+          "fr": "Canot pneumatique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Tug"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tugboat",
+          "fr": "Remorqueur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Barge",
+          "fr": "Péniche"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Fishing boat"],
+          "fr": ["Bateau de pêche"]
+        },
+        "labels": {
+          "en": "Trawler",
+          "fr": "Chalutier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Porte-avion"]
+        },
+        "labels": {
+          "en": "Aircraft carrier",
+          "fr": "Porte-avions"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Galleon",
+          "fr": "Galion"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Viking ship"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Longship",
+          "fr": "Drakkar"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Floatplane"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Seaplane",
+        "fr": "Hydravion"
+      },
+      "why": {
+        "en": "It floats and lands on water, but it is an aeroplane.",
+        "fr": "Il flotte et se pose sur l'eau, mais c'est un avion."
+      }
+    },
+    "id": "boats",
+    "labels": {
+      "en": "Boats",
+      "fr": "Bateaux"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Airplane", "Plane", "Aircraft"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aeroplane",
+          "fr": "Avion"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chopper"],
+          "fr": ["Hélico"]
+        },
+        "labels": {
+          "en": "Helicopter",
+          "fr": "Hélicoptère"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Balloon"],
+          "fr": ["Ballon"]
+        },
+        "labels": {
+          "en": "Hot-air balloon",
+          "fr": "Montgolfière"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drone",
+          "fr": "Drone"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rocket",
+          "fr": "Fusée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Glider",
+          "fr": "Planeur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Zeppelin", "Blimp"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Airship",
+          "fr": "Dirigeable"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Delta"]
+        },
+        "labels": {
+          "en": "Hang glider",
+          "fr": "Deltaplane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paraglider",
+          "fr": "Parapente"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Floatplane"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Seaplane",
+          "fr": "Hydravion"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fighter", "Fighter plane"],
+          "fr": ["Chasseur"]
+        },
+        "labels": {
+          "en": "Fighter jet",
+          "fr": "Avion de chasse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Navette"]
+        },
+        "labels": {
+          "en": "Space shuttle",
+          "fr": "Navette spatiale"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ultralight"],
+          "fr": ["Ultraléger"]
+        },
+        "labels": {
+          "en": "Microlight",
+          "fr": "ULM"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Gyrocopter", "Gyroplane"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Autogyro",
+          "fr": "Autogire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Réacteur dorsal"]
+        },
+        "labels": {
+          "en": "Jetpack",
+          "fr": "Jetpack"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Biplane",
+          "fr": "Biplan"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Magic carpet"],
+        "fr": ["Tapis magique"]
+      },
+      "labels": {
+        "en": "Flying carpet",
+        "fr": "Tapis volant"
+      },
+      "why": {
+        "en": "A carpet out of tales, carried by magic: nobody ever built one.",
+        "fr": "Un tapis de conte, porté par la magie : personne n'en a jamais construit."
+      }
+    },
+    "id": "flying-machines",
+    "labels": {
+      "en": "Flying machines",
+      "fr": "Engins volants"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Wheels"],
+          "fr": ["Roues"]
+        },
+        "labels": {
+          "en": "Wheel",
+          "fr": "Roue"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Steering wheel",
+          "fr": "Volant"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Motor"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Engine",
+          "fr": "Moteur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Brake"],
+          "fr": ["Frein"]
+        },
+        "labels": {
+          "en": "Brakes",
+          "fr": "Freins"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tire", "Tyres", "Tires"],
+          "fr": ["Pneus", "Pneumatique"]
+        },
+        "labels": {
+          "en": "Tyre",
+          "fr": "Pneu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Windshield"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Windscreen",
+          "fr": "Pare-brise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Headlight", "Headlamps"],
+          "fr": ["Phare"]
+        },
+        "labels": {
+          "en": "Headlights",
+          "fr": "Phares"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Hood"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bonnet",
+          "fr": "Capot"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Trunk"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Boot",
+          "fr": "Coffre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Transmission"],
+          "fr": ["Boîte de vitesse"]
+        },
+        "labels": {
+          "en": "Gearbox",
+          "fr": "Boîte de vitesses"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Clutch",
+          "fr": "Embrayage"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Exhaust", "Tailpipe"],
+          "fr": ["Échappement"]
+        },
+        "labels": {
+          "en": "Exhaust pipe",
+          "fr": "Pot d'échappement"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Wiper", "Wipers", "Windshield wiper"],
+          "fr": ["Essuie-glaces"]
+        },
+        "labels": {
+          "en": "Windscreen wiper",
+          "fr": "Essuie-glace"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mirror", "Wing mirror"],
+          "fr": ["Rétro"]
+        },
+        "labels": {
+          "en": "Rear-view mirror",
+          "fr": "Rétroviseur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Radiator",
+          "fr": "Radiateur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Spark plugs"],
+          "fr": ["Bougie d'allumage"]
+        },
+        "labels": {
+          "en": "Spark plug",
+          "fr": "Bougie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Shocks", "Damper"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shock absorber",
+          "fr": "Amortisseur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alternator",
+          "fr": "Alternateur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crankshaft",
+          "fr": "Vilebrequin"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Handlebar"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Handlebars",
+        "fr": "Guidon"
+      },
+      "why": {
+        "en": "A bicycle or a motorbike steers with handlebars; a car with a wheel.",
+        "fr": "Un vélo ou une moto se dirige au guidon ; une voiture, au volant."
+      }
+    },
+    "id": "car-parts",
+    "labels": {
+      "en": "Car parts",
+      "fr": "Pièces de voiture"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Cranium"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Skull",
+          "fr": "Crâne"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Thighbone"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Femur",
+          "fr": "Fémur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ribs"],
+          "fr": ["Côtes"]
+        },
+        "labels": {
+          "en": "Rib",
+          "fr": "Côte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Vertebrae", "Spine", "Backbone"],
+          "fr": ["Vertèbres", "Colonne vertébrale"]
+        },
+        "labels": {
+          "en": "Vertebra",
+          "fr": "Vertèbre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Shinbone"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tibia",
+          "fr": "Tibia"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Clavicle"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Collarbone",
+          "fr": "Clavicule"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Patella"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kneecap",
+          "fr": "Rotule"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Humerus",
+          "fr": "Humérus"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Hip bone"],
+          "fr": ["Os iliaque"]
+        },
+        "labels": {
+          "en": "Pelvis",
+          "fr": "Bassin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Scapula"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shoulder blade",
+          "fr": "Omoplate"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fibula",
+          "fr": "Péroné"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Breastbone"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sternum",
+          "fr": "Sternum"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mandible", "Jaw"],
+          "fr": ["Mandibule"]
+        },
+        "labels": {
+          "en": "Jawbone",
+          "fr": "Mâchoire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Radius",
+          "fr": "Radius"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ulna",
+          "fr": "Cubitus"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Tailbone"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coccyx",
+          "fr": "Coccyx"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Stapes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stirrup",
+          "fr": "Étrier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Phalanges", "Finger bone"],
+          "fr": ["Phalanges des doigts"]
+        },
+        "labels": {
+          "en": "Phalanx",
+          "fr": "Phalange"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Menisci"],
+        "fr": ["Ménisques"]
+      },
+      "labels": {
+        "en": "Meniscus",
+        "fr": "Ménisque"
+      },
+      "why": {
+        "en": "A pad of cartilage inside the knee, not a bone.",
+        "fr": "Un coussinet de cartilage dans le genou, pas un os."
+      }
+    },
+    "id": "bones",
+    "labels": {
+      "en": "Bones of the body",
+      "fr": "Os du corps humain"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Boulangère"]
+        },
+        "labels": {
+          "en": "Baker",
+          "fr": "Boulanger"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Bouchère"]
+        },
+        "labels": {
+          "en": "Butcher",
+          "fr": "Boucher"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Joiner"],
+          "fr": ["Charpentier"]
+        },
+        "labels": {
+          "en": "Carpenter",
+          "fr": "Menuisier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Plumber",
+          "fr": "Plombier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Electrician",
+          "fr": "Électricien"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hairstylist"],
+          "fr": ["Coiffeuse"]
+        },
+        "labels": {
+          "en": "Hairdresser",
+          "fr": "Coiffeur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bricklayer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mason",
+          "fr": "Maçon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Smith"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blacksmith",
+          "fr": "Forgeron"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Potière"]
+        },
+        "labels": {
+          "en": "Potter",
+          "fr": "Potier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Locksmith",
+          "fr": "Serrurier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Shoemaker", "Shoe repairer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cobbler",
+          "fr": "Cordonnier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dressmaker"],
+          "fr": ["Couturier", "Couturière"]
+        },
+        "labels": {
+          "en": "Tailor",
+          "fr": "Tailleur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Jeweler"],
+          "fr": ["Joaillier"]
+        },
+        "labels": {
+          "en": "Jeweller",
+          "fr": "Bijoutier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pastry cook"],
+          "fr": ["Pâtissière"]
+        },
+        "labels": {
+          "en": "Pastry chef",
+          "fr": "Pâtissier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Glassblower",
+          "fr": "Souffleur de verre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Cabinet maker"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cabinetmaker",
+          "fr": "Ébéniste"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Roofer",
+          "fr": "Couvreur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Clockmaker"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Watchmaker",
+          "fr": "Horloger"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Architect",
+        "fr": "Architecte"
+      },
+      "why": {
+        "en": "A profession that draws buildings; it builds nothing with its hands.",
+        "fr": "Une profession libérale qui dessine les bâtiments ; elle ne bâtit rien de ses mains."
+      }
+    },
+    "id": "craft-jobs",
+    "labels": {
+      "en": "Trades and crafts",
+      "fr": "Métiers de l'artisanat"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Box",
+          "fr": "Boîte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bottle",
+          "fr": "Bouteille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jar",
+          "fr": "Bocal"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pail"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bucket",
+          "fr": "Seau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Basket",
+          "fr": "Panier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bag",
+          "fr": "Sac"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bowl",
+          "fr": "Bol"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cask"],
+          "fr": ["Fût", "Baril"]
+        },
+        "labels": {
+          "en": "Barrel",
+          "fr": "Tonneau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crate",
+          "fr": "Caisse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Can", "Tin"],
+          "fr": ["Conserve"]
+        },
+        "labels": {
+          "en": "Tin can",
+          "fr": "Boîte de conserve"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pitcher"],
+          "fr": ["Pichet"]
+        },
+        "labels": {
+          "en": "Jug",
+          "fr": "Cruche"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vase",
+          "fr": "Vase"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Water bottle", "Canteen"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Flask",
+          "fr": "Gourde"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Trunk"],
+          "fr": ["Malle"]
+        },
+        "labels": {
+          "en": "Chest",
+          "fr": "Coffre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Urn",
+          "fr": "Urne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Phial"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vial",
+          "fr": "Fiole"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Amphora",
+          "fr": "Amphore"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Vacuum flask"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thermos",
+          "fr": "Thermos"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Cover"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Lid",
+        "fr": "Couvercle"
+      },
+      "why": {
+        "en": "It closes a container and holds nothing itself.",
+        "fr": "Il ferme un contenant et ne contient rien lui-même."
+      }
+    },
+    "id": "containers",
+    "labels": {
+      "en": "Containers",
+      "fr": "Contenants"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Euros"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Euro",
+          "fr": "Euro"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["US dollar"],
+          "fr": ["Dollar américain"]
+        },
+        "labels": {
+          "en": "Dollar",
+          "fr": "Dollar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pound", "Sterling"],
+          "fr": ["Livre"]
+        },
+        "labels": {
+          "en": "Pound sterling",
+          "fr": "Livre sterling"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yen",
+          "fr": "Yen"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Swiss franc",
+          "fr": "Franc suisse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ruble"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rouble",
+          "fr": "Rouble"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Renminbi"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yuan",
+          "fr": "Yuan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rupee",
+          "fr": "Roupie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Peso",
+          "fr": "Peso"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Krone", "Crown"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Krona",
+          "fr": "Couronne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Brazilian real"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Real",
+          "fr": "Real"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dirham",
+          "fr": "Dirham"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Won",
+          "fr": "Won"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rand",
+          "fr": "Rand"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dinar",
+          "fr": "Dinar"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sheqel", "Chekel"]
+        },
+        "labels": {
+          "en": "Shekel",
+          "fr": "Shekel"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "French franc",
+        "fr": "Franc français"
+      },
+      "why": {
+        "en": "France gave it up for the euro in 2002.",
+        "fr": "La France l'a abandonné pour l'euro en 2002."
+      }
+    },
+    "id": "currencies",
+    "labels": {
+      "en": "World currencies",
+      "fr": "Monnaies du monde"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "English",
+          "fr": "Anglais"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "French",
+          "fr": "Français"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Castilian"],
+          "fr": ["Castillan"]
+        },
+        "labels": {
+          "en": "Spanish",
+          "fr": "Espagnol"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "German",
+          "fr": "Allemand"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Italian",
+          "fr": "Italien"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mandarin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chinese",
+          "fr": "Chinois"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Japanese",
+          "fr": "Japonais"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Portuguese",
+          "fr": "Portugais"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Russian",
+          "fr": "Russe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arabic",
+          "fr": "Arabe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Greek",
+          "fr": "Grec"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Hollandais"]
+        },
+        "labels": {
+          "en": "Dutch",
+          "fr": "Néerlandais"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hindi",
+          "fr": "Hindi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Swahili",
+          "fr": "Swahili"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Polish",
+          "fr": "Polonais"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Korean",
+          "fr": "Coréen"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turkish",
+          "fr": "Turc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hebrew",
+          "fr": "Hébreu"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Swiss",
+        "fr": "Suisse"
+      },
+      "why": {
+        "en": "Switzerland speaks German, French, Italian and Romansh: there is no Swiss language.",
+        "fr": "La Suisse parle allemand, français, italien et romanche : il n'existe pas de langue suisse."
+      }
+    },
+    "id": "languages",
+    "labels": {
+      "en": "World languages",
+      "fr": "Langues du monde"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Meter", "Metres", "Meters"],
+          "fr": ["Mètres"]
+        },
+        "labels": {
+          "en": "Metre",
+          "fr": "Mètre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Kilo", "Kg"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kilogram",
+          "fr": "Kilogramme"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Liter", "Litres"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Litre",
+          "fr": "Litre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Second",
+          "fr": "Seconde"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Kilometer", "Km"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kilometre",
+          "fr": "Kilomètre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hour",
+          "fr": "Heure"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Celsius", "Degree", "Centigrade"],
+          "fr": ["Degré"]
+        },
+        "labels": {
+          "en": "Degree Celsius",
+          "fr": "Degré Celsius"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Inches"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Inch",
+          "fr": "Pouce"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Feet"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Foot",
+          "fr": "Pied"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Miles"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mile",
+          "fr": "Mile"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lb"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pound",
+          "fr": "Livre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hectare",
+          "fr": "Hectare"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Volt",
+          "fr": "Volt"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Watt",
+          "fr": "Watt"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Amp"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ampere",
+          "fr": "Ampère"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ounce",
+          "fr": "Once"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gallon",
+          "fr": "Gallon"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Dozen",
+        "fr": "Douzaine"
+      },
+      "why": {
+        "en": "Twelve of anything: it counts, and measures no quantity.",
+        "fr": "Douze de n'importe quoi : elle compte, elle ne mesure aucune grandeur."
+      }
+    },
+    "id": "units-of-measure",
+    "labels": {
+      "en": "Units of measurement",
+      "fr": "Unités de mesure"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Biology",
+          "fr": "Biologie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chemistry",
+          "fr": "Chimie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Physics",
+          "fr": "Physique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Maths", "Math"],
+          "fr": ["Mathématique"]
+        },
+        "labels": {
+          "en": "Mathematics",
+          "fr": "Mathématiques"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Astronomy",
+          "fr": "Astronomie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Geology",
+          "fr": "Géologie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Medicine",
+          "fr": "Médecine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Botany",
+          "fr": "Botanique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zoology",
+          "fr": "Zoologie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Genetics",
+          "fr": "Génétique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Archeology"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Archaeology",
+          "fr": "Archéologie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Computer science",
+          "fr": "Informatique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Paleontology"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Palaeontology",
+          "fr": "Paléontologie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Meteorology",
+          "fr": "Météorologie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oceanography",
+          "fr": "Océanographie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Entomology",
+          "fr": "Entomologie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Vulcanology"],
+          "fr": ["Vulcanologie"]
+        },
+        "labels": {
+          "en": "Volcanology",
+          "fr": "Volcanologie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Neuroscience",
+          "fr": "Neurosciences"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Astrology",
+        "fr": "Astrologie"
+      },
+      "why": {
+        "en": "It reads fates in the stars: no experiment has ever borne it out.",
+        "fr": "Elle lit le destin dans les astres : aucune expérience ne l'a jamais confirmée."
+      }
+    },
+    "id": "sciences",
+    "labels": {
+      "en": "Sciences",
+      "fr": "Disciplines scientifiques"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Car",
+          "fr": "Voiture"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bike"],
+          "fr": ["Bicyclette"]
+        },
+        "labels": {
+          "en": "Bicycle",
+          "fr": "Vélo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Skate", "Planche à roulettes"]
+        },
+        "labels": {
+          "en": "Skateboard",
+          "fr": "Skateboard"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rollerblades", "Roller skate", "Inline skates"],
+          "fr": ["Roller", "Patins à roulettes"]
+        },
+        "labels": {
+          "en": "Roller skates",
+          "fr": "Rollers"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Push scooter"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kick scooter",
+          "fr": "Trottinette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Autobus"]
+        },
+        "labels": {
+          "en": "Bus",
+          "fr": "Bus"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Motorcycle"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Motorbike",
+          "fr": "Moto"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Lorry"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Truck",
+          "fr": "Camion"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Train",
+          "fr": "Train"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tractor",
+          "fr": "Tracteur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Stroller", "Pram", "Buggy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pushchair",
+          "fr": "Poussette"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Shopping cart", "Trolley"],
+          "fr": ["Chariot"]
+        },
+        "labels": {
+          "en": "Shopping trolley",
+          "fr": "Caddie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wheelchair",
+          "fr": "Fauteuil roulant"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Motor scooter",
+          "fr": "Scooter"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rollercoaster",
+          "fr": "Montagnes russes"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Fauteuil de bureau"]
+        },
+        "labels": {
+          "en": "Office chair",
+          "fr": "Chaise de bureau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Unicycle",
+          "fr": "Monocycle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Karting"]
+        },
+        "labels": {
+          "en": "Go-kart",
+          "fr": "Kart"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wheelbarrow",
+          "fr": "Brouette"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Marbles"],
+        "fr": ["Billes"]
+      },
+      "labels": {
+        "en": "Marble",
+        "fr": "Bille"
+      },
+      "why": {
+        "en": "It rolls all by itself, and has no wheel.",
+        "fr": "Elle roule toute seule, et n'a aucune roue."
+      }
+    },
+    "id": "things-with-wheels",
+    "labels": {
+      "en": "Things with wheels",
+      "fr": "Ça roule"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Banana",
+          "fr": "Banane"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lemon",
+          "fr": "Citron"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Canary",
+          "fr": "Canari"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Yolk"],
+          "fr": ["Jaune d'oeuf"]
+        },
+        "labels": {
+          "en": "Egg yolk",
+          "fr": "Jaune d'œuf"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chick",
+          "fr": "Poussin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sunflower",
+          "fr": "Tournesol"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Maize", "Sweetcorn"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corn",
+          "fr": "Maïs"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Butter",
+          "fr": "Beurre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Daffodil",
+          "fr": "Jonquille"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dandelion",
+          "fr": "Pissenlit"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gold",
+          "fr": "Or"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pikachu",
+          "fr": "Pikachu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Buttercup",
+          "fr": "Bouton-d'or"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mimosa",
+          "fr": "Mimosa"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Sulfur"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sulphur",
+          "fr": "Soufre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Canola", "Oilseed rape"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rapeseed",
+          "fr": "Colza"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Quince",
+          "fr": "Coing"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turmeric",
+          "fr": "Curcuma"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Sun",
+        "fr": "Soleil"
+      },
+      "why": {
+        "en": "Its light is white: only the air makes it look yellow from the ground.",
+        "fr": "Sa lumière est blanche : seule l'atmosphère le fait paraître jaune depuis le sol."
+      }
+    },
+    "id": "yellow-things",
+    "labels": {
+      "en": "Yellow things",
+      "fr": "Choses jaunes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wasp",
+          "fr": "Guêpe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bee",
+          "fr": "Abeille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mosquito",
+          "fr": "Moustique"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hedgehog",
+          "fr": "Hérisson"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cactus",
+          "fr": "Cactus"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Stinging nettle"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nettle",
+          "fr": "Ortie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Needle",
+          "fr": "Aiguille"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Rose bush"],
+          "fr": ["Rosier"]
+        },
+        "labels": {
+          "en": "Rose",
+          "fr": "Rose"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jellyfish",
+          "fr": "Méduse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scorpion",
+          "fr": "Scorpion"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Porcupine",
+          "fr": "Porc-épic"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thistle",
+          "fr": "Chardon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hornet",
+          "fr": "Frelon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sea urchin",
+          "fr": "Oursin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Thumbtack", "Pushpin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drawing pin",
+          "fr": "Punaise"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Barbelé", "Barbelés"]
+        },
+        "labels": {
+          "en": "Barbed wire",
+          "fr": "Fil barbelé"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Holly",
+          "fr": "Houx"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pastenague"]
+        },
+        "labels": {
+          "en": "Stingray",
+          "fr": "Raie pastenague"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Blackberry bush"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bramble",
+          "fr": "Ronce"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Viper"],
+        "fr": ["Vipère"]
+      },
+      "labels": {
+        "en": "Snake",
+        "fr": "Serpent"
+      },
+      "why": {
+        "en": "It bites with its fangs: it neither stings nor pricks.",
+        "fr": "Il mord avec ses crochets : il ne pique pas."
+      }
+    },
+    "id": "things-that-sting",
+    "labels": {
+      "en": "Things that sting or prick",
+      "fr": "Ça pique"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "House",
+          "fr": "Maison"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Apartment"],
+          "fr": ["Appart"]
+        },
+        "labels": {
+          "en": "Flat",
+          "fr": "Appartement"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Castle",
+          "fr": "Château"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Igloo",
+          "fr": "Igloo"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tent",
+          "fr": "Tente"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Shack", "Cabin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hut",
+          "fr": "Cabane"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chalet",
+          "fr": "Chalet"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Villa",
+          "fr": "Villa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Trailer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Caravan",
+          "fr": "Caravane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Teepee", "Tepee"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tipi",
+          "fr": "Tipi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bungalow",
+          "fr": "Bungalow"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Palace",
+          "fr": "Palais"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Farm"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Farmhouse",
+          "fr": "Ferme"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yurt",
+          "fr": "Yourte"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Péniche aménagée", "Maison flottante"]
+        },
+        "labels": {
+          "en": "Houseboat",
+          "fr": "Péniche"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Manor house"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Manor",
+          "fr": "Manoir"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Treehouse",
+          "fr": "Cabane dans les arbres"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Thatched cottage"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cottage",
+          "fr": "Chaumière"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Troglodyte dwelling"],
+          "fr": ["Troglodyte", "Maison troglodyte"]
+        },
+        "labels": {
+          "en": "Cave dwelling",
+          "fr": "Habitation troglodyte"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Barn",
+        "fr": "Grange"
+      },
+      "why": {
+        "en": "A farm building for hay and animals: nobody lives in it.",
+        "fr": "Un bâtiment de ferme pour le foin et les bêtes : personne n'y habite."
+      }
+    },
+    "id": "dwellings",
+    "labels": {
+      "en": "Types of home",
+      "fr": "Types d'habitations"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Duchess"],
+          "fr": ["Duchesse"]
+        },
+        "labels": {
+          "en": "Duke",
+          "fr": "Duc"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Earl", "Countess"],
+          "fr": ["Comtesse"]
+        },
+        "labels": {
+          "en": "Count",
+          "fr": "Comte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Baroness"],
+          "fr": ["Baronne"]
+        },
+        "labels": {
+          "en": "Baron",
+          "fr": "Baron"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Marquess", "Marchioness"],
+          "fr": ["Marquise"]
+        },
+        "labels": {
+          "en": "Marquis",
+          "fr": "Marquis"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Viscountess"],
+          "fr": ["Vicomtesse"]
+        },
+        "labels": {
+          "en": "Viscount",
+          "fr": "Vicomte"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Knight",
+          "fr": "Chevalier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Princess"],
+          "fr": ["Princesse"]
+        },
+        "labels": {
+          "en": "Prince",
+          "fr": "Prince"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Esquire"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Squire",
+          "fr": "Écuyer"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Archduchess"],
+          "fr": ["Archiduchesse"]
+        },
+        "labels": {
+          "en": "Archduke",
+          "fr": "Archiduc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Grand duchess"],
+          "fr": ["Grande-duchesse"]
+        },
+        "labels": {
+          "en": "Grand duke",
+          "fr": "Grand-duc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Baronet",
+          "fr": "Baronnet"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Margravine"]
+        },
+        "labels": {
+          "en": "Margrave",
+          "fr": "Margrave"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Queen"],
+        "fr": ["Reine"]
+      },
+      "labels": {
+        "en": "King",
+        "fr": "Roi"
+      },
+      "why": {
+        "en": "A king reigns over the nobility and grants its titles: his own is not one of them.",
+        "fr": "Le roi règne sur la noblesse et en accorde les titres : le sien n'en fait pas partie."
+      }
+    },
+    "id": "noble-titles",
+    "labels": {
+      "en": "Titles of nobility",
+      "fr": "Titres de noblesse"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Purse", "Bag"],
+          "fr": ["Sac"]
+        },
+        "labels": {
+          "en": "Handbag",
+          "fr": "Sac à main"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Belt",
+          "fr": "Ceinture"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Foulard"]
+        },
+        "labels": {
+          "en": "Scarf",
+          "fr": "Écharpe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Shades"],
+          "fr": ["Lunettes"]
+        },
+        "labels": {
+          "en": "Sunglasses",
+          "fr": "Lunettes de soleil"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Necktie"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tie",
+          "fr": "Cravate"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Glove"],
+          "fr": ["Gant"]
+        },
+        "labels": {
+          "en": "Gloves",
+          "fr": "Gants"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Wristwatch"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Watch",
+          "fr": "Montre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Noeud papillon", "Nœud pap"]
+        },
+        "labels": {
+          "en": "Bow tie",
+          "fr": "Nœud papillon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wallet",
+          "fr": "Portefeuille"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Umbrella",
+          "fr": "Parapluie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Suspenders"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Braces",
+          "fr": "Bretelles"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Headband", "Alice band"],
+          "fr": ["Bandeau"]
+        },
+        "labels": {
+          "en": "Hairband",
+          "fr": "Serre-tête"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shawl",
+          "fr": "Châle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hand fan"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fan",
+          "fr": "Éventail"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Clutch"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Clutch bag",
+          "fr": "Pochette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Fanny pack", "Belt bag"],
+          "fr": ["Sac banane"]
+        },
+        "labels": {
+          "en": "Bum bag",
+          "fr": "Banane"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hair slide"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hair clip",
+          "fr": "Barrette"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Fragrance"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Perfume",
+        "fr": "Parfum"
+      },
+      "why": {
+        "en": "A cosmetic sprayed on the skin, not an accessory worn.",
+        "fr": "Un cosmétique vaporisé sur la peau, pas un accessoire que l'on porte."
+      }
+    },
+    "id": "fashion-accessories",
+    "labels": {
+      "en": "Fashion accessories",
+      "fr": "Accessoires de mode"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cotton",
+          "fr": "Coton"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Silk",
+          "fr": "Soie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wool",
+          "fr": "Laine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Jeans"],
+          "fr": ["Toile de jean"]
+        },
+        "labels": {
+          "en": "Denim",
+          "fr": "Jean"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Linen",
+          "fr": "Lin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Velvet",
+          "fr": "Velours"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Polyester",
+          "fr": "Polyester"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Satin",
+          "fr": "Satin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lace",
+          "fr": "Dentelle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nylon",
+          "fr": "Nylon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fleece",
+          "fr": "Polaire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cashmere",
+          "fr": "Cachemire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jersey",
+          "fr": "Jersey"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cord"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corduroy",
+          "fr": "Velours côtelé"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tweed",
+          "fr": "Tweed"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Feutre"]
+        },
+        "labels": {
+          "en": "Felt",
+          "fr": "Feutrine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chiffon",
+          "fr": "Mousseline"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tulle",
+          "fr": "Tulle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Spandex", "Elastane"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lycra",
+          "fr": "Élasthanne"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Leather",
+        "fr": "Cuir"
+      },
+      "why": {
+        "en": "A tanned animal hide: nothing in it is woven or knitted.",
+        "fr": "Une peau de bête tannée : rien n'y est tissé ni tricoté."
+      }
+    },
+    "id": "fabrics",
+    "labels": {
+      "en": "Fabrics",
+      "fr": "Tissus"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ponytail",
+          "fr": "Queue de cheval"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Braid", "Braids", "Plaits"],
+          "fr": ["Tresses", "Natte"]
+        },
+        "labels": {
+          "en": "Plait",
+          "fr": "Tresse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bun",
+          "fr": "Chignon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Coupe au carré"]
+        },
+        "labels": {
+          "en": "Bob",
+          "fr": "Carré"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mohican"],
+          "fr": ["Iroquoise"]
+        },
+        "labels": {
+          "en": "Mohawk",
+          "fr": "Crête"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Dreads", "Locs"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dreadlocks",
+          "fr": "Dreadlocks"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bunches"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pigtails",
+          "fr": "Couettes"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Buzz cut"],
+          "fr": ["Brosse"]
+        },
+        "labels": {
+          "en": "Crew cut",
+          "fr": "Coupe en brosse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Afro",
+          "fr": "Afro"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Mulet"]
+        },
+        "labels": {
+          "en": "Mullet",
+          "fr": "Coupe mulet"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bangs"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fringe",
+          "fr": "Frange"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pompadour"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Quiff",
+          "fr": "Banane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Shaved head",
+          "fr": "Crâne rasé"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Undercut",
+          "fr": "Undercut"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Tresses africaines"]
+        },
+        "labels": {
+          "en": "Cornrows",
+          "fr": "Nattes collées"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pixie"],
+          "fr": ["Garçonne"]
+        },
+        "labels": {
+          "en": "Pixie cut",
+          "fr": "Coupe garçonne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tonsure",
+          "fr": "Tonsure"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Beehive",
+          "fr": "Choucroute"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Balayage"]
+      },
+      "labels": {
+        "en": "Highlights",
+        "fr": "Mèches"
+      },
+      "why": {
+        "en": "A colour put on the hair: it neither cuts nor arranges it.",
+        "fr": "Une couleur posée sur les cheveux : elle ne les coupe ni ne les coiffe."
+      }
+    },
+    "id": "hairstyles",
+    "labels": {
+      "en": "Hairstyles",
+      "fr": "Coiffures"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Rouge"]
+        },
+        "labels": {
+          "en": "Lipstick",
+          "fr": "Rouge à lèvres"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mascara",
+          "fr": "Mascara"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Foundation",
+          "fr": "Fond de teint"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Eyeliner",
+          "fr": "Eyeliner"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Ombre à paupières"]
+        },
+        "labels": {
+          "en": "Eyeshadow",
+          "fr": "Fard à paupières"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Nail varnish"],
+          "fr": ["Vernis"]
+        },
+        "labels": {
+          "en": "Nail polish",
+          "fr": "Vernis à ongles"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blusher",
+          "fr": "Blush"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Correcteur"]
+        },
+        "labels": {
+          "en": "Concealer",
+          "fr": "Anticernes"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Face powder"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Powder",
+          "fr": "Poudre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lip gloss",
+          "fr": "Gloss"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Eyebrow pencil",
+          "fr": "Crayon à sourcils"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["False lashes", "Fake eyelashes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "False eyelashes",
+          "fr": "Faux cils"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bronzer",
+          "fr": "Poudre bronzante"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Highlighter",
+          "fr": "Enlumineur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kohl",
+          "fr": "Khôl"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Primer",
+          "fr": "Base de teint"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lip liner",
+          "fr": "Crayon à lèvres"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Make-up remover",
+        "fr": "Démaquillant"
+      },
+      "why": {
+        "en": "It takes make-up off: it is not make-up.",
+        "fr": "Il enlève le maquillage : ce n'en est pas."
+      }
+    },
+    "id": "makeup",
+    "labels": {
+      "en": "Make-up",
+      "fr": "Maquillage"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Waitress", "Server"],
+          "fr": ["Serveuse"]
+        },
+        "labels": {
+          "en": "Waiter",
+          "fr": "Serveur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Head chef"],
+          "fr": ["Chef de cuisine"]
+        },
+        "labels": {
+          "en": "Chef",
+          "fr": "Chef cuisinier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Cuisinière"]
+        },
+        "labels": {
+          "en": "Cook",
+          "fr": "Cuisinier"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Barmaid", "Mixologist"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bartender",
+          "fr": "Barman"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Kitchen porter", "Pot washer"],
+          "fr": ["Plongeuse"]
+        },
+        "labels": {
+          "en": "Dishwasher",
+          "fr": "Plongeur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Wine waiter"],
+          "fr": ["Sommelière"]
+        },
+        "labels": {
+          "en": "Sommelier",
+          "fr": "Sommelier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Head waiter"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Maître d'",
+          "fr": "Maître d'hôtel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pastry cook"],
+          "fr": ["Pâtissière"]
+        },
+        "labels": {
+          "en": "Pastry chef",
+          "fr": "Pâtissier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sous-chef",
+          "fr": "Second de cuisine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Caissière"]
+        },
+        "labels": {
+          "en": "Cashier",
+          "fr": "Caissier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Manager"],
+          "fr": ["Gérante"]
+        },
+        "labels": {
+          "en": "Restaurant manager",
+          "fr": "Gérant"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Commis"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Commis chef",
+          "fr": "Commis de cuisine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hostess"],
+          "fr": ["Hôtesse d'accueil"]
+        },
+        "labels": {
+          "en": "Host",
+          "fr": "Hôte d'accueil"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pizza chef"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pizzaiolo",
+          "fr": "Pizzaiolo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Sauce chef"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Saucier",
+          "fr": "Saucier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Busser", "Runner"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Busboy",
+          "fr": "Commis de salle"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Restaurant critic"],
+        "fr": ["Critique culinaire"]
+      },
+      "labels": {
+        "en": "Food critic",
+        "fr": "Critique gastronomique"
+      },
+      "why": {
+        "en": "A critic judges restaurants for a guide or a paper, and works in none of them.",
+        "fr": "Il juge les restaurants pour un guide ou un journal, et ne travaille dans aucun."
+      }
+    },
+    "id": "restaurant-jobs",
+    "labels": {
+      "en": "Restaurant jobs",
+      "fr": "Métiers de la restauration"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Broom",
+          "fr": "Balai"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Vacuum", "Hoover"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vacuum cleaner",
+          "fr": "Aspirateur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Balai à franges"]
+        },
+        "labels": {
+          "en": "Mop",
+          "fr": "Serpillière"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sponge",
+          "fr": "Éponge"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pail"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bucket",
+          "fr": "Seau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Rag"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cloth",
+          "fr": "Chiffon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Duster"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Feather duster",
+          "fr": "Plumeau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pelle", "Ramasse-poussière"]
+        },
+        "labels": {
+          "en": "Dustpan",
+          "fr": "Pelle à poussière"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Javel"]
+        },
+        "labels": {
+          "en": "Bleach",
+          "fr": "Eau de Javel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Washing-up gloves"],
+          "fr": ["Gants en caoutchouc"]
+        },
+        "labels": {
+          "en": "Rubber gloves",
+          "fr": "Gants de ménage"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dish soap", "Dishwashing liquid"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Washing-up liquid",
+          "fr": "Liquide vaisselle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bin liner", "Garbage bag", "Trash bag"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bin bag",
+          "fr": "Sac poubelle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Brush"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Scrubbing brush",
+          "fr": "Brosse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Squeegee",
+          "fr": "Raclette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Wire wool"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Steel wool",
+          "fr": "Paille de fer"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Loo brush"],
+          "fr": ["Brosse à toilettes"]
+        },
+        "labels": {
+          "en": "Toilet brush",
+          "fr": "Brosse à WC"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Nettoyeur à vapeur"]
+        },
+        "labels": {
+          "en": "Steam cleaner",
+          "fr": "Nettoyeur vapeur"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Air freshener",
+        "fr": "Désodorisant"
+      },
+      "why": {
+        "en": "It masks a smell and cleans nothing.",
+        "fr": "Il masque une odeur et ne nettoie rien."
+      }
+    },
+    "id": "cleaning",
+    "labels": {
+      "en": "Cleaning",
+      "fr": "Le ménage"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Traffic lights", "Stoplight"],
+          "fr": ["Feu tricolore", "Feux"]
+        },
+        "labels": {
+          "en": "Traffic light",
+          "fr": "Feu rouge"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Traffic circle"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Roundabout",
+          "fr": "Rond-point"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pedestrian crossing", "Crosswalk"],
+          "fr": ["Passage clouté", "Passage pour piétons"]
+        },
+        "labels": {
+          "en": "Zebra crossing",
+          "fr": "Passage piéton"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Stop"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stop sign",
+          "fr": "Panneau stop"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Safety camera"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Speed camera",
+          "fr": "Radar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Highway", "Freeway"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Motorway",
+          "fr": "Autoroute"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Petrol station", "Gas station"],
+          "fr": ["Station essence"]
+        },
+        "labels": {
+          "en": "Service station",
+          "fr": "Station-service"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Speed hump", "Sleeping policeman"],
+          "fr": ["Ralentisseur"]
+        },
+        "labels": {
+          "en": "Speed bump",
+          "fr": "Dos-d'âne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Toll", "Toll plaza"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Toll booth",
+          "fr": "Péage"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pothole",
+          "fr": "Nid-de-poule"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Gridlock", "Traffic"],
+          "fr": ["Embouteillage"]
+        },
+        "labels": {
+          "en": "Traffic jam",
+          "fr": "Bouchon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Railroad crossing"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Level crossing",
+          "fr": "Passage à niveau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Crossroads", "Intersection"],
+          "fr": ["Croisement"]
+        },
+        "labels": {
+          "en": "Junction",
+          "fr": "Carrefour"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Construction zone"],
+          "fr": ["Chantier"]
+        },
+        "labels": {
+          "en": "Road works",
+          "fr": "Travaux"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Shoulder", "Emergency lane"],
+          "fr": ["BAU"]
+        },
+        "labels": {
+          "en": "Hard shoulder",
+          "fr": "Bande d'arrêt d'urgence"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Guardrail", "Safety barrier"],
+          "fr": ["Glissière"]
+        },
+        "labels": {
+          "en": "Crash barrier",
+          "fr": "Glissière de sécurité"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Road studs"],
+          "fr": ["Catadioptres", "Plot réfléchissant"]
+        },
+        "labels": {
+          "en": "Cat's eyes",
+          "fr": "Catadioptre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Mile marker"],
+          "fr": ["Borne"]
+        },
+        "labels": {
+          "en": "Milestone",
+          "fr": "Borne kilométrique"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Lay-by", "Rest stop"],
+          "fr": ["Aire d'autoroute"]
+        },
+        "labels": {
+          "en": "Rest area",
+          "fr": "Aire de repos"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Ceinture"]
+      },
+      "labels": {
+        "en": "Seat belt",
+        "fr": "Ceinture de sécurité"
+      },
+      "why": {
+        "en": "Buckled inside the car: nothing about it is on the road.",
+        "fr": "Bouclée dans la voiture : elle n'est pas sur la route."
+      }
+    },
+    "id": "on-the-road",
+    "labels": {
+      "en": "On the road",
+      "fr": "Sur la route"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bride",
+          "fr": "Mariée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bridegroom"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Groom",
+          "fr": "Marié"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ring", "Wedding band"],
+          "fr": ["Bague"]
+        },
+        "labels": {
+          "en": "Wedding ring",
+          "fr": "Alliance"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Wedding gown", "Bridal gown"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wedding dress",
+          "fr": "Robe de mariée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Croquembouche"],
+          "fr": ["Gâteau de mariage"]
+        },
+        "labels": {
+          "en": "Wedding cake",
+          "fr": "Pièce montée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Veil",
+          "fr": "Voile"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bridal bouquet"],
+          "fr": ["Bouquet de la mariée"]
+        },
+        "labels": {
+          "en": "Bouquet",
+          "fr": "Bouquet"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Witness"],
+          "fr": ["Témoins"]
+        },
+        "labels": {
+          "en": "Best man",
+          "fr": "Témoin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Maid of honour", "Bridesmaids"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bridesmaid",
+          "fr": "Demoiselle d'honneur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Voyage de noces"]
+        },
+        "labels": {
+          "en": "Honeymoon",
+          "fr": "Lune de miel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rice",
+          "fr": "Riz"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Vicar", "Officiant"],
+          "fr": ["Curé"]
+        },
+        "labels": {
+          "en": "Priest",
+          "fr": "Prêtre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Vin d'honneur"]
+        },
+        "labels": {
+          "en": "Reception",
+          "fr": "Réception"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Wedding vows"],
+          "fr": ["Voeux"]
+        },
+        "labels": {
+          "en": "Vows",
+          "fr": "Vœux"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Garter",
+          "fr": "Jarretière"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Première danse"]
+        },
+        "labels": {
+          "en": "First dance",
+          "fr": "Ouverture du bal"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Ring bearer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Page boy",
+          "fr": "Garçon d'honneur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Wedding favours"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sugared almonds",
+          "fr": "Dragées"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Wedding speech"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Speech",
+          "fr": "Discours"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Engagement ring",
+        "fr": "Bague de fiançailles"
+      },
+      "why": {
+        "en": "Given at the engagement, before the wedding; the wedding has its own rings.",
+        "fr": "Offerte aux fiançailles, avant le mariage, qui a ses propres alliances."
+      }
+    },
+    "id": "wedding",
+    "labels": {
+      "en": "Wedding",
+      "fr": "Mariage"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Birthday cake"],
+          "fr": ["Gâteau d'anniversaire"]
+        },
+        "labels": {
+          "en": "Cake",
+          "fr": "Gâteau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Candle"],
+          "fr": ["Bougie"]
+        },
+        "labels": {
+          "en": "Candles",
+          "fr": "Bougies"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Present", "Gift", "Gifts"],
+          "fr": ["Cadeau"]
+        },
+        "labels": {
+          "en": "Presents",
+          "fr": "Cadeaux"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Balloon"],
+          "fr": ["Ballon", "Ballons de baudruche"]
+        },
+        "labels": {
+          "en": "Balloons",
+          "fr": "Ballons"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Happy birthday song"],
+          "fr": ["Chanson d'anniversaire"]
+        },
+        "labels": {
+          "en": "Happy Birthday",
+          "fr": "Joyeux anniversaire"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Party hats"],
+          "fr": ["Chapeau de fête"]
+        },
+        "labels": {
+          "en": "Party hat",
+          "fr": "Chapeau pointu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Card"],
+          "fr": ["Carte"]
+        },
+        "labels": {
+          "en": "Birthday card",
+          "fr": "Carte d'anniversaire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bunting"],
+          "fr": ["Guirlandes"]
+        },
+        "labels": {
+          "en": "Garland",
+          "fr": "Guirlande"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Confetti",
+          "fr": "Confettis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Piñata",
+          "fr": "Piñata"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Invitations"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Invitation",
+          "fr": "Carton d'invitation"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Guest"],
+          "fr": ["Invité"]
+        },
+        "labels": {
+          "en": "Guests",
+          "fr": "Invités"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Candy", "Lollies"],
+          "fr": ["Bonbon"]
+        },
+        "labels": {
+          "en": "Sweets",
+          "fr": "Bonbons"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Party horn", "Blowout"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Party blower",
+          "fr": "Langue de belle-mère"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Treasure hunt",
+          "fr": "Chasse au trésor"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Musical chairs",
+          "fr": "Chaises musicales"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Magicienne"]
+        },
+        "labels": {
+          "en": "Magician",
+          "fr": "Magicien"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Face paint"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Face painting",
+          "fr": "Maquillage"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Sparklers"],
+          "fr": ["Cierges magiques"]
+        },
+        "labels": {
+          "en": "Sparkler",
+          "fr": "Cierge magique"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Egg hunt"],
+        "fr": ["Chasse aux oeufs"]
+      },
+      "labels": {
+        "en": "Easter egg hunt",
+        "fr": "Chasse aux œufs"
+      },
+      "why": {
+        "en": "Easter's game: a birthday plays a treasure hunt.",
+        "fr": "Le jeu de Pâques : un anniversaire fait une chasse au trésor."
+      }
+    },
+    "id": "birthday-party",
+    "labels": {
+      "en": "Birthday party",
+      "fr": "Fête d'anniversaire"
+    },
+    "tier": "easy"
+  }
+]
