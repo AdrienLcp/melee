@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
+import { clockedPay } from '../scoring/speed-bonus'
 import { isPerfectOrder, pointsForOrder, swappedPairsOf } from './order-pay'
 
 const TRUE_ORDER = ['a', 'b', 'c', 'd', 'e']
@@ -43,6 +44,23 @@ describe('what an order earns', () => {
     expect(pointsForOrder({ swappedPairs: 1 })).toBe(66_667)
     expect(pointsForOrder({ swappedPairs: 2 })).toBe(33_333)
     expect(isPerfectOrder({ swappedPairs: 1 })).toBe(false)
+  })
+
+  /** What a table saw before the clock was capped at a tenth: a fast swap above a slow true order. */
+  it('[timeline] pays a true order sent last above one swapped pair sent first', () => {
+    const roundDurationMs = 30_000
+    const slowButTrue = clockedPay({
+      earned: pointsForOrder({ swappedPairs: 0 }),
+      elapsedMs: roundDurationMs - 1,
+      roundDurationMs
+    })
+    const fastButSwapped = clockedPay({
+      earned: pointsForOrder({ swappedPairs: 1 }),
+      elapsedMs: 0,
+      roundDurationMs
+    })
+
+    expect(slowButTrue.points).toBeGreaterThan(fastButSwapped.points)
   })
 
   it('[timeline] pays nothing for what a shuffle gets on its own', () => {
