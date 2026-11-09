@@ -607,6 +607,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The floor changes hands in a fade.** A buzz taking the floor
+  and a verdict handing it back cross-fade the question and the buzzer's
+  pawn on the console, the wall and every player, where each swapped in one
+  frame. A player's buzzer is live again from the first frame of its return.
+
 - `[Game]` **A round is laid down as the countdown lands.** The count's last
   second lifts off its token, and the round's question, grid or buzzer is
   laid down in its place on the console, the wall and every player, in every

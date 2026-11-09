@@ -353,9 +353,11 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   react-aria overlay (`action-menu.sass`), a leaving state ended on
   `animationend` (`react-components.md`), a view transition for a page. A
   list laid out anew in another shape — the planned games going from one row
-  to an ordered list — has nothing that travels, and the change arrives as a
-  server frame no view transition can wrap: `useCrossFadeOnReshape` fades a
-  copy of the old list out over the new while the box eases to its height.
+  to an ordered list — has nothing that travels: `useCrossFadeOnReshape`
+  fades a copy of the old list out over the new while the box eases to its
+  height. A whole stage a snapshot swaps on the console or the wall lands
+  through `replaceScreen` (`useRoomView`); never on a player's screen, where
+  the transition would hold a buzz for its length.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

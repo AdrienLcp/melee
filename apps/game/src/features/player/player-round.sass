@@ -980,6 +980,34 @@
       justify-content: center
       min-height: 0
 
+    // The buzzer and the floor share one cell, and the floor's attribute says
+    // which is shown. Both fades run on `--ease-out`, the one brought out a
+    // `fast` beat late: the piece put away is mostly gone by then, where on
+    // `--ease-in` it stood nearly whole under the one arriving and the pawn
+    // was drawn over `BUZZ`. The place is never empty, so nothing blinks.
+    .buzzer-slot
+      display: grid
+      place-items: center
+
+      > *
+        grid-area: 1 / 1
+
+      > .buzzer
+        transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
+
+      > .taken-floor
+        opacity: 0
+        transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+      &[data-floor]
+        > .buzzer
+          opacity: 0
+          transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+
+        > .taken-floor
+          opacity: 1
+          transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
+
     // The one round piece in the box, punched thick: a coral token with a deep
     // chipboard edge that sinks under the thumb, a keyline printed a margin in.
     .buzzer

@@ -1199,6 +1199,7 @@ const Buzzer: React.FC<{
   // the phase: every screen waits the same window out, the ones that never
   // entered the race included.
   const floorBuzz = view.phase === 'buzzed' ? buzz : null
+  const shownFloor = useFloorStillLeaving(floorBuzz)
   const matchsticks = matchsticksContent(view.round)
 
   return (
@@ -1216,11 +1217,14 @@ const Buzzer: React.FC<{
       */}
       <div className='press'>
         {/*
-            Two objects in one place and never both at once: while the race is
+            Two objects in one place and one shown at a time: while the race is
             open this is a button, and for the length of the floor it is the
-            holder's pawn and the clock timing them. Swapping rather than
-            disabling is what takes `BUZZ` off a piece nobody can press, and it
-            takes a dead button out of the tab order on the way.
+            holder's pawn and the clock timing them. Both stay mounted so one
+            fades into the other, and the one put away is inert, which takes
+            `BUZZ` off a piece nobody can press and out of the tab order. It
+            fades out as it stood rather than greying under the floor, and is
+            live again from the first frame of its return: the race reopens
+            with the floor, not with the fade.
 
             `onPressStart`, not `onPress`: a buzzer has to fire the instant the
             thumb lands, and waiting for the release costs tens of milliseconds
@@ -1228,10 +1232,16 @@ const Buzzer: React.FC<{
             across touch, mouse and keyboard, so the keyboard player is not
             penalised.
           */}
-        {floorBuzz === null ? (
+        <div
+          className='buzzer-slot'
+          data-floor={floorBuzz === null ? undefined : ''}
+        >
           <ReactAriaButton
             className={classNames('buzzer', (isClaimed || isWon) && 'claimed')}
-            isDisabled={blocker !== null || roundId === null}
+            inert={floorBuzz !== null}
+            isDisabled={
+              floorBuzz === null && (blocker !== null || roundId === null)
+            }
             onPressStart={() => {
               if (roundId === null) {
                 return
@@ -1244,9 +1254,15 @@ const Buzzer: React.FC<{
           >
             <span className='word'>{translate('buzz.action')}</span>
           </ReactAriaButton>
-        ) : (
-          <TakenFloor buzz={floorBuzz} clock={clock} players={view.players} />
-        )}
+          {shownFloor !== null && (
+            <TakenFloor
+              buzz={shownFloor}
+              clock={clock}
+              isPutAway={floorBuzz === null}
+              players={view.players}
+            />
+          )}
+        </div>
 
         <p
           className={classNames('blocker', line.isFloor && 'floor')}
@@ -1628,15 +1644,33 @@ const TimelineRevealed: React.FC<{
  * oversize, the way the console draws it, with the clock on a token beside it.
  * A buzzer whose seat has gone leaves no pawn to stand, and the token alone.
  */
+/**
+ * The floor on screen: the one held, or the last one while it fades out from
+ * under the buzzer handed back. `null` until a floor has been taken.
+ */
+const useFloorStillLeaving = (
+  floorBuzz: ActiveBuzz | null
+): ActiveBuzz | null => {
+  const [shown, setShown] = useState<ActiveBuzz | null>(floorBuzz)
+
+  if (floorBuzz !== null && floorBuzz.atServerTime !== shown?.atServerTime) {
+    setShown(floorBuzz)
+  }
+
+  return floorBuzz ?? shown
+}
+
 const TakenFloor: React.FC<{
   buzz: ActiveBuzz
   clock: ClockEstimate | null
+  /** The floor was handed back, and this fades out under the buzzer. */
+  isPutAway: boolean
   players: PlayerRoomView['players']
-}> = ({ buzz, clock, players }) => {
+}> = ({ buzz, clock, isPutAway, players }) => {
   const seat = players.findIndex((player) => player.id === buzz.playerId)
 
   return (
-    <div className='taken-floor'>
+    <div className='taken-floor' inert={isPutAway}>
       {seat !== -1 && <Pawn seat={seat} />}
       <FloorDial buzz={buzz} clock={clock} />
     </div>

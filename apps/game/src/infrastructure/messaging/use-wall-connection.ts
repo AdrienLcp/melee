@@ -1,11 +1,10 @@
-import { useState } from 'react'
-
 import { decodeMessage } from '@melee/protocol/codec'
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { WallRoomView } from '@melee/protocol/room'
 import { wallServerMessageSchema } from '@melee/protocol/server-message'
 
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
+import { useRoomView } from './use-room-view'
 
 export type WallConnection = RoomSocket & {
   view: WallRoomView | null
@@ -17,13 +16,13 @@ export type WallConnection = RoomSocket & {
  * the whole of what lets it in.
  */
 export const useWallConnection = (roomCode: RoomCode): WallConnection => {
-  const [view, setView] = useState<WallRoomView | null>(null)
+  const [view, receiveView] = useRoomView<WallRoomView>()
 
   const onFrame = (raw: string): void => {
     const decoded = decodeMessage(wallServerMessageSchema, raw)
 
     if (decoded.status === 'success' && 'view' in decoded.message) {
-      setView(decoded.message.view)
+      receiveView(decoded.message.view)
     }
   }
 

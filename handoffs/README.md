@@ -7,7 +7,6 @@ delete this README with the last one.
 | --------- | ---- | --------------------------- | ---------- |
 | Scoring   | —    | `scoring-01-follow-ups.md`  | none       |
 | Black sq. | 4    | `black-square-02-themes.md` | none       |
-| Motion    | 4    | `motion-02-floor-cut.md`    | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the

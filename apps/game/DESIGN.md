@@ -1731,6 +1731,17 @@ bounced. Durations:
   seated console's choices), once: `data-round-dealt` on the page is the
   change from countdown to round (`useRoundDealt`), never the phase, so a
   wrong buzz handing `playing` back deals nothing again.
+- **The floor changing hands** — a buzz taking it and a verdict handing it
+  back are the same round resumed, so they fade and never lay anything down.
+  The console and the wall swap their whole stage, and the snapshot lands as
+  one screen replacing another (`replaceScreen`, from `useRoomView`). A
+  player's screen never takes that transition — it holds every press for its
+  length, and the race reopens with the floor — so the buzzer and the holder's
+  pawn share one cell and `data-floor` fades one into the other, both on
+  `base` and `ease-out`, the one brought out a `fast` beat late: on `ease-in`
+  the button stood nearly whole under the arriving pawn. The button keeps its
+  look while it goes, inert rather than disabled, and is live from the first
+  frame of its return.
 - **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never
   the screen holding it (`reveal-panel.sass`, `player-round.sass`).
 - **The standings moving** — after the strike (`slow` × 3 of delay, time to
