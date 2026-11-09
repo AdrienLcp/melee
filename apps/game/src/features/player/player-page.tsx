@@ -46,6 +46,7 @@ import './player-page.sass'
 
 import { Main } from '@/presentation/components/main'
 import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
+import { useRoundDealt } from '@/presentation/use-round-dealt'
 
 export const PlayerPage: React.FC = () => {
   const roomCode = useRoomCodeParam()
@@ -258,6 +259,7 @@ const Lobby: React.FC<{
 
   useReportConnection({ clock, status })
   usePhaseField(view?.phase ?? null)
+  const isRoundDealt = useRoundDealt(view)
   const slate = slateContent(view?.round)
   useMarkingField(
     view?.phase === 'playing' &&
@@ -283,7 +285,10 @@ const Lobby: React.FC<{
   if (view !== null && isFramed(view)) {
     return (
       <PawnPiecesProvider view={view}>
-        <Main className='player-page playing framed'>
+        <Main
+          className='player-page playing framed'
+          data-round-dealt={isRoundDealt || undefined}
+        >
           <RoundChrome
             duel={view.round?.duel ?? null}
             players={view.players}
@@ -322,7 +327,10 @@ const Lobby: React.FC<{
 
   return (
     <PawnPiecesProvider view={view}>
-      <Main className='player-page playing'>
+      <Main
+        className='player-page playing'
+        data-round-dealt={isRoundDealt || undefined}
+      >
         {view === null ? (
           <p className='waiting'>{translate('player.seating')}</p>
         ) : (

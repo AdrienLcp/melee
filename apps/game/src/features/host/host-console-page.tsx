@@ -131,6 +131,7 @@ import './host-console-page.sass'
 
 import { Main } from '@/presentation/components/main'
 import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
+import { useRoundDealt } from '@/presentation/use-round-dealt'
 
 /** Where a press to play right away is: waiting for its seat, or for its first round. */
 type RightAwayStart = 'idle' | 'seating' | 'starting'
@@ -438,6 +439,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const seatedAs =
     view?.players.find((player) => player.id === view.youId)?.nickname ?? null
 
+  const isRoundDealt = useRoundDealt(view)
   const choosing = view === null ? null : seatedChoosingRound(view)
   const choosingRoundId = choosing?.round.id ?? null
 
@@ -636,7 +638,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   if (view !== null && choosing !== null && !isLaidOutForWall) {
     return (
       <PawnPiecesProvider view={view}>
-        <Main className='host-console-page framed'>
+        <Main
+          className='host-console-page framed'
+          data-round-dealt={isRoundDealt || undefined}
+        >
           <RoomDocumentTitle settings={view.settings} />
           {seatedRound}
         </Main>
@@ -817,7 +822,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
 
   const page = (
-    <Main className='host-console-page'>
+    <Main
+      className='host-console-page'
+      data-round-dealt={isRoundDealt || undefined}
+    >
       <RoomDocumentTitle settings={view?.settings ?? null} />
       {header}
 
@@ -893,7 +901,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           }
           round={
             choosing === null ? (
-              <div className='host-console-page podium-round'>
+              <div
+                className='host-console-page podium-round'
+                data-round-dealt={isRoundDealt || undefined}
+              >
                 {header}
                 <RoomStage
                   canPlay={canPlay}
@@ -919,7 +930,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
               </div>
             ) : (
               <div className='framed-box'>
-                <div className='host-console-page framed podium-round'>
+                <div
+                  className='host-console-page framed podium-round'
+                  data-round-dealt={isRoundDealt || undefined}
+                >
                   {seatedRound}
                 </div>
               </div>

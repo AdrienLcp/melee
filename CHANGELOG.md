@@ -607,6 +607,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A round is laid down as the countdown lands.** The count's last
+  second lifts off its token, and the round's question, grid or buzzer is
+  laid down in its place on the console, the wall and every player, in every
+  game, where it used to cut in whole the frame after. A wrong buzz handing
+  the round back deals nothing again.
+
 - `[Game]` **Black square's grid fits what it deals.** Four answers lie as a
   diamond of square cells rather than tall slips in a frame cut for nine, a
   tier the round dealt none of leaves no empty band, and the wall's reveal

@@ -32,6 +32,11 @@
       justify-content: flex-start
       max-width: var(--column-wide-max-width)
 
+  // The round a countdown just counted in is laid down like a page, once
+  // (`useRoundDealt`), and never the pause card drawn in front of it.
+  .player-page[data-round-dealt] > :is(.player-round:not(.paused), .choosing-round)
+    @include layout.arriving
+
   // A sheet is held to the screen at every width: the grid divides what the
   // card and the field leave, which is what a keyboard coming up takes back.
   // So is every round with a field or a pair to press: nothing pressed against

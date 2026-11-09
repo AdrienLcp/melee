@@ -27,6 +27,17 @@
       animation: countdown-strike calc(var(--transition-base, 0s) * 3.5) var(--ease-out) both
       font-size: calc(var(--token-size) * 0.66)
 
+    // The count's last quarter-second lifts the token off, so it is gone as
+    // the round's snapshot lands rather than cut out from under it.
+    // `LIFT_OFF_MS` in `countdown.tsx` starts it this long before zero.
+    &[data-lifting]
+      animation: countdown-lifts var(--transition-base, 0s) var(--ease-in) forwards
+
+@keyframes countdown-lifts
+  to
+    opacity: 0
+    transform: scale(0.94)
+
 @keyframes countdown-strike
   from
     opacity: 0

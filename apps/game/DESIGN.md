@@ -1723,7 +1723,14 @@ bounced. Durations:
   lids four — a 1440px row shows four lids whole and cuts the fifth — and the
   rest land together, so a piece off screen never holds back one on it.
 - **Countdown** — each second struck onto the token (`countdown-strike`,
-  `base` × 3.5).
+  `base` × 3.5). In its last `base` the token lifts off, the last second
+  still on it (`countdown-lifts`, `ease-in`, timed against the clock so it
+  ends on zero: the round's snapshot lands a few frames after, too soon for
+  an exit started there to be seen). The round it counted in is then laid
+  down like a page (`page-lay` on the stage, the player's round or the
+  seated console's choices), once: `data-round-dealt` on the page is the
+  change from countdown to round (`useRoundDealt`), never the phase, so a
+  wrong buzz handing `playing` back deals nothing again.
 - **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never
   the screen holding it (`reveal-panel.sass`, `player-round.sass`).
 - **The standings moving** — after the strike (`slow` × 3 of delay, time to

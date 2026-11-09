@@ -404,6 +404,12 @@
   .host-console-page:has(> .stage :is(.black-square-spoken, .black-square-keeper)) > header > .black-square-turn
     display: none
 
+  // The round a countdown just counted in is laid down like a page, once: the
+  // attribute is the change from countdown to round, never the `playing` a
+  // wrong buzz comes back to (`useRoundDealt`).
+  .host-console-page[data-round-dealt] > :is(.stage, .choosing-round)
+    @include layout.arriving
+
   // Before the room's first view the stage is an empty box: laid down then, the
   // arrival plays over nothing and the lobby pops in a beat later. Held, it
   // plays once the stage has something in it.

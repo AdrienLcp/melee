@@ -51,6 +51,7 @@ import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Main } from '@/presentation/components/main'
 import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
+import { useRoundDealt } from '@/presentation/use-round-dealt'
 
 /**
  * Long enough for a lid closing and reopening, or a phone's screen locking and
@@ -87,6 +88,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const { volume: ownVolume } = useVolume()
   const volume = wallView?.volume ?? ownVolume
   const slateWall = useSlateWall(view)
+  const isRoundDealt = useRoundDealt(view)
   const isRefused = status === 'refused'
   const isLetGo = error?.code === 'wall_dismissed'
   const isHostAway = useAbsentFor({
@@ -177,7 +179,10 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   return (
     <PawnPiecesProvider view={view}>
-      <Main className='host-console-page wall-page'>
+      <Main
+        className='host-console-page wall-page'
+        data-round-dealt={isRoundDealt || undefined}
+      >
         <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
           {wallView !== null && wallView.wallCount > 1 && (
