@@ -179,6 +179,17 @@ export const pairsVerdictSchema = z.object({
   rightPairs: z.number().int().min(0).max(HIGHER_LOWER_PAIR_COUNT)
 })
 
+/**
+ * Where a reaction finished in a reflex heat, `0` the fastest. Only the
+ * podium is minted one — a press past it, a false start and no press at all
+ * are paid nothing and carry no verdict. `@melee/core/reflex/place-pay`
+ * prices it. The server orders the presses; no screen ever sends one.
+ */
+export const placeVerdictSchema = z.object({
+  kind: z.literal('place'),
+  place: z.number().int().nonnegative()
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -188,7 +199,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   cellsVerdictSchema,
   colourVerdictSchema,
   numberVerdictSchema,
-  pairsVerdictSchema
+  pairsVerdictSchema,
+  placeVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -221,4 +233,5 @@ export type CellsVerdict = z.infer<typeof cellsVerdictSchema>
 export type ColourVerdict = z.infer<typeof colourVerdictSchema>
 export type NumberVerdict = z.infer<typeof numberVerdictSchema>
 export type PairsVerdict = z.infer<typeof pairsVerdictSchema>
+export type PlaceVerdict = z.infer<typeof placeVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

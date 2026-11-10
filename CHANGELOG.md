@@ -260,6 +260,12 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **Reflex pays a podium, not the fastest alone.** The quickest
+  press takes 100 points, the second 60 and the third 30, which walks their
+  pawns three, two and one cases. A few milliseconds part the first two
+  presses — less than two screens' Wi-Fi differ by — so all or nothing on
+  that gap paid the network more than the hand.
+
 - `[Game]` **A quieter Players tab and a final board without a caption.** In
   the host's panel a seat's case is the track's own small tag, its number
   alone — the word _Case_ beside a large figure is gone — and the plain cases

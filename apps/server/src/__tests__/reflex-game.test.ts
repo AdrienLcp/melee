@@ -1,6 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { POINTS_PER_CASE } from '@melee/protocol/board'
 import { DEFAULT_REFLEX_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
@@ -9,6 +8,7 @@ import {
 } from '@melee/protocol/room'
 import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
+import { pointsForPlace } from '@melee/core/reflex/place-pay'
 import { FALSE_START_FLOOR_MS } from '@melee/core/reflex/reaction'
 
 import { nowMs } from '@/infrastructure/clock'
@@ -140,7 +140,7 @@ describe('a heat nobody has to judge', () => {
     )
   })
 
-  it('[reflex] pays the first player, and nobody else', async () => {
+  it('[reflex] pays the second press less than the first, and still pays it', async () => {
     const { alice, bob, host, round } = await openPlayingRound()
 
     await untilTheFlipIsFair(host)
@@ -153,12 +153,12 @@ describe('a heat nobody has to judge', () => {
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
     expect(scoreOf(host, 'Alice')).toBe(MOST_A_ROUND_PAYS)
-    expect(scoreOf(host, 'Bob')).toBe(0)
-    expect(hostView(host)?.round?.awards).toHaveLength(1)
+    expect(scoreOf(host, 'Bob')).toBe(pointsForPlace({ place: 1 }))
+    expect(hostView(host)?.round?.awards).toHaveLength(2)
   })
 
-  // Being first *is* being right, so nothing on this path asks a host anything —
-  // it is the one game on the shelf that mints its own verdict.
+  // Being quick *is* being right, so nothing on this path asks a host anything —
+  // it is the one game on the shelf that mints its own verdicts.
   it('[reflex] settles with a verdict nobody was asked for', async () => {
     const { alice, aliceId, bob, host, round } = await openPlayingRound()
 
@@ -172,7 +172,7 @@ describe('a heat nobody has to judge', () => {
       playerId: aliceId,
       points: MOST_A_ROUND_PAYS,
       speedBonus: 0,
-      verdict: { isCorrect: true, kind: 'single' }
+      verdict: { kind: 'place', place: 0 }
     })
   })
 
@@ -193,7 +193,7 @@ describe('a heat nobody has to judge', () => {
     ).toEqual([aliceId, bobId])
   })
 
-  it('[reflex] walks the winner of a heat a whole round’s cases on a track with no teams', async () => {
+  it('[reflex] walks the podium of a heat its cases on a track with no teams', async () => {
     const { alice, bob, host, round } = await openPlayingRound({
       ...REFLEX_GAME,
       board: {
@@ -213,11 +213,9 @@ describe('a heat nobody has to judge', () => {
     bob.send({ roundId: round.id, type: 'player.buzz' })
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
-    const casesForTheRound = Math.floor(MOST_A_ROUND_PAYS / POINTS_PER_CASE)
-
     expect(hostView(host)?.players.map((player) => player.board)).toEqual([
-      { case: casesForTheRound, move: casesForTheRound },
-      { case: 0, move: 0 }
+      { case: 3, move: 3 },
+      { case: 2, move: 2 }
     ])
   })
 

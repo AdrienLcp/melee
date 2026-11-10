@@ -37,6 +37,7 @@ import {
   drawFlipDelayMs,
   reflexRoundDurationMs
 } from '@melee/core/reflex/flip-schedule'
+import { REFLEX_PODIUM_SIZE } from '@melee/core/reflex/place-pay'
 import { isFalseStart } from '@melee/core/reflex/reaction'
 import { endsTheEvening, playedPerEntry } from '@melee/core/room/next-game'
 import { rewoundToFirstRow } from '@melee/core/room/running-order'
@@ -1058,9 +1059,10 @@ export const everyoneHasPressed = (room: Room, now: number): boolean => {
 }
 
 /**
- * Scores a heat and reveals it. Being first *is* being right, so this is the one
- * settle on the shelf that mints its own verdict rather than applying one — no
- * host judges it, and `applyVerdict` is not on this game's path at all.
+ * Scores a heat and reveals it, paying its podium. Being quick *is* being right,
+ * so this is the one settle on the shelf that mints its own verdicts rather
+ * than applying one — no host judges it, and `applyVerdict` is not on this
+ * game's path at all.
  */
 export const settleReflexRound = (room: Room, now: number): void => {
   const round = room.round
@@ -1070,27 +1072,25 @@ export const settleReflexRound = (room: Room, now: number): void => {
     return
   }
 
-  const [first] = content.presses
-
-  if (first !== undefined) {
-    const verdict = { isCorrect: true, kind: 'single' } as const
+  // Arrival order is reaction order, every press subtracting the same flip, so
+  // a press's index is its place on the podium.
+  content.presses.slice(0, REFLEX_PODIUM_SIZE).forEach((press, place) => {
+    const verdict = { kind: 'place', place } as const
     const points = pointsFor(verdict)
-    const participant = room.players.get(first.playerId)
+    const participant = room.players.get(press.playerId)
 
     if (participant !== undefined) {
       participant.score += points
     }
 
-    // No speed bonus, and this is the game where that reads oddest: the race is
-    // the entire round, and it is already paid by being the press that took it.
     round.awards.push({
       isUnsent: false,
-      playerId: first.playerId,
+      playerId: press.playerId,
       points,
       speedBonus: 0,
       verdict
     })
-  }
+  })
 
   revealRound(room, now)
 }

@@ -13,6 +13,7 @@ import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
 import { isWholeSheetRight, pointsForPairs } from '../higherlower/pairs-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
+import { isFirstPlace, pointsForPlace } from '../reflex/place-pay'
 import { isExactColour, pointsForColour } from '../swatch/colour-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
 
@@ -86,6 +87,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForPairs(verdict)
   }
 
+  if (verdict.kind === 'place') {
+    return pointsForPlace(verdict)
+  }
+
   return pointsForHalves(verdict)
 }
 
@@ -117,6 +122,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isSpotOn(verdict)
     case 'pairs':
       return isWholeSheetRight(verdict)
+    case 'place':
+      return isFirstPlace(verdict)
   }
 }
 
@@ -125,12 +132,14 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
  * answers rather than one, and a bonus on it would pay the fastest typist
  * rather than the best-read player. A colour fades as it waits, so a slow one
  * already pays itself less, and a bonus would pay rushing one nobody looked at.
- * An estimate is not a reflex either: rushing one is guessing.
+ * An estimate is not a reflex either: rushing one is guessing. A reflex place
+ * is the speed already, paid by its podium.
  */
 export const isPaidForSpeed = (verdict: Verdict): boolean =>
   verdict.kind !== 'cells' &&
   verdict.kind !== 'colour' &&
-  verdict.kind !== 'number'
+  verdict.kind !== 'number' &&
+  verdict.kind !== 'place'
 
 /**
  * Everyone answers at once in these, so none is decided by who was first to the

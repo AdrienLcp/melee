@@ -1754,7 +1754,7 @@ export const FR_DICTIONARY = defineDictionary({
     hold: 'Appuie avant qu’il change et tu passes la manche.',
     home: {
       description:
-        'Rien à savoir, rien à dire. L’écran reste immobile, puis il change — et le plus rapide rafle la manche. Pars avant qu’il change et celle-là, tu la regardes depuis le banc.'
+        'Rien à savoir, rien à dire. L’écran reste immobile, puis il change — et les trois plus rapides marquent, le premier le plus. Pars avant qu’il change et celle-là, tu la regardes depuis le banc.'
     },
     landed: defineTranslation('{count:plural}', {
       plural: {
@@ -1768,7 +1768,7 @@ export const FR_DICTIONARY = defineDictionary({
     pressed: 'C’est pris.',
     reaction: '{milliseconds:number} ms',
     scoring:
-      'L’écran change, et le plus rapide prend les 100 points. Pars avant qu’il change et tu passes la manche sur le banc.',
+      'L’écran change : le plus rapide prend 100 points, le deuxième 60, le troisième 30. Pars avant qu’il change et tu passes la manche sur le banc.',
     tagline: 'L’écran change. Le plus rapide gagne.',
     tooEarly: 'parti trop tôt',
     waiting: 'Guette l’écran.'

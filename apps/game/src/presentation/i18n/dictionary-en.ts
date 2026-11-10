@@ -1860,7 +1860,7 @@ export const EN_DICTIONARY = defineDictionary({
     hold: 'Press before it changes and you sit the round out.',
     home: {
       description:
-        'Nothing to know and nothing to say. The screen holds still, then it changes — and the first in takes the round. Go before it changes and you watch that one from the bench.'
+        'Nothing to know and nothing to say. The screen holds still, then it changes — and the three quickest score, the first the most. Go before it changes and you watch that one from the bench.'
     },
     landed: defineTranslation('{count:plural}', {
       plural: { count: { one: '{?} player in', other: '{?} players in' } }
@@ -1872,7 +1872,7 @@ export const EN_DICTIONARY = defineDictionary({
     pressed: 'In.',
     reaction: '{milliseconds:number} ms',
     scoring:
-      'The screen changes, and the first in takes the 100 points. Go before it changes and you sit the round out.',
+      'The screen changes: the quickest takes 100 points, the second 60, the third 30. Go before it changes and you sit the round out.',
     tagline: 'The screen changes. First in wins.',
     tooEarly: 'too early',
     waiting: 'Watch the screen.'
