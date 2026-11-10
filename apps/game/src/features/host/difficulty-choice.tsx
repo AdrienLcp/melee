@@ -15,7 +15,7 @@ type DifficultyChoiceProps = {
   /** Set while the strip is still rising into a panel that was already open. */
   'data-arrived'?: boolean
   isDisabled: boolean
-  /** The whole evening's strip rather than one game's, which only changes its name. */
+  /** The whole evening's strip rather than one game's: a name of its own, and no line under it. */
   isEvening?: boolean
   onChange: (difficulty: Difficulty) => void
   /** `custom` lifts no level: the evening's games deal at different ones. */
@@ -25,7 +25,9 @@ type DifficultyChoiceProps = {
 /**
  * The level a game deals its content at, in the words every game shares, with
  * what the chosen one means said under it — the bank decides what easy is, the
- * strip only promises a table with children can play it.
+ * strip only promises a table with children can play it. The evening's strip
+ * says nothing under it: its label already says a press sets every game, and
+ * a line swapped in on that press shifted the whole panel.
  */
 export const DifficultyChoice: React.FC<DifficultyChoiceProps> = ({
   className,
@@ -40,11 +42,11 @@ export const DifficultyChoice: React.FC<DifficultyChoiceProps> = ({
     <SegmentedControl
       {...props}
       className={['difficulty-choice', className].filter(Boolean).join(' ')}
-      description={translate(
-        value === 'custom'
-          ? 'host.difficulty.custom'
-          : `host.difficulty.hint.${value}`
-      )}
+      description={
+        isEvening || value === 'custom'
+          ? undefined
+          : translate(`host.difficulty.hint.${value}`)
+      }
       label={translate(
         isEvening ? 'host.difficulty.evening' : 'host.difficulty.label'
       )}

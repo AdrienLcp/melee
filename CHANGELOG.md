@@ -8,6 +8,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The level for every game no longer shifts the panel.** Picking
+  one swapped a line of text in under the strip, and everything below it
+  jumped; the strip now says nothing under it, its name already saying a
+  press sets every game.
 - `[Game]` **Pulling past the top no longer reloads the page.** On Android
   the gesture reloaded mid-round and lost a half-typed answer; it is off on
   every screen, and a screen showing none of the browser's bars — the

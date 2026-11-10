@@ -696,7 +696,6 @@ export const FR_DICTIONARY = defineDictionary({
     },
     countdown: 'Décompte',
     difficulty: {
-      custom: 'Chaque jeu a le sien. En choisir un les règle tous.',
       easy: 'Facile',
       evening: 'Niveau de tous les jeux',
       hard: 'Difficile',

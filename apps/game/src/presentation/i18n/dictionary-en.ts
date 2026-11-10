@@ -737,7 +737,6 @@ export const EN_DICTIONARY = defineDictionary({
     },
     countdown: 'Countdown',
     difficulty: {
-      custom: 'Each game has its own. Pick one to set them all.',
       easy: 'Easy',
       evening: 'Level for every game',
       hard: 'Hard',
