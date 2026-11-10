@@ -79,6 +79,11 @@ import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
+  isHoldInReadyPress,
+  type RevealHoldSpan,
+  revealHoldOf
+} from '@/helpers/reveal-hold'
+import {
   atlasContent,
   blackSquareContent,
   blindtestContent,
@@ -341,6 +346,9 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
 }) => {
   const translate = useTranslate()
   const wordsOf = useWordsOf(round)
+  const readyHold = isHoldInReadyPress({ round, settings: view.settings })
+    ? revealHoldOf({ round, settings: view.settings })
+    : null
 
   return (
     <section className='player-round revealed'>
@@ -369,13 +377,19 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
                 title={translate('player.gameOver.title')}
               />
             )}
-            <RoundClock clock={clock} view={view} />
+            {readyHold === null && <RoundClock clock={clock} view={view} />}
           </>
         ) : (
           <NoticeCard title={translate('buzz.blocked.host_away')} />
         )}
       </div>
-      <BackAtTheTable onReady={onReady} round={round} view={view} />
+      <BackAtTheTable
+        clock={clock}
+        hold={readyHold}
+        onReady={onReady}
+        round={round}
+        view={view}
+      />
       <TableColours round={round} view={view} />
       <OverallStandings round={round} view={view} />
     </section>
@@ -389,10 +403,13 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
  * countdown, so a planned line-up keeps its surprises.
  */
 const BackAtTheTable: React.FC<{
+  clock: ClockEstimate | null
+  /** The wait every seat being ready armed, when the press draws it. */
+  hold: RevealHoldSpan | null
   onReady: (isReady: boolean) => boolean
   round: RoundView
   view: PlayerRoomView
-}> = ({ onReady, round, view }) => {
+}> = ({ clock, hold, onReady, round, view }) => {
   const translate = useTranslate()
   const you = view.players.find((player) => player.id === view.youId)
 
@@ -402,6 +419,8 @@ const BackAtTheTable: React.FC<{
   ) {
     return null
   }
+
+  const label = translate('player.lineUp.ready')
 
   return (
     <div className='back-at-the-table'>
@@ -413,9 +432,57 @@ const BackAtTheTable: React.FC<{
         size='large'
       >
         {you.isReady && <CheckIcon />}
-        {translate('player.lineUp.ready')}
+        {label}
+        <ReadyHoldFill clock={clock} hold={hold} label={label} />
       </ToggleButton>
     </div>
+  )
+}
+
+/**
+ * The wait to the next round, filling the Ready press from its leading edge in
+ * the phase's ink. The label is printed again on the fill, so it reads over
+ * both materials. Once shown it stays mounted, and a hold called off fades out.
+ */
+const ReadyHoldFill: React.FC<{
+  clock: ClockEstimate | null
+  hold: RevealHoldSpan | null
+  label: string
+}> = ({ clock, hold, label }) => {
+  const [shown, setShown] = useState<
+    (RevealHoldSpan & { remainingMs: number }) | null
+  >(null)
+
+  // Read once per hold: re-aiming a running animation rebases what it has
+  // already played, and the fill would jump on every snapshot.
+  if (hold !== null && hold.advancesAt !== shown?.advancesAt) {
+    setShown({
+      ...hold,
+      remainingMs: Math.max(
+        0,
+        millisecondsUntil(clock, hold.advancesAt, nowMs())
+      )
+    })
+  }
+
+  if (shown === null) {
+    return null
+  }
+
+  return (
+    <span
+      aria-hidden
+      className='ready-hold-fill'
+      data-filling={hold !== null || undefined}
+      key={shown.advancesAt}
+      style={{
+        '--fill-duration': `${shown.remainingMs}ms`,
+        '--unfilled-from': `${((shown.remainingMs / shown.holdMs) * 100).toFixed(1)}%`
+      }}
+    >
+      <CheckIcon />
+      <span className='control-label'>{label}</span>
+    </span>
   )
 }
 

@@ -260,6 +260,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Ready fills itself when the table is.** Once every seat is
+  ready, the wait to the next round now fills the Ready press from the left
+  in the reveal's green, instead of a bar arriving above it — which pushed
+  the press and the standings down a line, out from under the finger that had
+  just pressed it. A table called back mid-way fades the fill out. A room
+  whose own hold already drew its bar from the reveal keeps the bar.
+
 - `[Game]` **Shades lays every guess against the colour.** At the reveal
   each seat's colour is drawn on a chip split with the one shown — the
   colour on top, the guess under it — so a near guess reads as one block and

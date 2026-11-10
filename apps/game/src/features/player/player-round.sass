@@ -545,6 +545,31 @@
       display: flex
       flex-direction: column
 
+      .toggle-button
+        position: relative
+
+      // The press's own padding and gap, inherited, lay the label printed on
+      // the fill exactly over the one underneath.
+      .ready-hold-fill
+        align-items: center
+        animation: ready-hold-fill var(--fill-duration, 0ms) linear forwards
+        background: var(--phase-ink)
+        border-radius: inherit
+        color: var(--phase-on-ink)
+        display: flex
+        gap: inherit
+        inset: 0
+        justify-content: center
+        opacity: 0
+        padding: inherit
+        pointer-events: none
+        position: absolute
+        transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+        &[data-filling]
+          opacity: 1
+          transition-timing-function: var(--ease-out)
+
     :is(.overall, .table-colours)
       display: flex
       flex-direction: column
@@ -1166,3 +1191,9 @@
   from
     opacity: 0
     scale: 1.4
+
+@keyframes ready-hold-fill
+  from
+    clip-path: inset(0rem var(--unfilled-from, 100%) 0rem 0rem)
+  to
+    clip-path: inset(0rem)

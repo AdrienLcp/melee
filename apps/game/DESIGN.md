@@ -1868,6 +1868,12 @@ iOS Safari, so every pattern says something the screen says too.
   them at a fixed size, a column of their own lying down and on a laptop. On a
   short screen the podium keeps its first alone (under 40rem of height upright,
   50rem on a laptop), and on a track the pawn's strip heads the standings.
+- The wait a table all ready arms fills the Ready press itself
+  (`isHoldInReadyPress`), its label printed again on the fill: a bar
+  arriving above the press moved it 31px from under the finger that had just
+  pressed it, for a wait of two seconds — five, less the countdown's three.
+  Only a room hold already drawn from the reveal on keeps the bar, so nothing
+  leaves and lifts the page back up.
 
 ## Related
 

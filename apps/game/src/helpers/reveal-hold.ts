@@ -4,6 +4,14 @@ import {
   type RoundView
 } from '@melee/protocol/room'
 
+/** A wait between a reveal and the next round, as the screens draw it. */
+export type RevealHoldSpan = {
+  /** Server time the wait ends, the next round's countdown excluded. */
+  advancesAt: number
+  /** The whole wait, from the setting its deadline was stamped against. */
+  holdMs: number
+}
+
 /**
  * How long the wait counting this reveal down lasts, which the bar draws its
  * drain against: the ready hold when every seat armed it, the setting's
@@ -20,7 +28,7 @@ export const revealHoldOf = ({
 }: {
   round: Pick<RoundView, 'advancesAt' | 'isFinal' | 'isReadyHold'>
   settings: Pick<RoomSettings, 'autoAdvanceMs' | 'countdownMs'>
-}): { advancesAt: number; holdMs: number } | null => {
+}): RevealHoldSpan | null => {
   const fullHoldMs = round.isReadyHold ? READY_HOLD_MS : settings.autoAdvanceMs
 
   if (round.advancesAt === null || fullHoldMs === null) {
@@ -34,3 +42,20 @@ export const revealHoldOf = ({
     ? { advancesAt: round.advancesAt - countdownMs, holdMs }
     : null
 }
+
+/**
+ * Whether the wait a table all ready armed fills the Ready press rather than
+ * drawing a bar over it. A bar arriving above the press pushes it out from
+ * under the finger that just pressed it, so the press fills instead — unless
+ * the room's own hold already drew its bar from the reveal on, which then keeps
+ * counting rather than leaving and lifting the page back up.
+ */
+export const isHoldInReadyPress = ({
+  round,
+  settings
+}: {
+  round: Pick<RoundView, 'advancesAt' | 'isFinal' | 'isReadyHold'>
+  settings: Pick<RoomSettings, 'autoAdvanceMs' | 'countdownMs'>
+}): boolean =>
+  round.isReadyHold &&
+  revealHoldOf({ round: { ...round, isReadyHold: false }, settings }) === null
