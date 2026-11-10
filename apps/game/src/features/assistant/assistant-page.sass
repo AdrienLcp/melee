@@ -1,0 +1,119 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .assistant-page
+    @include layout.screen
+
+    gap: var(--space-xl)
+    justify-content: center
+    padding-block-start: var(--menu-block-inset)
+
+    header
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+    h1
+      @include typography.billboard
+
+    .intro,
+    .note,
+    .outcome,
+    dd
+      @include typography.body
+
+      color: var(--ink-muted)
+      max-width: var(--measure)
+      text-wrap: pretty
+
+    .steps
+      counter-reset: step
+      display: flex
+      flex-direction: column
+      gap: var(--space-xl)
+      list-style: none
+
+      > li
+        border-top: var(--stroke-hair) solid var(--rule)
+        counter-increment: step
+        display: flex
+        flex-direction: column
+        gap: var(--space-s)
+        padding-block-start: var(--space-m)
+
+    h2
+      @include typography.title
+
+      align-items: baseline
+      display: flex
+      gap: var(--space-s)
+
+      // Inside the heading rather than the list's own marker, so a screen
+      // reader that drops a styled list's numbers still hears the step's.
+      &::before
+        @include typography.numeric
+
+        content: counter(step)
+        font-size: var(--text-em-xl)
+
+    .clients
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
+      > div
+        display: flex
+        flex-direction: column
+        gap: var(--space-2xs)
+
+      dt
+        @include typography.label
+
+    .copyable-line
+      align-items: center
+      background: var(--well)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--ink)
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-s)
+      justify-content: space-between
+      max-width: var(--measure)
+      padding: var(--space-s) var(--space-s) var(--space-s) var(--space-m)
+
+      .value
+        flex: 1 1 14rem
+        min-width: 0
+        user-select: text
+
+      &[data-kind='code'] .value
+        @include typography.code
+
+      // Atomic between spaces; a word wider than the line — a long address —
+      // still wraps inside itself rather than running out of the recess.
+      .word
+        display: inline-block
+        max-width: 100%
+        overflow-wrap: anywhere
+
+      &[data-kind='prose'] .value
+        @include typography.body
+
+        text-wrap: pretty
+
+      // French sets its guillemets apart from the words by a narrow no-break
+      // space, which the browser's own quotes for `fr` leave out.
+      q:lang(fr)
+        quotes: '«\202F' '\202F»'
+
+    .outcome
+      border-top: var(--stroke-hair) solid var(--rule)
+      padding-block-start: var(--space-m)
+      width: 100%
+
+    > .link
+      align-self: flex-start

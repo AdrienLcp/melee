@@ -13,6 +13,10 @@ An assistant that cannot read this repository does not know the games exist.
 
 It is a remote MCP server over plain HTTP: no account, no key, no OAuth.
 
+The site gives a host the same steps at `/:locale/assistant`
+(`features/assistant/`, stage 65), from the front door's menu, with the
+address of whichever origin serves it. Keep the two in step.
+
 - **Claude (web, desktop, mobile)**: Settings → Connectors → _Add custom
   connector_, and paste the URL.
 - **Claude Code**: `claude mcp add --transport http melee https://melee.adrienlcp.com/mcp`

@@ -20,6 +20,11 @@ one part.
 - `[Game]` **Copy the link** beside each saved line-up sends it to another
   host, who opens it on their own screen.
 
+- `[Game]` **A page says how to plan with an assistant.** _Plan with an
+  assistant_, in the front door's menu, gives the address to copy, where it
+  goes in Claude or Claude Code, and an example to ask in words; the link the
+  assistant hands back opens the line-up.
+
 ### Improvements
 
 - `[Game]` **Every planned game is titled by its game alone.** A blind test
@@ -698,6 +703,9 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A page opens at its top.** Following a link from a page read to
+  its foot — _Back to the games_ under the credits — opened the next page as
+  far down; back and forward still return to where they were.
 - `[Game]` **A blind test's source is saved as it is chosen, on every
   round of the line-up.** The round coming next kept a decade or a playlist
   as a draft that only opening the round sent, and going back to the games

@@ -3,7 +3,10 @@ import type React from 'react'
 import { ViewTransition } from 'react'
 import { Outlet } from 'react-router'
 
-import { usePageKey } from '@/infrastructure/router/navigation'
+import {
+  useNewPageOpensAtTop,
+  usePageKey
+} from '@/infrastructure/router/navigation'
 import { AppMenu } from '@/presentation/components/app-menu'
 import { SkipLink } from '@/presentation/components/skip-link'
 import { ConnectionProvider } from '@/presentation/connection/connection-provider'
@@ -27,6 +30,7 @@ import './app-shell.sass'
  */
 export const AppShell: React.FC = () => {
   const pageKey = usePageKey()
+  useNewPageOpensAtTop()
   useFocusMainOnNavigation()
   useResumeLandingArrival()
   usePublishShownViewport()

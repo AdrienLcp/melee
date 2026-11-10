@@ -1,4 +1,10 @@
-import { useEffect, useEffectEvent } from 'react'
+import {
+  useEffect,
+  useEffectEvent,
+  useLayoutEffect,
+  useRef,
+  useSyncExternalStore
+} from 'react'
 import {
   generatePath,
   matchPath,
@@ -7,6 +13,7 @@ import {
   type To,
   useLocation,
   useNavigate,
+  useNavigationType,
   useParams,
   useSearchParams
 } from 'react-router'
@@ -22,7 +29,7 @@ import {
   type RoomCode
 } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
-import { EVENING_PAGE_ROUTE } from '@melee/protocol/routes'
+import { EVENING_PAGE_ROUTE, MCP_ROUTE } from '@melee/protocol/routes'
 
 import { eveningFragmentOf } from '@melee/core/room/evening-link'
 import {
@@ -50,6 +57,7 @@ import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage
  * `shelvedGames` first, and adding a game means reading this.
  */
 export const localizedPaths = {
+  assistant: '/:locale/assistant',
   credits: '/:locale/credits',
   evening: EVENING_PAGE_ROUTE,
   game: '/:locale/:game',
@@ -130,6 +138,30 @@ export const homePathFor = (locale: Locale): string =>
 export const creditsPathFor = (locale: Locale): string =>
   pathFor(paths.credits, { locale })
 
+export const assistantPathFor = (locale: Locale): string =>
+  pathFor(paths.assistant, { locale })
+
+/**
+ * The origin `index.html` names as canonical, which `canonical-origin.test.ts`
+ * holds equal to it. Staging serves the same build, so this is also what a
+ * staging document is written with until the app swaps in its own origin.
+ */
+export const CANONICAL_ORIGIN = 'https://melee.adrienlcp.com'
+
+const originNeverChanges = (): (() => void) => () => undefined
+
+/**
+ * The address an assistant is given for `/mcp`, on the origin the page is
+ * served from — staging's on staging. A prerendered document is written with
+ * no `location`, so it carries the canonical origin's instead.
+ */
+export const useMcpUrl = (): string =>
+  useSyncExternalStore(
+    originNeverChanges,
+    () => `${location.origin}${MCP_ROUTE}`,
+    () => `${CANONICAL_ORIGIN}${MCP_ROUTE}`
+  )
+
 /**
  * A kept evening as a link anybody can open: the page that lays it out, with
  * the evening in the fragment, which no request carries to a server.
@@ -202,6 +234,31 @@ export const usePageKey = (): string => {
   const current = game === undefined ? [] : [renamedGameKindOf(game) ?? game]
 
   return ['', ...current, ...after].join('/') || '/'
+}
+
+/**
+ * Every page scrolls the document itself, so a page left halfway down handed
+ * its place to the next: back to the games from the bottom of the credits
+ * opened the shelf at its foot. A page reached by a link or by code now opens
+ * at its top. The browser's back and forward keep the place they restore, and
+ * a switch of language keeps the page, so it keeps its place too.
+ */
+export const useNewPageOpensAtTop = (): void => {
+  const pageKey = usePageKey()
+  const navigationType = useNavigationType()
+  const shownPageKey = useRef(pageKey)
+
+  useLayoutEffect(() => {
+    if (shownPageKey.current === pageKey) {
+      return
+    }
+
+    shownPageKey.current = pageKey
+
+    if (navigationType !== 'POP') {
+      window.scrollTo({ behavior: 'instant', top: 0 })
+    }
+  }, [navigationType, pageKey])
 }
 
 export const useCameFromWall = (): boolean => {

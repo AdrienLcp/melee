@@ -382,6 +382,11 @@ grow, which is the one thing a 4K wall draws thinner.
   Never tracked capitals — at 12px they are the hardest line on any screen.
 - **`numeric`** (Bricolage 800, tabular figures): every score and count, so a
   score going from one digit to two does not jolt the row.
+- **`code`** (`--font-code`, the system's fixed-width face, 500, a label's
+  size): an address or a command pasted as is, on the assistant page.
+  Atkinson draws `--` as one long dash at every weight, which a reader
+  retyping `--transport` copies wrong. The one face not self-hosted, because
+  nothing is downloaded for it.
 
 `body`, `caption` and `label` carry a `--stage-unit` term because a player's
 column widens from 343 to 828px and the faces above them double over the same

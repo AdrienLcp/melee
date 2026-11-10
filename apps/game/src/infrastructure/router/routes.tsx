@@ -46,6 +46,13 @@ type LazyPage = {
 }
 
 const pageFor = {
+  [paths.assistant]: {
+    lazy: async () => ({
+      Component: (await import('@/features/assistant/assistant-page'))
+        .AssistantPage
+    }),
+    module: 'src/features/assistant/assistant-page.tsx'
+  },
   [paths.credits]: {
     lazy: async () => ({
       Component: (await import('@/features/credits/credits-page')).CreditsPage

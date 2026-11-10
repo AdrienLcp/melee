@@ -164,6 +164,7 @@ export const LegalPage: React.FC = () => {
 
       <LegalSection heading={translate('legal.thirdParties.heading')}>
         <p>{translate('legal.thirdParties.cloudflare')}</p>
+        <p>{translate('legal.thirdParties.assistant')}</p>
         <p>
           <RichText
             parts={translate.rich('legal.thirdParties.deezer', {

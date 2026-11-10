@@ -21,6 +21,7 @@ import {
 } from '@/infrastructure/browser'
 import { promptInstall, useInstallState } from '@/infrastructure/install-prompt'
 import {
+  assistantPathFor,
   creditsPathFor,
   homePathFor,
   legalPathFor,
@@ -388,6 +389,7 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
     setRoomVolume
   } = useRoomActions()
   const runsTheRoom = closeRoom !== null
+  const isOnAssistant = useIsCurrentPath(assistantPathFor(locale))
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
@@ -575,6 +577,15 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
             <p className='credit'>
               <TextLink href={creditsPathFor(locale)} onPress={close}>
                 {translate('credits.title')}
+              </TextLink>
+            </p>
+          )}
+
+          {/* Out of a room for the reason the credits are. */}
+          {!isInsideRoom && !isOnAssistant && (
+            <p className='credit'>
+              <TextLink href={assistantPathFor(locale)} onPress={close}>
+                {translate('assistant.title')}
               </TextLink>
             </p>
           )}

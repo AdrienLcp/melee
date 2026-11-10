@@ -11,6 +11,7 @@ import { LOCALES, type Locale } from '@melee/protocol/locale'
 import { EARLY_INSTALL_PROMPT_SCRIPT } from '@/infrastructure/install-prompt'
 import { landingSequenceScript } from '@/infrastructure/landing-sequence'
 import {
+  assistantPathFor,
   creditsPathFor,
   gameHomePathFor,
   homePathFor,
@@ -82,6 +83,12 @@ const pagesFor = (locale: Locale): PrerenderedPage[] => [
     module: pageModuleFor(paths.legal),
     page: 'legal',
     path: legalPathFor(locale)
+  },
+  {
+    locale,
+    module: pageModuleFor(paths.assistant),
+    page: 'assistant',
+    path: assistantPathFor(locale)
   },
   ...shelvedGames.map(
     (game): PrerenderedPage => ({

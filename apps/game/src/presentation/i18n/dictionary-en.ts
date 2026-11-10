@@ -17,6 +17,43 @@ import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
  * `docs/game-catalogue.md`.
  */
 export const EN_DICTIONARY = defineDictionary({
+  assistant: {
+    address: {
+      copy: 'Copy the address',
+      heading: 'Copy the address',
+      note: 'No account and no key: the address is all it needs.'
+    },
+    ask: {
+      copy: 'Copy the example',
+      example:
+        'Plan two hours of games for a family with young children, with nothing the host has to judge.',
+      heading: 'Ask in your own words',
+      note: 'Say who is at the table, for how long, and what to leave out.'
+    },
+    connect: {
+      claude: {
+        name: 'Claude',
+        steps:
+          'Settings → Connectors → Add custom connector, then paste the address.'
+      },
+      claudeCode: {
+        command: 'claude mcp add --transport http melee {url}',
+        copy: 'Copy the command',
+        name: 'Claude Code'
+      },
+      heading: 'Add it to your assistant',
+      other: {
+        name: 'Another assistant',
+        steps:
+          'Any assistant that takes a remote MCP server: give it the address as Streamable HTTP.'
+      }
+    },
+    intro:
+      'An AI assistant such as Claude can put the line-up together for you: it knows every game on the shelf, and hands back a link that opens it ready to play.',
+    outcome:
+      'It answers with a link. Open it on the screen that will run the table: the line-up is laid out there, ready to open a table or to keep among yours.',
+    title: 'Plan with an assistant'
+  },
   atlas: {
     answer: {
       cancel: 'Cancel',
@@ -1380,6 +1417,8 @@ export const EN_DICTIONARY = defineDictionary({
         'Which room’s screen this tab is, so a reload keeps it and a second tab is another screen.'
     },
     thirdParties: {
+      assistant:
+        'If you plan with an assistant, its provider sends Mêlée the line-up it put together and gets a link back: nothing about you, and Mêlée keeps none of it. What you tell the assistant falls under its provider’s own terms.',
       cloudflare:
         'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table counts against your IP address for one minute, so that nobody can open hundreds.',
       deezer:

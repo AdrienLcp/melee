@@ -12,6 +12,43 @@ import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
  * word chosen at the call site.
  */
 export const FR_DICTIONARY = defineDictionary({
+  assistant: {
+    address: {
+      copy: 'Copier l’adresse',
+      heading: 'Copie l’adresse',
+      note: 'Ni compte ni clé : l’adresse suffit.'
+    },
+    ask: {
+      copy: 'Copier l’exemple',
+      example:
+        'Prépare deux heures de jeux pour une famille avec de jeunes enfants, sans rien que l’hôte doive arbitrer.',
+      heading: 'Demande avec tes mots',
+      note: 'Dis qui est à table, pour combien de temps, et ce qu’il faut laisser de côté.'
+    },
+    connect: {
+      claude: {
+        name: 'Claude',
+        steps:
+          'Paramètres → Connecteurs → Ajouter un connecteur personnalisé, puis colle l’adresse.'
+      },
+      claudeCode: {
+        command: 'claude mcp add --transport http melee {url}',
+        copy: 'Copier la commande',
+        name: 'Claude Code'
+      },
+      heading: 'Ajoute-la à ton assistant',
+      other: {
+        name: 'Un autre assistant',
+        steps:
+          'Tout assistant qui accepte un serveur MCP distant : donne-lui l’adresse, en Streamable HTTP.'
+      }
+    },
+    intro:
+      'Un assistant IA comme Claude peut composer la partie pour toi : il connaît tous les jeux de l’étagère, et te rend un lien qui l’ouvre prête à jouer.',
+    outcome:
+      'Il répond par un lien. Ouvre-le sur l’écran qui tiendra la table : la partie y est posée, prête à ouvrir une table ou à garder parmi les tiennes.',
+    title: 'Préparer avec un assistant'
+  },
   atlas: {
     answer: {
       cancel: 'Annuler',
@@ -1311,6 +1348,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Quel écran de la salle est cet onglet, pour qu’un rechargement le garde et qu’un deuxième onglet soit un autre écran.'
     },
     thirdParties: {
+      assistant:
+        'Si tu prépares la partie avec un assistant, son éditeur envoie à Mêlée la partie qu’il a composée et reçoit un lien en retour : rien sur toi, et Mêlée n’en garde rien. Ce que tu dis à l’assistant relève des conditions de son propre éditeur.',
       cloudflare:
         'Cloudflare, l’hébergeur, reçoit ton adresse IP à chaque requête, pour livrer la page et protéger le site des abus. Ouvrir une table est compté sur ton adresse IP pendant une minute, pour que personne ne puisse en ouvrir des centaines.',
       deezer:

@@ -85,6 +85,14 @@
   font-weight: 700
   letter-spacing: 0.005em
 
+/// An address or a command copied as is, at a label's size: fixed-width, so
+/// every character a reader might retype — two hyphens, a colon — stands apart.
+@mixin code
+  font-family: var(--font-code)
+  font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.7), 1rem)
+  font-weight: 500
+  letter-spacing: 0
+
 /// Tabular figures stop the layout twitching as a score goes from one digit to
 /// two, which on this screen would be a visible jolt rather than a detail.
 @mixin numeric

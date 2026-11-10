@@ -6,7 +6,12 @@ import type { Locale } from '@melee/protocol/locale'
  * never will be: both are served `noindex`, they last one evening, and
  * there is no copy to write for a URL nobody reaches from outside the room.
  */
-export type IndexedPage = 'credits' | 'home' | 'legal' | ShelvedGame
+export type IndexedPage =
+  | 'assistant'
+  | 'credits'
+  | 'home'
+  | 'legal'
+  | ShelvedGame
 
 export type PageHead = {
   /** The search snippet, and the line a link unfurls with in a group chat. */
@@ -30,6 +35,11 @@ export type PageHead = {
  */
 export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
   en: {
+    assistant: {
+      description:
+        'Connect Claude or another AI assistant to Mêlée in three steps, describe the table in your own words, and open the line-up it puts together, every game chosen and ready to play.',
+      title: 'Plan with an assistant — Mêlée'
+    },
     atlas: {
       description:
         'A place comes up and everyone puts a pawn on the map, from their own screen — or the map lights a place up and everyone names it. On it scores in full, off it is paid by the kilometre, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
@@ -127,6 +137,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     }
   },
   fr: {
+    assistant: {
+      description:
+        'Branchez Claude ou un autre assistant IA sur Mêlée en trois étapes, décrivez la table avec vos mots, et ouvrez la partie qu’il compose, chaque jeu choisi et prête à jouer.',
+      title: 'Préparer avec un assistant — Mêlée'
+    },
     atlas: {
       description:
         "Un lieu s'affiche et chacun pose son pion sur la carte, depuis son propre écran — ou la carte allume un lieu et chacun le nomme. Dessus, c'est le plein de points ; à côté, ça se paie au kilomètre, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
