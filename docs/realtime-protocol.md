@@ -1036,7 +1036,10 @@ for saying so; it gets finished, or it stays off the wire.
 `PROTOCOL_VERSION` is sent in `hello` and echoed in `welcome`. A mismatch closes
 the socket — both sides ship from this repository, so the only realistic cause
 is a tab left open across a redeploy, and a stale tab desynchronising a live
-game is worse than a reload.
+game is worse than a reload. The screen reloads itself on that refusal
+(`reloadOntoNewBuild`), since the room and the seat live on the server; a
+second refusal inside the cooldown is shown instead, so a broken deploy
+cannot loop.
 
 Bump it only when an older peer could **mis-read** a frame. Adding a field or a
 message an old client ignores does not qualify.

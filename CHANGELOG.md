@@ -12,6 +12,10 @@ one part.
   the gesture reloaded mid-round and lost a half-typed answer; it is off on
   every screen, and a screen showing none of the browser's bars — the
   installed app, a fullscreen tab — offers **Reload** in its menu instead.
+- `[Game]` **A screen left on the previous version reloads itself.** After a
+  deploy that changes what the server and the screens say to each other, a
+  screen still on the old version used to stop on “This page is out of date”;
+  it now fetches the new one and takes its seat back, points and all.
 
 - `[Shared]` **A better answer always scores more than a faster one.** The
   speed bonus now goes to a perfect answer alone — a pin inside the country,

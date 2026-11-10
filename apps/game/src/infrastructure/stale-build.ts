@@ -13,31 +13,42 @@ const NEVER_SETTLES: Promise<never> = new Promise(() => undefined)
 let isReloadingOntoNewBuild = false
 
 /**
+ * Reloads onto the deployed build, unless this tab already did inside the
+ * cooldown: that is what stops a build genuinely broken from reloading
+ * forever, and the second failure inside it is left to surface. Returns
+ * whether the reload is on its way.
+ */
+export const reloadOntoNewBuild = (): boolean => {
+  const now = nowMs()
+  const lastReloadAt = readStaleBuildReloadAt()
+
+  if (
+    lastReloadAt !== null &&
+    now - lastReloadAt < STALE_BUILD_RELOAD_COOLDOWN_MS
+  ) {
+    return false
+  }
+
+  isReloadingOntoNewBuild = true
+  writeStaleBuildReloadAt(now)
+  reloadPage()
+
+  return true
+}
+
+/**
  * A deploy removes the previous build's chunks, so a tab opened before it fails
  * on the first lazy route or stylesheet it had not loaded yet — a page with no
- * style and no icons. Reloading fetches the document naming the new chunks. The
- * cooldown is what stops a build genuinely missing a chunk from reloading
- * forever: the second failure inside it is left to surface.
+ * style and no icons. Reloading fetches the document naming the new chunks.
  *
  * Seen on a tab left in the background across a deploy, which failed on its
  * very first route the moment it was brought back.
  */
 export const reloadOnStaleBuild = (): void => {
   window.addEventListener('vite:preloadError', (event) => {
-    const now = nowMs()
-    const lastReloadAt = readStaleBuildReloadAt()
-
-    if (
-      lastReloadAt !== null &&
-      now - lastReloadAt < STALE_BUILD_RELOAD_COOLDOWN_MS
-    ) {
-      return
+    if (reloadOntoNewBuild()) {
+      event.preventDefault()
     }
-
-    event.preventDefault()
-    isReloadingOntoNewBuild = true
-    writeStaleBuildReloadAt(now)
-    reloadPage()
   })
 }
 

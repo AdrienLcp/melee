@@ -30,6 +30,7 @@ import {
   isOurOwnMalformedFrame,
   reportRefusedFrame
 } from '@/infrastructure/diagnostics'
+import { reloadOntoNewBuild } from '@/infrastructure/stale-build'
 import { readStoredPawnPiece } from '@/infrastructure/storage/preferences-storage'
 import {
   ensureSessionId,
@@ -242,6 +243,20 @@ export const useRoomSocket = ({
 
         if (!refusal.fatal) {
           setError(refusal)
+
+          return
+        }
+
+        // The room lives on the server, so a screen left on the previous
+        // build loses nothing but a second by fetching the current one, and
+        // the seat comes back with it. The screen stays as it is until the
+        // reload lands.
+        if (
+          refusal.code === 'protocol_version_mismatch' &&
+          reloadOntoNewBuild()
+        ) {
+          giveUp = true
+          socket.close()
 
           return
         }
