@@ -15,23 +15,15 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  validate:
+  # The checks no browser runs. Every job below starts at once: the run lasts
+  # as long as the slowest of them, which is one e2e shard.
+  checks:
     runs-on: ubuntu-latest
-    # Runs took about 19 minutes in November 2026, the e2e suite most of it;
-    # the cap keeps headroom over that, so a hung browser or server is still
-    # cut off instead of burning the 6-hour default.
-    timeout-minutes: 35
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
-        with:
-          cache: pnpm
-          node-version: 26
-
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup-workspace
 
       # `pnpm lint` is `biome check --write`: it repairs the drift and exits 0,
       # so running it here would pass on exactly the code CI exists to reject.
@@ -56,42 +48,65 @@ jobs:
         run: |
           node -p "'Line coverage: ' + require('./coverage/coverage-summary.json').total.lines.pct + '%'" >> "$GITHUB_STEP_SUMMARY"
 
-      # Only Chromium: the journeys assert behaviour, not rendering, and a
-      # second engine would double the slowest step to re-check the same thing.
-      #
-      # `--with-deps` runs `apt-get update` over every source the runner image
-      # carries, and one of them is Google's own Chrome repository — which
-      # nothing here installs from, Playwright shipping the Chromium it drives.
-      # Google publishes that index a piece at a time, so an update landing
-      # between the pieces fails on a hash mismatch and takes the whole job with
-      # it, for minutes or for hours. Dropping the source leaves the step
-      # standing on Ubuntu's mirrors alone.
-      #
-      # Those mirrors stall now and then: apt waited one to three minutes on
-      # each font package before trying the next mirror, and the step took 12
-      # minutes instead of 20 seconds. A short timeout moves on at once.
-      - name: Install Chromium
-        run: |
-          sudo rm -f /etc/apt/sources.list.d/*google*
-          echo 'Acquire::http::Timeout "15"; Acquire::https::Timeout "15"; Acquire::Retries "3";' | sudo tee /etc/apt/apt.conf.d/99-stalled-mirror
-          pnpm exec playwright install --with-deps chromium
+  # Each shard builds and starts a server of its own, so no room is shared
+  # between two of them. `strip-rows` is one test per locale of about two and
+  # a half minutes, which a shard by test count would pile onto one runner,
+  # so it shards on its own.
+  e2e:
+    name: e2e (${{ matrix.specs }} ${{ matrix.shard }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { specs: journeys-and-layouts, shard: 1/4 }
+          - { specs: journeys-and-layouts, shard: 2/4 }
+          - { specs: journeys-and-layouts, shard: 3/4 }
+          - { specs: journeys-and-layouts, shard: 4/4 }
+          - { specs: strip-rows, shard: 1/2 }
+          - { specs: strip-rows, shard: 2/2 }
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup-workspace
+
+      - name: Build
+        run: pnpm build
+
+      - uses: ./.github/actions/install-chromium
 
       - name: Test end to end
-        run: pnpm test:e2e
-
-      # Last, alone in this job: Lantern reads the trace's CPU times, so a heavy
-      # step running beside it would move the scores.
-      - name: Lighthouse
-        run: pnpm lighthouse
+        env:
+          SPECS: ${{ matrix.specs == 'strip-rows' && 'strip-rows' || 'choice-fits dead-socket everyone-answers full-game' }}
+          SHARD: ${{ matrix.shard }}
+        run: |
+          read -ra specs <<< "$SPECS"
+          pnpm test:e2e "${specs[@]}" --shard="$SHARD"
 
       - if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: playwright-traces
+          name: playwright-traces-${{ strategy.job-index }}
           # `outputDir` is relative to the config, so the traces are under `e2e/`;
           # the root this once pointed at uploaded nothing.
           path: e2e/test-results
           retention-days: 7
+
+  # A job of its own: Lantern reads the trace's CPU times, so a heavy step
+  # running beside it on the same runner would move the scores.
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup-workspace
+
+      - uses: ./.github/actions/install-chromium
+
+      - name: Lighthouse
+        run: pnpm lighthouse
 
       - if: failure()
         uses: actions/upload-artifact@v7
@@ -101,6 +116,16 @@ jobs:
           include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 7
+
+  # One check standing for all of them, under the name
+  # `deploy-production.yaml` looks a commit up by: a failed job above leaves
+  # it skipped, never green.
+  validate:
+    needs: [checks, e2e, lighthouse]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - run: echo 'Checks, every end-to-end shard and Lighthouse passed.'
 
   # Every green push lands on staging, a Worker and a set of rooms of its own
   # at staging.melee.adrienlcp.com, so a fix is tried on a phone before a
@@ -116,14 +141,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
-        with:
-          cache: pnpm
-          node-version: 26
-
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup-workspace
 
       - name: Build
         run: pnpm build

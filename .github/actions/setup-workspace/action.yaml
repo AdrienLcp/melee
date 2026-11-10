@@ -1,0 +1,14 @@
+name: Set up the workspace
+description: pnpm, Node and the locked dependencies, for a job that has checked out the repository.
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v6
+
+    - uses: actions/setup-node@v7
+      with:
+        cache: pnpm
+        node-version: 26
+
+    - run: pnpm install --frozen-lockfile
+      shell: bash

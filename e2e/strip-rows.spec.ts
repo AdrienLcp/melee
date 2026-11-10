@@ -43,12 +43,12 @@ const STEP_PX = 4
 const WIDEST_PX = 1_400
 
 /**
- * The number of distinct strips the sweep must have seen. A check that silently
+ * The number of distinct strips one locale's sweep must see. A check that silently
  * stopped finding controls — a renamed class, a fold that no longer opens —
  * reports exactly what a console with nothing wrong on it reports, and this is
  * the difference. Raise it when a game brings a strip of its own.
  */
-const STRIPS_EXPECTED = 16
+const STRIPS_EXPECTED = 30
 
 /**
  * The faces are `font-display: swap`, so a page measured the moment it is
@@ -331,31 +331,30 @@ const openTheTable = (page: Page): Promise<void> => openTab(page, 'table')
 /** The room's strips — the hold and the countdown. */
 const openTheRoom = (page: Page): Promise<void> => openTab(page, 'room')
 
-test('[layout] no strip on the console ever holds rows of two different lengths', async ({
-  page
-}) => {
-  // The sweep is every game, in both locales, at every width: it grows with
-  // the shelf. Sixteen games take two to three minutes on an idle machine,
-  // which left `test.slow()`'s 180 s no headroom for a loaded one.
-  test.setTimeout(360_000)
+for (const locale of ['en', 'fr']) {
+  test(`[layout] ${locale}: no strip on the console ever holds rows of two different lengths`, async ({
+    page
+  }) => {
+    // The sweep is every game at every width, and grows with the shelf: one
+    // locale of sixteen games took two and a half minutes on a CI runner.
+    test.setTimeout(300_000)
 
-  const collapsed: string[] = []
-  const faults: string[] = []
-  const withoutFloor: string[] = []
-  const measured = new Set<string>()
+    const collapsed: string[] = []
+    const faults: string[] = []
+    const withoutFloor: string[] = []
+    const measured = new Set<string>()
 
-  await page.goto('/')
-  await homePage(page).untickAll.click()
-  await homePage(page).createRoom.click()
-  await expect(page).toHaveURL(/\/host\/[A-Z0-9]{4}$/)
+    await page.goto('/')
+    await homePage(page).untickAll.click()
+    await homePage(page).createRoom.click()
+    await expect(page).toHaveURL(/\/host\/[A-Z0-9]{4}$/)
 
-  const games = page.locator(`${PANEL_SCREEN} .game-pick-list .pick`)
+    const games = page.locator(`${PANEL_SCREEN} .game-pick-list .pick`)
 
-  await expect(games.first()).toBeVisible()
+    await expect(games.first()).toBeVisible()
 
-  const gameCount = await games.count()
+    const gameCount = await games.count()
 
-  for (const locale of ['en', 'fr']) {
     await page.evaluate((chosen) => {
       localStorage.setItem('melee:locale', chosen)
     }, locale)
@@ -428,10 +427,10 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         }
       }
     }
-  }
 
-  expect(collapsed).toEqual([])
-  expect(withoutFloor).toEqual([])
-  expect(faults).toEqual([])
-  expect(measured.size).toBeGreaterThanOrEqual(STRIPS_EXPECTED)
-})
+    expect(collapsed).toEqual([])
+    expect(withoutFloor).toEqual([])
+    expect(faults).toEqual([])
+    expect(measured.size).toBeGreaterThanOrEqual(STRIPS_EXPECTED)
+  })
+}

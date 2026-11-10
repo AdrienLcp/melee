@@ -24,6 +24,9 @@ const WORKER_STATE = mkdtempSync(join(tmpdir(), 'melee-e2e-'))
 export default defineConfig({
   expect: { timeout: 10_000 },
   forbidOnly: Boolean(process.env.CI),
+  // Lets `--shard` split a spec by test rather than by file: CI spreads
+  // `choice-fits` over several runners. One worker still runs them in turn.
+  fullyParallel: true,
   // Explicit, or a run started from the repository root drops `test-results/`
   // there rather than beside the specs — which is the one thing moving this
   // config into `e2e/` was for.
@@ -82,5 +85,6 @@ export default defineConfig({
   ],
   // One server process holds every room, and one journey asserts that a given
   // code is held by nobody. Two of them at once could invent exactly that code.
+  // CI runs in parallel by `--shard` instead, each shard with servers of its own.
   workers: 1
 })

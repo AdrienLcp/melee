@@ -885,6 +885,14 @@ one part.
 
 ### Internal
 
+- **CI runs its checks side by side.** The one `validate` job that took
+  twenty minutes is split into jobs that start together: the checks with no
+  browser, Lighthouse alone, and six end-to-end shards, each with servers of
+  its own — four over the layouts and journeys, and one per locale of
+  `strip-rows`, now a test per locale. `validate` stays as the one check
+  standing for all of them, which staging's deploy and `deploy-production.yaml`
+  wait on.
+
 - **A push lands on staging; production is deployed by hand.** Every green
   push to `main` deploys `melee-staging` at `staging.melee.adrienlcp.com`, a
   Worker with Durable Objects of its own, so a fix is tried there without

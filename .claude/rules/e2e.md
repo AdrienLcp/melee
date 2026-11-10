@@ -58,15 +58,17 @@ slow CI runner caught a full-height page one or two pixels under the fold, a
 failure Windows never reproduced. A transform still counts as overflow, which is
 also why `#root` clips its block axis.
 
-`strip-rows.spec.ts` plays nothing either. It opens one room, walks every game in both
-locales, and asserts that no choice strip ever holds rows of two different
+`strip-rows.spec.ts` plays nothing either. One test per locale opens a room, walks every
+game, and asserts that no choice strip ever holds rows of two different
 lengths — the defect where a wrap leaves a short row, `flex: 1` stretches it,
 and an unselected stamp ends up wearing the shape of a selected one.
 
 It is the answer to the question above rather than an exception to it: the
 stacking widths in `_strip.sass`'s call sites are **measured numbers**, a
 dictionary edit moves them, and geometry is the one thing no socket test has an
-opinion about. It cost 1.8 minutes inside a full `validate` on 2026-10-28, beside the other specs.
+opinion about. It cost 1.8 minutes inside a full `validate` on 2026-10-28, and
+five on a CI runner by November, which is why it is split by locale: CI shards
+it on runners of its own, beside the four that share every other spec.
 
 It sweeps the **strip's own box**, not the viewport — one `page.evaluate` per
 game instead of eighty resizes — and starts each strip at the width the layout
