@@ -891,7 +891,8 @@ one part.
   its own — four over the layouts and journeys, and one per locale of
   `strip-rows`, now a test per locale. `validate` stays as the one check
   standing for all of them, which staging's deploy and `deploy-production.yaml`
-  wait on.
+  wait on. The fonts Chromium needs are kept in the Actions cache, since one
+  job of eight meeting a crawling Ubuntu mirror held the run four minutes.
 
 - **A push lands on staging; production is deployed by hand.** Every green
   push to `main` deploys `melee-staging` at `staging.melee.adrienlcp.com`, a

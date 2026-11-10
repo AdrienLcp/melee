@@ -14,11 +14,25 @@ runs:
     # it, for minutes or for hours. Dropping the source leaves the step
     # standing on Ubuntu's mirrors alone.
     #
-    # Those mirrors stall now and then: apt waited one to three minutes on
-    # each font package before trying the next mirror, and the step took 12
-    # minutes instead of 20 seconds. A short timeout moves on at once.
+    # Those mirrors stall now and then, or crawl: apt waited one to three
+    # minutes on each font package before trying the next mirror, and with
+    # eight jobs installing at once one of them met a mirror serving 86 kB/s
+    # and spent four and a half minutes on 22 MB of fonts. A short timeout
+    # moves on from a stall; the packages are kept in the Actions cache, and
+    # apt installs a package it finds in its own archive without fetching it.
+    - uses: actions/cache@v6
+      with:
+        path: ~/.cache/chromium-debs
+        key: chromium-debs-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: chromium-debs-${{ runner.os }}-${{ runner.arch }}-
+
     - run: |
         sudo rm -f /etc/apt/sources.list.d/*google*
         echo 'Acquire::http::Timeout "15"; Acquire::https::Timeout "15"; Acquire::Retries "3";' | sudo tee /etc/apt/apt.conf.d/99-stalled-mirror
+        echo 'APT::Keep-Downloaded-Packages "true"; Binary::apt::APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/99-keep-debs
+        sudo rm -f /etc/apt/apt.conf.d/docker-clean
+        mkdir -p ~/.cache/chromium-debs
+        sudo cp ~/.cache/chromium-debs/*.deb /var/cache/apt/archives/ 2>/dev/null || true
         pnpm exec playwright install --with-deps chromium
+        cp /var/cache/apt/archives/*.deb ~/.cache/chromium-debs/ 2>/dev/null || true
       shell: bash
