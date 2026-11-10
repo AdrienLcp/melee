@@ -10,8 +10,8 @@ one part.
 
 - `[Game]` **Pulling past the top no longer reloads the page.** On Android
   the gesture reloaded mid-round and lost a half-typed answer; it is off on
-  every screen, and the installed app, which has no address bar, offers
-  **Reload** in its menu instead.
+  every screen, and a screen showing none of the browser's bars — the
+  installed app, a fullscreen tab — offers **Reload** in its menu instead.
 
 - `[Shared]` **A better answer always scores more than a faster one.** The
   speed bonus now goes to a perfect answer alone — a pin inside the country,

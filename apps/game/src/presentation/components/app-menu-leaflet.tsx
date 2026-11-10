@@ -325,14 +325,15 @@ const Fullscreen: React.FC = () => {
 }
 
 /**
- * An installed app has no address bar and its pull-down no longer reloads, so
- * this row is the one way left to fetch the page again. A tab has the
- * browser's own.
+ * An installed app and a fullscreen tab show none of the browser's bars, and
+ * the pull-down no longer reloads, so this row is the one way left to fetch
+ * the page again. A tab with its bars has the browser's own.
  */
 const ReloadApp: React.FC = () => {
   const translate = useTranslate()
+  const isFullscreenTab = useSyncExternalStore(onFullscreenChange, isFullscreen)
 
-  if (!isStandaloneDisplay()) {
+  if (!isStandaloneDisplay() && !isFullscreenTab) {
     return null
   }
 
