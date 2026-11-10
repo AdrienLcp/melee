@@ -1,0 +1,38 @@
+// Pure module: mixins only, no top-level CSS.
+
+/// Every scrollbar of the page, its thumb a pill. Chromium and Safari drop the
+/// `::-webkit-scrollbar` pseudo-elements on an element whose `scrollbar-color`
+/// or `scrollbar-width` is anything but `auto` — inherited included — and the
+/// standard pair has no say over the thumb's shape, so where the
+/// pseudo-elements exist they draw every bar and the pair is left to Firefox,
+/// which rounds its thumb on its own. Included once, from `globals`.
+@mixin pills-everywhere
+  @supports selector(::-webkit-scrollbar)
+    ::-webkit-scrollbar
+      background: transparent
+      block-size: var(--scrollbar-size)
+      inline-size: var(--scrollbar-size)
+
+    // Read on the pseudo-element, so a lid that re-points `--rule-strong`
+    // paints its own bars in it.
+    ::-webkit-scrollbar-thumb
+      background: var(--scrollbar-thumb, var(--rule-strong)) padding-box
+      border: calc(var(--scrollbar-size) / 4) solid transparent
+      border-radius: var(--radius-full)
+
+    ::-webkit-scrollbar-corner
+      background: transparent
+
+/// A scroller's own bar: `$thumb` recolours it, `thin` narrows it. Never a
+/// bare `scrollbar-color` or `scrollbar-width`, which would switch the pill
+/// off in Chromium (`pills-everywhere`).
+@mixin bar($thumb: null, $size: auto)
+  @if $thumb
+    --scrollbar-thumb: #{$thumb}
+
+  @if $size == thin
+    --scrollbar-size: var(--scrollbar-size-thin)
+
+  @supports not selector(::-webkit-scrollbar)
+    scrollbar-color: if($thumb, $thumb, var(--rule-strong)) transparent
+    scrollbar-width: $size

@@ -1,5 +1,7 @@
 // Pure module: mixins only, no top-level CSS.
 
+@use './scrollbar'
+
 /// The rulebook leaflet a popover opens: the board's own ground, so every
 /// control inside keeps its tokens, on a piece with the box's edge. The piece
 /// clips to its rounded corners and never scrolls itself: its dialog does,
@@ -30,12 +32,12 @@
     // its label: placed against the piece outside the scroller, a radio
     // focused below the fold scrolled the page behind instead of the dialog.
     position: relative
-    scrollbar-color: var(--ink-muted) transparent
     // Focus scrolls a control into view only when none of it shows, so one
     // cut at the edge by a pixel stayed cut; inset by the padding, the edge
     // counts as out of view.
     scroll-padding-block: var(--space-m)
-    scrollbar-width: thin
+
+    @include scrollbar.bar(var(--ink-muted), thin)
 
     // The dialog's height is now bounded, and a control that clips its own
     // overflow would shrink to nothing rather than let the dialog scroll.

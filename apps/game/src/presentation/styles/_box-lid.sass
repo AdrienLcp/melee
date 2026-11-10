@@ -1,6 +1,7 @@
 // Pure module: mixins only, no top-level CSS.
 
 @use './piece'
+@use './scrollbar'
 
 /// The lid's inks without its shape or its keyline: whatever is printed on
 /// paper — the console's panel — re-pointed at the paper's own colours.
@@ -10,7 +11,7 @@
   background: var(--card)
   color: var(--card-ink)
   // Inherited already resolved to the root's board colours, like the rules.
-  scrollbar-color: var(--rule-strong) var(--field)
+  @include scrollbar.bar(var(--rule-strong))
 
 /// The lid of a game box: a printed card with a keyline a margin in from its
 /// edge, the way a box top frames its title. The front doors are drawn on it.

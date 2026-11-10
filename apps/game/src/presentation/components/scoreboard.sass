@@ -92,6 +92,10 @@
 
       font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
 
+    .case:has(.case-mark)
+      align-self: center
+      font-size: var(--text-m)
+
     .score
       @include typography.score
       @include text-box.trimmed-figure

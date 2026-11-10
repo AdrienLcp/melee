@@ -14,12 +14,12 @@
     transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), inline-size var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
     svg
-      block-size: 1em
+      block-size: var(--text-em-xs)
       flex: none
-      inline-size: 1em
+      inline-size: var(--text-em-xs)
 
   .away-mark[data-away]
-    inline-size: 1em
+    inline-size: var(--text-em-xs)
     opacity: 1
     scale: 1
     transition: inline-size var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)

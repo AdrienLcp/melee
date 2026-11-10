@@ -218,8 +218,12 @@ every page would pay the inset twice. A raw `env()` is never written.
 
 ## What `globals.sass` sets
 
-`html` reserves the scrollbar's gutter (`stable`) and paints it in
-`--rule-strong` on `--field`; `body` sets `caret-color: var(--ink)` and
+`html` reserves the scrollbar's gutter (`stable`), and every scrollbar is a
+pill drawn by `scrollbar.pills-everywhere` in `--rule-strong`. A scroller
+recolours or thins its own with `scrollbar.bar($thumb, thin)`, never a bare
+`scrollbar-color` / `scrollbar-width`: Chromium drops the
+`::-webkit-scrollbar` pseudo-elements, and the round thumb with them, on any
+element where either is set; `body` sets `caret-color: var(--ink)` and
 `font-synthesis: none`, so a weight the face lacks shows as missing in review
 rather than faked; `::selection` is `--selection` under `--ink`, a pair in
 `tokens-contrast.test.ts`; `#root` fills `--shown-height` and clips both axes, so a page

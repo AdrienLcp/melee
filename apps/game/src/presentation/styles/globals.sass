@@ -7,11 +7,13 @@
 @use './fonts'
 @use './layout'
 @use './reset'
+@use './scrollbar'
 @use './tokens'
 @use './typography'
 
 @layer base
   @include focus.ring-focusables
+  @include scrollbar.pills-everywhere
 
   // A layout move (`moveLayout`) runs at the pace of a layout change.
   ::view-transition-group(*),
@@ -56,7 +58,8 @@
   // canvas, which left the gutter in the browser's own grey.
   html
     background: var(--field)
-    scrollbar-color: var(--rule-strong) var(--field)
+    @include scrollbar.bar
+
     scrollbar-gutter: stable
     transition: background-color var(--transition-slow, 0s) var(--ease-out)
 

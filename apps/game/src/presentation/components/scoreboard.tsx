@@ -15,6 +15,7 @@ import { RichText } from '@/presentation/i18n/rich-text'
 
 import { AwayMark } from './away-mark'
 import { Button } from './button'
+import { CaseMark } from './case-mark'
 import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
 import { ReadyMark } from './ready-mark'
@@ -90,6 +91,12 @@ type ScoreboardProps = {
   /** Only ever CSS custom properties a layout needs at runtime. */
   style?: React.CSSProperties
   /**
+   * The track's length, passed by a list read up close — the host's panel —
+   * to print each case as the track's own tag, its finish flagged. Omitted,
+   * a case is the word and a figure a room reads from across it.
+   */
+  trackLength?: number
+  /**
    * Drawn at the end of the reader's own row, after the name gives way: the
    * press that repaints the pawn, on a player's lobby roster.
    */
@@ -113,6 +120,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   rankedBefore,
   seatedBefore,
   style,
+  trackLength,
   youAction,
   youId
 }) => {
@@ -202,14 +210,18 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             </span>
             {isRanked && player.board !== null && (
               <span className='case'>
-                <RichText
-                  parts={translate.rich('board.atColumn', {
-                    case: player.board.case,
-                    figure: (figure) => (
-                      <span className='case-figure'>{figure}</span>
-                    )
-                  })}
-                />
+                {trackLength === undefined ? (
+                  <RichText
+                    parts={translate.rich('board.atColumn', {
+                      case: player.board.case,
+                      figure: (figure) => (
+                        <span className='case-figure'>{figure}</span>
+                      )
+                    })}
+                  />
+                ) : (
+                  <CaseMark at={player.board.case} length={trackLength} />
+                )}
               </span>
             )}
             {isRanked && !isOnTrack && (

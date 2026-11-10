@@ -17,18 +17,6 @@ import {
 import { useDurationLabels } from './number-choice'
 import { sourceSummary } from './playlist-picker'
 
-/**
- * The line that says what the room is set to play, read on both sides of a
- * game: closed, the setup fold says what opening it would let you change; on
- * the final board it says what *play again* is about to relaunch.
- *
- * It reads the draft source for the same reason in both places — the picker
- * commits on the launch, and on the final board that launch is one press away
- * with nothing between it and the countdown.
- */
-export const useSettingsSummary = (input: SummaryInput): string =>
-  useSummaryParts()(settingsSummary(input))
-
 type SummaryInput = {
   draftSource: TrackSource | null
   settings: RoomSettings

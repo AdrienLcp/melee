@@ -2,6 +2,7 @@
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/seat-grid'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/scrollbar'
 @use 'boxed-standings'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
@@ -285,11 +286,8 @@
       //
       // `.reason` is why the launch is refusing — the roster says the same
       // thing on the other side of the screen, which is too far from a greyed
-      // button to read as its reason. `.replays` is what *play again* is about
-      // to relaunch, and it is centred because it is the longer of the two and
-      // the only one that wraps on a console held in a hand.
-      .reason,
-      .replays
+      // button to read as its reason.
+      .reason
         @include typography.caption
 
         color: var(--ink-muted)
@@ -304,7 +302,7 @@
         flex-direction: column
         gap: var(--reveal-gap)
 
-        // The line belongs to the press under it, like `.replays` to its own.
+        // The line belongs to the press under it, like `.reason` to its own.
         .next-round-name
           @include typography.caption-strong
 
@@ -948,9 +946,6 @@
         .slate-actions
           gap: var(--space-xs)
 
-        .replays
-          margin-top: calc(var(--space-xs) * -1 + var(--space-2xs))
-
   .host-console-page.framed
     @include framed.page
 
@@ -1025,7 +1020,8 @@
           grid-area: side
           overflow: hidden auto
           overscroll-behavior: contain
-          scrollbar-width: thin
+
+          @include scrollbar.bar($size: thin)
 
           // The first heading is the row the menu stands on.
           > :first-child > h2

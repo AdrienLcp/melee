@@ -1,5 +1,6 @@
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/scrollbar'
 @use '../../presentation/styles/typography'
 
 /// The off-desk bar giving way: slid back off the edge it docks from, and
@@ -245,7 +246,8 @@
       // react-aria's hidden inputs are absolute: unanchored here, they hang
       // below the panel, and focusing one scrolls the whole panel to them.
       position: relative
-      scrollbar-width: thin
+
+      @include scrollbar.bar($size: thin)
 
     .panel-rail
       display: flex

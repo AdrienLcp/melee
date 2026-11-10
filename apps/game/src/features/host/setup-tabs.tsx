@@ -510,6 +510,11 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
         onRemove={onRemovePlayer}
         players={view.players}
         seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
+        trackLength={
+          view.settings.board.kind === 'track'
+            ? view.settings.board.length
+            : undefined
+        }
         youId={view.youId}
       />
       {view.phase !== 'lobby' && (

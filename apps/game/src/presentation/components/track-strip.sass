@@ -1,4 +1,5 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../styles/scrollbar'
 @use '../styles/typography'
 
 @layer components
@@ -74,8 +75,8 @@
       overscroll-behavior-x: contain
       padding-block-end: var(--space-xs)
       scroll-snap-type: x proximity
-      scrollbar-color: var(--track-b) transparent
-      scrollbar-width: thin
+
+      @include scrollbar.bar(var(--track-b), thin)
 
       .cases
         grid-auto-columns: var(--case-size)

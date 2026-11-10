@@ -9,7 +9,9 @@
     background: var(--track-a)
     border-radius: var(--radius-s)
     box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
-    color: var(--track-ink)
+    // `--ink`, not `--track-ink`: paper re-points `--track-a` to its own tint
+    // and leaves `--track-ink` the board's, light on light in the dark palette.
+    color: var(--ink)
     display: inline-grid
     flex: none
     justify-items: start
@@ -19,6 +21,7 @@
 
     &[data-mark]
       background: var(--track-five)
+      color: var(--track-ink)
 
     .number
       @include typography.numeric

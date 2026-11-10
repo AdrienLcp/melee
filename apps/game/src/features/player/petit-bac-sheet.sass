@@ -2,6 +2,7 @@
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
+@use '../../presentation/styles/scrollbar'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -41,7 +42,9 @@
       min-height: 0
       overflow-y: auto
       overscroll-behavior: contain
-      scrollbar-width: thin
+      scrollbar-gutter: stable
+
+      @include scrollbar.bar($size: thin)
 
     .letter-piece
       @include typography.monument

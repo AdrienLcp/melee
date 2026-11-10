@@ -260,6 +260,16 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A quieter Players tab and a final board without a caption.** In
+  the host's panel a seat's case is the track's own small tag, its number
+  alone — the word _Case_ beside a large figure is gone — and the plain cases
+  are legible on the panel's paper in the dark palette, where their number
+  had been light on light. The offline mark beside a name is smaller on
+  every list. The final board's line under _Play again_ — the game, the mode
+  and the rounds, wrong on a line-up of several — is gone. Every scrollbar's
+  thumb is a pill, and Petit Bac's sheet and results keep their scrollbar's
+  room, so the rows stop shifting sideways when the list starts to scroll.
+
 - `[Game]` **Ready fills itself when the table is.** Once every seat is
   ready, the wait to the next round now fills the Ready press from the left
   in the reveal's green, instead of a bar arriving above it — which pushed
