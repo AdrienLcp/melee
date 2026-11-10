@@ -38,18 +38,10 @@ export type SettingsSummaryPart =
  * game's own name already says those,
  * and a game offering a single answer mode has nothing to report about the
  * choice nobody made.
- *
- * It reads the draft source rather than the committed one, because the picker
- * commits on the launch — a summary that waited for that would contradict the
- * control directly above it.
  */
-export const settingsSummary = ({
-  draftSource,
-  settings
-}: {
-  draftSource: TrackSource | null
+export const settingsSummary = (
   settings: RoomSettings
-}): SettingsSummaryPart[] => {
+): SettingsSummaryPart[] => {
   const game = settings.game
   const parts: SettingsSummaryPart[] = []
 
@@ -62,7 +54,7 @@ export const settingsSummary = ({
   }
 
   if (game.kind === 'blindtest') {
-    parts.push({ kind: 'source', source: draftSource ?? game.source })
+    parts.push({ kind: 'source', source: game.source })
   }
 
   if (

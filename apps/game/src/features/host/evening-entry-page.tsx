@@ -1,14 +1,13 @@
 import type React from 'react'
-import { useCallback } from 'react'
 
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
-import type { TrackSource } from '@melee/protocol/track'
 
 import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
+import { withEntrySource } from '@melee/core/room/line-up'
 import { isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
@@ -29,12 +28,8 @@ import './evening-entry-page.sass'
 type EveningEntryPageProps = {
   /** The entry's index in the line-up. */
   at: number
-  /** The blind test's source as the picker shows it, while this entry is the next round's. */
-  draftSource: TrackSource | null
   isLive: boolean
   onBack: () => void
-  /** Must be stable — the picker reports upward from an effect. */
-  onDraftSource: (source: TrackSource | null) => void
   onRememberSlateKey: (itemIndex: number, key: string) => void
   onSettingsChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, or `null` if they never set anything. */
@@ -55,10 +50,8 @@ type EveningEntryPageProps = {
  */
 export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   at,
-  draftSource,
   isLive,
   onBack,
-  onDraftSource,
   onRememberSlateKey,
   onSettingsChange,
   preferences,
@@ -70,26 +63,6 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   const entry = settings.lineUp[at]
   const isNext = at === settings.lineUpAt
   const roundInPlay = isRoundInPlay(view.phase)
-
-  const commitSource = useCallback(
-    (source: TrackSource | null) => {
-      const current = settings.lineUp[at]
-
-      if (
-        source === null ||
-        current?.kind !== 'blindtest' ||
-        JSON.stringify(source) === JSON.stringify(current.source)
-      ) {
-        return
-      }
-
-      onSettingsChange({
-        ...settings,
-        lineUp: settings.lineUp.with(at, { ...current, source })
-      })
-    },
-    [at, onSettingsChange, settings]
-  )
 
   if (entry === undefined) {
     return <EveningPage onBack={onBack} />
@@ -149,12 +122,13 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
           {entry.kind === 'blindtest' && (
             <PlaylistPicker
               key={at}
-              onDraftChange={isNext ? onDraftSource : commitSource}
+              onSourceChange={(source) => {
+                onSettingsChange(withEntrySource({ at, settings, source }))
+              }}
               settings={entry}
             />
           )}
           <SettingsPanel
-            draftSource={isNext ? draftSource : null}
             isLive={isLive}
             isNextRound={isNext}
             isRoundInPlay={roundInPlay && isNext}

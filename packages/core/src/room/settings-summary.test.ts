@@ -10,35 +10,18 @@ describe('settingsSummary', () => {
   const blindtest = roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
 
   it('[settings-summary] reads left to right, from the game down to how long the evening runs', () => {
-    expect(settingsSummary({ draftSource: null, settings: blindtest })).toEqual(
-      [
-        { game: 'blindtest', kind: 'game' },
-        { kind: 'source', source: EVERY_STRAND },
-        { kind: 'answerMode', mode: 'choice' },
-        { count: 10, kind: 'roundCount' }
-      ]
-    )
-  })
-
-  // The picker commits on the launch, so the committed source is the *previous*
-  // round's for as long as the fold is open.
-  it('[settings-summary] shows the source being drafted over the one the room is running', () => {
-    expect(
-      settingsSummary({
-        draftSource: { kind: 'search', query: 'yacht rock' },
-        settings: blindtest
-      })
-    ).toContainEqual({
-      kind: 'source',
-      source: { kind: 'search', query: 'yacht rock' }
-    })
+    expect(settingsSummary(blindtest)).toEqual([
+      { game: 'blindtest', kind: 'game' },
+      { kind: 'source', source: EVERY_STRAND },
+      { kind: 'answerMode', mode: 'choice' },
+      { count: 10, kind: 'roundCount' }
+    ])
   })
 
   it('[settings-summary] says nothing about a source in a game that serves none', () => {
-    const parts = settingsSummary({
-      draftSource: { kind: 'search', query: 'yacht rock' },
-      settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
-    })
+    const parts = settingsSummary(
+      roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
+    )
 
     expect(parts.some((part) => part.kind === 'source')).toBe(false)
   })
@@ -46,10 +29,7 @@ describe('settingsSummary', () => {
   // A sheet's length is the whole of its setup, and the fold is closed.
   it('[settings-summary] names how many things a slate asks for', () => {
     expect(
-      settingsSummary({
-        draftSource: null,
-        settings: roomSettingsFor({ games: ['slate'], locale: 'fr' })
-      })
+      settingsSummary(roomSettingsFor({ games: ['slate'], locale: 'fr' }))
     ).toEqual([
       { game: 'slate', kind: 'game' },
       { count: 10, kind: 'itemCount' },
@@ -63,9 +43,7 @@ describe('settingsSummary', () => {
       locale: 'fr'
     })
     const countsOf = (settings: typeof blackSquare) =>
-      settingsSummary({ draftSource: null, settings }).filter(
-        (part) => part.kind === 'answerCount'
-      )
+      settingsSummary(settings).filter((part) => part.kind === 'answerCount')
 
     expect(countsOf(blackSquare)).toEqual([])
     expect(
@@ -82,9 +60,7 @@ describe('settingsSummary', () => {
   it('[settings-summary] names the map only when it asks for French cities', () => {
     const atlas = roomSettingsFor({ games: ['atlas'], locale: 'fr' })
     const placesOf = (settings: typeof atlas) =>
-      settingsSummary({ draftSource: null, settings }).filter(
-        (part) => part.kind === 'places'
-      )
+      settingsSummary(settings).filter((part) => part.kind === 'places')
 
     expect(placesOf(atlas)).toEqual([])
     expect(
@@ -102,10 +78,9 @@ describe('settingsSummary', () => {
   })
 
   it('[settings-summary] says nothing about an answer mode the host was never offered', () => {
-    const parts = settingsSummary({
-      draftSource: null,
-      settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
-    })
+    const parts = settingsSummary(
+      roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
+    )
 
     expect(parts.some((part) => part.kind === 'answerMode')).toBe(false)
   })
@@ -117,10 +92,7 @@ describe('settingsSummary', () => {
   it('[settings-summary] names every game the shelf can be opened on', () => {
     for (const game of shelvedGames) {
       expect(
-        settingsSummary({
-          draftSource: null,
-          settings: roomSettingsFor({ games: [game], locale: 'fr' })
-        })
+        settingsSummary(roomSettingsFor({ games: [game], locale: 'fr' }))
       ).toContainEqual({ game, kind: 'game' })
     }
   })
@@ -129,19 +101,13 @@ describe('settingsSummary', () => {
   // about a decision nobody has made rather than name a default.
   it('[settings-summary] says nothing about a game the room has not been given', () => {
     expect(
-      settingsSummary({
-        draftSource: null,
-        settings: roomSettingsFor({ games: [], locale: 'fr' })
-      })
+      settingsSummary(roomSettingsFor({ games: [], locale: 'fr' }))
     ).toEqual([{ count: 10, kind: 'roundCount' }])
   })
 
   it('[settings-summary] carries a game with no last round as a count of none', () => {
     expect(
-      settingsSummary({
-        draftSource: null,
-        settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
-      })
+      settingsSummary(roomSettingsFor({ games: ['buzzer'], locale: 'fr' }))
     ).toContainEqual({ count: null, kind: 'roundCount' })
   })
 })

@@ -27,7 +27,6 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
-import type { TrackSource } from '@melee/protocol/track'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import {
@@ -177,12 +176,6 @@ const isQuestionLanguage = (value: string): value is QuestionLanguage =>
   questionLanguages.some((language) => language === value)
 
 type SettingsPanelProps = {
-  /**
-   * What the picker above is currently showing, which the room does not hold
-   * yet — nothing there commits until a round opens. `null` while the chosen
-   * kind is still missing the text it needs.
-   */
-  draftSource: TrackSource | null
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
   isLive: boolean
   /**
@@ -216,7 +209,6 @@ type SettingsPanelProps = {
  * one lands on the round after the one on screen.
  */
 export const SettingsPanel: React.FC<SettingsPanelProps> = ({
-  draftSource,
   isLive,
   isRoundInPlay,
   isSeated,
@@ -234,13 +226,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const offeredModes = answerModesFor(game).filter((offered) =>
     isPlayableWithTeams({ mode: offered, teams: settings.teams })
   )
-  // Read from the draft rather than from the room, or the difficulty strip
-  // stays up for a whole round after the composers were chosen alone: they pin
-  // their own floor, so it would decide nothing.
-  const chosenSource =
-    draftSource ?? (game?.kind === 'blindtest' ? game.source : null)
   const pinsItsOwnDifficulty =
-    chosenSource !== null && trackAnswersOf(chosenSource) === 'films'
+    game?.kind === 'blindtest' && trackAnswersOf(game.source) === 'films'
   const difficultyArrived = useArrivedLater(!pinsItsOwnDifficulty)
   const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
   const loneFindsArrived = useArrivedLater(offersLoneFinds)

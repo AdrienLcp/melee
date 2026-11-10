@@ -1,5 +1,4 @@
 import type { RoomSettings } from '@melee/protocol/room'
-import type { TrackSource } from '@melee/protocol/track'
 
 import { dealsAdultContent } from '@melee/core/quiz/adult-content'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
@@ -17,11 +16,6 @@ import {
 import { useDurationLabels } from './number-choice'
 import { sourceSummary } from './playlist-picker'
 
-type SummaryInput = {
-  draftSource: TrackSource | null
-  settings: RoomSettings
-}
-
 /** What each group of the setup says while it is closed, the same way the whole of it does. */
 export type SetupSummaries = Record<'room' | 'table', string>
 
@@ -30,14 +24,11 @@ export type SetupSummaries = Record<'room' | 'table', string>
  * whichever game a round is drawn from, and its teams; the room says how a
  * round is led in and let go. What each round is set to is its own page's.
  */
-export const useSetupSummaries = ({
-  draftSource,
-  settings
-}: SummaryInput): SetupSummaries => {
+export const useSetupSummaries = (settings: RoomSettings): SetupSummaries => {
   const translate = useTranslate()
   const join = useSummaryParts()
   const { seconds } = useDurationLabels()
-  const parts = settingsSummary({ draftSource, settings })
+  const parts = settingsSummary(settings)
   const isRoundCount = (part: SettingsSummaryPart): boolean =>
     part.kind === 'roundCount'
   const teams = settings.teams

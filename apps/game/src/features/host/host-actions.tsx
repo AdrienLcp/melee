@@ -2,7 +2,6 @@ import type React from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
-import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
@@ -24,13 +23,11 @@ export type HostActionsProps = {
   challengeLine: ChallengeLine | null
   /** `null` unless the next round is an inner clock. */
   innerclockTarget: InnerclockTarget | null
-  /** What the picker is showing, which `onOpenRound` commits — so it is what the next round will be built from. */
-  draftSource: TrackSource | null
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
   isLive: boolean
   /** A card around the reveal's presses already names the round they open, so they leave it unsaid. Defaults to `false`. */
   isNextRoundNamedAbove?: boolean
-  /** Commits the picker's draft and blesses the audio element — every control that opens a round calls it first. */
+  /** Blesses the audio element and clears what the round about to open uses up — every control that opens a round calls it first. */
   onOpenRound: () => void
   /** Seats this console under the name and starts the first round once the seat is granted — the empty lobby's launch. */
   onPlayRightAway: (nickname: string) => void

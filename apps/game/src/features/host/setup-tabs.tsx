@@ -5,7 +5,6 @@ import type { GameKind } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
-import type { TrackSource } from '@melee/protocol/track'
 
 import { dealsAdultContent } from '@melee/core/quiz/adult-content'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
@@ -55,12 +54,8 @@ import './setup-tabs.sass'
 const COUNTDOWN_DURATIONS_MS = [3_000, 5_000, 10_000] as const
 
 export type SetupTabsProps = {
-  /** What the picker is showing, which the launch has not committed yet. */
-  draftSource: TrackSource | null
   /** The socket is open. Everything inside sends a frame, so none of it works without it. */
   isLive: boolean
-  /** Must be stable — the picker reports upward from an effect. */
-  onDraftSource: (source: TrackSource | null) => void
   /** Has the clip and the cues play on this console or on one wall. */
   onChooseSpeaker: (speaker: Speaker) => void
   /** Lets the room's screen go, so this one is the speaker again. */
@@ -101,9 +96,7 @@ type GamePage =
  * planning it and opening its settings.
  */
 export const GameTab: React.FC<SetupTabsProps> = ({
-  draftSource,
   isLive,
-  onDraftSource,
   onReadyMade,
   onRememberSlateKey,
   onSettingsChange,
@@ -197,7 +190,6 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     return (
       <EveningEntryPage
         at={page.at}
-        draftSource={draftSource}
         isLive={isLive}
         onBack={() => {
           setPage(
@@ -206,7 +198,6 @@ export const GameTab: React.FC<SetupTabsProps> = ({
               : { hasReturned: true, kind: 'list', returnedFrom: page.at }
           )
         }}
-        onDraftSource={onDraftSource}
         onRememberSlateKey={onRememberSlateKey}
         onSettingsChange={onSettingsChange}
         preferences={preferences}
@@ -329,7 +320,6 @@ const HeldNote: React.FC<{ view: HostRoomView }> = ({ view }) => {
  * controls drawn dead.
  */
 export const TableTab: React.FC<SetupTabsProps> = ({
-  draftSource,
   isLive,
   onSettingsChange,
   preferences,
@@ -337,7 +327,7 @@ export const TableTab: React.FC<SetupTabsProps> = ({
 }) => {
   const translate = useTranslate()
   const settings = view.settings
-  const summaries = useSetupSummaries({ draftSource, settings })
+  const summaries = useSetupSummaries(settings)
   const isInLobby = view.phase === 'lobby'
   const teams = settings.teams
   const offersSpeedBonus =
@@ -436,7 +426,6 @@ export const TableTab: React.FC<SetupTabsProps> = ({
  * volume — then how a round is led in and let go, which no game answers.
  */
 export const RoomTab: React.FC<SetupTabsProps> = ({
-  draftSource,
   isLive,
   onChooseSpeaker,
   onDismissWall,
@@ -447,7 +436,7 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
 }) => {
   const translate = useTranslate()
   const settings = view.settings
-  const summaries = useSetupSummaries({ draftSource, settings })
+  const summaries = useSetupSummaries(settings)
   const { seconds } = useDurationLabels()
 
   return (

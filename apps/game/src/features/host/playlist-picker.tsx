@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { BlindtestSettings } from '@melee/protocol/game'
@@ -135,8 +135,13 @@ const sourceFromDraft = ({
 }
 
 type PlaylistPickerProps = {
-  /** Called on every edit. Must be stable — it is an effect dependency. */
-  onDraftChange: (source: TrackSource | null) => void
+  /**
+   * Saves a source the host finished choosing: a strand, a genre or a decade
+   * as it is pressed, a playlist id or a query once its field is left or
+   * submitted, never per keystroke. Called once per source that differs
+   * from the last one saved, the entry's own counting as the first.
+   */
+  onSourceChange: (source: TrackSource) => void
   settings: BlindtestSettings
 }
 
@@ -148,17 +153,14 @@ type PlaylistPickerProps = {
  * one strip holding both would untick three strands the moment a search was
  * pressed, and say nothing about it.
  *
- * Nothing here commits: whatever opens the next round is what sends the source,
- * because a choice that has to be confirmed and *then* launched is two
- * decisions where the host only made one. That is also what lets the picker
- * stay reachable while a game runs — a source edited mid-clip cannot touch the
- * round already drawn. The preview is the exception, and it only looks, at a
+ * Every choice is saved as it is made, like every other setting on the page,
+ * and lands on the round after the one on screen. The preview only looks, at a
  * playlist id or a query alone: the catalogue's lists are curated and never
  * come back empty, and neither an id nor a query is finished until the typing
  * stops, so both wait for a press.
  */
 export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
-  onDraftChange,
+  onSourceChange,
   settings
 }) => {
   const translate = useTranslate()
@@ -177,16 +179,42 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
     settings.difficulty
   )
   const draftSource = sourceFromDraft(draft)
+  const lastSaved = useRef(JSON.stringify(settings.source))
 
-  // The control that commits this draft is the one that starts the game, and it
-  // lives in the console's footer rather than here.
-  useEffect(() => {
-    onDraftChange(sourceFromDraft(draft))
-  }, [draft, onDraftChange])
+  const save = (saved: Draft): void => {
+    const source = sourceFromDraft(saved)
+    const written = JSON.stringify(source)
 
-  const revise = (patch: Partial<Draft>): void => {
-    setDraft({ ...draft, ...patch })
+    if (source !== null && written !== lastSaved.current) {
+      lastSaved.current = written
+      onSourceChange(source)
+    }
+  }
+
+  // A press that leaves the page need not blur the field first, so whatever
+  // the field holds is saved on the way out.
+  const saveOnLeave = useEffectEvent(() => {
+    save(draft)
+  })
+
+  useEffect(
+    () => () => {
+      saveOnLeave()
+    },
+    []
+  )
+
+  const revise = (patch: Partial<Draft>): Draft => {
+    const revised = { ...draft, ...patch }
+
+    setDraft(revised)
     clear()
+
+    return revised
+  }
+
+  const choose = (patch: Partial<Draft>): void => {
+    save(revise(patch))
   }
 
   return (
@@ -196,7 +224,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         label={translate('blindtest.source.label')}
         onChange={(place) => {
           if (isPlace(place)) {
-            revise({ place })
+            choose({ place })
           }
         }}
         options={Object.entries(PLACE_LABELS).map(([value, key]) => ({
@@ -213,7 +241,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             disallowEmptySelection
             label={translate('blindtest.source.strands')}
             onSelectionChange={(keys) => {
-              revise({
+              choose({
                 strands: CATALOGUE_STRANDS.filter((strand) => keys.has(strand))
               })
             }}
@@ -229,7 +257,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
               <ToggleGroup
                 label={translate('blindtest.genre.label')}
                 onSelectionChange={(keys) => {
-                  revise({
+                  choose({
                     charts: [...keys]
                       .map(asGenreId)
                       .filter((id) => id !== undefined)
@@ -252,7 +280,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
               <ToggleGroup
                 label={translate('blindtest.decade.label')}
                 onSelectionChange={(keys) => {
-                  revise({
+                  choose({
                     decades: [...keys]
                       .map(asDecade)
                       .filter((decade) => decade !== undefined)
@@ -281,6 +309,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
           data-arrived={typedSourceArrived}
           onSubmit={(event) => {
             event.preventDefault()
+            save(draft)
 
             if (draftSource !== null && draftSource.kind !== 'catalogue') {
               void previewSource(draftSource)
@@ -291,6 +320,9 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             <>
               <TextField
                 label={translate('blindtest.source.query')}
+                onBlur={() => {
+                  save(draft)
+                }}
                 onChange={(query) => {
                   revise({ query })
                 }}
@@ -306,6 +338,9 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             <>
               <TextField
                 label={translate('blindtest.source.playlistId')}
+                onBlur={() => {
+                  save(draft)
+                }}
                 onChange={(playlistId) => {
                   revise({ playlistId })
                 }}

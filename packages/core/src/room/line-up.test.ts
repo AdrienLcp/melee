@@ -16,6 +16,7 @@ import {
   toggledInLineUp,
   withEntryAdded,
   withEntryDuplicated,
+  withEntrySource,
   withoutEntry
 } from './line-up'
 import { dealsOf, withEntryDealt } from './line-up-deals'
@@ -265,6 +266,53 @@ describe('variants', () => {
         settings: onTheQuiz
       })
     ).toBe(onTheQuiz)
+  })
+})
+
+describe('withEntrySource', () => {
+  const chartsThenFilms = {
+    ...withEntryAdded({
+      game: 'blindtest',
+      locale: 'fr',
+      remembered: null,
+      settings: onTheCharts
+    }),
+    lineUpAt: 0
+  }
+  const EIGHTIES = catalogueOf({ decades: ['1980s'] })
+
+  // The bug: a source the next round's page saved into its entry alone came
+  // back from the server as it was, `game` written over it.
+  it('[line-up] keeps the next round’s source once the server writes the game back', () => {
+    const saved = followedByLineUp(
+      withEntrySource({ at: 0, settings: chartsThenFilms, source: EIGHTIES })
+    )
+
+    expect(saved.game).toEqual({
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      source: EIGHTIES
+    })
+    expect(saved.lineUp[0]).toEqual(saved.game)
+  })
+
+  it('[line-up] saves another entry’s source without touching the next round', () => {
+    const saved = followedByLineUp(
+      withEntrySource({ at: 1, settings: chartsThenFilms, source: EIGHTIES })
+    )
+
+    expect(saved.lineUp[1]).toEqual({
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      source: EIGHTIES
+    })
+    expect(saved.game).toEqual(onTheCharts.game)
+  })
+
+  it('[line-up] leaves an entry that is not a blind test as it was', () => {
+    const evening = toggle(onTheCharts, 'quiz')
+
+    expect(
+      withEntrySource({ at: 1, settings: evening, source: EIGHTIES })
+    ).toBe(evening)
   })
 })
 

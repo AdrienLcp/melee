@@ -11,7 +11,6 @@ import type {
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
-import type { TrackSource } from '@melee/protocol/track'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import {
@@ -181,18 +180,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   )
   const [hasOfferedToken, setHasOfferedToken] = useState(false)
   const { setVolume: keepVolume, volume: ownVolume } = useVolume()
-  const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
-  const lineUpAt = view?.settings.lineUpAt ?? null
-  const [draftedForAt, setDraftedForAt] = useState(lineUpAt)
-
-  // The picker's draft is the source of the entry the next round is on. Once
-  // the draw or *Play next* moves that round to another entry, the draft is
-  // that entry's no longer, and committing it at the launch would hand one
-  // blind test's source to the other.
-  if (draftedForAt !== lineUpAt) {
-    setDraftedForAt(lineUpAt)
-    setDraftSource(null)
-  }
   const [preferences, setPreferences] = useState(() => {
     const stored = storedHostPreferencesOrNone()
 
@@ -687,7 +674,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
     return {
       challengeLine,
-      draftSource,
       innerclockTarget:
         current.settings.game?.kind === 'innerclock'
           ? { onChange: setTargetSeconds, seconds: targetSeconds }
@@ -708,20 +694,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         setChallengeChoice(FIRST_HAND_LINE)
         setSetAsideOwnLines(new Set())
         setTargetSeconds(drawTargetSeconds())
-
-        // What the picker is showing is what the host chose, and a round about
-        // to be drawn is the moment that means something — which is why every
-        // control that opens one comes through here rather than the launch
-        // alone. Re-sending an unchanged source is free: the server drops the
-        // pool only when it differs.
-        const game = current.settings.game
-
-        if (draftSource !== null && game?.kind === 'blindtest') {
-          changeSettings({
-            ...current.settings,
-            game: { ...game, source: draftSource }
-          })
-        }
       },
       onPlayRightAway: playRightAway,
       onSettingsChange: changeSettings,
@@ -794,7 +766,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   const setupProps = (current: HostRoomView): SetupTabsProps => ({
-    draftSource,
     isLive,
     onChooseSpeaker: (speaker) => {
       send({ speaker, type: 'host.chooseSpeaker' })
@@ -802,7 +773,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     onDismissWall: () => {
       send({ type: 'host.dismissWall' })
     },
-    onDraftSource: setDraftSource,
     onLeaveSeat: leaveSeat,
     onReadyMade: markReadyMade,
     onRememberSlateKey: rememberPreparedKey,

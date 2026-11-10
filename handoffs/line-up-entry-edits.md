@@ -1,52 +1,10 @@
-# Line-up entries — an edit that is not saved, and rows named two ways
+# Line-up entries — rows named two ways
 
 Reported by Adrien on 2026-11-10 while setting up the ready-made line-up
-_Mêlée générale_ in the console's side panel. Two fixes, in this order: the
-first is a bug, the second changes what the rows say and is checked on top of
-it.
+_Mêlée générale_ in the console's side panel. The first point, a blind test's
+source lost on the next round's entry, landed on 2026-11-10.
 
-## 1. The next round's blind test keeps its source as a draft
-
-> « je clique sur le premier "blind test", je modifie un paramètre (j'ajoute
-> "décennies" à musique de film), comment sauvegarder ? Si je fais "retour aux
-> jeux" j'ai l'impression que ça n'a pas sauvegardé »
-
-**Cause, read in the code (not yet reproduced in a browser):** loading
-_Mêlée générale_ points `lineUpAt` at entry 0
-(`packages/core/src/room/saved-evening.ts:155-174`), the film-scores blind
-test (`ready-made-line-ups.ts:98`), so its page has `isNext` true
-(`apps/game/src/features/host/evening-entry-page.tsx:71`). For the next entry
-the source picker reports to `onDraftSource` instead of `commitSource`
-(`evening-entry-page.tsx:152`), which only sets `draftSource` in
-`host-console-page.tsx:184, 805`. The draft is sent only by `onOpenRound`
-(`host-console-page.tsx:712-724`), and is lost when "Régler" remounts the
-picker from the server's entry (`playlist-picker.tsx:165-167`) or when
-`lineUpAt` moves (`host-console-page.tsx:192-195`). Every other entry commits
-at once (`evening-entry-page.tsx:74-92`). The picker's own doc says so on
-purpose: "Nothing here commits: whatever opens the next round is what sends
-the source" (`playlist-picker.tsx:151-158, 181-185`).
-
-**Fix:** the next entry saves its source like every other entry and every
-other setting on the page — sent on the press, the server's
-`followedByLineUp` (`socket-handler.ts:2241`, `line-up.ts:74-80`) writes
-`game` back into `lineUp[lineUpAt]`. Keep the "same source, send nothing"
-check so the picker's report on mount sends no frame. A typed playlist id or
-search query sends once typing settles or on the preview press, never per
-keystroke (`.claude/rules/data-fetching.md`). Then remove `draftSource` from
-`host-console-page`, `onOpenRound`, `SettingsPanel` and the summaries, and
-rewrite the picker's doc.
-
-**Before deleting the draft, read why it exists:** `git log -S draftSource`
-and `git log -S onDraftSource`. If a reason still holds (a Deezer fetch per
-change, a source the server checks before a round), keep it and save the
-draft into the line-up instead — the bug is the lost edit, not the draft.
-
-**Check:** a test that the next entry's source is sent, beside the existing
-one for other entries; then in a muted browser, open _Mêlée générale_,
-"Régler" the first blind test, add a decade, "Retour aux jeux": its row
-changes; reload the console: it is still there.
-
-## 2. Every row is named the same way
+## Every row is named the same way
 
 > « Certains jeux n'ont que le titre du jeu puis les options du jeu choisi en
 > petit en gris en dessous, et pour le blind test ou les quiz, c'est mis dans

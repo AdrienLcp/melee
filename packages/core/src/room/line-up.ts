@@ -6,6 +6,7 @@ import {
   type LineUpDeal,
   type RoomSettings
 } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
 import { joiningAtEveningDifficulty } from './evening-difficulty'
 import { isPlayableAloud } from './game-capabilities'
@@ -78,6 +79,35 @@ export const followedByLineUp = (settings: RoomSettings): RoomSettings =>
         ...settings,
         lineUp: settings.lineUp.with(settings.lineUpAt, settings.game)
       }
+
+/**
+ * The settings with the blind test at `at` drawing from `source`. The next
+ * round's entry is written through `game`, because the server copies `game`
+ * over that entry on every frame and an edit made to the entry alone would be
+ * undone by it. An entry that is not a blind test is left as it was.
+ */
+export const withEntrySource = ({
+  at,
+  settings,
+  source
+}: {
+  at: number
+  settings: RoomSettings
+  source: TrackSource
+}): RoomSettings => {
+  const isNext = at === settings.lineUpAt
+  const entry = isNext ? settings.game : settings.lineUp[at]
+
+  if (entry?.kind !== 'blindtest') {
+    return settings
+  }
+
+  const changed = { ...entry, source }
+
+  return isNext
+    ? { ...settings, game: changed }
+    : { ...settings, lineUp: settings.lineUp.with(at, changed) }
+}
 
 /** The games ticked, each once, in the order they were first ticked. */
 export const kindsInLineUp = (lineUp: readonly GameSettings[]): GameKind[] => [

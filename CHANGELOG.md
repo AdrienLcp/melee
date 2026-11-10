@@ -677,6 +677,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A blind test's source is saved as it is chosen, on every
+  round of the line-up.** The round coming next kept a decade or a playlist
+  as a draft that only opening the round sent, and going back to the games
+  or reloading the console lost it. Every pick is now saved at once, a
+  playlist id or a search once its field is left.
 - `[Server]` **Next round and Ready no longer answer “Too late” as the round
   opens.** Once every seat is ready the next round opens on its own, and a
   host's Next round or a Ready landing in its countdown was refused as late;
