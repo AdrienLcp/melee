@@ -1470,6 +1470,7 @@ export const EN_DICTIONARY = defineDictionary({
       field: 'New nickname',
       label: 'Nickname'
     },
+    reload: 'Reload',
     source: 'Source code',
     /** Said by the host, about the machine rather than the table: it outlives the room. */
     thisDevice: {

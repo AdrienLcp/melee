@@ -14,7 +14,9 @@ import { isLocale, LOCALES } from '@melee/protocol/locale'
 import {
   canGoFullscreen,
   isFullscreen,
+  isStandaloneDisplay,
   onFullscreenChange,
+  reloadPage,
   toggleFullscreen
 } from '@/infrastructure/browser'
 import { promptInstall, useInstallState } from '@/infrastructure/install-prompt'
@@ -50,6 +52,7 @@ import {
   FullscreenExitIcon,
   InstallIcon,
   QrCodeIcon,
+  ReloadIcon,
   ScreenIcon,
   ShareIcon
 } from './icons'
@@ -321,6 +324,26 @@ const Fullscreen: React.FC = () => {
   )
 }
 
+/**
+ * An installed app has no address bar and its pull-down no longer reloads, so
+ * this row is the one way left to fetch the page again. A tab has the
+ * browser's own.
+ */
+const ReloadApp: React.FC = () => {
+  const translate = useTranslate()
+
+  if (!isStandaloneDisplay()) {
+    return null
+  }
+
+  return (
+    <Button className='reload-app' onPress={reloadPage} variant='outlined'>
+      <ReloadIcon />
+      <span className='name'>{translate('menu.reload')}</span>
+    </Button>
+  )
+}
+
 const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
   dark: 'preferences.theme.dark',
   light: 'preferences.theme.light',
@@ -486,6 +509,8 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           <Fullscreen />
 
           <InstallApp />
+
+          <ReloadApp />
 
           {!isInsideRoom && !isOnWall && (
             <div className='this-device'>

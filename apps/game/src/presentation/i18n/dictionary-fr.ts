@@ -1393,6 +1393,7 @@ export const FR_DICTIONARY = defineDictionary({
       field: 'Nouveau pseudo',
       label: 'Pseudo'
     },
+    reload: 'Recharger',
     source: 'Code source',
     thisDevice: {
       qrCode: {

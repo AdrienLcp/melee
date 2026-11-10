@@ -60,6 +60,9 @@
     background: var(--field)
     @include scrollbar.bar
 
+    // A pull past the top reloads the page in Chromium on Android, mid-round
+    // and mid-answer; the menu offers the reload instead.
+    overscroll-behavior-y: contain
     scrollbar-gutter: stable
     transition: background-color var(--transition-slow, 0s) var(--ease-out)
 

@@ -46,6 +46,7 @@ import {
   QrCode,
   RotateCcw,
   RotateCcwClock,
+  RotateCw,
   Ruler,
   Share,
   SlidersHorizontal,
@@ -114,6 +115,7 @@ export const FullscreenExitIcon = inFamily(Minimize)
 export const MinusIcon = inFamily(Minus)
 export const MoreIcon = inFamily(Ellipsis)
 export const MoveIcon = inFamily(ArrowRightLeft)
+export const ReloadIcon = inFamily(RotateCw)
 export const OfflineIcon = inFamily(WifiOff)
 export const PanelFoldIcon = inFamily(PanelRightClose)
 export const PanelOpenIcon = inFamily(PanelRightOpen)
