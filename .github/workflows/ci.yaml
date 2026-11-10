@@ -17,10 +17,10 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    # Runs take about 6 minutes with the Lighthouse gate: about three times
-    # that, so a hung browser or server is cut off instead of burning the
-    # 6-hour default.
-    timeout-minutes: 20
+    # Runs took about 19 minutes in November 2026, the e2e suite most of it;
+    # the cap keeps headroom over that, so a hung browser or server is still
+    # cut off instead of burning the 6-hour default.
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7
 
