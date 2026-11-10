@@ -617,6 +617,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A square wall keeps a full table's standings on screen.** With
+  twenty-four seats, the last row of the overall standings ran past its
+  column on a wall about as tall as it is wide; once the text is at its
+  floor, the rows now give up their padding there too, as a narrow wall's
+  already did.
+
 - `[Game]` **A long name no longer squeezes the colour off the podium.** On
   a phone's Shades reveal, a twenty-letter name in first place left the
   seat's colour a sliver; the chip now keeps its shape and the name ends on

@@ -115,8 +115,13 @@
         justify-content: center
         overflow: visible
 
+        // A row is 2.15 of its size, 0.6 of it padding: once the size is at
+        // the text floor, the padding gives way before a row leaves the box.
+        // The rest is 1.6em, over the 1.555em a row's line and rule measure,
+        // so 24 rows and the last one's closing rule still fit.
         li
           font-size: clamp(var(--text-xs), min(var(--row-width-cap, 5cqi), calc(100cqh / var(--rows-per-column, var(--standings-rows, 8)) / 2.15)), 2.5rem)
+          padding-block: clamp(0rem, calc((100cqh / var(--rows-per-column, var(--standings-rows, 8)) - 1.6em) / 2), 0.3em)
 
       // The heap divides what the steps leave rather than scrolling under
       // them: two columns filled top to bottom, each chip its share of the
@@ -403,12 +408,8 @@
         @include two-ranked-columns
 
       // The rows the console boxes on a wide screen, so the size the list
-      // divides its box by is the size each part is drawn at. A row is 2.15
-      // of its size, 0.6 of it padding: once the size is at the text floor,
-      // the padding gives way before a row leaves the box.
+      // divides its box by is the size each part is drawn at.
       &.host-console-page > .stage:is(.revealed, .finished) .standings > .scoreboard > li
-        padding-block: clamp(0rem, calc((100cqh / var(--rows-per-column, var(--standings-rows, 8)) - 1.55em) / 2), 0.3em)
-
         .rank
           font-size: var(--text-em-s)
 
