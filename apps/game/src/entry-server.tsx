@@ -8,6 +8,8 @@ import {
 import { shelvedGames } from '@melee/protocol/game'
 import { LOCALES, type Locale } from '@melee/protocol/locale'
 
+import { EARLY_INSTALL_PROMPT_SCRIPT } from '@/infrastructure/install-prompt'
+import { landingSequenceScript } from '@/infrastructure/landing-sequence'
 import {
   creditsPathFor,
   gameHomePathFor,
@@ -51,9 +53,16 @@ export type RenderedPage = Pick<PageHead, 'description'> & {
 export {
   IMAGE_ALTS as imageAlts,
   OPEN_GRAPH_LOCALES as openGraphLocales,
-  SHARE_IMAGE_PATHS as shareImagePaths,
-  STORED_SHELVES_SCRIPT as storedShelvesScript
+  SHARE_IMAGE_PATHS as shareImagePaths
 }
+
+/** Inlined in each prerendered document's head, run before its first paint. */
+export const headScripts: readonly string[] = [
+  EARLY_INSTALL_PROMPT_SCRIPT,
+  STORED_SHELVES_SCRIPT
+]
+
+export { landingSequenceScript }
 
 const pagesFor = (locale: Locale): PrerenderedPage[] => [
   {

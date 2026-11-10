@@ -229,7 +229,11 @@ the `index.html` shell, which preloads nothing, and an `optional` face missed
 its window there for the whole evening. Each face the first screen reads is
 preloaded at the default priority by the prerender's `addFontPreloads`, in the
 prerendered pages only — the shell also serves the redirect and the not-found
-page, where a preloaded font sits unused while the browser warns.
+page, where a preloaded font sits unused while the browser warns. A
+prerendered page holds its arrival under the board for those faces
+(`data-fonts-pending`, at most 1.2s) and starts the app once it is laid —
+`landing-sequence.ts`, because no fallback is as narrow as a condensed
+Bricolage.
 The fallback faces are written per weight band in `_fonts.sass`
 (`fonts.fallback-faces`, skipped in fontaine): with `font-synthesis: none`,
 fontaine's one regular Arial face would set every bold title regular. The font

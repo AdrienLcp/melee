@@ -29,3 +29,8 @@ $atkinson-metrics: (ascent: 0.984, descent: 0.316, cap-height: 0.668)
   // trimmed to their capitals.
   @include fonts.fallback-faces('Bricolage Grotesque', $bricolage-metrics, 1.05428, (200 649: 1.1482, 650 749: 1.1026, 750 800: 1.4324), $trimmed-to-capitals: true)
   @include fonts.fallback-faces('Atkinson Hyperlegible Next', $atkinson-metrics, 0.995961, (200 449: 1.006, 450 649: 0.9745, 650 800: 1.0141))
+
+  // Set by `fonts-arrival-hold.ts` until the faces land. Important because a
+  // component's `animation` shorthand resets the play state in a later layer.
+  :root[data-fonts-pending] *
+    animation-play-state: paused !important

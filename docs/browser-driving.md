@@ -669,6 +669,16 @@ What this found, each invisible in any still:
 - **A delay that is the dev server's**: Vite compiles a module on its first
   request, so the first refusal filmed took 720ms from `vt:start` to the swap,
   and 82ms the second time. Film a slow moment twice before chasing it.
+- **A first arrival only a real network shows**: the dev server serves no
+  prerendered page, and a local build starts the app while the page is still
+  arriving. Film a cold load of the built page (`wrangler dev` on a port of
+  your own, after the build) under CDP throttling — `Network.emulateNetworkConditions`
+  and `Emulation.setCPUThrottlingRate` at 4 — and on staging. That is what
+  showed the page blanking and arriving again when the app took over after the
+  arrival had ended, the face landing after the page and re-laying it, and the
+  entry's evaluation freezing `page-lay` so the page appeared three quarters
+  laid. A `layout-shift` `PerformanceObserver` and a per-frame probe of
+  `document.getAnimations()` name each one.
 
 A change that happens at a moment the action cannot time — a round flipping to
 its reveal, a countdown ending — is filmed by marking it: have the action wait

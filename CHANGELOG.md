@@ -617,6 +617,17 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The front page arrives once, in its own lettering, on a real
+  network.** When the app took over after the page had finished arriving — on
+  staging, never on a local build — the whole page blanked and arrived a
+  second time; it now lands where the served page stood, a piece the served
+  page never showed (your own line-ups) arriving as new. The page also waits,
+  under the board, up to 1.2s for its two faces, so the wordmark and the
+  open button no longer change shape half a second in, and the app starts only
+  once the page is laid, because its evaluation froze the arrival on a phone
+  and the page appeared all at once. The install prompt is caught before the
+  app starts, since Chromium fires it once.
+
 - `[Game]` **A square wall keeps a full table's standings on screen.** With
   twenty-four seats, the last row of the overall standings ran past its
   column on a wall about as tall as it is wide; once the text is at its

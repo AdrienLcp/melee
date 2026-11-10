@@ -16,8 +16,27 @@ const notify = () => {
   for (const listener of listeners) listener()
 }
 
+const catchInstallPromptEarly = (): void => {
+  window.addEventListener(
+    'beforeinstallprompt',
+    (event) => {
+      event.preventDefault()
+      window.earlyInstallPrompt = event
+    },
+    { once: true }
+  )
+}
+
+/**
+ * Run inline in the head of every prerendered document, whose app starts only
+ * once the page has arrived — after the prompt, on a fast install check.
+ * `listenForInstallPrompt` takes over what it caught.
+ */
+export const EARLY_INSTALL_PROMPT_SCRIPT = `(${catchInstallPromptEarly.toString()})()`
+
 export const listenForInstallPrompt = (): void => {
   isInstalled = isStandaloneDisplay()
+  deferred = window.earlyInstallPrompt ?? null
   window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault()
     deferred = event

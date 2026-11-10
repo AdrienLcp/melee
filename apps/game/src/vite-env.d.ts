@@ -23,6 +23,11 @@ declare global {
     beforeinstallprompt: BeforeInstallPromptEvent
   }
 
+  interface Window {
+    /** The prompt `EARLY_INSTALL_PROMPT_SCRIPT` caught before the app started. */
+    earlyInstallPrompt?: BeforeInstallPromptEvent
+  }
+
   interface Navigator {
     /** Safari on iOS, opened from the home screen. */
     readonly standalone?: boolean

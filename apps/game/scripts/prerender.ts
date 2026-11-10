@@ -27,7 +27,8 @@ type EntryServer = {
   prerenderedPages: PrerenderedPage[]
   renderPage: (page: PrerenderedPage) => Promise<RenderedPage>
   shareImagePaths: Record<Locale, string>
-  storedShelvesScript: string
+  headScripts: readonly string[]
+  landingSequenceScript: (entry: string) => string
 }
 
 const GAME_ROOT = resolve(import.meta.dirname, '..')
@@ -42,6 +43,9 @@ const SERVER_ENTRY = join(GAME_ROOT, 'dist-ssr', 'entry-server.js')
  */
 const MANIFEST_FILE = 'prerendered.json'
 
+/** The module script Vite builds into the shell's head. */
+const ENTRY_SCRIPT = 'head > script[type="module"][src]'
+
 const shell = await readFile(join(CLIENT_DIR, 'index.html'), 'utf8')
 const origin = originOfCanonical(parseDocument(shell))
 const buildManifest = await readBuildManifest(CLIENT_DIR)
@@ -51,15 +55,41 @@ const {
   openGraphLocales,
   prerenderedPages,
   renderPage,
-  shareImagePaths,
-  storedShelvesScript
+  headScripts,
+  landingSequenceScript,
+  shareImagePaths
 }: EntryServer = await import(pathToFileURL(SERVER_ENTRY).href)
 
-const appendStoredShelvesScript = (document: Document): void => {
-  const script = document.createElement('script')
+/**
+ * Swaps the entry's module script for the landing sequence that starts it once
+ * the page has arrived, and preloads the entry in its place so the wait costs
+ * no download.
+ */
+const startEntryAfterLanding = (document: Document): void => {
+  const entryScript = document.querySelector(ENTRY_SCRIPT)
+  const entry = entryScript?.getAttribute('src')
 
-  script.textContent = storedShelvesScript
-  document.head.append(script)
+  if (entryScript == null || entry == null) {
+    throw new Error('The shell has no entry module script to start')
+  }
+
+  const preload = document.createElement('link')
+  const sequence = document.createElement('script')
+
+  preload.setAttribute('rel', 'modulepreload')
+  preload.setAttribute('crossorigin', '')
+  preload.setAttribute('href', entry)
+  sequence.textContent = landingSequenceScript(entry)
+  entryScript.replaceWith(preload, sequence)
+}
+
+const appendHeadScripts = (document: Document): void => {
+  for (const source of headScripts) {
+    const script = document.createElement('script')
+
+    script.textContent = source
+    document.head.append(script)
+  }
 }
 
 /** The same page in every language, this one included: `hreflang` must be reciprocal. */
@@ -122,7 +152,8 @@ const documentFor = async (page: PrerenderedPage): Promise<string> => {
   })
 
   addFontPreloads({ css, document })
-  appendStoredShelvesScript(document)
+  appendHeadScripts(document)
+  startEntryAfterLanding(document)
   appendStructuredData({
     data: structuredDataFor({ description, locale: page.locale, url }),
     document
