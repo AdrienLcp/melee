@@ -658,6 +658,11 @@ one part.
 
 ### Fixes
 
+- `[Server]` **Next round and Ready no longer answer “Too late” as the round
+  opens.** Once every seat is ready the next round opens on its own, and a
+  host's Next round or a Ready landing in its countdown was refused as late;
+  both are now taken as already done.
+
 - `[Server]` **Black square hides one answer per thing, never its
   varieties.** Pulses held seven beans — red, white, black, mung, borlotti,
   adzuki, lima — as seven answers; they are now one _Haricots_ that every

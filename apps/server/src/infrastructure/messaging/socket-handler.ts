@@ -1876,6 +1876,12 @@ const advance = ({
   isDuel: boolean
   outbound: Outbound
 }): void => {
+  // The table all ready opens the next round on its own, so a press that
+  // crossed it on the wire asked for what is already happening.
+  if (engine.room.phase === 'countdown') {
+    return
+  }
+
   if (engine.room.phase !== 'revealed') {
     sendError(outbound, {
       code: 'wrong_phase',

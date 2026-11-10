@@ -386,6 +386,30 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.players[0]?.isReady).toBe(false)
   })
 
+  it('[ready] lets a next-round press and a ready cross the round the table opened', async () => {
+    const { code, host } = await harness.openRoom({
+      ...EVENING,
+      countdownMs: 10_000
+    })
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'countdown', 'the countdown')
+    host.send({ type: 'host.nextRound' })
+    anna.send({ isReady: true, type: 'player.ready' })
+    host.send({
+      isPaused: true,
+      roundId: hostView(host)?.round?.id ?? '',
+      type: 'host.pause'
+    })
+    await waitFor(() => hostView(host)?.isPaused === true, 'a later frame')
+
+    expect(errorsIn(host)).toEqual([])
+    expect(errorsIn(anna)).toEqual([])
+    expect(hostView(host)?.players[0]?.isReady).toBe(false)
+    expect(hostView(host)?.round?.index).toBe(1)
+  })
+
   it('[ready] refuses a ready while the round is under way', async () => {
     const { code, host } = await harness.openRoom(EVENING)
     const anna = await harness.seat({ code, nickname: 'Anna' })

@@ -309,7 +309,9 @@ export const releaseAbandonedSeats = (room: Room, now: number): PlayerId[] => {
 /**
  * A seat back at the table, or no longer. Refused while a round is under way,
  * where it would mean nothing: the round opening is what cleared it, and the
- * next reveal is when it is asked again.
+ * next reveal is when it is asked again. A press landing in the countdown
+ * crossed that opening on the wire — often the very round it armed — and is
+ * dropped without a word rather than told it came too late.
  */
 export const markReady = ({
   isReady,
@@ -322,6 +324,10 @@ export const markReady = ({
   participant: Participant
   room: Room
 }): Result<void, 'wrong_phase'> => {
+  if (room.phase === 'countdown') {
+    return Result.success()
+  }
+
   if (isRoundInPlay(room.phase)) {
     return Result.failure('wrong_phase')
   }
