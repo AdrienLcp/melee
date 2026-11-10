@@ -34,11 +34,11 @@ export const MOST_A_ROUND_PAYS = 100 * POINT
  * added on top: with the speed bonus on, a perfect answer keeps 90 and the
  * clock adds up to 10, falling linearly to nothing when the round runs out.
  *
- * The share scales with what the answer earned, so speed can only reverse two
- * players whose answers are within ten points of each other: a map pin 400 km
- * off placed in two seconds no longer beats one inside the country placed at
- * twenty-five, which the old bonus — up to the answer's own worth again — let
- * happen at a table. A wrong answer earns no speed at all.
+ * Only a perfect answer races for it: an imperfect one keeps its nine tenths
+ * and no more, so a better answer is always paid more and speed only orders
+ * the perfect ones. A share scaled to what the answer earned still let a map
+ * pin 140 km off placed at once beat one inside the country placed last.
+ * A wrong answer earns no speed at all.
  *
  * It replaced a rank table of `[2, 1]` — the first scorer, then the second —
  * which lost on the case it could not price: answering at one second and at

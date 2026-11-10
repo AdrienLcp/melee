@@ -50,7 +50,24 @@ describe('what a marker earns by how far it fell from a country', () => {
     })
 
     expect(inside.points).toBe(91_667)
-    expect(offButFast.points).toBe(72_844)
+    expect(offButFast.points).toBe(66_000)
+  })
+
+  /** Within the reach the old tenth left open: 140 km off, placed at once, beat inside. */
+  it('[atlas] pays a marker inside above one just outside placed at once', () => {
+    const roundDurationMs = 30_000
+    const insideAtTheBell = clockedPay({
+      earned: country(0),
+      elapsedMs: roundDurationMs,
+      roundDurationMs
+    })
+    const justOutsideAtOnce = clockedPay({
+      earned: country(140),
+      elapsedMs: 0,
+      roundDurationMs
+    })
+
+    expect(insideAtTheBell.points).toBeGreaterThan(justOutsideAtOnce.points)
   })
 })
 

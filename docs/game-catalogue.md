@@ -295,8 +295,10 @@ own rule, and only the ceiling is the shell's. Typing no longer pays three
 times a pick: a room plays one mode, so the ratio priced games, not answers.
 The clock takes the last tenth of what an answer earned rather than adding up
 to its worth again on top, which let a map pin 400 km off placed at once beat
-one inside the country placed late; speed now only reverses two answers
-within ten points of each other.
+one inside the country placed late. A tenth scaled to the answer still let a
+pin 140 km off placed at once beat one inside placed last, so the clock now
+pays a perfect answer alone: an imperfect one keeps its nine tenths, a
+better answer is always paid more, and speed only orders the perfect ones.
 
 ## A setting has three possible owners, not two
 

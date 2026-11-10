@@ -249,9 +249,9 @@ which is why a user-visible string written into a component is a bug — see
   `clockedPay`), falling linearly to nothing when the round runs out, on a
   board counted in `POINT`s of a thousand to the printed point so the clock
   separates players by the millisecond: of three quick answers inside one
-  second, the first is paid the most. The share scales with what the answer
-  earned, so speed only reverses two answers within ten points and a wrong one
-  earns none — unless the room's `paysForSpeed` is off, stamped on the round as
+  second, the first is paid the most. Only a perfect answer races: an
+  imperfect one keeps its nine tenths and no speed, so a nearer pin or a truer
+  order is always paid more, and a wrong one earns none — unless the room's `paysForSpeed` is off, stamped on the round as
   it opens, for a table of children beside grandparents where being right is
   the game, and the answer alone then pays the whole hundred. A banked question that is only
   a question beside its own decoys — _which country drives on the left?_ answers

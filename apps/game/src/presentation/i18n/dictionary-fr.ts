@@ -1081,7 +1081,7 @@ export const FR_DICTIONARY = defineDictionary({
     speedBonus: {
       hint: {
         off: 'Seule la bonne réponse compte : elle rapporte les 100 points.',
-        on: 'Une bonne réponse rapporte 90, et répondre tôt ajoute jusqu’à 10.'
+        on: 'Une réponse parfaite rapporte 90, et la donner tôt ajoute jusqu’à 10.'
       },
       label: 'Bonus de vitesse',
       summaryOff: 'sans bonus de vitesse'
@@ -1810,7 +1810,7 @@ export const FR_DICTIONARY = defineDictionary({
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
     speedRule:
-      'Sur la montre, une bonne réponse garde 90 points, et répondre tôt ajoute jusqu’à 10 de plus.',
+      'Sur la montre, une réponse parfaite garde 90 points, et la donner tôt ajoute jusqu’à 10 de plus.',
     thisRound: 'Cette manche',
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
     unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'

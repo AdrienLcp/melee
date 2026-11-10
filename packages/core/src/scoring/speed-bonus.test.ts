@@ -56,21 +56,27 @@ describe('clockedPay', () => {
     expect(second).toBeGreaterThan(third ?? 0)
   })
 
-  /** The clock is a tenth of what the answer earned, so half an answer races for half a tenth. */
-  it('[scoring] scales the clock with what the answer earned', () => {
+  it('[scoring] pays an imperfect answer nine tenths of it and no speed', () => {
     expect(paidAt(0, 50 * POINT)).toEqual({
-      points: 50 * POINT,
-      speedBonus: 5 * POINT
+      points: 45 * POINT,
+      speedBonus: 0
     })
     expect(paidAt(0, 0)).toEqual({ points: 0, speedBonus: 0 })
   })
 
-  /** Speed reverses two answers within a tenth of a round, never two further apart. */
-  it('[scoring] lets no speed beat an answer more than a tenth of a round better', () => {
+  /** The table's complaint: a nearer answer paid less than a faster one. */
+  it('[scoring] lets no speed beat a better answer, however close the two', () => {
     const slowButRight = paidAt(THIRTY_SECONDS - 1).points
-    const fastButOff = paidAt(0, 89 * POINT).points
+    const fastButNearlyRight = paidAt(0, 99_999).points
 
-    expect(slowButRight).toBeGreaterThan(fastButOff)
+    expect(slowButRight).toBeGreaterThan(fastButNearlyRight)
+  })
+
+  it('[scoring] keeps two imperfect answers in the order of what they earned', () => {
+    const slowButNearer = paidAt(THIRTY_SECONDS - 1, 80 * POINT).points
+    const fastButFurther = paidAt(0, 79 * POINT).points
+
+    expect(slowButNearer).toBeGreaterThan(fastButFurther)
   })
 
   /** An answer the screen held when the round closed ran out: the clock pays none of it. */

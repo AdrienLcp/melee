@@ -6,6 +6,15 @@ one part.
 
 ## Unreleased
 
+### Improvements
+
+- `[Shared]` **A better answer always scores more than a faster one.** The
+  speed bonus now goes to a perfect answer alone — a pin inside the country,
+  a timeline in the right order, both halves of a track. An imperfect answer
+  keeps nine tenths of what it earned and no speed, so a pin 140 km off placed
+  at once no longer beats one inside placed at the bell; among perfect
+  answers, the fastest still takes up to ten points more.
+
 ### Features
 
 - `[Shared]` **Plus ou moins and Le juste chiffre know France.** French

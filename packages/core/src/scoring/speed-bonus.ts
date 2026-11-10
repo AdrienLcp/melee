@@ -14,10 +14,13 @@ export type ClockedPay = {
  * counted in thousandths of a point, so two players a few milliseconds apart
  * are two different scores, the first one higher.
  *
- * **The clock's share is cut from what the answer earned**, never added on top
- * of it: a perfect answer tops out at the round's ceiling, and speed can only
- * reverse two players whose answers are within a tenth of a round of each
- * other. A wrong answer earns nothing, so it earns no speed either.
+ * **Only a perfect answer races.** An imperfect one keeps its nine tenths and
+ * the clock pays it nothing, so a better answer is always paid more, however
+ * late: every imperfect answer lands under 90 and every perfect one at 90 or
+ * above. A clock share scaled to what the answer earned let a pin 140 km off a
+ * country placed at once beat one inside it placed last — **do not pay a
+ * partial answer for speed again**. A wrong answer earns nothing, so it earns
+ * no speed either.
  *
  * **`elapsedMs` is the round's own clock, never a wall clock.** It stops while
  * the host is away, and a room whose console blinked would otherwise pay the
@@ -36,8 +39,9 @@ export const clockedPay = ({
   roundDurationMs: number
 }): ClockedPay => {
   const clockShare = earned * (MOST_THE_CLOCK_PAYS / MOST_A_ROUND_PAYS)
+  const isPerfect = earned >= MOST_A_ROUND_PAYS
   const left =
-    elapsedMs === null || roundDurationMs <= 0
+    !isPerfect || elapsedMs === null || roundDurationMs <= 0
       ? 0
       : Math.min(Math.max(1 - elapsedMs / roundDurationMs, 0), 1)
   const speedBonus = Math.round(clockShare * left)

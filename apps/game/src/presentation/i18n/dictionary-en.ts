@@ -1141,7 +1141,7 @@ export const EN_DICTIONARY = defineDictionary({
     speedBonus: {
       hint: {
         off: 'Only the right answer counts: it scores the full 100.',
-        on: 'A right answer scores 90, and answering early adds up to 10.'
+        on: 'A perfect answer scores 90, and giving it early adds up to 10.'
       },
       label: 'Speed bonus',
       summaryOff: 'no speed bonus'
@@ -1946,7 +1946,7 @@ export const EN_DICTIONARY = defineDictionary({
      */
     speedBonus: '{points:number} of that for being early',
     speedRule:
-      'On the clock, a right answer keeps 90 points and answering early adds up to 10 more.',
+      'On the clock, a perfect answer keeps 90 points and giving it early adds up to 10 more.',
     /**
      * The ruled heading under the answer over every figure the round alone
      * paid — your own result, its podium, who found it.
