@@ -282,6 +282,18 @@ describe('nextRoundName', () => {
     ).toBe('Quiz')
   })
 
+  it('[line-up] never numbers the entry it announces', () => {
+    expect(
+      nextRoundName({
+        settings: {
+          lineUp: [quiz(['history', 'science']), quiz(['sport', 'cinema'])],
+          lineUpAt: 1
+        },
+        translate
+      })
+    ).toBe('Quiz')
+  })
+
   it('[line-up] names nothing while the line-up points at nothing', () => {
     expect(
       nextRoundName({
@@ -316,6 +328,16 @@ describe('playedRoundName', () => {
         translate
       })
     ).toBe('Blind test')
+  })
+
+  it('[line-up] never numbers the round it heads', () => {
+    expect(
+      playedRoundName({
+        lineUp: [quiz(['history', 'science']), quiz(['sport', 'cinema'])],
+        round: { content: { kind: 'quiz' }, lineUpAt: 1 },
+        translate
+      })
+    ).toBe('Quiz')
   })
 
   it('[line-up] names nothing in a room of one entry', () => {

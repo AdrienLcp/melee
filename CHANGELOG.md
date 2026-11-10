@@ -8,6 +8,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A game planned twice is numbered in the host's list alone.**
+  _Shades 1_ and _Shades 2_ tell the host's rows apart, but on the wall, a
+  player's screen or a round's heading the number read as the round count;
+  there the game is named without it.
 - `[Game]` **The level for every game no longer shifts the panel.** Picking
   one swapped a line of text in under the strip, and everything below it
   jumped; the strip now says nothing under it, its name already saying a
