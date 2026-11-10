@@ -617,6 +617,19 @@ one part.
 
 ### Fixes
 
+- `[Server]` **Black square hides one answer per thing, never its
+  varieties.** Pulses held seven beans — red, white, black, mung, borlotti,
+  adzuki, lima — as seven answers; they are now one _Haricots_ that every
+  one of them finds, beside soya, peanut, clover, liquorice and tamarind.
+  Seventy-four themes were swept the same way: one ham in cold meats where
+  there were four, one coffee among hot drinks where espresso, cappuccino,
+  latte and four more sat apart, one snake among reptiles, one doctor among
+  hospital jobs where seven specialists stood, one antelope, one plum for
+  mirabelle and greengage, one ski for its five disciplines, one hurricane
+  for the typhoon and the cyclone. A variety is still found, as the answer
+  it belongs to, and a test now refuses two answers opening on the same word
+  unless the word is the theme's own — _Sauce soja_, _Sauce tomate_.
+
 - `[Game]` **The front page arrives once, in its own lettering, on a real
   network.** When the app took over after the page had finished arriving — on
   staging, never on a local build — the whole page blanked and arrived a

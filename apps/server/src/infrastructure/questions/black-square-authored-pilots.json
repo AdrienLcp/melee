@@ -946,23 +946,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Ice hockey", "Field hockey"],
+          "fr": ["Hockey sur glace", "Hockey sur gazon"]
         },
         "labels": {
-          "en": "Ice hockey",
-          "fr": "Hockey sur glace"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Field hockey",
-          "fr": "Hockey sur gazon"
+          "en": "Hockey",
+          "fr": "Hockey"
         },
         "tier": "medium"
       },

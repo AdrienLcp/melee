@@ -199,9 +199,93 @@ describe('the black-square bank', () => {
   })
 })
 
+/**
+ * The first words two answers of one theme may share, each read and kept: the
+ * word is the theme itself (_Sauce soja_, _Sauce tomate_) or a coincidence
+ * between different things (_Corée du Nord_, _Corée du Sud_). Anywhere else
+ * two answers opening alike are one thing twice — seven _Haricots_ of seven
+ * colours — and the theme hides one answer for it, the rest as its aliases.
+ */
+const FIRST_WORDS_SHARED_ON_PURPOSE: ReadonlySet<string> = new Set([
+  'asian-countries:coree',
+  'athletics-events:lancer',
+  'athletics-events:saut',
+  'bathroom-items:brosse',
+  'breads:pain',
+  'breakfast-pastries:pain',
+  'camping-gear:sac',
+  'celebrations:fete',
+  'celebrations:saint',
+  'chinese-food:porc',
+  'citrus-fruits:citron',
+  'egg-dishes:œuf',
+  'egg-dishes:œufs',
+  'exotic-fruits:fruit',
+  'fairy-tales:belle',
+  'fairy-tales:petit',
+  'fairy-tales:petite',
+  'famous-monuments:tour',
+  'fictional-detectives:inspecteur',
+  'film-genres:comedie',
+  'film-genres:film',
+  'grape-varieties:cabernet',
+  'grape-varieties:pinot',
+  'hairstyles:coupe',
+  'hats:chapeau',
+  'household-appliances:lave',
+  'mario-characters:princesse',
+  'monkeys:singe',
+  'nuts:noix',
+  'on-the-road:passage',
+  'potato-dishes:pommes',
+  'pulses:pois',
+  'red-fruits:baie',
+  'rooms-of-a-house:salle',
+  'sauces:sauce',
+  'seas-and-oceans:mer',
+  'seas-and-oceans:ocean',
+  'seeds:graines',
+  'snakes:serpent',
+  'solar-system:ceinture',
+  'soups:soupe',
+  'squashes:courge',
+  'star-wars-characters:dark',
+  'superheroes:black',
+  'video-game-consoles:game',
+  'video-game-consoles:nintendo',
+  'wild-cats:chat',
+  'wild-cats:panthere'
+])
+
+const firstFrenchWordOf = (label: string): string =>
+  label
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+    .replace(/^(?:(?:le|la|les|the) |l')/u, '')
+    .split(/[\s'’-]+/u)[0] ?? ''
+
 describe('the authored black-square themes', () => {
   it('[blacksquare] writes at least two hundred broad themes by hand', () => {
     expect(authoredBlackSquareThemes().length).toBeGreaterThanOrEqual(200)
+  })
+
+  it('[blacksquare] hides one answer per thing, never its varieties side by side', () => {
+    const repeated = authoredBlackSquareThemes().flatMap(({ answers, id }) => {
+      const firstWords = answers.map(({ labels }) =>
+        firstFrenchWordOf(labels.fr)
+      )
+
+      return [
+        ...new Set(
+          firstWords.filter((word, index) => firstWords.indexOf(word) !== index)
+        )
+      ]
+        .map((word) => `${id}:${word}`)
+        .filter((key) => !FIRST_WORDS_SHARED_ON_PURPOSE.has(key))
+    })
+
+    expect(repeated).toEqual([])
   })
 })
 

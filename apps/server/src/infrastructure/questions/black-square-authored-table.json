@@ -3,8 +3,21 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Peaches"],
-          "fr": ["Pêches"]
+          "en": [
+            "Peaches",
+            "Flat peach",
+            "Saturn peach",
+            "Donut peach",
+            "Nectarine",
+            "Nectarines"
+          ],
+          "fr": [
+            "Pêches",
+            "Pêche plate",
+            "Pêche de vigne",
+            "Nectarine",
+            "Brugnon"
+          ]
         },
         "labels": {
           "en": "Peach",
@@ -14,8 +27,14 @@
       },
       {
         "aliases": {
-          "en": ["Cherries"],
-          "fr": ["Cerises"]
+          "en": [
+            "Cherries",
+            "Morello cherry",
+            "Sour cherry",
+            "Wild cherry",
+            "Gean"
+          ],
+          "fr": ["Cerises", "Griotte", "Griottes", "Merise", "Merises"]
         },
         "labels": {
           "en": "Cherry",
@@ -36,23 +55,32 @@
       },
       {
         "aliases": {
-          "en": ["Plums"],
-          "fr": ["Prunes"]
+          "en": [
+            "Plums",
+            "Damson",
+            "Damsons",
+            "Mirabelle",
+            "Mirabelle plum",
+            "Greengage",
+            "Greengages",
+            "Sloe",
+            "Sloes",
+            "Blackthorn"
+          ],
+          "fr": [
+            "Prunes",
+            "Prune de Damas",
+            "Mirabelle",
+            "Mirabelles",
+            "Reine-claude",
+            "Reines-claudes",
+            "Prunelle",
+            "Prunelles"
+          ]
         },
         "labels": {
           "en": "Plum",
           "fr": "Prune"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Nectarines"],
-          "fr": ["Brugnon"]
-        },
-        "labels": {
-          "en": "Nectarine",
-          "fr": "Nectarine"
         },
         "tier": "easy"
       },
@@ -80,58 +108,14 @@
       },
       {
         "aliases": {
-          "en": ["Mirabelle plum"],
-          "fr": ["Mirabelles"]
+          "en": ["Dates"],
+          "fr": ["Dattes"]
         },
         "labels": {
-          "en": "Mirabelle",
-          "fr": "Mirabelle"
+          "en": "Date",
+          "fr": "Datte"
         },
         "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Greengages"],
-          "fr": ["Reines-claudes"]
-        },
-        "labels": {
-          "en": "Greengage",
-          "fr": "Reine-claude"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Sour cherry"],
-          "fr": ["Griottes"]
-        },
-        "labels": {
-          "en": "Morello cherry",
-          "fr": "Griotte"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Saturn peach", "Donut peach"],
-          "fr": ["Pêche de vigne"]
-        },
-        "labels": {
-          "en": "Flat peach",
-          "fr": "Pêche plate"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Sloes", "Blackthorn"],
-          "fr": ["Prunelles"]
-        },
-        "labels": {
-          "en": "Sloe",
-          "fr": "Prunelle"
-        },
-        "tier": "hard"
       },
       {
         "aliases": {
@@ -146,34 +130,45 @@
       },
       {
         "aliases": {
-          "en": ["Damsons"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Damson",
-          "fr": "Prune de Damas"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Gean"],
-          "fr": ["Merises"]
-        },
-        "labels": {
-          "en": "Wild cherry",
-          "fr": "Merise"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Cornel"],
           "fr": ["Cornouilles"]
         },
         "labels": {
           "en": "Cornelian cherry",
           "fr": "Cornouille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Almonds"],
+          "fr": ["Amandes"]
+        },
+        "labels": {
+          "en": "Almond",
+          "fr": "Amande"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coconut",
+          "fr": "Noix de coco"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pistachios"],
+          "fr": ["Pistaches"]
+        },
+        "labels": {
+          "en": "Pistachio",
+          "fr": "Pistache"
         },
         "tier": "hard"
       }
@@ -313,8 +308,8 @@
       },
       {
         "aliases": {
-          "en": ["Rye"],
-          "fr": ["Seigle"]
+          "en": ["Rye", "Pumpernickel"],
+          "fr": ["Seigle", "Pumpernickel"]
         },
         "labels": {
           "en": "Rye bread",
@@ -332,17 +327,6 @@
           "fr": "Pain de mie"
         },
         "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Pumpernickel",
-          "fr": "Pumpernickel"
-        },
-        "tier": "hard"
       },
       {
         "aliases": {
@@ -425,8 +409,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["White mushroom"],
-          "fr": ["Champignons de Paris"]
+          "en": ["White mushroom", "Portobello", "Portabella"],
+          "fr": ["Champignons de Paris", "Portobello"]
         },
         "labels": {
           "en": "Button mushroom",
@@ -502,34 +486,17 @@
       },
       {
         "aliases": {
-          "en": ["Fly amanita"],
-          "fr": ["Tue-mouches"]
+          "en": ["Fly agaric", "Fly amanita", "Death cap"],
+          "fr": [
+            "Amanite tue-mouches",
+            "Tue-mouches",
+            "Amanite phalloïde",
+            "Phalloïde"
+          ]
         },
         "labels": {
-          "en": "Fly agaric",
-          "fr": "Amanite tue-mouches"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Phalloïde"]
-        },
-        "labels": {
-          "en": "Death cap",
-          "fr": "Amanite phalloïde"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Portabella"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Portobello",
-          "fr": "Portobello"
+          "en": "Amanita",
+          "fr": "Amanite"
         },
         "tier": "medium"
       },
@@ -636,8 +603,20 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": [
+            "Condensed milk",
+            "Powdered milk",
+            "Milk powder",
+            "Curds",
+            "Curd"
+          ],
+          "fr": [
+            "Lait concentré",
+            "Lait concentré sucré",
+            "Lait en poudre",
+            "Lait caillé",
+            "Caillé"
+          ]
         },
         "labels": {
           "en": "Milk",
@@ -647,8 +626,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Ghee", "Clarified butter"],
+          "fr": ["Ghee", "Beurre clarifié"]
         },
         "labels": {
           "en": "Butter",
@@ -669,8 +648,8 @@
       },
       {
         "aliases": {
-          "en": ["Yogurt", "Yoghourt"],
-          "fr": ["Yogourt", "Yaourts"]
+          "en": ["Yogurt", "Yoghourt", "Skyr"],
+          "fr": ["Yogourt", "Yaourts", "Skyr"]
         },
         "labels": {
           "en": "Yoghurt",
@@ -680,25 +659,14 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Crème liquide"]
+          "en": ["Crème fraîche", "Sour cream"],
+          "fr": ["Crème liquide", "Crème fraîche", "Crème aigre"]
         },
         "labels": {
           "en": "Cream",
           "fr": "Crème"
         },
         "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Crème fraîche",
-          "fr": "Crème fraîche"
-        },
-        "tier": "medium"
       },
       {
         "aliases": {
@@ -725,44 +693,22 @@
       {
         "aliases": {
           "en": [],
-          "fr": ["Lait concentré sucré"]
-        },
-        "labels": {
-          "en": "Condensed milk",
-          "fr": "Lait concentré"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Sour cream",
-          "fr": "Crème aigre"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Milk powder"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Powdered milk",
-          "fr": "Lait en poudre"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
           "fr": ["Lait ribot"]
         },
         "labels": {
           "en": "Buttermilk",
           "fr": "Babeurre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Milk shake"],
+          "fr": ["Milk-shake"]
+        },
+        "labels": {
+          "en": "Milkshake",
+          "fr": "Milkshake"
         },
         "tier": "medium"
       },
@@ -779,28 +725,6 @@
       },
       {
         "aliases": {
-          "en": ["Clarified butter"],
-          "fr": ["Beurre clarifié"]
-        },
-        "labels": {
-          "en": "Ghee",
-          "fr": "Ghee"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Skyr",
-          "fr": "Skyr"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -812,12 +736,12 @@
       },
       {
         "aliases": {
-          "en": ["Curd"],
-          "fr": ["Caillé"]
+          "en": ["Milk jam"],
+          "fr": ["Dulce de leche"]
         },
         "labels": {
-          "en": "Curds",
-          "fr": "Lait caillé"
+          "en": "Dulce de leche",
+          "fr": "Confiture de lait"
         },
         "tier": "hard"
       }
@@ -1924,8 +1848,13 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": [
+            "Icing sugar",
+            "Powdered sugar",
+            "Confectioners' sugar",
+            "Brown sugar"
+          ],
+          "fr": ["Sucre glace", "Cassonade", "Sucre roux"]
         },
         "labels": {
           "en": "Sugar",
@@ -1979,23 +1908,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Levure"]
+          "en": ["Baking powder"],
+          "fr": ["Levure de boulanger", "Levure chimique"]
         },
         "labels": {
           "en": "Yeast",
-          "fr": "Levure de boulanger"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Baking powder",
-          "fr": "Levure chimique"
+          "fr": "Levure"
         },
         "tier": "medium"
       },
@@ -2029,28 +1947,6 @@
         "labels": {
           "en": "Cocoa",
           "fr": "Cacao"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Powdered sugar", "Confectioners' sugar"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Icing sugar",
-          "fr": "Sucre glace"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Sucre roux"]
-        },
-        "labels": {
-          "en": "Brown sugar",
-          "fr": "Cassonade"
         },
         "tier": "medium"
       },
@@ -2135,8 +2031,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Croissants"],
-          "fr": []
+          "en": ["Croissants", "Almond croissant", "Ham croissant"],
+          "fr": ["Croissant aux amandes", "Croissant au jambon"]
         },
         "labels": {
           "en": "Croissant",
@@ -2190,17 +2086,6 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Almond croissant",
-          "fr": "Croissant aux amandes"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": ["Milk bun"],
           "fr": []
         },
@@ -2223,25 +2108,25 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Danoise"]
-        },
-        "labels": {
-          "en": "Danish pastry",
-          "fr": "Danish"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Abricotine"]
+          "en": ["Danish pastry"],
+          "fr": ["Abricotine", "Danish", "Danoise"]
         },
         "labels": {
           "en": "Apricot Danish",
           "fr": "Oranais"
         },
-        "tier": "hard"
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Palmiers", "Elephant ear"],
+          "fr": ["Palmiers"]
+        },
+        "labels": {
+          "en": "Palmier",
+          "fr": "Palmier"
+        },
+        "tier": "medium"
       },
       {
         "aliases": {
@@ -2268,22 +2153,22 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Ham croissant",
-          "fr": "Croissant au jambon"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
           "fr": ["Viennoise"]
         },
         "labels": {
           "en": "Viennese bread",
           "fr": "Pain viennois"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Kouign amann"],
+          "fr": ["Kouign amann"]
+        },
+        "labels": {
+          "en": "Kouign-amann",
+          "fr": "Kouign-amann"
         },
         "tier": "hard"
       }
@@ -2735,8 +2620,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Nouilles chinoises"]
+          "en": ["Dan dan noodles"],
+          "fr": ["Nouilles chinoises", "Nouilles dan dan"]
         },
         "labels": {
           "en": "Chow mein",
@@ -2862,17 +2747,6 @@
         "labels": {
           "en": "Xiaolongbao",
           "fr": "Xiaolongbao"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Dan dan noodles",
-          "fr": "Nouilles dan dan"
         },
         "tier": "hard"
       },
@@ -3223,23 +3097,18 @@
       },
       {
         "aliases": {
-          "en": ["Jamón serrano", "Serrano"],
-          "fr": []
+          "en": [
+            "Jamón serrano",
+            "Serrano",
+            "Ibérico ham",
+            "Jamón ibérico",
+            "Iberian ham"
+          ],
+          "fr": ["Pata negra", "Jambon ibérique"]
         },
         "labels": {
           "en": "Serrano ham",
           "fr": "Jambon serrano"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Jamón ibérico", "Iberian ham"],
-          "fr": ["Jambon ibérique"]
-        },
-        "labels": {
-          "en": "Ibérico ham",
-          "fr": "Pata negra"
         },
         "tier": "medium"
       },
@@ -3878,19 +3747,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Röstis"]
-        },
-        "labels": {
-          "en": "Rösti",
-          "fr": "Rösti"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Hash brown"],
-          "fr": ["Galette de pommes de terre"]
+          "en": ["Hash brown", "Rösti", "Latkes", "Latke"],
+          "fr": ["Galette de pommes de terre", "Rösti", "Röstis", "Latkes"]
         },
         "labels": {
           "en": "Hash browns",
@@ -3988,17 +3846,6 @@
       },
       {
         "aliases": {
-          "en": ["Latke"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Latkes",
-          "fr": "Latkes"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -4045,8 +3892,22 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Cooked ham"],
-          "fr": ["Jambon blanc"]
+          "en": [
+            "Cooked ham",
+            "Prosciutto",
+            "Parma ham",
+            "Serrano ham",
+            "Jamón serrano",
+            "Serrano",
+            "Bayonne ham"
+          ],
+          "fr": [
+            "Jambon blanc",
+            "Jambon de Parme",
+            "Jambon serrano",
+            "Jambon de Bayonne",
+            "Bayonne"
+          ]
         },
         "labels": {
           "en": "Ham",
@@ -4097,17 +3958,6 @@
           "fr": "Pâté"
         },
         "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Parma ham"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Prosciutto",
-          "fr": "Jambon de Parme"
-        },
-        "tier": "medium"
       },
       {
         "aliases": {
@@ -4177,12 +4027,12 @@
       },
       {
         "aliases": {
-          "en": ["Jamón serrano", "Serrano"],
-          "fr": []
+          "en": ["Blood sausage", "White pudding"],
+          "fr": ["Boudin noir", "Boudin blanc"]
         },
         "labels": {
-          "en": "Serrano ham",
-          "fr": "Jambon serrano"
+          "en": "Black pudding",
+          "fr": "Boudin"
         },
         "tier": "medium"
       },
@@ -4222,11 +4072,11 @@
       {
         "aliases": {
           "en": [],
-          "fr": ["Bayonne"]
+          "fr": []
         },
         "labels": {
-          "en": "Bayonne ham",
-          "fr": "Jambon de Bayonne"
+          "en": "Speck",
+          "fr": "Speck"
         },
         "tier": "hard"
       }
@@ -4289,8 +4139,15 @@
       },
       {
         "aliases": {
-          "en": ["Grill", "Grilled", "Broiling"],
-          "fr": ["Grillé", "Grillade"]
+          "en": [
+            "Grill",
+            "Grilled",
+            "Broiling",
+            "Barbecue",
+            "Barbecuing",
+            "BBQ"
+          ],
+          "fr": ["Grillé", "Grillade", "Barbecue"]
         },
         "labels": {
           "en": "Grilling",
@@ -4372,17 +4229,6 @@
         "labels": {
           "en": "Smoking",
           "fr": "Fumer"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Barbecuing", "BBQ"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Barbecue",
-          "fr": "Barbecue"
         },
         "tier": "medium"
       },

@@ -3,8 +3,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": ["Tambours"]
+          "en": ["Djembe", "Bongos", "Bongo", "Congas", "Conga"],
+          "fr": ["Tambours", "Djembé", "Bongos", "Congas"]
         },
         "labels": {
           "en": "Drum",
@@ -14,8 +14,8 @@
       },
       {
         "aliases": {
-          "en": ["Drums", "Drum set"],
-          "fr": []
+          "en": ["Drums", "Drum set", "Snare drum", "Snare", "Bass drum"],
+          "fr": ["Caisse claire", "Grosse caisse"]
         },
         "labels": {
           "en": "Drum kit",
@@ -91,17 +91,6 @@
       },
       {
         "aliases": {
-          "en": ["Bongo"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Bongos",
-          "fr": "Bongos"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": ["Kettledrum", "Kettledrums"],
           "fr": ["Timbale"]
         },
@@ -119,28 +108,6 @@
         "labels": {
           "en": "Gong",
           "fr": "Gong"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Djembe",
-          "fr": "Djembé"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Conga"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Congas",
-          "fr": "Congas"
         },
         "tier": "medium"
       },
@@ -174,28 +141,6 @@
         "labels": {
           "en": "Glockenspiel",
           "fr": "Glockenspiel"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Snare"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Snare drum",
-          "fr": "Caisse claire"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Bass drum",
-          "fr": "Grosse caisse"
         },
         "tier": "hard"
       },
@@ -2166,8 +2111,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Novels"],
-          "fr": ["Romans"]
+          "en": ["Novels", "Historical novel"],
+          "fr": ["Romans", "Roman historique"]
         },
         "labels": {
           "en": "Novel",
@@ -2309,8 +2254,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Memoir", "Memoirs"],
+          "fr": ["Mémoires"]
         },
         "labels": {
           "en": "Autobiography",
@@ -2359,28 +2304,6 @@
         "labels": {
           "en": "Satire",
           "fr": "Satire"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Memoirs"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Memoir",
-          "fr": "Mémoires"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Historical novel",
-          "fr": "Roman historique"
         },
         "tier": "hard"
       }
@@ -3841,8 +3764,13 @@
       },
       {
         "aliases": {
-          "en": ["New Year's Eve", "New Year's Day"],
-          "fr": ["Saint-Sylvestre", "Jour de l'an"]
+          "en": [
+            "New Year's Eve",
+            "New Year's Day",
+            "Chinese New Year",
+            "Lunar New Year"
+          ],
+          "fr": ["Saint-Sylvestre", "Jour de l'an", "Nouvel An chinois"]
         },
         "labels": {
           "en": "New Year",
@@ -3935,17 +3863,6 @@
         "labels": {
           "en": "Diwali",
           "fr": "Diwali"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Lunar New Year"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Chinese New Year",
-          "fr": "Nouvel An chinois"
         },
         "tier": "medium"
       },

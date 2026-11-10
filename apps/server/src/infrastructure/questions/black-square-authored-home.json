@@ -3,8 +3,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Bedside table", "Nightstand", "Night table", "Coffee table"],
+          "fr": ["Table de chevet", "Chevet", "Table basse", "Table de nuit"]
         },
         "labels": {
           "en": "Table",
@@ -25,8 +25,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Bunk bed", "Bunk beds"],
+          "fr": ["Lits superposés", "Lit superposé"]
         },
         "labels": {
           "en": "Bed",
@@ -69,8 +69,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Rocking chair"],
+          "fr": ["Fauteuil à bascule", "Rocking-chair"]
         },
         "labels": {
           "en": "Armchair",
@@ -113,28 +113,6 @@
       },
       {
         "aliases": {
-          "en": ["Nightstand", "Night table"],
-          "fr": ["Chevet"]
-        },
-        "labels": {
-          "en": "Bedside table",
-          "fr": "Table de chevet"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Coffee table",
-          "fr": "Table basse"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -168,34 +146,34 @@
       },
       {
         "aliases": {
-          "en": ["Bunk beds"],
-          "fr": ["Lit superposé"]
-        },
-        "labels": {
-          "en": "Bunk bed",
-          "fr": "Lits superposés"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Rocking-chair"]
-        },
-        "labels": {
-          "en": "Rocking chair",
-          "fr": "Fauteuil à bascule"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Vanity"],
           "fr": []
         },
         "labels": {
           "en": "Dressing table",
           "fr": "Coiffeuse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Welsh dresser",
+          "fr": "Vaisselier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Room divider"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Folding screen",
+          "fr": "Paravent"
         },
         "tier": "hard"
       }
@@ -236,8 +214,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Guest room", "Spare room", "Spare bedroom"],
+          "fr": ["Chambre d'amis"]
         },
         "labels": {
           "en": "Bedroom",
@@ -401,17 +379,6 @@
       },
       {
         "aliases": {
-          "en": ["Spare room", "Spare bedroom"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Guest room",
-          "fr": "Chambre d'amis"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -469,8 +436,8 @@
       },
       {
         "aliases": {
-          "en": ["Handsaw"],
-          "fr": []
+          "en": ["Handsaw", "Jigsaw"],
+          "fr": ["Scie sauteuse"]
         },
         "labels": {
           "en": "Saw",
@@ -502,8 +469,8 @@
       },
       {
         "aliases": {
-          "en": ["Wrench"],
-          "fr": ["Clef", "Clé plate"]
+          "en": ["Wrench", "Allen key", "Hex key"],
+          "fr": ["Clef", "Clé plate", "Clé Allen", "Clé six pans"]
         },
         "labels": {
           "en": "Spanner",
@@ -590,34 +557,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Jigsaw",
-          "fr": "Scie sauteuse"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["G-clamp"],
           "fr": ["Serre-joints"]
         },
         "labels": {
           "en": "Clamp",
           "fr": "Serre-joint"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Hex key"],
-          "fr": ["Clé six pans"]
-        },
-        "labels": {
-          "en": "Allen key",
-          "fr": "Clé Allen"
         },
         "tier": "hard"
       },
@@ -1135,8 +1080,14 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Crayon à papier", "Crayon de bois", "Crayon gris"]
+          "en": ["Coloured pencils", "Colored pencils", "Colouring pencils"],
+          "fr": [
+            "Crayon à papier",
+            "Crayon de bois",
+            "Crayon gris",
+            "Crayons de couleur",
+            "Crayon de couleur"
+          ]
         },
         "labels": {
           "en": "Pencil",
@@ -1240,17 +1191,6 @@
         "labels": {
           "en": "Felt-tip pens",
           "fr": "Feutres"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Colored pencils", "Colouring pencils"],
-          "fr": ["Crayon de couleur"]
-        },
-        "labels": {
-          "en": "Coloured pencils",
-          "fr": "Crayons de couleur"
         },
         "tier": "medium"
       },
@@ -1368,8 +1308,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Taxi", "Cab"],
+          "fr": ["Taxi"]
         },
         "labels": {
           "en": "Car",
@@ -1423,8 +1363,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Ferry"],
+          "fr": ["Ferry", "Bac"]
         },
         "labels": {
           "en": "Boat",
@@ -1473,17 +1413,6 @@
         "labels": {
           "en": "Scooter",
           "fr": "Scooter"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Cab"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Taxi",
-          "fr": "Taxi"
         },
         "tier": "medium"
       },
@@ -1539,17 +1468,6 @@
         "labels": {
           "en": "Hot-air balloon",
           "fr": "Montgolfière"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Bac"]
-        },
-        "labels": {
-          "en": "Ferry",
-          "fr": "Ferry"
         },
         "tier": "hard"
       },
@@ -2067,8 +1985,32 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Physician", "Doc"],
-          "fr": ["Docteur"]
+          "en": [
+            "Physician",
+            "Doc",
+            "Paediatrician",
+            "Pediatrician",
+            "Anaesthetist",
+            "Anesthetist",
+            "Anesthesiologist",
+            "Radiologist",
+            "Psychiatrist",
+            "Oncologist",
+            "Neurologist",
+            "Gynaecologist",
+            "Gynecologist"
+          ],
+          "fr": [
+            "Docteur",
+            "Pédiatre",
+            "Anesthésiste",
+            "Radiologue",
+            "Psychiatre",
+            "Oncologue",
+            "Neurologue",
+            "Gynécologue",
+            "Gynéco"
+          ]
         },
         "labels": {
           "en": "Doctor",
@@ -2122,39 +2064,6 @@
       },
       {
         "aliases": {
-          "en": ["Pediatrician"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Paediatrician",
-          "fr": "Pédiatre"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Anesthetist", "Anesthesiologist"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Anaesthetist",
-          "fr": "Anesthésiste"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Radiologist",
-          "fr": "Radiologue"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": ["Hospital porter", "Orderly"],
           "fr": []
         },
@@ -2199,6 +2108,17 @@
       },
       {
         "aliases": {
+          "en": ["Ambulance driver"],
+          "fr": ["Ambulancière"]
+        },
+        "labels": {
+          "en": "Paramedic",
+          "fr": "Ambulancier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
           "en": ["Junior doctor", "Resident"],
           "fr": []
         },
@@ -2221,17 +2141,6 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Psychiatrist",
-          "fr": "Psychiatre"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Dietician"],
           "fr": ["Diététicienne"]
         },
@@ -2247,8 +2156,19 @@
           "fr": []
         },
         "labels": {
-          "en": "Oncologist",
-          "fr": "Oncologue"
+          "en": "Psychologist",
+          "fr": "Psychologue"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Manipulatrice radio"]
+        },
+        "labels": {
+          "en": "Radiographer",
+          "fr": "Manipulateur radio"
         },
         "tier": "hard"
       },
@@ -2258,19 +2178,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Neurologist",
-          "fr": "Neurologue"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Gynecologist"],
-          "fr": ["Gynéco"]
-        },
-        "labels": {
-          "en": "Gynaecologist",
-          "fr": "Gynécologue"
+          "en": "Occupational therapist",
+          "fr": "Ergothérapeute"
         },
         "tier": "hard"
       }
@@ -3021,8 +2930,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Half-brother", "Stepbrother"],
+          "fr": ["Demi-frère"]
         },
         "labels": {
           "en": "Brother",
@@ -3198,17 +3107,6 @@
         "labels": {
           "en": "Twin",
           "fr": "Jumeau"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Stepbrother"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Half-brother",
-          "fr": "Demi-frère"
         },
         "tier": "hard"
       },
@@ -3515,8 +3413,8 @@
       },
       {
         "aliases": {
-          "en": ["Pants", "Slacks"],
-          "fr": []
+          "en": ["Pants", "Slacks", "Jeans"],
+          "fr": ["Jean"]
         },
         "labels": {
           "en": "Trousers",
@@ -3574,28 +3472,6 @@
           "fr": []
         },
         "labels": {
-          "en": "Blouse",
-          "fr": "Chemisier"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Jeans",
-          "fr": "Jean"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Shorts",
           "fr": "Short"
         },
@@ -3631,6 +3507,17 @@
         "labels": {
           "en": "Pyjamas",
           "fr": "Pyjama"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Blouse"],
+          "fr": ["Chemisier"]
+        },
+        "labels": {
+          "en": "Shirt",
+          "fr": "Chemise"
         },
         "tier": "medium"
       },
@@ -3702,17 +3589,6 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Shirt",
-          "fr": "Chemise"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": ["Swimming costume", "Bathing suit"],
           "fr": ["Maillot"]
         },
@@ -3759,8 +3635,22 @@
       },
       {
         "aliases": {
-          "en": ["Boot"],
-          "fr": ["Botte"]
+          "en": [
+            "Boot",
+            "Wellies",
+            "Wellington boots",
+            "Wellingtons",
+            "Rain boots",
+            "Gumboots",
+            "Ankle boots"
+          ],
+          "fr": [
+            "Botte",
+            "Bottes de pluie",
+            "Bottes en caoutchouc",
+            "Bottines",
+            "Bottine"
+          ]
         },
         "labels": {
           "en": "Boots",
@@ -3803,25 +3693,27 @@
       },
       {
         "aliases": {
-          "en": ["Heels"],
-          "fr": ["Talons hauts", "Chaussures à talons"]
+          "en": [
+            "Heels",
+            "Stilettos",
+            "Stiletto heels",
+            "Court shoes",
+            "Pumps"
+          ],
+          "fr": [
+            "Talons hauts",
+            "Chaussures à talons",
+            "Talons aiguilles",
+            "Talon aiguille",
+            "Escarpins",
+            "Escarpin"
+          ]
         },
         "labels": {
           "en": "High heels",
           "fr": "Talons"
         },
         "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Bottine"]
-        },
-        "labels": {
-          "en": "Ankle boots",
-          "fr": "Bottines"
-        },
-        "tier": "medium"
       },
       {
         "aliases": {
@@ -3869,28 +3761,6 @@
       },
       {
         "aliases": {
-          "en": ["Wellington boots", "Wellingtons", "Rain boots", "Gumboots"],
-          "fr": ["Bottes en caoutchouc"]
-        },
-        "labels": {
-          "en": "Wellies",
-          "fr": "Bottes de pluie"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Pumps"],
-          "fr": ["Escarpin"]
-        },
-        "labels": {
-          "en": "Court shoes",
-          "fr": "Escarpins"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Oxford shoes", "Brogues"],
           "fr": ["Richelieu"]
         },
@@ -3930,17 +3800,6 @@
         "labels": {
           "en": "Football boots",
           "fr": "Crampons"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Stiletto heels"],
-          "fr": ["Talon aiguille"]
-        },
-        "labels": {
-          "en": "Stilettos",
-          "fr": "Talons aiguilles"
         },
         "tier": "hard"
       }
@@ -4192,8 +4051,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": ["Anneau"]
+          "en": ["Wedding ring", "Wedding band", "Signet ring"],
+          "fr": ["Anneau", "Alliance", "Chevalière"]
         },
         "labels": {
           "en": "Ring",
@@ -4203,8 +4062,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Choker"],
+          "fr": ["Ras-de-cou", "Ras du cou"]
         },
         "labels": {
           "en": "Necklace",
@@ -4214,8 +4073,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["ID bracelet", "Identity bracelet"],
+          "fr": ["Gourmette"]
         },
         "labels": {
           "en": "Bracelet",
@@ -4225,8 +4084,8 @@
       },
       {
         "aliases": {
-          "en": ["Earring"],
-          "fr": ["Boucle d'oreille"]
+          "en": ["Earring", "Hoop earrings", "Hoops"],
+          "fr": ["Boucle d'oreille", "Créoles", "Créole"]
         },
         "labels": {
           "en": "Earrings",
@@ -4236,8 +4095,8 @@
       },
       {
         "aliases": {
-          "en": ["Neck chain"],
-          "fr": []
+          "en": ["Neck chain", "Anklet", "Ankle bracelet"],
+          "fr": ["Chaîne de cheville", "Bracelet de cheville"]
         },
         "labels": {
           "en": "Chain",
@@ -4247,8 +4106,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Locket"],
+          "fr": ["Médaillon"]
         },
         "labels": {
           "en": "Pendant",
@@ -4264,17 +4123,6 @@
         "labels": {
           "en": "Brooch",
           "fr": "Broche"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Wedding band"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Wedding ring",
-          "fr": "Alliance"
         },
         "tier": "medium"
       },
@@ -4302,58 +4150,25 @@
       },
       {
         "aliases": {
-          "en": ["Ankle bracelet"],
-          "fr": ["Bracelet de cheville"]
+          "en": ["Piercings"],
+          "fr": ["Piercings"]
         },
         "labels": {
-          "en": "Anklet",
-          "fr": "Chaîne de cheville"
+          "en": "Piercing",
+          "fr": "Piercing"
         },
-        "tier": "hard"
+        "tier": "medium"
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Wristwatch"],
+          "fr": ["Montre-bracelet"]
         },
         "labels": {
-          "en": "Signet ring",
-          "fr": "Chevalière"
+          "en": "Watch",
+          "fr": "Montre"
         },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Ras du cou"]
-        },
-        "labels": {
-          "en": "Choker",
-          "fr": "Ras-de-cou"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Locket",
-          "fr": "Médaillon"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Hoops"],
-          "fr": ["Créole"]
-        },
-        "labels": {
-          "en": "Hoop earrings",
-          "fr": "Créoles"
-        },
-        "tier": "hard"
+        "tier": "medium"
       },
       {
         "aliases": {
@@ -4368,12 +4183,23 @@
       },
       {
         "aliases": {
-          "en": ["Identity bracelet"],
-          "fr": []
+          "en": ["Tie clip"],
+          "fr": ["Pince à cravate"]
         },
         "labels": {
-          "en": "ID bracelet",
-          "fr": "Gourmette"
+          "en": "Tie pin",
+          "fr": "Épingle à cravate"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Charms"],
+          "fr": ["Breloques"]
+        },
+        "labels": {
+          "en": "Charm",
+          "fr": "Breloque"
         },
         "tier": "hard"
       }
@@ -4647,23 +4473,12 @@
       },
       {
         "aliases": {
-          "en": ["PC", "Desktop"],
-          "fr": ["Ordi"]
+          "en": ["PC", "Desktop", "Laptop", "Notebook"],
+          "fr": ["Ordi", "Ordinateur portable", "PC portable", "Ordi portable"]
         },
         "labels": {
           "en": "Computer",
           "fr": "Ordinateur"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Notebook"],
-          "fr": ["PC portable", "Ordi portable"]
-        },
-        "labels": {
-          "en": "Laptop",
-          "fr": "Ordinateur portable"
         },
         "tier": "easy"
       },
@@ -5135,8 +4950,8 @@
       },
       {
         "aliases": {
-          "en": ["Flashlight"],
-          "fr": ["Lampe de poche"]
+          "en": ["Flashlight", "Headlamp", "Head torch"],
+          "fr": ["Lampe de poche", "Lampe frontale", "Frontale"]
         },
         "labels": {
           "en": "Torch",
@@ -5207,17 +5022,6 @@
         "labels": {
           "en": "Folding chair",
           "fr": "Chaise pliante"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Head torch"],
-          "fr": ["Frontale"]
-        },
-        "labels": {
-          "en": "Headlamp",
-          "fr": "Lampe frontale"
         },
         "tier": "medium"
       },

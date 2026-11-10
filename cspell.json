@@ -106,7 +106,8 @@
         "apps/game/src/presentation/components/map-prompt.sass",
         "packages/core/src/countries/country-names-fr.ts",
         "packages/protocol/src/black-square.ts",
-        "apps/server/scripts/build-black-square-bank.ts"
+        "apps/server/scripts/build-black-square-bank.ts",
+        "apps/server/src/infrastructure/questions/black-square-bank.test.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -167,7 +168,18 @@
         "Vichnou",
         "wikipédia",
         "wikitexte",
-        "Zootopie"
+        "Zootopie",
+        "bern",
+        "comedie",
+        "coree",
+        "europe",
+        "mario",
+        "nintendo",
+        "panthere",
+        "adzuki",
+        "borlotti",
+        "Patatas",
+        "Xiaolongbao"
       ]
     }
   ],

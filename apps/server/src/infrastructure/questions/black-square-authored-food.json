@@ -14,8 +14,8 @@
       },
       {
         "aliases": {
-          "en": ["Radishes"],
-          "fr": []
+          "en": ["Radishes", "Daikon", "Mooli", "White radish"],
+          "fr": ["Daikon", "Radis blanc", "Radis japonais"]
         },
         "labels": {
           "en": "Radish",
@@ -113,17 +113,6 @@
       },
       {
         "aliases": {
-          "en": ["Mooli", "White radish"],
-          "fr": ["Radis blanc", "Radis japonais"]
-        },
-        "labels": {
-          "en": "Daikon",
-          "fr": "Daikon"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -192,8 +181,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Strawberries"],
-          "fr": ["Fraises"]
+          "en": ["Strawberries", "Wild strawberry", "Wild strawberries"],
+          "fr": ["Fraises", "Fraise des bois", "Fraises des bois"]
         },
         "labels": {
           "en": "Strawberry",
@@ -225,8 +214,12 @@
       },
       {
         "aliases": {
-          "en": ["Red currant", "Redcurrants"],
-          "fr": ["Groseilles"]
+          "en": ["Red currant", "Redcurrants", "Gooseberry", "Gooseberries"],
+          "fr": [
+            "Groseilles",
+            "Groseille à maquereau",
+            "Groseilles à maquereau"
+          ]
         },
         "labels": {
           "en": "Redcurrant",
@@ -269,47 +262,14 @@
       },
       {
         "aliases": {
-          "en": ["Cranberries"],
-          "fr": ["Canneberges"]
+          "en": ["Cranberries", "Lingonberry", "Cowberry", "Lingonberries"],
+          "fr": ["Canneberges", "Airelle", "Airelles"]
         },
         "labels": {
           "en": "Cranberry",
           "fr": "Canneberge"
         },
         "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Wild strawberries"],
-          "fr": ["Fraises des bois"]
-        },
-        "labels": {
-          "en": "Wild strawberry",
-          "fr": "Fraise des bois"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Gooseberries"],
-          "fr": ["Groseilles à maquereau"]
-        },
-        "labels": {
-          "en": "Gooseberry",
-          "fr": "Groseille à maquereau"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Cowberry", "Lingonberries"],
-          "fr": ["Airelles"]
-        },
-        "labels": {
-          "en": "Lingonberry",
-          "fr": "Airelle"
-        },
-        "tier": "hard"
       },
       {
         "aliases": {
@@ -320,7 +280,7 @@
           "en": "Goji berry",
           "fr": "Baie de goji"
         },
-        "tier": "hard"
+        "tier": "medium"
       },
       {
         "aliases": {
@@ -354,6 +314,17 @@
           "fr": "Épine-vinette"
         },
         "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Strawberry tree fruit"],
+          "fr": ["Arbouses"]
+        },
+        "labels": {
+          "en": "Arbutus berry",
+          "fr": "Arbouse"
+        },
+        "tier": "hard"
       }
     ],
     "blackWord": {
@@ -381,8 +352,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Oranges"],
-          "fr": []
+          "en": ["Oranges", "Blood orange", "Bitter orange", "Seville orange"],
+          "fr": ["Orange sanguine", "Orange amère", "Bigarade"]
         },
         "labels": {
           "en": "Orange",
@@ -403,8 +374,8 @@
       },
       {
         "aliases": {
-          "en": ["Grapefruits"],
-          "fr": []
+          "en": ["Grapefruits", "Pomelo", "Pummelo"],
+          "fr": ["Pomélo"]
         },
         "labels": {
           "en": "Grapefruit",
@@ -425,8 +396,8 @@
       },
       {
         "aliases": {
-          "en": ["Limes"],
-          "fr": []
+          "en": ["Limes", "Finger lime"],
+          "fr": ["Citron caviar"]
         },
         "labels": {
           "en": "Lime",
@@ -436,8 +407,8 @@
       },
       {
         "aliases": {
-          "en": ["Mandarin orange"],
-          "fr": []
+          "en": ["Mandarin orange", "Tangerine"],
+          "fr": ["Tangerine"]
         },
         "labels": {
           "en": "Mandarin",
@@ -473,41 +444,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Blood orange",
-          "fr": "Orange sanguine"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Tangerine",
-          "fr": "Tangerine"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Yuzu",
           "fr": "Yuzu"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Pummelo"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Pomelo",
-          "fr": "Pomélo"
         },
         "tier": "medium"
       },
@@ -541,28 +479,6 @@
         "labels": {
           "en": "Calamansi",
           "fr": "Calamansi"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Finger lime",
-          "fr": "Citron caviar"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Seville orange"],
-          "fr": ["Bigarade"]
-        },
-        "labels": {
-          "en": "Bitter orange",
-          "fr": "Orange amère"
         },
         "tier": "hard"
       }
@@ -957,6 +873,17 @@
       },
       {
         "aliases": {
+          "en": ["Coriander seeds"],
+          "fr": ["Graines de coriandre"]
+        },
+        "labels": {
+          "en": "Coriander",
+          "fr": "Coriandre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
           "en": [],
           "fr": []
         },
@@ -985,17 +912,6 @@
         "labels": {
           "en": "Mace",
           "fr": "Macis"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Pimento"],
-          "fr": ["Toute-épice"]
-        },
-        "labels": {
-          "en": "Allspice",
-          "fr": "Piment de la Jamaïque"
         },
         "tier": "hard"
       },
@@ -1291,8 +1207,8 @@
       },
       {
         "aliases": {
-          "en": ["Tagliatelli"],
-          "fr": ["Tagliatelles"]
+          "en": ["Tagliatelli", "Fettuccine", "Fettucine", "Fettuccini"],
+          "fr": ["Tagliatelles", "Fettuccine"]
         },
         "labels": {
           "en": "Tagliatelle",
@@ -1445,17 +1361,6 @@
       },
       {
         "aliases": {
-          "en": ["Fettucine", "Fettuccini"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Fettuccine",
-          "fr": "Fettuccine"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -1535,8 +1440,8 @@
       },
       {
         "aliases": {
-          "en": ["Apple tart"],
-          "fr": []
+          "en": ["Apple tart", "Tarte Tatin", "Tatin"],
+          "fr": ["Tarte Tatin", "Tatin"]
         },
         "labels": {
           "en": "Apple pie",
@@ -1554,17 +1459,6 @@
           "fr": "Crêpe"
         },
         "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Tatin"],
-          "fr": ["Tatin"]
-        },
-        "labels": {
-          "en": "Tarte Tatin",
-          "fr": "Tarte Tatin"
-        },
-        "tier": "medium"
       },
       {
         "aliases": {
@@ -1618,6 +1512,17 @@
         "labels": {
           "en": "Crumble",
           "fr": "Crumble"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paris-Brest",
+          "fr": "Paris-Brest"
         },
         "tier": "medium"
       },
@@ -1946,8 +1851,30 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": [
+            "Café au lait",
+            "Viennese coffee",
+            "Espresso",
+            "Cappuccino",
+            "Latte",
+            "Caffè latte",
+            "Macchiato",
+            "Mocha",
+            "Mochaccino",
+            "Irish coffee"
+          ],
+          "fr": [
+            "Café au lait",
+            "Café viennois",
+            "Expresso",
+            "Cappuccino",
+            "Latte",
+            "Café latte",
+            "Macchiato",
+            "Moka",
+            "Café moka",
+            "Irish coffee"
+          ]
         },
         "labels": {
           "en": "Coffee",
@@ -1957,8 +1884,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Matcha", "Matcha latte", "Chai", "Chai latte", "Masala chai"],
+          "fr": ["Matcha", "Chaï", "Thé chaï"]
         },
         "labels": {
           "en": "Tea",
@@ -1994,28 +1921,6 @@
           "fr": []
         },
         "labels": {
-          "en": "Cappuccino",
-          "fr": "Cappuccino"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Espresso",
-          "fr": "Expresso"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Mulled wine",
           "fr": "Vin chaud"
         },
@@ -2023,56 +1928,34 @@
       },
       {
         "aliases": {
-          "en": ["Caffè latte"],
-          "fr": ["Café latte"]
-        },
-        "labels": {
-          "en": "Latte",
-          "fr": "Latte"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
         "labels": {
-          "en": "Irish coffee",
-          "fr": "Irish coffee"
+          "en": "Hot milk",
+          "fr": "Lait chaud"
         },
         "tier": "medium"
       },
       {
         "aliases": {
-          "en": ["Chai latte", "Masala chai"],
-          "fr": ["Thé chaï"]
-        },
-        "labels": {
-          "en": "Chai",
-          "fr": "Chaï"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Matcha latte"],
+          "en": ["Chicory coffee"],
           "fr": []
         },
         "labels": {
-          "en": "Matcha",
-          "fr": "Matcha"
+          "en": "Chicory",
+          "fr": "Chicorée"
         },
         "tier": "medium"
       },
       {
         "aliases": {
-          "en": [],
+          "en": ["Stock", "Bouillon"],
           "fr": []
         },
         "labels": {
-          "en": "Macchiato",
-          "fr": "Macchiato"
+          "en": "Broth",
+          "fr": "Bouillon"
         },
         "tier": "medium"
       },
@@ -2104,28 +1987,6 @@
           "fr": []
         },
         "labels": {
-          "en": "Café au lait",
-          "fr": "Café au lait"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Viennese coffee",
-          "fr": "Café viennois"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Rooibos",
           "fr": "Rooibos"
         },
@@ -2133,12 +1994,12 @@
       },
       {
         "aliases": {
-          "en": ["Mochaccino"],
-          "fr": ["Café moka"]
+          "en": ["Sake"],
+          "fr": ["Saké"]
         },
         "labels": {
-          "en": "Mocha",
-          "fr": "Moka"
+          "en": "Hot sake",
+          "fr": "Saké chaud"
         },
         "tier": "hard"
       }
@@ -2317,28 +2178,6 @@
         "labels": {
           "en": "Beechnut",
           "fr": "Faîne"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Ginkgo"],
-          "fr": ["Ginkgo"]
-        },
-        "labels": {
-          "en": "Ginkgo nut",
-          "fr": "Noix de ginkgo"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Hickory"],
-          "fr": ["Hickory"]
-        },
-        "labels": {
-          "en": "Hickory nut",
-          "fr": "Noix de hickory"
         },
         "tier": "hard"
       }
@@ -3278,8 +3117,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": ["Froment"]
+          "en": ["Durum wheat", "Durum"],
+          "fr": ["Froment", "Blé dur"]
         },
         "labels": {
           "en": "Wheat",
@@ -3289,8 +3128,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Wild rice"],
+          "fr": ["Riz sauvage"]
         },
         "labels": {
           "en": "Rice",
@@ -3366,34 +3205,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Grand épeautre"]
+          "en": ["Einkorn"],
+          "fr": ["Grand épeautre", "Petit épeautre", "Engrain"]
         },
         "labels": {
           "en": "Spelt",
           "fr": "Épeautre"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Durum"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Durum wheat",
-          "fr": "Blé dur"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Wild rice",
-          "fr": "Riz sauvage"
         },
         "tier": "medium"
       },
@@ -3440,17 +3257,6 @@
           "fr": "Amidonnier"
         },
         "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Engrain"]
-        },
-        "labels": {
-          "en": "Einkorn",
-          "fr": "Petit épeautre"
-        },
-        "tier": "hard"
       }
     ],
     "blackWord": {
@@ -3478,8 +3284,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Lentil"],
-          "fr": ["Lentille"]
+          "en": ["Lentil", "Red lentils", "Red lentil"],
+          "fr": ["Lentille", "Lentilles corail", "Lentilles rouges"]
         },
         "labels": {
           "en": "Lentils",
@@ -3500,12 +3306,65 @@
       },
       {
         "aliases": {
-          "en": ["Red kidney beans", "Kidney bean"],
-          "fr": ["Haricot rouge"]
+          "en": [
+            "Kidney beans",
+            "Red kidney beans",
+            "Kidney bean",
+            "White beans",
+            "Haricot beans",
+            "Navy beans",
+            "Cannellini",
+            "Black beans",
+            "Black bean",
+            "Black turtle beans",
+            "Mung beans",
+            "Mung bean",
+            "Moong",
+            "Borlotti beans",
+            "Borlotti",
+            "Cranberry beans",
+            "Adzuki beans",
+            "Adzuki",
+            "Azuki",
+            "Lima beans",
+            "Butter beans",
+            "Lima bean",
+            "Flageolet beans",
+            "Black-eyed peas",
+            "Black-eyed beans",
+            "Bean",
+            "Dried beans"
+          ],
+          "fr": [
+            "Haricots rouges",
+            "Haricot rouge",
+            "Haricots blancs",
+            "Haricot blanc",
+            "Lingots",
+            "Haricots noirs",
+            "Haricot noir",
+            "Haricots mungo",
+            "Soja vert",
+            "Haricot mungo",
+            "Haricots borlotti",
+            "Borlotti",
+            "Haricots azuki",
+            "Azuki",
+            "Adzuki",
+            "Haricots de Lima",
+            "Pois du Cap",
+            "Flageolets",
+            "Flageolet",
+            "Cornilles",
+            "Haricots à œil noir",
+            "Niébé",
+            "Haricot",
+            "Haricots secs"
+          ]
         },
         "labels": {
-          "en": "Kidney beans",
-          "fr": "Haricots rouges"
+          "en": "Beans",
+          "fr": "Haricots"
         },
         "tier": "easy"
       },
@@ -3522,17 +3381,6 @@
       },
       {
         "aliases": {
-          "en": ["Haricot beans", "Navy beans", "Cannellini"],
-          "fr": ["Haricot blanc", "Lingots"]
-        },
-        "labels": {
-          "en": "White beans",
-          "fr": "Haricots blancs"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
           "en": ["Fava beans", "Broad bean"],
           "fr": ["Fève"]
         },
@@ -3544,80 +3392,53 @@
       },
       {
         "aliases": {
-          "en": ["Black bean", "Black turtle beans"],
-          "fr": ["Haricot noir"]
+          "en": ["Soy", "Soybeans", "Soya beans", "Edamame"],
+          "fr": ["Soya", "Edamame"]
         },
         "labels": {
-          "en": "Black beans",
-          "fr": "Haricots noirs"
+          "en": "Soya",
+          "fr": "Soja"
         },
         "tier": "medium"
       },
       {
         "aliases": {
-          "en": ["Red lentil"],
-          "fr": ["Lentilles rouges"]
+          "en": ["Peanuts", "Groundnut", "Groundnuts"],
+          "fr": [
+            "Cacahuètes",
+            "Cacahouète",
+            "Cacahouètes",
+            "Arachide",
+            "Arachides"
+          ]
         },
         "labels": {
-          "en": "Red lentils",
-          "fr": "Lentilles corail"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Mung bean", "Moong"],
-          "fr": ["Soja vert", "Haricot mungo"]
-        },
-        "labels": {
-          "en": "Mung beans",
-          "fr": "Haricots mungo"
+          "en": "Peanut",
+          "fr": "Cacahuète"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Flageolet"]
+          "fr": []
         },
         "labels": {
-          "en": "Flageolet beans",
-          "fr": "Flageolets"
+          "en": "Clover",
+          "fr": "Trèfle"
         },
         "tier": "medium"
       },
       {
         "aliases": {
-          "en": ["Borlotti", "Cranberry beans"],
-          "fr": ["Borlotti"]
+          "en": ["Lucerne"],
+          "fr": []
         },
         "labels": {
-          "en": "Borlotti beans",
-          "fr": "Haricots borlotti"
+          "en": "Alfalfa",
+          "fr": "Luzerne"
         },
         "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Adzuki", "Azuki"],
-          "fr": ["Azuki", "Adzuki"]
-        },
-        "labels": {
-          "en": "Adzuki beans",
-          "fr": "Haricots azuki"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Black-eyed beans"],
-          "fr": ["Haricots à œil noir", "Niébé"]
-        },
-        "labels": {
-          "en": "Black-eyed peas",
-          "fr": "Cornilles"
-        },
-        "tier": "hard"
       },
       {
         "aliases": {
@@ -3632,23 +3453,45 @@
       },
       {
         "aliases": {
-          "en": ["Pigeon pea"],
-          "fr": ["Pois cajan"]
+          "en": [],
+          "fr": []
         },
         "labels": {
-          "en": "Pigeon peas",
-          "fr": "Pois d'Angole"
+          "en": "Fenugreek",
+          "fr": "Fenugrec"
         },
         "tier": "hard"
       },
       {
         "aliases": {
-          "en": ["Butter beans", "Lima bean"],
-          "fr": ["Pois du Cap"]
+          "en": ["Licorice"],
+          "fr": []
         },
         "labels": {
-          "en": "Lima beans",
-          "fr": "Haricots de Lima"
+          "en": "Liquorice",
+          "fr": "Réglisse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tamarind",
+          "fr": "Tamarin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carob",
+          "fr": "Caroube"
         },
         "tier": "hard"
       }
@@ -4410,12 +4253,12 @@
       },
       {
         "aliases": {
-          "en": ["Mint choc chip", "Mint"],
-          "fr": ["Menthe chocolat", "Menthe"]
+          "en": ["Mint chocolate chip", "Mint choc chip"],
+          "fr": ["Menthe-chocolat", "Menthe chocolat"]
         },
         "labels": {
-          "en": "Mint chocolate chip",
-          "fr": "Menthe-chocolat"
+          "en": "Mint",
+          "fr": "Menthe"
         },
         "tier": "medium"
       },

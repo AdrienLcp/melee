@@ -3,8 +3,13 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Swim"],
-          "fr": ["Nage"]
+          "en": [
+            "Swim",
+            "Artistic swimming",
+            "Synchronised swimming",
+            "Synchronized swimming"
+          ],
+          "fr": ["Nage", "Natation artistique", "Natation synchronisée"]
         },
         "labels": {
           "en": "Swimming",
@@ -135,17 +140,6 @@
       },
       {
         "aliases": {
-          "en": ["Synchronised swimming", "Synchronized swimming"],
-          "fr": ["Natation synchronisée"]
-        },
-        "labels": {
-          "en": "Artistic swimming",
-          "fr": "Natation artistique"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["White-water rafting"],
           "fr": ["Raft"]
         },
@@ -225,8 +219,29 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Alpine skiing"],
-          "fr": ["Ski alpin"]
+          "en": [
+            "Alpine skiing",
+            "Cross-country skiing",
+            "Nordic skiing",
+            "Ski jumping",
+            "Ski jump",
+            "Freestyle skiing",
+            "Freestyle",
+            "Ski mountaineering",
+            "Skimo",
+            "Ski touring"
+          ],
+          "fr": [
+            "Ski alpin",
+            "Ski de fond",
+            "Ski nordique",
+            "Saut à ski",
+            "Saut à skis",
+            "Ski acrobatique",
+            "Ski freestyle",
+            "Ski-alpinisme",
+            "Ski de randonnée"
+          ]
         },
         "labels": {
           "en": "Skiing",
@@ -247,12 +262,23 @@
       },
       {
         "aliases": {
-          "en": ["Ice skating", "Skating"],
-          "fr": ["Patinage", "Patin à glace"]
+          "en": [
+            "Figure skating",
+            "Ice skating",
+            "Speed skating",
+            "Short track"
+          ],
+          "fr": [
+            "Patinage artistique",
+            "Patin à glace",
+            "Patinage de vitesse",
+            "Patins à glace",
+            "Short-track"
+          ]
         },
         "labels": {
-          "en": "Figure skating",
-          "fr": "Patinage artistique"
+          "en": "Skating",
+          "fr": "Patinage"
         },
         "tier": "easy"
       },
@@ -302,34 +328,12 @@
       },
       {
         "aliases": {
-          "en": ["Nordic skiing"],
-          "fr": ["Ski nordique"]
-        },
-        "labels": {
-          "en": "Cross-country skiing",
-          "fr": "Ski de fond"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
         "labels": {
           "en": "Biathlon",
           "fr": "Biathlon"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Ski jump"],
-          "fr": ["Saut à skis"]
-        },
-        "labels": {
-          "en": "Ski jumping",
-          "fr": "Saut à ski"
         },
         "tier": "medium"
       },
@@ -346,45 +350,12 @@
       },
       {
         "aliases": {
-          "en": ["Freestyle"],
-          "fr": ["Ski freestyle"]
-        },
-        "labels": {
-          "en": "Freestyle skiing",
-          "fr": "Ski acrobatique"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
         "labels": {
           "en": "Nordic combined",
           "fr": "Combiné nordique"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Short track"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Speed skating",
-          "fr": "Patinage de vitesse"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Skimo", "Ski touring"],
-          "fr": ["Ski de randonnée"]
-        },
-        "labels": {
-          "en": "Ski mountaineering",
-          "fr": "Ski-alpinisme"
         },
         "tier": "hard"
       },
@@ -407,6 +378,28 @@
         "labels": {
           "en": "Dog sledding",
           "fr": "Chiens de traîneau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Snowmobile"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Snowmobiling",
+          "fr": "Motoneige"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Cascade de glace"]
+        },
+        "labels": {
+          "en": "Ice climbing",
+          "fr": "Escalade glaciaire"
         },
         "tier": "hard"
       }
@@ -458,8 +451,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Boxe anglaise"]
+          "en": ["Muay Thai", "Thai boxing", "Savate", "French boxing"],
+          "fr": ["Boxe anglaise", "Boxe thaï", "Boxe française"]
         },
         "labels": {
           "en": "Boxing",
@@ -568,17 +561,6 @@
       },
       {
         "aliases": {
-          "en": ["Thai boxing"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Muay Thai",
-          "fr": "Boxe thaï"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
           "fr": []
         },
@@ -596,17 +578,6 @@
         "labels": {
           "en": "Capoeira",
           "fr": "Capoeira"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["French boxing"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Savate",
-          "fr": "Boxe française"
         },
         "tier": "hard"
       },
@@ -902,8 +873,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Crazy Eights"],
+          "fr": ["Huit américain", "8 américain"]
         },
         "labels": {
           "en": "Uno",
@@ -963,17 +934,6 @@
         "labels": {
           "en": "War",
           "fr": "Bataille"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["8 américain"]
-        },
-        "labels": {
-          "en": "Crazy Eights",
-          "fr": "Huit américain"
         },
         "tier": "medium"
       },
@@ -1291,8 +1251,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Transverse flute"],
-          "fr": ["Flûte traversière"]
+          "en": ["Transverse flute", "Recorder", "Pan flute", "Pan pipes"],
+          "fr": ["Flûte traversière", "Flûte à bec", "Flûte de Pan"]
         },
         "labels": {
           "en": "Flute",
@@ -1330,17 +1290,6 @@
         "labels": {
           "en": "Clarinet",
           "fr": "Clarinette"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Recorder",
-          "fr": "Flûte à bec"
         },
         "tier": "easy"
       },
@@ -1429,17 +1378,6 @@
         "labels": {
           "en": "Didgeridoo",
           "fr": "Didgeridoo"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Pan pipes"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Pan flute",
-          "fr": "Flûte de Pan"
         },
         "tier": "hard"
       },
@@ -1724,8 +1662,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["K-pop"],
+          "fr": ["K-pop"]
         },
         "labels": {
           "en": "Pop",
@@ -1917,17 +1855,6 @@
         "labels": {
           "en": "Grunge",
           "fr": "Grunge"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "K-pop",
-          "fr": "K-pop"
         },
         "tier": "hard"
       }
@@ -3188,8 +3115,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Breakdance", "Breaking", "Break dancing"],
+          "fr": ["Breakdance", "Break"]
         },
         "labels": {
           "en": "Hip-hop",
@@ -3207,17 +3134,6 @@
           "fr": "Rock"
         },
         "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": ["Breaking", "Break dancing"],
-          "fr": ["Break"]
-        },
-        "labels": {
-          "en": "Breakdance",
-          "fr": "Breakdance"
-        },
-        "tier": "medium"
       },
       {
         "aliases": {
@@ -3832,8 +3748,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Half marathon"],
+          "fr": ["Semi-marathon"]
         },
         "labels": {
           "en": "Marathon",
@@ -4003,17 +3919,6 @@
         "labels": {
           "en": "Cross-country",
           "fr": "Cross-country"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Half marathon",
-          "fr": "Semi-marathon"
         },
         "tier": "hard"
       }
@@ -4852,8 +4757,8 @@
       },
       {
         "aliases": {
-          "en": ["Abominable Snowman"],
-          "fr": ["Abominable homme des neiges"]
+          "en": ["Abominable Snowman", "Bigfoot", "Sasquatch"],
+          "fr": ["Abominable homme des neiges", "Bigfoot"]
         },
         "labels": {
           "en": "Yeti",
@@ -4935,17 +4840,6 @@
         "labels": {
           "en": "Basilisk",
           "fr": "Basilic"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Sasquatch"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Bigfoot",
-          "fr": "Bigfoot"
         },
         "tier": "hard"
       },

@@ -258,8 +258,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Macaw"],
+          "fr": ["Ara"]
         },
         "labels": {
           "en": "Parrot",
@@ -341,17 +341,6 @@
         "labels": {
           "en": "Boa",
           "fr": "Boa"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Macaw",
-          "fr": "Ara"
         },
         "tier": "medium"
       },
@@ -691,8 +680,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Roo"],
-          "fr": []
+          "en": ["Roo", "Wallaby"],
+          "fr": ["Wallaby"]
         },
         "labels": {
           "en": "Kangaroo",
@@ -763,17 +752,6 @@
         "labels": {
           "en": "Dingo",
           "fr": "Dingo"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Wallaby",
-          "fr": "Wallaby"
         },
         "tier": "medium"
       },
@@ -3454,8 +3432,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Typhoon", "Cyclone"],
+          "fr": ["Typhon", "Cyclone"]
         },
         "labels": {
           "en": "Hurricane",
@@ -3542,30 +3520,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Typhoon",
-          "fr": "Typhon"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Cyclone",
-          "fr": "Cyclone"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Sandstorm"],
+          "fr": ["Tempête de sable"]
         },
         "labels": {
           "en": "Storm",
@@ -3603,17 +3559,6 @@
         "labels": {
           "en": "Hailstorm",
           "fr": "Grêle"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Sandstorm",
-          "fr": "Tempête de sable"
         },
         "tier": "hard"
       },
@@ -3909,8 +3854,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Dolomites"],
+          "fr": ["Dolomites"]
         },
         "labels": {
           "en": "Alps",
@@ -3975,8 +3920,8 @@
       },
       {
         "aliases": {
-          "en": ["Carpathian Mountains"],
-          "fr": []
+          "en": ["Carpathian Mountains", "Tatras", "Tatra Mountains", "Tatra"],
+          "fr": ["Tatras"]
         },
         "labels": {
           "en": "Carpathians",
@@ -4014,17 +3959,6 @@
         "labels": {
           "en": "Caucasus",
           "fr": "Caucase"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Dolomites",
-          "fr": "Dolomites"
         },
         "tier": "medium"
       },
@@ -4102,17 +4036,6 @@
         "labels": {
           "en": "Tian Shan",
           "fr": "Tian Shan"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Tatra Mountains", "Tatra"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Tatras",
-          "fr": "Tatras"
         },
         "tier": "hard"
       }
@@ -4364,8 +4287,8 @@
     "answers": [
       {
         "aliases": {
-          "en": ["Mallard"],
-          "fr": ["Colvert"]
+          "en": ["Mallard", "Teal"],
+          "fr": ["Colvert", "Sarcelle"]
         },
         "labels": {
           "en": "Duck",
@@ -4555,17 +4478,6 @@
           "fr": []
         },
         "labels": {
-          "en": "Teal",
-          "fr": "Sarcelle"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Coot",
           "fr": "Foulque"
         },
@@ -4597,8 +4509,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["King cobra"],
+          "fr": ["Cobra royal"]
         },
         "labels": {
           "en": "Cobra",
@@ -4619,8 +4531,8 @@
       },
       {
         "aliases": {
-          "en": ["Adder"],
-          "fr": []
+          "en": ["Adder", "Gaboon viper"],
+          "fr": ["Vipère du Gabon"]
         },
         "labels": {
           "en": "Viper",
@@ -4689,17 +4601,6 @@
           "fr": []
         },
         "labels": {
-          "en": "King cobra",
-          "fr": "Cobra royal"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Coral snake",
           "fr": "Serpent corail"
         },
@@ -4757,17 +4658,6 @@
         "labels": {
           "en": "Cottonmouth",
           "fr": "Mocassin d'eau"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Gaboon viper",
-          "fr": "Vipère du Gabon"
         },
         "tier": "hard"
       },
@@ -4885,8 +4775,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Rub' al Khali", "Empty Quarter"],
+          "fr": ["Rub al-Khali", "Quart vide"]
         },
         "labels": {
           "en": "Arabian Desert",
@@ -4946,17 +4836,6 @@
         "labels": {
           "en": "Taklamakan",
           "fr": "Taklamakan"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Empty Quarter"],
-          "fr": ["Quart vide"]
-        },
-        "labels": {
-          "en": "Rub' al Khali",
-          "fr": "Rub al-Khali"
         },
         "tier": "hard"
       },
@@ -5063,8 +4942,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Chalk"],
+          "fr": ["Craie"]
         },
         "labels": {
           "en": "Limestone",
@@ -5080,17 +4959,6 @@
         "labels": {
           "en": "Quartz",
           "fr": "Quartz"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Chalk",
-          "fr": "Craie"
         },
         "tier": "easy"
       },
@@ -5529,8 +5397,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Bull", "Ox"],
+          "fr": ["Taureau", "Bœuf"]
         },
         "labels": {
           "en": "Cow",
@@ -5566,17 +5434,6 @@
           "fr": []
         },
         "labels": {
-          "en": "Bull",
-          "fr": "Taureau"
-        },
-        "tier": "easy"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Ram",
           "fr": "Bélier"
         },
@@ -5595,8 +5452,16 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": [
+            "Gazelle",
+            "Oryx",
+            "Kudu",
+            "Wildebeest",
+            "Gnu",
+            "Springbok",
+            "Impala"
+          ],
+          "fr": ["Gazelle", "Oryx", "Koudou", "Gnou", "Springbok", "Impala"]
         },
         "labels": {
           "en": "Antelope",
@@ -5643,54 +5508,10 @@
           "fr": []
         },
         "labels": {
-          "en": "Gazelle",
-          "fr": "Gazelle"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
           "en": "Chamois",
           "fr": "Chamois"
         },
         "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Oryx",
-          "fr": "Oryx"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Kudu",
-          "fr": "Koudou"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Gnu"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Wildebeest",
-          "fr": "Gnou"
-        },
-        "tier": "hard"
       },
       {
         "aliases": {
@@ -5720,8 +5541,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Springbok",
-          "fr": "Springbok"
+          "en": "Mouflon",
+          "fr": "Mouflon"
         },
         "tier": "hard"
       },
@@ -5731,8 +5552,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Impala",
-          "fr": "Impala"
+          "en": "Triceratops",
+          "fr": "Tricératops"
         },
         "tier": "hard"
       }

@@ -458,8 +458,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Harpy eagle", "Harpy"],
+          "fr": ["Harpie féroce", "Harpie"]
         },
         "labels": {
           "en": "Eagle",
@@ -469,8 +469,13 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Kestrel", "Merlin"],
+          "fr": [
+            "Crécerelle",
+            "Faucon crécerelle",
+            "Émerillon",
+            "Faucon émerillon"
+          ]
         },
         "labels": {
           "en": "Falcon",
@@ -480,8 +485,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Chouette"]
+          "en": ["Eagle-owl", "Eagle owl"],
+          "fr": ["Chouette", "Grand-duc", "Grand duc", "Grand-duc d'Europe"]
         },
         "labels": {
           "en": "Owl",
@@ -491,8 +496,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Condor", "Bearded vulture", "Lammergeier"],
+          "fr": ["Condor", "Gypaète", "Gypaète barbu"]
         },
         "labels": {
           "en": "Vulture",
@@ -525,17 +530,6 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Condor",
-          "fr": "Condor"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
           "fr": ["Balbuzard pêcheur"]
         },
         "labels": {
@@ -552,17 +546,6 @@
         "labels": {
           "en": "Sparrowhawk",
           "fr": "Épervier"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Faucon crécerelle"]
-        },
-        "labels": {
-          "en": "Kestrel",
-          "fr": "Crécerelle"
         },
         "tier": "medium"
       },
@@ -601,45 +584,12 @@
       },
       {
         "aliases": {
-          "en": ["Harpy"],
-          "fr": ["Harpie"]
-        },
-        "labels": {
-          "en": "Harpy eagle",
-          "fr": "Harpie féroce"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Lammergeier"],
-          "fr": ["Gypaète barbu"]
-        },
-        "labels": {
-          "en": "Bearded vulture",
-          "fr": "Gypaète"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": [],
-          "fr": ["Faucon émerillon"]
+          "fr": []
         },
         "labels": {
-          "en": "Merlin",
-          "fr": "Émerillon"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Eagle owl"],
-          "fr": ["Grand duc", "Grand-duc d'Europe"]
-        },
-        "labels": {
-          "en": "Eagle-owl",
-          "fr": "Grand-duc"
+          "en": "Caracara",
+          "fr": "Caracara"
         },
         "tier": "hard"
       }
@@ -1357,8 +1307,30 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": [
+            "Rattlesnake",
+            "Python",
+            "Cobra",
+            "Viper",
+            "Adder",
+            "Boa",
+            "Boa constrictor",
+            "Anaconda",
+            "Grass snake",
+            "Mamba"
+          ],
+          "fr": [
+            "Serpent à sonnette",
+            "Crotale",
+            "Python",
+            "Cobra",
+            "Vipère",
+            "Boa",
+            "Boa constricteur",
+            "Anaconda",
+            "Couleuvre",
+            "Mamba"
+          ]
         },
         "labels": {
           "en": "Snake",
@@ -1445,56 +1417,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Python",
-          "fr": "Python"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Cobra",
-          "fr": "Cobra"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Adder"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Viper",
-          "fr": "Vipère"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Monitor lizard", "Monitor"],
+          "fr": ["Varan"]
         },
         "labels": {
           "en": "Komodo dragon",
           "fr": "Dragon de Komodo"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Boa constrictor"],
-          "fr": ["Boa constricteur"]
-        },
-        "labels": {
-          "en": "Boa",
-          "fr": "Boa"
         },
         "tier": "medium"
       },
@@ -1522,45 +1450,23 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Anaconda",
-          "fr": "Anaconda"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Crotale"]
-        },
-        "labels": {
-          "en": "Rattlesnake",
-          "fr": "Serpent à sonnette"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Monitor"],
-          "fr": []
-        },
-        "labels": {
-          "en": "Monitor lizard",
-          "fr": "Varan"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Slowworm", "Blindworm"],
           "fr": []
         },
         "labels": {
           "en": "Slow worm",
           "fr": "Orvet"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sphénodon"]
+        },
+        "labels": {
+          "en": "Tuatara",
+          "fr": "Tuatara"
         },
         "tier": "hard"
       }
@@ -1823,8 +1729,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Leopard seal", "Elephant seal"],
+          "fr": ["Léopard de mer", "Éléphant de mer"]
         },
         "labels": {
           "en": "Seal",
@@ -1933,17 +1839,6 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Leopard seal",
-          "fr": "Léopard de mer"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Stoat"],
           "fr": []
         },
@@ -1983,17 +1878,6 @@
         "labels": {
           "en": "Arctic tern",
           "fr": "Sterne arctique"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Elephant seal",
-          "fr": "Éléphant de mer"
         },
         "tier": "hard"
       }
@@ -2511,8 +2395,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Bobcat"],
+          "fr": ["Lynx roux"]
         },
         "labels": {
           "en": "Lynx",
@@ -2561,17 +2445,6 @@
         "labels": {
           "en": "Wildcat",
           "fr": "Chat sauvage"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Bobcat",
-          "fr": "Lynx roux"
         },
         "tier": "medium"
       },
@@ -2869,8 +2742,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Muskrat",
-          "fr": "Rat musqué"
+          "en": "Jerboa",
+          "fr": "Gerboise"
         },
         "tier": "hard"
       },
@@ -2880,8 +2753,8 @@
           "fr": []
         },
         "labels": {
-          "en": "Jerboa",
-          "fr": "Gerboise"
+          "en": "Agouti",
+          "fr": "Agouti"
         },
         "tier": "hard"
       }
@@ -4076,8 +3949,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Drizzle"],
+          "fr": ["Bruine", "Crachin"]
         },
         "labels": {
           "en": "Rain",
@@ -4120,8 +3993,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Mist"],
+          "fr": ["Brume"]
         },
         "labels": {
           "en": "Fog",
@@ -4219,17 +4092,6 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": ["Crachin"]
-        },
-        "labels": {
-          "en": "Drizzle",
-          "fr": "Bruine"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
           "en": ["Heat wave"],
           "fr": ["Vague de chaleur"]
         },
@@ -4247,17 +4109,6 @@
         "labels": {
           "en": "Dew",
           "fr": "Rosée"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Mist",
-          "fr": "Brume"
         },
         "tier": "hard"
       },
@@ -5041,8 +4892,8 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Navy blue", "Navy"],
+          "fr": ["Bleu marine", "Marine"]
         },
         "labels": {
           "en": "Blue",
@@ -5225,17 +5076,6 @@
           "fr": "Kaki"
         },
         "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Navy"],
-          "fr": ["Marine"]
-        },
-        "labels": {
-          "en": "Navy blue",
-          "fr": "Bleu marine"
-        },
-        "tier": "hard"
       }
     ],
     "blackWord": {
@@ -5263,8 +5103,8 @@
     "answers": [
       {
         "aliases": {
-          "en": [],
-          "fr": ["Rond"]
+          "en": ["Semicircle", "Half circle", "Semi-circle"],
+          "fr": ["Rond", "Demi-cercle", "Demi cercle"]
         },
         "labels": {
           "en": "Circle",
@@ -5456,17 +5296,6 @@
         "labels": {
           "en": "Tetrahedron",
           "fr": "Tétraèdre"
-        },
-        "tier": "hard"
-      },
-      {
-        "aliases": {
-          "en": ["Half circle", "Semi-circle"],
-          "fr": ["Demi cercle"]
-        },
-        "labels": {
-          "en": "Semicircle",
-          "fr": "Demi-cercle"
         },
         "tier": "hard"
       }

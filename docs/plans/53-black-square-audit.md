@@ -49,6 +49,30 @@ obscure titles: James Cameron, Peter Jackson, Marcel Pagnol, Illumination.
 `black-square-bank.test.ts` holds the rule without the network: no two
 answers of a theme share a `series`, and no two works share a stem.
 
+## Done beside the steps — one answer per thing, hand-written themes (10/11/2026)
+
+The same complaint on the hand-written bank: _Légumineuses_ held seven
+_Haricots_ of seven colours. **One answer per thing**: a variety, a sub-kind
+or a synonym of another answer is folded into it as aliases, so it still
+lights that cell, and the pool is refilled with different things. 74 themes
+were swept, by a shared-word scan and a read for varieties with names of
+their own (_Mirabelle_ under _Prune_, _Typhon_ under _Ouragan_).
+
+Where the line was drawn, so it is not argued again:
+
+- **A theme listing dishes keeps its dishes**: _Tapas_ beside _Patatas
+  bravas_, _Dim sum_ beside _Xiaolongbao_, _Curry_ beside _Korma_ — a dish is
+  not a variety of a way of eating.
+- **Beer styles stay apart** (_IPA_, _Pale ale_, _Stout_, _Porter_): a
+  brewer names each; so do consoles (_PSP_ beside _PlayStation_).
+- **Species stay apart when the table names them** — _Caméléon_, _Gecko_
+  beside _Lézard_ — but _Serpent_ absorbs every snake in _Reptiles_, which
+  held six beside it and has a _Serpents_ theme of its own.
+
+`black-square-bank.test.ts` refuses two answers of an authored theme opening
+on the same French word unless `FIRST_WORDS_SHARED_ON_PURPOSE` names it — the
+word being the theme's own (_Sauce_, _Mer_) or a coincidence (_Corée_).
+
 ## What was measured (26/10/2026, 167 themes)
 
 **Page views cannot judge a theme.** Sorted by each theme's third most read
