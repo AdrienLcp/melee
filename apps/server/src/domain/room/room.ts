@@ -113,6 +113,12 @@ export type Room = {
   /** `null` between the host closing their tab and reclaiming the room. */
   hostSessionId: SessionId | null
   /**
+   * Every dropped seat whose `RECONNECT_GRACE_MS` ended by this time has been
+   * shown away on the screens. What keeps the `presence` deadline from firing
+   * again once it has run, since a seat still away still has its grace ended.
+   */
+  presenceAnnouncedUntil: number
+  /**
    * The room's own secret, minted with it and handed to whoever created it. It
    * never reaches a room view: `room-view.ts` projects neither this nor
    * `hostSessionId`, and the only frame carrying it travels the other way.

@@ -1,4 +1,7 @@
-import { ABANDONED_SEAT_MS } from '@melee/core/room/seat-presence'
+import {
+  ABANDONED_SEAT_MS,
+  RECONNECT_GRACE_MS
+} from '@melee/core/room/seat-presence'
 
 import { advanceDueAt, remainingRoundMs } from '@/domain/round/round-service'
 
@@ -22,6 +25,7 @@ export type RoomDeadlineKind =
   | 'answer'
   | 'countdown'
   | 'expiry'
+  | 'presence'
   | 'round'
   | 'seats'
 
@@ -55,10 +59,12 @@ export const roomDeadlines = ({
       ? roundDeadline({ isDrawing, now, room })
       : null
   const seats = seatDeadline(room)
+  const presence = presenceDeadline(room)
 
   return [
     ...(round === null ? [] : [round]),
     ...(seats === null ? [] : [seats]),
+    ...(presence === null ? [] : [presence]),
     ...(hasConnections
       ? []
       : [
@@ -124,6 +130,22 @@ const roundDeadline = ({
       return null
     }
   }
+}
+
+/**
+ * When the next dropped seat stops being expected: the screens grey it then,
+ * and a round it was holding up may have nobody left to wait for.
+ */
+const presenceDeadline = (room: Room): RoomDeadline | null => {
+  const graceEndsAt = [...room.players.values()]
+    .filter((participant) => !participant.isConnected)
+    .flatMap((participant) => participant.disconnectedAt ?? [])
+    .map((leftAt) => leftAt + RECONNECT_GRACE_MS)
+    .filter((endsAt) => endsAt > room.presenceAnnouncedUntil)
+
+  return graceEndsAt.length === 0
+    ? null
+    : { at: Math.min(...graceEndsAt), kind: 'presence' }
 }
 
 const seatDeadline = (room: Room): RoomDeadline | null => {

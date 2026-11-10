@@ -15,6 +15,12 @@ import {
   waitFor
 } from './room-harness'
 
+vi.mock('@melee/core/room/seat-presence', async () => {
+  const { seatPresenceWithoutGrace } = await import('./room-harness')
+
+  return seatPresenceWithoutGrace()
+})
+
 vi.mock('@/infrastructure/music/deezer-client', async () => {
   const { deezerClientStub } = await import('./room-harness')
 

@@ -36,8 +36,8 @@ import {
 import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 
 /** A room stored before the evening kept a history of what it heard. */
-type StoredRoom = Omit<Room, 'trackHistory'> &
-  Partial<Pick<Room, 'trackHistory'>>
+type StoredRoom = Omit<Room, 'presenceAnnouncedUntil' | 'trackHistory'> &
+  Partial<Pick<Room, 'presenceAnnouncedUntil' | 'trackHistory'>>
 
 const ROOM_KEY = 'room'
 
@@ -120,6 +120,7 @@ export class RoomObject extends DurableObject<Env> {
         ...stored,
         ...games,
         players: withSeatPieces(stored.players),
+        presenceAnnouncedUntil: stored.presenceAnnouncedUntil ?? 0,
         round: stored.round === null ? null : withHoldFields(stored.round),
         trackHistory: stored.trackHistory ?? NOTHING_HEARD
       })

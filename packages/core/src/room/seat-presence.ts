@@ -14,6 +14,9 @@
  *
  * Short, because the cost the other way is a room waiting on somebody who has
  * genuinely gone — but longer than the blink it is there to absorb.
+ *
+ * It is also when the screens first show the seat away: a phone closes its
+ * socket the moment its player glances at another app.
  */
 export const RECONNECT_GRACE_MS = 15_000
 

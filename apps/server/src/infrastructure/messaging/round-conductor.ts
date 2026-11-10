@@ -30,6 +30,7 @@ import {
   atlasContent,
   blindtestContent,
   closeRound,
+  everyoneIsDone,
   finishGame,
   holdRoundClock,
   isFinalRound,
@@ -934,6 +935,18 @@ const runDeadline = (
       return beginRound(engine, { heldUntil: room.round?.advancesAt ?? null })
     }
 
+    case 'presence': {
+      room.presenceAnnouncedUntil = now
+
+      if (isWaitingOnlyOnAnswers(room) && everyoneIsDone(room, now)) {
+        closeRound(room, now)
+      }
+
+      publishRoom(engine)
+
+      return
+    }
+
     case 'seats': {
       releaseSeats(engine, now)
 
@@ -947,6 +960,25 @@ const runDeadline = (
       return
     }
   }
+}
+
+/**
+ * The rounds a `player.answer` closes the moment the last expected seat has
+ * answered. A sheet closes item by item or on its clock, and a buzzer or a
+ * spoken round on the host's word, so a seat dropping out never ends one.
+ */
+const isWaitingOnlyOnAnswers = (room: Room): boolean => {
+  const round = room.round
+
+  return (
+    round !== null &&
+    room.phase === 'playing' &&
+    round.mode.kind !== 'buzzer' &&
+    round.mode.kind !== 'spoken' &&
+    round.content.kind !== 'slate' &&
+    round.content.kind !== 'petitbac' &&
+    round.isPaused !== true
+  )
 }
 
 /**

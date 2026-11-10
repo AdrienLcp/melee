@@ -16,6 +16,17 @@ one part.
   deploy that changes what the server and the screens say to each other, a
   screen still on the old version used to stop on “This page is out of date”;
   it now fetches the new one and takes its seat back, points and all.
+- `[Shared]` **A glance at another app no longer marks a player away.** A
+  phone cuts its connection the moment its player switches app, and every
+  screen used to grey the seat at once. The seat is now shown away only once
+  it has been gone fifteen seconds — the time the round already waits for it
+  — and a round left with nobody else to wait for ends then rather than on
+  its clock.
+- `[Game]` **Coming back to the game reconnects at once.** A screen brought
+  back to the front, or back on a network, used to wait out a delay that grew
+  while it sat hidden, up to eight seconds; it now reconnects straight away,
+  and replaces a connection that died while the phone slept rather than
+  waiting for the phone to notice.
 
 - `[Shared]` **A better answer always scores more than a faster one.** The
   speed bonus now goes to a perfect answer alone — a pin inside the country,

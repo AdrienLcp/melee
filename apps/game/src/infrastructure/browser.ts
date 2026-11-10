@@ -95,6 +95,29 @@ export const canGoFullscreen = (): boolean =>
 
 export const isFullscreen = (): boolean => document.fullscreenElement !== null
 
+/**
+ * The page coming back in front of somebody — shown again, restored from the
+ * back-forward cache, or back on a network. A phone suspends a page it hides,
+ * so each is a moment its connections may have died without a word.
+ */
+export const onReturnToForeground = (listener: () => void): (() => void) => {
+  const onVisibilityChange = (): void => {
+    if (document.visibilityState === 'visible') {
+      listener()
+    }
+  }
+
+  document.addEventListener('visibilitychange', onVisibilityChange)
+  window.addEventListener('pageshow', listener)
+  window.addEventListener('online', listener)
+
+  return () => {
+    document.removeEventListener('visibilitychange', onVisibilityChange)
+    window.removeEventListener('pageshow', listener)
+    window.removeEventListener('online', listener)
+  }
+}
+
 /** Leaving by Escape or the browser's own control is announced here too. */
 export const onFullscreenChange = (listener: () => void): (() => void) => {
   document.addEventListener('fullscreenchange', listener)

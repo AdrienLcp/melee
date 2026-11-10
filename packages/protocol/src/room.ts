@@ -418,6 +418,11 @@ export const publicPlayerSchema = z.object({
    */
   head: pawnHeadSchema,
   id: playerIdSchema,
+  /**
+   * `false` once the seat's screen has been gone `RECONNECT_GRACE_MS`, never
+   * sooner: a phone switched to another app closes its socket at once, and a
+   * seat greyed for a glance at a message is a false alarm at the table.
+   */
   isConnected: z.boolean(),
   /**
    * Back at the table between two rounds — said by the seat itself, shown on

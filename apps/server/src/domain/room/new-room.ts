@@ -44,6 +44,7 @@ export const newRoom = ({
     playedContentIds: new Set(),
     playedLetters: [],
     players: new Map(),
+    presenceAnnouncedUntil: now,
     round: null,
     settings: roomSettingsFor({ games, locale }),
     sound: { silentClip: null, speaker: null, volume: null },

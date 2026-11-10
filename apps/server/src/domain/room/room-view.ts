@@ -19,6 +19,7 @@ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import { tallyBallots } from '@melee/core/mostlikely/tally'
 import { playedPerEntry } from '@melee/core/room/next-game'
+import { isStillExpected } from '@melee/core/room/seat-presence'
 import { isBlankAnswer } from '@melee/core/round/answer-groups'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { pointsFor } from '@melee/core/scoring/verdict'
@@ -356,7 +357,7 @@ const toBaseView = ({
   isPaused: room.round?.isPaused === true,
   isWallConnected,
   phase: room.phase,
-  players: toPublicPlayers(room),
+  players: toPublicPlayers({ now, room }),
   round:
     room.round === null
       ? null
@@ -392,7 +393,13 @@ const yourVerdictIn = ({
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
       null)
 
-const toPublicPlayers = (room: Room): PublicPlayer[] => {
+const toPublicPlayers = ({
+  now,
+  room
+}: {
+  now: number
+  room: Room
+}): PublicPlayer[] => {
   const seatBoards = toSeatBoards(room)
 
   return [...room.players.values()].map((participant) => ({
@@ -400,7 +407,7 @@ const toPublicPlayers = (room: Room): PublicPlayer[] => {
     colour: participant.colour,
     head: participant.head,
     id: participant.id,
-    isConnected: participant.isConnected,
+    isConnected: isStillExpected(participant, now),
     isReady: participant.isReady,
     nickname: participant.nickname,
     score: participant.score

@@ -24,7 +24,11 @@ import {
   estimateClockOffset
 } from '@melee/core/time/clock-sync'
 
-import { replaceScreen, socketOrigin } from '@/infrastructure/browser'
+import {
+  onReturnToForeground,
+  replaceScreen,
+  socketOrigin
+} from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import {
   isOurOwnMalformedFrame,
@@ -95,6 +99,13 @@ const OPENING_PING_SPACING_MS = 250
 const PING_INTERVAL_MS = 5_000
 const RECONNECT_BASE_MS = 500
 const RECONNECT_CEILING_MS = 8_000
+/**
+ * How long a socket that still says it is open has to answer a ping once the
+ * page is back in front. A phone resuming a suspended page can hand back a
+ * socket whose connection died while it slept, and the browser only notices
+ * when the operating system gives up on it, seconds later.
+ */
+const RESUME_PROBE_MS = 2_000
 
 /**
  * Owns the socket, the reconnect policy and the clock handshake. It is the only
@@ -146,6 +157,8 @@ export const useRoomSocket = ({
     let attempt = 0
     let reconnectTimer: number | undefined
     let pingTimer: number | undefined
+    let probeTimer: number | undefined
+    let lastHeardAt = 0
     const openingPingTimers: number[] = []
 
     const ping = (socket: WebSocket): void => {
@@ -171,6 +184,7 @@ export const useRoomSocket = ({
 
       socket.addEventListener('open', () => {
         attempt = 0
+        lastHeardAt = nowMs()
         setSocketStatus('open')
         setError(null)
         // Everything the hello carries is read here rather than when the effect
@@ -211,6 +225,8 @@ export const useRoomSocket = ({
       })
 
       socket.addEventListener('message', (event) => {
+        lastHeardAt = nowMs()
+
         if (typeof event.data !== 'string') {
           return
         }
@@ -288,12 +304,17 @@ export const useRoomSocket = ({
       })
 
       socket.addEventListener('close', () => {
+        // A torn-down or replaced socket closes after its successor has
+        // opened, and its status would overwrite the live one with a false
+        // reconnecting. A refusal set its own status, inside the screen it
+        // replaces.
+        if (disposed || socketRef.current !== socket) {
+          return
+        }
+
         window.clearInterval(pingTimer)
 
-        // A torn-down socket closes after its successor has opened, and its
-        // status would overwrite the live one with a false reconnecting.
-        // A refusal set its own status, inside the screen it replaces.
-        if (disposed || giveUp) {
+        if (giveUp) {
           return
         }
 
@@ -320,12 +341,59 @@ export const useRoomSocket = ({
       connect()
     }
 
+    const replaceSocket = (): void => {
+      const stale = socketRef.current
+
+      window.clearTimeout(reconnectTimer)
+      window.clearInterval(pingTimer)
+      socketRef.current = null
+      stale?.close()
+      connect()
+    }
+
+    // The backoff grew while the page sat hidden, every attempt refused by a
+    // phone that suspends what nobody looks at: waiting it out made a player
+    // coming back watch up to eight seconds of nothing.
+    const reconnectNow = (): void => {
+      if (disposed || giveUp) {
+        return
+      }
+
+      attempt = 0
+      window.clearTimeout(probeTimer)
+
+      const socket = socketRef.current
+
+      if (
+        socket === null ||
+        socket.readyState === WebSocket.CLOSING ||
+        socket.readyState === WebSocket.CLOSED
+      ) {
+        replaceSocket()
+
+        return
+      }
+
+      const probedAt = nowMs()
+
+      ping(socket)
+      probeTimer = window.setTimeout(() => {
+        if (socketRef.current === socket && lastHeardAt < probedAt) {
+          replaceSocket()
+        }
+      }, RESUME_PROBE_MS)
+    }
+
+    const stopWatchingForeground = onReturnToForeground(reconnectNow)
+
     connect()
 
     return () => {
       disposed = true
       reconnectRef.current = null
+      stopWatchingForeground()
       window.clearTimeout(reconnectTimer)
+      window.clearTimeout(probeTimer)
       window.clearInterval(pingTimer)
 
       for (const timer of openingPingTimers) {

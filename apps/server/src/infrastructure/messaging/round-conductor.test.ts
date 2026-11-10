@@ -4,9 +4,17 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { HostTrack } from '@melee/protocol/track'
 
 import { generateHostToken } from '@melee/core/room/host-token'
+import {
+  ABANDONED_SEAT_MS,
+  RECONNECT_GRACE_MS
+} from '@melee/core/room/seat-presence'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
+import {
+  joinAsPlayer,
+  markPlayerDisconnected
+} from '@/domain/room/room-service'
 import {
   finishGame,
   openRound,
@@ -358,5 +366,75 @@ describe('a clip replaced before its round starts', () => {
     await replaceUnplayableClip(engine, { reporter: null, roundId })
 
     expect(trackIdOf(engine.room)).toBe(FIRST_TRACK.id)
+  })
+})
+
+describe('a seat whose screen went away', () => {
+  const roomWithADroppedSeat = () => {
+    const clock = { now: OPENED_AT }
+    const frames: string[] = []
+    const wakes: (number | null)[] = []
+    const room = newRoom({
+      code: 'ABCD',
+      games: ['blindtest'],
+      hostToken: generateHostToken(),
+      locale: 'fr',
+      now: OPENED_AT
+    })
+    const joined = joinAsPlayer({
+      askedPiece: null,
+      newPlayerId: 'player-zoe',
+      nickname: 'Zoe',
+      now: OPENED_AT,
+      room,
+      sessionId: 'session-zoe'
+    })
+
+    if (joined.status !== 'success') {
+      throw new Error('the seat should have been taken')
+    }
+
+    markPlayerDisconnected(room, joined.data.id, OPENED_AT)
+
+    const engine = createRoomEngine(room, {
+      connections: {
+        add: () => {},
+        all: () => [
+          {
+            ...host,
+            send: (frame) => {
+              frames.push(frame)
+            }
+          }
+        ],
+        remove: () => {}
+      },
+      discard: () => {},
+      now: () => clock.now,
+      persist: () => {},
+      wakeAt: (wakeAt) => {
+        wakes.push(wakeAt)
+      }
+    })
+
+    commitRoom(engine)
+
+    return { clock, engine, frames, wakes }
+  }
+
+  it('[presence] asks to be woken as the grace runs out', () => {
+    const { wakes } = roomWithADroppedSeat()
+
+    expect(wakes.at(-1)).toBe(OPENED_AT + RECONNECT_GRACE_MS)
+  })
+
+  it('[presence] shows the seat away on that wake, and is not woken for it again', async () => {
+    const { clock, engine, frames, wakes } = roomWithADroppedSeat()
+
+    clock.now = OPENED_AT + RECONNECT_GRACE_MS
+    await wakeRoom(engine)
+
+    expect(frames.at(-1)).toContain('"isConnected":false')
+    expect(wakes.at(-1)).toBe(OPENED_AT + ABANDONED_SEAT_MS)
   })
 })

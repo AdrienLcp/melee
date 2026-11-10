@@ -147,6 +147,23 @@ export const questionBankStub = () => ({
 })
 
 /**
+ * Seat presence with no reconnect grace, for a suite that watches a seat go
+ * away on every screen: the screens are told only once the grace has run out,
+ * and the socket suites have no clock to move past fifteen real seconds.
+ */
+export const seatPresenceWithoutGrace = async () => {
+  const actual = await vi.importActual<
+    typeof import('@melee/core/room/seat-presence')
+  >('@melee/core/room/seat-presence')
+
+  return {
+    ...actual,
+    isStillExpected: (seat: { isConnected: boolean }) => seat.isConnected,
+    RECONNECT_GRACE_MS: 0
+  }
+}
+
+/**
  * A `vi.mock` factory may not close over anything the test file declares, so
  * the stub is built here and imported from inside the factory.
  */
