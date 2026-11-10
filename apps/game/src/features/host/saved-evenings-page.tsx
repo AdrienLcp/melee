@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Button as AriaButton, Form } from 'react-aria-components'
 
 import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
@@ -12,6 +12,7 @@ import {
 } from '@melee/core/room/saved-evening'
 
 import { Button } from '@/presentation/components/button'
+import { CopyButton } from '@/presentation/components/copy-button'
 import {
   ChevronRightIcon,
   CrossIcon,
@@ -24,6 +25,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 import { EveningPage } from './evening-page'
 import { SavedEveningsTransfer } from './saved-evenings-transfer'
 import { useArrivedLater } from './use-arrived-later'
+import { useEveningLinks } from './use-evening-links'
 
 import './saved-evenings.sass'
 
@@ -122,6 +124,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const [keptWhenOpened] = useState(
     () => new Set(evenings.map((evening) => evening.name))
   )
+  const links = useEveningLinks(evenings)
 
   return (
     <EveningPage onBack={onBack}>
@@ -194,6 +197,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
                   hasArrived={!keptWhenOpened.has(evening.name)}
                   isRunnable={canRun}
                   key={evening.name}
+                  link={links.get(evening.name) ?? null}
                   onForget={onForget}
                   onRun={onRun}
                 />
@@ -212,10 +216,13 @@ const SavedEveningRow: React.FC<{
   /** Kept while the page was open, so it rises in rather than standing there already. */
   hasArrived: boolean
   isRunnable: boolean
+  /** The link it is shared by, or `null` until it is written. */
+  link: string | null
   onForget: (name: string) => void
   onRun: (evening: SavedEvening) => void
-}> = ({ evening, hasArrived, isRunnable, onForget, onRun }) => {
+}> = ({ evening, hasArrived, isRunnable, link, onForget, onRun }) => {
   const translate = useTranslate()
+  const nameId = useId()
   const spines = spinesOf(evening.lineUp)
   const games = [...new Set(spines.map(({ kind }) => kind))]
     .map((game) => translate(gameNameKey(game)))
@@ -240,11 +247,19 @@ const SavedEveningRow: React.FC<{
             <span key={id} style={{ '--spine': `var(--spine-${kind})` }} />
           ))}
         </span>
-        <span className='name'>{evening.name}</span>
+        <span className='name' id={nameId}>
+          {evening.name}
+        </span>
         <span className='detail'>
           {games} · {rounds}
         </span>
       </AriaButton>
+      <CopyButton
+        aria-describedby={nameId}
+        isDisabled={link === null}
+        label='invite.copyLink'
+        value={link ?? ''}
+      />
       <Button
         aria-label={translate('host.saved.forget', { name: evening.name })}
         className='forget'

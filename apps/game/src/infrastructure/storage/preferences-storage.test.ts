@@ -10,6 +10,10 @@ import {
 } from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
+import {
+  eveningCarriedBy,
+  eveningFragmentOf
+} from '@melee/core/room/evening-link'
 import type { RecentTable } from '@melee/core/room/recent-tables'
 
 import {
@@ -326,6 +330,29 @@ describe('savedEveningSchema', () => {
       lineUpDeals: ['both', 'both'],
       name: 'Friday',
       roundCount: 8,
+      runningOrder: []
+    })
+  })
+
+  it('[saved-evening] reads a shared link back, an entry an older build set differently kept as its game', async () => {
+    const fragment = await eveningFragmentOf({
+      lineUp: [
+        DEFAULT_BLINDTEST_SETTINGS,
+        { ...DEFAULT_QUIZ_SETTINGS, roundDurationMs: 1 }
+      ],
+      lineUpDeals: [],
+      name: 'Chez Léa',
+      roundCount: 12,
+      runningOrder: []
+    })
+
+    expect(
+      savedEveningSchema.safeParse(await eveningCarriedBy(fragment)).data
+    ).toEqual({
+      lineUp: [DEFAULT_BLINDTEST_SETTINGS, 'quiz'],
+      lineUpDeals: [],
+      name: 'Chez Léa',
+      roundCount: 12,
       runningOrder: []
     })
   })

@@ -1,0 +1,163 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // One lid and its presses in a column the width of a lid on the home row
+  // grown once, centred on whatever screen followed the link.
+  .evening-link-page
+    @include layout.screen
+
+    align-items: center
+    justify-content: center
+
+    > *
+      width: min(100%, 30rem)
+
+  .shared-lid
+    @include piece.card(var(--radius-l))
+
+    --band-height: 3.5rem
+
+    display: grid
+    overflow: hidden
+
+    .band
+      display: flex
+      height: var(--band-height)
+
+    .segment
+      align-items: center
+      background: var(--spine)
+      color: var(--spine-ink)
+      container-type: inline-size
+      display: grid
+      flex: 1
+      justify-items: center
+      min-width: 0
+
+      .game-icon
+        height: 1.5rem
+        width: 1.5rem
+
+        @container (width < 2.25rem)
+          display: none
+
+    .body
+      display: grid
+      gap: var(--space-s)
+      padding: var(--space-l) var(--space-l) var(--space-m)
+
+    .name
+      @include typography.lid-name
+
+      font-size: clamp(var(--text-2xl), calc(var(--stage-unit) * 9), var(--text-4xl))
+      hyphens: auto
+      margin: 0
+      padding-block-end: 0.08em
+      text-wrap: balance
+
+    .games
+      @include typography.caption-strong
+
+      font-size: var(--text-m)
+      margin: 0
+      text-wrap: pretty
+
+    .foot
+      @include typography.caption-strong
+
+      border-block-start: var(--hairline)
+      margin: 0
+      padding: var(--space-s) var(--space-l)
+
+  .evening-link-page
+    .presses
+      display: grid
+      gap: var(--space-s)
+
+    // The star fills and the word under it changes as the line-up is kept:
+    // both words share one cell, so the press keeps its width either way.
+    .save
+      > svg
+        transition: fill var(--transition-base, 0s) var(--ease-in)
+
+      .labels
+        display: grid
+
+        > span
+          grid-area: 1 / 1
+
+      .off
+        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5)
+
+      .on
+        opacity: 0
+        transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in)
+
+      &[data-selected]
+        > svg
+          fill: currentColor
+          transition: fill var(--transition-base, 0s) var(--ease-out)
+
+        .off
+          opacity: 0
+          transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in)
+
+        .on
+          opacity: 1
+          transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5)
+
+    // Held in its place while hidden, so the line arriving moves nothing.
+    .saved-where
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin: 0
+      opacity: 0
+      text-align: center
+      text-wrap: pretty
+      transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)
+      visibility: hidden
+
+      &[data-shown='true']
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+        visibility: visible
+
+    .refusal
+      @include typography.caption-strong
+
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+      background: var(--danger)
+      color: var(--danger-ink)
+      margin: 0
+      padding: var(--space-2xs) var(--space-s)
+      text-align: center
+      width: auto
+
+      @include text-box.trimmed-block(var(--space-2xs))
+
+    .unreadable
+      align-items: center
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+      text-align: center
+
+      h1
+        @include typography.lid-name
+
+        font-size: clamp(var(--text-2xl), calc(var(--stage-unit) * 8), var(--text-4xl))
+        margin: 0
+        text-wrap: balance
+
+      p
+        @include typography.body
+
+        color: var(--ink-muted)
+        margin: 0
+        text-wrap: pretty

@@ -52,6 +52,13 @@ const pageFor = {
     }),
     module: 'src/features/credits/credits-page.tsx'
   },
+  [paths.evening]: {
+    lazy: async () => ({
+      Component: (await import('@/features/evening-link/evening-link-page'))
+        .EveningLinkPage
+    }),
+    module: 'src/features/evening-link/evening-link-page.tsx'
+  },
   [paths.game]: {
     lazy: async () => ({
       Component: (await import('@/features/shelf/game-home-page')).GameHomePage

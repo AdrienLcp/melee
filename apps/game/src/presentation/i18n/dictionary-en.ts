@@ -603,6 +603,21 @@ export const EN_DICTIONARY = defineDictionary({
       squareKilometres: '{value}\u00a0km²'
     }
   },
+  /** The page a line-up shared as a link opens on. */
+  eveningLink: {
+    documentTitle: '{name} — Mêlée',
+    open: 'Open a table',
+    save: 'Save',
+    saved: 'Saved',
+    /** Under the save press once the line-up is kept. */
+    savedWhere: 'It waits on the home page, under “Your line-ups”.',
+    unreadable: {
+      description:
+        'The link was probably cut short on its way here. Ask for the whole of it again.',
+      documentTitle: 'Link cut short — Mêlée',
+      title: 'This line-up won’t open'
+    }
+  },
   higherlower: {
     answer: {
       counter: 'Pair {index:number} of {count:number}',

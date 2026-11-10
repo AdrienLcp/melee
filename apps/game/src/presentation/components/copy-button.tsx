@@ -20,7 +20,10 @@ const OUTCOME_KEYS: Record<Exclude<CopyState, 'idle'>, PlainTranslationKey> = {
   failed: 'invite.copyFailed'
 }
 
-type CopyButtonProps = {
+type CopyButtonProps = Pick<
+  React.ComponentProps<typeof Button>,
+  'aria-describedby' | 'isDisabled'
+> & {
   /** Names what is copied — the code, the link — never a bare *copy*. */
   label: PlainTranslationKey
   /** What lands in the clipboard. */
@@ -41,7 +44,11 @@ type CopyButtonProps = {
  * link sit side by side on the invitation and a host sending one has to know
  * which they are holding.
  */
-export const CopyButton: React.FC<CopyButtonProps> = ({ label, value }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({
+  label,
+  value,
+  ...props
+}) => {
   const translate = useTranslate()
   const [state, setState] = useState<CopyState>('idle')
 
@@ -67,6 +74,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ label, value }) => {
 
   return (
     <Button
+      {...props}
       className='copy-button'
       data-outcome={state === 'idle' ? undefined : state}
       onPress={() => {

@@ -22,7 +22,9 @@ import {
   type RoomCode
 } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
+import { EVENING_PAGE_ROUTE } from '@melee/protocol/routes'
 
+import { eveningFragmentOf } from '@melee/core/room/evening-link'
 import {
   type ReadyMadeLineUpId,
   readyMadeLineUpIds
@@ -49,6 +51,7 @@ import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage
  */
 export const localizedPaths = {
   credits: '/:locale/credits',
+  evening: EVENING_PAGE_ROUTE,
   game: '/:locale/:game',
   home: '/:locale',
   legal: '/:locale/legal'
@@ -126,6 +129,22 @@ export const homePathFor = (locale: Locale): string =>
 
 export const creditsPathFor = (locale: Locale): string =>
   pathFor(paths.credits, { locale })
+
+/**
+ * A kept evening as a link anybody can open: the page that lays it out, with
+ * the evening in the fragment, which no request carries to a server.
+ */
+export const eveningUrlFor = async ({
+  evening,
+  locale
+}: {
+  evening: SavedEvening
+  locale: Locale
+}): Promise<string> =>
+  `${location.origin}${pathFor(paths.evening, { locale })}#${await eveningFragmentOf(evening)}`
+
+/** What the address holds from its `#` on, or nothing. */
+export const useLocationHash = (): string => useLocation().hash
 
 export const legalPathFor = (locale: Locale): string =>
   pathFor(paths.legal, { locale })

@@ -13,6 +13,12 @@ one part.
   default settings and how an evening is put together, and `prepare_evening`
   checks the evening it composed and answers with a link that carries it. It
   opens no room and keeps nothing: the evening rides in the link.
+- `[Game]` **A line-up opens from a link.** The link an assistant hands back,
+  or one copied from a saved line-up, lands on the line-up drawn as its lid:
+  _Open a table_ starts it, _Save_ keeps it among your line-ups on the home
+  page. A link cut short says so and leads home.
+- `[Game]` **Copy the link** beside each saved line-up sends it to another
+  host, who opens it on their own screen.
 
 ### Improvements
 

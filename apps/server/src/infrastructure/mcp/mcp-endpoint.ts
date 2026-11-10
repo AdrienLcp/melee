@@ -14,7 +14,7 @@ const JSON_RPC_ERROR_CODES = {
 } as const
 
 const SERVER_INSTRUCTIONS =
-  'Melee is a shelf of party games for one room: one screen hosts and shows a QR code, everyone else plays on their own phone. These tools compose an evening — which games, on which settings, in which order — and hand back a link that opens it. Call describe_games first, then prepare_evening, and give the person the link to open on the screen that will host.'
+  'Melee is a shelf of party games for one room: one screen hosts and shows a QR code, everyone else plays on a screen of their own. These tools compose an evening — which games, on which settings, in which order — and hand back a link that opens it. Call describe_games first, then prepare_evening, and give the person the link to open on the screen that will host.'
 
 const requestSchema = z.object({
   id: z.union([z.string(), z.number()]),

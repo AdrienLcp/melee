@@ -93,6 +93,7 @@
     .evenings
       border: var(--stroke-thin) solid var(--rule)
       border-radius: var(--radius-m)
+      container: saved-evenings / inline-size
       list-style: none
       margin: 0
       overflow: hidden
@@ -100,9 +101,33 @@
 
       > li
         align-items: center
-        display: flex
-        gap: var(--space-2xs)
+        column-gap: var(--space-2xs)
+        display: grid
+        grid-template-areas: 'evening copy forget'
+        grid-template-columns: minmax(0, 1fr) auto auto
         padding-inline-end: var(--space-xs)
+
+        > .evening
+          grid-area: evening
+
+        > .copy-button
+          grid-area: copy
+
+        > .forget
+          grid-area: forget
+
+        // Beside the name, the copy press left it a few letters on a narrow
+        // panel: it goes under the evening it copies instead.
+        @container saved-evenings (width < 26rem)
+          grid-template-areas: 'evening forget' 'copy forget'
+          grid-template-columns: minmax(0, 1fr) auto
+
+          > .evening
+            padding-block-end: var(--space-2xs)
+
+          > .copy-button
+            justify-self: start
+            margin: 0 0 var(--space-xs) var(--space-s)
 
         &[data-arrived]
           animation: page-enter var(--transition-base, 0s) var(--ease-out)
@@ -123,7 +148,6 @@
       color: var(--ink)
       cursor: pointer
       display: grid
-      flex: 1
       gap: var(--space-2xs) 0
       min-height: var(--control-height)
       min-width: 0

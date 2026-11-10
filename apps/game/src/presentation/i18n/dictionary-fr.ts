@@ -568,6 +568,19 @@ export const FR_DICTIONARY = defineDictionary({
       squareKilometres: '{value}\u00a0km²'
     }
   },
+  eveningLink: {
+    documentTitle: '{name} — Mêlée',
+    open: 'Ouvrir une table',
+    save: 'Enregistrer',
+    saved: 'Enregistrée',
+    savedWhere: 'Elle t’attend sur l’accueil, dans « Tes parties ».',
+    unreadable: {
+      description:
+        'Le lien a sans doute été coupé en route. Redemande-le en entier.',
+      documentTitle: 'Lien coupé — Mêlée',
+      title: 'Cette partie ne s’ouvre pas'
+    }
+  },
   higherlower: {
     answer: {
       counter: 'Paire {index:number} sur {count:number}',

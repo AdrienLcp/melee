@@ -1,7 +1,6 @@
 # 64 — An evening shared by link, and a door for an assistant
 
-**In progress** — asked 10/11/2026. Session 1 (schema, link codec, `/mcp`)
-landed; session 2 (the evening page and _copy the link_) is next.
+**Done** 10/11/2026 — asked and landed the same day, in two sessions.
 
 ## Why
 
@@ -63,8 +62,20 @@ nowhere to put what it composes. Two holes, one feature:
 ## Sessions
 
 1. **done** — `eveningSchema`, the link codec, `/mcp` with both tools, tests.
-2. The evening page at `/:locale/evening` (impeccable first): the evening's
-   name, its games and its length, _Open a room_ (`openLineUp`) and _Keep it_
-   (into the saved evenings), and the state for a link this build cannot
-   read. _Copy the link_ beside each saved evening. Filmed, both palettes,
-   phone width. Then `docs/mcp.md`: the URL to give an assistant.
+2. **done** — the evening page, _Copy the link_, `docs/mcp.md`.
+   - **The page draws the line-up as the lid it becomes** on the home row —
+     the band of its entries, its name, its games, its length — with _Open a
+     table_ (`openLineUp`, the lids' own door) and _Save_ under it. _Save_ is
+     a toggle, as the lid's star is: pressed again it forgets the line-up,
+     and a line under it says where a kept one waits. Keeping one replaces a
+     kept line-up of the same name, as importing does. A missing, cut or
+     later-shaped fragment shows _This line-up won't open_ and the way home.
+     Not prerendered: a link's page carries nothing a crawler should index,
+     so it takes the SPA fallback like a room.
+   - **A link is written before the press.** Deflating takes a promise, and a
+     clipboard written after one has left the press that allowed it — Safari
+     refuses — so the saved line-ups write every link ahead
+     (`useEveningLinks`) and _Copy the link_ waits disabled until its own is.
+   - **The first commit never reached staging**: the Worker's types refused
+     `TextEncoder` bytes as a `Blob` part, which the local build had not run.
+     A `Blob` takes the JSON text and `Response.text()` reads it back.
