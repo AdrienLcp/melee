@@ -8,6 +8,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Every planned game is titled by its game alone.** A blind test
+  or a quiz planned twice put the setting telling it apart in its title
+  (_Blind test · Film scores_) while every other row kept its settings in the
+  grey line under it; every row now does that, and the grey line tells the
+  three blind tests of _Spéciale musique_ apart. A number tells two rows apart
+  only when their settings read the same. The next-round press and a round's
+  heading still say which one (_Blind test · 70s_).
 - `[Game]` **A game planned twice is numbered in the host's list alone.**
   _Shades 1_ and _Shades 2_ tell the host's rows apart, but on the wall, a
   player's screen or a round's heading the number read as the round count;

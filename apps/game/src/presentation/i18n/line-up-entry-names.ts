@@ -359,14 +359,6 @@ const settingsOf = ({
   }
 }
 
-type EntryNaming = {
-  /** Set when nothing but a number tells it from a sibling, which `name` does not carry. */
-  isNumbered: boolean
-  name: string
-  /** The settings `name` carries after the game's, which the row's detail leaves out. */
-  settingsSaid: string[]
-}
-
 type LineUp = {
   lineUp: readonly GameSettings[]
   translate: Translate
@@ -396,23 +388,28 @@ const levelNamingOf = ({
   return levelOf({ difficulty, translate })
 }
 
-const entryNamings = ({ lineUp, translate }: LineUp): EntryNaming[] => {
+/**
+ * What each entry of the line-up is called where it is named on its own — a
+ * stage, a seat's screen, the press opening it — in its order: the game's name
+ * alone while it is ticked once, and with as much of its settings as it takes
+ * to tell it from the game's other entries once it is not — *Blind test · Film
+ * scores* beside *Blind test · Charts*. Never numbered: on its own, a number
+ * says no setting and reads as the round count.
+ */
+export const lineUpEntryNames = ({ lineUp, translate }: LineUp): string[] => {
   const details = lineUp.map((entry) => namingOf({ entry, translate }))
   const levels = lineUp.map((entry) => levelNamingOf({ entry, translate }))
-  const told = (at: number, depth: number): string[] =>
-    (details[at] ?? []).slice(0, depth)
   const said = (at: number, depth: number): string =>
-    told(at, depth).join(' · ')
+    (details[at] ?? []).slice(0, depth).join(' · ')
 
   return lineUp.map((entry, at) => {
     const game = translate(gameNameKey(entry.kind))
-    const gameAlone = { isNumbered: false, name: game, settingsSaid: [] }
     const siblings = lineUp.flatMap((other, index) =>
       index !== at && other.kind === entry.kind ? [index] : []
     )
 
     if (siblings.length === 0) {
-      return gameAlone
+      return game
     }
 
     const depth = [1, 2].find(
@@ -422,18 +419,14 @@ const entryNamings = ({ lineUp, translate }: LineUp): EntryNaming[] => {
     )
 
     if (depth !== undefined) {
-      return {
-        isNumbered: false,
-        name: `${game} · ${said(at, depth)}`,
-        settingsSaid: told(at, depth)
-      }
+      return `${game} · ${said(at, depth)}`
     }
 
     if (
       said(at, 1) === '' &&
       siblings.every((index) => said(index, 1) !== '')
     ) {
-      return gameAlone
+      return game
     }
 
     const level = levels[at] ?? null
@@ -442,100 +435,83 @@ const entryNamings = ({ lineUp, translate }: LineUp): EntryNaming[] => {
       level !== null &&
       siblings.every((index) => (levels[index] ?? null) !== level)
     ) {
-      return {
-        isNumbered: false,
-        name: `${game} · ${level}`,
-        settingsSaid: [level]
-      }
+      return `${game} · ${level}`
     }
 
     const detail = said(at, 1)
 
-    return {
-      isNumbered: true,
-      name: detail === '' ? game : `${game} · ${detail}`,
-      settingsSaid: told(at, 1)
-    }
+    return detail === '' ? game : `${game} · ${detail}`
   })
 }
-
-const listedNamesOf = ({
-  namings,
-  translate
-}: {
-  namings: readonly EntryNaming[]
-  translate: Translate
-}): string[] =>
-  namings.map(({ isNumbered, name }, at) =>
-    isNumbered
-      ? translate('round.entryNumbered', {
-          name,
-          number: namings
-            .slice(0, at + 1)
-            .filter((other) => other.isNumbered && other.name === name).length
-        })
-      : name
-  )
-
-/**
- * What each entry of the line-up is called in the host's list of them, in its
- * order: the game's name alone while it is ticked once, and with as much of
- * its settings as it takes to tell it from the game's other entries once it
- * is not — *Blind test · Film scores* beside *Blind test · Charts*. Two
- * entries nothing tells apart are numbered, in the list alone: named on its
- * own, on a stage or a press, the number says no setting and reads as the
- * round count.
- */
-export const lineUpEntryNames = ({ lineUp, translate }: LineUp): string[] =>
-  listedNamesOf({ namings: entryNamings({ lineUp, translate }), translate })
 
 const entryNameAt = ({
   at,
   lineUp,
   translate
 }: LineUp & { at: number }): string | undefined =>
-  entryNamings({ lineUp, translate })[at]?.name
+  lineUpEntryNames({ lineUp, translate })[at]
 
 /** An entry as the setup lists it. */
 export type LineUpEntrySummary = {
-  /** What the line-up calls the entry: `lineUpEntryNames`, the game alone while it is ticked once. */
+  /**
+   * The game's name, numbered only beside a row of the same game whose
+   * settings read the same — *Shades 1*, *Shades 2* — since nothing else
+   * tells the two apart.
+   */
   name: string
   /**
-   * Every setting of the entry its name does not already say, round length
-   * last, in one line; `null` when nothing is left to say.
+   * The entry where no settings follow its name — a control's label, the
+   * notice undoing its removal: its line-up name, told from its siblings by a
+   * setting, and numbered like `name` beside a twin.
+   */
+  nameAlone: string
+  /**
+   * Every setting of the entry, round length last, in one line; `null` when
+   * the entry has none to say.
    */
   settings: string | null
 }
 
-/** Each entry of the line-up as the setup lists it, in its order. */
+/**
+ * Each entry of the line-up as the setup lists it, in its order: every row
+ * titled by its game alone and told from its siblings by its settings, the
+ * way a game ticked once already is.
+ */
 export const lineUpEntrySummaries = ({
   lineUp,
   translate
 }: LineUp): LineUpEntrySummary[] => {
-  const namings = entryNamings({ lineUp, translate })
-  const names = listedNamesOf({ namings, translate })
+  const names = lineUpEntryNames({ lineUp, translate })
   const eveningLevel = eveningDifficultyOf(lineUp)
   // The evening's strip already says a level every game agrees on.
   const levelSaidAbove =
     eveningLevel === null || eveningLevel === 'custom'
       ? null
       : levelOf({ difficulty: eveningLevel, translate })
-
-  return lineUp.map((entry, at) => {
-    const settingsSaid = [
-      ...(namings[at]?.settingsSaid ?? []),
-      ...(levelSaidAbove !== null && difficultyOf(entry) !== null
-        ? [levelSaidAbove]
-        : [])
-    ]
+  const lines = lineUp.map((entry) => {
     const settings = settingsOf({ entry, translate }).filter(
-      (setting) => !settingsSaid.includes(setting)
+      (setting) => difficultyOf(entry) === null || setting !== levelSaidAbove
     )
 
-    return {
-      name: names[at] ?? translate(gameNameKey(entry.kind)),
-      settings: settings.length > 0 ? settings.join(SETTINGS_SEPARATOR) : null
-    }
+    return settings.length > 0 ? settings.join(SETTINGS_SEPARATOR) : null
+  })
+
+  return lineUp.map((entry, at) => {
+    const game = translate(gameNameKey(entry.kind))
+    const named = names[at] ?? game
+    const settings = lines[at] ?? null
+    const twins = lineUp.flatMap((other, index) =>
+      other.kind === entry.kind && lines[index] === settings ? [index] : []
+    )
+    const numbered = (name: string): string =>
+      twins.length < 2
+        ? name
+        : translate('round.entryNumbered', {
+            name,
+            number: twins.indexOf(at) + 1
+          })
+
+    return { name: numbered(game), nameAlone: numbered(named), settings }
   })
 }
 

@@ -102,7 +102,7 @@ describe('lineUpEntryNames', () => {
     ).toEqual(['Quiz · History · Easy', 'Quiz · History · Mixed'])
   })
 
-  it('[line-up] numbers two entries with several picks each', () => {
+  it('[line-up] never numbers two entries nothing else tells apart', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
@@ -112,26 +112,7 @@ describe('lineUpEntryNames', () => {
         ],
         translate
       })
-    ).toEqual(['Quiz 1', 'Quiz 2', 'Quiz · Every subject'])
-  })
-
-  it('[line-up] counts only the entries nothing else tells apart', () => {
-    expect(
-      lineUpEntryNames({
-        lineUp: [
-          blindtest(catalogueOf({ decades: ['1970s'] })),
-          blindtest(catalogueOf({ decades: ['1980s', '1990s'] })),
-          blindtest(catalogueOf({ charts: [152] })),
-          blindtest(catalogueOf({ charts: [132, 116] }))
-        ],
-        translate
-      })
-    ).toEqual([
-      'Blind test · 70s',
-      'Blind test 1',
-      'Blind test · Rock',
-      'Blind test 2'
-    ])
+    ).toEqual(['Quiz', 'Quiz', 'Quiz · Every subject'])
   })
 
   it('[line-up] calls a catalogue mixing strands by the game alone', () => {
@@ -144,7 +125,7 @@ describe('lineUpEntryNames', () => {
         ],
         translate
       })
-    ).toEqual(['Blind test 1', 'Blind test 2', 'Blind test · 80s'])
+    ).toEqual(['Blind test', 'Blind test', 'Blind test · 80s'])
   })
 
   it('[line-up] says an empty decade list plays every decade', () => {
@@ -196,7 +177,7 @@ describe('lineUpEntrySummaries', () => {
     ])
   })
 
-  it('[line-up] titles a row by the name the line-up gives it', () => {
+  it('[line-up] titles every row by its game alone', () => {
     expect(
       lineUpEntrySummaries({
         lineUp: [
@@ -206,10 +187,39 @@ describe('lineUpEntrySummaries', () => {
         ],
         translate
       }).map((summary) => summary.name)
-    ).toEqual(['Blind test', 'Quiz 1', 'Quiz 2'])
+    ).toEqual(['Blind test', 'Quiz', 'Quiz'])
   })
 
-  it('[line-up] leaves out of a row’s detail what its name already says', () => {
+  it('[line-up] numbers two rows of one game only when their settings read the same', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [
+          DEFAULT_TIMELINE_SETTINGS,
+          { ...DEFAULT_TIMELINE_SETTINGS, difficulty: 'easy' },
+          DEFAULT_TIMELINE_SETTINGS
+        ],
+        translate
+      })
+    ).toEqual([
+      {
+        name: 'Before & after 1',
+        nameAlone: 'Before & after 1',
+        settings: 'Mixed · 45s'
+      },
+      {
+        name: 'Before & after',
+        nameAlone: 'Before & after · Easy',
+        settings: 'Easy · 45s'
+      },
+      {
+        name: 'Before & after 2',
+        nameAlone: 'Before & after 2',
+        settings: 'Mixed · 45s'
+      }
+    ])
+  })
+
+  it('[line-up] tells two rows of one game apart by their settings alone', () => {
     expect(
       lineUpEntrySummaries({
         lineUp: [
@@ -223,12 +233,36 @@ describe('lineUpEntrySummaries', () => {
         translate
       })
     ).toEqual([
-      { name: 'Quiz · History', settings: 'Mixed · English · 30s' },
-      { name: 'Quiz · Geography', settings: 'Mixed · English · 30s' },
-      { name: 'Blind test · 80s', settings: 'Easy · 20s' },
-      { name: 'Blind test · 90s', settings: 'Easy · 20s' },
-      { name: 'Slate · 5 things to guess', settings: null },
-      { name: 'Slate · 10 things to guess', settings: null }
+      {
+        name: 'Quiz',
+        nameAlone: 'Quiz · History',
+        settings: 'History · Mixed · English · 30s'
+      },
+      {
+        name: 'Quiz',
+        nameAlone: 'Quiz · Geography',
+        settings: 'Geography · Mixed · English · 30s'
+      },
+      {
+        name: 'Blind test',
+        nameAlone: 'Blind test · 80s',
+        settings: '80s · Easy · 20s'
+      },
+      {
+        name: 'Blind test',
+        nameAlone: 'Blind test · 90s',
+        settings: '90s · Easy · 20s'
+      },
+      {
+        name: 'Slate',
+        nameAlone: 'Slate · 5 things to guess',
+        settings: '5 things to guess'
+      },
+      {
+        name: 'Slate',
+        nameAlone: 'Slate · 10 things to guess',
+        settings: '10 things to guess'
+      }
     ])
   })
 
@@ -238,7 +272,13 @@ describe('lineUpEntrySummaries', () => {
         lineUp: [{ ...quiz(['history']), language: 'en' }],
         translate
       })
-    ).toEqual([{ name: 'Quiz', settings: 'History · Mixed · English · 30s' }])
+    ).toEqual([
+      {
+        name: 'Quiz',
+        nameAlone: 'Quiz',
+        settings: 'History · Mixed · English · 30s'
+      }
+    ])
   })
 })
 

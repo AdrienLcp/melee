@@ -90,6 +90,7 @@ export const EveningDrawPage: React.FC<EveningDrawPageProps> = ({
         {drawable.map(({ at, entry }) => {
           const deal = deals[at]
           const name = summaries[at]?.name ?? ''
+          const nameAlone = summaries[at]?.nameAlone ?? ''
           const detail = summaries[at]?.settings
 
           return (
@@ -120,7 +121,9 @@ export const EveningDrawPage: React.FC<EveningDrawPageProps> = ({
               </AriaButton>
               {deal === 'chance' ? (
                 <Button
-                  aria-label={translate('host.evening.draw.takeOut', { name })}
+                  aria-label={translate('host.evening.draw.takeOut', {
+                    name: nameAlone
+                  })}
                   className='take-out'
                   isDisabled={!canTakeOut}
                   onPress={() => {
@@ -142,7 +145,7 @@ export const EveningDrawPage: React.FC<EveningDrawPageProps> = ({
               ) : (
                 <Switch
                   aria-label={translate('host.evening.draw.inDrawNamed', {
-                    name
+                    name: nameAlone
                   })}
                   className='in-draw'
                   isDisabled={!isLive}

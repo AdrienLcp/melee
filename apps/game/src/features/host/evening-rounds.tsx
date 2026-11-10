@@ -445,8 +445,8 @@ const OnlyRound: React.FC<{
       <EntryMenu
         actions={actions}
         at={0}
-        label={summary?.name ?? ''}
-        name={summary?.name ?? ''}
+        label={summary?.nameAlone ?? ''}
+        name={summary?.nameAlone ?? ''}
         row={null}
       />
     </li>
@@ -547,10 +547,10 @@ const OrderedRounds: React.FC<{
       {(round) => {
         const entry = lineUp[round.at]
         const summary = summaries[round.at]
-        const name = summary?.name ?? ''
+        const nameAlone = summary?.nameAlone ?? ''
         const number = round.roundAt + 1
         const roundName = translate('host.evening.roundNamed', {
-          name,
+          name: nameAlone,
           number
         })
 
@@ -565,7 +565,10 @@ const OrderedRounds: React.FC<{
           >
             {isEditable ? (
               <AriaButton
-                aria-label={translate('host.evening.drag', { name, number })}
+                aria-label={translate('host.evening.drag', {
+                  name: nameAlone,
+                  number
+                })}
                 className='band grip'
                 slot='drag'
               >
@@ -576,7 +579,7 @@ const OrderedRounds: React.FC<{
               <span className='band'>{number}</span>
             )}
             {entry !== undefined && <GameIcon game={entry.kind} />}
-            <span className='name'>{name}</span>
+            <span className='name'>{summary?.name}</span>
             {summary?.settings != null && (
               <span className='detail'>{summary.settings}</span>
             )}
@@ -585,7 +588,7 @@ const OrderedRounds: React.FC<{
               actions={actions}
               at={round.at}
               label={roundName}
-              name={name}
+              name={nameAlone}
               row={{ count: rounds.length, index: rounds.indexOf(round) }}
             />
           </GridListItem>
