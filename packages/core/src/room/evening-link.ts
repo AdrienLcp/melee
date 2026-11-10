@@ -8,18 +8,13 @@ const EVENING_LINK_VERSION = '1'
 
 const VERSION_SEPARATOR = '.'
 
-const throughStream = async ({
-  bytes,
+const throughStream = ({
+  blob,
   stream
 }: {
-  bytes: Uint8Array<ArrayBuffer>
+  blob: Blob
   stream: CompressionStream | DecompressionStream
-}): Promise<Uint8Array<ArrayBuffer>> =>
-  new Uint8Array(
-    await new Response(
-      new Blob([bytes]).stream().pipeThrough(stream)
-    ).arrayBuffer()
-  )
+}): Response => new Response(blob.stream().pipeThrough(stream))
 
 const base64UrlOf = (bytes: Uint8Array): string =>
   btoa(Array.from(bytes, (byte) => String.fromCharCode(byte)).join(''))
@@ -40,10 +35,12 @@ const bytesOfBase64Url = (text: string): Uint8Array<ArrayBuffer> =>
 export const eveningFragmentOf = async (
   evening: SavedEvening
 ): Promise<string> => {
-  const deflated = await throughStream({
-    bytes: new TextEncoder().encode(JSON.stringify(evening)),
-    stream: new CompressionStream('deflate-raw')
-  })
+  const deflated = new Uint8Array(
+    await throughStream({
+      blob: new Blob([JSON.stringify(evening)]),
+      stream: new CompressionStream('deflate-raw')
+    }).arrayBuffer()
+  )
 
   return `${EVENING_LINK_VERSION}${VERSION_SEPARATOR}${base64UrlOf(deflated)}`
 }
@@ -68,11 +65,11 @@ export const eveningCarriedBy = async (fragment: string): Promise<unknown> => {
 
   try {
     const inflated = await throughStream({
-      bytes: bytesOfBase64Url(payload),
+      blob: new Blob([bytesOfBase64Url(payload)]),
       stream: new DecompressionStream('deflate-raw')
-    })
+    }).text()
 
-    return JSON.parse(new TextDecoder().decode(inflated))
+    return JSON.parse(inflated)
   } catch {
     return null
   }
