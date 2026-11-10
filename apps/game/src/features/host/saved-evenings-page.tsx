@@ -2,11 +2,11 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as AriaButton, Form } from 'react-aria-components'
 
+import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import {
   isSameName,
-  SAVED_EVENING_NAME_MAX_LENGTH,
   type SavedEntry,
   type SavedEvening
 } from '@melee/core/room/saved-evening'
@@ -165,7 +165,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
                 isReplacing ? translate('host.saved.replaces') : undefined
               }
               label={translate('host.saved.name')}
-              maxLength={SAVED_EVENING_NAME_MAX_LENGTH}
+              maxLength={EVENING_NAME_MAX_LENGTH}
               onChange={setName}
               value={name}
             />

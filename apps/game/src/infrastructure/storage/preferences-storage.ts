@@ -16,6 +16,7 @@ import {
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS
 } from '@melee/protocol/board'
+import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
 import {
   gameKindSchema,
   gameSettingsSchema,
@@ -49,11 +50,7 @@ import { readyMadeLineUpIds } from '@melee/core/room/ready-made-line-ups'
 import type { PlayedLineUp, RecentTable } from '@melee/core/room/recent-tables'
 import { withCurrentGameKinds } from '@melee/core/room/renamed-game-kinds'
 import { withQuizSwitchAsLevel } from '@melee/core/room/retired-quiz-switch'
-import {
-  SAVED_EVENING_NAME_MAX_LENGTH,
-  type SavedEntry,
-  type SavedEvening
-} from '@melee/core/room/saved-evening'
+import type { SavedEntry, SavedEvening } from '@melee/core/room/saved-evening'
 
 import {
   parseStoredWithSchema,
@@ -467,7 +464,7 @@ const playedLineUpOf = (
  */
 export const savedEveningSchema = storedLineUpSchema
   .extend({
-    name: z.string().trim().min(1).max(SAVED_EVENING_NAME_MAX_LENGTH)
+    name: z.string().trim().min(1).max(EVENING_NAME_MAX_LENGTH)
   })
   .transform(
     ({ name, ...stored }): SavedEvening => ({

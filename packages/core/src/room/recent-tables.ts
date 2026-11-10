@@ -1,3 +1,4 @@
+import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
 import type { ShelvedGame } from '@melee/protocol/game'
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
@@ -10,10 +11,7 @@ import {
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor
 } from './ready-made-line-ups'
-import {
-  SAVED_EVENING_NAME_MAX_LENGTH,
-  type SavedEvening
-} from './saved-evening'
+import type { SavedEvening } from './saved-evening'
 import { isShelvedGame } from './shelved-game'
 
 /** How many tables this device remembers having run. */
@@ -215,7 +213,7 @@ export const savedEveningOfRecent = ({
   recent: RecentTable
 }): SavedEvening => ({
   ...playedLineUpOf(recent),
-  name: name.trim().slice(0, SAVED_EVENING_NAME_MAX_LENGTH)
+  name: name.trim().slice(0, EVENING_NAME_MAX_LENGTH)
 })
 
 /** The games a line-up plays, once each, in its order: what a room is opened on. */

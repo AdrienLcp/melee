@@ -1,3 +1,4 @@
+import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import {
@@ -10,9 +11,6 @@ import { fittedToAloud } from './line-up'
 import { dealsHold } from './line-up-deals'
 import { type GameSetup, movedToEntry, openedSetup } from './room-settings'
 import { orderHolds } from './running-order'
-
-/** The longest name an evening is saved under, in characters. */
-export const SAVED_EVENING_NAME_MAX_LENGTH = 40
 
 /** How many evenings one host keeps at most. */
 export const SAVED_EVENINGS_MAX = 20
@@ -50,7 +48,7 @@ export const savedEveningOf = ({
 }): SavedEvening => ({
   lineUp: settings.lineUp,
   lineUpDeals: settings.lineUpDeals,
-  name: name.trim().slice(0, SAVED_EVENING_NAME_MAX_LENGTH),
+  name: name.trim().slice(0, EVENING_NAME_MAX_LENGTH),
   roundCount: settings.roundCount,
   runningOrder: settings.runningOrder
 })

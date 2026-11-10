@@ -19,6 +19,15 @@ export const API_ROUTES = {
 
 export const ROOM_SOCKET_ROUTE = `${SOCKET_PREFIX}/rooms/:code` as const
 
+/** Where an assistant reaches the Model Context Protocol endpoint. */
+export const MCP_ROUTE = '/mcp'
+
+/**
+ * The page a shared evening opens on. The evening rides in the fragment, which
+ * no request carries, so the server that wrote the link never reads it back.
+ */
+export const EVENING_PAGE_ROUTE = '/:locale/evening'
+
 type RouteParam<TRoute extends string> =
   TRoute extends `${string}:${infer Param}/${infer Rest}`
     ? Param | RouteParam<Rest>

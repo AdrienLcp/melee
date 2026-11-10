@@ -20,7 +20,7 @@ import {
   wallPairingCodeSchema,
   wallPairingPollQuerySchema
 } from '@melee/protocol/http'
-import { API_PREFIX, API_ROUTES } from '@melee/protocol/routes'
+import { API_PREFIX, API_ROUTES, MCP_ROUTE } from '@melee/protocol/routes'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { normalizeRoomCode } from '@melee/core/room/room-code'
@@ -29,6 +29,7 @@ import { env } from '@/env'
 import { invalidInput } from '@/infrastructure/http/error-responses'
 import type { RoomDoor, WallPairings } from '@/infrastructure/http/http-ports'
 import { logger } from '@/infrastructure/logging/logger'
+import { answerMcp } from '@/infrastructure/mcp/mcp-endpoint'
 import { fetchTracksFor } from '@/infrastructure/music/deezer-client'
 import {
   type CataloguePool,
@@ -107,6 +108,25 @@ export const registerHttpRoutes = ({
   // Only reached when the browser is not behind the Vite dev proxy; in dev the
   // app and the API share an origin, so nothing here fires.
   app.use(`${API_PREFIX}/*`, cors({ origin: env.allowedOrigins }))
+
+  // Open to every origin: it holds no credential and opens no room, and an
+  // assistant may run in a browser.
+  app.use(MCP_ROUTE, cors({ origin: '*' }))
+
+  app.post(MCP_ROUTE, async (context) => {
+    const answer = await answerMcp({
+      body: await context.req.text(),
+      origin: new URL(context.req.url).origin
+    })
+
+    return answer.status === 202
+      ? context.body(null, 202)
+      : context.json(answer.reply, answer.status)
+  })
+
+  app.on(['GET', 'DELETE'], MCP_ROUTE, (context) =>
+    context.body(null, 405, { Allow: 'POST' })
+  )
 
   app.get(API_ROUTES.health, (context) => {
     const body: HealthResponse = {

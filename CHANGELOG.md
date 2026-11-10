@@ -6,6 +6,14 @@ one part.
 
 ## Unreleased
 
+### Features
+
+- `[Server]` **An assistant can compose an evening.** `/mcp` speaks the Model
+  Context Protocol: `describe_games` tells an assistant every game, its
+  default settings and how an evening is put together, and `prepare_evening`
+  checks the evening it composed and answers with a link that carries it. It
+  opens no room and keeps nothing: the evening rides in the link.
+
 ### Improvements
 
 - `[Game]` **Every planned game is titled by its game alone.** A blind test
