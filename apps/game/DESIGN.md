@@ -975,7 +975,7 @@ under every answer mode a verdict is owed in.
     revealing one ticket costs the ticket's room. The press unfolds the rest
     **in place** (`useUnfoldingList`): the list eases from its height to its
     new one on `base` `--ease-out` while the revealed tickets arrive one
-    after the other (`ticket-arrives`, a fade and a 0.5rem rise from 0.94,
+    after the other (`page-enter`, a fade and a 0.5rem rise from 0.94,
     `fast` × 0.5 in and `fast` × 0.3 apart), and the focus goes to the first
     of them. _Fewer_ plays it backwards: the tickets leave last first
     (`ticket-leaves`, `--ease-in`), and once each has ended the list closes
@@ -1678,7 +1678,7 @@ bounced. Durations:
   every reveal and a wide console's at every buzz. `none` stays only where
   the arrival is put off until there is something to lay down.
   The host's panel slides in whole from the edge it is docked to
-  (`panel-dock`, its own width and a fade on `slow`, the side read from
+  (`page-enter`, its own width and a fade on `slow`, the side read from
   `--panel-arrival-from`): a rem of travel read as the panel cutting in. Off
   the desk the tab bar docks the same way from its own edge — the foot
   standing up, the side lying down — held off it until the room's first view,
@@ -1736,7 +1736,7 @@ bounced. Durations:
   last one's head. Lifting a pause shows the round again out of
   `display: none`, which restarts its entrances: the sheet left mid-vote is
   laid down again, and that is the intended return. A game's end sets its pawn
-  down first (`pawn-lands`, `fast` × 5) — the winner's on the final board,
+  down first (`page-enter` from 0.5em above at 1.06, `fast` × 5) — the winner's on the final board,
   each player's own beside its place — with the name or the rank rising
   `fast` after it and the line under `fast` × 2; the player's final standings
   follow a beat later (`slow` × 0.6), as at a reveal. A line, a chip or a
@@ -1764,7 +1764,7 @@ bounced. Durations:
   rises the same way, once (`data-arrived`). A round's page opened before the
   room has echoed its entry slides in empty and its content rises as it
   lands, and the game tab's list slides back in from the side its pages leave
-  by (`evening-list-in`, `base`). A
+  by (`page-enter`, `base`). A
   placeholder standing before the room's first view holds the arrival
   (`animation: none` while it stands) so the page is laid down once, over the
   room. Not the player's round chrome: it remounts between framed and
@@ -1846,13 +1846,13 @@ bounced. Durations:
   the way the console does): every case both lengths share travels to its new
   cell, the finish travels with the end of the course (it is keyed as the
   finish, not by its number), and the stage slides to its new gutters. A case
-  only the new length has is set down where it stands (`board-case-laid`,
+  only the new length has is set down where it stands (`tick-stamp`,
   scale 0.6 to 1 on `base` × 1.25, a `fast` beat late), and a case it dropped
   is picked up on `fast`.
 - **A seat back at the table** — its pawn under _Next_ is stamped on
   (`tick-stamp` on `base`) as it stands up from its outline.
 - **The payout** — the player's token set down a beat after the card
-  (`payout-stamp`, scale 1.4 to 1 on `base`).
+  (`tick-stamp`, scale 1.4 to 1 on `base`).
 - **A mark earned** — a box's tick and its order badge, and a copy's check,
   pressed on (`tick-stamp`, scale 0.4 to 1: `base` on a box, `fast` on a
   button). A box's paper and band follow its lift on `base`.
