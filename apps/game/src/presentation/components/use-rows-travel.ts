@@ -146,6 +146,25 @@ const restingLayerOf = (row: HTMLElement): number => {
   return Number.isNaN(layer) ? 0 : layer
 }
 
+const isTravellingInHeight = (row: Element): boolean =>
+  row
+    .getAnimations()
+    .some(
+      ({ effect, id }) =>
+        id === TRAVEL_ID &&
+        effect instanceof KeyframeEffect &&
+        effect.getKeyframes().some((keyframe) => 'height' in keyframe)
+    )
+
+/** A row arriving, leaving or folding a piece open is resized by that motion, never glided. */
+const isMovedOtherwise = (row: Element): boolean =>
+  row
+    .getAnimations({ subtree: true })
+    .some(
+      (animation) =>
+        animation.id !== TRAVEL_ID && animation.playState === 'running'
+    )
+
 const isSameRows = (left: Boxes, right: Boxes): boolean =>
   left.size === right.size && [...left.keys()].every((key) => right.has(key))
 
@@ -200,31 +219,35 @@ const play = ({
 }
 
 /**
- * Stops the rows still travelling and returns how far each stood from its
- * place and how tall it was, so a row caught mid-way by the next draw sets off
- * from where it is.
+ * Stops a row still travelling and returns how far it stood from its place
+ * and how tall it was, so a row caught mid-way by the next draw sets off from
+ * where it is.
  */
+const haltTravelOf = (row: HTMLElement): Halt | null => {
+  const travels = row
+    .getAnimations()
+    .filter((animation) => animation.id === TRAVEL_ID)
+
+  if (travels.length === 0) {
+    return null
+  }
+
+  const shift = new DOMMatrixReadOnly(getComputedStyle(row).transform)
+  const height = row.offsetHeight
+
+  for (const travel of travels) {
+    travel.cancel()
+  }
+
+  return { height, x: shift.m41, y: shift.m42 }
+}
+
 const haltTravels = (list: HTMLElement): Map<string, Halt> =>
   new Map(
     keyedRowsOf(list).flatMap((row) => {
-      const travels = row
-        .getAnimations()
-        .filter((animation) => animation.id === TRAVEL_ID)
+      const halt = haltTravelOf(row)
 
-      if (travels.length === 0) {
-        return []
-      }
-
-      const shift = new DOMMatrixReadOnly(getComputedStyle(row).transform)
-      const height = row.offsetHeight
-
-      for (const travel of travels) {
-        travel.cancel()
-      }
-
-      return [
-        [row.dataset.key ?? '', { height, x: shift.m41, y: shift.m42 }] as const
-      ]
+      return halt === null ? [] : [[row.dataset.key ?? '', halt] as const]
     })
   )
 
@@ -324,6 +347,76 @@ export const useRowsTravel = ({
   const remembered = useRef<Boxes | null>(null)
   const drawnOrder = useRef<string | null>(null)
   const lastDrawn = useRef<Drawn | null>(null)
+  const resizes = useRef<ResizeObserver | null>(null)
+
+  // A row grown or shrunk with no draw — taking its socket's height, a grid
+  // relaid out once a filled socket goes — glides there from the height it was
+  // drawn at, and is where the next draw sets off from. Every other row's
+  // travel runs on.
+  useLayoutEffect(() => {
+    const element = list.current
+
+    if (pace !== 'gather' || element === null) {
+      return
+    }
+
+    const observer = new ResizeObserver(() => {
+      const previous = lastDrawn.current
+      const width = frameOf(element).clientWidth
+
+      if (previous === null) {
+        return
+      }
+
+      const now = measureLaidOut(element)
+      const kept = new Map(now)
+      const before = new Map<string, Box>()
+
+      for (const row of keyedRowsOf(element)) {
+        const key = row.dataset.key ?? ''
+        const drawn = previous.boxes.get(key)
+        const is = now.get(key)
+
+        if (drawn === undefined || is === undefined) {
+          continue
+        }
+
+        if (isTravellingInHeight(row)) {
+          kept.set(key, drawn)
+          continue
+        }
+
+        if (
+          isMovedOtherwise(row) ||
+          Math.abs(drawn.height - is.height) < MIN_TRAVEL_PX
+        ) {
+          continue
+        }
+
+        const shift = haltTravelOf(row)
+
+        before.set(
+          key,
+          shift === null
+            ? drawn
+            : { ...drawn, x: drawn.x + shift.x, y: drawn.y + shift.y }
+        )
+      }
+
+      lastDrawn.current = { boxes: kept, width }
+
+      if (before.size > 0 && Math.abs(previous.width - width) < MIN_TRAVEL_PX) {
+        play({ before, list: element, now, pace })
+      }
+    })
+
+    resizes.current = observer
+
+    return () => {
+      observer.disconnect()
+      resizes.current = null
+    }
+  }, [list, pace])
 
   const travel = useEffectEvent((drawn: string) => {
     const element = list.current
@@ -353,6 +446,10 @@ export const useRowsTravel = ({
           lastDrawn.current = {
             boxes: now,
             width: frameOf(element).clientWidth
+          }
+
+          for (const row of keyedRowsOf(element)) {
+            resizes.current?.observe(row)
           }
 
           if (before !== null) {
