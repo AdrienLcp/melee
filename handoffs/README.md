@@ -12,11 +12,9 @@ delete this README with the last one. The content series shares one plan:
 | Content | 4    | `content-04-timeline-and-slate-keys.md` | content 3  |
 | Content | 5    | `content-05-own-numbers.md`             | content 4  |
 | Content | 6    | `content-06-black-square-themes.md`     | content 5  |
+| Words   | —    | `words-01-screens.md`                   | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the
 dev server the session started itself, and run `pnpm validate` only when no
 other session is running it.
-
-The word games are designed: `docs/plans/66-mystery-word.md`, then
-`docs/plans/67-longest-word.md`.
