@@ -25,6 +25,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TextField } from '@/presentation/components/text-field'
 import { ToggleButton } from '@/presentation/components/toggle-button'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
@@ -135,6 +136,17 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   const closesInMs = deadline?.remainingMs ?? null
   const [closedId, setClosedId] = useState<string | null>(null)
   const hasClosedOnScreen = closesId !== null && closedId === closesId
+  const stoppedBy = content?.stoppedBy ?? null
+  const isStopped = stoppedBy !== null
+  const stopCall = useLastShown<StopCall>(
+    stoppedBy === null
+      ? null
+      : {
+          isYours: stoppedBy === view.youId,
+          seat: view.players.findIndex((player) => player.id === stoppedBy)
+        },
+    isSameStopCall
+  )
 
   useEffect(() => {
     const lines = createLineSender((line, text) => writeLine(line, text))
@@ -176,9 +188,6 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   const isStoppable =
     isFull && answers.every((answer) => isStoppableLine({ answer, letter }))
   const isBarred = content.barredStopperIds.includes(view.youId)
-  const stopper = view.players.findIndex(
-    (player) => player.id === content.stoppedBy
-  )
 
   return (
     <section className='petit-bac-sheet'>
@@ -247,51 +256,66 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
         </ol>
       </div>
 
-      {content.stoppedBy !== null ? (
-        <p className='stop-banner' role='status'>
-          {stopper !== -1 && <Pawn seat={stopper} />}
-          <span>
-            {content.stoppedBy === view.youId
-              ? translate('petitbac.stop.calledByYou')
-              : translate('petitbac.stop.called', {
-                  name: view.players[stopper]?.nickname ?? ''
-                })}
-          </span>
-        </p>
-      ) : isBarred ? (
-        <p className='stop-note'>{translate('petitbac.stop.barred')}</p>
-      ) : (
-        content.stopsWhenFull && (
-          <div className='stop'>
-            <Button
-              isDisabled={
-                !isStoppable || !view.isHostConnected || hasClosedOnScreen
-              }
-              onPress={() => {
-                sender.current?.flush()
-                onStop()
-              }}
-              size='large'
-              variant={isStoppable ? 'filled' : 'outlined'}
-            >
-              {isFull
-                ? translate('petitbac.stop.press')
-                : translate('petitbac.stop.filling', {
-                    count: categories.length,
-                    filled
-                  })}
-            </Button>
-            {isFull && !isStoppable && (
-              <p className='stop-note'>
-                {translate('petitbac.stop.offLetter', { letter })}
-              </p>
-            )}
+      {content.stopsWhenFull && (
+        <div
+          className='stop-cell'
+          data-barred={isBarred || undefined}
+          data-stopped={isStopped || undefined}
+        >
+          <div className='before-stop' inert={isStopped}>
+            <div className='stop' inert={isBarred}>
+              <Button
+                isDisabled={
+                  !isStoppable || !view.isHostConnected || hasClosedOnScreen
+                }
+                onPress={() => {
+                  sender.current?.flush()
+                  onStop()
+                }}
+                size='large'
+                variant={isStoppable ? 'filled' : 'outlined'}
+              >
+                {isFull
+                  ? translate('petitbac.stop.press')
+                  : translate('petitbac.stop.filling', {
+                      count: categories.length,
+                      filled
+                    })}
+              </Button>
+              {isFull && !isStoppable && (
+                <p className='stop-note'>
+                  {translate('petitbac.stop.offLetter', { letter })}
+                </p>
+              )}
+            </div>
+            <p className='stop-note barred' inert={!isBarred}>
+              {translate('petitbac.stop.barred')}
+            </p>
           </div>
-        )
+          <p className='stop-banner' inert={!isStopped} role='status'>
+            {stopCall !== null && stopCall.seat !== -1 && (
+              <Pawn seat={stopCall.seat} />
+            )}
+            {stopCall !== null && (
+              <span>
+                {stopCall.isYours
+                  ? translate('petitbac.stop.calledByYou')
+                  : translate('petitbac.stop.called', {
+                      name: view.players[stopCall.seat]?.nickname ?? ''
+                    })}
+              </span>
+            )}
+          </p>
+        </div>
       )}
     </section>
   )
 }
+
+type StopCall = { isYours: boolean; seat: number }
+
+const isSameStopCall = (left: StopCall, right: StopCall): boolean =>
+  left.isYours === right.isYours && left.seat === right.seat
 
 type PetitBacVoteProps = {
   /** `false` from the socket means the frame was never written. */

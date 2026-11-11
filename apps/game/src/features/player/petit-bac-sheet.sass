@@ -4,6 +4,7 @@
 @use '../../presentation/styles/mark'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/scrollbar'
+@use '../../presentation/styles/swap'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -100,6 +101,12 @@
         &::placeholder
           @include typography.regular
 
+    .stop-cell
+      @include swap.swaps-in-one-cell('> .before-stop', '> .stop-banner', '&[data-stopped]')
+
+    .before-stop
+      @include swap.swaps-in-one-cell('> .stop', '> .barred', '&:is([data-barred] > *)')
+
     .stop
       display: flex
       flex-direction: column
@@ -111,7 +118,6 @@
     .stop-banner
       @include typography.title
 
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       align-items: center
       background: var(--primary)
       border-radius: var(--radius-m)
