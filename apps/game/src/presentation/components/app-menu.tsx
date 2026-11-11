@@ -97,7 +97,9 @@ export const AppMenu: React.FC = () => {
         >
           {connection !== null && <ConnectionDot status={connection.status} />}
           <MenuIcon />
-          <span className='trigger-label'>{translate('menu.label')}</span>
+          <span className='trigger-label'>
+            <span>{translate('menu.label')}</span>
+          </span>
         </ReactAriaButton>
 
         {/* Mounted from the first open on, so a close still plays out. */}

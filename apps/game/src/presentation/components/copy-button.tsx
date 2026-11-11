@@ -51,6 +51,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
 }) => {
   const translate = useTranslate()
   const [state, setState] = useState<CopyState>('idle')
+  const [hasCopied, setHasCopied] = useState(false)
 
   useEffect(() => {
     if (state === 'idle') {
@@ -69,6 +70,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   const copy = async (): Promise<void> => {
     const copied = await copyText(value)
 
+    setHasCopied(true)
     setState(copied.status === 'success' ? 'copied' : 'failed')
   }
 
@@ -76,7 +78,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
     <Button
       {...props}
       className='copy-button'
-      data-outcome={state === 'idle' ? undefined : state}
+      data-outcome={hasCopied ? state : undefined}
       onPress={() => {
         void copy()
       }}
@@ -84,7 +86,9 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       variant='outlined'
     >
       {state === 'copied' ? <CheckIcon /> : <CopyIcon />}
-      {translate(state === 'idle' ? label : OUTCOME_KEYS[state])}
+      <span className='control-label' key={state}>
+        {translate(state === 'idle' ? label : OUTCOME_KEYS[state])}
+      </span>
     </Button>
   )
 }

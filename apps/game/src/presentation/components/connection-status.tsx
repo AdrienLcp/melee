@@ -1,5 +1,6 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
+import { useState } from 'react'
 
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
@@ -34,23 +35,43 @@ type ConnectionStatusProps = {
   status: SocketStatus
 }
 
+/**
+ * The socket's state in words, and its one-way latency while it is open. The
+ * latency stays mounted and folds in and out beside the word, still reading
+ * the last figure while it folds: the figure of a socket that dropped is the
+ * delay of a line that is no longer there.
+ */
 export const ConnectionStatus: React.FC<ConnectionStatusProps> = ({
   clock,
   status
 }) => {
   const translate = useTranslate()
+  const latencyMs = clock === null ? null : Math.round(clock.roundTripMs / 2)
+  const isLatencyShown = status === 'open' && latencyMs !== null
+  const [shownLatencyMs, setShownLatencyMs] = useState(latencyMs)
+
+  if (isLatencyShown && latencyMs !== shownLatencyMs) {
+    setShownLatencyMs(latencyMs)
+  }
 
   return (
     <p className='connection-status'>
       <ConnectionDot status={status} />
-      {translate(connectionStatusKey(status))}
-      {clock !== null && (
-        <span className='latency'>
-          {translate('connection.latency', {
-            milliseconds: Math.round(clock.roundTripMs / 2)
-          })}
+      <span className='said' key={status}>
+        {translate(connectionStatusKey(status))}
+      </span>
+      <span
+        aria-hidden={!isLatencyShown}
+        className='latency'
+        data-shown={isLatencyShown || undefined}
+      >
+        <span>
+          {shownLatencyMs !== null &&
+            translate('connection.latency', {
+              milliseconds: shownLatencyMs
+            })}
         </span>
-      )}
+      </span>
     </p>
   )
 }

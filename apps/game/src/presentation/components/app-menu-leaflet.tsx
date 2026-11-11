@@ -201,31 +201,31 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         one of them: a host who took a seat can give it back without giving up
         the room, which is what makes the three separate scopes worth having.
       */}
-      {leaveSeat !== null && (
+      <HeldPress isOpen={leaveSeat !== null}>
         <Button
           isDisabled={!isLive}
           onPress={() => {
-            leaveSeat()
+            leaveSeat?.()
             onDone()
           }}
           variant='outlined'
         >
           {translate('host.seat.leave')}
         </Button>
-      )}
+      </HeldPress>
 
-      {endGame !== null && (
+      <HeldPress isOpen={endGame !== null}>
         <Button
           isDisabled={!isLive}
           onPress={() => {
-            endGame()
+            endGame?.()
             onDone()
           }}
           variant='outlined'
         >
           {translate('host.endGame')}
         </Button>
-      )}
+      </HeldPress>
 
       <div
         className='close-room'
@@ -258,6 +258,23 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
     </div>
   )
 }
+
+type HeldPressProps = {
+  children: React.ReactNode
+  /** Whether the room asks for the press now. */
+  isOpen: boolean
+}
+
+/**
+ * A press the room asks for only at some moments — a round to reveal, a game
+ * to end — kept mounted and folded open while it asks, so a round moving on
+ * under an open menu folds it away rather than dropping it.
+ */
+const HeldPress: React.FC<HeldPressProps> = ({ children, isOpen }) => (
+  <div className='held-press' data-open={isOpen || undefined} inert={!isOpen}>
+    <div>{children}</div>
+  </div>
+)
 
 /**
  * Offered, never pushed: the front door promises a room with nothing to
@@ -318,7 +335,7 @@ const Fullscreen: React.FC = () => {
       variant='outlined'
     >
       {isActive ? <FullscreenExitIcon /> : <FullscreenEnterIcon />}
-      <span className='name'>
+      <span className='name' key={String(isActive)}>
         {translate(isActive ? 'menu.fullscreen.exit' : 'menu.fullscreen.enter')}
       </span>
     </Button>
@@ -413,31 +430,31 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
 
           {/* First, because it is the one thing a seated host opens the
                   menu mid-round to press. */}
-          {revealRound !== null && (
+          <HeldPress isOpen={revealRound !== null}>
             <Button
               isDisabled={connection?.status !== 'open'}
               onPress={() => {
-                revealRound()
+                revealRound?.()
                 close()
               }}
               variant='outlined'
             >
               {translate('host.reveal')}
             </Button>
-          )}
+          </HeldPress>
 
-          {pauseRound !== null && (
+          <HeldPress isOpen={pauseRound !== null}>
             <Button
               isDisabled={connection?.status !== 'open'}
               onPress={() => {
-                pauseRound()
+                pauseRound?.()
                 close()
               }}
               variant='outlined'
             >
               {translate('room.pause.press')}
             </Button>
-          )}
+          </HeldPress>
 
           {/*
                 The room's volume, on the console alone: it reaches whichever
@@ -610,18 +627,20 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
             </p>
           )}
 
-          {build !== null && (
+          {/* Asked for as the menu opens, so it unfolds once the answer lands. */}
+          <div className='build-fold' data-open={build !== null || undefined}>
             <p className='build'>
-              {build.committedAt === null
-                ? translate('menu.build', { build: build.commit })
-                : translate('menu.buildDated', {
-                    build: build.commit,
-                    date: new Intl.DateTimeFormat(locale, {
-                      dateStyle: 'medium'
-                    }).format(build.committedAt)
-                  })}
+              {build !== null &&
+                (build.committedAt === null
+                  ? translate('menu.build', { build: build.commit })
+                  : translate('menu.buildDated', {
+                      build: build.commit,
+                      date: new Intl.DateTimeFormat(locale, {
+                        dateStyle: 'medium'
+                      }).format(build.committedAt)
+                    }))}
             </p>
-          )}
+          </div>
         </>
       )}
     </Leaflet>

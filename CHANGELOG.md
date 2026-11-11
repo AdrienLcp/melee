@@ -101,7 +101,14 @@ one part.
   under what they answer and fold away still saying it, the hint under a field
   trading places with its error the same way; naming yourself before playing
   right away unfolds the name field as the line it replaces folds, and a
-  loading line and the menu's latency fade in.
+  loading line fades in. The menu's latency unfolds once it is measured and
+  folds away when the connection drops; its _Menu_ word and the ≡ that takes
+  its place during a round trade places instead of swapping in one frame; the
+  menu's _reveal_, _pause_, _leave my seat_ and _end the game_ fold away when
+  the round moves on under it, and its build line unfolds when it lands. A
+  toggle fills and empties instead of switching colour at once, a copy button's
+  _Copied_ fades in and back out, and an open section's content fades as it
+  folds.
 
 - `[Game]` **A player's screen no longer cuts from one moment to the next.**
   The lobby giving way to the count, the round giving way to its answer, the

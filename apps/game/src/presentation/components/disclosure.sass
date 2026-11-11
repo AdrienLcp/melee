@@ -65,13 +65,26 @@
     // `display: none` — so the box survives and the row has something to
     // animate. `allow-discrete` is what holds that hiding back until the row
     // has finished closing, instead of blanking the content on the first frame.
+    //
+    // Opening grows the row, then fades the content in; closing fades it and
+    // then closes the row, on the curve reversed — each written in the state
+    // it ends on.
     .panel
       display: grid
       grid-template-rows: 1fr
       transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), content-visibility var(--transition-base, 0s) allow-discrete
 
+      > .panel-content
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
       &[hidden]
         grid-template-rows: 0fr
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), content-visibility calc(var(--transition-base, 0s) + var(--transition-fast, 0s) * 0.5) allow-discrete
+
+        > .panel-content
+          opacity: 0
+          transition: opacity var(--transition-fast, 0s) var(--ease-in)
 
     .panel-content
       display: flex

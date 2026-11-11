@@ -38,11 +38,33 @@
     display: inline-flex
     gap: var(--space-xs)
 
+    // A new state takes the old one's place where it stands.
+    .said
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+
+    // Folded at no width after the word, the gap before it eaten too: one
+    // grid column going `0fr → 1fr`, opened on arrival and faded before it
+    // closes, the way a tick comes and goes.
     .latency
       @include typography.clock-reading
 
-      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+      display: inline-grid
+      grid-template-columns: 0fr
+      margin-inline-start: calc(-1 * var(--space-xs))
+      opacity: 0
       text-transform: none
+      transition: opacity var(--transition-base, 0s) var(--ease-in), grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-inline-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+
+      > span
+        min-inline-size: 0
+        overflow-x: clip
+        white-space: nowrap
+
+      &[data-shown]
+        grid-template-columns: 1fr
+        margin-inline-start: 0
+        opacity: 1
+        transition: grid-template-columns var(--transition-base, 0s) var(--ease-out), margin-inline-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
 @keyframes connection-pulse
   50%

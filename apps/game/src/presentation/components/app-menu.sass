@@ -1,3 +1,5 @@
+@use '../styles/focus'
+@use '../styles/fold'
 @use '../styles/invitation'
 @use '../styles/layout'
 @use '../styles/typography'
@@ -60,12 +62,17 @@
       :root:has(.player-page.framed, .host-console-page.framed, .player-page.playing > .player-round.most-likely-round, .host-console-page > .stage.playing[data-most-likely='voting']) &
         align-items: flex-start
         inset-inline: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left))) auto
+        // A corner is not a length a transition can travel between, so the
+        // menu fades in at the one it lands in, and the rule it leaves for
+        // plays `page-enter` again on the way back.
+        animation: swap-in var(--transition-base, 0s) var(--ease-out)
 
       // Not in the podium, whose four tiles are in its middle column: the
       // menu keeps the bar's corner. Matched as deep as the rule above.
       :root:has(.host-podium .podium-round) &
         align-items: flex-end
         inset-inline: auto max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
 
     // It rises with the page it is chrome for, which the shell mounts it
     // beside: standing from the first frame, it was there before the page
@@ -136,23 +143,46 @@
         box-shadow: 0 0 0 var(--chipboard)
         transform: translateY(var(--edge))
 
-      // Held at 52px by its floor, so the trim only lowers the caps onto the
-      // centre the dot beside them already sits on.
+      // One grid column going `1fr → 0fr`, because a word's width is not a
+      // length a transition can reach. Folded, the word is still read: it
+      // only stops being drawn.
       .trigger-label
-        text-box: trim-both cap alphabetic
+        display: grid
+        grid-template-columns: 1fr
+        transition: grid-template-columns var(--transition-base, 0s) var(--ease-out), margin-inline-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
+        // Held at 52px by its floor, so the trim only lowers the caps onto
+        // the centre the dot beside them already sits on. Clipped across
+        // only, so an accent above the caps is not cut by the trim.
+        > span
+          min-inline-size: 0
+          overflow-x: clip
+          text-box: trim-both cap alphabetic
+
+      // Folded at no width under the word, the gap after it eaten too.
       .menu-icon
-        display: none
+        flex: none
+        margin-inline-end: calc(-1 * (1.25em + var(--space-xs)))
+        opacity: 0
+        scale: 0.6
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
       // On the screen of four tiles the trigger is the icon alone, the label
       // kept for whoever cannot see it: every pixel of that line is the
-      // round's.
+      // round's. A round dealt and revealed swaps the two where they stand,
+      // the word fading before its room closes as the icon's opens.
       :root:has(.player-page.framed) &
         .menu-icon
-          display: block
+          margin-inline-end: 0
+          opacity: 1
+          scale: 1
+          transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
         .trigger-label
-          @include accessibility.visually-hidden
+          grid-template-columns: 0fr
+          margin-inline-start: calc(-1 * var(--space-xs))
+          opacity: 0
+          transition: grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-inline-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-base, 0s) var(--ease-in)
 
   // A host's menu on a landscape phone holds the invitation, the points,
   // the seat, the preferences and three exits, and ran off the bottom with the
@@ -191,6 +221,21 @@
       display: flex
       flex-direction: column
       gap: var(--space-s)
+
+    // A press the round or the room asks for only now, in the dialog's column
+    // or the exits'. Its own column inside, so the press keeps the width of
+    // every other one, and a clip that gives the focus ring its room.
+    .held-press
+      @include fold.opens-in-column(var(--held-press-gap, var(--space-m)))
+
+      > *
+        display: flex
+        flex-direction: column
+        overflow-clip-margin: focus.$ring-reach
+
+    // Entering fullscreen renames the press where it stands.
+    .fullscreen .name
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
 
     .become-wall,
     .fullscreen,
@@ -244,6 +289,8 @@
     // other than to the preferences above them: they are one group, and one
     // ladder — a seat, a game, a room.
     .exits
+      --held-press-gap: var(--space-s)
+
       display: flex
       flex-direction: column
       gap: var(--space-s)
@@ -298,6 +345,9 @@
           transition: opacity var(--transition-base, 0s) var(--ease-out), visibility var(--transition-base, 0s)
           visibility: visible
 
+    .build-fold
+      @include fold.opens-in-column(var(--space-m))
+
     .build
       @include typography.label
 
@@ -324,5 +374,5 @@
     .credit + .credit
       margin-block-start: calc(var(--space-m) * -0.85)
 
-    .credit + .build
+    .credit + .build-fold[data-open]
       margin-block-start: calc(var(--space-m) * -0.5)

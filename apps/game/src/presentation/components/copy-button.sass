@@ -1,3 +1,11 @@
 @layer components
-  .copy-button[data-outcome] svg
-    animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
+  // Every outcome takes the label's place where it stands, and so does the
+  // label coming back: the glyph stamped in, the words faded over. Nothing
+  // moves before the first press, so a page laying the button down plays
+  // nothing of its own.
+  .copy-button[data-outcome]
+    svg
+      animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
+
+    .control-label
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
