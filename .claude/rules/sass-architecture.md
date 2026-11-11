@@ -395,8 +395,13 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   `LeavesInPlace` (`presentation/components/`): a
   `display: contents` wrapper keeps it the line's item and still hears its
   `animationend`, and its width goes to and from `auto` under
-  `interpolate-size: allow-keywords`, `white-space: nowrap` held in both
-  keyframes or the text wraps as the room narrows.
+  `interpolate-size: allow-keywords`, its height with it, and one line held
+  in both keyframes (`white-space` and `flex-wrap`) or the text wraps as the
+  room narrows — a rule outside them loses to the piece's own `text-wrap`.
+  The reset's `text-wrap` on a paragraph inside would refuse the inherited
+  line, so the piece's descendants take `text-wrap-mode: inherit` at no
+  specificity. A piece whose settled layout is two lines stacks them for good
+  (the narrow console's black-square turn), or it jumps as the hold ends.
 - **A block laid over the page is positioned, never left in its flow.** The
   wall's _host away_ band, a flex item between header and stage, became a
   grid row on every phase laid out as a grid and pushed the round under the

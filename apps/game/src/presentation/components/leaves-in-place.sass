@@ -19,15 +19,29 @@
 
       animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, piece-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
       pointer-events: none
-      white-space: nowrap
 
+  // The reset sets `text-wrap` on every paragraph and heading, which would
+  // let them wrap under the one line the keyframes hold the piece to. At no
+  // specificity, so a piece's own rules still decide how it wraps.
+  :where(.leaves-in-place > *) *
+    text-wrap-mode: inherit
+
+// One line from the first frame to the last, held in the keyframes because
+// they outrank a piece's own `text-wrap: balance` or `flex-wrap: wrap`: a
+// piece wrapping as its width runs out grew the header by a line, and the
+// line it took back when it left jumped everything under it. Its height goes
+// with its width, so a header it held alone opens and closes with it.
 @keyframes piece-opens
   from
+    block-size: 0
+    flex-wrap: nowrap
     inline-size: 0
     margin-inline-end: var(--piece-gap-closed)
     overflow: clip
     white-space: nowrap
   to
+    block-size: auto
+    flex-wrap: nowrap
     inline-size: auto
     margin-inline-end: 0
     overflow: clip
@@ -35,9 +49,15 @@
 
 @keyframes piece-closes
   from
+    block-size: auto
+    flex-wrap: nowrap
     inline-size: auto
     overflow: clip
+    white-space: nowrap
   to
+    block-size: 0
+    flex-wrap: nowrap
     inline-size: 0
     margin-inline-end: var(--piece-gap-closed)
     overflow: clip
+    white-space: nowrap

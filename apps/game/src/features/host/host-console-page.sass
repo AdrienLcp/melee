@@ -403,6 +403,30 @@
             .next-round-name
               margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
 
+  // A piece opens on one line, and the keeper wrapping under the team as the
+  // opening ended was a jump: on a narrow console the two always stand one
+  // over the other, the keeper's name ending on an ellipsis.
+  @include layout.narrow
+    .host-console-page > header:not(.round-chrome) > .leaves-in-place > .black-square-turn
+      display: inline-grid
+      grid-template-columns: auto minmax(0, 1fr)
+
+      > .pawn
+        grid-row: span 2
+
+      // A block rather than the inline flex, which leaves its text an
+      // anonymous item that no ellipsis reaches.
+      > .keeper
+        display: block
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+        > .pawn
+          display: inline-block
+          margin-inline-end: var(--space-2xs)
+          vertical-align: middle
+
   // A seat's own spoken round says whose turn it is on the stage, so the
   // header's copy is a repeat.
   .host-console-page:has(> .stage :is(.black-square-spoken, .black-square-keeper)) > header > .leaves-in-place > .black-square-turn
