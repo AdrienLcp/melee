@@ -10,7 +10,10 @@ import {
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import {
+  decoysGradedRight,
+  spellingsNamingADecoy
+} from '@melee/core/quiz/decoy-checks'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import {
@@ -303,10 +306,8 @@ describe('drawQuestion', () => {
   })
 
   it('[bank] holds no question whose own decoy would be graded right', () => {
-    const winnable = BANKED_QUESTIONS.filter((question) =>
-      question.decoys.some(
-        (decoy) => gradeQuizGuess({ guess: decoy, question }).isCorrect
-      )
+    const winnable = BANKED_QUESTIONS.filter(
+      (question) => decoysGradedRight(question).length > 0
     )
 
     expect(winnable.map((question) => question.id)).toEqual([])
@@ -502,22 +503,8 @@ describe('drawQuestion', () => {
     const paying: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      for (const spelling of question.accepted) {
-        const wrong = question.decoys.find(
-          (decoy) =>
-            gradeQuizGuess({
-              guess: spelling,
-              question: {
-                accepted: [],
-                answer: decoy,
-                decoys: [question.answer]
-              }
-            }).isCorrect
-        )
-
-        if (wrong !== undefined) {
-          paying.push(`${question.id}: “${spelling}” also names ${wrong}`)
-        }
+      for (const { decoy, spelling } of spellingsNamingADecoy(question)) {
+        paying.push(`${question.id}: “${spelling}” also names ${decoy}`)
       }
     }
 

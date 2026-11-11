@@ -24,6 +24,16 @@ one part.
   assistant_, in the front door's menu, gives the address to copy, where it
   goes in Claude or Claude Code, and an example to ask in words; the link the
   assistant hands back opens the line-up.
+- `[Server]` **An evening can bring its own quiz questions.** `prepare_evening`
+  takes `decks` beside the line-up — up to 30 questions a quiz entry, each
+  with its answer, three decoys, other spellings and a note — checks every
+  decoy against the answer by its path, refuses a field no schema has and a
+  link too long to copy back. A room loads them with `host.setDecks` in the
+  lobby, deals them before the bank and hands over to the bank once they are
+  spent; no view carries them, and the console is told only how many are left.
+- `[Server]` **A closed table leaves nothing behind.** Closing a table or
+  letting it expire wipes its whole Durable Object, not just the room's key,
+  and `/legal` says the questions a line-up brought go with it.
 
 ### Improvements
 

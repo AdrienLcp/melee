@@ -16,11 +16,14 @@ import { generateCode, secureRandomIndex } from '@melee/core/room/random-code'
 
 const PLAYER_ID_LENGTH = 12
 const ROUND_ID_LENGTH = 10
+const DECK_ID_LENGTH = 8
 const WALL_SECRET_LENGTH = 24
 
 export const newPlayerId = (): PlayerId => nanoid(PLAYER_ID_LENGTH)
 
 export const newRoundId = (): RoundId => nanoid(ROUND_ID_LENGTH)
+
+export const newDeckId = (): string => nanoid(DECK_ID_LENGTH)
 
 /** Minted with the room and handed to its creator alone. */
 export const newHostToken = (): HostToken => generateHostToken()

@@ -42,9 +42,11 @@ export const AskedQuestion: React.FC<AskedQuestionProps> = ({ prompt }) => {
     >
       <p className='prompt'>{prompt.prompt}</p>
       {/* After the prompt so it is read second; the card prints it above. */}
-      <p className='category'>
-        {translate(questionCategoryKey(prompt.category))}
-      </p>
+      {prompt.category !== null && (
+        <p className='category'>
+          {translate(questionCategoryKey(prompt.category))}
+        </p>
+      )}
       {prompt.flag !== null && <FlagPicture file={prompt.flag} />}
       {prompt.rebus !== null && <RebusLine rebus={prompt.rebus} />}
       {prompt.silhouette !== null && (

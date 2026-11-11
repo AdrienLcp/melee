@@ -1,3 +1,6 @@
+import { z } from 'zod'
+
+import { deckSchema } from '@melee/protocol/deck'
 import { type GameSettings, gameSettingsSchema } from '@melee/protocol/game'
 import {
   DEFAULT_ROOM_SETTINGS,
@@ -5,12 +8,21 @@ import {
   roomSettingsSchema
 } from '@melee/protocol/room'
 
+import type { RoomDeck } from './room'
+
+const storedDecksSchema = z.array(
+  z.object({ deck: deckSchema, id: z.string().min(1) }).nullable()
+)
+
 type StoredGames = {
+  /** Absent from a room stored before an evening could bring content. */
+  decks?: unknown
   openedEntries: readonly unknown[]
   settings: unknown
 }
 
 type ParsedGames = {
+  decks: (RoomDeck | null)[]
   openedEntries: GameSettings[]
   /**
    * Where the stored room broke today's schemas, empty when nothing did: each
@@ -31,11 +43,13 @@ type ParsedGames = {
  */
 export const parseStoredGames = (stored: StoredGames): ParsedGames => {
   const settings = roomSettingsSchema.safeParse(stored.settings)
+  const decks = storedDecksSchema.safeParse(stored.decks ?? [])
   const entries = stored.openedEntries.map((entry) =>
     gameSettingsSchema.safeParse(entry)
   )
 
   return {
+    decks: decks.success ? decks.data : [],
     openedEntries: entries.flatMap((entry) =>
       entry.success ? [entry.data] : []
     ),
@@ -47,7 +61,8 @@ export const parseStoredGames = (stored: StoredGames): ParsedGames => {
           )),
       ...entries.flatMap((entry, index) =>
         entry.success ? [] : [`openedEntries.${index}`]
-      )
+      ),
+      ...(decks.success ? [] : ['decks'])
     ],
     settings: settings.success ? settings.data : DEFAULT_ROOM_SETTINGS
   }

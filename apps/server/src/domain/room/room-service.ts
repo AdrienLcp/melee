@@ -14,6 +14,7 @@ import {
   pawnPieceForArrival
 } from '@melee/core/board/pawn-piece'
 import { randomUnit } from '@melee/core/helpers/random'
+import { decksFollowingLineUp } from '@melee/core/room/evening-decks'
 import { dealsOf } from '@melee/core/room/line-up-deals'
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
@@ -353,6 +354,11 @@ export const updateSettings = (
     room.phase === 'lobby' ||
     (room.phase === 'revealed' && room.round?.lineUpAt !== lineUpAt)
 
+  room.decks = decksFollowingLineUp({
+    decks: room.decks,
+    from: room.settings.lineUp,
+    to: lineUp
+  })
   room.settings = {
     ...settings,
     lineUpDeals: dealsOf({ deals: lineUpDeals, lineUp }),

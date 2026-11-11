@@ -13,6 +13,7 @@ import {
   canTakeSpokenTurn
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
+import { nextDeckQuestion } from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
 import { higherLowerContent } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
@@ -352,16 +353,29 @@ export const beginRound = async (
     // screen, which is a quiz in `choice` mode and nothing else.
     const showsItsCandidates = room.settings.mode.kind === 'choice'
 
-    const question = drawQuestion({
-      isFamilyFriendly: room.settings.isFamilyFriendly,
-      isUsable: (row) => showsItsCandidates || !row.choiceOnly,
-      playedIds: room.playedContentIds,
-      previousCategory:
-        room.round?.content.kind === 'quiz'
-          ? room.round.content.question.category
-          : null,
-      settings: game
+    const fromDeck = nextDeckQuestion({
+      isUsable: (item) => showsItsCandidates || !item.choiceOnly,
+      lineUpAt: room.settings.lineUpAt,
+      room
     })
+    const banked =
+      fromDeck === null
+        ? drawQuestion({
+            isFamilyFriendly: room.settings.isFamilyFriendly,
+            isUsable: (row) => showsItsCandidates || !row.choiceOnly,
+            playedIds: room.playedContentIds,
+            previousCategory:
+              room.round?.content.kind === 'quiz'
+                ? room.round.content.question.category
+                : null,
+            settings: game
+          })
+        : null
+    const question =
+      fromDeck ??
+      (banked === null
+        ? null
+        : hostQuestionOf({ difficulty: game.difficulty, question: banked }))
 
     if (question === null) {
       tellHost(engine, {
@@ -376,10 +390,7 @@ export const beginRound = async (
     room.playedContentIds.add(question.id)
 
     openRound({
-      content: quizContent({
-        question: hostQuestionOf({ difficulty: game.difficulty, question }),
-        room
-      }),
+      content: quizContent({ question, room }),
       id: newRoundId(),
       now: engine.now(),
       room,

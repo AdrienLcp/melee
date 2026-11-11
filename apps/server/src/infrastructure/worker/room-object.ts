@@ -36,8 +36,11 @@ import {
 import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 
 /** A room stored before the evening kept a history of what it heard. */
-type StoredRoom = Omit<Room, 'presenceAnnouncedUntil' | 'trackHistory'> &
-  Partial<Pick<Room, 'presenceAnnouncedUntil' | 'trackHistory'>>
+type StoredRoom = Omit<
+  Room,
+  'decks' | 'presenceAnnouncedUntil' | 'trackHistory'
+> &
+  Partial<Pick<Room, 'decks' | 'presenceAnnouncedUntil' | 'trackHistory'>>
 
 const ROOM_KEY = 'room'
 
@@ -291,8 +294,8 @@ export class RoomObject extends DurableObject<Env> {
       },
       discard: () => {
         this.engine = null
-        this.ctx.storage.kv.delete(ROOM_KEY)
         void this.ctx.storage.deleteAlarm()
+        void this.ctx.storage.deleteAll()
       },
       now: nowMs,
       persist: (current) => {

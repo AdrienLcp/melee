@@ -41,9 +41,12 @@ const host: Connection = {
 const restore = (snapshot: Room, { at }: { at: number }) => {
   const clock = { now: at }
   const wakes: (number | null)[] = []
+  const discarded = { count: 0 }
   const engine: RoomEngine = createRoomEngine(structuredClone(snapshot), {
     connections: { add: () => {}, all: () => [host], remove: () => {} },
-    discard: () => {},
+    discard: () => {
+      discarded.count += 1
+    },
     now: () => clock.now,
     persist: () => {},
     wakeAt: (wakeAt) => {
@@ -55,6 +58,7 @@ const restore = (snapshot: Room, { at }: { at: number }) => {
 
   return {
     clock,
+    discarded,
     engine,
     /** Runs the room at the moment it asked to be woken, as an alarm would. */
     fire: (): Promise<void> => {
@@ -167,6 +171,17 @@ describe('a room restored from a snapshot', () => {
     commitRoom(restored.engine)
 
     expect(restored.nextWake()).toBe(OPENED_AT + ABANDONED_ROOM_GRACE_MS)
+  })
+
+  it('[deadline] discards what it stored once nobody came back to it', async () => {
+    const restored = restore(buzzerRoomInCountdown(), { at: OPENED_AT })
+
+    restored.engine.connections.all = () => []
+    commitRoom(restored.engine)
+    await restored.fire()
+
+    expect(restored.discarded.count).toBe(1)
+    expect(restored.engine.isClosed).toBe(true)
   })
 })
 

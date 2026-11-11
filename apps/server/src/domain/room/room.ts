@@ -6,6 +6,7 @@ import type {
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { Deck } from '@melee/protocol/deck'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
@@ -92,6 +93,13 @@ export type TeamAward = {
   teamId: TeamId
 }
 
+/**
+ * A deck as the room holds it: `id` is minted as the deck is loaded and names
+ * its items (`deck:<id>:<index>`), never the entry's index, which a drag
+ * renumbers.
+ */
+export type RoomDeck = { deck: Deck; id: string }
+
 export type Room = {
   /**
    * The ready-made lines the next challenge round is picked from, dealt ahead
@@ -101,6 +109,12 @@ export type Room = {
   challengeHand: DealtChallengeLine[]
   code: RoomCode
   createdAt: number
+  /**
+   * The content the evening brought, one deck per line-up entry by index and
+   * `null` where an entry has none, realigned on every edit of the line-up
+   * (`decksFollowingLineUp`). Projected into no view — the console gets counts.
+   */
+  decks: (RoomDeck | null)[]
   /** Duels each seat has played this evening, which is who is drawn next — see `drawDuel`. */
   duelsBySeat: Map<PlayerId, number>
   /** Spoken black-square rounds each team has guessed this evening — see `drawSpokenTurn`. */

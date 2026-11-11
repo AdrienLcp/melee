@@ -6,12 +6,17 @@ import { join, resolve } from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { unstable_startWorker } from 'wrangler'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
+import {
+  DEFAULT_BUZZER_SETTINGS,
+  DEFAULT_QUIZ_SETTINGS
+} from '@melee/protocol/game'
+import { roomExistsResponseSchema } from '@melee/protocol/http'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
+import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
 import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
@@ -185,6 +190,14 @@ const reconnectHost = async ({
   return host
 }
 
+const roomExists = async (code: string): Promise<boolean> => {
+  const response = await fetch(
+    `http://${runtime.origin}${fillRoute(API_ROUTES.room, { code })}`
+  )
+
+  return roomExistsResponseSchema.parse(await response.json()).exists
+}
+
 describe('the room object', () => {
   it(
     '[worker] keeps the room, its seats and their scores across a restart',
@@ -257,6 +270,71 @@ describe('the room object', () => {
         'the countdown to run out',
         COUNTDOWN_RESUMED_WITHIN_MS
       )
+    },
+    RUNTIME_BOOT_MS
+  )
+
+  it(
+    '[worker] keeps nothing of a closed table once the runtime comes back',
+    async () => {
+      const { code, host } = await runtime.openRoom(BUZZER_GAME)
+
+      await runtime.seat({ code, nickname: 'Alice' })
+      host.send({ type: 'host.closeRoom' })
+      await waitFor(
+        () => host.frames.some(({ raw }) => raw.includes('room_closed')),
+        'the table to close'
+      )
+
+      await restartRuntime()
+
+      expect(await roomExists(code)).toBe(false)
+    },
+    RUNTIME_BOOT_MS
+  )
+
+  it(
+    '[deck] keeps an evening’s deck across a restart',
+    async () => {
+      const { code, host, hostToken } = await runtime.openRoom({
+        ...BUZZER_GAME,
+        game: DEFAULT_QUIZ_SETTINGS,
+        lineUp: [DEFAULT_QUIZ_SETTINGS],
+        lineUpAt: 0,
+        mode: DEFAULT_MODE_SETTINGS.typed
+      })
+
+      host.send({
+        decks: [
+          {
+            game: 'quiz',
+            items: [
+              {
+                accepted: [],
+                answer: 'Biscotte',
+                category: null,
+                choiceOnly: false,
+                decoys: ['Rex', 'Caramel', 'Filou'],
+                note: null,
+                prompt: 'What was the first dog of the house called?'
+              }
+            ]
+          }
+        ],
+        type: 'host.setDecks'
+      })
+      await waitFor(
+        () => hostView(host)?.deckSummaries[0] != null,
+        'the deck to load'
+      )
+
+      await restartRuntime()
+
+      const hostAgain = await reconnectHost({ code, hostToken })
+
+      expect(hostView(hostAgain)?.deckSummaries).toEqual([
+        { played: 0, size: 1 }
+      ])
     },
     RUNTIME_BOOT_MS
   )

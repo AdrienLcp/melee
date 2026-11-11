@@ -36,6 +36,7 @@ import {
   blackSquareContentView,
   blackSquareGrid
 } from '@/domain/round/black-square-round'
+import { deckSummariesOf } from '@/domain/round/deck-dealer'
 import { mysteryWordContentView } from '@/domain/round/mystery-word-round'
 import {
   canCancelPetitBacStop,
@@ -91,6 +92,7 @@ export const toHostView = ({
       room.round === null
         ? null
         : toHostContent({ room, round: room.round, seatId: playingSeatId }),
+    deckSummaries: deckSummariesOf(room),
     lineUpPlayed: playedPerEntry({
       lineUp: room.settings.lineUp,
       opened: room.openedEntries

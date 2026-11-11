@@ -6,6 +6,7 @@ import {
   type HostQuestion,
   hostQuestionSchema,
   type QuestionCategory,
+  questionCategorySchema,
   type QuestionDrawSettings,
   questionLanguageSchema,
   silhouetteFileSchema
@@ -40,6 +41,7 @@ import { bankedSilhouetteQuestions } from './silhouette-questions'
  * of a party.
  */
 const bankedQuestionSchema = hostQuestionSchema.extend({
+  category: questionCategorySchema,
   /**
    * Whether the prompt is only a question with its own three decoys under it.
    * *Which country drives on the left side of the road?* answers Japan, and so

@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
+import {
+  DECK_MAX_ITEMS,
+  QUIZ_DECK_NOTE_MAX_LENGTH,
+  QUIZ_DECK_PROMPT_MAX_LENGTH
+} from '@melee/protocol/deck'
+import { EVENING_LINK_MAX_CHARS } from '@melee/protocol/evening'
 import { DEFAULT_GAME_SETTINGS, gameKinds } from '@melee/protocol/game'
 import { MCP_ROUTE } from '@melee/protocol/routes'
 
@@ -14,6 +20,23 @@ const EVENING = {
   name: 'Two games',
   roundCount: 8,
   runningOrder: [0, 1]
+}
+
+const FAMILY_QUESTION = {
+  answer: 'Biscotte',
+  decoys: ['Rex', 'Caramel', 'Filou'],
+  prompt: 'What was the first dog of the house called?'
+}
+
+/** Text a deflate cannot shrink, so a deck reaches the link's budget the way real questions would. */
+const noiseOf = ({ length, seed }: { length: number; seed: number }) => {
+  let state = seed + 1
+
+  return Array.from({ length }, () => {
+    state = (state * 48_271) % 2_147_483_647
+
+    return (state % 36).toString(36)
+  }).join('')
 }
 
 const toolReplySchema = z.object({
@@ -114,7 +137,110 @@ describe('mcp endpoint', () => {
 
     expect(isError).toBe(false)
     expect(link.pathname).toBe('/fr/evening')
-    expect(await eveningCarriedBy(link.hash)).toEqual(EVENING)
+    expect(await eveningCarriedBy(link.hash)).toEqual({ ...EVENING, decks: [] })
+  })
+
+  it('[mcp] carries a quiz deck in the link, every default filled in', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [{ game: 'quiz', items: [FAMILY_QUESTION] }]
+      },
+      locale: 'en'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual({
+      ...EVENING,
+      decks: [
+        {
+          game: 'quiz',
+          items: [
+            {
+              ...FAMILY_QUESTION,
+              accepted: [],
+              category: null,
+              choiceOnly: false,
+              note: null
+            }
+          ]
+        }
+      ]
+    })
+  })
+
+  it('[mcp] answers a decoy that is the answer by its path', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [
+          {
+            game: 'quiz',
+            items: [
+              { ...FAMILY_QUESTION, decoys: ['Rex', 'Biscotte', 'Filou'] }
+            ]
+          }
+        ]
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('decks[0].items[0].decoys[1]')
+  })
+
+  it('[mcp] refuses a link too long to copy back, and says what to trim', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [
+          {
+            game: 'quiz',
+            items: Array.from({ length: DECK_MAX_ITEMS }, (_, index) => ({
+              ...FAMILY_QUESTION,
+              note: noiseOf({ length: QUIZ_DECK_NOTE_MAX_LENGTH, seed: index }),
+              prompt: noiseOf({
+                length: QUIZ_DECK_PROMPT_MAX_LENGTH,
+                seed: index + DECK_MAX_ITEMS
+              })
+            }))
+          }
+        ]
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain(String(EVENING_LINK_MAX_CHARS))
+    expect(text).toContain('Trim the decks')
+  })
+
+  it('[mcp] answers a field no schema has by its path', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        lineUp: [{ ...DEFAULT_GAME_SETTINGS.quiz, questions: [] }, 'reflex']
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('evening.lineUp[0].questions: no such field')
+  })
+
+  it('[mcp] finds no stray field in any game’s own defaults', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        lineUp: gameKinds.map((kind) => DEFAULT_GAME_SETTINGS[kind]),
+        runningOrder: []
+      },
+      locale: 'en'
+    })
+
+    expect(text).not.toContain('no such field')
+    expect(isError).toBe(false)
   })
 
   it('[mcp] answers an order that points past the line-up as a problem to fix', async () => {

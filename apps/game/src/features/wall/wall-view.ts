@@ -22,6 +22,7 @@ export const asRoomScreenView = ({
   challengeHand: [],
   currentContent:
     view.currentContent === null ? null : withheld(view.currentContent),
+  deckSummaries: [],
   lineUpPlayed: [],
   remainingPoolSize: 0,
   silentClip: null,

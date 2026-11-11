@@ -4,7 +4,7 @@ import type { SingleVerdict } from '@melee/protocol/scoring'
 import { matchesAnswer } from '../round/answer-matching'
 
 /** Everything grading a question needs, and nothing a player may hold. */
-type QuestionAnswer = Pick<Question, 'accepted' | 'answer'> & {
+export type QuestionAnswer = Pick<Question, 'accepted' | 'answer'> & {
   /**
    * The candidates the row calls wrong. Three of them everywhere the bank is
    * the source, but how many there are is the bank's business rather than the

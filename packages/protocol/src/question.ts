@@ -56,7 +56,8 @@ export const questionSchema = z.object({
   /** Other spellings a typed answer may take. The matcher folds case and accents already. */
   accepted: z.array(z.string()),
   answer: z.string().min(1),
-  category: questionCategorySchema,
+  /** `null` for a question an evening brought with no subject of the bank's. */
+  category: questionCategorySchema.nullable(),
   decoys: z.tuple([z.string(), z.string(), z.string()]),
   id: z.string().min(1),
   /**
@@ -83,7 +84,8 @@ export const silhouetteFileSchema = z.string().regex(/^[0-9a-f]{12}\.svg$/)
 
 /** The half a player may see: the question without any of its answers. */
 export const questionPromptSchema = z.object({
-  category: questionCategorySchema,
+  /** `null` for a question an evening brought with no subject of the bank's: the screen shows no chip. */
+  category: questionCategorySchema.nullable(),
   /** The flag the question is about, drawn beside the prompt; `null` on every other question. */
   flag: flagFileSchema.nullable(),
   id: z.string().min(1),

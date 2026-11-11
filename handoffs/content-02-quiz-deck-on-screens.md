@@ -55,3 +55,13 @@ motions (`docs/browser-driving.md`).
 
 Seen in the browser, then the changelog entry, plan 68's table, this file and
 its `handoffs/README.md` row ship in one commit, pushed to `main`.
+
+## Left by session 1
+
+- `host.setDecks` and `deckSummaries` are not yet in `docs/realtime-protocol.md`.
+- `AskedQuestion` hides the category chip when `category` is `null` (a deck
+  item): see it in the browser with the first deck that reaches a screen.
+- `decksFollowingLineUp` (`core/room/evening-decks.ts`) is covered by the
+  socket reorder test only; a core test of the tuned-entry fallback and of a
+  removed entry is cheap.
+- `docs/mcp.md` does not yet say the link is the answer key.

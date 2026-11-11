@@ -8,6 +8,7 @@ import {
   challengeHandSlotSchema,
   challengeTextSchema
 } from './challenge'
+import { decksSchema } from './deck'
 import { estimateGuessSchema } from './estimate'
 import { higherLowerPicksSchema } from './higher-lower'
 import {
@@ -362,6 +363,18 @@ export const updateSettingsMessageSchema = z.object({
  * `challengeText` is what a challenge round asks the table to do, typed on the
  * console as it is launched; absent or empty, the round opens on the line of
  * the hand at `challengeAt` (`challengeHand`, the first by default), or on
+/**
+ * The content the evening brings, one deck per line-up entry by index. Lobby
+ * only, beside the settings frame a console sends as it opens: a deck is
+ * written for the line-up it came with, and refused when it does not fit it.
+ * Never echoed back — the console is told counts (`deckSummaries`), since a
+ * seated host plays the very questions it sent.
+ */
+export const setDecksMessageSchema = z.object({
+  decks: decksSchema,
+  type: z.literal('host.setDecks')
+})
+
  * none at all when `isChallengeSaidAloud` — the host announces it and the
  * wall shows the game alone. Ignored by every other game.
  *
@@ -734,6 +747,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
+  setDecksMessageSchema,
   revealItemKeyMessageSchema,
   closeItemMessageSchema,
   collectSheetsMessageSchema,
@@ -821,6 +835,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
+  setDecksMessageSchema,
   revealItemKeyMessageSchema,
   closeItemMessageSchema,
   collectSheetsMessageSchema,
@@ -876,6 +891,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.holdReveal',
   'host.addItem',
   'host.setItemKey',
+  'host.setDecks',
   'host.revealItemKey',
   'host.closeItem',
   'host.collectSheets',

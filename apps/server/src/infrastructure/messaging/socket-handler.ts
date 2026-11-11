@@ -10,11 +10,13 @@ import {
   HOST_ONLY_MESSAGE_TYPES
 } from '@melee/protocol/client-message'
 import { decodeMessage } from '@melee/protocol/codec'
+import type { Deck } from '@melee/protocol/deck'
 import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { RoomSettings } from '@melee/protocol/room'
 import type { PawnPiece } from '@melee/protocol/team'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
+import { deckProblems } from '@melee/core/room/evening-decks'
 import { isPlayableWithTeams } from '@melee/core/room/game-capabilities'
 import { offersAnswerMode } from '@melee/core/room/game-modes'
 import { followedByLineUp, lineUpHolds } from '@melee/core/room/line-up'
@@ -104,7 +106,7 @@ import {
 } from '@/domain/round/slate-round'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
-import { newPlayerId } from '@/infrastructure/ids'
+import { newDeckId, newPlayerId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import {
@@ -172,6 +174,7 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.moveSeat',
   'host.drawTeams',
   'host.updateSettings',
+  'host.setDecks',
   'host.removePlayer',
   'host.dismissWall',
   'host.endGame',
@@ -905,6 +908,10 @@ const dispatch = ({
     }
     case 'host.updateSettings': {
       reconfigure(message.settings, outbound, engine)
+      break
+    }
+    case 'host.setDecks': {
+      loadDecks({ decks: message.decks, engine, outbound })
       break
     }
   }
@@ -2131,6 +2138,49 @@ const hasSeatBesideConsoles = (engine: RoomEngine): boolean => {
   return [...engine.room.players.keys()].some(
     (playerId) => !consoleSeats.has(playerId)
   )
+}
+
+/**
+ * The evening's content, refused whole unless every deck fits its entry and
+ * holds: in the lobby only, since a deck is written for the line-up it came
+ * with and a round already dealt from the bank would not be dealt again.
+ */
+const loadDecks = ({
+  decks,
+  engine,
+  outbound
+}: {
+  decks: (Deck | null)[]
+  engine: RoomEngine
+  outbound: Outbound
+}): void => {
+  const { room } = engine
+
+  if (room.phase !== 'lobby') {
+    sendError(outbound, {
+      code: 'wrong_phase',
+      fatal: false,
+      message: 'An evening’s content is loaded before its first round'
+    })
+
+    return
+  }
+
+  if (deckProblems({ decks, lineUp: room.settings.lineUp }).length > 0) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Every deck must fit its line-up entry and hold'
+    })
+
+    return
+  }
+
+  room.decks = decks.map((deck) =>
+    deck === null ? null : { deck, id: newDeckId() }
+  )
+  touch(room, engine.now())
+  publishRoom(engine)
 }
 
 const reconfigure = (

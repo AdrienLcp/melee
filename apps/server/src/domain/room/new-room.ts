@@ -31,6 +31,7 @@ export const newRoom = ({
     challengeHand: [],
     code,
     createdAt: now,
+    decks: [],
     duelsBySeat: new Map(),
     guessesByTeam: new Map(),
     hostLeftAt: null,

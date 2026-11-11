@@ -1,6 +1,6 @@
 # 68 — An evening that brings its own content
 
-**To do.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
+**In progress — session 1 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
 played in order. This file holds what they share. Each handoff holds that
 session's own work.
 
@@ -63,8 +63,11 @@ opens.
   - Into the room: a new host-only message, `host.setDecks`. The console sends
     it in the lobby, on the first view only, beside the settings frame that
     `useRestoreStoredSetup` already sends.
-  - In the room: the server keeps `room.decks` aligned with `lineUp`, and
-    remaps it wherever `lineUp` is edited, exactly like `lineUpDeals`. It is
+  - In the room: the server keeps `room.decks` aligned with `lineUp`. The
+    console remaps `lineUpDeals` and sends the line-up whole, so the server
+    realigns decks itself on every settings frame (`decksFollowingLineUp`:
+    an identical entry first, then an entry of the same game left at the same
+    index, which is one whose settings were tuned). It is
     stored in the Durable Object blob and projected into **no** view.
   - Off the server with the room: the Durable Object's storage is wiped
     (`deleteAll`) when the host closes the table and when it expires, tested,
@@ -80,6 +83,8 @@ opens.
   and the draw keep their meaning, there is no new end state, and the console
   says the deck is spent. Plan 42's _prepared plays once_ rule does not apply:
   these are bank games carrying a deck, not host-brought games.
+- **A deck item may have no category.** `HostQuestion.category` is nullable,
+  and the screen shows no chip for `null`; the bank's rows keep theirs.
 - **Item ids are `deck:<deckId>:<index>`**, with `deckId` minted when the deck
   is loaded, never the entry's index, because a drag renumbers entries.
   `playedContentIds` then deduplicates them like bank ids.
@@ -99,9 +104,10 @@ opens.
     question, or about 130 with a note.
   - Each deck shape has its own count cap on top of that.
 - **The MCP input becomes strict.** Protocol arms are plain `z.object`, so an
-  unknown key vanishes. Today an assistant sending a deck gets no error and a
-  link without it. `eveningSchema` and what it nests use `z.strictObject` on
-  the **write** side. Reading a link stays lenient (`savedEveningSchema`).
+  unknown key vanishes. `prepare_evening` compares what it was given with
+  what the parse kept (`unknownKeysOf`) and answers each dropped key by its
+  path, which covers every arm of every union without a strict copy of each.
+  Reading a link stays lenient (`savedEveningSchema`).
 - **The link version stays `1.`** Decks are an optional field. The page that
   reads a link is always the deployed build, and an old saved evening simply
   has no decks.
@@ -139,7 +145,7 @@ opens.
 
 | #   | Handoff                                 | What it buys                                                                                                |
 | --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1   | `content-01-deck-store-and-quiz.md`     | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
+| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
 | 2   | `content-02-quiz-deck-on-screens.md`    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
 | 3   | `content-03-lines-and-descriptions.md`  | Challenge and Most likely decks of lines; `describe_games` explains every setting it leaves out today       |
 | 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |

@@ -1,10 +1,16 @@
 import { z } from 'zod'
 
-import { type Evening, eveningSchema } from '@melee/protocol/evening'
+import { DECK_MAX_ITEMS } from '@melee/protocol/deck'
+import {
+  EVENING_LINK_MAX_CHARS,
+  type Evening,
+  eveningSchema
+} from '@melee/protocol/evening'
 import { DEFAULT_GAME_SETTINGS, gameKinds } from '@melee/protocol/game'
 import { localeSchema } from '@melee/protocol/locale'
 import { EVENING_PAGE_ROUTE, fillRoute } from '@melee/protocol/routes'
 
+import { deckProblems } from '@melee/core/room/evening-decks'
 import { eveningFragmentOf } from '@melee/core/room/evening-link'
 import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import { dealsHold } from '@melee/core/room/line-up-deals'
@@ -12,6 +18,7 @@ import { readyMadeLineUpsFor } from '@melee/core/room/ready-made-line-ups'
 import { orderHolds } from '@melee/core/room/running-order'
 
 import { GAME_NOTES } from '@/infrastructure/mcp/game-notes'
+import { unknownKeysOf } from '@/infrastructure/mcp/unknown-keys'
 
 /** A tool as `tools/list` announces it. */
 export type McpTool = {
@@ -35,6 +42,7 @@ const HOW_AN_EVENING_WORKS = [
   '`runningOrder` plans the rounds: each row is the index of a `lineUp` entry, played in that order. Leave it empty and the room deals a spaced order itself — each game as far from its last round as the line-up allows, never twice in a row — which is usually what you want.',
   '`lineUpDeals`, parallel to `lineUp`, says how each entry is dealt: "row" plays it in the running order, "chance" only among the rounds drawn once the order runs out, "both" either. Only a game that serves its own content may be dealt "chance" or "both". Leave it empty for each entry’s default.',
   'A game the host brings the content of (`servesItsOwnContent: false`) asks the host to prepare or say something every round of it; an evening for a table that just wants to play leans on the others.',
+  `\`decks\`, parallel to \`lineUp\`, brings the evening's own content: one deck per entry, or null where an entry plays its game's bank alone. Only a quiz entry takes a deck today: \`{ "game": "quiz", "items": [...] }\`, ${DECK_MAX_ITEMS} questions at most. Each item holds a \`prompt\`, its \`answer\`, exactly three \`decoys\` — plausible wrong answers, none of them a spelling of the answer or of each other — and optionally \`accepted\` (other spellings of the answer a typed guess may take), a \`note\` told to the room once the answer is out, a \`category\` from the quiz's own list, and \`choiceOnly: true\` for a question that only makes sense beside its four options ("which of these…"), which a room answering by typing skips. The deck is dealt first, in order; once it is spent the entry deals from its bank like any other, so a short deck in a long evening is fine. The link carries every answer: whoever holds it can read them.`,
   'Teams, the scoreboard, the judge, the answer mode and the volume are not part of an evening: the host sets those in the room.',
   'Call prepare_evening with the evening. It answers each problem by its path, or the link to open on the screen that will host.'
 ]
@@ -48,7 +56,7 @@ const exampleEvening = (): Evening | undefined => {
 
   const { id: _, ...evening } = grandMix
 
-  return { ...evening, name: 'Free-for-all' }
+  return { ...evening, decks: [], name: 'Free-for-all' }
 }
 
 const describeGames: CallableTool = {
@@ -94,7 +102,11 @@ const problemsOf = (evening: Evening): string[] => {
         'lineUpDeals: one deal per entry at most, and only a game that serves its own content may be dealt "chance" or "both".'
       ]
 
-  return [...orderProblem, ...dealsProblem]
+  return [
+    ...orderProblem,
+    ...dealsProblem,
+    ...deckProblems({ decks: evening.decks, lineUp })
+  ]
 }
 
 const prepareEvening: CallableTool = {
@@ -106,14 +118,28 @@ const prepareEvening: CallableTool = {
     }
 
     const { evening, locale } = parsed.data
-    const problems = problemsOf(evening)
+    const problems = [
+      ...unknownKeysOf({ given: input, kept: parsed.data }).map(
+        (path) => `${path}: no such field; describe_games lists every one.`
+      ),
+      ...problemsOf(evening)
+    ]
 
     if (problems.length > 0) {
       return { isError: true, text: problems.join('\n') }
     }
 
+    const fragment = await eveningFragmentOf(evening)
+
+    if (fragment.length > EVENING_LINK_MAX_CHARS) {
+      return {
+        isError: true,
+        text: `The link would run to ${fragment.length} characters, over the ${EVENING_LINK_MAX_CHARS} an assistant can copy back without a slip. Trim the decks first — fewer questions, shorter notes — then the line-up.`
+      }
+    }
+
     const page = fillRoute(EVENING_PAGE_ROUTE, { locale })
-    const link = `${origin}${page}#${await eveningFragmentOf(evening)}`
+    const link = `${origin}${page}#${fragment}`
 
     return {
       isError: false,
