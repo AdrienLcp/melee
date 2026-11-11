@@ -125,13 +125,25 @@
     mask-size: 100% 300%
     transform: translateY(0)
 
+/// Where something arriving on `page-enter` starts: an offset in `translate`'s
+/// syntax and a `scale`. Not inherited, so they are set on the animated element
+/// itself: a page sliding in sideways would otherwise lend its offset to every
+/// row arriving inside it.
+@property --travel-offset
+  syntax: '*'
+  inherits: false
+
+@property --travel-scale
+  syntax: '*'
+  inherits: false
+
+/// Something arriving with a fade from a little way off, a little below unless
+/// `--travel-offset` says otherwise: a page, a card, a row added to a list.
 @keyframes page-enter
   from
     opacity: 0
-    transform: translateY(0.5rem)
-  to
-    opacity: 1
-    transform: translateY(0)
+    scale: var(--travel-scale, 1)
+    translate: var(--travel-offset, 0 0.5rem)
 
 /// A notice taken down once read, quicker than it came: the arrival notice in
 /// the console's header, the bar that offers to undo a round taken out.

@@ -53,6 +53,8 @@ A motion seen twice is a mixin, never retyped:
 A keyframe seen twice is one, in `globals.sass`, and what differs between its
 sites is a custom property it substitutes whole:
 
+- `page-enter` — arriving with a fade from a little below; `--travel-offset`
+  and `--travel-scale`, set on the element itself, say from where.
 - `letter-turns` — a letter turned over on its top edge, back face up.
 - `popover-strike` — a popover struck down under its trigger.
 

@@ -3,11 +3,6 @@
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
-@keyframes pair-dealt
-  from
-    opacity: 0
-    translate: 0 0.75rem
-
 @layer components
   .higher-lower-prompt
     color: var(--card-ink)
@@ -51,7 +46,7 @@
     // rather than two columns of hyphenated stubs; side by side once the box
     // is wide enough for both.
     .pair
-      animation: pair-dealt var(--transition-base, 0s) var(--ease-out)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
       display: grid
       gap: var(--space-s)
       grid-auto-rows: minmax(0, 1fr)
