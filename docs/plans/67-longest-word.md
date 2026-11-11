@@ -149,11 +149,11 @@ _Longest word_ in English.
    (`leavesTheReveal`, `e599591b`) — and the console beside a wall ranking in
    two columns of four-letter names, now one column scrolling in its card.
    A round in English was driven the same way, muted (a room opened on
-   `locale: 'en'`, so `language: 'en'`): the draw `HULFOPEWW` solved against
-   the English list, a letter used twice and `EWPL` refused, `UPFLOW` kept
-   over `FEH` and over the equal `WOEFUL`, the wall showing lengths and no
-   word, and the reveal naming `HOPEFUL`, seven letters, beside every seat's
-   word — nothing to fix.
+   `locale: 'en'`, so `language: 'en'`): the draw solved against the English
+   list, a letter used twice and a non-word refused, a six-letter word kept
+   over a three-letter one and over an equal `WOEFUL`, the wall showing
+   lengths and no word, and the reveal naming `HOPEFUL`, seven letters,
+   beside every seat's word — nothing to fix.
    **Open**: the reveal was measured at 1440×900 only, not on a shorter wall.
 
 ## How to tell it is done
