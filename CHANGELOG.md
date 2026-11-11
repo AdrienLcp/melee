@@ -106,7 +106,9 @@ one part.
   the lobby lays down, makes room for _the host has stepped away_ at 9:16
   instead of covering the round number and the join code, and keeps a duel,
   a black square turn and the join reminder on one line as they open, as the
-  console's header now does, and the final board's winning pawn lands once
+  console's header now does, its black square turn standing the team over
+  the keeper at every width so the join reminder no longer drops a line as a
+  round opens on a laptop, and the final board's winning pawn lands once
   instead of shrinking and growing again. Black
   square's cells ease in and out of found, its keeper's list, hidden sheet,
   black word and confirmation fade into one another, the map's pawn and its

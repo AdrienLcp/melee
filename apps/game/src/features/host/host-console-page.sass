@@ -429,28 +429,30 @@
               margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
 
   // A piece opens on one line, and the keeper wrapping under the team as the
-  // opening ended was a jump: on a narrow console the two always stand one
-  // over the other, the keeper's name ending on an ellipsis.
-  @include layout.narrow
-    .host-console-page > header:not(.round-chrome) > .leaves-in-place > .black-square-turn
-      display: inline-grid
-      grid-template-columns: auto minmax(0, 1fr)
+  // opening ended was a jump. On one line, two long names in it, the turn
+  // pushed the join reminder onto a line of its own at 1280px, and the stage
+  // a line down, as the round opened. Stacked, it stands no taller than the
+  // reminder's square at any console width, the keeper's name ending on an
+  // ellipsis.
+  .host-console-page:not(.wall-page) > header:not(.round-chrome) > .leaves-in-place > .black-square-turn
+    display: inline-grid
+    grid-template-columns: auto minmax(0, 1fr)
+
+    > .pawn
+      grid-row: span 2
+
+    // A block rather than the inline flex, which leaves its text an
+    // anonymous item that no ellipsis reaches.
+    > .keeper
+      display: block
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
 
       > .pawn
-        grid-row: span 2
-
-      // A block rather than the inline flex, which leaves its text an
-      // anonymous item that no ellipsis reaches.
-      > .keeper
-        display: block
-        overflow: hidden
-        text-overflow: ellipsis
-        white-space: nowrap
-
-        > .pawn
-          display: inline-block
-          margin-inline-end: var(--space-2xs)
-          vertical-align: middle
+        display: inline-block
+        margin-inline-end: var(--space-2xs)
+        vertical-align: middle
 
   // A seat's own spoken round says whose turn it is on the stage, so the
   // header's copy is a repeat.
