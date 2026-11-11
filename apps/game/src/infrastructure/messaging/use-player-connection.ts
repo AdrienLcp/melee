@@ -3,7 +3,7 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
 import { playerServerMessageSchema } from '@melee/protocol/server-message'
 
-import { swapsThePlayerScreen } from '@/helpers/player-screen-swap'
+import { playerScreenLanding } from '@/helpers/player-screen-swap'
 
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
@@ -25,7 +25,9 @@ export const usePlayerConnection = ({
   nickname: string | null
   roomCode: RoomCode
 }): PlayerConnection => {
-  const [view, receiveView] = useRoomView<PlayerRoomView>(swapsThePlayerScreen)
+  const [view, receiveView] = useRoomView<PlayerRoomView>({
+    landingOf: playerScreenLanding
+  })
 
   // No `useCallback`: `useRoomSocket` holds this in an Effect Event, so its
   // identity is nothing the socket reads.

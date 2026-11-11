@@ -388,7 +388,12 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   (`useRoomView`, given what counts as a swap): on the console and the wall,
   every change of phase and a pause taken or lifted (`replacesTheStage`) —
   each stage arrives on a motion of its own and none had one for leaving, so
-  the lobby, the countdown and the round all went in one frame. A phase
+  the lobby, the countdown and the round all went in one frame. A seated
+  console is the exception where the change opens the race — the round
+  dealt, the floor given back, the pause lifted (`consoleStageLanding`): a
+  swap would hold its first press, so a still copy of the stage fades off
+  over the round instead (`fadeOffTheStage`), framed so the page's
+  `:has(> .stage…)` rules never read it. A phase
   whose arrival has a motion of its own still owes one for leaving: the
   reveal's `card-strike` hid that it went in one frame. A copy laid over a
   box that holds a `position: sticky` press lifted by `z-index` sits above

@@ -1,6 +1,12 @@
 import { type RefObject, useLayoutEffect, useRef } from 'react'
 
 import { interpolatesToAuto } from '@/infrastructure/browser'
+import {
+  easeInOf,
+  groundBehind,
+  millisecondsOf,
+  stillCopyOf
+} from '@/presentation/still-copy'
 
 const COPY_CLASS = 'reshape-copy'
 
@@ -11,57 +17,8 @@ type Drawn = {
   shape: string
 }
 
-const TRANSPARENT = 'rgba(0, 0, 0, 0)'
-
-/** The first painted ground behind `element`, which the copy is laid on so the new content does not show through it. */
-const groundBehind = (element: HTMLElement): string => {
-  for (
-    let current: HTMLElement | null = element;
-    current !== null;
-    current = current.parentElement
-  ) {
-    const { backgroundColor } = getComputedStyle(current)
-
-    if (backgroundColor !== TRANSPARENT && backgroundColor !== 'transparent') {
-      return backgroundColor
-    }
-  }
-
-  return 'transparent'
-}
-
-const millisecondsOf = (value: string): number => {
-  const amount = Number.parseFloat(value)
-
-  if (Number.isNaN(amount)) {
-    return 0
-  }
-
-  return value.trim().endsWith('ms') ? amount : amount * 1000
-}
-
-const copyOf = (element: HTMLElement): HTMLElement => {
-  const copy = element.cloneNode(true)
-
-  if (!(copy instanceof HTMLElement)) {
-    return document.createElement('div')
-  }
-
-  for (const stale of copy.querySelectorAll(`.${COPY_CLASS}`)) {
-    stale.remove()
-  }
-
-  for (const withId of copy.querySelectorAll('[id]')) {
-    withId.removeAttribute('id')
-  }
-
-  copy.removeAttribute('id')
-  copy.classList.add(COPY_CLASS)
-  copy.setAttribute('aria-hidden', 'true')
-  copy.inert = true
-
-  return copy
-}
+const copyOf = (element: HTMLElement): HTMLElement =>
+  stillCopyOf({ className: COPY_CLASS, element })
 
 /**
  * Where the box's height eases to. The new content may still be opening once
@@ -87,9 +44,7 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
   const easeOut =
     style.getPropertyValue('--ease-out').trim() ||
     'cubic-bezier(0.16, 1, 0.3, 1)'
-  const easeIn =
-    style.getPropertyValue('--ease-in').trim() ||
-    'cubic-bezier(0.7, 0, 0.84, 0)'
+  const easeIn = easeInOf(style)
   const { copy } = before
   const height = box.getBoundingClientRect().height
 

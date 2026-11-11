@@ -3,7 +3,7 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import type { WallRoomView } from '@melee/protocol/room'
 import { wallServerMessageSchema } from '@melee/protocol/server-message'
 
-import { replacesTheStage } from '@/helpers/stage-replacement'
+import { wallStageLanding } from '@/helpers/stage-replacement'
 
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
 import { useRoomView } from './use-room-view'
@@ -18,7 +18,9 @@ export type WallConnection = RoomSocket & {
  * the whole of what lets it in.
  */
 export const useWallConnection = (roomCode: RoomCode): WallConnection => {
-  const [view, receiveView] = useRoomView<WallRoomView>(replacesTheStage)
+  const [view, receiveView] = useRoomView<WallRoomView>({
+    landingOf: wallStageLanding
+  })
 
   const onFrame = (raw: string): void => {
     const decoded = decodeMessage(wallServerMessageSchema, raw)

@@ -83,7 +83,11 @@ one part.
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
   again each fade the stage left off over the one arriving, on the console
-  and the wall alike. In the lobby, the seat form and the launch cross-fade
+  and the wall alike. A host playing from the console answers from the first
+  instant the round opens, comes back from a pause or gets the floor back:
+  there the stage left fades off over a round that already takes a press,
+  where it used to hold the host's first one for a third of a second while
+  every other screen raced. In the lobby, the seat form and the launch cross-fade
   as the first player sits down or the last one leaves, the reason the
   launch waits folds in and out, and the count of players swaps in.
 - `[Game]` **The room's screen no longer cuts a line in or out.** The

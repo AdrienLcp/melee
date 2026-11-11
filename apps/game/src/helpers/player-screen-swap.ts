@@ -1,5 +1,7 @@
 import type { PlayerRoomView } from '@melee/protocol/room'
 
+import type { ViewLanding } from '@/helpers/stage-replacement'
+
 type PlayerScreen = Pick<
   PlayerRoomView,
   'isHostConnected' | 'isPaused' | 'phase'
@@ -47,3 +49,9 @@ export const swapsThePlayerScreen = ({
     (from.isHostConnected && !to.isHostConnected && to.phase !== 'revealed')
   )
 }
+
+/** How a snapshot lands on a player's screen: swapped where `swapsThePlayerScreen` says, drawn as it comes everywhere else. */
+export const playerScreenLanding = (change: {
+  from: PlayerScreen | null
+  to: PlayerScreen
+}): ViewLanding => (swapsThePlayerScreen(change) ? 'swapped' : 'drawn')

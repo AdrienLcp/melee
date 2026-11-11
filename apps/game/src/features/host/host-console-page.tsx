@@ -122,6 +122,7 @@ import {
 } from './setup-tabs'
 import { useSilentClipReport } from './silent-clip-report'
 import { SlateEditors } from './slate-stages'
+import { fadeOffTheStage } from './stage-leaving-copy'
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useLaidOutWall } from './use-laid-out-wall'
 import { useLineUpDraw } from './use-line-up-draw'
@@ -177,6 +178,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [hasClosedRoom, setHasClosedRoom] = useState(false)
   const { clearError, clock, error, retry, send, status, view } =
     useHostConnection({
+      fadeOffTheStage,
       isLeaving: hasClosedRoom,
       nickname: seatNickname,
       roomCode

@@ -3,7 +3,7 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
 
-import { replacesTheStage } from '@/helpers/stage-replacement'
+import { consoleStageLanding } from '@/helpers/stage-replacement'
 
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
@@ -20,16 +20,22 @@ export type HostConnection = RoomSocket & {
  * to survive a reconnect the same way a player's does.
  */
 export const useHostConnection = ({
+  fadeOffTheStage,
   isLeaving,
   nickname,
   roomCode
 }: {
+  /** Lays a still copy of the stage as drawn over the one a snapshot brings, where swapping it would hold a seat's press. */
+  fadeOffTheStage: () => void
   /** The console is on its way home after closing its room. */
   isLeaving: boolean
   nickname: string | null
   roomCode: RoomCode
 }): HostConnection => {
-  const [view, receiveView] = useRoomView<HostRoomView>(replacesTheStage)
+  const [view, receiveView] = useRoomView<HostRoomView>({
+    fadeOffWhatIsDrawn: fadeOffTheStage,
+    landingOf: consoleStageLanding
+  })
 
   // No `useCallback`: `useRoomSocket` holds this in an Effect Event, so its
   // identity is nothing the socket reads.

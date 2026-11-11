@@ -1,6 +1,14 @@
 import { describe, expect, it } from 'vitest'
 
-import { replacesTheStage } from './stage-replacement'
+import { playerIdSchema } from '@melee/protocol/identifiers'
+
+import {
+  type ConsoleStageOnScreen,
+  consoleStageLanding,
+  replacesTheStage
+} from './stage-replacement'
+
+const SEAT = playerIdSchema.parse('seat-1')
 
 describe('replacesTheStage', () => {
   it('[stage] plays every change of phase, the floor changing hands included', () => {
@@ -52,5 +60,71 @@ describe('replacesTheStage', () => {
         to: { isPaused: false, phase: 'revealed' }
       })
     ).toBe(false)
+  })
+})
+
+describe('consoleStageLanding', () => {
+  const seated = (
+    stage: Omit<ConsoleStageOnScreen, 'youId'>
+  ): ConsoleStageOnScreen => ({ ...stage, youId: SEAT })
+  const unseated = (
+    stage: Omit<ConsoleStageOnScreen, 'youId'>
+  ): ConsoleStageOnScreen => ({ ...stage, youId: null })
+
+  it('[stage] fades the stage off a copy where a seated console has a race to answer', () => {
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: true, phase: 'playing' }),
+        to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('faded-over')
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: false, phase: 'buzzed' }),
+        to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('faded-over')
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: false, phase: 'countdown' }),
+        to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('faded-over')
+  })
+
+  it('[stage] swaps every other replacement, and every one on a console with no seat', () => {
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: false, phase: 'playing' }),
+        to: seated({ isPaused: true, phase: 'playing' })
+      })
+    ).toBe('swapped')
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: false, phase: 'playing' }),
+        to: seated({ isPaused: false, phase: 'revealed' })
+      })
+    ).toBe('swapped')
+    expect(
+      consoleStageLanding({
+        from: unseated({ isPaused: true, phase: 'playing' }),
+        to: unseated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('swapped')
+  })
+
+  it('[stage] draws a snapshot that keeps the stage, and the first one', () => {
+    expect(
+      consoleStageLanding({
+        from: seated({ isPaused: false, phase: 'playing' }),
+        to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('drawn')
+    expect(
+      consoleStageLanding({
+        from: null,
+        to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('drawn')
   })
 })
