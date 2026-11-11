@@ -6,6 +6,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { ColourHex } from '@melee/protocol/swatch'
 
+import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { swatchContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import {
@@ -89,10 +90,11 @@ export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
             label={translate('swatch.answer.label')}
           />
           <Button
-            onPress={() => {
+            onPress={(event) => {
               leaning.cancel()
 
               if (onAnswer({ colour, kind: 'colour' })) {
+                fadeOffACopyOfTheForm(event.target)
                 setSentColour(colour)
               }
             }}

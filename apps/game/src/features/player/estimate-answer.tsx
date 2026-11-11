@@ -6,6 +6,7 @@ import { MAX_ESTIMATE, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
+import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { estimateContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { QuantityField } from '@/presentation/components/quantity-field'
@@ -71,6 +72,7 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
           event.preventDefault()
 
           if (guess > 0 && onAnswer({ guess, kind: 'number' })) {
+            fadeOffACopyOfTheForm(event.currentTarget)
             setSentGuess(guess)
           }
         }}

@@ -179,6 +179,29 @@ type PetitBacSeatMessage = Extract<
 
 const ROUND_IS_RUNNING = new Set<RoomPhase>(['buzzed', 'countdown', 'playing'])
 
+/**
+ * Whether the round gives way to the host-away card, ahead of every mode,
+ * because the server has frozen the round and none of the screens would say
+ * why. The buzzer carries its own reason through `findBuzzBlocker`; a grid of
+ * choices and a pair of text fields have nowhere to put one, and would sit
+ * there looking answerable. A sheet is the exception: a line moves nothing
+ * along, so the server keeps taking them while the console is away, and the
+ * pen stays in the hand.
+ */
+export const showsTheHostAwayCard = (view: PlayerRoomView): boolean => {
+  const round = view.round
+  const isWritingASheet =
+    view.phase === 'playing' &&
+    (round?.content.kind === 'slate' ||
+      (round?.content.kind === 'petitbac' && !round.content.sheetsClosed))
+
+  return (
+    !view.isHostConnected &&
+    !isWritingASheet &&
+    ROUND_IS_RUNNING.has(view.phase)
+  )
+}
+
 type PlayerRoundProps = {
   clock: ClockEstimate | null
   /** `false` from the socket means the frame was never written. */
@@ -541,22 +564,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
 
   useBuzzOutcome(reflexOutcome({ round, youId: view.youId }))
 
-  // Ahead of every mode, because the server has frozen the round and none of
-  // the three screens below would say why. The buzzer carries its own reason
-  // through `findBuzzBlocker`; a grid of choices and a pair of text fields have
-  // nowhere to put one, and would sit there looking answerable.
-  // A sheet is the exception: a line moves nothing along, so the server keeps
-  // taking them while the console is away, and the pen stays in the hand.
-  const isWritingASheet =
-    view.phase === 'playing' &&
-    (round?.content.kind === 'slate' ||
-      (round?.content.kind === 'petitbac' && !round.content.sheetsClosed))
-
-  if (
-    !view.isHostConnected &&
-    !isWritingASheet &&
-    ROUND_IS_RUNNING.has(view.phase)
-  ) {
+  if (showsTheHostAwayCard(view)) {
     return (
       <section className='player-round notice'>
         <NoticeCard title={translate('buzz.blocked.host_away')} />
@@ -600,13 +608,27 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
     return (
       <section
         className='player-round lobby'
+        data-host-away={!view.isHostConnected || undefined}
         data-picking-team={isPickingTeam || undefined}
       >
-        {view.isHostConnected ? (
-          <UpNext view={view} />
-        ) : (
-          <NoticeCard title={translate('buzz.blocked.host_away')} />
-        )}
+        <div
+          className='fold'
+          data-open={view.isHostConnected || undefined}
+          inert={!view.isHostConnected}
+        >
+          <div>
+            <UpNext view={view} />
+          </div>
+        </div>
+        <div
+          className='fold'
+          data-open={!view.isHostConnected || undefined}
+          inert={view.isHostConnected}
+        >
+          <div>
+            <NoticeCard title={translate('buzz.blocked.host_away')} />
+          </div>
+        </div>
 
         <YourTrackStrip view={view} />
 

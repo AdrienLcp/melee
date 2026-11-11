@@ -53,6 +53,13 @@
     display: inline
 
 @layer components
+  // A still copy (`form-leaving-copy.ts`): a clone replays every entrance it
+  // holds, and would blank what it is meant to fade out, whatever rule of the
+  // form's started it.
+  .form-leaving-copy *
+    animation: none !important
+    transition: none !important
+
   .player-round
     display: flex
     flex: 1
@@ -125,6 +132,25 @@
         text-wrap: balance
 
   .player-round.lobby
+    // The pitch and the host-away card trade places as the console comes
+    // back, both rows on one curve so the seats under them slide one way;
+    // with no pitch — a line-up of several — the first holds nothing.
+    > .fold
+      @include fold.opens-in-column(var(--space-m))
+
+      transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-fast, 0s) var(--ease-in)
+
+      &[data-open]
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
+      &:has(> div:empty)
+        display: none
+
+    // The console going swaps the whole screen (`swapsThePlayerScreen`),
+    // which is the motion: a fold run inside the swap plays twice.
+    &[data-host-away] > .fold
+      transition: none
+
     .table
       container-type: inline-size
 

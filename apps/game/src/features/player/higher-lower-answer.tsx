@@ -8,6 +8,7 @@ import {
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
+import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { higherLowerContent } from '@/helpers/round-content'
 import { AnswerTile } from '@/presentation/components/answer-tile'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
@@ -86,7 +87,13 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
     return null
   }
 
-  const pick = (side: HigherLowerSide): void => {
+  const pick = ({
+    from,
+    side
+  }: {
+    from: Element
+    side: HigherLowerSide
+  }): void => {
     const next = [...picks, side]
 
     if (next.length < HIGHER_LOWER_PAIR_COUNT) {
@@ -95,6 +102,7 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
     }
 
     if (onAnswer({ kind: 'pairs', picks: next })) {
+      fadeOffACopyOfTheForm(from)
       setSentPicks(next)
     }
   }
@@ -125,8 +133,8 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
             <li key={side}>
               <AnswerTile
                 index={index}
-                onPress={() => {
-                  pick(side)
+                onPress={(event) => {
+                  pick({ from: event.target, side })
                 }}
                 subtitle={null}
                 title={pair[side][locale]}

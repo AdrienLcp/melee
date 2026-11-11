@@ -6,6 +6,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { TimelineEventId } from '@melee/protocol/timeline'
 
+import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { timelineContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { TimelineOrderList } from '@/presentation/components/timeline-order-list'
@@ -100,10 +101,11 @@ export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
         </p>
       ) : (
         <Button
-          onPress={() => {
+          onPress={(event) => {
             leaning.cancel()
 
             if (onAnswer({ eventIds: order, kind: 'order' })) {
+              fadeOffACopyOfTheForm(event.target)
               setIsSent(true)
             }
           }}

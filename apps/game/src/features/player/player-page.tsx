@@ -23,6 +23,7 @@ import {
 import { forgetSessionId } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
 import { ConnectionRefused } from '@/presentation/components/connection-refused'
+import { NoticeCard } from '@/presentation/components/notice-card'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { TextField } from '@/presentation/components/text-field'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
@@ -38,8 +39,9 @@ import { useSeatPawn } from '@/presentation/room-actions/use-seat-pawn'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
+import { LiftedNotice } from './lifted-notice'
 import { PauseHold } from './pause-hold'
-import { PlayerRound } from './player-round'
+import { PlayerRound, showsTheHostAwayCard } from './player-round'
 import { RoundClock } from './round-clock'
 
 import './player-page.sass'
@@ -282,6 +284,15 @@ const Lobby: React.FC<{
     )
   }
 
+  const hostReturns = (
+    <LiftedNotice
+      isShown={view !== null && showsTheHostAwayCard(view)}
+      liftsInPlace={view?.isHostConnected === true}
+    >
+      <NoticeCard title={translate('buzz.blocked.host_away')} />
+    </LiftedNotice>
+  )
+
   if (view !== null && isFramed(view)) {
     return (
       <PawnPiecesProvider view={view}>
@@ -289,6 +300,7 @@ const Lobby: React.FC<{
           className='player-page playing framed'
           data-round-dealt={isRoundDealt || undefined}
         >
+          {hostReturns}
           <RoundChrome
             duel={view.round?.duel ?? null}
             players={view.players}
@@ -332,6 +344,7 @@ const Lobby: React.FC<{
         className='player-page playing'
         data-round-dealt={isRoundDealt || undefined}
       >
+        {hostReturns}
         {view === null ? (
           <p className='waiting'>{translate('player.seating')}</p>
         ) : (

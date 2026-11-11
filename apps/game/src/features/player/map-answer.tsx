@@ -6,6 +6,7 @@ import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
+import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { atlasContent, mapRegionOf } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { LazyWorldMap } from '@/presentation/components/lazy-world-map'
@@ -67,10 +68,11 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
           hasAnswered || point === null ? undefined : (
             <>
               <Button
-                onPress={() => {
+                onPress={(event) => {
                   leaning.cancel()
 
                   if (onAnswer({ kind: 'point', point })) {
+                    fadeOffACopyOfTheForm(event.target)
                     setIsSent(true)
                   }
                 }}

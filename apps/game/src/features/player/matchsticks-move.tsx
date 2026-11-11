@@ -98,7 +98,11 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
         <p className='hint' role='status'>
           {translate(hintKey)}
         </p>
-        {sent === null && (
+        <div
+          className='fold'
+          data-open={sent === null || undefined}
+          inert={sent !== null}
+        >
           <div className='presses'>
             <Button
               isDisabled={placed === null}
@@ -129,7 +133,7 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
               {translate('matchsticks.move.send')}
             </Button>
           </div>
-        )}
+        </div>
       </section>
     </>
   )

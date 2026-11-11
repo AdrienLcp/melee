@@ -1,0 +1,9 @@
+@layer components
+  // Out of the flow, so the round comes back at once in its own place under
+  // the card fading off.
+  .player-page > .player-round.lifted
+    animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+    inset: 0
+    padding: inherit
+    pointer-events: none
+    position: fixed

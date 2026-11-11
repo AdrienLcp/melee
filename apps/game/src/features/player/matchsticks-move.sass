@@ -1,3 +1,4 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -5,10 +6,10 @@
   // a move: put it back, or send it.
   .matchsticks-move
     align-self: center
-    display: grid
+    display: flex
     flex: none
+    flex-direction: column
     gap: var(--space-s)
-    grid-template-columns: minmax(0, 1fr)
     inline-size: min(100%, 32rem)
     justify-self: center
 
@@ -24,6 +25,15 @@
     // Rewritten in place as the move is sent, so it fades rather than cuts.
     &[data-sent] .hint
       animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
+    // Folded away as the move is sent, so the sticks centred above slide to
+    // their new place rather than jump.
+    > .fold
+      @include fold.opens-in-column
+
+      // The presses' edge and ring hang under the row the fold clips to.
+      > .presses
+        overflow-clip-margin: var(--space-xs)
 
     .presses
       display: flex

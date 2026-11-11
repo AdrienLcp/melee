@@ -117,7 +117,11 @@ one part.
   round come back, without holding the first press. On the answer, the word
   that the host stepped away opens and closes in place, the wait to the next
   round folds away as everyone gets ready, and the Ready press's check slides
-  in and out instead of popping.
+  in and out instead of popping. The host coming back fades the word that
+  they stepped away off over the round the same way, and in the lobby trades
+  it for the game's card in one slide. An answer sent — an estimate, a
+  colour, an order, a pawn on the map, a pick of the pair — fades its form
+  off over what was sent, and a matchstick move folds its two presses away.
 - `[Game]` **Nothing in the host's side panel cuts in or out any more.** The
   note that a round is in play, the teams' count and scoring, the answer mode,
   the level, the answer window, the black square's lone finds, the blind test's
