@@ -251,9 +251,11 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   const isOrdered = lineUp.length > 1
   const box = useRef<HTMLDivElement>(null)
 
+  // A row taken by the round that opens, or given back by the game's end,
+  // is a list laid out anew: the rows that stay do not travel for it.
   useCrossFadeOnReshape({
     box,
-    shape: `${isOrdered ? 'ordered' : 'only'}:${isEveningOver}`
+    shape: `${isOrdered ? 'ordered' : 'only'}:${isEveningOver}:${coming.length}`
   })
 
   return (

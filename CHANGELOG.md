@@ -133,7 +133,9 @@ one part.
   stretched again between two joins, when a filled socket goes or a seat takes
   its socket's height. In the side panel a block laid out anew for the second
   time — _Tout public_ coming back with a French quiz, a spot of the room
-  tab picked again — glides to its height instead of landing on it.
+  tab picked again — glides to its height instead of landing on it. The
+  planned games fade over a row a round takes from them or the game's end
+  gives back, the level and the presses under them sliding with the list.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
