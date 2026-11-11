@@ -171,6 +171,16 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.nonText
         },
         {
+          background: '--spine-longestword',
+          foreground: '--on-spine-longestword',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--on-spine',
+          foreground: '--spine-mark-longestword',
+          minimum: WCAG_AA.nonText
+        },
+        {
           background: '--black-word',
           foreground: '--on-black-word',
           minimum: WCAG_AA.text

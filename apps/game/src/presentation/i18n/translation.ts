@@ -70,6 +70,7 @@ type ServedMode = Exclude<
   | 'spoken'
   | 'vote'
   | 'word'
+  | 'letters'
 >
 
 const ATLAS_SCORING_KEYS = {
@@ -89,6 +90,7 @@ type ScoringKey = BuiltKey<
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
+  | 'longestword.scoring'
   | 'mostlikely.scoring'
   | 'mysteryword.scoring'
   | 'petitbac.scoring'
@@ -126,6 +128,7 @@ const CLOCK_PAID_SCORING: ReadonlySet<ScoringKey> = new Set<ScoringKey>([
   'blindtest.scoringFilm.typed',
   'blindtest.scoringMixed.typed',
   'higherlower.scoring',
+  'longestword.scoring',
   'matchsticks.scoringMove',
   'mysteryword.scoring',
   'quiz.scoring.choice',
@@ -164,7 +167,7 @@ export const scoringKey = ({
   } | null
 }): ScoringKey => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's, a word's tries the mystery word's and a spoken round black square's, so the two games that serve
+  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's, a word's tries the mystery word's, words from a draw the longest word's and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
@@ -176,7 +179,8 @@ export const scoringKey = ({
     answerMode === 'vote' ||
     answerMode === 'number' ||
     answerMode === 'pairs' ||
-    answerMode === 'word'
+    answerMode === 'word' ||
+    answerMode === 'letters'
       ? 'choice'
       : answerMode
 
@@ -217,6 +221,8 @@ export const scoringKey = ({
       return 'higherlower.scoring'
     case 'mysteryword':
       return 'mysteryword.scoring'
+    case 'longestword':
+      return 'longestword.scoring'
     case 'petitbac':
       return 'petitbac.scoring'
     case 'quiz':

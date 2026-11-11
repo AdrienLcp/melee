@@ -8,6 +8,7 @@ import {
 } from './black-square'
 import { HIGHER_LOWER_PAIR_COUNT } from './higher-lower'
 import { playerIdSchema } from './identifiers'
+import { longestWordLengthSchema } from './longest-word'
 import { letterMarksSchema, MYSTERY_WORD_TRY_COUNT } from './mystery-word'
 
 /**
@@ -203,6 +204,18 @@ export const wordVerdictSchema = z.object({
   rows: z.array(letterMarksSchema).max(MYSTERY_WORD_TRY_COUNT)
 })
 
+/**
+ * A longest-word seat's longest accepted word, by its length beside the
+ * draw's longest. No letter, so a verdict on any screen spells nothing, and
+ * withheld from its own seat until the reveal, because `bestLength` says how
+ * long a word to look for. `@melee/core/longestword/letters-pay` prices it.
+ */
+export const lettersVerdictSchema = z.object({
+  bestLength: longestWordLengthSchema,
+  kind: z.literal('letters'),
+  length: longestWordLengthSchema
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -214,7 +227,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   numberVerdictSchema,
   pairsVerdictSchema,
   placeVerdictSchema,
-  wordVerdictSchema
+  wordVerdictSchema,
+  lettersVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -249,4 +263,5 @@ export type NumberVerdict = z.infer<typeof numberVerdictSchema>
 export type PairsVerdict = z.infer<typeof pairsVerdictSchema>
 export type PlaceVerdict = z.infer<typeof placeVerdictSchema>
 export type WordVerdict = z.infer<typeof wordVerdictSchema>
+export type LettersVerdict = z.infer<typeof lettersVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

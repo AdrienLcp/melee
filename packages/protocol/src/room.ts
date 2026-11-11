@@ -46,6 +46,13 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import {
+  drawnLettersSchema,
+  drawnWordSchema,
+  longestWordLengthSchema,
+  seatWordLengthSchema,
+  seatWordSchema
+} from './longest-word'
+import {
   matchsticksPuzzleSchema,
   matchsticksSolutionSchema,
   sentMoveSchema,
@@ -124,7 +131,8 @@ export const answerModes = [
   'vote',
   'number',
   'pairs',
-  'word'
+  'word',
+  'letters'
 ] as const
 
 /**
@@ -184,7 +192,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('vote') }),
   z.object({ kind: z.literal('number') }),
   z.object({ kind: z.literal('pairs') }),
-  z.object({ kind: z.literal('word') })
+  z.object({ kind: z.literal('word') }),
+  z.object({ kind: z.literal('letters') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -376,6 +385,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
   choice: { kind: 'choice' },
   colour: { kind: 'colour' },
+  letters: { kind: 'letters' },
   move: { kind: 'move' },
   number: { kind: 'number' },
   order: { kind: 'order' },
@@ -810,6 +820,32 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     revealedWord: z.string().nullable(),
     /** The reader's own tries with their letters, and `null` without a seat. What a reload comes back to. */
     yourTries: z.array(spelledTrySchema).nullable()
+  }),
+  z.object({
+    /** How long the draw's longest word is, and `null` until the reveal. */
+    bestLength: longestWordLengthSchema.nullable(),
+    /**
+     * The draw's longest words, familiar ones first and three at most, and
+     * `null` until the reveal — to a seated console too.
+     */
+    bestWords: z.array(drawnWordSchema).nullable(),
+    kind: z.literal('longestword'),
+    /** The dictionary every word is checked against. */
+    language: questionLanguageSchema,
+    /**
+     * Each seat holding a word, with how long its longest is and never the
+     * word: a length is pressure, a word would be a copy.
+     */
+    lengths: z.array(seatWordLengthSchema),
+    /** The nine drawn letters, folded to `A`–`Z`, in the order drawn. Not the answer: every screen shows them. */
+    letters: drawnLettersSchema,
+    /** Every seat's longest word, and `null` until the reveal. */
+    revealedWords: z.array(seatWordSchema).nullable(),
+    /**
+     * The reader's own accepted words, first sent first, and `null` without a
+     * seat. Its longest — the first of the greatest length — is the one paid.
+     */
+    yourWords: z.array(drawnWordSchema).nullable()
   })
 ])
 
@@ -1111,6 +1147,12 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('mysteryword'),
     word: z.string().nullable()
+  }),
+  /** The draw's longest words and their length, for the console to follow the race, and `null` while the console holds a seat. */
+  z.object({
+    bestLength: longestWordLengthSchema.nullable(),
+    bestWords: z.array(drawnWordSchema).nullable(),
+    kind: z.literal('longestword')
   })
 ])
 
@@ -1223,7 +1265,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('mostlikely') }),
   z.object({ kind: z.literal('estimate') }),
   z.object({ kind: z.literal('higherlower') }),
-  z.object({ kind: z.literal('mysteryword') })
+  z.object({ kind: z.literal('mysteryword') }),
+  z.object({ kind: z.literal('longestword') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

@@ -17,6 +17,7 @@ import { nextDeckQuestion } from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
 import { higherLowerContent } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
+import { longestWordContent } from '@/domain/round/longest-word-round'
 import {
   matchsticksContent,
   playedPuzzleId
@@ -89,6 +90,7 @@ import {
   playedTimelineEventId
 } from '@/infrastructure/questions/timeline-bank'
 import {
+  drawLongestWord,
   drawMysteryWord,
   playedMysteryWordId
 } from '@/infrastructure/questions/word-bank'
@@ -628,6 +630,32 @@ export const beginRound = async (
 
     openRound({
       content: higherLowerContent(pairs),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'longestword') {
+    const drawn = drawLongestWord({ language: game.language })
+
+    if (drawn === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'No draw held a long enough word'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    openRound({
+      content: longestWordContent({ ...drawn, language: game.language }),
       id: newRoundId(),
       now: engine.now(),
       room,

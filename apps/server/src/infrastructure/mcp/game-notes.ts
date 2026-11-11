@@ -22,6 +22,8 @@ export const GAME_NOTES = {
     'Deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:
     'Everyone counts a number of seconds in their head, on screens where nothing moves, and presses once; paid by the gap to the target.',
+  longestword:
+    'Draws nine letters on every screen; every player types the longest word they can make from them, each letter used once, and is paid by its length against the longest the draw held.',
   matchsticks:
     'Draws an equation or a number in matches that one moved match fixes, moved on every screen and judged by the server.',
   mostlikely:

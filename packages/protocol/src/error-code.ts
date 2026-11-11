@@ -128,17 +128,19 @@ export const protocolErrorCodes = [
    */
   'colour_still_shown',
   /**
-   * A mystery-word try that is not one word once folded — a hyphen, an
-   * apostrophe, a space or a digit. Non-fatal, like the three after it: a
-   * refused try costs no try, because it is a typo.
+   * A word game's line that is not one word once folded — a hyphen, an
+   * apostrophe, a space or a digit. Non-fatal, like the four after it: a
+   * refused line costs nothing, because it is a typo.
    */
   'not_one_word',
   /** A mystery-word try that is not the hidden word's length. */
   'wrong_length',
   /** A mystery-word try that does not start with the letter every screen shows. */
   'wrong_first_letter',
-  /** A mystery-word try the round's dictionary does not know. */
+  /** A word game's line the round's dictionary does not know. */
   'not_in_dictionary',
+  /** A longest-word line using a letter the draw lacks, or more often than it was drawn. */
+  'letter_not_in_draw',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

@@ -539,6 +539,19 @@ export type Round = {
         /** Folded to `A`–`Z`: the answer, sent to no screen but a seatless console before the reveal. */
         word: string
       }
+    | {
+        /** How long the draw's longest word is: what a seat's word is paid against, and what closes its sending. */
+        bestLength: number
+        /** The draw's longest words the reveal names, familiar first: sent to no screen but a seatless console before the reveal. */
+        bestWords: string[]
+        kind: 'longestword'
+        /** The dictionary the draw was solved against and every word is checked against. */
+        language: QuestionLanguage
+        /** The nine drawn letters, folded, in the order drawn: on every screen. */
+        letters: string[]
+        /** Every seat's accepted words, folded, first sent first; a refused word is never kept. */
+        words: Map<PlayerId, string[]>
+      }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving
    * the setting mid-round decides the next round rather than cutting this one

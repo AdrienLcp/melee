@@ -60,6 +60,9 @@ const PAIRS_ONLY = ['pairs'] as const satisfies readonly AnswerMode[]
 /** A mystery word is answered by typing tries, which the server colours letter by letter. */
 const WORD_ONLY = ['word'] as const satisfies readonly AnswerMode[]
 
+/** A longest word is answered by typing words from the draw, which the server checks and keeps the longest of. */
+const LETTERS_ONLY = ['letters'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -257,6 +260,16 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'mysteryword':
       return {
         answerModes: WORD_ONLY,
+        makesSound: false,
+        paysTheClock: true,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // Two seats on one draw is the race the game is on television.
+    case 'longestword':
+      return {
+        answerModes: LETTERS_ONLY,
         makesSound: false,
         paysTheClock: true,
         playsAloud: false,

@@ -77,6 +77,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, word: null }
     }
 
+    case 'longestword': {
+      return { ...content, bestLength: null, bestWords: null }
+    }
+
     default: {
       return content
     }

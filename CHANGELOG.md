@@ -95,6 +95,15 @@ one part.
   pays a word found sooner more. The word reaches no screen before the
   reveal, a seated console's neither; every seat's grid travels as colours
   alone. Not on the shelf until its screens exist.
+- `[Shared]` **The longest word is served.** A room set to it by a settings
+  frame draws nine letters by the language's letter frequencies, three or
+  four of them vowels, until the dictionary holds a word of seven or more,
+  and solves the draw in under a millisecond. Every seat sends as many words
+  as it likes; a word using a letter twice or one the draw lacks is refused at
+  no cost with its own code, the seat's longest is kept, and it is paid by its
+  length against the draw's longest, the clock read when that word was sent.
+  Every screen sees each seat's length and no word until the reveal, which
+  names the draw's longest words. Not on the shelf until its screens exist.
 
 ### Features
 

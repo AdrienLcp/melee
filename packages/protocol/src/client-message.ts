@@ -19,6 +19,7 @@ import {
   sessionIdSchema
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
+import { longestWordGuessSchema } from './longest-word'
 import { stickMoveSchema } from './matchsticks'
 import { wordGuessSchema } from './mystery-word'
 import { petitBacAnswerSchema, petitBacCategoryIndexSchema } from './petit-bac'
@@ -204,6 +205,14 @@ export const answerMessageSchema = z.object({
        */
       guess: wordGuessSchema,
       kind: z.literal('word')
+    }),
+    z.object({
+      /**
+       * One word made from the draw, sent as often as a seat likes. A line the
+       * server refuses — not a word, a letter the draw lacks — costs nothing.
+       */
+      guess: longestWordGuessSchema,
+      kind: z.literal('letters')
     })
   ]),
   roundId: roundIdSchema,

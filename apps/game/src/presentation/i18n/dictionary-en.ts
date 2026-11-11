@@ -560,6 +560,8 @@ export const EN_DICTIONARY = defineDictionary({
     invalid_message: 'We did not understand that. Try again.',
     joined_mid_round: 'You are in from the next round.',
     judging_round: 'You are judging this round, and play again from the next.',
+    letter_not_in_draw:
+      'That word takes a letter the draw does not hold, or one more often than it was drawn.',
     music_source_unavailable:
       'Deezer, where the music comes from, is not answering. It is not your speakers: try again in a moment.',
     nickname_taken: 'Someone already took that nickname.',
@@ -782,6 +784,7 @@ export const EN_DICTIONARY = defineDictionary({
       choice: 'Four choices',
       colour: 'Rebuild the colour',
       label: 'How to answer',
+      letters: 'Make the longest word',
       move: 'Move the match',
       number: 'Type a number',
       order: 'Put them in order',
@@ -1451,6 +1454,17 @@ export const EN_DICTIONARY = defineDictionary({
    * to say: at this point the route has not resolved and no room is known.
    */
   loading: 'Loading…',
+  longestword: {
+    home: {
+      description:
+        'Nine letters go up on every screen. Everyone types the longest word they can make from them, each letter used once, as many words as they like: only the longest counts. The room sees how long everyone’s word is, never the word, until the reveal names the longest the draw held.'
+    },
+    name: 'Longest word',
+    play: 'Play Longest word',
+    scoring:
+      'Your longest word is paid by its length against the longest the draw held: as long scores 100 points, shorter scores less, and three letters or fewer score nothing.',
+    tagline: 'Nine letters, one word, as long as you can.'
+  },
   matchsticks: {
     duration: 'Time per puzzle',
     goal: {

@@ -524,6 +524,8 @@ export const FR_DICTIONARY = defineDictionary({
     invalid_message: 'On n’a pas compris. Réessaie.',
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
     judging_round: 'Tu juges cette manche, tu rejoues à la suivante.',
+    letter_not_in_draw:
+      'Ce mot prend une lettre absente du tirage, ou plus de fois qu’elle n’y est.',
     music_source_unavailable:
       'Deezer, d’où vient la musique, ne répond plus. Ce ne sont pas tes enceintes : réessaie dans un instant.',
     nickname_taken: 'Ce pseudo est déjà pris.',
@@ -740,6 +742,7 @@ export const FR_DICTIONARY = defineDictionary({
       choice: 'Quatre propositions',
       colour: 'On refait la couleur',
       label: 'Comment on répond',
+      letters: 'On fait le mot le plus long',
       move: 'On déplace l’allumette',
       number: 'On tape un nombre',
       order: 'Dans l’ordre',
@@ -1378,6 +1381,17 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Mentions légales et confidentialité'
   },
   loading: 'Chargement…',
+  longestword: {
+    home: {
+      description:
+        'Neuf lettres s’affichent sur tous les écrans. Chacun tape le mot le plus long qu’il peut en tirer, chaque lettre une fois, autant de mots qu’il veut : seul le plus long compte. La pièce voit la longueur du mot de chacun, jamais le mot, jusqu’à ce que la révélation donne le plus long que cachait le tirage.'
+    },
+    name: 'Mot le plus long',
+    play: 'Jouer à Mot le plus long',
+    scoring:
+      'Ton mot le plus long est payé selon sa longueur face au plus long du tirage : aussi long, il rapporte 100 points, plus court, moins, et trois lettres ou moins ne rapportent rien.',
+    tagline: 'Neuf lettres, un mot, le plus long possible.'
+  },
   matchsticks: {
     duration: 'Temps par énigme',
     goal: {

@@ -4,6 +4,13 @@ import type { Difficulty } from '@melee/protocol/difficulty'
 import type { QuestionLanguage } from '@melee/protocol/question'
 
 import {
+  type FormIndex,
+  indexForms,
+  longestWordsIn,
+  shownBestWords
+} from '@melee/core/longestword/longest-words'
+import { drawPlayableLetters } from '@melee/core/longestword/playable-draw'
+import {
   type ContentTier,
   drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
@@ -173,6 +180,72 @@ export const isFamiliarWord = ({
   language: QuestionLanguage
   word: string
 }): boolean => bankOf(language).familiar.has(word)
+
+/** Built on the first longest-word draw of each language, so a draw reads one mask per form rather than its letters. */
+const formIndexes = new Map<QuestionLanguage, FormIndex>()
+
+const formIndexOf = (language: QuestionLanguage): FormIndex => {
+  const held = formIndexes.get(language)
+
+  if (held !== undefined) {
+    return held
+  }
+
+  const index = indexForms(wordFormsByLength(language))
+
+  formIndexes.set(language, index)
+
+  return index
+}
+
+export type LongestWordDraw = {
+  bestLength: number
+  /** The draw's longest words the reveal names, familiar first, three at most. */
+  bestWords: string[]
+  letters: string[]
+}
+
+/** These letters solved against the language's forms: how long its longest word is, and the ones the reveal names. */
+export const solvedLongestWordDraw = ({
+  language,
+  letters
+}: {
+  language: QuestionLanguage
+  letters: string[]
+}): LongestWordDraw | null => {
+  const best = longestWordsIn({ index: formIndexOf(language), letters })
+
+  return best === null
+    ? null
+    : {
+        bestLength: best.length,
+        bestWords: shownBestWords({
+          isFamiliar: (word) => isFamiliarWord({ language, word }),
+          words: best.words
+        }),
+        letters
+      }
+}
+
+/** Nine letters drawn by the language's frequencies until its dictionary holds a word of seven or more from them. */
+export const drawLongestWord = ({
+  language
+}: {
+  language: QuestionLanguage
+}): LongestWordDraw | null => {
+  const drawn = drawPlayableLetters({ index: formIndexOf(language), language })
+
+  return drawn === null
+    ? null
+    : {
+        bestLength: drawn.bestLength,
+        bestWords: shownBestWords({
+          isFamiliar: (word) => isFamiliarWord({ language, word }),
+          words: drawn.bestWords
+        }),
+        letters: drawn.letters
+      }
+}
 
 /** Every word a mystery word of that length may hide, with its tier. */
 export const mysteryWordAnswers = ({

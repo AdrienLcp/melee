@@ -37,6 +37,7 @@ import {
   blackSquareGrid
 } from '@/domain/round/black-square-round'
 import { deckSummariesOf } from '@/domain/round/deck-dealer'
+import { longestWordContentView } from '@/domain/round/longest-word-round'
 import { mysteryWordContentView } from '@/domain/round/mystery-word-round'
 import {
   canCancelPetitBacStop,
@@ -256,6 +257,14 @@ const toHostContent = ({
     }
   }
 
+  if (content.kind === 'longestword') {
+    return {
+      bestLength: seatId === null ? content.bestLength : null,
+      bestWords: seatId === null ? content.bestWords : null,
+      kind: 'longestword'
+    }
+  }
+
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
@@ -384,7 +393,9 @@ const toBaseView = ({
 /**
  * What the reader has banked, except a matchstick move or a colour before the
  * reveal: each is one shot, so the verdict helps its seat with nothing, and a
- * seat told it was right has an answer worth whispering to the next one.
+ * seat told it was right has an answer worth whispering to the next one. A
+ * longest word's verdict waits too, because it carries how long the draw's
+ * longest is.
  */
 const yourVerdictIn = ({
   round,
@@ -397,7 +408,8 @@ const yourVerdictIn = ({
     round.content.kind === 'swatch' ||
     round.content.kind === 'mostlikely' ||
     round.content.kind === 'estimate' ||
-    round.content.kind === 'higherlower') &&
+    round.content.kind === 'higherlower' ||
+    round.content.kind === 'longestword') &&
   !round.revealed
     ? null
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
@@ -673,6 +685,14 @@ const toContentView = ({
 
   if (content.kind === 'mysteryword') {
     return mysteryWordContentView({
+      content,
+      isRevealed: round.revealed,
+      youId
+    })
+  }
+
+  if (content.kind === 'longestword') {
+    return longestWordContentView({
       content,
       isRevealed: round.revealed,
       youId

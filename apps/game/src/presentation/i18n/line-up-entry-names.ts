@@ -362,6 +362,11 @@ const settingsOf = ({
         levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
+    case 'longestword':
+      return [
+        LANGUAGE_NAMES[entry.language],
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
   }
 }
 

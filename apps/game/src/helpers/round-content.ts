@@ -152,6 +152,8 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
       return content.valuedPairs !== null
     case 'mysteryword':
       return content.word !== null
+    case 'longestword':
+      return content.bestWords !== null
   }
 }
 

@@ -90,6 +90,10 @@ import { takeDuel } from '@/domain/round/duels'
 import { payEstimates } from '@/domain/round/estimate-round'
 import { gradePicks } from '@/domain/round/higher-lower-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
+import {
+  checkLongestWord,
+  gradeLongestWord
+} from '@/domain/round/longest-word-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import {
   isOnTheBallot,
@@ -478,6 +482,7 @@ export type AnswerRejection = Extract<
   | 'colour_still_shown'
   | 'invalid_message'
   | 'joined_mid_round'
+  | 'letter_not_in_draw'
   | 'not_in_dictionary'
   | 'not_one_word'
   | 'not_your_turn'
@@ -590,6 +595,13 @@ const keepAnswer = ({
     ])
   }
 
+  if (round.content.kind === 'longestword' && attempt.kind === 'letters') {
+    round.content.words.set(playerId, [
+      ...(round.content.words.get(playerId) ?? []),
+      attempt.guess
+    ])
+  }
+
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
     round.content.moves.push({
       glyphs: applyMove({
@@ -694,7 +706,7 @@ export const registerAnswer = ({
   shapeOf
 }: {
   attempt: Attempt
-  /** Whether a mystery-word try is a word, read from the dictionary the server holds. */
+  /** Whether a word game's line is a word, read from the dictionary the server holds. */
   isWord: IsWord
   now: number
   playerId: PlayerId
@@ -766,13 +778,17 @@ export const registerAnswer = ({
 
 const isDone = (attempts: PlayerAttempts): boolean => isFinal(attempts.verdict)
 
-/** The modes a seat sends more than once in: typing until both halves land, a word until it is found or six tries are spent. */
+/**
+ * The modes a seat sends more than once in: typing until both halves land, a
+ * word until it is found or six tries are spent, words from a draw until one
+ * is as long as the draw's longest.
+ */
 const takesRetries = (mode: ModeSettings): boolean =>
-  mode.kind === 'typed' || mode.kind === 'word'
+  mode.kind === 'typed' || mode.kind === 'word' || mode.kind === 'letters'
 
 /**
- * A mystery-word try folded and checked, or why it is refused — a refusal
- * costs no try, so it is answered before anything is banked. Every other
+ * A word game's line folded and checked, or why it is refused — a refusal
+ * costs nothing, so it is answered before anything is banked. Every other
  * answer passes as sent.
  */
 const acceptedTry = ({
@@ -784,6 +800,18 @@ const acceptedTry = ({
   isWord: IsWord
   round: Round
 }): Result<Attempt, AnswerRejection> => {
+  if (attempt.kind === 'letters' && round.content.kind === 'longestword') {
+    const checked = checkLongestWord({
+      content: round.content,
+      isWord,
+      typed: attempt.guess
+    })
+
+    return checked.status === 'refused'
+      ? Result.failure(checked.reason)
+      : Result.success({ guess: checked.word, kind: 'letters' })
+  }
+
   if (attempt.kind !== 'word' || round.content.kind !== 'mysteryword') {
     return Result.success(attempt)
   }
@@ -798,6 +826,23 @@ const acceptedTry = ({
     ? Result.failure(checked.reason)
     : Result.success({ guess: checked.word, kind: 'word' })
 }
+
+/**
+ * Whether what a seat now holds is better than what it held. A longest word
+ * raises it by being longer, three letters included, so the seat's word is
+ * the one kept and timed even before it pays; everything else by what it is
+ * worth.
+ */
+const raisesVerdict = ({
+  after,
+  before
+}: {
+  after: Verdict
+  before: Verdict | null
+}): boolean =>
+  after.kind === 'letters'
+    ? before?.kind !== 'letters' || after.length > before.length
+    : pointsFor(after) > (before === null ? 0 : pointsFor(before))
 
 const bank = ({
   graded,
@@ -817,8 +862,10 @@ const bank = ({
   // `grade` hands back everything banked so far rather than this guess alone,
   // so a guess that added something is one that raised what the verdict is
   // worth — which reads the same over two halves and over one claim.
-  const before = held === undefined ? 0 : pointsFor(held.verdict)
-  const gained = pointsFor(graded.verdict) > before
+  const gained = raisesVerdict({
+    after: graded.verdict,
+    before: held?.verdict ?? null
+  })
 
   const entry = held ?? {
     firstGuessedAt: now,
@@ -832,7 +879,13 @@ const bank = ({
 
   entry.verdict = graded.verdict
 
-  if (gained) {
+  // A longest word is paid on one word, the seat's longest, so it is the one
+  // said and the one timed: the clock pays the moment the best was sent, not
+  // the first short word on the way to it.
+  if (gained && graded.verdict.kind === 'letters') {
+    entry.landed = [graded.said]
+    entry.scoredAfterMs = elapsedRoundMs(round, now)
+  } else if (gained) {
     entry.landed.push(graded.said)
     entry.scoredAfterMs ??= elapsedRoundMs(round, now)
   } else {
@@ -1171,6 +1224,7 @@ type Attempt =
   | { kind: 'number'; guess: number }
   | { kind: 'pairs'; picks: HigherLowerPicks }
   | { kind: 'word'; guess: string }
+  | { kind: 'letters'; guess: string }
   | TypedAttempt
 
 /**
@@ -1275,6 +1329,19 @@ const grade = ({
       : null
   }
 
+  if (content.kind === 'longestword') {
+    return attempt.kind === 'letters'
+      ? {
+          said: attempt.guess,
+          verdict: gradeLongestWord({
+            content,
+            held: held?.verdict.kind === 'letters' ? held.verdict : null,
+            word: attempt.guess
+          })
+        }
+      : null
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1319,7 +1386,8 @@ const grade = ({
     attempt.kind === 'seat' ||
     attempt.kind === 'number' ||
     attempt.kind === 'pairs' ||
-    attempt.kind === 'word'
+    attempt.kind === 'word' ||
+    attempt.kind === 'letters'
   ) {
     return null
   }

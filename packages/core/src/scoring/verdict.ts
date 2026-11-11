@@ -13,6 +13,7 @@ import { isBullseye, pointsForDistance } from '../atlas/distance-pay'
 import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
 import { isWholeSheetRight, pointsForPairs } from '../higherlower/pairs-pay'
+import { isLongestInDraw, pointsForLetters } from '../longestword/letters-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { pointsForWord } from '../mysteryword/word-pay'
 import { isFirstPlace, pointsForPlace } from '../reflex/place-pay'
@@ -97,6 +98,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForWord(verdict)
   }
 
+  if (verdict.kind === 'letters') {
+    return pointsForLetters(verdict)
+  }
+
   return pointsForHalves(verdict)
 }
 
@@ -132,6 +137,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isFirstPlace(verdict)
     case 'word':
       return verdict.foundOnTry !== null
+    case 'letters':
+      return isLongestInDraw(verdict)
   }
 }
 

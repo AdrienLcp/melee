@@ -59,7 +59,8 @@ describe('answerModesFor', () => {
       'vote',
       'number',
       'pairs',
-      'word'
+      'word',
+      'letters'
     ])
   })
 })

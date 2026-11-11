@@ -48,6 +48,7 @@ export type PlayerAnswer =
   | { kind: 'pairs'; picks: HigherLowerPicks }
   | { kind: 'seat'; playerId: PlayerId }
   | { guess: string; kind: 'word' }
+  | { guess: string; kind: 'letters' }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A
@@ -88,6 +89,7 @@ export const candidatesIn = ({
     case 'innerclock':
     case 'matchsticks':
     case 'mostlikely':
+    case 'longestword':
     case 'mysteryword':
     case 'petitbac':
     case 'reflex':

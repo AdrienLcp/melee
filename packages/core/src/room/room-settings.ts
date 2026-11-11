@@ -39,6 +39,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   higherlower: 12,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
+  /** A draw is under a minute of typing and a reveal to argue over, so eight of them are a short game. */
+  longestword: 8,
   matchsticks: 10,
   /** A line is half a minute of looking round the table, so ten of them are a short game. */
   mostlikely: 10,
@@ -79,6 +81,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   estimate: 'number',
   higherlower: 'pairs',
   innerclock: 'buzzer',
+  longestword: 'letters',
   matchsticks: 'move',
   mostlikely: 'vote',
   mysteryword: 'word',
@@ -209,6 +212,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   estimate: null,
   higherlower: null,
   innerclock: null,
+  longestword: null,
   matchsticks: null,
   mostlikely: null,
   mysteryword: null,

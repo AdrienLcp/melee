@@ -40,7 +40,8 @@ export const gameKinds = [
   'mostlikely',
   'estimate',
   'higherlower',
-  'mysteryword'
+  'mysteryword',
+  'longestword'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -260,6 +261,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     /** How long the grids stay open; the round closes early once every seat has found the word or spent its tries. */
     roundDurationMs: z.number().int().min(60_000).max(240_000),
     wordLength: mysteryWordLengthSchema
+  }),
+  z.object({
+    kind: z.literal('longestword'),
+    /** The dictionary the draw is solved against and every word is checked against — the game's own, like the mystery word's. */
+    language: questionLanguageSchema,
+    /** How long the draw stays open; the round closes early once every seat holds a word as long as the draw's longest. */
+    roundDurationMs: z.number().int().min(30_000).max(90_000)
   })
 ])
 
@@ -283,6 +291,7 @@ export type MostLikelySettings = Extract<GameSettings, { kind: 'mostlikely' }>
 export type EstimateSettings = Extract<GameSettings, { kind: 'estimate' }>
 export type HigherLowerSettings = Extract<GameSettings, { kind: 'higherlower' }>
 export type MysteryWordSettings = Extract<GameSettings, { kind: 'mysteryword' }>
+export type LongestWordSettings = Extract<GameSettings, { kind: 'longestword' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -436,6 +445,13 @@ export const DEFAULT_MYSTERY_WORD_SETTINGS: MysteryWordSettings = {
   wordLength: 6
 }
 
+/** Forty-five seconds: long enough to find a seven and try for an eight, short enough that nine letters stay a race. */
+export const DEFAULT_LONGEST_WORD_SETTINGS: LongestWordSettings = {
+  kind: 'longestword',
+  language: 'fr',
+  roundDurationMs: 45_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -446,6 +462,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   estimate: DEFAULT_ESTIMATE_SETTINGS,
   higherlower: DEFAULT_HIGHER_LOWER_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
+  longestword: DEFAULT_LONGEST_WORD_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,
   mysteryword: DEFAULT_MYSTERY_WORD_SETTINGS,

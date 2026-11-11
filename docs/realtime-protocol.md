@@ -1009,6 +1009,25 @@ costs a try. The seventh try, and any try after the word is found, is
 (`revealedGrids`). `mystery-word-game.test.ts` searches every frame of a round,
 a seated console's included, for the word.
 
+**A longest word travels to nobody but its own seat before the reveal**, a
+seated console included. The nine drawn letters are not the answer and every
+screen reads them (`letters`), with the round's language and each seat's
+longest length as `lengths` — a length is pressure, a word would be a copy. A
+seat reads its own accepted words (`yourWords`); the console reads the draw's
+longest words and their length on `currentContent` while it holds no seat,
+and the wall reads nothing more than a seat. A seat's own verdict,
+`{ kind: 'letters', length, bestLength }`, stays `null` until the reveal,
+because `bestLength` says how long a word to look for. A word is one
+`player.answer` of kind `letters`, sent as often as the seat likes: the server
+folds it to `A`–`Z` and refuses a line that is not one word, uses a letter the
+draw lacks or uses one more often than drawn, or is not in the round's
+dictionary with `not_one_word`, `letter_not_in_draw` or `not_in_dictionary` —
+none of them costs anything. A word once the seat's is as long as the draw's
+longest is `already_buzzed`. The reveal puts up every seat's longest word
+(`revealedWords`), the draw's longest (`bestWords`, three at most, familiar
+first) and `bestLength`. `longest-word-game.test.ts` searches every frame of a
+round, a seated console's included, for another seat's word.
+
 ## Errors
 
 ```jsonc
@@ -1019,8 +1038,8 @@ a seated console's included, for the word.
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
-`invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`, and
-a mystery word's four refused tries.
+`invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`, a
+mystery word's four refused tries and a longest word's three refused words.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.
