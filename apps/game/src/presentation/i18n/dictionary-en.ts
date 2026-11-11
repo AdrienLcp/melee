@@ -748,19 +748,19 @@ export const EN_DICTIONARY = defineDictionary({
     untickAll: 'Untick all',
     /** The row of line-ups the host starred or played on this machine. */
     yourLineUps: {
+      /** Folds the row back over the tickets past its first six. */
+      fewer: 'Fewer',
       hint: 'Your saved line-ups first, then what you played, latest first.',
+      /** Unfolds the tickets the folded row hides, after its first six. */
+      more: defineTranslation('and {count:plural}', {
+        plural: { count: { other: '{?} more' } }
+      }),
       putBack: 'Put it back',
       remove: 'Remove “{name}”',
       removed: '“{name}” removed',
       starHint:
         'Star a line-up to save it, and on your next visit it leads this row.',
-      /** Folds the row back over the tickets past its first six. */
-      fewer: 'Fewer',
       title: 'Your line-ups'
-      /** Unfolds the tickets the folded row hides, after its first six. */
-      more: defineTranslation('and {count:plural}', {
-        plural: { count: { other: '{?} more' } }
-      }),
     }
   },
   host: {
@@ -1402,14 +1402,14 @@ export const EN_DICTIONARY = defineDictionary({
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
       nickname:
         'The name you last played under, so the next table fills it in for you.',
+      ownLineUpsHeight:
+        'How tall your line-ups were drawn on the front door, and at what window width, so the next visit keeps their room before they load.',
       panelFolded:
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
       pawn: 'The pawn you last picked — its colour and its head — which the next table gives you if nobody there holds it yet.',
       recentTables:
         'The line-ups of the last tables you ran, each with its code, when it was played and how many rounds it went, to run one again.',
-      ownLineUpsHeight:
-        'How tall your line-ups were drawn on the front door, and at what window width, so the next visit keeps their room before they load.',
       savedEvenings:
         'The line-ups you saved under a name, each game with its settings, to run them again.',
       seats:

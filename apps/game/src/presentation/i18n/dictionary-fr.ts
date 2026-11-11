@@ -707,17 +707,17 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Mêlée',
     untickAll: 'Tout décocher',
     yourLineUps: {
+      fewer: 'Moins',
       hint: 'Tes parties enregistrées d’abord, puis celles que tu as jouées, la plus récente en premier.',
+      more: defineTranslation('et {count:plural}', {
+        plural: { count: { one: '{?} autre', other: '{?} autres' } }
+      }),
       putBack: 'La remettre',
       remove: 'Retirer « {name} »',
       removed: '« {name} » retirée',
       starHint:
         'Mets une étoile sur une partie pour l’enregistrer : à ta prochaine visite, elle passera en tête de cette rangée.',
-      fewer: 'Moins',
       title: 'Tes parties'
-      more: defineTranslation('et {count:plural}', {
-        plural: { count: { one: '{?} autre', other: '{?} autres' } }
-      }),
     }
   },
   host: {
@@ -1331,14 +1331,14 @@ export const FR_DICTIONARY = defineDictionary({
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
       nickname:
         'Le nom sous lequel tu as joué la dernière fois, pour que la table suivante le remplisse pour toi.',
+      ownLineUpsHeight:
+        'La hauteur de tes parties sur la page d’accueil, et la largeur de fenêtre où elle a été mesurée, pour que la visite suivante leur garde la place avant qu’elles ne s’affichent.',
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
       pawn: 'Le pion que tu as choisi la dernière fois — sa couleur et sa tête —, que la table suivante te donne si personne ne l’a déjà.',
       recentTables:
         'Les parties des dernières tables que tu as tenues, avec le code de chacune, quand elle a été jouée et combien de manches elle a duré, pour en relancer une.',
-      ownLineUpsHeight:
-        'La hauteur de tes parties sur la page d’accueil, et la largeur de fenêtre où elle a été mesurée, pour que la visite suivante leur garde la place avant qu’elles ne s’affichent.',
       savedEvenings:
         'Les parties que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
       seats:

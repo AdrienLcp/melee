@@ -364,15 +364,6 @@ export const updateSettingsMessageSchema = z.object({
 })
 
 /**
- * `slateKeys` is the answer key a host typed before the evening, kept on their
- * own machine because the settings reach every player. It rides the press that
- * opens the sheet, so the round never exists without it and a console that
- * reloads mid-game has nothing to send again. Ignored by every other game.
- *
- * `challengeText` is what a challenge round asks the table to do, typed on the
- * console as it is launched; absent or empty, the round opens on the line of
- * the hand at `challengeAt` (`challengeHand`, the first by default), or on
-/**
  * The content the evening brings, one deck per line-up entry by index. Lobby
  * only, beside the settings frame a console sends as it opens: a deck is
  * written for the line-up it came with, and refused when it does not fit it.
@@ -384,6 +375,15 @@ export const setDecksMessageSchema = z.object({
   type: z.literal('host.setDecks')
 })
 
+/**
+ * `slateKeys` is the answer key a host typed before the evening, kept on their
+ * own machine because the settings reach every player. It rides the press that
+ * opens the sheet, so the round never exists without it and a console that
+ * reloads mid-game has nothing to send again. Ignored by every other game.
+ *
+ * `challengeText` is what a challenge round asks the table to do, typed on the
+ * console as it is launched; absent or empty, the round opens on the line of
+ * the hand at `challengeAt` (`challengeHand`, the first by default), or on
  * none at all when `isChallengeSaidAloud` — the host announces it and the
  * wall shows the game alone. Ignored by every other game.
  *
@@ -747,6 +747,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   helloMessageSchema,
   timePingMessageSchema,
   updateSettingsMessageSchema,
+  setDecksMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
   revealMessageSchema,
@@ -756,7 +757,6 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
-  setDecksMessageSchema,
   revealItemKeyMessageSchema,
   closeItemMessageSchema,
   collectSheetsMessageSchema,
@@ -835,6 +835,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   votePetitBacMessageSchema,
   finishPetitBacVoteMessageSchema,
   updateSettingsMessageSchema,
+  setDecksMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
   revealMessageSchema,
@@ -844,7 +845,6 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
-  setDecksMessageSchema,
   revealItemKeyMessageSchema,
   closeItemMessageSchema,
   collectSheetsMessageSchema,
@@ -891,6 +891,7 @@ export type ScoreChange = z.infer<typeof adjustScoreMessageSchema>['change']
  */
 export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.updateSettings',
+  'host.setDecks',
   'host.startRound',
   'host.judge',
   'host.reveal',
@@ -900,7 +901,6 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.holdReveal',
   'host.addItem',
   'host.setItemKey',
-  'host.setDecks',
   'host.revealItemKey',
   'host.closeItem',
   'host.collectSheets',

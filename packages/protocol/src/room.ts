@@ -1160,6 +1160,14 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
  * Adds everything a player must not see: the answer to the round in play, and
  * how much of the catalogue is left.
  */
+/** What the console is told of a deck: never an item, because a seated host is a player too. */
+export const deckSummarySchema = z.object({
+  played: z.number().int().nonnegative(),
+  size: z.number().int().positive()
+})
+
+export type DeckSummary = z.infer<typeof deckSummarySchema>
+
 export const hostRoomViewSchema = baseRoomViewSchema.extend({
   /**
    * The ready-made lines the next challenge round may open on, dealt ahead so
@@ -1170,6 +1178,12 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
    */
   challengeHand: z.array(challengeLabelsSchema).max(CHALLENGE_HAND_SIZE),
   currentContent: hostRoundContentSchema.nullable(),
+  /**
+   * What each line-up entry's deck holds, by index, `null` where it holds
+   * none: a count and never an item, because a seated host is a player too.
+   * A spent deck (`played === size`) hands its entry over to the game's bank.
+   */
+  deckSummaries: z.array(deckSummarySchema.nullable()).max(LINE_UP_MAX_ENTRIES),
   /**
    * How many rounds of this game each line-up entry has opened, by index —
    * what the console's draw deals the evening from. The host's alone: it says
@@ -1202,14 +1216,6 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
    * same fact for the screen that may or may not be playing too, and without it
    * a seated host cannot recognise itself in `answers` or `awards`.
    */
-/** What the console is told of a deck: never an item, because a seated host is a player too. */
-export const deckSummarySchema = z.object({
-  played: z.number().int().nonnegative(),
-  size: z.number().int().positive()
-})
-
-export type DeckSummary = z.infer<typeof deckSummarySchema>
-
   youId: playerIdSchema.nullable()
 })
 
@@ -1220,12 +1226,6 @@ export const playerRoomViewSchema = baseRoomViewSchema.extend({
 /**
  * The room's own screen, and what it adds to a seatless player's view is only
  * what a wall has to show or play: the clip, and the slate's pile as it is
-  /**
-   * What each line-up entry's deck holds, by index, `null` where it holds
-   * none: a count and never an item, because a seated host is a player too.
-   * A spent deck (`played === size`) hands its entry over to the game's bank.
-   */
-  deckSummaries: z.array(deckSummarySchema.nullable()).max(LINE_UP_MAX_ENTRIES),
  * marked in front of everyone. Its own arm per game rather than the host's with
  * fields nulled, so an answer reaching it is a schema the encoder strips rather
  * than a projection somebody has to remember — `track`, `question` and the
