@@ -32,13 +32,15 @@
   .action-menu-popover
     @include leaflet.leaflet
 
+    --travel-offset: 0 -0.375rem
+
     min-inline-size: 13.5rem
 
     &[data-entering]
-      animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
+      animation: page-enter var(--transition-fast, 0s) var(--ease-out)
 
     &[data-exiting]
-      animation: popover-strike calc(var(--transition-fast, 0s) * 0.7) var(--ease-out) reverse
+      animation: page-enter calc(var(--transition-fast, 0s) * 0.7) var(--ease-out) reverse
 
   .action-menu
     display: flex

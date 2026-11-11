@@ -56,7 +56,9 @@
       width: 100%
 
     .pawn
-      animation: seat-podium-lands calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
+      --travel-offset: 0 -0.5em
+
+      animation: page-enter calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
       filter: drop-shadow(0 0.08em 0 var(--chipboard-dark))
       font-size: clamp(var(--text-2xl), 13cqi, var(--text-4xl))
 
@@ -106,11 +108,3 @@
     // *This one is yours* in the keyline the track's podium draws round its step.
     .you .step
       outline: var(--stroke-bold) solid var(--ink)
-
-@keyframes seat-podium-lands
-  from
-    opacity: 0
-    transform: translateY(-0.5em)
-  to
-    opacity: 1
-    transform: none

@@ -183,15 +183,13 @@
   from
     clip-path: inset(100% 0 0)
 
-/// The pawn a game ended on, dropped onto its place from a little above: the
-/// winner's on the final board, and each player's own beside its rank.
-@keyframes pawn-lands
+/// A pawn set down on a case of the board, from a little above and a little
+/// large, with no fade because it was on the board already: each step of a
+/// walk along the track, and a player's own pawn on the strip. On `transform`,
+/// so a pawn centred by `translate` keeps its place.
+@keyframes pawn-hops
   from
-    opacity: 0
-    transform: translateY(-0.5em) scale(1.06)
-  to
-    opacity: 1
-    transform: none
+    transform: translateY(-55%) scale(1.08)
 
 /// A letter turned over on its top edge, away from the reader to the half and
 /// back face up: a cell of the mystery word's grid, a tile of the longest word.
@@ -204,13 +202,6 @@
     transform: perspective(30em) rotateX(90deg)
   100%
     transform: perspective(30em) rotateX(0deg)
-
-/// A popover struck down onto the page under its trigger: the sheet, the
-/// action menu, the invitation.
-@keyframes popover-strike
-  from
-    opacity: 0
-    transform: translateY(-0.375rem)
 
 /// A mark pressed onto a piece as it is earned — a box's tick, a copy's check —
 /// rather than switched on. Smaller than a payout: it confirms a press, it pays nothing.

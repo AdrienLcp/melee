@@ -54,9 +54,10 @@ A keyframe seen twice is one, in `globals.sass`, and what differs between its
 sites is a custom property it substitutes whole:
 
 - `page-enter` — arriving with a fade from a little below; `--travel-offset`
-  and `--travel-scale`, set on the element itself, say from where.
+  and `--travel-scale`, set on the element itself, say from where: a page
+  sideways, a popover or a landing pawn from above.
 - `letter-turns` — a letter turned over on its top edge, back face up.
-- `popover-strike` — a popover struck down under its trigger.
+- `pawn-hops` — a pawn set down on a case, on `transform` and with no fade.
 
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`
 does it for the two choice strips. The rules are printed into both stylesheets,
@@ -467,7 +468,7 @@ and `ToggleButton` wrap each string child in a `.control-label` span.
 
 A component's stylesheet reaches the page only where the component is
 imported, and an `animation` naming a keyframe the page never loaded runs
-nothing, silently: `pawn-lands`, written in `final-board.sass`, did not exist
+nothing, silently: a pawn landing, written in `final-board.sass`, did not exist
 on the player's screen until it moved to `globals.sass` beside `seat-arrives`.
 
 **An animated element a container query hides takes `visibility`, not

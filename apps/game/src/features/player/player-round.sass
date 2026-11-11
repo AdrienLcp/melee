@@ -975,7 +975,10 @@
       padding-block: var(--space-s)
 
       .pawn
-        animation: pawn-lands calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
+        --travel-offset: 0 -0.5em
+        --travel-scale: 1.06
+
+        animation: page-enter calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
         filter: drop-shadow(0 4px 0 var(--chipboard-dark))
         font-size: clamp(4.5rem, calc(var(--stage-unit) * 20), 9rem)
         grid-area: pawn
