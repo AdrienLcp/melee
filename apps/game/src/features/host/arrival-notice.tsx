@@ -16,6 +16,10 @@ import './arrival-notice.sass'
 /** Long enough to read a name, short enough to be gone by the next question. */
 const ARRIVAL_SHOWN_MS = 4_500
 
+const isNoticeClosed = (event: React.AnimationEvent): boolean =>
+  event.animationName === 'notice-closes' &&
+  event.target === event.currentTarget
+
 /** Who just sat down, and the place on the roster that picks their pawn. */
 export type Arrival = { nickname: string; seat: number }
 
@@ -84,7 +88,9 @@ export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
   arrival
 }) => {
   const translate = useTranslate()
-  const { drawn, isLeaving, onAnimationEnd } = useLeavingValue(arrival)
+  const { drawn, isLeaving, onAnimationEnd } = useLeavingValue(arrival, {
+    isExitEnd: isNoticeClosed
+  })
 
   return (
     <p

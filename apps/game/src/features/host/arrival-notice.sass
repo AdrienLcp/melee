@@ -2,15 +2,44 @@
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
+// `round-chrome.sass`'s column gap, which a piece giving way there hands back.
+$chrome-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 3), var(--space-m))
+
+// What the notice takes the place of gives its room up as the notice opens
+// its own, and takes it back as the notice closes, so the line slides rather
+// than jumps either way: on the notice's own easing, so the two trade the
+// room in step. Each direction is written in the state it ends on.
+=gives-way-to-the-notice($gap, $beneath-the-line)
+  interpolate-size: allow-keywords
+  transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-out) var(--transition-base, 0s), inline-size var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)
+
+  &:is(:has(> .arrival-notice[data-shown]:not([data-leaving])) #{$beneath-the-line})
+    inline-size: 0
+    margin-inline-end: calc(-1 * #{$gap})
+    opacity: 0
+    transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in), inline-size var(--transition-base, 0s) var(--ease-out), margin-inline-end var(--transition-base, 0s) var(--ease-out), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)
+    visibility: hidden
+
+  // Held on one line until the notice has closed: reopening from no width, the
+  // round's words wrapped one a line and stood 244px tall for a frame.
+  &:is(:has(> .arrival-notice[data-shown]) #{$beneath-the-line})
+    overflow: clip
+    white-space: nowrap
+
 @layer components
   // A line in the header's own band, in place of the round and the score, so
   // the header keeps its height and nothing under it moves or hides: a notice
   // laid over the stage hid the top of a timed question for four seconds. The
   // band's height is `--control-height`.
   .arrival-notice
+    --gap-closed: calc(-1 * var(--space-m))
+
     &:not([data-shown])
       @include accessibility.visually-hidden
 
+    // It opens its room in the line before it fades in, and fades before it
+    // closes it: the box going from the line to the hidden region's 1px was a
+    // cut once the fade had ended.
     &[data-shown]
       @include piece.card(var(--radius-m))
       @include typography.caption
@@ -19,7 +48,7 @@
       // The console's header lines its items up on their baseline, which set
       // the card a few pixels low and grew the line under it.
       align-self: center
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      animation: notice-opens var(--transition-base, 0s) var(--ease-out), page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5) backwards
       container-type: inline-size
       display: flex
       flex: 1 1 0
@@ -32,12 +61,12 @@
       pointer-events: none
       white-space: nowrap
 
-      // Its own keyframe rather than the entry reversed: the same name with a
+      // Its own keyframes rather than the entry reversed: the same name with a
       // new direction resumes the finished entry and never ends again.
       &[data-leaving]
         --travel-offset: 0 -0.25rem
 
-        animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) both, notice-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
 
     // The band is what the menu and the invitation leave, 156px at 390 and 76
     // at 320: the pawn goes first.
@@ -55,16 +84,32 @@
       overflow: hidden
       text-overflow: ellipsis
 
-  .round-chrome:has(> .arrival-notice[data-shown]) > :is(.round-index, .you)
-    display: none
+  .round-chrome
+    > .arrival-notice
+      --gap-closed: calc(-1 * #{$chrome-gap})
+
+    > :is(.round-index, .you)
+      +gives-way-to-the-notice($chrome-gap, "> *")
 
   // Kept on the line at no width rather than removed: the console's header
   // lines its items up on their baseline, and the round's text is what sets
   // the line's height beside the way in, which would otherwise shrink by a
   // few pixels and lift the stage under it.
-  .host-console-page > header:has(> .arrival-notice[data-shown]) > .leaves-in-place > .round-index
-    margin-inline-end: calc(var(--space-m) * -1)
-    overflow: clip
-    visibility: hidden
-    white-space: nowrap
-    width: 0
+  .host-console-page > header > .leaves-in-place > .round-index
+    +gives-way-to-the-notice(var(--space-m), "> .leaves-in-place > *")
+
+@keyframes notice-opens
+  from
+    border-inline-width: 0
+    flex-grow: 0
+    margin-inline-end: var(--gap-closed)
+    max-width: 0
+    padding-inline: 0
+
+@keyframes notice-closes
+  to
+    border-inline-width: 0
+    flex-grow: 0
+    margin-inline-end: var(--gap-closed)
+    max-width: 0
+    padding-inline: 0
