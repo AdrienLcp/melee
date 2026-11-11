@@ -59,7 +59,11 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
     <section className='own-lines'>
       <header>
         <h3>{translate(`${game}.own.title`)}</h3>
-        <span className='summary'>
+        <span
+          aria-hidden={lines.length === 0 || undefined}
+          className='summary'
+          data-empty={lines.length === 0 || undefined}
+        >
           {translate(`${game}.own.summary`, { count: toCome })}
         </span>
       </header>

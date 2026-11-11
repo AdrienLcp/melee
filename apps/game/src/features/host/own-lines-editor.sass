@@ -21,6 +21,13 @@
 
       color: var(--ink-muted)
 
+    .summary
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+      &[data-empty]
+        opacity: 0
+        transition-timing-function: var(--ease-in)
+
     .hint
       max-inline-size: var(--measure)
       text-wrap: pretty
