@@ -72,6 +72,11 @@ round's podium drops from three to the first alone
 (`useWholeChips`), never scrolled. The other screens may use the same order
 to stay legible.
 
+The lobby gives way the same way: past eight seats on a short screen the
+game's rules go, then the seats share the height left (`--seats` over
+`--seat-columns`) down to the `--text-xs` floor, one name a line; lying down,
+the invitation and the table stand side by side at any width.
+
 ## When an answering screen runs out of room
 
 A player's screen and a seated console, from countdown to buzzed, fit by

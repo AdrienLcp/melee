@@ -90,6 +90,74 @@
           grid-template-columns: minmax(0, 1fr)
           text-align: center
 
+    // The lobby is held to the screen like every other phase: 24 seats on a
+    // phone's shape made the page 1785px tall at 390×844. What does not fit
+    // gives way in `screen-roles` order — the game's rules, then the seats'
+    // size down to the text floor — and the page never scrolls.
+    &.host-console-page:has(> .stage.lobby)
+      max-block-size: var(--shown-height)
+
+    &.host-console-page > .stage.lobby
+      flex: 1 1 0
+      min-block-size: 0
+
+      @include layout.narrow
+        grid-template-rows: auto minmax(0, 1fr)
+
+        // Lying down the stacked column left the seats under the fold, so the
+        // invitation keeps its row of code and square down one side and the
+        // table takes the other, as on a television.
+        @media (aspect-ratio > 1)
+          grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.5fr)
+          grid-template-rows: minmax(0, 1fr)
+
+      > .host-side
+        min-block-size: 0
+
+      // The rules are read once the table has sat down; a full table on a
+      // short screen keeps the game's name and its seats.
+      &:has(.scoreboard li:nth-child(9))
+        @include layout.narrow
+          @media (height < 60rem)
+            .game-choice :is(.pitch, .scoring)
+              display: none
+
+      @media (height < 36rem)
+        .game-choice :is(.pitch, .scoring)
+          display: none
+
+      // The rows divide the box rather than ask for their height: each takes
+      // its share, never more than a chip's own height on a television.
+      .roster:not(:has(.team-roster))
+        --seat-rows: round(up, var(--seats, 8) / var(--seat-columns), 1)
+
+        container: seats / size
+        flex: 1 1 0
+        grid-auto-rows: minmax(0, 3.5rem)
+        grid-template-rows: auto
+        min-block-size: 0
+        row-gap: var(--space-2xs)
+
+        .scoreboard li,
+        .socket
+          min-block-size: 0
+          overflow: clip
+
+        .scoreboard li
+          padding-block: 0
+
+          .nickname
+            font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.2), 3.3cqi, calc((100cqh - 2rem) / var(--seat-rows) * 0.45)), 1.375rem)
+
+        .socket .pawn
+          font-size: clamp(var(--text-xs), calc((100cqh - 2rem) / var(--seat-rows) * 0.6), 2rem)
+
+        // Too short for a name over two lines: one, ended on an ellipsis.
+        @container seats (height < 40rem)
+          .scoreboard li .name
+            display: block
+            white-space: nowrap
+
     // Between two rounds the wall is the room's reason to look up, so every
     // block stands in the middle of the box it is given rather than at its
     // top: the answer and what the table said read as one block, the title and

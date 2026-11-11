@@ -11,7 +11,6 @@ delete this README with the last one. The content series shares one plan:
 | Content | 5    | `content-05-own-numbers.md`             | content 4  |
 | Content | 6    | `content-06-black-square-themes.md`     | content 5  |
 | Words   | —    | `words-01-screens.md`                   | none       |
-| Screens | —    | `screens-01-phone-fixes.md`             | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the

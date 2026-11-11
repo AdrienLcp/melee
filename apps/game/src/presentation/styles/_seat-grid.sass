@@ -9,14 +9,16 @@
   align-content: start
   display: grid
   gap: var(--space-xs) var(--space-s)
-  grid-template-columns: minmax(0, 1fr)
+  --seat-columns: 1
+
+  grid-template-columns: repeat(var(--seat-columns), minmax(0, 1fr))
   min-width: 0
 
   @container (width >= 22rem)
-    grid-template-columns: repeat(2, minmax(0, 1fr))
+    --seat-columns: 2
 
   @container (width >= 30rem)
-    grid-template-columns: repeat(3, minmax(0, 1fr))
+    --seat-columns: 3
 
   > :not(.scoreboard, .sockets)
     grid-column: 1 / -1

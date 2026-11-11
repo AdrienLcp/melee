@@ -43,6 +43,22 @@
       gap: inherit
       grid-auto-rows: max-content
       grid-template-columns: minmax(0, 1fr)
+      // Clips the copy `useCrossFadeOnReshape` lays over it; the margin is
+      // there so a row's focus ring is not clipped with it.
+      overflow: clip
+      overflow-clip-margin: var(--space-xs)
+      interpolate-size: allow-keywords
+      position: relative
+
+      // The ready-made choice going for the planned games, or back: the
+      // list drawn before fades out over the one drawn now.
+      > .reshape-copy
+        animation: none
+        inset-block-start: 0
+        inset-inline: 0
+        pointer-events: none
+        position: absolute
+        z-index: 1
 
     // Coming back from one of its pages, the list slides in from the side
     // that page left by, and the tab's heading, which gave way to the page,

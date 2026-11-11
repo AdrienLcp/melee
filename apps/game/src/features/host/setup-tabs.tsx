@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { Deck } from '@melee/protocol/deck'
 import type { GameKind } from '@melee/protocol/game'
@@ -50,6 +50,7 @@ import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
 import { TeamsSetup } from './teams-setup'
 import { useArrivedLater } from './use-arrived-later'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useSavedEvenings } from './use-saved-evenings'
 import { useSetupSummaries } from './use-settings-summary'
 
@@ -121,6 +122,12 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   })
   const saved = useSavedEvenings()
   const [loadedName, setLoadedName] = useState<string | null>(null)
+  const list = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({
+    box: list,
+    shape: view.settings.game === null ? 'choosing' : 'planned'
+  })
   const keep = (name: string) => {
     const evening = savedEveningOf({
       decks: decksKeptOver({
@@ -288,7 +295,11 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   }
 
   return (
-    <div className='evening-list' data-returned={page.hasReturned || undefined}>
+    <div
+      className='evening-list'
+      data-returned={page.hasReturned || undefined}
+      ref={list}
+    >
       {slateEditors}
       {view.settings.game === null ? (
         <>

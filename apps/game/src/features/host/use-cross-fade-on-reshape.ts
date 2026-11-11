@@ -1,8 +1,15 @@
 import { type RefObject, useLayoutEffect, useRef } from 'react'
 
+import { interpolatesToAuto } from '@/infrastructure/browser'
+
 const COPY_CLASS = 'reshape-copy'
 
-type Drawn = { copy: HTMLElement; height: number; shape: string }
+type Drawn = {
+  copy: HTMLElement
+  element: HTMLElement
+  height: number
+  shape: string
+}
 
 const TRANSPARENT = 'rgba(0, 0, 0, 0)'
 
@@ -56,6 +63,15 @@ const copyOf = (element: HTMLElement): HTMLElement => {
   return copy
 }
 
+/**
+ * Where the box's height eases to. The new content may still be opening once
+ * the reshape has been drawn — the running order's rows unfold as they
+ * arrive, 630px of a 4600px list on the first frame — so an engine that
+ * interpolates to `auto` follows it; any other gets the height drawn now.
+ */
+const settledHeight = (drawnNow: number): string =>
+  interpolatesToAuto() ? 'auto' : `${drawnNow}px`
+
 const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
   const style = getComputedStyle(box)
   const duration = millisecondsOf(style.getPropertyValue('--transition-base'))
@@ -94,10 +110,10 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
     )
 
   if (Math.abs(before.height - height) >= 1) {
-    box.animate([{ height: `${before.height}px` }, { height: `${height}px` }], {
-      duration,
-      easing: height > before.height ? easeOut : easeIn
-    })
+    box.animate(
+      [{ height: `${before.height}px` }, { height: settledHeight(height) }],
+      { duration, easing: height > before.height ? easeOut : easeIn }
+    )
   }
 }
 
@@ -106,9 +122,10 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
  * another, where nothing can travel because the rows themselves change: a
  * copy of what was drawn fades out over the new content while the box eases
  * from its old height to its new. Only a change of `shape` plays; every other
- * commit just keeps the copy current. The box clips (`overflow: hidden`) and
- * places the copy (`position: relative`, the copy at its top); under reduced
- * motion the tokens are nought and the new content simply lands.
+ * commit just keeps the copy current. The box clips (`overflow: hidden`),
+ * places the copy (`position: relative`, the copy at its top) and allows
+ * `interpolate-size: allow-keywords`; under reduced motion the tokens are
+ * nought and the new content simply lands.
  */
 export const useCrossFadeOnReshape = ({
   box,
@@ -129,12 +146,19 @@ export const useCrossFadeOnReshape = ({
 
     const before = drawn.current
 
-    if (before !== null && before.shape !== shape) {
+    // A box mounted anew arrives on its own motion, with nothing on screen to
+    // fade from.
+    if (
+      before !== null &&
+      before.element === element &&
+      before.shape !== shape
+    ) {
       play({ before, box: element })
     }
 
     drawn.current = {
       copy: copyOf(element),
+      element,
       height: element.getBoundingClientRect().height,
       shape
     }

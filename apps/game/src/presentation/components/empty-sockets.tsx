@@ -2,7 +2,8 @@ import type React from 'react'
 
 import { Pawn } from './pawn'
 
-const PAWNS_IN_THE_BOX = 8
+/** How many seats a roster draws at the least: the taken ones, then a socket each to this. */
+export const PAWNS_IN_THE_BOX = 8
 
 type EmptySocketsProps = {
   /** How many seats are taken; the sockets carry on from the next pawn. */

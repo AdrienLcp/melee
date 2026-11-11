@@ -363,7 +363,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   list laid out anew in another shape — the planned games going from one row
   to an ordered list — has nothing that travels: `useCrossFadeOnReshape`
   fades a copy of the old list out over the new while the box eases to its
-  height. A whole stage a snapshot swaps on the console or the wall lands
+  height — to `auto` where the box allows `interpolate-size: allow-keywords`,
+  because new rows still unfolding as they arrive measure 630px of a 4600px
+  list on the commit. A whole stage a snapshot swaps on the console or the wall lands
   through `replaceScreen` (`useRoomView`); never on a player's screen, where
   the transition would hold a buzz for its length.
 

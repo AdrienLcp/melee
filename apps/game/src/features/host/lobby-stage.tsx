@@ -10,7 +10,10 @@ import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
-import { EmptySockets } from '@/presentation/components/empty-sockets'
+import {
+  EmptySockets,
+  PAWNS_IN_THE_BOX
+} from '@/presentation/components/empty-sockets'
 import { PawnPiecePress } from '@/presentation/components/pawn-piece-press'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
@@ -106,7 +109,12 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 
         <BoardPreview isBoardAround={isBoardAround} view={view} />
 
-        <section className='roster'>
+        <section
+          className='roster'
+          style={{
+            '--seats': Math.max(view.players.length, PAWNS_IN_THE_BOX)
+          }}
+        >
           {playsAloud ? (
             <h2>{translate('team.title')}</h2>
           ) : isRosterBeside ? null : (

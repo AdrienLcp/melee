@@ -125,6 +125,18 @@ one part.
   at once no longer beats one inside placed at the bell; among perfect
   answers, the fastest still takes up to ten points more.
 
+### Fixes
+
+- `[Game]` **The wall's lobby holds 24 seats on a phone's shape without
+  scrolling.** The game's rules give way first, then the seats share the
+  height left down to the text floor, one name a line; lying down, the
+  invitation and the table stand side by side.
+- `[Game]` **Loading a ready-made line-up, and _Change_, move.** The list
+  drawn before fades out over the one drawn now while the panel eases to its
+  new height, at every width.
+- `[Game]` **The menu no longer covers a row's `…` on a narrow console.** The
+  tab's title is a bar held at the top, and the rows scroll under it.
+
 ### Internal
 
 - `[Server]` **A dictionary for the word games.** `words:build` folds Lexique

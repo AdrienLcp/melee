@@ -316,11 +316,36 @@
       padding-block: var(--layout-padding-block-start) var(--layout-padding-block-end)
       padding-inline: var(--gutter-left) var(--gutter-right)
 
+      // The tab's title is its bar, held at the top with the menu over its
+      // free end: a row scrolled up passes under the bar, where the menu
+      // floated over its own `…` press at 390 wide.
       > h2
         align-items: center
+        background: var(--field)
+        container-type: scroll-state
         display: flex
-        min-height: var(--control-height)
-        padding-inline-end: var(--menu-inset)
+        inset-block-start: 0
+        margin-block-start: calc(var(--layout-padding-block-start) * -1)
+        margin-inline: calc(var(--gutter-left) * -1) calc(var(--gutter-right) * -1)
+        min-height: calc(var(--control-height) + var(--layout-padding-block-start) + var(--space-xs))
+        padding-block: var(--layout-padding-block-start) var(--space-xs)
+        padding-inline: var(--gutter-left) calc(var(--gutter-right) + var(--menu-inset))
+        position: sticky
+        z-index: 1
+
+        // Ruled off only once rows pass under it, as the tab bar is.
+        &::after
+          border-bottom: var(--hairline)
+          content: ''
+          inset: auto 0 0
+          opacity: 0
+          position: absolute
+          transition: opacity var(--transition-fast, 0s) var(--ease-in)
+
+        @container scroll-state(stuck: top)
+          &::after
+            opacity: 1
+            transition: opacity var(--transition-fast, 0s) var(--ease-out)
 
   @include layout.off-desk
     @media (aspect-ratio < 13 / 10)

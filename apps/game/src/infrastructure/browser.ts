@@ -192,6 +192,10 @@ export const viewportWidth = (): number => window.innerWidth
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 
+/** Whether an animation may end on `height: auto`, under `interpolate-size: allow-keywords`. */
+export const interpolatesToAuto = (): boolean =>
+  CSS.supports('interpolate-size', 'allow-keywords')
+
 let viewTransitionsRunning = 0
 
 const markViewTransitionEnded = (): void => {
