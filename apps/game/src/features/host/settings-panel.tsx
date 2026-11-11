@@ -84,6 +84,9 @@ const HIGHER_LOWER_DURATIONS_MS = [5_000, 10_000, 20_000] as const
 /** One minute is a race to the word, four lets a table work through all six tries. */
 const MYSTERY_WORD_DURATIONS_MS = [60_000, 120_000, 240_000] as const
 
+/** Half a minute is a race for whatever word comes, a minute and a half lets a table hunt for the nine. */
+const LONGEST_WORD_DURATIONS_MS = [30_000, 45_000, 90_000] as const
+
 const MYSTERY_WORD_LENGTHS = Array.from(
   { length: MYSTERY_WORD_MAX_LENGTH - MYSTERY_WORD_MIN_LENGTH + 1 },
   (_, index) => MYSTERY_WORD_MIN_LENGTH + index
@@ -669,6 +672,35 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             }}
             optionLabel={secondsLabel}
             options={MYSTERY_WORD_DURATIONS_MS}
+            value={game.roundDurationMs}
+          />
+        </>
+      )}
+
+      {game?.kind === 'longestword' && (
+        <>
+          <SegmentedControl
+            isDisabled={isDisabled}
+            label={translate('longestword.language')}
+            onChange={(next) => {
+              if (isQuestionLanguage(next)) {
+                onChange({ ...settings, game: { ...game, language: next } })
+              }
+            }}
+            options={questionLanguages.map((language) => ({
+              label: LANGUAGE_NAMES[language],
+              value: language
+            }))}
+            value={game.language}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('longestword.roundDuration')}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={LONGEST_WORD_DURATIONS_MS}
             value={game.roundDurationMs}
           />
         </>

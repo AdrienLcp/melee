@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **Longest word is on the shelf.** Nine letters are drawn on every
+  screen, and every seat lays its tiles into a row of nine to make the longest
+  word it can, each letter once, sending as many words as it likes: only the
+  longest counts, paid against the longest the draw held. A word that is not
+  in the dictionary, or uses a letter the draw lacks, is said under the row
+  and costs nothing. The table watches a tower of face-down tiles per seat,
+  its length on top and never the word, and the reveal turns over the draw's
+  longest word and ranks every seat's under it. The host picks the
+  time (30 to 90 seconds) and the language, which follows the screen's.
 - `[Game]` **Mystery word is on the shelf.** Every seat gets six tries at a
   hidden word whose first letter and length everyone sees, on a grid over a
   keyboard drawn on the screen — AZERTY for French words, QWERTY for English —

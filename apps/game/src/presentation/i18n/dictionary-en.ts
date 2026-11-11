@@ -1455,7 +1455,11 @@ export const EN_DICTIONARY = defineDictionary({
    */
   loading: 'Loading…',
   longestword: {
+    bestSaid: defineTranslation('The draw held {word}, {count:plural}', {
+      plural: { count: { one: '{?} letter', other: '{?} letters' } }
+    }),
     draw: 'The draw',
+    drawSaid: 'The draw: {letters}',
     emptyWord: 'Your word, empty',
     erase: 'Erase',
     home: {
@@ -1463,8 +1467,11 @@ export const EN_DICTIONARY = defineDictionary({
         'Nine letters go up on every screen. Everyone types the longest word they can make from them, each letter used once, as many words as they like: only the longest counts. The room sees how long everyone’s word is, never the word, until the reveal names the longest the draw held.'
     },
     kept: ', the word kept',
+    language: 'Words in',
     name: 'Longest word',
+    noWord: 'No word',
     play: 'Play Longest word',
+    ranking: 'Everyone’s longest word',
     refusal: {
       already_buzzed: 'Your word is already as long as the draw’s longest.',
       letter_not_in_draw:
@@ -1472,12 +1479,27 @@ export const EN_DICTIONARY = defineDictionary({
       not_in_dictionary: '“{word}” is not in the dictionary. Not counted.',
       not_one_word: 'One word, letters only. Not counted.'
     },
+    reveal: {
+      alsoLong: defineTranslation('{length:plural}: {words}', {
+        plural: {
+          length: { one: 'Also {?} letter', other: 'Also {?} letters' }
+        }
+      }),
+      title: 'The draw held'
+    },
+    roundDuration: 'Time to search',
     scoring:
       'Your longest word is paid by its length against the longest the draw held: as long scores 100 points, shorter scores less, and three letters or fewer score nothing.',
     seat: 'Your longest word',
     send: 'Send',
     shuffle: 'Shuffle',
     tagline: 'Nine letters, one word, as long as you can.',
+    tower: {
+      best: defineTranslation('{name}: a word of {count:plural}', {
+        plural: { count: { one: '{?} letter', other: '{?} letters' } }
+      }),
+      none: '{name}: no word yet'
+    },
     typing: 'Your word: {word}',
     words: 'Your accepted words'
   },

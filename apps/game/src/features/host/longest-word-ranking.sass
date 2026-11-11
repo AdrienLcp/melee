@@ -1,0 +1,126 @@
+// Side-effect module: styles `.longest-word-ranking`, every seat's longest word laid face up at the reveal.
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .longest-word-ranking
+    --spine: var(--spine-longestword)
+    --columns: var(--rank-columns, 1)
+    --rows: var(--rank-rows, 12)
+    --column-gap: clamp(var(--space-m), calc(var(--stage-unit) * 3), var(--space-2xl))
+    --column-cap: 44rem
+    --row-cap: 3.75rem
+
+    align-content: center
+    column-gap: var(--column-gap)
+    container-type: size
+    display: grid
+    grid-auto-flow: column
+    grid-template-columns: repeat(var(--columns), minmax(0, var(--column-cap)))
+    grid-template-rows: repeat(var(--rows), minmax(0, var(--row-cap)))
+    justify-content: center
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    padding: 0
+
+    // Upright, a wall has the height for one column and not the width for two.
+    @media (aspect-ratio < 1)
+      --columns: 1
+      --rows: var(--rank-count, 12)
+
+    // Beside the standings the ranking has half the width: two columns of
+    // it left a name five letters and the tiles at the floor, so it stands
+    // in one while the height holds twenty-four rows at the floor.
+    @container reveal (height >= 34rem)
+      --columns: 1
+      --rows: var(--rank-count, 12)
+
+    // A phone running the table reads the rows at a size of its own and
+    // scrolls them, the word on a line under the name.
+    &:not(.wall-page *)
+      @include layout.narrow
+        --columns: 1
+
+        align-content: start
+        container-type: inline-size
+        grid-auto-flow: row
+        // A row's minimum is 0, so `auto` rows shared the box's height out
+        // equally and laid twenty-four of them one over the other.
+        grid-auto-rows: max-content
+        grid-template-rows: none
+        overflow-y: auto
+
+        .rank-row
+          --tile-size: min(calc((100cqi - 3.5em) / 9.7), 2.25rem)
+
+          font-size: var(--text-m)
+          grid-template-areas: 'rank pawn name pay' '. word word word'
+          grid-template-columns: 1.4em auto minmax(0, 1fr) auto
+          padding-block: var(--space-2xs)
+          row-gap: var(--space-2xs)
+
+          > .word
+            justify-self: start
+
+  // Laid one after the other once the draw's word is down, longest first,
+  // each word turned over once its row has landed.
+  .rank-row
+    --row-block: min(calc(100cqh / var(--rows)), var(--row-cap))
+    // Nine tiles and their gaps beside a rank, a pawn, a name and a pay.
+    --tile-size: clamp(var(--text-xs), min(calc((var(--row-block) - var(--space-2xs)) / 1.12), calc((min(100cqi / var(--columns), var(--column-cap)) - var(--column-gap) - 17rem) / 9.7)), 2.6rem)
+    --row-delay: calc(var(--transition-slow, 0s) * 2 + var(--transition-fast, 0s) * 0.3 * min(var(--rank, 0), 24))
+    --deal-delay: calc(var(--row-delay) + var(--transition-base, 0s))
+
+    align-items: center
+    animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--row-delay) backwards
+    border-block-end: var(--stroke-thin) solid var(--rule)
+    column-gap: var(--space-xs)
+    display: grid
+    font-size: clamp(var(--text-xs), calc(var(--row-block) * 0.4), var(--text-xl))
+    grid-template-areas: 'rank pawn name word pay'
+    grid-template-columns: 1.4em auto minmax(0, 1fr) auto 3.2em
+    min-block-size: 0
+    min-inline-size: 0
+    // At the floor the padding gives way before the row leaves the box.
+    padding-block: clamp(0rem, calc((var(--row-block) - var(--tile-size) * 1.08 - var(--stroke-thin)) / 2), var(--space-2xs))
+
+    > .rank
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      grid-area: rank
+      text-align: end
+
+    &[data-best] > .rank
+      color: var(--ink)
+
+    > .pawn
+      font-size: var(--text-em-l)
+      grid-area: pawn
+
+    > .name
+      @include typography.title
+
+      font-size: 1em
+      grid-area: name
+      min-inline-size: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    &[data-yours] > .name
+      text-decoration: underline var(--stroke-bold)
+      text-underline-offset: 0.2em
+
+    > .word
+      grid-area: word
+
+    > .pay
+      @include typography.numeric
+
+      grid-area: pay
+      text-align: end
+
+      &:not([data-paid])
+        color: var(--ink-muted)

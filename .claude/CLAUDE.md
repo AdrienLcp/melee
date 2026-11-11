@@ -34,7 +34,10 @@ paid by how close it lands, and **Plus ou moins** deals one pair a round of
 those numbers — two rivers, two cities — and pays every right pick, and
 **Mot mystère** hides a word whose first letter and length are on every
 screen, six tries each to find it, the wall showing every grid in colours
-and never a letter.
+and never a letter, and **Mot le plus long** deals nine letters to every
+screen and asks each seat for the longest word they make, the wall showing
+each seat's length and never its word until the reveal turns over the
+longest the draw held.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -43,7 +46,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*`, `higherlower.*`, `mysteryword.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*`, `higherlower.*`, `mysteryword.*`, `longestword.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -363,7 +366,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Fourteen games share the room, the QR code and every screen, and the rule that got
+Eighteen games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

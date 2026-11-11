@@ -18,6 +18,7 @@ import {
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
+import { LongestWordAnswer } from '@/features/player/longest-word-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -31,6 +32,7 @@ import {
   blackSquareContent,
   estimateContent,
   higherLowerContent,
+  longestWordContent,
   matchsticksContent,
   mostLikelyContent,
   mysteryWordContent,
@@ -41,6 +43,7 @@ import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { LetterCell } from '@/presentation/components/letter-cell'
+import { LetterTile } from '@/presentation/components/letter-tile'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MarkLegend } from '@/presentation/components/mark-legend'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
@@ -52,6 +55,7 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
+import { LongestWordTowers } from './longest-word-towers'
 import { MysteryWordTowers } from './mystery-word-towers'
 
 import './playing-stage.sass'
@@ -117,6 +121,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const estimate = estimateContent(round)
   const higherLower = higherLowerContent(round)
   const mysteryWord = mysteryWordContent(round)
+  const longestWord = longestWordContent(round)
   const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
@@ -184,6 +189,26 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             </span>
           </p>
         )
+      ) : longestWord !== null ? (
+        onAnswer === null && (
+          <p className='now longest-word-draw'>
+            <VisuallyHidden elementType='span'>
+              {translate('longestword.drawSaid', {
+                letters: longestWord.letters.join(' ')
+              })}
+            </VisuallyHidden>
+            <span aria-hidden className='tiles'>
+              {[...longestWord.letters.keys()].map((position) => (
+                <LetterTile
+                  face='faceUp'
+                  index={position}
+                  key={position}
+                  letter={longestWord.letters[position] ?? ''}
+                />
+              ))}
+            </span>
+          </p>
+        )
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -234,6 +259,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             : 'answering'
       }
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
+      data-longest-word={
+        longestWord === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
       data-map={(atlas?.target != null && onAnswer !== null) || undefined}
       data-map-question={atlas?.shown != null || undefined}
       data-most-likely={
@@ -387,6 +419,17 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             youId={answersAs}
           />
         ))}
+      {longestWord !== null &&
+        (onAnswer === null ? (
+          <LongestWordTowers players={view.players} round={round} />
+        ) : (
+          <LongestWordAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            refusal={refusal}
+            round={round}
+          />
+        ))}
       {mostLikely !== null && onAnswer !== null && (
         <MostLikelyBallot
           key={round.id}
@@ -423,6 +466,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {view.players.length > 0 &&
         mode !== 'spoken' &&
         mysteryWord === null &&
+        longestWord === null &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />
         ) : (

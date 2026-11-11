@@ -1,0 +1,52 @@
+// Side-effect module: styles `.longest-word-best`, the draw's longest word dealt at the reveal.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .longest-word-best
+    --spine: var(--spine-longestword)
+
+    container-type: inline-size
+    display: grid
+    gap: var(--space-2xs)
+    inline-size: 100%
+    justify-items: center
+    min-inline-size: 0
+
+    > .best
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-l))
+      justify-content: center
+      margin: 0
+
+    .had,
+    .length
+      @include typography.billboard
+
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3.6), var(--text-3xl))
+
+    .length
+      @include typography.numeric
+
+    // Its own letters and no empty socket: the slots measure a seat's word
+    // against this one, not this one against itself.
+    .drawn-word-tiles
+      --tile-size: clamp(1.5rem, min(calc(var(--stage-unit) * 7.6), calc((100cqi - 18rem) / 9.7)), 5rem)
+
+      grid-auto-columns: var(--tile-size)
+      grid-auto-flow: column
+      grid-template-columns: none
+
+      > .slot
+        display: none
+
+    // Under the word once its tiles are down.
+    > .also
+      @include typography.caption-strong
+
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
+      color: var(--ink-muted)
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-xl))
+      margin: 0
+      text-align: center

@@ -58,6 +58,7 @@ import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
+import { LongestWordRevealed } from '@/features/player/longest-word-revealed'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -1537,6 +1538,10 @@ const Revealed: React.FC<{
 
   if (mysteryWordContent(round)?.revealedWord != null) {
     return <MysteryWordRevealed round={round} youId={view.youId} />
+  }
+
+  if (longestWordContent(round)?.bestWords != null) {
+    return <LongestWordRevealed round={round} youId={view.youId} />
   }
 
   const shades = swatchContent(round)

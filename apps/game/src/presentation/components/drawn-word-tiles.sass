@@ -1,0 +1,21 @@
+// Side-effect module: styles `.drawn-word-tiles`, a word of the longest word in the draw's nine slots.
+
+@layer components
+  .drawn-word-tiles
+    --tile-gap: max(0.125rem, calc(var(--tile-size, 2.75rem) * 0.08))
+    --tile-edge: max(0.0625rem, calc(var(--tile-size, 2.75rem) * 0.07))
+
+    display: grid
+    gap: var(--tile-gap)
+    grid-template-columns: repeat(9, var(--tile-size, 2.75rem))
+    // The tiles' edge hangs under the row.
+    padding-block-end: var(--tile-edge)
+
+    > .letter-tile
+      --tile-edge: inherit
+      --tile-radius: var(--radius-xs)
+
+    > .slot
+      aspect-ratio: 1
+      border-radius: var(--radius-xs)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)

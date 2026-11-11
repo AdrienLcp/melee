@@ -1379,7 +1379,11 @@ export const FR_DICTIONARY = defineDictionary({
   },
   loading: 'Chargement…',
   longestword: {
+    bestSaid: defineTranslation('Il y avait {word}, {count:plural}', {
+      plural: { count: { one: '{?} lettre', other: '{?} lettres' } }
+    }),
     draw: 'Le tirage',
+    drawSaid: 'Le tirage : {letters}',
     emptyWord: 'Ton mot, vide',
     erase: 'Effacer',
     home: {
@@ -1387,8 +1391,11 @@ export const FR_DICTIONARY = defineDictionary({
         'Neuf lettres s’affichent sur tous les écrans. Chacun tape le mot le plus long qu’il peut en tirer, chaque lettre une fois, autant de mots qu’il veut : seul le plus long compte. La pièce voit la longueur du mot de chacun, jamais le mot, jusqu’à ce que la révélation donne le plus long que cachait le tirage.'
     },
     kept: ', le mot gardé',
+    language: 'Mots en',
     name: 'Mot le plus long',
+    noWord: 'Aucun mot',
     play: 'Jouer à Mot le plus long',
+    ranking: 'Le mot le plus long de chacun',
     refusal: {
       already_buzzed: 'Ton mot est déjà aussi long que le plus long du tirage.',
       letter_not_in_draw:
@@ -1397,12 +1404,25 @@ export const FR_DICTIONARY = defineDictionary({
         '« {word} » n’est pas dans le dictionnaire. Mot non compté.',
       not_one_word: 'Un seul mot, des lettres seulement. Mot non compté.'
     },
+    reveal: {
+      alsoLong: defineTranslation('{length:plural} : {words}', {
+        plural: { length: { one: 'En {?} lettre', other: 'En {?} lettres' } }
+      }),
+      title: 'Il y avait'
+    },
+    roundDuration: 'Temps pour chercher',
     scoring:
       'Ton mot le plus long est payé selon sa longueur face au plus long du tirage : aussi long, il rapporte 100 points, plus court, moins, et trois lettres ou moins ne rapportent rien.',
     seat: 'Ton mot le plus long',
     send: 'Envoyer',
     shuffle: 'Mélanger',
     tagline: 'Neuf lettres, un mot, le plus long possible.',
+    tower: {
+      best: defineTranslation('{name} : un mot de {count:plural}', {
+        plural: { count: { one: '{?} lettre', other: '{?} lettres' } }
+      }),
+      none: '{name} : pas encore de mot'
+    },
     typing: 'Ton mot : {word}',
     words: 'Tes mots acceptés'
   },

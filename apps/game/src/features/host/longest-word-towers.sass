@@ -1,0 +1,27 @@
+// Side-effect module: styles `.longest-word-towers`, every seat's longest word as a tower of face-down tiles, over the mystery word's towers.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .longest-word-towers
+    --spine: var(--spine-longestword)
+    --spine-edge: var(--spine-edge-longestword)
+
+    .tower
+      grid-template-rows: minmax(0, 1fr) auto auto
+
+    // The figure takes the crown's place, and the tube its height from it.
+    .count
+      @include typography.score
+
+      block-size: var(--crown-size)
+      flex: none
+      font-size: var(--crown-size)
+      animation: swap-in var(--transition-base, 0s) var(--ease-out) backwards
+
+    .tower .tube > li
+      &::before
+        background: var(--spine)
+        box-shadow: 0 2px 0 var(--spine-edge)
+
+    .tower[data-held] .tube
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--spine-edge), var(--shadow-groove)

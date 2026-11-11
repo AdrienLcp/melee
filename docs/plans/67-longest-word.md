@@ -1,6 +1,7 @@
 # 67 — Longest word
 
-**Half done.** Step 1 served by a settings frame; the screens are owed.
+**On the shelf, not yet seen** — steps 1 and 2 landed on 11/11/2026; the
+browser pass at full seats, muted and filmed, is what is left.
 
 Nine letters are drawn on every screen and every seat has the clock to type
 the longest word it can make from them. A seat may send as many words as it
@@ -102,6 +103,40 @@ _Longest word_ in English.
    seat's length, the reveal with the best words. Then screens, setup, spine,
    dictionaries, `shelvedGames`, catalogue and `CLAUDE.md` rows; seen muted at
    full seats, the draw's entry filmed.
+
+   **Done** 11/11/2026 — A's seat, B's wall, as for 66. `longestword` is in
+   `shelvedGames`; `openedGameSettings` and Grand mix deal it in the locale's
+   language (`questionLanguageFor`), one entry, and no other ready-made
+   line-up takes it. Shared piece `presentation/components/letter-tile`:
+   `LetterTile`, `isVowelTile` (vowels on the warm `--tile-2` face,
+   `data-vowel`), `data-face` `faceDown` on the spine or `faceUp` turned over
+   left to right by `--letter-index`. **The seat**
+   `features/player/longest-word-answer.tsx`: the nine drawn tiles pressed
+   into a row of nine slots, a laid tile sunk in its socket and disabled so no
+   letter serves twice, a physical key laying the first free tile of its
+   letter, Effacer / Mélanger / Envoyer under the draw, the accepted words
+   listed longest first with the paid one marked, and a refusal folded under
+   the row at no cost — `isWordRefusal` keeps it out of the console's error
+   line. **Its reveal** `longest-word-revealed.tsx`: a card banded in the
+   spine, _Il y avait_ over the draw's first best word dealt face up, the
+   other best words under it (_En 8 lettres : …_, from `bestLength`), then the
+   seat's own word on the same nine columns — from `revealedWords`, else the
+   first longest of `yourWords` — or _Aucun mot_; the pay stays in the round's
+   block, as on 66. **The wall and the unseated console**: the draw as big
+   tiles, and a tower of face-down tiles per seat with its length on top and
+   never the word, two rows of twelve; the reveal ranks every seat's word in
+   one column beside the standings, after the best word dealt — two columns
+   squeezed beside the standings cut a long name to five letters at 24 seats,
+   so a row loses its padding before it leaves the box, and an empty row
+   shows its slots alone. **The setup**
+   takes the language, defaulted from the locale, and the time at 30, 45 or
+   90 seconds. **The spine** moved from the provisional `oklch(41% 0.1 250)`,
+   which sat between the inner clock's (235) and the quiz's (262), to a deep
+   ultramarine `oklch(36% 0.15 266)`, one value for both palettes like every
+   spine: the darkest on the shelf, its nearest neighbour petit bac at 0.11
+   in OKLab where the shelf's closest pair already sits at 0.04, and 11:1
+   under `--on-spine`. The shelf's `SpellCheck` icon, `ShuffleIcon` and
+   `TrophyIcon` for the seat; document heads in both locales.
 
 ## How to tell it is done
 

@@ -423,6 +423,37 @@
         flex: 1 1 0
         inline-size: min(100%, 36rem)
 
+    // The draw dealt big on the card and every seat's tower under it — or,
+    // for a seated console, its own tiles and words in their place.
+    &[data-longest-word]
+      --spine: var(--spine-longestword)
+
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      .longest-word-draw
+        display: flex
+        justify-content: center
+        margin: 0
+
+        > .tiles
+          --tile-size: clamp(1.75rem, calc(var(--stage-unit) * 7), 4.5rem)
+          --tile-radius: var(--radius-m)
+
+          display: grid
+          gap: clamp(var(--space-2xs), calc(var(--stage-unit) * 1.2), var(--space-s))
+          grid-template-columns: repeat(9, var(--tile-size))
+
+      > .longest-word-towers
+        align-self: stretch
+        flex: 1 1 0
+
+      > .answer-form.longest-word-answer
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 36rem)
+
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
     &[data-black-square]

@@ -17,6 +17,7 @@ import {
   estimateContent,
   higherLowerContent,
   innerclockContent,
+  longestWordContent,
   matchsticksContent,
   mostLikelyContent,
   mysteryWordContent,
@@ -53,6 +54,8 @@ import { useQuantityWords } from '@/presentation/components/use-quantity-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { LongestWordBest } from './longest-word-best'
+import { LongestWordRanking } from './longest-word-ranking'
 import { MysteryWordGrids } from './mystery-word-grids'
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
 import { useFittedGrid } from './use-fitted-grid'
@@ -253,6 +256,28 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           youId={youId}
         />
         <MysteryWordGrids players={players} round={round} youId={youId} />
+      </section>
+    )
+  }
+
+  const longestWord = longestWordContent(round)
+
+  // The draw's longest word turned over, and every seat's laid under it,
+  // longest first: the ranking is the podium, whole.
+  if (longestWord?.revealedWords != null) {
+    return (
+      <section className='reveal-panel' data-game='longestword'>
+        <div className='head'>
+          <LongestWordBest bestWords={longestWord.bestWords ?? []} />
+        </div>
+
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
+        <LongestWordRanking players={players} round={round} youId={youId} />
       </section>
     )
   }

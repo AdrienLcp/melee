@@ -1,0 +1,60 @@
+// Side-effect module: styles `.longest-word-revealed`, the draw's longest word and a seat's own at the reveal.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .longest-word-revealed
+    --spine: var(--spine-longestword)
+
+    display: grid
+    gap: var(--space-m)
+
+    > .answer-card
+      align-items: stretch
+      flex-direction: column
+      flex-wrap: nowrap
+      gap: var(--space-s)
+
+    // The game's lid: its spine banded across the top, as on the card it was announced on.
+    > .best
+      --band: clamp(0.625rem, calc(var(--stage-unit) * 2.2), 1rem)
+
+      background: linear-gradient(var(--spine) 0 var(--band), var(--card) var(--band))
+      padding-block-start: calc(var(--band) + clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l)))
+
+    // Under the dealt word, once its last tile has turned.
+    > .yours,
+    .also
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 1.2 + var(--transition-fast, 0s) * 5) backwards
+
+    .title
+      @include typography.billboard-wrapping
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
+      margin: 0
+      text-align: center
+
+    .tile-row
+      container-type: inline-size
+      margin: 0
+
+      > .tiles
+        --gap: clamp(var(--space-2xs), 1.2cqi, var(--space-xs))
+        --tile-size: min(calc((100cqi - 8 * var(--gap)) / 9), 3rem)
+        --tile-radius: var(--radius-s)
+
+        display: grid
+        gap: var(--gap)
+        grid-auto-columns: var(--tile-size)
+        grid-auto-flow: column
+        justify-content: center
+
+    .also,
+    .no-word
+      @include typography.strong
+
+      color: var(--card-muted)
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4), var(--text-m))
+      margin: 0
+      text-align: center
+      text-wrap: balance

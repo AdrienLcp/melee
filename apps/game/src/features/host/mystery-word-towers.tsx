@@ -18,7 +18,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import './mystery-word-towers.sass'
 
 /** Past this many seats the towers stand in two rows: twelve abreast is as narrow as a name on two lines allows. */
-const MOST_TOWERS_IN_A_ROW = 12
+export const MOST_TOWERS_IN_A_ROW = 12
 
 type MysteryWordTowersProps = {
   players: readonly PublicPlayer[]
