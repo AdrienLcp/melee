@@ -1,4 +1,5 @@
 @use '../styles/black-word'
+@use '../styles/fade'
 @use '../styles/piece'
 @use '../styles/tier-rows'
 @use '../styles/typography'
@@ -58,6 +59,7 @@
       padding: 0.45em 0.5em
       text-align: start
       touch-action: manipulation
+      transition: background-color var(--transition-base, 0s) var(--ease-in), box-shadow var(--transition-base, 0s) var(--ease-in), color var(--transition-base, 0s) var(--ease-in)
 
       .name
         @include typography.answer
@@ -74,8 +76,10 @@
         font-size: clamp(var(--text-2xs), 3cqmin, var(--text-m))
         justify-content: space-between
 
+        transition: color var(--transition-base, 0s) var(--ease-in)
+
         > svg
-          visibility: hidden
+          @include fade.shows-in-place('&:is([data-selected] *)')
 
       &[data-selected]
         --edge: 0.1875rem
@@ -83,12 +87,11 @@
         background: var(--good-soft)
         box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
         color: var(--tile-ink)
+        transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
 
         .foot
           color: var(--good-edge)
-
-          > svg
-            visibility: visible
+          transition: color var(--transition-base, 0s) var(--ease-out)
 
     .black-word-press,
     .black-word-ask

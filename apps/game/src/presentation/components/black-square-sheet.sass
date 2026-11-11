@@ -39,9 +39,11 @@
       overflow: hidden
       padding: 0.4em 0.45em
       text-align: center
+      transition: background-color var(--transition-base, 0s) var(--ease-in), box-shadow var(--transition-base, 0s) var(--ease-in), color var(--transition-base, 0s) var(--ease-in)
 
       > .black-square-pips
         font-size: var(--text-em-xl)
+        transition: color var(--transition-base, 0s) var(--ease-in), font-size var(--transition-base, 0s) var(--ease-in)
 
     li[data-found]
       --edge: 0.1875rem
@@ -49,14 +51,17 @@
       background: var(--good-soft)
       box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
       color: var(--tile-ink)
+      transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
 
       > .black-square-pips
         color: var(--good-edge)
         font-size: 1em
+        transition: color var(--transition-base, 0s) var(--ease-out), font-size var(--transition-base, 0s) var(--ease-out)
 
     // Ends on an ellipsis at the last whole line its cell holds, never cut
     // through one: the cell's height decides `--typed-lines` below.
     .typed
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
       -webkit-box-orient: vertical
       display: -webkit-box
       hyphens: auto

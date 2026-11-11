@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useEffect, useRef } from 'react'
 import {
   FieldError,
   Label,
@@ -21,6 +22,7 @@ import {
   TEAM_PAWN_HEAD
 } from '@melee/core/board/pawn-piece'
 
+import { prefersReducedMotion } from '@/infrastructure/browser'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { pawnColourKey } from '@/presentation/i18n/translation'
 import { usePawnPieceName } from '@/presentation/i18n/use-pawn-piece-name'
@@ -130,6 +132,28 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
   }
 
   const isInvalid = errorMessage !== undefined
+  const errorFoldRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (isInvalid && prefersReducedMotion()) {
+      errorFoldRef.current?.scrollIntoView({ block: 'nearest' })
+    }
+  }, [isInvalid])
+
+  const keepOpenedErrorInView = (
+    event: React.TransitionEvent<HTMLDivElement>
+  ): void => {
+    if (
+      isInvalid &&
+      event.target === event.currentTarget &&
+      event.propertyName === 'grid-template-rows'
+    ) {
+      event.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      })
+    }
+  }
 
   return (
     <RadioGroup
@@ -200,6 +224,8 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
         className='fold'
         data-open={isInvalid || undefined}
         inert={!isInvalid}
+        onTransitionEnd={keepOpenedErrorInView}
+        ref={errorFoldRef}
       >
         <div>
           {isInvalid ? (

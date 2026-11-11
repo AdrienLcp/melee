@@ -6,3 +6,9 @@
 
     align-items: center
     justify-content: center
+    view-transition-name: route-fallback
+
+  // Out of the root's picture, whose `page-leave` on `--ease-out` lost nine
+  // tenths of the loader in the first two frames the arriving page let paint.
+  ::view-transition-old(route-fallback)
+    animation: page-leave var(--transition-base, 0s) var(--ease-in) both
