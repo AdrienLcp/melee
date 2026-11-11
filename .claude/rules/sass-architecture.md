@@ -367,7 +367,8 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   after it (`.tab-column`'s `.held`). A column's rule names its own folds
   `> .fold`: a bare `.fold` also reaches the folds of a component nested in
   it — `TextField`'s, inside `PlayRightAway` — and hands them its gap. A
-  refusal is `RefusalNote`, which keeps saying the last one while it folds.
+  refusal is `RefusalNote`, which keeps saying the last one while it folds;
+  any other fold keeps its last words through `useLastShown`.
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
   `margin-inline-end: -1em`) and the margin transitions. A piece of a line a

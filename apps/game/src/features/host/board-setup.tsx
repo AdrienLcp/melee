@@ -1,5 +1,4 @@
 import type React from 'react'
-import { useState } from 'react'
 
 import {
   type BoardSettings,
@@ -15,6 +14,7 @@ import type { RoomSettings } from '@melee/protocol/room'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { NO_LIMIT, NumberChoice } from './number-choice'
@@ -64,15 +64,8 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   const lengths = boardLengthsWith(board)
   const pawns = settings.teams.kind === 'off' ? 'seats' : 'teams'
   const isOnTrack = board.kind === 'track'
-  const [lastTrack, setLastTrack] = useState(
-    isOnTrack ? board : DEFAULT_TRACK_SETTINGS
-  )
 
-  if (isOnTrack && board !== lastTrack) {
-    setLastTrack(board)
-  }
-
-  const track = isOnTrack ? board : lastTrack
+  const track = useLastShown(isOnTrack ? board : null) ?? DEFAULT_TRACK_SETTINGS
 
   const changeTrack = (track: TrackSettings) => {
     onChange({ ...settings, board: track })

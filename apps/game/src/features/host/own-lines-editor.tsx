@@ -11,6 +11,7 @@ import {
 import { Button } from '@/presentation/components/button'
 import { CrossIcon, PlusIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
@@ -37,14 +38,9 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
   }
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
   const [fresh, setFresh] = useState('')
-  const [lastLines, setLastLines] = useState(lines)
-
-  if (lines.length > 0 && lines !== lastLines) {
-    setLastLines(lines)
-  }
 
   const hasLines = lines.length > 0
-  const shownLines = hasLines ? lines : lastLines
+  const shownLines = useLastShown(hasLines ? lines : null) ?? lines
   const { isArriving, settleOnEnd } = useRowArrivals(shownLines.length)
   const linesBox = useRef<HTMLDivElement>(null)
 

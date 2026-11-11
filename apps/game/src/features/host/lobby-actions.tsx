@@ -1,10 +1,10 @@
 import type React from 'react'
-import { useState } from 'react'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 
 import { Button } from '@/presentation/components/button'
 import { PlayRightAway } from '@/presentation/components/play-right-away'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { challengePickFor } from './challenge-line'
@@ -34,13 +34,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
     : isRoomEmpty
       ? ('host.needsPlayer' as const)
       : null
-  const [lastReason, setLastReason] = useState(reason)
-
-  if (reason !== null && reason !== lastReason) {
-    setLastReason(reason)
-  }
-
-  const shownReason = reason ?? lastReason
+  const shownReason = useLastShown(reason)
 
   // An empty table's launch seats its host and starts, which is the one press
   // somebody playing alone needs — the seat form and a greyed *gather round*

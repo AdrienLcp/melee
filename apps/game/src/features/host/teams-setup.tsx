@@ -18,6 +18,7 @@ import { fittedToTeams } from '@melee/core/room/room-settings'
 import { mostTeamsFor } from '@melee/core/team/team-count'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { TeamCountField } from './team-count-field'
@@ -57,6 +58,11 @@ export const mostTeamsOffered = ({
 }
 
 /** The count a room turning teams on starts from: twelve at a table split three ways. */
+type CountedTeams = { mostTeams: number; teams: TeamsSettings }
+
+const isSameCount = (left: CountedTeams, right: CountedTeams): boolean =>
+  left.teams === right.teams && left.mostTeams === right.mostTeams
+
 const FIRST_TEAM_COUNT = 3
 
 type TeamsSetupProps = {
@@ -105,18 +111,10 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
   const [isAloudRefused, setIsAloudRefused] = useState(false)
   const mostTeams = mostTeamsOffered({ seatCount, teams })
   const isCounted = teams.kind !== 'off' && mostTeams >= MIN_TEAMS
-  const [lastCounted, setLastCounted] = useState(
-    isCounted ? { mostTeams, teams } : null
+  const lastCounted = useLastShown(
+    isCounted ? { mostTeams, teams } : null,
+    isSameCount
   )
-
-  if (
-    isCounted &&
-    (lastCounted === null ||
-      lastCounted.teams !== teams ||
-      lastCounted.mostTeams !== mostTeams)
-  ) {
-    setLastCounted({ mostTeams, teams })
-  }
 
   const isScoredAsTeams = teams.kind === 'drawn' || teams.kind === 'chosen'
   const isAloudRefusalShown = isAloudRefused && teams.kind !== 'aloud'

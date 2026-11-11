@@ -1,12 +1,13 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
-import { useState } from 'react'
 
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import type { SocketStatus } from '@/infrastructure/messaging/use-room-socket'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
+
+import { useLastShown } from './use-last-shown'
 
 import './connection-status.sass'
 
@@ -48,11 +49,7 @@ export const ConnectionStatus: React.FC<ConnectionStatusProps> = ({
   const translate = useTranslate()
   const latencyMs = clock === null ? null : Math.round(clock.roundTripMs / 2)
   const isLatencyShown = status === 'open' && latencyMs !== null
-  const [shownLatencyMs, setShownLatencyMs] = useState(latencyMs)
-
-  if (isLatencyShown && latencyMs !== shownLatencyMs) {
-    setShownLatencyMs(latencyMs)
-  }
+  const shownLatencyMs = useLastShown(isLatencyShown ? latencyMs : null)
 
   return (
     <p className='connection-status'>

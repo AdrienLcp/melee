@@ -1,11 +1,11 @@
 import type React from 'react'
-import { useState } from 'react'
 
 import type { SocketStatus } from '@/infrastructure/messaging/use-room-socket'
 import {
   ConnectionDot,
   connectionStatusKey
 } from '@/presentation/components/connection-status'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -26,14 +26,9 @@ const isShownStatus = (
 export const ReconnectingNotice: React.FC = () => {
   const translate = useTranslate()
   const status = useConnection()?.status
-  const [lastShown, setLastShown] = useState<ShownStatus>('connecting')
-
-  if (isShownStatus(status) && status !== lastShown) {
-    setLastShown(status)
-  }
 
   const isShown = isShownStatus(status)
-  const said = isShown ? status : lastShown
+  const said = useLastShown(isShown ? status : null) ?? 'connecting'
 
   return (
     <p

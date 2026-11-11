@@ -56,6 +56,7 @@ import {
   PlusIcon
 } from '@/presentation/components/icons'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { usePointerReorder } from '@/presentation/components/use-pointer-reorder'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -178,11 +179,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     takenOut.roundIndex === roundIndex
       ? takenOut
       : null
-  const [lastUndo, setLastUndo] = useState(undoable)
-
-  if (undoable !== null && undoable !== lastUndo) {
-    setLastUndo(undoable)
-  }
+  const lastUndo = useLastShown(undoable)
 
   const change = (settings: RoomSettings) => {
     setTakenOut(null)
@@ -828,11 +825,7 @@ const EveningLevel: React.FC<{
 }> = ({ isEveningOver, isLive, onSettingsChange, settings }) => {
   const shown = eveningDifficultyOf(settings.lineUp)
   const isOpen = shown !== null && !isEveningOver
-  const [lastShown, setLastShown] = useState(shown)
-
-  if (shown !== null && shown !== lastShown) {
-    setLastShown(shown)
-  }
+  const shownLevel = useLastShown(shown)
 
   return (
     <div
@@ -846,7 +839,7 @@ const EveningLevel: React.FC<{
         onChange={(difficulty) => {
           onSettingsChange(withEveningDifficulty({ difficulty, settings }))
         }}
-        value={shown ?? lastShown ?? 'custom'}
+        value={shownLevel ?? 'custom'}
       />
     </div>
   )
@@ -859,6 +852,9 @@ type Shortfall = {
   raised: number
   total: number
 }
+
+const isSameShortfall = (left: Shortfall, right: Shortfall): boolean =>
+  JSON.stringify(left) === JSON.stringify(right)
 
 const shortfallOf = ({
   coming,
@@ -897,16 +893,8 @@ const OverTheCount: React.FC<{
 }> = ({ coming, isLive, onSettingsChange, settings }) => {
   const translate = useTranslate()
   const shortfall = shortfallOf({ coming, roundCount: settings.roundCount })
-  const [lastShortfall, setLastShortfall] = useState(shortfall)
+  const shown = useLastShown(shortfall, isSameShortfall)
 
-  if (
-    shortfall !== null &&
-    JSON.stringify(shortfall) !== JSON.stringify(lastShortfall)
-  ) {
-    setLastShortfall(shortfall)
-  }
-
-  const shown = shortfall ?? lastShortfall
   const isOpen = shortfall !== null
 
   return (

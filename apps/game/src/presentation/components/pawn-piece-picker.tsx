@@ -1,5 +1,4 @@
 import type React from 'react'
-import { useState } from 'react'
 import {
   FieldError,
   Label,
@@ -27,6 +26,7 @@ import { pawnColourKey } from '@/presentation/i18n/translation'
 import { usePawnPieceName } from '@/presentation/i18n/use-pawn-piece-name'
 
 import { Pawn } from './pawn'
+import { useLastShown } from './use-last-shown'
 import { VisuallyHidden } from './visually-hidden'
 
 import './pawn-piece-picker.sass'
@@ -99,7 +99,7 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
   const translate = useTranslate()
   const heads = HEADS_OFFERED[pawnOf]
   const pieceName = usePawnPieceName()
-  const [leavingError, setLeavingError] = useState(errorMessage)
+  const leavingError = useLastShown(errorMessage ?? null)
   const heldByOthers = holders.map((holder) => holder.piece)
   const candidates = heads.flatMap((head) =>
     PAWN_COLOURS.map((colour): PawnPiece => ({ colour, head }))
@@ -130,10 +130,6 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
   }
 
   const isInvalid = errorMessage !== undefined
-
-  if (isInvalid && errorMessage !== leavingError) {
-    setLeavingError(errorMessage)
-  }
 
   return (
     <RadioGroup

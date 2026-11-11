@@ -1,6 +1,5 @@
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
-import { useState } from 'react'
 import {
   FieldError,
   Input,
@@ -10,6 +9,8 @@ import {
   Text,
   TextArea
 } from 'react-aria-components'
+
+import { useLastShown } from './use-last-shown'
 
 import './text-field.sass'
 
@@ -49,11 +50,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   ...props
 }) => {
-  const [leavingError, setLeavingError] = useState(errorMessage)
-
-  if (isInvalid && errorMessage !== leavingError) {
-    setLeavingError(errorMessage)
-  }
+  const leavingError = useLastShown(isInvalid ? (errorMessage ?? null) : null)
 
   return (
     <ReactAriaTextField

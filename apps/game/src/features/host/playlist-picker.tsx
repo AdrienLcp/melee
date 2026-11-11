@@ -16,6 +16,7 @@ import { Button } from '@/presentation/components/button'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { TextField } from '@/presentation/components/text-field'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {
   asDecade,
@@ -171,13 +172,8 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const drawsCharts = isCatalogue && draft.strands.includes('charts')
   const drawsDecades = isCatalogue && draft.strands.includes('decades')
   const drawsFilmScores = isCatalogue && draft.strands.includes('filmScores')
-  const [lastTypedPlace, setLastTypedPlace] = useState<Draft['place']>(
-    isCatalogue ? 'search' : draft.place
-  )
-
-  if (!isCatalogue && draft.place !== lastTypedPlace) {
-    setLastTypedPlace(draft.place)
-  }
+  const lastTypedPlace =
+    useLastShown(isCatalogue ? null : draft.place) ?? 'search'
 
   const { clear, preview, previewSource } = usePlaylistPreview(
     settings.difficulty
@@ -185,18 +181,11 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const draftSource = sourceFromDraft(draft)
   const isRefused = preview.status === 'failed'
   const isReady = preview.status === 'found' && !isCatalogue
-  const [lastRefusal, setLastRefusal] = useState<PlainTranslationKey | null>(
-    null
+  const lastRefusal = useLastShown(
+    preview.status === 'failed' ? preview.error : null
   )
-  const [lastCount, setLastCount] = useState(0)
-
-  if (preview.status === 'failed' && preview.error !== lastRefusal) {
-    setLastRefusal(preview.error)
-  }
-
-  if (preview.status === 'found' && preview.count !== lastCount) {
-    setLastCount(preview.count)
-  }
+  const lastCount =
+    useLastShown(preview.status === 'found' ? preview.count : null) ?? 0
 
   const typedSource = useRef<HTMLDivElement>(null)
 

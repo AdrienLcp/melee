@@ -19,6 +19,7 @@ import {
   SavedIcon
 } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
@@ -119,11 +120,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const currentSettings = JSON.stringify(view.settings)
   const isUpToDate = savedOver === currentSettings
   const offersSaveOver = view.settings.game !== null && loaded !== undefined
-  const [lastLoadedName, setLastLoadedName] = useState(loaded?.name ?? '')
-
-  if (offersSaveOver && loaded.name !== lastLoadedName) {
-    setLastLoadedName(loaded.name)
-  }
+  const lastLoadedName = useLastShown(offersSaveOver ? loaded.name : null) ?? ''
 
   const [keptWhenOpened] = useState(
     () => new Set(evenings.map((evening) => evening.name))

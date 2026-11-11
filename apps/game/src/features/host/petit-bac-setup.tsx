@@ -20,6 +20,7 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
 import { TextField } from '@/presentation/components/text-field'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { DifficultyChoice } from './difficulty-choice'
@@ -42,6 +43,14 @@ const CLASSIC_CATEGORIES: readonly PetitBacCategory[] = [
 
 const DRAWN = 'drawn'
 const FIXED = 'fixed'
+
+const labelsOf = (categories: readonly { label: string }[]): string =>
+  categories.map(({ label }) => label).join('\n')
+
+const isSameLabels = (
+  left: readonly { label: string }[],
+  right: readonly { label: string }[]
+): boolean => labelsOf(left) === labelsOf(right)
 
 const asBankCategory = (
   value: string | number
@@ -206,16 +215,9 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
   const [ownWrittenAtFirstDraw] = useState(
     () => new Set(own.map(({ label }) => label))
   )
-  const ownLabels = own.map(({ label }) => label).join('\n')
-  const [lastOwn, setLastOwn] = useState(own)
-  const lastOwnLabels = lastOwn.map(({ label }) => label).join('\n')
-
-  if (own.length > 0 && ownLabels !== lastOwnLabels) {
-    setLastOwn(own)
-  }
 
   const hasOwn = own.length > 0
-  const shownOwn = hasOwn ? own : lastOwn
+  const shownOwn = useLastShown(hasOwn ? own : null, isSameLabels) ?? own
   const ownBox = useRef<HTMLDivElement>(null)
 
   useCrossFadeOnReshape({
