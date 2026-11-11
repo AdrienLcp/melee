@@ -151,14 +151,14 @@ opens.
 
 ## Sessions
 
-| #   | Handoff                                 | What it buys                                                                                                |
-| --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
-| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
+| #   | Handoff                                 | What it buys                                                                                                   |
+| --- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening`    |
+| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels      |
 | 3   | `content-03-lines-and-descriptions.md`  | Served: challenge and most likely decks of lines, `describe_games` notes. Left: the setup shows and edits them |
-| 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |
-| 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
-| 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                   |
+| 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                             |
+| 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                              |
+| 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                      |
 
 Every session commits and pushes to `main` with its changelog entry and this
 plan's table updated. `pnpm validate` runs once, after session 6
