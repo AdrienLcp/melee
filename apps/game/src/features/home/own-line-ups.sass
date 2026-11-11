@@ -16,6 +16,14 @@
     scale: 0.94
     translate: 0 0.5rem
 
+// The fold press coming back as _and N more_: the arrival under another name,
+// since a press going on to unfold again on `ticket-arrives` would not replay it.
+@keyframes fold-press-returns
+  from
+    opacity: 0
+    scale: 0.94
+    translate: 0 0.5rem
+
 @keyframes ticket-leaves
   to
     opacity: 0
@@ -62,8 +70,12 @@
 
       // The tickets the folded row hides arrive one after the other once the
       // list has begun to open, and leave the other way round before it
-      // closes over them.
-      > [data-unfolds]
+      // closes over them. The press moves to the end of the row as it turns
+      // into _fewer_, so it arrives there after the last of them and leaves
+      // with the first to go: shown at once, it would stand alone under
+      // tickets not drawn yet.
+      > [data-unfolds],
+      &[data-fold='unfolded'] > .unfold
         animation: ticket-arrives var(--transition-base, 0s) var(--ease-out) backwards
         animation-delay: calc(var(--transition-fast, 0s) * (0.5 + min(var(--unfold-order), 8) * 0.3))
 
@@ -73,6 +85,14 @@
       &[data-fold='folding'] > [data-unfolds]
         animation: ticket-leaves var(--transition-base, 0s) var(--ease-in) forwards
         animation-delay: calc(var(--transition-fast, 0s) * min(var(--fold-order), 8) * 0.3)
+
+      &[data-fold='folding'] > .unfold
+        animation: ticket-leaves var(--transition-base, 0s) var(--ease-in) forwards
+
+      // Back to _and N more_ while the list closes, rather than with the page.
+      > .unfold[data-refolded]
+        animation: fold-press-returns var(--transition-base, 0s) var(--ease-out) backwards
+        animation-delay: calc(var(--transition-fast, 0s) * 0.5)
 
     .unfold
       display: grid

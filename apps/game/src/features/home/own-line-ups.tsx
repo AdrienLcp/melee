@@ -167,7 +167,10 @@ const OwnTickets: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
   const saved = useSavedEvenings()
   const listRef = useRef<HTMLOListElement>(null)
   const pressRef = useRef<HTMLButtonElement>(null)
-  const { fold, toggle } = useUnfoldingList({ list: listRef, press: pressRef })
+  const { fold, hasUnfolded, toggle } = useUnfoldingList({
+    list: listRef,
+    press: pressRef
+  })
   const [removals, setRemovals] = useState<
     Readonly<Partial<Record<string, Removal>>>
   >({})
@@ -354,7 +357,11 @@ const OwnTickets: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
       >
         {shelf.lineUps.map(ticketOf)}
         {hiddenCount > 0 && (
-          <li className='unfold'>
+          <li
+            className='unfold'
+            data-refolded={(hasUnfolded && fold === 'folded') || undefined}
+            style={{ '--unfold-order': hiddenCount }}
+          >
             <Button
               aria-controls='own-line-ups-list'
               aria-expanded={fold !== 'folded'}

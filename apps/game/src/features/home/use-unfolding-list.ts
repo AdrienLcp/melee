@@ -72,7 +72,9 @@ const leavingOf = (list: HTMLElement): readonly Animation[] =>
  * the list closes over them. The list marks the items it hides with
  * `[data-unfolds]` and reads `data-fold`; the focus goes to the first item
  * revealed, and back to the press when the list folds over it. Under reduced
- * motion the tokens are nought and the list simply lands.
+ * motion the tokens are nought and the list simply lands. `hasUnfolded` tells
+ * a fold that landed from the folded row the page opened on, whose press
+ * arrives with the page rather than with the list closing.
  */
 export const useUnfoldingList = ({
   list,
@@ -84,6 +86,7 @@ export const useUnfoldingList = ({
   press: RefObject<HTMLButtonElement | null>
 }) => {
   const [fold, setFold] = useState<Fold>('folded')
+  const [hasUnfolded, setHasUnfolded] = useState(false)
   const heightBefore = useRef<number | null>(null)
 
   useLayoutEffect(() => {
@@ -135,6 +138,7 @@ export const useUnfoldingList = ({
         heightBefore.current =
           list.current?.getBoundingClientRect().height ?? null
         setFold('unfolded')
+        setHasUnfolded(true)
         return
       case 'unfolded':
         setFold('folding')
@@ -146,5 +150,5 @@ export const useUnfoldingList = ({
     }
   }
 
-  return { fold, toggle }
+  return { fold, hasUnfolded, toggle }
 }
