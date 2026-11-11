@@ -117,9 +117,7 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
                   <span className='stamp'>
                     {translate('blacksquare.blackWord.stamp')}
                   </span>
-                  <span className='word'>
-                    {list.blackWord.labels[locale]}
-                  </span>
+                  <span className='word'>{list.blackWord.labels[locale]}</span>
                 </PressablePiece>
               </div>
             </div>
