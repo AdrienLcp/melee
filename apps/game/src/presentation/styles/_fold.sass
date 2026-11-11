@@ -2,33 +2,145 @@
 
 @use 'focus'
 
+$-opens: var(--transition-base, 0s) var(--ease-out)
+$-closes: var(--transition-base, 0s) var(--ease-in)
+$-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
+
+@mixin -column-closed($gap, $side, $trades-places)
+  grid-template-rows: 0fr
+  margin-block-#{$side}: calc(-1 * #{$gap})
+  opacity: 0
+
+  @if $trades-places
+    transition: grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity var(--transition-fast, 0s) var(--ease-in)
+  @else
+    transition: grid-template-rows $-closes $-after-the-room, margin-block-#{$side} $-closes $-after-the-room, opacity var(--transition-fast, 0s) var(--ease-in)
+
+@mixin -column-open($side)
+  grid-template-rows: 1fr
+  margin-block-#{$side}: 0
+  opacity: 1
+  transition: grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity $-opens $-after-the-room
+
 /// A block of a column that a choice shows and hides, kept mounted and opened
-/// by `[data-open]`: it grows to its height, then fades in, and fades before
-/// it closes. A closed fold keeps its place in the column, so it hands back
-/// the column's `$gap` with it — pass the gap of the column it sits in. The
-/// column is a flex one: a grid row sizes to the margin box, so the gap
-/// before it would stay open.
+/// by `$open`, a selector in which `&` is the fold — or, where the state names
+/// the closed side, open unless `$closed`. It grows to its height, then fades
+/// in, and fades before it closes. A closed fold keeps its place in the
+/// column, so it hands back the column's `$gap` with it — pass the gap of the
+/// column it sits in — on its `$side`: `end` for a fold that may be first in
+/// its column. The column is a flex one: a grid row sizes to the margin box,
+/// so the gap before it would stay open. `$trades-places` closes it on the
+/// opening curve at once, for two folds swapping places so what sits below
+/// slides one way.
 ///
 /// One grid row going `0fr → 1fr`, because `height: auto` is not a length a
 /// transition can reach. Its child is clipped to that row, but no box is
 /// shorter than its padding: a padded child holds a closed row open by it, so
 /// it folds its `padding-block` to `0rem` with the row, on the row's timing.
-@mixin opens-in-column($gap: var(--space-s))
+/// Under reduced motion it is open or closed at once.
+@mixin opens-in-column($gap: var(--space-s), $open: '&[data-open]', $closed: null, $side: start, $trades-places: false)
   display: grid
-  grid-template-rows: 0fr
-  margin-block-start: calc(-1 * #{$gap})
-  opacity: 0
-  transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in)
 
-  &[data-open]
-    grid-template-rows: 1fr
-    margin-block-start: 0
-    opacity: 1
-    transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+  @if $closed
+    @include -column-open($side)
+
+    #{$closed}
+      @include -column-closed($gap, $side, $trades-places)
+  @else
+    @include -column-closed($gap, $side, $trades-places)
+
+    #{$open}
+      @include -column-open($side)
 
   // The clip the row needs would cut a focused control's ring at the fold's
   // edge: the ring reaches past its box. Safari ignores the clip margin.
   > *
+    min-height: 0
+    overflow: clip
+    overflow-clip-margin: focus.$ring-reach
+
+@mixin -line-closed($gap)
+  grid-template-columns: 0fr
+  margin-inline-start: calc(-1 * #{$gap})
+  opacity: 0
+  transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-start $-closes $-after-the-room
+
+@mixin -line-open
+  grid-template-columns: 1fr
+  margin-inline-start: 0
+  opacity: 1
+  transition: grid-template-columns $-opens, margin-inline-start $-opens, opacity $-opens $-after-the-room
+
+/// A word of a line that a state shows and hides — a reading after a status,
+/// a label beside an icon — kept mounted and opened by `$open`, or open
+/// unless `$closed`. It widens to its text, then fades in, and fades before
+/// it narrows. Closed it sits at no width, and its negative start margin eats
+/// the `$gap` before it, so the line closes up.
+///
+/// One grid column going `0fr → 1fr`, because a word's width is not a length
+/// a transition can reach. The child is clipped across only and held on one
+/// line, or the text wraps as its room narrows. Folded, the word is still read:
+/// it only stops being drawn. Under reduced motion it is shown or gone at once.
+@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null)
+  display: inline-grid
+
+  @if $closed
+    @include -line-open
+
+    #{$closed}
+      @include -line-closed($gap)
+  @else
+    @include -line-closed($gap)
+
+    #{$open}
+      @include -line-open
+
+  > *
+    min-inline-size: 0
+    overflow-x: clip
+    white-space: nowrap
+
+@mixin -row-closed($rows-before, $rows-after, $content)
+  gap: 0rem
+  grid-template-rows: $rows-before 0fr $rows-after
+  transition: grid-template-rows $-closes $-after-the-room, gap $-closes $-after-the-room
+
+  #{$content}
+    opacity: 0
+    transition: opacity $-closes
+
+@mixin -row-open($rows-before, $rows-after, $content, $gap)
+  gap: $gap
+  grid-template-rows: $rows-before 1fr $rows-after
+  transition: grid-template-rows $-opens, gap $-opens
+
+  #{$content}
+    opacity: 1
+    transition: opacity $-opens $-after-the-room
+
+/// One row of a grid that a state shows and hides, among rows that stay: the
+/// grid's own template goes `0fr → 1fr` on that row, `$rows-before` and
+/// `$rows-after` (each `null` or a track list such as `auto`) around it, and
+/// `$content`, the selector of what fills the row, fades in after it opens
+/// and out before it closes. Opened by `$open`, or open unless `$closed`; the
+/// grid's `gap` opens with the row to `$gap`. For a block the same box
+/// reshapes around, where `opens-in-column` folds a block of its own. Under
+/// reduced motion the row is open or closed at once.
+@mixin opens-row($content, $rows-before: null, $rows-after: null, $gap: 0rem, $open: '&[data-open]', $closed: null)
+  display: grid
+
+  @if $closed
+    @include -row-open($rows-before, $rows-after, $content, $gap)
+
+    #{$closed}
+      @include -row-closed($rows-before, $rows-after, $content)
+  @else
+    @include -row-closed($rows-before, $rows-after, $content)
+
+    #{$open}
+      @include -row-open($rows-before, $rows-after, $content, $gap)
+
+  #{$content}
     min-height: 0
     overflow: clip
     overflow-clip-margin: focus.$ring-reach

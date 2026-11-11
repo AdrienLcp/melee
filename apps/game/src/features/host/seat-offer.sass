@@ -1,5 +1,6 @@
 // Side-effect module: the component's rules, in the components layer.
 
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
@@ -7,24 +8,14 @@
   // Closed, the fold gives back the roster's row gap above it, which
   // `seat-grid` sets to `--space-xs`.
   .seat-offer-fold
-    display: grid
-    grid-template-rows: 1fr
-    transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-end var(--transition-base, 0s) var(--ease-out)
+    @include fold.opens-in-column(var(--space-xs), $closed: '&[data-closed]', $side: end)
 
     > .seat-offer
-      min-height: 0
-      overflow: clip
-      transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), padding-block var(--transition-base, 0s) var(--ease-out)
+      transition: padding-block var(--transition-base, 0s) var(--ease-out)
 
-    &[data-closed]
-      grid-template-rows: 0fr
-      margin-block-end: calc(var(--space-xs) * -1)
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
-
-      > .seat-offer
-        opacity: 0
-        padding-block: 0rem
-        transition: opacity var(--transition-base, 0s) var(--ease-in), padding-block var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+    &[data-closed] > .seat-offer
+      padding-block: 0rem
+      transition: padding-block var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
   .seat-offer
     align-items: center

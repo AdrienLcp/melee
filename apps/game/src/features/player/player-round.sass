@@ -137,12 +137,7 @@
     // back, both rows on one curve so the seats under them slide one way;
     // with no pitch — a line-up of several — the first holds nothing.
     > .fold
-      @include fold.opens-in-column(var(--space-m))
-
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-fast, 0s) var(--ease-in)
-
-      &[data-open]
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+      @include fold.opens-in-column(var(--space-m), $trades-places: true)
 
       &:has(> div:empty)
         display: none

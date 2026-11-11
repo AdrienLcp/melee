@@ -247,33 +247,16 @@
     .add
       @include fold.opens-in-column(0rem)
 
-    // The draw folds away under *From the top*: its row shrinks out of a
-    // grid track, since `height: auto` does not transition, fading first and
-    // closing after, and opens again the way it left.
+    // The draw folds away under *From the top*.
     .past-the-plan
+      @include fold.opens-row('> .drawn', $rows-before: auto, $closed: '&[data-repeated]')
+
       background: var(--socket)
       border-top: var(--hairline)
-      display: grid
-      grid-template-rows: auto 1fr
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-out)
-
-      &[data-repeated]
-        grid-template-rows: auto 0fr
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
       .choice
         color: var(--socket-ink)
         padding: var(--space-xs) var(--space-s)
-
-      > .drawn
-        min-height: 0
-        opacity: 1
-        overflow: clip
-        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
-
-      &[data-repeated] > .drawn
-        opacity: 0
-        transition: opacity var(--transition-base, 0s) var(--ease-in)
 
       .choice + .drawn .drawn-rounds
         border-top: var(--hairline)

@@ -144,37 +144,23 @@
         box-shadow: 0 0 0 var(--chipboard)
         transform: translateY(var(--edge))
 
-      // One grid column going `1fr → 0fr`, because a word's width is not a
-      // length a transition can reach. Folded, the word is still read: it
-      // only stops being drawn.
-      .trigger-label
-        display: grid
-        grid-template-columns: 1fr
-        transition: grid-template-columns var(--transition-base, 0s) var(--ease-out), margin-inline-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
-
-        // Held at 52px by its floor, so the trim only lowers the caps onto
-        // the centre the dot beside them already sits on. Clipped across
-        // only, so an accent above the caps is not cut by the trim.
-        > span
-          min-inline-size: 0
-          overflow-x: clip
-          text-box: trim-both cap alphabetic
-
       // On the screen of four tiles the trigger is the icon alone, the label
       // kept for whoever cannot see it: every pixel of that line is the
       // round's. A round dealt and revealed swaps the two where they stand,
       // the word fading before its room closes as the icon's opens.
+      .trigger-label
+        @include fold.opens-in-line($closed: ':root:has(.player-page.framed) &')
+
+        // Held at 52px by its floor, so the trim only lowers the caps onto
+        // the centre the dot beside them already sits on. The fold clips it
+        // across only, so an accent above the caps is not cut by the trim.
+        > span
+          text-box: trim-both cap alphabetic
+
       .menu-icon
         @include mark.pops-in-line(':root:has(.player-page.framed) &', calc(-1 * (1.25em + var(--space-xs))), 0)
 
         flex: none
-
-      :root:has(.player-page.framed) &
-        .trigger-label
-          grid-template-columns: 0fr
-          margin-inline-start: calc(-1 * var(--space-xs))
-          opacity: 0
-          transition: grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-inline-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-base, 0s) var(--ease-in)
 
   // A host's menu on a landscape phone holds the invitation, the points,
   // the seat, the preferences and three exits, and ran off the bottom with the
@@ -297,16 +283,7 @@
     // and the press turns into the one that closes, so the sheet grows rather
     // than jumping to its new height.
     .close-room
-      display: grid
-      gap: 0rem
-      grid-template-rows: 0fr auto
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s), gap var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s)
-
-      .warning
-        min-height: 0
-        opacity: 0
-        overflow: hidden
-        transition: opacity var(--transition-base, 0s) var(--ease-in)
+      @include fold.opens-row('.warning', $rows-after: auto, $gap: var(--space-s), $open: '&[data-confirming]')
 
       .close-presses
         display: grid
@@ -320,14 +297,6 @@
         visibility: hidden
 
       &[data-confirming]
-        gap: var(--space-s)
-        grid-template-rows: 1fr auto
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), gap var(--transition-base, 0s) var(--ease-out)
-
-        .warning
-          opacity: 1
-          transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
-
         .close-ask
           opacity: 0
           visibility: hidden
