@@ -396,7 +396,11 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   swaps on what `swapsThePlayerScreen` lists — the
   lobby, the reveal and the final board, a round paused or left by its host —
   and **never on a freeze lifted**, which reopens a race like the floor: the
-  pause card fades off out of the flow (`.lifted`) over the round come back.
+  pause card fades off out of the flow (`LiftedNotice`) over the round come
+  back, as the host-away card does when the host returns. An answer form a
+  press sends leaves on a still copy laid out of the flow from that press
+  (`fadeOffACopyOfTheForm`); a clone keeps no running animation, so the copy
+  never holds the round's clock.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

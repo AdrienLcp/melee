@@ -279,7 +279,11 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
                     {translate('round.scored', { points: shownPoints(pay) })}
                   </b>
                 </div>
-                {stillLooking.length > 0 && (
+                <div
+                  className='fold'
+                  data-open={stillLooking.length > 0 || undefined}
+                  inert={stillLooking.length === 0}
+                >
                   <div className='still-looking'>
                     <p className='detail'>
                       {translate('mysteryword.found.stillLooking')}
@@ -290,7 +294,7 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
                       ))}
                     </span>
                   </div>
-                )}
+                </div>
               </>
             )}
           </section>
