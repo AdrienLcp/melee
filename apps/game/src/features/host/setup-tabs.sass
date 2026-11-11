@@ -72,9 +72,9 @@
     // comes back with it.
     .evening-list[data-returned],
     .panel-screen:has(> .evening-list[data-returned]) > h2
-      --returning-from: calc(var(--space-l) * -1)
+      --travel-offset: calc(var(--space-l) * -1) 0
 
-      animation: evening-list-in var(--transition-base, 0s) var(--ease-out)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
     // What the teams and the board were settled on, once the server stops
     // taking either: a printed slip rather than two controls drawn dead.
@@ -129,8 +129,3 @@
     .host-seat
       border-top: none
       padding-top: var(--space-xs)
-
-  @keyframes evening-list-in
-    from
-      opacity: 0
-      translate: var(--returning-from) 0

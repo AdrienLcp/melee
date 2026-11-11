@@ -157,8 +157,11 @@
 
       --panel-arrival-from: 100%
       --tab-selected: var(--well)
+      // Slid in whole from the edge it is docked to, the way a lid is pushed
+      // onto the table: a nudge of a rem read as the panel cutting in.
+      --travel-offset: var(--panel-arrival-from)
 
-      animation: panel-dock var(--transition-slow, 0s) var(--ease-out) backwards
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
 
       align-self: start
       border-radius: var(--radius-l) 0 0 var(--radius-l)
@@ -279,7 +282,9 @@
     // room's first view: the stage waits for that view, and a bar standing
     // alone before it split the room's arrival in two.
     .panel-tabs
-      animation: panel-dock var(--transition-slow, 0s) var(--ease-out) backwards
+      --travel-offset: var(--panel-arrival-from)
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
       background: var(--track-b)
       display: grid
       gap: var(--space-2xs)
@@ -420,11 +425,3 @@
     &::view-transition-old(host-panel),
     &::view-transition-new(host-panel)
       inset-inline: auto 0
-
-  // Slid in whole from the edge it is docked to, the way a lid is pushed onto
-  // the table: the side is read from `--panel-arrival-from`, which `data-side`
-  // flips. A nudge of a rem read as the panel cutting in.
-  @keyframes panel-dock
-    from
-      opacity: 0
-      translate: var(--panel-arrival-from)
