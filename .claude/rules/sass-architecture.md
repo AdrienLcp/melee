@@ -371,7 +371,8 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
   `margin-inline-end: -1em`) and the margin transitions. A piece of a line a
-  snapshot adds and takes away — the wall's header — is `LeavesInPlace`: a
+  snapshot adds and takes away — the wall's header and the console's — is
+  `LeavesInPlace` (`presentation/components/`): a
   `display: contents` wrapper keeps it the line's item and still hears its
   `animationend`, and its width goes to and from `auto` under
   `interpolate-size: allow-keywords`, `white-space: nowrap` held in both

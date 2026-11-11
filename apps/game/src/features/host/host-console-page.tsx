@@ -71,6 +71,7 @@ import { useVolume } from '@/presentation/audio/volume-provider'
 import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { DuelBadge } from '@/presentation/components/duel-badge'
+import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
 import { Loader } from '@/presentation/components/loader'
 import { RefusalNote } from '@/presentation/components/refusal-note'
 import { RoundChrome } from '@/presentation/components/round-chrome'
@@ -715,36 +716,54 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   const spokenTurn = blackSquareContent(view?.round)?.spoken ?? null
+  const isRoundOnScreen =
+    view !== null && view.round !== null && view.phase !== 'finished'
+  const roundIndex =
+    view?.round == null || view.phase === 'finished'
+      ? null
+      : view.settings.roundCount === null
+        ? translate('round.indexOpen', { index: view.round.index })
+        : translate('round.index', {
+            index: view.round.index,
+            total: view.settings.roundCount
+          })
 
   const header = (
     <header>
       <ArrivalNotice arrival={arrival} />
-      {view?.round != null && view.phase !== 'finished' && (
-        <p className='round-index'>
-          {view.settings.roundCount === null
-            ? translate('round.indexOpen', { index: view.round.index })
-            : translate('round.index', {
-                index: view.round.index,
-                total: view.settings.roundCount
-              })}
-        </p>
-      )}
-      {view?.round?.duel != null && view.phase !== 'finished' && (
-        <DuelBadge
-          duel={view.round.duel}
-          players={view.players}
-          seatId={view.youId}
-          teams={view.teams}
-        />
-      )}
-      {spokenTurn !== null && view !== null && view.phase !== 'finished' && (
-        <BlackSquareTurn
-          players={view.players}
-          seatId={view.youId}
-          spoken={spokenTurn}
-          teams={view.teams}
-        />
-      )}
+      <LeavesInPlace value={roundIndex}>
+        {(index) => (
+          <p className='round-index' key={index}>
+            {index}
+          </p>
+        )}
+      </LeavesInPlace>
+      <LeavesInPlace
+        value={isRoundOnScreen ? (view.round?.duel ?? null) : null}
+      >
+        {(duel) =>
+          view !== null && (
+            <DuelBadge
+              duel={duel}
+              players={view.players}
+              seatId={view.youId}
+              teams={view.teams}
+            />
+          )
+        }
+      </LeavesInPlace>
+      <LeavesInPlace value={isRoundOnScreen ? spokenTurn : null}>
+        {(spoken) =>
+          view !== null && (
+            <BlackSquareTurn
+              players={view.players}
+              seatId={view.youId}
+              spoken={spoken}
+              teams={view.teams}
+            />
+          )
+        }
+      </LeavesInPlace>
       {/*
           The lobby is the one phase that excludes it, because the invitation
           is already the stage's larger half there. `finished` used to be
@@ -752,12 +771,18 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           when somebody says *one more, I'll call Marc*, and the room
           still answers.
         */}
-      {view !== null &&
-        view.phase !== 'lobby' &&
-        !isLaidOutForWall &&
-        view.settings.teams.kind !== 'aloud' && (
-          <JoinReminder roomCode={roomCode} />
-        )}
+      <LeavesInPlace
+        value={
+          view !== null &&
+          view.phase !== 'lobby' &&
+          !isLaidOutForWall &&
+          view.settings.teams.kind !== 'aloud'
+            ? roomCode
+            : null
+        }
+      >
+        {(code) => <JoinReminder roomCode={code} />}
+      </LeavesInPlace>
     </header>
   )
 

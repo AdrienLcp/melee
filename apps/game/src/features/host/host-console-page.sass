@@ -41,11 +41,6 @@
       .join-reminder
         margin-inline-start: auto
 
-      // The header stands through the evening, so what a phase adds to it
-      // comes up in place rather than cuts in.
-      > :is(.round-index, .join-reminder, .duel-badge, .black-square-turn)
-        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
-
       // Two names are what it says: it takes a line of its own before it
       // shrinks to its two pawns, and cuts the names short rather than pushing
       // the header under the menu.
@@ -416,7 +411,7 @@
 
   // A seat's own spoken round says whose turn it is on the stage, so the
   // header's copy is a repeat.
-  .host-console-page:has(> .stage :is(.black-square-spoken, .black-square-keeper)) > header > .black-square-turn
+  .host-console-page:has(> .stage :is(.black-square-spoken, .black-square-keeper)) > header > .leaves-in-place > .black-square-turn
     display: none
 
   // The round a countdown just counted in is laid down like a page, once: the

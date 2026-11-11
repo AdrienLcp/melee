@@ -115,7 +115,9 @@ So the setter that ends an exit is attached only while it is leaving
 (`onAnimationEnd={leaving === null ? undefined : …}`), checks
 `event.target === event.currentTarget` so a child's animation does not end
 it, and a handler shared by settled rows guards against setting what is
-already there (`use-row-arrivals.ts`).
+already there (`use-row-arrivals.ts`). A value kept drawn until its exit
+ends is `useLeavingValue`, which owns that guard — `LeavesInPlace` and the
+arrival notice are built on it.
 
 ## Related
 

@@ -1,9 +1,14 @@
 import type React from 'react'
-import { useState } from 'react'
+
+import { useLeavingValue } from './use-leaving-value'
 
 import './leaves-in-place.sass'
 
 const EXIT_ANIMATION = 'piece-closes'
+
+const isPieceClosed = (event: React.AnimationEvent): boolean =>
+  event.animationName === EXIT_ANIMATION &&
+  event.target === event.currentTarget.firstElementChild
 
 type LeavesInPlaceProps<Value> = {
   /**
@@ -29,15 +34,9 @@ export const LeavesInPlace = <Value,>({
   children,
   value
 }: LeavesInPlaceProps<Value>) => {
-  const [held, setHeld] = useState(value)
-  const [leaving, setLeaving] = useState<Value | null>(null)
-
-  if (value !== held) {
-    setLeaving(value === null ? held : null)
-    setHeld(value)
-  }
-
-  const drawn = value ?? leaving
+  const { drawn, isLeaving, onAnimationEnd } = useLeavingValue(value, {
+    isExitEnd: isPieceClosed
+  })
 
   if (drawn === null) {
     return null
@@ -46,21 +45,8 @@ export const LeavesInPlace = <Value,>({
   return (
     <div
       className='leaves-in-place'
-      data-leaving={value === null || undefined}
-      // Only while leaving: see `react-components.md`, a no-op set at another
-      // moment stays queued and erases the leaving this render derives.
-      onAnimationEnd={
-        leaving === null
-          ? undefined
-          : (event) => {
-              if (
-                event.animationName === EXIT_ANIMATION &&
-                event.target === event.currentTarget.firstElementChild
-              ) {
-                setLeaving(null)
-              }
-            }
-      }
+      data-leaving={isLeaving || undefined}
+      onAnimationEnd={onAnimationEnd}
     >
       {children(drawn)}
     </div>

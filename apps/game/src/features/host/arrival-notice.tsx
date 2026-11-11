@@ -8,6 +8,7 @@ import { arrivedPlayers } from '@melee/core/room/arrivals'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 
 import { Pawn } from '@/presentation/components/pawn'
+import { useLeavingValue } from '@/presentation/components/use-leaving-value'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './arrival-notice.sass'
@@ -83,33 +84,15 @@ export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
   arrival
 }) => {
   const translate = useTranslate()
-  const [leaving, setLeaving] = useState<Arrival | null>(null)
-  const [said, setSaid] = useState<Arrival | null>(arrival)
-
-  if (arrival !== said) {
-    setLeaving(arrival === null ? said : null)
-    setSaid(arrival)
-  }
-
-  const drawn = arrival ?? leaving
+  const { drawn, isLeaving, onAnimationEnd } = useLeavingValue(arrival)
 
   return (
     <p
       aria-live='polite'
       className='arrival-notice'
-      data-leaving={leaving !== null || undefined}
+      data-leaving={isLeaving || undefined}
       data-shown={drawn !== null || undefined}
-      // Only while leaving: a no-op set at the entry's end stays queued and,
-      // replayed later, erases the leaving this render derives.
-      onAnimationEnd={
-        leaving === null
-          ? undefined
-          : (event) => {
-              if (event.target === event.currentTarget) {
-                setLeaving(null)
-              }
-            }
-      }
+      onAnimationEnd={onAnimationEnd}
       role='status'
     >
       {drawn !== null && (
