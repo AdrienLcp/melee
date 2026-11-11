@@ -36,6 +36,25 @@
       --columns: 1
       --rows: var(--rank-count, 12)
 
+    // On the podium's card, beside a wall, the card's height is fixed and
+    // two columns of it cut a name at four letters: the host reads one
+    // column at a size of its own, scrolled inside the card.
+    &:is(.podium-round *)
+      --columns: 1
+
+      align-content: start
+      container-type: inline-size
+      grid-auto-flow: row
+      grid-auto-rows: max-content
+      grid-template-rows: none
+      overflow-y: auto
+
+      .rank-row
+        --tile-size: clamp(var(--text-xs), calc((100cqi - 17rem) / 9.7), 1.75rem)
+
+        font-size: var(--text-m)
+        padding-block: var(--space-2xs)
+
     // A phone running the table reads the rows at a size of its own and
     // scrolls them, the word on a line under the name.
     &:not(.wall-page *)

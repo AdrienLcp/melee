@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { decodeMessage } from '@melee/protocol/codec'
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
@@ -7,6 +5,7 @@ import { playerServerMessageSchema } from '@melee/protocol/server-message'
 
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
+import { swapsThePlayerScreen, useRoomView } from './use-room-view'
 
 export type PlayerConnection = RoomSocket & {
   view: PlayerRoomView | null
@@ -24,7 +23,7 @@ export const usePlayerConnection = ({
   nickname: string | null
   roomCode: RoomCode
 }): PlayerConnection => {
-  const [view, setView] = useState<PlayerRoomView | null>(null)
+  const [view, receiveView] = useRoomView<PlayerRoomView>(swapsThePlayerScreen)
 
   // No `useCallback`: `useRoomSocket` holds this in an Effect Event, so its
   // identity is nothing the socket reads.
@@ -32,7 +31,7 @@ export const usePlayerConnection = ({
     const decoded = decodeMessage(playerServerMessageSchema, raw)
 
     if (decoded.status === 'success' && 'view' in decoded.message) {
-      setView(decoded.message.view)
+      receiveView(decoded.message.view)
     }
   }
 

@@ -2,20 +2,34 @@ import { useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 
 import { handsOverTheFloor, type RoundOnScreen } from '@/helpers/floor-handover'
+import { leavesTheReveal } from '@/helpers/reveal-departure'
 import { replaceScreen } from '@/infrastructure/browser'
 
+type ScreenChange = { from: RoundOnScreen; to: RoundOnScreen }
+
 /**
- * The room's latest snapshot as the console and the wall draw it, and the
- * setter their socket hands each one to. A snapshot that hands the floor over
- * — a buzz taking it, a verdict giving it back — swaps the whole stage, so it
- * lands as one screen replacing another (`replaceScreen`). Never on a
- * player's screen: the transition holds every press for its length, and the
- * race reopens the moment the floor is given back.
+ * What swaps the whole stage of the console and the wall: the floor changing
+ * hands, and the reveal leaving.
  */
-export const useRoomView = <View extends NonNullable<RoundOnScreen>>(): [
-  View | null,
-  (next: View) => void
-] => {
+export const swapsTheWholeStage = (change: ScreenChange): boolean =>
+  handsOverTheFloor(change) || leavesTheReveal(change)
+
+/**
+ * What swaps a player's screen: the reveal leaving, and never the floor. The
+ * transition holds every press for its length, and the race reopens the
+ * moment the floor is given back; nothing is pressed from the countdown or the
+ * final board the reveal gives way to.
+ */
+export const swapsThePlayerScreen = leavesTheReveal
+
+/**
+ * A role's latest snapshot, and the setter its socket hands each one to. A
+ * snapshot `isSwap` says replaces the screen lands as one screen replacing
+ * another (`replaceScreen`); every other one is drawn as it comes.
+ */
+export const useRoomView = <View extends NonNullable<RoundOnScreen>>(
+  isSwap: (change: ScreenChange) => boolean
+): [View | null, (next: View) => void] => {
   const [view, setView] = useState<View | null>(null)
   // The transition draws its update a frame after it starts, and a snapshot
   // arriving in between must not be overwritten by the one it superseded.
@@ -29,7 +43,7 @@ export const useRoomView = <View extends NonNullable<RoundOnScreen>>(): [
       setView(latest.current)
     }
 
-    if (handsOverTheFloor({ from: drawn, to: next })) {
+    if (isSwap({ from: drawn, to: next })) {
       replaceScreen(() => {
         flushSync(show)
       })

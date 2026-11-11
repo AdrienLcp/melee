@@ -666,6 +666,12 @@ What this found, each invisible in any still:
   one playing, so two in a row show as one cut short — a `vt:start` logged
   before the first's `vt:finished`. The console closing its table did it: the
   refusal answering it started one while the router was still loading home.
+- **A fade the sheet sampled away**: two seconds kept one frame in four, and
+  a 380ms view transition showed as a cut between a reveal and the countdown
+  over it. Keep every frame of the first 900ms after the press when the
+  change is a swap. Three screens filmed at once — a screencast on each of
+  the console, the wall and a phone, the press made once — put one change on
+  every role in one run (`.playwright-mcp/reveal-leaves-run.mjs`).
 - **A delay that is the dev server's**: Vite compiles a module on its first
   request, so the first refusal filmed took 720ms from `vt:start` to the swap,
   and 82ms the second time. Film a slow moment twice before chasing it.

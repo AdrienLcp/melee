@@ -1,0 +1,20 @@
+import type { RoundOnScreen } from './floor-handover'
+
+/**
+ * Whether a snapshot takes the reveal off the screen — the next round's
+ * countdown, the final board, the lobby of a game played again. Arriving at
+ * the reveal has its own motion (`card-strike`); leaving it has none of its
+ * own, so the stage it gives way to replaces it as one screen replacing
+ * another.
+ */
+export const leavesTheReveal = ({
+  from,
+  to
+}: {
+  from: RoundOnScreen
+  to: RoundOnScreen
+}): boolean =>
+  from !== null &&
+  to !== null &&
+  from.phase === 'revealed' &&
+  to.phase !== 'revealed'

@@ -365,9 +365,14 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   fades a copy of the old list out over the new while the box eases to its
   height — to `auto` where the box allows `interpolate-size: allow-keywords`,
   because new rows still unfolding as they arrive measure 630px of a 4600px
-  list on the commit. A whole stage a snapshot swaps on the console or the wall lands
-  through `replaceScreen` (`useRoomView`); never on a player's screen, where
-  the transition would hold a buzz for its length.
+  list on the commit. A whole stage a snapshot swaps lands through `replaceScreen`
+  (`useRoomView`, given what counts as a swap): the floor changing hands on
+  the console and the wall, never on a player's screen, where the transition
+  would hold a buzz for its length; and the reveal leaving — to the next
+  countdown, the final board — on every screen, since nothing is pressed on
+  what it gives way to. A phase whose arrival has a motion of its own still
+  owes one for leaving: the reveal's `card-strike` hid that it went in one
+  frame.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

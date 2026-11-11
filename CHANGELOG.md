@@ -144,6 +144,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The reveal leaves in a fade.** Pressing _Next round_, or a hold
+  running out, fades the reveal out over the countdown on the console, the
+  wall and every player, where it vanished in one frame, in every game. The
+  final board takes over from the last reveal the same way.
+- `[Game]` **Longest word's ranking reads whole names on a console beside a
+  wall.** It stands in one column scrolled inside the round's card, where two
+  columns cut a name at four letters.
 - `[Game]` **The wall's lobby holds 24 seats on a phone's shape without
   scrolling.** The game's rules give way first, then the seats share the
   height left down to the text floor, one name a line; lying down, the
