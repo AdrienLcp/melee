@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import type { Deck, QuizDeckItem } from '@melee/protocol/deck'
 import { DEFAULT_GAME_SETTINGS } from '@melee/protocol/game'
 
-import { deckProblems } from './evening-decks'
+import { deckProblems, decksFollowingLineUp } from './evening-decks'
 
 const RIVER: QuizDeckItem = {
   accepted: [],
@@ -84,5 +84,40 @@ describe('deckProblems', () => {
       'decks[0].items[0].decoys[1]: “Séquana” would be graded right — a decoy must not be a spelling of the answer.',
       'decks[0].items[0].accepted[0]: “Sequana” also names the decoy “Séquana”.'
     ])
+  })
+})
+
+describe('decksFollowingLineUp', () => {
+  const BUZZER = DEFAULT_GAME_SETTINGS.buzzer
+  const TUNED_QUIZ = { ...QUIZ, roundDurationMs: QUIZ.roundDurationMs + 5000 }
+
+  it('[deck] follows an identical entry to wherever a drag put it', () => {
+    expect(
+      decksFollowingLineUp({
+        decks: ['family', null],
+        from: [QUIZ, BUZZER],
+        to: [BUZZER, QUIZ]
+      })
+    ).toEqual([null, 'family'])
+  })
+
+  it('[deck] stays on an entry of its game left at its index, whose settings were tuned', () => {
+    expect(
+      decksFollowingLineUp({
+        decks: [null, 'family'],
+        from: [BUZZER, QUIZ],
+        to: [BUZZER, TUNED_QUIZ]
+      })
+    ).toEqual([null, 'family'])
+  })
+
+  it('[deck] goes with an entry that left the line-up', () => {
+    expect(
+      decksFollowingLineUp({
+        decks: ['family', null],
+        from: [QUIZ, BUZZER],
+        to: [BUZZER]
+      })
+    ).toEqual([null])
   })
 })

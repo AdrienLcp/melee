@@ -150,6 +150,7 @@ reconnect on the token it still holds.
 | `petitbac.doneVoting`  | player           | `roundId`, `categoryIndex` — the seat has read the category being voted                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `blacksquare.tick`     | player           | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken black square alone, the black word once and for good                                                                                                                                                                                                                                                                                                                                                                                      |
 | `host.updateSettings`  | host             | `settings`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `host.setDecks`        | host             | `decks` — one per `lineUp` entry by index, `null` for none: the evening's own content, lobby only (`wrong_phase` after), refused `invalid_message` unless every deck fits its entry (`deckProblems`); never echoed, see _An evening's decks_                                                                                                                                                                                                                                                                                         |
 | `host.startRound`      | host             | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
 | `host.judge`           | host             | `roundId`, `playerId`, `verdict`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `host.reveal`          | host             | `roundId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -783,9 +784,21 @@ The host view adds what only the host may see:
                       "track": { "id": "…", "title": "…", "artist": "…",
                                  "coverUrl": "…", "previewUrl": "…" } },
   "challengeHand": [],
+  "deckSummaries": [null, { "size": 10, "played": 3 }],
   "remainingPoolSize": 7
 }
 ```
+
+**An evening's decks reach no view.** `host.setDecks` hands the server the
+content an evening brought — a quiz about the family, one deck per line-up
+entry — and the server keeps it on the room, beside `lineUp` and realigned on
+every settings frame (`decksFollowingLineUp`), in no snapshot at all: an item
+is dealt as an ordinary round, through the same host and player arms as a
+bank's row, so its answer reaches a player at the reveal and not before. The
+console is told `deckSummaries`, a `{ size, played }` count per entry and
+never an item, because a seated host is a player too; `played === size` is a
+spent deck, and that entry deals from the game's bank from then on. The room's
+storage is wiped with it when the table closes or expires.
 
 **The slate splits its round between the two views on privacy, not on the
 answer.** `round.content` carries `itemCount`, `itemStates` (one per item),
