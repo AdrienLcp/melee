@@ -28,6 +28,7 @@ import {
   StageIcon,
   TableIcon
 } from '@/presentation/components/icons'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
@@ -172,10 +173,17 @@ export const HostPanel: React.FC<HostPanelProps> = ({
     })
   }
 
+  const badgeCount = useLastShown(playerCount > 0 ? playerCount : null) ?? 0
+
   const badge = (id: PanelTab) =>
-    id === 'players' && playerCount > 0 ? (
-      <span className='tab-badge' key={playerCount}>
-        {playerCount}
+    id === 'players' ? (
+      <span
+        aria-hidden={playerCount === 0 || undefined}
+        className='tab-badge'
+        data-shown={playerCount > 0 || undefined}
+        key={badgeCount}
+      >
+        {badgeCount}
       </span>
     ) : null
 

@@ -41,6 +41,14 @@
 
       animation: page-enter var(--transition-slow, 0s) var(--ease-out)
 
+    // A player gone from the room leaves the row they held, back the way a
+    // seat arrives, before the rows under it close up.
+    li[data-leaving]
+      --travel-offset: 0 -40%
+      --travel-scale: 1.08
+
+      animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
+
     &.ranked li
       grid-template-columns: auto 1fr auto
 

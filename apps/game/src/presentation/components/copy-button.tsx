@@ -13,7 +13,9 @@ import './copy-button.sass'
 /** Long enough to be read from where the host is standing, gone before the next glance. */
 const CONFIRMATION_MS = 2_000
 
-type CopyState = 'copied' | 'failed' | 'idle'
+const COPY_STATES = ['idle', 'copied', 'failed'] as const
+
+type CopyState = (typeof COPY_STATES)[number]
 
 const OUTCOME_KEYS: Record<Exclude<CopyState, 'idle'>, PlainTranslationKey> = {
   copied: 'invite.copied',
@@ -86,8 +88,17 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       variant='outlined'
     >
       {state === 'copied' ? <CheckIcon /> : <CopyIcon />}
-      <span className='control-label' key={state}>
-        {translate(state === 'idle' ? label : OUTCOME_KEYS[state])}
+      <span className='copy-words'>
+        {COPY_STATES.map((each) => (
+          <span
+            aria-hidden={each !== state || undefined}
+            className='control-label'
+            data-shown={each === state || undefined}
+            key={each}
+          >
+            {translate(each === 'idle' ? label : OUTCOME_KEYS[each])}
+          </span>
+        ))}
       </span>
     </Button>
   )

@@ -5,14 +5,22 @@
 /// `EmptySockets` draw together. The two lists are one grid, so the sockets
 /// carry on from the last seat rather than starting a row of their own. The
 /// caller declares the inline-size container the columns are counted against.
+///
+/// A seat taken lands on its socket, which leaves under it; the last seat
+/// given up leaves over the socket coming back. The chip is the one laid out
+/// of the grid, on the socket, so no cell moves while they trade — and not the
+/// socket on the chip, because an anchor is read with its transform and the
+/// socket would travel with the chip, then jump back to its cell.
 @mixin seat-grid
   align-content: start
+  anchor-scope: --filled-socket, --returning-socket
   display: grid
   gap: var(--space-xs) var(--space-s)
   --seat-columns: 1
 
   grid-template-columns: repeat(var(--seat-columns), minmax(0, 1fr))
   min-width: 0
+  position: relative
 
   @container (width >= 22rem)
     --seat-columns: 2
@@ -42,6 +50,11 @@
     border: none
     box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
     padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-s)
+    position: relative
+    z-index: 1
+
+    &[data-leaving]
+      animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
 
     // A chip a third of the roster wide has no room for `away` beside a
     // name, and the word never shrinks: it goes under the name rather than
@@ -95,6 +108,35 @@
     box-shadow: var(--shadow-recess)
     display: grid
     place-items: center
+
+  // Faded and never scaled: the chip anchored on it would shrink with it.
+  .socket[data-filled]
+    anchor-name: --filled-socket
+    animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
+
+  .socket:nth-child(1 of :not([data-filled]))
+    anchor-name: --returning-socket
+
+  @supports (anchor-name: --seat)
+    &:has(.socket[data-filled]) .scoreboard li:nth-last-child(1 of :not([data-leaving]))
+      inset: anchor(--filled-socket top) anchor(--filled-socket right) anchor(--filled-socket bottom) anchor(--filled-socket left)
+      position: absolute
+
+    &:has(.socket:not([data-filled])) .scoreboard li[data-leaving]:last-child
+      inset: anchor(--returning-socket top) anchor(--returning-socket right) anchor(--returning-socket bottom) anchor(--returning-socket left)
+      position: absolute
+
+  // A seat given up mid-roster keeps its cell while it leaves, and so the
+  // socket its leaving frees is held back until the rows close up.
+  &:has(.scoreboard li[data-leaving]:not(:last-child)) .socket:last-child
+    display: none
+
+  @supports not (anchor-name: --seat)
+    .socket[data-filled]
+      display: none
+
+    &:has(.scoreboard li[data-leaving]) .socket:last-child
+      display: none
 
     .pawn
       fill: none

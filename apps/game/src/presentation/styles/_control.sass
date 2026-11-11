@@ -28,6 +28,13 @@
     min-height: 4.5rem
     padding: 0 var(--space-l)
 
+/// What a control changes between two of its states — a variant traded, a
+/// piece sunk into its socket as it is disabled — on `--transition-base`, so a
+/// press that disables the control it took is seen settling into its socket.
+/// Restated after `piece.piece`, whose own list knows only the lift.
+@mixin -changes
+  transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+
 /// The shell shared by `Button`, `Link` and `ToggleButton` — everything that
 /// makes an element look and behave like a control, minus the tag it renders.
 /// Sizes and variants stay classes rather than mixin arguments, so all three
@@ -47,7 +54,7 @@
   justify-content: center
   position: relative
   text-decoration: none
-  transition: background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+  @include -changes
   white-space: nowrap
 
   &.small
@@ -68,6 +75,7 @@
     @include box
     @include piece.piece($nubs: false)
     @include piece.pressable
+    @include -changes
 
     --edge: 0.25rem
     --on-control: var(--on-primary)
@@ -87,6 +95,7 @@
     @include box
     @include piece.piece($nubs: false)
     @include piece.pressable
+    @include -changes
 
     --on-control: var(--board-ink)
 
@@ -126,10 +135,19 @@
     color: var(--on-control)
     cursor: not-allowed
 
+  // The die-line is drawn, unseen, on every enabled piece, so disabling one
+  // only inks it; the focus ring takes its place. The two transparent shadows
+  // pair with an enabled piece's edge and drop shadow, so the recess sinks in
+  // rather than swapping halfway.
+  &.filled:not([data-focus-visible]),
+  &.outlined:not([data-focus-visible])
+    outline: var(--stroke-thin) dashed transparent
+    outline-offset: -2px
+
   &.filled[data-disabled],
   &.outlined[data-disabled]
     background: transparent
-    box-shadow: var(--shadow-recess-shallow)
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent, var(--shadow-recess-shallow)
     outline: var(--stroke-thin) dashed var(--socket-line)
     outline-offset: -2px
     transform: none

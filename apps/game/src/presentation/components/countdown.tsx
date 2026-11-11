@@ -30,6 +30,7 @@ export const Countdown: React.FC<CountdownProps> = ({
   target
 }) => {
   const { isLifting, seconds } = useCount(clock, target)
+  const { leaving, onLeft } = useLeavingSecond(seconds)
 
   return (
     <p
@@ -37,11 +38,47 @@ export const Countdown: React.FC<CountdownProps> = ({
       className={classNames('countdown', className)}
       data-lifting={isLifting || undefined}
     >
+      {leaving !== null && (
+        <span
+          aria-hidden='true'
+          className='numeral'
+          data-leaving
+          key={leaving}
+          onAnimationEnd={onLeft}
+        >
+          {leaving}
+        </span>
+      )}
       <span className='numeral' key={seconds}>
         {seconds}
       </span>
     </p>
   )
+}
+
+/**
+ * The second just struck off, kept on the token until its exit ends so the
+ * next one is struck over it rather than onto an empty token.
+ */
+const useLeavingSecond = (
+  seconds: number
+): { leaving: number | null; onLeft: React.AnimationEventHandler } => {
+  const [shown, setShown] = useState(seconds)
+  const [leaving, setLeaving] = useState<number | null>(null)
+
+  if (seconds !== shown) {
+    setLeaving(shown)
+    setShown(seconds)
+  }
+
+  return {
+    leaving,
+    onLeft: (event) => {
+      if (event.target === event.currentTarget) {
+        setLeaving(null)
+      }
+    }
+  }
 }
 
 /**

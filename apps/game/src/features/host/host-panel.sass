@@ -1,6 +1,7 @@
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/fade'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/mark'
 @use '../../presentation/styles/scrollbar'
 @use '../../presentation/styles/typography'
 
@@ -43,6 +44,8 @@
         outline-offset: calc(var(--stroke-bold) * -1)
 
     .tab-badge
+      @include mark.pops-in-line('&[data-shown]', 0rem, 0rem)
+
       animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
       background: var(--tile-2)
       border-radius: var(--radius-full)

@@ -26,6 +26,13 @@
       // value, so the strike restarts on every tick while the token stays put.
       animation: countdown-strike calc(var(--transition-base, 0s) * 3.5) var(--ease-out) both
       font-size: calc(var(--token-size) * 0.66)
+      grid-area: 1 / 1
+
+      // The second struck off sinks into the token under the next one.
+      &[data-leaving]
+        --travel-scale: 0.7
+
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
 
     // The count's last quarter-second lifts the token off, so it is gone as
     // the round's snapshot lands rather than cut out from under it.

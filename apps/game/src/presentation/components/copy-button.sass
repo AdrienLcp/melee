@@ -1,11 +1,22 @@
+@use '../styles/mark'
+
 @layer components
-  // Every outcome takes the label's place where it stands, and so does the
-  // label coming back: the glyph stamped in, the words faded over. Nothing
-  // moves before the first press, so a page laying the button down plays
-  // nothing of its own.
-  .copy-button[data-outcome]
-    svg
-      animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
+  // Every word the press can say sits in one cell at no width but the one it
+  // says now, so the press narrows and widens with its word rather than
+  // jumping to the next one's width.
+  .copy-button
+    .copy-words
+      display: grid
+      interpolate-size: allow-keywords
 
     .control-label
-      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+      @include mark.pops-in-line('&[data-shown]', 0rem, auto, inline-size)
+
+      grid-area: 1 / 1
+      min-inline-size: 0
+      overflow-x: clip
+
+  // The glyph is stamped in on every outcome. Nothing moves before the first
+  // press, so a page laying the button down plays nothing of its own.
+  .copy-button[data-outcome] svg
+    animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
