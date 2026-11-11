@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
@@ -20,6 +20,7 @@ import { CaseMark } from './case-mark'
 import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
 import { ReadyMark } from './ready-mark'
+import { useRowsTravel } from './use-rows-travel'
 import { VisuallyHidden } from './visually-hidden'
 
 import './scoreboard.sass'
@@ -130,6 +131,22 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
     players,
     isRoster === true ? buildRoster : buildScoreboard
   )
+  const climbs = rows.map(({ isLeaving, player }, at) =>
+    isLeaving ? 0 : placesClimbedBy({ at, player, rankedBefore })
+  )
+  const list = useRef<HTMLOListElement>(null)
+
+  // A row that climbed or fell plays its own move, once the reveal's card has
+  // struck: only the rows that kept their places make room and close up.
+  useRowsTravel({
+    list,
+    order: rows
+      .filter((_, at) => climbs[at] === 0)
+      .map(({ player }) => player.id)
+      .join(' '),
+    pace: 'gather'
+  })
+
   const isRanked = isRoster !== true && hasAnybodyScored(players)
   // A seat walking a pawn prints its case and nothing else: the room plays for
   // the track or for points, never both.
@@ -149,6 +166,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       ]
         .filter(Boolean)
         .join(' ')}
+      ref={list}
       style={{
         ...style,
         ...(isResult === true
@@ -160,9 +178,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       }}
     >
       {rows.map(({ isLeaving, player, rank, seat }, at) => {
-        const placesClimbed = isLeaving
-          ? 0
-          : placesClimbedBy({ at, player, rankedBefore })
+        const placesClimbed = climbs[at] ?? 0
 
         return (
           <li
@@ -173,14 +189,11 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             ]
               .filter(Boolean)
               .join(' ')}
-            // The rank as ranked, so a board can style a podium without counting
-            // rows: two players sharing first are both `1`, and the row after
-            // them is `3`. Absent until somebody has scored, the same way the
-            // column is.
             data-arrived={
               (seatedBefore !== undefined && !seatedBefore.has(player.id)) ||
               undefined
             }
+            data-key={placesClimbed === 0 ? player.id : undefined}
             data-leaving={isLeaving || undefined}
             data-moved={
               placesClimbed === 0
@@ -189,6 +202,10 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                   ? 'up'
                   : 'down'
             }
+            // The rank as ranked, so a board can style a podium without counting
+            // rows: two players sharing first are both `1`, and the row after
+            // them is `3`. Absent until somebody has scored, the same way the
+            // column is.
             data-rank={isRanked ? rank : undefined}
             inert={isLeaving}
             key={player.id}
