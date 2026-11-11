@@ -108,7 +108,7 @@ state to the value it already holds. React keeps that no-op update queued
 at its own priority; a higher-priority render then derives on top of it
 without moving the hook's base, and the next render replays the queue from
 the base and lands back on the no-op's value. The undo bar vanished at once
-instead of playing `notice-leave`, because the _entry's_ `animationend` had
+instead of playing `page-leave`, because the _entry's_ `animationend` had
 already set `leaving` to `null`.
 
 So the setter that ends an exit is attached only while it is leaving

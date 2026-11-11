@@ -36,7 +36,10 @@
       z-index: 1
 
     li[data-arrived]
-      animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
+      --travel-offset: 0 -40%
+      --travel-scale: 1.08
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out)
 
     &.ranked li
       grid-template-columns: auto 1fr auto

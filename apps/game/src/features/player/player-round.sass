@@ -538,7 +538,10 @@
 
       // The strike belongs to the thing the round pays out, never the screen
       // it arrived on: a whole-screen settle under a press reads as a reflow.
-      animation: card-strike var(--transition-slow, 0s) var(--ease-out) both
+      --travel-offset: 0 0
+      --travel-scale: 1.06
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) both
 
       > .section-heading
         margin-block-start: var(--space-xs)

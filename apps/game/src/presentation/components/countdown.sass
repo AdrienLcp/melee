@@ -31,12 +31,9 @@
     // the round's snapshot lands rather than cut out from under it.
     // `LIFT_OFF_MS` in `countdown.tsx` starts it this long before zero.
     &[data-lifting]
-      animation: countdown-lifts var(--transition-base, 0s) var(--ease-in) forwards
+      --travel-scale: 0.94
 
-@keyframes countdown-lifts
-  to
-    opacity: 0
-    transform: scale(0.94)
+      animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
 
 @keyframes countdown-strike
   from

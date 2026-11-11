@@ -35,7 +35,9 @@
       // Its own keyframe rather than the entry reversed: the same name with a
       // new direction resumes the finished entry and never ends again.
       &[data-leaving]
-        animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-out) both
+        --travel-offset: 0 -0.25rem
+
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-out) both
 
     // The band is what the menu and the invitation leave, 156px at 390 and 76
     // at 320: the pawn goes first.

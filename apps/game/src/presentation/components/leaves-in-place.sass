@@ -15,7 +15,9 @@
     // Its own keyframes rather than the entry reversed: the same name with a
     // new direction resumes the finished entry and never ends again.
     &[data-leaving] > *
-      animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, piece-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+      --travel-offset: 0 -0.25rem
+
+      animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, piece-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
       pointer-events: none
       white-space: nowrap
 

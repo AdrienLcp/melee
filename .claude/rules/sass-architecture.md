@@ -55,7 +55,10 @@ sites is a custom property it substitutes whole:
 
 - `page-enter` — arriving with a fade from a little below; `--travel-offset`
   and `--travel-scale`, set on the element itself, say from where: a page
-  sideways, a popover or a landing pawn from above.
+  sideways, a popover or a landing pawn from above, a seat set down, the
+  reveal struck from a little large.
+- `page-leave` — leaving with a fade, on the spot unless the same two
+  properties say where to: a notice taken down upward, the countdown lifted.
 - `letter-turns` — a letter turned over on its top edge, back face up.
 - `tick-stamp` — a mark stamped in place, from `--travel-scale`.
 - `pawn-hops` — a pawn set down on a case, on `transform` and with no fade.
@@ -424,7 +427,7 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   paused) the page is another tree that would take a copy laid inside it
   along on its first frame, so the whole page is copied, in the shell. A phase
   whose arrival has a motion of its own still owes one for leaving: the
-  reveal's `card-strike` hid that it went in one frame. A copy laid over a
+  reveal's strike hid that it went in one frame. A copy laid over a
   box that holds a `position: sticky` press lifted by `z-index` sits above
   it, or the press shows through (the console's footer). A player's screen
   swaps on what `swapsThePlayerScreen` lists — the
@@ -470,7 +473,7 @@ and `ToggleButton` wrap each string child in a `.control-label` span.
 A component's stylesheet reaches the page only where the component is
 imported, and an `animation` naming a keyframe the page never loaded runs
 nothing, silently: a pawn landing, written in `final-board.sass`, did not exist
-on the player's screen until it moved to `globals.sass` beside `seat-arrives`.
+on the player's screen until it moved to `globals.sass` beside `page-enter`.
 
 **An animated element a container query hides takes `visibility`, not
 `display: none`.** Chromium applies a false query's `display: none` for a frame

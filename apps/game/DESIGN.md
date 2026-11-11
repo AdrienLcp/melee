@@ -1747,7 +1747,7 @@ bounced. Durations:
   door, the home page's resume link, the invite page's not-found, a spinner
   (under its turn), and on the host's setup a hint, a status, the board's
   value, the line-up's stamp and the held note. A seat joining
-  a roster or a tray is set down from above (`seat-arrives`, `slow`) — on the
+  a roster or a tray is set down from above (`page-enter` from `0 -40%` and 1.08, `slow`) — on the
   Players tab too, the first seat included, in the lobby only: a row the
   ranking moves would replay it. The Players tab's count is stamped on
   (`tick-stamp`, `fast`). The reconnecting pill rises a beat late (`slow` ×
@@ -1795,7 +1795,7 @@ bounced. Durations:
   holds back one on it.
 - **Countdown** — each second struck onto the token (`countdown-strike`,
   `base` × 3.5). In its last `base` the token lifts off, the last second
-  still on it (`countdown-lifts`, `ease-in`, timed against the clock so it
+  still on it (`page-leave` to 0.94, `ease-in`, timed against the clock so it
   ends on zero: the round's snapshot lands a few frames after, too soon for
   an exit started there to be seen). The round it counted in is then laid
   down like a page (`page-lay` on the stage, the player's round or the
@@ -1813,7 +1813,7 @@ bounced. Durations:
   the button stood nearly whole under the arriving pawn. The button keeps its
   look while it goes, inert rather than disabled, and is live from the first
   frame of its return.
-- **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never
+- **Reveal** — `page-enter` from scale 1.06, no travel, on `slow`, on the card and never
   the screen holding it (`reveal-panel.sass`, `player-round.sass`).
 - **The standings moving** — after the strike (`slow` × 3 of delay, time to
   read the podium first), a seat that changed places travels from its old row
@@ -1858,7 +1858,7 @@ bounced. Durations:
   button). A box's paper and band follow its lift on `base`.
 - **Leaving** — exits run faster than their entry: a popover leaflet reverses
   its strike at `fast` × 0.7 (the sheet face has its own), and the arrival
-  notice keeps its line drawn through `notice-leave` (`base` × 0.6) before the
+  notice keeps its line drawn through `page-leave` 0.25rem upward (`base` × 0.6) before the
   region empties, as does the bar offering to undo a round taken out, its
   press dead while it goes. An exit takes its own keyframe, never the entry reversed:
   the same name with a new direction resumes the finished entry, which ends at

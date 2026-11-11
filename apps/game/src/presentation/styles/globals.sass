@@ -105,12 +105,19 @@
     background: var(--selection)
     color: var(--ink)
 
+/// Leaving with a fade, on the spot unless `--travel-offset` and
+/// `--travel-scale` say where to: a page, a notice taken down a little upward,
+/// the countdown's token lifted off a little smaller. Its own keyframe rather
+/// than `page-enter` reversed: the same name with a new direction resumes the
+/// finished entry and never ends again.
 @keyframes page-leave
   to
     opacity: 0
+    scale: var(--travel-scale, 1)
+    translate: var(--travel-offset, 0 0)
 
 /// A page settling in, and deliberately quieter than the reveal: a few pixels
-/// and a fade where `card-strike` uses scale, on `base` where it uses `slow`.
+/// and a fade where the reveal strikes from a little large, on `base` where it uses `slow`.
 /// The reveal is what a round pays out, and a navigation must not borrow its
 /// weight.
 @keyframes page-lay
@@ -125,8 +132,9 @@
     mask-size: 100% 300%
     transform: translateY(0)
 
-/// Where something arriving on `page-enter` starts, an offset in `translate`'s
-/// syntax and a `scale`, and the scale a mark is stamped from on `tick-stamp`. Not inherited, so they are set on the animated element
+/// Where something arriving on `page-enter` starts or something leaving on
+/// `page-leave` ends, an offset in `translate`'s syntax and a `scale`, and the
+/// scale a mark is stamped from on `tick-stamp`. Not inherited, so they are set on the animated element
 /// itself: a page sliding in sideways would otherwise lend its offset to every
 /// row arriving inside it.
 @property --travel-offset
@@ -145,37 +153,12 @@
     scale: var(--travel-scale, 1)
     translate: var(--travel-offset, 0 0.5rem)
 
-/// A notice taken down once read, quicker than it came: the arrival notice in
-/// the console's header, the bar that offers to undo a round taken out.
-@keyframes notice-leave
-  to
-    opacity: 0
-    transform: translateY(-0.25rem)
-
-/// A seat set down on the table as it joins, from a little above it: on the
-/// lobby's roster, in a team's tray, on the table set for teams.
-@keyframes seat-arrives
-  from
-    opacity: 0
-    transform: translateY(-40%) scale(1.08)
-
 /// A line, a chip or a press swapped for another where it stands: a fade and
 /// no travel, because it takes the place of what was there rather than
 /// arriving from anywhere.
 @keyframes swap-in
   from
     opacity: 0
-
-/// The reveal, on both surfaces: the card is struck rather than faded in. It
-/// lives here because the host's screen and the player's share the moment, and
-/// because one authored motion beats the same effect written twice.
-@keyframes card-strike
-  from
-    opacity: 0
-    transform: scale(1.06)
-  to
-    opacity: 1
-    transform: scale(1)
 
 /// A seat's rebuilt colour laid up over the bottom half of the chip that
 /// shows the round's, on the wall's grid and in a player's list alike.

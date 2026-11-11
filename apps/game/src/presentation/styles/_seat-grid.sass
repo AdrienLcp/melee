@@ -34,7 +34,10 @@
 
   .scoreboard li
     align-items: center
-    animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
+    --travel-offset: 0 -40%
+    --travel-scale: 1.08
+
+    animation: page-enter var(--transition-slow, 0s) var(--ease-out)
     background: var(--track-a)
     border: none
     box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))

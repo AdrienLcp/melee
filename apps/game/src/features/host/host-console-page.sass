@@ -239,7 +239,10 @@
       @include seat-grid.seat-grid
 
       .team-roster .member
-        animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
+        --travel-offset: 0 -40%
+        --travel-scale: 1.08
+
+        animation: page-enter var(--transition-slow, 0s) var(--ease-out)
 
       // Keyed on the count, so a seat taken or given up swaps the number in.
       h2

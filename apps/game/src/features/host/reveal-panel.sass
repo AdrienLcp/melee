@@ -11,7 +11,10 @@
     gap: var(--panel-gap)
     min-width: 0
 
-    animation: card-strike var(--transition-slow, 0s) var(--ease-out) both
+    --travel-offset: 0 0
+    --travel-scale: 1.06
+
+    animation: page-enter var(--transition-slow, 0s) var(--ease-out) both
 
     > .head
       align-items: center
