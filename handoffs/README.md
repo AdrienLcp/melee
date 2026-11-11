@@ -12,5 +12,5 @@ Sessions in the same wave share one checkout. Commit with
 dev server the session started itself, and run `pnpm validate` only when no
 other session is running it.
 
-After everything has landed: a new word game (Motus, Scrabble, or a blend).
-Design it in its own session.
+The word games are designed: `docs/plans/66-mystery-word.md`, then
+`docs/plans/67-longest-word.md`.
