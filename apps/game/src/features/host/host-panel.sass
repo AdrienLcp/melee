@@ -92,8 +92,10 @@
 
     // Kept through a page change: a gutter dropped under it changes the
     // viewport, and Chromium skips the transition, cutting the page left.
-    // A layout move keeps the desk's own width on both sides.
-    html:has(.host-desk):active-view-transition:not([data-layout-move])
+    // A layout move keeps the desk's own width on both sides, and so does a
+    // stage swapped in place: a gutter there narrowed the stage for the
+    // swap's length and re-wrapped it twice.
+    html:has(.host-desk):active-view-transition:not([data-layout-move], :active-view-transition-type(screen-swap))
       scrollbar-gutter: stable
 
     .host-desk > .host-console-page

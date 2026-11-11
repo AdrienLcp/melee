@@ -274,6 +274,13 @@ export const moveLayout = (update: () => void): void => {
 }
 
 /**
+ * The view transition type a screen swapped inside a page carries, which
+ * stylesheets read to tell it from a page change: the page stays, so nothing
+ * a page change holds still for it has to be.
+ */
+const SCREEN_SWAP_TYPE = 'screen-swap'
+
+/**
  * Plays one screen replaced by another inside a page the way a page change
  * plays: the screen being left fades over the new one, which lays itself
  * down. Unlike `moveLayout`, nothing takes a transition name of its own, so a
@@ -295,7 +302,7 @@ export const replaceScreen = (update: () => void): void => {
     return
   }
 
-  document.startViewTransition(update)
+  document.startViewTransition({ types: [SCREEN_SWAP_TYPE], update })
 }
 
 /**
