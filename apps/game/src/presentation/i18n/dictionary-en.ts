@@ -715,48 +715,24 @@ export const EN_DICTIONARY = defineDictionary({
   home: {
     /** Over the games the host judges however they are answered, shelved after the rest. */
     judgedGames: 'Judged by the host',
-    /** Read after a row's title, whose count is printed as a bare figure. */
-    lineUpCount: defineTranslation('{count:plural}', {
-      plural: { count: { one: ', {?} line-up', other: ', {?} line-ups' } }
-    }),
-    nextLineUps: 'Next line-ups',
     opening: 'Opening the table…',
     openWith: defineTranslation('Open a table · {count:plural}', {
       plural: { count: { one: '{?} game', other: '{?} games' } }
     }),
-    /** How the last table on a line-up went, on its lid. */
+    /** When the last table on a line-up was played, on its ticket. */
     played: {
-      all: defineTranslation('{count:plural}', {
-        plural: {
-          count: {
-            one: '{?} round, played through',
-            other: 'All {?} rounds played'
-          }
-        }
-      }),
       days: defineTranslation('Played {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'day' } }
       }),
       months: defineTranslation('Played {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'month' } }
       }),
-      rounds: defineTranslation('{count:plural}', {
-        plural: {
-          count: { one: '{?} round played', other: '{?} rounds played' }
-        }
-      }),
-      roundsOf: defineTranslation('{count:plural} of {total:number}', {
-        plural: {
-          count: { one: '{?} round played', other: '{?} rounds played' }
-        }
-      }),
       weeks: defineTranslation('Played {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'week' } }
       })
     },
-    previousLineUps: 'Previous line-ups',
     resume: 'Back to table',
-    /** A lid's star, pressed when the line-up is saved, which leads the row. */
+    /** A ticket's star, pressed when the line-up is saved, which leads the row. */
     saveLineUp: 'Save “{name}”',
     shelf: 'Or your own games',
     shelfHint:
@@ -772,7 +748,13 @@ export const EN_DICTIONARY = defineDictionary({
       removed: '“{name}” removed',
       starHint:
         'Star a line-up to save it, and on your next visit it leads this row.',
+      /** Folds the row back over the tickets past its first six. */
+      fewer: 'Fewer',
       title: 'Your line-ups'
+      /** Unfolds the tickets the folded row hides, after its first six. */
+      more: defineTranslation('and {count:plural}', {
+        plural: { count: { other: '{?} more' } }
+      }),
     }
   },
   host: {
@@ -1420,6 +1402,8 @@ export const EN_DICTIONARY = defineDictionary({
       pawn: 'The pawn you last picked — its colour and its head — which the next table gives you if nobody there holds it yet.',
       recentTables:
         'The line-ups of the last tables you ran, each with its code, when it was played and how many rounds it went, to run one again.',
+      ownLineUpsHeight:
+        'How tall your line-ups were drawn on the front door, and at what window width, so the next visit keeps their room before they load.',
       savedEvenings:
         'The line-ups you saved under a name, each game with its settings, to run them again.',
       seats:

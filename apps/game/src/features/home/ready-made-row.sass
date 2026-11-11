@@ -1,0 +1,37 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/piece'
+
+@layer components
+  .ready-made-row
+    container: ready-made / inline-size
+    display: grid
+    gap: var(--space-m)
+    grid-template-columns: minmax(0, 1fr)
+    min-width: 0
+
+    .rack
+      display: grid
+      gap: var(--space-m)
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        --lid-order: 4
+
+        @include piece.shelved(var(--lid-order), 4)
+
+        display: grid
+        min-width: 0
+
+        @for $order from 0 through 3
+          &:nth-child(#{$order + 1})
+            --lid-order: #{$order}
+
+      > .featured
+        grid-column: 1 / -1
+
+      @container ready-made (width >= 64rem)
+        grid-template-columns: repeat(4, minmax(0, 1fr))

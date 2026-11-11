@@ -54,6 +54,12 @@ colors:
   pawn-10: "oklch(50% 0.085 55)"
   pawn-11: "oklch(54% 0.22 345)"
   pawn-12: "oklch(80% 0.09 235)"
+  party-grand-mix: "oklch(86% 0.15 88)"
+  party-first-game: "oklch(85% 0.11 160)"
+  party-music: "oklch(81% 0.12 350)"
+  party-general-knowledge: "oklch(83% 0.09 240)"
+  party-quick: "oklch(83% 0.13 50)"
+  party-ink: "oklch(22% 0.035 255)"
   primary: "oklch(55% 0.19 30)"
   primary-edge: "oklch(40% 0.14 30)"
   on-primary: "oklch(99% 0.005 95)"
@@ -259,6 +265,14 @@ A cool printed board under warm, saturated die-cut inks, every value one
   `@melee/core/board/pawn-piece`): a table of twelve stands in twelve round
   heads, and the thirteenth seat is the first square one. A team's pawn always
   wears the round head. A pawn's colour is never a ground text is printed on.
+
+- **Party lids** (`--party-grand-mix` saffron, `--party-first-game` mint,
+  `--party-music` pink, `--party-general-knowledge` sky, `--party-quick`
+  peach, all printed in `--party-ink`): each ready-made line-up's lid on the
+  front door. Light and chromatic (81–86% lightness), so a lid never reads
+  as a game's deep spine, and one value in both palettes because a lid is a
+  printed piece. `--party-ink` on each is a text pair in
+  `tokens-contrast.test.ts`.
 
 ### Neutral
 
@@ -932,60 +946,84 @@ under every answer mode a verdict is owed in.
   judges_ as a `mark`: a keyline stamp on the lid under the description, at
   the row's end in the list layout — outlined because the filled pill on the
   band already says which box opens first.
-- **Line-up rows** (`LineUpRow`, `LineUpLid`, `features/home`): the
-  line-ups a press opens a table on, above the shelf, each row one lid tall
-  however many it holds — on a phone the five ready-made lids stacked had
-  cost 2 000 of the page's 3 800 pixels. A row is its title with the count
-  beside it in a `--socket` pill, its hint, and a list scrolled sideways with
-  `scroll-snap-type: x mandatory`, bled to the page's edges with
-  `scroll-padding-inline` at the gutters, so the lid the edge cuts says there
-  is more. Lids are `min(78cqi, 17rem)` wide, 17.5rem from a 48rem row. A
-  fine pointer gets two outlined arrows by the heading, a page each way, dead
-  at an end and faded out while the row fits — faded, never unmounted, since
-  the overflow is known only once the row is measured and arrows mounted then
-  pushed it 20px down; they stay out of the tab order,
-  because a keyboard walks the lids and the browser scrolls each into view.
-  Smooth only without reduced motion. No drag: a row that moves under a press
-  meant to open a table opens the wrong one.
-  A **lid** is a paper card banded in its entries' spines, one segment per
-  entry with its game's glyph — three blind tests read as three, and a segment
-  under 2rem drops its glyph — its name in the lid face, clamped to three
-  lines, its games in caption-strong, a muted caption, and a ruled foot with
-  _how long_ or _when_ and _Open →_. The spinner takes the pressed lid's
-  arrow and every other lid is disabled.
-  - **Your line-ups** comes first, and only once there is one: the line-ups
-    the host starred (the saved evenings), then the tables this device played
-    (`melee:recent-tables`, eight at most, a line-up played twice kept at its
-    latest), each shown once — a starred line-up that was played carries its
-    last table on its lid, _12 rounds played of 20_ and _Played yesterday_.
-    The **star** is a round token, `--card-tint` and hollow, printed solid in
-    `--card-ink` once kept: a press of its own beside the lid's, never inside
-    it. The band stops two tokens short of the lid's edge and the star and the
-    cross sit in that notch on the paper, 2.25rem across and centred on the
-    band's height, so the name below has the lid's whole width on all three
-    lines. It once floated clear of a token on its first line only, and a
-    44px token reached into its second. The order is dealt as the page opens, so a star takes or gives back
-    its place on the next visit and no lid moves under the finger. A row of
-    plays with no star ends on a **socket** — the star's dashed hole cut in
-    `--socket`, and a line saying what it does.
-    At the lid's corner, past the star, a bare **cross** as wide as the token
-    in `--card-ink` and quieter than it, takes the lid off the row: its plays forgotten,
-    its saved line-up too when starred. The lid fades and shrinks out on
-    `--ease-in` and leaves a socket in its place — the same dashed cut,
-    _“Name” removed_ and an underlined _Put it back_ — so nothing beside it
-    moves, the focus lands on that press, and putting it back plays the
-    fade the other way. The socket lasts as long as the page; the next
-    visit deals the row without it.
+- **Line-up rows** (`features/home`): the line-ups a press opens a table
+  on, above the shelf — the host's own as tickets, then the ones the app
+  ships as coloured lids. Neither row scrolls sideways any more: the
+  carousels of paper lids banded in game segments, their arrows and their
+  count pill went in November 2026, when the band and the game glyphs on a
+  line-up read as noise beside the shelf's spines.
+  - **Your line-ups** (`OwnLineUps`, `LineUpTicket`) comes first, and only
+    once there is one: the line-ups the host starred (the saved evenings),
+    then the tables this device played (`melee:recent-tables`, eight at
+    most, a line-up played twice kept at its latest), each shown once. Each
+    is a **ticket**: a `piece.card` pill (`--radius-full`) holding three
+    presses side by side — the **star**, a bare 44px token printed hollow and
+    filled in `--card-ink` once kept; the name in `lid-name` at `--text-m`,
+    ellipsised on one line, with _Played yesterday_ after it in
+    `--card-muted` caption-strong at `--text-2xs` for a played table only
+    (no round count anywhere); and the **cross**, a bare 44px token in
+    `--card-muted` that takes the line-up off the row, its plays forgotten
+    and its saved line-up too when starred. Hovering the name tints the
+    whole ticket `--card-tint`. The tickets wrap (`--space-s` apart), so a
+    phone shows one or two a line and a desktop four or five. The order is
+    dealt as the page opens, so a star takes or gives back its place on the
+    next visit and no ticket moves under the finger. A row of plays with no
+    star ends on a **socket** — the star's dashed hole cut in `--socket`
+    and a line saying what it does.
+    Past the first six (`TICKETS_SHOWN_FOLDED`) the row **folds**, behind an
+    underlined _and N more_ — only when it hides two or more, since a press
+    revealing one ticket costs the ticket's room. The press unfolds the rest
+    **in place** (`useUnfoldingList`): the list eases from its height to its
+    new one on `base` `--ease-out` while the revealed tickets arrive one
+    after the other (`ticket-arrives`, a fade and a 0.5rem rise from 0.94,
+    `fast` × 0.5 in and `fast` × 0.3 apart), and the focus goes to the first
+    of them. _Fewer_ plays it backwards: the tickets leave last first
+    (`ticket-leaves`, `--ease-in`), and once each has ended the list closes
+    over them on `--ease-in` and the focus returns to the press. The wrap is
+    `align-content: flex-start`, because a flex line stretched across the
+    easing height spread the rows apart mid-fold.
+    A removed ticket keeps its paper and fades its presses out on
+    `--ease-in`, and a dashed `--card-socket` cut in it reads _“Name”
+    removed_ with an underlined _Put it back_, laid over the ticket rather
+    than beside it — so it takes exactly the ticket's room (a ticket is
+    10rem at least, for that press to fit) and nothing beside it moves. The
+    focus lands on _Put it back_, and putting it back plays the fade the
+    other way. While another table opens, every other ticket sits back at
+    half opacity and a quarter saturation, and the opening one opens a
+    spinner after its name.
     The served page is written at build time and knows none of them, so it
-    carries the row **held**: its title and hint, the count's place empty,
-    and a hidden **strut** lid — a two-line name over its games and a
-    caption, the tallest a row commonly holds — shown only when the script
-    `stored-shelf-marks.ts` inlines before the first paint finds a non-empty
-    `melee:recent-tables` or `melee:saved-evenings`. The strut stays under the
-    first lid of the row the app draws, so that row is never shorter than the
-    space held: on a seven-lid row nothing moved at 1440 or 390, where the
-    row used to arrive a second after the page and push everything down.
-  - **Ready-made line-ups**, the ones the app ships, with no star.
+    carries the row **held**: its title and hint over an empty list, shown
+    only when the script `stored-shelf-marks.ts` inlines before the first
+    paint finds a non-empty `melee:recent-tables` or `melee:saved-evenings`.
+    A wrapping row has no fixed height, so the app remembers the one it drew:
+    while folded it writes the list's height and the viewport's width to
+    `melee:own-line-ups-height`, and the same script sets
+    `--held-own-line-ups` to that height when the width matches. The held
+    list is never shorter than one ticket (`--target`), the floor on a
+    first visit or at a new width. Measured on a built page with the app's
+    scripts held back: the ready-made heading sat on the same pixel before
+    and after the tickets landed, at 1280 and 390, full and with three.
+  - **Ready-made line-ups** (`ReadyMadeRow`, `PartyLid`), the ones the app
+    ships, with no star, no game list and no round count. Each is a
+    **party lid**: a `piece.piece` in its own colour (`--party-*`, below),
+    its chipboard edge its fill mixed 55% into `--party-ink`, and everything
+    on it in `--party-ink` — its name in `party-name`, a caption-strong
+    caption, and an _Open →_ pill in the ink with the fill as its text, at
+    the lid's foot; the opening lid fades the pill's arrow into the spinner,
+    and the others sit back as tickets do. The first, the grand mix, is
+    **featured**, alone on a row: its name in `party-feature-name` at
+    `clamp(--text-3xl, 9cqi, 6.5rem)`, and a **crowd of pawns** beside the
+    words from a 48rem row and under them before — thirteen of the product's
+    own pawns (`PawnShape`), one per game it plays in that game's spine,
+    wearing the three heads in turn, the tallest in front, each drawn first
+    in the lid's colour with a 2.4-unit stroke so one in front parts from
+    the one behind without cutting its own head from its body. A few hop
+    0.375 to 0.625rem when the lid is hovered. The four others sit in a
+    rack, `auto-fill` at 15rem down to one column and four across from a
+    64rem row, each 12rem tall (9rem under 30rem) with a large tone-on-tone
+    **motif** (`PartyMotif`) cropped by its corner at 16% of the ink — a die
+    for a first game, a record for music, a question mark for general
+    knowledge, a bolt for the quick one — which tilts a little on hover.
 - **`GameShelf`** (`features/home`): the games as spines, each a toggle
   ticking it for the host's door — its spine colour, its name in the display
   face, its tagline; two columns from a 52rem container. The games judged
@@ -1748,12 +1786,13 @@ bounced. Durations:
   Nothing else moves a piece. A spine going back into its socket, a lid's
   star and the menu trigger ease their colours on the same `fast` rather than
   snapping.
-- **Pieces set out** — the home page's spines and lids arrive one after the
-  other as it opens (`piece.shelved`, keyframe `piece-shelve`): each slides
-  1.25rem in from its row's start with a fade on `slow`, the first a `fast`
-  in and each next one `fast` × 0.3 later. The shelf staggers ten and a row of
-  lids four — a 1440px row shows four lids whole and cuts the fifth — and the
-  rest land together, so a piece off screen never holds back one on it.
+- **Pieces set out** — the home page's spines, tickets and lids arrive one
+  after the other as it opens (`piece.shelved`, keyframe `piece-shelve`):
+  each slides 1.25rem in from its row's start with a fade on `slow`, the
+  first a `fast` in and each next one `fast` × 0.3 later. The shelf staggers
+  ten, the tickets six — the folded row — and the ready-made lids four, the
+  featured one first; the rest land together, so a piece off screen never
+  holds back one on it.
 - **Countdown** — each second struck onto the token (`countdown-strike`,
   `base` × 3.5). In its last `base` the token lifts off, the last second
   still on it (`countdown-lifts`, `ease-in`, timed against the clock so it

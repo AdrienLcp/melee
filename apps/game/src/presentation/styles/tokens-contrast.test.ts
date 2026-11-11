@@ -26,6 +26,14 @@ const PHASE_MARKS = [
 ] as const
 
 /** The phase inks a running clock or the reveal's hold drains in: playing, buzzed or marking, revealed. */
+const PARTY_FILLS = [
+  '--party-grand-mix',
+  '--party-first-game',
+  '--party-music',
+  '--party-general-knowledge',
+  '--party-quick'
+] as const
+
 const ROUND_CLOCK_INKS = ['--spine-quiz', '--primary', '--good'] as const
 
 describe('colour tokens', () => {
@@ -225,6 +233,11 @@ describe('colour tokens', () => {
           foreground: '--card-socket-line',
           minimum: WCAG_AA.nonText
         },
+        ...PARTY_FILLS.map((background) => ({
+          background,
+          foreground: '--party-ink',
+          minimum: WCAG_AA.text
+        })),
         ...['--groove', '--card-socket'].flatMap((background) =>
           ROUND_CLOCK_INKS.map((foreground) => ({
             background,

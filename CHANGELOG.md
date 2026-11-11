@@ -37,6 +37,16 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front door's line-ups are tickets and coloured lids.** Your
+  line-ups are paper tickets that wrap — the star, the name, when it was last
+  played, the cross — and past six the row folds behind _and N more_, which
+  unfolds the rest in place, the list easing open as they arrive one by one
+  and closing the same way. The ready-made line-ups each sit on a lid of
+  their own colour: the grand mix wide, with a crowd of pawns in every game's
+  colour, and the four others in a rack, each with a picture of what it
+  plays. No row scrolls sideways any more, and neither shows a band of games
+  or a round count. The served page keeps the room your tickets were last
+  drawn in, so nothing moves when they land.
 - `[Game]` **Every planned game is titled by its game alone.** A blind test
   or a quiz planned twice put the setting telling it apart in its title
   (_Blind test · Film scores_) while every other row kept its settings in the

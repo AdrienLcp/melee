@@ -19,6 +19,8 @@ type ButtonProps = ReactAriaButtonProps &
      * lands. Without one, a pending button blanks its label under the spinner.
      */
     icon?: React.ReactNode
+    /** The rendered `<button>`, for a caller that moves the focus to it. */
+    ref?: React.Ref<HTMLButtonElement>
   }
 
 export const Button: React.FC<ButtonProps> = ({

@@ -62,6 +62,7 @@ export const LINE_UP_GAMES_KEY = 'melee:line-up-games'
 export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
+export const OWN_LINE_UPS_HEIGHT_KEY = 'melee:own-line-ups-height'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
 export const PAWN_KEY = 'melee:pawn'
 export const RECENT_TABLES_KEY = 'melee:recent-tables'
@@ -561,3 +562,18 @@ export const writeStoredRecentTables = (
   recents: readonly RecentTable[]
 ): Result<void, StorageWriteError> =>
   writeStoredJson({ key: RECENT_TABLES_KEY, value: recents })
+
+/**
+ * How tall the host's own line-ups were drawn, folded, on a viewport this
+ * wide: what the served page holds open for them on the next visit, before
+ * the app has read a single one. `stored-shelf-marks.ts` reads it back.
+ */
+export type HeldHeight = {
+  height: number
+  width: number
+}
+
+export const writeStoredOwnLineUpsHeight = (
+  held: HeldHeight
+): Result<void, StorageWriteError> =>
+  writeStoredJson({ key: OWN_LINE_UPS_HEIGHT_KEY, value: held })

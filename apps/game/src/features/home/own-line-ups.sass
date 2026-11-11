@@ -1,46 +1,118 @@
 // Side-effect module: the component's rules, in the components layer.
 
+@use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
+// Set on the root by `stored-shelf-marks.ts` before the first paint, to the
+// height the folded tickets were last drawn at on a viewport this wide.
+@property --held-own-line-ups
+  syntax: '<length>'
+  inherits: true
+  initial-value: 0px
+
+@keyframes ticket-arrives
+  from
+    opacity: 0
+    scale: 0.94
+    translate: 0 0.5rem
+
+@keyframes ticket-leaves
+  to
+    opacity: 0
+    scale: 0.94
+    translate: 0 0.5rem
+
 @layer components
-  // `data-holds-line-ups` is set by `stored-shelf-marks.ts` before the first
-  // paint; without it the served page's held row would be an empty band.
-  :root:not([data-holds-line-ups]) .line-up-row[data-held]
-    display: none
-
-  // The empty socket at the row's end: the star's place, cut into the board,
-  // and what a star does written in it.
-  .line-up-row .star-socket
-    align-content: center
-    background: var(--socket)
-    border-radius: var(--radius-l)
-    box-shadow: var(--shadow-recess-shallow)
-    color: var(--socket-ink)
+  .own-line-ups
     display: grid
-    gap: var(--space-s)
-    justify-items: start
-    outline: var(--stroke-thin) dashed var(--socket-line)
-    outline-offset: calc(var(--stroke-thin) * -2)
-    padding: var(--space-m)
+    gap: var(--space-m)
+    grid-template-columns: minmax(0, 1fr)
+    min-width: 0
 
-    .hole
+    // Without `data-holds-line-ups` there is nothing stored, and the held row
+    // would be an empty band.
+    &[data-held]:is(:root:not([data-holds-line-ups]) *)
+      display: none
+
+    // Never shorter than one ticket, so a height stored at another width
+    // still holds the first row's room.
+    &[data-held] .tickets
+      min-height: max(var(--target), var(--held-own-line-ups))
+
+    // Lines packed at the top: while the list eases to a height between its
+    // two, a stretched wrap would spread them apart.
+    .tickets
+      align-content: flex-start
       align-items: center
-      border-radius: var(--radius-full)
-      box-shadow: var(--shadow-recess)
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-s)
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        --ticket-order: 6
+
+        @include piece.shelved(var(--ticket-order), 6)
+
+        @for $order from 0 through 5
+          &:nth-child(#{$order + 1})
+            --ticket-order: #{$order}
+
+      // The tickets the folded row hides arrive one after the other once the
+      // list has begun to open, and leave the other way round before it
+      // closes over them.
+      > [data-unfolds]
+        animation: ticket-arrives var(--transition-base, 0s) var(--ease-out) backwards
+        animation-delay: calc(var(--transition-fast, 0s) * (0.5 + min(var(--unfold-order), 8) * 0.3))
+
+      &[data-fold='folded'] > [data-unfolds]
+        display: none
+
+      &[data-fold='folding'] > [data-unfolds]
+        animation: ticket-leaves var(--transition-base, 0s) var(--ease-in) forwards
+        animation-delay: calc(var(--transition-fast, 0s) * min(var(--fold-order), 8) * 0.3)
+
+    .unfold
       display: grid
-      height: var(--target)
-      justify-items: center
+      min-height: var(--target)
+      place-items: center
+      padding-inline: var(--space-2xs)
+
+    // The empty socket at the row's end: the star's place, cut into the board,
+    // and what a star does written in it.
+    .star-socket
+      align-items: center
+      background: var(--socket)
+      border-radius: var(--radius-l)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--socket-ink)
+      display: flex
+      gap: var(--space-s)
       outline: var(--stroke-thin) dashed var(--socket-line)
       outline-offset: calc(var(--stroke-thin) * -2)
-      width: var(--target)
+      padding: var(--space-2xs) var(--space-m) var(--space-2xs) var(--space-2xs)
 
-      > svg
-        height: 1.375rem
-        width: 1.375rem
+      .hole
+        align-items: center
+        border-radius: var(--radius-full)
+        box-shadow: var(--shadow-recess)
+        display: grid
+        flex: none
+        height: var(--target)
+        justify-items: center
+        outline: var(--stroke-thin) dashed var(--socket-line)
+        outline-offset: calc(var(--stroke-thin) * -2)
+        width: var(--target)
 
-    p
-      @include typography.caption-strong
+        > svg
+          height: 1.125rem
+          width: 1.125rem
 
-      margin: 0
-      max-width: 16em
-      text-wrap: pretty
+      p
+        @include typography.caption-strong
+
+        margin: 0
+        max-width: var(--measure-note)
+        text-wrap: pretty

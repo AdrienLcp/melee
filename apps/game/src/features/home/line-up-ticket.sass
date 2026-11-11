@@ -1,0 +1,170 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .line-up-ticket
+    @include piece.card(var(--radius-full))
+
+    align-items: center
+    display: flex
+    max-width: 100%
+    // Wide enough for the socket's put-back press, so a short name removed
+    // leaves a socket no wider than its ticket and nothing beside it moves.
+    min-width: 10rem
+    position: relative
+    transition: background-color var(--transition-fast, 0s) var(--ease-out), filter var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+
+    // Another table is opening: the whole ticket sits back, as a lid does.
+    &:has(> .open[data-disabled])
+      filter: saturate(0.25)
+      opacity: 0.5
+
+    @media (hover: hover) and (pointer: fine)
+      &:has(.open[data-hovered]:not([data-disabled]))
+        background: var(--card-tint)
+
+    .token
+      align-items: center
+      background: transparent
+      border: 0
+      border-radius: var(--radius-full)
+      color: var(--card-ink)
+      cursor: pointer
+      display: grid
+      flex: none
+      height: var(--target)
+      justify-items: center
+      padding: 0
+      transition: background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+      width: var(--target)
+      -webkit-tap-highlight-color: transparent
+
+      &[data-hovered]:not([data-disabled])
+        background: var(--card-tint)
+
+      &[data-disabled]
+        cursor: not-allowed
+
+    .keep > svg
+      fill: transparent
+      height: 1.125rem
+      transition: fill var(--transition-base, 0s) var(--ease-out)
+      width: 1.125rem
+
+    .keep[data-selected] > svg
+      fill: currentColor
+
+    .remove
+      color: var(--card-muted)
+
+      > svg
+        height: 0.95rem
+        width: 0.95rem
+
+    .open
+      align-items: center
+      background: transparent
+      border: 0
+      border-radius: var(--radius-full)
+      color: inherit
+      cursor: pointer
+      display: flex
+      flex: 0 1 auto
+      font: inherit
+      gap: var(--space-xs)
+      min-height: var(--target)
+      min-width: 0
+      padding: 0 var(--space-2xs)
+      text-align: start
+      transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+      -webkit-tap-highlight-color: transparent
+
+      &:is([aria-busy='true'] *)
+        cursor: progress
+
+      &[data-disabled]
+        cursor: not-allowed
+
+    .name
+      @include typography.lid-name
+
+      font-size: var(--text-m)
+      min-width: 0
+      overflow: hidden
+      padding-block: 0.1em
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .meta
+      @include typography.caption-strong
+
+      color: var(--card-muted)
+      flex: none
+      font-size: var(--text-2xs)
+      white-space: nowrap
+
+    // The spinner's place, folded at no width until the ticket's table opens.
+    .busy
+      display: grid
+      flex: none
+      margin-inline-end: calc(var(--space-xs) * -1 - 1.1rem)
+      opacity: 0
+      transition: margin var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5), opacity var(--transition-base, 0s) var(--ease-in)
+      width: 1.1rem
+
+      > .spinner
+        height: 1.1rem
+        margin: 0
+        width: 1.1rem
+
+    &[data-opening] .busy
+      margin-inline-end: 0
+      opacity: 1
+      transition: margin var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5)
+
+    // Cut into the ticket's own paper rather than set beside it, so the socket
+    // takes exactly the ticket's room; putting it back plays the fade the
+    // other way.
+    .removed
+      align-items: center
+      background: var(--socket)
+      border-radius: var(--radius-full)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--socket-ink)
+      display: flex
+      gap: var(--space-xs)
+      inset: 0
+      opacity: 0
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -2)
+      padding: 0 var(--space-s)
+      position: absolute
+      transition: opacity var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+      visibility: hidden
+
+      p
+        @include typography.caption-strong
+
+        flex: 1
+        margin: 0
+        min-width: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      .button
+        flex: none
+
+    &[data-removed]
+      .token, .open
+        opacity: 0
+        scale: 0.94
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+        visibility: hidden
+
+      .removed
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+        visibility: visible

@@ -9,7 +9,7 @@ const DAYS_IN_A_WEEK = 7
 const DAYS_TOLD_IN_WEEKS = 35
 const DAYS_IN_A_MONTH = 30
 
-/** How long a line-up runs, as its lid's foot prints it. */
+/** How long a line-up runs, as a saved line-up's page prints it. */
 export const useRoundsText = () => {
   const translate = useTranslate()
 
@@ -19,7 +19,7 @@ export const useRoundsText = () => {
       : translate('readyMade.rounds', { count: roundCount })
 }
 
-/** What a lid of the host's own says about the line-up and its last play. */
+/** What a ticket of the host's own says about the line-up and when it was last played. */
 export const useLineUpFace = () => {
   const translate = useTranslate()
 
@@ -39,25 +39,6 @@ export const useLineUpFace = () => {
           })
         : translate('home.played.months', {
             when: -Math.round(daysAgo / DAYS_IN_A_MONTH)
-          })
-    },
-    /** How far its last table got. */
-    roundsPlayed: ({
-      roundCount,
-      roundsPlayed
-    }: {
-      roundCount: number | null
-      roundsPlayed: number
-    }): string => {
-      if (roundCount === null) {
-        return translate('home.played.rounds', { count: roundsPlayed })
-      }
-
-      return roundsPlayed >= roundCount
-        ? translate('home.played.all', { count: roundCount })
-        : translate('home.played.roundsOf', {
-            count: roundsPlayed,
-            total: roundCount
           })
     }
   }

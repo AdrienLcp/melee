@@ -1,0 +1,175 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .party-lid
+    @include piece.piece(var(--radius-l), $nubs: false)
+    @include piece.pressable
+
+    // The lid's own chipboard: its fill darkened by its ink, so the edge under
+    // a saffron lid is not the grey of a paper one.
+    --chipboard: color-mix(in oklab, var(--party) 55%, var(--party-ink))
+
+    align-content: stretch
+    background: var(--party)
+    color: var(--party-ink)
+    cursor: pointer
+    display: grid
+    font: inherit
+    gap: var(--space-m)
+    isolation: isolate
+    min-height: 12rem
+    overflow: hidden
+    padding: var(--space-m)
+    text-align: start
+    transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), filter var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+    width: 100%
+    -webkit-tap-highlight-color: transparent
+
+    &[data-party='grandMix']
+      --party: var(--party-grand-mix)
+
+    &[data-party='firstGame']
+      --party: var(--party-first-game)
+
+    &[data-party='music']
+      --party: var(--party-music)
+
+    &[data-party='generalKnowledge']
+      --party: var(--party-general-knowledge)
+
+    &[data-party='quick']
+      --party: var(--party-quick)
+
+    &:is([aria-busy='true'] *)
+      cursor: progress
+
+    &[data-disabled]
+      cursor: not-allowed
+      filter: saturate(0.25)
+      opacity: 0.5
+
+    // The pill keeps to the lid's foot whatever its name and caption take,
+    // so a rack of lids reads its presses on one line.
+    .words
+      align-content: start
+      display: grid
+      gap: var(--space-xs)
+      grid-template-rows: auto auto 1fr
+      justify-items: start
+      max-width: 85%
+
+    .name
+      @include typography.party-name
+
+      font-size: var(--text-2xl)
+      hyphens: auto
+      text-wrap: balance
+
+    .caption
+      @include typography.caption-strong
+
+      text-wrap: pretty
+
+    .go
+      @include typography.lid-name
+
+      align-items: center
+      background: var(--party-ink)
+      border-radius: var(--radius-full)
+      color: var(--party)
+      display: inline-flex
+      font-size: var(--text-s)
+      gap: var(--space-2xs)
+      align-self: end
+      margin-block-start: var(--space-s)
+      padding: var(--space-2xs) var(--space-s)
+
+    // The arrow and the spinner share one place, and the opening lid fades
+    // one into the other.
+    .go-mark
+      display: grid
+      height: 1.1em
+      width: 1.1em
+
+      > *
+        grid-area: 1 / 1
+        height: 100%
+        margin: 0
+        transition: opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-fast, 0s) var(--ease-out)
+        width: 100%
+
+      > .spinner
+        opacity: 0
+
+    &[data-opening] .go-mark
+      > svg
+        opacity: 0
+
+      > .spinner
+        opacity: 1
+
+    .party-motif
+      color: var(--party-ink)
+      fill: currentColor
+      height: 9.5rem
+      inset-block-end: -1.5rem
+      inset-inline-end: -1.25rem
+      opacity: 0.16
+      pointer-events: none
+      position: absolute
+      transition: transform var(--transition-base, 0s) var(--ease-out)
+      width: 9.5rem
+      z-index: -1
+
+      .outline
+        fill: none
+        stroke: currentColor
+
+    @media (hover: hover) and (pointer: fine)
+      &[data-hovered]:not([data-disabled])
+        .go-mark > svg
+          translate: var(--space-2xs) 0
+
+        .party-motif
+          transform: rotate(-6deg) scale(1.06)
+
+    @container ready-made (width < 30rem)
+      min-height: 9rem
+
+      .party-motif
+        height: 7.5rem
+        width: 7.5rem
+
+    // The featured lid: its name set large, the crowd standing on its foot
+    // under the words, and beside them once the row is wide enough.
+    &[data-featured]
+      align-content: start
+      padding: var(--space-l) var(--space-l) 0
+
+      .words
+        gap: var(--space-s)
+        grid-template-rows: auto
+        max-width: none
+
+      .go
+        align-self: start
+
+      .name
+        @include typography.party-feature-name
+
+        font-size: clamp(var(--text-3xl), 9cqi, 6.5rem)
+
+      .caption
+        font-size: var(--text-s)
+        max-width: var(--measure-hint)
+
+      @container ready-made (width >= 48rem)
+        align-items: end
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr)
+        padding: var(--space-xl) var(--space-xl) 0
+
+        .words
+          padding-block-end: var(--space-xl)

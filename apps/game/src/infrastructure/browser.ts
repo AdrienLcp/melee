@@ -186,6 +186,9 @@ export const onShownViewportChange = (
   }
 }
 
+/** The layout viewport's width, scrollbar included, as a script in the head reads it too. */
+export const viewportWidth = (): number => window.innerWidth
+
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 

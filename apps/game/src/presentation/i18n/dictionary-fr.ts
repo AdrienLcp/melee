@@ -677,44 +677,21 @@ export const FR_DICTIONARY = defineDictionary({
   },
   home: {
     judgedGames: 'Jugés par l’hôte',
-    lineUpCount: defineTranslation('{count:plural}', {
-      plural: { count: { one: ', {?} partie', other: ', {?} parties' } }
-    }),
-    nextLineUps: 'Parties suivantes',
     opening: 'Ouverture de la table…',
     openWith: defineTranslation('Ouvrir une table · {count:plural}', {
       plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
     }),
     played: {
-      all: defineTranslation('{count:plural}', {
-        plural: {
-          count: {
-            one: '{?} manche, jouée en entier',
-            other: 'Les {?} manches jouées'
-          }
-        }
-      }),
       days: defineTranslation('Jouée {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'day' } }
       }),
       months: defineTranslation('Jouée {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'month' } }
       }),
-      rounds: defineTranslation('{count:plural}', {
-        plural: {
-          count: { one: '{?} manche jouée', other: '{?} manches jouées' }
-        }
-      }),
-      roundsOf: defineTranslation('{count:plural} sur {total:number}', {
-        plural: {
-          count: { one: '{?} manche jouée', other: '{?} manches jouées' }
-        }
-      }),
       weeks: defineTranslation('Jouée {when:relative}', {
         relative: { when: { numeric: 'auto', unit: 'week' } }
       })
     },
-    previousLineUps: 'Parties précédentes',
     resume: 'Reprendre la table',
     saveLineUp: 'Enregistrer « {name} »',
     shelf: 'Ou tes jeux à toi',
@@ -730,7 +707,11 @@ export const FR_DICTIONARY = defineDictionary({
       removed: '« {name} » retirée',
       starHint:
         'Mets une étoile sur une partie pour l’enregistrer : à ta prochaine visite, elle passera en tête de cette rangée.',
+      fewer: 'Moins',
       title: 'Tes parties'
+      more: defineTranslation('et {count:plural}', {
+        plural: { count: { one: '{?} autre', other: '{?} autres' } }
+      }),
     }
   },
   host: {
@@ -1350,6 +1331,8 @@ export const FR_DICTIONARY = defineDictionary({
       pawn: 'Le pion que tu as choisi la dernière fois — sa couleur et sa tête —, que la table suivante te donne si personne ne l’a déjà.',
       recentTables:
         'Les parties des dernières tables que tu as tenues, avec le code de chacune, quand elle a été jouée et combien de manches elle a duré, pour en relancer une.',
+      ownLineUpsHeight:
+        'La hauteur de tes parties sur la page d’accueil, et la largeur de fenêtre où elle a été mesurée, pour que la visite suivante leur garde la place avant qu’elles ne s’affichent.',
       savedEvenings:
         'Les parties que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
       seats:

@@ -196,6 +196,23 @@
   font-weight: 800
   line-height: 1
 
+/// A ready-made line-up's name on its coloured lid.
+@mixin party-name
+  font-family: var(--font-display)
+  font-stretch: 82%
+  font-weight: 800
+  letter-spacing: -0.015em
+  line-height: 0.92
+
+/// The featured ready-made line-up's name, set as large as its lid allows.
+@mixin party-feature-name
+  @include party-name
+
+  font-stretch: 76%
+  font-variation-settings: 'opsz' 96
+  letter-spacing: -0.02em
+  line-height: 0.84
+
 /// A game's name on its spine.
 @mixin spine-name
   font-family: var(--font-display)
