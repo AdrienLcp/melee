@@ -30,6 +30,7 @@ import { ConnectionRefused } from '@/presentation/components/connection-refused'
 import { SoundIcon } from '@/presentation/components/icons'
 import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
 import { Link } from '@/presentation/components/link'
+import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -213,12 +214,20 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
             }
           >
             {(numbered) => (
-              <p className='wall-number' key={String(numbered.isSpeaker)}>
-                {numbered.isSpeaker && <SoundIcon />}
-                {translate(
-                  numbered.isSpeaker ? 'wall.numberSpeaking' : 'wall.number',
-                  { number: numbered.wallNumber }
-                )}
+              <p
+                className='wall-number'
+                data-speaker={numbered.isSpeaker || undefined}
+              >
+                <SoundIcon />
+                <span aria-hidden='true'>
+                  {translate('wall.number', { number: numbered.wallNumber })}
+                </span>
+                <VisuallyHidden elementType='span'>
+                  {translate(
+                    numbered.isSpeaker ? 'wall.numberSpeaking' : 'wall.number',
+                    { number: numbered.wallNumber }
+                  )}
+                </VisuallyHidden>
               </p>
             )}
           </LeavesInPlace>

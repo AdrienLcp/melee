@@ -1,6 +1,7 @@
 @use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/fade'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/mark'
 @use '../../presentation/styles/typography'
 
 /// A ranking past twelve seats in two columns, filled top to bottom, each
@@ -71,6 +72,9 @@
       display: inline-flex
       flex: none
       gap: var(--space-2xs)
+
+      svg
+        @include mark.pops-in-line('&:is([data-speaker] > *)', calc(-1.25em - var(--space-2xs)), 0rem)
 
     // Stacked, the console's lobby is a column for a hand to scroll. Nobody
     // holds a wall: a tablet hung upright kept the third team under the fold,
