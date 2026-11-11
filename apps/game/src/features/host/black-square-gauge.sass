@@ -1,3 +1,4 @@
+@use '../../presentation/styles/mark'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -22,15 +23,18 @@
         display: grid
         inline-size: var(--token-size)
         place-items: center
+        transition: background-color var(--transition-base, 0s) var(--ease-in), box-shadow var(--transition-base, 0s) var(--ease-in), color var(--transition-base, 0s) step-end
 
         &[data-found]
           background: var(--good)
           box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
           color: var(--on-spine)
+          transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out)
 
         svg
+          @include mark.pops-in-line('&:is([data-found] > *)', 0rem, 50%, $room: inline-size)
+
           block-size: 50%
-          inline-size: 50%
 
     > .count
       @include typography.title

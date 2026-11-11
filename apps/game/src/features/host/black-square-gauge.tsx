@@ -33,7 +33,7 @@ export const BlackSquareGauge: React.FC<BlackSquareGaugeProps> = ({
       <div aria-hidden='true' className='tokens'>
         {tokensOf(cellTiers).map((token) => (
           <span data-found={token < foundCellCount || undefined} key={token}>
-            {token < foundCellCount && <CheckIcon />}
+            <CheckIcon />
           </span>
         ))}
       </div>
