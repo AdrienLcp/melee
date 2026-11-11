@@ -119,9 +119,41 @@
         grid-area: send
         padding-inline: var(--space-m)
 
+    // A narrow box — a seated host's column lying down — has no width to
+    // spare beside the press: the label goes into the field first, so what
+    // was banked keeps a row of its own rather than eating the field's, and
+    // the press stays under the field while the height holds the three rows.
+    @container typed-answer (height < 12rem) and (width < 18rem)
+      .react-aria-Form
+        grid-template: 'banked banked' auto 'field send' auto / minmax(0, 1fr) auto
+
+      .react-aria-Label
+        @include accessibility.visually-hidden
+
+      .text-field .react-aria-Input::placeholder
+        color: var(--card-muted)
+
+      // The stamp's own padding is the room between it and the field: a
+      // margin under the row would cost the 4px a host's sideways column
+      // lacks, and print the line inside the field again.
+      .banked
+        justify-content: center
+        margin-block-end: 0
+
+    @container typed-answer (9rem <= height < 12rem) and (width < 18rem)
+      .react-aria-Form
+        grid-template: 'banked' auto 'field' auto 'fold' auto 'send' auto / minmax(0, 1fr)
+
+      .text-field > .fold
+        grid-area: fold
+
+      .button.large
+        margin-block-start: var(--space-xs)
+
     // Then the label goes into the field, and what was banked is printed
-    // inside the field's end rather than given a row of its own.
-    @container typed-answer (height < 7rem)
+    // inside the field's end rather than given a row of its own — in a
+    // narrow box only once its row no longer fits above the field.
+    @container typed-answer (height < 5rem) or ((height < 7rem) and (width >= 18rem))
       .react-aria-Form
         grid-template: 'field send' auto / minmax(0, 1fr) auto
 

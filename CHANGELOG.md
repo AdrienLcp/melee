@@ -79,6 +79,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A seated host's field keeps its width on a console held
+  sideways.** The column under the menu is too narrow to stand the send
+  press beside the field, which was left about a hundred pixels wide, and
+  what a guess banked or missed was printed inside it. In a narrow column the
+  label now goes into the field first, what was banked keeps its row above,
+  and the press drops under the field while the height holds it.
 - `[Game]` **The last cuts between two moments move too.** On a player's
   screen the countdown fades off over the round it counted in, which still
   takes a press from its first frame, and Petit Bac's sheet gives way to its
