@@ -26,7 +26,10 @@ export const useHostConnection = ({
   roomCode
 }: {
   /** Lays a still copy of the stage as drawn over the one a snapshot brings, where swapping it would hold a seat's press. */
-  fadeOffTheStage: () => void
+  fadeOffTheStage: (change: {
+    from: HostRoomView | null
+    to: HostRoomView
+  }) => void
   /** The console is on its way home after closing its room. */
   isLeaving: boolean
   nickname: string | null

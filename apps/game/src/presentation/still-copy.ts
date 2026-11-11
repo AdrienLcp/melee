@@ -2,6 +2,17 @@ const TRANSPARENT = 'rgba(0, 0, 0, 0)'
 
 const DEFAULT_EASE_IN = 'cubic-bezier(0.7, 0, 0.84, 0)'
 
+const SCROLL_ATTRIBUTE = 'data-still-scroll'
+
+const FRAME_ATTRIBUTE = 'data-still-frame'
+
+const NOT_A_PROPERTY = new Set([
+  'composite',
+  'computedOffset',
+  'easing',
+  'offset'
+])
+
 /** The first painted ground behind `element`, which a copy is laid on so what is drawn under it does not show through. */
 export const groundBehind = (element: Element): string => {
   for (
@@ -87,6 +98,105 @@ const framed = ({
 }
 
 /**
+ * Writes where each scroller inside `element` stands on the scroller itself,
+ * since a clone starts every one of them at the top.
+ */
+const markScrolled = (element: HTMLElement): HTMLElement[] => {
+  const scrolled = [element, ...element.querySelectorAll('*')].filter(
+    (each): each is HTMLElement =>
+      each instanceof HTMLElement &&
+      (each.scrollTop !== 0 || each.scrollLeft !== 0)
+  )
+
+  for (const each of scrolled) {
+    each.setAttribute(SCROLL_ATTRIBUTE, `${each.scrollTop} ${each.scrollLeft}`)
+  }
+
+  return scrolled
+}
+
+const scrolledBack = (copy: HTMLElement): void => {
+  for (const each of [
+    copy,
+    ...copy.querySelectorAll(`[${SCROLL_ATTRIBUTE}]`)
+  ]) {
+    const [top, left] = (each.getAttribute(SCROLL_ATTRIBUTE) ?? '')
+      .split(' ')
+      .map(Number)
+
+    if (
+      each instanceof HTMLElement &&
+      top !== undefined &&
+      left !== undefined
+    ) {
+      each.scrollTop = top
+      each.scrollLeft = left
+      each.removeAttribute(SCROLL_ATTRIBUTE)
+    }
+  }
+}
+
+const cssNameOf = (property: string): string =>
+  property.startsWith('--')
+    ? property
+    : property.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+
+/**
+ * Writes on each element an animation or a transition is moving inside
+ * `element` the values it stands at, since a clone draws every one at rest:
+ * the countdown's numeral, half faded off, came back whole in the copy. The
+ * root is left out, its box being where the copy is laid.
+ */
+const markMoving = (element: HTMLElement): Element[] => {
+  const moving = new Map<Element, Set<string>>()
+
+  for (const animation of element.getAnimations({ subtree: true })) {
+    const { effect } = animation
+
+    if (
+      effect instanceof KeyframeEffect &&
+      effect.target !== null &&
+      effect.target !== element &&
+      effect.pseudoElement === null
+    ) {
+      const properties = moving.get(effect.target) ?? new Set<string>()
+
+      for (const keyframe of effect.getKeyframes()) {
+        for (const property of Object.keys(keyframe)) {
+          if (!NOT_A_PROPERTY.has(property)) {
+            properties.add(cssNameOf(property))
+          }
+        }
+      }
+
+      moving.set(effect.target, properties)
+    }
+  }
+
+  for (const [target, properties] of moving) {
+    const style = getComputedStyle(target)
+
+    target.setAttribute(
+      FRAME_ATTRIBUTE,
+      [...properties]
+        .map((property) => `${property}: ${style.getPropertyValue(property)}`)
+        .join('; ')
+    )
+  }
+
+  return [...moving.keys()]
+}
+
+const heldWhereTheyStood = (copy: HTMLElement): void => {
+  for (const each of copy.querySelectorAll(`[${FRAME_ATTRIBUTE}]`)) {
+    if (each instanceof HTMLElement || each instanceof SVGElement) {
+      each.style.cssText = `${each.style.cssText} ${each.getAttribute(FRAME_ATTRIBUTE) ?? ''};`
+      each.removeAttribute(FRAME_ATTRIBUTE)
+    }
+  }
+}
+
+/**
  * Places the fixed copy on the box, whatever ancestor a containment made the
  * box it is fixed against.
  */
@@ -133,7 +243,19 @@ export const fadeOffAStillCopy = ({
   }
 
   const box = element.getBoundingClientRect()
+  const scrolled = markScrolled(element)
+  const moving = markMoving(element)
   const clone = stillCopyOf({ className, element })
+
+  for (const each of scrolled) {
+    each.removeAttribute(SCROLL_ATTRIBUTE)
+  }
+
+  for (const each of moving) {
+    each.removeAttribute(FRAME_ATTRIBUTE)
+  }
+
+  heldWhereTheyStood(clone)
   const copy = isFramed ? framed({ className, clone }) : clone
 
   copy.style.background = groundBehind(holder)
@@ -147,6 +269,7 @@ export const fadeOffAStillCopy = ({
 
   holder.append(copy)
   laidOver({ box, copy })
+  scrolledBack(copy)
   copy
     .animate([{ opacity: 1 }, { opacity: 0 }], {
       duration,

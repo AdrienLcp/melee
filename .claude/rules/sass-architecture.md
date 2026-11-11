@@ -393,7 +393,11 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   dealt, the floor given back, the pause lifted (`consoleStageLanding`): a
   swap would hold its first press, so a still copy of the stage fades off
   over the round instead (`fadeOffTheStage`), framed so the page's
-  `:has(> .stage…)` rules never read it. A phase
+  `:has(> .stage…)` rules never read it, the footer's presses beside it
+  unframed so `> footer` still lays them out. Where the seated host's
+  tiles take the screen or give it back (`seatedChoosingRound`, never while
+  paused) the page is another tree that would take a copy laid inside it
+  along on its first frame, so the whole page is copied, in the shell. A phase
   whose arrival has a motion of its own still owes one for leaving: the
   reveal's `card-strike` hid that it went in one frame. A copy laid over a
   box that holds a `position: sticky` press lifted by `z-index` sits above
@@ -405,7 +409,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   back, as the host-away card does when the host returns. An answer form a
   press sends leaves on a still copy laid out of the flow from that press
   (`fadeOffACopyOfTheForm`); a clone keeps no running animation, so the copy
-  never holds the round's clock.
+  never holds the round's clock — and every still copy holds what was moving
+  at the values it stood at (`still-copy.ts`), or the countdown's numeral,
+  half faded off, came back whole in it.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

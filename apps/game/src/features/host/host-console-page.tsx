@@ -6,11 +6,7 @@ import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { Deck } from '@melee/protocol/deck'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type {
-  HostRoomView,
-  RoomSettings,
-  RoundView
-} from '@melee/protocol/room'
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import {
@@ -33,7 +29,6 @@ import {
 } from '@melee/core/room/ready-made-line-ups'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 import { withPreparedKey } from '@melee/core/slate/prepared-keys'
-import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
@@ -113,6 +108,7 @@ import { JoinReminder } from './join-reminder'
 import { NextRoundCard } from './next-round-card'
 import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
+import { seatedChoosingRound } from './seated-choosing-round'
 import {
   GameTab,
   PlayersTab,
@@ -985,22 +981,3 @@ const pressesShapeOf = ({
 
   return 'phase-presses'
 }
-
-/**
- * The seated host's four tiles, which take the screen the way a player's do:
- * the header, the footer and the standings fold away for as long as the round
- * runs, and the one control a round in play offers moves into the menu. A seat
- * that arrived after the round opened is refused the round anyway, so it keeps
- * the console's own screen.
- */
-type SeatedChoosing = { round: RoundView; youId: PlayerId }
-
-const seatedChoosingRound = (view: HostRoomView): SeatedChoosing | null =>
-  view.phase === 'playing' &&
-  view.round?.answerMode === 'choice' &&
-  view.youId !== null &&
-  view.round !== null &&
-  !view.round.joinedAfterStart &&
-  playsThisRound({ duel: view.round.duel, seatId: view.youId })
-    ? { round: view.round, youId: view.youId }
-    : null

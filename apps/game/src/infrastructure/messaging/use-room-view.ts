@@ -15,7 +15,7 @@ export const useRoomView = <View extends NonNullable<StageOnScreen>>({
   landingOf
 }: {
   /** Lays what is on screen now over what the snapshot draws, before it is drawn. */
-  fadeOffWhatIsDrawn?: () => void
+  fadeOffWhatIsDrawn?: (change: { from: View | null; to: View }) => void
   landingOf: (change: { from: View | null; to: View }) => ViewLanding
 }): [View | null, (next: View) => void] => {
   const [view, setView] = useState<View | null>(null)
@@ -31,7 +31,9 @@ export const useRoomView = <View extends NonNullable<StageOnScreen>>({
       setView(latest.current)
     }
 
-    switch (landingOf({ from: drawn, to: next })) {
+    const change = { from: drawn, to: next }
+
+    switch (landingOf(change)) {
       case 'swapped':
         replaceScreen(() => {
           flushSync(show)
@@ -39,7 +41,7 @@ export const useRoomView = <View extends NonNullable<StageOnScreen>>({
 
         return
       case 'faded-over':
-        fadeOffWhatIsDrawn?.()
+        fadeOffWhatIsDrawn?.(change)
         show()
 
         return

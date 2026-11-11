@@ -208,6 +208,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A host playing a four-choice round can resume a pause.** Paused,
+  the host's own screen kept the four answers up with no pause card and no
+  way to start again, in the menu or anywhere else; it now shows the pause
+  card and the press that lifts it, like every other round. Coming back, and
+  as the round opens after its countdown, the whole screen fades into the
+  four answers instead of cutting to them, and the press under the round
+  fades from one to the next rather than jumping.
 - `[Core]` **Dealing Free-for-all's running order no longer rescans the
   evening for every candidate.** `spacedCycle` searched every row dealt so far
   for each game's last round and recounted each game's share on every pick,
