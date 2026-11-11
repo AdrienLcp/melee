@@ -1,5 +1,6 @@
 @use '../../presentation/styles/focus'
 @use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -59,6 +60,15 @@
 
     .over-fold
       @include fold.opens-in-column(var(--space-m))
+
+    // The evenings kept, or the line saying there are none: a first one kept
+    // or the last one forgotten fades one into the other.
+    .kept
+      @include reshape.cross-fades-on-reshape
+
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
 
     // The field takes the panel's width and the press stands under it, as the
     // seat's form does: side by side, a name was cut to a few letters.

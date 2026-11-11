@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useId, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import { Button as AriaButton, Form } from 'react-aria-components'
 
 import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
@@ -25,6 +25,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
 import { SavedEveningsTransfer } from './saved-evenings-transfer'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useEveningLinks } from './use-evening-links'
 
 import './saved-evenings.sass'
@@ -126,6 +127,12 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
     () => new Set(evenings.map((evening) => evening.name))
   )
   const links = useEveningLinks(evenings)
+  const kept = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({
+    box: kept,
+    shape: `${evenings.length}:${view.phase === 'lobby'}`
+  })
 
   return (
     <EveningPage onBack={onBack}>
@@ -188,28 +195,30 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
             </Button>
           </Form>
         )}
-        {evenings.length === 0 ? (
-          <p className='hint'>{translate('host.saved.empty')}</p>
-        ) : (
-          <>
-            {view.phase !== 'lobby' && (
-              <p className='hint'>{translate('host.saved.inLobby')}</p>
-            )}
-            <ul className='evenings'>
-              {evenings.map((evening) => (
-                <SavedEveningRow
-                  evening={evening}
-                  hasArrived={!keptWhenOpened.has(evening.name)}
-                  isRunnable={canRun}
-                  key={evening.name}
-                  link={links.get(evening.name) ?? null}
-                  onForget={onForget}
-                  onRun={onRun}
-                />
-              ))}
-            </ul>
-          </>
-        )}
+        <div className='kept' ref={kept}>
+          {evenings.length === 0 ? (
+            <p className='hint'>{translate('host.saved.empty')}</p>
+          ) : (
+            <>
+              {view.phase !== 'lobby' && (
+                <p className='hint'>{translate('host.saved.inLobby')}</p>
+              )}
+              <ul className='evenings'>
+                {evenings.map((evening) => (
+                  <SavedEveningRow
+                    evening={evening}
+                    hasArrived={!keptWhenOpened.has(evening.name)}
+                    isRunnable={canRun}
+                    key={evening.name}
+                    link={links.get(evening.name) ?? null}
+                    onForget={onForget}
+                    onRun={onRun}
+                  />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
         <SavedEveningsTransfer evenings={evenings} onImport={onImport} />
       </section>
     </EveningPage>
