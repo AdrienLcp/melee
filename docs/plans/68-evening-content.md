@@ -25,21 +25,37 @@ host, player and wall views all extend it. So anything placed in a
 snapshot. The protocol already says so for the slate
 (`client-message.ts:347-349`).
 
-That gives two kinds of content, and two homes:
+So nothing an assistant brings goes on a settings arm. Two kinds of content
+exist, and they share one home:
 
-| Kind                                                           | Example                                                                                   | Home                                                                            |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **Lines**: the content _is_ the question, and no answer exists | dares, _most likely_ lines, Petit Bac categories, slate labels, a blind test search       | a field on the game's settings arm, public, read by the server                  |
-| **Decks**: each item carries its answer                        | quiz questions, dated events, numbers to estimate, black square themes, slate answer keys | the evening's `decks`, never in settings, held by the server for the host alone |
+| Kind                                                           | Example                                                                                   |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Lines**: the content _is_ the question, and no answer exists | dares, _most likely_ lines                                                                |
+| **Decks with answers**: each item carries its answer           | quiz questions, dated events, numbers to estimate, black square themes, slate answer keys |
+
+Both are **decks**: the evening's `decks`, never in settings, held by the
+server and projected into no view. A line has no answer to leak, and it still
+stays off the arm, for two reasons:
+
+- Settings ride every snapshot to every screen. Sixty lines of 160 characters
+  is about 10 KB, sent again on every frame of the evening.
+- A _most likely_ line names somebody at the table. On the arm, any screen
+  reads the whole list before it is dealt.
+
+What is already on an arm stays there: Petit Bac categories, slate labels and
+a blind test search are short, and every screen sees all of them as the round
+opens.
 
 ## Settled
 
-- **Lines live on the arm.** The server draws them, so they also play on the
-  rounds nobody pressed. Auto-advance and an expiring reveal hold open a
-  round "with none" (`round-conductor.ts:256-259`). This is why a console-side
-  list, such as today's `melee:challenge-lines`, cannot be the evening's
-  carrier. `HostPreferences` remembers them per game, the same way it already
-  remembers Petit Bac's own categories.
+- **Lines are decks, dealt by the server.** Challenge and _most likely_
+  lines take the deck path below, with arms of their own in `deckSchema`.
+  Because the server holds them, they also play on the rounds nobody pressed:
+  auto-advance and an expiring reveal hold open a round "with none"
+  (`round-conductor.ts:256-259`). This is why a console-side list, such as
+  today's `melee:challenge-lines`, cannot be the evening's carrier on its own.
+  A deck item therefore has no `answer` the dealing code may assume: the store,
+  the ids and the hand-over to the bank are written over any item.
 - **Decks travel beside `lineUp`, never inside it.**
   - In the evening: `decks`, parallel to `lineUp` the way `lineUpDeals` is,
     with `null` where an entry has none. It is carried by the link and the
@@ -50,6 +66,10 @@ That gives two kinds of content, and two homes:
   - In the room: the server keeps `room.decks` aligned with `lineUp`, and
     remaps it wherever `lineUp` is edited, exactly like `lineUpDeals`. It is
     stored in the Durable Object blob and projected into **no** view.
+  - Off the server with the room: the Durable Object's storage is wiped
+    (`deleteAll`) when the host closes the table and when it expires, tested,
+    and `/legal` says the content goes with the table (session 1). Before
+    plan 68 the close and the expiry already deleted the one `room` key, untested.
   - In the host view: a summary only, `{ size, played }` per entry, because
     a seated host is still a player.
   - Out of `GameSettings`, so `HostPreferences` and recent tables never copy
@@ -91,7 +111,8 @@ That gives two kinds of content, and two homes:
   (`challenge-round.ts:31-36`). A custom item counts for no difficulty level
   (`docs/game-catalogue.md:397`, Petit Bac's own list).
 - **Privacy.** Content passes through `/mcp`, processed and never stored, and
-  through the fragment, which no request carries. A quiz about the family is
+  through the fragment, which no request carries. In a room, it lives exactly
+  as long as the table (above). A quiz about the family is
   personal data, though, so `/legal`'s sentence about what the assistant sends
   ("the line-up it composed, nothing about the visitor"), `docs/mcp.md` and the
   assistant page change in the session that first carries a deck (`privacy`
@@ -120,7 +141,7 @@ That gives two kinds of content, and two homes:
 | --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | 1   | `content-01-deck-store-and-quiz.md`     | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
 | 2   | `content-02-quiz-deck-on-screens.md`    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
-| 3   | `content-03-lines-and-descriptions.md`  | `lines` for Challenge and Most likely; `describe_games` explains every setting it leaves out today          |
+| 3   | `content-03-lines-and-descriptions.md`  | Challenge and Most likely decks of lines; `describe_games` explains every setting it leaves out today       |
 | 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |
 | 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
 | 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                   |

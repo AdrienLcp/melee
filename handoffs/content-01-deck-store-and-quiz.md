@@ -15,7 +15,9 @@ This session is the server and the MCP. Session 2 does the screens.
        (`hostQuestionOf`, `apps/server/src/infrastructure/questions/question-bank.ts:145`)
        and give the deck a fixed one, or make the field nullable.
    - `deckSchema`: a discriminated union by game, holding the `quiz` arm only
-     for now, capped at **30** items.
+     for now, capped at **30** items. Session 3 adds `challenge` and
+     `mostlikely` arms whose items are bare lines, so nothing in the store,
+     the ids or the hand-over to the bank may read an item's answer.
    - `decks` on `eveningSchema` (`packages/protocol/src/evening.ts`):
      parallel to `lineUp`, `null` where an entry has none.
    - `host.setDecks` in the host union (`client-message.ts`).
@@ -45,7 +47,20 @@ This session is the server and the MCP. Session 2 does the screens.
      `round.content` of the same shape, with id `deck:<deckId>:<i>`.
      Otherwise use the bank.
    - In a `typed` room, skip `choiceOnly` items as the bank does.
-4. **MCP.** `prepare_evening` (`apps/server/src/infrastructure/mcp/evening-tools.ts`)
+4. **The room's storage goes with the table.** Today `discard`
+   (`room-object.ts:292`) deletes the `room` key and the alarm, on
+   `host.closeRoom` and on the `expiry` deadline (`round-conductor.ts`), both
+   through `closeRoomEngine`, and no test covers either.
+   - Wipe the whole object with `ctx.storage.deleteAll()` beside
+     `deleteAlarm()`, so a key added later cannot outlive the table.
+   - `[worker]` in `worker-object.test.ts`: close a table, restart the runtime,
+     and `GET /api/rooms/:code` answers `exists: false`. The restart is what
+     makes it a storage test: without it the dropped engine answers alone.
+   - `[deadline]` in `room-engine.test.ts`: an abandoned room woken at
+     `ABANDONED_ROOM_GRACE_MS` discards itself.
+   - `/legal` (`legal.storage.server`, both dictionaries): what the table
+     holds now includes the content its line-up brought, deleted with it.
+5. **MCP.** `prepare_evening` (`apps/server/src/infrastructure/mcp/evening-tools.ts`)
    should:
    - accept `decks`;
    - run `decksHold` and `quizDeckProblems` inside `problemsOf`;
