@@ -3,6 +3,7 @@
 @use '../styles/invitation'
 @use '../styles/layout'
 @use '../styles/mark'
+@use '../styles/swap'
 @use '../styles/typography'
 @use '@adrienlcp/styles/accessibility'
 
@@ -286,25 +287,7 @@
       @include fold.opens-row('.warning', $rows-after: auto, $gap: var(--space-s), $open: '&[data-confirming]')
 
       .close-presses
-        display: grid
-
-        > *
-          grid-area: 1 / 1
-          transition: opacity var(--transition-base, 0s) var(--ease-in), visibility var(--transition-base, 0s)
-
-      .close-confirm
-        opacity: 0
-        visibility: hidden
-
-      &[data-confirming]
-        .close-ask
-          opacity: 0
-          visibility: hidden
-
-        .close-confirm
-          opacity: 1
-          transition: opacity var(--transition-base, 0s) var(--ease-out), visibility var(--transition-base, 0s)
-          visibility: visible
+        @include swap.swaps-in-one-cell('.close-ask', '.close-confirm', '&:is(.close-room[data-confirming] *)')
 
     .build-fold
       @include fold.opens-in-column(var(--space-m))

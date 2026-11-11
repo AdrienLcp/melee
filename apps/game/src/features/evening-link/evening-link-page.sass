@@ -2,6 +2,7 @@
 
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
+@use '../../presentation/styles/swap'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -92,30 +93,11 @@
         transition: fill var(--transition-base, 0s) var(--ease-in)
 
       .labels
-        display: grid
+        @include swap.swaps-in-one-cell('.off', '.on', '&:is(.save[data-selected] *)')
 
-        > span
-          grid-area: 1 / 1
-
-      .off
-        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5)
-
-      .on
-        opacity: 0
-        transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in)
-
-      &[data-selected]
-        > svg
-          fill: currentColor
-          transition: fill var(--transition-base, 0s) var(--ease-out)
-
-        .off
-          opacity: 0
-          transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in)
-
-        .on
-          opacity: 1
-          transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5)
+      &[data-selected] > svg
+        fill: currentColor
+        transition: fill var(--transition-base, 0s) var(--ease-out)
 
     // Held in its place while hidden, so the line arriving moves nothing.
     .saved-where

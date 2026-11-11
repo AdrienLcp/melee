@@ -1,0 +1,37 @@
+// Pure module: mixins only, no top-level CSS. Safe to @use from any component.
+
+@mixin -gone
+  opacity: 0
+  transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)
+  visibility: hidden
+
+@mixin -shown
+  opacity: 1
+  transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+  visibility: visible
+
+/// Two pieces stacked in one grid cell that a state trades — two words of a
+/// press, a press and the one that confirms it — so the box takes the larger
+/// of the two and nothing beside it moves. `$first` and `$second` select the
+/// children; `$swapped` is the selector, `&` being the cell, under which
+/// `$second` shows (`'&:is([data-selected] *)'`). The one leaving fades out
+/// in half a beat and is hidden from the pointer and the reader, then the
+/// other fades in. Under reduced motion they trade at once.
+@mixin swaps-in-one-cell($first, $second, $swapped)
+  display: grid
+
+  > *
+    grid-area: 1 / 1
+
+  #{$first}
+    @include -shown
+
+  #{$second}
+    @include -gone
+
+  #{$swapped}
+    #{$first}
+      @include -gone
+
+    #{$second}
+      @include -shown
