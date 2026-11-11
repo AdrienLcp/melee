@@ -13,7 +13,10 @@ import {
   canTakeSpokenTurn
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
-import { nextDeckQuestion, unplayedDeckLines } from '@/domain/round/deck-dealer'
+import {
+  nextDeckQuestion,
+  unplayedEveningLines
+} from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
 import { higherLowerContent } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
@@ -545,17 +548,17 @@ export const beginRound = async (
   }
 
   if (game.kind === 'mostlikely') {
-    const fromDeck = unplayedDeckLines({
+    const fromEvening = unplayedEveningLines({
       game: 'mostlikely',
       lineUpAt: room.settings.lineUpAt,
       room
     })[0]
     const line =
-      fromDeck === undefined
+      fromEvening === undefined
         ? drawMostLikelyLine({ playedIds: room.playedContentIds })
         : {
-            labels: { en: fromDeck.text, fr: fromDeck.text },
-            playedId: fromDeck.id
+            labels: { en: fromEvening.text, fr: fromEvening.text },
+            playedId: fromEvening.id
           }
 
     if (line === null) {

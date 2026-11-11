@@ -452,7 +452,7 @@ export const FR_DICTIONARY = defineDictionary({
     own: {
       add: 'Ajouter',
       description:
-        'Joués en premier, dans cet ordre ; la banque prend le relais quand il n’y en a plus. Gardés sur cet appareil.',
+        'Joués avant la banque, dans cet ordre, même sur une manche qui se lance seule. Gardés sur cet appareil.',
       field: 'Défi {index:number}',
       new: 'Un nouveau défi',
       newPlaceholder: 'Écris un défi…',
@@ -1335,6 +1335,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Les jeux de la dernière partie que tu as tenue, cochés à nouveau sur la prochaine table que tu ouvres.',
       locale: 'La langue que tu as choisie.',
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
+      mostlikelyLines:
+        'Les questions de « Qui de nous ? » que l’hôte a écrites à l’avance, et lesquelles ont déjà été jouées.',
       nickname:
         'Le nom sous lequel tu as joué la dernière fois, pour que la table suivante le remplisse pour toi.',
       ownLineUpsHeight:
@@ -1350,7 +1352,7 @@ export const FR_DICTIONARY = defineDictionary({
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:
-        'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores, les réglages et les questions que la partie a apportées. Tout est supprimé quand l’hôte ferme la table, ou une heure après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
+        'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores, les réglages, et les questions ou les phrases que la partie et l’hôte ont apportées. Tout est supprimé quand l’hôte ferme la table, ou une heure après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
       session:
         'Deux autres sont gardées pour l’onglet ouvert seulement, et partent quand il se ferme :',
       slateKeys:
@@ -1502,6 +1504,18 @@ export const FR_DICTIONARY = defineDictionary({
         'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et chacun vote pour quelqu’un de la table, soi-même compris. Personne ne voit qui a voté pour qui : le dévoilement compte les voix, et tous ceux qui ont voté comme la table marquent.'
     },
     name: 'Qui de nous ?',
+    own: {
+      add: 'Ajouter',
+      description:
+        'Tirées avant la banque, dans cet ordre, même sur une manche qui se lance seule. Gardées sur cet appareil.',
+      field: 'Question {index:number}',
+      new: 'Une nouvelle question',
+      newPlaceholder: 'Qui de nous serait capable de…',
+      played: 'Jouée',
+      remove: 'Retirer la question {index:number}',
+      summary: '{count:number} à venir',
+      title: 'Tes questions'
+    },
     play: 'Jouer à Qui de nous ?',
     reveal: {
       chose: 'La table a choisi',

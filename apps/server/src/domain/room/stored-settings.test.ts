@@ -61,6 +61,7 @@ describe('a room stored before a deploy', () => {
         },
         DEFAULT_BLACK_SQUARE_SETTINGS
       ],
+      ownLines: { challenge: [], mostlikely: [] },
       refusals: [],
       settings: {
         ...DEFAULT_ROOM_SETTINGS,
@@ -88,6 +89,7 @@ describe('a room stored before a deploy', () => {
         null
       ],
       openedEntries: Object.values(DEFAULT_GAME_SETTINGS),
+      ownLines: { challenge: ['Hum it'], mostlikely: ['Who sings?'] },
       settings: {
         ...DEFAULT_ROOM_SETTINGS,
         board: { ...DEFAULT_TRACK_SETTINGS, catchUp: true },
@@ -123,5 +125,16 @@ describe('a room stored before a deploy', () => {
 
     expect(restored.openedEntries).toEqual([DEFAULT_QUIZ_SETTINGS])
     expect(restored.refusals).toEqual(['openedEntries.1'])
+  })
+
+  it('[stored] forgets a host’s own lines a deploy tightened, and says so', () => {
+    const restored = parseStoredGames({
+      openedEntries: [],
+      ownLines: { challenge: ['x'.repeat(10_000)], mostlikely: [] },
+      settings: DEFAULT_ROOM_SETTINGS
+    })
+
+    expect(restored.ownLines).toEqual({ challenge: [], mostlikely: [] })
+    expect(restored.refusals).toEqual(['ownLines'])
   })
 })

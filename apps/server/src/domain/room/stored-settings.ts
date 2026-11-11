@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { deckSchema } from '@melee/protocol/deck'
+import { deckSchema, type OwnLines, ownLinesSchema } from '@melee/protocol/deck'
 import { type GameSettings, gameSettingsSchema } from '@melee/protocol/game'
 import {
   DEFAULT_ROOM_SETTINGS,
@@ -8,6 +8,7 @@ import {
   roomSettingsSchema
 } from '@melee/protocol/room'
 
+import { NO_OWN_LINES } from './new-room'
 import type { RoomDeck } from './room'
 
 const storedDecksSchema = z.array(
@@ -18,12 +19,15 @@ type StoredGames = {
   /** Absent from a room stored before an evening could bring content. */
   decks?: unknown
   openedEntries: readonly unknown[]
+  /** Absent from a room stored before a host's own lines reached the server. */
+  ownLines?: unknown
   settings: unknown
 }
 
 type ParsedGames = {
   decks: (RoomDeck | null)[]
   openedEntries: GameSettings[]
+  ownLines: OwnLines
   /**
    * Where the stored room broke today's schemas, empty when nothing did: each
    * opened entry dropped, and every rule the settings failed before they went
@@ -44,6 +48,7 @@ type ParsedGames = {
 export const parseStoredGames = (stored: StoredGames): ParsedGames => {
   const settings = roomSettingsSchema.safeParse(stored.settings)
   const decks = storedDecksSchema.safeParse(stored.decks ?? [])
+  const ownLines = ownLinesSchema.safeParse(stored.ownLines ?? {})
   const entries = stored.openedEntries.map((entry) =>
     gameSettingsSchema.safeParse(entry)
   )
@@ -53,6 +58,7 @@ export const parseStoredGames = (stored: StoredGames): ParsedGames => {
     openedEntries: entries.flatMap((entry) =>
       entry.success ? [entry.data] : []
     ),
+    ownLines: ownLines.success ? ownLines.data : NO_OWN_LINES,
     refusals: [
       ...(settings.success
         ? []
@@ -62,7 +68,8 @@ export const parseStoredGames = (stored: StoredGames): ParsedGames => {
       ...entries.flatMap((entry, index) =>
         entry.success ? [] : [`openedEntries.${index}`]
       ),
-      ...(decks.success ? [] : ['decks'])
+      ...(decks.success ? [] : ['decks']),
+      ...(ownLines.success ? [] : ['ownLines'])
     ],
     settings: settings.success ? settings.data : DEFAULT_ROOM_SETTINGS
   }

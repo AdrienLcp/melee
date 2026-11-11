@@ -71,7 +71,7 @@ export const ChallengeLinePicker: React.FC<ChallengeLinePickerProps> = ({
     label: (
       <>
         {card.text}
-        {card.kind === 'own' && (
+        {card.isOwn && (
           <span className='own-mark'>
             <PenIcon />
             {translate('challenge.hand.own')}

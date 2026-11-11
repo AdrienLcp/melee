@@ -1,3 +1,4 @@
+import type { OwnLines } from '@melee/protocol/deck'
 import type { GameKind } from '@melee/protocol/game'
 import type { HostToken, RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
@@ -7,6 +8,9 @@ import { roomSettingsFor } from '@melee/core/room/room-settings'
 
 import type { Room } from './room'
 import { fitTeamsToSettings } from './team-service'
+
+/** A room the console has told of no line its host wrote — never mutated, only replaced. */
+export const NO_OWN_LINES: OwnLines = { challenge: [], mostlikely: [] }
 
 /**
  * The code is the caller's because uniqueness is: the process that keeps the
@@ -41,6 +45,7 @@ export const newRoom = ({
     keepsBySeat: new Map(),
     lastActivityAt: now,
     openedEntries: [],
+    ownLines: NO_OWN_LINES,
     phase: 'lobby',
     playedContentIds: new Set(),
     playedLetters: [],

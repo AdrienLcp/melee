@@ -652,3 +652,126 @@ describe('a challenge deck of the evening’s own lines', () => {
     expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 3 }])
   })
 })
+
+describe('the challenge lines a host wrote ahead', () => {
+  const DECKED = 'Name every cousin in birth order'
+  const WRITTEN = [
+    'Balance a spoon on your nose',
+    'Whistle the anthem',
+    'Tell the story of the first kiss'
+  ]
+  const lineOf = (text: string) => ({ en: text, fr: text })
+  const transcriptOf = (peer: { frames: { raw: string }[] }) =>
+    peer.frames.map(({ raw }) => raw).join('')
+  const writeLines = (host: Peer<HostServerMessage>, challenge: string[]) => {
+    host.send({
+      ownLines: { challenge, mostlikely: [] },
+      type: 'host.setOwnLines'
+    })
+  }
+  const handOf = (host: Peer<HostServerMessage>) =>
+    hostView(host)?.challengeHand.map(({ en }) => en) ?? []
+
+  it('[challenge] deals them after the entry’s deck and before the bank, on rounds nobody pressed too, and shows no seat or wall one early', async () => {
+    const { anna, host, wall } = await openDealtChallenge({
+      ...CHALLENGE_GAME,
+      autoAdvanceMs: 2_000
+    })
+
+    host.send({
+      decks: [{ game: 'challenge', items: [DECKED] }],
+      type: 'host.setDecks'
+    })
+    writeLines(host, WRITTEN.slice(0, 2))
+    await waitFor(
+      () => handOf(host).join() === [DECKED, ...WRITTEN.slice(0, 2)].join(),
+      'the deck, then the written lines, to make the hand'
+    )
+
+    for (const peer of [anna, wall]) {
+      expect(transcriptOf(peer)).not.toContain(WRITTEN[0])
+    }
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the deck’s line')
+    expect(challengeRound(hostView(host))?.labels).toEqual(lineOf(DECKED))
+
+    const playOnByItself = async () => {
+      const before = hostView(host)?.round?.id
+
+      await awardPlaces({ host, places: [], roundId: before ?? '' })
+      await waitFor(
+        () =>
+          hostView(host)?.phase === 'playing' &&
+          hostView(host)?.round?.id !== before,
+        'the next round to open by itself',
+        6_000
+      )
+
+      return challengeRound(hostView(host))?.labels?.en
+    }
+
+    expect(await playOnByItself()).toBe(WRITTEN[0])
+
+    for (const peer of [anna, wall]) {
+      expect(transcriptOf(peer)).not.toContain(WRITTEN[1])
+    }
+
+    expect(await playOnByItself()).toBe(WRITTEN[1])
+    expect(isBankedLine(lineOf((await playOnByItself()) ?? ''))).toBe(true)
+  }, 20_000)
+
+  it('[challenge] takes the list again mid-round, deals a new line next, drops a removed one and never a played one', async () => {
+    const { host } = await openDealtChallenge()
+
+    writeLines(host, WRITTEN.slice(0, 2))
+    await waitFor(() => handOf(host)[0] === WRITTEN[0], 'the written lines')
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the first line')
+    expect(challengeRound(hostView(host))?.labels).toEqual(
+      lineOf(WRITTEN[0] ?? '')
+    )
+
+    writeLines(host, [WRITTEN[0] ?? '', WRITTEN[2] ?? ''])
+    await waitFor(() => handOf(host)[0] === WRITTEN[2], 'the new line ahead')
+    expect(handOf(host)).not.toContain(WRITTEN[0])
+    expect(handOf(host)).not.toContain(WRITTEN[1])
+    expect(errorsIn(host)).toEqual([])
+
+    await awardPlaces({
+      host,
+      places: [],
+      roundId: hostView(host)?.round?.id ?? ''
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () => challengeRound(hostView(host))?.labels?.en === WRITTEN[2],
+      'the line written mid-round'
+    )
+  })
+
+  it('[challenge] plays a written line typed in by hand once, and takes it out of the hand', async () => {
+    const { host } = await openDealtChallenge()
+
+    writeLines(host, WRITTEN.slice(0, 1))
+    await waitFor(() => handOf(host)[0] === WRITTEN[0], 'the written line')
+    host.send({ challengeText: WRITTEN[0], type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the typed line')
+
+    expect(handOf(host)).not.toContain(WRITTEN[0])
+  })
+
+  it('[challenge] refuses a seat sending the host’s lines', async () => {
+    const { anna } = await openDealtChallenge()
+
+    anna.send({
+      ownLines: { challenge: WRITTEN, mostlikely: [] },
+      type: 'host.setOwnLines'
+    })
+    await waitFor(() => errorsIn(anna).length > 0, 'the refusal')
+    expect(errorsIn(anna).map((error) => error.code)).toEqual([
+      'host_only_action'
+    ])
+  })
+})

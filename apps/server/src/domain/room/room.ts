@@ -6,7 +6,7 @@ import type {
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { Deck } from '@melee/protocol/deck'
+import type { Deck, OwnLines } from '@melee/protocol/deck'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
@@ -152,6 +152,12 @@ export type Room = {
    * by a restart, so *play again* deals the evening afresh.
    */
   openedEntries: GameSettings[]
+  /**
+   * The lines the console's host wrote ahead, by game, sent whole after every
+   * edit: every entry of the game deals them after its own deck and before
+   * the bank, each under `ownLineId`. Projected into no view.
+   */
+  ownLines: OwnLines
   phase: RoomPhase
   /**
    * Every track and every question already used, so a pool refilled mid-game

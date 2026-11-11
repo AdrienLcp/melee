@@ -95,3 +95,26 @@ export const decksSchema = z
   .array(deckSchema.nullable())
   .max(LINE_UP_MAX_ENTRIES)
   .default([])
+
+const ownLineListSchema = (maxLength: number) =>
+  z
+    .array(z.string().trim().min(1).max(maxLength))
+    .max(LINE_DECK_MAX_ITEMS)
+    .default([])
+
+/**
+ * The lines a host wrote on their own machine, ahead of any evening, by game:
+ * unlike a deck they belong to no line-up entry, so every entry of the game
+ * deals them, after its own deck and before the bank. Each is told apart by
+ * its text, so the list can be sent again whole after any edit, mid-evening
+ * included, without dealing a played line twice (`ownLineId`).
+ */
+export const ownLinesSchema = z.object({
+  challenge: ownLineListSchema(CHALLENGE_TEXT_MAX_LENGTH),
+  mostlikely: ownLineListSchema(MOST_LIKELY_LINE_MAX_LENGTH)
+})
+
+export type OwnLines = z.infer<typeof ownLinesSchema>
+
+/** The games a host may write lines of their own for. */
+export type OwnLinesGame = keyof OwnLines

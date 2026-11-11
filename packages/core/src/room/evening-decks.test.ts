@@ -4,9 +4,13 @@ import type { Deck, QuizDeckItem } from '@melee/protocol/deck'
 import { DEFAULT_GAME_SETTINGS, type GameSettings } from '@melee/protocol/game'
 
 import {
+  deckItemId,
   deckProblems,
   decksFollowingLineUp,
-  decksForLineUp
+  decksForLineUp,
+  isDeckItemId,
+  isOwnLineId,
+  ownLineId
 } from './evening-decks'
 
 const RIVER: QuizDeckItem = {
@@ -161,5 +165,26 @@ describe('decksForLineUp', () => {
         to: [DEFAULT_GAME_SETTINGS.buzzer]
       })
     ).toEqual([])
+  })
+})
+
+describe('ownLineId', () => {
+  const DARE = 'Sing the chorus backwards'
+
+  it('[deck] names a written line by its game and its text, whatever its place in the list', () => {
+    expect(ownLineId({ game: 'challenge', text: DARE })).toBe(
+      `own:challenge:${DARE}`
+    )
+    expect(ownLineId({ game: 'mostlikely', text: DARE })).not.toBe(
+      ownLineId({ game: 'challenge', text: DARE })
+    )
+  })
+
+  it('[deck] tells a written line from a deck’s item, both ways', () => {
+    const written = ownLineId({ game: 'challenge', text: DARE })
+    const decked = deckItemId({ deckId: 'own', index: 0 })
+
+    expect([isOwnLineId(written), isDeckItemId(written)]).toEqual([true, false])
+    expect([isOwnLineId(decked), isDeckItemId(decked)]).toEqual([false, true])
   })
 })

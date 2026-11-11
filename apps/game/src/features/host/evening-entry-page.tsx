@@ -12,6 +12,7 @@ import { isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
 
+import { DeckNote } from '@/presentation/components/deck-note'
 import { GameIcon } from '@/presentation/components/icons'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -19,7 +20,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 import { EveningPage } from './evening-page'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 import { isLastRound } from './is-last-round'
-import { OwnChallengeLinesEditor } from './own-challenge-lines-editor'
+import { OwnLinesEditor } from './own-lines-editor'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
 
@@ -96,6 +97,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
     played
   })
   const isFixed = isPlayedOut({ entry, played })
+  const deck = view.deckSummaries[at] ?? null
 
   return (
     <EveningPage onBack={onBack}>
@@ -113,6 +115,9 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
           )}
         </p>
         {stamp !== null && <EveningStamp kind={stamp} played={played} />}
+        {deck !== null && (
+          <DeckNote game={entry.kind} left={deck.size - deck.played} />
+        )}
       </header>
 
       {isFixed ? (
@@ -148,7 +153,9 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
         </div>
       )}
 
-      {entry.kind === 'challenge' && <OwnChallengeLinesEditor />}
+      {(entry.kind === 'challenge' || entry.kind === 'mostlikely') && (
+        <OwnLinesEditor game={entry.kind} />
+      )}
     </EveningPage>
   )
 }

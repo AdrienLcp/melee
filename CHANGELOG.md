@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- **The host's own lines play on every round, and most likely takes them
+  too.** The challenge lines a host writes ahead now go to the room the
+  console opens, so the server deals them — after the evening's own lines and
+  before the bank — on a round that opens by itself as much as on one the host
+  picked, and a line written mid-evening is dealt from the next round. Most
+  likely gets the same list on its page of the setup, kept on the device and
+  carried by the export file, and every entry page says how many of the
+  evening's own lines are left.
 - `[Server]` **An evening brings its own challenge and most likely lines.**
   A deck of lines rides beside the line-up like a quiz deck: the server
   deals a challenge deck into the console's hand ahead of the bank's and a

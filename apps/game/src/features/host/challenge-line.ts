@@ -8,11 +8,11 @@ import {
 export type ChallengeLine = {
   /** Which line of the hand, the typed one, or none said aloud. */
   choice: ChallengeChoice
-  /** The host's own unplayed lines first, then the bank's. */
+  /** The server's hand: the evening's lines, then the host's own, then the bank's. */
   hand: readonly ChallengeHandLine[]
   onChange: (text: string) => void
   onChoose: (choice: ChallengeChoice) => void
-  /** Another line in place of the hand's at that place; an own line is set aside until the round opens. */
+  /** Another line in place of the hand's at that place; the one replaced is set aside for the evening. */
   onRedeal: (at: number) => void
   text: string
 }

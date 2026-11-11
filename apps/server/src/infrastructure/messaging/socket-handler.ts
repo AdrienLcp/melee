@@ -175,6 +175,7 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.drawTeams',
   'host.updateSettings',
   'host.setDecks',
+  'host.setOwnLines',
   'host.removePlayer',
   'host.dismissWall',
   'host.endGame',
@@ -912,6 +913,13 @@ const dispatch = ({
     }
     case 'host.setDecks': {
       loadDecks({ decks: message.decks, engine, outbound })
+      break
+    }
+    case 'host.setOwnLines': {
+      room.ownLines = message.ownLines
+      keepChallengeAhead(room)
+      touch(room, now)
+      publishRoom(engine)
       break
     }
   }

@@ -1,30 +1,39 @@
 import type React from 'react'
 import { useState } from 'react'
 
-import { CHALLENGE_TEXT_MAX_LENGTH } from '@melee/protocol/challenge'
+import type { OwnLinesGame } from '@melee/protocol/deck'
 
-import { OWN_CHALLENGE_LINES_MAX } from '@/infrastructure/storage/own-challenge-lines-storage'
+import {
+  OWN_LINE_MAX_LENGTH,
+  OWN_LINES_MAX,
+  type OwnLine
+} from '@/infrastructure/storage/own-lines-storage'
 import { Button } from '@/presentation/components/button'
 import { CrossIcon, PlusIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import {
-  setOwnChallengeLines,
-  useOwnChallengeLines
-} from './use-own-challenge-lines'
+import { setOwnLines, useOwnLines } from './use-own-lines'
 import { useRowArrivals } from './use-row-arrivals'
 
-import './own-challenge-lines-editor.sass'
+import './own-lines-editor.sass'
+
+type OwnLinesEditorProps = {
+  /** Whose lines, which also names every word the editor shows. */
+  game: OwnLinesGame
+}
 
 /**
- * The challenge lines a host writes before the evening, dealt into the hand
- * ahead of the bank's in the order written. Each is saved when its field is
- * left, and one left empty goes.
+ * The lines a host writes for a game before the evening, sent to the room and
+ * dealt ahead of the bank's in the order written. Each is saved when its field
+ * is left, and one left empty goes.
  */
-export const OwnChallengeLinesEditor: React.FC = () => {
+export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
   const translate = useTranslate()
-  const lines = useOwnChallengeLines()
+  const lines = useOwnLines(game)
+  const write = (next: readonly OwnLine[]) => {
+    setOwnLines({ game, lines: next })
+  }
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
   const [fresh, setFresh] = useState('')
   const { isArriving, settleOnEnd } = useRowArrivals(lines.length)
@@ -33,28 +42,28 @@ export const OwnChallengeLinesEditor: React.FC = () => {
   const add = () => {
     const text = fresh.trim()
 
-    if (text === '' || lines.length >= OWN_CHALLENGE_LINES_MAX) {
+    if (text === '' || lines.length >= OWN_LINES_MAX) {
       return
     }
 
-    setOwnChallengeLines([...lines, { isPlayed: false, text }])
+    write([...lines, { isPlayed: false, text }])
     setFresh('')
   }
 
   const remove = (at: number) => {
-    setOwnChallengeLines(lines.filter((_, index) => index !== at))
+    write(lines.filter((_, index) => index !== at))
     setDrafts({})
   }
 
   return (
-    <section className='own-challenge-lines'>
+    <section className='own-lines'>
       <header>
-        <h3>{translate('challenge.own.title')}</h3>
+        <h3>{translate(`${game}.own.title`)}</h3>
         <span className='summary'>
-          {translate('challenge.own.summary', { count: toCome })}
+          {translate(`${game}.own.summary`, { count: toCome })}
         </span>
       </header>
-      <p className='hint'>{translate('challenge.own.description')}</p>
+      <p className='hint'>{translate(`${game}.own.description`)}</p>
       {lines.length > 0 && (
         <ol className='lines'>
           {lines.map((line, at) => (
@@ -69,8 +78,8 @@ export const OwnChallengeLinesEditor: React.FC = () => {
                 autoComplete='off'
                 className='line'
                 isMultiline
-                label={translate('challenge.own.field', { index: at + 1 })}
-                maxLength={CHALLENGE_TEXT_MAX_LENGTH}
+                label={translate(`${game}.own.field`, { index: at + 1 })}
+                maxLength={OWN_LINE_MAX_LENGTH[game]}
                 onBlur={() => {
                   const draft = drafts[at]?.trim()
 
@@ -84,7 +93,7 @@ export const OwnChallengeLinesEditor: React.FC = () => {
                     return
                   }
 
-                  setOwnChallengeLines(
+                  write(
                     lines.map((other, index) =>
                       index === at ? { ...other, text: draft } : other
                     )
@@ -97,11 +106,11 @@ export const OwnChallengeLinesEditor: React.FC = () => {
               />
               {line.isPlayed && (
                 <span className='played'>
-                  {translate('challenge.own.played')}
+                  {translate(`${game}.own.played`)}
                 </span>
               )}
               <Button
-                aria-label={translate('challenge.own.remove', {
+                aria-label={translate(`${game}.own.remove`, {
                   index: at + 1
                 })}
                 className='remove'
@@ -128,22 +137,20 @@ export const OwnChallengeLinesEditor: React.FC = () => {
           autoComplete='off'
           className='line'
           enterKeyHint='done'
-          label={translate('challenge.own.new')}
-          maxLength={CHALLENGE_TEXT_MAX_LENGTH}
+          label={translate(`${game}.own.new`)}
+          maxLength={OWN_LINE_MAX_LENGTH[game]}
           onChange={setFresh}
-          placeholder={translate('challenge.own.newPlaceholder')}
+          placeholder={translate(`${game}.own.newPlaceholder`)}
           value={fresh}
         />
         <Button
-          isDisabled={
-            fresh.trim() === '' || lines.length >= OWN_CHALLENGE_LINES_MAX
-          }
+          isDisabled={fresh.trim() === '' || lines.length >= OWN_LINES_MAX}
           size='small'
           type='submit'
           variant='outlined'
         >
           <PlusIcon />
-          {translate('challenge.own.add')}
+          {translate(`${game}.own.add`)}
         </Button>
       </form>
     </section>

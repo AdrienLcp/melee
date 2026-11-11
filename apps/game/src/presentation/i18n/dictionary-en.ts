@@ -487,7 +487,7 @@ export const EN_DICTIONARY = defineDictionary({
     own: {
       add: 'Add',
       description:
-        'Dealt first, in this order; the bank takes over once they run out. Kept on this device.',
+        'Dealt before the bank, in this order, even on a round that opens by itself. Kept on this device.',
       field: 'Line {index:number}',
       new: 'A new line',
       newPlaceholder: 'Write a line…',
@@ -1408,6 +1408,8 @@ export const EN_DICTIONARY = defineDictionary({
         'The games of the last table you ran, ticked again on the next table you open.',
       locale: 'The language you picked.',
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
+      mostlikelyLines:
+        'The “most likely” lines the host wrote in advance, and which of them have been played.',
       nickname:
         'The name you last played under, so the next table fills it in for you.',
       ownLineUpsHeight:
@@ -1423,7 +1425,7 @@ export const EN_DICTIONARY = defineDictionary({
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
-        'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores, the settings and any questions the line-up brought. All of it is deleted when the host closes the table, or an hour after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
+        'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores, the settings, and any questions or lines the line-up and the host brought. All of it is deleted when the host closes the table, or an hour after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
       session:
         'Two more are kept for the open tab alone, and go when it closes:',
       slateKeys:
@@ -1585,6 +1587,18 @@ export const EN_DICTIONARY = defineDictionary({
         'A line goes up — who is most likely to talk to their plants? — and everyone votes for one of the people at the table, themselves included. Nobody sees who voted for whom: the reveal counts the votes, and everyone who voted with the table scores.'
     },
     name: 'Most likely',
+    own: {
+      add: 'Add',
+      description:
+        'Drawn before the bank, in this order, even on a round that opens by itself. Kept on this device.',
+      field: 'Line {index:number}',
+      new: 'A new line',
+      newPlaceholder: 'Who is most likely to…',
+      played: 'Played',
+      remove: 'Remove line {index:number}',
+      summary: '{count:number} to come',
+      title: 'Your lines'
+    },
     play: 'Play Most likely',
     reveal: {
       chose: 'The table chose',

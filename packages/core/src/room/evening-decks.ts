@@ -1,4 +1,4 @@
-import type { Deck } from '@melee/protocol/deck'
+import type { Deck, OwnLinesGame } from '@melee/protocol/deck'
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 
 import { quizDeckProblems } from '../quiz/quiz-deck'
@@ -151,3 +151,20 @@ export const deckItemId = ({
 
 /** Whether an id names a deck's item rather than a bank's row. */
 export const isDeckItemId = (id: string): boolean => id.startsWith('deck:')
+
+/**
+ * The id a line the host wrote is dealt and remembered under, told apart by
+ * its game and its text alone: the console sends its list again whole after
+ * every edit, so an index would deal a played line twice once one above it
+ * goes.
+ */
+export const ownLineId = ({
+  game,
+  text
+}: {
+  game: OwnLinesGame
+  text: string
+}): string => `own:${game}:${text}`
+
+/** Whether an id names a line the host wrote rather than a deck's item or a bank's row. */
+export const isOwnLineId = (id: string): boolean => id.startsWith('own:')

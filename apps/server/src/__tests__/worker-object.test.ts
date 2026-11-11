@@ -8,6 +8,7 @@ import { unstable_startWorker } from 'wrangler'
 
 import {
   DEFAULT_BUZZER_SETTINGS,
+  DEFAULT_CHALLENGE_SETTINGS,
   DEFAULT_QUIZ_SETTINGS
 } from '@melee/protocol/game'
 import { roomExistsResponseSchema } from '@melee/protocol/http'
@@ -335,6 +336,46 @@ describe('the room object', () => {
       expect(hostView(hostAgain)?.deckSummaries).toEqual([
         { played: 0, size: 1 }
       ])
+    },
+    RUNTIME_BOOT_MS
+  )
+
+  it(
+    '[deck] keeps the lines a host wrote across a restart',
+    async () => {
+      const WRITTEN = 'Balance a spoon on your nose'
+      const ON_THE_CHALLENGE: RoomSettings = {
+        ...BUZZER_GAME,
+        game: DEFAULT_CHALLENGE_SETTINGS,
+        lineUp: [DEFAULT_CHALLENGE_SETTINGS],
+        lineUpAt: 0
+      }
+      const { code, host, hostToken } = await runtime.openRoom(ON_THE_CHALLENGE)
+
+      host.send({
+        ownLines: { challenge: [WRITTEN], mostlikely: [] },
+        type: 'host.setOwnLines'
+      })
+      await waitFor(
+        () => hostView(host)?.challengeHand[0]?.en === WRITTEN,
+        'the written line to lead the hand'
+      )
+
+      await restartRuntime()
+
+      const hostAgain = await reconnectHost({ code, hostToken })
+      const framesBefore = hostAgain.frames.length
+
+      hostAgain.send({
+        settings: ON_THE_CHALLENGE,
+        type: 'host.updateSettings'
+      })
+      await waitFor(
+        () => hostAgain.frames.length > framesBefore,
+        'the hand to be dealt again'
+      )
+
+      expect(hostView(hostAgain)?.challengeHand[0]?.en).toBe(WRITTEN)
     },
     RUNTIME_BOOT_MS
   )

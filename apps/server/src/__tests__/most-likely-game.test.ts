@@ -292,3 +292,113 @@ describe('a most-likely deck of the evening’s own lines', () => {
     )
   }, 20_000)
 })
+
+describe('the most-likely lines a host wrote ahead', () => {
+  const DECKED = 'Who is most likely to forget their own birthday?'
+  const WRITTEN = [
+    'Who is most likely to cry at a cartoon?',
+    'Who is most likely to win a pie-eating contest?'
+  ]
+  const ON_THEIR_OWN: RoomSettings = {
+    ...MOST_LIKELY,
+    autoAdvanceMs: 2_000,
+    lineUp: [DEFAULT_MOST_LIKELY_SETTINGS],
+    lineUpAt: 0,
+    roundCount: null
+  }
+  const transcriptOf = (peer: { frames: { raw: string }[] }) =>
+    peer.frames.map(({ raw }) => raw).join('')
+  const writeLines = (host: Peer<HostServerMessage>, mostlikely: string[]) => {
+    host.send({
+      ownLines: { challenge: [], mostlikely },
+      type: 'host.setOwnLines'
+    })
+  }
+
+  const tableOfThree = async () => {
+    const { code, host } = await harness.openRoom(ON_THEIR_OWN)
+    const seats = [
+      await harness.seat({ code, nickname: 'Zoe' }),
+      await harness.seat({ code, nickname: 'Max' }),
+      await harness.seat({ code, nickname: 'Ann' })
+    ]
+
+    return { host, seats }
+  }
+
+  const lineOn = (seat: Peer<PlayerServerMessage> | undefined) =>
+    seat === undefined ? undefined : mostLikelyRound(playerView(seat))?.labels
+
+  const isPlayingLine = (seats: Peer<PlayerServerMessage>[], line?: string) =>
+    seats.every(
+      (seat) =>
+        playerView(seat)?.phase === 'playing' && lineOn(seat)?.en === line
+    )
+
+  const voteThenNext = async (seats: Peer<PlayerServerMessage>[]) => {
+    const before = seats.map((seat) => playerView(seat)?.round?.id)
+
+    for (const voter of seats) {
+      voter.send({
+        answer: { kind: 'seat', playerId: idOf(seats[0] ?? voter) },
+        roundId: playerView(voter)?.round?.id ?? '',
+        type: 'player.answer'
+      })
+    }
+
+    await waitFor(
+      () =>
+        seats.every(
+          (seat, at) =>
+            playerView(seat)?.phase === 'playing' &&
+            playerView(seat)?.round?.id !== before[at]
+        ),
+      'the held reveal to open the next line by itself',
+      6_000
+    )
+
+    return lineOn(seats[0])?.en
+  }
+
+  it('[mostlikely] deals them after the entry’s deck and before the bank, on rounds nobody pressed, and to no screen early', async () => {
+    const { host, seats } = await tableOfThree()
+
+    host.send({
+      decks: [{ game: 'mostlikely', items: [DECKED] }],
+      type: 'host.setDecks'
+    })
+    writeLines(host, WRITTEN)
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0]?.size === 1,
+      'the deck to load'
+    )
+
+    for (const peer of [host, ...seats]) {
+      expect(transcriptOf(peer)).not.toContain(WRITTEN[0])
+    }
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => isPlayingLine(seats, DECKED), 'the deck’s line first')
+    expect(await voteThenNext(seats)).toBe(WRITTEN[0])
+
+    for (const peer of [host, ...seats]) {
+      expect(transcriptOf(peer)).not.toContain(WRITTEN[1])
+    }
+
+    expect(await voteThenNext(seats)).toBe(WRITTEN[1])
+    expect(await voteThenNext(seats)).toBe(LINE.en)
+  }, 20_000)
+
+  it('[mostlikely] takes the list again mid-round and deals the new line next, never the played one', async () => {
+    const { host, seats } = await tableOfThree()
+
+    writeLines(host, WRITTEN.slice(0, 1))
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => isPlayingLine(seats, WRITTEN[0]), 'the written line')
+
+    writeLines(host, WRITTEN)
+    expect(await voteThenNext(seats)).toBe(WRITTEN[1])
+    expect(errorsIn(host)).toEqual([])
+    expect(await voteThenNext(seats)).toBe(LINE.en)
+  }, 20_000)
+})

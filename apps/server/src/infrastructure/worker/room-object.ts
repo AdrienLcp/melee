@@ -38,9 +38,11 @@ import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 /** A room stored before the evening kept a history of what it heard. */
 type StoredRoom = Omit<
   Room,
-  'decks' | 'presenceAnnouncedUntil' | 'trackHistory'
+  'decks' | 'ownLines' | 'presenceAnnouncedUntil' | 'trackHistory'
 > &
-  Partial<Pick<Room, 'decks' | 'presenceAnnouncedUntil' | 'trackHistory'>>
+  Partial<
+    Pick<Room, 'decks' | 'ownLines' | 'presenceAnnouncedUntil' | 'trackHistory'>
+  >
 
 const ROOM_KEY = 'room'
 

@@ -3,7 +3,6 @@ import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 
 import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
-import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { Deck } from '@melee/protocol/deck'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
@@ -92,7 +91,7 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { ArrivalNotice, useArrival } from './arrival-notice'
-import { type ChallengeLine, challengePickFor } from './challenge-line'
+import type { ChallengeLine } from './challenge-line'
 import { ClipOffer } from './clip-offer'
 import {
   HostActions,
@@ -118,10 +117,8 @@ import { useSilentClipReport } from './silent-clip-report'
 import { SlateEditors } from './slate-stages'
 import { useLaidOutWall } from './use-laid-out-wall'
 import { useLineUpDraw } from './use-line-up-draw'
-import {
-  markOwnLinePlayed,
-  useOwnChallengeLines
-} from './use-own-challenge-lines'
+import { useOwnLines } from './use-own-lines'
+import { useOwnLinesInRoom } from './use-own-lines-in-room'
 import { useRecordRecentTable } from './use-record-recent-table'
 import { useRememberLineUpGames } from './use-remember-line-up-games'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
@@ -191,10 +188,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [challengeText, setChallengeText] = useState('')
   const [challengeChoice, setChallengeChoice] =
     useState<ChallengeChoice>(FIRST_HAND_LINE)
-  const [setAsideOwnLines, setSetAsideOwnLines] = useState<ReadonlySet<number>>(
-    () => new Set()
-  )
-  const ownChallengeLines = useOwnChallengeLines()
+  const ownChallengeLines = useOwnLines('challenge')
   const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)
   const arrival = useArrival(view)
   // Set by the empty lobby's launch, spent on the first view that holds this
@@ -203,6 +197,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [rightAway, setRightAway] = useState<RightAwayStart>('idle')
 
   useReportConnection({ clock, status })
+  useOwnLinesInRoom({ send, view })
   usePhaseField(view?.phase ?? null)
   const slateWall = useSlateWall(view)
   useMarkingField(view?.phase === 'playing' && slateWall.isOnWall)
@@ -649,9 +644,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
     const hand = challengeHandOf({
       dealt: current.challengeHand.map((labels) => labels[locale]),
-      own: ownChallengeLines,
-      setAside: setAsideOwnLines,
-      size: CHALLENGE_HAND_SIZE
+      own: ownChallengeLines.map((line) => line.text)
     })
 
     return {
@@ -665,9 +658,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       onRedeal: (at) => {
         const card = hand[at]
 
-        if (card?.kind === 'own') {
-          setSetAsideOwnLines((previous) => new Set([...previous, card.ownAt]))
-        } else if (card?.kind === 'dealt') {
+        if (card !== undefined) {
           send({ at: card.slot, type: 'host.redealChallenge' })
         }
       },
@@ -690,15 +681,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         // permission only from a real gesture, and it cannot be asked for later
         // when the track arrives.
         armAudio()
-        // The press has already read the line it sends, and the next challenge
-        // is never this one again.
-        markOwnLinePlayed({
-          lines: ownChallengeLines,
-          sent: challengePickFor(challengeLine).challengeText
-        })
         setChallengeText('')
         setChallengeChoice(FIRST_HAND_LINE)
-        setSetAsideOwnLines(new Set())
         setTargetSeconds(drawTargetSeconds())
       },
       onPlayRightAway: playRightAway,

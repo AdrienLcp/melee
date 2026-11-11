@@ -3,11 +3,18 @@ import {
   type ChallengeLabels
 } from '@melee/protocol/challenge'
 
-import { isDeckItemId } from '@melee/core/room/evening-decks'
+import {
+  isDeckItemId,
+  isOwnLineId,
+  ownLineId
+} from '@melee/core/room/evening-decks'
 
 import type { DealtChallengeLine, Room } from '@/domain/room/room'
 import { typedChallengeLabels } from '@/domain/round/challenge-round'
-import { unplayedDeckLines } from '@/domain/round/deck-dealer'
+import {
+  type EveningLine,
+  unplayedEveningLines
+} from '@/domain/round/deck-dealer'
 
 import { drawChallengeLine, playedChallengeLineId } from './challenge-bank'
 
@@ -18,50 +25,74 @@ const handOf = (room: Room): DealtChallengeLine[] => {
   return room.challengeHand
 }
 
-/** A deck's line is remembered under its own id, a bank's under the bank's prefix. */
+const isEveningLineId = (id: string): boolean =>
+  isDeckItemId(id) || isOwnLineId(id)
+
+/** An evening's line is remembered under its own id, a bank's under the bank's prefix. */
 const playedIdOf = (line: DealtChallengeLine): string =>
-  isDeckItemId(line.id) ? line.id : playedChallengeLineId(line.id)
+  isEveningLineId(line.id) ? line.id : playedChallengeLineId(line.id)
 
-const deckLinesOutsideHand = (room: Room): DealtChallengeLine[] => {
-  const held = new Set(handOf(room).map(({ id }) => id))
+const dealtOf = ({ id, text }: EveningLine): DealtChallengeLine => ({
+  id,
+  labels: { en: text, fr: text }
+})
 
-  return unplayedDeckLines({
+const unplayedChallengeLines = (room: Room): EveningLine[] =>
+  unplayedEveningLines({
     game: 'challenge',
     lineUpAt: room.settings.lineUpAt,
     room
   })
-    .filter(({ id }) => !held.has(id))
-    .map(({ id, text }) => ({ id, labels: { en: text, fr: text } }))
+
+/**
+ * Any line the room has neither played nor holds in its hand: the next the
+ * evening brought — the entry's deck, then the host's own — then the bank's.
+ */
+const drawOutsideHand = (room: Room): DealtChallengeLine | null => {
+  const held = new Set(handOf(room).map(({ id }) => id))
+  const evening = unplayedChallengeLines(room).find(({ id }) => !held.has(id))
+
+  return evening === undefined
+    ? drawChallengeLine(
+        new Set([...room.playedContentIds, ...handOf(room).map(playedIdOf)])
+      )
+    : dealtOf(evening)
 }
 
 /**
- * Any line the room has neither played nor holds in its hand: the next of the
- * entry's deck while it has one, then the bank's.
+ * The hand in the dealing order: the first unplayed lines the evening brought,
+ * as many as it holds, then as many of its bank lines as are left room for.
+ * A line that stays keeps its slot, and one that arrives goes ahead of every
+ * bank line and of every evening line dealt after it — so a deck switched to,
+ * or a line written mid-evening, leads the hand while a hand that has not
+ * changed is left exactly as the console shows it.
  */
-const drawOutsideHand = (room: Room): DealtChallengeLine | null =>
-  deckLinesOutsideHand(room)[0] ??
-  drawChallengeLine(
-    new Set([...room.playedContentIds, ...handOf(room).map(playedIdOf)])
+const handInDealingOrder = (room: Room): DealtChallengeLine[] => {
+  const leading = unplayedChallengeLines(room).slice(0, CHALLENGE_HAND_SIZE)
+  const rankOf = new Map(leading.map(({ id }, rank) => [id, rank]))
+  const hand = handOf(room)
+  const bankSlots = CHALLENGE_HAND_SIZE - leading.length
+  const bankKept = new Set(
+    hand.filter(({ id }) => !isEveningLineId(id)).slice(0, bankSlots)
   )
+  const kept = hand.filter((line) =>
+    isEveningLineId(line.id) ? rankOf.has(line.id) : bankKept.has(line)
+  )
+  const held = new Set(kept.map(({ id }) => id))
 
-/**
- * The hand less every line that no longer belongs in it: another entry's deck
- * lines, and the bank's while the entry's own deck still has lines to deal —
- * so a deck loaded, or an entry switched to, leads the hand at once.
- */
-const handForCurrentDeck = (room: Room): DealtChallengeLine[] => {
-  const current = new Set(
-    unplayedDeckLines({
-      game: 'challenge',
-      lineUpAt: room.settings.lineUpAt,
-      room
-    }).map(({ id }) => id)
-  )
-  const isDeckLeft = deckLinesOutsideHand(room).length > 0
+  for (const [rank, line] of leading.entries()) {
+    if (held.has(line.id)) {
+      continue
+    }
 
-  return handOf(room).filter((line) =>
-    isDeckItemId(line.id) ? current.has(line.id) : !isDeckLeft
-  )
+    const at = kept.findIndex(
+      ({ id }) => (rankOf.get(id) ?? CHALLENGE_HAND_SIZE) > rank
+    )
+
+    kept.splice(at === -1 ? kept.length : at, 0, dealtOf(line))
+  }
+
+  return kept
 }
 
 /**
@@ -74,7 +105,7 @@ export const keepChallengeAhead = (room: Room): void => {
     return
   }
 
-  room.challengeHand = handForCurrentDeck(room)
+  room.challengeHand = handInDealingOrder(room)
 
   const hand = handOf(room)
 
@@ -91,8 +122,9 @@ export const keepChallengeAhead = (room: Room): void => {
 
 /**
  * Another line in place of the hand's line at `at`, which goes back unplayed —
- * save a deck's, which is set aside for good, or it would lead the hand again.
- * `false` when nothing else is left to deal, and the line is kept rather than lost.
+ * save one the evening brought, which is set aside for good, or it would lead
+ * the hand again. `false` when nothing else is left to deal, and the line is
+ * kept rather than lost.
  */
 export const redealChallenge = (room: Room, at: number): boolean => {
   const hand = handOf(room)
@@ -102,7 +134,7 @@ export const redealChallenge = (room: Room, at: number): boolean => {
     return false
   }
 
-  if (isDeckItemId(line.id) && drawOutsideHand(room) !== null) {
+  if (isEveningLineId(line.id) && drawOutsideHand(room) !== null) {
     room.playedContentIds.add(line.id)
   }
 
@@ -152,10 +184,28 @@ export type ChallengePick = {
   text?: string
 }
 
+/**
+ * A typed line, which is played like any line the host wrote when it is one:
+ * it leaves the hand, and no later round deals it again.
+ */
+const takeTypedLine = (
+  room: Room,
+  text: string | undefined
+): ChallengeLabels | undefined => {
+  const labels = typedChallengeLabels(text)
+
+  if (labels !== undefined && room.ownLines.challenge.includes(labels.en)) {
+    room.playedContentIds.add(ownLineId({ game: 'challenge', text: labels.en }))
+    keepChallengeAhead(room)
+  }
+
+  return labels
+}
+
 /** A typed line wins, then saying it aloud, then the hand. */
 export const pickChallengeLabels = (
   room: Room,
   { at = 0, isSaidAloud = false, text }: ChallengePick
 ): ChallengeLabels | null =>
-  typedChallengeLabels(text) ??
+  takeTypedLine(room, text) ??
   (isSaidAloud ? null : takeChallengeLine(room, at))

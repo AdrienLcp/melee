@@ -3,7 +3,7 @@ import { useId } from 'react'
 
 import { homePathFor } from '@/infrastructure/router/navigation'
 import { ANALYTICS_OPT_OUT_KEY } from '@/infrastructure/storage/analytics-opt-out-storage'
-import { OWN_CHALLENGE_LINES_KEY } from '@/infrastructure/storage/own-challenge-lines-storage'
+import { OWN_LINES_KEYS } from '@/infrastructure/storage/own-lines-storage'
 import {
   HOST_SETUP_KEY,
   LINE_UP_GAMES_KEY,
@@ -62,7 +62,8 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: SAVED_EVENINGS_KEY, what: 'legal.storage.savedEvenings' },
   { key: RECENT_TABLES_KEY, what: 'legal.storage.recentTables' },
   { key: OWN_LINE_UPS_HEIGHT_KEY, what: 'legal.storage.ownLineUpsHeight' },
-  { key: OWN_CHALLENGE_LINES_KEY, what: 'legal.storage.challengeLines' },
+  { key: OWN_LINES_KEYS.challenge, what: 'legal.storage.challengeLines' },
+  { key: OWN_LINES_KEYS.mostlikely, what: 'legal.storage.mostlikelyLines' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },
   { key: PANEL_SIDE_KEY, what: 'legal.storage.panelSide' },

@@ -8,7 +8,7 @@ import {
   challengeHandSlotSchema,
   challengeTextSchema
 } from './challenge'
-import { decksSchema } from './deck'
+import { decksSchema, ownLinesSchema } from './deck'
 import { estimateGuessSchema } from './estimate'
 import { higherLowerPicksSchema } from './higher-lower'
 import {
@@ -373,6 +373,16 @@ export const updateSettingsMessageSchema = z.object({
 export const setDecksMessageSchema = z.object({
   decks: decksSchema,
   type: z.literal('host.setDecks')
+})
+
+/**
+ * Every line this console's host wrote ahead, sent whole on the first view
+ * and again after each edit, in any phase: a line written mid-evening is
+ * dealt from the next round. Never echoed back, like a deck.
+ */
+export const setOwnLinesMessageSchema = z.object({
+  ownLines: ownLinesSchema,
+  type: z.literal('host.setOwnLines')
 })
 
 /**
@@ -748,6 +758,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   timePingMessageSchema,
   updateSettingsMessageSchema,
   setDecksMessageSchema,
+  setOwnLinesMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
   revealMessageSchema,
@@ -836,6 +847,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   finishPetitBacVoteMessageSchema,
   updateSettingsMessageSchema,
   setDecksMessageSchema,
+  setOwnLinesMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
   revealMessageSchema,
@@ -892,6 +904,7 @@ export type ScoreChange = z.infer<typeof adjustScoreMessageSchema>['change']
 export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.updateSettings',
   'host.setDecks',
+  'host.setOwnLines',
   'host.startRound',
   'host.judge',
   'host.reveal',

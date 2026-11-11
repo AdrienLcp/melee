@@ -10,15 +10,12 @@ import {
   hostExportText,
   parseHostExport
 } from '@/infrastructure/storage/host-export-file'
-import { OWN_CHALLENGE_LINES_MAX } from '@/infrastructure/storage/own-challenge-lines-storage'
+import { OWN_LINES_MAX } from '@/infrastructure/storage/own-lines-storage'
 import { Button } from '@/presentation/components/button'
 import { ExportIcon, ImportIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import {
-  setOwnChallengeLines,
-  useOwnChallengeLines
-} from './use-own-challenge-lines'
+import { setOwnLines, useOwnLines } from './use-own-lines'
 
 type ImportOutcome =
   | { evenings: number; lines: number; status: 'imported' }
@@ -32,8 +29,8 @@ type SavedEveningsTransferProps = {
 }
 
 /**
- * Carries what this host spent effort on — the kept line-ups and their own
- * challenge lines — to another machine as one file, and folds such a file in
+ * Carries what this host spent effort on — the kept line-ups and the lines
+ * they wrote ahead — to another machine as one file, and folds such a file in
  * here without losing anything already kept.
  */
 export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
@@ -41,7 +38,8 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
   onImport
 }) => {
   const translate = useTranslate()
-  const lines = useOwnChallengeLines()
+  const challengeLines = useOwnLines('challenge')
+  const mostlikelyLines = useOwnLines('mostlikely')
   const [outcome, setOutcome] = useState<ImportOutcome>({ status: 'idle' })
 
   const importFile = async (file: File) => {
@@ -54,17 +52,27 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
       return
     }
 
-    const merged = withOwnLinesImported({
+    const challenge = withOwnLinesImported({
       imported: read.data.challengeLines,
-      lines,
-      max: OWN_CHALLENGE_LINES_MAX
+      lines: challengeLines,
+      max: OWN_LINES_MAX
+    })
+    const mostlikely = withOwnLinesImported({
+      imported: read.data.mostlikelyLines,
+      lines: mostlikelyLines,
+      max: OWN_LINES_MAX
     })
 
     onImport(read.data.savedEvenings)
-    setOwnChallengeLines(merged)
+    setOwnLines({ game: 'challenge', lines: challenge })
+    setOwnLines({ game: 'mostlikely', lines: mostlikely })
     setOutcome({
       evenings: read.data.savedEvenings.length,
-      lines: merged.length - lines.length,
+      lines:
+        challenge.length +
+        mostlikely.length -
+        challengeLines.length -
+        mostlikelyLines.length,
       status: 'imported'
     })
   }
@@ -74,12 +82,17 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
       <p className='hint'>{translate('host.saved.transferHint')}</p>
       <div className='presses'>
         <Button
-          isDisabled={evenings.length === 0 && lines.length === 0}
+          isDisabled={
+            evenings.length === 0 &&
+            challengeLines.length === 0 &&
+            mostlikelyLines.length === 0
+          }
           onPress={() => {
             saveTextFile({
               name: translate('host.saved.exportFileName'),
               text: hostExportText({
-                challengeLines: lines,
+                challengeLines,
+                mostlikelyLines,
                 savedEvenings: evenings
               })
             })

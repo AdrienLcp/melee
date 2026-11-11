@@ -1,8 +1,8 @@
-import type { QuizDeckItem } from '@melee/protocol/deck'
+import type { OwnLinesGame, QuizDeckItem } from '@melee/protocol/deck'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { DeckSummary } from '@melee/protocol/room'
 
-import { deckItemId } from '@melee/core/room/evening-decks'
+import { deckItemId, ownLineId } from '@melee/core/room/evening-decks'
 
 import type { Room } from '@/domain/room/room'
 
@@ -57,26 +57,24 @@ export const nextDeckQuestion = ({
   return null
 }
 
-/** One line an entry's deck brought, under the id it is dealt and remembered by. */
-export type DeckLine = {
+/**
+ * One line the evening brought — an entry's deck or the host's own — under
+ * the id it is dealt and remembered by.
+ */
+export type EveningLine = {
   id: string
   text: string
 }
 
-/**
- * The lines of the deck the entry at `lineUpAt` brought for `game` that the
- * room has not played, in the order written, and none once the deck is spent
- * or the entry brought none — the bank then deals.
- */
-export const unplayedDeckLines = ({
+const unplayedDeckLines = ({
   game,
   lineUpAt,
   room
 }: {
-  game: 'challenge' | 'mostlikely'
+  game: OwnLinesGame
   lineUpAt: number | null
   room: Room
-}): DeckLine[] => {
+}): EveningLine[] => {
   const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
 
   if (held === null || held.deck.game !== game) {
@@ -89,6 +87,37 @@ export const unplayedDeckLines = ({
     return room.playedContentIds.has(id) ? [] : [{ id, text }]
   })
 }
+
+const unplayedOwnLines = ({
+  game,
+  room
+}: {
+  game: OwnLinesGame
+  room: Room
+}): EveningLine[] =>
+  [...new Set(room.ownLines[game])].flatMap((text) => {
+    const id = ownLineId({ game, text })
+
+    return room.playedContentIds.has(id) ? [] : [{ id, text }]
+  })
+
+/**
+ * The lines the room has not played that the entry at `lineUpAt` deals for
+ * `game` before its bank: its own deck's, then the ones the host wrote, each
+ * in the order written. None once both are spent — the bank then deals.
+ */
+export const unplayedEveningLines = ({
+  game,
+  lineUpAt,
+  room
+}: {
+  game: OwnLinesGame
+  lineUpAt: number | null
+  room: Room
+}): EveningLine[] => [
+  ...unplayedDeckLines({ game, lineUpAt, room }),
+  ...unplayedOwnLines({ game, room })
+]
 
 /** What the console is told of each entry's deck: how many items, how many dealt. */
 export const deckSummariesOf = (room: Room): (DeckSummary | null)[] =>

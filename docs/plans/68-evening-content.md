@@ -1,6 +1,6 @@
 # 68 — An evening that brings its own content
 
-**In progress — sessions 1 and 2 done, 3 served but not yet shown in the setup.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
+**In progress — sessions 1 to 3 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
 played in order. This file holds what they share. Each handoff holds that
 session's own work.
 
@@ -54,6 +54,15 @@ opens.
   auto-advance and an expiring reveal hold open a round "with none"
   (`round-conductor.ts:256-259`). This is why a console-side list, such as
   today's `melee:challenge-lines`, cannot be the evening's carrier on its own.
+- **A host's own lines go to the room whole, not into a deck.** The lines
+  kept on the console's machine (`melee:challenge-lines`,
+  `melee:mostlikely-lines`) belong to no entry and change mid-evening, while
+  `host.setDecks` is lobby-only and replaces every deck, quiz decks the console
+  no longer holds included. So `host.setOwnLines` carries the unplayed ones in
+  any phase, sent on the first view and after each edit; every entry of the
+  game deals them after its deck and before the bank, each told apart by its
+  text (`own:<game>:<text>`) so a resend never deals a played line twice. The
+  console marks a line played when a round puts it on the wall.
   A deck item therefore has no `answer` the dealing code may assume: the store,
   the ids and the hand-over to the bank are written over any item.
 - **Decks travel beside `lineUp`, never inside it.**
@@ -83,11 +92,13 @@ opens.
   and the draw keep their meaning, there is no new end state, and the console
   says the deck is spent. Plan 42's _prepared plays once_ rule does not apply:
   these are bank games carrying a deck, not host-brought games.
-- **A deck is shown by its count, in its game's word.** `DeckNote`
+- **A deck is shown by its count, in its game's word, never its lines** — the
+  room may be reading the console. The entry page shows it in its header.
+- **A deck is counted the same way everywhere.** `DeckNote`
   (`presentation/components/deck-note.tsx`) prints `<game>.deck.count` and
   `<game>.deck.spent`, for any game with an arm in `deckSchema`: the next deck
   game adds those two keys to both dictionaries and nothing else. The console
-  prints it on an entry's next round alone. Every copy of an evening carries
+  prints it on an entry's next round and on that entry's own page. Every copy of an evening carries
   `decks` — `SavedEvening.decks` is required, so a new copy decides — except
   `PlayedLineUp`, which drops them on purpose; `decksForLineUp` realigns them
   on the line-up a room was set to before `host.setDecks`.
@@ -153,14 +164,14 @@ opens.
 
 ## Sessions
 
-| #   | Handoff                                 | What it buys                                                                                                   |
-| --- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening`    |
-| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels      |
-| 3   | `content-03-lines-and-descriptions.md`  | Served: challenge and most likely decks of lines, `describe_games` notes. Left: the setup shows and edits them |
-| 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                             |
-| 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                              |
-| 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                      |
+| #   | Handoff                                 | What it buys                                                                                                |
+| --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
+| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
+| 3   | done                                    | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
+| 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |
+| 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
+| 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                   |
 
 Every session commits and pushes to `main` with its changelog entry and this
 plan's table updated. `pnpm validate` runs once, after session 6

@@ -1,17 +1,11 @@
-/** A line of the console's hand: one the host wrote, or one the server dealt. */
-export type ChallengeHandLine =
-  | {
-      kind: 'dealt'
-      /** Its slot in the server's hand, which is what the press names. */
-      slot: number
-      text: string
-    }
-  | {
-      kind: 'own'
-      /** Its place in the host's own list, which is what is marked played. */
-      ownAt: number
-      text: string
-    }
+/** A line of the server's hand, as the console shows it. */
+export type ChallengeHandLine = {
+  /** Whether the host wrote it ahead, which the hand marks. */
+  isOwn: boolean
+  /** Its slot in the server's hand, which is what the press names. */
+  slot: number
+  text: string
+}
 
 /** What the next challenge round opens on, as the host left it. */
 export type ChallengeChoice =
@@ -23,32 +17,18 @@ export type ChallengeChoice =
 export const FIRST_HAND_LINE: ChallengeChoice = { at: 0, kind: 'line' }
 
 /**
- * The hand the console shows: the host's own unplayed lines first, in the
- * order written and less any set aside this round, then the server's.
+ * The hand the console shows: the server's, which deals the host's own lines
+ * after the evening's and before the bank's, each marked when the host wrote it.
  */
 export const challengeHandOf = ({
   dealt,
-  own,
-  setAside,
-  size
+  own
 }: {
   dealt: readonly string[]
-  own: readonly { isPlayed: boolean; text: string }[]
-  /** Own lines the die moved off the hand, by place in the list, until a round opens. */
-  setAside: ReadonlySet<number>
-  size: number
-}): ChallengeHandLine[] => {
-  const ownLines = own.flatMap((line, ownAt): ChallengeHandLine[] =>
-    line.isPlayed || setAside.has(ownAt)
-      ? []
-      : [{ kind: 'own', ownAt, text: line.text }]
-  )
-  const dealtLines = dealt.map(
-    (text, slot): ChallengeHandLine => ({ kind: 'dealt', slot, text })
-  )
-
-  return [...ownLines, ...dealtLines].slice(0, size)
-}
+  /** Every line the host wrote ahead, played or not. */
+  own: readonly string[]
+}): ChallengeHandLine[] =>
+  dealt.map((text, slot) => ({ isOwn: own.includes(text), slot, text }))
 
 /** The hand's line a round opens on: the one chosen, or the first once that slot is gone. */
 export const chosenLineOf = ({
@@ -90,12 +70,5 @@ export const challengePickOf = ({
     hand
   })
 
-  switch (line?.kind) {
-    case 'own':
-      return { challengeText: line.text }
-    case 'dealt':
-      return { challengeAt: line.slot }
-    case undefined:
-      return {}
-  }
+  return line === null ? {} : { challengeAt: line.slot }
 }
