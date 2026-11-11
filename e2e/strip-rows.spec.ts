@@ -375,7 +375,8 @@ for (const locale of ['en', 'fr']) {
         await expect(page.locator('.decades')).toBeVisible()
       }
 
-      const modes = page.locator('.answer-mode .segment')
+      // A game with one mode keeps the strip mounted in a closed, inert fold.
+      const modes = page.locator('.fold[data-open] .answer-mode .segment')
 
       // The answer window renders off the server's echo, not the press: a slow
       // runner read the floors before it landed and swept a strip it never had.

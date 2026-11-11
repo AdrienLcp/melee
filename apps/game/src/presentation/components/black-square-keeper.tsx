@@ -99,45 +99,60 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
         </div>
       </div>
       <div className='keeper-black-word'>
-        <p className='hidden-note' inert={isShown}>
-          {translate('blacksquare.spoken.hidden')}
-        </p>
+        <div className='hidden-note-fold' inert={isShown}>
+          <p className='hidden-note'>
+            {translate('blacksquare.spoken.hidden')}
+          </p>
+        </div>
         <div className='black-word-turn' inert={!isShown}>
-          <PressablePiece
-            className='black-word-press'
-            inert={isAsking}
-            onPress={() => {
-              setIsAsking(true)
-            }}
-          >
-            <span className='stamp'>
-              {translate('blacksquare.blackWord.stamp')}
-            </span>
-            <span className='word'>{list.blackWord.labels[locale]}</span>
-          </PressablePiece>
-          <div className='black-word-ask' inert={!isAsking}>
-            <p className='ask' role='status'>
-              <span className='word'>{list.blackWord.labels[locale]}</span>
-              <span className='what'>
-                {translate('blacksquare.spoken.blackWord.ask')}
-              </span>
-            </p>
-            <div className='answers'>
-              <Button
-                onPress={() => {
-                  onTick('blackWord', true)
-                }}
-              >
-                {translate('blacksquare.spoken.blackWord.confirm')}
-              </Button>
-              <Button
-                onPress={() => {
-                  setIsAsking(false)
-                }}
-                variant='underlined'
-              >
-                {translate('blacksquare.spoken.blackWord.keep')}
-              </Button>
+          <div>
+            <div className='black-word-press-fold' inert={isAsking}>
+              <div>
+                <PressablePiece
+                  className='black-word-press'
+                  onPress={() => {
+                    setIsAsking(true)
+                  }}
+                >
+                  <span className='stamp'>
+                    {translate('blacksquare.blackWord.stamp')}
+                  </span>
+                  <span className='word'>
+                    {list.blackWord.labels[locale]}
+                  </span>
+                </PressablePiece>
+              </div>
+            </div>
+            <div className='black-word-ask-fold' inert={!isAsking}>
+              <div>
+                <div className='black-word-ask'>
+                  <p className='ask' role='status'>
+                    <span className='word'>
+                      {list.blackWord.labels[locale]}
+                    </span>
+                    <span className='what'>
+                      {translate('blacksquare.spoken.blackWord.ask')}
+                    </span>
+                  </p>
+                  <div className='answers'>
+                    <Button
+                      onPress={() => {
+                        onTick('blackWord', true)
+                      }}
+                    >
+                      {translate('blacksquare.spoken.blackWord.confirm')}
+                    </Button>
+                    <Button
+                      onPress={() => {
+                        setIsAsking(false)
+                      }}
+                      variant='underlined'
+                    >
+                      {translate('blacksquare.spoken.blackWord.keep')}
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

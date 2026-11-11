@@ -237,6 +237,16 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The last moves no longer push anything off a phone.** A piece
+  traded away kept a piece nested in it hit-testable and visible to the
+  checks (Petit Bac's stop under its banner, black square's word under its
+  note); the keeper's black word and its question now trade places as folds,
+  so the press is its own height and _Voir la liste_ stays on a phone lying
+  down; a closed refusal note no longer takes a line of its own in a footer
+  that wraps its presses, which had lifted a seated host's round 20px; a
+  hidden console header no longer keeps the menu's inset, which laid the
+  round's index out at no width; and a shut ready mark no longer widens the
+  name beside it.
 - `[Game]` **A host playing a four-choice round can resume a pause.** Paused,
   the host's own screen kept the four answers up with no pause card and no
   way to start again, in the menu or anywhere else; it now shows the pause

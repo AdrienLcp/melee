@@ -1,5 +1,6 @@
 @use '../styles/black-word'
 @use '../styles/fade'
+@use '../styles/fold'
 @use '../styles/piece'
 @use '../styles/swap'
 @use '../styles/tier-rows'
@@ -27,9 +28,8 @@
       color: var(--ink-muted)
       margin: 0
 
-    // The names and the hidden sheet trade one cell, and so do the note, the
-    // black word and its question: each box holds the larger of what it
-    // trades, so nothing beside it moves as one fades into the other.
+    // The names and the hidden sheet trade one cell, so the list keeps its
+    // height as one fades into the other.
     .keeper-grid
       @include swap.swaps-in-one-cell('.keeper-cells', '.keeper-sheet', '&:not([data-shown] *)')
 
@@ -41,11 +41,25 @@
         grid-template: minmax(0, 1fr) / minmax(0, 1fr)
         min-block-size: 0
 
-    .keeper-black-word
-      @include swap.swaps-in-one-cell('.black-word-turn', '.hidden-note', '&:not([data-shown] *)')
+    // The note, the black word and its question trade places as folds rather
+    // than one cell: a cell held to the question's height pushed the press
+    // under it off a phone lying down.
+    .keeper-black-word,
+    .black-word-turn > div
+      display: flex
+      flex-direction: column
+
+    .hidden-note-fold
+      @include fold.opens-in-column(0rem, $closed: '&:is([data-shown] *)', $trades-places: true)
 
     .black-word-turn
-      @include swap.swaps-in-one-cell('.black-word-press', '.black-word-ask', '&:is([data-asking] *)')
+      @include fold.opens-in-column(0rem, $open: '&:is([data-shown] *)', $trades-places: true)
+
+    .black-word-press-fold
+      @include fold.opens-in-column(0rem, $closed: '&:is([data-asking] *)', $trades-places: true)
+
+    .black-word-ask-fold
+      @include fold.opens-in-column(0rem, $open: '&:is([data-asking] *)', $trades-places: true)
 
     .keeper-cells
       container-type: size

@@ -58,11 +58,12 @@
 
 /// The arriving half of `shows-in-place`: the piece fades in where it stands
 /// over a beat on `--ease-out`, after the half beat a piece leaving the same
-/// place takes to go.
+/// place takes to go. It inherits its visibility rather than forcing it, so a
+/// trade nested in a piece traded away stays hidden with it.
 @mixin shown-in-place($beside: null)
   opacity: 1
   transition: -beside($beside, (opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s))
-  visibility: visible
+  visibility: inherit
 
 /// A piece held in its place that a state shows, so its arrival moves
 /// nothing — a line under a press — kept mounted and shown by `$shown`, a

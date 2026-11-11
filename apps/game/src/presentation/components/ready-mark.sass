@@ -3,10 +3,13 @@
 @use '../styles/mark'
 
 @layer components
+  // Folded by its own width, its height following as a circle: folded by a
+  // negative margin, the shut mark stood past the end of the name beside it
+  // and widened a row it took no room in.
   .ready-mark
     --ready-mark-size: 1.2em
 
-    @include mark.pops-in-line('&[data-ready]', calc(-1 * var(--ready-mark-size)), 0rem)
+    @include mark.pops-in-line('&[data-ready]', 0rem, var(--ready-mark-size), $room: inline-size)
 
     align-items: center
     aspect-ratio: 1
@@ -15,10 +18,10 @@
     color: var(--on-spine)
     display: inline-flex
     flex: none
-    inline-size: var(--ready-mark-size)
     justify-content: center
-    padding: 0.2em
+    overflow: clip
 
     svg
+      flex: none
       height: 0.8em
       width: 0.8em

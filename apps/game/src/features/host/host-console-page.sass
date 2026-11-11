@@ -9,6 +9,18 @@
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
+// Hidden from sight only: it holds the arrival notice's live region, which a
+// removed header would silence. Its own height and the menu's inset would keep
+// it a box wider than the one pixel it lays out in, a black square's turn
+// wrapping a word a line down past the screen and the round's index laid out
+// at no width. Included under `> header:not(.round-chrome)`, the specificity
+// of the header's own rule, or that rule's inset wins.
+=hidden-header
+  @include accessibility.visually-hidden
+
+  min-height: 0
+  padding: 0
+
 @layer components
   .host-console-page
     @include layout.stage
@@ -283,6 +295,17 @@
       > .reshape-copy
         z-index: 2
 
+      // Out of the flow once closed: where the footer wraps its presses in a
+      // row, a closed note still took a line of its own and the row gap after
+      // it, which no negative margin gives back — a flex line is never shorter
+      // than nothing. It leaves the flow only once it has folded shut.
+      > .refusal-note:not([data-open])
+        inset-block-start: 0
+        inset-inline: 0
+        position: absolute
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in), position 0s linear calc(var(--transition-base, 0s) + var(--transition-fast, 0s) * 0.5)
+        transition-behavior: allow-discrete
+
       // A line that belongs to the button above it rather than to the column:
       // the negative margin is what takes the footer's own gap back out, so the
       // two read as one object instead of as two rows of a stack.
@@ -465,15 +488,8 @@
     @include layout.shown-height-below(36)
       grid-template-rows: minmax(min(22rem, calc(var(--shown-height) * 0.45)), 1fr) auto
 
-      > header
-        // Hidden from sight only: it holds the arrival notice's live region,
-        // which a removed header would silence. Its own height and the menu's
-        // inset would keep it a box wider than the one pixel it lays out in,
-        // a black square's turn wrapping a word a line down past the screen.
-        @include accessibility.visually-hidden
-
-        min-height: 0
-        padding: 0
+      > header:not(.round-chrome)
+        +hidden-header
 
       // Upright, the menu then stands in the card's top corner: the sand runs
       // beside it and the words start under it, rather than under the menu.
@@ -537,8 +553,8 @@
       @media (height < 36rem)
         grid-template-rows: minmax(min(20rem, 50dvh), 1fr) auto
 
-        > header
-          @include accessibility.visually-hidden
+        > header:not(.round-chrome)
+          +hidden-header
 
       > .stage
         container: slate / size
@@ -615,8 +631,8 @@
       @media (height < 36rem)
         grid-template-rows: minmax(min(16rem, 40dvh), 1fr) auto
 
-        > header
-          @include accessibility.visually-hidden
+        > header:not(.round-chrome)
+          +hidden-header
 
       > .stage.counting-in
         container: reveal / size
@@ -761,8 +777,8 @@
           grid-template-areas: 'track' 'stage' 'footer'
           grid-template-rows: auto minmax(0, 1fr) auto
 
-          > header
-            @include accessibility.visually-hidden
+          > header:not(.round-chrome)
+            +hidden-header
 
           > .score-track
             margin-inline-end: var(--menu-inset)
@@ -788,8 +804,8 @@
             grid-template-areas: 'track track' 'stage footer'
             grid-template-rows: auto minmax(0, 1fr)
 
-            > header
-              @include accessibility.visually-hidden
+            > header:not(.round-chrome)
+              +hidden-header
 
             > .score-track
               margin-inline-end: var(--menu-inset)
@@ -949,8 +965,8 @@
       @media (height < 36rem)
         grid-template-rows: minmax(0, 1fr) auto
 
-        > header
-          @include accessibility.visually-hidden
+        > header:not(.round-chrome)
+          +hidden-header
 
         .verdict-panel .holder
           padding-inline-end: var(--menu-inset)
