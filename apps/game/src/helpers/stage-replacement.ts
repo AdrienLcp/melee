@@ -1,8 +1,15 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoomPhase } from '@melee/protocol/room'
 
+/** What a round's content says about the stage: Petit Bac's alone carries `sheetsClosed`. */
+type ContentOnStage = { kind: string; sheetsClosed?: boolean }
+
 /** What a view of the room says about the stage the console and the wall draw. */
-export type StageOnScreen = { isPaused: boolean; phase: RoomPhase } | null
+export type StageOnScreen = {
+  isPaused: boolean
+  phase: RoomPhase
+  round: { content: ContentOnStage } | null
+} | null
 
 /** The same, on a console that may hold a seat. */
 export type ConsoleStageOnScreen = NonNullable<StageOnScreen> & {
@@ -19,11 +26,21 @@ export type ConsoleStageOnScreen = NonNullable<StageOnScreen> & {
  */
 export type ViewLanding = 'drawn' | 'faded-over' | 'swapped'
 
+type StageChange = {
+  from: NonNullable<StageOnScreen>
+  to: NonNullable<StageOnScreen>
+}
+
+const closesTheSheets = ({ from, to }: StageChange): boolean =>
+  from.round?.content.sheetsClosed === false &&
+  to.round?.content.sheetsClosed === true
+
 /**
  * Whether a snapshot replaces the whole stage the console and the wall draw:
- * every change of phase — the floor changing hands included — and a pause
- * taken or lifted. Each stage arrives on a motion of its own (a round dealt, a
- * reveal struck, a pause card laid) and none has one for leaving, so the one
+ * every change of phase — the floor changing hands included — a pause taken
+ * or lifted, and Petit Bac's sheets closing on the vote, inside `playing`.
+ * Each stage arrives on a motion of its own (a round dealt, a reveal struck, a
+ * pause card laid, the vote's rows) and none has one for leaving, so the one
  * left fades off over it rather than vanishing in a frame.
  */
 export const replacesTheStage = ({
@@ -35,10 +52,14 @@ export const replacesTheStage = ({
 }): boolean =>
   from !== null &&
   to !== null &&
-  (from.phase !== to.phase || from.isPaused !== to.isPaused)
+  (from.phase !== to.phase ||
+    from.isPaused !== to.isPaused ||
+    closesTheSheets({ from, to }))
 
-const opensTheRace = (to: NonNullable<StageOnScreen>): boolean =>
-  to.phase === 'playing' && !to.isPaused
+const opensTheRace = (change: StageChange): boolean =>
+  change.to.phase === 'playing' &&
+  !change.to.isPaused &&
+  !closesTheSheets(change)
 
 /**
  * The wall's stage: every replacement swaps, since nothing on it is pressed —
@@ -56,7 +77,9 @@ export const wallStageLanding = (change: {
  * opens the race to a console holding a seat: the round dealt, the floor
  * given back, the pause lifted. A swap would hold that seat's first press
  * while every other screen takes theirs, so the stage left fades off a copy
- * instead, over a round that answers at once.
+ * instead, over a round that answers at once. Petit Bac's vote opening is no
+ * race — its sheets are already closed and the vote waits on every seat — so
+ * it swaps.
  */
 export const consoleStageLanding = ({
   from,
@@ -65,9 +88,11 @@ export const consoleStageLanding = ({
   from: ConsoleStageOnScreen | null
   to: ConsoleStageOnScreen
 }): ViewLanding => {
-  if (!replacesTheStage({ from, to })) {
+  if (from === null || !replacesTheStage({ from, to })) {
     return 'drawn'
   }
 
-  return to.youId !== null && opensTheRace(to) ? 'faded-over' : 'swapped'
+  return to.youId !== null && opensTheRace({ from, to })
+    ? 'faded-over'
+    : 'swapped'
 }

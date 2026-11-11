@@ -1,34 +1,51 @@
 import { describe, expect, it } from 'vitest'
 
 import { playerIdSchema } from '@melee/protocol/identifiers'
+import type { RoomPhase } from '@melee/protocol/room'
 
 import {
   type ConsoleStageOnScreen,
   consoleStageLanding,
   replacesTheStage,
+  type StageOnScreen,
   wallStageLanding
 } from './stage-replacement'
 
 const SEAT = playerIdSchema.parse('seat-1')
 
+const onStage = (
+  phase: RoomPhase,
+  { isPaused = false }: { isPaused?: boolean } = {}
+): NonNullable<StageOnScreen> => ({ isPaused, phase, round: null })
+
+const petitBac = ({
+  sheetsClosed
+}: {
+  sheetsClosed: boolean
+}): NonNullable<StageOnScreen> => ({
+  isPaused: false,
+  phase: 'playing',
+  round: { content: { kind: 'petitbac', sheetsClosed } }
+})
+
 describe('replacesTheStage', () => {
   it('[stage] plays every change of phase, the floor changing hands included', () => {
     expect(
       replacesTheStage({
-        from: { isPaused: false, phase: 'lobby' },
-        to: { isPaused: false, phase: 'countdown' }
+        from: onStage('lobby'),
+        to: onStage('countdown')
       })
     ).toBe(true)
     expect(
       replacesTheStage({
-        from: { isPaused: false, phase: 'playing' },
-        to: { isPaused: false, phase: 'buzzed' }
+        from: onStage('playing'),
+        to: onStage('buzzed')
       })
     ).toBe(true)
     expect(
       replacesTheStage({
-        from: { isPaused: false, phase: 'finished' },
-        to: { isPaused: false, phase: 'lobby' }
+        from: onStage('finished'),
+        to: onStage('lobby')
       })
     ).toBe(true)
   })
@@ -36,29 +53,44 @@ describe('replacesTheStage', () => {
   it('[stage] plays a pause taken and lifted', () => {
     expect(
       replacesTheStage({
-        from: { isPaused: false, phase: 'playing' },
-        to: { isPaused: true, phase: 'playing' }
+        from: onStage('playing'),
+        to: onStage('playing', { isPaused: true })
       })
     ).toBe(true)
     expect(
       replacesTheStage({
-        from: { isPaused: true, phase: 'playing' },
-        to: { isPaused: false, phase: 'playing' }
+        from: onStage('playing', { isPaused: true }),
+        to: onStage('playing')
       })
     ).toBe(true)
+  })
+
+  it("[stage] plays Petit Bac's sheets closing on the vote, inside the round", () => {
+    expect(
+      replacesTheStage({
+        from: petitBac({ sheetsClosed: false }),
+        to: petitBac({ sheetsClosed: true })
+      })
+    ).toBe(true)
+    expect(
+      replacesTheStage({
+        from: petitBac({ sheetsClosed: true }),
+        to: petitBac({ sheetsClosed: true })
+      })
+    ).toBe(false)
   })
 
   it('[stage] leaves a snapshot that keeps the stage alone, and the first one', () => {
     expect(
       replacesTheStage({
-        from: { isPaused: false, phase: 'playing' },
-        to: { isPaused: false, phase: 'playing' }
+        from: onStage('playing'),
+        to: onStage('playing')
       })
     ).toBe(false)
     expect(
       replacesTheStage({
         from: null,
-        to: { isPaused: false, phase: 'revealed' }
+        to: onStage('revealed')
       })
     ).toBe(false)
   })
@@ -75,20 +107,20 @@ describe('consoleStageLanding', () => {
   it('[stage] fades the stage off a copy where a seated console has a race to answer', () => {
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: true, phase: 'playing' }),
-        to: seated({ isPaused: false, phase: 'playing' })
+        from: seated(onStage('playing', { isPaused: true })),
+        to: seated(onStage('playing'))
       })
     ).toBe('faded-over')
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: false, phase: 'buzzed' }),
-        to: seated({ isPaused: false, phase: 'playing' })
+        from: seated(onStage('buzzed')),
+        to: seated(onStage('playing'))
       })
     ).toBe('faded-over')
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: false, phase: 'countdown' }),
-        to: seated({ isPaused: false, phase: 'playing' })
+        from: seated(onStage('countdown')),
+        to: seated(onStage('playing'))
       })
     ).toBe('faded-over')
   })
@@ -96,20 +128,29 @@ describe('consoleStageLanding', () => {
   it('[stage] swaps every other replacement, and every one on a console with no seat', () => {
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: false, phase: 'playing' }),
-        to: seated({ isPaused: true, phase: 'playing' })
+        from: seated(onStage('playing')),
+        to: seated(onStage('playing', { isPaused: true }))
       })
     ).toBe('swapped')
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: false, phase: 'playing' }),
-        to: seated({ isPaused: false, phase: 'revealed' })
+        from: seated(onStage('playing')),
+        to: seated(onStage('revealed'))
       })
     ).toBe('swapped')
     expect(
       consoleStageLanding({
-        from: unseated({ isPaused: true, phase: 'playing' }),
-        to: unseated({ isPaused: false, phase: 'playing' })
+        from: unseated(onStage('playing', { isPaused: true })),
+        to: unseated(onStage('playing'))
+      })
+    ).toBe('swapped')
+  })
+
+  it("[stage] swaps Petit Bac's vote in on a seated console, since it opens no race", () => {
+    expect(
+      consoleStageLanding({
+        from: seated(petitBac({ sheetsClosed: false })),
+        to: seated(petitBac({ sheetsClosed: true }))
       })
     ).toBe('swapped')
   })
@@ -117,14 +158,14 @@ describe('consoleStageLanding', () => {
   it('[stage] draws a snapshot that keeps the stage, and the first one', () => {
     expect(
       consoleStageLanding({
-        from: seated({ isPaused: false, phase: 'playing' }),
-        to: seated({ isPaused: false, phase: 'playing' })
+        from: seated(onStage('playing')),
+        to: seated(onStage('playing'))
       })
     ).toBe('drawn')
     expect(
       consoleStageLanding({
         from: null,
-        to: seated({ isPaused: false, phase: 'playing' })
+        to: seated(onStage('playing'))
       })
     ).toBe('drawn')
   })
@@ -135,7 +176,7 @@ describe('wallStageLanding', () => {
     expect(
       wallStageLanding({
         from: null,
-        to: { isPaused: false, phase: 'lobby' }
+        to: onStage('lobby')
       })
     ).toBe('swapped')
   })
@@ -143,9 +184,18 @@ describe('wallStageLanding', () => {
   it('[stage] draws a snapshot that keeps the stage', () => {
     expect(
       wallStageLanding({
-        from: { isPaused: false, phase: 'lobby' },
-        to: { isPaused: false, phase: 'lobby' }
+        from: onStage('lobby'),
+        to: onStage('lobby')
       })
     ).toBe('drawn')
+  })
+
+  it("[stage] swaps Petit Bac's vote in", () => {
+    expect(
+      wallStageLanding({
+        from: petitBac({ sheetsClosed: false }),
+        to: petitBac({ sheetsClosed: true })
+      })
+    ).toBe('swapped')
   })
 })
