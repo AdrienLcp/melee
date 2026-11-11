@@ -1,9 +1,13 @@
+@use '../styles/fade'
 @use '../styles/piece'
 @use '../styles/typography'
 
 @layer components
   .reconnecting-notice
     @include typography.label
+    // Opened late, so a socket that answers at once — every room's first
+    // connection — never shows it: up for a beat, it read as a flash.
+    @include fade.fades-in-place('&[data-shown]', -50% 0.5rem, -50% 0, $delay: calc(var(--transition-slow, 0s) * 1.5))
     @include piece.card(var(--radius-full))
 
     align-items: center
@@ -12,21 +16,9 @@
     gap: var(--space-xs)
     inset-block-end: var(--layout-padding-block-end)
     inset-inline-start: 50%
-    opacity: 0
     padding: var(--space-xs) var(--space-m)
     position: fixed
-    transition: opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out), visibility 0s var(--transition-base, 0s)
-    translate: -50% 0.5rem
-    visibility: hidden
     z-index: 2
-
-    // Opened late, so a socket that answers at once — every room's first
-    // connection — never shows it: up for a beat, it read as a flash.
-    &[data-shown]
-      opacity: 1
-      transition-delay: calc(var(--transition-slow, 0s) * 1.5)
-      translate: -50% 0
-      visibility: visible
 
     &:not([data-shown]) .connection-dot
       animation-play-state: paused

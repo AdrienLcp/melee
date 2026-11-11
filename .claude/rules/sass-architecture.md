@@ -45,6 +45,8 @@ A motion seen twice is a mixin, never retyped:
   folds swapping places.
 - `fold.opens-in-line` — a word of a line, its column going `0fr → 1fr`.
 - `fold.opens-row` — one row of a grid among rows that stay.
+- `fade.fades-in-place` — a piece laid over the page, travelling a little as
+  it fades, hidden once gone; `fade.stepped-aside` is its leaving half alone.
 
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`
 does it for the two choice strips. The rules are printed into both stylesheets,

@@ -1,0 +1,29 @@
+// Pure module: mixins only, no top-level CSS. Safe to @use from any component.
+
+/// The leaving half of `fades-in-place` alone, for a piece whose arrival is
+/// its own — a bar docking on a keyframe: it fades as it travels to `$to`,
+/// over `$duration` on `--ease-in`, and is hidden from the pointer and the
+/// reader once it has gone. Letting go of the state plays the piece's own
+/// transition back. Under reduced motion it is gone at once.
+@mixin stepped-aside($to, $duration: var(--transition-base, 0s))
+  opacity: 0
+  transition: opacity $duration var(--ease-in), translate $duration var(--ease-in), visibility 0s linear $duration
+  translate: $to
+  visibility: hidden
+
+/// A piece laid over the page that a state shows where it stands — a notice,
+/// a band — kept mounted and shown by `$shown`, a selector in which `&` is
+/// the piece. It arrives from `$from` to `$at` as it fades in, on
+/// `--ease-out` after `$delay`, and leaves the way it came on `--ease-in`,
+/// hidden from the pointer and the reader once it has faded. `$at` carries
+/// any translate the piece is placed with (`-50% 0` for a centred one), and
+/// `$from` the same plus the travel. Under reduced motion it is shown or gone
+/// at once.
+@mixin fades-in-place($shown, $from, $at: 0 0, $duration: var(--transition-base, 0s), $delay: 0s)
+  @include stepped-aside($from, $duration)
+
+  #{$shown}
+    opacity: 1
+    transition: opacity $duration var(--ease-out) $delay, translate $duration var(--ease-out) $delay, visibility 0s $delay
+    translate: $at
+    visibility: visible
