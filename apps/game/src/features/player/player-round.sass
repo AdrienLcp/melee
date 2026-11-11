@@ -908,6 +908,7 @@
       @include typography.numeric
 
       --token: clamp(4.5rem, calc(var(--stage-unit) * 17), 6.5rem)
+      --travel-scale: 1.4
 
       align-items: center
       aspect-ratio: 1
@@ -922,7 +923,7 @@
 
       // Set down on the card once it has struck, the way a token is played:
       // what the round paid is the one figure this screen exists to say.
-      animation: payout-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
 
     &.scored .payout
       background: var(--good)
@@ -1233,11 +1234,6 @@
     stroke-dashoffset: var(--drained, 0)
   to
     stroke-dashoffset: 1
-
-@keyframes payout-stamp
-  from
-    opacity: 0
-    scale: 1.4
 
 @keyframes ready-hold-fill
   from

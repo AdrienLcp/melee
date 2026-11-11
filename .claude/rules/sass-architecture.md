@@ -57,6 +57,7 @@ sites is a custom property it substitutes whole:
   and `--travel-scale`, set on the element itself, say from where: a page
   sideways, a popover or a landing pawn from above.
 - `letter-turns` — a letter turned over on its top edge, back face up.
+- `tick-stamp` — a mark stamped in place, from `--travel-scale`.
 - `pawn-hops` — a pawn set down on a case, on `transform` and with no fade.
 
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`

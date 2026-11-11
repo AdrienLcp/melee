@@ -125,8 +125,8 @@
     mask-size: 100% 300%
     transform: translateY(0)
 
-/// Where something arriving on `page-enter` starts: an offset in `translate`'s
-/// syntax and a `scale`. Not inherited, so they are set on the animated element
+/// Where something arriving on `page-enter` starts, an offset in `translate`'s
+/// syntax and a `scale`, and the scale a mark is stamped from on `tick-stamp`. Not inherited, so they are set on the animated element
 /// itself: a page sliding in sideways would otherwise lend its offset to every
 /// row arriving inside it.
 @property --travel-offset
@@ -204,11 +204,13 @@
     transform: perspective(30em) rotateX(0deg)
 
 /// A mark pressed onto a piece as it is earned — a box's tick, a copy's check —
-/// rather than switched on. Smaller than a payout: it confirms a press, it pays nothing.
+/// rather than switched on, from `--travel-scale` and in place. A payout comes
+/// down from above it at 1.4, a case the board gains grows from 0.6; a tick
+/// starts at 0.4, because it confirms a press and pays nothing.
 @keyframes tick-stamp
   from
     opacity: 0
-    scale: 0.4
+    scale: var(--travel-scale, 0.4)
 
 /// A piece pushed onto its shelf or its row as the page opens: it slides in
 /// from the row's start and its chipboard edge settles under it. Started by
