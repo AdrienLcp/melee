@@ -15,6 +15,7 @@ import {
 import { petitBacContent } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
 
@@ -58,6 +59,7 @@ const seatOf = (players: readonly PublicPlayer[], playerId: string): number =>
 const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
   const translate = useTranslate()
   const content = petitBacContent(round)
+  const calledBy = useLastShown(content?.stoppedBy ?? null)
 
   if (content === null) {
     return null
@@ -83,7 +85,7 @@ const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
     seat,
     ...sheetProgressOf(player)
   }))
-  const stopper = stoppedBy === null ? -1 : seatOf(view.players, stoppedBy)
+  const stopper = calledBy === null ? -1 : seatOf(view.players, calledBy)
 
   return (
     <>
@@ -130,16 +132,22 @@ const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
           </ol>
         </section>
 
-        {stoppedBy !== null && (
-          <p className='stop-banner' role='status'>
-            {stopper !== -1 && <Pawn seat={stopper} />}
-            <span>
-              {translate('petitbac.stop.called', {
-                name: view.players[stopper]?.nickname ?? ''
-              })}
-            </span>
-          </p>
-        )}
+        <div
+          className='stop-fold'
+          data-open={stoppedBy !== null || undefined}
+          inert={stoppedBy === null}
+        >
+          <div>
+            <p className='stop-banner' role='status'>
+              {stopper !== -1 && <Pawn seat={stopper} />}
+              <span>
+                {translate('petitbac.stop.called', {
+                  name: view.players[stopper]?.nickname ?? ''
+                })}
+              </span>
+            </p>
+          </div>
+        </div>
 
         <ol aria-label={translate('petitbac.wall.sheets')} className='progress'>
           {sheets.map(({ figure, filled, player, seat }) => (
@@ -202,19 +210,17 @@ const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
             data-refused={row.refused || undefined}
             key={row.key}
           >
-            {row.refused && (
-              <span className='stamp'>{translate('petitbac.vote.refuse')}</span>
-            )}
+            <div className='stamp-fold'>
+              <div>
+                <span className='stamp'>
+                  {translate('petitbac.vote.refuse')}
+                </span>
+              </div>
+            </div>
             <span className='text'>{row.text}</span>
             <span className='foot'>
               <PetitBacAuthors authorIds={row.authors} players={view.players} />
-              {row.refusals > 0 && (
-                <span className='against'>
-                  {translate('petitbac.wall.against', {
-                    refusals: row.refusals
-                  })}
-                </span>
-              )}
+              <RefusalCount refusals={row.refusals} />
             </span>
           </li>
         ))}
@@ -231,5 +237,22 @@ const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
         </span>
       </p>
     </div>
+  )
+}
+
+/** How many seats refused a row, kept saying the last count while it folds away at none. */
+const RefusalCount: React.FC<{
+  /** Seats refusing the row; at none the count folds away. */
+  refusals: number
+}> = ({ refusals }) => {
+  const translate = useTranslate()
+  const shown = useLastShown(refusals > 0 ? refusals : null)
+
+  return (
+    <span className='against' data-open={refusals > 0 || undefined}>
+      <span>
+        {translate('petitbac.wall.against', { refusals: shown ?? refusals })}
+      </span>
+    </span>
   )
 }

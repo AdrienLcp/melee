@@ -268,15 +268,6 @@
 
       color: var(--ink-muted)
 
-    > .notice .error
-      @include typography.caption-strong
-
-      background: var(--danger)
-      color: var(--danger-ink)
-      padding: var(--space-2xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-2xs))
-
     > footer
       @include reshape.cross-fades-on-reshape
 
@@ -972,26 +963,33 @@
   .host-console-page.framed
     @include framed.page
 
-    // The seated host's one row of its own, and only while it has something
-    // to say: a refused frame, or a speaker the browser has not let play.
-    &:has(> .notice:not(:empty))
-      grid-template-areas: 'chrome' 'notice' 'round'
-      grid-template-rows: auto auto minmax(0, 1fr)
+    // The seated host's one row of its own, folded open while it has
+    // something to say: a refused frame, or a speaker the browser has not let
+    // play. A closed row still holds the gap above it, so the chrome gives
+    // that gap back and the open fold takes it again as its own padding.
+    grid-template-areas: 'chrome' 'notice' 'round'
+    grid-template-rows: auto auto minmax(0, 1fr)
 
-      @include framed.lying-down
+    @include framed.lying-down
+      &:has(> .choosing-round, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
         grid-template-areas: 'chrome choices' 'notice choices' 'card choices' 'status choices'
         grid-template-rows: auto auto minmax(0, 1fr) auto
 
-    > .notice
-      align-items: center
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-xs) var(--space-m)
-      grid-area: notice
-      justify-content: center
+    > .round-chrome
+      margin-block-end: calc(-1 * var(--space-framed))
 
-      &:empty
-        display: none
+    > .notice
+      @include fold.opens-in-column(var(--space-framed))
+
+      grid-area: notice
+      padding-block-start: var(--space-framed)
+
+      > div
+        --refusal-note-gap: var(--space-xs)
+
+        align-items: center
+        display: flex
+        flex-direction: column
 
       .muted-clip
         flex-direction: row

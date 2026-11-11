@@ -37,7 +37,8 @@ import { isTryRefusal } from '@/features/player/mystery-word-answer'
 import {
   blackSquareContent,
   longestWordContent,
-  mysteryWordContent
+  mysteryWordContent,
+  petitBacContent
 } from '@/helpers/round-content'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
@@ -76,6 +77,7 @@ import { Loader } from '@/presentation/components/loader'
 import { RefusalNote } from '@/presentation/components/refusal-note'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import {
   reflexOutcome,
@@ -96,7 +98,7 @@ import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { ArrivalNotice, useArrival } from './arrival-notice'
 import type { ChallengeLine } from './challenge-line'
-import { ClipOffer } from './clip-offer'
+import { ClipOfferNote, clipOfferOf, isSameClipOffer } from './clip-offer'
 import {
   HostActions,
   type HostActionsProps,
@@ -558,6 +560,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
   const shownRefusal =
     shownError === null ? null : translate(protocolErrorKey(shownError.code))
+  const clipOffer = clipOfferOf({ canPlay, fault, isSpeaker, view })
+  const isNoticeOpen = shownRefusal !== null || clipOffer !== null
+  const lastClipOffer = useLastShown(clipOffer, isSameClipOffer)
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
@@ -625,20 +630,19 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           round={choosing.round}
           youId={choosing.youId}
         />
-        <div className='notice'>
-          {shownRefusal !== null && (
-            <p className='error' role='alert'>
-              {shownRefusal}
-            </p>
-          )}
-          <ClipOffer
-            canPlay={canPlay}
-            fault={fault}
-            isSpeaker={isSpeaker}
-            onUnlockAudio={armAudio}
-            refusal={refusal}
-            view={view}
-          />
+        <div
+          className='notice'
+          data-open={isNoticeOpen || undefined}
+          inert={!isNoticeOpen}
+        >
+          <div>
+            <ClipOfferNote
+              offer={isNoticeOpen ? clipOffer : lastClipOffer}
+              onUnlockAudio={armAudio}
+              refusal={refusal}
+            />
+            <RefusalNote message={shownRefusal} />
+          </div>
         </div>
       </>
     ) : null
@@ -997,6 +1001,23 @@ const pressesShapeOf = ({
 
   if (view?.phase === 'playing' && view.round?.content.kind === 'slate') {
     return isSlateOnWall ? 'slate-marking' : 'slate-writing'
+  }
+
+  const petitBac = petitBacContent(view?.round)
+
+  if (view?.phase === 'playing' && petitBac !== null) {
+    const votingIndex = petitBac.categoryStates.indexOf('voting')
+    const canCancelStop =
+      view.currentContent?.kind === 'petitbac' &&
+      view.currentContent.canCancelStop
+    const step =
+      votingIndex === -1
+        ? 'writing'
+        : votingIndex === petitBac.categories.length - 1
+          ? 'last-category'
+          : 'voting'
+
+    return `petit-bac-${step}${canCancelStop ? '-stopped' : ''}`
   }
 
   return 'phase-presses'

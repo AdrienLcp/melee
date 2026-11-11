@@ -1,4 +1,5 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
@@ -6,10 +7,11 @@
 @layer components
   .petit-bac-stage
     --sheet-padding: clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-xl))
+    --stage-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l))
 
     display: flex
     flex-direction: column
-    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l))
+    gap: var(--stage-gap)
     min-height: 0
 
     .letter-piece
@@ -26,11 +28,19 @@
       margin: 0
       place-items: center
 
-    > .stop-banner
+    > .stop-fold
+      @include fold.opens-in-column(var(--stage-gap))
+
+      flex: none
+
+      > div
+        display: grid
+        justify-items: center
+
+    .stop-banner
       @include typography.title
 
       align-items: center
-      align-self: center
       background: var(--primary)
       border-radius: var(--radius-m)
       box-shadow: 0 var(--edge, 0.1875rem) 0 var(--primary-edge)
@@ -215,16 +225,20 @@
     .row
       @include piece.card(var(--radius-l))
 
-      align-content: space-between
-      display: grid
+      display: flex
+      flex-direction: column
       gap: var(--space-s)
+      justify-content: space-between
       padding: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l))
+      transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
 
       .text
         @include typography.billboard-wrapping
 
         font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 5), 3.6rem)
         overflow-wrap: anywhere
+        text-decoration: line-through 0.08em transparent
+        transition: color var(--transition-base, 0s) var(--ease-out), text-decoration-color var(--transition-base, 0s) var(--ease-out)
 
       .foot
         align-items: center
@@ -242,10 +256,16 @@
 
       .against
         @include typography.caption-strong
+        @include fold.opens-in-line(var(--space-s))
 
         color: var(--card-muted)
         font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-l))
-        white-space: nowrap
+
+      // First in its column: closed, it gives back the gap after it.
+      .stamp-fold
+        @include fold.opens-in-column(var(--space-s), '&:is([data-refused] > *)', $side: end)
+
+        flex: none
 
       .stamp
         @include typography.caption-strong
@@ -253,8 +273,9 @@
         background: var(--danger)
         border-radius: var(--radius-s)
         color: var(--danger-ink)
+        display: block
         font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-l))
-        justify-self: start
+        inline-size: fit-content
         padding: var(--space-2xs) var(--space-xs)
 
       &[data-refused]
@@ -264,7 +285,7 @@
 
         .text
           color: var(--ink-muted)
-          text-decoration: line-through 0.08em
+          text-decoration-color: currentColor
 
         .against
           color: var(--ink)
