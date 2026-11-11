@@ -251,7 +251,7 @@ const gatheredFrom = ({
  * from where they stood at the `gather` pace. A frame laid out at another
  * width moves nobody.
  */
-export const glidesOnRelayout = (
+export const glidesWhenTheGridResizes = (
   list: HTMLElement | null
 ): (() => void) | undefined => {
   if (list === null) {

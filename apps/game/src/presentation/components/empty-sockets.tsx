@@ -2,7 +2,7 @@ import type React from 'react'
 import { useState } from 'react'
 
 import { Pawn } from './pawn'
-import { glidesOnRelayout } from './use-rows-travel'
+import { glidesWhenTheGridResizes } from './use-rows-travel'
 
 /** How many seats a roster draws at the least: the taken ones, then a socket each to this. */
 export const PAWNS_IN_THE_BOX = 8
@@ -53,7 +53,7 @@ export const EmptySockets: React.FC<EmptySocketsProps> = ({ seated }) => {
   }
 
   return (
-    <ul aria-hidden='true' className='sockets' ref={glidesOnRelayout}>
+    <ul aria-hidden='true' className='sockets' ref={glidesWhenTheGridResizes}>
       {filledSeat !== null && (
         <li
           className='socket'
