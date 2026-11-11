@@ -98,7 +98,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
               <span className='podium-who'>
                 <span className='podium-line'>
                   <span className='podium-name'>{player.nickname}</span>
-                  {isBetweenRounds && player.isReady && <ReadyMark />}
+                  {isBetweenRounds && <ReadyMark isReady={player.isReady} />}
                 </span>
                 {notes.length > 0 && (
                   <span className='podium-note'>{notes.join(' · ')}</span>

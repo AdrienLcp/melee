@@ -199,7 +199,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 />
               )}
               <span className='name'>{player.nickname}</span>
-              {marksReady === true && player.isReady && <ReadyMark />}
+              {marksReady === true && <ReadyMark isReady={player.isReady} />}
               <AwayMark isAway={!player.isConnected} />
               {player.id === youId && (
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>

@@ -7,18 +7,29 @@ import { VisuallyHidden } from './visually-hidden'
 
 import './ready-mark.sass'
 
+type ReadyMarkProps = {
+  /**
+   * Whether the seat says it is back at the table. The mark stays mounted
+   * either way, so it can fold away when the seat takes it back rather than
+   * vanish.
+   */
+  isReady: boolean
+}
+
 /**
  * A seat back at the table between two rounds, beside its name on whatever
  * board the room is reading. Never counted: ready is not a gate, so nobody is
  * owed a total.
  */
-export const ReadyMark: React.FC = () => {
+export const ReadyMark: React.FC<ReadyMarkProps> = ({ isReady }) => {
   const translate = useTranslate()
 
   return (
-    <span className='ready-mark'>
+    <span className='ready-mark' data-ready={isReady || undefined}>
       <CheckIcon aria-hidden />
-      <VisuallyHidden elementType='span'>{` (${translate('player.back')})`}</VisuallyHidden>
+      {isReady && (
+        <VisuallyHidden elementType='span'>{` (${translate('player.back')})`}</VisuallyHidden>
+      )}
     </span>
   )
 }
