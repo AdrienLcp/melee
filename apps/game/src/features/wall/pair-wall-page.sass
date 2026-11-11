@@ -1,3 +1,4 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
@@ -43,14 +44,27 @@
       gap: var(--space-s)
       width: 100%
 
+    // Kept mounted and folded open, so a second press takes it back down
+    // rather than cutting it. Its key is the failure it reports: each one is
+    // mounted anew, which is what has the alert read.
+    .failure
+      @include fold.opens-in-column(var(--space-m))
+
+      width: 100%
+
+      &:not([data-open]) .error
+        padding-block: 0rem
+        transition: padding-block var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+
     // Stamped rather than tinted, for the reason every error here is: red text
     // on the lobby's orange is the field.
     .error
       @include typography.strong
 
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       background: var(--danger)
       color: var(--danger-ink)
+      justify-self: center
       padding: var(--space-2xs) var(--space-s)
+      transition: padding-block var(--transition-base, 0s) var(--ease-out)
 
       @include text-box.trimmed-block(var(--space-2xs))

@@ -537,17 +537,37 @@
     // whoever is standing at the wall. Die-cut, because it is the one line on
     // this screen about the evening rather than the game, and the room reading
     // the stage around it has to see that it is not part of the round.
+    //
+    // Laid over the header's band rather than in the page's flow: a phase
+    // that lays the page out as a grid handed it the stage's row, and the
+    // round sank under the screen's bottom edge; laid over the stage, it hid
+    // the question. Kept mounted, so it leaves as it came.
     .host-away
       @include layout.cut
 
       align-items: center
-      align-self: center
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      box-shadow: var(--shadow-overlay)
       display: flex
       flex-wrap: wrap
       gap: var(--space-s) var(--space-m)
+      inset-block-start: var(--layout-padding-block-start)
+      inset-inline: var(--menu-inset)
       justify-content: center
+      margin-inline: auto
+      max-inline-size: fit-content
+      opacity: 0
       padding: var(--space-s) var(--space-m)
+      position: fixed
+      transition: opacity var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+      translate: 0 -0.5rem
+      visibility: hidden
+      z-index: 1
+
+      &[data-shown]
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out)
+        translate: 0 0
+        visibility: visible
 
       p
         @include typography.title

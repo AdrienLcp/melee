@@ -1,0 +1,68 @@
+import type React from 'react'
+import { useState } from 'react'
+
+import './leaves-in-place.sass'
+
+const EXIT_ANIMATION = 'piece-closes'
+
+type LeavesInPlaceProps<Value> = {
+  /**
+   * Draws the piece from the value it is shown for, or from the last one while
+   * it plays its exit. Its root element is the one that fades.
+   */
+  children: (value: Value) => React.ReactNode
+  /**
+   * What the piece is drawn from, `null` once it has nothing to say. Pass a
+   * value whose identity holds from one render to the next — a snapshot's own
+   * field, a string — never an object built during render.
+   */
+  value: Value | null
+}
+
+/**
+ * A piece of a line that a snapshot adds and takes away, faded in where it
+ * stands and faded out from what it last said, since the snapshot that ends it
+ * no longer holds that. The wrapper has no box, so the piece is still the
+ * line's own item.
+ */
+export const LeavesInPlace = <Value,>({
+  children,
+  value
+}: LeavesInPlaceProps<Value>) => {
+  const [held, setHeld] = useState(value)
+  const [leaving, setLeaving] = useState<Value | null>(null)
+
+  if (value !== held) {
+    setLeaving(value === null ? held : null)
+    setHeld(value)
+  }
+
+  const drawn = value ?? leaving
+
+  if (drawn === null) {
+    return null
+  }
+
+  return (
+    <div
+      className='leaves-in-place'
+      data-leaving={value === null || undefined}
+      // Only while leaving: see `react-components.md`, a no-op set at another
+      // moment stays queued and erases the leaving this render derives.
+      onAnimationEnd={
+        leaving === null
+          ? undefined
+          : (event) => {
+              if (
+                event.animationName === EXIT_ANIMATION &&
+                event.target === event.currentTarget.firstElementChild
+              ) {
+                setLeaving(null)
+              }
+            }
+      }
+    >
+      {children(drawn)}
+    </div>
+  )
+}

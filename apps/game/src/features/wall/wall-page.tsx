@@ -40,6 +40,7 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { useIdleChrome } from '@/presentation/use-idle-chrome'
 
+import { LeavesInPlace } from './leaves-in-place'
 import { useAbsentFor } from './use-absent-for'
 import { asRoomScreenView } from './wall-view'
 
@@ -176,6 +177,20 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   const spokenTurn = blackSquareContent(view?.round)?.spoken ?? null
+  const isRoundOnScreen =
+    view !== null && view.round !== null && view.phase !== 'finished'
+  const roundIndex =
+    view?.round == null || view.phase === 'finished'
+      ? null
+      : view.settings.roundCount === null
+        ? translate('round.indexOpen', { index: view.round.index })
+        : translate('round.index', {
+            index: view.round.index,
+            total: view.settings.roundCount
+          })
+  const isSoundOffered =
+    !canPlay &&
+    (view === null || (isSpeaker && !isEveningSilent(view.settings)))
 
   return (
     <PawnPiecesProvider view={view}>
@@ -185,45 +200,56 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       >
         <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
-          {wallView !== null && wallView.wallCount > 1 && (
-            <p className='wall-number'>
-              {isSpeaker && <SoundIcon />}
-              {translate(isSpeaker ? 'wall.numberSpeaking' : 'wall.number', {
-                number: wallView.wallNumber
-              })}
-            </p>
-          )}
-          {view?.round != null && view.phase !== 'finished' && (
-            <p className='round-index'>
-              {view.settings.roundCount === null
-                ? translate('round.indexOpen', { index: view.round.index })
-                : translate('round.index', {
-                    index: view.round.index,
-                    total: view.settings.roundCount
-                  })}
-            </p>
-          )}
-          {view?.round?.duel != null && view.phase !== 'finished' && (
-            <DuelBadge
-              duel={view.round.duel}
-              players={view.players}
-              seatId={view.youId}
-              teams={view.teams}
-            />
-          )}
-          {spokenTurn !== null &&
-            view !== null &&
-            view.phase !== 'finished' && (
-              <BlackSquareTurn
-                players={view.players}
-                seatId={view.youId}
-                spoken={spokenTurn}
-                teams={view.teams}
-              />
+          <LeavesInPlace value={roundIndex}>
+            {(index) => (
+              <p className='round-index' key={index}>
+                {index}
+              </p>
             )}
-          {!canPlay &&
-            (view === null ||
-              (isSpeaker && !isEveningSilent(view.settings))) && (
+          </LeavesInPlace>
+          <LeavesInPlace
+            value={
+              wallView !== null && wallView.wallCount > 1 ? wallView : null
+            }
+          >
+            {(numbered) => (
+              <p className='wall-number' key={String(numbered.isSpeaker)}>
+                {numbered.isSpeaker && <SoundIcon />}
+                {translate(
+                  numbered.isSpeaker ? 'wall.numberSpeaking' : 'wall.number',
+                  { number: numbered.wallNumber }
+                )}
+              </p>
+            )}
+          </LeavesInPlace>
+          <LeavesInPlace
+            value={isRoundOnScreen ? (view.round?.duel ?? null) : null}
+          >
+            {(duel) =>
+              view !== null && (
+                <DuelBadge
+                  duel={duel}
+                  players={view.players}
+                  seatId={view.youId}
+                  teams={view.teams}
+                />
+              )
+            }
+          </LeavesInPlace>
+          <LeavesInPlace value={isRoundOnScreen ? spokenTurn : null}>
+            {(spoken) =>
+              view !== null && (
+                <BlackSquareTurn
+                  players={view.players}
+                  seatId={view.youId}
+                  spoken={spoken}
+                  teams={view.teams}
+                />
+              )
+            }
+          </LeavesInPlace>
+          <LeavesInPlace value={isSoundOffered || null}>
+            {() => (
               <Button
                 className='sound-offer'
                 onPress={armAudio}
@@ -233,25 +259,34 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                 {translate('wall.sound')}
               </Button>
             )}
-          {view !== null &&
-            view.phase !== 'lobby' &&
-            view.settings.teams.kind !== 'aloud' && (
-              <JoinReminder roomCode={roomCode} />
-            )}
+          </LeavesInPlace>
+          <LeavesInPlace
+            value={
+              view !== null &&
+              view.phase !== 'lobby' &&
+              view.settings.teams.kind !== 'aloud'
+                ? roomCode
+                : null
+            }
+          >
+            {(code) => <JoinReminder roomCode={code} />}
+          </LeavesInPlace>
         </header>
 
-        {isHostAway && (
-          <aside className='host-away'>
-            <p>{translate('wall.hostAway.title')}</p>
-            <Link
-              href={hostFromWallPathFor(roomCode)}
-              size='small'
-              variant='outlined'
-            >
-              {translate('wall.hostAway.takeOver')}
-            </Link>
-          </aside>
-        )}
+        <aside
+          className='host-away'
+          data-shown={isHostAway || undefined}
+          inert={!isHostAway}
+        >
+          <p>{translate('wall.hostAway.title')}</p>
+          <Link
+            href={hostFromWallPathFor(roomCode)}
+            size='small'
+            variant='outlined'
+          >
+            {translate('wall.hostAway.takeOver')}
+          </Link>
+        </aside>
 
         {view === null ? (
           <div className='stage arriving'>

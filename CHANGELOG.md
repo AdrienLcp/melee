@@ -79,6 +79,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The room's screen no longer cuts a line in or out.** The
+  round number, the screen's own number, a duel, a black square turn, the
+  sound offer and the way in late fade into the top line and out of it, and
+  what stands beside them slides over instead of jumping. _The host has
+  stepped away_ is laid over the top line and fades in and out, where it used
+  to push the round under the bottom of the screen. A fresh pairing code, the
+  page saying the screen now shows the table and a pairing that failed each
+  give way with a motion too.
 - `[Game]` **A refusal or a field's error no longer pops in and vanishes.**
   The red line under a press that could not open a table — on the home page,
   a game's own page and a shared line-up — the code box's error, a pawn

@@ -1,5 +1,6 @@
 import type React from 'react'
 import { useEffect, useEffectEvent, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 import type { OpenWallPairingResponse } from '@melee/protocol/http'
 
@@ -7,6 +8,7 @@ import {
   openWallPairing,
   pollWallPairing
 } from '@/infrastructure/api/melee-api'
+import { replaceScreen } from '@/infrastructure/browser'
 import {
   pairWallUrlFor,
   usePageNavigation,
@@ -45,13 +47,17 @@ export const WallPairingPage: React.FC = () => {
   const [attempt, setAttempt] = useState(0)
 
   // A code that stopped pairing — expired, or collected elsewhere — is replaced
-  // by starting over, which is what a fresh key gives the screen below.
-  return (
-    <PairingScreen
-      key={attempt}
-      onStale={() => setAttempt((previous) => previous + 1)}
-    />
-  )
+  // by starting over, which is what a fresh key gives the screen below; the
+  // screen left fades over it rather than cutting to an empty field.
+  const startOver = (): void => {
+    replaceScreen(() => {
+      flushSync(() => {
+        setAttempt((previous) => previous + 1)
+      })
+    })
+  }
+
+  return <PairingScreen key={attempt} onStale={startOver} />
 }
 
 const PairingScreen: React.FC<{ onStale: () => void }> = ({ onStale }) => {

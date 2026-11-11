@@ -1,9 +1,11 @@
 import type React from 'react'
 import { useState } from 'react'
+import { flushSync } from 'react-dom'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 
 import { pairWall } from '@/infrastructure/api/melee-api'
+import { replaceScreen } from '@/infrastructure/browser'
 import {
   homePathFor,
   hostPathFor,
@@ -38,6 +40,8 @@ export const PairWallPage: React.FC = () => {
   const pairingCode = usePairingCodeParam()
   const hosted = useOpenHostedRooms()
   const [pairing, setPairing] = useState<Pairing>({ status: 'idle' })
+  const [failures, setFailures] = useState(0)
+  const isFailed = pairing.status === 'failed'
 
   usePhaseField('lobby')
 
@@ -45,6 +49,7 @@ export const PairWallPage: React.FC = () => {
     const hostToken = readHostToken(roomCode)
 
     if (pairingCode === null || hostToken === null) {
+      setFailures((previous) => previous + 1)
       setPairing({ status: 'failed' })
 
       return
@@ -54,16 +59,24 @@ export const PairWallPage: React.FC = () => {
 
     const paired = await pairWall({ hostToken, pairingCode, roomCode })
 
-    setPairing(
-      paired.status === 'success'
-        ? { roomCode, status: 'paired' }
-        : { status: 'failed' }
-    )
+    if (paired.status === 'failure') {
+      setFailures((previous) => previous + 1)
+      setPairing({ status: 'failed' })
+
+      return
+    }
+
+    replaceScreen(() => {
+      flushSync(() => {
+        setPairing({ roomCode, status: 'paired' })
+      })
+    })
   }
 
   if (pairing.status === 'paired') {
     return (
-      // A page of its own, laid down as one: the question it answers is gone.
+      // A page of its own, replacing the question it answers as a page change
+      // would.
       <Main className='pair-wall-page' key='paired'>
         <DocumentTitle>{translate('wall.pair.documentTitle')}</DocumentTitle>
         <h1>{translate('wall.pair.done')}</h1>
@@ -121,11 +134,15 @@ export const PairWallPage: React.FC = () => {
         ))}
       </div>
 
-      {pairing.status === 'failed' && (
-        <p className='error' role='alert'>
+      <div
+        aria-hidden={!isFailed}
+        className='failure'
+        data-open={isFailed || undefined}
+      >
+        <p className='error' key={failures} role='alert'>
           {translate('wall.pair.failed')}
         </p>
-      )}
+      </div>
     </Main>
   )
 }

@@ -1,0 +1,41 @@
+@layer components
+  // A piece opens its room in the line before it fades in, and fades before
+  // it closes it, so what stands after it slides rather than jumps. The gap it
+  // hands back is the console header's column gap.
+  .leaves-in-place
+    display: contents
+
+    > *
+      --piece-gap-closed: calc(-1 * var(--space-m))
+
+      animation: piece-opens var(--transition-base, 0s) var(--ease-out), swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5) backwards
+      interpolate-size: allow-keywords
+      min-inline-size: 0
+
+    // Its own keyframes rather than the entry reversed: the same name with a
+    // new direction resumes the finished entry and never ends again.
+    &[data-leaving] > *
+      animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, piece-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+      pointer-events: none
+      white-space: nowrap
+
+@keyframes piece-opens
+  from
+    inline-size: 0
+    margin-inline-end: var(--piece-gap-closed)
+    overflow: clip
+    white-space: nowrap
+  to
+    inline-size: auto
+    margin-inline-end: 0
+    overflow: clip
+    white-space: nowrap
+
+@keyframes piece-closes
+  from
+    inline-size: auto
+    overflow: clip
+  to
+    inline-size: 0
+    margin-inline-end: var(--piece-gap-closed)
+    overflow: clip

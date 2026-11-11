@@ -357,7 +357,16 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   refusal is `RefusalNote`, which keeps saying the last one while it folds.
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
-  `margin-inline-end: -1em`) and the margin transitions.
+  `margin-inline-end: -1em`) and the margin transitions. A piece of a line a
+  snapshot adds and takes away — the wall's header — is `LeavesInPlace`: a
+  `display: contents` wrapper keeps it the line's item and still hears its
+  `animationend`, and its width goes to and from `auto` under
+  `interpolate-size: allow-keywords`, `white-space: nowrap` held in both
+  keyframes or the text wraps as the room narrows.
+- **A block laid over the page is positioned, never left in its flow.** The
+  wall's _host away_ band, a flex item between header and stage, became a
+  grid row on every phase laid out as a grid and pushed the round under the
+  screen's edge.
 - **A toggled mark leaves the way it arrived, played backwards, and each
   direction is written in the state it ends on** — a transition is read off
   the state being entered. Arriving opens the room on `--transition-base` and
