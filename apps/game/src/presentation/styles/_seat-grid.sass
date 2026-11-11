@@ -1,5 +1,7 @@
 // Pure module: one mixin, no top-level CSS.
 
+$-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
+
 /// Who has sat down, each on a chip beside their pawn, and a socket for every
 /// pawn still in the box — the roster a `Scoreboard` with pawns and an
 /// `EmptySockets` draw together. The two lists are one grid, so the sockets
@@ -38,7 +40,7 @@
   .scoreboard li,
   .socket
     border-radius: var(--radius-m)
-    min-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
+    min-height: $-cell-height
 
   .scoreboard li
     align-items: center
@@ -103,8 +105,19 @@
     box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
     margin: 0
 
+  // A seat pinned on its socket is out of the grid, and its row would take
+  // its height in one frame once it is back: the socket takes that height
+  // while they trade, measured onto `--seat-height` by `EmptySockets`.
+  @keyframes socket-takes-seat-height
+    to
+      min-height: var(--seat-height, #{$-cell-height})
+
+  @keyframes socket-gives-seat-height
+    from
+      min-height: var(--seat-height, #{$-cell-height})
+
   .socket
-    animation: swap-in var(--transition-slow, 0s) var(--ease-out)
+    animation: swap-in var(--transition-slow, 0s) var(--ease-out), socket-gives-seat-height var(--transition-slow, 0s) var(--ease-in)
     background: var(--socket)
     box-shadow: var(--shadow-recess)
     display: grid
@@ -113,7 +126,7 @@
   // Faded and never scaled: the chip anchored on it would shrink with it.
   .socket[data-filled]
     anchor-name: --filled-socket
-    animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
+    animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards, socket-takes-seat-height var(--transition-slow, 0s) var(--ease-out) forwards
 
   .socket:nth-child(1 of :not([data-filled]))
     anchor-name: --returning-socket

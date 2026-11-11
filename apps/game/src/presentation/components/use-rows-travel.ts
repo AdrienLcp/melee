@@ -126,6 +126,13 @@ const timingOf = ({
   return { delay: slow, duration: slow * 1.5, easing, fill: 'backwards' }
 }
 
+/** The layer a row rests on, which a row passing others travels one above. */
+const restingLayerOf = (row: HTMLElement): number => {
+  const layer = Number.parseInt(getComputedStyle(row).zIndex, 10)
+
+  return Number.isNaN(layer) ? 0 : layer
+}
+
 const isSameRows = (left: Boxes, right: Boxes): boolean =>
   left.size === right.size && [...left.keys()].every((key) => right.has(key))
 
@@ -162,7 +169,8 @@ const play = ({
       continue
     }
 
-    const zIndex = y > 0 ? '1' : '0'
+    const layer = restingLayerOf(row)
+    const zIndex = String(y > 0 ? layer + 1 : layer)
 
     row.animate(
       [

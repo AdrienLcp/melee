@@ -7,6 +7,31 @@ import { glidesOnRelayout } from './use-rows-travel'
 /** How many seats a roster draws at the least: the taken ones, then a socket each to this. */
 export const PAWNS_IN_THE_BOX = 8
 
+const SEAT_TAKING_THE_SOCKET =
+  '.scoreboard > li:nth-last-child(1 of :not([data-leaving]))'
+const SEAT_LEAVING_OVER_THE_SOCKET = '.scoreboard > li[data-leaving]:last-child'
+
+/**
+ * Hands a socket the height of the seat `seatSelector` finds pinned on it,
+ * out of the grid, so the row the two share grows or shrinks with the socket
+ * rather than in one frame as the seat goes back into the grid or off it.
+ */
+const holdsHeightOf =
+  (seatSelector: string) =>
+  (socket: HTMLLIElement | null): void => {
+    const seat =
+      socket?.parentElement?.parentElement?.querySelector<HTMLElement>(
+        seatSelector
+      )
+
+    if (socket !== null && seat !== null && seat !== undefined) {
+      socket.style.setProperty('--seat-height', `${seat.offsetHeight}px`)
+    }
+  }
+
+const holdsTheTakingSeatHeight = holdsHeightOf(SEAT_TAKING_THE_SOCKET)
+const holdsTheLeavingSeatHeight = holdsHeightOf(SEAT_LEAVING_OVER_THE_SOCKET)
+
 type EmptySocketsProps = {
   /** How many seats are taken; the sockets carry on from the next pawn. */
   seated: number
@@ -40,13 +65,19 @@ export const EmptySockets: React.FC<EmptySocketsProps> = ({ seated }) => {
               onFilled()
             }
           }}
+          ref={holdsTheTakingSeatHeight}
         >
           <Pawn seat={filledSeat} />
         </li>
       )}
       {Array.from({ length: empty }, (_, offset) => seated + offset).map(
         (seat) => (
-          <li className='socket' data-key={seat} key={seat}>
+          <li
+            className='socket'
+            data-key={seat}
+            key={seat}
+            ref={seat === seated ? holdsTheLeavingSeatHeight : undefined}
+          >
             <Pawn seat={seat} />
           </li>
         )
