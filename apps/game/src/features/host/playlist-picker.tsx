@@ -32,7 +32,6 @@ import type {
   Translate
 } from '@/presentation/i18n/translation'
 
-import { useArrivedLater } from './use-arrived-later'
 import { usePlaylistPreview } from './use-playlist-preview'
 
 import './playlist-picker.sass'
@@ -171,10 +170,14 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const drawsCharts = isCatalogue && draft.strands.includes('charts')
   const drawsDecades = isCatalogue && draft.strands.includes('decades')
   const drawsFilmScores = isCatalogue && draft.strands.includes('filmScores')
-  const catalogueArrived = useArrivedLater(isCatalogue)
-  const genresArrived = useArrivedLater(drawsCharts)
-  const decadesArrived = useArrivedLater(drawsDecades)
-  const typedSourceArrived = useArrivedLater(!isCatalogue)
+  const [lastTypedPlace, setLastTypedPlace] = useState<Draft['place']>(
+    isCatalogue ? 'search' : draft.place
+  )
+
+  if (!isCatalogue && draft.place !== lastTypedPlace) {
+    setLastTypedPlace(draft.place)
+  }
+
   const { clear, preview, previewSource } = usePlaylistPreview(
     settings.difficulty
   )
@@ -234,8 +237,12 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         value={draft.place}
       />
 
-      {isCatalogue && (
-        <div className='catalogue' data-arrived={catalogueArrived}>
+      <div
+        className='fold'
+        data-open={isCatalogue || undefined}
+        inert={!isCatalogue}
+      >
+        <div className='catalogue'>
           <ToggleGroup
             className='strands'
             disallowEmptySelection
@@ -252,8 +259,12 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             selectedKeys={draft.strands}
           />
 
-          {drawsCharts && (
-            <div className='genres' data-arrived={genresArrived}>
+          <div
+            className='fold'
+            data-open={drawsCharts || undefined}
+            inert={!drawsCharts}
+          >
+            <div className='genres'>
               <ToggleGroup
                 label={translate('blindtest.genre.label')}
                 onSelectionChange={(keys) => {
@@ -269,14 +280,21 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
                 }))}
                 selectedKeys={draft.charts.map(String)}
               />
-              {draft.charts.length === 0 && (
+              <div
+                className='hint-fold'
+                data-open={draft.charts.length === 0 || undefined}
+              >
                 <p className='hint'>{translate('blindtest.genre.none')}</p>
-              )}
+              </div>
             </div>
-          )}
+          </div>
 
-          {drawsDecades && (
-            <div className='decades' data-arrived={decadesArrived}>
+          <div
+            className='fold'
+            data-open={drawsDecades || undefined}
+            inert={!drawsDecades}
+          >
+            <div className='decades'>
               <ToggleGroup
                 label={translate('blindtest.decade.label')}
                 onSelectionChange={(keys) => {
@@ -292,21 +310,27 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
                 }))}
                 selectedKeys={draft.decades}
               />
-              {draft.decades.length === 0 && (
+              <div
+                className='hint-fold'
+                data-open={draft.decades.length === 0 || undefined}
+              >
                 <p className='hint'>{translate('blindtest.decade.none')}</p>
-              )}
+              </div>
             </div>
-          )}
+          </div>
 
-          {drawsFilmScores && (
+          <div className='fold' data-open={drawsFilmScores || undefined}>
             <p className='hint'>{translate('blindtest.source.filmHint')}</p>
-          )}
+          </div>
         </div>
-      )}
+      </div>
 
-      {!isCatalogue && (
+      <div
+        className='fold'
+        data-open={!isCatalogue || undefined}
+        inert={isCatalogue}
+      >
         <Form
-          data-arrived={typedSourceArrived}
           onSubmit={(event) => {
             event.preventDefault()
             save(draft)
@@ -316,7 +340,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             }
           }}
         >
-          {draft.place === 'search' ? (
+          {lastTypedPlace === 'search' ? (
             <>
               <TextField
                 label={translate('blindtest.source.query')}
@@ -360,7 +384,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             {translate('blindtest.source.preview')}
           </Button>
         </Form>
-      )}
+      </div>
 
       {preview.status === 'failed' && (
         <p className='error' role='alert'>

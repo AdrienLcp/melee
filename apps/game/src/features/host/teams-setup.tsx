@@ -4,6 +4,7 @@ import { useState } from 'react'
 import type { RoomSettings } from '@melee/protocol/room'
 import {
   MAX_TEAMS,
+  MIN_TEAMS,
   type TeamScoring,
   type TeamsSettings
 } from '@melee/protocol/team'
@@ -20,7 +21,6 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { TeamCountField } from './team-count-field'
-import { useArrivedLater } from './use-arrived-later'
 
 import './teams-setup.sass'
 
@@ -104,9 +104,22 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
   const teams = settings.teams
   const [isAloudRefused, setIsAloudRefused] = useState(false)
   const mostTeams = mostTeamsOffered({ seatCount, teams })
-  const teamCountArrived = useArrivedLater(teams.kind !== 'off')
+  const isCounted = teams.kind !== 'off' && mostTeams >= MIN_TEAMS
+  const [lastCounted, setLastCounted] = useState(
+    isCounted ? { mostTeams, teams } : null
+  )
+
+  if (
+    isCounted &&
+    (lastCounted === null ||
+      lastCounted.teams !== teams ||
+      lastCounted.mostTeams !== mostTeams)
+  ) {
+    setLastCounted({ mostTeams, teams })
+  }
+
   const isScoredAsTeams = teams.kind === 'drawn' || teams.kind === 'chosen'
-  const teamScoringArrived = useArrivedLater(isScoredAsTeams)
+  const isAloudRefusalShown = isAloudRefused && teams.kind !== 'aloud'
 
   return (
     <div className='teams-setup'>
@@ -147,22 +160,34 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         }))}
         value={teams.kind}
       />
-      {teams.kind !== 'off' && (
-        <TeamCountField
-          isArriving={teamCountArrived}
-          isDisabled={isDisabled}
-          mostTeams={mostTeams}
-          onChange={(count) => {
-            onChange({ ...settings, teams: { ...teams, count } })
-          }}
-          teams={teams}
-        />
-      )}
-      {isScoredAsTeams && (
-        <>
+      <div
+        className='fold'
+        data-open={isCounted || undefined}
+        inert={!isCounted}
+      >
+        <div>
+          {lastCounted !== null && (
+            <TeamCountField
+              isDisabled={isDisabled}
+              mostTeams={lastCounted.mostTeams}
+              onChange={(count) => {
+                if (teams.kind !== 'off') {
+                  onChange({ ...settings, teams: { ...teams, count } })
+                }
+              }}
+              teams={lastCounted.teams}
+            />
+          )}
+        </div>
+      </div>
+      <div
+        className='fold'
+        data-open={isScoredAsTeams || undefined}
+        inert={!isScoredAsTeams}
+      >
+        <div className='team-scoring-rules'>
           <SegmentedControl
             className='team-scoring'
-            data-arrived={teamScoringArrived}
             isDisabled={isDisabled}
             label={translate('team.scoring.label')}
             onChange={(next) => {
@@ -183,16 +208,24 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           <p className='hint' key={settings.teamScoring}>
             {translate(`team.scoring.${settings.teamScoring}Hint`)}
           </p>
-        </>
-      )}
-      {teams.kind === 'aloud' && (
+        </div>
+      </div>
+      <div
+        className='fold'
+        data-open={teams.kind === 'aloud' || undefined}
+        inert={teams.kind !== 'aloud'}
+      >
         <p className='hint'>{translate('team.setting.aloudHint')}</p>
-      )}
-      {isAloudRefused && teams.kind !== 'aloud' && (
+      </div>
+      <div
+        className='fold'
+        data-open={isAloudRefusalShown || undefined}
+        inert={!isAloudRefusalShown}
+      >
         <p className='hint' role='status'>
           {translate('team.setting.aloudNeedsNoPhone')}
         </p>
-      )}
+      </div>
     </div>
   )
 }

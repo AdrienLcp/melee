@@ -1,3 +1,5 @@
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 
@@ -25,39 +27,39 @@
   .host-panel,
   .host-podium,
   .podium-settings-leaflet
-    .held,
+    .held > p,
     .tab-summary
       @include typography.caption
 
       color: var(--ink-muted)
 
-    .held
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+    // Keyed on its text, so a choice that changes what it sums up fades it in.
+    .tab-summary
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
 
-    // The game tab's list, and the table tab's end of the game with its speed
-    // bonus, each standing in its container's grid.
+    // A column of the tab whose blocks fold away: the tab's own grid would
+    // keep a closed block's gap open.
+    .tab-column
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
+    .held,
+    .auto-advance-fold,
+    .hand-points-fold
+      @include fold.opens-in-column(var(--space-m))
+
+    // The game tab's list, the table tab's settings and its end of the game,
+    // and the players tab's roster, each standing in its container's grid.
     .evening-list,
-    .evening-end
+    .evening-end,
+    .table-shape,
+    .players-roster
       display: grid
       gap: inherit
       grid-auto-rows: max-content
       grid-template-columns: minmax(0, 1fr)
-      // Clips the copy `useCrossFadeOnReshape` lays over it; the margin is
-      // there so a row's focus ring is not clipped with it.
-      overflow: clip
-      overflow-clip-margin: var(--space-xs)
-      interpolate-size: allow-keywords
-      position: relative
-
-      // The ready-made choice going for the planned games, or a board going
-      // for points: what was drawn before fades out over what is drawn now.
-      > .reshape-copy
-        animation: none
-        inset-block-start: 0
-        inset-inline: 0
-        pointer-events: none
-        position: absolute
-        z-index: 1
+      @include reshape.cross-fades-on-reshape
 
     // Coming back from one of its pages, the list slides in from the side
     // that page left by, and the tab's heading, which gave way to the page,

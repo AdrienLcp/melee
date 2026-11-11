@@ -12,8 +12,6 @@ const isDifficulty = (value: string): value is Difficulty =>
 
 type DifficultyChoiceProps = {
   className?: string
-  /** Set while the strip is still rising into a panel that was already open. */
-  'data-arrived'?: boolean
   isDisabled: boolean
   /** The whole evening's strip rather than one game's: a name of its own, and no line under it. */
   isEvening?: boolean

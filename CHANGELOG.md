@@ -79,6 +79,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Nothing in the host's side panel cuts in or out any more.** The
+  note that a round is in play, the teams' count and scoring, the answer mode,
+  the level, the answer window, the black square's lone finds, the blind test's
+  strands and typed source, and the save-over line of the saved line-ups fold
+  open and shut; the table's settings settling as the game starts, the end of
+  the game with its speed bonus and _Tout public_, the room's spot detail and
+  the first seat taken fade from one shape to the next; a switch's reason and
+  a tab's summary fade in when they change.
 - `[Game]` **Switching the board between points and a track moves instead of
   cutting.** The track's rules unfold under the board choice and fold back up
   the same way, and the end of the game and the speed bonus beneath fade from

@@ -359,10 +359,13 @@ export const GameTab: React.FC<SetupTabsProps> = ({
 /** Above the controls it greys out, because a host who has already pressed one has decided it is broken. */
 const HeldNote: React.FC<{ view: HostRoomView }> = ({ view }) => {
   const translate = useTranslate()
+  const isHeld = isRoundInPlay(view.phase)
 
-  return isRoundInPlay(view.phase) ? (
-    <p className='held'>{translate('host.setup.roundInPlay')}</p>
-  ) : null
+  return (
+    <div className='held' data-open={isHeld || undefined} inert={!isHeld}>
+      <p>{translate('host.setup.roundInPlay')}</p>
+    </div>
+  )
 }
 
 /**
@@ -390,93 +393,105 @@ export const TableTab: React.FC<SetupTabsProps> = ({
     offer no *one*. An evening counts its rounds whatever they are.
   */
   const showsEnd = settings.lineUp.length > 1 || settings.game?.kind !== 'slate'
+  const offersFamilyFriendly = dealsAdultContent(settings)
+  const shape = useRef<HTMLDivElement>(null)
   const end = useRef<HTMLDivElement>(null)
 
   useCrossFadeOnReshape({
+    box: shape,
+    shape: isInLobby ? 'open' : 'settled'
+  })
+  useCrossFadeOnReshape({
     box: end,
-    shape: `${settings.board.kind} ${showsEnd} ${offersSpeedBonus}`
+    shape: `${settings.board.kind} ${showsEnd} ${offersSpeedBonus} ${offersFamilyFriendly}`
   })
 
   return (
     <>
-      <HeldNote view={view} />
-      {isInLobby ? (
-        <>
-          <p className='tab-summary'>{summaries.table}</p>
-          <TeamsSetup
-            hasPhones={view.players.some((player) => player.id !== view.youId)}
-            isDisabled={!isLive}
-            onChange={onSettingsChange}
-            preferences={preferences}
-            seatCount={view.players.length}
-            settings={settings}
-          />
-          <BoardSetup
-            isDisabled={!isLive}
-            onChange={onSettingsChange}
-            settings={settings}
-          />
-        </>
-      ) : (
-        <p className='settled'>
-          <strong>
-            {[
-              teams.kind === 'off'
-                ? translate('team.summary.off')
-                : translate(`team.summary.${teams.kind}`, {
-                    count: teams.count
-                  }),
-              settings.board.kind === 'track'
-                ? translate('board.summary', {
-                    length: settings.board.length
-                  })
-                : translate('board.points')
-            ].join(' · ')}
-          </strong>
-          <span>{translate('host.panel.settled')}</span>
-        </p>
-      )}
-      {(showsEnd || offersSpeedBonus) && (
-        <div className='evening-end' ref={end}>
-          {showsEnd && (
-            <EveningEndChoice
-              isDisabled={!isLive}
-              onChange={onSettingsChange}
-              settings={settings}
-            />
-          )}
-          {offersSpeedBonus && (
-            <Switch
-              description={translate(
-                settings.paysForSpeed
-                  ? 'host.speedBonus.hint.on'
-                  : 'host.speedBonus.hint.off'
-              )}
-              isDisabled={!isLive}
-              isSelected={settings.paysForSpeed}
-              label={translate('host.speedBonus.label')}
-              onChange={(paysForSpeed) => {
-                onSettingsChange({ ...settings, paysForSpeed })
-              }}
-            />
+      <div className='tab-column'>
+        <HeldNote view={view} />
+        <div className='table-shape' ref={shape}>
+          {isInLobby ? (
+            <>
+              <p className='tab-summary' key={summaries.table}>
+                {summaries.table}
+              </p>
+              <TeamsSetup
+                hasPhones={view.players.some(
+                  (player) => player.id !== view.youId
+                )}
+                isDisabled={!isLive}
+                onChange={onSettingsChange}
+                preferences={preferences}
+                seatCount={view.players.length}
+                settings={settings}
+              />
+              <BoardSetup
+                isDisabled={!isLive}
+                onChange={onSettingsChange}
+                settings={settings}
+              />
+            </>
+          ) : (
+            <p className='settled'>
+              <strong>
+                {[
+                  teams.kind === 'off'
+                    ? translate('team.summary.off')
+                    : translate(`team.summary.${teams.kind}`, {
+                        count: teams.count
+                      }),
+                  settings.board.kind === 'track'
+                    ? translate('board.summary', {
+                        length: settings.board.length
+                      })
+                    : translate('board.points')
+                ].join(' · ')}
+              </strong>
+              <span>{translate('host.panel.settled')}</span>
+            </p>
           )}
         </div>
-      )}
-      {dealsAdultContent(settings) && (
-        <Switch
-          description={translate(
-            settings.isFamilyFriendly
-              ? 'host.familyFriendly.hint.on'
-              : 'host.familyFriendly.hint.off'
-          )}
-          isDisabled={!isLive}
-          isSelected={settings.isFamilyFriendly}
-          label={translate('host.familyFriendly.label')}
-          onChange={(isFamilyFriendly) => {
-            onSettingsChange({ ...settings, isFamilyFriendly })
-          }}
-        />
-      )}
+      </div>
+      <div className='evening-end' ref={end}>
+        {showsEnd && (
+          <EveningEndChoice
+            isDisabled={!isLive}
+            onChange={onSettingsChange}
+            settings={settings}
+          />
+        )}
+        {offersSpeedBonus && (
+          <Switch
+            description={translate(
+              settings.paysForSpeed
+                ? 'host.speedBonus.hint.on'
+                : 'host.speedBonus.hint.off'
+            )}
+            isDisabled={!isLive}
+            isSelected={settings.paysForSpeed}
+            label={translate('host.speedBonus.label')}
+            onChange={(paysForSpeed) => {
+              onSettingsChange({ ...settings, paysForSpeed })
+            }}
+          />
+        )}
+        {offersFamilyFriendly && (
+          <Switch
+            description={translate(
+              settings.isFamilyFriendly
+                ? 'host.familyFriendly.hint.on'
+                : 'host.familyFriendly.hint.off'
+            )}
+            isDisabled={!isLive}
+            isSelected={settings.isFamilyFriendly}
+            label={translate('host.familyFriendly.label')}
+            onChange={(isFamilyFriendly) => {
+              onSettingsChange({ ...settings, isFamilyFriendly })
+            }}
+          />
+        )}
+      </div>
     </>
   )
 }
@@ -498,6 +513,7 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
   const settings = view.settings
   const summaries = useSetupSummaries(settings)
   const { seconds } = useDurationLabels()
+  const offersAutoAdvance = settings.game?.kind !== 'slate'
 
   return (
     <>
@@ -509,26 +525,34 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
         onTakeSeat={onTakeSeat}
         view={view}
       />
-      <HeldNote view={view} />
-      <p className='tab-summary'>{summaries.room}</p>
-      {settings.game?.kind !== 'slate' && (
-        <AutoAdvanceChoice
-          isLive={isLive}
-          onSettingsChange={onSettingsChange}
-          settings={settings}
+      <div className='tab-column'>
+        <HeldNote view={view} />
+        <p className='tab-summary' key={summaries.room}>
+          {summaries.room}
+        </p>
+        <div
+          className='auto-advance-fold'
+          data-open={offersAutoAdvance || undefined}
+          inert={!offersAutoAdvance}
+        >
+          <AutoAdvanceChoice
+            isLive={isLive}
+            onSettingsChange={onSettingsChange}
+            settings={settings}
+          />
+        </div>
+        <NumberChoice
+          className='countdown-choice'
+          isDisabled={!isLive}
+          label={translate('host.countdown')}
+          onChange={(countdownMs) => {
+            onSettingsChange({ ...settings, countdownMs })
+          }}
+          optionLabel={seconds}
+          options={COUNTDOWN_DURATIONS_MS}
+          value={settings.countdownMs}
         />
-      )}
-      <NumberChoice
-        className='countdown-choice'
-        isDisabled={!isLive}
-        label={translate('host.countdown')}
-        onChange={(countdownMs) => {
-          onSettingsChange({ ...settings, countdownMs })
-        }}
-        optionLabel={seconds}
-        options={COUNTDOWN_DURATIONS_MS}
-        value={settings.countdownMs}
-      />
+      </div>
     </>
   )
 }
@@ -546,38 +570,51 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
   const [seatedWhenOpened] = useState(
     () => new Set(view.players.map((player) => player.id))
   )
+  const isEmpty = view.players.length === 0
+  const isPlaying = view.phase !== 'lobby'
+  const roster = useRef<HTMLDivElement>(null)
 
-  if (view.players.length === 0) {
-    return <p className='tab-summary'>{translate('team.empty')}</p>
-  }
+  useCrossFadeOnReshape({ box: roster, shape: isEmpty ? 'empty' : 'seated' })
 
   return (
-    <>
-      <Scoreboard
-        hasPawns
-        isRoster={view.teams.length > 0 && view.settings.board.kind === 'track'}
-        onRemove={onRemovePlayer}
-        players={view.players}
-        seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
-        trackLength={
-          view.settings.board.kind === 'track'
-            ? view.settings.board.length
-            : undefined
-        }
-        youId={view.youId}
-      />
-      {view.phase !== 'lobby' && (
-        <section className='hand-points'>
-          <h3>
-            {translate(
+    <div className='players-roster' ref={roster}>
+      {isEmpty ? (
+        <p className='tab-summary'>{translate('team.empty')}</p>
+      ) : (
+        <div className='tab-column'>
+          <Scoreboard
+            hasPawns
+            isRoster={
+              view.teams.length > 0 && view.settings.board.kind === 'track'
+            }
+            onRemove={onRemovePlayer}
+            players={view.players}
+            seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
+            trackLength={
               view.settings.board.kind === 'track'
-                ? 'board.fix'
-                : 'host.points.label'
-            )}
-          </h3>
-          <PointsRows />
-        </section>
+                ? view.settings.board.length
+                : undefined
+            }
+            youId={view.youId}
+          />
+          <div
+            className='hand-points-fold'
+            data-open={isPlaying || undefined}
+            inert={!isPlaying}
+          >
+            <section className='hand-points'>
+              <h3>
+                {translate(
+                  view.settings.board.kind === 'track'
+                    ? 'board.fix'
+                    : 'host.points.label'
+                )}
+              </h3>
+              <PointsRows />
+            </section>
+          </div>
+        </div>
       )}
-    </>
+    </div>
   )
 }

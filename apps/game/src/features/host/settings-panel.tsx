@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import {
   type AtlasDirection,
@@ -57,7 +58,6 @@ import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PetitBacSetup } from './petit-bac-setup'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
-import { useArrivedLater } from './use-arrived-later'
 
 import './settings-panel.sass'
 
@@ -162,9 +162,13 @@ const QuestionBankSettings: React.FC<{
         }))}
         selectedKeys={game.categories}
       />
-      {game.categories.length === 0 && (
+      <div
+        className='fold hint-fold'
+        data-open={game.categories.length === 0 || undefined}
+        inert={game.categories.length > 0}
+      >
         <p className='hint'>{translate('quiz.category.none')}</p>
-      )}
+      </div>
       <DifficultyChoice
         isDisabled={isDisabled}
         onChange={(difficulty) => {
@@ -241,9 +245,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   )
   const pinsItsOwnDifficulty =
     game?.kind === 'blindtest' && trackAnswersOf(game.source) === 'films'
-  const difficultyArrived = useArrivedLater(!pinsItsOwnDifficulty)
   const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
-  const loneFindsArrived = useArrivedLater(offersLoneFinds)
   // Buzzer-moded and still nothing to hold: a reflex press takes no floor
   // and waits for no verdict, nor does a count stopping, and nobody buzzes a
   // challenge at all, so how long a player has to answer is a setting about a
@@ -254,7 +256,15 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
     game?.kind !== 'reflex' &&
     game?.kind !== 'innerclock' &&
     game?.kind !== 'challenge'
-  const answerWindowArrived = useArrivedLater(asksAnswerWindow)
+  const [lastAnswerWindowMs, setLastAnswerWindowMs] = useState(
+    mode.kind === 'buzzer' ? mode.answerWindowMs : null
+  )
+
+  if (mode.kind === 'buzzer' && mode.answerWindowMs !== lastAnswerWindowMs) {
+    setLastAnswerWindowMs(mode.answerWindowMs)
+  }
+
+  const offersModes = isNextRound && offeredModes.length > 1
 
   const { openEnded: openEndedSecondsLabel, seconds: secondsLabel } =
     useDurationLabels()
@@ -266,27 +276,33 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         with a single segment asks the host to choose something they have no
         choice about.
       */}
-      {game !== null && isNextRound && offeredModes.length > 1 && (
-        <SegmentedControl
-          className='answer-mode'
-          isDisabled={isDisabled}
-          label={translate('host.answerMode.label')}
-          onChange={(next) => {
-            if (isAnswerMode(next)) {
-              onChange({ ...settings, mode: DEFAULT_MODE_SETTINGS[next] })
-            }
-          }}
-          options={offeredModes.map((offered) => ({
-            label: translate(answerModeLabelKey(offered)),
-            mark: isJudgedByHost({ game: game.kind, mode: offered })
-              ? translate(
-                  isSeated ? 'host.judgedMark.you' : 'host.judgedMark.host'
-                )
-              : undefined,
-            value: offered
-          }))}
-          value={mode.kind}
-        />
+      {game !== null && (
+        <div
+          className='fold'
+          data-open={offersModes || undefined}
+          inert={!offersModes}
+        >
+          <SegmentedControl
+            className='answer-mode'
+            isDisabled={isDisabled}
+            label={translate('host.answerMode.label')}
+            onChange={(next) => {
+              if (isAnswerMode(next)) {
+                onChange({ ...settings, mode: DEFAULT_MODE_SETTINGS[next] })
+              }
+            }}
+            options={offeredModes.map((offered) => ({
+              label: translate(answerModeLabelKey(offered)),
+              mark: isJudgedByHost({ game: game.kind, mode: offered })
+                ? translate(
+                    isSeated ? 'host.judgedMark.you' : 'host.judgedMark.host'
+                  )
+                : undefined,
+              value: offered
+            }))}
+            value={mode.kind}
+          />
+        </div>
       )}
 
       {game?.kind === 'atlas' && (
@@ -356,16 +372,20 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         </>
       )}
 
-      {game?.kind === 'blindtest' && !pinsItsOwnDifficulty && (
-        <DifficultyChoice
-          className='track-difficulty'
-          data-arrived={difficultyArrived}
-          isDisabled={isDisabled}
-          onChange={(difficulty) => {
-            onChange({ ...settings, game: { ...game, difficulty } })
-          }}
-          value={game.difficulty}
-        />
+      {game?.kind === 'blindtest' && (
+        <div
+          className='fold'
+          data-open={!pinsItsOwnDifficulty || undefined}
+          inert={pinsItsOwnDifficulty}
+        >
+          <DifficultyChoice
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...settings, game: { ...game, difficulty } })
+            }}
+            value={game.difficulty}
+          />
+        </div>
       )}
 
       {game?.kind === 'buzzer' && (
@@ -536,18 +556,22 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {/* A spoken round has one team guessing, so every find there is its alone. */}
-      {offersLoneFinds && (
-        <Switch
-          className='lone-finds'
-          data-arrived={loneFindsArrived}
-          description={translate('blacksquare.lone.hint')}
-          isDisabled={isDisabled}
-          isSelected={game.doublesLoneFinds}
-          label={translate('blacksquare.lone.label')}
-          onChange={(doublesLoneFinds) => {
-            onChange({ ...settings, game: { ...game, doublesLoneFinds } })
-          }}
-        />
+      {game?.kind === 'blacksquare' && (
+        <div
+          className='fold'
+          data-open={offersLoneFinds || undefined}
+          inert={!offersLoneFinds}
+        >
+          <Switch
+            description={translate('blacksquare.lone.hint')}
+            isDisabled={isDisabled}
+            isSelected={game.doublesLoneFinds}
+            label={translate('blacksquare.lone.label')}
+            onChange={(doublesLoneFinds) => {
+              onChange({ ...settings, game: { ...game, doublesLoneFinds } })
+            }}
+          />
+        </div>
       )}
 
       {game?.kind === 'petitbac' && (
@@ -742,26 +766,31 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {asksAnswerWindow && (
+      <div
+        className='fold'
+        data-open={asksAnswerWindow || undefined}
+        inert={!asksAnswerWindow}
+      >
         <NumberChoice
           className='answer-window'
-          isArriving={answerWindowArrived}
           isDisabled={isDisabled}
           label={translate('host.answerWindow.label')}
           onChange={(chosen) => {
-            onChange({
-              ...settings,
-              mode: {
-                ...mode,
-                answerWindowMs: chosen === NO_LIMIT ? null : chosen
-              }
-            })
+            if (mode.kind === 'buzzer') {
+              onChange({
+                ...settings,
+                mode: {
+                  ...mode,
+                  answerWindowMs: chosen === NO_LIMIT ? null : chosen
+                }
+              })
+            }
           }}
           optionLabel={openEndedSecondsLabel}
           options={ANSWER_WINDOWS_MS}
-          value={mode.answerWindowMs ?? NO_LIMIT}
+          value={lastAnswerWindowMs ?? NO_LIMIT}
         />
-      )}
+      </div>
     </section>
   )
 }

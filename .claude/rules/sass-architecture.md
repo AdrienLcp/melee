@@ -349,7 +349,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   (`[data-selected]`) transition it; `_strip.sass`'s `.tick` is the pattern.
   A block a choice shows and hides is the same mark at block scale:
   `fold.opens-in-column` under `[data-open]`, `inert` while closed, in a
-  _flex_ column — a grid keeps the gap of a closed row open.
+  _flex_ column — a grid keeps the gap of a closed row open. A fold first in
+  its column takes no room closed either: its negative margin eats the gap
+  after it (`.tab-column`'s `.held`).
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
   `margin-inline-end: -1em`) and the margin transitions.
@@ -368,7 +370,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   fades a copy of the old list out over the new while the box eases to its
   height — to `auto` where the box allows `interpolate-size: allow-keywords`,
   because new rows still unfolding as they arrive measure 630px of a 4600px
-  list on the commit. A whole stage a snapshot swaps lands through `replaceScreen`
+  list on the commit. Its box takes `reshape.cross-fades-on-reshape`: the
+  copy is a clone, and every entrance keyed inside it would play again and
+  blank what is meant to fade out. A whole stage a snapshot swaps lands through `replaceScreen`
   (`useRoomView`, given what counts as a swap): the floor changing hands on
   the console and the wall, never on a player's screen, where the transition
   would hold a buzz for its length; and the reveal leaving — to the next

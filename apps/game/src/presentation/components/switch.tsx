@@ -33,7 +33,12 @@ export const Switch: React.FC<SwitchProps> = ({
       {label}
     </SwitchButton>
     {description !== undefined && (
-      <Text className='description' elementType='p' slot='description'>
+      <Text
+        className='description'
+        elementType='p'
+        key={description}
+        slot='description'
+      >
         {description}
       </Text>
     )}

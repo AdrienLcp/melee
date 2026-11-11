@@ -1,9 +1,11 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 
 @layer components
   .teams-setup
-    display: grid
+    display: flex
+    flex-direction: column
     gap: var(--space-s)
     min-width: 0
 
@@ -15,10 +17,13 @@
     .team-scoring
       @include strip.stacks-below(18rem)
 
-    .team-count,
-    .team-scoring
-      &[data-arrived]
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+    .fold
+      @include fold.opens-in-column
+
+    .team-scoring-rules
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
 
     .hint
       @include typography.caption

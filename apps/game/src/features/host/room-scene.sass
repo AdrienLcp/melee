@@ -1,3 +1,4 @@
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -132,8 +133,11 @@
       gap: var(--space-l)
       justify-content: center
 
-  // What the picked shape does, under the drawing.
+  // What the picked shape does, under the drawing. Another pick, or the seat
+  // taken or left, lays it out anew.
   .spot-detail
+    @include reshape.cross-fades-on-reshape
+
     background: var(--well)
     border-radius: var(--radius-l)
     box-shadow: 0 var(--edge) 0 var(--chipboard)

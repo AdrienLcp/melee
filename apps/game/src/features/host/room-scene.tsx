@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { ToggleButton, ToggleButtonGroup } from 'react-aria-components'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
@@ -24,6 +24,7 @@ import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 
 import { HostSeat } from './host-seat'
 import { RoomRecovery } from './room-recovery'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './room-scene.sass'
 
@@ -77,6 +78,12 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
   const seatedAs =
     view.players.find((player) => player.id === view.youId)?.nickname ?? null
   const others = view.players.filter((player) => player.id !== view.youId)
+  const detail = useRef<HTMLElement>(null)
+
+  useCrossFadeOnReshape({
+    box: detail,
+    shape: `${pick} ${seatedAs !== null} ${hasWall} ${isRoundInPlay(view.phase)}`
+  })
 
   return (
     <>
@@ -178,7 +185,12 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           </ToggleButton>
         </div>
       </ToggleButtonGroup>
-      <section aria-live='polite' className='spot-detail' id='room-spot-detail'>
+      <section
+        aria-live='polite'
+        className='spot-detail'
+        id='room-spot-detail'
+        ref={detail}
+      >
         {pick === 'wall' && (
           <WallDetail
             hasWall={hasWall}

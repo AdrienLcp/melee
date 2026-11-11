@@ -1,3 +1,4 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
@@ -34,12 +35,11 @@
       flex-direction: column
       gap: var(--space-2xs)
 
-    .catalogue,
-    .genres,
-    .decades,
-    .react-aria-Form
-      &[data-arrived]
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+    .fold
+      @include fold.opens-in-column
+
+    .hint-fold
+      @include fold.opens-in-column(var(--space-2xs))
 
     .hint
       @include typography.caption

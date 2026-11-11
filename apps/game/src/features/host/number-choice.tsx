@@ -15,8 +15,6 @@ type NumberChoiceProps = {
   className?: string
   /** Said under the strip, read with it: what the chosen option does. */
   description?: string
-  /** Marks a strip a host's choice just brought in, so it rises rather than appears. */
-  isArriving?: true
   isDisabled: boolean
   label: string
   onChange: (value: number) => void
@@ -35,7 +33,6 @@ type NumberChoiceProps = {
 export const NumberChoice: React.FC<NumberChoiceProps> = ({
   className,
   description,
-  isArriving,
   isDisabled,
   label,
   onChange,
@@ -46,7 +43,6 @@ export const NumberChoice: React.FC<NumberChoiceProps> = ({
 }) => (
   <SegmentedControl
     className={className}
-    data-arrived={isArriving}
     description={description}
     isDisabled={isDisabled}
     label={label}

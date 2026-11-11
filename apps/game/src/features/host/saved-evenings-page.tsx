@@ -24,7 +24,6 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
 import { SavedEveningsTransfer } from './saved-evenings-transfer'
-import { useArrivedLater } from './use-arrived-later'
 import { useEveningLinks } from './use-evening-links'
 
 import './saved-evenings.sass'
@@ -120,7 +119,12 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const currentSettings = JSON.stringify(view.settings)
   const isUpToDate = savedOver === currentSettings
   const offersSaveOver = view.settings.game !== null && loaded !== undefined
-  const saveOverArrived = useArrivedLater(offersSaveOver)
+  const [lastLoadedName, setLastLoadedName] = useState(loaded?.name ?? '')
+
+  if (offersSaveOver && loaded.name !== lastLoadedName) {
+    setLastLoadedName(loaded.name)
+  }
+
   const [keptWhenOpened] = useState(
     () => new Set(evenings.map((evening) => evening.name))
   )
@@ -130,20 +134,24 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
     <EveningPage onBack={onBack}>
       <section className='saved-evenings'>
         <h2 className='heading'>{translate('host.saved.heading')}</h2>
-        {offersSaveOver && (
-          <div className='over' data-arrived={saveOverArrived}>
-            <p className='loaded' role='status'>
+        <div
+          className='over-fold'
+          data-open={offersSaveOver || undefined}
+          inert={!offersSaveOver}
+        >
+          <div className='over'>
+            <p className='loaded' key={String(isUpToDate)} role='status'>
               {translate(
                 isUpToDate ? 'host.saved.savedOver' : 'host.saved.loaded',
-                { name: loaded.name }
+                { name: lastLoadedName }
               )}
             </p>
             <Button
               aria-label={translate('host.saved.saveOverNamed', {
-                name: loaded.name
+                name: lastLoadedName
               })}
               onPress={() => {
-                onSave(loaded.name)
+                onSave(lastLoadedName)
                 setSavedOver(currentSettings)
               }}
               variant='outlined'
@@ -151,7 +159,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
               {translate('host.saved.saveOver')}
             </Button>
           </div>
-        )}
+        </div>
         {view.settings.game !== null && (
           <Form
             className='keep'

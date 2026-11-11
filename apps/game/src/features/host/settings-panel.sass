@@ -1,3 +1,4 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 
@@ -42,11 +43,16 @@
     .answer-window
       @include strip.stacks-below(19rem)
 
-    .lone-finds,
-    .answer-window,
-    .track-difficulty
-      &[data-arrived]
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+    .fold
+      @include fold.opens-in-column
+
+    // Tucked under the strip it is about, as an open fold too.
+    .hint-fold
+      > .hint
+        margin-top: 0
+
+      &[data-open]
+        margin-block-start: calc(var(--space-s) * -1 + var(--space-2xs))
 
     .hint
       @include typography.caption

@@ -62,10 +62,12 @@
 
     // Indented onto the label rather than started at the panel edge: a line
     // beginning under the track reads as a paragraph of the panel instead of
-    // as the reason for this one setting.
+    // as the reason for this one setting. Keyed on its text, so a switch
+    // that changes what it says fades it in.
     .description
       @include typography.caption
 
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
       color: var(--ink-muted)
       padding-inline-start: calc(var(--switch-track-width) + var(--space-xs))
       text-wrap: pretty
