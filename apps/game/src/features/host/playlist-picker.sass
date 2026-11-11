@@ -1,4 +1,5 @@
 @use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
@@ -103,10 +104,14 @@
       .decades .segments
         grid-template-columns: repeat(6, 1fr)
 
-    .react-aria-Form
+    .react-aria-Form,
+    .typed-source
       display: flex
       flex-direction: column
       gap: var(--space-s)
+
+    .typed-source
+      @include reshape.cross-fades-on-reshape
 
     // Sized to its label, so it never reads as a second primary action next to
     // "start the game".

@@ -44,9 +44,15 @@
       flex-direction: column
       gap: var(--space-m)
 
+    .planned
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
     .held,
     .auto-advance-fold,
-    .hand-points-fold
+    .hand-points-fold,
+    .ready-made-fold
       @include fold.opens-in-column(var(--space-m))
 
     // The game tab's list, the table tab's settings and its end of the game,

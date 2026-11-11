@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useRef } from 'react'
 
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 
@@ -23,6 +24,7 @@ import { isLastRound } from './is-last-round'
 import { OwnLinesEditor } from './own-lines-editor'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './evening-entry-page.sass'
 
@@ -64,12 +66,16 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   const entry = settings.lineUp[at]
   const isNext = at === settings.lineUpAt
   const roundInPlay = isRoundInPlay(view.phase)
+  const played = view.lineUpPlayed[at] ?? 0
+  const isFixed = entry !== undefined && isPlayedOut({ entry, played })
+  const body = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({ box: body, shape: isFixed ? 'fixed' : 'open' })
 
   if (entry === undefined) {
     return <EveningPage onBack={onBack} />
   }
 
-  const played = view.lineUpPlayed[at] ?? 0
   const entrySettings = isNext
     ? settings
     : movedToEntry({
@@ -96,8 +102,8 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
     phase: view.phase,
     played
   })
-  const isFixed = isPlayedOut({ entry, played })
   const deck = view.deckSummaries[at] ?? null
+  const awaitsSlateKey = entry.kind === 'slate' && !isNext
 
   return (
     <EveningPage onBack={onBack}>
@@ -120,38 +126,48 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
         )}
       </header>
 
-      {isFixed ? (
-        <p className='fixed'>{translate('host.evening.fixed')}</p>
-      ) : (
-        <div className='entry-settings'>
-          {entry.kind === 'blindtest' && (
-            <PlaylistPicker
-              key={at}
-              onSourceChange={(source) => {
-                onSettingsChange(withEntrySource({ at, settings, source }))
-              }}
-              settings={entry}
+      <div className='entry-body' ref={body}>
+        {isFixed ? (
+          <p className='fixed'>{translate('host.evening.fixed')}</p>
+        ) : (
+          <div className='entry-settings'>
+            {entry.kind === 'blindtest' && (
+              <PlaylistPicker
+                key={at}
+                onSourceChange={(source) => {
+                  onSettingsChange(withEntrySource({ at, settings, source }))
+                }}
+                settings={entry}
+              />
+            )}
+            <SettingsPanel
+              isLive={isLive}
+              isNextRound={isNext}
+              isRoundInPlay={roundInPlay && isNext}
+              isSeated={view.youId !== null}
+              isSheetOnStage={view.phase === 'lobby' && isNext}
+              onChange={changeEntry}
+              onPrepareSlateKey={onRememberSlateKey}
+              preparedSlateKeys={preparedSlateKeys}
+              settings={entrySettings}
             />
-          )}
-          <SettingsPanel
-            isLive={isLive}
-            isNextRound={isNext}
-            isRoundInPlay={roundInPlay && isNext}
-            isSeated={view.youId !== null}
-            isSheetOnStage={view.phase === 'lobby' && isNext}
-            onChange={changeEntry}
-            onPrepareSlateKey={onRememberSlateKey}
-            preparedSlateKeys={preparedSlateKeys}
-            settings={entrySettings}
-          />
-          {entry.kind === 'challenge' && (
-            <p className='hint'>{translate('host.evening.challengeLine')}</p>
-          )}
-          {entry.kind === 'slate' && !isNext && (
-            <p className='hint'>{translate('host.evening.slateKeyLater')}</p>
-          )}
-        </div>
-      )}
+            {entry.kind === 'challenge' && (
+              <p className='hint'>{translate('host.evening.challengeLine')}</p>
+            )}
+            {entry.kind === 'slate' && (
+              <div
+                className='hint-fold'
+                data-open={awaitsSlateKey || undefined}
+                inert={!awaitsSlateKey}
+              >
+                <p className='hint'>
+                  {translate('host.evening.slateKeyLater')}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       {(entry.kind === 'challenge' || entry.kind === 'mostlikely') && (
         <OwnLinesEditor game={entry.kind} />

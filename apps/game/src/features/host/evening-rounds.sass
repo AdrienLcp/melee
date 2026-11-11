@@ -30,7 +30,7 @@
       overflow: hidden
       position: relative
 
-      > * + .add
+      > * + .add .round
         border-top: var(--hairline)
 
     // What `useCrossFadeOnReshape` lays over the new list while it fades.
@@ -234,8 +234,18 @@
 
     // Folded the way the draw folds, gap included: a second levelled game
     // opens it, and taking one out closes it again.
-    .evening-level
+    .evening-level,
+    .undo-fold,
+    .chance-fold
       @include fold.opens-in-column
+
+    // The raise press stands on its edge, drawn below the strip's own box.
+    .chance-fold > *
+      overflow-clip-margin: var(--space-xs)
+
+    // In the list's own grid, which has no gap to hand back.
+    .add
+      @include fold.opens-in-column(0rem)
 
     // The draw folds away under *From the top*: its row shrinks out of a
     // grid track, since `height: auto` does not transition, fading first and
@@ -328,7 +338,6 @@
     // place a press that slipped is put right.
     .evening-undo
       align-items: center
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
       background: var(--ink)
       border-radius: var(--radius-s)
       color: var(--field)
@@ -337,8 +346,9 @@
       justify-content: space-between
       padding: var(--space-2xs) var(--space-s)
 
-      &[data-leaving]
-        animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-out) both
+      // Keyed on the round taken out, so a second one fades its name in.
+      > span
+        animation: swap-in var(--transition-base, 0s) var(--ease-out)
 
       .button
         color: var(--field)

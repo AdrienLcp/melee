@@ -103,7 +103,12 @@ one part.
   open and shut; the table's settings settling as the game starts, the end of
   the game with its speed bonus and _Tout public_, the room's spot detail and
   the first seat taken fade from one shape to the next; a switch's reason and
-  a tab's summary fade in when they change.
+  a tab's summary fade in when they change. The undo bar, the ready-made
+  note, the rounds over the count, the add row, the evening's level at the
+  last round, the playlist preview's refusal and count, the slate's sheet
+  settings and the empty own lines fold too, and the search and playlist
+  fields, the seat's name, the own lines and categories as one goes, and a
+  round's page turning fixed cross-fade.
 - `[Game]` **Switching the board between points and a track moves instead of
   cutting.** The track's rules unfold under the board choice and fold back up
   the same way, and the end of the game and the speed bonus beneath fade from

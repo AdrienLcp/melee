@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { PetitBacSettings } from '@melee/protocol/game'
 import {
@@ -24,6 +24,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { DifficultyChoice } from './difficulty-choice'
 import { NumberChoice, useDurationLabels } from './number-choice'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './petit-bac-setup.sass'
 
@@ -205,6 +206,22 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
   const [ownWrittenAtFirstDraw] = useState(
     () => new Set(own.map(({ label }) => label))
   )
+  const ownLabels = own.map(({ label }) => label).join('\n')
+  const [lastOwn, setLastOwn] = useState(own)
+  const lastOwnLabels = lastOwn.map(({ label }) => label).join('\n')
+
+  if (own.length > 0 && ownLabels !== lastOwnLabels) {
+    setLastOwn(own)
+  }
+
+  const hasOwn = own.length > 0
+  const shownOwn = hasOwn ? own : lastOwn
+  const ownBox = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({
+    box: ownBox,
+    shape: shownOwn.map(({ label }) => label).join('\n')
+  })
 
   const submit = (next: PetitBacCategory[]) => {
     if (
@@ -260,12 +277,17 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
         selectedKeys={picked}
       />
 
-      {own.length > 0 && (
+      <div
+        className='own-box'
+        data-open={hasOwn || undefined}
+        inert={!hasOwn}
+        ref={ownBox}
+      >
         <ul
           aria-label={translate('petitbac.setup.own')}
           className='own-categories'
         >
-          {own.map(({ label }) => (
+          {shownOwn.map(({ label }) => (
             <li
               data-arrived={!ownWrittenAtFirstDraw.has(label) || undefined}
               key={label}
@@ -292,7 +314,7 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
             </li>
           ))}
         </ul>
-      )}
+      </div>
 
       <form
         className='add'

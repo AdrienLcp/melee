@@ -1,4 +1,6 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -42,10 +44,16 @@
       .deck-note
         grid-column: 2 / -1
 
+    .entry-body
+      @include reshape.cross-fades-on-reshape
+
     .entry-settings
       display: flex
       flex-direction: column
       gap: var(--space-m)
+
+      > .hint-fold
+        @include fold.opens-in-column(var(--space-m))
 
     .fixed
       @include typography.caption

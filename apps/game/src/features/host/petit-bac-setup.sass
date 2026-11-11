@@ -1,4 +1,5 @@
 @use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -30,6 +31,10 @@
     // column, so its gap is taken back with it.
     .fold
       @include fold.opens-in-column
+
+    .own-box
+      @include fold.opens-in-column
+      @include reshape.cross-fades-on-reshape
 
     .drawn-lines,
     .fixed-categories

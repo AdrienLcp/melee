@@ -265,6 +265,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   }
 
   const offersModes = isNextRound && offeredModes.length > 1
+  const editsSheet = !isSheetOnStage && !isRoundInPlay
+  const preparesKey = editsSheet && isNextRound
 
   const { openEnded: openEndedSecondsLabel, seconds: secondsLabel } =
     useDurationLabels()
@@ -399,50 +401,64 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {game?.kind === 'slate' && !isSheetOnStage && (
-        <NumberField
-          className='item-count'
-          isDisabled={isDisabled}
-          label={translate('slate.items.label')}
-          maxValue={MAX_SLATE_ITEMS}
-          minValue={MIN_SLATE_ITEMS}
-          onChange={(itemCount) => {
-            if (Number.isInteger(itemCount)) {
-              onChange({ ...settings, game: { ...game, itemCount } })
-            }
-          }}
-          value={game.itemCount}
-        />
-      )}
+      {game?.kind === 'slate' && (
+        <>
+          <div
+            className='fold'
+            data-open={!isSheetOnStage || undefined}
+            inert={isSheetOnStage}
+          >
+            <NumberField
+              className='item-count'
+              isDisabled={isDisabled}
+              label={translate('slate.items.label')}
+              maxValue={MAX_SLATE_ITEMS}
+              minValue={MIN_SLATE_ITEMS}
+              onChange={(itemCount) => {
+                if (Number.isInteger(itemCount)) {
+                  onChange({ ...settings, game: { ...game, itemCount } })
+                }
+              }}
+              value={game.itemCount}
+            />
+          </div>
 
-      {/*
-        The lobby's copy of the editor. Once the sheets are open the console
-        carries one beside the answer key, sized to the sheet as it has grown.
-      */}
-      {game?.kind === 'slate' && !isSheetOnStage && !isRoundInPlay && (
-        <SlateLabelsEditor
-          isDisabled={isDisabled}
-          itemCount={game.itemCount}
-          labels={game.labels}
-          onChange={(labels) => {
-            onChange({ ...settings, game: { ...game, labels } })
-          }}
-        />
-      )}
+          {/*
+            The lobby's copy of the editor. Once the sheets are open the
+            console carries one beside the answer key, sized to the sheet as it
+            has grown.
+          */}
+          <div
+            className='fold'
+            data-open={editsSheet || undefined}
+            inert={!editsSheet}
+          >
+            <SlateLabelsEditor
+              isDisabled={isDisabled}
+              itemCount={game.itemCount}
+              labels={game.labels}
+              onChange={(labels) => {
+                onChange({ ...settings, game: { ...game, labels } })
+              }}
+            />
+          </div>
 
-      {game?.kind === 'slate' &&
-        isNextRound &&
-        !isSheetOnStage &&
-        !isRoundInPlay && (
-          <SlateKeyEditor
-            hint={translate('slate.key.hint')}
-            isDisabled={false}
-            itemCount={game.itemCount}
-            keys={preparedSlateKeys}
-            labels={game.labels}
-            onSetKey={onPrepareSlateKey}
-          />
-        )}
+          <div
+            className='fold'
+            data-open={preparesKey || undefined}
+            inert={!preparesKey}
+          >
+            <SlateKeyEditor
+              hint={translate('slate.key.hint')}
+              isDisabled={false}
+              itemCount={game.itemCount}
+              keys={preparedSlateKeys}
+              labels={game.labels}
+              onSetKey={onPrepareSlateKey}
+            />
+          </div>
+        </>
+      )}
 
       {game?.kind === 'quiz' && (
         <QuestionBankSettings

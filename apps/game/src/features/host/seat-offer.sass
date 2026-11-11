@@ -1,5 +1,6 @@
 // Side-effect module: the component's rules, in the components layer.
 
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -44,6 +45,9 @@
 
     .title
       @include typography.label
+
+    .naming
+      @include reshape.cross-fades-on-reshape
 
     .as,
     .cost

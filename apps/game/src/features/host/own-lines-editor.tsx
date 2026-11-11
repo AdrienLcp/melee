@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { OwnLinesGame } from '@melee/protocol/deck'
 
@@ -13,6 +13,7 @@ import { CrossIcon, PlusIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { setOwnLines, useOwnLines } from './use-own-lines'
 import { useRowArrivals } from './use-row-arrivals'
 
@@ -36,7 +37,18 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
   }
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
   const [fresh, setFresh] = useState('')
-  const { isArriving, settleOnEnd } = useRowArrivals(lines.length)
+  const [lastLines, setLastLines] = useState(lines)
+
+  if (lines.length > 0 && lines !== lastLines) {
+    setLastLines(lines)
+  }
+
+  const hasLines = lines.length > 0
+  const shownLines = hasLines ? lines : lastLines
+  const { isArriving, settleOnEnd } = useRowArrivals(shownLines.length)
+  const linesBox = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({ box: linesBox, shape: String(shownLines.length) })
   const toCome = lines.filter((line) => !line.isPlayed).length
 
   const add = () => {
@@ -68,9 +80,14 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
         </span>
       </header>
       <p className='hint'>{translate(`${game}.own.description`)}</p>
-      {lines.length > 0 && (
+      <div
+        className='lines-box'
+        data-open={hasLines || undefined}
+        inert={!hasLines}
+        ref={linesBox}
+      >
         <ol className='lines'>
-          {lines.map((line, at) => (
+          {shownLines.map((line, at) => (
             <li
               data-arrived={isArriving(at) || undefined}
               data-played={line.isPlayed || undefined}
@@ -129,7 +146,7 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
             </li>
           ))}
         </ol>
-      )}
+      </div>
       <form
         className='add'
         onSubmit={(event) => {

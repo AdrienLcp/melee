@@ -198,6 +198,14 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       view.phase === 'lobby' &&
       isOnReadyMade({ lineUp, settings: view.settings })
   )
+  const [lastReadyMade, setLastReadyMade] = useState(
+    loadedReadyMade?.id ?? null
+  )
+
+  if (loadedReadyMade !== undefined && loadedReadyMade.id !== lastReadyMade) {
+    setLastReadyMade(loadedReadyMade.id)
+  }
+
   const planned = plannedFrom('list')
   const plan = usePlanGame({
     onPlanned: planned,
@@ -314,16 +322,24 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           />
         </>
       ) : (
-        <>
-          {loadedReadyMade !== undefined && (
-            <ReadyMadeNote
-              id={loadedReadyMade.id}
-              onChange={() => {
-                onSettingsChange(withNothingPlanned(view.settings))
-                onReadyMade(null)
-              }}
-            />
-          )}
+        <div className='planned'>
+          <div
+            className='ready-made-fold'
+            data-open={loadedReadyMade !== undefined || undefined}
+            inert={loadedReadyMade === undefined}
+          >
+            <div>
+              {lastReadyMade !== null && (
+                <ReadyMadeNote
+                  id={lastReadyMade}
+                  onChange={() => {
+                    onSettingsChange(withNothingPlanned(view.settings))
+                    onReadyMade(null)
+                  }}
+                />
+              )}
+            </div>
+          </div>
           <EveningRounds
             isLive={isLive}
             onAdd={() => {
@@ -340,7 +356,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
             returnedFrom={page.returnedFrom}
             view={view}
           />
-        </>
+        </div>
       )}
       {(view.settings.game !== null ||
         (view.phase === 'lobby' && saved.evenings.length > 0)) && (

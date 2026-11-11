@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { GameKind } from '@melee/protocol/game'
@@ -9,6 +9,8 @@ import { readStoredNickname } from '@/infrastructure/storage/preferences-storage
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './seat-offer.sass'
 
@@ -51,6 +53,9 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
   const nickname = draft.trim()
+  const naming = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({ box: naming, shape: isNaming ? 'naming' : 'named' })
 
   return (
     <div
@@ -70,30 +75,32 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
       >
         <div className='offer'>
           <p className='title'>{translate('host.seat.offer')}</p>
-          {isNaming ? (
-            <TextField
-              autoComplete='nickname'
-              autoFocus={remembered !== ''}
-              enterKeyHint='go'
-              label={translate('join.rightAway.name')}
-              maxLength={NICKNAME_MAX_LENGTH}
-              onChange={setDraft}
-              value={draft}
-            />
-          ) : (
-            <p className='as'>
-              <span className='seated-as'>
-                {translate('join.rightAway.as', { nickname })}
-              </span>
-              <Button
-                onPress={() => setIsNaming(true)}
-                size='small'
-                variant='underlined'
-              >
-                {translate('join.rightAway.change')}
-              </Button>
-            </p>
-          )}
+          <div className='naming' ref={naming}>
+            {isNaming ? (
+              <TextField
+                autoComplete='nickname'
+                autoFocus={remembered !== ''}
+                enterKeyHint='go'
+                label={translate('join.rightAway.name')}
+                maxLength={NICKNAME_MAX_LENGTH}
+                onChange={setDraft}
+                value={draft}
+              />
+            ) : (
+              <p className='as'>
+                <span className='seated-as'>
+                  {translate('join.rightAway.as', { nickname })}
+                </span>
+                <Button
+                  onPress={() => setIsNaming(true)}
+                  size='small'
+                  variant='underlined'
+                >
+                  {translate('join.rightAway.change')}
+                </Button>
+              </p>
+            )}
+          </div>
           <p className='cost'>
             {translate(
               game === 'reflex' || game === 'innerclock'

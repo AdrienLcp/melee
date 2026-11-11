@@ -1,9 +1,12 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/typography'
 
 @layer components
   .own-lines
-    display: grid
+    display: flex
+    flex-direction: column
     gap: var(--space-s)
 
     header
@@ -31,6 +34,10 @@
     .hint
       max-inline-size: var(--measure)
       text-wrap: pretty
+
+    .lines-box
+      @include fold.opens-in-column
+      @include reshape.cross-fades-on-reshape
 
     .lines
       display: grid

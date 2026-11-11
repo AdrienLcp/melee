@@ -32,6 +32,7 @@ import type {
   Translate
 } from '@/presentation/i18n/translation'
 
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { usePlaylistPreview } from './use-playlist-preview'
 
 import './playlist-picker.sass'
@@ -182,6 +183,25 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
     settings.difficulty
   )
   const draftSource = sourceFromDraft(draft)
+  const isRefused = preview.status === 'failed'
+  const isReady = preview.status === 'found' && !isCatalogue
+  const [lastRefusal, setLastRefusal] = useState<PlainTranslationKey | null>(
+    null
+  )
+  const [lastCount, setLastCount] = useState(0)
+
+  if (preview.status === 'failed' && preview.error !== lastRefusal) {
+    setLastRefusal(preview.error)
+  }
+
+  if (preview.status === 'found' && preview.count !== lastCount) {
+    setLastCount(preview.count)
+  }
+
+  const typedSource = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({ box: typedSource, shape: lastTypedPlace })
+
   const lastSaved = useRef(JSON.stringify(settings.source))
 
   const save = (saved: Draft): void => {
@@ -340,41 +360,43 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
             }
           }}
         >
-          {lastTypedPlace === 'search' ? (
-            <>
-              <TextField
-                label={translate('blindtest.source.query')}
-                onBlur={() => {
-                  save(draft)
-                }}
-                onChange={(query) => {
-                  revise({ query })
-                }}
-                value={draft.query}
-              />
-              {/* What is typed here leaves the site, so the field names
-                  where it goes, as the playlist's hint already does. */}
-              <p className='hint' key='query'>
-                {translate('blindtest.source.queryHint')}
-              </p>
-            </>
-          ) : (
-            <>
-              <TextField
-                label={translate('blindtest.source.playlistId')}
-                onBlur={() => {
-                  save(draft)
-                }}
-                onChange={(playlistId) => {
-                  revise({ playlistId })
-                }}
-                value={draft.playlistId}
-              />
-              <p className='hint' key='playlist'>
-                {translate('blindtest.source.playlistIdHint')}
-              </p>
-            </>
-          )}
+          <div className='typed-source' ref={typedSource}>
+            {lastTypedPlace === 'search' ? (
+              <>
+                <TextField
+                  label={translate('blindtest.source.query')}
+                  onBlur={() => {
+                    save(draft)
+                  }}
+                  onChange={(query) => {
+                    revise({ query })
+                  }}
+                  value={draft.query}
+                />
+                {/* What is typed here leaves the site, so the field names
+                    where it goes, as the playlist's hint already does. */}
+                <p className='hint' key='query'>
+                  {translate('blindtest.source.queryHint')}
+                </p>
+              </>
+            ) : (
+              <>
+                <TextField
+                  label={translate('blindtest.source.playlistId')}
+                  onBlur={() => {
+                    save(draft)
+                  }}
+                  onChange={(playlistId) => {
+                    revise({ playlistId })
+                  }}
+                  value={draft.playlistId}
+                />
+                <p className='hint' key='playlist'>
+                  {translate('blindtest.source.playlistIdHint')}
+                </p>
+              </>
+            )}
+          </div>
           <Button
             isDisabled={draftSource === null}
             isPending={preview.status === 'previewing'}
@@ -386,19 +408,23 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         </Form>
       </div>
 
-      {preview.status === 'failed' && (
-        <p className='error' role='alert'>
-          {translate(preview.error)}
-        </p>
-      )}
+      <div
+        className='fold'
+        data-open={isRefused || undefined}
+        inert={!isRefused}
+      >
+        <div>
+          <p className='error' key={lastRefusal} role='alert'>
+            {lastRefusal !== null && translate(lastRefusal)}
+          </p>
+        </div>
+      </div>
 
-      {preview.status === 'found' && !isCatalogue && (
-        <p className='ready'>
-          {translate('blindtest.source.ready', {
-            count: preview.count
-          })}
+      <div className='fold' data-open={isReady || undefined} inert={!isReady}>
+        <p className='ready' key={lastCount}>
+          {translate('blindtest.source.ready', { count: lastCount })}
         </p>
-      )}
+      </div>
     </section>
   )
 }

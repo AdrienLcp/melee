@@ -178,15 +178,12 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     takenOut.roundIndex === roundIndex
       ? takenOut
       : null
-  const [shownUndo, setShownUndo] = useState(undoable)
-  const [leavingUndo, setLeavingUndo] = useState<TakenOut | null>(null)
+  const [lastUndo, setLastUndo] = useState(undoable)
 
-  if (undoable !== shownUndo) {
-    setLeavingUndo(undoable === null ? shownUndo : null)
-    setShownUndo(undoable)
+  if (undoable !== null && undoable !== lastUndo) {
+    setLastUndo(undoable)
   }
 
-  const drawnUndo = undoable ?? leavingUndo
   const change = (settings: RoomSettings) => {
     setTakenOut(null)
     onSettingsChange(settings)
@@ -238,8 +235,13 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     }
   }
 
-  const addRow = lineUp.length < LINE_UP_MAX_ENTRIES && (
-    <AriaButton className='round' isDisabled={!isLive} onPress={onAdd}>
+  const canAdd = lineUp.length < LINE_UP_MAX_ENTRIES
+  const addRow = (
+    <AriaButton
+      className='round'
+      isDisabled={!isLive || !canAdd}
+      onPress={onAdd}
+    >
       <span className='band'>
         <PlusIcon />
       </span>
@@ -264,38 +266,32 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         isEveningOver={isEveningOver}
         view={view}
       />
-      {drawnUndo !== null && (
-        <div
-          className='evening-undo'
-          data-leaving={leavingUndo !== null || undefined}
-          // Only while leaving: a no-op set at the entry's end stays queued
-          // and, replayed later, erases the leaving this render derives.
-          onAnimationEnd={
-            leavingUndo === null
-              ? undefined
-              : (event) => {
-                  if (event.target === event.currentTarget) {
-                    setLeavingUndo(null)
-                  }
+      <div
+        className='undo-fold'
+        data-open={undoable !== null || undefined}
+        inert={undoable === null}
+      >
+        <div>
+          <div className='evening-undo' role='status'>
+            <span key={lastUndo?.name}>
+              {lastUndo !== null &&
+                translate('host.evening.takenOut', { name: lastUndo.name })}
+            </span>
+            <Button
+              isDisabled={!isLive || undoable === null}
+              onPress={() => {
+                if (undoable !== null) {
+                  change(undoable.settings)
                 }
-          }
-          role='status'
-        >
-          <span>
-            {translate('host.evening.takenOut', { name: drawnUndo.name })}
-          </span>
-          <Button
-            isDisabled={!isLive || leavingUndo !== null}
-            onPress={() => {
-              change(drawnUndo.settings)
-            }}
-            size='small'
-            variant='underlined'
-          >
-            {translate('host.evening.undo')}
-          </Button>
+              }}
+              size='small'
+              variant='underlined'
+            >
+              {translate('host.evening.undo')}
+            </Button>
+          </div>
         </div>
-      )}
+      </div>
       <div className='rounds' data-ordered={isOrdered || undefined} ref={box}>
         {!isOrdered && onlyEntry !== undefined && (
           <ul aria-label={roundsLabel} className='only-list'>
@@ -330,23 +326,22 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
             upcoming={upcoming}
           />
         )}
-        {addRow !== false && <div className='add'>{addRow}</div>}
+        <div className='add' data-open={canAdd || undefined} inert={!canAdd}>
+          <div>{addRow}</div>
+        </div>
       </div>
-      {!isEveningOver && (
-        <EveningLevel
-          isLive={isLive}
-          onSettingsChange={change}
-          settings={view.settings}
-        />
-      )}
-      {lineUp.length > 1 && (
-        <OverTheCount
-          coming={coming}
-          isLive={isLive}
-          onSettingsChange={change}
-          settings={view.settings}
-        />
-      )}
+      <EveningLevel
+        isEveningOver={isEveningOver}
+        isLive={isLive}
+        onSettingsChange={change}
+        settings={view.settings}
+      />
+      <OverTheCount
+        coming={isOrdered ? coming : []}
+        isLive={isLive}
+        onSettingsChange={change}
+        settings={view.settings}
+      />
     </section>
   )
 }
@@ -825,12 +820,14 @@ const DrawnRounds: React.FC<{
  * two games take a level: one game's level is set on its own page.
  */
 const EveningLevel: React.FC<{
+  /** Folds the level away once the last round is played. */
+  isEveningOver: boolean
   isLive: boolean
   onSettingsChange: (settings: RoomSettings) => void
   settings: RoomSettings
-}> = ({ isLive, onSettingsChange, settings }) => {
+}> = ({ isEveningOver, isLive, onSettingsChange, settings }) => {
   const shown = eveningDifficultyOf(settings.lineUp)
-  const isOpen = shown !== null
+  const isOpen = shown !== null && !isEveningOver
   const [lastShown, setLastShown] = useState(shown)
 
   if (shown !== null && shown !== lastShown) {
@@ -855,14 +852,21 @@ const EveningLevel: React.FC<{
   )
 }
 
-/** How many rounds the count lacks for every entry the host brought. */
-const OverTheCount: React.FC<{
+/** What the count lacks, as the strip last said it while it was open. */
+type Shortfall = {
+  count: number
+  needed: number
+  raised: number
+  total: number
+}
+
+const shortfallOf = ({
+  coming,
+  roundCount
+}: {
   coming: readonly ComingRound[]
-  isLive: boolean
-  onSettingsChange: (settings: RoomSettings) => void
-  settings: RoomSettings
-}> = ({ coming, isLive, onSettingsChange, settings }) => {
-  const translate = useTranslate()
+  roundCount: number | null
+}): Shortfall | null => {
   const pastTheEnd = coming.filter((round) => round.isPastTheEnd)
   const lastPast = pastTheEnd.at(-1)
 
@@ -871,34 +875,72 @@ const OverTheCount: React.FC<{
   }
 
   const needed = lastPast.roundAt + 1
-  const raised = roundCountHolding(needed)
+
+  return {
+    count: pastTheEnd.length,
+    needed,
+    raised: roundCountHolding(needed),
+    total: roundCount ?? 0
+  }
+}
+
+/**
+ * How many rounds the count lacks for every entry the host brought, folded
+ * away while it lacks none.
+ */
+const OverTheCount: React.FC<{
+  /** The rounds still to come, empty while the line-up holds one entry. */
+  coming: readonly ComingRound[]
+  isLive: boolean
+  onSettingsChange: (settings: RoomSettings) => void
+  settings: RoomSettings
+}> = ({ coming, isLive, onSettingsChange, settings }) => {
+  const translate = useTranslate()
+  const shortfall = shortfallOf({ coming, roundCount: settings.roundCount })
+  const [lastShortfall, setLastShortfall] = useState(shortfall)
+
+  if (
+    shortfall !== null &&
+    JSON.stringify(shortfall) !== JSON.stringify(lastShortfall)
+  ) {
+    setLastShortfall(shortfall)
+  }
+
+  const shown = shortfall ?? lastShortfall
+  const isOpen = shortfall !== null
 
   return (
-    <div className='evening-chance'>
-      <span className='count'>{pastTheEnd.length}</span>
-      <span className='said'>
-        <span className='headline'>
-          {translate('host.evening.chance.over', {
-            total: settings.roundCount ?? 0
-          })}
+    <div
+      className='chance-fold'
+      data-open={isOpen || undefined}
+      inert={!isOpen}
+    >
+      <div className='evening-chance'>
+        <span className='count'>{shown?.count}</span>
+        <span className='said'>
+          <span className='headline'>
+            {translate('host.evening.chance.over', {
+              total: shown?.total ?? 0
+            })}
+          </span>
+          <span className='hint'>
+            {translate('host.evening.chance.overHint')}
+          </span>
         </span>
-        <span className='hint'>
-          {translate('host.evening.chance.overHint')}
-        </span>
-      </span>
-      {raised >= needed && (
-        <Button
-          className='raise'
-          isDisabled={!isLive}
-          onPress={() => {
-            onSettingsChange({ ...settings, roundCount: raised })
-          }}
-          size='small'
-          variant='outlined'
-        >
-          {translate('host.evening.chance.raise', { count: raised })}
-        </Button>
-      )}
+        {shown !== null && shown.raised >= shown.needed && (
+          <Button
+            className='raise'
+            isDisabled={!isLive || !isOpen}
+            onPress={() => {
+              onSettingsChange({ ...settings, roundCount: shown.raised })
+            }}
+            size='small'
+            variant='outlined'
+          >
+            {translate('host.evening.chance.raise', { count: shown.raised })}
+          </Button>
+        )}
+      </div>
     </div>
   )
 }
