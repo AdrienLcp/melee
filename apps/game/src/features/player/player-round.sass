@@ -54,10 +54,10 @@
     display: inline
 
 @layer components
-  // A still copy (`form-leaving-copy.ts`): a clone replays every entrance it
-  // holds, and would blank what it is meant to fade out, whatever rule of the
-  // form's started it.
-  .form-leaving-copy *
+  // A still copy (`form-leaving-copy.ts`, `countdown-leaving-copy.ts`): a
+  // clone replays every entrance it holds, and would blank what it is meant
+  // to fade out, whatever rule started it.
+  :is(.form-leaving-copy, .countdown-leaving-copy) *
     animation: none !important
     transition: none !important
 

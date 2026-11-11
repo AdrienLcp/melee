@@ -39,6 +39,7 @@ import { useSeatPawn } from '@/presentation/room-actions/use-seat-pawn'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
+import { fadeOffTheCountdown } from './countdown-leaving-copy'
 import { LiftedNotice } from './lifted-notice'
 import { PauseHold } from './pause-hold'
 import { PlayerRound, showsTheHostAwayCard } from './player-round'
@@ -72,7 +73,11 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [requestedNickname, setRequestedNickname] = useState<string | null>(
     null
   )
-  const connection = usePlayerConnection({ nickname, roomCode })
+  const connection = usePlayerConnection({
+    fadeOffTheCountdown,
+    nickname,
+    roomCode
+  })
   const { clearError, send, view } = connection
 
   // Offered to the menu above, which owns the only way off this screen. The

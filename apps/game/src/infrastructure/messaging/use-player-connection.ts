@@ -19,13 +19,17 @@ export type PlayerConnection = RoomSocket & {
  * frame the join form would have to hide.
  */
 export const usePlayerConnection = ({
+  fadeOffTheCountdown,
   nickname,
   roomCode
 }: {
+  /** Lays a still copy of the countdown as drawn over the round it counts in, whose first press a swap would hold. */
+  fadeOffTheCountdown: () => void
   nickname: string | null
   roomCode: RoomCode
 }): PlayerConnection => {
   const [view, receiveView] = useRoomView<PlayerRoomView>({
+    fadeOffWhatIsDrawn: fadeOffTheCountdown,
     landingOf: playerScreenLanding
   })
 

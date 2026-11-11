@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { swapsThePlayerScreen } from './player-screen-swap'
+import { playerScreenLanding, swapsThePlayerScreen } from './player-screen-swap'
 
 const at = (
   phase: 'buzzed' | 'countdown' | 'finished' | 'lobby' | 'playing' | 'revealed',
@@ -76,5 +76,25 @@ describe('swapsThePlayerScreen', () => {
 
   it('[screen] draws the first view as it comes', () => {
     expect(swapsThePlayerScreen({ from: null, to: at('revealed') })).toBe(false)
+  })
+})
+
+describe('playerScreenLanding', () => {
+  it('[screen] fades the countdown off over the round it counted in, which takes presses at once', () => {
+    expect(
+      playerScreenLanding({ from: at('countdown'), to: at('playing') })
+    ).toBe('faded-over')
+  })
+
+  it('[screen] draws the floor changing hands as it comes', () => {
+    expect(playerScreenLanding({ from: at('buzzed'), to: at('playing') })).toBe(
+      'drawn'
+    )
+  })
+
+  it('[screen] swaps what swapsThePlayerScreen lists', () => {
+    expect(
+      playerScreenLanding({ from: at('playing'), to: at('revealed') })
+    ).toBe('swapped')
   })
 })

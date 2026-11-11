@@ -50,8 +50,27 @@ export const swapsThePlayerScreen = ({
   )
 }
 
-/** How a snapshot lands on a player's screen: swapped where `swapsThePlayerScreen` says, drawn as it comes everywhere else. */
+const countsTheRoundIn = ({
+  from,
+  to
+}: {
+  from: PlayerScreen | null
+  to: PlayerScreen
+}): boolean => from?.phase === 'countdown' && to.phase === 'playing'
+
+/**
+ * How a snapshot lands on a player's screen: swapped where
+ * `swapsThePlayerScreen` says, faded over where the countdown gives way to the
+ * round it counted in — whose first press a swap would hold — and drawn as it
+ * comes everywhere else.
+ */
 export const playerScreenLanding = (change: {
   from: PlayerScreen | null
   to: PlayerScreen
-}): ViewLanding => (swapsThePlayerScreen(change) ? 'swapped' : 'drawn')
+}): ViewLanding => {
+  if (swapsThePlayerScreen(change)) {
+    return 'swapped'
+  }
+
+  return countsTheRoundIn(change) ? 'faded-over' : 'drawn'
+}
