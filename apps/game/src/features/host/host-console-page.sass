@@ -511,9 +511,13 @@
           > .round-progress
             inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
 
-        // A seat's own field takes the column under the menu, so it stands at
-        // the foot of it: the line saying what was banked or missed starts
-        // below the menu, and the box keeps the height its layout is sized by.
+        // A seat's own field takes the column under the menu, so the menu's
+        // corner is taken off the top of its box: the line saying what was
+        // banked or missed starts below the menu, and the form gives way to
+        // the height left rather than to the column's.
+        > .stage.playing:not([data-map-question]) > .answer-form:is(.typed, .estimate-answer)
+          padding-block-start: calc(var(--control-height) + var(--space-xs))
+
         > .stage.playing:not([data-map-question]) > .answer-form.typed
           justify-content: flex-end
 

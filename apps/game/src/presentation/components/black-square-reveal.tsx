@@ -13,6 +13,7 @@ import {
   blackSquareCellStyle,
   blackSquareGridStyle
 } from '@/helpers/black-square-cell-place'
+import { scaleForLength } from '@/helpers/length-scale'
 import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -26,9 +27,11 @@ import './black-square-reveal.sass'
 /** The longest name the grid's type was fitted on; nine in ten of the bank's answers are no longer. */
 const NAME_LENGTH_AT_FULL_SIZE = 26
 
-/** A name's area grows with its length, so its size shrinks by the square root. */
 const nameScaleOf = (name: string): number =>
-  Math.min(1, Math.sqrt(NAME_LENGTH_AT_FULL_SIZE / name.length))
+  scaleForLength({
+    length: name.length,
+    lengthAtFullSize: NAME_LENGTH_AT_FULL_SIZE
+  })
 
 type BlackSquareRevealProps = {
   players: readonly PublicPlayer[]

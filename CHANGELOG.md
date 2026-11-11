@@ -243,6 +243,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A seated host's field and a long name keep to a phone lying
+  down.** On a console held sideways, what a guess banked or missed rose
+  under the menu once its column ran short: the menu's corner now comes off
+  the top of the field's box, and the field gives way to the height left. And
+  the name the estimate asks about shrinks with its length past twenty
+  characters, the way black square's answers do, so _tour centrale de
+  radio-télédiffusion de Pékin_ no longer runs the card past the screen's top.
 - `[Game]` **The last moves no longer push anything off a phone.** A piece
   traded away kept a piece nested in it hit-testable and visible to the
   checks (Petit Bac's stop under its banner, black square's word under its

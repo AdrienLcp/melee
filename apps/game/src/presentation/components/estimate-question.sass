@@ -18,7 +18,7 @@
     .name
       @include typography.billboard
 
-      font-size: var(--estimate-name-size, clamp(var(--text-xl), calc(var(--stage-unit) * 6), 3rem))
+      font-size: max(var(--text-xs), calc(var(--estimate-name-size, clamp(var(--text-xl), calc(var(--stage-unit) * 6), 3rem)) * var(--name-scale, 1)))
       margin: 0
       overflow-wrap: anywhere
       text-wrap: balance
