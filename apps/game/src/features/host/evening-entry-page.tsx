@@ -15,6 +15,8 @@ import { movedToEntry } from '@melee/core/room/room-settings'
 
 import { DeckNote } from '@/presentation/components/deck-note'
 import { GameIcon } from '@/presentation/components/icons'
+import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
@@ -72,6 +74,19 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
 
   useCrossFadeOnReshape({ box: body, shape: isFixed ? 'fixed' : 'open' })
 
+  const stamp =
+    entry === undefined
+      ? null
+      : eveningStampOf({
+          entry,
+          isEveningOver: view.phase === 'revealed' && isLastRound(view),
+          isNext,
+          isOnlyEntry: settings.lineUp.length < 2,
+          phase: view.phase,
+          played
+        })
+  const shownStamp = useLastShown(stamp)
+
   if (entry === undefined) {
     return <EveningPage onBack={onBack} />
   }
@@ -94,14 +109,6 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
           }
     )
   }
-  const stamp = eveningStampOf({
-    entry,
-    isEveningOver: view.phase === 'revealed' && isLastRound(view),
-    isNext,
-    isOnlyEntry: settings.lineUp.length < 2,
-    phase: view.phase,
-    played
-  })
   const deck = view.deckSummaries[at] ?? null
   const awaitsSlateKey = entry.kind === 'slate' && !isNext
 
@@ -120,7 +127,16 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
               : 'host.evening.once'
           )}
         </p>
-        {stamp !== null && <EveningStamp kind={stamp} played={played} />}
+        {/* A stable piece around the stamp, whose own key swaps it in. */}
+        <LeavesInPlace value={stamp === null ? null : 'stamp'}>
+          {() => (
+            <span className='stamp-piece'>
+              {shownStamp !== null && (
+                <EveningStamp kind={shownStamp} played={played} />
+              )}
+            </span>
+          )}
+        </LeavesInPlace>
         {deck !== null && (
           <DeckNote game={entry.kind} left={deck.size - deck.played} />
         )}
