@@ -40,6 +40,39 @@ type Playing = {
   until: number
 }
 
+const heightFrames = ({
+  from,
+  to
+}: {
+  from: number
+  to: string
+}): Keyframe[] => [
+  // Border-box in both frames, as the observer measures it: a padded box drew
+  // its padding twice over and dropped by it as the glide ended.
+  { boxSizing: 'border-box', height: `${from}px` },
+  { boxSizing: 'border-box', height: to }
+]
+
+/**
+ * Whether this box's height eases to `auto` at all: an engine may interpolate
+ * the keyword and still not for every box — the own lines' fold, a grid item
+ * of one `1fr` row, flipped to its new height at once — so a linear glide is
+ * sampled halfway and dropped.
+ */
+const easesToAuto = ({ box, from }: { box: HTMLElement; from: number }) => {
+  const sample = box.animate(heightFrames({ from, to: 'auto' }), 1000)
+
+  sample.currentTime = 500
+
+  const halfway = box.getBoundingClientRect().height
+
+  sample.cancel()
+
+  const settled = box.getBoundingClientRect().height
+
+  return Math.abs(halfway - from) >= 1 && Math.abs(halfway - settled) >= 1
+}
+
 const glideHeight = ({
   box,
   from,
@@ -57,19 +90,15 @@ const glideHeight = ({
   const easeOut =
     style.getPropertyValue('--ease-out').trim() ||
     'cubic-bezier(0.16, 1, 0.3, 1)'
+  const target =
+    settledHeight(to) === 'auto' && easesToAuto({ box, from })
+      ? 'auto'
+      : `${to}px`
 
-  return box.animate(
-    [
-      // Border-box in both frames, as the observer measures it: a padded
-      // box drew its padding twice over and dropped by it as the glide ended.
-      { boxSizing: 'border-box', height: `${from}px` },
-      { boxSizing: 'border-box', height: settledHeight(to) }
-    ],
-    {
-      duration: millisecondsOf(style.getPropertyValue('--transition-base')),
-      easing: to > from ? easeOut : easeInOf(style)
-    }
-  )
+  return box.animate(heightFrames({ from, to: target }), {
+    duration: millisecondsOf(style.getPropertyValue('--transition-base')),
+    easing: to > from ? easeOut : easeInOf(style)
+  })
 }
 
 const play = ({
@@ -92,32 +121,44 @@ const play = ({
 
   const { copy } = before
 
-  copy.style.background = groundBehind(box)
-  // As tall as the box at least, all through its glide, and over the margin
-  // its clip leaves for a focus ring: a copy shorter than the new content left
-  // what stood below it drawn at once, so a block reshaped from nothing — a
-  // fixed entry's note over an empty sheet — cut in, and a switch arriving
-  // under the box's edge showed its first eight pixels. Its rows stay at their
-  // own height rather than stretching to it.
-  copy.style.alignContent = 'start'
-  copy.style.minBlockSize = `calc(100% + ${style.overflowClipMargin || '0px'})`
+  const ground = groundBehind(box)
+
+  copy.style.background = ground
   box.append(copy)
+
+  // The rest of the box, down over the margin its clip leaves for a focus
+  // ring, is covered too: the copy is only as tall as what it shows, so what
+  // the new content held below it was drawn at once — the note of an entry
+  // played out over an empty sheet cut in, and a switch arriving under the
+  // box's edge showed its first eight pixels. Stretching the copy instead
+  // stretched its rows.
+  const cover = document.createElement('div')
+
+  cover.className = COPY_CLASS
+  cover.setAttribute('aria-hidden', 'true')
+  cover.style.background = ground
+  cover.style.insetBlockStart = `${copy.getBoundingClientRect().height}px`
+  cover.style.insetBlockEnd = `calc(-1 * ${style.overflowClipMargin || '0px'})`
+  box.append(cover)
+
   // Gone on `--ease-in`: on `--ease-out` the old list was nine tenths faded
   // in the first frames and read as a cut, and a box that opens still holds
   // the old list over the new rows until it has room for them.
-  copy
-    .animate([{ opacity: 1 }, { opacity: 0 }], {
-      duration,
-      easing: easeInOf(style)
-    })
-    .finished.then(
-      () => {
-        copy.remove()
-      },
-      () => {
-        copy.remove()
-      }
-    )
+  for (const layer of [copy, cover]) {
+    layer
+      .animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration,
+        easing: easeInOf(style)
+      })
+      .finished.then(
+        () => {
+          layer.remove()
+        },
+        () => {
+          layer.remove()
+        }
+      )
+  }
 
   return {
     glide: glideHeight({

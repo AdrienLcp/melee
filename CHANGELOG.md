@@ -138,7 +138,8 @@ one part.
   gives back, the level and the presses under them sliding with the list.
   What such a block takes on fades in under the old one rather than standing
   below it from the first frame — an entry's _already played_ note, the
-  _Tout public_ switch.
+  _Tout public_ switch — and a question added to a game's own list makes
+  its room instead of pushing the field under it down at once.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
