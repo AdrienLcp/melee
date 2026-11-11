@@ -23,7 +23,8 @@
     "apps/server/src/infrastructure/questions/quantity-bank.json",
     "apps/server/scripts/black-square-themes.ts",
     "apps/server/src/infrastructure/questions/rebus-*.json",
-    "apps/server/src/infrastructure/questions/city-bank.ts"
+    "apps/server/src/infrastructure/questions/city-bank.ts",
+    "apps/server/src/infrastructure/questions/word-bank-*.json"
   ],
   "import": ["@cspell/dict-fr-fr/cspell-ext.json"],
   "language": "en,en-GB",
@@ -107,7 +108,13 @@
         "packages/core/src/countries/country-names-fr.ts",
         "packages/protocol/src/black-square.ts",
         "apps/server/scripts/build-black-square-bank.ts",
-        "apps/server/src/infrastructure/questions/black-square-bank.test.ts"
+        "apps/server/src/infrastructure/questions/black-square-bank.test.ts",
+        "apps/server/scripts/build-word-bank.ts",
+        "docs/plans/66-mystery-word.md",
+        "docs/plans/67-longest-word.md",
+        "apps/server/src/infrastructure/questions/word-bank.test.ts",
+        "packages/core/src/words/*.test.ts",
+        "packages/core/src/mysteryword/*.test.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -179,7 +186,12 @@
         "adzuki",
         "borlotti",
         "Patatas",
-        "Xiaolongbao"
+        "Xiaolongbao",
+        "maisonnee",
+        "zebre",
+        "mxyzzz",
+        "maisôn",
+        "pongo"
       ]
     }
   ],
@@ -647,6 +659,16 @@
     "Vichera",
     "Vishera",
     "Zidane",
-    "zidane"
+    "zidane",
+    "mysteryword",
+    "longestword",
+    "Lexique",
+    "Brysbaert",
+    "Ferrand",
+    "cgram",
+    "freqfilms",
+    "freqlemfilms",
+    "freqlivres",
+    "efhm"
   ]
 }

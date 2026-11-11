@@ -41,7 +41,8 @@
     "questions:build": "node --import tsx scripts/build-question-bank.ts",
     "silhouettes:build": "node --import tsx scripts/build-silhouette-bank.ts",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "words:build": "node --import tsx scripts/build-word-bank.ts"
   },
   "type": "module",
   "version": "0.1.0"

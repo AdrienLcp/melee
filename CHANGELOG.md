@@ -69,6 +69,16 @@ one part.
   at once no longer beats one inside placed at the bell; among perfect
   answers, the fastest still takes up to ten points more.
 
+### Internal
+
+- `[Server]` **A dictionary for the word games.** `words:build` folds Lexique
+  3.83, ENABLE and SCOWL into `word-bank-fr.json` and `word-bank-en.json`:
+  every form of two to nine letters a try may be (70 101 French, 105 241
+  English), the hidden words of five to eight letters by tier, and the long
+  forms a table would know, front-coded to 236 KB gzipped for both. The
+  mystery word's colours, try checks and pay are in `@melee/core`; nothing
+  plays it yet. `/credits` names the three sources.
+
 ### Features
 
 - `[Shared]` **Plus ou moins and Le juste chiffre know France.** French

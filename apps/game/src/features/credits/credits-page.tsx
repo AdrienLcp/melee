@@ -33,10 +33,21 @@ const LICENCES = {
   mit: {
     name: 'MIT',
     url: 'https://opensource.org/license/mit'
+  },
+  publicDomain: {
+    nameKey: 'credits.licences.publicDomain',
+    url: 'https://creativecommons.org/publicdomain/mark/1.0/'
+  },
+  scowl: {
+    nameKey: 'credits.licences.scowl',
+    url: 'http://wordlist.aspell.net/scowl-readme/'
   }
-} as const
+} as const satisfies Record<string, Licence>
 
-type Licence = (typeof LICENCES)[keyof typeof LICENCES]
+/** A licence a proper name says in every language, or one whose name is a phrase each locale writes its own way. */
+type Licence =
+  | { name: string; url: string }
+  | { nameKey: PlainTranslationKey; url: string }
 
 type QuestionCredit = {
   author: string
@@ -66,9 +77,10 @@ type QuestionCredit = {
  * whatever the room is playing: the credit is for the data that shipped, not
  * for the rows a given evening happened to draw.
  *
- * It mirrors the `attributions` header of `question-bank.json`, which is the
- * machine-readable copy that travels with the data itself. The two are separate
- * because that file is the server's and this is the app's; keep them in step.
+ * It mirrors the `attributions` header of `question-bank.json` and of the two
+ * `word-bank-*.json`, which are the machine-readable copies that travel with
+ * the data itself. They are separate because those files are the server's and
+ * this is the app's; keep them in step.
  */
 const QUESTION_CREDITS: QuestionCredit[] = [
   {
@@ -119,6 +131,27 @@ const QUESTION_CREDITS: QuestionCredit[] = [
     licence: LICENCES.mit,
     source: 'flag-icons',
     sourceUrl: 'https://github.com/lipis/flag-icons'
+  },
+  {
+    author: 'Boris New, Christophe Pallier, Marc Brysbaert and Ludovic Ferrand',
+    changes: 'credits.lexique',
+    licence: LICENCES.ccBySa4,
+    source: 'Lexique 3.83',
+    sourceUrl: 'http://www.lexique.org'
+  },
+  {
+    author: 'Alan Beale, M. Cooper and the ENABLE contributors',
+    changes: 'credits.enable',
+    licence: LICENCES.publicDomain,
+    source: 'ENABLE',
+    sourceUrl: 'https://github.com/dolph/dictionary'
+  },
+  {
+    author: 'Kevin Atkinson',
+    changes: 'credits.scowl',
+    licence: LICENCES.scowl,
+    source: 'SCOWL 2020.12.07',
+    sourceUrl: 'http://wordlist.aspell.net'
   }
 ]
 
@@ -144,7 +177,9 @@ export const CreditsPage: React.FC = () => {
             <p className='author'>{credit.author}</p>
             <p className='licence'>
               <TextLink href={credit.licence.url} target='_blank'>
-                {credit.licence.name}
+                {'nameKey' in credit.licence
+                  ? translate(credit.licence.nameKey)
+                  : credit.licence.name}
               </TextLink>
             </p>
 

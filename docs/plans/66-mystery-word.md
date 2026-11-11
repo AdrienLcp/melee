@@ -1,6 +1,6 @@
 # 66 — Mystery word
 
-**To do.**
+**Half done** — step 1 landed on 11/11/2026; step 2 is next.
 
 A word is hidden, its first letter and its length are on every screen, and
 every seat has six tries to find it on its own screen. Each try is a real word
@@ -24,11 +24,11 @@ for the words.
 
 Settled on 11/11/2026, licences read in the archives themselves:
 
-| Source | Language | Used for | Licence | Owed |
-| --- | --- | --- | --- | --- |
-| Lexique 3.83 (lexique.org) | French | every valid form, and the answers by lemma frequency | CC BY-SA 4.0 | Credit New, Pallier et al.; the derived list stays CC BY-SA |
-| ENABLE | English | every valid form | public domain | nothing |
-| SCOWL 2020.12.07, `english-words.10/20/35` | English | the answers, the size as the tier | permissive, no fee | keep its copyright notice in the bank header |
+| Source                                     | Language | Used for                                             | Licence            | Owed                                                        |
+| ------------------------------------------ | -------- | ---------------------------------------------------- | ------------------ | ----------------------------------------------------------- |
+| Lexique 3.83 (lexique.org)                 | French   | every valid form, and the answers by lemma frequency | CC BY-SA 4.0       | Credit New, Pallier et al.; the derived list stays CC BY-SA |
+| ENABLE                                     | English  | every valid form                                     | public domain      | nothing                                                     |
+| SCOWL 2020.12.07, `english-words.10/20/35` | English  | the answers, the size as the tier                    | permissive, no fee | keep its copyright notice in the bank header                |
 
 **Not Lexique 4**: lexique.org's page for it names CC BY-SA and links a CC
 BY-NC deed — 3.83's own README is unambiguous. The official tournament word
@@ -59,16 +59,20 @@ plan's 3 MB compressed script cap.
 - **The answers** are common words, never a conjugated form: French lemmas of
   Lexique tagged noun, adjective or infinitive, tiered by film-subtitle lemma
   frequency; English words of SCOWL 10 / 20 / 35 found in ENABLE, the size as
-  the tier. `easy`, `mixed` and `hard` deal through `dealByDifficulty` as every
-  content game does. A hand-kept blocklist strips slurs and crude words from
+  the tier. The tiers are the banks' `easy`, `medium` and `hard`, which the
+  room's level deals through `dealByDifficulty` as every content game does. A hand-kept blocklist strips slurs and crude words from
   the answers (not from the valid tries — a word a seat types is its own), and
   the step reads a seeded sample of each tier by hand before it ships.
 - **The language** of the dictionary follows the room's question language, the
   way the quiz's bank does.
 - **The pay**: a word found on try _k_ earns `[1, 1, 0.85, 0.7, 0.55, 0.4][k-1]`
-  of the answer's nine tenths, and a found word races for the clock's tenth,
-  timed at the try that found it — not at the first coloured letter, which is
-  what `scoredAfterMs` records today. A word not found pays nothing; the grid
+  of the round (`pointsForWord`), and `clockedPay` keeps nine tenths of it as
+  for every game. **Only a word found on the first two tries races** for the
+  clock's tenth, timed at the try that found it — not at the first coloured
+  letter, which is what `scoredAfterMs` records today: the shared rule pays no
+  speed to an answer short of perfect, and a third-try find is one. The order
+  by try holds either way — a third try at once (76.5 + 0) stays under a
+  second try at the bell (90). A word not found pays nothing; the grid
   on the reveal is the consolation. The first two tries pay the same because a
   first try that lands is luck.
 - **`roundDurationMs`** 60–240 s, **120 s by default**. The round closes when
@@ -95,11 +99,46 @@ plan's 3 MB compressed script cap.
 1. **The dictionary and the rules.** `apps/server/scripts/build-word-bank.ts`
    (with a `words:build` script) reading the three sources from a download
    folder and writing `word-bank-fr.json` and `word-bank-en.json` beside the
-   other banks, each with an `attributions` header: the valid forms as one
-   sorted, folded string per length, the answers with their tier. A bank
+   other banks, each with an `attributions` header and every form as one
+   front-coded string, each answer marked with its tier. A bank
    module parsing it once. `@melee/core/words/` for the fold and
    `@melee/core/mysteryword/` for the colours, the try checks and the pay,
    each with tests. `/credits` gains the three sources. Measure the Worker.
+
+   **Done** 11/11/2026. `pnpm --filter @melee/server words:build -- <folder>`
+   reads Lexique, ENABLE and SCOWL from a download folder (default
+   `scripts/.cache/words`, git-ignored) and writes both banks. **The format
+   diverged**: one string per length gzipped to 741 KB for the two banks, on a
+   Worker already at 1 886 KiB of its 3 072 KiB cap, so each bank is one
+   **front-coded** string (`@melee/core/words/word-list-coding`: per entry, the
+   letters shared with the previous word as a digit, the new letters, and a
+   mark — `e`/`m`/`h` an answer's tier, `f` a familiar long form for 67).
+   **Forms** 70 101 French (Lexique's 125 653 less compounds, elisions and
+   lengths outside 2–9), 105 241 English. **Answers** (5/6/7/8 letters) — French
+   easy 368/405/392/280, medium 372/466/520/483, hard 572/920/1 116/1 038, on
+   `freqlemfilms2` floors of 20, 5 and 1 per million; English easy
+   381/371/306/241, medium 439/532/477/439, hard 1 088/1 558/1 537/1 464.
+   **Familiar** long forms besides the answers: 13 450 French (a form read once
+   per million words, films or books), 13 657 English (SCOWL 10–35).
+   **Gzipped** 91 KB French, 146 KB English. **Worker** 1 886.16 → 2 116.91 KiB
+   gzipped (11 095 → 11 643 KiB raw), measured with a temporary import since
+   nothing serves the bank yet.
+   SCOWL lists every inflection beside its lemma, so the build drops an English
+   answer whose stem by ending (-s, -es, -ies, -ed, -ing, -men, -ves) is a
+   SCOWL word, a comparative whose superlative is one, and a hand list of
+   irregular pasts and plurals. The answers also lose SCOWL's own
+   `misc/offensive.*` and `profane.*`, and `scripts/word-answer-blocklist.json`:
+   crude and sexual words and slurs found by a search, plus what three seeded
+   samples of 40 per tier and language read by hand turned up — French
+   _antan_, _group_, _lupus_, _marshal_, _poindre_, _polack_, _pongo_,
+   _prion_, _staff_; English _foreskin_, _genocide_, _pseudo_, _rebind_,
+   _sexually_, _swisher_, _tripos_. Core: `foldWord`, `marksForTry` /
+   `isFoundBy`, `checkTry` (refusals `not_one_word`, `wrong_length`,
+   `wrong_first_letter`, `not_in_dictionary`, the dictionary injected),
+   `pointsForWord`; `@melee/protocol/mystery-word` holds `letterMarkSchema` and
+   `MYSTERY_WORD_TRY_COUNT`. The bank: `isValidWord`, `mysteryWordAnswers`,
+   `drawMysteryWord`, `playedMysteryWordId`, `wordFormsByLength` and
+   `isFamiliarWord` for 67.
 2. **Served.** Protocol arms, capabilities, the round builder and grader, the
    conductor's draw, the views, `GAME_NOTES`, the socket suite. Reachable by a
    settings frame, not on the shelf.
