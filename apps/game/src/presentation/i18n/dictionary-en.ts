@@ -1455,15 +1455,31 @@ export const EN_DICTIONARY = defineDictionary({
    */
   loading: 'Loading…',
   longestword: {
+    draw: 'The draw',
+    emptyWord: 'Your word, empty',
+    erase: 'Erase',
     home: {
       description:
         'Nine letters go up on every screen. Everyone types the longest word they can make from them, each letter used once, as many words as they like: only the longest counts. The room sees how long everyone’s word is, never the word, until the reveal names the longest the draw held.'
     },
+    kept: ', the word kept',
     name: 'Longest word',
     play: 'Play Longest word',
+    refusal: {
+      already_buzzed: 'Your word is already as long as the draw’s longest.',
+      letter_not_in_draw:
+        'A letter is not in the draw, or is used twice. Not counted.',
+      not_in_dictionary: '“{word}” is not in the dictionary. Not counted.',
+      not_one_word: 'One word, letters only. Not counted.'
+    },
     scoring:
       'Your longest word is paid by its length against the longest the draw held: as long scores 100 points, shorter scores less, and three letters or fewer score nothing.',
-    tagline: 'Nine letters, one word, as long as you can.'
+    seat: 'Your longest word',
+    send: 'Send',
+    shuffle: 'Shuffle',
+    tagline: 'Nine letters, one word, as long as you can.',
+    typing: 'Your word: {word}',
+    words: 'Your accepted words'
   },
   matchsticks: {
     duration: 'Time per puzzle',

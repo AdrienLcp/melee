@@ -36,8 +36,13 @@ import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { isWordRefusal } from '@/features/player/longest-word-answer'
 import { isTryRefusal } from '@/features/player/mystery-word-answer'
-import { blackSquareContent, mysteryWordContent } from '@/helpers/round-content'
+import {
+  blackSquareContent,
+  longestWordContent,
+  mysteryWordContent
+} from '@/helpers/round-content'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
@@ -541,8 +546,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // A try the seat typed is answered under its grid, where the eyes already are.
   const isSaidOnTheSeat =
     error !== null &&
-    isTryRefusal(error.code) &&
-    mysteryWordContent(view?.round) !== null
+    ((isTryRefusal(error.code) && mysteryWordContent(view?.round) !== null) ||
+      (isWordRefusal(error.code) && longestWordContent(view?.round) !== null))
   const shownError = isClosedHere || isSaidOnTheSeat ? null : error
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {

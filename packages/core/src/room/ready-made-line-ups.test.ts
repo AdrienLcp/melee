@@ -244,19 +244,22 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
   })
 })
 
-it('[ready-made] asks the quiz in the language the table speaks', () => {
-  const quizLanguages = (locale: 'en' | 'fr') =>
-    readyMadeLineUpsFor(locale)
-      .flatMap(({ lineUp }) => lineUp)
-      .flatMap((entry) =>
-        typeof entry !== 'string' && entry.kind === 'quiz'
-          ? [entry.language]
-          : []
-      )
+it.each(['quiz', 'mysteryword', 'longestword'] as const)(
+  '[ready-made] deals %s in the language the table speaks',
+  (game) => {
+    const languagesOf = (locale: 'en' | 'fr') =>
+      readyMadeLineUpsFor(locale)
+        .flatMap(({ lineUp }) => lineUp)
+        .flatMap((entry) =>
+          typeof entry !== 'string' && entry.kind === game
+            ? [entry.language]
+            : []
+        )
 
-  expect(new Set(quizLanguages('en'))).toEqual(new Set(['en']))
-  expect(new Set(quizLanguages('fr'))).toEqual(new Set(['fr']))
-})
+    expect(new Set(languagesOf('en'))).toEqual(new Set(['en']))
+    expect(new Set(languagesOf('fr'))).toEqual(new Set(['fr']))
+  }
+)
 
 describe('a ready-made line-up once loaded', () => {
   const music = readyMadeLineUpsFor('fr').find(({ id }) => id === 'music')

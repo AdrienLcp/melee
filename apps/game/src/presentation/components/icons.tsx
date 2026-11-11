@@ -51,6 +51,7 @@ import {
   RotateCw,
   Ruler,
   Share,
+  Shuffle,
   SlidersHorizontal,
   SpellCheck,
   SquarePlus,
@@ -113,6 +114,8 @@ export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const EraseIcon = inFamily(Delete)
+export const ShuffleIcon = inFamily(Shuffle)
+export const TrophyIcon = inFamily(Trophy)
 export const FinishIcon = inFamily(Flag)
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)

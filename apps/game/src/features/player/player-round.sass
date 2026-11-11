@@ -94,7 +94,7 @@
     gap: var(--space-s)
     padding: calc(var(--band) + clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))) clamp(var(--space-m), calc(var(--stage-unit) * 4.4), var(--space-l)) clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-l))
 
-    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac, swatch, mostlikely, estimate, higherlower, mysteryword
+    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac, swatch, mostlikely, estimate, higherlower, mysteryword, longestword
       &[data-game='#{$game}']
         --spine: var(--spine-#{$game})
 
@@ -354,7 +354,7 @@
 
   // The round's sand over the grid and its keyboard, which take every row
   // the screen leaves.
-  .player-round.mystery-word-round
+  .player-round:is(.mystery-word-round, .longest-word-round)
     display: grid
     gap: var(--space-s)
     grid-template-rows: auto minmax(0, 1fr)

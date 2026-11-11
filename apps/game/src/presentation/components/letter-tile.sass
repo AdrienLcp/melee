@@ -1,0 +1,55 @@
+// Side-effect module: styles `.letter-tile`, a drawn letter of the longest word, and the turn a face-up row is dealt with.
+@use '../styles/typography'
+
+@keyframes letter-tile-turns
+  0%
+    animation-timing-function: var(--ease-in)
+    transform: perspective(30em) rotateX(0deg)
+  50%
+    animation-timing-function: var(--ease-out)
+    transform: perspective(30em) rotateX(90deg)
+  100%
+    transform: perspective(30em) rotateX(0deg)
+
+// The spine's face until the turn reaches the half, then the letter.
+@keyframes letter-tile-face-down
+  from, to
+    background: var(--spine)
+    box-shadow: 0 var(--tile-edge) 0 var(--spine-edge)
+    color: transparent
+
+@layer components
+  .letter-tile
+    --tile-edge: 0.1875rem
+    --spine-edge: color-mix(in oklch, var(--spine) 60%, black)
+
+    @include typography.billboard
+
+    align-items: center
+    aspect-ratio: 1
+    background: var(--card)
+    border: 0
+    border-radius: var(--tile-radius, var(--radius-s))
+    box-shadow: 0 var(--tile-edge) 0 var(--chipboard)
+    color: var(--card-ink)
+    display: grid
+    font-size: calc(var(--tile-size, 2.75rem) * 0.6)
+    inline-size: var(--tile-size, 2.75rem)
+    justify-items: center
+    min-inline-size: 0
+    padding: 0
+    transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), translate var(--transition-fast, 0s) var(--ease-out)
+
+    &[data-vowel]
+      background: var(--tile-2)
+      color: var(--tile-ink)
+
+    &[data-face='faceDown']
+      background: var(--spine)
+      box-shadow: 0 var(--tile-edge) 0 var(--spine-edge)
+      color: transparent
+
+    &[data-face='faceUp']
+      --turn-delay: calc(var(--deal-delay, 0s) + var(--transition-fast, 0s) * 0.6 * var(--letter-index, 0))
+
+      animation: letter-tile-turns calc(var(--transition-slow, 0s) * 1.2) linear var(--turn-delay) both, letter-tile-face-down calc(var(--transition-slow, 0s) * 0.6) linear var(--turn-delay) backwards

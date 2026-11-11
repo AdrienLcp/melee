@@ -1379,15 +1379,32 @@ export const FR_DICTIONARY = defineDictionary({
   },
   loading: 'Chargement…',
   longestword: {
+    draw: 'Le tirage',
+    emptyWord: 'Ton mot, vide',
+    erase: 'Effacer',
     home: {
       description:
         'Neuf lettres s’affichent sur tous les écrans. Chacun tape le mot le plus long qu’il peut en tirer, chaque lettre une fois, autant de mots qu’il veut : seul le plus long compte. La pièce voit la longueur du mot de chacun, jamais le mot, jusqu’à ce que la révélation donne le plus long que cachait le tirage.'
     },
+    kept: ', le mot gardé',
     name: 'Mot le plus long',
     play: 'Jouer à Mot le plus long',
+    refusal: {
+      already_buzzed: 'Ton mot est déjà aussi long que le plus long du tirage.',
+      letter_not_in_draw:
+        'Une lettre manque au tirage, ou sert deux fois. Mot non compté.',
+      not_in_dictionary:
+        '« {word} » n’est pas dans le dictionnaire. Mot non compté.',
+      not_one_word: 'Un seul mot, des lettres seulement. Mot non compté.'
+    },
     scoring:
       'Ton mot le plus long est payé selon sa longueur face au plus long du tirage : aussi long, il rapporte 100 points, plus court, moins, et trois lettres ou moins ne rapportent rien.',
-    tagline: 'Neuf lettres, un mot, le plus long possible.'
+    seat: 'Ton mot le plus long',
+    send: 'Envoyer',
+    shuffle: 'Mélanger',
+    tagline: 'Neuf lettres, un mot, le plus long possible.',
+    typing: 'Ton mot : {word}',
+    words: 'Tes mots acceptés'
   },
   matchsticks: {
     duration: 'Temps par énigme',

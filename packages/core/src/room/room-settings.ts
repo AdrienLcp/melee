@@ -249,7 +249,7 @@ export const openedSetup = ({
  * The game's own defaults, with the one field that cannot have a fixed one. A
  * question drawn in a language the host does not read is the wrong game, and the
  * protocol's default has no way of knowing which that is — so a game that draws
- * from a bank in either language, the quiz's questions or the mystery word's
+ * from a bank in either language, the quiz's questions or the word games'
  * dictionary, takes the host's.
  */
 const openedGameSettings = ({
@@ -261,7 +261,9 @@ const openedGameSettings = ({
 }): GameSettings => {
   const opened = DEFAULT_GAME_SETTINGS[game]
 
-  return opened.kind === 'quiz' || opened.kind === 'mysteryword'
+  return opened.kind === 'quiz' ||
+    opened.kind === 'mysteryword' ||
+    opened.kind === 'longestword'
     ? { ...opened, language: questionLanguageFor(locale) }
     : opened
 }

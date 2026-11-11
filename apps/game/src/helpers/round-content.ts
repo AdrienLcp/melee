@@ -84,6 +84,11 @@ export const mysteryWordContent = (
 ): Extract<RoundContent, { kind: 'mysteryword' }> | null =>
   round?.content.kind === 'mysteryword' ? round.content : null
 
+export const longestWordContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'longestword' }> | null =>
+  round?.content.kind === 'longestword' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>

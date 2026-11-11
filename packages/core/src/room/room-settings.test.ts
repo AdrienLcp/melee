@@ -67,17 +67,18 @@ describe('roomSettingsFor', () => {
     ).toEqual(DEFAULT_MODE_SETTINGS.move)
   })
 
-  it('[room-settings] deals the mystery word in the language the host reads', () => {
-    const inEnglish = roomSettingsFor({ games: ['mysteryword'], locale: 'en' })
-    const inFrench = roomSettingsFor({ games: ['mysteryword'], locale: 'fr' })
+  it.each(['mysteryword', 'longestword'] as const)(
+    '[room-settings] deals %s in the language the host reads',
+    (game) => {
+      const inEnglish = roomSettingsFor({ games: [game], locale: 'en' })
+      const inFrench = roomSettingsFor({ games: [game], locale: 'fr' })
 
-    expect(
-      inEnglish.game?.kind === 'mysteryword' && inEnglish.game.language
-    ).toBe('en')
-    expect(
-      inFrench.game?.kind === 'mysteryword' && inFrench.game.language
-    ).toBe('fr')
-  })
+      expect(inEnglish.game?.kind === game && inEnglish.game.language).toBe(
+        'en'
+      )
+      expect(inFrench.game?.kind === game && inFrench.game.language).toBe('fr')
+    }
+  )
 
   it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {
     const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })

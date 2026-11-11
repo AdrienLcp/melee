@@ -1,0 +1,206 @@
+// Side-effect module: styles `.longest-word-answer`, a seat's accepted words over its nine tiles.
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .longest-word-answer
+    display: grid
+    gap: var(--space-xs)
+    grid-template: minmax(0, 1fr) auto / minmax(0, 1fr)
+    min-block-size: 0
+
+    // The one box on the seat that scrolls: a long round's words, which no
+    // press waits on.
+    > .words-area
+      align-content: start
+      display: grid
+      min-block-size: 0
+
+    .words
+      @include piece.card
+
+      display: grid
+      list-style: none
+      margin: 0
+      max-block-size: 100%
+      overflow: auto
+      padding: 0 var(--space-s)
+      transition: opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out)
+
+      &[data-empty]
+        opacity: 0
+        transition-timing-function: var(--ease-in)
+        translate: 0 calc(var(--space-s) * -1)
+
+      > li
+        align-items: center
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        border-block-start: var(--stroke-bold) solid var(--card-rule)
+        display: flex
+        gap: var(--space-xs)
+        min-block-size: max(var(--target), 2.75rem)
+
+        &:first-child
+          border-block-start: 0
+
+      .word
+        @include typography.billboard
+
+        font-size: clamp(var(--text-m), calc(var(--stage-unit) * 4.6), var(--text-xl))
+        min-inline-size: 0
+        overflow-wrap: anywhere
+
+      .length
+        @include typography.score
+
+        align-items: center
+        border-radius: var(--radius-full)
+        color: var(--card-muted)
+        display: inline-flex
+        font-size: var(--text-m)
+        gap: var(--space-2xs)
+        margin-inline-start: auto
+        padding: var(--space-2xs) var(--space-xs)
+        transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+
+        > svg
+          block-size: 1em
+          inline-size: 1em
+
+      > li[data-kept] .length
+        background: var(--good-soft)
+        box-shadow: 0 var(--edge) 0 var(--good-edge)
+        color: var(--tile-ink)
+
+    > .compose
+      display: grid
+      gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.5), var(--space-s))
+
+    .slots
+      display: grid
+      gap: var(--space-2xs)
+      grid-template-columns: repeat(9, minmax(0, 1fr))
+      inline-size: min(100%, 30rem)
+      margin: 0 auto
+
+      > .slot,
+      > .letter-tile
+        --tile-radius: var(--radius-s)
+        --tile-size: 100%
+        --tile-edge: 0.125rem
+
+        aspect-ratio: 1
+        inline-size: 100%
+
+      > .letter-tile
+        animation: page-enter var(--transition-fast, 0s) var(--ease-out) backwards
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.6), var(--text-xl))
+
+      > .slot
+        background: var(--socket)
+        border-radius: var(--radius-s)
+        box-shadow: var(--shadow-groove), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+        transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+        &[data-next]
+          background: transparent
+          box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
+    // Folded at no height until a refusal opens it, so the tiles below give
+    // way smoothly rather than jumping when a word is turned down.
+    > .compose > .refusal
+      display: grid
+      grid-template-rows: 0fr
+      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in)
+
+      > .refusal-line
+        @include piece.card($radius: var(--radius-s))
+        @include typography.strong
+
+        align-items: center
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
+        display: flex
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), var(--text-s))
+        gap: var(--space-xs)
+        margin: 0
+        min-block-size: 0
+        opacity: 0
+        overflow: hidden
+        padding-inline: var(--space-s)
+        transition: opacity var(--transition-base, 0s) var(--ease-in), padding var(--transition-base, 0s) var(--ease-in)
+
+        > svg
+          color: var(--card-muted)
+          flex: none
+
+      &[data-shown]
+        grid-template-rows: 1fr
+        transition-timing-function: var(--ease-out)
+
+        > .refusal-line
+          opacity: 1
+          padding-block: var(--space-xs)
+          transition-timing-function: var(--ease-out)
+
+    .tiles
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)
+      justify-content: center
+
+      > .letter-tile
+        @include piece.pressable
+
+        --tile-size: min(calc((100% - 4 * var(--space-xs)) / 5), 5.25rem)
+        --tile-radius: var(--radius-m)
+
+        cursor: pointer
+        flex: none
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 7.5), var(--text-2xl))
+        inline-size: min(calc((100% - 4 * var(--space-xs)) / 5), 5.25rem)
+        touch-action: manipulation
+
+        // Laid into the row: the tile sinks into its socket, still in its
+        // place so the draw keeps its shape.
+        &[data-used]
+          background: var(--socket)
+          box-shadow: var(--shadow-groove), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+          color: var(--ink-muted)
+          cursor: default
+          translate: 0 var(--tile-edge)
+
+    .actions
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: auto auto minmax(0, 1fr)
+
+    .action
+      @include piece.piece($radius: var(--radius-s), $nubs: false)
+      @include piece.pressable
+      @include typography.strong
+
+      align-items: center
+      background: var(--track-a)
+      color: var(--board-ink)
+      cursor: pointer
+      display: inline-flex
+      font-size: var(--text-m)
+      gap: var(--space-2xs)
+      justify-content: center
+      min-block-size: max(var(--target), 2.75rem)
+      padding-inline: var(--space-s)
+      touch-action: manipulation
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+      &.send
+        background: var(--primary)
+        box-shadow: 0 var(--edge) 0 0 var(--primary-edge), var(--shadow-piece)
+        color: var(--on-primary)
+
+      &[data-disabled]
+        color: var(--ink-muted)
+        cursor: default
+
+      &.send[data-disabled]
+        background: var(--socket)
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)

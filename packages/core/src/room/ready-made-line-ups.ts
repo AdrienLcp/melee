@@ -5,6 +5,7 @@ import {
   DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLACK_SQUARE_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_LONGEST_WORD_SETTINGS,
   DEFAULT_MATCHSTICKS_SETTINGS,
   DEFAULT_MYSTERY_WORD_SETTINGS,
   DEFAULT_PETIT_BAC_SETTINGS,
@@ -145,6 +146,9 @@ const grandMixVarietiesOf = (
     blindtestOn(catalogueOf({ decades: [] })),
     blindtestOn(catalogueOf({ hasFilmScores: true })),
     ...GENRE_IDS.map((genre) => blindtestOn(catalogueOf({ charts: [genre] })))
+  ],
+  longestword: [
+    { ...DEFAULT_LONGEST_WORD_SETTINGS, language: questionLanguageFor(locale) }
   ],
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS.goals.map((goal) => ({
     ...DEFAULT_MATCHSTICKS_SETTINGS,

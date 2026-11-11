@@ -57,6 +57,7 @@ import { ChoosingRound } from '@/features/player/choosing-round'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
+import { LongestWordAnswer } from '@/features/player/longest-word-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -94,6 +95,7 @@ import {
   estimateRatioOf,
   higherLowerContent,
   innerclockContent,
+  longestWordContent,
   matchsticksContent,
   mostLikelyContent,
   mysteryWordContent,
@@ -891,6 +893,20 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
             refusal={refusal}
             round={round}
             youId={view.youId}
+          />
+        </section>
+      )
+    }
+
+    if (longestWordContent(round) !== null) {
+      return (
+        <section className='player-round longest-word-round'>
+          <RoundClock clock={clock} view={view} />
+          <LongestWordAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            refusal={refusal}
+            round={round}
           />
         </section>
       )
