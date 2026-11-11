@@ -50,6 +50,12 @@ A motion seen twice is a mixin, never retyped:
 - `swap.swaps-in-one-cell` — two pieces stacked in one grid cell that a state
   trades, the cell sized to the larger.
 
+A keyframe seen twice is one, in `globals.sass`, and what differs between its
+sites is a custom property it substitutes whole:
+
+- `letter-turns` — a letter turned over on its top edge, back face up.
+- `popover-strike` — a popover struck down under its trigger.
+
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`
 does it for the two choice strips. The rules are printed into both stylesheets,
 which is the point — a route that only uses `Button` does not download `Link`'s

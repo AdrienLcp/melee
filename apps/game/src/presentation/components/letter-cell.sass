@@ -1,17 +1,6 @@
 // Side-effect module: styles `.letter-cell`, its mark shape, and the turn a marked cell is dealt with.
 @use '../styles/typography'
 
-// Turned over on its top edge: away from the reader to the half, back face up.
-@keyframes letter-turns
-  0%
-    animation-timing-function: var(--ease-in)
-    transform: perspective(30em) rotateX(0deg)
-  50%
-    animation-timing-function: var(--ease-out)
-    transform: perspective(30em) rotateX(90deg)
-  100%
-    transform: perspective(30em) rotateX(0deg)
-
 // The face a cell shows until its turn reaches the half: the letter as typed.
 @keyframes letter-face-down
   from, to

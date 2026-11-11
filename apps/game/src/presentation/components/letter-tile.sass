@@ -1,16 +1,6 @@
 // Side-effect module: styles `.letter-tile`, a drawn letter of the longest word, and the turn a face-up row is dealt with.
 @use '../styles/typography'
 
-@keyframes letter-tile-turns
-  0%
-    animation-timing-function: var(--ease-in)
-    transform: perspective(30em) rotateX(0deg)
-  50%
-    animation-timing-function: var(--ease-out)
-    transform: perspective(30em) rotateX(90deg)
-  100%
-    transform: perspective(30em) rotateX(0deg)
-
 // The spine's face until the turn reaches the half, then the letter.
 @keyframes letter-tile-face-down
   from, to
@@ -52,4 +42,4 @@
     &[data-face='faceUp']
       --turn-delay: calc(var(--deal-delay, 0s) + var(--transition-fast, 0s) * 0.6 * var(--letter-index, 0))
 
-      animation: letter-tile-turns calc(var(--transition-slow, 0s) * 1.2) linear var(--turn-delay) both, letter-tile-face-down calc(var(--transition-slow, 0s) * 0.6) linear var(--turn-delay) backwards
+      animation: letter-turns calc(var(--transition-slow, 0s) * 1.2) linear var(--turn-delay) both, letter-tile-face-down calc(var(--transition-slow, 0s) * 0.6) linear var(--turn-delay) backwards

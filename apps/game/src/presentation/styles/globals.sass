@@ -181,6 +181,25 @@
     opacity: 1
     transform: none
 
+/// A letter turned over on its top edge, away from the reader to the half and
+/// back face up: a cell of the mystery word's grid, a tile of the longest word.
+@keyframes letter-turns
+  0%
+    animation-timing-function: var(--ease-in)
+    transform: perspective(30em) rotateX(0deg)
+  50%
+    animation-timing-function: var(--ease-out)
+    transform: perspective(30em) rotateX(90deg)
+  100%
+    transform: perspective(30em) rotateX(0deg)
+
+/// A popover struck down onto the page under its trigger: the sheet, the
+/// action menu, the invitation.
+@keyframes popover-strike
+  from
+    opacity: 0
+    transform: translateY(-0.375rem)
+
 /// A mark pressed onto a piece as it is earned — a box's tick, a copy's check —
 /// rather than switched on. Smaller than a payout: it confirms a press, it pays nothing.
 @keyframes tick-stamp
