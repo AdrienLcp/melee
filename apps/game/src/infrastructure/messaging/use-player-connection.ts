@@ -3,9 +3,11 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
 import { playerServerMessageSchema } from '@melee/protocol/server-message'
 
+import { swapsThePlayerScreen } from '@/helpers/player-screen-swap'
+
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
-import { swapsThePlayerScreen, useRoomView } from './use-room-view'
+import { useRoomView } from './use-room-view'
 
 export type PlayerConnection = RoomSocket & {
   view: PlayerRoomView | null

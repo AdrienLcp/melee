@@ -15,20 +15,12 @@ export const swapsTheWholeStage = (change: ScreenChange): boolean =>
   handsOverTheFloor(change) || leavesTheReveal(change)
 
 /**
- * What swaps a player's screen: the reveal leaving, and never the floor. The
- * transition holds every press for its length, and the race reopens the
- * moment the floor is given back; nothing is pressed from the countdown or the
- * final board the reveal gives way to.
- */
-export const swapsThePlayerScreen = leavesTheReveal
-
-/**
  * A role's latest snapshot, and the setter its socket hands each one to. A
  * snapshot `isSwap` says replaces the screen lands as one screen replacing
  * another (`replaceScreen`); every other one is drawn as it comes.
  */
 export const useRoomView = <View extends NonNullable<RoundOnScreen>>(
-  isSwap: (change: ScreenChange) => boolean
+  isSwap: (change: { from: View | null; to: View }) => boolean
 ): [View | null, (next: View) => void] => {
   const [view, setView] = useState<View | null>(null)
   // The transition draws its update a frame after it starts, and a snapshot

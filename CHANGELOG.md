@@ -79,6 +79,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A player's screen no longer cuts from one moment to the next.**
+  The lobby giving way to the count, the round giving way to its answer, the
+  final board coming and going, and a round paused or left by its host now
+  fade off over what replaces them; a pause lifted fades its card off over the
+  round come back, without holding the first press. On the answer, the word
+  that the host stepped away opens and closes in place, the wait to the next
+  round folds away as everyone gets ready, and the Ready press's check slides
+  in and out instead of popping.
 - `[Game]` **Nothing in the host's side panel cuts in or out any more.** The
   note that a round is in play, the teams' count and scoring, the answer mode,
   the level, the answer window, the black square's lone finds, the blind test's

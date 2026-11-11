@@ -379,7 +379,10 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   countdown, the final board — on every screen, since nothing is pressed on
   what it gives way to. A phase whose arrival has a motion of its own still
   owes one for leaving: the reveal's `card-strike` hid that it went in one
-  frame.
+  frame. A player's screen swaps on what `swapsThePlayerScreen` lists — the
+  lobby, the reveal and the final board, a round paused or left by its host —
+  and **never on a freeze lifted**, which reopens a race like the floor: the
+  pause card fades off out of the flow (`.lifted`) over the round come back.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

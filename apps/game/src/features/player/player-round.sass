@@ -1,3 +1,4 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/invitation'
 @use '../../presentation/styles/layout'
@@ -533,13 +534,20 @@
     .your-round .payout
       --token: clamp(3.5rem, 11dvh, 5.5rem)
 
+    // Nothing held, it hands the column's gap back as its last fold closes.
     .hold
       display: flex
       flex-direction: column
       gap: var(--space-s)
+      margin-block-start: calc(-1 * var(--space-m))
+      transition: margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
-    .hold:empty
-      display: none
+      &:has(> .fold[data-open]:not(:empty))
+        margin-block-start: 0
+        transition: margin-block-start var(--transition-base, 0s) var(--ease-out)
+
+      > .fold
+        @include fold.opens-in-column
 
     // What surrounds the payout settles once the card has struck, rather
     // than cutting in beside a card still striking.
@@ -555,6 +563,20 @@
 
       .toggle-button
         position: relative
+
+        > .ready-mark
+          display: inline-flex
+          inline-size: 1em
+          margin-inline-end: calc(-1em - var(--space-xs))
+          opacity: 0
+          scale: 0.6
+          transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+
+        &[data-selected] > .ready-mark
+          margin-inline-end: 0
+          opacity: 1
+          scale: 1
+          transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
       // The press's own padding and gap, inherited, lay the label printed on
       // the fill exactly over the one underneath.

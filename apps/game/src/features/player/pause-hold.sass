@@ -7,6 +7,15 @@
   .player-page > .player-round.paused > .notice-card
     animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
+  // Out of the flow, so the round comes back at once in its own place under
+  // the card fading off.
+  .player-page > .player-round.lifted
+    animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+    inset: 0
+    padding: inherit
+    pointer-events: none
+    position: fixed
+
   // A framed round's own place, rather than a row after it at the foot.
   .player-page.framed > .player-round.notice
     grid-area: round

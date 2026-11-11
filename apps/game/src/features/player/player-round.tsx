@@ -378,19 +378,36 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
       {/* The server stops the hold while the console is away, so the slot that
         counted down to the next round says why nothing comes next. */}
       <div className='hold'>
-        {view.isHostConnected ? (
-          <>
-            {round.isFinal && (
+        <div
+          className='fold'
+          data-open={!view.isHostConnected || undefined}
+          inert={view.isHostConnected}
+        >
+          <div>
+            <NoticeCard title={translate('buzz.blocked.host_away')} />
+          </div>
+        </div>
+        {round.isFinal && (
+          <div
+            className='fold'
+            data-open={view.isHostConnected || undefined}
+            inert={!view.isHostConnected}
+          >
+            <div>
               <NoticeCard
                 detail={translate('player.gameOver.detail')}
                 title={translate('player.gameOver.title')}
               />
-            )}
-            {readyHold === null && <RoundClock clock={clock} view={view} />}
-          </>
-        ) : (
-          <NoticeCard title={translate('buzz.blocked.host_away')} />
+            </div>
+          </div>
         )}
+        <div
+          className='fold'
+          data-open={(view.isHostConnected && readyHold === null) || undefined}
+          inert={!view.isHostConnected || readyHold !== null}
+        >
+          <RoundClock clock={clock} view={view} />
+        </div>
       </div>
       <BackAtTheTable
         clock={clock}
@@ -440,7 +457,9 @@ const BackAtTheTable: React.FC<{
         }}
         size='large'
       >
-        {you.isReady && <CheckIcon />}
+        <span aria-hidden className='ready-mark'>
+          <CheckIcon />
+        </span>
         {label}
         <ReadyHoldFill clock={clock} hold={hold} label={label} />
       </ToggleButton>
