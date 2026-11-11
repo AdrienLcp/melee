@@ -1,5 +1,14 @@
 @use '../../presentation/styles/typography'
 
+@keyframes finisher-row-closes
+  from
+    block-size: auto
+  to
+    block-size: 0rem
+    border-block-start-width: 0rem
+    margin-block-end: var(--row-gap-closed)
+    padding-block-start: 0rem
+
 @layer components
   // Under the line the room reads, held to a hand's width: the host places
   // the table between two shouts, so every row is one glance and one press.
@@ -11,7 +20,8 @@
     width: min(100%, 36rem)
 
     .challenge-placing-rows
-      display: grid
+      display: flex
+      flex-direction: column
       gap: var(--space-xs)
       list-style: none
 
@@ -24,6 +34,17 @@
       gap: var(--space-xs)
       grid-template-columns: auto minmax(0, 1fr)
       padding-block-start: var(--space-2xs)
+
+      // A seat that left mid-round fades, then hands its room and the gap
+      // after it back to the rows that stay.
+      &[data-leaving]
+        --row-gap-closed: calc(-1 * var(--space-xs))
+        --travel-offset: 0 -0.25rem
+
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, finisher-row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        interpolate-size: allow-keywords
+        min-block-size: 0rem
+        overflow: clip
 
       > .pawn
         align-self: center

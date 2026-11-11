@@ -16,9 +16,13 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
+import { useLeavingRows } from './use-leaving-rows'
+
 import './challenge-placing.sass'
 
 const UNPLACED = 'none'
+
+const ROW_EXIT_ANIMATION = 'finisher-row-closes'
 
 const PLACE_KEYS: Record<ChallengePlace, PlainTranslationKey> = {
   1: 'challenge.places.first',
@@ -82,6 +86,11 @@ export const ChallengePlacing: React.FC<ChallengePlacingProps> = ({
             target: { kind: 'seat', playerId: player.id }
           }))
 
+  const { endExitOf, rows } = useLeavingRows({
+    exitAnimation: ROW_EXIT_ANIMATION,
+    rows: finishers
+  })
+
   const placed: ChallengeFinisher[] = finishers.flatMap((finisher) => {
     const place = places.get(finisher.id)
 
@@ -117,10 +126,16 @@ export const ChallengePlacing: React.FC<ChallengePlacingProps> = ({
       className='challenge-placing'
     >
       <ul className='challenge-placing-rows'>
-        {finishers.map((finisher) => (
+        {rows.map((finisher) => (
           <li
+            aria-hidden={finisher.isLeaving || undefined}
             className='challenge-placing-row'
+            data-leaving={finisher.isLeaving || undefined}
+            inert={finisher.isLeaving}
             key={finisher.id}
+            onAnimationEnd={
+              finisher.isLeaving ? endExitOf(finisher.id) : undefined
+            }
             style={
               finisher.colour === null
                 ? undefined
