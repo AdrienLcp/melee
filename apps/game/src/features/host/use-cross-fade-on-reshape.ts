@@ -13,6 +13,11 @@ const COPY_CLASS = 'reshape-copy'
 type Drawn = {
   copy: HTMLElement
   element: HTMLElement
+  /**
+   * The height painted last, kept by an observer: measured on the commit that
+   * starts a glide, it read the glide's first frame, and the next reshape
+   * eased from that height to the same one — no glide at all.
+   */
   height: number
   shape: string
 }
@@ -29,7 +34,51 @@ const copyOf = (element: HTMLElement): HTMLElement =>
 const settledHeight = (drawnNow: number): string =>
   interpolatesToAuto() ? 'auto' : `${drawnNow}px`
 
-const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
+/** A reshape on screen: its height glide, and when its copy has faded. */
+type Playing = {
+  glide: Animation | null
+  until: number
+}
+
+const glideHeight = ({
+  box,
+  from,
+  to
+}: {
+  box: HTMLElement
+  from: number
+  to: number
+}): Animation | null => {
+  if (Math.abs(from - to) < 1) {
+    return null
+  }
+
+  const style = getComputedStyle(box)
+  const easeOut =
+    style.getPropertyValue('--ease-out').trim() ||
+    'cubic-bezier(0.16, 1, 0.3, 1)'
+
+  return box.animate(
+    [
+      // Border-box in both frames, as the observer measures it: a padded
+      // box drew its padding twice over and dropped by it as the glide ended.
+      { boxSizing: 'border-box', height: `${from}px` },
+      { boxSizing: 'border-box', height: settledHeight(to) }
+    ],
+    {
+      duration: millisecondsOf(style.getPropertyValue('--transition-base')),
+      easing: to > from ? easeOut : easeInOf(style)
+    }
+  )
+}
+
+const play = ({
+  before,
+  box
+}: {
+  before: Drawn
+  box: HTMLElement
+}): Playing | null => {
   const style = getComputedStyle(box)
   const duration = millisecondsOf(style.getPropertyValue('--transition-base'))
 
@@ -38,15 +87,10 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
   }
 
   if (duration === 0) {
-    return
+    return null
   }
 
-  const easeOut =
-    style.getPropertyValue('--ease-out').trim() ||
-    'cubic-bezier(0.16, 1, 0.3, 1)'
-  const easeIn = easeInOf(style)
   const { copy } = before
-  const height = box.getBoundingClientRect().height
 
   copy.style.background = groundBehind(box)
   box.append(copy)
@@ -54,7 +98,10 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
   // in the first frames and read as a cut, and a box that opens still holds
   // the old list over the new rows until it has room for them.
   copy
-    .animate([{ opacity: 1 }, { opacity: 0 }], { duration, easing: easeIn })
+    .animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration,
+      easing: easeInOf(style)
+    })
     .finished.then(
       () => {
         copy.remove()
@@ -64,11 +111,13 @@ const play = ({ before, box }: { before: Drawn; box: HTMLElement }): void => {
       }
     )
 
-  if (Math.abs(before.height - height) >= 1) {
-    box.animate(
-      [{ height: `${before.height}px` }, { height: settledHeight(height) }],
-      { duration, easing: height > before.height ? easeOut : easeIn }
-    )
+  return {
+    glide: glideHeight({
+      box,
+      from: before.height,
+      to: box.getBoundingClientRect().height
+    }),
+    until: performance.now() + duration
   }
 }
 
@@ -91,6 +140,49 @@ export const useCrossFadeOnReshape = ({
   shape: string
 }): void => {
   const drawn = useRef<Drawn | null>(null)
+  const playing = useRef<Playing | null>(null)
+
+  useLayoutEffect(() => {
+    const element = box.current
+
+    if (element === null) {
+      return
+    }
+
+    // A list whose rows land a render after the reshape — `GridList` mounts
+    // them late — measured the old height on the commit and snapped to the
+    // new one under the fading copy: a resize while the copy fades, with no
+    // glide running, glides from the height painted last.
+    const observer = new ResizeObserver(([entry]) => {
+      const [border] = entry?.borderBoxSize ?? []
+      const before = drawn.current
+      const now = playing.current
+
+      if (before?.element !== element || border === undefined) {
+        return
+      }
+
+      if (
+        now !== null &&
+        performance.now() < now.until &&
+        now.glide?.playState !== 'running'
+      ) {
+        now.glide = glideHeight({
+          box: element,
+          from: before.height,
+          to: border.blockSize
+        })
+      }
+
+      before.height = border.blockSize
+    })
+
+    observer.observe(element, { box: 'border-box' })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [box])
 
   useLayoutEffect(() => {
     const element = box.current
@@ -108,13 +200,17 @@ export const useCrossFadeOnReshape = ({
       before.element === element &&
       before.shape !== shape
     ) {
-      play({ before, box: element })
+      playing.current?.glide?.cancel()
+      playing.current = play({ before, box: element })
     }
 
     drawn.current = {
       copy: copyOf(element),
       element,
-      height: element.getBoundingClientRect().height,
+      height:
+        before?.element === element
+          ? before.height
+          : element.getBoundingClientRect().height,
       shape
     }
   })
