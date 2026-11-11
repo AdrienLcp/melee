@@ -79,6 +79,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A room's screen standing tall seats its teams in the height.**
+  On a television on its side, four teams now stand two by two and five or
+  six three by two, their names larger and on one line, instead of four
+  narrow trays in the middle of an empty screen. A seat that was still
+  settling into a full tray no longer stands half cut at its foot.
 - `[Game]` **A cancelled Petit Bac stop sits where the press was.** On a
   player's screen the note that a stop was taken back now fills the dashed
   socket the Stop press leaves, its words centred, instead of hanging from

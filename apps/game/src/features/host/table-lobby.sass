@@ -379,6 +379,41 @@
     &.away .name
       color: var(--ink-muted)
 
+  // A wall standing tall — a television on its side — left half its height
+  // empty round four trays a quarter of its width each, the names on two
+  // lines. Four trays stand two by two there, five or six three
+  // by two, and the seats grow into the height that frees — sized off the
+  // seats' own width, which a board laid round the stage narrows.
+  @media (aspect-ratio < 2 / 3) and (width >= 45rem)
+    .table-lobby .table-teams
+      &:has(> :nth-child(4))
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+
+      &:has(> :nth-child(5))
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+
+    .table-lobby .team-block
+      padding: calc(0.5rem + var(--space-xs)) clamp(var(--space-s), 1.75cqi, var(--space-m)) clamp(var(--space-s), 1.75cqi, var(--space-m))
+
+    .table-lobby .team-head
+      font-size: clamp(var(--text-l), 4.1cqi, 3rem)
+
+      .pawn
+        font-size: clamp(1.5rem, 5cqi, 3.5rem)
+
+    .table-lobby .seat-chips
+      gap: var(--space-xs)
+
+    .table-lobby .seat-chip,
+    .table-lobby .team-block:not(:has(.seat-chips))::after
+      font-size: clamp(var(--text-m), 3.5cqi, 2.5rem)
+
+    .table-lobby .seat-chip
+      padding: clamp(var(--space-2xs), 0.75cqi, var(--space-xs)) var(--space-s)
+
+    .table-lobby .team-block:not(:has(.seat-chips))::after
+      block-size: calc(1lh + clamp(var(--space-2xs), 0.75cqi, var(--space-xs)) * 2)
+
   // Seats as narrow as a phone's column, where 24 names cannot all be read:
   // the arrivals drop to the type's floor and to the height of their line,
   // so more of the table is named before the list is cut, and a tray is its

@@ -1591,6 +1591,16 @@ share their column in `minmax(0, auto)` rows, never a flex column: a list
 hiding chips gives the others room and never takes it, where a flex item
 shrinking by its size handed the trays' cuts to the arrivals and back.
 
+A wall standing tall (narrower than 2:3, from 45rem wide — a 1080×1920
+television on its side, or 810×1440) stands four trays two by two and five or
+six three by two, and grows the heads and seats with the seats' own width
+(`cqi`, so a board laid round the stage shrinks them with it): four trays
+abreast left half of a 1080×1920 wall empty round names broken over two
+lines. Measured 2026-11-12 with 24 seats of 17 to 20 characters, two, four
+and six teams, before the deal and with a 40-case board, at 1080×1920,
+810×1440 and 2160×3840: nothing cut, nothing scrolls, 4K exactly twice
+1080p. Every other wall shape is unchanged.
+
 The seats' column under 30rem is a phone held up as the wall, where 24 names
 cannot all be read: the arrivals drop to `--text-xs` and the height of their
 line, a tray is its band, its pawn, its name and how many sit at it (each seat

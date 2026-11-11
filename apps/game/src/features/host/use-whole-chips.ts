@@ -20,7 +20,9 @@ type WholeChips = {
  * It watches the stage rather than the list: hiding a chip shrinks the list,
  * and a list observing itself would show it again on the next frame. A chip
  * that arrives, leaves or is renamed fits the list again too, since the stage's
- * size does not move for it. Two lists sharing a stage stay whole only where
+ * size does not move for it, and so does a chip settling from its entrance:
+ * measured while it still rose into place, the last one stood half past the
+ * list's edge. Two lists sharing a stage stay whole only where
  * one hiding chips can give the other room and never take it: rows sized
  * `minmax(0, auto)`, never a flex column shrinking each item by its size.
  */
@@ -92,6 +94,7 @@ export const useWholeChips = ({ count, list }: WholeChips): number => {
     const chipsObserver = new MutationObserver(fit)
     const stopListening = onLayoutMoved(fit)
 
+    element.addEventListener('animationend', fit)
     observer.observe(stage)
     chipsObserver.observe(element, {
       characterData: true,
@@ -102,6 +105,7 @@ export const useWholeChips = ({ count, list }: WholeChips): number => {
     return () => {
       observer.disconnect()
       chipsObserver.disconnect()
+      element.removeEventListener('animationend', fit)
       stopListening()
     }
   }, [count, list])
