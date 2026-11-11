@@ -79,6 +79,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A cancelled Petit Bac stop sits where the press was.** On a
+  player's screen the note that a stop was taken back now fills the dashed
+  socket the Stop press leaves, its words centred, instead of hanging from
+  the top of a press-high gap.
 - `[Game]` **A seated host's field keeps its width on a console held
   sideways.** The column under the menu is too narrow to stand the send
   press beside the field, which was left about a hundred pixels wide, and

@@ -115,6 +115,21 @@
       .button
         inline-size: 100%
 
+    // The stop taken back leaves its press's socket, the reason printed in
+    // it: a caption at the top of a press-high cell read as a stray line.
+    .stop-note.barred
+      align-content: center
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--socket-ink)
+      display: grid
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -1)
+      padding: var(--space-2xs) var(--space-s)
+      text-align: center
+      text-wrap: balance
+
     .stop-banner
       @include typography.title
 
