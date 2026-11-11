@@ -4,7 +4,7 @@ import { keyedRowsOf, whenRowsDrawn } from './when-rows-drawn'
 
 type Offset = { x: number; y: number }
 
-/** Where a row sits, and how tall: a row a grid restretches changes height as it moves. */
+/** Where a row sits, and how tall: a grid stretches a row it moves to the row it lands in. */
 type Box = Offset & { height: number }
 
 type Boxes = ReadonlyMap<string, Box>
