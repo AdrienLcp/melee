@@ -87,7 +87,8 @@ one part.
   The countdown's last second sinks into the token as the next is struck. In
   the lobby a seat lands on its socket, a seat leaving fades where it stood
   with the empty socket coming back under it, and the seats a join or a leave
-  moves slide to their new places. The note that a player sat down opens its
+  moves slide to their new places, a name on two lines growing its row
+  rather than jumping it. The note that a player sat down opens its
   place in the header and closes it after fading. A press that becomes
   unavailable settles into its dashed socket and back out, the copy press
   widens and narrows with its word, and the players tab's badge pops in and
@@ -98,7 +99,9 @@ one part.
   leaves fades and closes. The room's screen fades its arrival line off as
   the lobby lays down, makes room for _the host has stepped away_ at 9:16
   instead of covering the round number and the join code, and keeps a duel,
-  a black square turn and the join reminder on one line as they open. Black
+  a black square turn and the join reminder on one line as they open, as the
+  console's header now does, and the final board's winning pawn lands once
+  instead of shrinking and growing again. Black
   square's cells ease in and out of found, its keeper's list, hidden sheet,
   black word and confirmation fade into one another, the map's pawn and its
   presses fade in and out, the board's `+n` opens beside the pawns, the
@@ -289,7 +292,8 @@ one part.
   disclosure, the removed ticket and the saved line sit on shared mixins
   (`fade.shows-in-place`, `swap.trades-in-place`, `$until-found`,
   `fades-in-place`'s `$scale`); `useRowsTravel` gains a `gather` pace for a
-  roster's seats; a stage swap is typed `screen-swap` so the page's gutter
+  roster's seats; one `useLeavingRows` keeps a departed row drawn for the
+  scoreboard and Challenge's placing rows; a stage swap is typed `screen-swap` so the page's gutter
   rule for a navigation leaves it alone; and `use-seat-pawn.ts` no longer
   trips the compiler's `PreserveManualMemo`.
 - `[Server]` **A dictionary for the word games.** `words:build` folds Lexique
