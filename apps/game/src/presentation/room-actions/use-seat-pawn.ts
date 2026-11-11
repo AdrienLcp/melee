@@ -87,6 +87,12 @@ export const useSeatPawn = ({
       ? requested.piece
       : null
 
+  const refusal = RECOLOUR_REFUSALS.find((code) => code === error?.code) ?? null
+  const isRequestShown =
+    requested !== null &&
+    pawnPiece !== null &&
+    isSamePawnPiece({ other: pawnPiece, piece: requested.piece })
+
   useEffect(() => {
     if (acceptedSeatPiece !== null) {
       writeStoredPawnPiece(acceptedSeatPiece)
@@ -105,12 +111,6 @@ export const useSeatPawn = ({
     },
     [clearError, role, send, teamId, youId]
   )
-
-  const refusal = RECOLOUR_REFUSALS.find((code) => code === error?.code) ?? null
-  const isRequestShown =
-    requested !== null &&
-    pawnPiece !== null &&
-    isSamePawnPiece({ other: pawnPiece, piece: requested.piece })
 
   return {
     pawnRoom:
