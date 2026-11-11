@@ -1,5 +1,7 @@
 // Pure module: mixins only, no top-level CSS. Safe to @use from any component.
 
+@use 'focus'
+
 /// A block of a column that a choice shows and hides, kept mounted and opened
 /// by `[data-open]`: it grows to its height, then fades in, and fades before
 /// it closes. A closed fold keeps its place in the column, so it hands back
@@ -24,6 +26,9 @@
     opacity: 1
     transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
+  // The clip the row needs would cut a focused control's ring at the fold's
+  // edge: the ring reaches past its box. Safari ignores the clip margin.
   > *
     min-height: 0
     overflow: clip
+    overflow-clip-margin: focus.$ring-reach
