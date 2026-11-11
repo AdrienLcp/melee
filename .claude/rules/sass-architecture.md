@@ -425,7 +425,10 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   because new rows still unfolding as they arrive measure 630px of a 4600px
   list on the commit. Its box takes `reshape.cross-fades-on-reshape`: the
   copy is a clone, and every entrance keyed inside it would play again and
-  blank what is meant to fade out. A whole stage a snapshot swaps lands through `replaceScreen`
+  blank what is meant to fade out. A box whose text is replaced in place —
+  one refusal by another — eases both axes from the size painted last
+  (`useSizeGlideOnSwap`, read by a `ResizeObserver`: the size measured on a
+  commit was the fold's first frame). A whole stage a snapshot swaps lands through `replaceScreen`
   (`useRoomView`, given what counts as a swap): on the console and the wall,
   every change of phase and a pause taken or lifted (`replacesTheStage`) —
   each stage arrives on a motion of its own and none had one for leaving, so
