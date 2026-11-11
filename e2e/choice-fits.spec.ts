@@ -234,6 +234,7 @@ const seatedHostView = (question: Question) => ({
   ...choosingView(question),
   challengeHand: [],
   currentContent: { kind: 'quiz', question: null },
+  deckSummaries: [],
   isSpeaker: true,
   isWallConnected: false,
   lineUpPlayed: [],

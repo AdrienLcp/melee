@@ -58,6 +58,12 @@ slow CI runner caught a full-height page one or two pixels under the fold, a
 failure Windows never reproduced. A transform still counts as overflow, which is
 also why `#root` clips its block axis.
 
+**A field the host view gains is added to `seatedHostView`** — every host
+snapshot is built from it, nothing types it against the schema, and the
+console drops a frame its schema refuses without a word: `deckSummaries`
+left every console test of `choice-fits` waiting on an empty stage for six
+red runs.
+
 `strip-rows.spec.ts` plays nothing either. One test per locale opens a room, walks every
 game, and asserts that no choice strip ever holds rows of two different
 lengths — the defect where a wrap leaves a short row, `flex: 1` stretches it,
