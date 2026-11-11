@@ -1,4 +1,5 @@
 @use '../../presentation/styles/focus'
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -234,21 +235,7 @@
     // Folded the way the draw folds, gap included: a second levelled game
     // opens it, and taking one out closes it again.
     .evening-level
-      display: grid
-      grid-template-rows: 0fr
-      margin-block-start: calc(-1 * var(--space-s))
-      opacity: 0
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in)
-
-      &[data-open]
-        grid-template-rows: 1fr
-        margin-block-start: 0
-        opacity: 1
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
-
-      > .segmented-control
-        min-height: 0
-        overflow: clip
+      @include fold.opens-in-column
 
     // The draw folds away under *From the top*: its row shrinks out of a
     // grid track, since `height: auto` does not transition, fading first and

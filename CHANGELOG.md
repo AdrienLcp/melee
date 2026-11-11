@@ -79,6 +79,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Switching the board between points and a track moves instead of
+  cutting.** The track's rules unfold under the board choice and fold back up
+  the same way, and the end of the game and the speed bonus beneath fade from
+  one shape to the other while their box eases to its new height.
 - `[Shared]` **_Free-for-all_ plays every setting of every game nobody
   judges, with no last round.** Its entries are generated rather than written
   out: every decade, film scores and each of the twelve charts for the blind

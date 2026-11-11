@@ -1,0 +1,29 @@
+// Pure module: mixins only, no top-level CSS. Safe to @use from any component.
+
+/// A block of a column that a choice shows and hides, kept mounted and opened
+/// by `[data-open]`: it grows to its height, then fades in, and fades before
+/// it closes. A closed fold keeps its place in the column, so it hands back
+/// the column's `$gap` with it — pass the gap of the column it sits in. The
+/// column is a flex one: a grid row sizes to the margin box, so the gap
+/// before it would stay open.
+///
+/// One grid row going `0fr → 1fr`, because `height: auto` is not a length a
+/// transition can reach. Its child is clipped to that row, but no box is
+/// shorter than its padding: a padded child holds a closed row open by it, so
+/// it folds its `padding-block` to `0rem` with the row, on the row's timing.
+@mixin opens-in-column($gap: var(--space-s))
+  display: grid
+  grid-template-rows: 0fr
+  margin-block-start: calc(-1 * #{$gap})
+  opacity: 0
+  transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in)
+
+  &[data-open]
+    grid-template-rows: 1fr
+    margin-block-start: 0
+    opacity: 1
+    transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
+  > *
+    min-height: 0
+    overflow: clip

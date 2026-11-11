@@ -34,11 +34,10 @@
     .held
       animation: swap-in var(--transition-fast, 0s) var(--ease-out)
 
-    .speed-bonus[data-arrived]
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
-
-    // The game tab's list, standing in its container's grid.
-    .evening-list
+    // The game tab's list, and the table tab's end of the game with its speed
+    // bonus, each standing in its container's grid.
+    .evening-list,
+    .evening-end
       display: grid
       gap: inherit
       grid-auto-rows: max-content
@@ -50,8 +49,8 @@
       interpolate-size: allow-keywords
       position: relative
 
-      // The ready-made choice going for the planned games, or back: the
-      // list drawn before fades out over the one drawn now.
+      // The ready-made choice going for the planned games, or a board going
+      // for points: what was drawn before fades out over what is drawn now.
       > .reshape-copy
         animation: none
         inset-block-start: 0

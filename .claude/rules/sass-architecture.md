@@ -347,6 +347,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   `{isSelected && <CheckIcon />}` can only pop in and vanish — what has left
   the tree cannot fade out. Render it always and let the attribute
   (`[data-selected]`) transition it; `_strip.sass`'s `.tick` is the pattern.
+  A block a choice shows and hides is the same mark at block scale:
+  `fold.opens-in-column` under `[data-open]`, `inert` while closed, in a
+  _flex_ column — a grid keeps the gap of a closed row open.
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
   `margin-inline-end: -1em`) and the margin transitions.

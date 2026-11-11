@@ -1,22 +1,30 @@
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/strip'
 
 @layer components
   .board-setup
-    display: grid
+    display: flex
+    flex-direction: column
     gap: var(--space-s)
     min-width: 0
 
     // A recess under the strip: the rules belong to the track it laid. Pressed
     // into the panel's paper, whose inks stay light-ground in both palettes.
     .track-rules
+      @include fold.opens-in-column
       background: var(--well)
       border-radius: var(--radius-m)
-      display: grid
-      gap: var(--space-s)
-      padding: var(--space-s)
+      overflow: clip
 
-      &[data-arrived]
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      > .rules
+        display: grid
+        gap: var(--space-s)
+        padding: var(--space-s)
+        transition: padding-block var(--transition-base, 0s) var(--ease-out)
+
+      &:not([data-open]) > .rules
+        padding-block: 0rem
+        transition: padding-block var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
     // Four stamps tile two by two rather than leave the longest track alone on
     // a second row. A track laid at a length the strip no longer offers makes

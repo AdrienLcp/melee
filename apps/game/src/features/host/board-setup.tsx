@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import {
   type BoardSettings,
@@ -17,7 +18,6 @@ import { Switch } from '@/presentation/components/switch'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { NO_LIMIT, NumberChoice } from './number-choice'
-import { useArrivedLater } from './use-arrived-later'
 
 import './board-setup.sass'
 
@@ -63,7 +63,16 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   const board = settings.board
   const lengths = boardLengthsWith(board)
   const pawns = settings.teams.kind === 'off' ? 'seats' : 'teams'
-  const trackRulesArrived = useArrivedLater(board.kind === 'track')
+  const isOnTrack = board.kind === 'track'
+  const [lastTrack, setLastTrack] = useState(
+    isOnTrack ? board : DEFAULT_TRACK_SETTINGS
+  )
+
+  if (isOnTrack && board !== lastTrack) {
+    setLastTrack(board)
+  }
+
+  const track = isOnTrack ? board : lastTrack
 
   const changeTrack = (track: TrackSettings) => {
     onChange({ ...settings, board: track })
@@ -103,12 +112,16 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
         options={lengths}
         value={board.kind === 'track' ? board.length : ON_POINTS}
       />
-      {board.kind === 'track' && (
-        <div className='track-rules' data-arrived={trackRulesArrived}>
+      <div
+        className='track-rules'
+        data-open={isOnTrack || undefined}
+        inert={!isOnTrack}
+      >
+        <div className='rules'>
           <SegmentedControl
             className='board-strategy'
             description={translate(
-              `board.setting.strategy.hint.${board.strategy}`
+              `board.setting.strategy.hint.${track.strategy}`
             )}
             isDisabled={isDisabled}
             label={translate('board.setting.strategy.label')}
@@ -116,26 +129,26 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
               const strategy = boardStrategySchema.safeParse(next)
 
               if (strategy.success) {
-                changeTrack({ ...board, strategy: strategy.data })
+                changeTrack({ ...track, strategy: strategy.data })
               }
             }}
             options={boardStrategySchema.options.map((strategy) => ({
               label: translate(`board.setting.strategy.${strategy}`),
               value: strategy
             }))}
-            value={board.strategy}
+            value={track.strategy}
           />
           <Switch
             description={translate('board.setting.catchUp.hint')}
             isDisabled={isDisabled}
-            isSelected={board.catchUp}
+            isSelected={track.catchUp}
             label={translate('board.setting.catchUp.label')}
             onChange={(catchUp) => {
-              changeTrack({ ...board, catchUp })
+              changeTrack({ ...track, catchUp })
             }}
           />
         </div>
-      )}
+      </div>
     </div>
   )
 }

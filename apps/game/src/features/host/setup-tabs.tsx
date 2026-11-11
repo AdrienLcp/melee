@@ -49,7 +49,6 @@ import { ReadyMadeNote, ReadyMadeRows } from './ready-made-line-ups'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
 import { TeamsSetup } from './teams-setup'
-import { useArrivedLater } from './use-arrived-later'
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useSavedEvenings } from './use-saved-evenings'
 import { useSetupSummaries } from './use-settings-summary'
@@ -385,7 +384,18 @@ export const TableTab: React.FC<SetupTabsProps> = ({
   const teams = settings.teams
   const offersSpeedBonus =
     isEveningPaidForSpeed(settings) && settings.board.kind === 'points'
-  const speedBonusArrived = useArrivedLater(offersSpeedBonus)
+  /*
+    A room of one slate is one sheet, marked once: the next sheet is the
+    next game, set up afresh, and a strip offering five of them would
+    offer no *one*. An evening counts its rounds whatever they are.
+  */
+  const showsEnd = settings.lineUp.length > 1 || settings.game?.kind !== 'slate'
+  const end = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({
+    box: end,
+    shape: `${settings.board.kind} ${showsEnd} ${offersSpeedBonus}`
+  })
 
   return (
     <>
@@ -426,34 +436,31 @@ export const TableTab: React.FC<SetupTabsProps> = ({
           <span>{translate('host.panel.settled')}</span>
         </p>
       )}
-      {/*
-        A room of one slate is one sheet, marked once: the next sheet is the
-        next game, set up afresh, and a strip offering five of them would
-        offer no *one*. An evening counts its rounds whatever they are.
-      */}
-      {(settings.lineUp.length > 1 || settings.game?.kind !== 'slate') && (
-        <EveningEndChoice
-          isDisabled={!isLive}
-          onChange={onSettingsChange}
-          settings={settings}
-        />
-      )}
-      {offersSpeedBonus && (
-        <Switch
-          className='speed-bonus'
-          data-arrived={speedBonusArrived}
-          description={translate(
-            settings.paysForSpeed
-              ? 'host.speedBonus.hint.on'
-              : 'host.speedBonus.hint.off'
+      {(showsEnd || offersSpeedBonus) && (
+        <div className='evening-end' ref={end}>
+          {showsEnd && (
+            <EveningEndChoice
+              isDisabled={!isLive}
+              onChange={onSettingsChange}
+              settings={settings}
+            />
           )}
-          isDisabled={!isLive}
-          isSelected={settings.paysForSpeed}
-          label={translate('host.speedBonus.label')}
-          onChange={(paysForSpeed) => {
-            onSettingsChange({ ...settings, paysForSpeed })
-          }}
-        />
+          {offersSpeedBonus && (
+            <Switch
+              description={translate(
+                settings.paysForSpeed
+                  ? 'host.speedBonus.hint.on'
+                  : 'host.speedBonus.hint.off'
+              )}
+              isDisabled={!isLive}
+              isSelected={settings.paysForSpeed}
+              label={translate('host.speedBonus.label')}
+              onChange={(paysForSpeed) => {
+                onSettingsChange({ ...settings, paysForSpeed })
+              }}
+            />
+          )}
+        </div>
       )}
       {dealsAdultContent(settings) && (
         <Switch
