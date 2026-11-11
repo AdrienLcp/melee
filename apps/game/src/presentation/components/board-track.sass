@@ -1,4 +1,5 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../styles/fold'
 @use '../styles/typography'
 
 // Registered so it can be transitioned: the clearance below is drawn from it,
@@ -199,7 +200,7 @@
           // A pawn on a case this small stands over the glyph's corner, and
           // the sliver left between the pieces reads as debris. A leg twice
           // as tall as it is wide holds both.
-          &:has(+ .pawns) .glyph
+          &:has(+ .pawns > .standing) .glyph
             @container board-case (aspect-ratio > 1/2)
               visibility: hidden
 
@@ -223,7 +224,7 @@
       // A crowd's three pawns abreast, on a case narrower than the band:
       // wrapped, they stood the count over the case's top. The smallest case
       // drawn, a 390-wide wall's at a hundred, holds them at 6.7px.
-      &:has(> .more)
+      &:has(> .crowd[data-open])
         font-size: clamp(0.375rem, calc(var(--board-band) * var(--pawn-scale, 0.5)), 33cqi)
 
       // Four pawns abreast, each 0.8em between its neighbours' margins, in the
@@ -263,6 +264,11 @@
     // The crowd past three on one case, a counter beside the pawns drawn. A
     // plus, two figures and the padding stand 2.6 times its size, so on a
     // case too narrow for that at the type's floor it follows the case down.
+    .crowd
+      @include fold.opens-in-line(0rem)
+
+      align-self: center
+
     .more
       @include typography.numeric
       @include typography.solid

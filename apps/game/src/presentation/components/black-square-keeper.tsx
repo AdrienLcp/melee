@@ -56,14 +56,19 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
   const cellTiers = list.answers.map(({ tier }) => tier)
 
   return (
-    <section className='black-square-keeper' data-shown={isShown || undefined}>
+    <section
+      className='black-square-keeper'
+      data-asking={isAsking || undefined}
+      data-shown={isShown || undefined}
+    >
       <p className='brief'>
         {translate('blacksquare.spoken.keep', { team: guessingTeam })}
       </p>
-      {isShown ? (
+      <div className='keeper-grid'>
         <ol
           aria-label={translate('blacksquare.grid')}
           className='keeper-cells'
+          inert={!isShown}
           style={blackSquareGridStyle(cellTiers)}
         >
           {list.answers.map((answer, cell) => (
@@ -85,54 +90,58 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
             </li>
           ))}
         </ol>
-      ) : (
-        <BlackSquareSheet
-          cellTiers={cellTiers}
-          lines={[]}
-          tickedCells={tickedCells}
-        />
-      )}
-      {!isShown ? (
-        <p className='hidden-note'>{translate('blacksquare.spoken.hidden')}</p>
-      ) : isAsking ? (
-        <div className='black-word-ask'>
-          <p className='ask' role='status'>
-            <span className='word'>{list.blackWord.labels[locale]}</span>
-            <span className='what'>
-              {translate('blacksquare.spoken.blackWord.ask')}
+        <div className='keeper-sheet' inert={isShown}>
+          <BlackSquareSheet
+            cellTiers={cellTiers}
+            lines={[]}
+            tickedCells={tickedCells}
+          />
+        </div>
+      </div>
+      <div className='keeper-black-word'>
+        <p className='hidden-note' inert={isShown}>
+          {translate('blacksquare.spoken.hidden')}
+        </p>
+        <div className='black-word-turn' inert={!isShown}>
+          <PressablePiece
+            className='black-word-press'
+            inert={isAsking}
+            onPress={() => {
+              setIsAsking(true)
+            }}
+          >
+            <span className='stamp'>
+              {translate('blacksquare.blackWord.stamp')}
             </span>
-          </p>
-          <div className='answers'>
-            <Button
-              onPress={() => {
-                onTick('blackWord', true)
-              }}
-            >
-              {translate('blacksquare.spoken.blackWord.confirm')}
-            </Button>
-            <Button
-              onPress={() => {
-                setIsAsking(false)
-              }}
-              variant='underlined'
-            >
-              {translate('blacksquare.spoken.blackWord.keep')}
-            </Button>
+            <span className='word'>{list.blackWord.labels[locale]}</span>
+          </PressablePiece>
+          <div className='black-word-ask' inert={!isAsking}>
+            <p className='ask' role='status'>
+              <span className='word'>{list.blackWord.labels[locale]}</span>
+              <span className='what'>
+                {translate('blacksquare.spoken.blackWord.ask')}
+              </span>
+            </p>
+            <div className='answers'>
+              <Button
+                onPress={() => {
+                  onTick('blackWord', true)
+                }}
+              >
+                {translate('blacksquare.spoken.blackWord.confirm')}
+              </Button>
+              <Button
+                onPress={() => {
+                  setIsAsking(false)
+                }}
+                variant='underlined'
+              >
+                {translate('blacksquare.spoken.blackWord.keep')}
+              </Button>
+            </div>
           </div>
         </div>
-      ) : (
-        <PressablePiece
-          className='black-word-press'
-          onPress={() => {
-            setIsAsking(true)
-          }}
-        >
-          <span className='stamp'>
-            {translate('blacksquare.blackWord.stamp')}
-          </span>
-          <span className='word'>{list.blackWord.labels[locale]}</span>
-        </PressablePiece>
-      )}
+      </div>
       <Button
         onPress={() => {
           setIsShown(!isShown)

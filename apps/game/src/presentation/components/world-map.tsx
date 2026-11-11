@@ -39,6 +39,8 @@ import { Button } from './button'
 import { MinusIcon, PlusIcon, WorldIcon } from './icons'
 import { PAWN_BOX, PawnShape, usePawnPiece } from './pawn'
 import { useEasedMapView } from './use-eased-map-view'
+import { useLastShown } from './use-last-shown'
+import { useLeavingValue } from './use-leaving-value'
 import { useMapGestures } from './use-map-gestures'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -214,6 +216,14 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
 
   const markerAt =
     marker === null ? null : toScreen(view, mapPointOf(marker.point))
+  const drawnMarker = useLastShown(marker, isSameMarker)
+  const markerLeaving = useLeavingValue(marker === null ? null : true)
+  const drawnMarkerAt =
+    drawnMarker === null ? null : toScreen(view, mapPointOf(drawnMarker.point))
+  const shownPresses =
+    markerActions === undefined || markerAt === null ? null : markerActions
+  const drawnPresses = useLastShown(shownPresses, pressesSayTheSame)
+  const pressesLeaving = useLeavingValue(shownPresses === null ? null : true)
 
   const placeAt =
     onPlace === undefined
@@ -288,15 +298,19 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
             view={view}
           />
         )}
-        {marker !== null && markerAt !== null && (
-          <g
-            className='marker'
-            style={{ '--pawn': `var(--pawn-${marker.piece.colour})` }}
-            transform={`translate(${markerAt[0]} ${markerAt[1]}) scale(${MARKER_SCALE}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
-          >
-            <PawnShape head={marker.piece.head} />
-          </g>
-        )}
+        {markerLeaving.drawn !== null &&
+          drawnMarker !== null &&
+          drawnMarkerAt !== null && (
+            <g
+              className='marker'
+              data-leaving={markerLeaving.isLeaving || undefined}
+              onAnimationEnd={markerLeaving.onAnimationEnd}
+              style={{ '--pawn': `var(--pawn-${drawnMarker.piece.colour})` }}
+              transform={`translate(${drawnMarkerAt[0]} ${drawnMarkerAt[1]}) scale(${MARKER_SCALE}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
+            >
+              <PawnShape head={drawnMarker.piece.head} />
+            </g>
+          )}
       </svg>
       {onPlace !== undefined && (
         <VisuallyHidden id={hintId}>
@@ -335,11 +349,18 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           <WorldIcon />
         </Button>
       </div>
-      {markerActions !== undefined && markerAt !== null && (
-        <MarkerActions anchor={markerAt} frame={frame}>
-          {markerActions}
-        </MarkerActions>
-      )}
+      {pressesLeaving.drawn !== null &&
+        drawnPresses !== null &&
+        drawnMarkerAt !== null && (
+          <MarkerActions
+            anchor={drawnMarkerAt}
+            frame={frame}
+            isLeaving={pressesLeaving.isLeaving}
+            onAnimationEnd={pressesLeaving.onAnimationEnd}
+          >
+            {drawnPresses}
+          </MarkerActions>
+        )}
     </>
   )
 }
@@ -354,7 +375,9 @@ const MarkerActions: React.FC<{
   anchor: Point
   children: React.ReactNode
   frame: Size
-}> = ({ anchor, children, frame }) => {
+  isLeaving: boolean
+  onAnimationEnd: React.AnimationEventHandler | undefined
+}> = ({ anchor, children, frame, isLeaving, onAnimationEnd }) => {
   const [box, setBox] = useState<Size | null>(null)
 
   const observe = (element: HTMLDivElement | null) => {
@@ -388,7 +411,10 @@ const MarkerActions: React.FC<{
     <div
       className='marker-actions'
       data-below={perch?.isBelow || undefined}
+      data-leaving={isLeaving || undefined}
       data-measuring={perch === null || undefined}
+      inert={isLeaving}
+      onAnimationEnd={onAnimationEnd}
       ref={observe}
       style={{
         '--perch-tip': `${anchor[0] - (perch?.at[0] ?? 0)}px`,
@@ -400,6 +426,18 @@ const MarkerActions: React.FC<{
     </div>
   )
 }
+
+type PlacedMarker = NonNullable<WorldMapProps['marker']>
+
+/** The same pawn on the same spot, though the screen built the object anew. */
+const isSameMarker = (left: PlacedMarker, right: PlacedMarker): boolean =>
+  left.point.latitude === right.point.latitude &&
+  left.point.longitude === right.point.longitude &&
+  left.piece.colour === right.piece.colour &&
+  left.piece.head === right.piece.head
+
+/** Two renders of the presses read the same words; the ones kept are drawn only while they leave, inert. */
+const pressesSayTheSame = (): boolean => true
 
 /** A city as the reveal points at it: one spot, its own box, and a ring of that one point. */
 const targetOutlineOf = (

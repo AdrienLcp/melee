@@ -99,6 +99,9 @@
       filter: drop-shadow(0 2px 0 var(--chipboard-dark))
       pointer-events: none
 
+      &[data-leaving]
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+
     // A frame shorter than the three presses stacked sets the last beside
     // the first, rather than cutting it at the frame's foot; the two zooms
     // keep the corner's column whatever the frame, or a row of three would
@@ -169,6 +172,10 @@
       &[data-below]::before
         background: var(--rule)
         translate: 0 calc(var(--stroke-hair) * -1)
+
+      &[data-leaving]
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+        pointer-events: none
 
       &[data-measuring]
         visibility: hidden

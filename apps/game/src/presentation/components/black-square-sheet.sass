@@ -28,7 +28,9 @@
       align-content: center
       background: var(--socket)
       border-radius: var(--radius-m)
-      box-shadow: var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      // Both states list the same layers, outset then inset, or a find and
+      // its letting go swap the edge and the ring in one frame.
+      box-shadow: 0 0 0 transparent, 0 0 0 transparent, var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
       color: var(--socket-line)
       container: black-square-cell / size
       display: grid
@@ -49,7 +51,7 @@
       --edge: 0.1875rem
 
       background: var(--good-soft)
-      box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
+      box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece), inset 0 0 0 transparent, inset 0 0 0 transparent
       color: var(--tile-ink)
       transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
 

@@ -26,6 +26,7 @@ import {
   TrackPawnPiece,
   useTrackPawnName
 } from '@/presentation/components/track-pawn'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useTrackPresence } from '@/presentation/components/use-track-presence'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -152,27 +153,19 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
                     caseIndex
                   )}
                 </span>
-                {standing.length > 0 && (
-                  <span className='pawns'>
-                    {drawn.map((pawn) => (
-                      <span
-                        className='standing'
-                        // Keyed on the case too, so each step is a new element
-                        // that hops in rather than one that slides.
-                        key={`${pawn.id}:${caseIndex}`}
-                      >
-                        <TrackPawnPiece pawn={pawn} />
-                      </span>
-                    ))}
-                    {drawn.length < standing.length && (
-                      <span className='more'>
-                        {translate('board.more', {
-                          count: standing.length - drawn.length
-                        })}
-                      </span>
-                    )}
-                  </span>
-                )}
+                <span className='pawns'>
+                  {drawn.map((pawn) => (
+                    <span
+                      className='standing'
+                      // Keyed on the case too, so each step is a new element
+                      // that hops in rather than one that slides.
+                      key={`${pawn.id}:${caseIndex}`}
+                    >
+                      <TrackPawnPiece pawn={pawn} />
+                    </span>
+                  ))}
+                  <CrowdCount count={standing.length - drawn.length} />
+                </span>
               </div>
             )
           })}
@@ -460,6 +453,23 @@ const TrackEnd: React.FC<{ end: TrackEndKind }> = ({ end }) => {
       <span className='word'>{translate(`board.${end}`)}</span>
       <Glyph className='glyph' />
     </>
+  )
+}
+
+/**
+ * The crowd past three on one case, kept mounted on every case so it opens
+ * beside the pawns and closes on the last figure it said.
+ */
+const CrowdCount: React.FC<{ count: number }> = ({ count }) => {
+  const translate = useTranslate()
+  const shownCount = useLastShown(count > 0 ? count : null)
+
+  return (
+    <span className='crowd' data-open={count > 0 || undefined}>
+      <span className='more'>
+        {shownCount !== null && translate('board.more', { count: shownCount })}
+      </span>
+    </span>
   )
 }
 

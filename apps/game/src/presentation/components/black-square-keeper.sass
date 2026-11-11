@@ -1,6 +1,7 @@
 @use '../styles/black-word'
 @use '../styles/fade'
 @use '../styles/piece'
+@use '../styles/swap'
 @use '../styles/tier-rows'
 @use '../styles/typography'
 
@@ -22,8 +23,29 @@
     .hidden-note
       @include typography.caption
 
+      align-self: center
       color: var(--ink-muted)
       margin: 0
+
+    // The names and the hidden sheet trade one cell, and so do the note, the
+    // black word and its question: each box holds the larger of what it
+    // trades, so nothing beside it moves as one fades into the other.
+    .keeper-grid
+      @include swap.swaps-in-one-cell('.keeper-cells', '.keeper-sheet', '&:not([data-shown] *)')
+
+      grid-template: minmax(0, 1fr) / minmax(0, 1fr)
+      min-block-size: 0
+
+      > .keeper-sheet
+        display: grid
+        grid-template: minmax(0, 1fr) / minmax(0, 1fr)
+        min-block-size: 0
+
+    .keeper-black-word
+      @include swap.swaps-in-one-cell('.black-word-turn', '.hidden-note', '&:not([data-shown] *)')
+
+    .black-word-turn
+      @include swap.swaps-in-one-cell('.black-word-press', '.black-word-ask', '&:is([data-asking] *)')
 
     .keeper-cells
       container-type: size
