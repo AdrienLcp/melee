@@ -39,8 +39,26 @@ exactly what every screen receives. This session puts both on the shelf.
    `c-planche.html` (24 equal grids, ABC letter tiles), sharing `words.js` /
    `words.css`. The marks common to all three: in place on the leaf ink with a
    diamond, elsewhere on the sky ink with a ring, absent the socket.
-   Recommended to Adrien: A's seat with B's wall. Waiting on his pick; the
-   next session starts at step 2 from the direction he names.
+   **Chosen 11/11/2026: A's seat with B's wall**, for both games. Build from
+   those two pages (open them before writing a screen):
+   - **Seat** (`a-plateau.html`, seat states): the mystery word's grid over a
+     drawn AZERTY keyboard (QWERTY in English), keys inked by the best mark
+     each letter showed, Effacer and a coral Valider; found or spent, the
+     keyboard gives way to a paper card. The longest word's nine tiles are
+     pressed to lay them into a row of nine slots, a laid tile sinking into its
+     socket so a letter cannot be used twice; Effacer, Mélanger, coral
+     Envoyer; the accepted words listed, the longest marked. No device
+     keyboard on either seat (a physical keyboard still types).
+   - **Wall** (`b-tours.html`, wall states): the mystery word as a tower per
+     seat in two rows of twelve, one step in the place mark per letter in
+     place on its best try, a crown once found, pawn, name on two lines and
+     tries used under it; the reveal turns to every grid spelled out, ordered
+     by the try that found it. The longest word as towers of face-down tiles
+     in the spine, the length on top; the reveal lays them down face up,
+     ranked, the draw's longest on top.
+   - The console seated plays the seat; unseated it takes the wall's
+     composition. The reveal's spelled grids run about 20px a cell at
+     1440×900 — the one thing to measure again on the real screens.
 2. **Mystery word on screens**: the seat (grid, on-screen keyboard coloured by
    what each letter has shown, the refusal said without costing a try), the
    wall, the console (seated and not), the reveal, the setup (length 5–8,
