@@ -1,6 +1,7 @@
 // Pure module: mixins only, no top-level CSS. Safe to @use from any component.
 
 @use 'focus'
+@use 'mark'
 @use 'typography'
 @use 'text-box'
 
@@ -174,26 +175,13 @@
   .segments:not(:has(> .indicator)) .segment[data-selected]:not([data-disabled])
     @include -inked-stamp
 
-  // Every stamp carries its check, folded at no width under the label, so
-  // ticking slides the label aside and fades the check into the room it made,
-  // and unticking plays the same backwards: the check shrinks and fades
-  // first, then the room closes, on the same durations and the curve
-  // reversed. A check mounted with the tick could only pop in and vanish.
   .tick
+    @include mark.pops-in-line('&:is(.segment[data-selected] *)', -1em, var(--space-2xs))
+
     block-size: 1em
     display: inline-block
     inline-size: 1em
-    margin-inline-end: -1em
-    opacity: 0
-    scale: 0.6
-    transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
     vertical-align: -0.125em
-
-  .segment[data-selected] .tick
-    margin-inline-end: var(--space-2xs)
-    opacity: 1
-    scale: 1
-    transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
   // A strip holding one answer draws its chosen stamp as one piece that
   // travels to the next choice (`useSelectionIndicator` places it), so the

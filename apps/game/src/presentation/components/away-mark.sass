@@ -1,28 +1,20 @@
 // Side-effect module: the away mark's component styles.
 
+@use '../styles/mark'
+
 @layer components
-  // Folded at no width while the seat is here, so the name keeps the room;
-  // the fold opens before the icon fades in, and closes after it fades out.
   .away-mark
+    @include mark.pops-in-line('&[data-away]', 0, var(--text-em-xs), $room: inline-size)
+
     align-items: center
     color: var(--ink-muted)
     display: inline-flex
     flex: none
-    inline-size: 0
-    opacity: 0
-    scale: 0.6
-    transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), inline-size var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
     svg
       block-size: var(--text-em-xs)
       flex: none
       inline-size: var(--text-em-xs)
-
-  .away-mark[data-away]
-    inline-size: var(--text-em-xs)
-    opacity: 1
-    scale: 1
-    transition: inline-size var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
   // The name the mark stands beside seconds it in muted ink.
   :has(> .away-mark) > .name

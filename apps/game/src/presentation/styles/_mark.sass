@@ -1,0 +1,21 @@
+// Pure module: mixins only, no top-level CSS. Safe to @use from any component.
+
+/// A mark a state shows inside a line — a check, a cross, an icon — kept
+/// mounted and popped in by `$shown`, a selector in which `&` is the mark:
+/// `'&[data-away]'`, or `'&:is(.segment[data-selected] *)'` for a state an
+/// ancestor holds. Closed, it sits at no width: `$room` (`margin-inline-end`
+/// over a sized mark, or the mark's own `inline-size`) holds it at `$folded`.
+/// Arriving opens the room to `$open`, then grows and fades the mark in;
+/// leaving shrinks and fades it first, then closes the room, the curve
+/// reversed. Under reduced motion it is shown or gone at once.
+@mixin pops-in-line($shown, $folded, $open, $room: margin-inline-end)
+  #{$room}: $folded
+  opacity: 0
+  scale: 0.6
+  transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), #{$room} var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+
+  #{$shown}
+    #{$room}: $open
+    opacity: 1
+    scale: 1
+    transition: #{$room} var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)

@@ -2,6 +2,7 @@
 @use '../styles/fold'
 @use '../styles/invitation'
 @use '../styles/layout'
+@use '../styles/mark'
 @use '../styles/typography'
 @use '@adrienlcp/styles/accessibility'
 
@@ -159,25 +160,16 @@
           overflow-x: clip
           text-box: trim-both cap alphabetic
 
-      // Folded at no width under the word, the gap after it eaten too.
-      .menu-icon
-        flex: none
-        margin-inline-end: calc(-1 * (1.25em + var(--space-xs)))
-        opacity: 0
-        scale: 0.6
-        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
-
       // On the screen of four tiles the trigger is the icon alone, the label
       // kept for whoever cannot see it: every pixel of that line is the
       // round's. A round dealt and revealed swaps the two where they stand,
       // the word fading before its room closes as the icon's opens.
-      :root:has(.player-page.framed) &
-        .menu-icon
-          margin-inline-end: 0
-          opacity: 1
-          scale: 1
-          transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+      .menu-icon
+        @include mark.pops-in-line(':root:has(.player-page.framed) &', calc(-1 * (1.25em + var(--space-xs))), 0)
 
+        flex: none
+
+      :root:has(.player-page.framed) &
         .trigger-label
           grid-template-columns: 0fr
           margin-inline-start: calc(-1 * var(--space-xs))

@@ -34,8 +34,12 @@ into a `.sass` file.**
 
 **Pure modules** declare only mixins and functions, and any component may `@use`
 them: `_typography.sass`, `_layout.sass`, `_focus.sass`, `_control.sass`,
-`_strip.sass`, `_text-box.sass`. Each says which it is on its first line; a
-file that would be both is split.
+`_strip.sass`, `_text-box.sass`, and the motion modules below. Each says which
+it is on its first line; a file that would be both is split.
+
+A motion seen twice is a mixin, never retyped:
+
+- `mark.pops-in-line` — a mark that grows into a line, its room opening first.
 
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`
 does it for the two choice strips. The rules are printed into both stylesheets,
@@ -346,7 +350,7 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
 - **A mark a state shows stays mounted, and the state opens it.**
   `{isSelected && <CheckIcon />}` can only pop in and vanish — what has left
   the tree cannot fade out. Render it always and let the attribute
-  (`[data-selected]`) transition it; `_strip.sass`'s `.tick` is the pattern.
+  (`[data-selected]`) transition it: `mark.pops-in-line`.
   A block a choice shows and hides is the same mark at block scale:
   `fold.opens-in-column` under `[data-open]`, `inert` while closed, in a
   _flex_ column — a grid keeps the gap of a closed row open. A fold first in
