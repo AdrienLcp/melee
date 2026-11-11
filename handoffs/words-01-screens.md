@@ -32,6 +32,15 @@ exactly what every screen receives. This session puts both on the shelf.
    reveal, and the longest word's nine tiles and field, its wall with every
    seat's length and its reveal. One index page linking them, given to Adrien
    as a raw `file:///C:/...` URL. Stop there until he picks.
+
+   **Done** 11/11/2026: `.impeccable/directions/words/` (local, git-excluded) —
+   `index.html`, `a-plateau.html` (one shared board on the wall, AZERTY keys,
+   tap-to-lay tiles), `b-tours.html` (a tower per seat, the device keyboard),
+   `c-planche.html` (24 equal grids, ABC letter tiles), sharing `words.js` /
+   `words.css`. The marks common to all three: in place on the leaf ink with a
+   diamond, elsewhere on the sky ink with a ring, absent the socket.
+   Recommended to Adrien: A's seat with B's wall. Waiting on his pick; the
+   next session starts at step 2 from the direction he names.
 2. **Mystery word on screens**: the seat (grid, on-screen keyboard coloured by
    what each letter has shown, the refusal said without costing a try), the
    wall, the console (seated and not), the reveal, the setup (length 5–8,
