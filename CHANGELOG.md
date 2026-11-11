@@ -109,7 +109,9 @@ one part.
   before its socket appears, a cold room load fades its loader off over the
   page, a refused pawn scrolls its message into view in the menu, and a
   refusal beside a wide console's reveal presses widens into their row
-  instead of throwing them sideways.
+  instead of throwing them sideways. A seat the lobby's grid stretches to a
+  taller or shorter row as another joins or leaves grows or shrinks as it
+  slides, rather than taking its new height in one frame.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played

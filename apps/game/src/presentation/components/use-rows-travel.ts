@@ -4,7 +4,13 @@ import { keyedRowsOf, whenRowsDrawn } from './when-rows-drawn'
 
 type Offset = { x: number; y: number }
 
-type Boxes = ReadonlyMap<string, Offset>
+/** Where a row sits, and how tall: a row a grid restretches changes height as it moves. */
+type Box = Offset & { height: number }
+
+type Boxes = ReadonlyMap<string, Box>
+
+/** How far a halted row stood from its place, and how tall it was drawn there. */
+type Halt = Box
 
 /**
  * How a move is timed: `reorder` answers a drag at once; `reveal` waits for
@@ -40,7 +46,7 @@ const frameOf = (list: HTMLElement): HTMLElement =>
     : list
 
 /** Where each row sits inside the list, so a scrolled panel measures the same. */
-const measure = (list: HTMLElement): Map<string, Offset> => {
+const measure = (list: HTMLElement): Map<string, Box> => {
   const origin = frameOf(list).getBoundingClientRect()
 
   return new Map(
@@ -49,7 +55,11 @@ const measure = (list: HTMLElement): Map<string, Offset> => {
 
       return [
         row.dataset.key ?? '',
-        { x: box.left - origin.left, y: box.top - origin.top }
+        {
+          height: row.offsetHeight,
+          x: box.left - origin.left,
+          y: box.top - origin.top
+        }
       ]
     })
   )
@@ -59,11 +69,11 @@ const measure = (list: HTMLElement): Map<string, Offset> => {
  * Where each row is laid out, before any transform: a draw is measured long
  * before the next, often while the stage around the list is still scaling in.
  */
-const measureLaidOut = (list: HTMLElement): Map<string, Offset> =>
+const measureLaidOut = (list: HTMLElement): Map<string, Box> =>
   new Map(
     keyedRowsOf(list).map((row) => [
       row.dataset.key ?? '',
-      { x: row.offsetLeft, y: row.offsetTop }
+      { height: row.offsetHeight, x: row.offsetLeft, y: row.offsetTop }
     ])
   )
 
@@ -79,8 +89,11 @@ const slotsOf = ({
   return new Map(
     from.flatMap((key, at) => {
       const slot = slots[at]
+      const own = now.get(key)
 
-      return slot === undefined ? [] : [[key, slot] as const]
+      return slot === undefined || own === undefined
+        ? []
+        : [[key, { ...slot, height: own.height }] as const]
     })
   )
 }
@@ -164,18 +177,22 @@ const play = ({
 
     const x = was.x - is.x
     const y = was.y - is.y
+    const isResized = Math.abs(was.height - is.height) >= MIN_TRAVEL_PX
 
-    if (Math.hypot(x, y) < MIN_TRAVEL_PX) {
+    if (Math.hypot(x, y) < MIN_TRAVEL_PX && !isResized) {
       continue
     }
 
     const layer = restingLayerOf(row)
     const zIndex = String(y > 0 ? layer + 1 : layer)
+    const heights = isResized
+      ? [{ height: `${was.height}px` }, { height: `${is.height}px` }]
+      : [{}, {}]
 
     row.animate(
       [
-        { transform: `translate(${x}px, ${y}px)`, zIndex },
-        { transform: 'none', zIndex }
+        { transform: `translate(${x}px, ${y}px)`, zIndex, ...heights[0] },
+        { transform: 'none', zIndex, ...heights[1] }
       ],
       { ...timing, id: TRAVEL_ID }
     )
@@ -184,9 +201,10 @@ const play = ({
 
 /**
  * Stops the rows still travelling and returns how far each stood from its
- * place, so a row caught mid-way by the next draw sets off from where it is.
+ * place and how tall it was, so a row caught mid-way by the next draw sets off
+ * from where it is.
  */
-const haltTravels = (list: HTMLElement): Map<string, Offset> =>
+const haltTravels = (list: HTMLElement): Map<string, Halt> =>
   new Map(
     keyedRowsOf(list).flatMap((row) => {
       const travels = row
@@ -198,12 +216,15 @@ const haltTravels = (list: HTMLElement): Map<string, Offset> =>
       }
 
       const shift = new DOMMatrixReadOnly(getComputedStyle(row).transform)
+      const height = row.offsetHeight
 
       for (const travel of travels) {
         travel.cancel()
       }
 
-      return [[row.dataset.key ?? '', { x: shift.m41, y: shift.m42 }] as const]
+      return [
+        [row.dataset.key ?? '', { height, x: shift.m41, y: shift.m42 }] as const
+      ]
     })
   )
 
@@ -212,7 +233,7 @@ const shiftedBy = ({
   shifts
 }: {
   boxes: Boxes
-  shifts: ReadonlyMap<string, Offset>
+  shifts: ReadonlyMap<string, Halt>
 }): Boxes =>
   new Map(
     [...boxes].map(([key, box]) => {
@@ -220,7 +241,9 @@ const shiftedBy = ({
 
       return [
         key,
-        shift === undefined ? box : { x: box.x + shift.x, y: box.y + shift.y }
+        shift === undefined
+          ? box
+          : { height: shift.height, x: box.x + shift.x, y: box.y + shift.y }
       ]
     })
   )
@@ -237,7 +260,7 @@ const gatheredFrom = ({
 }: {
   list: HTMLElement
   previous: Drawn | null
-  shifts: ReadonlyMap<string, Offset>
+  shifts: ReadonlyMap<string, Halt>
 }): Boxes | null =>
   previous === null ||
   Math.abs(previous.width - frameOf(list).clientWidth) >= MIN_TRAVEL_PX
@@ -248,7 +271,8 @@ const gatheredFrom = ({
  * A ref callback for a list whose rows are moved by what lies outside it — a
  * row of another list growing in the same grid, a chip dropping back into the
  * flow above them: each time their frame is resized, the rows it moved glide
- * from where they stood at the `gather` pace. A frame laid out at another
+ * from where they stood, and from the height a row of the grid stretched them
+ * to, at the `gather` pace. A frame laid out at another
  * width moves nobody.
  */
 export const glidesWhenTheGridResizes = (
