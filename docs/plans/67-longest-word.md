@@ -1,7 +1,7 @@
 # 67 — Longest word
 
-**On the shelf, not yet seen** — steps 1 and 2 landed on 11/11/2026; the
-browser pass at full seats, muted and filmed, is what is left.
+**Done** — steps 1 and 2 landed on 11/11/2026, seen muted at full seats on a
+paired wall, a console seated and unseated, and two phones.
 
 Nine letters are drawn on every screen and every seat has the clock to type
 the longest word it can make from them. A seat may send as many words as it
@@ -137,6 +137,18 @@ _Longest word_ in English.
    in OKLab where the shelf's closest pair already sits at 0.04, and 11:1
    under `--on-spine`. The shelf's `SpellCheck` icon, `ShuffleIcon` and
    `TrophyIcon` for the seat; document heads in both locales.
+   **Seen** muted at 24 seats of long names (22 raw sockets, phones at 390
+   and 360 wide, the wall at 1440×900 opened with the host token, the
+   console unseated at 1440×900 and seated at phone width): a letter used
+   twice refused under the row, a shorter and an equal word keeping the
+   kept one, a word typed on a physical keyboard, the wall's text holding no
+   word the draw makes before the reveal, nothing scrolling on the wall;
+   the draw dealing in, a tower rising, the reveal's tiles turning over and
+   the reveal leaving filmed. The pass found the reveal leaving every game's
+   screens in one frame — it now fades into the countdown
+   (`leavesTheReveal`, `e599591b`) — and the console beside a wall ranking in
+   two columns of four-letter names, now one column scrolling in its card.
+   **Open**: the reveal was measured at 1440×900 only, not on a shorter wall.
 
 ## How to tell it is done
 

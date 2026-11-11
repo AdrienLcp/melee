@@ -1,7 +1,7 @@
 # 66 — Mystery word
 
-**Half done** — steps 1 and 2 landed on 11/11/2026; step 3, the screens, is
-next.
+**Done** — steps 1 to 3 landed on 11/11/2026, seen muted at full seats on a
+paired wall, a console seated and unseated, and two phones.
 
 A word is hidden, its first letter and its length are on every screen, and
 every seat has six tries to find it on its own screen. Each try is a real word
@@ -208,9 +208,16 @@ plan's 3 MB compressed script cap.
    Seen muted at 1440×900 (console unseated, 24 seats of long names), 390×844
    and 360×640 (a refusal, a try, found on the second, six tries spent), the
    refusal, the row turning over, the keyboard giving way and the reveal
-   filmed. **Open**: a paired wall was not driven, and at 24 seats the
-   reveal's spelled cells come out about 10 px at 1440×900 — legible from a
-   chair, not from four metres; the console scrolls them inside their box.
+   filmed. **A paired wall** was driven after (`72a349e0`), 1440×900 at 24
+   seats beside the console seated and unseated: no frame it received carried
+   the word and its one control is the menu; the towers rise and crown, and
+   nothing scrolls. It found three faults, fixed there: the reveal's grids
+   and word spilled about 240 px over the standings, a reveal card left two
+   letters of a name until the pay moved under it, and the console beside a
+   wall, two rows of towers high, drew every tube 0 px tall. **Open**: at 24
+   seats the reveal's spelled cells come out about 10 px at 1440×900 —
+   legible from a chair, not from four metres; the console scrolls them
+   inside their box.
 
 ## How to tell it is done
 
