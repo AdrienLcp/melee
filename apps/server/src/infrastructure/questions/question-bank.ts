@@ -6,8 +6,8 @@ import {
   type HostQuestion,
   hostQuestionSchema,
   type QuestionCategory,
-  questionCategorySchema,
   type QuestionDrawSettings,
+  questionCategorySchema,
   questionLanguageSchema,
   silhouetteFileSchema
 } from '@melee/protocol/question'
