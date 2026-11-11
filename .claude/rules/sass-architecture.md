@@ -442,7 +442,11 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   lobby, the reveal and the final board, a round paused or left by its host —
   and **never on a freeze lifted**, which reopens a race like the floor: the
   pause card fades off out of the flow (`LiftedNotice`) over the round come
-  back, as the host-away card does when the host returns. An answer form a
+  back, as the host-away card does when the host returns. The countdown
+  giving way to the round it counted in is the player's one faded-over
+  landing: a still copy of the whole shell fades off over the round
+  (`fadeOffTheCountdown`), since a round held to the viewport is laid out
+  wider than the countdown's column and a smaller copy left it cutting in. An answer form a
   press sends leaves on a still copy laid out of the flow from that press
   (`fadeOffACopyOfTheForm`); a clone keeps no running animation, so the copy
   never holds the round's clock — and every still copy holds what was moving
