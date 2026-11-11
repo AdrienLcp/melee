@@ -79,6 +79,32 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The last cuts between two moments move too.** On a player's
+  screen the countdown fades off over the round it counted in, which still
+  takes a press from its first frame, and Petit Bac's sheet gives way to its
+  vote on every screen instead of blanking for a frame; its Stop press, the
+  note that a stop was cancelled and the stop banner fade into one another.
+  The countdown's last second sinks into the token as the next is struck. In
+  the lobby a seat lands on its socket, a seat leaving fades where it stood
+  with the empty socket coming back under it, and the seats a join or a leave
+  moves slide to their new places. The note that a player sat down opens its
+  place in the header and closes it after fading. A press that becomes
+  unavailable settles into its dashed socket and back out, the copy press
+  widens and narrows with its word, and the players tab's badge pops in and
+  out. On the console, the seated host's notice folds open and shut, inner
+  clock's Stop fades into its word, Petit Bac's stop line, refused stamps,
+  refusal count and presses fold and cross-fade, a buzz no longer re-wraps
+  the floor's name as the stage changes, and a Challenge row whose player
+  leaves fades and closes. The room's screen fades its arrival line off as
+  the lobby lays down, makes room for _the host has stepped away_ at 9:16
+  instead of covering the round number and the join code, and keeps a duel,
+  a black square turn and the join reminder on one line as they open. Black
+  square's cells ease in and out of found, its keeper's list, hidden sheet,
+  black word and confirmation fade into one another, the map's pawn and its
+  presses fade in and out, the board's `+n` opens beside the pawns, the
+  mystery word's crown fades in growing, a removed line-up ticket fades
+  before its socket appears, a cold room load fades its loader off over the
+  page, and a refused pawn scrolls its message into view in the menu.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
@@ -257,6 +283,15 @@ one part.
 
 ### Internal
 
+- `[Game]` **Fewer motions, written once.** `page-leave` reads
+  `--travel-offset` and `--travel-scale` like `page-enter`, which retires
+  `notice-leave`, `countdown-lifts`, `seat-arrives` and `card-strike`; the
+  disclosure, the removed ticket and the saved line sit on shared mixins
+  (`fade.shows-in-place`, `swap.trades-in-place`, `$until-found`,
+  `fades-in-place`'s `$scale`); `useRowsTravel` gains a `gather` pace for a
+  roster's seats; a stage swap is typed `screen-swap` so the page's gutter
+  rule for a navigation leaves it alone; and `use-seat-pawn.ts` no longer
+  trips the compiler's `PreserveManualMemo`.
 - `[Server]` **A dictionary for the word games.** `words:build` folds Lexique
   3.83, ENABLE and SCOWL into `word-bank-fr.json` and `word-bank-en.json`:
   every form of two to nine letters a try may be (70 101 French, 105 241
