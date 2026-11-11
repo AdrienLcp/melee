@@ -24,8 +24,8 @@ address of whichever origin serves it. Keep the two in step.
   every request with one JSON body and never opens a stream.
 
 Then ask for an evening in words — _a two-hour evening for a family with
-children, nothing to judge_ — and open the link the assistant hands back on
-the screen that will host.
+children, nothing to judge_, or _a quiz about our family_ — and open the link
+the assistant hands back on the screen that will host.
 
 ## What it does
 
@@ -43,6 +43,22 @@ lid, _Open a table_ through the same door as every lid on the home page, and
 _Save_ into the host's own line-ups. A kept line-up goes back out the same way:
 _Copy the link_ beside it in the console's saved line-ups.
 
+## What an evening may bring
+
+An evening carries `decks` beside its line-up: a quiz entry may bring its own
+questions, written by the assistant from what the host told it (plan 68). The
+link page says how many, the console counts what is left of each and when it
+is spent, and the entry deals from its bank from then on. The questions travel
+in the fragment, are handed to the room by `host.setDecks` and reach no view;
+a room's storage is wiped with the table.
+
+**The link is the answer key.** Every question travels in it with its answer,
+so whoever holds it can read them — the host included, seated or not. That is
+accepted rather than worked around: the assistant page tells the host to open
+the link themselves instead of sending it to the table. A table run again from
+the home page's history plays every game's bank; the questions stay with the
+saved line-up.
+
 ## What it never does
 
 - **Open a room.** The room opens when the host's browser follows the link, so
@@ -50,8 +66,6 @@ _Copy the link_ beside it in the console's saved line-ups.
   through a chat transcript.
 - **Store or log an evening.** It reads what it is handed and returns it in a
   fragment, which no later request carries back to a server.
-- **Carry a host's own content** — a quiz on the family, a playlist of their
-  own. Every game deals from its banks; that is a stage per game, not this one.
 
 ## Checking it answers
 

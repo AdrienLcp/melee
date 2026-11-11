@@ -112,6 +112,12 @@ export const AssistantPage: React.FC = () => {
             kind='prose'
             value={translate('assistant.ask.example')}
           />
+          <CopyableLine
+            copyLabel='assistant.ask.ownQuiz.copy'
+            kind='prose'
+            value={translate('assistant.ask.ownQuiz.example')}
+          />
+          <p className='note'>{translate('assistant.ask.ownQuiz.note')}</p>
         </li>
       </ol>
 

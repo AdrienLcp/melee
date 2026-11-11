@@ -1,6 +1,6 @@
 # 68 — An evening that brings its own content
 
-**In progress — session 1 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
+**In progress — sessions 1 and 2 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
 played in order. This file holds what they share. Each handoff holds that
 session's own work.
 
@@ -83,6 +83,14 @@ opens.
   and the draw keep their meaning, there is no new end state, and the console
   says the deck is spent. Plan 42's _prepared plays once_ rule does not apply:
   these are bank games carrying a deck, not host-brought games.
+- **A deck is shown by its count, in its game's word.** `DeckNote`
+  (`presentation/components/deck-note.tsx`) prints `<game>.deck.count` and
+  `<game>.deck.spent`, for any game with an arm in `deckSchema`: the next deck
+  game adds those two keys to both dictionaries and nothing else. The console
+  prints it on an entry's next round alone. Every copy of an evening carries
+  `decks` — `SavedEvening.decks` is required, so a new copy decides — except
+  `PlayedLineUp`, which drops them on purpose; `decksForLineUp` realigns them
+  on the line-up a room was set to before `host.setDecks`.
 - **A deck item may have no category.** `HostQuestion.category` is nullable,
   and the screen shows no chip for `null`; the bank's rows keep theirs.
 - **Item ids are `deck:<deckId>:<index>`**, with `deckId` minted when the deck
@@ -146,7 +154,7 @@ opens.
 | #   | Handoff                                 | What it buys                                                                                                |
 | --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
-| 2   | `content-02-quiz-deck-on-screens.md`    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
+| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
 | 3   | `content-03-lines-and-descriptions.md`  | Challenge and Most likely decks of lines; `describe_games` explains every setting it leaves out today       |
 | 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |
 | 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |

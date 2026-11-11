@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
 import type { Deck, QuizDeckItem } from '@melee/protocol/deck'
-import { DEFAULT_GAME_SETTINGS } from '@melee/protocol/game'
+import { DEFAULT_GAME_SETTINGS, type GameSettings } from '@melee/protocol/game'
 
-import { deckProblems, decksFollowingLineUp } from './evening-decks'
+import {
+  deckProblems,
+  decksFollowingLineUp,
+  decksForLineUp
+} from './evening-decks'
 
 const RIVER: QuizDeckItem = {
   accepted: [],
@@ -88,8 +92,8 @@ describe('deckProblems', () => {
 })
 
 describe('decksFollowingLineUp', () => {
-  const BUZZER = DEFAULT_GAME_SETTINGS.buzzer
-  const TUNED_QUIZ = { ...QUIZ, roundDurationMs: QUIZ.roundDurationMs + 5000 }
+  const BUZZER: GameSettings = { kind: 'buzzer', locksOutOnMiss: true }
+  const TUNED_BUZZER: GameSettings = { kind: 'buzzer', locksOutOnMiss: false }
 
   it('[deck] follows an identical entry to wherever a drag put it', () => {
     expect(
@@ -105,8 +109,8 @@ describe('decksFollowingLineUp', () => {
     expect(
       decksFollowingLineUp({
         decks: [null, 'family'],
-        from: [BUZZER, QUIZ],
-        to: [BUZZER, TUNED_QUIZ]
+        from: [QUIZ, BUZZER],
+        to: [QUIZ, TUNED_BUZZER]
       })
     ).toEqual([null, 'family'])
   })
@@ -119,5 +123,27 @@ describe('decksFollowingLineUp', () => {
         to: [BUZZER]
       })
     ).toEqual([null])
+  })
+})
+
+describe('decksForLineUp', () => {
+  it('[deck] follows an entry saved as its game alone onto the settings it opened on', () => {
+    expect(
+      decksForLineUp({
+        decks: [quizDeck(RIVER)],
+        from: ['quiz'],
+        to: [QUIZ]
+      })
+    ).toEqual([quizDeck(RIVER)])
+  })
+
+  it('[deck] drops a deck landing beside another game, and is no deck at all then', () => {
+    expect(
+      decksForLineUp({
+        decks: [quizDeck(RIVER)],
+        from: ['quiz'],
+        to: [DEFAULT_GAME_SETTINGS.buzzer]
+      })
+    ).toEqual([])
   })
 })

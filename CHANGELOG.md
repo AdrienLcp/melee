@@ -34,6 +34,14 @@ one part.
 - `[Server]` **A closed table leaves nothing behind.** Closing a table or
   letting it expire wipes its whole Durable Object, not just the room's key,
   and `/legal` says the questions a line-up brought go with it.
+- `[Game]` **A line-up's own questions reach the table.** The link page says
+  how many home-made questions a line-up brings, never which; _Save_ keeps
+  them with it, the export file carries them, and _Open a table_ hands them to
+  the room. The console counts what is left on the entry's next round and says
+  when they are used up, and keeping the line-up again keeps its questions. A
+  table run again from the home page's history plays every game's own bank.
+  The assistant page offers a family quiz to ask for, and says its link holds
+  every answer.
 
 ### Improvements
 

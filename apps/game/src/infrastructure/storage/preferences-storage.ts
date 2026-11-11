@@ -16,6 +16,7 @@ import {
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS
 } from '@melee/protocol/board'
+import { type Deck, deckSchema } from '@melee/protocol/deck'
 import { EVENING_NAME_MAX_LENGTH } from '@melee/protocol/evening'
 import {
   gameKindSchema,
@@ -459,17 +460,45 @@ const playedLineUpOf = (
 }
 
 /**
- * One saved evening, as this store or a file another machine wrote spells it:
- * an entry that no longer reads keeps its game, and a field that no longer
- * reads falls back to the room's default.
+ * Deck by deck, each staying beside the entry it was written for: one that no
+ * longer reads becomes `null` rather than costing the evening, and a deck
+ * whose entry is gone goes with it — the entries after it move up one, so
+ * reading decks by their old index would hand a quiz deck to the next game.
+ */
+const decksOfStored = ({
+  decks,
+  lineUp
+}: {
+  decks: readonly unknown[]
+  lineUp: readonly unknown[]
+}): (Deck | null)[] => {
+  const kept = lineUp.flatMap((entry, at) => {
+    if (savedEntryOf(entry).length === 0) {
+      return []
+    }
+
+    const deck = deckSchema.safeParse(decks[at])
+
+    return [deck.success ? deck.data : null]
+  })
+
+  return kept.some((deck) => deck !== null) ? kept : []
+}
+
+/**
+ * One saved evening, as this store, a file another machine wrote or a link
+ * spells it: an entry that no longer reads keeps its game, and a field that no
+ * longer reads falls back to the room's default.
  */
 export const savedEveningSchema = storedLineUpSchema
   .extend({
+    decks: z.array(z.unknown()).catch([]),
     name: z.string().trim().min(1).max(EVENING_NAME_MAX_LENGTH)
   })
   .transform(
-    ({ name, ...stored }): SavedEvening => ({
+    ({ decks, name, ...stored }): SavedEvening => ({
       ...playedLineUpOf(stored),
+      decks: decksOfStored({ decks, lineUp: stored.lineUp }),
       name
     })
   )

@@ -522,11 +522,11 @@ export const hostArrivalState = (arrival: HostArrival): HostArrival => {
     return { readyMade: arrival.readyMade }
   }
 
-  const { lineUp, lineUpDeals, name, roundCount, runningOrder } =
+  const { decks, lineUp, lineUpDeals, name, roundCount, runningOrder } =
     arrival.evening
 
   return {
-    evening: { lineUp, lineUpDeals, name, roundCount, runningOrder }
+    evening: { decks, lineUp, lineUpDeals, name, roundCount, runningOrder }
   }
 }
 

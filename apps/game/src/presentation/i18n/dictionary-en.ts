@@ -28,7 +28,13 @@ export const EN_DICTIONARY = defineDictionary({
       example:
         'Plan two hours of games for a family with young children, with nothing the host has to judge.',
       heading: 'Ask in your own words',
-      note: 'Say who is at the table, for how long, and what to leave out.'
+      note: 'Say who is at the table, for how long, and what to leave out.',
+      ownQuiz: {
+        copy: 'Copy the family quiz',
+        example:
+          'Write a ten-question quiz about our family — I’ll tell you about us — and play it first in an hour of games.',
+        note: 'Its link holds every answer: open it yourself rather than sending it to the table.'
+      }
     },
     connect: {
       claude: {
@@ -1422,7 +1428,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     thirdParties: {
       assistant:
-        'If you plan with an assistant, its provider sends Mêlée the line-up it put together and gets a link back: nothing about you, and Mêlée keeps none of it. What you tell the assistant falls under its provider’s own terms.',
+        'If you plan with an assistant, its provider sends Mêlée what it put together — the line-up, and any questions it wrote for you, such as a quiz about your family — and gets a link back. Mêlée keeps none of it on the way: the questions travel in the link alone, and in a table opened from it they last as long as that table. What you tell the assistant falls under its provider’s own terms.',
       cloudflare:
         'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table counts against your IP address for one minute, so that nobody can open hundreds.',
       deezer:
@@ -1867,6 +1873,17 @@ export const EN_DICTIONARY = defineDictionary({
       silhouettes: 'Silhouettes',
       sport: 'Sport',
       videogames: 'Video games'
+    },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: {
+            one: '{?} home-made question',
+            other: '{?} home-made questions'
+          }
+        }
+      }),
+      spent: 'Home-made questions used up'
     },
     duration: 'Time per question',
     flag: {

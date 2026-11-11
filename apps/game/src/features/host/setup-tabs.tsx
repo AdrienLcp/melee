@@ -1,12 +1,14 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import type { Deck } from '@melee/protocol/deck'
 import type { GameKind } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
 
 import { dealsAdultContent } from '@melee/core/quiz/adult-content'
+import { decksForLineUp } from '@melee/core/room/evening-decks'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
@@ -23,6 +25,8 @@ import {
 } from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import {
+  decksKeptOver,
+  type SavedEvening,
   savedEveningOf,
   withSavedEvening
 } from '@melee/core/room/saved-evening'
@@ -62,6 +66,8 @@ export type SetupTabsProps = {
   onDismissWall: () => void
   /** Gives up the seat this console holds. */
   onLeaveSeat: () => void
+  /** Hands the room the decks of an evening laid over it; refused once a round has opened. */
+  onLoadDecks: (decks: (Deck | null)[]) => void
   /** Notes which ready-made line-up the room was just put on, or `null` once it is taken off. */
   onReadyMade: (id: ReadyMadeLineUpId | null) => void
   /** Files one key of the slate's answer key on this tab. */
@@ -97,6 +103,7 @@ type GamePage =
  */
 export const GameTab: React.FC<SetupTabsProps> = ({
   isLive,
+  onLoadDecks,
   onReadyMade,
   onRememberSlateKey,
   onSettingsChange,
@@ -115,10 +122,41 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   const saved = useSavedEvenings()
   const [loadedName, setLoadedName] = useState<string | null>(null)
   const keep = (name: string) => {
-    const evening = savedEveningOf({ name, settings: view.settings })
+    const evening = savedEveningOf({
+      decks: decksKeptOver({
+        evenings: saved.evenings,
+        name,
+        settings: view.settings
+      }),
+      name,
+      settings: view.settings
+    })
 
     saved.save(evening)
     setLoadedName(evening.name)
+  }
+  const holdsDecks = view.deckSummaries.some((summary) => summary !== null)
+  // A line-up laid over the lobby replaces the room's decks with its own, or
+  // the server would keep the last evening's questions on any entry of the
+  // same game left at the same index.
+  const layOver = ({
+    evening,
+    settings
+  }: {
+    evening: SavedEvening
+    settings: RoomSettings
+  }) => {
+    const decks = decksForLineUp({
+      decks: evening.decks,
+      from: evening.lineUp,
+      to: settings.lineUp
+    })
+
+    onSettingsChange(settings)
+
+    if (view.phase === 'lobby' && (decks.length > 0 || holdsDecks)) {
+      onLoadDecks(decks)
+    }
   }
   const backToList = () => {
     setPage({ hasReturned: true, kind: 'list', returnedFrom: null })
@@ -131,18 +169,21 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   const rememberedFor = (game: GameKind) =>
     rememberedSetupFor({ game, preferences })
   const loadReadyMade = (lineUp: ReadyMadeLineUp) => {
-    onSettingsChange(
-      withSavedEvening({
-        evening: savedEveningOfReadyMade({
-          lineUp,
-          name: translate(`readyMade.lineUps.${lineUp.id}.name`)
-        }),
+    const evening = savedEveningOfReadyMade({
+      lineUp,
+      name: translate(`readyMade.lineUps.${lineUp.id}.name`)
+    })
+
+    layOver({
+      evening,
+      settings: withSavedEvening({
+        evening,
         locale,
         rememberedFor: (game) =>
           rememberedOnReadyMade({ game, locale, preferences }),
         settings: view.settings
       })
-    )
+    })
     onReadyMade(lineUp.id)
   }
   const loadedReadyMade = readyMadeLineUpsFor(locale).find(
@@ -168,14 +209,15 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         onForget={saved.forget}
         onImport={saved.importEvenings}
         onRun={(evening) => {
-          onSettingsChange(
-            withSavedEvening({
+          layOver({
+            evening,
+            settings: withSavedEvening({
               evening,
               locale,
               rememberedFor,
               settings: view.settings
             })
-          )
+          })
           setLoadedName(evening.name)
           onReadyMade(null)
           backToList()

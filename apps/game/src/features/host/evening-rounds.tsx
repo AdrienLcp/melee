@@ -10,6 +10,7 @@ import {
 
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 import {
+  type DeckSummary,
   type HostRoomView,
   LINE_UP_MAX_ENTRIES,
   ROUND_COUNT_MAX,
@@ -41,6 +42,7 @@ import {
   ActionMenuSeparator
 } from '@/presentation/components/action-menu'
 import { Button } from '@/presentation/components/button'
+import { DeckNote } from '@/presentation/components/deck-note'
 import {
   ChevronIcon,
   ChevronRightIcon,
@@ -437,9 +439,11 @@ const OnlyRound: React.FC<{
         <span className='band' />
         <GameIcon game={entry.kind} />
         <span className='name'>{summary?.name}</span>
-        {summary?.settings != null && (
-          <span className='detail'>{summary.settings}</span>
-        )}
+        <EntryDetail
+          deck={view.deckSummaries[0] ?? null}
+          game={entry.kind}
+          settings={summary?.settings ?? null}
+        />
         {stamp !== null && <EveningStamp kind={stamp} played={timesPlayed} />}
       </AriaButton>
       <EntryMenu
@@ -452,6 +456,24 @@ const OnlyRound: React.FC<{
     </li>
   )
 }
+
+/**
+ * What an entry is set to, and what is left of the questions it brings — told
+ * on its next round's row alone, which is the one that deals the next of them.
+ */
+const EntryDetail: React.FC<{
+  /** The entry's deck, or `null` for none or on a row past its next. */
+  deck: DeckSummary | null
+  game: GameKind
+  /** What the entry is set to, or `null` when it is set to nothing worth saying. */
+  settings: string | null
+}> = ({ deck, game, settings }) =>
+  settings === null && deck === null ? null : (
+    <span className='detail'>
+      {settings}
+      {deck !== null && <DeckNote game={game} left={deck.size - deck.played} />}
+    </span>
+  )
 
 /**
  * Each round to come with a key that follows it through a drag: which of the
@@ -580,8 +602,16 @@ const OrderedRounds: React.FC<{
             )}
             {entry !== undefined && <GameIcon game={entry.kind} />}
             <span className='name'>{summary?.name}</span>
-            {summary?.settings != null && (
-              <span className='detail'>{summary.settings}</span>
+            {entry !== undefined && (
+              <EntryDetail
+                deck={
+                  rounds.find((next) => next.at === round.at) === round
+                    ? (view.deckSummaries[round.at] ?? null)
+                    : null
+                }
+                game={entry.kind}
+                settings={summary?.settings ?? null}
+              />
             )}
             {round.isPastTheEnd && <EveningStamp kind='beyond' played={0} />}
             <EntryMenu

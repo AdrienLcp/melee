@@ -11,6 +11,7 @@ import { useLineUpFace, useRoundsText } from '@/features/home/use-line-up-face'
 import { useSavedEvenings } from '@/features/host/use-saved-evenings'
 import { homePathFor } from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'
+import { DeckNote } from '@/presentation/components/deck-note'
 import { ArrowIcon, GameIcon, StarIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { Main } from '@/presentation/components/main'
@@ -81,6 +82,13 @@ const SharedLineUp: React.FC<{ evening: SavedEvening }> = ({ evening }) => {
           <p className='games'>
             {face.gamesText(gamesOfPlayedLineUp(evening))}
           </p>
+          {broughtDecksOf(evening).length > 0 && (
+            <p className='decks'>
+              {broughtDecksOf(evening).map(({ deck, key }) => (
+                <DeckNote game={deck.game} key={key} left={deck.items.length} />
+              ))}
+            </p>
+          )}
         </div>
         <p className='foot'>{roundsText(evening.roundCount)}</p>
       </article>
@@ -140,6 +148,12 @@ const segmentsOf = (evening: SavedEvening) =>
     game: typeof entry === 'string' ? entry : entry.kind,
     key: index
   }))
+
+/** Each entry's deck, keyed by its entry's place: the lid never reorders. */
+const broughtDecksOf = (evening: SavedEvening) =>
+  evening.decks.flatMap((deck, index) =>
+    deck === null ? [] : [{ deck, key: index }]
+  )
 
 const UnreadableLink: React.FC = () => {
   const { locale } = useI18n()

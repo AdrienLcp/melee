@@ -245,6 +245,7 @@ describe('readStoredSavedEvenings', () => {
   })
 
   const gameNight = {
+    decks: [],
     lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
     lineUpDeals: ['chance', 'both'],
     name: 'Game night',
@@ -253,12 +254,12 @@ describe('readStoredSavedEvenings', () => {
   }
 
   it('[chance-pool] reads an evening kept before the draw was chosen as every entry on its default', () => {
-    const { lineUpDeals: _dropped, ...older } = gameNight
+    const { decks: _none, lineUpDeals: _dropped, ...older } = gameNight
 
     store.set(SAVED_EVENINGS_KEY, JSON.stringify([older]))
 
     expect(readStoredSavedEvenings()).toEqual({
-      data: [{ ...older, lineUpDeals: [] }],
+      data: [{ ...older, decks: [], lineUpDeals: [] }],
       status: 'success'
     })
   })
@@ -313,6 +314,53 @@ describe('readStoredSavedEvenings', () => {
       status: 'success'
     })
   })
+
+  const firstSavedDecks = () => {
+    const evenings = readStoredSavedEvenings()
+
+    return evenings.status === 'success' ? evenings.data[0]?.decks : null
+  }
+
+  const familyQuiz = {
+    game: 'quiz',
+    items: [
+      {
+        accepted: [],
+        answer: 'Granny Rose',
+        category: null,
+        choiceOnly: false,
+        decoys: ['Uncle Paul', 'Aunt Mia', 'Cousin Léo'],
+        note: null,
+        prompt: 'Who baked the wedding cake?'
+      }
+    ]
+  }
+
+  it('[deck] keeps a deck beside its entry when an entry before it is gone', () => {
+    store.set(
+      SAVED_EVENINGS_KEY,
+      JSON.stringify([
+        {
+          ...gameNight,
+          decks: [null, familyQuiz],
+          lineUp: [{ kind: 'chess' }, ...gameNight.lineUp]
+        }
+      ])
+    )
+
+    expect(firstSavedDecks()).toEqual([familyQuiz, null])
+  })
+
+  it('[deck] drops a deck this build cannot read, and keeps the evening', () => {
+    store.set(
+      SAVED_EVENINGS_KEY,
+      JSON.stringify([
+        { ...gameNight, decks: [{ ...familyQuiz, items: [] }, familyQuiz] }
+      ])
+    )
+
+    expect(firstSavedDecks()).toEqual([null, familyQuiz])
+  })
 })
 
 describe('savedEveningSchema', () => {
@@ -326,6 +374,7 @@ describe('savedEveningSchema', () => {
     }
 
     expect(savedEveningSchema.safeParse(evening).data).toEqual({
+      decks: [],
       lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
       lineUpDeals: ['both', 'both'],
       name: 'Friday',
@@ -336,6 +385,7 @@ describe('savedEveningSchema', () => {
 
   it('[saved-evening] reads a shared link back, an entry an older build set differently kept as its game', async () => {
     const fragment = await eveningFragmentOf({
+      decks: [],
       lineUp: [
         DEFAULT_BLINDTEST_SETTINGS,
         { ...DEFAULT_QUIZ_SETTINGS, roundDurationMs: 1 }
@@ -349,6 +399,7 @@ describe('savedEveningSchema', () => {
     expect(
       savedEveningSchema.safeParse(await eveningCarriedBy(fragment)).data
     ).toEqual({
+      decks: [],
       lineUp: [DEFAULT_BLINDTEST_SETTINGS, 'quiz'],
       lineUpDeals: [],
       name: 'Chez Léa',

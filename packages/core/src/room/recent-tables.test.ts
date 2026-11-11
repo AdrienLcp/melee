@@ -62,6 +62,7 @@ const tableOn = ({
 
 const eveningOn = (lineUp: PlayedLineUp, name: string): SavedEvening => ({
   ...lineUp,
+  decks: [],
   name
 })
 

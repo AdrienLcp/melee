@@ -36,7 +36,7 @@ export type ReadyMadeLineUpId = (typeof readyMadeLineUpIds)[number]
  * A line-up the app ships, for a host who has never made one: a saved line-up
  * with no name of its own, because its name and caption are the dictionaries'.
  */
-export type ReadyMadeLineUp = Omit<SavedEvening, 'name'> & {
+export type ReadyMadeLineUp = Omit<SavedEvening, 'decks' | 'name'> & {
   id: ReadyMadeLineUpId
 }
 
@@ -280,6 +280,7 @@ export const savedEveningOfReadyMade = ({
   lineUp: ReadyMadeLineUp
   name: string
 }): SavedEvening => ({
+  decks: [],
   lineUp: lineUp.lineUp,
   lineUpDeals: lineUp.lineUpDeals,
   name,

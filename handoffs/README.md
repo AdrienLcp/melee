@@ -7,8 +7,7 @@ delete this README with the last one. The content series shares one plan:
 | Series  | Wave | File                                    | Depends on |
 | ------- | ---- | --------------------------------------- | ---------- |
 | Scoring | —    | `scoring-01-follow-ups.md`              | none       |
-| Content | 2    | `content-02-quiz-deck-on-screens.md`    | none       |
-| Content | 3    | `content-03-lines-and-descriptions.md`  | content 2  |
+| Content | 3    | `content-03-lines-and-descriptions.md`  | none       |
 | Content | 4    | `content-04-timeline-and-slate-keys.md` | content 3  |
 | Content | 5    | `content-05-own-numbers.md`             | content 4  |
 | Content | 6    | `content-06-black-square-themes.md`     | content 5  |

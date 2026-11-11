@@ -1,7 +1,9 @@
 import { useEffect, useEffectEvent, useRef } from 'react'
 
+import type { Deck } from '@melee/protocol/deck'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 
+import { decksForLineUp } from '@melee/core/room/evening-decks'
 import {
   type HostPreferences,
   rememberedSetupFor,
@@ -24,7 +26,8 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
  * this room. A console opened from a line-up on the home page — a ready-made
  * one, or one the host kept or played — lays that line-up over it in the same
  * frame, then lets go of it, so a reload in the lobby does not lay it over
- * whatever the host changed since.
+ * whatever the host changed since. The questions that evening brings follow in
+ * the next frame, once the room holds the line-up they were written for.
  *
  * Only the *first* view counts, whatever phase it arrives in. A console that
  * reloaded mid-game must not re-apply anything: the server would refuse the
@@ -32,11 +35,14 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
  * rearranged under them between two rounds.
  */
 export const useRestoreStoredSetup = ({
+  onLoadDecks,
   onReadyMadeLoaded,
   onRestore,
   preferences,
   view
 }: {
+  /** Hands the room the decks of the evening it was opened on. */
+  onLoadDecks: (decks: (Deck | null)[]) => void
   /** Told which ready-made line-up the frame put the room on. */
   onReadyMadeLoaded: (id: ReadyMadeLineUpId) => void
   onRestore: (settings: RoomSettings) => void
@@ -77,17 +83,26 @@ export const useRestoreStoredSetup = ({
       return
     }
 
-    onRestore(
-      withSavedEvening({
-        evening,
-        locale,
-        rememberedFor: (game) =>
-          readyMade !== undefined
-            ? rememberedOnReadyMade({ game, locale, preferences })
-            : rememberedSetupFor({ game, preferences }),
-        settings: restored
-      })
-    )
+    const settings = withSavedEvening({
+      evening,
+      locale,
+      rememberedFor: (game) =>
+        readyMade !== undefined
+          ? rememberedOnReadyMade({ game, locale, preferences })
+          : rememberedSetupFor({ game, preferences }),
+      settings: restored
+    })
+    const decks = decksForLineUp({
+      decks: evening.decks,
+      from: evening.lineUp,
+      to: settings.lineUp
+    })
+
+    onRestore(settings)
+
+    if (decks.length > 0) {
+      onLoadDecks(decks)
+    }
 
     if (readyMade !== undefined) {
       onReadyMadeLoaded(readyMade.id)

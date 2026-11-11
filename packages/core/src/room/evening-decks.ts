@@ -1,5 +1,5 @@
 import type { Deck } from '@melee/protocol/deck'
-import type { GameSettings } from '@melee/protocol/game'
+import type { GameKind, GameSettings } from '@melee/protocol/game'
 
 import { quizDeckProblems } from '../quiz/quiz-deck'
 
@@ -44,14 +44,18 @@ export const deckProblems = ({
       : deckProblemsAt({ deck, entry: lineUp[index], path: `decks[${index}]` })
   )
 
-const keyOf = (entry: GameSettings): string => JSON.stringify(entry)
+const keyOf = (entry: GameSettings | GameKind): string => JSON.stringify(entry)
+
+const kindOf = (entry: GameSettings | GameKind): GameKind =>
+  typeof entry === 'string' ? entry : entry.kind
 
 /**
  * The decks of `from` realigned on the line-up `to`, which a console sends
  * whole: each deck follows the entry it was written for to wherever that entry
  * went — an identical entry first, then an entry of the same game left at the
  * same index, which is an entry whose settings were tuned. A deck whose entry
- * left the line-up goes with it.
+ * left the line-up goes with it. `from` may hold a saved entry's game alone,
+ * whose settings no longer read: it is found by its game at its index.
  */
 export const decksFollowingLineUp = <TDeck>({
   decks,
@@ -59,7 +63,7 @@ export const decksFollowingLineUp = <TDeck>({
   to
 }: {
   decks: readonly (TDeck | null)[]
-  from: readonly GameSettings[]
+  from: readonly (GameSettings | GameKind)[]
   to: readonly GameSettings[]
 }): (TDeck | null)[] => {
   const followed: (TDeck | null)[] = to.map(() => null)
@@ -95,12 +99,38 @@ export const decksFollowingLineUp = <TDeck>({
   })
 
   for (const { deck, entry, index } of unmatched) {
-    if (to[index]?.kind === entry.kind && isTaken[index] === false) {
+    if (to[index]?.kind === kindOf(entry) && isTaken[index] === false) {
       place({ at: index, deck })
     }
   }
 
   return followed
+}
+
+/**
+ * The decks an evening brought, on the line-up a room was set to from it: each
+ * follows its entry (`decksFollowingLineUp`), and one that no longer fits the
+ * entry it landed on is dropped rather than costing the room every other —
+ * the server refuses `host.setDecks` whole. Empty when no deck is left, which
+ * is no deck at all.
+ */
+export const decksForLineUp = ({
+  decks,
+  from,
+  to
+}: {
+  decks: readonly (Deck | null)[]
+  from: readonly (GameSettings | GameKind)[]
+  to: readonly GameSettings[]
+}): (Deck | null)[] => {
+  const fitting = decksFollowingLineUp({ decks, from, to }).map((deck, at) =>
+    deck !== null &&
+    deckProblemsAt({ deck, entry: to[at], path: 'deck' }).length === 0
+      ? deck
+      : null
+  )
+
+  return fitting.some((deck) => deck !== null) ? fitting : []
 }
 
 /** The id a deck's item is dealt and remembered under — see `RoomDeck`. */

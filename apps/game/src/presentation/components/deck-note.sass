@@ -1,0 +1,22 @@
+// Side-effect module: the mark of a line-up entry bringing its own content.
+@use '../styles/typography'
+
+@layer components
+  .deck-note
+    @include typography.caption-strong
+
+    animation: swap-in var(--transition-base, 0s) var(--ease-out)
+    color: var(--ink)
+    display: block
+    font-variant-numeric: tabular-nums
+    text-wrap: pretty
+
+    svg
+      block-size: 1em
+      display: inline-block
+      inline-size: 1em
+      margin-inline-end: var(--space-2xs)
+      vertical-align: -0.125em
+
+    &[data-spent]
+      color: var(--ink-muted)

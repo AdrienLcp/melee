@@ -6,6 +6,7 @@ import { eveningCarriedBy, eveningFragmentOf } from './evening-link'
 import type { SavedEvening } from './saved-evening'
 
 const EVENING: SavedEvening = {
+  decks: [],
   lineUp: [DEFAULT_GAME_SETTINGS.quiz, 'buzzer', DEFAULT_GAME_SETTINGS.atlas],
   lineUpDeals: ['both', 'row', 'chance'],
   name: 'Soirée « été » — 🎉',

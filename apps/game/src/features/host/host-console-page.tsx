@@ -5,6 +5,7 @@ import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
+import type { Deck } from '@melee/protocol/deck'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
@@ -277,6 +278,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [roomCode, send]
   )
 
+  const loadDecks = (decks: (Deck | null)[]) => {
+    send({ decks, type: 'host.setDecks' })
+  }
+
   // Called after the frame that put the room on the line-up, which has just
   // filed that frame's own game: the stored value is the one to build on.
   const markReadyMade = (id: ReadyMadeLineUpId | null) => {
@@ -299,6 +304,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   useRememberLineUpGames(view)
   useRestoreStoredSetup({
+    onLoadDecks: loadDecks,
     onReadyMadeLoaded: markReadyMade,
     onRestore: changeSettings,
     preferences,
@@ -774,6 +780,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       send({ type: 'host.dismissWall' })
     },
     onLeaveSeat: leaveSeat,
+    onLoadDecks: loadDecks,
     onReadyMade: markReadyMade,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,

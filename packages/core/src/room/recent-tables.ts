@@ -17,8 +17,12 @@ import { isShelvedGame } from './shelved-game'
 /** How many tables this device remembers having run. */
 export const RECENT_TABLES_MAX = 8
 
-/** A line-up as it was played: a saved evening without its name. */
-export type PlayedLineUp = Omit<SavedEvening, 'name'>
+/**
+ * A line-up as it was played: a saved evening without its name, and without
+ * its decks — a table run again from history plays every game's own bank,
+ * because the questions an evening brought are kept with the evening alone.
+ */
+export type PlayedLineUp = Omit<SavedEvening, 'decks' | 'name'>
 
 /** A line-up this device ran at a table, remembered so the host can run it again. */
 export type RecentTable = PlayedLineUp & {
@@ -213,6 +217,7 @@ export const savedEveningOfRecent = ({
   recent: RecentTable
 }): SavedEvening => ({
   ...playedLineUpOf(recent),
+  decks: [],
   name: name.trim().slice(0, EVENING_NAME_MAX_LENGTH)
 })
 

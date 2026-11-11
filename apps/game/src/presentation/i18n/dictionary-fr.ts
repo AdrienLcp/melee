@@ -23,7 +23,13 @@ export const FR_DICTIONARY = defineDictionary({
       example:
         'Prépare deux heures de jeux pour une famille avec de jeunes enfants, sans rien que l’hôte doive arbitrer.',
       heading: 'Demande avec tes mots',
-      note: 'Dis qui est à table, pour combien de temps, et ce qu’il faut laisser de côté.'
+      note: 'Dis qui est à table, pour combien de temps, et ce qu’il faut laisser de côté.',
+      ownQuiz: {
+        copy: 'Copier le quiz de famille',
+        example:
+          'Écris un quiz de dix questions sur notre famille — je vais te parler de nous — et fais-le jouer en premier, dans une heure de jeux.',
+        note: 'Son lien contient toutes les réponses : ouvre-le toi-même plutôt que de l’envoyer à la table.'
+      }
     },
     connect: {
       claude: {
@@ -1352,7 +1358,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     thirdParties: {
       assistant:
-        'Si tu prépares la partie avec un assistant, son éditeur envoie à Mêlée la partie qu’il a composée et reçoit un lien en retour : rien sur toi, et Mêlée n’en garde rien. Ce que tu dis à l’assistant relève des conditions de son propre éditeur.',
+        'Si tu prépares la partie avec un assistant, son éditeur envoie à Mêlée ce qu’il a composé — la partie, et les questions qu’il a écrites pour toi, comme un quiz sur ta famille — et reçoit un lien en retour. Mêlée n’en garde rien au passage : les questions ne voyagent que dans le lien, et dans une table ouverte depuis lui elles durent autant que cette table. Ce que tu dis à l’assistant relève des conditions de son propre éditeur.',
       cloudflare:
         'Cloudflare, l’hébergeur, reçoit ton adresse IP à chaque requête, pour livrer la page et protéger le site des abus. Ouvrir une table est compté sur ton adresse IP pendant une minute, pour que personne ne puisse en ouvrir des centaines.',
       deezer:
@@ -1757,6 +1763,14 @@ export const FR_DICTIONARY = defineDictionary({
       silhouettes: 'Silhouettes',
       sport: 'Sport',
       videogames: 'Jeux vidéo'
+    },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} question maison', other: '{?} questions maison' }
+        }
+      }),
+      spent: 'Questions maison épuisées'
     },
     duration: 'Temps par question',
     flag: {

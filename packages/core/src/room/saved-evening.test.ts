@@ -29,6 +29,7 @@ const FILM_SCORES = {
 } as const
 
 const gameNight: SavedEvening = {
+  decks: [],
   lineUp: [
     DEFAULT_GAME_SETTINGS.quiz,
     FILM_SCORES,
@@ -107,6 +108,7 @@ describe('withSavedEvening', () => {
 
 describe('withEveningSaved', () => {
   const evening = savedEveningOf({
+    decks: [],
     name: '  Game night ',
     settings: load(gameNight)
   })
