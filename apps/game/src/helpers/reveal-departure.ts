@@ -1,4 +1,11 @@
-import type { RoundOnScreen } from './floor-handover'
+import type { RoundId } from '@melee/protocol/identifiers'
+import type { RoomPhase } from '@melee/protocol/room'
+
+/** What every role's view says about the round on screen. */
+export type RoundOnScreen = {
+  phase: RoomPhase
+  round: { id: RoundId } | null
+} | null
 
 /**
  * Whether a snapshot takes the reveal off the screen — the next round's

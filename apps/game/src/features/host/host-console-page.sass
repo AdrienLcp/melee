@@ -1,7 +1,9 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/seat-grid'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/reshape'
 @use '../../presentation/styles/scrollbar'
 @use 'boxed-standings'
 @use '../../presentation/styles/typography'
@@ -242,9 +244,11 @@
       .team-roster .member
         animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
 
+      // Keyed on the count, so a seat taken or given up swaps the number in.
       h2
         @include typography.label
 
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
         color: var(--ink-muted)
 
       .team-deal
@@ -275,10 +279,17 @@
       @include text-box.trimmed-block(var(--space-2xs))
 
     > footer
+      @include reshape.cross-fades-on-reshape
+
       align-items: center
       display: flex
       flex-direction: column
       gap: var(--space-m)
+
+      // Over the launch, which is lifted to `1` to stay over a scrolling
+      // lobby: at the same level the launch showed through the copy.
+      > .reshape-copy
+        z-index: 2
 
       // A line that belongs to the button above it rather than to the column:
       // the negative margin is what takes the footer's own gap back out, so the
@@ -342,6 +353,9 @@
         padding-block: var(--space-s)
         position: sticky
         z-index: 1
+
+        .reason-fold
+          @include fold.opens-in-column(var(--space-2xs))
 
         .reason
           margin-top: 0

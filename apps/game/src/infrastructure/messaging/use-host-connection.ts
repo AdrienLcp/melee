@@ -3,9 +3,11 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
 
+import { replacesTheStage } from '@/helpers/stage-replacement'
+
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
-import { swapsTheWholeStage, useRoomView } from './use-room-view'
+import { useRoomView } from './use-room-view'
 
 export type HostConnection = RoomSocket & {
   view: HostRoomView | null
@@ -27,7 +29,7 @@ export const useHostConnection = ({
   nickname: string | null
   roomCode: RoomCode
 }): HostConnection => {
-  const [view, receiveView] = useRoomView<HostRoomView>(swapsTheWholeStage)
+  const [view, receiveView] = useRoomView<HostRoomView>(replacesTheStage)
 
   // No `useCallback`: `useRoomSocket` holds this in an Effect Event, so its
   // identity is nothing the socket reads.

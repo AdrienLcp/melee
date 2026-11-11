@@ -1,6 +1,6 @@
 import { useMediaQuery, useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { useCallback, useEffect, useEffectEvent, useState } from 'react'
+import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 
 import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
@@ -25,6 +25,7 @@ import {
   type HostPreferences,
   rememberSettings
 } from '@melee/core/room/host-preferences'
+import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import {
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor,
@@ -121,6 +122,7 @@ import {
 } from './setup-tabs'
 import { useSilentClipReport } from './silent-clip-report'
 import { SlateEditors } from './slate-stages'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useLaidOutWall } from './use-laid-out-wall'
 import { useLineUpDraw } from './use-line-up-draw'
 import { useOwnLines } from './use-own-lines'
@@ -549,6 +551,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     ((isTryRefusal(error.code) && mysteryWordContent(view?.round) !== null) ||
       (isWordRefusal(error.code) && longestWordContent(view?.round) !== null))
   const shownError = isClosedHere || isSaidOnTheSeat ? null : error
+  const footer = useRef<HTMLElement>(null)
+  useCrossFadeOnReshape({
+    box: footer,
+    shape: `${pressesShapeOf({ isSlateOnWall: slateWall.isOnWall, view })}:${shownError?.code ?? ''}`
+  })
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
@@ -816,7 +823,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         view={view}
       />
 
-      <footer>
+      <footer ref={footer}>
         {shownError !== null && (
           <p className='error' role='alert'>
             {translate(protocolErrorKey(shownError.code))}
@@ -892,7 +899,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   slateWall={slateWall}
                   view={view}
                 />
-                <footer>
+                <footer ref={footer}>
                   {shownError !== null && (
                     <p className='error' role='alert'>
                       {translate(protocolErrorKey(shownError.code))}
@@ -944,6 +951,37 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       </HostPanel>
     </PawnPiecesProvider>
   )
+}
+
+/**
+ * Which set of presses the footer holds inside one stage: a stage replaced
+ * has its own motion (`replacesTheStage`), so only a set swapped where it
+ * stands — the lobby's seat form giving way to the launch, the slate's
+ * writing presses to its marking — cross-fades.
+ */
+const pressesShapeOf = ({
+  isSlateOnWall,
+  view
+}: {
+  isSlateOnWall: boolean
+  view: HostRoomView | null
+}): string => {
+  if (
+    view?.phase === 'lobby' &&
+    view.settings.teams.kind !== 'aloud' &&
+    launchesWithHostSeated({
+      seated: view.players.length,
+      settings: view.settings
+    })
+  ) {
+    return 'seat-form'
+  }
+
+  if (view?.phase === 'playing' && view.round?.content.kind === 'slate') {
+    return isSlateOnWall ? 'slate-marking' : 'slate-writing'
+  }
+
+  return 'phase-presses'
 }
 
 /**

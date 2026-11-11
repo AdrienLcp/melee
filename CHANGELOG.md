@@ -79,6 +79,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The console's stage no longer changes in one frame.** The lobby
+  giving way to the countdown, the countdown to the round, the round to its
+  answer or the final board, a pause taken or lifted, and a game played
+  again each fade the stage left off over the one arriving, on the console
+  and the wall alike. In the lobby, the seat form and the launch cross-fade
+  as the first player sits down or the last one leaves, the reason the
+  launch waits folds in and out, and the count of players swaps in.
 - `[Game]` **The room's screen no longer cuts a line in or out.** The
   round number, the screen's own number, a duel, a black square turn, the
   sound offer and the way in late fade into the top line and out of it, and

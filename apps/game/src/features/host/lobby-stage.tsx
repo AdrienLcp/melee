@@ -118,7 +118,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           {playsAloud ? (
             <h2>{translate('team.title')}</h2>
           ) : isRosterBeside ? null : (
-            <h2>
+            <h2 key={view.players.length}>
               {translate('host.players.count', {
                 count: view.players.length
               })}

@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 
@@ -25,6 +26,21 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   const playsAloud = view.settings.teams.kind === 'aloud'
   const isRoomEmpty = view.players.length === 0 && !playsAloud
   const hasNoGame = view.settings.game === null
+  // The game first when both are missing: it is the decision the panel opens
+  // on, where the roster fills itself as players arrive. The server refuses
+  // either way — see `no_game_chosen`.
+  const reason = hasNoGame
+    ? ('host.needsGame' as const)
+    : isRoomEmpty
+      ? ('host.needsPlayer' as const)
+      : null
+  const [lastReason, setLastReason] = useState(reason)
+
+  if (reason !== null && reason !== lastReason) {
+    setLastReason(reason)
+  }
+
+  const shownReason = reason ?? lastReason
 
   // An empty table's launch seats its host and starts, which is the one press
   // somebody playing alone needs — the seat form and a greyed *gather round*
@@ -81,16 +97,15 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
       >
         {translate('host.startGame')}
       </Button>
-      {/*
-        The game first when both are missing: it is the decision the panel
-        opens on, where the roster fills itself as players arrive. The server
-        refuses either way — see `no_game_chosen`.
-      */}
-      {hasNoGame ? (
-        <p className='reason'>{translate('host.needsGame')}</p>
-      ) : (
-        isRoomEmpty && <p className='reason'>{translate('host.needsPlayer')}</p>
-      )}
+      <div
+        className='reason-fold'
+        data-open={reason !== null || undefined}
+        inert={reason === null}
+      >
+        <p className='reason'>
+          {shownReason === null ? null : translate(shownReason)}
+        </p>
+      </div>
     </div>
   )
 }

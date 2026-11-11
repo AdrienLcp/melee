@@ -385,13 +385,15 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   list on the commit. Its box takes `reshape.cross-fades-on-reshape`: the
   copy is a clone, and every entrance keyed inside it would play again and
   blank what is meant to fade out. A whole stage a snapshot swaps lands through `replaceScreen`
-  (`useRoomView`, given what counts as a swap): the floor changing hands on
-  the console and the wall, never on a player's screen, where the transition
-  would hold a buzz for its length; and the reveal leaving — to the next
-  countdown, the final board — on every screen, since nothing is pressed on
-  what it gives way to. A phase whose arrival has a motion of its own still
-  owes one for leaving: the reveal's `card-strike` hid that it went in one
-  frame. A player's screen swaps on what `swapsThePlayerScreen` lists — the
+  (`useRoomView`, given what counts as a swap): on the console and the wall,
+  every change of phase and a pause taken or lifted (`replacesTheStage`) —
+  each stage arrives on a motion of its own and none had one for leaving, so
+  the lobby, the countdown and the round all went in one frame. A phase
+  whose arrival has a motion of its own still owes one for leaving: the
+  reveal's `card-strike` hid that it went in one frame. A copy laid over a
+  box that holds a `position: sticky` press lifted by `z-index` sits above
+  it, or the press shows through (the console's footer). A player's screen
+  swaps on what `swapsThePlayerScreen` lists — the
   lobby, the reveal and the final board, a round paused or left by its host —
   and **never on a freeze lifted**, which reopens a race like the floor: the
   pause card fades off out of the flow (`.lifted`) over the round come back.
