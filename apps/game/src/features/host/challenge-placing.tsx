@@ -12,11 +12,10 @@ import type { HostRoomView, RoundView } from '@melee/protocol/room'
 import { Button } from '@/presentation/components/button'
 import { Pawn } from '@/presentation/components/pawn'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
+import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
-
-import { useLeavingRows } from './use-leaving-rows'
 
 import './challenge-placing.sass'
 

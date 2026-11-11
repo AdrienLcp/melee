@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
@@ -20,6 +20,7 @@ import { CaseMark } from './case-mark'
 import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
 import { ReadyMark } from './ready-mark'
+import { useLeavingRows } from './use-leaving-rows'
 import { useRowsTravel } from './use-rows-travel'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -27,6 +28,8 @@ import './scoreboard.sass'
 
 /** Past this a ranking is read as a block rather than one row at a time. */
 const PLAYERS_PER_COLUMN = 8
+
+const ROW_EXIT_ANIMATION = 'page-leave'
 
 type ScoreboardProps = {
   /** For a caller that lays the rows out differently — the final board does. */
@@ -127,10 +130,16 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   youId
 }) => {
   const translate = useTranslate()
-  const { onLeft, rows } = useLeavingRows(
-    players,
-    isRoster === true ? buildRoster : buildScoreboard
-  )
+  const { endExitOf, rows } = useLeavingRows({
+    exitAnimation: ROW_EXIT_ANIMATION,
+    rows: (isRoster === true ? buildRoster : buildScoreboard)(players).map(
+      (row) => ({
+        ...row,
+        id: row.player.id,
+        seat: players.findIndex((seated) => seated.id === row.player.id)
+      })
+    )
+  })
   const climbs = rows.map(({ isLeaving, player }, at) =>
     isLeaving ? 0 : placesClimbedBy({ at, player, rankedBefore })
   )
@@ -209,15 +218,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             data-rank={isRanked ? rank : undefined}
             inert={isLeaving}
             key={player.id}
-            onAnimationEnd={
-              isLeaving
-                ? (event) => {
-                    if (event.target === event.currentTarget) {
-                      onLeft(player.id)
-                    }
-                  }
-                : undefined
-            }
+            onAnimationEnd={isLeaving ? endExitOf(player.id) : undefined}
             style={
               placesClimbed === 0
                 ? undefined
@@ -280,65 +281,6 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       })}
     </ol>
   )
-}
-
-type Row = { player: PublicPlayer; rank: number }
-
-type DrawnRow = Row & {
-  /** Gone from the room, drawn where it stood until its exit ends. */
-  isLeaving: boolean
-  /** Its place in the roster's order, which colours its pawn. */
-  seat: number
-}
-
-type LeftRow = DrawnRow & { at: number }
-
-const seatOf = (players: readonly PublicPlayer[], id: PlayerId): number =>
-  players.findIndex((seated) => seated.id === id)
-
-/**
- * Keeps a row whose player left drawn where it stood until its exit ends,
- * since the snapshot that ends it no longer holds that player. Pass `players`
- * as the snapshot holds them, so a new list means a new snapshot.
- */
-const useLeavingRows = (
-  players: readonly PublicPlayer[],
-  rowsOf: (players: readonly PublicPlayer[]) => readonly Row[]
-): { onLeft: (id: PlayerId) => void; rows: readonly DrawnRow[] } => {
-  const [held, setHeld] = useState(players)
-  const [left, setLeft] = useState<readonly LeftRow[]>([])
-
-  if (players !== held) {
-    const present = new Set(players.map((player) => player.id))
-    const leaving = rowsOf(held).flatMap((row, at) =>
-      present.has(row.player.id)
-        ? []
-        : [{ ...row, at, isLeaving: true, seat: seatOf(held, row.player.id) }]
-    )
-
-    setLeft((current) => [
-      ...current.filter((row) => !present.has(row.player.id)),
-      ...leaving
-    ])
-    setHeld(players)
-  }
-
-  const rows: DrawnRow[] = rowsOf(players).map((row) => ({
-    ...row,
-    isLeaving: false,
-    seat: seatOf(players, row.player.id)
-  }))
-
-  for (const row of left.toSorted((first, second) => first.at - second.at)) {
-    rows.splice(Math.min(row.at, rows.length), 0, row)
-  }
-
-  return {
-    onLeft: (id) => {
-      setLeft((current) => current.filter((row) => row.player.id !== id))
-    },
-    rows
-  }
 }
 
 const placesClimbedBy = ({
