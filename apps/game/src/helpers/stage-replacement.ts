@@ -40,11 +40,16 @@ export const replacesTheStage = ({
 const opensTheRace = (to: NonNullable<StageOnScreen>): boolean =>
   to.phase === 'playing' && !to.isPaused
 
-/** The wall's stage: every replacement swaps, since nothing on it is pressed. */
+/**
+ * The wall's stage: every replacement swaps, since nothing on it is pressed —
+ * the first view too, which takes the place of the line saying the room is
+ * on its way.
+ */
 export const wallStageLanding = (change: {
   from: StageOnScreen
   to: StageOnScreen
-}): ViewLanding => (replacesTheStage(change) ? 'swapped' : 'drawn')
+}): ViewLanding =>
+  change.from === null || replacesTheStage(change) ? 'swapped' : 'drawn'
 
 /**
  * The console's stage, swapped as the wall's is — save where the replacement

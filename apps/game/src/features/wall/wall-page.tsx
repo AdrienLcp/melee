@@ -42,6 +42,7 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { useIdleChrome } from '@/presentation/use-idle-chrome'
 
+import { publishHostAwayHeight } from './host-away-height'
 import { useAbsentFor } from './use-absent-for'
 import { asRoomScreenView } from './wall-view'
 
@@ -286,6 +287,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           className='host-away'
           data-shown={isHostAway || undefined}
           inert={!isHostAway}
+          ref={publishHostAwayHeight}
         >
           <p>{translate('wall.hostAway.title')}</p>
           <Link

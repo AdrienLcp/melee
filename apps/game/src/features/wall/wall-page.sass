@@ -62,6 +62,21 @@
     > header .sound-offer
       flex: none
 
+    // On the room's screen the header keeps one line, a duel and a black
+    // square's turn alone cutting their names short: given a line of their
+    // own as on a console, they wrapped the way in under them as they opened
+    // and back as they closed, and a wall standing up saw the square jump
+    // between lines; shrinking its neighbours broke the round index and the
+    // way in over two lines as the badge opened.
+    &.host-console-page > header:not(.round-chrome)
+      flex-wrap: nowrap
+
+      > .leaves-in-place > *
+        flex-shrink: 0
+
+      > .leaves-in-place > :is(.duel-badge, .black-square-turn)
+        flex-shrink: 1
+
     // What the console's sound picker calls this screen, said only once there
     // is another to tell it from.
     > header .wall-number
@@ -546,9 +561,21 @@
     // Laid over the header's band rather than in the page's flow: a phase
     // that lays the page out as a grid handed it the stage's row, and the
     // round sank under the screen's bottom edge; laid over the stage, it hid
-    // the question. Kept mounted, so it leaves as it came.
+    // the question; over the header alone, it covered the round index and
+    // the way in on a wall standing up. So the page makes room for it under
+    // the top edge while it is shown, the room opening before the band fades
+    // in and closing once it has faded out. Kept mounted, so it leaves as it
+    // came. Written on `#main`, whose own transition fades it while inert
+    // and would otherwise outrank this one; that fade is kept beside it.
+    &#main
+      transition: opacity var(--transition-base, 0s), padding-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5)
+
+      &:has(> .host-away[data-shown])
+        padding-block-start: calc(var(--layout-padding-block-start) + var(--host-away-height, 0rem) + var(--space-s))
+        transition: opacity var(--transition-base, 0s), padding-block-start var(--transition-base, 0s) var(--ease-out)
+
     .host-away
-      @include fade.fades-in-place('&[data-shown]', 0 -0.5rem)
+      @include fade.fades-in-place('&[data-shown]', 0 -0.5rem, $delay: calc(var(--transition-base, 0s) * 0.5))
       @include layout.cut
 
       align-items: center

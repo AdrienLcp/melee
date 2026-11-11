@@ -5,7 +5,8 @@ import { playerIdSchema } from '@melee/protocol/identifiers'
 import {
   type ConsoleStageOnScreen,
   consoleStageLanding,
-  replacesTheStage
+  replacesTheStage,
+  wallStageLanding
 } from './stage-replacement'
 
 const SEAT = playerIdSchema.parse('seat-1')
@@ -124,6 +125,26 @@ describe('consoleStageLanding', () => {
       consoleStageLanding({
         from: null,
         to: seated({ isPaused: false, phase: 'playing' })
+      })
+    ).toBe('drawn')
+  })
+})
+
+describe('wallStageLanding', () => {
+  it('[stage] swaps the arrival line for the first view', () => {
+    expect(
+      wallStageLanding({
+        from: null,
+        to: { isPaused: false, phase: 'lobby' }
+      })
+    ).toBe('swapped')
+  })
+
+  it('[stage] draws a snapshot that keeps the stage', () => {
+    expect(
+      wallStageLanding({
+        from: { isPaused: false, phase: 'lobby' },
+        to: { isPaused: false, phase: 'lobby' }
       })
     ).toBe('drawn')
   })
