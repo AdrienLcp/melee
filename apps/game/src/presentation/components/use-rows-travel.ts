@@ -237,6 +237,41 @@ const gatheredFrom = ({
     : shiftedBy({ boxes: previous.boxes, shifts })
 
 /**
+ * A ref callback for a list whose rows are moved by what lies outside it — a
+ * row of another list growing in the same grid, a chip dropping back into the
+ * flow above them: each time their frame is resized, the rows it moved glide
+ * from where they stood at the `gather` pace. A frame laid out at another
+ * width moves nobody.
+ */
+export const glidesOnRelayout = (
+  list: HTMLElement | null
+): (() => void) | undefined => {
+  if (list === null) {
+    return undefined
+  }
+
+  let previous: Drawn | null = null
+
+  const observer = new ResizeObserver(() => {
+    const shifts = haltTravels(list)
+    const now = measureLaidOut(list)
+    const before = gatheredFrom({ list, previous, shifts })
+
+    previous = { boxes: now, width: frameOf(list).clientWidth }
+
+    if (before !== null) {
+      play({ before, list, now, pace: 'gather' })
+    }
+  })
+
+  observer.observe(frameOf(list))
+
+  return () => {
+    observer.disconnect()
+  }
+}
+
+/**
  * Rows that changed places slide from where they stood rather than land there:
  * measured after the commit that reordered them, each starts at the box it held
  * — its old slot, or wherever `remember` saw it, a finger's drop included — and

@@ -104,6 +104,7 @@
     margin: 0
 
   .socket
+    animation: swap-in var(--transition-slow, 0s) var(--ease-out)
     background: var(--socket)
     box-shadow: var(--shadow-recess)
     display: grid
@@ -117,25 +118,30 @@
   .socket:nth-child(1 of :not([data-filled]))
     anchor-name: --returning-socket
 
+  // Pinned by its top and sides alone: a chip keeps its own height on the
+  // socket, so its row is not shorter while they trade than once it is back
+  // in the grid.
   @supports (anchor-name: --seat)
     &:has(.socket[data-filled]) .scoreboard li:nth-last-child(1 of :not([data-leaving]))
-      inset: anchor(--filled-socket top) anchor(--filled-socket right) anchor(--filled-socket bottom) anchor(--filled-socket left)
+      inset: anchor(--filled-socket top) anchor(--filled-socket right) auto anchor(--filled-socket left)
       position: absolute
 
     &:has(.socket:not([data-filled])) .scoreboard li[data-leaving]:last-child
-      inset: anchor(--returning-socket top) anchor(--returning-socket right) anchor(--returning-socket bottom) anchor(--returning-socket left)
+      inset: anchor(--returning-socket top) anchor(--returning-socket right) auto anchor(--returning-socket left)
       position: absolute
 
   // A seat given up mid-roster keeps its cell while it leaves, and so the
-  // socket its leaving frees is held back until the rows close up.
-  &:has(.scoreboard li[data-leaving]:not(:last-child)) .socket:last-child
+  // socket its leaving frees is held back, and fades in on the cell the rows
+  // closing up free. Holding back the last instead moves every socket after
+  // it a cell, each on another pawn.
+  &:has(.scoreboard li[data-leaving]:not(:last-child)) .socket:nth-child(1 of :not([data-filled]))
     display: none
 
   @supports not (anchor-name: --seat)
     .socket[data-filled]
       display: none
 
-    &:has(.scoreboard li[data-leaving]) .socket:last-child
+    &:has(.scoreboard li[data-leaving]) .socket:nth-child(1 of :not([data-filled]))
       display: none
 
     .pawn
