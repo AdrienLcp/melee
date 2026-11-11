@@ -117,7 +117,8 @@ one part.
   before its socket appears, a cold room load fades its loader off over the
   page, a refused pawn scrolls its message into view in the menu, and a
   refusal beside a wide console's reveal presses widens into their row
-  instead of throwing them sideways. A seat the lobby's grid stretches to a
+  instead of throwing them sideways, and a refusal replacing one still open
+  eases its badge to the new text's size. A seat the lobby's grid stretches to a
   taller or shorter row as another joins or leaves grows or shrinks as it
   slides, rather than taking its new height in one frame — and so does one
   stretched again between two joins, when a filled socket goes or a seat takes

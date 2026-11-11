@@ -1,6 +1,8 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+
+import { useSizeGlideOnSwap } from './use-size-glide-on-swap'
 
 import './refusal-note.sass'
 
@@ -19,15 +21,17 @@ type HeldRefusal = {
 /**
  * A refusal printed in danger ink under the press it answers. It stays
  * mounted and folds open and shut in its column, still saying the last
- * refusal while it folds away. Each refusal is new text in one live region,
- * so the same refusal twice is heard twice. Its column is a flex one, and sets
- * `--refusal-note-gap` to its own gap.
+ * refusal while it folds away. A refusal replacing another while it is open
+ * fades its text in as the badge eases to the new text's size. Each refusal
+ * is new text in one live region, so the same refusal twice is heard twice.
+ * Its column is a flex one, and sets `--refusal-note-gap` to its own gap.
  */
 export const RefusalNote: React.FC<RefusalNoteProps> = ({
   className,
   message
 }) => {
   const isOpen = message !== null
+  const badge = useRef<HTMLParagraphElement>(null)
   const [held, setHeld] = useState<HeldRefusal>({
     isOpen,
     message,
@@ -42,6 +46,8 @@ export const RefusalNote: React.FC<RefusalNoteProps> = ({
     })
   }
 
+  useSizeGlideOnSwap({ box: badge, swap: isOpen ? held.occurrence : null })
+
   return (
     <div
       className={classNames('refusal-note', className)}
@@ -49,7 +55,7 @@ export const RefusalNote: React.FC<RefusalNoteProps> = ({
       inert={!isOpen}
     >
       <div>
-        <p role='alert'>
+        <p ref={badge} role='alert'>
           <span key={held.occurrence}>{message ?? held.message}</span>
         </p>
       </div>
