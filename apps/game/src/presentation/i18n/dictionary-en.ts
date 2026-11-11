@@ -565,6 +565,9 @@ export const EN_DICTIONARY = defineDictionary({
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',
+    not_in_dictionary:
+      'That word is not in the dictionary. It cost you no try.',
+    not_one_word: 'One word, letters only. It cost you no try.',
     not_your_turn: 'This round is a duel between two other players.',
     pairing_not_found:
       'That screen code has expired. Open the screen again for a new one.',
@@ -592,6 +595,9 @@ export const EN_DICTIONARY = defineDictionary({
     wall_dismissed: 'The host let this screen go.',
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
+    wrong_first_letter:
+      'The word starts with the letter shown. It cost you no try.',
+    wrong_length: 'Not the right number of letters. It cost you no try.',
     wrong_phase: 'Too late, the game has moved on.'
   },
   estimate: {
@@ -783,7 +789,8 @@ export const EN_DICTIONARY = defineDictionary({
       point: 'Pin it on the map',
       spoken: 'Team by team',
       typed: 'Type it',
-      vote: 'Vote for someone'
+      vote: 'Vote for someone',
+      word: 'Find the word'
     },
     answerWindow: {
       label: 'Time to answer after a buzz'
@@ -1577,6 +1584,18 @@ export const EN_DICTIONARY = defineDictionary({
    * one. Three screens show it — nothing here, a refused socket, the credits —
    * and one destination is named one way or the product has three fronts.
    */
+  mysteryword: {
+    home: {
+      description:
+        'A word is hidden, its first letter and its length on every screen. Six tries each to find it, every letter coloured: in place, elsewhere in the word, or not in it. The room sees every grid in colours, never the letters.'
+    },
+    length: '{count:number} letters',
+    name: 'Mystery word',
+    play: 'Play Mystery word',
+    scoring:
+      'A word found on the first or second try scores 100 points, then 85, 70, 55 and 40 on the tries after; a word not found scores nothing.',
+    tagline: 'Six tries to find the hidden word.'
+  },
   navigation: {
     back: 'Back to the games',
     skipToContent: 'Skip to content'

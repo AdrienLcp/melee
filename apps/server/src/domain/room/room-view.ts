@@ -36,6 +36,7 @@ import {
   blackSquareContentView,
   blackSquareGrid
 } from '@/domain/round/black-square-round'
+import { mysteryWordContentView } from '@/domain/round/mystery-word-round'
 import {
   canCancelPetitBacStop,
   petitBacLinesFor,
@@ -243,6 +244,13 @@ const toHostContent = ({
     return {
       kind: 'higherlower',
       valuedPairs: seatId === null ? content.pairs.map(valuedPairOf) : null
+    }
+  }
+
+  if (content.kind === 'mysteryword') {
+    return {
+      kind: 'mysteryword',
+      word: seatId === null ? content.word : null
     }
   }
 
@@ -659,6 +667,14 @@ const toContentView = ({
       yourPicks:
         content.sheets.find(({ playerId }) => playerId === youId)?.picks ?? null
     }
+  }
+
+  if (content.kind === 'mysteryword') {
+    return mysteryWordContentView({
+      content,
+      isRevealed: round.revealed,
+      youId
+    })
   }
 
   if (content.kind === 'swatch') {

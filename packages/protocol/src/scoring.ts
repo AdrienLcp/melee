@@ -8,6 +8,7 @@ import {
 } from './black-square'
 import { HIGHER_LOWER_PAIR_COUNT } from './higher-lower'
 import { playerIdSchema } from './identifiers'
+import { letterMarksSchema, MYSTERY_WORD_TRY_COUNT } from './mystery-word'
 
 /**
  * One printed point, in the board's units. A thousand, because the clock pays
@@ -190,6 +191,18 @@ export const placeVerdictSchema = z.object({
   place: z.number().int().nonnegative()
 })
 
+/**
+ * A mystery-word grid: every accepted try's marks, first try first, and which
+ * try found the word — `null` while none has. Colours alone, so a verdict on
+ * any screen spells nothing. `@melee/core/mysteryword/word-pay` prices it.
+ * The server colours every try; no screen ever sends one.
+ */
+export const wordVerdictSchema = z.object({
+  foundOnTry: z.number().int().min(1).max(MYSTERY_WORD_TRY_COUNT).nullable(),
+  kind: z.literal('word'),
+  rows: z.array(letterMarksSchema).max(MYSTERY_WORD_TRY_COUNT)
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -200,7 +213,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   colourVerdictSchema,
   numberVerdictSchema,
   pairsVerdictSchema,
-  placeVerdictSchema
+  placeVerdictSchema,
+  wordVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -234,4 +248,5 @@ export type ColourVerdict = z.infer<typeof colourVerdictSchema>
 export type NumberVerdict = z.infer<typeof numberVerdictSchema>
 export type PairsVerdict = z.infer<typeof pairsVerdictSchema>
 export type PlaceVerdict = z.infer<typeof placeVerdictSchema>
+export type WordVerdict = z.infer<typeof wordVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

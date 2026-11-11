@@ -127,6 +127,18 @@ export const protocolErrorCodes = [
    * copying it.
    */
   'colour_still_shown',
+  /**
+   * A mystery-word try that is not one word once folded — a hyphen, an
+   * apostrophe, a space or a digit. Non-fatal, like the three after it: a
+   * refused try costs no try, because it is a typo.
+   */
+  'not_one_word',
+  /** A mystery-word try that is not the hidden word's length. */
+  'wrong_length',
+  /** A mystery-word try that does not start with the letter every screen shows. */
+  'wrong_first_letter',
+  /** A mystery-word try the round's dictionary does not know. */
+  'not_in_dictionary',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

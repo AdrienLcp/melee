@@ -1,6 +1,7 @@
 # 66 — Mystery word
 
-**Half done** — step 1 landed on 11/11/2026; step 2 is next.
+**Half done** — steps 1 and 2 landed on 11/11/2026; step 3, the screens, is
+next.
 
 A word is hidden, its first letter and its length are on every screen, and
 every seat has six tries to find it on its own screen. Each try is a real word
@@ -142,6 +143,42 @@ plan's 3 MB compressed script cap.
 2. **Served.** Protocol arms, capabilities, the round builder and grader, the
    conductor's draw, the views, `GAME_NOTES`, the socket suite. Reachable by a
    settings frame, not on the shelf.
+
+   **Done** 11/11/2026. `mysteryword` is in `gameKinds`, not `shelvedGames`:
+   `difficulty`, `roundDurationMs` 60–240 s (120 by default), `wordLength`
+   5–8 (6) and **`language`** — a setting of the game's own, `fr` by default,
+   because the quiz's language is its own setting too and the room has none.
+   Six rounds by default, the reveal held for the host. The answer mode is
+   `word`; `player.answer` carries `{ kind: 'word', guess }`. **Four refusal
+   codes**, not one: `not_one_word`, `wrong_length`, `wrong_first_letter`,
+   `not_in_dictionary`, `checkTry`'s own, answered before anything is banked.
+   The dictionary reaches the domain injected, as the atlas's `shapeOf` does:
+   `registerAnswer` takes `isWord`, the socket handler passes the bank's
+   `isValidWord`. **The retry gate** is _the round's mode retries and the held
+   verdict is not final_ — `isFinal` in `@melee/core/scoring/verdict`, a grid
+   found or six tries spent — keyed on the mode as well as the verdict, since a
+   wrong pick is not final by its verdict and is still one shot;
+   `everyoneIsDone` reads the same rule, so the round closes once every
+   stamped seat is done. **`scoredAfterMs` needed no change**: a try that does
+   not find the word is worth nothing, so the first try that raised the
+   verdict is the one that found it. `isPaidForSpeed` stays true: `clockedPay`
+   already pays speed to a whole round alone, so tries 3–6 keep their share
+   and no clock. The verdict `word` is `{ rows, foundOnTry }`, colours alone.
+   The server keeps each seat's folded tries on the round
+   (`tries: Map<PlayerId, string[]>`) and colours them on the way out
+   (`domain/round/mystery-word-round.ts`). Views: every screen reads
+   `firstLetter`, `length`, `language` and `grids` (colours per seat), the
+   reader its own `yourTries` with letters, the reveal `revealedWord` and
+   `revealedGrids`; the console reads `currentContent.word`, `null` while it
+   holds a seat; the wall's arm is bare. The game app compiles with the
+   dictionary keys, the four error strings, the icon and a provisional spine
+   (`oklch(45% 0.1 122)`, step 3 may move it), and no screen of its own yet;
+   the document head is typed over the shelf and waits for step 3, as do the
+   ready-made line-ups. No `PROTOCOL_VERSION` bump: every change is a new arm.
+   `mystery-word-game.test.ts` (eight tests, each broken once) covers the leak
+   over a whole round with a seated console, colours without letters, the four
+   refusals at no cost, the tries cap, the early close, the pay by try and the
+   found try's time, and the played ids.
 3. **On the shelf.** Starts with `/impeccable`: one complete example page per
    direction — the seat's grid and keyboard, the wall's colour grids at
    `MAX_PLAYERS_PER_ROOM`, the reveal — behind one index link for Adrien to

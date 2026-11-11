@@ -42,6 +42,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   matchsticks: 10,
   /** A line is half a minute of looking round the table, so ten of them are a short game. */
   mostlikely: 10,
+  /** A word is up to two minutes of six tries and a reveal, so six of them are an evening's game. */
+  mysteryword: 6,
   /** A letter is two minutes of writing and a vote, and six of them are an evening's game. */
   petitbac: 6,
   quiz: 10,
@@ -79,6 +81,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   innerclock: 'buzzer',
   matchsticks: 'move',
   mostlikely: 'vote',
+  mysteryword: 'word',
   petitbac: 'typed',
   quiz: 'choice',
   reflex: 'buzzer',
@@ -208,6 +211,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   innerclock: null,
   matchsticks: null,
   mostlikely: null,
+  mysteryword: null,
   petitbac: null,
   quiz: null,
   reflex: null,

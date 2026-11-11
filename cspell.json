@@ -114,7 +114,8 @@
         "docs/plans/67-longest-word.md",
         "apps/server/src/infrastructure/questions/word-bank.test.ts",
         "packages/core/src/words/*.test.ts",
-        "packages/core/src/mysteryword/*.test.ts"
+        "packages/core/src/mysteryword/*.test.ts",
+        "apps/server/src/__tests__/mystery-word-game.test.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [

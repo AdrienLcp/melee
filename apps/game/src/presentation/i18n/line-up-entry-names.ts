@@ -356,6 +356,12 @@ const settingsOf = ({
       ]
     case 'mostlikely':
       return [secondsOf({ ms: entry.roundDurationMs, translate })]
+    case 'mysteryword':
+      return [
+        translate('mysteryword.length', { count: entry.wordLength }),
+        levelOf({ difficulty: entry.difficulty, translate }),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
   }
 }
 

@@ -61,7 +61,15 @@ export const answerModeLabelKey = (
 /** The modes a game answering against its own question offers. */
 type ServedMode = Exclude<
   AnswerMode,
-  'colour' | 'move' | 'number' | 'order' | 'pairs' | 'point' | 'spoken' | 'vote'
+  | 'colour'
+  | 'move'
+  | 'number'
+  | 'order'
+  | 'pairs'
+  | 'point'
+  | 'spoken'
+  | 'vote'
+  | 'word'
 >
 
 const ATLAS_SCORING_KEYS = {
@@ -82,6 +90,7 @@ type ScoringKey = BuiltKey<
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
   | 'mostlikely.scoring'
+  | 'mysteryword.scoring'
   | 'petitbac.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
@@ -118,6 +127,7 @@ const CLOCK_PAID_SCORING: ReadonlySet<ScoringKey> = new Set<ScoringKey>([
   'blindtest.scoringMixed.typed',
   'higherlower.scoring',
   'matchsticks.scoringMove',
+  'mysteryword.scoring',
   'quiz.scoring.choice',
   'quiz.scoring.typed',
   'timeline.scoring'
@@ -154,7 +164,7 @@ export const scoringKey = ({
   } | null
 }): ScoringKey => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's and a spoken round black square's, so the two games that serve
+  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's, a word's tries the mystery word's and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
@@ -165,7 +175,8 @@ export const scoringKey = ({
     answerMode === 'colour' ||
     answerMode === 'vote' ||
     answerMode === 'number' ||
-    answerMode === 'pairs'
+    answerMode === 'pairs' ||
+    answerMode === 'word'
       ? 'choice'
       : answerMode
 
@@ -204,6 +215,8 @@ export const scoringKey = ({
       return 'estimate.scoring'
     case 'higherlower':
       return 'higherlower.scoring'
+    case 'mysteryword':
+      return 'mysteryword.scoring'
     case 'petitbac':
       return 'petitbac.scoring'
     case 'quiz':

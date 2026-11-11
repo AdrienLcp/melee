@@ -57,6 +57,7 @@ import {
   Upload,
   Users,
   Volume2,
+  WholeWord,
   WifiOff,
   X,
   Zap
@@ -150,6 +151,7 @@ const GAME_GLYPHS = {
   innerclock: Hourglass,
   matchsticks: Flame,
   mostlikely: Users,
+  mysteryword: WholeWord,
   petitbac: CaseSensitive,
   quiz: CircleQuestionMark,
   reflex: Zap,

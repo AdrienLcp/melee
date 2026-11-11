@@ -26,6 +26,8 @@ export const GAME_NOTES = {
     'Draws an equation or a number in matches that one moved match fixes, moved on every screen and judged by the server.',
   mostlikely:
     'Puts up a line about one of the people at the table that everyone votes on with a seat; the ballots that went with the room are paid. Flat with fewer than three players.',
+  mysteryword:
+    'Hides a word of five to eight letters, its first letter shown; every player has six tries on their own screen, each coloured letter by letter, and a word found in fewer tries pays more.',
   petitbac:
     'Deals a letter and a sheet of categories everyone fills on their own screen, then the room votes on what counts; a word nobody else wrote pays double.',
   quiz: 'Questions from banks bundled in French and English, by subject and difficulty, plus rubrics: flags, emoji rebuses, capitals and country outlines.',

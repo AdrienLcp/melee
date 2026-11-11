@@ -53,6 +53,12 @@ import {
 } from './matchsticks'
 import { mostLikelyCountSchema, mostLikelyLabelsSchema } from './most-likely'
 import {
+  colouredGridSchema,
+  mysteryWordLengthSchema,
+  spelledGridSchema,
+  spelledTrySchema
+} from './mystery-word'
+import {
   MAX_PETIT_BAC_CATEGORIES,
   MIN_PETIT_BAC_CATEGORIES,
   petitBacAnswerSchema,
@@ -65,6 +71,7 @@ import {
 } from './petit-bac'
 import {
   hostQuestionSchema,
+  questionLanguageSchema,
   questionPromptSchema,
   revealedQuestionSchema
 } from './question'
@@ -116,7 +123,8 @@ export const answerModes = [
   'colour',
   'vote',
   'number',
-  'pairs'
+  'pairs',
+  'word'
 ] as const
 
 /**
@@ -175,7 +183,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('colour') }),
   z.object({ kind: z.literal('vote') }),
   z.object({ kind: z.literal('number') }),
-  z.object({ kind: z.literal('pairs') })
+  z.object({ kind: z.literal('pairs') }),
+  z.object({ kind: z.literal('word') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -374,7 +383,8 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   point: { kind: 'point' },
   spoken: { kind: 'spoken' },
   typed: { kind: 'typed' },
-  vote: { kind: 'vote' }
+  vote: { kind: 'vote' },
+  word: { kind: 'word' }
 }
 
 export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
@@ -781,6 +791,25 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     revealedSheets: z.array(sentHigherLowerSheetSchema).nullable(),
     /** The reader's own sheet once sent, and `null` before or without a seat. What a reload comes back to. */
     yourPicks: higherLowerPicksSchema.nullable()
+  }),
+  z.object({
+    /** The hidden word's first letter, folded to `A`–`Z`. Given, not the answer: every try starts with it. */
+    firstLetter: z.string().length(1),
+    /**
+     * Every seat's grid that holds a try, as colours alone: who is one letter
+     * away is public, what they typed is not.
+     */
+    grids: z.array(colouredGridSchema),
+    kind: z.literal('mysteryword'),
+    /** The dictionary every try is checked against. */
+    language: questionLanguageSchema,
+    length: mysteryWordLengthSchema,
+    /** Every seat's grid with its letters, and `null` until the reveal. */
+    revealedGrids: z.array(spelledGridSchema).nullable(),
+    /** The hidden word, folded to `A`–`Z`, and `null` until the reveal — to a seated console too. */
+    revealedWord: z.string().nullable(),
+    /** The reader's own tries with their letters, and `null` without a seat. What a reload comes back to. */
+    yourTries: z.array(spelledTrySchema).nullable()
   })
 ])
 
@@ -1077,6 +1106,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('higherlower'),
     valuedPairs: z.array(valuedHigherLowerPairSchema).nullable()
+  }),
+  /** The hidden word, for the console to follow the grids, and `null` while the console holds a seat. */
+  z.object({
+    kind: z.literal('mysteryword'),
+    word: z.string().nullable()
   })
 ])
 
@@ -1174,7 +1208,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('swatch') }),
   z.object({ kind: z.literal('mostlikely') }),
   z.object({ kind: z.literal('estimate') }),
-  z.object({ kind: z.literal('higherlower') })
+  z.object({ kind: z.literal('higherlower') }),
+  z.object({ kind: z.literal('mysteryword') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

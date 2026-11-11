@@ -10,7 +10,7 @@ import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import { PETIT_BAC_IN_FLIGHT_GRACE_MS } from '@melee/protocol/petit-bac'
 import type { HostQuestion } from '@melee/protocol/question'
-import { READY_HOLD_MS } from '@melee/protocol/room'
+import { type ModeSettings, READY_HOLD_MS } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { ColourHex } from '@melee/protocol/swatch'
 import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
@@ -52,7 +52,7 @@ import {
 } from '@melee/core/round/round-roster'
 import { clockedPay } from '@melee/core/scoring/speed-bonus'
 import {
-  isFullyBanked,
+  isFinal,
   isMiss,
   isPaidForSpeed,
   nothingScored,
@@ -95,6 +95,11 @@ import {
   isOnTheBallot,
   payBallotsWithTheRoom
 } from '@/domain/round/most-likely-round'
+import {
+  checkWordTry,
+  gradeWordTry,
+  type IsWord
+} from '@/domain/round/mystery-word-round'
 import { settleEveryCategory } from '@/domain/round/petit-bac-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { gradeColour, isColourShown } from '@/domain/round/swatch-round'
@@ -473,8 +478,12 @@ export type AnswerRejection = Extract<
   | 'colour_still_shown'
   | 'invalid_message'
   | 'joined_mid_round'
+  | 'not_in_dictionary'
+  | 'not_one_word'
   | 'not_your_turn'
   | 'stale_round'
+  | 'wrong_first_letter'
+  | 'wrong_length'
   | 'wrong_phase'
 >
 
@@ -574,6 +583,13 @@ const keepAnswer = ({
     round.content.sheets.push({ picks: attempt.picks, playerId })
   }
 
+  if (round.content.kind === 'mysteryword' && attempt.kind === 'word') {
+    round.content.tries.set(playerId, [
+      ...(round.content.tries.get(playerId) ?? []),
+      attempt.guess
+    ])
+  }
+
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
     round.content.moves.push({
       glyphs: applyMove({
@@ -669,7 +685,8 @@ const takeUnsentLeans = (room: Room, now: number): void => {
  * have had your go".
  */
 export const registerAnswer = ({
-  attempt,
+  attempt: sent,
+  isWord,
   now,
   playerId,
   room,
@@ -677,6 +694,8 @@ export const registerAnswer = ({
   shapeOf
 }: {
   attempt: Attempt
+  /** Whether a mystery-word try is a word, read from the dictionary the server holds. */
+  isWord: IsWord
   now: number
   playerId: PlayerId
   room: Room
@@ -693,8 +712,8 @@ export const registerAnswer = ({
   const round = open.data
 
   if (
-    attempt.kind === 'seat' &&
-    !isOnTheBallot({ round, seatId: attempt.playerId })
+    sent.kind === 'seat' &&
+    !isOnTheBallot({ round, seatId: sent.playerId })
   ) {
     return Result.failure('invalid_message')
   }
@@ -704,10 +723,17 @@ export const registerAnswer = ({
   // A pick is one shot — four candidates with retries is just the answer with
   // extra steps. Typing is open until the clip runs out, and closes only once
   // there is nothing left to win.
-  if (held !== undefined && (attempt.kind !== 'typed' || isDone(held))) {
+  if (held !== undefined && (!takesRetries(round.mode) || isDone(held))) {
     return Result.failure('already_buzzed')
   }
 
+  const accepted = acceptedTry({ attempt: sent, isWord, round })
+
+  if (accepted.status === 'failure') {
+    return accepted
+  }
+
+  const attempt = accepted.data
   const graded = grade({ attempt, held, round, shapeOf })
 
   if (graded === null) {
@@ -738,8 +764,40 @@ export const registerAnswer = ({
   return Result.success()
 }
 
-const isDone = (attempts: PlayerAttempts): boolean =>
-  isFullyBanked(attempts.verdict)
+const isDone = (attempts: PlayerAttempts): boolean => isFinal(attempts.verdict)
+
+/** The modes a seat sends more than once in: typing until both halves land, a word until it is found or six tries are spent. */
+const takesRetries = (mode: ModeSettings): boolean =>
+  mode.kind === 'typed' || mode.kind === 'word'
+
+/**
+ * A mystery-word try folded and checked, or why it is refused — a refusal
+ * costs no try, so it is answered before anything is banked. Every other
+ * answer passes as sent.
+ */
+const acceptedTry = ({
+  attempt,
+  isWord,
+  round
+}: {
+  attempt: Attempt
+  isWord: IsWord
+  round: Round
+}): Result<Attempt, AnswerRejection> => {
+  if (attempt.kind !== 'word' || round.content.kind !== 'mysteryword') {
+    return Result.success(attempt)
+  }
+
+  const checked = checkWordTry({
+    content: round.content,
+    isWord,
+    typed: attempt.guess
+  })
+
+  return checked.status === 'refused'
+    ? Result.failure(checked.reason)
+    : Result.success({ guess: checked.word, kind: 'word' })
+}
 
 const bank = ({
   graded,
@@ -823,7 +881,7 @@ export const everyoneIsDone = (room: Room, now: number): boolean => {
         return false
       }
 
-      return round.mode.kind !== 'typed' || isDone(held)
+      return !takesRetries(round.mode) || isDone(held)
     })
   )
 }
@@ -1112,6 +1170,7 @@ type Attempt =
   | { kind: 'seat'; playerId: PlayerId }
   | { kind: 'number'; guess: number }
   | { kind: 'pairs'; picks: HigherLowerPicks }
+  | { kind: 'word'; guess: string }
   | TypedAttempt
 
 /**
@@ -1203,6 +1262,19 @@ const grade = ({
       : null
   }
 
+  if (content.kind === 'mysteryword') {
+    return attempt.kind === 'word'
+      ? {
+          said: attempt.guess,
+          verdict: gradeWordTry({
+            content,
+            held: held?.verdict.kind === 'word' ? held.verdict : null,
+            word: attempt.guess
+          })
+        }
+      : null
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1246,7 +1318,8 @@ const grade = ({
     attempt.kind === 'colour' ||
     attempt.kind === 'seat' ||
     attempt.kind === 'number' ||
-    attempt.kind === 'pairs'
+    attempt.kind === 'pairs' ||
+    attempt.kind === 'word'
   ) {
     return null
   }

@@ -7,6 +7,7 @@ import {
 } from './black-square'
 import { difficultySchema } from './difficulty'
 import { matchsticksGoalSchema } from './matchsticks'
+import { mysteryWordLengthSchema } from './mystery-word'
 import {
   MAX_PETIT_BAC_CATEGORIES,
   MIN_PETIT_BAC_CATEGORIES,
@@ -17,7 +18,7 @@ import {
   petitBacLetters,
   RARE_PETIT_BAC_LETTERS
 } from './petit-bac'
-import { questionDrawSettingsSchema } from './question'
+import { questionDrawSettingsSchema, questionLanguageSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { swatchShowMsSchema } from './swatch'
 import { EVERY_STRAND, trackDifficultySchema, trackSourceSchema } from './track'
@@ -38,7 +39,8 @@ export const gameKinds = [
   'swatch',
   'mostlikely',
   'estimate',
-  'higherlower'
+  'higherlower',
+  'mysteryword'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -249,6 +251,15 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('higherlower'),
     /** How long the pair stays open; the round closes early once every seat has picked. */
     roundDurationMs: z.number().int().min(5_000).max(30_000)
+  }),
+  z.object({
+    difficulty: difficultySchema,
+    kind: z.literal('mysteryword'),
+    /** The dictionary the word is drawn from and every try is checked against — the room's, like the quiz's. */
+    language: questionLanguageSchema,
+    /** How long the grids stay open; the round closes early once every seat has found the word or spent its tries. */
+    roundDurationMs: z.number().int().min(60_000).max(240_000),
+    wordLength: mysteryWordLengthSchema
   })
 ])
 
@@ -271,6 +282,7 @@ export type SwatchSettings = Extract<GameSettings, { kind: 'swatch' }>
 export type MostLikelySettings = Extract<GameSettings, { kind: 'mostlikely' }>
 export type EstimateSettings = Extract<GameSettings, { kind: 'estimate' }>
 export type HigherLowerSettings = Extract<GameSettings, { kind: 'higherlower' }>
+export type MysteryWordSettings = Extract<GameSettings, { kind: 'mysteryword' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -415,6 +427,15 @@ export const DEFAULT_HIGHER_LOWER_SETTINGS: HigherLowerSettings = {
   roundDurationMs: 10_000
 }
 
+/** Two minutes and six letters: time for six tries, with a word a table finds by the fourth. */
+export const DEFAULT_MYSTERY_WORD_SETTINGS: MysteryWordSettings = {
+  difficulty: 'mixed',
+  kind: 'mysteryword',
+  language: 'fr',
+  roundDurationMs: 120_000,
+  wordLength: 6
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -427,6 +448,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,
+  mysteryword: DEFAULT_MYSTERY_WORD_SETTINGS,
   petitbac: DEFAULT_PETIT_BAC_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,

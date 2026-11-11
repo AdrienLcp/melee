@@ -31,7 +31,7 @@ import type {
   PetitBacCategoryState,
   PetitBacLetter
 } from '@melee/protocol/petit-bac'
-import type { HostQuestion } from '@melee/protocol/question'
+import type { HostQuestion, QuestionLanguage } from '@melee/protocol/question'
 import type {
   ClipPlayback,
   ModeSettings,
@@ -515,6 +515,15 @@ export type Round = {
         pairs: ValuedHigherLowerPair[]
         /** Every seat's sheet, in the order they landed. */
         sheets: SentHigherLowerSheet[]
+      }
+    | {
+        kind: 'mysteryword'
+        /** The dictionary the word was drawn from and every try is checked against. */
+        language: QuestionLanguage
+        /** Every seat's accepted tries, folded, first try first; a refused try is never kept. */
+        tries: Map<PlayerId, string[]>
+        /** Folded to `A`–`Z`: the answer, sent to no screen but a seatless console before the reveal. */
+        word: string
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

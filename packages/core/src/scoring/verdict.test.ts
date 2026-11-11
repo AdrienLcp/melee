@@ -7,6 +7,7 @@ import {
 } from '@melee/protocol/scoring'
 
 import {
+  isFinal,
   isFullyBanked,
   isMiss,
   nothingScored,
@@ -70,6 +71,28 @@ describe('isFullyBanked', () => {
     expect(isFullyBanked(halves(true, false))).toBe(false)
     expect(isFullyBanked({ isCorrect: true, kind: 'single' })).toBe(true)
     expect(isFullyBanked({ isCorrect: false, kind: 'single' })).toBe(false)
+  })
+})
+
+describe('isFinal', () => {
+  const grid = (rowCount: number, foundOnTry: number | null): Verdict => ({
+    foundOnTry,
+    kind: 'word',
+    rows: Array.from({ length: rowCount }, () => [
+      'absent',
+      'absent',
+      'absent',
+      'absent',
+      'absent'
+    ])
+  })
+
+  it('[verdict] closes a word grid once it is found or its six tries are spent, and not before', () => {
+    expect(isFinal(grid(2, 2))).toBe(true)
+    expect(isFinal(grid(6, null))).toBe(true)
+    expect(isFinal(grid(5, null))).toBe(false)
+    expect(isFinal(halves(true, false))).toBe(false)
+    expect(isFinal(halves(true, true))).toBe(true)
   })
 })
 

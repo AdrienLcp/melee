@@ -57,6 +57,9 @@ const NUMBER_ONLY = ['number'] as const satisfies readonly AnswerMode[]
 /** Higher or lower is answered by one pick of the pair, which the server checks. */
 const PAIRS_ONLY = ['pairs'] as const satisfies readonly AnswerMode[]
 
+/** A mystery word is answered by typing tries, which the server colours letter by letter. */
+const WORD_ONLY = ['word'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -244,6 +247,16 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'higherlower':
       return {
         answerModes: PAIRS_ONLY,
+        makesSound: false,
+        paysTheClock: true,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // Two seats on one word is the cleanest race on the shelf.
+    case 'mysteryword':
+      return {
+        answerModes: WORD_ONLY,
         makesSound: false,
         paysTheClock: true,
         playsAloud: false,

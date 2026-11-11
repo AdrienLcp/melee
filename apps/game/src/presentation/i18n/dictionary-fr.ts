@@ -529,6 +529,9 @@ export const FR_DICTIONARY = defineDictionary({
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
+    not_in_dictionary:
+      'Ce mot n’est pas dans le dictionnaire. Ça ne t’a pas coûté d’essai.',
+    not_one_word: 'Un seul mot, que des lettres. Ça ne t’a pas coûté d’essai.',
     not_your_turn: 'Cette manche est un duel entre deux autres joueurs.',
     pairing_not_found:
       'Ce code d’écran a expiré. Rouvre l’écran pour en avoir un nouveau.',
@@ -557,6 +560,9 @@ export const FR_DICTIONARY = defineDictionary({
     wall_dismissed: 'L’hôte a libéré cet écran.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
+    wrong_first_letter:
+      'Le mot commence par la lettre affichée. Ça ne t’a pas coûté d’essai.',
+    wrong_length: 'Pas le bon nombre de lettres. Ça ne t’a pas coûté d’essai.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   estimate: {
@@ -741,7 +747,8 @@ export const FR_DICTIONARY = defineDictionary({
       point: 'On pointe sur la carte',
       spoken: 'Équipe par équipe',
       typed: 'On tape',
-      vote: 'On vote pour quelqu’un'
+      vote: 'On vote pour quelqu’un',
+      word: 'On trouve le mot'
     },
     answerWindow: {
       label: 'Temps pour répondre après un buzz'
@@ -1491,6 +1498,18 @@ export const FR_DICTIONARY = defineDictionary({
     scoring:
       'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 100 points. Pas de bonus de vitesse.',
     tagline: 'Une phrase, l’un de vous. C’est qui ?'
+  },
+  mysteryword: {
+    home: {
+      description:
+        'Un mot est caché, sa première lettre et sa longueur sur tous les écrans. Six essais chacun pour le trouver, chaque lettre colorée : bien placée, ailleurs dans le mot, ou absente. La pièce voit toutes les grilles en couleurs, jamais les lettres.'
+    },
+    length: '{count:number} lettres',
+    name: 'Mot mystère',
+    play: 'Jouer à Mot mystère',
+    scoring:
+      'Un mot trouvé au premier ou au deuxième essai rapporte 100 points, puis 85, 70, 55 et 40 aux essais suivants ; un mot pas trouvé ne rapporte rien.',
+    tagline: 'Six essais pour trouver le mot caché.'
   },
   navigation: {
     back: 'Retour aux jeux',

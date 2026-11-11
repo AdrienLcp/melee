@@ -21,6 +21,7 @@ import {
   playedPuzzleId
 } from '@/domain/round/matchsticks-round'
 import { mostLikelyContent } from '@/domain/round/most-likely-round'
+import { mysteryWordContent } from '@/domain/round/mystery-word-round'
 import {
   closePetitBacSheets,
   isPetitBacWriting,
@@ -86,6 +87,10 @@ import {
   drawTimelineEvents,
   playedTimelineEventId
 } from '@/infrastructure/questions/timeline-bank'
+import {
+  drawMysteryWord,
+  playedMysteryWordId
+} from '@/infrastructure/questions/word-bank'
 import {
   drawCapital,
   playedCapitalId
@@ -612,6 +617,42 @@ export const beginRound = async (
 
     openRound({
       content: higherLowerContent(pairs),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'mysteryword') {
+    const { difficulty, language, wordLength } = game
+    const drawn = drawMysteryWord({
+      difficulty,
+      language,
+      length: wordLength,
+      playedIds: room.playedContentIds
+    })
+
+    if (drawn === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Every word of that length has been dealt'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(
+      playedMysteryWordId({ language, word: drawn.word })
+    )
+
+    openRound({
+      content: mysteryWordContent({ language, word: drawn.word }),
       id: newRoundId(),
       now: engine.now(),
       room,

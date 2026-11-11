@@ -980,6 +980,22 @@ at any other length and refused a second time, and a seat's own verdict stays
 `null` until the reveal so a count of right pairs cannot be read as a hint.
 `higher-lower-game.test.ts` searches every frame for the values.
 
+**A mystery word travels to nobody before the reveal**, a seated console
+included. Every screen reads its first letter, its length and the round's
+language, and every seat's grid as `grids` — the marks of each try, `placed`,
+`present` or `absent`, and no letter: who is one letter away is public, what
+they typed is not. A seat reads its own tries with their letters
+(`yourTries`); the console reads the word on `currentContent` while it holds
+no seat, and the wall reads nothing more than a seat. A try is one
+`player.answer` of kind `word`, sent once per try: the server folds it to
+`A`–`Z` and refuses a line that is not one word, not the length, not on the
+first letter or not in the round's dictionary with `not_one_word`,
+`wrong_length`, `wrong_first_letter` or `not_in_dictionary` — none of them
+costs a try. The seventh try, and any try after the word is found, is
+`already_buzzed`. The reveal puts up `revealedWord` and every grid spelled out
+(`revealedGrids`). `mystery-word-game.test.ts` searches every frame of a round,
+a seated console's included, for the word.
+
 ## Errors
 
 ```jsonc
@@ -990,7 +1006,8 @@ at any other length and refused a second time, and a seat's own verdict stays
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
-`invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`.
+`invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`, and
+a mystery word's four refused tries.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.

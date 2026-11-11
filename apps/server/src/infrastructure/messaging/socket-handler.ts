@@ -112,6 +112,7 @@ import {
   keepChallengeAhead,
   redealChallenge
 } from '@/infrastructure/questions/challenge-dealer'
+import { isValidWord } from '@/infrastructure/questions/word-bank'
 
 import type { Connection, Outbound, Socket } from './connection'
 import {
@@ -1794,6 +1795,7 @@ const answer = (
 
   const registered = registerAnswer({
     attempt: message.answer,
+    isWord: isValidWord,
     now: engine.now(),
     playerId,
     room,

@@ -19,6 +19,7 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import { stickMoveSchema } from './matchsticks'
+import { wordGuessSchema } from './mystery-word'
 import { petitBacAnswerSchema, petitBacCategoryIndexSchema } from './petit-bac'
 import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
 import {
@@ -194,6 +195,14 @@ export const answerMessageSchema = z.object({
       kind: z.literal('pairs'),
       /** One pick per pair, the whole sheet at once. One shot, like a pick. */
       picks: higherLowerPicksSchema
+    }),
+    z.object({
+      /**
+       * One try at the hidden word, sent once per try. A line the server
+       * refuses — not a word, the wrong length or first letter — costs no try.
+       */
+      guess: wordGuessSchema,
+      kind: z.literal('word')
     })
   ]),
   roundId: roundIdSchema,

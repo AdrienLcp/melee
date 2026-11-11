@@ -78,6 +78,13 @@ one part.
   forms a table would know, front-coded to 236 KB gzipped for both. The
   mystery word's colours, try checks and pay are in `@melee/core`; nothing
   plays it yet. `/credits` names the three sources.
+- `[Shared]` **The mystery word is served.** A room set to it by a settings
+  frame deals a hidden word of the host's length from the room's dictionary,
+  checks every try and colours it, refuses a typo at no cost with its own
+  code, closes once every seat has found the word or spent six tries, and
+  pays a word found sooner more. The word reaches no screen before the
+  reveal, a seated console's neither; every seat's grid travels as colours
+  alone. Not on the shelf until its screens exist.
 
 ### Features
 

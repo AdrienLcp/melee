@@ -1,5 +1,6 @@
 import type { BlackSquareCell } from '@melee/protocol/black-square'
 import type { GameKind } from '@melee/protocol/game'
+import { MYSTERY_WORD_TRY_COUNT } from '@melee/protocol/mystery-word'
 import type { AnswerMode } from '@melee/protocol/room'
 import {
   type HalvesVerdict,
@@ -13,6 +14,7 @@ import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
 import { isWholeSheetRight, pointsForPairs } from '../higherlower/pairs-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
+import { pointsForWord } from '../mysteryword/word-pay'
 import { isFirstPlace, pointsForPlace } from '../reflex/place-pay'
 import { isExactColour, pointsForColour } from '../swatch/colour-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
@@ -91,6 +93,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForPlace(verdict)
   }
 
+  if (verdict.kind === 'word') {
+    return pointsForWord(verdict)
+  }
+
   return pointsForHalves(verdict)
 }
 
@@ -124,8 +130,19 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isWholeSheetRight(verdict)
     case 'place':
       return isFirstPlace(verdict)
+    case 'word':
+      return verdict.foundOnTry !== null
   }
 }
+
+/**
+ * Whether a seat holding this verdict has nothing left to send: it banked
+ * everything, or its mystery-word grid spent the last try without the word.
+ * What closes a seat's retries, and what lets the round end before its clock.
+ */
+export const isFinal = (verdict: Verdict): boolean =>
+  isFullyBanked(verdict) ||
+  (verdict.kind === 'word' && verdict.rows.length >= MYSTERY_WORD_TRY_COUNT)
 
 /**
  * Whether the clock takes a share of what this answer earned. A sheet is many

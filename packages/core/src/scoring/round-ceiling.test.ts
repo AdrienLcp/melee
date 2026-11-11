@@ -12,6 +12,7 @@ import { pointsForPairs } from '../higherlower/pairs-pay'
 import { pointsForGap } from '../innerclock/gap-pay'
 import { pointsForMove } from '../matchsticks/move-pay'
 import { POINTS_FOR_VOTING_WITH_THE_ROOM } from '../mostlikely/tally'
+import { pointsForWord } from '../mysteryword/word-pay'
 import { sheetPoints as petitBacSheetPoints } from '../petitbac/sheet-pay'
 import { answerGroupKey } from '../round/answer-groups'
 import { sheetPoints as slateSheetPoints } from '../slate/sheet-marking'
@@ -46,6 +47,7 @@ const BEST_ROUND = {
   innerclock: () => pointsForGap({ countedMs: 30_000, targetMs: 30_000 }),
   matchsticks: () => pointsForMove({ placesFromBest: 0 }),
   mostlikely: () => POINTS_FOR_VOTING_WITH_THE_ROOM,
+  mysteryword: () => pointsForWord({ foundOnTry: 1 }),
   petitbac: () =>
     petitBacSheetPoints({
       categoryCount: 6,
