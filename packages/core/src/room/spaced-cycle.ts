@@ -57,26 +57,43 @@ export const spacedCycle = ({
 
     return kind === undefined ? undefined : spacingKeyOf(kind)
   }
+  const countByKey = (rows: readonly number[]) => {
+    const counts = new Map<SpacingKey | undefined, number>()
+
+    for (const at of rows) {
+      counts.set(keyAt(at), (counts.get(keyAt(at)) ?? 0) + 1)
+    }
+
+    return counts
+  }
+  const shareByKey = countByKey(entries)
+  const owedByKey = countByKey(entries)
   const gapOf = (kind: SpacingKey | undefined) =>
-    Math.floor(
-      entries.length / entries.filter((at) => keyAt(at) === kind).length
-    )
+    Math.floor(entries.length / (shareByKey.get(kind) ?? 0))
   const dealt: number[] = []
   const left = [...entries]
+  const lastRowOfKey = new Map<SpacingKey | undefined, number>()
+  const lastRowOfEntry = new Map<number, number>()
+  const markPlayed = ({ at, row }: { at: number | null; row: number }) => {
+    lastRowOfKey.set(keyAt(at), row)
 
-  const roundsSince = (isOpened: (at: number | null) => boolean) => {
-    const before = [...opened, ...dealt]
-    const last = before.findLastIndex(isOpened)
-
-    return last === -1 ? Number.POSITIVE_INFINITY : before.length - last
+    if (at !== null) {
+      lastRowOfEntry.set(at, row)
+    }
   }
-  const roomLeftFor = (kind: SpacingKey | undefined) => {
-    const owed = left.filter((at) => keyAt(at) === kind).length
 
-    return left.length - ((owed - 1) * gapOf(kind) + 1)
+  for (const [row, at] of opened.entries()) {
+    markPlayed({ at, row })
   }
+
+  const roundsSince = (lastRow: number | undefined) =>
+    lastRow === undefined
+      ? Number.POSITIVE_INFINITY
+      : opened.length + dealt.length - lastRow
+  const roomLeftFor = (kind: SpacingKey | undefined) =>
+    left.length - (((owedByKey.get(kind) ?? 0) - 1) * gapOf(kind) + 1)
   const waitOf = (kind: SpacingKey | undefined) =>
-    roundsSince((at) => keyAt(at) === kind) - gapOf(kind)
+    roundsSince(lastRowOfKey.get(kind)) - gapOf(kind)
   const tightestOf = (kinds: readonly (SpacingKey | undefined)[]) => {
     const tightest = Math.min(...kinds.map(roomLeftFor))
     const tight = kinds.filter((kind) => roomLeftFor(kind) === tightest)
@@ -85,7 +102,7 @@ export const spacedCycle = ({
     return tight.filter((kind) => waitOf(kind) === longestWait)
   }
   const restOf = (kind: SpacingKey | undefined) =>
-    roundsSince((at) => keyAt(at) === kind) / gapOf(kind)
+    roundsSince(lastRowOfKey.get(kind)) / gapOf(kind)
   const nearestRestedOf = (kinds: readonly (SpacingKey | undefined)[]) => {
     const nearest = Math.max(...kinds.map(restOf))
 
@@ -105,13 +122,10 @@ export const spacedCycle = ({
       random
     })
     const variants = left.filter((at) => keyAt(at) === game)
-    const longestAgo = Math.max(
-      ...variants.map((at) => roundsSince((row) => row === at))
-    )
+    const entryRest = (at: number) => roundsSince(lastRowOfEntry.get(at))
+    const longestAgo = Math.max(...variants.map(entryRest))
     const drawn = pickOne({
-      candidates: variants.filter(
-        (at) => roundsSince((row) => row === at) === longestAgo
-      ),
+      candidates: variants.filter((at) => entryRest(at) === longestAgo),
       random
     })
 
@@ -119,8 +133,10 @@ export const spacedCycle = ({
       break
     }
 
+    markPlayed({ at: drawn, row: opened.length + dealt.length })
     dealt.push(drawn)
     left.splice(left.indexOf(drawn), 1)
+    owedByKey.set(game, (owedByKey.get(game) ?? 0) - 1)
   }
 
   return dealt

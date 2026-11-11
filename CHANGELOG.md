@@ -144,6 +144,14 @@ one part.
 
 ### Fixes
 
+- `[Core]` **Dealing Free-for-all's running order no longer rescans the
+  evening for every candidate.** `spacedCycle` searched every row dealt so far
+  for each game's last round and recounted each game's share on every pick,
+  so an uncapped Free-for-all dealt again after every round went cubic, and
+  its played-through test ran past Vitest's five seconds under a full
+  `validate`. The last row of each game and entry and the count each game
+  still owes are now kept as it deals — the same order, about four times
+  faster.
 - `[Game]` **A full table no longer trips React's update limit on a seat.**
   Every screen in a room reported its pawn room and scored seats to the menu
   as the snapshot's own arrays, so each frame set the menu's state a second
