@@ -10,6 +10,7 @@ import {
 
 import { blindtestHostContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { clipRefusalKey } from '@/presentation/i18n/translation'
 
@@ -84,11 +85,9 @@ export const ClipOffer: React.FC<ClipOfferProps> = ({
           {translate('blindtest.audio.start')}
         </Button>
         {/* Below the offer, because it is what the last one came back with. */}
-        {refusal !== null && (
-          <p className='refusal' role='alert'>
-            {translate(clipRefusalKey(refusal))}
-          </p>
-        )}
+        <RefusalNote
+          message={refusal === null ? null : translate(clipRefusalKey(refusal))}
+        />
       </div>
     )
   }

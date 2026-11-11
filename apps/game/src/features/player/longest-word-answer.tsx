@@ -13,12 +13,12 @@ import { foldWord } from '@melee/core/words/fold'
 
 import { longestWordContent } from '@/helpers/round-content'
 import {
-  CrossIcon,
   EraseIcon,
   ShuffleIcon,
   TrophyIcon
 } from '@/presentation/components/icons'
 import { isVowelTile } from '@/presentation/components/letter-tile'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -90,7 +90,6 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
   const [wordsSeen, setWordsSeen] = useState(words.length)
   const [answered, setAnswered] = useState(refusal)
   const [sent, setSent] = useState<string | null>(null)
-  const [lastShown, setLastShown] = useState<ShownRefusal | null>(null)
   const typed = laid.map((at) => letters[at]).join('')
 
   // A word banked: the row empties for the next one, and whatever the server
@@ -100,21 +99,12 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
     setLaid([])
     setAnswered(refusal)
     setSent(null)
-    setLastShown(null)
   }
 
   const shown: ShownRefusal | null =
     refusal !== null && refusal !== answered && isWordRefusal(refusal.code)
       ? { code: refusal.code, word: sent ?? typed }
       : null
-
-  // Held while the line folds away, so it closes on the words it said.
-  if (
-    shown !== null &&
-    (lastShown?.code !== shown.code || lastShown.word !== shown.word)
-  ) {
-    setLastShown(shown)
-  }
 
   // Sent and not yet answered either way: a second press would send it twice.
   const isWaiting = sent !== null && refusal === answered
@@ -197,7 +187,6 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
   }
 
   const ranked = words.toSorted((left, right) => right.length - left.length)
-  const line = shown ?? lastShown
 
   return (
     <section
@@ -255,20 +244,17 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
             )
           })}
         </p>
-        <div className='refusal' data-shown={shown !== null || undefined}>
-          <p className='refusal-line' role='status'>
-            {line !== null && (
-              <>
-                <CrossIcon />
-                {line.code === 'not_in_dictionary'
-                  ? translate('longestword.refusal.not_in_dictionary', {
-                      word: line.word
-                    })
-                  : translate(`longestword.refusal.${line.code}`)}
-              </>
-            )}
-          </p>
-        </div>
+        <RefusalNote
+          message={
+            shown === null
+              ? null
+              : shown.code === 'not_in_dictionary'
+                ? translate('longestword.refusal.not_in_dictionary', {
+                    word: shown.word
+                  })
+                : translate(`longestword.refusal.${shown.code}`)
+          }
+        />
         <Group aria-label={translate('longestword.draw')} className='tiles'>
           {order.map((at) => {
             const letter = letters[at] ?? ''

@@ -72,6 +72,7 @@ import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Loader } from '@/presentation/components/loader'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
@@ -552,8 +553,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const footer = useRef<HTMLElement>(null)
   useCrossFadeOnReshape({
     box: footer,
-    shape: `${pressesShapeOf({ isSlateOnWall: slateWall.isOnWall, view })}:${shownError?.code ?? ''}`
+    shape: pressesShapeOf({ isSlateOnWall: slateWall.isOnWall, view })
   })
+  const shownRefusal =
+    shownError === null ? null : translate(protocolErrorKey(shownError.code))
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
@@ -622,9 +625,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           youId={choosing.youId}
         />
         <div className='notice'>
-          {shownError !== null && (
+          {shownRefusal !== null && (
             <p className='error' role='alert'>
-              {translate(protocolErrorKey(shownError.code))}
+              {shownRefusal}
             </p>
           )}
           <ClipOffer
@@ -822,11 +825,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       />
 
       <footer ref={footer}>
-        {shownError !== null && (
-          <p className='error' role='alert'>
-            {translate(protocolErrorKey(shownError.code))}
-          </p>
-        )}
+        <RefusalNote className='error' message={shownRefusal} />
         {view !== null && <HostActions {...hostActionsProps(view)} />}
       </footer>
     </Main>
@@ -898,11 +897,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   view={view}
                 />
                 <footer ref={footer}>
-                  {shownError !== null && (
-                    <p className='error' role='alert'>
-                      {translate(protocolErrorKey(shownError.code))}
-                    </p>
-                  )}
+                  <RefusalNote className='error' message={shownRefusal} />
                   {!isRevealed && <HostActions {...hostActionsProps(view)} />}
                 </footer>
               </div>

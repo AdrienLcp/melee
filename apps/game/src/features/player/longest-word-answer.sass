@@ -72,7 +72,10 @@
         box-shadow: 0 var(--edge) 0 var(--good-edge)
         color: var(--tile-ink)
 
+    // A grid keeps its gap around a closed row: the note has none to take back.
     > .compose
+      --refusal-note-gap: 0rem
+
       display: grid
       gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.5), var(--space-s))
 
@@ -105,42 +108,6 @@
         &[data-next]
           background: transparent
           box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
-
-    // Folded at no height until a refusal opens it, so the tiles below give
-    // way smoothly rather than jumping when a word is turned down.
-    > .compose > .refusal
-      display: grid
-      grid-template-rows: 0fr
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in)
-
-      > .refusal-line
-        @include piece.card($radius: var(--radius-s))
-        @include typography.strong
-
-        align-items: center
-        box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
-        display: flex
-        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), var(--text-s))
-        gap: var(--space-xs)
-        margin: 0
-        min-block-size: 0
-        opacity: 0
-        overflow: hidden
-        padding-inline: var(--space-s)
-        transition: opacity var(--transition-base, 0s) var(--ease-in), padding var(--transition-base, 0s) var(--ease-in)
-
-        > svg
-          color: var(--card-muted)
-          flex: none
-
-      &[data-shown]
-        grid-template-rows: 1fr
-        transition-timing-function: var(--ease-out)
-
-        > .refusal-line
-          opacity: 1
-          padding-block: var(--space-xs)
-          transition-timing-function: var(--ease-out)
 
     .tiles
       display: flex

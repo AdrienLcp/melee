@@ -18,10 +18,10 @@ import { foldWord } from '@melee/core/words/fold'
 
 import { mysteryWordContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
-import { CrossIcon } from '@/presentation/components/icons'
 import { LetterGrid } from '@/presentation/components/letter-grid'
 import { MarkLegend } from '@/presentation/components/mark-legend'
 import { Pawn } from '@/presentation/components/pawn'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
@@ -86,7 +86,6 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
   const [triesSeen, setTriesSeen] = useState(tries.length)
   const [answered, setAnswered] = useState(refusal)
   const [sent, setSent] = useState<string | null>(null)
-  const [lastShown, setLastShown] = useState<ShownRefusal | null>(null)
 
   // A try banked: the row it was typed on has turned over, and the next one
   // opens on the given letter. Whatever the server last refused is spent.
@@ -95,21 +94,12 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
     setTyped(firstLetter)
     setAnswered(refusal)
     setSent(null)
-    setLastShown(null)
   }
 
   const shown: ShownRefusal | null =
     refusal !== null && refusal !== answered && isTryRefusal(refusal.code)
       ? { code: refusal.code, word: sent ?? typed }
       : null
-
-  // Held while the line folds away, so it closes on the words it said.
-  if (
-    shown !== null &&
-    (lastShown?.code !== shown.code || lastShown.word !== shown.word)
-  ) {
-    setLastShown(shown)
-  }
 
   const length = content?.length ?? 0
   const rows = tries.map((spelled) => spelled.marks)
@@ -207,7 +197,6 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
         roundDurationMs: round.durationMs ?? 0
       }).points
     : earned
-  const line = shown ?? lastShown
 
   return (
     <section
@@ -222,20 +211,17 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
         tries={tries}
         typing={isDone ? null : typed}
       />
-      <div className='refusal' data-shown={shown !== null || undefined}>
-        <p className='refusal-line' role='status'>
-          {line !== null && (
-            <>
-              <CrossIcon />
-              {line.code === 'not_in_dictionary'
-                ? translate('mysteryword.refusal.not_in_dictionary', {
-                    word: line.word
-                  })
-                : translate(`mysteryword.refusal.${line.code}`)}
-            </>
-          )}
-        </p>
-      </div>
+      <RefusalNote
+        message={
+          shown === null
+            ? null
+            : shown.code === 'not_in_dictionary'
+              ? translate('mysteryword.refusal.not_in_dictionary', {
+                  word: shown.word
+                })
+              : translate(`mysteryword.refusal.${shown.code}`)
+        }
+      />
       <div className='foot'>
         <div className='keys' inert={isDone}>
           <MarkLegend

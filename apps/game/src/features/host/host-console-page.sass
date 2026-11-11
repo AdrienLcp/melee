@@ -176,13 +176,15 @@
     // room is playing, and the only thing wrong is that this screen was never
     // asked for permission to make a sound.
     .muted-clip
+      --refusal-note-gap: var(--space-xs)
+
       align-items: center
       align-self: center
       display: flex
       flex-direction: column
       gap: var(--space-xs)
 
-      p
+      > p
         @include typography.caption
 
         color: var(--ink-muted)
@@ -268,7 +270,6 @@
 
       color: var(--ink-muted)
 
-    > footer .error,
     > .notice .error
       @include typography.caption-strong
 
@@ -280,6 +281,8 @@
 
     > footer
       @include reshape.cross-fades-on-reshape
+
+      --refusal-note-gap: var(--space-m)
 
       align-items: center
       display: flex
@@ -958,6 +961,8 @@
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting), > .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
     @include layout.narrow
       > footer
+        --refusal-note-gap: var(--space-xs)
+
         gap: var(--space-xs)
 
         .reveal-actions
@@ -994,6 +999,10 @@
         flex-direction: row
         flex-wrap: wrap
         justify-content: center
+
+        // A line of its own: closed in the row, it held its text's width.
+        > .refusal-note
+          flex-basis: 100%
 
   // Above the split the lobby is one composition across the page: the
   // invitation down the left, and the shelf, the table and the launch stacked
@@ -1058,6 +1067,9 @@
         grid-area: footer
         grid-template-areas: 'error' 'launch'
         justify-items: end
+
+        // A grid keeps its gap around a closed row: the note has none to take back.
+        --refusal-note-gap: 0rem
 
         .error
           grid-area: error
