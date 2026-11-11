@@ -70,8 +70,12 @@
       background: var(--socket)
       color: var(--ink-muted)
 
+    // Kept in its column, opened as the line is dealt.
     .played
-      @include typography.label
+      @include fold.opens-in-line
+
+      > span
+        @include typography.label
 
     .add
       align-items: end

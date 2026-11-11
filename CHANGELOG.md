@@ -141,7 +141,8 @@ one part.
   _Tout public_ switch — and a question added to a game's own list makes
   its room instead of pushing the field under it down at once. An entry's
   page opens and closes the stamp in its header, _1×_ as a round is dealt,
-  rather than growing the header by it in one frame.
+  rather than growing the header by it in one frame, and a question of the
+  host's own that a round deals opens its _played_ word beside it.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played

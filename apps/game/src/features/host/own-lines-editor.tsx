@@ -121,11 +121,13 @@ export const OwnLinesEditor: React.FC<OwnLinesEditorProps> = ({ game }) => {
                 }}
                 value={drafts[at] ?? line.text}
               />
-              {line.isPlayed && (
-                <span className='played'>
-                  {translate(`${game}.own.played`)}
-                </span>
-              )}
+              <span
+                aria-hidden={!line.isPlayed || undefined}
+                className='played'
+                data-open={line.isPlayed || undefined}
+              >
+                <span>{translate(`${game}.own.played`)}</span>
+              </span>
               <Button
                 aria-label={translate(`${game}.own.remove`, {
                   index: at + 1
