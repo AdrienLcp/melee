@@ -47,20 +47,22 @@ export const InnerclockStage: React.FC<InnerclockStageProps> = ({
       {youId !== null && (
         // The same height pressed or not, so a console that stops moves
         // nothing on the screen the others are still counting in front of.
-        <div className='yours' role='status'>
-          {hasPressed ? (
-            <p className='pressed'>{translate('innerclock.pressed')}</p>
-          ) : (
-            <Button
-              onPress={() => {
-                buzzFeedback('press')
-                setClaimedRoundId(onPress(round.id) ? round.id : null)
-              }}
-              size='large'
-            >
-              {translate('innerclock.press')}
-            </Button>
-          )}
+        <div
+          className='yours'
+          data-pressed={hasPressed || undefined}
+          role='status'
+        >
+          <Button
+            isDisabled={hasPressed}
+            onPress={() => {
+              buzzFeedback('press')
+              setClaimedRoundId(onPress(round.id) ? round.id : null)
+            }}
+            size='large'
+          >
+            {translate('innerclock.press')}
+          </Button>
+          <p className='pressed'>{translate('innerclock.pressed')}</p>
         </div>
       )}
     </div>
