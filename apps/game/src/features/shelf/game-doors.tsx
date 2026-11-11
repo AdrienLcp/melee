@@ -5,6 +5,7 @@ import type { ShelvedGame } from '@melee/protocol/game'
 import type { CreateRoom } from '@/features/home/use-create-room'
 import { Button } from '@/presentation/components/button'
 import { ArrowIcon } from '@/presentation/components/icons'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './game-doors.sass'
@@ -36,11 +37,7 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
         {translate('join.host.action')}
       </Button>
 
-      {refusal !== null && (
-        <p className='error' role='alert'>
-          {translate(refusal)}
-        </p>
-      )}
+      <RefusalNote message={refusal === null ? null : translate(refusal)} />
     </div>
   )
 }

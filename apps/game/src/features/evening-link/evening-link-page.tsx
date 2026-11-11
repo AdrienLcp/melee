@@ -15,6 +15,7 @@ import { DeckNote } from '@/presentation/components/deck-note'
 import { ArrowIcon, GameIcon, StarIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { Main } from '@/presentation/components/main'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -133,11 +134,7 @@ const SharedLineUp: React.FC<{ evening: SavedEvening }> = ({ evening }) => {
         {translate('eveningLink.savedWhere')}
       </p>
 
-      {refusal !== null && (
-        <p className='refusal' role='alert'>
-          {translate(refusal)}
-        </p>
-      )}
+      <RefusalNote message={refusal === null ? null : translate(refusal)} />
     </>
   )
 }

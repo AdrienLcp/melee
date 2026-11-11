@@ -1,3 +1,4 @@
+@use '../styles/fold'
 @use '../styles/typography'
 @use '../styles/text-box'
 
@@ -55,6 +56,9 @@
     &[data-invalid] .react-aria-TextArea
       box-shadow: var(--shadow-field), inset 0 0 0 var(--stroke-bold) var(--danger)
 
+    .fold
+      @include fold.opens-in-column(var(--space-2xs))
+
     .react-aria-Text[slot='description']
       @include typography.caption
 
@@ -63,10 +67,10 @@
     .react-aria-FieldError
       @include typography.caption-strong
 
-      align-self: flex-start
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       background: var(--danger)
       color: var(--danger-ink)
+      display: block
       padding: var(--space-2xs) var(--space-xs)
+      width: fit-content
 
       @include text-box.trimmed-block(var(--space-2xs))

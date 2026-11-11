@@ -11,3 +11,6 @@
 
     &:empty
       display: none
+
+    &:not(:empty)
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)

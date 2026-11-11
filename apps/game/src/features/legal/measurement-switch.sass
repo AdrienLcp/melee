@@ -1,16 +1,11 @@
-@use '../../presentation/styles/typography'
-
 @layer components
   .measurement-switch
+    --refusal-note-gap: var(--space-xs)
+
     border: var(--hairline)
     border-radius: var(--radius-m)
+    display: flex
+    flex-direction: column
+    gap: var(--space-xs)
     max-width: var(--measure)
     padding: var(--space-m)
-
-    .save-failed
-      @include typography.caption-strong
-
-      color: var(--ink)
-
-      &:not(:empty)
-        margin-block-start: var(--space-xs)

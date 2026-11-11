@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 import {
   FieldError,
   Label,
@@ -56,7 +57,7 @@ export type PawnHolder = {
 export type PawnPiecePickerProps = {
   /** Printed under the pieces: what picking changes, or why nothing can be picked now. */
   description?: string
-  /** The server's last refusal, in words; it replaces the description. */
+  /** The server's last refusal, in words; the description folds away for it. */
   errorMessage?: string
   /** Every other pawn on the table, whose pieces are struck through. */
   holders: readonly PawnHolder[]
@@ -98,6 +99,7 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
   const translate = useTranslate()
   const heads = HEADS_OFFERED[pawnOf]
   const pieceName = usePawnPieceName()
+  const [leavingError, setLeavingError] = useState(errorMessage)
   const heldByOthers = holders.map((holder) => holder.piece)
   const candidates = heads.flatMap((head) =>
     PAWN_COLOURS.map((colour): PawnPiece => ({ colour, head }))
@@ -127,11 +129,17 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
         })
   }
 
+  const isInvalid = errorMessage !== undefined
+
+  if (isInvalid && errorMessage !== leavingError) {
+    setLeavingError(errorMessage)
+  }
+
   return (
     <RadioGroup
       className='pawn-piece-picker'
       isDisabled={isDisabled}
-      isInvalid={errorMessage !== undefined}
+      isInvalid={isInvalid}
       onChange={(value) => {
         const picked = candidates.find(
           (candidate) => radioValueOf(candidate) === value
@@ -182,14 +190,31 @@ export const PawnPiecePicker: React.FC<PawnPiecePickerProps> = ({
             })}
         </div>
       ))}
-      {description !== undefined && errorMessage === undefined && (
-        <Text slot='description'>{description}</Text>
+      {description !== undefined && (
+        <Text
+          className='react-aria-Text fold'
+          data-open={!isInvalid || undefined}
+          inert={isInvalid}
+          slot='description'
+        >
+          <span>{description}</span>
+        </Text>
       )}
-      <FieldError>
-        {errorMessage === undefined ? undefined : (
-          <span role='alert'>{errorMessage}</span>
-        )}
-      </FieldError>
+      <div
+        className='fold'
+        data-open={isInvalid || undefined}
+        inert={!isInvalid}
+      >
+        <div>
+          {isInvalid ? (
+            <FieldError>
+              <span role='alert'>{errorMessage}</span>
+            </FieldError>
+          ) : (
+            <span className='react-aria-FieldError'>{leavingError}</span>
+          )}
+        </div>
+      </div>
     </RadioGroup>
   )
 }

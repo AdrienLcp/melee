@@ -60,17 +60,19 @@ export const PlayRightAway: React.FC<PlayRightAwayProps> = ({
         }
       }}
     >
-      {isNaming && (
-        <TextField
-          autoComplete='nickname'
-          autoFocus={remembered !== ''}
-          enterKeyHint='go'
-          label={translate('join.rightAway.name')}
-          maxLength={NICKNAME_MAX_LENGTH}
-          onChange={setDraft}
-          value={draft}
-        />
-      )}
+      <div className='fold' data-open={isNaming || undefined}>
+        {isNaming && (
+          <TextField
+            autoComplete='nickname'
+            autoFocus={remembered !== ''}
+            enterKeyHint='go'
+            label={translate('join.rightAway.name')}
+            maxLength={NICKNAME_MAX_LENGTH}
+            onChange={setDraft}
+            value={draft}
+          />
+        )}
+      </div>
       <Button
         isDisabled={isDisabled || nickname === ''}
         isPending={isPending}
@@ -79,7 +81,7 @@ export const PlayRightAway: React.FC<PlayRightAwayProps> = ({
       >
         {translate('join.rightAway.action')}
       </Button>
-      {!isNaming && (
+      <div className='fold' data-open={!isNaming || undefined} inert={isNaming}>
         <p className='as'>
           <span className='seated-as'>
             {translate('join.rightAway.as', { nickname })}
@@ -93,7 +95,7 @@ export const PlayRightAway: React.FC<PlayRightAwayProps> = ({
             {translate('join.rightAway.change')}
           </Button>
         </p>
-      )}
+      </div>
     </Form>
   )
 }

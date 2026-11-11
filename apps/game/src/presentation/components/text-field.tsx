@@ -1,5 +1,6 @@
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
+import { useState } from 'react'
 import {
   FieldError,
   Input,
@@ -15,7 +16,7 @@ import './text-field.sass'
 type TextFieldProps = ReactAriaTextFieldProps & {
   /** Forces the on-screen keyboard's letter case. `'characters'` for a room code. */
   autoCapitalize?: 'off' | 'characters'
-  /** Guidance shown under the input, replaced by `errorMessage` when there is one. */
+  /** Guidance shown under the input, folding away for `errorMessage` while the field is invalid. */
   description?: string
   /**
    * What the on-screen keyboard's action key says and does. `'send'` on a
@@ -47,40 +48,67 @@ export const TextField: React.FC<TextFieldProps> = ({
   label,
   placeholder,
   ...props
-}) => (
-  <ReactAriaTextField
-    {...props}
-    className={composeClassName(className, 'text-field')}
-    isInvalid={isInvalid}
-  >
-    <Label>{label}</Label>
-    {isMultiline ? (
-      <TextArea
-        autoCapitalize={autoCapitalize}
-        enterKeyHint={enterKeyHint}
-        onKeyDown={refuseLineBreak}
-        placeholder={placeholder}
-        rows={2}
-        spellCheck={false}
-      />
-    ) : (
-      <Input
-        autoCapitalize={autoCapitalize}
-        enterKeyHint={enterKeyHint}
-        placeholder={placeholder}
-        spellCheck={false}
-      />
-    )}
-    {description !== undefined && !isInvalid && (
-      <Text slot='description'>{description}</Text>
-    )}
-    <FieldError>
-      {errorMessage === undefined ? undefined : (
-        <span role='alert'>{errorMessage}</span>
+}) => {
+  const [leavingError, setLeavingError] = useState(errorMessage)
+
+  if (isInvalid && errorMessage !== leavingError) {
+    setLeavingError(errorMessage)
+  }
+
+  return (
+    <ReactAriaTextField
+      {...props}
+      className={composeClassName(className, 'text-field')}
+      isInvalid={isInvalid}
+    >
+      <Label>{label}</Label>
+      {isMultiline ? (
+        <TextArea
+          autoCapitalize={autoCapitalize}
+          enterKeyHint={enterKeyHint}
+          onKeyDown={refuseLineBreak}
+          placeholder={placeholder}
+          rows={2}
+          spellCheck={false}
+        />
+      ) : (
+        <Input
+          autoCapitalize={autoCapitalize}
+          enterKeyHint={enterKeyHint}
+          placeholder={placeholder}
+          spellCheck={false}
+        />
       )}
-    </FieldError>
-  </ReactAriaTextField>
-)
+      {description !== undefined && (
+        <Text
+          className='react-aria-Text fold'
+          data-open={!isInvalid || undefined}
+          inert={isInvalid}
+          slot='description'
+        >
+          <span>{description}</span>
+        </Text>
+      )}
+      <div
+        className='fold'
+        data-open={isInvalid || undefined}
+        inert={!isInvalid}
+      >
+        <div>
+          {isInvalid ? (
+            <FieldError>
+              {errorMessage === undefined ? undefined : (
+                <span role='alert'>{errorMessage}</span>
+              )}
+            </FieldError>
+          ) : (
+            <span className='react-aria-FieldError'>{leavingError}</span>
+          )}
+        </div>
+      </div>
+    </ReactAriaTextField>
+  )
+}
 
 const refuseLineBreak = (event: React.KeyboardEvent): void => {
   if (event.key === 'Enter') {

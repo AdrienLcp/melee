@@ -1,0 +1,23 @@
+@use '../styles/fold'
+@use '../styles/text-box'
+@use '../styles/typography'
+
+@layer components
+  .refusal-note
+    @include fold.opens-in-column(var(--refusal-note-gap, var(--space-s)))
+
+    // The badge sits inside a box of no padding, which is what the row
+    // clips: a padded child would hold a closed row open by its padding.
+    p
+      @include typography.caption-strong
+
+      background: var(--danger)
+      color: var(--danger-ink)
+      margin: 0
+      padding: var(--space-2xs) var(--space-s)
+
+      @include text-box.trimmed-block(var(--space-2xs))
+
+    // A refusal replacing another while the note is open.
+    span
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)

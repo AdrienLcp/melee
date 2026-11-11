@@ -4,6 +4,7 @@ import type { ShelvedGame } from '@melee/protocol/game'
 
 import { Button } from '@/presentation/components/button'
 import { ArrowIcon } from '@/presentation/components/icons'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { CreateRoom } from './use-create-room'
@@ -48,11 +49,13 @@ export const HostDoor: React.FC<HostDoorProps> = ({ createRoom, ticked }) => {
             ? translate('home.openWith', { count: ticked.length })
             : translate('join.host.action')}
         </Button>
-        {refusal !== null && refusedDoor === 'lobby' && (
-          <p className='error' role='alert'>
-            {translate(refusal)}
-          </p>
-        )}
+        <RefusalNote
+          message={
+            refusal !== null && refusedDoor === 'lobby'
+              ? translate(refusal)
+              : null
+          }
+        />
       </div>
     </div>
   )

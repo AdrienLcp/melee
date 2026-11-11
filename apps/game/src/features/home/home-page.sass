@@ -3,7 +3,6 @@
 @use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/layout'
-@use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
 // Where the code box moves beside the wordmark rather than under it.
@@ -89,23 +88,13 @@ $front-door-menu-width: 4rem
     .line-up-rows
       display: flex
       flex-direction: column
+      --refusal-note-gap: var(--space-xl)
+
       gap: var(--space-xl)
       min-width: 0
 
       &[aria-busy='true']
         cursor: progress
-
-    .rows-error
-      @include typography.caption-strong
-
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
-      background: var(--danger)
-      color: var(--danger-ink)
-      justify-self: start
-      margin: 0
-      padding: var(--space-2xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-2xs))
 
     // The heading over each row and over the shelf.
     .shelf-heading

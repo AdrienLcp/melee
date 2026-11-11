@@ -1,8 +1,5 @@
 // Side-effect module: the component's rules, in the components layer.
 
-@use '../../presentation/styles/text-box'
-@use '../../presentation/styles/typography'
-
 // Where the press stops spanning the page and keeps to the shelf's start.
 $door-at-start: 60rem
 
@@ -20,14 +17,17 @@ $door-at-start: 60rem
     .door-band
       background: var(--board)
       border-block-start: var(--stroke-thin) solid transparent
-      display: grid
+      --refusal-note-gap: var(--space-xs)
+
+      align-items: stretch
+      display: flex
+      flex-direction: column
       gap: var(--space-xs)
-      justify-items: stretch
       padding: var(--space-s) var(--gutter-right) var(--layout-padding-block-end) var(--gutter-left)
       transition: box-shadow var(--transition-base, 0s) var(--ease-out), border-color var(--transition-base, 0s) var(--ease-out)
 
       @media (width >= $door-at-start)
-        justify-items: start
+        align-items: flex-start
 
         > .button
           min-width: 18rem
@@ -49,14 +49,3 @@ $door-at-start: 60rem
     .door-band > .button
       text-wrap: balance
       white-space: normal
-
-    .error
-      @include typography.caption-strong
-
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
-      background: var(--danger)
-      color: var(--danger-ink)
-      margin: 0
-      padding: var(--space-2xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-2xs))

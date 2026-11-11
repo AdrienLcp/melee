@@ -2,7 +2,6 @@
 
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
-@use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -10,6 +9,8 @@
   // grown once, centred on whatever screen followed the link.
   .evening-link-page
     @include layout.screen
+
+    --refusal-note-gap: var(--space-l)
 
     align-items: center
     justify-content: center
@@ -133,18 +134,8 @@
         transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
         visibility: visible
 
-    .refusal
-      @include typography.caption-strong
-
-      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
-      background: var(--danger)
-      color: var(--danger-ink)
-      margin: 0
-      padding: var(--space-2xs) var(--space-s)
+    .refusal-note p
       text-align: center
-      width: auto
-
-      @include text-box.trimmed-block(var(--space-2xs))
 
     .unreadable
       align-items: center

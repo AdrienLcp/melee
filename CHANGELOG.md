@@ -79,6 +79,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A refusal or a field's error no longer pops in and vanishes.**
+  The red line under a press that could not open a table — on the home page,
+  a game's own page and a shared line-up — the code box's error, a pawn
+  refused in the menu and a visit count that could not be saved now unfold
+  under what they answer and fold away still saying it, the hint under a field
+  trading places with its error the same way; naming yourself before playing
+  right away unfolds the name field as the line it replaces folds, and a
+  loading line and the menu's latency fade in.
+
 - `[Game]` **A player's screen no longer cuts from one moment to the next.**
   The lobby giving way to the count, the round giving way to its answer, the
   final board coming and going, and a round paused or left by its host now

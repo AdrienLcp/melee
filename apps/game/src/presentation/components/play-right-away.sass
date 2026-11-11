@@ -1,3 +1,4 @@
+@use '../styles/fold'
 @use '../styles/typography'
 
 @layer components
@@ -7,6 +8,9 @@
     flex-direction: column
     gap: var(--space-s)
     min-width: 0
+
+    > .fold
+      @include fold.opens-in-column
 
     .as
       @include typography.caption

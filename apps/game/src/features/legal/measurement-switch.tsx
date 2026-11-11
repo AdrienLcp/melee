@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { Switch } from '@/presentation/components/switch'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
@@ -34,11 +35,11 @@ export const MeasurementSwitch: React.FC = () => {
         label={translate('legal.measurement.switch')}
         onChange={setCounted}
       />
-      {/* Always mounted, empty until a save fails: a live region that appears
-          together with its first message is a message nobody hears. */}
-      <p className='save-failed' role='alert'>
-        {hasSaveFailed ? translate('legal.measurement.saveFailed') : ''}
-      </p>
+      <RefusalNote
+        message={
+          hasSaveFailed ? translate('legal.measurement.saveFailed') : null
+        }
+      />
     </div>
   )
 }

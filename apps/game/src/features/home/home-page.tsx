@@ -1,5 +1,6 @@
 import { JoinWithCode } from '@/features/join/join-with-code'
 import { Main } from '@/presentation/components/main'
+import { RefusalNote } from '@/presentation/components/refusal-note'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { PAGE_HEADS } from '@/presentation/head/document-head'
 import { DocumentTitle } from '@/presentation/head/document-title'
@@ -55,13 +56,15 @@ export const HomePage: React.FC = () => {
       <div aria-busy={createRoom.isOpeningAny} className='line-up-rows'>
         <OwnLineUps createRoom={createRoom} />
         <ReadyMadeRow createRoom={createRoom} />
-        {createRoom.refusal !== null &&
-          (createRoom.refusedDoor === 'lineUp' ||
-            createRoom.refusedDoor === 'readyMade') && (
-            <p className='rows-error' role='alert'>
-              {translate(createRoom.refusal)}
-            </p>
-          )}
+        <RefusalNote
+          message={
+            createRoom.refusal !== null &&
+            (createRoom.refusedDoor === 'lineUp' ||
+              createRoom.refusedDoor === 'readyMade')
+              ? translate(createRoom.refusal)
+              : null
+          }
+        />
       </div>
 
       <GameShelf
