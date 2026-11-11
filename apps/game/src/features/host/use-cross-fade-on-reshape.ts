@@ -93,6 +93,14 @@ const play = ({
   const { copy } = before
 
   copy.style.background = groundBehind(box)
+  // As tall as the box at least, all through its glide, and over the margin
+  // its clip leaves for a focus ring: a copy shorter than the new content left
+  // what stood below it drawn at once, so a block reshaped from nothing — a
+  // fixed entry's note over an empty sheet — cut in, and a switch arriving
+  // under the box's edge showed its first eight pixels. Its rows stay at their
+  // own height rather than stretching to it.
+  copy.style.alignContent = 'start'
+  copy.style.minBlockSize = `calc(100% + ${style.overflowClipMargin || '0px'})`
   box.append(copy)
   // Gone on `--ease-in`: on `--ease-out` the old list was nine tenths faded
   // in the first frames and read as a cut, and a box that opens still holds

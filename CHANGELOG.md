@@ -136,6 +136,9 @@ one part.
   tab picked again — glides to its height instead of landing on it. The
   planned games fade over a row a round takes from them or the game's end
   gives back, the level and the presses under them sliding with the list.
+  What such a block takes on fades in under the old one rather than standing
+  below it from the first frame — an entry's _already played_ note, the
+  _Tout public_ switch.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
