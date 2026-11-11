@@ -32,6 +32,14 @@ const isEveningLineId = (id: string): boolean =>
 const playedIdOf = (line: DealtChallengeLine): string =>
   isEveningLineId(line.id) ? line.id : playedChallengeLineId(line.id)
 
+/** The evening's lines ahead of the bank's, each side in the order it held. */
+const eveningLinesFirst = (
+  hand: DealtChallengeLine[]
+): DealtChallengeLine[] => [
+  ...hand.filter(({ id }) => isEveningLineId(id)),
+  ...hand.filter(({ id }) => !isEveningLineId(id))
+]
+
 const dealtOf = ({ id, text }: EveningLine): DealtChallengeLine => ({
   id,
   labels: { en: text, fr: text }
@@ -123,8 +131,9 @@ export const keepChallengeAhead = (room: Room): void => {
 /**
  * Another line in place of the hand's line at `at`, which goes back unplayed —
  * save one the evening brought, which is set aside for good, or it would lead
- * the hand again. `false` when nothing else is left to deal, and the line is
- * kept rather than lost.
+ * the hand again. A bank line dealt in an evening line's place goes behind
+ * every evening line. `false` when nothing else is left to deal, and the line
+ * is kept rather than lost.
  */
 export const redealChallenge = (room: Room, at: number): boolean => {
   const hand = handOf(room)
@@ -145,6 +154,7 @@ export const redealChallenge = (room: Room, at: number): boolean => {
   }
 
   hand[at] = redealt
+  room.challengeHand = eveningLinesFirst(hand)
 
   return true
 }

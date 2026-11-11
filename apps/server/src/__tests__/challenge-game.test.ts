@@ -651,6 +651,31 @@ describe('a challenge deck of the evening’s own lines', () => {
     )
     expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 3 }])
   })
+
+  it('[challenge] deals the bank line a redealt deck line makes room for behind every deck line', async () => {
+    const { host } = await openDealtChallenge()
+
+    host.send({
+      decks: [{ game: 'challenge', items: LINES }],
+      type: 'host.setDecks'
+    })
+    await waitFor(
+      () => hostView(host)?.challengeHand[0]?.en === LINES[0],
+      'the deck to lead the hand'
+    )
+    host.send({ at: 1, type: 'host.redealChallenge' })
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0]?.played === 1,
+      'the redealt deck line set aside'
+    )
+
+    const hand = hostView(host)?.challengeHand ?? []
+
+    expect(hand.slice(0, 2)).toEqual(
+      [LINES[0] ?? '', LINES[2] ?? ''].map(lineOf)
+    )
+    expect(isBankedLine(hand[2])).toBe(true)
+  })
 })
 
 describe('the challenge lines a host wrote ahead', () => {
