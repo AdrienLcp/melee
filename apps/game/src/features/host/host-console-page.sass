@@ -295,17 +295,6 @@
       > .reshape-copy
         z-index: 2
 
-      // Out of the flow once closed: where the footer wraps its presses in a
-      // row, a closed note still took a line of its own and the row gap after
-      // it, which no negative margin gives back — a flex line is never shorter
-      // than nothing. It leaves the flow only once it has folded shut.
-      > .refusal-note:not([data-open])
-        inset-block-start: 0
-        inset-inline: 0
-        position: absolute
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in), position 0s linear calc(var(--transition-base, 0s) + var(--transition-fast, 0s) * 0.5)
-        transition-behavior: allow-discrete
-
       // A line that belongs to the button above it rather than to the column:
       // the negative margin is what takes the footer's own gap back out, so the
       // two read as one object instead of as two rows of a stack.
@@ -408,6 +397,19 @@
         container: reveal-footer / inline-size
         flex-flow: row wrap
         justify-content: center
+
+        // Beside the presses, widening into the centred row: folded by its
+        // height, it came in at its whole width and threw them sideways.
+        > .refusal-note
+          @include fold.opens-in-line(var(--space-l), $side: end)
+
+          align-self: center
+          grid-template-rows: 1fr
+          margin-block-start: 0
+
+          // The reset's own `text-wrap` refuses the line the fold holds.
+          p
+            text-wrap-mode: nowrap
 
         // A line-up's switcher and a game's own setting widen the row past
         // any one threshold, so it wraps rather than spill past both edges.

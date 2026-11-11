@@ -67,41 +67,42 @@ $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
     overflow: clip
     overflow-clip-margin: focus.$ring-reach
 
-@mixin -line-closed($gap)
+@mixin -line-closed($gap, $side)
   grid-template-columns: 0fr
-  margin-inline-start: calc(-1 * #{$gap})
+  margin-inline-#{$side}: calc(-1 * #{$gap})
   opacity: 0
-  transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-start $-closes $-after-the-room
+  transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-#{$side} $-closes $-after-the-room
 
-@mixin -line-open
+@mixin -line-open($side)
   grid-template-columns: 1fr
-  margin-inline-start: 0
+  margin-inline-#{$side}: 0
   opacity: 1
-  transition: grid-template-columns $-opens, margin-inline-start $-opens, opacity $-opens $-after-the-room
+  transition: grid-template-columns $-opens, margin-inline-#{$side} $-opens, opacity $-opens $-after-the-room
 
 /// A word of a line that a state shows and hides — a reading after a status,
 /// a label beside an icon — kept mounted and opened by `$open`, or open
 /// unless `$closed`. It widens to its text, then fades in, and fades before
-/// it narrows. Closed it sits at no width, and its negative start margin eats
-/// the `$gap` before it, so the line closes up.
+/// it narrows. Closed it sits at no width, and its negative margin eats the
+/// line's `$gap` on its `$side`, so the line closes up: `end` for a word first
+/// in its line.
 ///
 /// One grid column going `0fr → 1fr`, because a word's width is not a length
 /// a transition can reach. The child is clipped across only and held on one
 /// line, or the text wraps as its room narrows. Folded, the word is still read:
 /// it only stops being drawn. Under reduced motion it is shown or gone at once.
-@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null)
+@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null, $side: start)
   display: inline-grid
 
   @if $closed
-    @include -line-open
+    @include -line-open($side)
 
     #{$closed}
-      @include -line-closed($gap)
+      @include -line-closed($gap, $side)
   @else
-    @include -line-closed($gap)
+    @include -line-closed($gap, $side)
 
     #{$open}
-      @include -line-open
+      @include -line-open($side)
 
   > *
     min-inline-size: 0

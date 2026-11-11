@@ -107,7 +107,9 @@ one part.
   presses fade in and out, the board's `+n` opens beside the pawns, the
   mystery word's crown fades in growing, a removed line-up ticket fades
   before its socket appears, a cold room load fades its loader off over the
-  page, and a refused pawn scrolls its message into view in the menu.
+  page, a refused pawn scrolls its message into view in the menu, and a
+  refusal beside a wide console's reveal presses widens into their row
+  instead of throwing them sideways.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played
