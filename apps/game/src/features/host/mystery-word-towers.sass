@@ -1,4 +1,5 @@
 // Side-effect module: styles `.mystery-word-towers`, every seat's search as a tower on the room's screen.
+@use '../../presentation/styles/fade'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -47,11 +48,10 @@
       filter: drop-shadow(0 2px 0 var(--tile-mark-2))
       flex: none
       inline-size: auto
-      opacity: 0
-      scale: 0.6
       stroke: var(--tile-mark-2)
-      transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in)
-      translate: 0 calc(var(--space-s) * -1)
+
+      // Shown on the tower once its last step has risen.
+      @include fade.fades-in-place('&:is([data-found] *)', 0 calc(var(--space-s) * -1), $delay: calc(var(--transition-fast, 0s) * 0.3 * var(--tower-steps) + var(--transition-base, 0s)), $scale: 0.6)
 
       @container (height < 7rem)
         --crown-size: clamp(1rem, 40cqh, 1.4rem)
@@ -59,14 +59,6 @@
         inset-block-start: 0
         position: absolute
         z-index: 1
-
-    &[data-found] .crown
-      opacity: 1
-      scale: 1
-      // Set on the tower once its last step has risen.
-      transition-delay: calc(var(--transition-fast, 0s) * 0.3 * var(--tower-steps) + var(--transition-base, 0s))
-      transition-timing-function: var(--ease-out)
-      translate: 0 0
 
     .tube
       --tube-gap: clamp(0.125rem, calc(var(--stage-unit) * 0.35), 0.25rem)

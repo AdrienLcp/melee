@@ -1,15 +1,26 @@
 // Pure module: mixins only, no top-level CSS. Safe to @use from any component.
+@use 'sass:list'
+
+@function -with-scale($transitions, $scale, $scaling)
+  @if $scale == null
+    @return $transitions
+
+  @return list.append($transitions, $scaling, comma)
 
 /// The leaving half of `fades-in-place` alone, for a piece whose arrival is
 /// its own — a bar docking on a keyframe: it fades as it travels to `$to`,
 /// over `$duration` on `--ease-in`, and is hidden from the pointer and the
 /// reader once it has gone. Letting go of the state plays the piece's own
-/// transition back. Under reduced motion it is gone at once.
-@mixin stepped-aside($to, $duration: var(--transition-base, 0s))
+/// transition back. `$scale`, when given, is the size it shrinks to as it
+/// goes. Under reduced motion it is gone at once.
+@mixin stepped-aside($to, $duration: var(--transition-base, 0s), $scale: null)
   opacity: 0
-  transition: opacity $duration var(--ease-in), translate $duration var(--ease-in), visibility 0s linear $duration
+  transition: -with-scale((opacity $duration var(--ease-in), translate $duration var(--ease-in), visibility 0s linear $duration), $scale, scale $duration var(--ease-in))
   translate: $to
   visibility: hidden
+
+  @if $scale != null
+    scale: $scale
 
 /// A piece laid over the page that a state shows where it stands — a notice,
 /// a band — kept mounted and shown by `$shown`, a selector in which `&` is
@@ -17,16 +28,19 @@
 /// `--ease-out` after `$delay`, and leaves the way it came on `--ease-in`,
 /// hidden from the pointer and the reader once it has faded. `$at` carries
 /// any translate the piece is placed with (`-50% 0` for a centred one), and
-/// `$from` the same plus the travel. Under reduced motion it is shown or gone
-/// at once.
-@mixin fades-in-place($shown, $from, $at: 0 0, $duration: var(--transition-base, 0s), $delay: 0s)
-  @include stepped-aside($from, $duration)
+/// `$from` the same plus the travel. `$scale`, when given, is the size it
+/// grows from to its own. Under reduced motion it is shown or gone at once.
+@mixin fades-in-place($shown, $from, $at: 0 0, $duration: var(--transition-base, 0s), $delay: 0s, $scale: null)
+  @include stepped-aside($from, $duration, $scale)
 
   #{$shown}
     opacity: 1
-    transition: opacity $duration var(--ease-out) $delay, translate $duration var(--ease-out) $delay, visibility 0s $delay
+    transition: -with-scale((opacity $duration var(--ease-out) $delay, translate $duration var(--ease-out) $delay, visibility 0s $delay), $scale, scale $duration var(--ease-out) $delay)
     translate: $at
     visibility: visible
+
+    @if $scale != null
+      scale: 1
 
 @function -beside($beside, $own)
   @if $beside == null
