@@ -1857,10 +1857,12 @@ bounced. Durations:
   pressed on (`tick-stamp`, scale 0.4 to 1: `base` on a box, `fast` on a
   button). A box's paper and band follow its lift on `base`.
 - **Leaving** — exits run faster than their entry: a popover leaflet reverses
-  its strike at `fast` × 0.7 (the sheet face has its own), and the arrival
-  notice keeps its line drawn through `page-leave` 0.25rem upward (`base` × 0.6) before the
-  region empties, as does the bar offering to undo a round taken out, its
-  press dead while it goes. An exit takes its own keyframe, never the entry reversed:
+  its strike at `fast` × 0.7 (the sheet face has its own), and the bar
+  offering to undo a round taken out keeps its line drawn through `page-leave`
+  0.25rem upward (`base` × 0.6) before the region empties, its press dead
+  while it goes. The arrival notice takes the whole `base` on `ease-in`: at
+  × 0.6 on `ease-out` it lost half its ink in the first frame and read as a
+  cut. An exit takes its own keyframe, never the entry reversed:
   the same name with a new direction resumes the finished entry, which ends at
   once and never reports its end.
 - **The round's clock** — a CSS animation (`round-drain`) whose duration is the
