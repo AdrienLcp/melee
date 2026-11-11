@@ -563,3 +563,92 @@ describe('a challenge dealt from the bank', () => {
     expect(hostView(host)?.challengeHand).toEqual(hand)
   })
 })
+
+describe('a challenge deck of the evening’s own lines', () => {
+  const LINES = [
+    'Name every cousin in birth order',
+    'Hum the song from the wedding',
+    'Draw the house from memory'
+  ]
+  const lineOf = (text: string) => ({ en: text, fr: text })
+  const transcriptOf = (peer: { frames: { raw: string }[] }) =>
+    peer.frames.map(({ raw }) => raw).join('')
+
+  it('[challenge] deals the deck’s lines ahead of the bank, on a round nobody pressed too, and shows no seat or wall one early', async () => {
+    const { anna, host, wall } = await openDealtChallenge({
+      ...CHALLENGE_GAME,
+      autoAdvanceMs: 2_000
+    })
+
+    host.send({
+      decks: [{ game: 'challenge', items: LINES }],
+      type: 'host.setDecks'
+    })
+    await waitFor(
+      () => hostView(host)?.challengeHand[0]?.en === LINES[0],
+      'the deck to lead the hand'
+    )
+    expect(hostView(host)?.challengeHand).toEqual(LINES.map(lineOf))
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the first line')
+    expect(challengeRound(hostView(host))?.labels).toEqual(
+      lineOf(LINES[0] ?? '')
+    )
+
+    await awardPlaces({
+      host,
+      places: [],
+      roundId: hostView(host)?.round?.id ?? ''
+    })
+    await waitFor(
+      () =>
+        challengeRound(hostView(host))?.labels?.en === LINES[1] &&
+        hostView(host)?.phase === 'playing',
+      'the held reveal to open the next line by itself',
+      6_000
+    )
+
+    for (const peer of [anna, wall]) {
+      expect(transcriptOf(peer)).not.toContain(LINES[2])
+    }
+
+    const playOnByItself = async () => {
+      const before = hostView(host)?.round?.id
+
+      await awardPlaces({ host, places: [], roundId: before ?? '' })
+      await waitFor(
+        () =>
+          hostView(host)?.phase === 'playing' &&
+          hostView(host)?.round?.id !== before,
+        'the next round to open by itself',
+        6_000
+      )
+
+      return challengeRound(hostView(host))?.labels ?? null
+    }
+
+    expect(await playOnByItself()).toEqual(lineOf(LINES[2] ?? ''))
+    expect(LINES).not.toContain((await playOnByItself())?.en)
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 3, size: 3 }])
+  }, 20_000)
+
+  it('[challenge] sets a redealt deck line aside for good', async () => {
+    const { host } = await openDealtChallenge()
+
+    host.send({
+      decks: [{ game: 'challenge', items: LINES }],
+      type: 'host.setDecks'
+    })
+    await waitFor(
+      () => hostView(host)?.challengeHand[0]?.en === LINES[0],
+      'the deck to lead the hand'
+    )
+    await redeal(host)
+
+    expect(hostView(host)?.challengeHand.map(({ en }) => en)).not.toContain(
+      LINES[0]
+    )
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 3 }])
+  })
+})

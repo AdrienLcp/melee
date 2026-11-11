@@ -2,6 +2,7 @@ import type { Deck } from '@melee/protocol/deck'
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 
 import { quizDeckProblems } from '../quiz/quiz-deck'
+import { lineDeckProblems } from './line-deck'
 
 const deckProblemsAt = ({
   deck,
@@ -22,7 +23,13 @@ const deckProblemsAt = ({
     ]
   }
 
-  return quizDeckProblems({ items: deck.items, path })
+  switch (deck.game) {
+    case 'quiz':
+      return quizDeckProblems({ items: deck.items, path })
+    case 'challenge':
+    case 'mostlikely':
+      return lineDeckProblems({ items: deck.items, path })
+  }
 }
 
 /**
@@ -141,3 +148,6 @@ export const deckItemId = ({
   deckId: string
   index: number
 }): string => `deck:${deckId}:${index}`
+
+/** Whether an id names a deck's item rather than a bank's row. */
+export const isDeckItemId = (id: string): boolean => id.startsWith('deck:')

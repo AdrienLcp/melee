@@ -45,6 +45,22 @@ describe('deckProblems', () => {
     ).toEqual(['decks[0].game: a quiz deck, beside a lineUp entry of buzzer.'])
   })
 
+  it('[deck] refuses a line given twice, whatever its case and accents', () => {
+    expect(
+      deckProblems({
+        decks: [
+          {
+            game: 'mostlikely',
+            items: ['Who is most likely to nap?', 'who is most likely to NAP?']
+          }
+        ],
+        lineUp: [DEFAULT_GAME_SETTINGS.mostlikely]
+      })
+    ).toEqual([
+      'decks[0].items[1]: “who is most likely to NAP?” is another line again.'
+    ])
+  })
+
   it('[deck] refuses a decoy that is the answer itself', () => {
     expect(
       deckProblems({

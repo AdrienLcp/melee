@@ -458,6 +458,14 @@ export const EN_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Played at the table — the host calls the placings.',
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made line', other: '{?} home-made lines' }
+        }
+      }),
+      spent: 'Home-made lines used up'
+    },
     hand: {
       aloud: 'I’ll say it aloud',
       own: 'Yours',
@@ -1563,6 +1571,14 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Who is it?',
       sent: 'Your vote is in. Waiting for the others.',
       you: 'You'
+    },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made line', other: '{?} home-made lines' }
+        }
+      }),
+      spent: 'Home-made lines used up'
     },
     home: {
       description:

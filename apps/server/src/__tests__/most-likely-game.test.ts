@@ -225,3 +225,70 @@ describe('a most-likely round through the seam', () => {
     ])
   })
 })
+
+describe('a most-likely deck of the evening’s own lines', () => {
+  const FIRST = 'Who is most likely to forget their own birthday?'
+  const SECOND = 'Who is most likely to adopt a third cat?'
+  const DECKED: RoomSettings = {
+    ...MOST_LIKELY,
+    autoAdvanceMs: 2_000,
+    lineUp: [DEFAULT_MOST_LIKELY_SETTINGS],
+    lineUpAt: 0
+  }
+
+  const voteEveryone = (seats: Peer<PlayerServerMessage>[]) => {
+    for (const voter of seats) {
+      voter.send({
+        answer: { kind: 'seat', playerId: idOf(seats[0] ?? voter) },
+        roundId: playerView(voter)?.round?.id ?? '',
+        type: 'player.answer'
+      })
+    }
+  }
+
+  const lineOn = (seat: Peer<PlayerServerMessage>) =>
+    mostLikelyRound(playerView(seat))?.labels
+
+  it('[mostlikely] deals the deck’s lines first, in order, on a round nobody pressed too, then the bank’s', async () => {
+    const { code, host } = await harness.openRoom(DECKED)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const seats = [
+      zoe,
+      await harness.seat({ code, nickname: 'Max' }),
+      await harness.seat({ code, nickname: 'Ann' })
+    ]
+
+    host.send({
+      decks: [{ game: 'mostlikely', items: [FIRST, SECOND] }],
+      type: 'host.setDecks'
+    })
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0]?.size === 2,
+      'the deck to load'
+    )
+
+    const transcriptBefore = zoe.frames.map(({ raw }) => raw).join('')
+
+    expect(transcriptBefore).not.toContain(FIRST)
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the first line')
+    expect(lineOn(zoe)).toEqual({ en: FIRST, fr: FIRST })
+    expect(zoe.frames.map(({ raw }) => raw).join('')).not.toContain(SECOND)
+
+    voteEveryone(seats)
+    await waitFor(
+      () => lineOn(zoe)?.en === SECOND && playerView(zoe)?.phase === 'playing',
+      'the held reveal to open the next line by itself',
+      6_000
+    )
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 2, size: 2 }])
+
+    voteEveryone(seats)
+    await waitFor(
+      () => lineOn(zoe)?.en === LINE.en && playerView(zoe)?.phase === 'playing',
+      'the bank to take over',
+      6_000
+    )
+  }, 20_000)
+})

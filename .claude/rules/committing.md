@@ -29,6 +29,13 @@ Neither the other session's working tree nor its staged lines move. A
 changelog is such a file: check `git show HEAD -- CHANGELOG.md` holds only
 your entry.
 
+**A spliced blob is checked before it ships.** A hunk placed by hand lands
+wherever the copy put it: `8efe2e49` committed a schema inside another
+object and two keys past an object's last, and `main` stopped compiling.
+Typecheck the committed tree (`git stash -k` is not safe here — check out
+`HEAD` into a scratch worktree, or run `tsc` on the blob's copy) before the
+push.
+
 **A new file has to be added first.** `git commit -- <paths>` records only
 paths git already tracks: an untracked file named there is skipped without a
 word, and the commit lands importing a module it does not carry. `git add` the

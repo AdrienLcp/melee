@@ -42,3 +42,38 @@ export const GAME_NOTES = {
   timeline:
     'Deals five dated events that every player puts in order on their own screen; the years are held back until the reveal.'
 } as const satisfies Record<GameKind, string>
+
+/**
+ * What a game's settings mean where their names and defaults do not say it,
+ * `null` where they do. The protocol's schemas carry no field docs into the
+ * JSON Schema, so these are the assistant's only source.
+ */
+export const SETTING_NOTES = {
+  atlas:
+    '`places` lists the sets a round may be drawn from — "countries", "frenchCities", "worldCapitals" — one drawn per round. `direction` is "place" (the room names a place, every player pins it) or "name" (the map shows a place, the players name it).',
+  blacksquare:
+    '`answerCount` is how many of the theme’s answers a round hides, 3 to 9. `doublesLoneFinds` pays double a cell one player alone found, in a typed round only — a spoken round has one team guessing.',
+  blindtest:
+    '`source` is what the clips are drawn from. `{ "kind": "search", "query": "…" }` takes any free query of up to 120 characters — an artist, a film, "french rap 2000s" — and `{ "kind": "playlist", "playlistId": "…" }` a Deezer playlist id: those two make a blind test about anything. A list of tracks is not offered — it would need ids an assistant cannot know.',
+  buzzer:
+    '`locksOutOnMiss` sits a player out for the rest of the round after a wrong answer: one go each keeps a loud room honest, an open field suits "name five…".',
+  challenge: null,
+  estimate: null,
+  higherlower: null,
+  innerclock:
+    'Nothing to set: the target is drawn between 20 and 60 seconds each round.',
+  longestword: null,
+  matchsticks:
+    '`goals` lists what a round may ask, one drawn per round: "equation" fixes a false equation by moving one match, "biggest" makes the biggest number one move allows, "smallest" the smallest.',
+  mostlikely: null,
+  mysteryword: null,
+  petitbac:
+    '`categories` is null to draw `categoryCount` categories every round, or a fixed list of 3 to 10 played every round, each `{ "kind": "own", "label": "…" }` (40 characters at most) or `{ "kind": "bank", "key": "…" }` (one of the bank’s keys, in the defaults). `categoryCount` is ignored for a fixed list, and `difficulty` applies to drawn categories only. `excludedLetters` are never dealt; `stopsWhenFull` lets a player whose every line is filled close everyone’s sheet.',
+  quiz: null,
+  reflex: null,
+  slate:
+    '`labels` names the sheet’s items, by index — public on every screen, 12 characters at most, unique, null for a plain number. `itemCount` is how many items a sheet opens with, not a cap: the host adds more during the round.',
+  swatch:
+    '`showMs` is how long the colour stays up; `roundDurationMs` is the time to rebuild it once it has hidden, the showing not counted.',
+  timeline: null
+} as const satisfies Record<GameKind, string | null>

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
 import {
-  DECK_MAX_ITEMS,
+  QUIZ_DECK_MAX_ITEMS,
   QUIZ_DECK_NOTE_MAX_LENGTH,
   QUIZ_DECK_PROMPT_MAX_LENGTH
 } from '@melee/protocol/deck'
@@ -170,6 +170,26 @@ describe('mcp endpoint', () => {
     })
   })
 
+  it('[mcp] carries a deck of lines in the link as written', async () => {
+    const evening = {
+      ...EVENING,
+      decks: [
+        null,
+        null,
+        { game: 'challenge', items: ['Hum the wedding song'] }
+      ],
+      lineUp: [...EVENING.lineUp, 'challenge']
+    }
+    const { isError, text } = await call('prepare_evening', {
+      evening,
+      locale: 'en'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
   it('[mcp] answers a decoy that is the answer by its path', async () => {
     const { isError, text } = await call('prepare_evening', {
       evening: {
@@ -197,12 +217,12 @@ describe('mcp endpoint', () => {
         decks: [
           {
             game: 'quiz',
-            items: Array.from({ length: DECK_MAX_ITEMS }, (_, index) => ({
+            items: Array.from({ length: QUIZ_DECK_MAX_ITEMS }, (_, index) => ({
               ...FAMILY_QUESTION,
               note: noiseOf({ length: QUIZ_DECK_NOTE_MAX_LENGTH, seed: index }),
               prompt: noiseOf({
                 length: QUIZ_DECK_PROMPT_MAX_LENGTH,
-                seed: index + DECK_MAX_ITEMS
+                seed: index + QUIZ_DECK_MAX_ITEMS
               })
             }))
           }

@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { playerIdSchema } from './identifiers'
 import { localeSchema } from './locale'
 
+export const MOST_LIKELY_LINE_MAX_LENGTH = 160
+
 /**
  * A line in every language the app ships, so a phone set to English at a
  * French table reads its own — the challenge's argument. Public from the first
@@ -10,7 +12,7 @@ import { localeSchema } from './locale'
  */
 export const mostLikelyLabelsSchema = z.record(
   localeSchema,
-  z.string().min(1).max(160)
+  z.string().min(1).max(MOST_LIKELY_LINE_MAX_LENGTH)
 )
 
 /**

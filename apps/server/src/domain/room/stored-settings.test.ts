@@ -53,6 +53,7 @@ describe('a room stored before a deploy', () => {
     }
 
     expect(parseStoredGames(storedBeforeTheDraw)).toEqual({
+      decks: [],
       openedEntries: [
         {
           ...DEFAULT_BLINDTEST_SETTINGS,
@@ -82,6 +83,10 @@ describe('a room stored before a deploy', () => {
 
   it('[stored] reads a current room unchanged', () => {
     const current = {
+      decks: [
+        { deck: { game: 'challenge' as const, items: ['Hum it'] }, id: 'd1' },
+        null
+      ],
       openedEntries: Object.values(DEFAULT_GAME_SETTINGS),
       settings: {
         ...DEFAULT_ROOM_SETTINGS,

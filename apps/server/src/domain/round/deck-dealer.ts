@@ -57,6 +57,39 @@ export const nextDeckQuestion = ({
   return null
 }
 
+/** One line an entry's deck brought, under the id it is dealt and remembered by. */
+export type DeckLine = {
+  id: string
+  text: string
+}
+
+/**
+ * The lines of the deck the entry at `lineUpAt` brought for `game` that the
+ * room has not played, in the order written, and none once the deck is spent
+ * or the entry brought none — the bank then deals.
+ */
+export const unplayedDeckLines = ({
+  game,
+  lineUpAt,
+  room
+}: {
+  game: 'challenge' | 'mostlikely'
+  lineUpAt: number | null
+  room: Room
+}): DeckLine[] => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== game) {
+    return []
+  }
+
+  return held.deck.items.flatMap((text, index) => {
+    const id = deckItemId({ deckId: held.id, index })
+
+    return room.playedContentIds.has(id) ? [] : [{ id, text }]
+  })
+}
+
 /** What the console is told of each entry's deck: how many items, how many dealt. */
 export const deckSummariesOf = (room: Room): (DeckSummary | null)[] =>
   room.settings.lineUp.map((_, index) => {

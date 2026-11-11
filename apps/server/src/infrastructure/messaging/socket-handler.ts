@@ -2179,6 +2179,7 @@ const loadDecks = ({
   room.decks = decks.map((deck) =>
     deck === null ? null : { deck, id: newDeckId() }
   )
+  keepChallengeAhead(room)
   touch(room, engine.now())
   publishRoom(engine)
 }

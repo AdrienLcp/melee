@@ -1,10 +1,15 @@
 import { z } from 'zod'
 
+import { CHALLENGE_TEXT_MAX_LENGTH } from './challenge'
+import { MOST_LIKELY_LINE_MAX_LENGTH } from './most-likely'
 import { questionCategorySchema } from './question'
 import { LINE_UP_MAX_ENTRIES } from './room'
 
-/** The most items one deck holds, whatever its game. */
-export const DECK_MAX_ITEMS = 30
+/** The most questions one quiz deck holds: each carries its answer and three decoys, and the link is copied by hand. */
+export const QUIZ_DECK_MAX_ITEMS = 30
+
+/** The most lines a challenge or most likely deck holds — as many as a long evening plays. */
+export const LINE_DECK_MAX_ITEMS = 60
 
 export const QUIZ_DECK_PROMPT_MAX_LENGTH = 240
 export const QUIZ_DECK_ANSWER_MAX_LENGTH = 100
@@ -57,7 +62,26 @@ export type QuizDeckItem = z.infer<typeof quizDeckItemSchema>
 export const deckSchema = z.discriminatedUnion('game', [
   z.object({
     game: z.literal('quiz'),
-    items: z.array(quizDeckItemSchema).min(1).max(DECK_MAX_ITEMS)
+    items: z.array(quizDeckItemSchema).min(1).max(QUIZ_DECK_MAX_ITEMS)
+  }),
+  /** What the table is challenged to do, one line a round, read off the wall as written. */
+  z.object({
+    game: z.literal('challenge'),
+    items: z
+      .array(z.string().trim().min(1).max(CHALLENGE_TEXT_MAX_LENGTH))
+      .min(1)
+      .max(LINE_DECK_MAX_ITEMS)
+  }),
+  /**
+   * _Who among us is most likely to…_, one line a round. A line names
+   * somebody at the table, which is why it waits on the server until dealt.
+   */
+  z.object({
+    game: z.literal('mostlikely'),
+    items: z
+      .array(z.string().trim().min(1).max(MOST_LIKELY_LINE_MAX_LENGTH))
+      .min(1)
+      .max(LINE_DECK_MAX_ITEMS)
   })
 ])
 

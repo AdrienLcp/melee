@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Server]` **An evening brings its own challenge and most likely lines.**
+  A deck of lines rides beside the line-up like a quiz deck: the server
+  deals a challenge deck into the console's hand ahead of the bank's and a
+  most likely deck before the bank, on a round nobody pressed as on one the
+  host opened, and no seat or wall sees a line before its round. A redealt
+  deck line is set aside for good. `describe_games` now explains every
+  setting its defaults leave unclear — Petit Bac's fixed sheets, slate
+  labels, atlas places, matchstick goals, a blind test about anything — and
+  the most likely bank's rule an assistant must keep.
 - `[Server]` **An assistant can compose an evening.** `/mcp` speaks the Model
   Context Protocol: `describe_games` tells an assistant every game, its
   default settings and how an evening is put together, and `prepare_evening`
