@@ -36,7 +36,8 @@ import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
-import { blackSquareContent } from '@/helpers/round-content'
+import { isTryRefusal } from '@/features/player/mystery-word-answer'
+import { blackSquareContent, mysteryWordContent } from '@/helpers/round-content'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
@@ -537,7 +538,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // refusal answering it is no news: shown, it cut the console out for a
   // line saying the host had closed the table, before the page change.
   const isClosedHere = hasClosedRoom && error?.code === 'room_closed'
-  const shownError = isClosedHere ? null : error
+  // A try the seat typed is answered under its grid, where the eyes already are.
+  const isSaidOnTheSeat =
+    error !== null &&
+    isTryRefusal(error.code) &&
+    mysteryWordContent(view?.round) !== null
+  const shownError = isClosedHere || isSaidOnTheSeat ? null : error
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
@@ -746,6 +752,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     isAnswerFolded: cameFromWall,
     isLive,
     isRosterBeside: isLaidOutForWall,
+    lastRefusal: error,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,

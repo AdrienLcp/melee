@@ -1531,16 +1531,71 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Une phrase, l’un de vous. C’est qui ?'
   },
   mysteryword: {
+    found: {
+      stillLooking: 'Cherchent encore',
+      title: defineTranslation('Trouvé en {count:plural}', {
+        plural: { count: { one: '{?} essai', other: '{?} essais' } }
+      })
+    },
+    grid: 'Tes essais',
     home: {
       description:
-        'Un mot est caché, sa première lettre et sa longueur sur tous les écrans. Six essais chacun pour le trouver, chaque lettre colorée : bien placée, ailleurs dans le mot, ou absente. La pièce voit toutes les grilles en couleurs, jamais les lettres.'
+        'Un mot est caché, sa première lettre et sa longueur sur tous les écrans. Six essais chacun pour le trouver, chaque lettre colorée : bien placée, ailleurs dans le mot, ou absente. La table voit toutes les grilles en couleurs, jamais les lettres.'
+    },
+    keyboard: {
+      erase: 'Effacer',
+      label: 'Lettres',
+      send: 'Valider'
+    },
+    language: 'Mots en',
+    legend: {
+      absent: 'absente',
+      placed: 'bien placée',
+      present: 'ailleurs'
     },
     length: '{count:number} lettres',
+    mark: {
+      absent: 'absente du mot',
+      placed: 'bien placée',
+      present: 'ailleurs dans le mot'
+    },
     name: 'Mot mystère',
+    notFound: 'Pas trouvé',
     play: 'Jouer à Mot mystère',
+    refusal: {
+      not_in_dictionary:
+        '« {word} » n’est pas dans le dictionnaire. Essai non compté.',
+      not_one_word: 'Un seul mot, des lettres seulement. Essai non compté.',
+      wrong_first_letter:
+        'Le mot commence par la lettre donnée. Essai non compté.',
+      wrong_length: 'Remplis toutes les lettres d’abord. Essai non compté.'
+    },
+    reveal: {
+      title: 'Le mot était'
+    },
+    roundDuration: 'Temps pour le trouver',
     scoring:
       'Un mot trouvé au premier ou au deuxième essai rapporte 100 points, puis 85, 70, 55 et 40 aux essais suivants ; un mot pas trouvé ne rapporte rien.',
-    tagline: 'Six essais pour trouver le mot caché.'
+    skeleton: '{length:number} lettres, commence par {letter}',
+    spent: {
+      detail: 'Le mot reste caché jusqu’à la fin de la manche.',
+      title: 'Plus d’essai'
+    },
+    tagline: 'Six essais pour trouver le mot caché.',
+    tower: {
+      found: defineTranslation('{name} : trouvé en {count:plural}', {
+        plural: { count: { one: '{?} essai', other: '{?} essais' } }
+      }),
+      searching: defineTranslation(
+        '{name} : {placed:number} bien placées, {count:plural}',
+        { plural: { count: { one: '{?} essai', other: '{?} essais' } } }
+      ),
+      tries: '{used:number}/{count:number}'
+    },
+    typing: 'Ton essai : {word}',
+    wallLegend:
+      'Une marche par lettre bien placée, sur le meilleur essai de chacun',
+    wordLength: 'Lettres'
   },
   navigation: {
     back: 'Retour aux jeux',

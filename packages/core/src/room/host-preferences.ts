@@ -36,11 +36,12 @@ export type HostPreferences = {
 }
 
 /**
- * The same preferences, with the quiz asking in the language this host reads
- * today. A remembered question language is most often the one a door read off
- * another interface rather than anybody's choice, and a room opened in French
- * that draws English questions is the wrong game. A host who wants the other
- * bank picks it in the room, and keeps it until they leave the console.
+ * The same preferences, with the quiz asking and the mystery word spelling in
+ * the language this host reads today. A remembered language is most often the
+ * one a door read off another interface rather than anybody's choice, and a
+ * room opened in French that draws English questions or words is the wrong
+ * game. A host who wants the other bank picks it in the room, and keeps it
+ * until they leave the console.
  */
 export const askedIn = ({
   locale,
@@ -49,22 +50,22 @@ export const askedIn = ({
   locale: Locale
   preferences: HostPreferences
 }): HostPreferences => {
-  const quiz = preferences.games.quiz
+  const language = questionLanguageFor(locale)
+  const { mysteryword, quiz } = preferences.games
+  const games = { ...preferences.games }
 
-  if (quiz?.game.kind !== 'quiz') {
-    return preferences
+  if (quiz?.game.kind === 'quiz') {
+    games.quiz = { ...quiz, game: { ...quiz.game, language } }
   }
 
-  return {
-    ...preferences,
-    games: {
-      ...preferences.games,
-      quiz: {
-        ...quiz,
-        game: { ...quiz.game, language: questionLanguageFor(locale) }
-      }
+  if (mysteryword?.game.kind === 'mysteryword') {
+    games.mysteryword = {
+      ...mysteryword,
+      game: { ...mysteryword.game, language }
     }
   }
+
+  return { ...preferences, games }
 }
 
 const isEvening = (settings: RoomSettings): boolean =>

@@ -41,7 +41,7 @@
   // card and the field leave, which is what a keyboard coming up takes back.
   // So is every round with a field or a pair to press: nothing pressed against
   // the clock may scroll.
-  .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round, .petit-bac-round, .typed-round, .estimate-round, .higher-lower-round, .matchsticks-round, .swatch-round, .timeline-round)),
+  .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round, .petit-bac-round, .typed-round, .estimate-round, .higher-lower-round, .matchsticks-round, .mystery-word-round, .swatch-round, .timeline-round)),
   .player-page.playing:has(> .player-round > .slate-sheet)
     @include layout.arrived
 
@@ -55,12 +55,12 @@
   // gap is the framed one: on a phone with its keyboard up every row counts.
   // On the root, because the menu reads the same token to stay on the
   // chrome's line.
-  :root:has(.player-page.playing > .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .timeline-round)),
+  :root:has(.player-page.playing > .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .mystery-word-round, .timeline-round)),
   :root:has(.player-page.playing > .player-round > .slate-sheet)
     --layout-padding-block-start: var(--framed-padding-block-start)
     --layout-padding-block-end: var(--framed-padding-block-end)
 
-  .player-page.playing:has(> .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .timeline-round)),
+  .player-page.playing:has(> .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .mystery-word-round, .timeline-round)),
   .player-page.playing:has(> .player-round > .slate-sheet)
     gap: var(--space-framed)
 

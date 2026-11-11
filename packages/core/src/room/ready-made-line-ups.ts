@@ -6,6 +6,7 @@ import {
   DEFAULT_BLACK_SQUARE_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_MATCHSTICKS_SETTINGS,
+  DEFAULT_MYSTERY_WORD_SETTINGS,
   DEFAULT_PETIT_BAC_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SWATCH_SETTINGS,
@@ -114,6 +115,13 @@ const GRAND_MIX_QUIZ_DIFFICULTY: Record<QuestionCategory, Difficulty> = {
 }
 
 /**
+ * A short word and a long one, rather than every length: the word sheets are
+ * one family to the dealer, and four lengths beside black square's three and
+ * Petit Bac's two held the other games under their share of the evening.
+ */
+const GRAND_MIX_WORD_LENGTHS = [5, 7] as const
+
+/**
  * One entry per value of a game's main content axis — each decade, each
  * subject, each map — and never their cross product, which would hand one
  * game most of the evening. A game named nowhere here joins bare.
@@ -141,6 +149,11 @@ const grandMixVarietiesOf = (
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS.goals.map((goal) => ({
     ...DEFAULT_MATCHSTICKS_SETTINGS,
     goals: [goal]
+  })),
+  mysteryword: GRAND_MIX_WORD_LENGTHS.map((wordLength) => ({
+    ...DEFAULT_MYSTERY_WORD_SETTINGS,
+    language: questionLanguageFor(locale),
+    wordLength
   })),
   petitbac: [
     {

@@ -19,6 +19,7 @@ import {
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
+  mysteryWordContent,
   petitBacContent,
   quizContent,
   reflexContent,
@@ -41,6 +42,7 @@ import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
+import { RevealedWord } from '@/presentation/components/revealed-word'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
 import { SwatchGuesses } from '@/presentation/components/swatch-guesses'
 import { SwatchShown } from '@/presentation/components/swatch-shown'
@@ -51,6 +53,7 @@ import { useQuantityWords } from '@/presentation/components/use-quantity-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { MysteryWordGrids } from './mystery-word-grids'
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
 import { useFittedGrid } from './use-fitted-grid'
 import { useWholeChips } from './use-whole-chips'
@@ -228,6 +231,28 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           round={round}
           youId={youId}
         />
+      </section>
+    )
+  }
+
+  const mysteryWord = mysteryWordContent(round)
+
+  // The word dealt letter by letter, and every grid spelled out under it in
+  // the order the word was found: the grids are the podium, whole.
+  if (mysteryWord?.revealedWord != null) {
+    return (
+      <section className='reveal-panel' data-game='mysteryword'>
+        <div className='head'>
+          <RevealedWord word={mysteryWord.revealedWord} />
+        </div>
+
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
+        <MysteryWordGrids players={players} round={round} youId={youId} />
       </section>
     )
   }

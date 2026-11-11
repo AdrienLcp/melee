@@ -1,0 +1,143 @@
+// Side-effect module: styles `.mystery-word-towers`, every seat's search as a tower on the room's screen.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .mystery-word-towers
+    display: grid
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l)) clamp(var(--space-2xs), calc(var(--stage-unit) * 0.9), var(--space-s))
+    // Capped, so two seats stand as two towers in the middle rather than two
+    // silos across the whole screen.
+    grid-template-columns: repeat(var(--tower-columns), minmax(0, 8rem))
+    grid-template-rows: repeat(var(--tower-rows), minmax(0, 1fr))
+    justify-content: center
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    padding: 0
+
+  .tower
+    display: grid
+    gap: var(--space-2xs)
+    grid-template-rows: minmax(0, 1fr) auto auto auto
+    justify-items: center
+    min-block-size: 0
+    min-inline-size: 0
+    text-align: center
+
+    > .stack
+      --crown-size: clamp(1.4rem, calc(var(--stage-unit) * 3.4), 2.2rem)
+
+      align-items: center
+      block-size: 100%
+      container-type: size
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      inline-size: 100%
+      justify-content: flex-end
+      min-block-size: 0
+
+    .crown
+      block-size: var(--crown-size)
+      color: var(--tile-2)
+      filter: drop-shadow(0 2px 0 var(--tile-mark-2))
+      flex: none
+      inline-size: auto
+      opacity: 0
+      scale: 0.6
+      stroke: var(--tile-mark-2)
+      transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in)
+      translate: 0 calc(var(--space-s) * -1)
+
+    &[data-found] .crown
+      opacity: 1
+      scale: 1
+      // Set on the tower once its last step has risen.
+      transition-delay: calc(var(--transition-fast, 0s) * 0.3 * var(--tower-steps) + var(--transition-base, 0s))
+      transition-timing-function: var(--ease-out)
+      translate: 0 0
+
+    .tube
+      --tube-gap: clamp(0.125rem, calc(var(--stage-unit) * 0.35), 0.25rem)
+      --step-size: min(calc((100cqh - var(--crown-size) - var(--space-2xs) * 3 - var(--tube-gap) * (var(--tower-steps) - 1)) / var(--tower-steps)), 2.5rem)
+
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line), var(--shadow-groove)
+      display: flex
+      flex-direction: column-reverse
+      gap: var(--tube-gap)
+      inline-size: min(76%, 5.25rem)
+      list-style: none
+      margin: 0
+      padding: var(--space-2xs)
+      transition: box-shadow var(--transition-base, 0s) var(--ease-out)
+
+      > li
+        block-size: var(--step-size)
+        border-radius: var(--radius-xs)
+        display: grid
+        font-size: var(--step-size)
+        place-items: center
+        position: relative
+
+        // The step's ink rises from the bottom of its slot, one step after
+        // the other when a try climbs several at once.
+        &::before
+          background: var(--letter-placed)
+          border-radius: inherit
+          box-shadow: 0 2px 0 var(--letter-placed-edge)
+          content: ''
+          inset: 0
+          position: absolute
+          scale: 1 0
+          transform-origin: bottom
+          transition: scale var(--transition-base, 0s) var(--ease-in)
+
+        > .mark-shape
+          inline-size: min(0.4em, 1rem)
+          inset: auto
+          opacity: 0
+          position: relative
+          transition: opacity var(--transition-fast, 0s) var(--ease-in)
+
+        &[data-on]
+          &::before
+            scale: 1 1
+            transition-delay: calc(var(--transition-fast, 0s) * 0.3 * var(--step))
+            transition-timing-function: var(--ease-out)
+
+          > .mark-shape
+            opacity: 1
+            transition-delay: calc(var(--transition-fast, 0s) * 0.3 * var(--step) + var(--transition-fast, 0s))
+            transition-timing-function: var(--ease-out)
+
+    &[data-found] .tube
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--letter-placed-edge), var(--shadow-groove)
+
+    > .pawn
+      font-size: clamp(var(--text-m), calc(var(--stage-unit) * 2.8), var(--text-2xl))
+
+    // Two lines whatever the name, so every tower's foot stands level.
+    > .name
+      @include typography.title
+
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: 2
+      block-size: 2.1em
+      display: -webkit-box
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.75), var(--text-m))
+      hyphens: auto
+      inline-size: 100%
+      overflow: hidden
+
+    > .tries
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.6), var(--text-s))
+      transition: color var(--transition-base, 0s) var(--ease-out)
+
+    &[data-out] > .tries
+      color: var(--ink)
+      text-decoration: line-through var(--stroke-thin)

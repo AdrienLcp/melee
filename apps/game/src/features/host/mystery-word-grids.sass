@@ -1,0 +1,79 @@
+// Side-effect module: styles `.mystery-word-grids`, every grid spelled out at the reveal.
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .mystery-word-grids
+    --card-side: clamp(7rem, var(--fitted-side, 9rem), 16rem)
+
+    align-content: safe center
+    display: grid
+    gap: var(--space-xs)
+    grid-auto-rows: calc(var(--card-side) * var(--card-aspect, 1.4))
+    grid-template-columns: repeat(auto-fit, var(--card-side))
+    justify-content: center
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    overflow-x: clip
+    overflow-y: auto
+    padding: 0
+
+    // Nobody scrolls the wall: the cards take what the box deals, in the
+    // columns it dealt them.
+    &:is(.wall-page *)
+      --card-side: min(var(--fitted-side, 9rem), 16rem)
+
+      grid-template-columns: repeat(var(--fitted-columns, 6), var(--card-side))
+      overflow-y: clip
+
+  // Laid down one after the other in the order the room reads them, and
+  // each grid's letters turned over once its card is down.
+  .grid-card
+    @include piece.card($radius: var(--radius-m))
+
+    --card-delay: calc(var(--transition-slow, 0s) + var(--transition-fast, 0s) * 0.3 * min(var(--rank, 0), 16))
+    --deal-delay: calc(var(--card-delay) + var(--transition-base, 0s))
+
+    animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--card-delay) backwards
+    display: grid
+    gap: var(--space-2xs)
+    grid-template-rows: auto minmax(0, 1fr)
+    min-block-size: 0
+    min-inline-size: 0
+    padding: var(--space-2xs) var(--space-xs) var(--space-xs)
+
+    &[data-yours]
+      box-shadow: 0 var(--edge) 0 var(--chipboard), var(--shadow-card), inset 0 0 0 var(--stroke-bold) var(--card-ink)
+
+    > header
+      align-items: center
+      display: flex
+      font-size: clamp(var(--text-xs), calc(var(--card-side) * 0.1), var(--text-m))
+      gap: var(--space-2xs)
+      min-inline-size: 0
+
+    .name
+      @include typography.title
+
+      flex: 1
+      font-size: 1em
+      min-inline-size: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .pay
+      @include typography.numeric
+
+      flex: none
+
+      &:not([data-paid])
+        color: var(--card-muted)
+
+    .letter-grid
+      --letter-gap: 0.125rem
+
+      .letter-cell
+        --cell-edge: 0.0625rem
+        --cell-radius: var(--radius-xs)

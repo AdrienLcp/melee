@@ -118,6 +118,18 @@ describe('colour tokens', () => {
             minimum: WCAG_AA.nonText
           }
         ]),
+        ...(['placed', 'present'] as const).flatMap((mark) => [
+          {
+            background: `--letter-${mark}`,
+            foreground: '--tile-ink',
+            minimum: WCAG_AA.text
+          },
+          {
+            background: `--letter-${mark}`,
+            foreground: `--letter-${mark}-mark`,
+            minimum: WCAG_AA.nonText
+          }
+        ]),
         {
           background: '--socket',
           foreground: '--socket-line',

@@ -1,0 +1,20 @@
+// Side-effect module: styles `.revealed-word`, the hidden word dealt at the reveal.
+@layer components
+  .revealed-word
+    container-type: inline-size
+    display: grid
+    margin: 0
+    min-inline-size: 0
+
+    > .letter-row
+      --gap: clamp(var(--space-2xs), 1.2cqi, var(--space-s))
+      --cell-size: min(calc((100cqi - (var(--grid-columns) - 1) * var(--gap)) / var(--grid-columns)), var(--word-cell-cap, 4.5rem))
+
+      display: grid
+      gap: var(--gap)
+      grid-template-columns: repeat(var(--grid-columns), var(--cell-size))
+      justify-content: center
+
+      > .letter-cell
+        --cell-edge: 0.25rem
+        --cell-radius: var(--radius-m)

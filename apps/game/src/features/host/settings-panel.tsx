@@ -15,6 +15,10 @@ import {
   matchsticksGoals
 } from '@melee/protocol/matchsticks'
 import {
+  MYSTERY_WORD_MAX_LENGTH,
+  MYSTERY_WORD_MIN_LENGTH
+} from '@melee/protocol/mystery-word'
+import {
   type QuestionCategory,
   type QuestionLanguage,
   questionCategories,
@@ -76,6 +80,14 @@ const ESTIMATE_DURATIONS_MS = [15_000, 30_000, 60_000] as const
 
 /** Five seconds is a gut call between the two, twenty lets the table argue the pair. */
 const HIGHER_LOWER_DURATIONS_MS = [5_000, 10_000, 20_000] as const
+
+/** One minute is a race to the word, four lets a table work through all six tries. */
+const MYSTERY_WORD_DURATIONS_MS = [60_000, 120_000, 240_000] as const
+
+const MYSTERY_WORD_LENGTHS = Array.from(
+  { length: MYSTERY_WORD_MAX_LENGTH - MYSTERY_WORD_MIN_LENGTH + 1 },
+  (_, index) => MYSTERY_WORD_MIN_LENGTH + index
+)
 
 /** Fifteen seconds is a country the table knows, a minute a town it has to hunt for. */
 const ATLAS_DURATIONS_MS = [15_000, 30_000, 60_000] as const
@@ -614,6 +626,52 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           options={HIGHER_LOWER_DURATIONS_MS}
           value={game.roundDurationMs}
         />
+      )}
+
+      {game?.kind === 'mysteryword' && (
+        <>
+          <SegmentedControl
+            isDisabled={isDisabled}
+            label={translate('mysteryword.language')}
+            onChange={(next) => {
+              if (isQuestionLanguage(next)) {
+                onChange({ ...settings, game: { ...game, language: next } })
+              }
+            }}
+            options={questionLanguages.map((language) => ({
+              label: LANGUAGE_NAMES[language],
+              value: language
+            }))}
+            value={game.language}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('mysteryword.wordLength')}
+            onChange={(wordLength) => {
+              onChange({ ...settings, game: { ...game, wordLength } })
+            }}
+            optionLabel={String}
+            options={MYSTERY_WORD_LENGTHS}
+            value={game.wordLength}
+          />
+          <DifficultyChoice
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...settings, game: { ...game, difficulty } })
+            }}
+            value={game.difficulty}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('mysteryword.roundDuration')}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={MYSTERY_WORD_DURATIONS_MS}
+            value={game.roundDurationMs}
+          />
+        </>
       )}
 
       {game?.kind === 'mostlikely' && (

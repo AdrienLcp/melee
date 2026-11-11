@@ -22,6 +22,7 @@ import type {
   RoomPhase,
   RoundView
 } from '@melee/protocol/room'
+import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 import type { ColourHex } from '@melee/protocol/swatch'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
@@ -59,6 +60,8 @@ import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
+import { MysteryWordAnswer } from '@/features/player/mystery-word-answer'
+import { MysteryWordRevealed } from '@/features/player/mystery-word-revealed'
 import { PetitBacReveal } from '@/features/player/petit-bac-reveal'
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import {
@@ -93,6 +96,7 @@ import {
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
+  mysteryWordContent,
   petitBacContent,
   placesFromBestOf,
   quizContent,
@@ -194,6 +198,8 @@ type PlayerRoundProps = {
   onPetitBac: (message: PetitBacSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */
   onWriteLine: (itemIndex: number, answer: string, roundId: string) => boolean
+  /** The server's last refusal to this screen, which a hidden word's seat says under its grid. */
+  refusal: ProtocolErrorMessage | null
   view: PlayerRoomView
 }
 
@@ -502,6 +508,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
   onReady,
   onTick,
   onWriteLine,
+  refusal,
   view
 }) => {
   const { locale, translate } = useI18n()
@@ -865,6 +872,23 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
             )}
             key={round.id}
             onAnswer={answerWithRound}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
+    if (mysteryWordContent(round) !== null) {
+      return (
+        <section className='player-round mystery-word-round'>
+          <RoundClock clock={clock} view={view} />
+          <MysteryWordAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            paysForSpeed={view.settings.paysForSpeed}
+            players={view.players}
+            refusal={refusal}
             round={round}
             youId={view.youId}
           />
@@ -1493,6 +1517,10 @@ const Revealed: React.FC<{
         />
       </div>
     )
+  }
+
+  if (mysteryWordContent(round)?.revealedWord != null) {
+    return <MysteryWordRevealed round={round} youId={view.youId} />
   }
 
   const shades = swatchContent(round)

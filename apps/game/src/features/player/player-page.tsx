@@ -317,6 +317,7 @@ const Lobby: React.FC<{
               onWriteLine={(itemIndex, answer, roundId) =>
                 send({ answer, itemIndex, roundId, type: 'slate.write' })
               }
+              refusal={error}
               view={view}
             />
           </PauseHold>
@@ -367,6 +368,7 @@ const Lobby: React.FC<{
                 onWriteLine={(itemIndex, answer, roundId) =>
                   send({ answer, itemIndex, roundId, type: 'slate.write' })
                 }
+                refusal={error}
                 view={view}
               />
             </PauseHold>

@@ -79,6 +79,11 @@ export const higherLowerContent = (
 ): Extract<RoundContent, { kind: 'higherlower' }> | null =>
   round?.content.kind === 'higherlower' ? round.content : null
 
+export const mysteryWordContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'mysteryword' }> | null =>
+  round?.content.kind === 'mysteryword' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>

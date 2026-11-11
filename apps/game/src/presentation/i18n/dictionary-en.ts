@@ -1619,16 +1619,69 @@ export const EN_DICTIONARY = defineDictionary({
    * and one destination is named one way or the product has three fronts.
    */
   mysteryword: {
+    found: {
+      stillLooking: 'Still looking',
+      title: defineTranslation('Found in {count:plural}', {
+        plural: { count: { one: '{?} try', other: '{?} tries' } }
+      })
+    },
+    grid: 'Your tries',
     home: {
       description:
-        'A word is hidden, its first letter and its length on every screen. Six tries each to find it, every letter coloured: in place, elsewhere in the word, or not in it. The room sees every grid in colours, never the letters.'
+        'A word is hidden, its first letter and its length on every screen. Six tries each to find it, every letter coloured: in place, elsewhere in the word, or not in it. The table sees every grid in colours, never the letters.'
+    },
+    keyboard: {
+      erase: 'Erase',
+      label: 'Letters',
+      send: 'Try it'
+    },
+    language: 'Words in',
+    legend: {
+      absent: 'not in it',
+      placed: 'in place',
+      present: 'elsewhere'
     },
     length: '{count:number} letters',
+    mark: {
+      absent: 'not in the word',
+      placed: 'in place',
+      present: 'elsewhere in the word'
+    },
     name: 'Mystery word',
+    notFound: 'Not found',
     play: 'Play Mystery word',
+    refusal: {
+      not_in_dictionary: '“{word}” is not in the dictionary. No try spent.',
+      not_one_word: 'One word, letters only. No try spent.',
+      wrong_first_letter:
+        'The word starts with the letter given. No try spent.',
+      wrong_length: 'Fill every letter first. No try spent.'
+    },
+    reveal: {
+      title: 'The word was'
+    },
+    roundDuration: 'Time to find it',
     scoring:
       'A word found on the first or second try scores 100 points, then 85, 70, 55 and 40 on the tries after; a word not found scores nothing.',
-    tagline: 'Six tries to find the hidden word.'
+    skeleton: '{length:number} letters, starting with {letter}',
+    spent: {
+      detail: 'The word stays hidden until the round ends.',
+      title: 'No tries left'
+    },
+    tagline: 'Six tries to find the hidden word.',
+    tower: {
+      found: defineTranslation('{name}: found in {count:plural}', {
+        plural: { count: { one: '{?} try', other: '{?} tries' } }
+      }),
+      searching: defineTranslation(
+        '{name}: {placed:number} in place, {count:plural}',
+        { plural: { count: { one: '{?} try', other: '{?} tries' } } }
+      ),
+      tries: '{used:number}/{count:number}'
+    },
+    typing: 'Your try: {word}',
+    wallLegend: 'One step per letter in place, on each player’s best try',
+    wordLength: 'Letters'
   },
   navigation: {
     back: 'Back to the games',

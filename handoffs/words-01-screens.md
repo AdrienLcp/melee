@@ -15,12 +15,9 @@ exactly what every screen receives. This session puts both on the shelf.
   and `lengths` (each seat's best length, never its word); the reader's
   `yourWords`; the reveal `revealedWords`, `bestWords` (≤ 3, familiar first)
   and `bestLength`.
-- Both are in `gameKinds`, not `shelvedGames`. Their spines
-  (`oklch(45% 0.1 122)`, `oklch(41% 0.1 250)`), icons (`WholeWord`,
-  `SpellCheck`) and the player/host/wall placeholders are provisional.
-- If `c4eaa885` and `879fc829` are not on `origin/main` yet, push them first:
-  they were left local because the pre-push typecheck failed on another
-  session's unfinished deck work.
+- `mysteryword` is on the shelf. `longestword` is in `gameKinds`, not
+  `shelvedGames`; its spine (`oklch(41% 0.1 250)`), icon (`SpellCheck`) and
+  player/host/wall placeholders are provisional.
 
 ## The session
 
@@ -59,18 +56,24 @@ exactly what every screen receives. This session puts both on the shelf.
    - The console seated plays the seat; unseated it takes the wall's
      composition. The reveal's spelled grids run about 20px a cell at
      1440×900 — the one thing to measure again on the real screens.
-2. **Mystery word on screens**: the seat (grid, on-screen keyboard coloured by
-   what each letter has shown, the refusal said without costing a try), the
-   wall, the console (seated and not), the reveal, the setup (length 5–8,
-   duration, level, language defaulted from the locale as the ready-made
-   line-ups do for the quiz), spine and icon, `document-head.ts`, both
-   dictionaries, `shelvedGames`, ready-made line-ups and Grand mix, the
-   catalogue and `.claude/CLAUDE.md` rows.
+2. **Mystery word on screens** — **Done** 11/11/2026, see plan 66 step 3's
+   _Screens landed_. Two things stay open there: drive a **paired wall**
+   (only the unseated console was seen), and judge the reveal's spelled
+   cells at 24 seats (~10 px at 1440×900) on the real screens. The shared
+   pieces the longest word reuses are already in
+   `presentation/components/` (`letter-cell`, `letter-grid`, `mark-legend`,
+   `revealed-word`) and `features/player/word-keyboard.tsx`; a drawn key
+   gives its focus back after a pointer press, keep that for the tiles.
+   The browser pass is scripted: `.playwright-mcp/mw-run.mjs` (git-ignored)
+   runs Playwright from Node — the MCP browser may be held by another
+   session — creates the room, seats 22 raw sockets plus two phones, plays a
+   refusal, a try, a find, six spent tries and the reveal, films each change
+   and writes `.playwright-mcp/mw-*.png`. Copy it for the longest word.
 3. **Longest word on screens**, the same list (no level).
 4. Seen **muted** (`melee:volume` `'0'` by init script) on a wall, a seated
    console and two phones at full seats; every new screen's entry and leaving
    **filmed** (`docs/browser-driving.md`). Close both plans' steps, the README
    rows, the changelog; delete this file and its README row.
 
-If the context nears 150k after step 2, commit, rewrite this file with what is
+If the context nears 150k after step 3, commit, rewrite this file with what is
 left, and stop.

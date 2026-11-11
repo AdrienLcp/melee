@@ -105,6 +105,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A line goes up — who is most likely to talk to their plants? — and the whole room votes for one of the people at the table on their own screens. The reveal counts the votes without saying who voted for whom. Scan the QR code and play — no install, no account.',
       title: 'Most likely — Mêlée'
     },
+    mysteryword: {
+      description:
+        'A word is hidden, its first letter and its length on every screen, and everyone has six tries to find it on their own. Each try comes back letter by letter: in place, elsewhere in the word, or not in it. The room watches every grid fill in colours, never the letters, until the reveal spells them out. Scan the QR code and play — no install, no account.',
+      title: 'Mystery word — Mêlée'
+    },
     petitbac: {
       description:
         'A letter comes up and everyone fills the same sheet on their own screen — a country, an animal, a first name, all starting with it. The first to finish calls stop, the room votes on what counts, and a word nobody else wrote pays double. Scan the QR code and play — no install, no account.',
@@ -206,6 +211,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et toute la salle vote pour quelqu’un de la table depuis son écran. Le dévoilement compte les voix sans dire qui a voté pour qui. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Qui de nous ? — Mêlée'
+    },
+    mysteryword: {
+      description:
+        'Un mot est caché, sa première lettre et sa longueur sur tous les écrans, et chacun a six essais pour le trouver depuis le sien. Chaque essai revient lettre par lettre : bien placée, ailleurs dans le mot, ou absente. La salle voit toutes les grilles se remplir en couleurs, jamais les lettres, jusqu’au dévoilement qui les épelle. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Mot mystère — Mêlée'
     },
     petitbac: {
       description:

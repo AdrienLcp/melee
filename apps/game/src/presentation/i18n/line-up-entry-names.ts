@@ -256,6 +256,8 @@ const namingOf = ({
             levelOf({ difficulty: entry.difficulty, translate })
           ]
         : []
+    case 'mysteryword':
+      return [translate('mysteryword.length', { count: entry.wordLength })]
     default:
       return []
   }

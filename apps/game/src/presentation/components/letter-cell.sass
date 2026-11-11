@@ -1,0 +1,114 @@
+// Side-effect module: styles `.letter-cell`, its mark shape, and the turn a marked cell is dealt with.
+@use '../styles/typography'
+
+// Turned over on its top edge: away from the reader to the half, back face up.
+@keyframes letter-turns
+  0%
+    animation-timing-function: var(--ease-in)
+    transform: perspective(30em) rotateX(0deg)
+  50%
+    animation-timing-function: var(--ease-out)
+    transform: perspective(30em) rotateX(90deg)
+  100%
+    transform: perspective(30em) rotateX(0deg)
+
+// The face a cell shows until its turn reaches the half: the letter as typed.
+@keyframes letter-face-down
+  from, to
+    background: var(--card)
+    box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
+    color: var(--card-ink)
+
+@keyframes letter-mark-hidden
+  from, to
+    visibility: hidden
+
+@layer components
+  .letter-cell
+    --cell-edge: 0.1875rem
+
+    @include typography.billboard
+
+    align-items: center
+    aspect-ratio: 1
+    border-radius: var(--cell-radius, var(--radius-s))
+    color: var(--tile-ink)
+    display: grid
+    font-size: calc(var(--cell-size, 2.75rem) * 0.6)
+    inline-size: var(--cell-size, 2.75rem)
+    justify-items: center
+    position: relative
+    transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+    > .letter
+      grid-area: 1 / 1
+
+    &[data-mark='placed']
+      background: var(--letter-placed)
+      box-shadow: 0 var(--cell-edge) 0 var(--letter-placed-edge)
+
+    &[data-mark='present']
+      background: var(--letter-present)
+      box-shadow: 0 var(--cell-edge) 0 var(--letter-present-edge)
+
+    &[data-mark='absent']
+      background: var(--socket)
+      box-shadow: var(--shadow-groove)
+      color: var(--socket-ink)
+
+    &[data-mark='typed']
+      background: var(--card)
+      box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
+      color: var(--card-ink)
+
+    &[data-mark='given']
+      background: var(--card)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
+      color: var(--card-muted)
+
+    &[data-mark='empty']
+      background: transparent
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+
+    &[data-caret]::after
+      background: var(--card-ink)
+      border-radius: var(--radius-xs)
+      content: ''
+      block-size: 7%
+      inset: auto 26% 16%
+      position: absolute
+
+    // A cell drawn in colour alone carries its shape in the middle, large.
+    &:has(> .letter:empty) > .mark-shape
+      grid-area: 1 / 1
+      inline-size: 0.8em
+      position: static
+
+      &[data-mark='placed']
+        inline-size: 0.56em
+
+  .mark-shape
+    aspect-ratio: 1
+    display: block
+    inline-size: 0.4em
+    inset: 0.14em 0.14em auto auto
+    position: absolute
+
+    &[data-mark='placed']
+      background: var(--letter-placed-mark)
+      inline-size: 0.28em
+      rotate: 45deg
+
+    &[data-mark='present']
+      border: 0.1em solid var(--letter-present-mark)
+      border-radius: var(--radius-full)
+
+  // A row's marks turn over left to right as they are first drawn: a try
+  // coming back, and every grid the reveal spells out.
+  .letter-row > .letter-cell:is([data-mark='placed'], [data-mark='present'], [data-mark='absent'])
+    --turn-delay: calc(var(--deal-delay, 0s) + var(--transition-fast, 0s) * 0.8 * var(--letter-index, 0))
+
+    animation: letter-turns calc(var(--transition-slow, 0s) * 1.2) linear var(--turn-delay) both, letter-face-down calc(var(--transition-slow, 0s) * 0.6) linear var(--turn-delay) backwards
+
+    > .mark-shape
+      animation: letter-mark-hidden calc(var(--transition-slow, 0s) * 0.6) linear var(--turn-delay) backwards

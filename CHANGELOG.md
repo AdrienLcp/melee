@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Game]` **Mystery word is on the shelf.** Every seat gets six tries at a
+  hidden word whose first letter and length everyone sees, on a grid over a
+  keyboard drawn on the screen — AZERTY for French words, QWERTY for English —
+  each key inked by what its letter has shown. A try that is not a word is said
+  under the grid and costs nothing. The table watches a tower per seat rise one
+  step per letter in place, crowned once found, and the reveal spells every
+  grid out, ordered by the try that found the word. The host picks the length
+  (5–8), the time, the level and the language, which follows the screen's.
 - **The host's own lines play on every round, and most likely takes them
   too.** The challenge lines a host writes ahead now go to the room the
   console opens, so the server deals them — after the evening's own lines and

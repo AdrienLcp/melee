@@ -266,6 +266,21 @@
       padding: 0.12em 0.3em
       width: auto
 
+    // The word stands over the grids, which take what it leaves: on the wall
+    // twenty-four of them share a box the heading and the word have halved.
+    &[data-game='mysteryword']
+      > .head
+        justify-content: center
+
+        .revealed-word
+          --word-cell-cap: clamp(3rem, calc(var(--stage-unit) * 9), 6.5rem)
+
+          inline-size: 100%
+
+      > .mystery-word-grids
+        flex: 1 1 0
+        min-height: 0
+
     // The colour keeps the largest chip and gives the guesses the room: a
     // third of the screen for one chip left 24 of them a strip of slivers.
     &[data-game='swatch']
@@ -432,8 +447,8 @@
         grid-template-rows: minmax(0, auto)
 
       // Three blocks, and the guesses deal themselves into what the colour
-      // and the heading leave.
-      &[data-game='swatch']
+      // and the heading leave — the grids into what the word leaves.
+      &:is([data-game='swatch'], [data-game='mysteryword'])
         grid-template-rows: auto auto minmax(0, 1fr)
 
       // An `auto` row is sized to its content, and the grid is a size

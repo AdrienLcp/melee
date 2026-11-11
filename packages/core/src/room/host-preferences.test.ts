@@ -155,6 +155,20 @@ describe('askedIn', () => {
       rememberedSetupFor({ game: 'quiz', preferences: asked })?.game
     ).toEqual(onTheQuiz.game)
   })
+
+  it('[host-preferences] spells the remembered mystery word in the language the host reads', () => {
+    const inEnglish = rememberSettings({
+      preferences: null,
+      settings: roomSettingsFor({ games: ['mysteryword'], locale: 'en' })
+    })
+    const asked = askedIn({ locale: 'fr', preferences: inEnglish })
+    const remembered = rememberedSetupFor({
+      game: 'mysteryword',
+      preferences: asked
+    })?.game
+
+    expect(remembered?.kind === 'mysteryword' && remembered.language).toBe('fr')
+  })
 })
 
 describe('rememberedSetupFor', () => {

@@ -13,6 +13,8 @@ import {
   ChevronUp,
   CircleQuestionMark,
   Copy,
+  Crown,
+  Delete,
   Dice5,
   Download,
   Earth,
@@ -99,6 +101,7 @@ export const ChevronUpIcon = inFamily(ChevronUp)
 export const ControlsIcon = inFamily(SlidersHorizontal)
 export const CopyIcon = inFamily(Copy)
 export const CrossIcon = inFamily(X)
+export const CrownIcon = inFamily(Crown, { fill: 'currentColor' })
 export const LockIcon = inFamily(Lock)
 export const MenuIcon = inFamily(Menu, {
   className: 'menu-icon',
@@ -109,6 +112,7 @@ export const MenuIcon = inFamily(Menu, {
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
+export const EraseIcon = inFamily(Delete)
 export const FinishIcon = inFamily(Flag)
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)

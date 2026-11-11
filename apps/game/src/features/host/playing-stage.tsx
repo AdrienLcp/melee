@@ -4,6 +4,7 @@ import type { BlackSquareCell } from '@melee/protocol/black-square'
 import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
+import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
@@ -20,6 +21,7 @@ import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
+import { MysteryWordAnswer } from '@/features/player/mystery-word-answer'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { RoundQuestion } from '@/features/player/round-question'
 import { SwatchRound } from '@/features/player/swatch-round'
@@ -31,21 +33,26 @@ import {
   higherLowerContent,
   matchsticksContent,
   mostLikelyContent,
+  mysteryWordContent,
   swatchContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
+import { LetterCell } from '@/presentation/components/letter-cell'
 import { MapPrompt } from '@/presentation/components/map-prompt'
+import { MarkLegend } from '@/presentation/components/mark-legend'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useShownColour } from '@/presentation/components/use-shown-colour'
+import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
+import { MysteryWordTowers } from './mystery-word-towers'
 
 import './playing-stage.sass'
 
@@ -72,6 +79,8 @@ type PlayingStageProps = {
   onTick:
     | ((cell: BlackSquareCell | 'blackWord', isTicked: boolean) => boolean)
     | null
+  /** The server's last refusal to this screen, which a seat answering a hidden word says under its grid. */
+  refusal: ProtocolErrorMessage | null
   round: RoundView
   view: HostRoomView
 }
@@ -90,6 +99,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   onAnswer,
   onLean,
   onTick,
+  refusal,
   round,
   view
 }) => {
@@ -106,6 +116,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mostLikely = mostLikelyContent(round)
   const estimate = estimateContent(round)
   const higherLower = higherLowerContent(round)
+  const mysteryWord = mysteryWordContent(round)
   const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
@@ -146,6 +157,33 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
               : translate('higherlower.dealt')}
           </p>
         ))
+      ) : mysteryWord !== null ? (
+        onAnswer === null && (
+          <p className='now mystery-word-skeleton'>
+            <VisuallyHidden elementType='span'>
+              {translate('mysteryword.skeleton', {
+                length: mysteryWord.length,
+                letter: mysteryWord.firstLetter
+              })}
+            </VisuallyHidden>
+            <span
+              aria-hidden
+              className='cells'
+              style={{ '--grid-columns': mysteryWord.length }}
+            >
+              {Array.from({ length: mysteryWord.length }, (_, at) => at).map(
+                (position) => (
+                  <LetterCell
+                    index={position}
+                    key={position}
+                    letter={position === 0 ? mysteryWord.firstLetter : ''}
+                    mark={position === 0 ? 'given' : 'empty'}
+                  />
+                )
+              )}
+            </span>
+          </p>
+        )
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -206,6 +244,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             : 'voting'
       }
       data-moving={isMoving || undefined}
+      data-mystery-word={
+        mysteryWord === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
       data-swatch={
         swatch === null
           ? undefined
@@ -318,6 +363,30 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           youId={answersAs}
         />
       )}
+      {mysteryWord !== null &&
+        (onAnswer === null ? (
+          <>
+            <MysteryWordTowers players={view.players} round={round} />
+            <MarkLegend
+              items={[
+                {
+                  label: translate('mysteryword.wallLegend'),
+                  mark: 'placed'
+                }
+              ]}
+            />
+          </>
+        ) : (
+          <MysteryWordAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            paysForSpeed={view.settings.paysForSpeed}
+            players={view.players}
+            refusal={refusal}
+            round={round}
+            youId={answersAs}
+          />
+        ))}
       {mostLikely !== null && onAnswer !== null && (
         <MostLikelyBallot
           key={round.id}
@@ -353,6 +422,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         ))}
       {view.players.length > 0 &&
         mode !== 'spoken' &&
+        mysteryWord === null &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />
         ) : (

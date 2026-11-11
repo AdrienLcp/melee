@@ -10,6 +10,7 @@ import type {
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
+import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 import type { ClipFault } from '@melee/protocol/sound'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
@@ -68,6 +69,8 @@ export type StageControls = {
    * code, so the lobby drops its invitation and its own list of seats.
    */
   isRosterBeside: boolean
+  /** The server's last refusal to this console, which its seat says in place when it answers a try of its own. */
+  lastRefusal: ProtocolErrorMessage | null
   /** Keeps a key typed mid-sheet for the next sheet this host opens. */
   onRememberSlateKey: (itemIndex: number, key: string) => void
   /** Aimed at the console's own seat too, which is why it is not a bare frame. */
@@ -367,6 +370,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
                 })
             : null
         }
+        refusal={controls?.lastRefusal ?? null}
         round={round}
         view={view}
       >

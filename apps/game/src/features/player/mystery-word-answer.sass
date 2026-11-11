@@ -1,0 +1,123 @@
+// Side-effect module: styles `.mystery-word-answer`, a seat's grid over its keyboard.
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .mystery-word-answer
+    display: grid
+    gap: var(--space-xs)
+    grid-template: minmax(0, 1fr) auto auto / minmax(0, 1fr)
+    min-block-size: 0
+
+    > .letter-grid
+      --cell-cap: 4.75rem
+
+    // Folded at no height until a refusal opens it, so the grid above gives
+    // way smoothly rather than jumping when a try is turned down.
+    > .refusal
+      display: grid
+      grid-template-rows: 0fr
+      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in)
+
+      > .refusal-line
+        @include piece.card($radius: var(--radius-s))
+        @include typography.strong
+
+        align-items: center
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
+        display: flex
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), var(--text-s))
+        gap: var(--space-xs)
+        margin: 0
+        min-block-size: 0
+        opacity: 0
+        overflow: hidden
+        padding-inline: var(--space-s)
+        transition: opacity var(--transition-base, 0s) var(--ease-in), padding var(--transition-base, 0s) var(--ease-in)
+
+        > svg
+          color: var(--card-muted)
+          flex: none
+
+      &[data-shown]
+        grid-template-rows: 1fr
+        transition-timing-function: var(--ease-out)
+
+        > .refusal-line
+          opacity: 1
+          padding-block: var(--space-xs)
+          transition-timing-function: var(--ease-out)
+
+    // The keys and the card that replaces them share one cell: the keyboard
+    // fades down out of it as the card is laid over, and the grid above
+    // keeps its size.
+    > .foot
+      display: grid
+      grid-template: 'foot' auto / minmax(0, 1fr)
+
+      > .keys,
+      > .result
+        grid-area: foot
+
+      > .keys
+        display: grid
+        gap: var(--space-xs)
+        transition: opacity var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+
+    &[data-done] > .foot > .keys
+      opacity: 0
+      translate: 0 var(--space-s)
+      visibility: hidden
+
+    .result
+      @include piece.card
+
+      align-content: start
+      align-self: end
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) var(--transition-fast, 0s) backwards
+      display: grid
+      gap: var(--space-xs)
+      padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-m))
+
+      h2
+        @include typography.billboard-wrapping
+
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
+        margin: 0
+        text-wrap: balance
+
+      .detail
+        @include typography.body
+
+        color: var(--card-muted)
+        margin: 0
+
+    .result-head
+      align-items: center
+      display: flex
+      gap: var(--space-s)
+      justify-content: space-between
+
+    .pay
+      @include typography.score
+      @include text-box.trimmed-block(var(--space-2xs))
+
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) + var(--transition-fast, 0s)) backwards
+      background: var(--good-soft)
+      border-radius: var(--radius-full)
+      box-shadow: 0 var(--edge) 0 var(--good-edge)
+      color: var(--tile-ink)
+      flex: none
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 5.5), var(--text-xl))
+      padding-inline: var(--space-s)
+
+    .still-looking
+      display: grid
+      gap: var(--space-2xs)
+
+    .pawns
+      display: flex
+      flex-wrap: wrap
+      font-size: var(--text-l)
+      gap: var(--space-2xs)

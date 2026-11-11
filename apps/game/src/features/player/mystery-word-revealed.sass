@@ -1,0 +1,28 @@
+// Side-effect module: styles `.mystery-word-revealed`, a seat's word and grid at the reveal.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .mystery-word-revealed
+    display: grid
+    gap: var(--space-m)
+
+    > .yours
+      align-items: stretch
+      flex-direction: column
+      flex-wrap: nowrap
+      gap: var(--space-s)
+
+      // A seat's grid, its cells held to a size read at arm's length.
+      > .letter-grid
+        --cell-cap: 2.75rem
+
+        block-size: min(19rem, calc(var(--stage-unit) * 60))
+
+    .found
+      @include typography.billboard-wrapping
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 5.5), var(--text-2xl))
+      margin: 0
+      text-align: center
+      text-wrap: balance

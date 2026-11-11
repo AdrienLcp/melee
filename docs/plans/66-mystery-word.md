@@ -187,6 +187,31 @@ plan's 3 MB compressed script cap.
    muted on a wall, a seated console and two phones at full seats; the reveal
    and the grid's entry filmed.
 
+   **Screens landed** 11/11/2026 — A's seat, B's wall. The seat is
+   `features/player/mystery-word-answer.tsx` over `word-keyboard.tsx` (no
+   device keyboard; a physical one types, Enter tries, Backspace erases), its
+   reveal `mystery-word-revealed.tsx`; the wall and the unseated console draw
+   `features/host/mystery-word-towers.tsx`, the reveal
+   `mystery-word-grids.tsx` in the round's block beside the standings — not
+   full screen as on B, because every reveal keeps its two blocks. Shared
+   pieces in `presentation/components/`: `letter-cell`, `letter-grid`,
+   `mark-legend`, `revealed-word`; the marks are `--letter-placed` /
+   `--letter-present` with a diamond and a ring drawn in CSS. Core gained
+   `@melee/core/mysteryword/grid-reading` (`bestMarkByLetter`, `foundOnTryOf`,
+   `isGridDone`, `mostPlacedOf`). The language defaults from the locale as the
+   quiz's does; Grand mix deals two entries, 5 and 7 letters (four broke the
+   dealer's spacing test), and no other ready-made line-up takes it: two-minute
+   rounds fit neither _Quick_ nor _First game_. Valider waits for a full row,
+   so `wrong_length` is a backstop. **A touch focuses a drawn key despite
+   `preventFocusOnPress`**, and the focused key then swallowed the physical
+   Enter — every key gives its focus back after a pointer press.
+   Seen muted at 1440×900 (console unseated, 24 seats of long names), 390×844
+   and 360×640 (a refusal, a try, found on the second, six tries spent), the
+   refusal, the row turning over, the keyboard giving way and the reveal
+   filmed. **Open**: a paired wall was not driven, and at 24 seats the
+   reveal's spelled cells come out about 10 px at 1440×900 — legible from a
+   chair, not from four metres; the console scrolls them inside their box.
+
 ## How to tell it is done
 
 A room plays a six-letter French word and an English one: a non-word is

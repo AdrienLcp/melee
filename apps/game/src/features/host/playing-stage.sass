@@ -390,6 +390,39 @@
           > .answered-pawns
             display: none
 
+    // The word's first letter and its empty cells on the card, every seat's
+    // tower under it and the one line that reads them — or, for a seated
+    // console, its own grid and keyboard in their place.
+    &[data-mystery-word]
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      .mystery-word-skeleton
+        display: flex
+        justify-content: center
+        margin: 0
+
+        > .cells
+          --cell-size: clamp(2rem, calc(var(--stage-unit) * 5.2), 3.4rem)
+
+          display: grid
+          gap: var(--space-2xs)
+          grid-template-columns: repeat(var(--grid-columns), var(--cell-size))
+
+      > .mystery-word-towers
+        align-self: stretch
+        flex: 1 1 0
+
+      > .mark-legend
+        flex: none
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), var(--text-m))
+
+      > .answer-form.mystery-word-answer
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 36rem)
+
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
     &[data-black-square]
