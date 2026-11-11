@@ -400,7 +400,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
 - **A block laid over the page is positioned, never left in its flow.** The
   wall's _host away_ band, a flex item between header and stage, became a
   grid row on every phase laid out as a grid and pushed the round under the
-  screen's edge.
+  screen's edge. Laid over the top, it covered the round index and the join
+  square at 9:16, so the page reserves the band's measured height
+  (`--host-away-height`) while it shows, the room opening before it fades in.
 - **A toggled mark leaves the way it arrived, played backwards, and each
   direction is written in the state it ends on** — a transition is read off
   the state being entered. Arriving opens the room on `--transition-base` and
