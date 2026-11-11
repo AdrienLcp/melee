@@ -77,6 +77,32 @@
       > .leaves-in-place > :is(.duel-badge, .black-square-turn)
         flex-shrink: 1
 
+      // A piece opens from no width, and `piece-opens` holding its text to
+      // one line does not reach these: the keeper wrapped under the team and
+      // the way in's sentence under itself, each jumping back to one line as
+      // the opening ended.
+      > .leaves-in-place > .black-square-turn
+        flex-wrap: nowrap
+
+        > .guessing
+          flex: none
+
+        // A block rather than the inline flex, which leaves its text an
+        // anonymous item that no ellipsis reaches.
+        > .keeper
+          display: block
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+
+          > .pawn
+            display: inline-block
+            margin-inline-end: var(--space-2xs)
+            vertical-align: middle
+
+      .join-reminder .label
+        white-space: nowrap
+
     // What the console's sound picker calls this screen, said only once there
     // is another to tell it from.
     > header .wall-number
