@@ -4,8 +4,24 @@ import { playerScreenLanding, swapsThePlayerScreen } from './player-screen-swap'
 
 const at = (
   phase: 'buzzed' | 'countdown' | 'finished' | 'lobby' | 'playing' | 'revealed',
-  { isHostConnected = true, isPaused = false } = {}
-) => ({ isHostConnected, isPaused, phase })
+  {
+    isHostConnected = true,
+    isPaused = false,
+    sheetsClosed
+  }: {
+    isHostConnected?: boolean
+    isPaused?: boolean
+    sheetsClosed?: boolean
+  } = {}
+) => ({
+  isHostConnected,
+  isPaused,
+  phase,
+  round:
+    sheetsClosed === undefined
+      ? null
+      : { content: { kind: 'petitbac', sheetsClosed } }
+})
 
 describe('swapsThePlayerScreen', () => {
   it('[screen] replaces the lobby, the reveal and the final board as they come and go', () => {
@@ -49,6 +65,21 @@ describe('swapsThePlayerScreen', () => {
       swapsThePlayerScreen({
         from: at('playing', { isHostConnected: false }),
         to: at('playing')
+      })
+    ).toBe(false)
+  })
+
+  it('[screen] replaces the Petit Bac sheet with its vote, and never reopens the sheet', () => {
+    expect(
+      swapsThePlayerScreen({
+        from: at('playing', { sheetsClosed: false }),
+        to: at('playing', { sheetsClosed: true })
+      })
+    ).toBe(true)
+    expect(
+      swapsThePlayerScreen({
+        from: at('playing', { sheetsClosed: true }),
+        to: at('playing', { sheetsClosed: true })
       })
     ).toBe(false)
   })

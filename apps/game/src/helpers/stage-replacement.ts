@@ -31,7 +31,20 @@ type StageChange = {
   to: NonNullable<StageOnScreen>
 }
 
-const closesTheSheets = ({ from, to }: StageChange): boolean =>
+/** What a view says about its round's sheets, on any screen. */
+export type SheetsOnScreen = { round: { content: ContentOnStage } | null }
+
+/**
+ * Whether Petit Bac's sheets close between two views: the same phase, one
+ * stage giving way to another, and nobody racing for a press.
+ */
+export const closesTheSheets = ({
+  from,
+  to
+}: {
+  from: SheetsOnScreen
+  to: SheetsOnScreen
+}): boolean =>
   from.round?.content.sheetsClosed === false &&
   to.round?.content.sheetsClosed === true
 

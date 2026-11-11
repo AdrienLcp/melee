@@ -1,11 +1,16 @@
 import type { PlayerRoomView } from '@melee/protocol/room'
 
-import type { ViewLanding } from '@/helpers/stage-replacement'
+import {
+  closesTheSheets,
+  type SheetsOnScreen,
+  type ViewLanding
+} from '@/helpers/stage-replacement'
 
 type PlayerScreen = Pick<
   PlayerRoomView,
   'isHostConnected' | 'isPaused' | 'phase'
->
+> &
+  SheetsOnScreen
 
 const LEFT_AS_A_WHOLE: ReadonlySet<PlayerRoomView['phase']> = new Set([
   'finished',
@@ -22,8 +27,8 @@ const ARRIVED_AT_AS_A_WHOLE: ReadonlySet<PlayerRoomView['phase']> = new Set([
  * What swaps a player's screen as one screen replacing another: the lobby,
  * the reveal and the final board leaving, the reveal and the final board
  * arriving, and the round
- * frozen — paused, or its host gone — since nothing is pressed on what any
- * of them gives way to. Never the floor changing hands, nor a freeze lifted:
+ * frozen — paused, or its host gone — and Petit Bac's sheet giving way to its
+ * vote, since nothing is pressed on what any of them gives way to. Never the floor changing hands, nor a freeze lifted:
  * the transition holds every press for its length, and the race reopens the
  * moment either happens. The reveal's own hold says the host left on its own.
  */
@@ -45,6 +50,7 @@ export const swapsThePlayerScreen = ({
   }
 
   return (
+    closesTheSheets({ from, to }) ||
     (!from.isPaused && to.isPaused) ||
     (from.isHostConnected && !to.isHostConnected && to.phase !== 'revealed')
   )
