@@ -23,11 +23,11 @@ import type { SavedEntry, SavedEvening } from './saved-evening'
 import { isShelvedGame } from './shelved-game'
 
 export const readyMadeLineUpIds = [
+  'grandMix',
   'firstGame',
   'music',
   'generalKnowledge',
-  'quick',
-  'grandMix'
+  'quick'
 ] as const
 
 export type ReadyMadeLineUpId = (typeof readyMadeLineUpIds)[number]
@@ -158,6 +158,13 @@ export const readyMadeLineUpsFor = (
   locale: Locale
 ): readonly ReadyMadeLineUp[] => [
   {
+    id: 'grandMix',
+    lineUp: grandMixFor(locale),
+    lineUpDeals: [],
+    roundCount: GRAND_MIX_ROUND_COUNT,
+    runningOrder: Array.from({ length: GRAND_MIX_ROUND_COUNT }, (_, at) => at)
+  },
+  {
     id: 'firstGame',
     lineUp: ['blindtest', 'quiz', 'higherlower', 'reflex', 'atlas'],
     lineUpDeals: [],
@@ -206,13 +213,6 @@ export const readyMadeLineUpsFor = (
     lineUpDeals: [],
     roundCount: 10,
     runningOrder: []
-  },
-  {
-    id: 'grandMix',
-    lineUp: grandMixFor(locale),
-    lineUpDeals: [],
-    roundCount: GRAND_MIX_ROUND_COUNT,
-    runningOrder: Array.from({ length: GRAND_MIX_ROUND_COUNT }, (_, at) => at)
   }
 ]
 
