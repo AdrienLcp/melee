@@ -144,6 +144,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A full table no longer trips React's update limit on a seat.**
+  Every screen in a room reported its pawn room and scored seats to the menu
+  as the snapshot's own arrays, so each frame set the menu's state a second
+  time; with two dozen seats spending tries, frames landed between those two
+  renders long enough for a phone to log `Maximum update depth exceeded`. The
+  report now keeps what it last sent while the contents match, and narrows the
+  pawn room to the four fields the menu reads: one render a frame instead of
+  two, and the burst that tripped a throttled phone three runs in three passes
+  clean.
 - `[Game]` **Mystery word's reveal stays in its half of a wall.** With 24
   seats the spelled-out grids and the word ran across the standings beside
   them; they now deal into their own column, and each card puts its pay under

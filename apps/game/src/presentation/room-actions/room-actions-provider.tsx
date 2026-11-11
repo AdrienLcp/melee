@@ -8,6 +8,8 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
 import type { PawnPiece, Team } from '@melee/protocol/team'
 
+import { isSameData } from '@/helpers/same-data'
+
 /** The room a seat's pawn is picked against: whose piece is whose, and the phase. */
 export type PawnRoom = {
   phase: RoomPhase
@@ -180,6 +182,23 @@ export const useIsInsideRoom = (): boolean => {
 }
 
 /**
+ * The value last reported with these contents. A snapshot decodes every seat
+ * afresh, so reporting the snapshot's own arrays set the menu's state on every
+ * frame, and a table of two dozen seats sending tries chained those renders
+ * past React's update limit.
+ */
+const useKeptWhileSame = <Data,>(next: Data): Data => {
+  const [kept, setKept] = useState(next)
+  const isSame = isSameData({ kept, next })
+
+  if (!isSame) {
+    setKept(next)
+  }
+
+  return isSame ? kept : next
+}
+
+/**
  * Each function has to keep its identity across renders or this reports on
  * every one of them — see the `useCallback` note in
  * `.claude/rules/react-components.md`, which is about exactly this case. The
@@ -208,6 +227,9 @@ export const useReportRoomActions = ({
   trackLength
 }: RoomActions) => {
   const { report } = useChannel()
+  const keptPawnRoom = useKeptWhileSame(pawnRoom)
+  const keptScoredPlayers = useKeptWhileSame(scoredPlayers)
+  const keptScoredTeams = useKeptWhileSame(scoredTeams)
 
   useEffect(() => {
     report({
@@ -218,15 +240,15 @@ export const useReportRoomActions = ({
       invitation,
       leaveSeat,
       pauseRound,
-      pawnRoom,
+      pawnRoom: keptPawnRoom,
       recolourPawn,
       refusedNickname,
       refusedRecolour,
       rename,
       revealRound,
       roomVolume,
-      scoredPlayers,
-      scoredTeams,
+      scoredPlayers: keptScoredPlayers,
+      scoredTeams: keptScoredTeams,
       seatNickname,
       setRoomVolume,
       trackLength
@@ -243,7 +265,7 @@ export const useReportRoomActions = ({
     invitation,
     leaveSeat,
     pauseRound,
-    pawnRoom,
+    keptPawnRoom,
     recolourPawn,
     refusedNickname,
     refusedRecolour,
@@ -251,8 +273,8 @@ export const useReportRoomActions = ({
     report,
     revealRound,
     roomVolume,
-    scoredPlayers,
-    scoredTeams,
+    keptScoredPlayers,
+    keptScoredTeams,
     seatNickname,
     setRoomVolume,
     trackLength

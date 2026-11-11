@@ -113,7 +113,15 @@ export const useSeatPawn = ({
     isSamePawnPiece({ other: pawnPiece, piece: requested.piece })
 
   return {
-    pawnRoom: you === null ? null : view,
+    pawnRoom:
+      you === null || view === null
+        ? null
+        : {
+            phase: view.phase,
+            players: view.players,
+            teams: view.teams,
+            youId: view.youId
+          },
     recolourPawn: you === null ? null : recolourPawn,
     refusedRecolour: requested !== null && !isRequestShown ? refusal : null
   }
