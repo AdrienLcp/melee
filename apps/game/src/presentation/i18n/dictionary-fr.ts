@@ -1831,7 +1831,7 @@ export const FR_DICTIONARY = defineDictionary({
       },
       grandMix: {
         caption:
-          'Tous les jeux sans juge, sur plusieurs réglages, jamais deux pareils à la suite.',
+          'Chaque réglage de chaque jeu sans juge, sans fin, jamais deux pareils à la suite.',
         name: 'Mêlée générale'
       },
       music: {

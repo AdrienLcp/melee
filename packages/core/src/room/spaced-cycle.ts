@@ -1,8 +1,31 @@
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 
+type GameFamily = 'clockRaces' | 'numbers' | 'wordSheets'
+
 /**
- * `entries` in the order that keeps each game as far from its last round as
- * the cycle allows. A game holding `n` of the cycle's `N` entries is owed a
+ * Games the table feels as one: two word sheets, two races against the
+ * clock or two numbers to weigh in a row read as the same round twice, so the
+ * dealer spaces a family as it spaces a game.
+ */
+const FAMILY_OF: Partial<Record<GameKind, GameFamily>> = {
+  blacksquare: 'wordSheets',
+  estimate: 'numbers',
+  higherlower: 'numbers',
+  innerclock: 'clockRaces',
+  longestword: 'wordSheets',
+  mysteryword: 'wordSheets',
+  petitbac: 'wordSheets',
+  reflex: 'clockRaces'
+}
+
+type SpacingKey = GameKind | GameFamily
+
+export const spacingKeyOf = (kind: GameKind): SpacingKey =>
+  FAMILY_OF[kind] ?? kind
+
+/**
+ * `entries` in the order that keeps each game — each family, for the games
+ * in one (`FAMILY_OF`) — as far from its last round as the cycle allows. A game holding `n` of the cycle's `N` entries is owed a
  * gap of `⌊N / n⌋` rounds, counted from its last round — the rounds in
  * `opened` included, so the seam with what came before is spaced too. Each
  * row goes to a game whose gap has run out, the one with the least room left
@@ -29,11 +52,14 @@ export const spacedCycle = ({
   /** In `[0, 1)`, as `Math.random`. */
   random: () => number
 }): number[] => {
-  const kindAt = (at: number | null): GameKind | undefined =>
-    at === null ? undefined : lineUp[at]?.kind
-  const gapOf = (kind: GameKind | undefined) =>
+  const keyAt = (at: number | null): SpacingKey | undefined => {
+    const kind = at === null ? undefined : lineUp[at]?.kind
+
+    return kind === undefined ? undefined : spacingKeyOf(kind)
+  }
+  const gapOf = (kind: SpacingKey | undefined) =>
     Math.floor(
-      entries.length / entries.filter((at) => kindAt(at) === kind).length
+      entries.length / entries.filter((at) => keyAt(at) === kind).length
     )
   const dealt: number[] = []
   const left = [...entries]
@@ -44,31 +70,31 @@ export const spacedCycle = ({
 
     return last === -1 ? Number.POSITIVE_INFINITY : before.length - last
   }
-  const roomLeftFor = (kind: GameKind | undefined) => {
-    const owed = left.filter((at) => kindAt(at) === kind).length
+  const roomLeftFor = (kind: SpacingKey | undefined) => {
+    const owed = left.filter((at) => keyAt(at) === kind).length
 
     return left.length - ((owed - 1) * gapOf(kind) + 1)
   }
-  const waitOf = (kind: GameKind | undefined) =>
-    roundsSince((at) => kindAt(at) === kind) - gapOf(kind)
-  const tightestOf = (kinds: readonly (GameKind | undefined)[]) => {
+  const waitOf = (kind: SpacingKey | undefined) =>
+    roundsSince((at) => keyAt(at) === kind) - gapOf(kind)
+  const tightestOf = (kinds: readonly (SpacingKey | undefined)[]) => {
     const tightest = Math.min(...kinds.map(roomLeftFor))
     const tight = kinds.filter((kind) => roomLeftFor(kind) === tightest)
     const longestWait = Math.max(...tight.map(waitOf))
 
     return tight.filter((kind) => waitOf(kind) === longestWait)
   }
-  const restOf = (kind: GameKind | undefined) =>
-    roundsSince((at) => kindAt(at) === kind) / gapOf(kind)
-  const nearestRestedOf = (kinds: readonly (GameKind | undefined)[]) => {
+  const restOf = (kind: SpacingKey | undefined) =>
+    roundsSince((at) => keyAt(at) === kind) / gapOf(kind)
+  const nearestRestedOf = (kinds: readonly (SpacingKey | undefined)[]) => {
     const nearest = Math.max(...kinds.map(restOf))
 
     return kinds.filter((kind) => restOf(kind) === nearest)
   }
 
   while (left.length > 0) {
-    const previous = kindAt(dealt.at(-1) ?? opened.at(-1) ?? null)
-    const waiting = [...new Set(left.map(kindAt))]
+    const previous = keyAt(dealt.at(-1) ?? opened.at(-1) ?? null)
+    const waiting = [...new Set(left.map(keyAt))]
     const others = waiting.filter((kind) => kind !== previous)
     const rested = others.filter((kind) => waitOf(kind) >= 0)
     const game = pickOne({
@@ -78,7 +104,7 @@ export const spacedCycle = ({
           : nearestRestedOf(others.length > 0 ? others : waiting),
       random
     })
-    const variants = left.filter((at) => kindAt(at) === game)
+    const variants = left.filter((at) => keyAt(at) === game)
     const longestAgo = Math.max(
       ...variants.map((at) => roundsSince((row) => row === at))
     )

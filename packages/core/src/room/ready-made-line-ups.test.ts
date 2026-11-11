@@ -5,7 +5,8 @@ import type { Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
-  DEFAULT_ROOM_SETTINGS
+  DEFAULT_ROOM_SETTINGS,
+  LINE_UP_MAX_ENTRIES
 } from '@melee/protocol/room'
 import { catalogueOf } from '@melee/protocol/track'
 
@@ -113,10 +114,10 @@ describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
   )
 
   it.each(lineUps)(
-    '[ready-made] $id opens on games a room may be opened for, at a round count the strip offers',
+    '[ready-made] $id opens on games a room may be opened for, at a round count the strip offers or none',
     (lineUp) => {
       expect(gamesOfLineUp(lineUp).length).toBeGreaterThan(0)
-      expect(ROUND_COUNT_STEPS).toContain(lineUp.roundCount)
+      expect([...ROUND_COUNT_STEPS, null]).toContain(lineUp.roundCount)
     }
   )
 
@@ -211,15 +212,16 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
       preferences: leftEveryGameOn({ locale, mode: 'typed' })
     }).filter(({ game }) => game?.kind === 'blindtest' || game?.kind === 'quiz')
 
-    expect(played).toHaveLength(20)
+    expect(played).toHaveLength(33)
     expect(new Set(played.map(({ mode }) => mode.kind))).toEqual(
       new Set(['choice'])
     )
   })
 
-  it('[ready-made] plays every entry once, in its own order, with nothing drawn', () => {
-    expect(grandMix.lineUp).toHaveLength(grandMix.roundCount ?? 0)
-    expect(grandMix.runningOrder).toEqual(grandMix.lineUp.map((_, at) => at))
+  it('[ready-made] leaves the evening open-ended and its order to the dealer', () => {
+    expect(grandMix.roundCount).toBeNull()
+    expect(grandMix.runningOrder).toEqual([])
+    expect(grandMix.lineUp.length).toBeLessThanOrEqual(LINE_UP_MAX_ENTRIES)
   })
 
   it('[ready-made] plays every game no host judges, never twice on one setting', () => {
@@ -232,12 +234,13 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
     expect(new Set(settings).size).toBe(settings.length)
   })
 
-  it('[ready-made] never brings a game back within three rounds', () => {
-    const games = grandMix.lineUp.map(gameOfEntry)
+  it('[ready-made] plays every decade, chart, subject and map on an entry of its own', () => {
+    const countOf = (game: string) =>
+      grandMix.lineUp.filter((entry) => gameOfEntry(entry) === game).length
 
-    games.forEach((game, at) => {
-      expect(games.slice(at + 1, at + 3)).not.toContain(game)
-    })
+    expect(countOf('blindtest')).toBe(20)
+    expect(countOf('quiz')).toBe(13)
+    expect(countOf('atlas')).toBe(6)
   })
 })
 

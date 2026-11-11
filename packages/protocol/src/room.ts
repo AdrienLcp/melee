@@ -200,19 +200,19 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
 export const ROUND_COUNT_MAX = 50
 
 /**
- * How many entries an evening may tick: one for every round of the longest
- * evening, so a host who plans each round never has one drawn for them. It
- * follows `ROUND_COUNT_MAX` rather than a number of its own, so a longer
- * evening raises it too. The console lists them a row each, so the count is
- * not a layout's.
+ * How many entries an evening may tick. Its own number, not the longest round
+ * count: an evening with no count plays every entry and draws past them, and
+ * the ready-made *grand mix* ticks every setting of every game nobody judges.
+ * Bounded because the line-up arrives in a client frame and travels in every
+ * snapshot. The console lists them a row each, so the count is not a layout's.
  */
-export const LINE_UP_MAX_ENTRIES = ROUND_COUNT_MAX
+export const LINE_UP_MAX_ENTRIES = 100
 
 /**
- * How many rows a running order holds at most. An evening with no count runs
- * past `ROUND_COUNT_MAX`, and its rows are counted from the first round.
+ * How many rows a running order holds at most: every entry twice over, the
+ * rows of an evening with no count being counted from its first round.
  */
-export const RUNNING_ORDER_MAX_ROWS = 4 * ROUND_COUNT_MAX
+export const RUNNING_ORDER_MAX_ROWS = 2 * LINE_UP_MAX_ENTRIES
 
 const lineUpAtSchema = z
   .number()

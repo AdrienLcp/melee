@@ -54,6 +54,17 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **_Free-for-all_ plays every setting of every game nobody
+  judges, with no last round.** Its entries are generated rather than written
+  out: every decade, film scores and each of the twelve charts for the blind
+  test, every quiz subject alone, the map six ways, and each setting the
+  console offers for colours, matchsticks, black square and Petit Bac — 56
+  entries, and a game shelved later joins on its own. The server deals the
+  order and draws past it, so the evening never loops on one fixed order, and
+  it now spaces near cousins as it spaces a game: two word sheets, two races
+  against the clock or two numbers to weigh never come back to back. An
+  evening may tick 100 entries, up from 50.
+
 - `[Game]` **The front door's line-ups are tickets and coloured lids.** Your
   line-ups are paper tickets that wrap — the star, the name, when it was last
   played, the cross — and past six the row folds behind _and N more_, which

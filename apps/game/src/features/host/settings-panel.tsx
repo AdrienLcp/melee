@@ -27,6 +27,7 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
+import { SWATCH_SHOW_MS } from '@melee/protocol/swatch'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import {
@@ -69,9 +70,6 @@ const PUZZLE_DURATIONS_MS = [30_000, 60_000, 120_000] as const
 const TIMELINE_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
 const BLACK_SQUARE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
-
-/** Three seconds is a glance, eight is nearly long enough to name the colour. */
-const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
 
 /** Fifteen seconds is a gut call, a minute is long enough to reason it out loud. */
 const ESTIMATE_DURATIONS_MS = [15_000, 30_000, 60_000] as const

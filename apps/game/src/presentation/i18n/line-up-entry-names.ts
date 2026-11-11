@@ -233,6 +233,22 @@ const namingOf = ({
     }
     case 'slate':
       return [translate('slate.items.summary', { count: entry.itemCount })]
+    case 'blacksquare':
+      return [
+        translate('blacksquare.answerCount.summary', {
+          count: entry.answerCount
+        })
+      ]
+    case 'petitbac':
+      return entry.categories === null
+        ? [
+            translate('host.evening.detail.drawnCategories', {
+              count: entry.categoryCount
+            })
+          ]
+        : []
+    case 'swatch':
+      return [secondsOf({ ms: entry.showMs, translate })]
     case 'atlas':
       return entry.places.length === 1
         ? [

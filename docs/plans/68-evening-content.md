@@ -108,8 +108,10 @@ opens.
     `evening-link.test.ts:42`).
   - `prepare_evening` refuses a fragment over `EVENING_LINK_MAX_CHARS`, set at
     **8 000**, and says what to trim.
-  - Measured: about 1 000 characters for `grandMix`, plus about 87 per quiz
-    question, or about 130 with a note.
+  - Measured: about 930 characters for the 56-entry `grandMix` (2026-11-11),
+    plus about 87 per quiz question, or about 130 with a note. The same
+    line-up weighs about 6.7 kB in the room settings every snapshot carries
+    to every screen, 12.4 kB at the 100-entry cap.
   - Each deck shape has its own count cap on top of that.
 - **The MCP input becomes strict.** Protocol arms are plain `z.object`, so an
   unknown key vanishes. `prepare_evening` compares what it was given with

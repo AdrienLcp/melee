@@ -10,13 +10,25 @@ import {
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SWATCH_SETTINGS,
   type GameKind,
-  type ShelvedGame
+  type ShelvedGame,
+  shelvedGames
 } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
+import {
+  type QuestionCategory,
+  questionCategories
+} from '@melee/protocol/question'
 import type { RoomSettings } from '@melee/protocol/room'
-import { catalogueOf } from '@melee/protocol/track'
+import { SWATCH_SHOW_MS } from '@melee/protocol/swatch'
+import {
+  catalogueOf,
+  GENRE_IDS,
+  type GenreId,
+  trackDecades
+} from '@melee/protocol/track'
 
 import { questionLanguageFor } from '../quiz/question-language'
+import { isJudgedInEveryMode } from './game-modes'
 import { type HostPreferences, rememberedSetupFor } from './host-preferences'
 import { type GameSetup, openedSetup } from './room-settings'
 import type { SavedEntry, SavedEvening } from './saved-evening'
@@ -40,7 +52,7 @@ export type ReadyMadeLineUp = Omit<SavedEvening, 'decks' | 'name'> & {
   id: ReadyMadeLineUpId
 }
 
-const FRENCH_CHANSON_GENRE_ID = 52
+const FRENCH_CHANSON_GENRE_ID: GenreId = 52
 
 const quizOn = ({
   categories,
@@ -81,69 +93,88 @@ const GENERAL_QUIZ_CATEGORIES = [
   'everyday'
 ] as const satisfies typeof DEFAULT_QUIZ_SETTINGS.categories
 
-const GRAND_MIX_ROUND_COUNT = 40
+/**
+ * The level each quiz subject plays at in the grand mix: an easy question
+ * where the bank has enough of them, every level where an easy deck runs thin.
+ */
+const GRAND_MIX_QUIZ_DIFFICULTY: Record<QuestionCategory, Difficulty> = {
+  arts: 'easy',
+  capitals: 'mixed',
+  cinema: 'mixed',
+  everyday: 'easy',
+  flags: 'mixed',
+  geography: 'easy',
+  history: 'easy',
+  quotes: 'easy',
+  rebus: 'mixed',
+  science: 'easy',
+  silhouettes: 'mixed',
+  sport: 'easy',
+  videogames: 'mixed'
+}
 
 /**
- * Every game nobody has to judge, each entry on a setting of its own, in an
- * order that never brings a game — nor a near cousin of it: two rounds on the
- * map, two word sheets, two races against the clock — back within three rounds.
+ * One entry per value of a game's main content axis — each decade, each
+ * subject, each map — and never their cross product, which would hand one
+ * game most of the evening. A game named nowhere here joins bare.
  */
-const grandMixFor = (locale: Locale): SavedEntry[] => {
-  const quiz = (
-    category: (typeof DEFAULT_QUIZ_SETTINGS.categories)[number],
-    { difficulty }: { difficulty: Difficulty }
-  ) => quizOn({ categories: [category], difficulty, locale })
-
-  return [
+const grandMixVarietiesOf = (
+  locale: Locale
+): Partial<Record<ShelvedGame, readonly SavedEntry[]>> => ({
+  atlas: (['place', 'name'] as const).flatMap((direction) =>
+    (['countries', 'frenchCities', 'worldCapitals'] as const).map((place) =>
+      atlasOn({ direction, places: [place] })
+    )
+  ),
+  blacksquare: [3, 6, 9].map((answerCount) => ({
+    ...DEFAULT_BLACK_SQUARE_SETTINGS,
+    answerCount
+  })),
+  blindtest: [
+    ...trackDecades.map((decade) =>
+      blindtestOn(catalogueOf({ decades: [decade] }))
+    ),
+    blindtestOn(catalogueOf({ decades: [] })),
     blindtestOn(catalogueOf({ hasFilmScores: true })),
-    quiz('geography', { difficulty: 'easy' }),
-    {
-      ...DEFAULT_BLACK_SQUARE_SETTINGS,
-      answerCount: 6,
-      doublesLoneFinds: true
-    },
-    blindtestOn(catalogueOf({ decades: ['2010s'] })),
-    quiz('videogames', { difficulty: 'mixed' }),
-    atlasOn({ direction: 'name', places: ['countries'] }),
-    { ...DEFAULT_SWATCH_SETTINGS, showMs: 5_000 },
-    blindtestOn(catalogueOf({ decades: ['1980s'] })),
-    quiz('sport', { difficulty: 'easy' }),
-    'innerclock',
-    atlasOn({ direction: 'place', places: ['frenchCities'] }),
-    quiz('everyday', { difficulty: 'easy' }),
-    blindtestOn(catalogueOf({ decades: ['1970s'] })),
+    ...GENRE_IDS.map((genre) => blindtestOn(catalogueOf({ charts: [genre] })))
+  ],
+  matchsticks: DEFAULT_MATCHSTICKS_SETTINGS.goals.map((goal) => ({
+    ...DEFAULT_MATCHSTICKS_SETTINGS,
+    goals: [goal]
+  })),
+  petitbac: [
     {
       ...DEFAULT_PETIT_BAC_SETTINGS,
       categoryCount: 4,
       roundDurationMs: 60_000
     },
-    quiz('flags', { difficulty: 'mixed' }),
-    'higherlower',
-    { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['equation'] },
-    quiz('history', { difficulty: 'easy' }),
-    blindtestOn(catalogueOf({ decades: [] })),
-    atlasOn({ direction: 'place', places: ['countries'] }),
-    quiz('rebus', { difficulty: 'mixed' }),
-    blindtestOn(catalogueOf({ decades: ['1990s'] })),
-    { ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 },
-    quiz('capitals', { difficulty: 'mixed' }),
-    { ...DEFAULT_SWATCH_SETTINGS, showMs: 3_000 },
-    blindtestOn(catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] })),
-    atlasOn({ direction: 'name', places: ['worldCapitals'] }),
-    'mostlikely',
-    quiz('quotes', { difficulty: 'easy' }),
-    'reflex',
-    atlasOn({ direction: 'place', places: ['worldCapitals'] }),
-    blindtestOn(catalogueOf({ decades: ['2000s'] })),
-    quiz('science', { difficulty: 'easy' }),
-    'timeline',
-    { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 },
-    quiz('arts', { difficulty: 'easy' }),
-    { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['biggest', 'smallest'] },
-    atlasOn({ direction: 'name', places: ['frenchCities'] }),
-    'estimate',
-    quiz('cinema', { difficulty: 'mixed' })
-  ]
+    { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 }
+  ],
+  quiz: questionCategories.map((category) =>
+    quizOn({
+      categories: [category],
+      difficulty: GRAND_MIX_QUIZ_DIFFICULTY[category],
+      locale
+    })
+  ),
+  swatch: SWATCH_SHOW_MS.map((showMs) => ({
+    ...DEFAULT_SWATCH_SETTINGS,
+    showMs
+  }))
+})
+
+/**
+ * Every setting of every game nobody has to judge, so one evening shows the
+ * table the whole shelf. A game shelved later joins on its own, bare until it
+ * names its varieties. The order is the dealer's (`spacedCycle`), which keeps
+ * each game — and each family of near cousins — its share of the evening apart.
+ */
+const grandMixFor = (locale: Locale): SavedEntry[] => {
+  const varieties = grandMixVarietiesOf(locale)
+
+  return shelvedGames
+    .filter((game) => !isJudgedInEveryMode(game))
+    .flatMap((game) => varieties[game] ?? [game])
 }
 
 /**
@@ -152,7 +183,8 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * Every game is answered the way it opens (`rememberedOnReadyMade`).
  * *First game* leaves out most likely: it falls flat with two players.
- * *Free-for-all* is every game nobody has to judge, a variant per entry.
+ * *Free-for-all* is every setting of every game nobody has to judge, with
+ * no last round.
  */
 export const readyMadeLineUpsFor = (
   locale: Locale
@@ -161,8 +193,8 @@ export const readyMadeLineUpsFor = (
     id: 'grandMix',
     lineUp: grandMixFor(locale),
     lineUpDeals: [],
-    roundCount: GRAND_MIX_ROUND_COUNT,
-    runningOrder: Array.from({ length: GRAND_MIX_ROUND_COUNT }, (_, at) => at)
+    roundCount: null,
+    runningOrder: []
   },
   {
     id: 'firstGame',

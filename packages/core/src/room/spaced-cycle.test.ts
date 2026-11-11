@@ -17,7 +17,7 @@ import {
 } from './ready-made-line-ups'
 import { dealtOrder, scheduledEntryAt } from './running-order'
 import { withSavedEvening } from './saved-evening'
-import { spacedCycle } from './spaced-cycle'
+import { spacedCycle, spacingKeyOf } from './spaced-cycle'
 
 const SEEDS = Array.from({ length: 40 }, (_, at) => at * 7_919 + 1)
 
@@ -121,16 +121,21 @@ const playedKinds = ({
 
 describe('spacedCycle', () => {
   const grandMix = readyMade('grandMix').lineUp
+  const keyOf = (entry: GameSettings) => spacingKeyOf(entry.kind)
   const isShortOfItsShare = ({ gap, kind }: { gap: number; kind: string }) =>
     gap <
     Math.floor(
-      grandMix.length / grandMix.filter((entry) => entry.kind === kind).length
+      grandMix.length / grandMix.filter((entry) => keyOf(entry) === kind).length
     )
   const everyEntry = grandMix.map((_entry, at) => at)
-  const kindsOf = (entries: readonly number[]) =>
-    entries.map((at) => grandMix[at]?.kind ?? 'none')
+  const keysOf = (entries: readonly number[]) =>
+    entries.map((at) => {
+      const entry = grandMix[at]
 
-  it('[line-up] deals Free-for-all with each game its share of the evening apart', () => {
+      return entry === undefined ? 'none' : keyOf(entry)
+    })
+
+  it('[line-up] deals Free-for-all with each game, and each family of cousins, its share of the evening apart', () => {
     for (const seed of SEEDS) {
       const cycle = spacedCycle({
         entries: everyEntry,
@@ -141,7 +146,7 @@ describe('spacedCycle', () => {
 
       expect(cycle.toSorted((a, b) => a - b)).toEqual(everyEntry)
       expect(
-        shortGaps({ isShort: isShortOfItsShare, kinds: kindsOf(cycle) })
+        shortGaps({ isShort: isShortOfItsShare, kinds: keysOf(cycle) })
       ).toEqual([])
     }
   })
@@ -222,8 +227,11 @@ describe('spacedCycle', () => {
 })
 
 describe('a ready-made evening, played through', () => {
-  it('[line-up] never brings Free-for-all’s games back within two rounds, past its last row', () => {
+  it('[line-up] keeps Free-for-all’s games half their share apart, past its last row', () => {
     const { lineUp, runningOrder } = readyMade('grandMix')
+    const keys = lineUp.map((entry) => spacingKeyOf(entry.kind))
+    const shareOf = (key: string) =>
+      Math.floor(lineUp.length / keys.filter((other) => other === key).length)
 
     for (const seed of SEEDS.slice(0, 10)) {
       const kinds = playedKinds({
@@ -231,14 +239,24 @@ describe('a ready-made evening, played through', () => {
         order: runningOrder,
         rounds: 2 * lineUp.length,
         seed
-      })
+      }).map((kind) =>
+        spacingKeyOf(
+          lineUp.find((entry) => entry.kind === kind)?.kind ?? 'quiz'
+        )
+      )
 
-      expect(kinds).toHaveLength(80)
-      expect(shortGaps({ isShort: ({ gap }) => gap <= 2, kinds })).toEqual([])
+      expect(kinds).toHaveLength(2 * lineUp.length)
+      expect(
+        shortGaps({
+          isShort: ({ gap, kind }) =>
+            gap < Math.max(2, Math.floor(shareOf(kind) / 2)),
+          kinds
+        })
+      ).toEqual([])
     }
   })
 
-  it('[line-up] goes round the quick game’s four games in turn', () => {
+  it('[line-up] never runs the quick game’s two clock races back to back, nor any game within three rounds', () => {
     const { lineUp, roundCount, runningOrder } = readyMade('quick')
 
     for (const seed of SEEDS) {
@@ -248,8 +266,14 @@ describe('a ready-made evening, played through', () => {
         rounds: roundCount ?? 0,
         seed
       })
+      const families = kinds.map((kind) =>
+        kind === 'reflex' || kind === 'innerclock' ? 'clockRaces' : kind
+      )
 
-      expect(shortGaps({ isShort: ({ gap }) => gap < 4, kinds })).toEqual([])
+      expect(shortGaps({ isShort: ({ gap }) => gap < 3, kinds })).toEqual([])
+      expect(
+        shortGaps({ isShort: ({ gap }) => gap < 2, kinds: families })
+      ).toEqual([])
     }
   })
 

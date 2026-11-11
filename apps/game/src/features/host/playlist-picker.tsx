@@ -5,6 +5,8 @@ import { Form } from 'react-aria-components'
 import type { BlindtestSettings } from '@melee/protocol/game'
 import {
   EVERY_STRAND,
+  GENRE_IDS,
+  type GenreId,
   type TrackDecade,
   type TrackSource,
   trackDecades
@@ -21,8 +23,6 @@ import {
   CATALOGUE_STRANDS,
   type CatalogueStrand,
   decadeLabelKey,
-  GENRE_IDS,
-  type GenreId,
   genreLabelKey,
   STRAND_LABEL_KEYS,
   strandsOf

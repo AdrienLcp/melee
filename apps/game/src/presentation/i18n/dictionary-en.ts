@@ -1946,7 +1946,7 @@ export const EN_DICTIONARY = defineDictionary({
       },
       grandMix: {
         caption:
-          'Every game with no judge, on several settings, never two of a kind in a row.',
+          'Every setting of every game with no judge, no last round, never two alike in a row.',
         name: 'Free-for-all'
       },
       music: {

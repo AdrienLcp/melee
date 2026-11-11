@@ -8,11 +8,18 @@ import {
   DEFAULT_TIMELINE_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
+import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 import {
   catalogueOf,
   EVERY_STRAND,
   type TrackSource
 } from '@melee/protocol/track'
+
+import {
+  readyMadeLineUpsFor,
+  savedEveningOfReadyMade
+} from '@melee/core/room/ready-made-line-ups'
+import { withSavedEvening } from '@melee/core/room/saved-evening'
 
 import { i18n } from './i18n'
 import {
@@ -140,6 +147,32 @@ describe('lineUpEntryNames', () => {
     ).toEqual(['Blind test · Every decade', 'Blind test · 2000s'])
   })
 })
+
+it.each(['en', 'fr'] as const)(
+  '[line-up] names every entry of the grand mix apart in %s',
+  (locale) => {
+    const grandMix = readyMadeLineUpsFor(locale).find(
+      ({ id }) => id === 'grandMix'
+    )
+
+    if (grandMix === undefined) {
+      throw new Error('the grand mix ships')
+    }
+
+    const { lineUp } = withSavedEvening({
+      evening: savedEveningOfReadyMade({ lineUp: grandMix, name: 'grandMix' }),
+      locale,
+      rememberedFor: () => null,
+      settings: DEFAULT_ROOM_SETTINGS
+    })
+    const names = lineUpEntryNames({
+      lineUp,
+      translate: i18n.translator(locale)
+    })
+
+    expect(new Set(names).size).toBe(names.length)
+  }
+)
 
 describe('lineUpEntrySummaries', () => {
   it('[line-up] names every pick an entry holds, its round length last', () => {

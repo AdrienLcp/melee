@@ -24,6 +24,12 @@ export const swatchShowMsSchema = z
   .max(MAX_SWATCH_SHOW_MS)
 
 /**
+ * The lengths the console offers. Three seconds is a glance, eight is nearly
+ * long enough to name the colour.
+ */
+export const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
+
+/**
  * The colour one seat sent. Hidden until the reveal, like a marker: a colour
  * seen on another screen is an answer to copy. How far it fell is the award's
  * verdict rather than a field here, so the two cannot disagree.
