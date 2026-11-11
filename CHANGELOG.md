@@ -144,6 +144,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Mystery word's reveal stays in its half of a wall.** With 24
+  seats the spelled-out grids and the word ran across the standings beside
+  them; they now deal into their own column, and each card puts its pay under
+  the name, so a name reads past its first letter. On a console beside a wall,
+  where two rows of towers get a short card, the crown sits on the tube instead
+  of taking a slot of its own, and the steps show where they drew nothing.
 - `[Game]` **The reveal leaves in a fade.** Pressing _Next round_, or a hold
   running out, fades the reveal out over the countdown on the console, the
   wall and every player, where it vanished in one frame, in every game. The

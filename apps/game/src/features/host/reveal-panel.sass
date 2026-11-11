@@ -277,9 +277,12 @@
 
           inline-size: 100%
 
+      // Its columns are dealt from its own width, so a width taken from its
+      // columns grows itself: beside a wall it ran over the standings.
       > .mystery-word-grids
         flex: 1 1 0
         min-height: 0
+        min-inline-size: 0
 
     // The draw's word over the ranking, which takes what it leaves.
     &[data-game='longestword']

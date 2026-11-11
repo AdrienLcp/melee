@@ -29,6 +29,9 @@
 
       align-items: center
       block-size: 100%
+      // A size container has no height of its own: beside a wall the
+      // console's stage is as tall as its content, and the tubes drew 0px.
+      contain-intrinsic-block-size: calc(var(--crown-size) + var(--space-2xs) * 3 + var(--tower-steps) * 1.5rem)
       container-type: size
       display: flex
       flex-direction: column
@@ -36,6 +39,7 @@
       inline-size: 100%
       justify-content: flex-end
       min-block-size: 0
+      position: relative
 
     .crown
       block-size: var(--crown-size)
@@ -48,6 +52,13 @@
       stroke: var(--tile-mark-2)
       transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in)
       translate: 0 calc(var(--space-s) * -1)
+
+      @container (height < 7rem)
+        --crown-size: clamp(1rem, 40cqh, 1.4rem)
+
+        inset-block-start: 0
+        position: absolute
+        z-index: 1
 
     &[data-found] .crown
       opacity: 1
@@ -72,6 +83,12 @@
       margin: 0
       padding: var(--space-2xs)
       transition: box-shadow var(--transition-base, 0s) var(--ease-out)
+
+      // Two rows of twelve in the console's card beside a wall leave a stack
+      // shorter than the crown and six steps: the crown sits on the tube's
+      // top instead of taking a slot of its own.
+      @container (height < 7rem)
+        --step-size: calc((100cqh - var(--space-2xs) * 2 - var(--tube-gap) * (var(--tower-steps) - 1)) / var(--tower-steps))
 
       > li
         block-size: var(--step-size)

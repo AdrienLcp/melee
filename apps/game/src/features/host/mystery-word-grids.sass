@@ -46,18 +46,24 @@
     &[data-yours]
       box-shadow: 0 var(--edge) 0 var(--chipboard), var(--shadow-card), inset 0 0 0 var(--stroke-bold) var(--card-ink)
 
+    // The pay under the name rather than beside it: on a full wall a card is
+    // six letters wide, and a name sharing its line with `+100` kept two.
     > header
       align-items: center
-      display: flex
+      column-gap: var(--space-2xs)
+      display: grid
       font-size: clamp(var(--text-xs), calc(var(--card-side) * 0.1), var(--text-m))
-      gap: var(--space-2xs)
+      grid-template: "pawn name" auto "pawn pay" auto / auto minmax(0, 1fr)
       min-inline-size: 0
+
+      > .pawn
+        grid-area: pawn
 
     .name
       @include typography.title
 
-      flex: 1
       font-size: 1em
+      grid-area: name
       min-inline-size: 0
       overflow: hidden
       text-overflow: ellipsis
@@ -66,7 +72,7 @@
     .pay
       @include typography.numeric
 
-      flex: none
+      grid-area: pay
 
       &:not([data-paid])
         color: var(--card-muted)
