@@ -1,5 +1,6 @@
 // Side-effect module: the component's rules, in the components layer.
 
+@use '../../presentation/styles/fade'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/swap'
@@ -101,20 +102,13 @@
 
     // Held in its place while hidden, so the line arriving moves nothing.
     .saved-where
+      @include fade.shows-in-place("&[data-shown='true']")
       @include typography.caption
 
       color: var(--ink-muted)
       margin: 0
-      opacity: 0
       text-align: center
       text-wrap: pretty
-      transition: opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)
-      visibility: hidden
-
-      &[data-shown='true']
-        opacity: 1
-        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
-        visibility: visible
 
     .refusal-note p
       text-align: center

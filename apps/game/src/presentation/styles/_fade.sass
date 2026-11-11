@@ -27,3 +27,36 @@
     transition: opacity $duration var(--ease-out) $delay, translate $duration var(--ease-out) $delay, visibility 0s $delay
     translate: $at
     visibility: visible
+
+@function -beside($beside, $own)
+  @if $beside == null
+    @return $own
+
+  @return unquote('#{$beside}, #{$own}')
+
+/// The leaving half of `shows-in-place`: the piece fades where it stands in
+/// half a beat on `--ease-in`, then is hidden from the pointer and the reader.
+/// `$beside` is a transition the piece runs on its own, kept in the list.
+@mixin gone-in-place($beside: null)
+  opacity: 0
+  transition: -beside($beside, (opacity calc(var(--transition-base, 0s) * 0.5) var(--ease-in), visibility 0s linear calc(var(--transition-base, 0s) * 0.5)))
+  visibility: hidden
+
+/// The arriving half of `shows-in-place`: the piece fades in where it stands
+/// over a beat on `--ease-out`, after the half beat a piece leaving the same
+/// place takes to go.
+@mixin shown-in-place($beside: null)
+  opacity: 1
+  transition: -beside($beside, (opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s))
+  visibility: visible
+
+/// A piece held in its place that a state shows, so its arrival moves
+/// nothing — a line under a press — kept mounted and shown by `$shown`, a
+/// selector in which `&` is the piece. It fades, with no travel, and is hidden
+/// from the pointer and the reader once gone. Under reduced motion it is shown
+/// or gone at once.
+@mixin shows-in-place($shown)
+  @include gone-in-place
+
+  #{$shown}
+    @include shown-in-place

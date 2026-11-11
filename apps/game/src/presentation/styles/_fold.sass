@@ -6,21 +6,27 @@ $-opens: var(--transition-base, 0s) var(--ease-out)
 $-closes: var(--transition-base, 0s) var(--ease-in)
 $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
 
-@mixin -column-closed($gap, $side, $trades-places)
+@function -until-found($until-found, $duration, $own)
+  @if not $until-found
+    @return $own
+
+  @return unquote('#{$own}, content-visibility #{$duration} allow-discrete')
+
+@mixin -column-closed($gap, $side, $trades-places, $until-found)
   grid-template-rows: 0fr
   margin-block-#{$side}: calc(-1 * #{$gap})
   opacity: 0
 
   @if $trades-places
-    transition: grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity var(--transition-fast, 0s) var(--ease-in)
+    transition: -until-found($until-found, var(--transition-base, 0s), (grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity var(--transition-fast, 0s) var(--ease-in)))
   @else
-    transition: grid-template-rows $-closes $-after-the-room, margin-block-#{$side} $-closes $-after-the-room, opacity var(--transition-fast, 0s) var(--ease-in)
+    transition: -until-found($until-found, calc(var(--transition-base, 0s) + #{$-after-the-room}), (grid-template-rows $-closes $-after-the-room, margin-block-#{$side} $-closes $-after-the-room, opacity var(--transition-fast, 0s) var(--ease-in)))
 
-@mixin -column-open($side)
+@mixin -column-open($side, $until-found)
   grid-template-rows: 1fr
   margin-block-#{$side}: 0
   opacity: 1
-  transition: grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity $-opens $-after-the-room
+  transition: -until-found($until-found, var(--transition-base, 0s), (grid-template-rows $-opens, margin-block-#{$side} $-opens, opacity $-opens $-after-the-room))
 
 /// A block of a column that a choice shows and hides, kept mounted and opened
 /// by `$open`, a selector in which `&` is the fold — or, where the state names
@@ -31,26 +37,28 @@ $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
 /// its column. The column is a flex one: a grid row sizes to the margin box,
 /// so the gap before it would stay open. `$trades-places` closes it on the
 /// opening curve at once, for two folds swapping places so what sits below
-/// slides one way.
+/// slides one way. `$until-found` is for a fold the browser hides itself —
+/// react-aria's `hidden="until-found"`, which is `content-visibility: hidden`
+/// — and holds that hiding back until the row has closed.
 ///
 /// One grid row going `0fr → 1fr`, because `height: auto` is not a length a
 /// transition can reach. Its child is clipped to that row, but no box is
 /// shorter than its padding: a padded child holds a closed row open by it, so
 /// it folds its `padding-block` to `0rem` with the row, on the row's timing.
 /// Under reduced motion it is open or closed at once.
-@mixin opens-in-column($gap: var(--space-s), $open: '&[data-open]', $closed: null, $side: start, $trades-places: false)
+@mixin opens-in-column($gap: var(--space-s), $open: '&[data-open]', $closed: null, $side: start, $trades-places: false, $until-found: false)
   display: grid
 
   @if $closed
-    @include -column-open($side)
+    @include -column-open($side, $until-found)
 
     #{$closed}
-      @include -column-closed($gap, $side, $trades-places)
+      @include -column-closed($gap, $side, $trades-places, $until-found)
   @else
-    @include -column-closed($gap, $side, $trades-places)
+    @include -column-closed($gap, $side, $trades-places, $until-found)
 
     #{$open}
-      @include -column-open($side)
+      @include -column-open($side, $until-found)
 
   // The clip the row needs would cut a focused control's ring at the fold's
   // edge: the ring reaches past its box. Safari ignores the clip margin.

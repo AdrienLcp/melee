@@ -1,6 +1,7 @@
 // Side-effect module: the component's rules, in the components layer.
 
 @use '../../presentation/styles/piece'
+@use '../../presentation/styles/swap'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -37,7 +38,6 @@
       height: var(--target)
       justify-items: center
       padding: 0
-      transition: background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
       width: var(--target)
       -webkit-tap-highlight-color: transparent
 
@@ -78,7 +78,6 @@
       min-width: 0
       padding: 0 var(--space-2xs)
       text-align: start
-      transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
       -webkit-tap-highlight-color: transparent
 
       &:is([aria-busy='true'] *)
@@ -136,13 +135,10 @@
       display: flex
       gap: var(--space-xs)
       inset: 0
-      opacity: 0
       outline: var(--stroke-thin) dashed var(--socket-line)
       outline-offset: calc(var(--stroke-thin) * -2)
       padding: 0 var(--space-s)
       position: absolute
-      transition: opacity var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
-      visibility: hidden
 
       p
         @include typography.caption-strong
@@ -157,14 +153,5 @@
       .button
         flex: none
 
-    &[data-removed]
-      .token, .open
-        opacity: 0
-        scale: 0.94
-        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
-        visibility: hidden
-
-      .removed
-        opacity: 1
-        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
-        visibility: visible
+    // A piece runs one transition list, so the token's hover tint is the trade's.
+    @include swap.trades-in-place('.token, .open', '.removed', '&[data-removed]', $beside: (background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out)))

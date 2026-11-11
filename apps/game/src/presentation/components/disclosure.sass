@@ -1,4 +1,5 @@
 @use '../styles/focus'
+@use '../styles/fold'
 @use '../styles/typography'
 
 @layer components
@@ -59,44 +60,15 @@
       overflow-wrap: anywhere
       transition: color var(--transition-fast, 0s) var(--ease-out)
 
-    // A single grid row going 0fr → 1fr, because `height: auto` is not a length
-    // and will not transition. react-aria collapses the panel with
-    // `hidden="until-found"`, which is `content-visibility: hidden` rather than
-    // `display: none` — so the box survives and the row has something to
-    // animate. `allow-discrete` is what holds that hiding back until the row
-    // has finished closing, instead of blanking the content on the first frame.
-    //
-    // Opening grows the row, then fades the content in; closing fades it and
-    // then closes the row, on the curve reversed — each written in the state
-    // it ends on.
     .panel
-      display: grid
-      grid-template-rows: 1fr
-      transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), content-visibility var(--transition-base, 0s) allow-discrete
-
-      > .panel-content
-        opacity: 1
-        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
-
-      &[hidden]
-        grid-template-rows: 0fr
-        transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), content-visibility calc(var(--transition-base, 0s) + var(--transition-fast, 0s) * 0.5) allow-discrete
-
-        > .panel-content
-          opacity: 0
-          transition: opacity var(--transition-fast, 0s) var(--ease-in)
+      @include fold.opens-in-column(0rem, $closed: '&[hidden]', $until-found: true)
 
     .panel-content
       display: flex
       flex-direction: column
       gap: var(--space-m)
-      min-height: 0
-      // The clip the row animation needs would cut a focused field's ring,
-      // which reaches past the field's box. The inline room is given in
-      // padding and taken back in margin, so it holds everywhere; the block
-      // start relies on the clip margin alone, which Safari ignores.
+      // The fold's clip margin, which Safari ignores, is given in padding and
+      // taken back in margin, so a focused field's ring holds everywhere.
       margin-inline: calc(-1 * focus.$ring-reach)
-      overflow: clip
-      overflow-clip-margin: focus.$ring-reach
       padding-block-end: var(--space-m)
       padding-inline: focus.$ring-reach
