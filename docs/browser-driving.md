@@ -675,6 +675,20 @@ What this found, each invisible in any still:
 - **A delay that is the dev server's**: Vite compiles a module on its first
   request, so the first refusal filmed took 720ms from `vt:start` to the swap,
   and 82ms the second time. Film a slow moment twice before chasing it.
+- **A glide a `ResizeObserver` starts reads late in a rAF probe**: the probe
+  runs before the observer's callback in the same frame, so it logs one frame
+  at the new height and the next back at the old one; the painted frames show
+  no jump. Trust the filmstrip there, not the probe.
+- **New content peeking past a copy**: a cross-fade's copy covered its box
+  but not the margin the box's clip leaves for a focus ring, and the top eight
+  pixels of an arriving switch showed for two frames. Only a sheet of every
+  frame from 40 to 200ms, six to a row, made it readable. The side panel's
+  harness keeps such a window (`keep: [from, to]`):
+  `.playwright-mcp/panel-film.mjs <scenario> [width height]`, its scenarios in
+  `panel-scenarios.mjs` beside it.
+- **A height that will not ease to `auto`**: `interpolate-size` was on and the
+  own lines' fold still flipped to its new height at once. A linear animation
+  sampled at its half (`currentTime`) tells whether a box eases there.
 - **A first arrival only a real network shows**: the dev server serves no
   prerendered page, and a local build starts the app while the page is still
   arriving. Film a cold load of the built page (`wrangler dev` on a port of
