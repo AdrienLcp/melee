@@ -134,8 +134,10 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           )}
           {playsAloud ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
-          ) : view.players.length === 0 ? null : view.teams.length > 0 ? (
-            <LobbyTeams controls={controls} view={view} youId={youId} />
+          ) : view.teams.length > 0 ? (
+            view.players.length > 0 && (
+              <LobbyTeams controls={controls} view={view} youId={youId} />
+            )
           ) : isRosterBeside ? null : (
             <Scoreboard
               hasPawns
