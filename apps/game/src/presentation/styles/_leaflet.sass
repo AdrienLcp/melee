@@ -44,6 +44,27 @@
     > *
       flex-shrink: 0
 
+/// A popover opening out of the press that opened it and closing back into
+/// it, from the point react-aria anchors it to. The close is its own fade
+/// rather than the opening played backwards: reversed, the opening's ease-out
+/// held the leaflet whole for most of its run and then cut it, and played
+/// forwards it spent seven tenths of the fade in the first 30ms. `ease`
+/// spreads it over the run.
+@mixin opens-from-trigger
+  --travel-offset: 0 -0.5rem
+  --travel-scale: 0.96
+
+  transform-origin: var(--trigger-anchor-point)
+
+  &[data-placement='top']
+    --travel-offset: 0 0.5rem
+
+  &[data-entering]
+    animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
+  &[data-exiting]
+    animation: page-leave calc(var(--transition-base, 0s) * 0.75) ease forwards
+
 /// A leaflet risen as a sheet across the whole screen: square at the bottom
 /// edge, and its controls held to a 30rem column in the middle, since controls
 /// stretched across 900px read as bars rather than presses. The column is the

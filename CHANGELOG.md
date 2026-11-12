@@ -276,6 +276,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The menu and every popover open and close where you can see
+  it.** They grew in from the press that opened them in a blink and closed
+  as the opening played backwards, which held them whole and then cut them:
+  they now open over a beat, a little small and from the press, and fade
+  out evenly as they close.
 - `[Game]` **An empty seat in the lobby is a dashed outline again.** The
   pawns waiting in the box were drawn solid, in the first pawn's colour, as
   if every empty seat were taken.
