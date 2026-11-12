@@ -72,6 +72,7 @@ import { useVolume } from '@/presentation/audio/volume-provider'
 import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { DuelBadge } from '@/presentation/components/duel-badge'
+import { useWorldMapAhead } from '@/presentation/components/lazy-world-map'
 import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
 import { Loader } from '@/presentation/components/loader'
 import { RefusalNote } from '@/presentation/components/refusal-note'
@@ -183,6 +184,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       nickname: seatNickname,
       roomCode
     })
+
+  useWorldMapAhead(view?.settings.lineUp ?? [])
+
   const [requestedNickname, setRequestedNickname] = useState<string | null>(
     null
   )

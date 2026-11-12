@@ -52,6 +52,7 @@ import './wall-page.sass'
 import { blackSquareContent } from '@/helpers/round-content'
 import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { DuelBadge } from '@/presentation/components/duel-badge'
+import { useWorldMapAhead } from '@/presentation/components/lazy-world-map'
 import { Main } from '@/presentation/components/main'
 import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
 import { useRoundDealt } from '@/presentation/use-round-dealt'
@@ -86,6 +87,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     view: wallView
   } = useWallConnection(roomCode)
   const view = wallView === null ? null : asRoomScreenView(wallView)
+  useWorldMapAhead(view?.settings.lineUp ?? [])
   const isSpeaker = wallView?.isSpeaker === true
   const speakingView = isSpeaker ? view : null
   const { volume: ownVolume } = useVolume()

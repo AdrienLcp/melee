@@ -14,6 +14,21 @@
     overflow: hidden
     position: relative
 
+    .drawing
+      animation: swap-in var(--transition-slow, 0s) var(--ease-out)
+      inset: 0
+      position: absolute
+
+    .waiting
+      align-items: center
+      display: flex
+      inset: 0
+      justify-content: center
+      position: absolute
+
+      &[data-leaving]
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) both
+
     .surface
       cursor: grab
       display: block

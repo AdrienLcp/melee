@@ -336,6 +336,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The map arrives with its round instead of popping in after it.**
+  Its frame enters with the stage and the drawing fades in once ready, a
+  loader centred in the frame while it is not; and a line-up holding an Atlas
+  loads and draws the map ahead, while the screen is idle, so it is usually
+  there before the round is.
+
 - `[Game]` **The countdown's old figure gets out of the new one's way**: it
   fades in a beat rather than lingering behind the next for a quarter of a
   second.

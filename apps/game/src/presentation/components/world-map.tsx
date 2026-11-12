@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 
 import type { AtlasShown, GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
@@ -118,8 +118,12 @@ export type WorldMapProps = {
  * own conic projection — on a frame that zooms and pans under a finger or a
  * mouse, and through its buttons. The view is the reader's alone: nothing
  * about it travels, only the point a pawn marks.
+ *
+ * The frame is `LazyWorldMap`'s, measured while this chunk is still on its
+ * way: what is drawn here fades in over the sea already standing in it.
  */
-export const WorldMap: React.FC<WorldMapProps> = ({
+export const WorldMap: React.FC<WorldMapProps & { frame: Size }> = ({
+  frame,
   marker,
   markerActions,
   onPlace,
@@ -129,42 +133,20 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 }) => {
   const centralMeridian = centralMeridianOfReveal({ region, revealed })
   const geometry = mapGeometryOf(region, centralMeridian)
-  const frameRef = useRef<HTMLDivElement>(null)
-  const [frame, setFrame] = useState<Size | null>(null)
-
-  useEffect(() => {
-    const element = frameRef.current
-
-    if (element === null) {
-      return
-    }
-
-    const observer = new ResizeObserver(() => {
-      setFrame({ height: element.clientHeight, width: element.clientWidth })
-    })
-
-    observer.observe(element)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
 
   return (
-    <div className='world-map' ref={frameRef}>
-      {frame !== null && frame.width > 0 && frame.height > 0 && (
-        <MapSurface
-          frame={frame}
-          geometry={geometry}
-          key={`${region} ${centralMeridian} ${frame.width}×${frame.height}`}
-          marker={marker}
-          markerActions={markerActions}
-          onPlace={onPlace}
-          region={region}
-          revealed={revealed}
-          shown={shown}
-        />
-      )}
+    <div className='drawing'>
+      <MapSurface
+        frame={frame}
+        geometry={geometry}
+        key={`${region} ${centralMeridian} ${frame.width}×${frame.height}`}
+        marker={marker}
+        markerActions={markerActions}
+        onPlace={onPlace}
+        region={region}
+        revealed={revealed}
+        shown={shown}
+      />
     </div>
   )
 }

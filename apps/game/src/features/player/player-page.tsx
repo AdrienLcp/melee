@@ -47,6 +47,7 @@ import { RoundClock } from './round-clock'
 
 import './player-page.sass'
 
+import { useWorldMapAhead } from '@/presentation/components/lazy-world-map'
 import { Main } from '@/presentation/components/main'
 import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
 import { useRoundDealt } from '@/presentation/use-round-dealt'
@@ -79,6 +80,8 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     roomCode
   })
   const { clearError, send, view } = connection
+
+  useWorldMapAhead(view?.settings.lineUp ?? [])
 
   // Offered to the menu above, which owns the only way off this screen. The
   // frame goes first: navigating away closes the socket, and a seat given up
