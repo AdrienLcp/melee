@@ -144,7 +144,9 @@ one part.
   rather than growing the header by it in one frame, and a question of the
   host's own that a round deals opens its _played_ word beside it. The
   saved evenings page fades its list and the line saying it is empty into
-  one another as the first evening is kept or the last forgotten.
+  one another as the first evening is kept or the last forgotten. The press
+  that adds the rounds an evening lacks fades and folds out of its strip once
+  more than fifty would be needed, and back in when the plan shrinks again.
 - `[Game]` **The console's stage no longer changes in one frame.** The lobby
   giving way to the countdown, the countdown to the round, the round to its
   answer or the final board, a pause taken or lifted, and a game played

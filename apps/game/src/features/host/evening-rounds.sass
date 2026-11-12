@@ -341,7 +341,6 @@
       column-gap: var(--space-s)
       display: grid
       grid-template-columns: auto minmax(0, 1fr)
-      row-gap: var(--space-xs)
 
       .said
         display: flex
@@ -358,9 +357,18 @@
 
         color: var(--ink-muted)
 
-      .raise
+      // A grid row keeps its gap however far the fold closes, so the room
+      // above the press is the fold's own, folded inside it.
+      .raise-fold
+        @include fold.opens-in-column($gap: 0rem)
+
         grid-column: 2
-        justify-self: start
+
+        > *
+          display: flow-root
+
+      .raise
+        margin-block-start: var(--space-xs)
 
       // Over the count is an error the host has to act on: the figure is
       // stamped in a block of its own, never tinted text.

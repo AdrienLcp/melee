@@ -896,8 +896,12 @@ const OverTheCount: React.FC<{
   const translate = useTranslate()
   const shortfall = shortfallOf({ coming, roundCount: settings.roundCount })
   const shown = useLastShown(shortfall, isSameShortfall)
+  const raisedTo =
+    shown !== null && shown.raised >= shown.needed ? shown.raised : null
+  const shownRaise = useLastShown(raisedTo)
 
   const isOpen = shortfall !== null
+  const isRaiseOpen = raisedTo !== null
 
   return (
     <div
@@ -917,19 +921,29 @@ const OverTheCount: React.FC<{
             {translate('host.evening.chance.overHint')}
           </span>
         </span>
-        {shown !== null && shown.raised >= shown.needed && (
-          <Button
-            className='raise'
-            isDisabled={!isLive || !isOpen}
-            onPress={() => {
-              onSettingsChange({ ...settings, roundCount: shown.raised })
-            }}
-            size='small'
-            variant='outlined'
-          >
-            {translate('host.evening.chance.raise', { count: shown.raised })}
-          </Button>
-        )}
+        <div
+          className='raise-fold'
+          data-open={isRaiseOpen || undefined}
+          inert={!isRaiseOpen}
+        >
+          <div>
+            <Button
+              className='raise'
+              isDisabled={!isLive || !isOpen}
+              onPress={() => {
+                if (raisedTo !== null) {
+                  onSettingsChange({ ...settings, roundCount: raisedTo })
+                }
+              }}
+              size='small'
+              variant='outlined'
+            >
+              {translate('host.evening.chance.raise', {
+                count: shownRaise ?? 0
+              })}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
