@@ -336,6 +336,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A seat's score sits between the presses that change it** on the
+  console's roster, `− 12 +`, where it stood alone above two presses pressed
+  together; beside a wall the name takes the first line whole and the presses
+  keep their full size. The clip's _Pause_ and _From the top_ stand apart under
+  a blind test's reveal there too, where nothing spaced them at all.
+
 - `[Game]` **The start's house and the finish's flag sit in the middle of
   their case** in the standings, where they leaned into the corner a number
   is printed in.

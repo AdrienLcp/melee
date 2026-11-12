@@ -104,46 +104,46 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                   <span className='podium-note'>{notes.join(' · ')}</span>
                 )}
               </span>
-              <span className='podium-score'>
-                {!seatsStand
-                  ? null
-                  : board.kind === 'track'
-                    ? player.board !== null && (
-                        <CaseMark
-                          at={player.board.case}
-                          length={board.length}
-                        />
-                      )
-                    : translate('player.score', {
-                        points: shownPoints(player.score)
-                      })}
-              </span>
-              <span className='podium-presses'>
+              <span className='podium-tally'>
                 {seatPresses !== null && row !== undefined && (
-                  <>
-                    <Button
-                      aria-label={row.takeLabel}
-                      isDisabled={!seatPresses.isLive || !row.canTake}
-                      onPress={() => {
-                        seatPresses.onStep(row, -1)
-                      }}
-                      size='small'
-                      variant='outlined'
-                    >
-                      <MinusIcon />
-                    </Button>
-                    <Button
-                      aria-label={row.giveLabel}
-                      isDisabled={!seatPresses.isLive || !row.canGive}
-                      onPress={() => {
-                        seatPresses.onStep(row, 1)
-                      }}
-                      size='small'
-                      variant='outlined'
-                    >
-                      <PlusIcon />
-                    </Button>
-                  </>
+                  <Button
+                    aria-label={row.takeLabel}
+                    isDisabled={!seatPresses.isLive || !row.canTake}
+                    onPress={() => {
+                      seatPresses.onStep(row, -1)
+                    }}
+                    size='small'
+                    variant='outlined'
+                  >
+                    <MinusIcon />
+                  </Button>
+                )}
+                <span className='podium-score'>
+                  {!seatsStand
+                    ? null
+                    : board.kind === 'track'
+                      ? player.board !== null && (
+                          <CaseMark
+                            at={player.board.case}
+                            length={board.length}
+                          />
+                        )
+                      : translate('player.score', {
+                          points: shownPoints(player.score)
+                        })}
+                </span>
+                {seatPresses !== null && row !== undefined && (
+                  <Button
+                    aria-label={row.giveLabel}
+                    isDisabled={!seatPresses.isLive || !row.canGive}
+                    onPress={() => {
+                      seatPresses.onStep(row, 1)
+                    }}
+                    size='small'
+                    variant='outlined'
+                  >
+                    <PlusIcon />
+                  </Button>
                 )}
               </span>
               {isYou ? (

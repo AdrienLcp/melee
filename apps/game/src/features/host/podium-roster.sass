@@ -2,19 +2,18 @@
 @use '../../presentation/styles/typography'
 
 @layer components
-  // One grid for every seat, each row a subgrid of it, so the scores and the
-  // presses stand in columns whatever the names and the scores are.
+  // One grid for every seat, each row a subgrid of it, so the scores stand in
+  // a column whatever the names are.
   .podium-roster
     column-gap: var(--space-2xs)
     container: podium-roster / inline-size
     display: grid
-    grid-template-columns: auto auto minmax(4rem, 1fr) auto auto auto
+    grid-template-columns: auto auto minmax(0rem, 1fr) auto auto
     list-style: none
     row-gap: var(--space-2xs)
 
-  // Rank, pawn, name, score, presses, menu: the columns line up seat over
-  // seat because every row is the same grid, the presses' column empty in
-  // the lobby.
+  // Rank, pawn, name, tally, menu: the columns line up seat over seat
+  // because every row is the same grid.
   .podium-seat
     align-items: center
     border-radius: var(--radius-m)
@@ -31,36 +30,31 @@
       .podium-name
         color: var(--ink-muted)
 
-    // In a column as narrow as the console's beside a wall, the presses and
-    // the menu take the line under the name, the note beside them: inline,
-    // they left a name five letters.
+    // In a column as narrow as the console's beside a wall, the name takes
+    // the first line whole and the tally the second, its presses beside the
+    // menu: inline, they left a name five letters.
     @container podium-roster (width < 26rem)
-      &:has(.podium-presses > *)
+      &:has(.podium-tally > :not(.podium-score))
         grid-template-rows: auto auto
-        row-gap: 0rem
+        row-gap: var(--space-2xs)
 
         > .podium-who
           display: contents
 
         .podium-line
-          grid-column: 3
+          grid-column: 3 / -1
           grid-row: 1
 
         .podium-note
           grid-column: 3
           grid-row: 2
 
-        .podium-score
+        .podium-tally
           grid-column: 4
-          grid-row: 1
-
-        .podium-presses
-          grid-column: 3 / 6
           grid-row: 2
-          justify-self: end
 
         > :is(.action-menu-trigger, .podium-menu-slot)
-          grid-column: 6
+          grid-column: 5
           grid-row: 2
 
         > :is(.podium-rank, .pawn)
@@ -99,19 +93,27 @@
     text-overflow: ellipsis
     white-space: nowrap
 
+  // The score between the presses that change it, a stepper rather than a
+  // figure with two buttons left beside it.
+  .podium-tally
+    align-items: center
+    display: flex
+    gap: var(--space-xs)
+    justify-content: end
+
+    > *
+      flex: none
+
   .podium-score
     @include typography.score
 
     font-size: var(--text-xl)
-    text-align: end
+    min-inline-size: 1.5em
+    text-align: center
     white-space: nowrap
 
     &:has(.case-mark)
       font-size: var(--text-m)
-
-  .podium-presses
-    display: flex
-    gap: var(--space-2xs)
 
   .podium-hint,
   .podium-empty

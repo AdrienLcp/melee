@@ -13,6 +13,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { HostActionsProps } from './host-actions'
 
+import './clip-controls.sass'
+
 type ClipControlsProps = Pick<HostActionsProps, 'isLive' | 'send' | 'view'>
 
 /**
