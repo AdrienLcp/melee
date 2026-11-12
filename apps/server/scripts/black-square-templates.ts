@@ -62,6 +62,14 @@ const BOOK = [
 
 const PAINTING = '?item wdt:P31 wd:Q3305213 .'
 
+/**
+ * What a painter's truths are filed as, beyond a single canvas: *The Last
+ * Supper* is a mural, *Sunflowers* and *The Bedroom* a series of versions,
+ * *Virgin of the Rocks* a group of two — the titles a table names first.
+ */
+const PAINTED_WORK =
+  'VALUES ?paintedKind { wd:Q3305213 wd:Q99516640 wd:Q15727816 wd:Q18573970 } ?item wdt:P31 ?paintedKind .'
+
 const PERSON = '?item wdt:P31 wd:Q5 .'
 
 /** A neighbour's neighbour, which is what lives just past the subject's border. */
@@ -311,7 +319,7 @@ export const TEMPLATES = {
       fr: `Les tableaux de ${fr}`
     }),
     needsNeighbour: false,
-    truths: ({ subject }) => `?item wdt:P170 wd:${subject} . ${PAINTING}`
+    truths: ({ subject }) => `?item wdt:P170 wd:${subject} . ${PAINTED_WORK}`
   },
   'position-holders': {
     candidates: (query) =>

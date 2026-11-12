@@ -14,6 +14,8 @@ export type ThemeSpec = {
   labels?: Wording
   /** The second entity a template reads beside the subject. */
   neighbour?: string
+  /** Truths counted as one thing where no series or title joins them: a version of a painting filed apart from its series. */
+  sameThing?: readonly (readonly string[])[]
   subject: string
   template: TemplateName
   /**
@@ -163,15 +165,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     }
   },
   {
-    blackWord: 'Q107270',
-    subject: 'Q56094',
-    template: 'films-directed-by',
-    why: {
-      en: 'Directed by his daughter, Sofia Coppola',
-      fr: 'Réalisé par sa fille, Sofia Coppola'
-    }
-  },
-  {
     blackWord: 'Q726215',
     subject: 'Q484779',
     template: 'films-directed-by',
@@ -185,15 +178,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     subject: 'Q184903',
     template: 'films-directed-by',
     why: { en: 'Directed by Jonathan Demme', fr: 'Réalisé par Jonathan Demme' }
-  },
-  {
-    blackWord: 'Q192073',
-    subject: 'Q223687',
-    template: 'films-directed-by',
-    why: {
-      en: 'Directed by Jonathan Dayton and Valerie Faris',
-      fr: 'Réalisé par Jonathan Dayton et Valerie Faris'
-    }
   },
   {
     blackWord: 'Q241958',
@@ -238,15 +222,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     why: {
       en: 'Co-written by Veber, directed by Édouard Molinaro',
       fr: 'Coécrit par Veber, réalisé par Édouard Molinaro'
-    }
-  },
-  {
-    blackWord: 'Q229808',
-    subject: 'Q275402',
-    template: 'films-directed-by',
-    why: {
-      en: 'Marc Webb’s reboot, after Raimi’s trilogy',
-      fr: 'Le reboot de Marc Webb, après la trilogie de Raimi'
     }
   },
   {
@@ -314,15 +289,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     subject: 'Q1299',
     template: 'albums-by-band',
     why: { en: 'John Lennon’s solo album', fr: 'Un album solo de John Lennon' }
-  },
-  {
-    blackWord: 'Q279991',
-    subject: 'Q15862',
-    template: 'albums-by-band',
-    why: {
-      en: 'Freddie Mercury with Montserrat Caballé, without Queen',
-      fr: 'Freddie Mercury avec Montserrat Caballé, sans Queen'
-    }
   },
   {
     blackWord: 'Q145',
@@ -507,6 +473,19 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     subject: 'Q762',
     template: 'paintings-by',
     why: { en: 'A painting by Botticelli', fr: 'Un tableau de Botticelli' }
+  },
+  {
+    blackWord: 'Q737062',
+    sameThing: [['Q1189907', 'Q3220338']],
+    subject: 'Q296',
+    template: 'paintings-by',
+    why: { en: 'A painting by Édouard Manet', fr: "Un tableau d'Édouard Manet" }
+  },
+  {
+    blackWord: 'Q219831',
+    subject: 'Q41264',
+    template: 'paintings-by',
+    why: { en: 'A painting by Rembrandt', fr: 'Un tableau de Rembrandt' }
   },
   {
     blackWord: 'Q55452801',

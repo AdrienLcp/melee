@@ -113,16 +113,20 @@ type Franchise = { members: Entity[]; series: string | null }
 
 /**
  * The truths, most read first, gathered into franchises: works sharing a
- * series, whose titles share a stem, or one of whose titles runs inside the
- * other's. A series in `UMBRELLA_SERIES` names the subject's whole output
- * rather than a franchise inside it, and links nothing.
+ * series — or a truth that is itself the series, *Sunflowers* beside its
+ * versions —, whose titles share a stem, one of whose titles runs inside
+ * the other's, or that the theme's `sameThing` names together. A series in
+ * `UMBRELLA_SERIES` names the subject's whole output rather than a franchise
+ * inside it, and links nothing.
  */
 const franchisesOf = ({
   factsOf,
+  sameThing,
   template,
   truths
 }: {
   factsOf: (entity: Entity) => SeriesFacts | undefined
+  sameThing: readonly (readonly string[])[]
   template: TemplateName
   truths: readonly Entity[]
 }): Franchise[] => {
@@ -155,8 +159,18 @@ const franchisesOf = ({
     )
 
   for (const [index, truth] of truths.entries()) {
+    if (!UMBRELLA_SERIES.has(truth.id)) {
+      linkBy({ index, key: `series:${truth.id}` })
+    }
+
     for (const series of seriesOf(truth)) {
       linkBy({ index, key: `series:${series}` })
+    }
+
+    for (const [group, ids] of sameThing.entries()) {
+      if (ids.includes(truth.id)) {
+        linkBy({ index, key: `same:${group}` })
+      }
     }
 
     if (WORK_TEMPLATES.has(template)) {
@@ -425,6 +439,7 @@ const build = async (): Promise<void> => {
     })
     const franchises = franchisesOf({
       factsOf,
+      sameThing: spec.sameThing ?? [],
       template: spec.template,
       truths: released
     }).slice(0, ANSWERS_PER_THEME)

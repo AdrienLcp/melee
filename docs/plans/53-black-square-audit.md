@@ -93,29 +93,54 @@ _The Phoenician Scheme_ second for Wes Anderson. So no threshold on views
 decides which theme stays; a census does, and views only rank answers — over a
 window long enough to flatten a news week.
 
-## Step 1 — the census: cut the specialist themes (one session)
+## Step 1 — the census: cut the specialist themes — done 12/11/2026
 
 The test, per theme: **would an ordinary table name three answers unaided?**
-A theme that fails is deleted from `black-square-themes.ts` (and its template
-instance excluded), not flagged — it has no room it would suit.
+A theme that fails is deleted from `black-square-themes.ts`, not flagged — it
+has no room it would suit.
 
-Read on the whole list, not from memory; the first pass flags, to confirm:
+Most of the cut had already landed with the pool (`4b620968`, 08/11), which
+took the Wikidata bank from 163 themes to 61 without writing its verdicts
+down: every science prize, every trade prize (Booker, Lion d'or, Ours d'or,
+Golden Globe), Daft Punk, the five borderline ones (secrétaires généraux de
+l'ONU, capitales d'Océanie, Peter Weir, Kurosawa, Annie Ernaux), and every
+painter but Van Gogh and Léonard de Vinci. The census read the 61 left, each
+on its banked answers rather than on its title.
 
-- the science prizes — Nobel de chimie, de physique, de physiologie ou
-  médecine, d'économie; prix Turing; médaille Fields;
-- the prizes nobody outside the trade follows — prix Booker, Lion d'or, Ours
-  d'or, Golden Globe du meilleur film dramatique;
-- painters whose _titles_ the table does not know though it knows the painter
-  — Turner, Hopper, Raphaël, Vélasquez, Brueghel, Rembrandt, Renoir, Matisse,
-  Manet, Dalí; keep the ones with three household titles (Van Gogh, Monet,
-  Léonard de Vinci, Picasso, Vermeer) — judged one by one;
-- discographies past the hits — Queen, Daft Punk;
-- the borderline, decided in the session: secrétaires généraux de l'ONU,
-  capitales d'Océanie, Peter Weir, Akira Kurosawa, Annie Ernaux.
+**Cut (4)** — a table names one answer, or one franchise:
 
-Write each verdict into the commit message (kept / cut, one line), so a later
-census does not redo it. Rebuild the bank; the server tests that count themes
-or name one move with it.
+- _Les albums de Queen_ — a table knows the songs, not the albums;
+- _Francis Ford Coppola_ — _Le Parrain_ (one franchise) and _Apocalypse Now_,
+  then nothing a table has heard is his;
+- _Wes Anderson_ — _The Grand Budapest Hotel_ alone;
+- _Sam Raimi_ — _Spider-Man_ (one franchise), _Evil Dead_ to horror fans.
+
+**Kept on a close call**: Guy Ritchie (_Snatch_, _Sherlock Holmes_,
+_Aladdin_), the Coen brothers (_Fargo_, _The Big Lebowski_, _No Country for
+Old Men_), Clint Eastwood, Tolkien (the _Silmarillion_ third), the Oscar
+for best actress. Everything else passes plainly.
+
+**The painters were judged on what the bank held, and two failed for want of
+their own titles**: _La Cène_ is filed as a mural, _Les Tournesols_ and _La
+Chambre à Arles_ as series of paintings, _La Vierge aux rochers_ as a group,
+so the painting query banked none of them, and Léonard de Vinci's grid held
+_La Joconde_ and nothing a table names. `paintings-by` now reads those kinds
+for its truths (not its black-word candidates), and a truth that is itself
+the series its siblings belong to joins them, so a version never stands
+beside _Les Tournesols_. Both kept.
+
+**Restored (2)**, the painters the plan's first pass said to keep, judged one
+by one: **Monet** (_Impression, soleil levant_, _Les Nymphéas_, _Les
+Coquelicots_ — black word Manet's _Olympia_) and **Vermeer** (_La Jeune Fille
+à la perle_, _La Laitière_, _La Dentellière_ — black word _La Ronde de
+nuit_). **Picasso stays out**: _Guernica_ and _Les Demoiselles d'Avignon_,
+then no third title a table says unaided. A painting filed apart from its
+series is joined by hand — `sameThing` on the theme spec: _Le Bassin aux
+nymphéas, harmonie verte_ is in no Nymphéas series on Wikidata.
+
+The bank is 59 Wikidata themes; the floor in `black-square-bank.test.ts` is
+55. Views did not move on the rebuild — the build reads them from its cache —
+so every theme not named above banks the same nine.
 
 ## Step 2 — rank on a year, not on sixty days (one session)
 
@@ -124,6 +149,9 @@ per-article endpoint (`metrics/pageviews/per-article/fr.wikipedia/all-access/
 user/<title>/monthly/<from>/<to>`), one request per candidate, cached in
 `scripts/.cache` like the rest. Sum the last twelve full months. Check the
 three news-bent themes above reorder as a table would expect, then rebuild.
+The sixty-day figures sit in `VIEWS_CACHE` (`frwiki-notability.ts`), keyed by
+entity alone with no window, which is why step 1's rebuild kept October's
+numbers: the yearly sum takes a cache of its own.
 
 — cut here: specialist themes gone, ranking on a year, bank rebuilt and
 tests green —

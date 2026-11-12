@@ -1376,155 +1376,6 @@
     "answers": [
       {
         "aliases": {
-          "en": [
-            "Godfather",
-            "Godfather Part 1",
-            "Godfather Part I",
-            "The Godfather Part I"
-          ],
-          "fr": ["Der Pate", "Le Parrain 1", "Le Parrain I", "Parrain"]
-        },
-        "id": "Q47703",
-        "labels": {
-          "en": "The Godfather",
-          "fr": "Le Parrain"
-        },
-        "series": "Q3225260",
-        "views": 29484
-      },
-      {
-        "aliases": {
-          "en": ["Apocalypse Now Final Cut"],
-          "fr": []
-        },
-        "id": "Q182692",
-        "labels": {
-          "en": "Apocalypse Now",
-          "fr": "Apocalypse Now"
-        },
-        "series": "Q182692",
-        "views": 18499
-      },
-      {
-        "aliases": {
-          "en": ["Dracula"],
-          "fr": [
-            "Bram Stoker's Dracula",
-            "Dracula d'après l'œuvre de Bram Stoker"
-          ]
-        },
-        "id": "Q107325",
-        "labels": {
-          "en": "Bram Stoker's Dracula",
-          "fr": "Dracula"
-        },
-        "series": null,
-        "views": 7872
-      },
-      {
-        "aliases": {
-          "en": ["Outsiders"],
-          "fr": []
-        },
-        "id": "Q1055332",
-        "labels": {
-          "en": "The Outsiders",
-          "fr": "Outsiders"
-        },
-        "series": null,
-        "views": 7359
-      },
-      {
-        "aliases": {
-          "en": ["Francis Ford Coppola's Megalopolis"],
-          "fr": []
-        },
-        "id": "Q115175910",
-        "labels": {
-          "en": "Megalopolis",
-          "fr": "Megalopolis"
-        },
-        "series": null,
-        "views": 5441
-      },
-      {
-        "aliases": {
-          "en": ["Conversation"],
-          "fr": ["Conversation secrete"]
-        },
-        "id": "Q1009788",
-        "labels": {
-          "en": "The Conversation",
-          "fr": "Conversation secrète"
-        },
-        "series": null,
-        "views": 4719
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q1471358",
-        "labels": {
-          "en": "Jack",
-          "fr": "Jack"
-        },
-        "series": null,
-        "views": 2234
-      },
-      {
-        "aliases": {
-          "en": ["John Grisham's The Rainmaker", "Rainmaker"],
-          "fr": ["Idéaliste", "The Rainmaker"]
-        },
-        "id": "Q785351",
-        "labels": {
-          "en": "The Rainmaker",
-          "fr": "L'Idéaliste"
-        },
-        "series": null,
-        "views": 1969
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Rumble Fish"]
-        },
-        "id": "Q845102",
-        "labels": {
-          "en": "Rumble Fish",
-          "fr": "Rusty James"
-        },
-        "series": null,
-        "views": 1943
-      }
-    ],
-    "blackWord": {
-      "aliases": {
-        "en": [],
-        "fr": ["Unfaithful translation"]
-      },
-      "id": "Q107270",
-      "labels": {
-        "en": "Lost in Translation",
-        "fr": "Lost in Translation"
-      },
-      "why": {
-        "en": "Directed by his daughter, Sofia Coppola",
-        "fr": "Réalisé par sa fille, Sofia Coppola"
-      }
-    },
-    "id": "films-directed-by:Q56094",
-    "labels": {
-      "en": "Films directed by Francis Ford Coppola",
-      "fr": "Les films réalisés par Francis Ford Coppola"
-    }
-  },
-  {
-    "answers": [
-      {
-        "aliases": {
           "en": ["La Femme Nikita"],
           "fr": []
         },
@@ -1832,147 +1683,6 @@
     "labels": {
       "en": "Films directed by David Fincher",
       "fr": "Les films réalisés par David Fincher"
-    }
-  },
-  {
-    "answers": [
-      {
-        "aliases": {
-          "en": ["Grand Budapest Hotel"],
-          "fr": []
-        },
-        "id": "Q3521099",
-        "labels": {
-          "en": "The Grand Budapest Hotel",
-          "fr": "The Grand Budapest Hotel"
-        },
-        "series": null,
-        "views": 16804
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Le Complot Phénicien"]
-        },
-        "id": "Q124758337",
-        "labels": {
-          "en": "The Phoenician Scheme",
-          "fr": "The Phoenician Scheme"
-        },
-        "series": null,
-        "views": 6367
-      },
-      {
-        "aliases": {
-          "en": ["Royal Tenenbaums"],
-          "fr": ["Famille Tenenbaum", "The Royal Tenenbaums"]
-        },
-        "id": "Q935105",
-        "labels": {
-          "en": "The Royal Tenenbaums",
-          "fr": "La Famille Tenenbaum"
-        },
-        "series": null,
-        "views": 5279
-      },
-      {
-        "aliases": {
-          "en": ["The French Dispatch of the Liberty, Kansas Evening Sun"],
-          "fr": ["The French Dispatch du Liberty, Kansas Evening Sun"]
-        },
-        "id": "Q59551547",
-        "labels": {
-          "en": "The French Dispatch",
-          "fr": "The French Dispatch"
-        },
-        "series": null,
-        "views": 5069
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Fantastic Mister Fox"]
-        },
-        "id": "Q465275",
-        "labels": {
-          "en": "Fantastic Mr. Fox",
-          "fr": "Fantastic Mr. Fox"
-        },
-        "series": null,
-        "views": 4747
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q217112",
-        "labels": {
-          "en": "Moonrise Kingdom",
-          "fr": "Moonrise Kingdom"
-        },
-        "series": null,
-        "views": 3400
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Isle of Dogs"]
-        },
-        "id": "Q28065409",
-        "labels": {
-          "en": "Isle of Dogs",
-          "fr": "L'Île aux chiens"
-        },
-        "series": null,
-        "views": 3031
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q108086029",
-        "labels": {
-          "en": "Asteroid City",
-          "fr": "Asteroid City"
-        },
-        "series": null,
-        "views": 2938
-      },
-      {
-        "aliases": {
-          "en": ["Life Aquatic with Steve Zissou"],
-          "fr": ["The Life Aquatic with Steve Zissou", "Vie aquatique"]
-        },
-        "id": "Q1151947",
-        "labels": {
-          "en": "The Life Aquatic with Steve Zissou",
-          "fr": "La Vie aquatique"
-        },
-        "series": null,
-        "views": 2267
-      }
-    ],
-    "blackWord": {
-      "aliases": {
-        "en": [],
-        "fr": []
-      },
-      "id": "Q192073",
-      "labels": {
-        "en": "Little Miss Sunshine",
-        "fr": "Little Miss Sunshine"
-      },
-      "why": {
-        "en": "Directed by Jonathan Dayton and Valerie Faris",
-        "fr": "Réalisé par Jonathan Dayton et Valerie Faris"
-      }
-    },
-    "id": "films-directed-by:Q223687",
-    "labels": {
-      "en": "Films directed by Wes Anderson",
-      "fr": "Les films réalisés par Wes Anderson"
     }
   },
   {
@@ -2746,161 +2456,6 @@
     "labels": {
       "en": "Films directed by Francis Veber",
       "fr": "Les films réalisés par Francis Veber"
-    }
-  },
-  {
-    "answers": [
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Spider Man", "Spider-Man : the movie"]
-        },
-        "id": "Q484442",
-        "labels": {
-          "en": "Spider-Man",
-          "fr": "Spider-Man"
-        },
-        "series": "Q18636789",
-        "views": 48714
-      },
-      {
-        "aliases": {
-          "en": ["Doctor Strange 2"],
-          "fr": [
-            "Docteur Strange dans le multivers de la folie",
-            "Doctor Strange 2"
-          ]
-        },
-        "id": "Q64211112",
-        "labels": {
-          "en": "Doctor Strange in the Multiverse of Madness",
-          "fr": "Doctor Strange in the Multiverse of Madness"
-        },
-        "series": null,
-        "views": 27341
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q132200341",
-        "labels": {
-          "en": "Send Help",
-          "fr": "Send Help"
-        },
-        "series": null,
-        "views": 8179
-      },
-      {
-        "aliases": {
-          "en": ["Evil Dead"],
-          "fr": [
-            "Book of the Dead",
-            "Evil Dead 1 - Le Livre des Morts",
-            "Evil Dead 1 : Le Livre des Morts",
-            "L'Opéra de la peur",
-            "L'Opéra de la terreur",
-            "The Evil Dead"
-          ]
-        },
-        "id": "Q327604",
-        "labels": {
-          "en": "The Evil Dead",
-          "fr": "Evil Dead"
-        },
-        "series": "Q921605",
-        "views": 5377
-      },
-      {
-        "aliases": {
-          "en": ["Quick and the Dead"],
-          "fr": ["Mort ou vif - Duels à redemption"]
-        },
-        "id": "Q756416",
-        "labels": {
-          "en": "The Quick and the Dead",
-          "fr": "Mort ou vif"
-        },
-        "series": null,
-        "views": 4610
-      },
-      {
-        "aliases": {
-          "en": ["Spell"],
-          "fr": ["Drag Me to Hell", "Malédiction de l'enfer"]
-        },
-        "id": "Q632737",
-        "labels": {
-          "en": "Drag Me to Hell",
-          "fr": "Jusqu'en enfer"
-        },
-        "series": null,
-        "views": 2420
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": [
-            "Le Monde fantastique d’Oz",
-            "Monde fantastique d'Oz",
-            "Oz: The Great and Powerful"
-          ]
-        },
-        "id": "Q590216",
-        "labels": {
-          "en": "Oz the Great and Powerful",
-          "fr": "Le Monde fantastique d'Oz"
-        },
-        "series": null,
-        "views": 2127
-      },
-      {
-        "aliases": {
-          "en": ["Gift"],
-          "fr": []
-        },
-        "id": "Q246711",
-        "labels": {
-          "en": "The Gift",
-          "fr": "Intuitions"
-        },
-        "series": null,
-        "views": 1960
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q1166264",
-        "labels": {
-          "en": "Darkman",
-          "fr": "Darkman"
-        },
-        "series": null,
-        "views": 1719
-      }
-    ],
-    "blackWord": {
-      "aliases": {
-        "en": ["Amazing Spider-Man"],
-        "fr": ["Spider-Man 4", "Spider-Man Reboot"]
-      },
-      "id": "Q229808",
-      "labels": {
-        "en": "The Amazing Spider-Man",
-        "fr": "The Amazing Spider-Man"
-      },
-      "why": {
-        "en": "Marc Webb’s reboot, after Raimi’s trilogy",
-        "fr": "Le reboot de Marc Webb, après la trilogie de Raimi"
-      }
-    },
-    "id": "films-directed-by:Q275402",
-    "labels": {
-      "en": "Films directed by Sam Raimi",
-      "fr": "Les films réalisés par Sam Raimi"
     }
   },
   {
@@ -3984,147 +3539,6 @@
     "labels": {
       "en": "Albums by the Beatles",
       "fr": "Les albums des Beatles"
-    }
-  },
-  {
-    "answers": [
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q193477",
-        "labels": {
-          "en": "A Night at the Opera",
-          "fr": "A Night at the Opera"
-        },
-        "series": "Q193477",
-        "views": 1747
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q210048",
-        "labels": {
-          "en": "Innuendo",
-          "fr": "Innuendo"
-        },
-        "series": null,
-        "views": 1543
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q155593",
-        "labels": {
-          "en": "Made in Heaven",
-          "fr": "Made in Heaven"
-        },
-        "series": null,
-        "views": 1090
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q300447",
-        "labels": {
-          "en": "A Kind of Magic",
-          "fr": "A Kind of Magic"
-        },
-        "series": null,
-        "views": 1079
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q309021",
-        "labels": {
-          "en": "News of the World",
-          "fr": "News of the World"
-        },
-        "series": null,
-        "views": 970
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["Queen I"]
-        },
-        "id": "Q193490",
-        "labels": {
-          "en": "Queen",
-          "fr": "Queen"
-        },
-        "series": "Q223181",
-        "views": 810
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q270083",
-        "labels": {
-          "en": "Jazz",
-          "fr": "Jazz"
-        },
-        "series": null,
-        "views": 796
-      },
-      {
-        "aliases": {
-          "en": ["EMC 3061"],
-          "fr": ["Lily of the Valley"]
-        },
-        "id": "Q219747",
-        "labels": {
-          "en": "Sheer Heart Attack",
-          "fr": "Sheer Heart Attack"
-        },
-        "series": null,
-        "views": 795
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q220756",
-        "labels": {
-          "en": "A Day at the Races",
-          "fr": "A Day at the Races"
-        },
-        "series": null,
-        "views": 789
-      }
-    ],
-    "blackWord": {
-      "aliases": {
-        "en": [],
-        "fr": []
-      },
-      "id": "Q279991",
-      "labels": {
-        "en": "Barcelona",
-        "fr": "Barcelona"
-      },
-      "why": {
-        "en": "Freddie Mercury with Montserrat Caballé, without Queen",
-        "fr": "Freddie Mercury avec Montserrat Caballé, sans Queen"
-      }
-    },
-    "id": "albums-by-band:Q15862",
-    "labels": {
-      "en": "Albums by Queen",
-      "fr": "Les albums de Queen"
     }
   },
   {
@@ -6280,7 +5694,7 @@
           "en": "Michael Strogoff",
           "fr": "Michel Strogoff"
         },
-        "series": null,
+        "series": "Q1121567",
         "views": 5997
       },
       {
@@ -7012,6 +6426,43 @@
       {
         "aliases": {
           "en": [
+            "Sunflowers",
+            "Sunflowers (Van Gogh)",
+            "Sunflowers Van Gogh",
+            "Sunflowers Van Gogh series"
+          ],
+          "fr": [
+            "Quatorze tournesols dans un vase",
+            "Trois tournesols dans un vase",
+            "Vase avec cinq tournesols",
+            "Vase avec douze tournesols",
+            "Vase avec quinze tournesols"
+          ]
+        },
+        "id": "Q157541",
+        "labels": {
+          "en": "Sunflowers",
+          "fr": "Les Tournesols"
+        },
+        "series": "Q157541",
+        "views": 7806
+      },
+      {
+        "aliases": {
+          "en": ["De slaapkamer"],
+          "fr": ["La Chambre à Arles", "La chambre de Van Gogh a Arles"]
+        },
+        "id": "Q724377",
+        "labels": {
+          "en": "Bedroom in Arles",
+          "fr": "La Chambre de Van Gogh à Arles"
+        },
+        "series": "Q724377",
+        "views": 4889
+      },
+      {
+        "aliases": {
+          "en": [
             "Coffeehouse, in the evening",
             "Terrace of a Café at Night (Place du Forum)",
             "The Cafe Terrace on the Place du Forum"
@@ -7110,32 +6561,6 @@
         },
         "series": null,
         "views": 1672
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": ["mon père"]
-        },
-        "id": "Q19363211",
-        "labels": {
-          "en": "Self-Portrait with Bandaged Ear",
-          "fr": "Autoportrait à l'oreille bandée"
-        },
-        "series": null,
-        "views": 1472
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q4233325",
-        "labels": {
-          "en": "Tree Roots",
-          "fr": "Racines d'arbres"
-        },
-        "series": null,
-        "views": 1333
       }
     ],
     "blackWord": {
@@ -7177,6 +6602,25 @@
         },
         "series": null,
         "views": 36462
+      },
+      {
+        "aliases": {
+          "en": [
+            "Cenacolo vinciano",
+            "Il Cenacolo",
+            "L'Ultima Cena",
+            "L'ultima cena",
+            "Last Supper"
+          ],
+          "fr": ["La Cene"]
+        },
+        "id": "Q128910",
+        "labels": {
+          "en": "The Last Supper",
+          "fr": "La Cène"
+        },
+        "series": null,
+        "views": 30249
       },
       {
         "aliases": {
@@ -7238,6 +6682,25 @@
       {
         "aliases": {
           "en": [
+            "La madonna de las rocas",
+            "La virgen de las rocas",
+            "Madonna de las rocas",
+            "The Virgin of the Rocks",
+            "Virgin of the rocks"
+          ],
+          "fr": []
+        },
+        "id": "Q269342",
+        "labels": {
+          "en": "Virgin of the Rocks",
+          "fr": "La Vierge aux rochers"
+        },
+        "series": null,
+        "views": 3821
+      },
+      {
+        "aliases": {
+          "en": [
             "La belle ferronnière",
             "Portrait of a Lady from the Court of Milan",
             "Portrait of a Woman"
@@ -7289,40 +6752,6 @@
         },
         "series": null,
         "views": 1943
-      },
-      {
-        "aliases": {
-          "en": ["Annunciation of San Martino", "The Annunciation"],
-          "fr": []
-        },
-        "id": "Q1217213",
-        "labels": {
-          "en": "Annunciation",
-          "fr": "L'Annonciation de San Martino"
-        },
-        "series": null,
-        "views": 1837
-      },
-      {
-        "aliases": {
-          "en": [
-            "The Battle of Anghiari (1505)",
-            "The Battle of Anghiari (Leonardo da Vinci)",
-            "The Battle of Anghiari (Leonardo)",
-            "The Battle of Anghiari 1505",
-            "The Battle of Anghiari 1505.",
-            "The Battle of Anghiari Leonardo",
-            "The Battle of Anghiari Leonardo da Vinci"
-          ],
-          "fr": ["La bataille d’Anghiari"]
-        },
-        "id": "Q2045726",
-        "labels": {
-          "en": "The Battle of Anghiari",
-          "fr": "La Bataille d'Anghiari"
-        },
-        "series": null,
-        "views": 1323
       }
     ],
     "blackWord": {
@@ -7353,6 +6782,333 @@
     "labels": {
       "en": "Paintings by Leonardo da Vinci",
       "fr": "Les tableaux de Léonard de Vinci"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Impression soleil levant"],
+          "fr": ["Impression, soleil levant"]
+        },
+        "id": "Q328523",
+        "labels": {
+          "en": "Impression, Sunrise",
+          "fr": "Impression, Soleil levant"
+        },
+        "series": null,
+        "views": 14890
+      },
+      {
+        "aliases": {
+          "en": [
+            "Monet Water Lilies",
+            "The Japanese Footbridge",
+            "The Water Lily Pond",
+            "The Water Lily Pond (The Japanese Footbridge) (series)"
+          ],
+          "fr": ["Les Nympheas", "Nymphéas"]
+        },
+        "id": "Q1189907",
+        "labels": {
+          "en": "Water Lilies",
+          "fr": "Les Nymphéas"
+        },
+        "series": "Q1189907",
+        "views": 13473
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q49985736",
+        "labels": {
+          "en": "Gare Saint-Lazare (Monet series)",
+          "fr": "La Gare Saint-Lazare"
+        },
+        "series": "Q49985736",
+        "views": 3081
+      },
+      {
+        "aliases": {
+          "en": ["Rouen Cathedral", "Rouen Cathedral (series)"],
+          "fr": []
+        },
+        "id": "Q637414",
+        "labels": {
+          "en": "Rouen Cathedral Series",
+          "fr": "Cathédrales de Rouen"
+        },
+        "series": "Q637414",
+        "views": 3018
+      },
+      {
+        "aliases": {
+          "en": [
+            "Les Coquelicots",
+            "The Poppy Field near Argenteuil (Claude Monet)",
+            "The Poppy Field near Argenteuil Claude Monet",
+            "Wild Poppies",
+            "Wild Poppies Near Argenteuil"
+          ],
+          "fr": ["Coquelicots, environs d'Argenteuil"]
+        },
+        "id": "Q3231771",
+        "labels": {
+          "en": "The Poppy Field near Argenteuil",
+          "fr": "Les Coquelicots"
+        },
+        "series": null,
+        "views": 2753
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Série des Meules"]
+        },
+        "id": "Q557000",
+        "labels": {
+          "en": "Haystacks",
+          "fr": "Les Meules"
+        },
+        "series": "Q557000",
+        "views": 2455
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q1167912",
+        "labels": {
+          "en": "Luncheon on the Grass",
+          "fr": "Le Déjeuner sur l'herbe"
+        },
+        "series": null,
+        "views": 2242
+      },
+      {
+        "aliases": {
+          "en": [
+            "Study of a Figure Outdoors: Woman with a Parasol, facing left"
+          ],
+          "fr": [
+            "Essai de figure en plein air - femme à l'ombrelle tournée vers la gauche"
+          ]
+        },
+        "id": "Q1451508",
+        "labels": {
+          "en": "Woman with a Parasol, facing left",
+          "fr": "Femme à l'ombrelle tournée vers la gauche"
+        },
+        "series": null,
+        "views": 1846
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q4429116",
+        "labels": {
+          "en": "The Magpie",
+          "fr": "La Pie"
+        },
+        "series": null,
+        "views": 1803
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "id": "Q737062",
+      "labels": {
+        "en": "Olympia",
+        "fr": "Olympia"
+      },
+      "why": {
+        "en": "A painting by Édouard Manet",
+        "fr": "Un tableau d'Édouard Manet"
+      }
+    },
+    "id": "paintings-by:Q296",
+    "labels": {
+      "en": "Paintings by Claude Monet",
+      "fr": "Les tableaux de Claude Monet"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Girl with a Pearl Earring (Johannes Vermeer)",
+            "Girl with a Pearl Earring Johannes Vermeer",
+            "Girl with a Pearl Earring by Johannes Vermeer"
+          ],
+          "fr": ["La Jeune Fille a la perle", "La Jeune Fille au turban"]
+        },
+        "id": "Q185372",
+        "labels": {
+          "en": "Girl with a Pearl Earring",
+          "fr": "La Jeune Fille à la perle"
+        },
+        "series": null,
+        "views": 24867
+      },
+      {
+        "aliases": {
+          "en": [
+            "Het melkmeisje",
+            "Milkmaid",
+            "The Kitchen Maid",
+            "The Milk Maid",
+            "The Yellow Kitchen Maid",
+            "Yellow Milkmaid"
+          ],
+          "fr": ["La Laitiere"]
+        },
+        "id": "Q167605",
+        "labels": {
+          "en": "The Milkmaid",
+          "fr": "La Laitière"
+        },
+        "series": null,
+        "views": 8723
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q523974",
+        "labels": {
+          "en": "View of Delft",
+          "fr": "Vue de Delft"
+        },
+        "series": null,
+        "views": 2819
+      },
+      {
+        "aliases": {
+          "en": [
+            "De schilderkunst",
+            "Painter in his Studio",
+            "The Allegory of Painting",
+            "The Artist in his Studio",
+            "Vermeer dans son Atelier"
+          ],
+          "fr": ["L'Allégorie de la peinture", "L'Atelier", "La Peinture"]
+        },
+        "id": "Q588695",
+        "labels": {
+          "en": "The Art of Painting",
+          "fr": "L'Art de la peinture"
+        },
+        "series": null,
+        "views": 1760
+      },
+      {
+        "aliases": {
+          "en": ["The Astrologer"],
+          "fr": ["L'Astrologue"]
+        },
+        "id": "Q544315",
+        "labels": {
+          "en": "The Astronomer",
+          "fr": "L'Astronome"
+        },
+        "series": null,
+        "views": 1674
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q1216387",
+        "labels": {
+          "en": "The Lacemaker",
+          "fr": "La Dentellière"
+        },
+        "series": null,
+        "views": 1348
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q700251",
+        "labels": {
+          "en": "Girl Reading a Letter at an Open Window",
+          "fr": "La Liseuse à la fenêtre"
+        },
+        "series": null,
+        "views": 1278
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q166937",
+        "labels": {
+          "en": "Woman in Blue Reading a Letter",
+          "fr": "La Femme en bleu lisant une lettre"
+        },
+        "series": null,
+        "views": 901
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q45130",
+        "labels": {
+          "en": "The Geographer",
+          "fr": "Le Géographe"
+        },
+        "series": null,
+        "views": 840
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "De Nachtwacht",
+          "Militia Company of District II under the Command of Captain Frans Banninck Cocq",
+          "Nachtwacht",
+          "Night Watch",
+          "The Company of Captain Franz Banning Cocq",
+          "The Company of Frans Banning Cocq and Willem van Ruytenburgh, known as The Night Watch",
+          "The Militia Company of Captain Frans Banning Cocq",
+          "The Nightwatch",
+          "The Shooting Company of Frans Banning Cocq and Willem van Ruytenburch"
+        ],
+        "fr": [
+          "La Compagnie de Frans Banninck Cocq (Cock) et Willem van Ruytenburgh, dite la La Ronde de nuit",
+          "La Compagnie de Frans Banning Cocq et Willem van Ruytenburch"
+        ]
+      },
+      "id": "Q219831",
+      "labels": {
+        "en": "The Night Watch",
+        "fr": "La Ronde de nuit"
+      },
+      "why": {
+        "en": "A painting by Rembrandt",
+        "fr": "Un tableau de Rembrandt"
+      }
+    },
+    "id": "paintings-by:Q41264",
+    "labels": {
+      "en": "Paintings by Johannes Vermeer",
+      "fr": "Les tableaux de Johannes Vermeer"
     }
   },
   {

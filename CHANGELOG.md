@@ -79,6 +79,13 @@ one part.
 
 ### Improvements
 
+- `[Server]` **Black square's Wikidata themes are ones a table can play.**
+  Four themes whose answers an ordinary table cannot name three of are gone —
+  Queen's albums and the films of Francis Ford Coppola, Wes Anderson and Sam
+  Raimi — and Monet and Vermeer are back. The painters now hide the titles a
+  table names first, missing until now because they are filed as a mural or a
+  series of versions: _La Cène_, _Les Tournesols_, _La Chambre à Arles_, _La
+  Vierge aux rochers_, _Les Nymphéas_ counted once.
 - `[Game]` **A room's screen standing tall seats its teams in the height.**
   On a television on its side, four teams now stand two by two and five or
   six three by two, their names larger and on one line, instead of four

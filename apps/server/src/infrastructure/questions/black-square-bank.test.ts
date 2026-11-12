@@ -87,7 +87,7 @@ describe('the black-square bank', () => {
   it('[blacksquare] parses every theme, each id once', () => {
     const ids = bankedBlackSquareThemes().map(({ id }) => id)
 
-    expect(ids.length).toBeGreaterThanOrEqual(60)
+    expect(ids.length).toBeGreaterThanOrEqual(55)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
