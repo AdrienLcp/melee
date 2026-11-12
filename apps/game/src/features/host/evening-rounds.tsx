@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Button as AriaButton,
   DropIndicator,
@@ -69,6 +69,13 @@ import { EveningStamp, eveningStampOf } from './evening-stamp'
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './evening-rounds.sass'
+
+/** The rounds to come the running order shows before its fold. */
+const ROWS_SHOWN_FOLDED = 5
+/** Fewer rows past the first ones than this show whole, with no fold to open. */
+const FEWEST_ROWS_WORTH_FOLDING = 3
+const ROWS_BEFORE_THE_FOLD = '[data-key]:not([data-folded])'
+const FOLDED_OR_PAST_IT = '[data-folded], [data-folded] ~ *'
 
 const roundCountHolding = (needed: number): number =>
   ROUND_COUNT_STEPS.find((step) => step >= needed) ??
@@ -497,6 +504,11 @@ const OrderedRounds: React.FC<{
   const list = useRef<HTMLDivElement>(null)
   const order = rounds.map((round) => round.id).join(' ')
   const isEditable = actions.canMove
+  const [isUnfolded, setIsUnfolded] = useState(false)
+  const foldedCount = rounds.length - ROWS_SHOWN_FOLDED
+  const isFoldable = foldedCount >= FEWEST_ROWS_WORTH_FOLDING
+  const isFolded = isFoldable && !isUnfolded
+  const shownFoldedCount = useLastShown(isFoldable ? foldedCount : null)
 
   const arrange = ({ at, ids }: { at: number; ids: ReadonlySet<string> }) => {
     remember()
@@ -513,10 +525,34 @@ const OrderedRounds: React.FC<{
     onMove: (id, at) => {
       arrange({ at, ids: new Set([id]) })
     },
-    order
+    order,
+    rows: ROWS_BEFORE_THE_FOLD
   })
 
   const remember = useRowsTravel({ list, order, pace: 'reorder' })
+
+  useEffect(() => {
+    const element = list.current
+
+    if (element === null) {
+      return
+    }
+
+    const unfoldOnFocusPastTheFold = (event: FocusEvent) => {
+      if (
+        event.target instanceof Element &&
+        event.target.closest(FOLDED_OR_PAST_IT) !== null
+      ) {
+        setIsUnfolded(true)
+      }
+    }
+
+    element.addEventListener('focusin', unfoldOnFocusPastTheFold)
+
+    return () => {
+      element.removeEventListener('focusin', unfoldOnFocusPastTheFold)
+    }
+  }, [])
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) => [...keys].map((key) => ({ 'text/plain': String(key) })),
@@ -546,79 +582,111 @@ const OrderedRounds: React.FC<{
   })
 
   return (
-    <GridList
-      aria-label={label}
-      className='order'
-      dragAndDropHooks={dragAndDropHooks}
-      items={rounds}
-      onAction={(key) => {
-        const at = rounds.find((round) => round.id === key)?.at
+    <>
+      <GridList
+        aria-label={label}
+        className='order'
+        dragAndDropHooks={dragAndDropHooks}
+        items={rounds}
+        onAction={(key) => {
+          const at = rounds.find((round) => round.id === key)?.at
 
-        if (at !== undefined) {
-          actions.open(at)
-        }
-      }}
-      ref={list}
-    >
-      {(round) => {
-        const entry = lineUp[round.at]
-        const summary = summaries[round.at]
-        const nameAlone = summary?.nameAlone ?? ''
-        const number = round.roundAt + 1
-        const roundName = translate('host.evening.roundNamed', {
-          name: nameAlone,
-          number
-        })
+          if (at !== undefined) {
+            actions.open(at)
+          }
+        }}
+        ref={list}
+      >
+        {(round) => {
+          const entry = lineUp[round.at]
+          const summary = summaries[round.at]
+          const nameAlone = summary?.nameAlone ?? ''
+          const number = round.roundAt + 1
+          const roundName = translate('host.evening.roundNamed', {
+            name: nameAlone,
+            number
+          })
+          const index = rounds.indexOf(round)
 
-        return (
-          <GridListItem
-            className='order-round'
-            data-entry-at={round.at}
-            data-past-the-end={round.isPastTheEnd || undefined}
-            ref={rowRef}
-            style={entry === undefined ? undefined : spineOf(entry.kind)}
-            textValue={roundName}
-          >
-            {isEditable ? (
-              <AriaButton
-                aria-label={translate('host.evening.drag', {
-                  name: nameAlone,
-                  number
-                })}
-                className='band grip'
-                slot='drag'
-              >
-                {number}
-                <GripIcon />
-              </AriaButton>
-            ) : (
-              <span className='band'>{number}</span>
-            )}
-            {entry !== undefined && <GameIcon game={entry.kind} />}
-            <span className='name'>{summary?.name}</span>
-            {entry !== undefined && (
-              <EntryDetail
-                deck={
-                  rounds.find((next) => next.at === round.at) === round
-                    ? (view.deckSummaries[round.at] ?? null)
-                    : null
-                }
-                game={entry.kind}
-                settings={summary?.settings ?? null}
+          return (
+            <GridListItem
+              className='order-round'
+              data-entry-at={round.at}
+              data-folded={
+                (isFolded && index >= ROWS_SHOWN_FOLDED) || undefined
+              }
+              data-past-the-end={round.isPastTheEnd || undefined}
+              ref={rowRef}
+              style={entry === undefined ? undefined : spineOf(entry.kind)}
+              textValue={roundName}
+            >
+              {isEditable ? (
+                <AriaButton
+                  aria-label={translate('host.evening.drag', {
+                    name: nameAlone,
+                    number
+                  })}
+                  className='band grip'
+                  slot='drag'
+                >
+                  {number}
+                  <GripIcon />
+                </AriaButton>
+              ) : (
+                <span className='band'>{number}</span>
+              )}
+              {entry !== undefined && <GameIcon game={entry.kind} />}
+              <span className='name'>{summary?.name}</span>
+              {entry !== undefined && (
+                <EntryDetail
+                  deck={
+                    rounds.find((next) => next.at === round.at) === round
+                      ? (view.deckSummaries[round.at] ?? null)
+                      : null
+                  }
+                  game={entry.kind}
+                  settings={summary?.settings ?? null}
+                />
+              )}
+              {round.isPastTheEnd && <EveningStamp kind='beyond' played={0} />}
+              <EntryMenu
+                actions={actions}
+                at={round.at}
+                label={roundName}
+                name={nameAlone}
+                row={{ count: rounds.length, index }}
               />
-            )}
-            {round.isPastTheEnd && <EveningStamp kind='beyond' played={0} />}
-            <EntryMenu
-              actions={actions}
-              at={round.at}
-              label={roundName}
-              name={nameAlone}
-              row={{ count: rounds.length, index: rounds.indexOf(round) }}
-            />
-          </GridListItem>
-        )
-      }}
-    </GridList>
+            </GridListItem>
+          )
+        }}
+      </GridList>
+      <div
+        className='order-toggle'
+        data-open={isFoldable || undefined}
+        data-unfolded={isUnfolded || undefined}
+        inert={!isFoldable}
+      >
+        <div>
+          <Button
+            aria-expanded={isUnfolded}
+            icon={<ChevronIcon />}
+            onPress={() => {
+              setIsUnfolded(!isUnfolded)
+            }}
+            size='small'
+            variant='underlined'
+          >
+            <span className='control-label' key={String(isUnfolded)}>
+              {isUnfolded
+                ? translate('host.evening.fold.fewer')
+                : translate('host.evening.fold.more', {
+                    count: shownFoldedCount ?? 0
+                  })}
+            </span>
+          </Button>
+        </div>
+      </div>
+    </>
   )
 }
 

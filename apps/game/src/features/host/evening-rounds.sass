@@ -2,6 +2,10 @@
 @use '../../presentation/styles/fold'
 @use '../../presentation/styles/typography'
 
+$row-opens: var(--transition-base, 0s) var(--ease-out)
+$row-closes: var(--transition-base, 0s) var(--ease-in)
+$row-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
+
 @layer components
   .evening-rounds
     display: flex
@@ -166,8 +170,19 @@
       + .order-round
         border-top: var(--hairline)
 
-      transition: translate var(--transition-fast, 0s) var(--ease-out)
+      overflow: clip
+      transition: translate var(--transition-fast, 0s) var(--ease-out), block-size $row-opens, min-height $row-opens, padding-block $row-opens, border-top-width $row-opens, opacity $row-opens $row-after-the-room
       translate: 0rem var(--drag-shift, 0rem)
+
+      // Folded rows stay in the list, so a drag and the keyboard still walk
+      // every round: the row closes to nothing rather than leaving.
+      &[data-folded]
+        block-size: 0rem
+        border-top-width: 0rem
+        min-height: 0rem
+        opacity: 0
+        padding-block: 0rem
+        transition: translate var(--transition-fast, 0s) var(--ease-out), block-size $row-closes $row-after-the-room, min-height $row-closes $row-after-the-room, padding-block $row-closes $row-after-the-room, border-top-width $row-closes $row-after-the-room, opacity var(--transition-fast, 0s) var(--ease-in)
 
       &[data-lifted]
         background: var(--field)
@@ -244,8 +259,22 @@
       overflow-clip-margin: var(--space-xs)
 
     // In the list's own grid, which has no gap to hand back.
-    .add
+    .add,
+    .order-toggle
       @include fold.opens-in-column(0rem)
+
+    .order-toggle > *
+      border-top: var(--hairline)
+      padding: var(--space-xs) var(--space-s)
+
+    .order-toggle .control-label
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+
+    .order-toggle .control-icon
+      transition: rotate var(--transition-base, 0s) var(--ease-out)
+
+    .order-toggle[data-unfolded] .control-icon
+      rotate: 180deg
 
     // The draw folds away under *From the top*.
     .past-the-plan

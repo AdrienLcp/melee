@@ -27,6 +27,11 @@ type PointerReorderOptions = {
   onMove: (key: string, at: number) => void
   /** The rows' keys in the order drawn, joined: the drop holds until it changes. */
   order: string
+  /**
+   * Matches the rows a dragged row steps among and lands between, which must
+   * lead the list; every `[data-key]` row by default.
+   */
+  rows?: string
 }
 
 type Drag = {
@@ -72,7 +77,8 @@ export const usePointerReorder = ({
   grip,
   list,
   onMove,
-  order
+  order,
+  rows: rowSelector = '[data-key]'
 }: PointerReorderOptions): void => {
   const land = useEffectEvent(onMove)
   const dropOrder = useEffectEvent(() => order)
@@ -125,7 +131,7 @@ export const usePointerReorder = ({
         return
       }
 
-      const rows = [...element.querySelectorAll<HTMLElement>('[data-key]')]
+      const rows = [...element.querySelectorAll<HTMLElement>(rowSelector)]
       const rects = rows.map((each) => each.getBoundingClientRect())
       const from = rows.indexOf(row)
       const next = rects[from + 1] ?? rects[from - 1]
@@ -208,19 +214,23 @@ export const usePointerReorder = ({
 
     element.addEventListener('dragstart', onNativeDragStart, true)
     element.addEventListener('pointerdown', onPointerDown)
-    element.addEventListener('pointermove', onPointerMove)
-    element.addEventListener('pointerup', onPointerEnd)
-    element.addEventListener('pointercancel', onPointerEnd)
+    // On the document, not the list: react-aria's press on the grip releases
+    // the pointer capture taken above, so a drop past the list's edge — over
+    // the panel's sticky foot — never reached it and left the row lifted.
+    const { ownerDocument } = element
+    ownerDocument.addEventListener('pointermove', onPointerMove)
+    ownerDocument.addEventListener('pointerup', onPointerEnd)
+    ownerDocument.addEventListener('pointercancel', onPointerEnd)
 
     return () => {
       element.removeEventListener('dragstart', onNativeDragStart, true)
       element.removeEventListener('pointerdown', onPointerDown)
-      element.removeEventListener('pointermove', onPointerMove)
-      element.removeEventListener('pointerup', onPointerEnd)
-      element.removeEventListener('pointercancel', onPointerEnd)
+      ownerDocument.removeEventListener('pointermove', onPointerMove)
+      ownerDocument.removeEventListener('pointerup', onPointerEnd)
+      ownerDocument.removeEventListener('pointercancel', onPointerEnd)
       if (drag !== null) {
         settle(drag.rows)
       }
     }
-  }, [grip, list])
+  }, [grip, list, rowSelector])
 }

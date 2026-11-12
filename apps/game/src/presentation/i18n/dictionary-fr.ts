@@ -842,6 +842,14 @@ export const FR_DICTIONARY = defineDictionary({
       earlier: 'Plus tôt',
       fills: 'Remplit la partie',
       fixed: 'Déjà jouée : elle ne change plus.',
+      fold: {
+        fewer: 'Replier',
+        more: defineTranslation('{count:plural}', {
+          plural: {
+            count: { one: 'Voir la suivante', other: 'Voir les {?} suivantes' }
+          }
+        })
+      },
       later: 'Plus tard',
       next: 'La suite',
       once: 'Se joue une fois',

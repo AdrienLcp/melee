@@ -886,6 +886,14 @@ export const EN_DICTIONARY = defineDictionary({
       earlier: 'Earlier',
       fills: 'Fills the rest',
       fixed: 'Already played: it no longer changes.',
+      fold: {
+        fewer: 'Show fewer',
+        more: defineTranslation('{count:plural}', {
+          plural: {
+            count: { one: 'Show the next one', other: 'Show the next {?}' }
+          }
+        })
+      },
       later: 'Later',
       next: 'Still to come',
       once: 'Played once',

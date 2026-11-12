@@ -116,6 +116,14 @@ one part.
   so a figure never changes shape mid-round. A floor held until the host judges
   counts `59`, then `1:00`.
 - **The menu opens at the first press.** A touch screen has no hover, so its
+- **[Game] The running order shows the next five rounds.** A Mêlée générale
+  line-up plans some fifty rows, and the side panel's draw, _Ajouter un jeu_,
+  the level and the saved line-ups sat three thousand pixels below them. The
+  rows past the fifth now fold inside the same list, opened by _Voir les N
+  suivantes_ and closed by _Replier_; the keyboard still walks every row and
+  opens the fold as it reaches one, and a line-up of seven rows or fewer shows
+  whole, with no toggle. A row dragged past the list's edge — over the
+  panel's sticky foot — is now dropped there rather than left lifted.
   first press fetched the menu's code — some twenty files — and showed nothing
   until they landed, a second or more on a phone. In a room the menu is now
   fetched once the page is quiet; a front door, which draws none of a seat's
