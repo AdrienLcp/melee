@@ -28,11 +28,14 @@
       font-size: calc(var(--token-size) * 0.66)
       grid-area: 1 / 1
 
-      // The second struck off sinks into the token under the next one.
+      // The second struck off sinks into the token under the next one, gone
+      // well before the next has settled: two figures half-visible together
+      // read as a smudge. Linear, because `--ease-in` held the old figure
+      // whole through the new one's arrival and `--ease-out` cut it.
       &[data-leaving]
         --travel-scale: 0.7
 
-        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+        animation: page-leave var(--transition-fast, 0s) linear forwards
 
     // The count's last quarter-second lifts the token off, so it is gone as
     // the round's snapshot lands rather than cut out from under it.

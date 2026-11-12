@@ -336,6 +336,10 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The countdown's old figure gets out of the new one's way**: it
+  fades in a beat rather than lingering behind the next for a quarter of a
+  second.
+
 - `[Game]` **A focused field's ring shows whole in Petit Bac's sheet and vote**,
   where the box that scrolls them cut it under its bar and below the last line.
 
