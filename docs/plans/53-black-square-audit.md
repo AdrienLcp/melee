@@ -149,7 +149,7 @@ so every theme not named above banks the same nine.
 `frwiki-yearly-views.ts` reads each truth's twelve whole months from the
 Wikimedia REST per-article endpoint, one request per article (2 629 for the
 59 themes, about twenty minutes), cached in `scripts/.cache` under the
-window's own name (`frwiki-monthly-views-<from>-<until>.json`), so a rebuild
+window's own name (`frwiki-monthly-views-by-stamp-<from>-<until>.json`), so a rebuild
 next month reads a new year and a second build this month asks nothing.
 Only the truths are measured: every theme pins its black word, so a
 candidate's views only order the build's review line, which keeps the
@@ -252,11 +252,33 @@ _Kean_ and _L'Album de Bilbo le Hobbit_, _Ainulindalë_, _Roverandom_ —
 whatever the rule, since the nine already ended on _Pauline_ and _Le Livre
 des contes perdus_. The bank floor in the test stays 55.
 
-**Known gap — an article renamed during the year loses its old months.**
-The per-article endpoint does not follow a redirect, so _Frodo Bessac_ (the
-new translation's name since October 2026) reads two hundred a month and
-Frodo and Sam are out of _Les personnages du Seigneur des anneaux_. Summing
-a renamed article's old titles needs its redirects, one more request per
-title; not done.
+**An article renamed during the year keeps its old months — done
+12/11/2026.** The per-article endpoint counts a title, not an article:
+_Frodo Bessac_ (the new translation's name since 15 October 2026) read two
+hundred a month as a redirect while the article was _Frodon Sacquet_, and
+Frodo and Sam were out of _Les personnages du Seigneur des anneaux_. Each
+truth's months are now summed, month by month, over its title and every
+title the article **left during the window**: a redirect to it whose page id
+is younger than the window's first page (a move always leaves a fresh
+redirect page, so the five thousand older redirects are skipped unasked) and
+whose move log holds a move inside the window — 37 titles, left by 34
+articles. Every redirect was the cheaper rule and the wrong one: it credits
+an article with whatever points at it, _Isengard_ with _Orthanc_, Frodo with
+_Porteur de l'Anneau_ (created in 2026, never his title). A title cached
+before a rename is a redirect now and is asked of Wikidata again
+(`refreshedFrenchTitlesOf`): _Bilbon Sacquet_ was still in
+`frwiki-titles.json` two weeks after the article became _Bilbo Bessac_. A
+sitelink Wikidata keeps on a redirect on purpose (_Rickon Stark_, filed in a
+list of characters) is measured alone, as before. The months are cached by
+stamp, so two titles sum month by month.
+
+The rebuild moved renamed articles and what their arrival reshuffled, and
+nothing else: _Frodon Sacquet_ (medium, ninth), _Saruman_ (medium, still
+_Saroumane_ for most of the year) and _Samsagace Gamegie_ (hard) join the
+Lord of the Rings, Bilbo gains seven hundred; _Ajax_ and _Porto_ join the
+Champions League (both cached under a former name), _Duel_ Spielberg,
+_Monstres contre Aliens_ DreamWorks, _Les Spécialistes_ Guy Ritchie; _Iron
+Man_ gains a fifth from _Iron Man (film)_. No answer left a pool; the tiers
+around each newcomer shifted by rank.
 
 No screen changed: a cell's pay and pips read the dealt tiers as before.

@@ -24,7 +24,7 @@ import {
  * clears. Traffic is not bot-inflated, and it is what "the room has heard of it"
  * actually means.
  */
-const FRENCH_WIKIPEDIA_API = 'https://fr.wikipedia.org/w/api.php'
+export const FRENCH_WIKIPEDIA_API = 'https://fr.wikipedia.org/w/api.php'
 
 /** Their documented ceiling on `prop=pageviews`, and the widest window it serves. */
 const PAGEVIEW_DAYS = 60
@@ -247,11 +247,41 @@ export const frenchTitlesOf = async ({
 
   const asked = [...new Set(entityIds)]
   const unresolved = asked.filter((entityId) => !(entityId in titles))
-  const queries = chunked({ items: unresolved, size: ENTITIES_PER_QUERY })
 
   console.info(
     `  ${label}: ${asked.length} entities, ${unresolved.length} without a known article`
   )
+
+  await resolveTitlesInto({ entityIds: unresolved, titles })
+
+  return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
+}
+
+/**
+ * The same titles asked of Wikidata again, past the cache, for entities whose
+ * cached title has since become a redirect: Wikidata follows a page move, the
+ * cache keyed by entity does not, and _Bilbon Sacquet_ stayed there after the
+ * article became _Bilbo Bessac_.
+ */
+export const refreshedFrenchTitlesOf = async (
+  entityIds: readonly string[]
+): Promise<Map<string, string | null>> => {
+  const titles = await readCachedEntries(TITLES_CACHE, z.string().nullable())
+  const asked = [...new Set(entityIds)]
+
+  await resolveTitlesInto({ entityIds: asked, titles })
+
+  return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
+}
+
+const resolveTitlesInto = async ({
+  entityIds,
+  titles
+}: {
+  entityIds: readonly string[]
+  titles: Record<string, string | null>
+}): Promise<void> => {
+  const queries = chunked({ items: entityIds, size: ENTITIES_PER_QUERY })
 
   for (const [index, query] of queries.entries()) {
     const found = await titlesOf(query)
@@ -265,8 +295,6 @@ export const frenchTitlesOf = async ({
       console.info(`    titles ${index + 1}/${queries.length} queries`)
     }
   }
-
-  return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
 }
 
 /**

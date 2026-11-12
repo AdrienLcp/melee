@@ -187,7 +187,7 @@
         },
         "series": null,
         "tier": "easy",
-        "views": 211458
+        "views": 211632
       },
       {
         "aliases": {
@@ -298,7 +298,7 @@
           "fr": "A.I. Intelligence artificielle"
         },
         "series": null,
-        "tier": "medium",
+        "tier": "easy",
         "views": 69690
       },
       {
@@ -414,7 +414,7 @@
           "fr": "Rencontres du troisième type"
         },
         "series": null,
-        "tier": "hard",
+        "tier": "medium",
         "views": 49656
       },
       {
@@ -489,6 +489,20 @@
         "series": null,
         "tier": "hard",
         "views": 42612
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q583407",
+        "labels": {
+          "en": "Duel",
+          "fr": "Duel"
+        },
+        "series": null,
+        "tier": "hard",
+        "views": 38160
       },
       {
         "aliases": {
@@ -3004,6 +3018,20 @@
     "answers": [
       {
         "aliases": {
+          "en": [],
+          "fr": ["In the Grey"]
+        },
+        "id": "Q123172835",
+        "labels": {
+          "en": "In the Grey",
+          "fr": "Les Spécialistes"
+        },
+        "series": null,
+        "tier": "easy",
+        "views": 80970
+      },
+      {
+        "aliases": {
           "en": ["Bush", "Gentlemen", "Toff Guys"],
           "fr": ["Bush", "Les Gentlemen", "Toff Guys"]
         },
@@ -3074,7 +3102,7 @@
           "fr": "Un homme en colère"
         },
         "series": null,
-        "tier": "easy",
+        "tier": "medium",
         "views": 42396
       },
       {
@@ -4532,7 +4560,7 @@
           "fr": "Spirit, l'étalon des plaines"
         },
         "series": "Q106519651",
-        "tier": "medium",
+        "tier": "easy",
         "views": 39180
       },
       {
@@ -4621,7 +4649,7 @@
           "fr": "Sinbad : La Légende des sept mers"
         },
         "series": null,
-        "tier": "hard",
+        "tier": "medium",
         "views": 22776
       },
       {
@@ -4693,6 +4721,20 @@
         "series": "Q104525874",
         "tier": "hard",
         "views": 14412
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Monster vs Alien"]
+        },
+        "id": "Q681918",
+        "labels": {
+          "en": "Monsters vs. Aliens",
+          "fr": "Monstres contre Aliens"
+        },
+        "series": null,
+        "tier": "hard",
+        "views": 12678
       }
     ],
     "blackWord": {
@@ -5155,7 +5197,7 @@
         },
         "series": null,
         "tier": "easy",
-        "views": 169014
+        "views": 170472
       },
       {
         "aliases": {
@@ -5282,6 +5324,20 @@
           "en": [],
           "fr": []
         },
+        "id": "Q192724",
+        "labels": {
+          "en": "Iron Man",
+          "fr": "Iron Man"
+        },
+        "series": "Q16642701",
+        "tier": "medium",
+        "views": 75204
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
         "id": "Q23894626",
         "labels": {
           "en": "Black Widow",
@@ -5290,20 +5346,6 @@
         "series": null,
         "tier": "medium",
         "views": 64830
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q192724",
-        "labels": {
-          "en": "Iron Man",
-          "fr": "Iron Man"
-        },
-        "series": "Q16642701",
-        "tier": "medium",
-        "views": 61182
       },
       {
         "aliases": {
@@ -7992,7 +8034,7 @@
           "fr": "AC Milan"
         },
         "series": null,
-        "tier": "hard",
+        "tier": "medium",
         "views": 153132
       },
       {
@@ -8082,7 +8124,43 @@
         },
         "series": null,
         "tier": "hard",
-        "views": 103080
+        "views": 119448
+      },
+      {
+        "aliases": {
+          "en": ["Ajax", "Ajax Amsterdam", "Amsterdamsche Football Club Ajax"],
+          "fr": ["AFC Ajax", "AFC Ajax Amsterdam", "Ajax d'Amsterdam"]
+        },
+        "id": "Q81888",
+        "labels": {
+          "en": "AFC Ajax",
+          "fr": "Ajax Amsterdam"
+        },
+        "series": null,
+        "tier": "hard",
+        "views": 96816
+      },
+      {
+        "aliases": {
+          "en": [
+            "F.C. Porto",
+            "F.C.P.",
+            "F.C.Porto",
+            "FCP",
+            "FCPorto",
+            "Futebol Clube do Porto",
+            "Porto"
+          ],
+          "fr": ["F.C. Porto", "FC Porto"]
+        },
+        "id": "Q128446",
+        "labels": {
+          "en": "FC Porto",
+          "fr": "Futebol Clube do Porto"
+        },
+        "series": null,
+        "tier": "hard",
+        "views": 95694
       },
       {
         "aliases": {
@@ -10360,6 +10438,20 @@
       },
       {
         "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q131405294",
+        "labels": {
+          "en": "Never Flinch",
+          "fr": "Never Flinch"
+        },
+        "series": null,
+        "tier": "easy",
+        "views": 23454
+      },
+      {
+        "aliases": {
           "en": ["The Shining (novel)"],
           "fr": ["Jack Torrance", "Shining, l'enfant lumiere"]
         },
@@ -10371,20 +10463,6 @@
         "series": null,
         "tier": "easy",
         "views": 23286
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "id": "Q131405294",
-        "labels": {
-          "en": "Never Flinch",
-          "fr": "Never Flinch"
-        },
-        "series": null,
-        "tier": "easy",
-        "views": 22356
       },
       {
         "aliases": {
@@ -12254,8 +12332,22 @@
           "fr": "Isildur"
         },
         "series": null,
-        "tier": "medium",
+        "tier": "easy",
         "views": 31128
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Frodo Bessac", "Frodo Sacquet", "Frodon"]
+        },
+        "id": "Q177329",
+        "labels": {
+          "en": "Frodo Baggins",
+          "fr": "Frodon Sacquet"
+        },
+        "series": null,
+        "tier": "medium",
+        "views": 30654
       },
       {
         "aliases": {
@@ -12293,6 +12385,20 @@
         "series": null,
         "tier": "medium",
         "views": 28128
+      },
+      {
+        "aliases": {
+          "en": ["Curunír", "Saruman of Many Colors", "Saruman the White"],
+          "fr": ["Curunír", "Saroumane", "Saroumane le blanc", "Sharcoux"]
+        },
+        "id": "Q216489",
+        "labels": {
+          "en": "Saruman",
+          "fr": "Saruman"
+        },
+        "series": null,
+        "tier": "medium",
+        "views": 27510
       },
       {
         "aliases": {
@@ -12348,7 +12454,27 @@
         },
         "series": null,
         "tier": "medium",
-        "views": 21042
+        "views": 21756
+      },
+      {
+        "aliases": {
+          "en": ["Sam", "Sam Gamgee", "Samwise"],
+          "fr": [
+            "Sam Gamegie",
+            "Sam Gamgie",
+            "Samsagace",
+            "Samsaget",
+            "Samsaget Gamgie"
+          ]
+        },
+        "id": "Q219473",
+        "labels": {
+          "en": "Samwise Gamgee",
+          "fr": "Samsagace Gamegie"
+        },
+        "series": null,
+        "tier": "hard",
+        "views": 21498
       },
       {
         "aliases": {

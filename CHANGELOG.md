@@ -326,6 +326,14 @@ one part.
 
 ### Fixes
 
+- `[Server]` **Black square counts a renamed article's readers.** French
+  Wikipedia counts views by title, so an article renamed during the year lost
+  every month it spent under its old name, and Frodo and Sam — _Frodo Bessac_
+  and _Samsaget Gamgie_ since October — had dropped out of the Lord of the
+  Rings characters. A theme's answers now sum the months under every title
+  their article left during the year, and a title renamed since it was looked
+  up is asked again: Frodo, Sam and Saruman are back, and Ajax, Porto,
+  Spielberg's _Duel_ and a few more films are found where a rename hid them.
 - `[Game]` **A crowd of far-off guesses no longer pushes Le juste chiffre's
   reveal off a wall.** Every guess past three times off stands on the same
   spot, and the pile of pawns there grew a lane per guess: fourteen of them
