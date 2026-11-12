@@ -146,15 +146,37 @@ const restingLayerOf = (row: HTMLElement): number => {
   return Number.isNaN(layer) ? 0 : layer
 }
 
-const isTravellingInHeight = (row: Element): boolean =>
-  row
-    .getAnimations()
-    .some(
-      ({ effect, id }) =>
-        id === TRAVEL_ID &&
-        effect instanceof KeyframeEffect &&
-        effect.getKeyframes().some((keyframe) => 'height' in keyframe)
+type Travel = { animation: Animation; isResized: boolean }
+
+// Kept by hand rather than read back through `getAnimations()`, which walks
+// every animation in the document: a view transition over a hundred-case
+// board holds five hundred, and eight calls froze the side panel for seconds.
+const travelsOf = new WeakMap<Element, readonly Travel[]>()
+
+const runningTravelsOf = (row: Element): readonly Travel[] =>
+  travelsOf.get(row) ?? []
+
+const keepTravel = ({
+  row,
+  travel
+}: {
+  row: Element
+  travel: Travel
+}): void => {
+  const forget = (): void => {
+    travelsOf.set(
+      row,
+      runningTravelsOf(row).filter((kept) => kept !== travel)
     )
+  }
+
+  travelsOf.set(row, [...runningTravelsOf(row), travel])
+  travel.animation.addEventListener('finish', forget, { once: true })
+  travel.animation.addEventListener('cancel', forget, { once: true })
+}
+
+const isTravellingInHeight = (row: Element): boolean =>
+  runningTravelsOf(row).some(({ isResized }) => isResized)
 
 /** A row arriving, leaving or folding a piece open is resized by that motion, never glided. */
 const isMovedOtherwise = (row: Element): boolean =>
@@ -208,13 +230,15 @@ const play = ({
       ? [{ height: `${was.height}px` }, { height: `${is.height}px` }]
       : [{}, {}]
 
-    row.animate(
+    const animation = row.animate(
       [
         { transform: `translate(${x}px, ${y}px)`, zIndex, ...heights[0] },
         { transform: 'none', zIndex, ...heights[1] }
       ],
       { ...timing, id: TRAVEL_ID }
     )
+
+    keepTravel({ row, travel: { animation, isResized } })
   }
 }
 
@@ -224,9 +248,7 @@ const play = ({
  * where it is.
  */
 const haltTravelOf = (row: HTMLElement): Halt | null => {
-  const travels = row
-    .getAnimations()
-    .filter((animation) => animation.id === TRAVEL_ID)
+  const travels = runningTravelsOf(row)
 
   if (travels.length === 0) {
     return null
@@ -235,8 +257,8 @@ const haltTravelOf = (row: HTMLElement): Halt | null => {
   const shift = new DOMMatrixReadOnly(getComputedStyle(row).transform)
   const height = row.offsetHeight
 
-  for (const travel of travels) {
-    travel.cancel()
+  for (const { animation } of travels) {
+    animation.cancel()
   }
 
   return { height, x: shift.m41, y: shift.m42 }
@@ -371,6 +393,7 @@ export const useRowsTravel = ({
       const now = measureLaidOut(element)
       const kept = new Map(now)
       const before = new Map<string, Box>()
+      const isSameWidth = Math.abs(previous.width - width) < MIN_TRAVEL_PX
 
       for (const row of keyedRowsOf(element)) {
         const key = row.dataset.key ?? ''
@@ -387,8 +410,9 @@ export const useRowsTravel = ({
         }
 
         if (
-          isMovedOtherwise(row) ||
-          Math.abs(drawn.height - is.height) < MIN_TRAVEL_PX
+          !isSameWidth ||
+          Math.abs(drawn.height - is.height) < MIN_TRAVEL_PX ||
+          isMovedOtherwise(row)
         ) {
           continue
         }
@@ -405,7 +429,7 @@ export const useRowsTravel = ({
 
       lastDrawn.current = { boxes: kept, width }
 
-      if (before.size > 0 && Math.abs(previous.width - width) < MIN_TRAVEL_PX) {
+      if (before.size > 0) {
         play({ before, list: element, now, pace })
       }
     })

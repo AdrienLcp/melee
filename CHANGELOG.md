@@ -279,6 +279,10 @@ one part.
 - `[Game]` **An empty seat in the lobby is a dashed outline again.** The
   pawns waiting in the box were drawn solid, in the first pawn's colour, as
   if every empty seat were taken.
+- `[Game]` **The side panel folds at once over a long board.** On a board of
+  a hundred cases the panel took seconds to open or close: the lobby's empty
+  seats asked the browser for their running motions while the fold moved
+  every case, and each answer walked hundreds of them.
 - `[Game]` **A seated host's field and a long name keep to a phone lying
   down.** On a console held sideways, what a guess banked or missed rose
   under the menu once its column ran short: the menu's corner now comes off
