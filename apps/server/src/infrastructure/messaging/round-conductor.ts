@@ -14,6 +14,7 @@ import {
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
 import {
+  nextDeckBlackSquareTheme,
   nextDeckPair,
   nextDeckQuantity,
   nextDeckQuestion,
@@ -469,12 +470,24 @@ export const beginRound = async (
       return
     }
 
-    const theme = drawBlackSquareTheme({
-      difficulty: game.difficulty,
-      playedIds: room.playedContentIds
+    const fromDeck = nextDeckBlackSquareTheme({
+      lineUpAt: room.settings.lineUpAt,
+      room
     })
+    const banked =
+      fromDeck === null
+        ? drawBlackSquareTheme({
+            difficulty: game.difficulty,
+            playedIds: room.playedContentIds
+          })
+        : null
+    const dealt =
+      fromDeck ??
+      (banked === null
+        ? null
+        : { playedId: playedBlackSquareThemeId(banked.id), theme: banked })
 
-    if (theme === null) {
+    if (dealt === null) {
       tellHost(engine, {
         code: 'no_content_available',
         message: 'Every black-square theme has been played in this room'
@@ -484,14 +497,14 @@ export const beginRound = async (
       return
     }
 
-    room.playedContentIds.add(playedBlackSquareThemeId(theme.id))
+    room.playedContentIds.add(dealt.playedId)
 
     openRound({
       content: blackSquareContent({
         answerCount: game.answerCount,
         doublesLoneFinds:
           game.doublesLoneFinds && room.settings.mode.kind === 'typed',
-        theme
+        theme: dealt.theme
       }),
       id: newRoundId(),
       now: engine.now(),

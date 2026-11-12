@@ -1,11 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
 import { franchiseStemOf } from '@melee/core/blacksquare/franchise-stem'
+import { lineGraderFor } from '@melee/core/blacksquare/line-match'
 import {
-  type LineGrade,
-  lineGraderFor
-} from '@melee/core/blacksquare/line-match'
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+  blackWordCollisionsOf,
+  misgradedNamesOf as misgradedThemeNamesOf,
+  repeatedFirstWordsOf,
+  thinTiersOf
+} from '@melee/core/blacksquare/theme-checks'
 
 import {
   authoredBlackSquareSources,
@@ -53,35 +55,15 @@ type GradedTheme = {
   id: string
 }
 
-/**
- * Every name of a theme graded the way a round grades it, one answer dealt and
- * the rest left out: each must find its own cell, the black word must land on
- * itself, and a true answer the deal left out must find nothing at all.
- */
+/** Every name of a theme a round grades otherwise than it should, the answer dealt alone named. */
 const misgradedNamesOf = ({ answers, blackWord, id }: GradedTheme): string[] =>
-  answers.flatMap((dealt, dealtIndex) => {
-    const grade = lineGraderFor({
-      answers: [namesOf(dealt)],
-      blackWord: namesOf(blackWord),
-      leftOut: answers.flatMap((other, index) =>
-        index === dealtIndex ? [] : namesOf(other)
-      )
-    })
-    const misgraded = (line: string, expected: LineGrade['kind']): string[] =>
-      grade(line).kind === expected
-        ? []
-        : [`${id}: ${line} beside ${dealt.labels.en}`]
-
-    return [
-      ...namesOf(dealt).flatMap((line) => misgraded(line, 'cells')),
-      ...namesOf(blackWord).flatMap((line) => misgraded(line, 'blackWord')),
-      ...answers.flatMap((other, index) =>
-        index === dealtIndex
-          ? []
-          : namesOf(other).flatMap((line) => misgraded(line, 'nothing'))
-      )
-    ]
-  })
+  misgradedThemeNamesOf({
+    answers: answers.map(namesOf),
+    blackWord: namesOf(blackWord)
+  }).map(
+    ({ dealt, line }) =>
+      `${id}: ${line} beside ${answers[dealt]?.labels.en ?? ''}`
+  )
 
 describe('the black-square bank', () => {
   it('[blacksquare] parses every theme, each id once', () => {
@@ -152,20 +134,12 @@ describe('the black-square bank', () => {
   it('[blacksquare] never grades a name of the black word as one of the answers', () => {
     const collisions = bankedBlackSquareThemes().flatMap(
       ({ answers, blackWord, id }) =>
-        namesOf(blackWord).flatMap((guess) =>
-          answers
-            .filter(
-              (answer) =>
-                gradeQuizGuess({
-                  guess,
-                  question: {
-                    accepted: namesOf(answer),
-                    answer: answer.labels.fr,
-                    decoys: namesOf(blackWord)
-                  }
-                }).isCorrect
-            )
-            .map((answer) => `${id}: ${guess} → ${answer.labels.fr}`)
+        blackWordCollisionsOf({
+          answers: answers.map(namesOf),
+          blackWord: namesOf(blackWord)
+        }).map(
+          ({ answer, guess }) =>
+            `${id}: ${guess} → ${answers[answer]?.labels.fr ?? ''}`
         )
     )
 
@@ -258,33 +232,17 @@ const FIRST_WORDS_SHARED_ON_PURPOSE: ReadonlySet<string> = new Set([
   'wild-cats:panthere'
 ])
 
-const firstFrenchWordOf = (label: string): string =>
-  label
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase()
-    .replace(/^(?:(?:le|la|les|the) |l')/u, '')
-    .split(/[\s'’-]+/u)[0] ?? ''
-
 describe('the authored black-square themes', () => {
   it('[blacksquare] writes at least two hundred broad themes by hand', () => {
     expect(authoredBlackSquareThemes().length).toBeGreaterThanOrEqual(200)
   })
 
   it('[blacksquare] hides one answer per thing, never its varieties side by side', () => {
-    const repeated = authoredBlackSquareThemes().flatMap(({ answers, id }) => {
-      const firstWords = answers.map(({ labels }) =>
-        firstFrenchWordOf(labels.fr)
-      )
-
-      return [
-        ...new Set(
-          firstWords.filter((word, index) => firstWords.indexOf(word) !== index)
-        )
-      ]
+    const repeated = authoredBlackSquareThemes().flatMap(({ answers, id }) =>
+      repeatedFirstWordsOf(answers.map(({ labels }) => labels.fr))
         .map((word) => `${id}:${word}`)
         .filter((key) => !FIRST_WORDS_SHARED_ON_PURPOSE.has(key))
-    })
+    )
 
     expect(repeated).toEqual([])
   })
@@ -301,14 +259,11 @@ describe.each(Object.entries(authoredBlackSquareSources))(
     })
 
     it('[blacksquare] pools twelve to twenty answers a theme, every tier at least three', () => {
-      for (const { answers, id } of themes()) {
-        for (const tier of ['easy', 'medium', 'hard'] as const) {
-          expect(
-            answers.filter((answer) => answer.tier === tier).length,
-            `${id} ${tier}`
-          ).toBeGreaterThanOrEqual(3)
-        }
-      }
+      expect(
+        themes().flatMap(({ answers, id }) =>
+          thinTiersOf(answers).map(({ tier }) => `${id} ${tier}`)
+        )
+      ).toEqual([])
     })
 
     it(

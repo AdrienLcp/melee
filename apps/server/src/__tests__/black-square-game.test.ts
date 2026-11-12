@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import type { BlackSquareDeckItem } from '@melee/protocol/deck'
 import { DEFAULT_BLACK_SQUARE_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
 import {
@@ -477,6 +478,136 @@ describe('a black-square round through the seam', () => {
     expect(errorsIn(host).map(({ code }) => code)).toContain(
       'no_content_available'
     )
+  })
+})
+
+const deckAnswer = (label: string, tier: 'easy' | 'medium' | 'hard') => ({
+  aliases: [],
+  label,
+  tier
+})
+
+/** A theme of the table's own: every tier four deep, so nine cells deal three tiers. */
+const FRUITS: BlackSquareDeckItem = {
+  answers: [
+    { aliases: ['Apples'], label: 'Apple', tier: 'easy' },
+    deckAnswer('Banana', 'easy'),
+    deckAnswer('Orange', 'easy'),
+    deckAnswer('Strawberry', 'easy'),
+    deckAnswer('Cherry', 'medium'),
+    deckAnswer('Apricot', 'medium'),
+    deckAnswer('Pineapple', 'medium'),
+    deckAnswer('Kiwi', 'medium'),
+    deckAnswer('Persimmon', 'hard'),
+    { aliases: ['Litchi'], label: 'Lychee', tier: 'hard' },
+    deckAnswer('Pomegranate', 'hard'),
+    deckAnswer('Quince', 'hard')
+  ],
+  blackWord: {
+    aliases: [],
+    label: 'Rhubarb',
+    why: 'A stalk, only cooked like a fruit'
+  },
+  label: 'Fruits'
+}
+
+const FAMILY_BLACK_SQUARE: RoomSettings = {
+  ...BLACK_SQUARE,
+  lineUp: [{ ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 }],
+  lineUpAt: 0
+}
+
+const familyRoom = async (items: BlackSquareDeckItem[]) => {
+  const { code, host, hostToken } = await harness.openRoom(FAMILY_BLACK_SQUARE)
+  const wall = await pairedWall({ code, hostToken })
+  const zoe = await harness.seat({ code, nickname: 'Zoe' })
+
+  await harness.seat({ code, nickname: 'Max' })
+  host.send({ decks: [{ game: 'blacksquare', items }], type: 'host.setDecks' })
+
+  return { host, wall, zoe }
+}
+
+describe('a black square deck', () => {
+  it('[blacksquare] deals the deck’s theme first, in one language, its cells withheld, then the bank', async () => {
+    const { host, wall, zoe } = await familyRoom([FRUITS])
+
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0] != null,
+      'the deck to load'
+    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the theme')
+
+    const roundId = playerView(zoe)?.round?.id ?? ''
+
+    expect(blackSquareRound(playerView(zoe))?.theme).toEqual({
+      en: 'Fruits',
+      fr: 'Fruits'
+    })
+    expect(blackSquareRound(playerView(zoe))?.cellTiers).toEqual([
+      1, 1, 1, 2, 2, 2, 2, 3, 3
+    ])
+
+    zoe.send({
+      answer: { guess: 'litchi', kind: 'typed' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => playerView(zoe)?.yourVerdict?.kind === 'cells',
+      'the alias to find its cell'
+    )
+
+    expect(playerView(zoe)?.yourVerdict).toMatchObject({ foundCells: [8] })
+    for (const peer of [zoe, wall]) {
+      expect(transcriptOf(peer)).not.toContain('Persimmon')
+      expect(transcriptOf(peer)).not.toContain('Rhubarb')
+    }
+
+    const console = hostView(host)?.currentContent
+    const grid = console?.kind === 'blacksquare' ? console.grid : null
+
+    expect(grid?.answers.map(({ labels }) => labels.fr)).toEqual([
+      'Apple',
+      'Banana',
+      'Orange',
+      'Cherry',
+      'Apricot',
+      'Pineapple',
+      'Kiwi',
+      'Persimmon',
+      'Lychee'
+    ])
+    expect(grid?.blackWord.why).toEqual({
+      en: 'A stalk, only cooked like a fruit',
+      fr: 'A stalk, only cooked like a fruit'
+    })
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () =>
+        playerView(zoe)?.phase === 'playing' &&
+        playerView(zoe)?.round?.id !== roundId,
+      'the bank to take over'
+    )
+
+    expect(blackSquareRound(playerView(zoe))?.theme).toEqual(THEME.labels)
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 1 }])
+  })
+
+  it('[blacksquare] refuses a deck whose black word is an answer’s slip', async () => {
+    const { host } = await familyRoom([
+      { ...FRUITS, blackWord: { ...FRUITS.blackWord, label: 'Quinces' } }
+    ])
+
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'invalid_message'),
+      'the slipped black word to be refused'
+    )
+    expect(hostView(host)?.deckSummaries).toEqual([null])
   })
 })
 

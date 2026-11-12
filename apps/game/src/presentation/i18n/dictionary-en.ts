@@ -158,6 +158,14 @@ export const EN_DICTIONARY = defineDictionary({
       nobodyFell: 'Nobody fell for it',
       stamp: 'Black word'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made theme', other: '{?} home-made themes' }
+        }
+      }),
+      spent: 'Home-made themes used up'
+    },
     duration: 'Time per round',
     found: defineTranslation('{count:plural}', {
       plural: { count: { other: '{?} of {total:number} found by the table' } }

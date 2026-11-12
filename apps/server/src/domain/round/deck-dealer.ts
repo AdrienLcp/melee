@@ -1,4 +1,9 @@
-import type { Deck, OwnLinesGame, QuizDeckItem } from '@melee/protocol/deck'
+import type {
+  BlackSquareDeckItem,
+  Deck,
+  OwnLinesGame,
+  QuizDeckItem
+} from '@melee/protocol/deck'
 import type { OwnQuantityAsk } from '@melee/protocol/estimate'
 import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
 import type { HostQuestion } from '@melee/protocol/question'
@@ -15,6 +20,7 @@ import { keyedItemIndexes } from '@melee/core/slate/slate-deck'
 import { dealDeckEvents } from '@melee/core/timeline/deal'
 
 import type { Room } from '@/domain/room/room'
+import type { PooledBlackSquareTheme } from '@/infrastructure/questions/black-square-bank'
 
 const questionOf = ({
   id,
@@ -172,6 +178,61 @@ export const nextDeckPair = ({
         },
         playedId: next.id
       }
+}
+
+/** A theme an entry's deck deals, in the shape a round deals a bank theme from, and the id the room remembers it by. */
+export type DeckBlackSquareTheme = {
+  playedId: string
+  theme: Pick<PooledBlackSquareTheme, 'answers' | 'blackWord' | 'labels'>
+}
+
+const aliasesOf = (aliases: readonly string[]) => ({
+  en: [...aliases],
+  fr: [...aliases]
+})
+
+const pooledThemeOf = ({
+  answers,
+  blackWord,
+  label
+}: BlackSquareDeckItem): DeckBlackSquareTheme['theme'] => ({
+  answers: answers.map((answer) => ({
+    aliases: aliasesOf(answer.aliases),
+    labels: labelsOf(answer.label),
+    tier: answer.tier
+  })),
+  blackWord: {
+    aliases: aliasesOf(blackWord.aliases),
+    labels: labelsOf(blackWord.label),
+    why: labelsOf(blackWord.why)
+  },
+  labels: labelsOf(label)
+})
+
+/**
+ * The next theme the entry at `lineUpAt` brought, in order, written in one
+ * language and shown in every one, and `null` once its deck is spent or it
+ * brought none — the bank then deals. Its cells are tiered as its writer
+ * tiered them: a deck has no traffic to rank by.
+ */
+export const nextDeckBlackSquareTheme = ({
+  lineUpAt,
+  room
+}: {
+  lineUpAt: number | null
+  room: Room
+}): DeckBlackSquareTheme | null => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== 'blacksquare') {
+    return null
+  }
+
+  const next = firstUnplayed({ deckId: held.id, items: held.deck.items, room })
+
+  return next === null
+    ? null
+    : { playedId: next.id, theme: pooledThemeOf(next.item) }
 }
 
 /** A round of dated events an entry's deck deals, and the ids the room remembers them by. */

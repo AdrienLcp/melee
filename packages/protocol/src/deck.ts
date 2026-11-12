@@ -26,6 +26,19 @@ export const TIMELINE_DECK_MAX_ITEMS = 40
 /** The furthest year either way a timeline deck dates an event — a typo guard, not a history lesson. */
 export const TIMELINE_DECK_MAX_YEAR = 9999
 
+/** The most themes one black square deck holds: a theme with its pool and black word is about 0.6 KB deflated, and the link is copied by hand. */
+export const BLACK_SQUARE_DECK_MAX_THEMES = 3
+
+/** The fewest and most answers a black square deck's theme pools, as many as a hand-written bank theme. */
+export const BLACK_SQUARE_DECK_MIN_ANSWERS = 12
+export const BLACK_SQUARE_DECK_MAX_ANSWERS = 20
+
+/** The most other spellings one answer or black word of a black square deck carries. */
+export const BLACK_SQUARE_DECK_MAX_ALIASES = 12
+
+export const BLACK_SQUARE_DECK_NAME_MAX_LENGTH = 60
+export const BLACK_SQUARE_DECK_WHY_MAX_LENGTH = 200
+
 /** The most numbers one estimate deck, or pairs one higher or lower deck, holds: a question and a figure each, copied by hand. */
 export const QUANTITY_DECK_MAX_ITEMS = 30
 
@@ -125,6 +138,52 @@ export const higherLowerDeckItemSchema = z.object({
 
 export type HigherLowerDeckItem = z.infer<typeof higherLowerDeckItemSchema>
 
+const blackSquareDeckNameSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(BLACK_SQUARE_DECK_NAME_MAX_LENGTH)
+
+/** Every other spelling a typed line may take for it; case, accents and a leading article are folded already. */
+const blackSquareDeckAliasesSchema = z
+  .array(blackSquareDeckNameSchema)
+  .max(BLACK_SQUARE_DECK_MAX_ALIASES)
+  .default([])
+
+/**
+ * How obvious an answer is, which prices its cell: `easy` is what a table
+ * says first, `hard` what it finds last and is paid three times for.
+ */
+export const blackSquareDeckTierSchema = z.enum(['easy', 'medium', 'hard'])
+
+/**
+ * One theme an evening brings, written in one language and shown in every
+ * one: a broad label, a pool its round deals cells from by tier, and the
+ * black word that sounds right and voids the round. Everything but the label
+ * waits on the server until the reveal, exactly as a bank theme's.
+ */
+export const blackSquareDeckItemSchema = z.object({
+  answers: z
+    .array(
+      z.object({
+        aliases: blackSquareDeckAliasesSchema,
+        label: blackSquareDeckNameSchema,
+        tier: blackSquareDeckTierSchema
+      })
+    )
+    .min(BLACK_SQUARE_DECK_MIN_ANSWERS)
+    .max(BLACK_SQUARE_DECK_MAX_ANSWERS),
+  blackWord: z.object({
+    aliases: blackSquareDeckAliasesSchema,
+    label: blackSquareDeckNameSchema,
+    /** Why it is wrong, one line for the reveal. */
+    why: z.string().trim().min(1).max(BLACK_SQUARE_DECK_WHY_MAX_LENGTH)
+  }),
+  label: blackSquareDeckNameSchema
+})
+
+export type BlackSquareDeckItem = z.infer<typeof blackSquareDeckItemSchema>
+
 /**
  * One item's answer key, `null` for an item the host marks without one: a
  * memo read on the console, and on the wall only once the host reveals it on
@@ -199,6 +258,14 @@ export const deckSchema = z.discriminatedUnion('game', [
       .array(higherLowerDeckItemSchema)
       .min(1)
       .max(QUANTITY_DECK_MAX_ITEMS)
+  }),
+  /** Themes of the table's own, one a round, each pool dealt by tier like a bank theme's. */
+  z.object({
+    game: z.literal('blacksquare'),
+    items: z
+      .array(blackSquareDeckItemSchema)
+      .min(1)
+      .max(BLACK_SQUARE_DECK_MAX_THEMES)
   })
 ])
 

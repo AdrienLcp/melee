@@ -1,7 +1,7 @@
 # 68 — An evening that brings its own content
 
-**In progress — sessions 1 to 5 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
-played in order. This file holds what they share. Each handoff holds that
+**Done — six sessions**, one handoff each, played in order and deleted as
+each landed. This file holds what they share. Each handoff holds that
 session's own work.
 
 ## Why
@@ -186,6 +186,31 @@ opens.
   refused. Its sides are shuffled as dealt, because whoever writes a pair
   most likely puts the bigger first, and a round is one deck pair or the
   bank's, never both.
+- **A black square deck is the bank's hand-written shape in one language.**
+  Up to three themes an entry, each a label, 12 to 20 answers with their
+  aliases and a black word with its `why`, copied into both locales and dealt
+  before the bank whatever the room's difficulty, since a custom theme counts
+  for no level. A deck has no page views, so its **cells are tiered by its
+  writer**, exactly as a hand-written bank theme's are: `easy` what the table
+  says first, `hard` what it finds last and is paid three times for — which
+  is Adrien's plan-53 rule written as the assistant's instruction: the theme
+  simple, the difficulty in the answers. The cells still go through
+  `dealBlackSquareAnswers`, stratified by tier.
+- **One check for the bank and the deck.** `blacksquare/theme-checks.ts`
+  holds what the bank's tests checked inline — three answers a tier
+  (`thinTiersOf`), one answer per thing (`repeatedFirstWordsOf`), no name of
+  the black word a quiz guess would take for an answer
+  (`blackWordCollisionsOf`) and every name graded as a round grades it
+  (`misgradedNamesOf`, which is also where two answers sharing an alias show)
+  — and the bank's suite calls it. Each consumer decides its own exceptions:
+  the bank keeps its read allowlist of first words shared on purpose, a deck
+  lets two answers share a first word only when it is the theme's own
+  (_Fruit de la passion_ beside _Fruit du dragon_ under _Fruits_).
+- **A deck's black word may not be a slip from an answer.** The round keeps
+  _Cerises_ apart from _Cerise_ (each is the other's rival), so a table typing
+  a true answer a letter off would lose its round to a spelling.
+  `blackWordSlipsOf` refuses it for a deck alone: the bank holds seven such
+  pairs, each read and kept as a knowledge trap (_Guyane_ beside _Guyana_), and nobody reads an assistant's.
 
 ## Not doing, and why
 
@@ -206,15 +231,15 @@ opens.
 
 ## Sessions
 
-| #   | Handoff                             | What it buys                                                                                                |
-| --- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1   | done                                | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
-| 2   | done                                | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
-| 3   | done                                | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
-| 4   | done                                | A timeline deck (family dates), and a slate's answer key as a deck                                          |
-| 5   | done                                | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
-| 6   | `content-06-black-square-themes.md` | A black square theme of the evening's own                                                                   |
+| #   | Handoff | What it buys                                                                                                |
+| --- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | done    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
+| 2   | done    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
+| 3   | done    | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
+| 4   | done    | A timeline deck (family dates), and a slate's answer key as a deck                                          |
+| 5   | done    | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
+| 6   | done    | A black square theme of the evening's own                                                                   |
 
-Every session commits and pushes to `main` with its changelog entry and this
-plan's table updated. `pnpm validate` runs once, after session 6
+Every session committed to `main` with its changelog entry and this plan's
+table updated. `pnpm validate` runs once, after session 6
 (`one-validate-at-the-end`). CI covers each push in between.

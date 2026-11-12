@@ -59,7 +59,7 @@ export const blackSquareContent = ({
 }: {
   answerCount: BlackSquareAnswerCount
   doublesLoneFinds: boolean
-  theme: PooledBlackSquareTheme
+  theme: Pick<PooledBlackSquareTheme, 'answers' | 'blackWord' | 'labels'>
 }): BlackSquareContent => {
   const dealt = dealBlackSquareAnswers({
     count: answerCount,

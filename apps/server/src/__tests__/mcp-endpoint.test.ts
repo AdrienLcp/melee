@@ -286,6 +286,104 @@ describe('mcp endpoint', () => {
     expect(text).toContain('decks[3].items[0]: 38 against 40')
   })
 
+  it('[mcp] carries a black square deck in the link as written', async () => {
+    const answer = (label: string, tier: 'easy' | 'medium' | 'hard') => ({
+      aliases: [],
+      label,
+      tier
+    })
+    const evening = {
+      ...EVENING,
+      decks: [
+        null,
+        null,
+        {
+          game: 'blacksquare',
+          items: [
+            {
+              answers: [
+                answer('Biarritz', 'easy'),
+                answer('Nice', 'easy'),
+                answer('Marseille', 'easy'),
+                { aliases: ['Saint-Malo'], label: 'St-Malo', tier: 'easy' },
+                answer('Annecy', 'medium'),
+                answer('Lyon', 'medium'),
+                answer('Bordeaux', 'medium'),
+                answer('Colmar', 'medium'),
+                answer('Cholet', 'hard'),
+                answer('Toulouse', 'hard'),
+                answer('Rennes', 'hard'),
+                answer('Dijon', 'hard')
+              ],
+              blackWord: {
+                aliases: [],
+                label: 'Paris',
+                why: 'We never went there on holiday'
+              },
+              label: 'Our holidays'
+            }
+          ]
+        }
+      ],
+      lineUp: [...EVENING.lineUp, 'blacksquare']
+    }
+    const { isError, text } = await call('prepare_evening', {
+      evening,
+      locale: 'fr'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
+  it('[mcp] answers a black square theme short of a tier, and a slipped black word, by their path', async () => {
+    const answer = (label: string, tier: 'easy' | 'medium' | 'hard') => ({
+      label,
+      tier
+    })
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [
+          null,
+          null,
+          {
+            game: 'blacksquare',
+            items: [
+              {
+                answers: [
+                  answer('Apple', 'easy'),
+                  answer('Banana', 'easy'),
+                  answer('Orange', 'easy'),
+                  answer('Strawberry', 'easy'),
+                  answer('Cherry', 'easy'),
+                  answer('Apricot', 'medium'),
+                  answer('Pineapple', 'medium'),
+                  answer('Kiwi', 'medium'),
+                  answer('Persimmon', 'medium'),
+                  answer('Lychee', 'medium'),
+                  answer('Pomegranate', 'hard'),
+                  answer('Quince', 'hard')
+                ],
+                blackWord: { label: 'Quinces', why: 'Not a fruit at all' },
+                label: 'Fruits'
+              }
+            ]
+          }
+        ],
+        lineUp: [...EVENING.lineUp, 'blacksquare']
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('decks[2].items[0].answers: 2 hard answers')
+    expect(text).toContain(
+      'decks[2].items[0].blackWord.label: “Quinces” is a slip from answers[11]'
+    )
+  })
+
   it('[mcp] answers two dates of one year by their path', async () => {
     const { isError, text } = await call('prepare_evening', {
       evening: {

@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- **An evening brings its own black square themes.** An assistant can now
+  write up to three themes for a Case noire entry — a broad label, 12 to 20
+  answers each tiered by how obvious it is, their spellings, and a black word
+  that belongs to the theme and is a trap — played in one language and dealt
+  before the bank, the cells still dealt by tier and held on the console until
+  the reveal, typed or said team by team. `prepare_evening` checks a theme by
+  the bank's own rules, now one function in core that the bank's tests call
+  too, and refuses one more: a black word a letter away from an answer, since
+  a table typing that answer slightly wrong would lose its round to a
+  spelling.
 - **An evening brings its own numbers to estimate and pairs to compare.** An
   assistant can now write Le juste chiffre's questions — _how many kilometres
   did we drive this summer?_ — in the table's own words and unit, and Plus ou

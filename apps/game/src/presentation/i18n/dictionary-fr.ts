@@ -152,6 +152,14 @@ export const FR_DICTIONARY = defineDictionary({
       nobodyFell: 'Personne n’est tombé dedans',
       stamp: 'Mot noir'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} thème maison', other: '{?} thèmes maison' }
+        }
+      }),
+      spent: 'Thèmes maison épuisés'
+    },
     duration: 'Temps par manche',
     found: defineTranslation('{count:plural}', {
       plural: {

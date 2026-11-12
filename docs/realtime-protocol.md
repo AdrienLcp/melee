@@ -806,7 +806,9 @@ its entry's one sheet: it lands on the host arm as the sheet opens, however it
 opens, and the keys a `host.startRound` carried are set aside. An estimate
 deck deals one number a round and a higher or lower deck one pair, each asked
 in its own words (`kind: 'own'`), the values held back exactly as a bank
-row's. The room's
+row's. A black square deck deals one theme a round, written in one language
+and copied into both, its cells dealt by the tiers its writer gave and held
+back exactly as a bank theme's. The room's
 storage is wiped with it when the table closes or expires.
 
 **So do the lines a host wrote ahead.** `host.setOwnLines` hands the server
