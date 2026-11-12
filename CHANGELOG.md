@@ -281,6 +281,11 @@ one part.
   as the opening played backwards, which held them whole and then cut them:
   they now open over a beat, a little small and from the press, and fade
   out evenly as they close.
+- `[Game]` **The menu sheet on a phone slides away as soon as it closes.**
+  It sat still for most of its exit and then dropped in a flash, and it
+  turned see-through on the way down, its text over the page behind. It now
+  falls from the first frame, gathering speed, and stays solid while the
+  shade behind it fades.
 - `[Game]` **An empty seat in the lobby is a dashed outline again.** The
   pawns waiting in the box were drawn solid, in the first pawn's colour, as
   if every empty seat were taken.

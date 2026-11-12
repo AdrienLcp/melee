@@ -215,8 +215,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(react@19.3.1)
       '@adrienlcp/react-aria':
-        specifier: ^0.7.1
-        version: 0.7.1(react-aria-components@1.22.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(sass@1.107.1)
+        specifier: ^0.8.1
+        version: 0.8.1(react-aria-components@1.22.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(sass@1.107.1)
       '@adrienlcp/react-router':
         specifier: ^0.2.0
         version: 0.2.0(react-aria-components@1.22.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
@@ -444,8 +444,8 @@ packages:
       vite:
         optional: true
 
-  '@adrienlcp/react-aria@0.7.1':
-    resolution: {integrity: sha512-i0IDHlrq/pb+SOT1Jz04UO2PsMVtwl2IoHYHeftzxuR/wh+twL0ZYCPwFVdxt3RkfZuD7+D81C8w5DJFc62VKQ==}
+  '@adrienlcp/react-aria@0.8.1':
+    resolution: {integrity: sha512-2hsDG3iERlYeQ5NiWEltIxAmZOOc42N+sLPxa/HSPqnInCimy90ggPuackPRdH77urwi+vpPABw8/yN04+0Tpg==}
     peerDependencies:
       react: '>=19'
       react-aria-components: '>=1.21.0'
@@ -3857,7 +3857,7 @@ snapshots:
     optionalDependencies:
       vite: 8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(sass@1.107.1)(tsx@4.23.15)(yaml@2.9.1)
 
-  '@adrienlcp/react-aria@0.7.1(react-aria-components@1.22.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(sass@1.107.1)':
+  '@adrienlcp/react-aria@0.8.1(react-aria-components@1.22.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(sass@1.107.1)':
     dependencies:
       '@adrienlcp/browser': 0.6.0(react@19.3.1)
       '@adrienlcp/react': 0.5.0(react@19.3.1)
