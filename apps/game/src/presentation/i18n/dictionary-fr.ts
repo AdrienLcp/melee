@@ -1741,6 +1741,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Une lettre tombe et chaque écran reçoit la même grille — un pays, un animal, un prénom — à remplir de mots qui commencent par elle. Le premier qui a tout rempli peut crier stop. Puis la salle vote catégorie par catégorie, et un mot que personne d’autre n’a écrit rapporte double.'
     },
     host: {
+      callStop: 'Dire stop',
       cancelStop: 'Annuler le stop',
       nextCategory: 'Catégorie suivante',
       toScores: 'Voir les scores'
@@ -1790,6 +1791,7 @@ export const FR_DICTIONARY = defineDictionary({
     stop: {
       barred: 'Ton stop a été annulé : les autres finissent la manche.',
       called: '{name} a dit stop',
+      calledByHost: 'L’hôte a dit stop',
       calledByYou: 'Tu as dit stop',
       filling: 'Stop · {filled:number}/{count:number}',
       offLetter: 'Pour dire stop, chaque ligne doit commencer par {letter}.',

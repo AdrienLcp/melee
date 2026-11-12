@@ -1021,7 +1021,9 @@ const pressesShapeOf = ({
           ? 'last-category'
           : 'voting'
 
-    return `petit-bac-${step}${canCancelStop ? '-stopped' : ''}`
+    const isStopCalled = petitBac.stopClosesAtElapsedMs !== null
+
+    return `petit-bac-${step}${isStopCalled ? '-called' : ''}${canCancelStop ? '-stopped' : ''}`
   }
 
   return 'phase-presses'

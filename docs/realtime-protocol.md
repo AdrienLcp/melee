@@ -257,8 +257,9 @@ the pause lives on the round, apart from the host's presence.
 
 **No round waits forever on a press.** Every game with a clock ends on it; the
 ones without one end on the host: the bare buzzer and every timed game offer
-`host.reveal` mid-round, a slate or a challenge is closed from its own stage,
-a floor held with no window is judged. The inner clock and the reflex race
+`host.reveal` mid-round — Petit Bac's calls stop on the sheets, and its
+vote moves on with `host.nextCategory` — a slate or a challenge is closed
+from its own stage, a floor held with no window is judged. The inner clock and the reflex race
 cap themselves — target × 1.25, and the heat's press window — and the inner
 clock's cap runs to minutes on a long count, so its console offers
 `host.reveal` too, labelled as stopping the count, scoring what was pressed.
@@ -650,10 +651,13 @@ stays the vote's. The row and the settled line carry `isStruck`, and a
 `rowKey` no seat wrote is `invalid_message`. Each vote or strike
 re-pays the round from the sheets — the sheet's hundred shared equally among
 the categories, an accepted answer nobody else wrote taking its category's
-whole share and a shared one half, no speed bonus — and `host.reveal` is refused
-`wrong_phase` while the sheets are open, then settles what is left on the votes
-as they stand. A seat the round did not open on is `joined_mid_round` on every
-frame. `petitbac.stop`, `petitbac.vote` and `petitbac.doneVoting` are floor
+whole share and a shared one half, no speed bonus. `host.reveal` while the
+sheets are open is the host **calling stop for the room**: every sheet closes
+`PETIT_BAC_STOP_GRACE_MS` later, as on a seat's stop, with `stoppedBy` left
+`null` — nobody to name and nothing for `host.cancelStop` to take back — and a
+seat's stop or a second reveal inside that grace is `wrong_phase`. Once the
+sheets have closed it settles what is left on the votes as they stand. A
+seat the round did not open on is `joined_mid_round` on every frame. `petitbac.stop`, `petitbac.vote` and `petitbac.doneVoting` are floor
 frames; `petitbac.write` is not, for the slate's reason.
 
 `host.awardPlaces` carries the whole placement, and the server pays it:

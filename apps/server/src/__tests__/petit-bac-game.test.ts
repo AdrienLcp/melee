@@ -634,16 +634,42 @@ describe('a Petit Bac round through the seam', () => {
     )
   })
 
-  it('[petitbac] refuses a reveal while the sheets are being written', async () => {
-    const { host, roundId } = await roundInPlay()
+  it('[petitbac] calls stop for the room on a reveal while the sheets are written, naming nobody', async () => {
+    const { host, lea, roundId, sheetsClosed, stop, write, zoe } =
+      await roundInPlay()
 
+    await write(lea, ['Brésil', '', ''])
     host.send({ roundId, type: 'host.reveal' })
     await waitFor(
-      () => errorsIn(host).some(({ code }) => code === 'wrong_phase'),
-      'the reveal to be refused'
+      () => petitBacRound(playerView(zoe))?.stopClosesAtElapsedMs != null,
+      'the call to reach every seat'
     )
 
+    expect(petitBacRound(playerView(zoe))).toMatchObject({
+      sheetsClosed: false,
+      stoppedBy: null
+    })
+
+    host.send({ roundId, type: 'host.reveal' })
+    await write(zoe, SHEETS.zoe)
+    stop(zoe)
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'wrong_phase'),
+      'a second call to be refused'
+    )
+    await waitFor(
+      () => errorsIn(zoe).some(({ code }) => code === 'wrong_phase'),
+      'a seat’s stop inside the call to be refused'
+    )
+    await sheetsClosed()
+
     expect(hostView(host)?.phase).toBe('playing')
+    expect(petitBacRound(playerView(zoe))?.stoppedBy).toBeNull()
+    expect(petitBacRound(playerView(zoe))?.categoryStates).toEqual([
+      'voting',
+      'open',
+      'open'
+    ])
   })
 
   it('[petitbac] gives a seat arriving mid-round no sheet to write', async () => {

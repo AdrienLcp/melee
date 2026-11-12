@@ -1840,6 +1840,7 @@ export const EN_DICTIONARY = defineDictionary({
         'A letter comes up and every screen gets the same sheet — a country, an animal, a first name — to fill with words starting with it. The first to fill theirs can call stop. Then the room votes on each category, and a word nobody else wrote pays double.'
     },
     host: {
+      callStop: 'Call stop',
       cancelStop: 'Cancel the stop',
       nextCategory: 'Next category',
       toScores: 'Show the scores'
@@ -1887,6 +1888,7 @@ export const EN_DICTIONARY = defineDictionary({
     stop: {
       barred: 'Your stop was taken back: the others finish the round.',
       called: '{name} said stop',
+      calledByHost: 'The host said stop',
       calledByYou: 'You said stop',
       filling: 'Stop · {filled:number}/{count:number}',
       offLetter: 'To stop, every line needs a word starting with {letter}.',

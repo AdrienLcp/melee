@@ -9,9 +9,9 @@ import type { HostActionsProps } from './host-actions'
 type PetitBacActionsProps = Pick<HostActionsProps, 'isLive' | 'send' | 'view'>
 
 /**
- * The console's hand on a round of Petit Bac: nothing while the sheets are
- * written — no reveal may cut them short — save taking back a stop called on
- * a sheet the room disputes, then moving the vote on one category at a time.
+ * The console's hand on a round of Petit Bac: stop called for the whole room
+ * while the sheets are written, taking back a stop a seat called on a sheet
+ * the room disputes, then moving the vote on one category at a time.
  */
 export const PetitBacActions: React.FC<PetitBacActionsProps> = ({
   isLive,
@@ -31,9 +31,24 @@ export const PetitBacActions: React.FC<PetitBacActionsProps> = ({
     view.currentContent.canCancelStop
   const votingIndex = content.categoryStates.indexOf('voting')
   const isLastCategory = votingIndex === content.categories.length - 1
+  const canCallStop =
+    view.phase === 'playing' &&
+    !content.sheetsClosed &&
+    content.stopClosesAtElapsedMs === null
 
   return (
     <>
+      {canCallStop && (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            send({ roundId: round.id, type: 'host.reveal' })
+          }}
+          variant='underlined'
+        >
+          {translate('petitbac.host.callStop')}
+        </Button>
+      )}
       {canCancelStop && (
         <Button
           isDisabled={!isLive}

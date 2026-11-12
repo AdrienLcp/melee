@@ -7,7 +7,11 @@ import {
   PETIT_BAC_STOP_GRACE_MS,
   type PetitBacCategory
 } from '@melee/protocol/petit-bac'
-import type { PlayerRoomView, RoundView } from '@melee/protocol/room'
+import type {
+  PlayerRoomView,
+  RoundContent,
+  RoundView
+} from '@melee/protocol/room'
 
 import { isStoppableLine } from '@melee/core/petitbac/letter-match'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
@@ -136,15 +140,9 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   const closesInMs = deadline?.remainingMs ?? null
   const [closedId, setClosedId] = useState<string | null>(null)
   const hasClosedOnScreen = closesId !== null && closedId === closesId
-  const stoppedBy = content?.stoppedBy ?? null
-  const isStopped = stoppedBy !== null
-  const stopCall = useLastShown<StopCall>(
-    stoppedBy === null
-      ? null
-      : {
-          isYours: stoppedBy === view.youId,
-          seat: view.players.findIndex((player) => player.id === stoppedBy)
-        },
+  const isStopped = (content?.stopClosesAtElapsedMs ?? null) !== null
+  const stopCall = useLastShown(
+    stopCallOf({ content, players: view.players }),
     isSameStopCall
   )
 
@@ -293,16 +291,16 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
             </p>
           </div>
           <p className='stop-banner' inert={!isStopped} role='status'>
-            {stopCall !== null && stopCall.seat !== -1 && (
-              <Pawn seat={stopCall.seat} />
-            )}
+            {stopCall?.kind === 'seat' && <Pawn seat={stopCall.seat} />}
             {stopCall !== null && (
               <span>
-                {stopCall.isYours
-                  ? translate('petitbac.stop.calledByYou')
-                  : translate('petitbac.stop.called', {
-                      name: view.players[stopCall.seat]?.nickname ?? ''
-                    })}
+                {stopCall.kind === 'host'
+                  ? translate('petitbac.stop.calledByHost')
+                  : view.players[stopCall.seat]?.id === view.youId
+                    ? translate('petitbac.stop.calledByYou')
+                    : translate('petitbac.stop.called', {
+                        name: view.players[stopCall.seat]?.nickname ?? ''
+                      })}
               </span>
             )}
           </p>
@@ -312,10 +310,36 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   )
 }
 
-type StopCall = { isYours: boolean; seat: number }
+/** Who said stop: a seat, by its place at the table, or the host for the whole room. */
+export type StopCall = { kind: 'host' } | { kind: 'seat'; seat: number }
 
-const isSameStopCall = (left: StopCall, right: StopCall): boolean =>
-  left.isYours === right.isYours && left.seat === right.seat
+/** The stop under way, or `null` while the sheets run on their clock alone. */
+export const stopCallOf = ({
+  content,
+  players
+}: {
+  content: Extract<RoundContent, { kind: 'petitbac' }> | null
+  players: readonly { id: PlayerId }[]
+}): StopCall | null => {
+  if (content === null || content.stopClosesAtElapsedMs === null) {
+    return null
+  }
+
+  const { stoppedBy } = content
+
+  if (stoppedBy === null) {
+    return { kind: 'host' }
+  }
+
+  const seat = players.findIndex((player) => player.id === stoppedBy)
+
+  return seat === -1 ? null : { kind: 'seat', seat }
+}
+
+export const isSameStopCall = (left: StopCall, right: StopCall): boolean =>
+  left.kind === 'host'
+    ? right.kind === 'host'
+    : right.kind === 'seat' && left.seat === right.seat
 
 type PetitBacVoteProps = {
   /** `false` from the socket means the frame was never written. */

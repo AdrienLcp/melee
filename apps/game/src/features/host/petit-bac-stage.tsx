@@ -9,8 +9,10 @@ import type {
 
 import { PetitBacAuthors } from '@/features/player/petit-bac-authors'
 import {
+  isSameStopCall,
   LetterPiece,
-  petitBacCategoryId
+  petitBacCategoryId,
+  stopCallOf
 } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
@@ -59,7 +61,10 @@ const seatOf = (players: readonly PublicPlayer[], playerId: string): number =>
 const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
   const translate = useTranslate()
   const content = petitBacContent(round)
-  const calledBy = useLastShown(content?.stoppedBy ?? null)
+  const stopCall = useLastShown(
+    stopCallOf({ content, players: view.players }),
+    isSameStopCall
+  )
 
   if (content === null) {
     return null
@@ -85,7 +90,6 @@ const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
     seat,
     ...sheetProgressOf(player)
   }))
-  const stopper = calledBy === null ? -1 : seatOf(view.players, calledBy)
 
   return (
     <>
@@ -134,16 +138,18 @@ const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
 
         <div
           className='stop-fold'
-          data-open={stoppedBy !== null || undefined}
-          inert={stoppedBy === null}
+          data-open={stopClosesAtElapsedMs !== null || undefined}
+          inert={stopClosesAtElapsedMs === null}
         >
           <div>
             <p className='stop-banner' role='status'>
-              {stopper !== -1 && <Pawn seat={stopper} />}
+              {stopCall?.kind === 'seat' && <Pawn seat={stopCall.seat} />}
               <span>
-                {translate('petitbac.stop.called', {
-                  name: view.players[stopper]?.nickname ?? ''
-                })}
+                {stopCall?.kind === 'seat'
+                  ? translate('petitbac.stop.called', {
+                      name: view.players[stopCall.seat]?.nickname ?? ''
+                    })
+                  : translate('petitbac.stop.calledByHost')}
               </span>
             </p>
           </div>

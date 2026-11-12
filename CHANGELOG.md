@@ -342,6 +342,15 @@ one part.
 
 ### Fixes
 
+- **The host can always move a Petit Bac round on.** While the sheets were
+  being written the console offered nothing: the round waited for its clock,
+  up to five minutes, or for a full sheet to call stop — which a table with
+  the stop switched off never could. The console now offers _Call stop_: every
+  sheet closes after the same five-second grace as a seat's stop, the wall and
+  the sheets say the host called it, and the vote opens. Every other game already had its
+  way forward mid-round — a reveal, a verdict, the slate's collect and its
+  items, the challenge's placing — and the reflex race and the countdown end on
+  their own within seconds.
 - **A line-up never plays the same game twice in a row.** The room moved to
   its next entry only on the console's word as each reveal went up, so a
   console asleep or reconnecting at that moment replayed the entry just

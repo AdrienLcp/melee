@@ -63,6 +63,7 @@ import {
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
 import {
+  callPetitBacStopForRoom,
   cancelPetitBacStop,
   finishPetitBacVote,
   isPetitBacWriting,
@@ -1772,14 +1773,15 @@ const reveal = (
     return
   }
 
-  // The vote reads every sheet, so the round ends only once the sheets have
-  // closed on the clock or on a stop; from then on a reveal settles the
-  // categories left on the votes as they stand.
+  // The vote reads every sheet, so a reveal pressed while they are written
+  // calls stop on them rather than ending the round; once they have closed it
+  // settles the categories left on the votes as they stand.
   if (isPetitBacWriting(room)) {
-    sendError(outbound, {
-      code: 'wrong_phase',
-      fatal: false,
-      message: 'The sheets are still being written'
+    answerPetitBacFrame({
+      engine,
+      outbound,
+      refusal: 'Stop has already been called',
+      result: callPetitBacStopForRoom({ now: engine.now(), room, roundId })
     })
 
     return

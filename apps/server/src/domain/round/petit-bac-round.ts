@@ -225,7 +225,7 @@ export const stopPetitBac = ({
   if (
     !content.stopsWhenFull ||
     content.sheetsClosed ||
-    content.stoppedBy !== null ||
+    content.stopClosesAtElapsedMs !== null ||
     content.barredStoppers.has(playerId)
   ) {
     return Result.failure('wrong_phase')
@@ -313,6 +313,40 @@ export const cancelPetitBacStop = ({
   content.struckKeys = new Map()
   content.votesDone = new Set()
   rescore({ content, room, round })
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
+ * The console calling stop for the whole room, whatever the sheets hold and
+ * whether or not a full one may: every sheet closes the same grace later as on
+ * a seat's stop, so the word a hand is finishing still lands. Nobody is named,
+ * and there is nothing to take back — the host decided it.
+ */
+export const callPetitBacStopForRoom = ({
+  now,
+  room,
+  roundId
+}: {
+  now: number
+  room: Room
+  roundId: RoundId
+}): Result<void, PetitBacRejection> => {
+  const found = livePetitBacRoundIn({ room, roundId })
+
+  if (found.status === 'failure') {
+    return found
+  }
+
+  const { content, round } = found.data
+
+  if (content.sheetsClosed || content.stopClosesAtElapsedMs !== null) {
+    return Result.failure('wrong_phase')
+  }
+
+  content.stopClosesAtElapsedMs =
+    elapsedRoundMs(round, now) + PETIT_BAC_STOP_GRACE_MS
   touch(room, now)
 
   return Result.success()
@@ -533,7 +567,7 @@ export const strikePetitBacRow = ({
   return Result.success()
 }
 
-/** Whether the sheets are still being written, which no reveal may cut short. */
+/** Whether the sheets are still being written, which a reveal only calls stop on. */
 export const isPetitBacWriting = (room: Room): boolean =>
   room.round?.content.kind === 'petitbac' && !room.round.content.sheetsClosed
 
