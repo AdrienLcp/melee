@@ -1862,6 +1862,7 @@ const lean = (
 
   const leaned = registerLean({
     attempt: message.answer,
+    isWord: isValidWord,
     now: engine.now(),
     playerId,
     room: engine.room,

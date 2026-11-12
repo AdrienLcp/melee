@@ -145,6 +145,15 @@ const colourAnswerSchema = z.object({
   kind: z.literal('colour')
 })
 
+const lettersAnswerSchema = z.object({
+  /**
+   * One word made from the draw, sent as often as a seat likes. A line the
+   * server refuses — not a word, a letter the draw lacks — costs nothing.
+   */
+  guess: longestWordGuessSchema,
+  kind: z.literal('letters')
+})
+
 /**
  * The other two modes' answer, and it carries no timestamp for the same reason
  * `player.buzz` does not: the server stamps arrival, because the speed bonus is
@@ -206,14 +215,7 @@ export const answerMessageSchema = z.object({
       guess: wordGuessSchema,
       kind: z.literal('word')
     }),
-    z.object({
-      /**
-       * One word made from the draw, sent as often as a seat likes. A line the
-       * server refuses — not a word, a letter the draw lacks — costs nothing.
-       */
-      guess: longestWordGuessSchema,
-      kind: z.literal('letters')
-    })
+    lettersAnswerSchema
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')
@@ -228,10 +230,15 @@ export const answerMessageSchema = z.object({
  * pick left untouched is never sent, so it is never a guess.
  *
  * Only the answers a seat builds up on screen before sending: a choice or a
- * vote is one press, and a typed line is a guess only once it is sent.
+ * vote is one press, and a typed line is a guess only once it is sent. A
+ * longest word's row of tiles is built up too: the word left on it is judged
+ * like a sent one, and paid only if it beats what the seat already sent. A
+ * row that is not a word yet — every word is spelled through some — holds no
+ * lean, and is refused nothing, since nothing was sent.
  */
 export const leanAnswerSchema = z.discriminatedUnion('kind', [
   colourAnswerSchema,
+  lettersAnswerSchema,
   orderAnswerSchema,
   pointAnswerSchema
 ])

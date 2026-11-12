@@ -174,6 +174,39 @@ const sendWord = async ({
   )
 }
 
+const leanWord = ({
+  guess,
+  roundId,
+  seat
+}: {
+  guess: string
+  roundId: string
+  seat: Peer<PlayerServerMessage>
+}): void => {
+  seat.send({
+    answer: { guess, kind: 'letters' },
+    roundId,
+    type: 'player.lean'
+  })
+}
+
+/** A lean is answered with no frame, so a ping behind it on the same socket says it was read. */
+const leansRead = async (
+  seats: readonly Peer<PlayerServerMessage>[]
+): Promise<void> => {
+  for (const seat of seats) {
+    seat.send({ clientSentAt: 1, type: 'time.ping' })
+  }
+
+  await waitFor(
+    () =>
+      seats.every((seat) =>
+        seat.frames.some(({ message }) => message.type === 'time.pong')
+      ),
+    'the leans to be read'
+  )
+}
+
 const idOf = (seat: Peer<PlayerServerMessage>) =>
   playerView(seat)?.youId ?? null
 
@@ -339,6 +372,72 @@ describe('a longest-word round through the seam', () => {
       bestLength: 9,
       kind: 'letters',
       length: 6
+    })
+  })
+
+  it('[longestword] pays the word left on a row unsent at the close, checked like a sent one and never shown before the reveal', async () => {
+    const { host, lou, max, roundId, wall, zoe } = await roundInPlay()
+
+    await sendWord({ guess: 'SAPIN', roundId, seat: lou })
+    leanWord({ guess: 'patron', roundId, seat: zoe })
+    leanWord({ guess: 'SNORE', roundId, seat: max })
+    leanWord({ guess: 'PATRONS', roundId, seat: lou })
+    await leansRead([zoe, max, lou])
+
+    expect(errorsIn(max)).toEqual([])
+    for (const peer of [zoe, max, lou, wall, host]) {
+      expect(transcriptOf(peer.frames)).not.toContain('PATRON')
+    }
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const awardOf = (seat: Peer<PlayerServerMessage>) =>
+      view?.round?.awards.find((award) => award.playerId === idOf(seat))
+
+    expect(awardOf(zoe)).toMatchObject({
+      isUnsent: true,
+      points: answerShareOf(pointsForLetters({ bestLength: 9, length: 6 })),
+      speedBonus: 0,
+      verdict: { length: 6 }
+    })
+    expect(awardOf(lou)).toMatchObject({
+      isUnsent: true,
+      speedBonus: 0,
+      verdict: { length: 7 }
+    })
+    expect(awardOf(max)?.points ?? 0).toBe(0)
+    expect(draw(playerView(zoe))?.revealedWords).toEqual(
+      expect.arrayContaining([
+        { playerId: idOf(zoe), word: 'PATRON' },
+        { playerId: idOf(lou), word: 'PATRONS' }
+      ])
+    )
+    expect(
+      draw(playerView(max))?.revealedWords?.some(
+        ({ playerId }) => playerId === idOf(max)
+      )
+    ).toBe(false)
+  })
+
+  it('[longestword] leaves a sent word standing over a shorter one left on the row', async () => {
+    const { host, roundId, zoe } = await roundInPlay()
+
+    await sendWord({ guess: 'PATRON', roundId, seat: zoe })
+    leanWord({ guess: 'RAT', roundId, seat: zoe })
+    await leansRead([zoe])
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(
+      hostView(host)?.round?.awards.find(
+        ({ playerId }) => playerId === idOf(zoe)
+      )
+    ).toMatchObject({ isUnsent: false, verdict: { length: 6 } })
+    expect(draw(playerView(zoe))?.revealedWords).toContainEqual({
+      playerId: idOf(zoe),
+      word: 'PATRON'
     })
   })
 

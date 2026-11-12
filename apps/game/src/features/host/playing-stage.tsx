@@ -428,6 +428,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <LongestWordAnswer
             key={round.id}
             onAnswer={onAnswer}
+            onLean={onLean}
             refusal={refusal}
             round={round}
           />

@@ -342,6 +342,12 @@ one part.
 
 ### Fixes
 
+- **Mot le plus long keeps the word left on the row.** A word laid in tiles
+  and never sent was lost when the clock ran out. The row is now saved as it
+  changes, like a pawn left on the map or a colour left on the picker, and the
+  close judges it as a sent word — the nine letters, the dictionary — paying
+  it when it beats what the seat already sent, with no speed bonus, and the
+  reveal says it was taken off the screen.
 - **The host can always move a Petit Bac round on.** While the sheets were
   being written the console offered nothing: the round waited for its clock,
   up to five minutes, or for a full sheet to call stop — which a table with

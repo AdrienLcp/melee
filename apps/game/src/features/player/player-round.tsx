@@ -947,6 +947,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
           <LongestWordAnswer
             key={round.id}
             onAnswer={answerWithRound}
+            onLean={leanWithRound}
             refusal={refusal}
             round={round}
           />

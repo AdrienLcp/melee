@@ -616,10 +616,12 @@ const keepAnswer = ({
 
 /**
  * Saves what a seat's screen holds and has not sent — see `player.lean`. A
- * seat that has answered has nothing left to lean on: its answer stands.
+ * seat that has answered has nothing left to lean on: its answer stands —
+ * save a longest word's, which a longer draft may still beat.
  */
 export const registerLean = ({
   attempt,
+  isWord,
   now,
   playerId,
   room,
@@ -627,6 +629,8 @@ export const registerLean = ({
   shapeOf
 }: {
   attempt: LeanAnswer | null
+  /** Whether a longest word's draft is a word, read from the dictionary the server holds. */
+  isWord: IsWord
   now: number
   playerId: PlayerId
   room: Room
@@ -640,6 +644,18 @@ export const registerLean = ({
   }
 
   const round = open.data
+
+  if (round.content.kind === 'longestword') {
+    return leanWord({
+      attempt,
+      content: round.content,
+      isWord,
+      now,
+      playerId,
+      room,
+      round
+    })
+  }
 
   if (round.attempts.some((entry) => entry.playerId === playerId)) {
     return Result.failure('already_buzzed')
@@ -665,8 +681,59 @@ export const registerLean = ({
 }
 
 /**
+ * A longest word's draft, kept while it is a word of the draw and the seat
+ * may still be paid more. The row is spelled through non-words on the way to
+ * a word, so a draft that is not one only drops the lean, refused nothing.
+ */
+const leanWord = ({
+  attempt,
+  content,
+  isWord,
+  now,
+  playerId,
+  room,
+  round
+}: {
+  attempt: LeanAnswer | null
+  content: Extract<Round['content'], { kind: 'longestword' }>
+  isWord: IsWord
+  now: number
+  playerId: PlayerId
+  room: Room
+  round: Round
+}): Result<void, AnswerRejection> => {
+  if (attempt !== null && attempt.kind !== 'letters') {
+    return Result.failure('invalid_message')
+  }
+
+  const held = round.attempts.find((entry) => entry.playerId === playerId)
+  const checked =
+    attempt === null || (held !== undefined && isDone(held))
+      ? null
+      : checkLongestWord({ content, isWord, typed: attempt.guess })
+
+  if (checked?.status === 'accepted') {
+    round.leans.set(playerId, {
+      attempt: { guess: checked.word, kind: 'letters' },
+      graded: {
+        said: checked.word,
+        verdict: gradeLongestWord({ content, held: null, word: checked.word })
+      }
+    })
+  } else {
+    round.leans.delete(playerId)
+  }
+
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
  * Every seat still in the room that leaned and never sent is given its last
- * lean as its answer, as the round closes. A sent answer is never replaced.
+ * lean as its answer, as the round closes. A sent answer is never replaced,
+ * save a longest word's by a longer draft: the seat sends as often as it
+ * likes, and the word left on its row is one more, never sent.
  */
 const takeUnsentLeans = (room: Room, now: number): void => {
   const round = room.round
@@ -676,14 +743,27 @@ const takeUnsentLeans = (room: Room, now: number): void => {
   }
 
   for (const [playerId, { attempt, graded }] of round.leans) {
-    const hasSent = round.attempts.some((entry) => entry.playerId === playerId)
+    const held = round.attempts.find((entry) => entry.playerId === playerId)
 
-    if (hasSent || !room.players.has(playerId)) {
+    if (!room.players.has(playerId)) {
       continue
     }
 
-    bank({ graded, held: undefined, isUnsent: true, now, playerId, round })
-    keepAnswer({ attempt, playerId, round })
+    if (held === undefined) {
+      bank({ graded, held, isUnsent: true, now, playerId, round })
+      keepAnswer({ attempt, playerId, round })
+
+      continue
+    }
+
+    if (
+      takesRetries(round.mode) &&
+      raisesVerdict({ after: graded.verdict, before: held.verdict })
+    ) {
+      bank({ graded, held, isUnsent: true, now, playerId, round })
+      held.isUnsent = true
+      keepAnswer({ attempt, playerId, round })
+    }
   }
 }
 

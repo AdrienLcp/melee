@@ -234,7 +234,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
 export const awardSchema = z.object({
   /**
    * Paid on what the seat's screen held when the round closed, because it
-   * never sent an answer — see `player.lean`. Said on that seat's own reveal,
+   * never sent an answer, or never sent the longest word it is paid for — see
+   * `player.lean`. Said on that seat's own reveal,
    * so nobody wonders why a round they never answered scored.
    */
   isUnsent: z.boolean(),

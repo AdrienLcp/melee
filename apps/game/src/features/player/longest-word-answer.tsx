@@ -1,7 +1,8 @@
 import type React from 'react'
-import { useEffect, useEffectEvent, useState } from 'react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { Button, Group, type PressEvent } from 'react-aria-components'
 
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { LONGEST_WORD_MIN_LENGTH } from '@melee/protocol/longest-word'
 import type { RoundView } from '@melee/protocol/room'
@@ -23,6 +24,7 @@ import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useLean } from './use-lean'
 
 import './longest-word-answer.sass'
 
@@ -59,6 +61,8 @@ const releaseFocus = (event: PressEvent): void => {
 type LongestWordAnswerProps = {
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
+  /** Saves the word on the row before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   /** The server's last refusal to this screen, whatever it answered; the seat says it when it answers a word. */
   refusal: ProtocolErrorMessage | null
   round: RoundView
@@ -70,16 +74,19 @@ type ShownRefusal = { code: SaidRefusal; word: string }
  * A seat's nine tiles, pressed to lay them into a row of nine slots: a laid
  * tile sinks into its socket, so no letter is used twice. A physical keyboard
  * lays the first free tile of the letter struck. Every accepted word is
- * listed, longest first, the one paid marked.
+ * listed, longest first, the one paid marked. The word on the row is saved
+ * as it changes, and paid if the clock runs out before it is sent.
  *
  * Mounted under `key={round.id}`, so a round always opens on an empty row.
  */
 export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
   onAnswer,
+  onLean,
   refusal,
   round
 }) => {
   const { translate } = useI18n()
+  const leaning = useLean(onLean)
   const content = longestWordContent(round)
   const letters = content?.letters ?? []
   const words = content?.yourWords ?? []
@@ -91,6 +98,8 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
   const [answered, setAnswered] = useState(refusal)
   const [sent, setSent] = useState<string | null>(null)
   const typed = laid.map((at) => letters[at]).join('')
+  const draft = laid.length >= LONGEST_WORD_MIN_LENGTH ? typed : null
+  const leanedDraft = useRef<string | null>(null)
 
   // A word banked: the row empties for the next one, and whatever the server
   // last refused is spent.
@@ -132,6 +141,7 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
 
   const send = (): void => {
     if (canSend && onAnswer({ guess: typed, kind: 'letters' })) {
+      leaning.cancel()
       setAnswered(refusal)
       setSent(typed)
     }
@@ -169,6 +179,17 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
       layLetter(letter)
     }
   })
+
+  const leanDraft = useEffectEvent((word: string | null) => {
+    leaning.lean(word === null ? null : { guess: word, kind: 'letters' })
+  })
+
+  useEffect(() => {
+    if (draft !== leanedDraft.current) {
+      leanedDraft.current = draft
+      leanDraft(draft)
+    }
+  }, [draft])
 
   useEffect(() => {
     const listener = (event: KeyboardEvent): void => {
