@@ -42,6 +42,15 @@ counts it when it lands before the run ends.
 
 ## To do
 
+0. **Measure the shared base first** — about 260 kB every page loads, more
+   than the game screens: `index` 72 kB, `i18n-provider` 91 kB, `navigation`
+   35 kB, `Dialog` 31 kB (gzip). Suspected, not verified: `i18n-provider`
+   carries both dictionaries (`presentation/i18n/dictionary-en.ts` and
+   `dictionary-fr.ts`) while a screen shows one. If so, loading only the
+   locale on screen — the other fetched on a switch, without a flash of keys
+   — lightens every page at once, and may be worth more than step 1. Mind
+   the prerender and `applyInitialLocale`, which read the locale before
+   anything mounts.
 1. **A chunk per game** for what `player-round.tsx` draws during a round:
    each game's answer and reveal components behind a dynamic import, the
    lobby, the join form and the shell's reveal blocks staying in the page.
