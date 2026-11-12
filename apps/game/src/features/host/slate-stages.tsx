@@ -420,7 +420,11 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
             groups.length + (blankPlayerIds.length > 0 ? 1 : 0),
             1
           ),
-          '--standings-rows': standingsRowsOf(view)
+          '--standings-rows': standingsRowsOf({
+            board: view.settings.board,
+            players: view.players,
+            teams: view.teams
+          })
         }}
       >
         <section className='marking'>
@@ -535,7 +539,12 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
           )}
         </section>
 
-        <Standings players={view.players} teams={view.teams} youId={null} />
+        <Standings
+          board={view.settings.board}
+          players={view.players}
+          teams={view.teams}
+          youId={null}
+        />
       </div>
     </>
   )

@@ -12,7 +12,6 @@ import {
 
 import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { RichText } from '@/presentation/i18n/rich-text'
 
 import { AwayMark } from './away-mark'
 import { Button } from './button'
@@ -96,9 +95,9 @@ type ScoreboardProps = {
   /** Only ever CSS custom properties a layout needs at runtime. */
   style?: React.CSSProperties
   /**
-   * The track's length, passed by a list read up close — the host's panel —
-   * to print each case as the track's own tag, its finish flagged. Omitted,
-   * a case is the word and a figure a room reads from across it.
+   * The track's length, passed by every ranked list of a room on a track: each
+   * seat's case is drawn as the track draws it, its finish flagged. Omitted,
+   * a seat walking a pawn prints no case.
    */
   trackLength?: number
   /**
@@ -238,20 +237,9 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 <span className='you-action'>{youAction}</span>
               )}
             </span>
-            {isRanked && player.board !== null && (
+            {isRanked && player.board !== null && trackLength !== undefined && (
               <span className='case'>
-                {trackLength === undefined ? (
-                  <RichText
-                    parts={translate.rich('board.atColumn', {
-                      case: player.board.case,
-                      figure: (figure) => (
-                        <span className='case-figure'>{figure}</span>
-                      )
-                    })}
-                  />
-                ) : (
-                  <CaseMark at={player.board.case} length={trackLength} />
-                )}
+                <CaseMark at={player.board.case} length={trackLength} />
               </span>
             )}
             {isRanked && !isOnTrack && (

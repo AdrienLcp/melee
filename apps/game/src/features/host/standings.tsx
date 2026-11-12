@@ -135,6 +135,7 @@ export const Standings: React.FC<StandingsProps> = ({
           marksReady={marksReady}
           players={players}
           rankedBefore={rankedBefore?.seats}
+          trackLength={board?.kind === 'track' ? board.length : undefined}
           youId={youId}
         />
       )}

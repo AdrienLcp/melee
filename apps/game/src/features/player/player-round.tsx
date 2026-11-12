@@ -311,6 +311,7 @@ const OverallStandings: React.FC<{
           hasPawns
           marksReady={marksReady}
           players={view.players}
+          trackLength={board.kind === 'track' ? board.length : undefined}
           youId={view.youId}
         />
       )}
@@ -718,6 +719,11 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
     )
   }
 
+              trackLength={
+                view.settings.board.kind === 'track'
+                  ? view.settings.board.length
+                  : undefined
+              }
   // A duel between two other seats: this one is in the game and owes nothing,
   // so it reads the round over a duellist's shoulder — the room may have no
   // wall to watch it on.

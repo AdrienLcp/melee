@@ -56,7 +56,6 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
   pawns,
   youId
 }) => {
-  const translate = useTranslate()
   const pawnName = useTrackPawnName()
   const placed = placeTrackPawns(pawns)
   const leaders = placed.slice(0, PODIUM_PLACES)
@@ -77,7 +76,7 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
             {marksReady === true && <ReadyMark isReady={isReady(pawn)} />}
             <span className='at'>
               <Walked move={pawn.board.move} />
-              {translate('board.at', { case: pawn.board.case })}
+              <CaseMark at={pawn.board.case} length={length} />
             </span>
           </li>
         ))}
