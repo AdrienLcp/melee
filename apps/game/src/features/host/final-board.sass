@@ -7,6 +7,11 @@
   // the header and the two exits. `.stage.finished` is the size container, so
   // every height here divides that box rather than the viewport.
   .final-board
+    // The share of the stage's height the winners' names may take: stacked
+    // over the standings they leave the rest to the rows, beside them they
+    // have the column.
+    --winners-share: 0.4
+
     display: grid
     gap: clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-2xl))
     grid-template: 'podium' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
@@ -14,6 +19,8 @@
     min-height: 0
 
     @include layout.wide
+      --winners-share: 0.8
+
       align-items: center
       grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1.35fr) minmax(0, 1fr)
 
@@ -71,12 +78,16 @@
 
     // Twenty characters is a legal nickname and `Wolfgangamadeusmozart` has
     // nowhere to break: sized by its longest run against the column, the way a
-    // revealed title is.
+    // revealed title is. A tie names every winner in the one heading, so it is
+    // sized by how much there is of it too: five names of short words, set at
+    // the size of one, ran nine lines and pushed the standings off a 9:16 wall.
     .winners
       @include typography.billboard
 
+      --fits-its-length: calc(min(140cqi, 140cqh * var(--winners-share)) / sqrt(var(--answer-length, 20)))
+
       animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s) backwards
-      font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6))), 8rem)
+      font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6)), var(--fits-its-length)), 8rem)
       max-width: 100%
       overflow-wrap: anywhere
       text-wrap: balance
@@ -103,7 +114,7 @@
         font-size: clamp(2rem, calc(min(16cqh, 24cqi) / var(--winner-count, 1)), 8rem)
 
       .winners
-        font-size: clamp(1.25rem, min(7cqh, calc(120cqi / var(--longest-word-width, 6))), 4rem)
+        font-size: clamp(1.25rem, min(7cqh, calc(120cqi / var(--longest-word-width, 6)), var(--fits-its-length)), 4rem)
 
     .final-board .podium:has(.pawns > .pawn:only-child)
       column-gap: var(--space-m)

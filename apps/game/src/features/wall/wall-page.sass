@@ -256,13 +256,19 @@
           grid-auto-flow: column
           grid-template-rows: repeat(var(--rest-rows), auto)
           justify-content: center
+          row-gap: 0rem
           width: 100%
 
         // At the text floor the chip's padding gives way before a row
-        // leaves the box.
+        // leaves the box, and the gap between two rows after it: a gap of
+        // the box's own counted outside the share each row divides, and
+        // eleven rows on a 720p wall ran a chip past the stage.
         .chip
+          --row-gap: clamp(0rem, calc(100cqh / var(--rest-rows) - 1.65em), var(--space-2xs))
+
           font-size: clamp(var(--text-xs), min(2.8cqi, calc(100cqh / var(--rest-rows) / 2.2)), 1.75rem)
           justify-self: start
+          margin-block: calc(var(--row-gap) / 2)
           padding-block: clamp(0rem, calc((100cqh / var(--rest-rows) - 1.9em) / 2), var(--space-2xs))
 
         .steps
@@ -382,6 +388,8 @@
             min-height: 0
 
         &.host-console-page > .stage.finished > .final-board
+          --winners-share: 0.8
+
           align-items: center
           grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
 
@@ -398,7 +406,7 @@
               font-size: clamp(2.5rem, calc(min(42cqh, 55cqi) / var(--winner-count, 1)), 20rem)
 
             .winners
-              font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6))), 8rem)
+              font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6)), var(--fits-its-length)), 8rem)
 
           > .standings
             visibility: visible
@@ -462,6 +470,8 @@
                 grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
 
       > .stage.finished > .final-board
+        --winners-share: 0.4
+
         align-content: center
         grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
 
@@ -474,7 +484,7 @@
             font-size: clamp(2rem, calc(min(14cqh, 30cqi) / var(--winner-count, 1)), 10rem)
 
           .podium .winners
-            font-size: clamp(1.5rem, min(6cqh, calc(140cqi / var(--longest-word-width, 6))), 5rem)
+            font-size: clamp(1.5rem, min(6cqh, calc(140cqi / var(--longest-word-width, 6)), var(--fits-its-length)), 5rem)
 
           // Its own width alone stood the best seats 314px tall on a tablet
           // hung upright, and the third team's tray under the fold; `cqh` is
@@ -507,6 +517,11 @@
           // than the winner leaves.
           .scoreboard
             contain-intrinsic-block-size: calc(var(--rows-per-column, var(--standings-rows, 8)) * clamp(var(--text-xs), var(--row-width-cap, 5cqi), 2.5rem) * 2.15)
+
+          // The race's heap is the same size container under its steps: at
+          // 0px every chip was set at the floor and hung under the box.
+          .track-podium .rest
+            contain-intrinsic-block-size: calc(var(--rest-rows) * clamp(var(--text-xs), 2.8cqi, 1.75rem) * 2.2)
 
         > .score-track
           display: none

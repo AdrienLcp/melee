@@ -357,6 +357,13 @@ one part.
 
 ### Fixes
 
+- **A tie for the win fits the wall's final board.** The winners' names were
+  sized by their longest word alone, so five tied names of short words ran
+  nine lines on a 9:16 wall and pushed the standings off its foot. The heading
+  is now sized by how much it says as well. Standing up, the race's heap
+  under its steps claims the height its chips take, where it had none and
+  set every chip at the floor, hanging under the stage; on a 720p wall, the
+  gap between two rows gives way at the floor after the chip's padding.
 - **Mot le plus long keeps the word left on the row.** A word laid in tiles
   and never sent was lost when the clock ran out. The row is now saved as it
   changes, like a pawn left on the map or a colour left on the picker, and the
