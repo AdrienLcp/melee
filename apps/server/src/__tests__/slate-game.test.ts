@@ -1,6 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_SLATE_SETTINGS } from '@melee/protocol/game'
+import type { Deck } from '@melee/protocol/deck'
+import {
+  DEFAULT_GAME_SETTINGS,
+  DEFAULT_SLATE_SETTINGS
+} from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -875,5 +879,143 @@ describe('slate', () => {
       { id: idOf(ana), score: sheetPays({ itemCount: FOUR_ITEMS, right: 1 }) },
       { id: idOf(bo), score: sheetPays({ itemCount: FOUR_ITEMS, right: 3 }) }
     ])
+  })
+})
+
+describe('a slate deck', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const SHEET = SLATE.game ?? DEFAULT_SLATE_SETTINGS
+  const RED_FLIGHT: Deck = { game: 'slate', items: [KEY_SECRET, null, 'Syrah'] }
+  const WHITE_FLIGHT: Deck = {
+    game: 'slate',
+    items: [OTHER_KEY_SECRET, 'Sancerre']
+  }
+
+  const revealSheet = async ({
+    ana,
+    host
+  }: {
+    ana: Peer<PlayerServerMessage>
+    host: Peer<HostServerMessage>
+  }) => {
+    await waitFor(() => playerView(ana)?.phase === 'playing', 'the sheets')
+
+    const roundId = hostRoundIdOf(host)
+
+    host.send({ roundId, type: 'host.collectSheets' })
+    await waitFor(
+      () =>
+        slateRound(hostView(host))?.itemStates.every(
+          (state) => state !== 'open'
+        ) === true,
+      'every item to be closed'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(ana)?.phase === 'revealed', 'the reveal')
+  }
+
+  it('[slate] opens each flight on its own keys, one a reveal’s hold opened too', async () => {
+    const buzzer = DEFAULT_GAME_SETTINGS.buzzer
+    const evening: RoomSettings = {
+      ...SLATE,
+      autoAdvanceMs: 2_000,
+      game: buzzer,
+      lineUp: [buzzer, SHEET, SHEET],
+      lineUpAt: 0,
+      mode: DEFAULT_MODE_SETTINGS.buzzer,
+      roundCount: 4
+    }
+    const onSheet = (at: number): RoomSettings => ({
+      ...evening,
+      game: SHEET,
+      lineUpAt: at,
+      mode: DEFAULT_MODE_SETTINGS.typed
+    })
+    const { code, host } = await harness.openRoom(evening)
+    const ana = await harness.seat({ code, nickname: 'Ana' })
+
+    await harness.seat({ code, nickname: 'Bo' })
+    host.send({
+      decks: [null, RED_FLIGHT, WHITE_FLIGHT],
+      type: 'host.setDecks'
+    })
+    await waitFor(
+      () => hostView(host)?.deckSummaries[1] != null,
+      'the decks to load'
+    )
+
+    expect(hostView(host)?.deckSummaries).toEqual([
+      null,
+      { played: 0, size: 2 },
+      { played: 0, size: 2 }
+    ])
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(ana)?.phase === 'playing', 'the buzzer')
+    host.send({ roundId: hostRoundIdOf(host), type: 'host.reveal' })
+    await waitFor(() => playerView(ana)?.phase === 'revealed', 'its reveal')
+    host.send({ settings: onSheet(1), type: 'host.updateSettings' })
+    await waitFor(
+      () => hostSlateContent(host)?.keys[0] === KEY_SECRET,
+      'the hold to open the red flight on its keys',
+      6_000
+    )
+
+    expect(hostSlateContent(host)?.keys).toEqual([KEY_SECRET, null, 'Syrah'])
+
+    await revealSheet({ ana, host })
+    host.send({ settings: onSheet(2), type: 'host.updateSettings' })
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () => hostSlateContent(host)?.keys[0] === OTHER_KEY_SECRET,
+      'the white flight on its own keys'
+    )
+
+    expect(hostSlateContent(host)?.keys).toEqual([
+      OTHER_KEY_SECRET,
+      'Sancerre',
+      null
+    ])
+    expect(hostView(host)?.deckSummaries).toEqual([
+      null,
+      { played: 2, size: 2 },
+      { played: 2, size: 2 }
+    ])
+  }, 15_000)
+
+  it('[slate] sets the press’s keys aside, and never sends a player a key the deck holds', async () => {
+    const { code, host } = await harness.openRoom({
+      ...SLATE,
+      lineUp: [SHEET],
+      lineUpAt: 0
+    })
+    const ana = await harness.seat({ code, nickname: 'Ana' })
+    const bo = await harness.seat({ code, nickname: 'Bo' })
+
+    host.send({ decks: [WHITE_FLIGHT], type: 'host.setDecks' })
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0] != null,
+      'the deck to load'
+    )
+    host.send({ slateKeys: ['Typed at the press'], type: 'host.startRound' })
+    await waitFor(
+      () => hostSlateContent(host)?.keys[0] === OTHER_KEY_SECRET,
+      'the deck’s keys over the ones typed at the press'
+    )
+    await revealSheet({ ana, host })
+
+    for (const player of [ana, bo]) {
+      expect(rawTranscript(player)).not.toContain(OTHER_KEY_SECRET)
+      expect(rawTranscript(player)).not.toContain('Sancerre')
+    }
   })
 })

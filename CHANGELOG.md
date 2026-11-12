@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- **An evening brings its own timeline dates and slate answer keys.** An
+  assistant can now write a timeline deck — the family's births, five a round,
+  ordered by distinct years alone, so two dates two years apart still deal —
+  and the answer key of a slate entry's sheet. The server deals the dates before
+  the bank, filling a last short round with dates the table already ordered so
+  every one plays, and keeps their years on the console until the reveal; a
+  sheet opens on its deck's keys however it opens, a round the reveal's hold
+  started included, and a slate entry whose deck holds keys is no longer
+  offered as a skip. `prepare_evening` refuses two dates of one year and a key
+  past the sheet, each by its path.
 - `[Game]` **Longest word is on the shelf.** Nine letters are drawn on every
   screen, and every seat lays its tiles into a row of nine to make the longest
   word it can, each letter once, sending as many words as it likes: only the

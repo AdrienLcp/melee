@@ -104,3 +104,40 @@ export const dealEventsAt = <
 export const earliestFirst = <TEvent extends Dated>(
   events: readonly TEvent[]
 ): TEvent[] => events.toSorted((one, other) => one.year - other.year)
+
+/**
+ * A round of a deck the table wrote: `count` of its events by distinct years
+ * alone — the table knows its own dates, and two births two years apart are
+ * the deck. Once fewer than `count` are left unplayed, the round deals them
+ * all and fills up with events the room already ordered, so every date the
+ * table brought plays and the bank's never mix with it. `null` once every
+ * event has been dealt, when the bank takes over.
+ */
+export const dealDeckEvents = <TEvent extends Dated>({
+  count,
+  events,
+  playedIds
+}: {
+  count: number
+  events: readonly TEvent[]
+  playedIds: ReadonlySet<string>
+}): TEvent[] | null => {
+  const unplayed = events.filter(({ id }) => !playedIds.has(id))
+
+  if (unplayed.length === 0) {
+    return null
+  }
+
+  if (unplayed.length >= count) {
+    return dealEvents({ count, events: unplayed, minYearsApart: 1, playedIds })
+  }
+
+  const filler = dealEvents({
+    count: count - unplayed.length,
+    events: events.filter(({ id }) => playedIds.has(id)),
+    minYearsApart: 1,
+    playedIds: new Set()
+  })
+
+  return filler === null ? null : [...unplayed, ...filler]
+}

@@ -2200,6 +2200,17 @@ export const EN_DICTIONARY = defineDictionary({
       nobody: 'Nobody wrote anything for this one.',
       previous: 'Previous'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: {
+            one: '{?} home-made answer key',
+            other: '{?} home-made answer keys'
+          }
+        }
+      }),
+      spent: 'Home-made answer keys used up'
+    },
     home: {
       description:
         'Numbered things to guess — cups to taste, photos, prices — and everyone writes on a sheet nobody else can see, in any order they like. Then the host marks the papers one number at a time, and every answer they accept earns its share of the sheet’s 100 points.'
@@ -2425,6 +2436,14 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your order is in. Waiting for the others.'
     },
     dealt: 'Which came first? Put them in order, earliest first.',
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made event', other: '{?} home-made events' }
+        }
+      }),
+      spent: 'Home-made events used up'
+    },
     duration: 'Time per round',
     home: {
       description:

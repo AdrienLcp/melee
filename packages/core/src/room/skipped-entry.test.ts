@@ -19,17 +19,27 @@ const NO_KEYS: readonly (string | null)[] = []
 
 const askedOn = ({
   at,
+  bringsADeck = false,
   challengeText = '',
   lineUp,
   played = lineUp.map(() => 0),
   slateKeys = NO_KEYS
 }: {
   at: number
+  bringsADeck?: boolean
   challengeText?: string
   lineUp: readonly GameSettings[]
   played?: readonly number[]
   slateKeys?: readonly (string | null)[]
-}) => offersSkip({ challengeText, lineUp, lineUpAt: at, played, slateKeys })
+}) =>
+  offersSkip({
+    bringsADeck,
+    challengeText,
+    lineUp,
+    lineUpAt: at,
+    played,
+    slateKeys
+  })
 
 const onEntry = ({
   at,
@@ -74,6 +84,19 @@ describe('offersSkip', () => {
       askedOn({ at: 1, lineUp: [DEFAULT_GAME_SETTINGS.quiz, labelled] })
     ).toBe(false)
     expect(askedOn({ at: 1, lineUp: entries('quiz', 'slate') })).toBe(true)
+  })
+
+  it('[skip] keeps a slate or a challenge whose deck still holds items', () => {
+    expect(
+      askedOn({ at: 1, bringsADeck: true, lineUp: entries('quiz', 'slate') })
+    ).toBe(false)
+    expect(
+      askedOn({
+        at: 1,
+        bringsADeck: true,
+        lineUp: entries('quiz', 'challenge')
+      })
+    ).toBe(false)
   })
 
   it('[skip] offers every buzzer, whose questions are never on a screen', () => {

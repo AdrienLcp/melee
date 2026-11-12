@@ -2,6 +2,8 @@ import type { Deck, OwnLinesGame } from '@melee/protocol/deck'
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 
 import { quizDeckProblems } from '../quiz/quiz-deck'
+import { slateDeckProblems } from '../slate/slate-deck'
+import { timelineDeckProblems } from '../timeline/timeline-deck'
 import { lineDeckProblems } from './line-deck'
 
 const deckProblemsAt = ({
@@ -29,6 +31,14 @@ const deckProblemsAt = ({
     case 'challenge':
     case 'mostlikely':
       return lineDeckProblems({ items: deck.items, path })
+    case 'timeline':
+      return timelineDeckProblems({ items: deck.items, path })
+    case 'slate':
+      return slateDeckProblems({
+        itemCount: entry.kind === 'slate' ? entry.itemCount : 0,
+        items: deck.items,
+        path
+      })
   }
 }
 

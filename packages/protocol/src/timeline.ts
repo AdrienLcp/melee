@@ -11,6 +11,15 @@ export const TIMELINE_EVENTS_PER_ROUND = 5
 
 export const timelineEventIdSchema = z.string().regex(/^[a-z0-9-]{1,64}$/)
 
+export const TIMELINE_LABEL_MAX_LENGTH = 120
+
+/** What an event is called in one language. */
+export const timelineLabelSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(TIMELINE_LABEL_MAX_LENGTH)
+
 /**
  * What an event is called, in every language the app ships. Every label rides
  * the wire rather than the room's language, so a phone set to English at a
@@ -19,7 +28,7 @@ export const timelineEventIdSchema = z.string().regex(/^[a-z0-9-]{1,64}$/)
  */
 export const timelineLabelsSchema = z.record(
   localeSchema,
-  z.string().min(1).max(120)
+  z.string().min(1).max(TIMELINE_LABEL_MAX_LENGTH)
 )
 
 /** An event as every screen holds it while the round is open: a name and no date. */

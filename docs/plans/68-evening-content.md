@@ -1,6 +1,6 @@
 # 68 — An evening that brings its own content
 
-**In progress — sessions 1 to 3 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
+**In progress — sessions 1 to 4 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
 played in order. This file holds what they share. Each handoff holds that
 session's own work.
 
@@ -144,6 +144,26 @@ opens.
   ("the line-up it composed, nothing about the visitor"), `docs/mcp.md` and the
   assistant page change in the session that first carries a deck (`privacy`
   rule).
+- **A timeline deck deals by distinct years, every date played.** The
+  bank's `MIN_YEARS_APART` would deal nothing from two births two years
+  apart, so a deck's round asks only that no two events share a year, and
+  `prepare_evening` refuses a tie. A deck of 5 to 40 events deals five a
+  round (`dealDeckEvents`); once fewer than five are left, the round deals
+  them all and fills up with events the room already ordered. Rounds of three
+  or four were refused because `ORDER_TIERS` counts swapped pairs absolutely,
+  tuned on five events — a shuffle of three is perfect one time in six — and
+  topping up from the bank mixes a family date with the fall of Rome. The
+  wire id is `deck-<index>`: an order names events by a slug the deck's own
+  id does not fit, and a round is never half deck, half bank.
+- **A slate deck keys one sheet, its entry's.** A prepared game plays once
+  (`isPlayedOut`), so an entry is a sheet, and the labels the sheet shows sit
+  on the entry: a tasting of three flights is three slate entries, each with
+  its labels and its keys. The deck is the positional key list, `null` for an
+  item without one, every key past `itemCount` refused; it lands on the host
+  arm as the sheet opens, whatever opened it, and the press's typed keys are
+  set aside. The deck counts its keyed items, so the note reads _3 home-made
+  answer keys_ and turns spent as the sheet opens. An entry still holding a
+  deck is never offered as a skip (`offersSkip`'s `bringsADeck`).
 
 ## Not doing, and why
 
@@ -164,14 +184,14 @@ opens.
 
 ## Sessions
 
-| #   | Handoff                                 | What it buys                                                                                                |
-| --- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| 1   | done                                    | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
-| 2   | done                                    | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
-| 3   | done                                    | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
-| 4   | `content-04-timeline-and-slate-keys.md` | A timeline deck (family dates), and a slate's answer key as a deck                                          |
-| 5   | `content-05-own-numbers.md`             | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
-| 6   | `content-06-black-square-themes.md`     | A black square theme of the evening's own                                                                   |
+| #   | Handoff                             | What it buys                                                                                                |
+| --- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | done                                | `decks` on the wire, the host-only store, a quiz deck dealt by the server and accepted by `prepare_evening` |
+| 2   | done                                | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
+| 3   | done                                | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
+| 4   | done                                | A timeline deck (family dates), and a slate's answer key as a deck                                          |
+| 5   | `content-05-own-numbers.md`         | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
+| 6   | `content-06-black-square-themes.md` | A black square theme of the evening's own                                                                   |
 
 Every session commits and pushes to `main` with its changelog entry and this
 plan's table updated. `pnpm validate` runs once, after session 6

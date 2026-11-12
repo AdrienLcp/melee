@@ -1,8 +1,15 @@
-import type { OwnLinesGame, QuizDeckItem } from '@melee/protocol/deck'
+import type { Deck, OwnLinesGame, QuizDeckItem } from '@melee/protocol/deck'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { DeckSummary } from '@melee/protocol/room'
+import {
+  type DatedTimelineEvent,
+  TIMELINE_EVENTS_PER_ROUND,
+  type TimelineLabels
+} from '@melee/protocol/timeline'
 
 import { deckItemId, ownLineId } from '@melee/core/room/evening-decks'
+import { keyedItemIndexes } from '@melee/core/slate/slate-deck'
+import { dealDeckEvents } from '@melee/core/timeline/deal'
 
 import type { Room } from '@/domain/room/room'
 
@@ -55,6 +62,90 @@ export const nextDeckQuestion = ({
   }
 
   return null
+}
+
+const labelsOf = (label: string): TimelineLabels => ({ en: label, fr: label })
+
+/** A round of dated events an entry's deck deals, and the ids the room remembers them by. */
+export type DeckTimelineRound = {
+  events: DatedTimelineEvent[]
+  playedIds: string[]
+}
+
+/**
+ * The next round the entry at `lineUpAt` deals from its timeline deck
+ * (`dealDeckEvents`), and `null` once every event is dealt or it brought
+ * none — the bank then deals. An event goes on the wire as `deck-<index>`,
+ * because an order names events by an id a deck's own does not fit, and a
+ * round is never half deck and half bank.
+ */
+export const nextDeckTimelineRound = ({
+  lineUpAt,
+  room
+}: {
+  lineUpAt: number | null
+  room: Room
+}): DeckTimelineRound | null => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== 'timeline') {
+    return null
+  }
+
+  const dealt = dealDeckEvents({
+    count: TIMELINE_EVENTS_PER_ROUND,
+    events: held.deck.items.map(({ label, year }, index) => ({
+      id: deckItemId({ deckId: held.id, index }),
+      index,
+      label,
+      year
+    })),
+    playedIds: room.playedContentIds
+  })
+
+  return dealt === null
+    ? null
+    : {
+        events: dealt.map(({ index, label, year }) => ({
+          id: `deck-${index}`,
+          labels: labelsOf(label),
+          year
+        })),
+        playedIds: dealt.map(({ id }) => id)
+      }
+}
+
+/** The answer key an entry's deck brings its sheet, and the ids the room remembers its keys by. */
+export type DeckSlateKeys = {
+  keys: readonly (string | null)[]
+  playedIds: string[]
+}
+
+/**
+ * The keys the entry at `lineUpAt` brought for its sheet, all dealt as the
+ * sheet opens, and `null` once they have been or it brought none — the sheet
+ * then takes whatever keys the press carried.
+ */
+export const nextDeckSlateKeys = ({
+  lineUpAt,
+  room
+}: {
+  lineUpAt: number | null
+  room: Room
+}): DeckSlateKeys | null => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== 'slate') {
+    return null
+  }
+
+  const playedIds = keyedItemIndexes(held.deck.items).map((index) =>
+    deckItemId({ deckId: held.id, index })
+  )
+
+  return playedIds.every((id) => room.playedContentIds.has(id))
+    ? null
+    : { keys: held.deck.items, playedIds }
 }
 
 /**
@@ -119,19 +210,29 @@ export const unplayedEveningLines = ({
   ...unplayedOwnLines({ game, room })
 ]
 
+/** The items a deck counts: every one, save a slate item it holds no key for. */
+const countedItemIndexes = (deck: Deck): number[] =>
+  deck.game === 'slate'
+    ? keyedItemIndexes(deck.items)
+    : deck.items.map((_item, index) => index)
+
 /** What the console is told of each entry's deck: how many items, how many dealt. */
 export const deckSummariesOf = (room: Room): (DeckSummary | null)[] =>
   room.settings.lineUp.map((_, index) => {
     const held = room.decks[index] ?? null
 
-    return held === null
-      ? null
-      : {
-          played: held.deck.items.filter((_item, itemIndex) =>
-            room.playedContentIds.has(
-              deckItemId({ deckId: held.id, index: itemIndex })
-            )
-          ).length,
-          size: held.deck.items.length
-        }
+    if (held === null) {
+      return null
+    }
+
+    const counted = countedItemIndexes(held.deck)
+
+    return {
+      played: counted.filter((itemIndex) =>
+        room.playedContentIds.has(
+          deckItemId({ deckId: held.id, index: itemIndex })
+        )
+      ).length,
+      size: counted.length
+    }
   })

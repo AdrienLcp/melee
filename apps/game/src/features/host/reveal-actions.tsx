@@ -24,6 +24,18 @@ import { isLastRound } from './is-last-round'
  * Whether the next round may be a duel, read off the room as it stands: two
  * teams holding a seat each, in a game and a mode a duel can be played in.
  */
+const bringsADeckAt = ({
+  at,
+  view
+}: {
+  at: number | null
+  view: HostRoomView
+}): boolean => {
+  const deck = at === null ? null : (view.deckSummaries[at] ?? null)
+
+  return deck !== null && deck.played < deck.size
+}
+
 const offersDuel = (view: HostRoomView): boolean =>
   view.settings.teams.kind !== 'aloud' &&
   canPlayDuel({
@@ -96,6 +108,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
     <div className='reveal-actions'>
       <ClipControls isLive={isLive} send={send} view={view} />
       {offersSkip({
+        bringsADeck: bringsADeckAt({ at: settings.lineUpAt, view }),
         challengeText: challengePickFor(challengeLine).challengeText,
         lineUp: settings.lineUp,
         lineUpAt: settings.lineUpAt,

@@ -4,12 +4,20 @@ import { CHALLENGE_TEXT_MAX_LENGTH } from './challenge'
 import { MOST_LIKELY_LINE_MAX_LENGTH } from './most-likely'
 import { questionCategorySchema } from './question'
 import { LINE_UP_MAX_ENTRIES } from './room'
+import { MAX_SLATE_ITEMS, SLATE_KEY_MAX_LENGTH } from './slate'
+import { TIMELINE_EVENTS_PER_ROUND, timelineLabelSchema } from './timeline'
 
 /** The most questions one quiz deck holds: each carries its answer and three decoys, and the link is copied by hand. */
 export const QUIZ_DECK_MAX_ITEMS = 30
 
 /** The most lines a challenge or most likely deck holds — as many as a long evening plays. */
 export const LINE_DECK_MAX_ITEMS = 60
+
+/** The most dated events one timeline deck holds: eight rounds of five. */
+export const TIMELINE_DECK_MAX_ITEMS = 40
+
+/** The furthest year either way a timeline deck dates an event — a typo guard, not a history lesson. */
+export const TIMELINE_DECK_MAX_YEAR = 9999
 
 export const QUIZ_DECK_PROMPT_MAX_LENGTH = 240
 export const QUIZ_DECK_ANSWER_MAX_LENGTH = 100
@@ -54,6 +62,34 @@ export const quizDeckItemSchema = z.object({
 export type QuizDeckItem = z.infer<typeof quizDeckItemSchema>
 
 /**
+ * One dated event an evening brings — _Léa is born_, 2015 — written in one
+ * language and shown in every one. Its year is the answer, dealt to the
+ * console alone until the reveal, exactly as a bank event's.
+ */
+export const timelineDeckItemSchema = z.object({
+  label: timelineLabelSchema,
+  year: z
+    .number()
+    .int()
+    .min(-TIMELINE_DECK_MAX_YEAR)
+    .max(TIMELINE_DECK_MAX_YEAR)
+})
+
+export type TimelineDeckItem = z.infer<typeof timelineDeckItemSchema>
+
+/**
+ * One item's answer key, `null` for an item the host marks without one: a
+ * memo read on the console, and on the wall only once the host reveals it on
+ * a closed item.
+ */
+export const slateDeckKeySchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(SLATE_KEY_MAX_LENGTH)
+  .nullable()
+
+/**
  * Content an evening brings for one line-up entry, by the entry's game. Every
  * item is dealt before the game's own bank, which takes over once the deck is
  * spent. Never part of the settings: those ride every snapshot to every
@@ -82,6 +118,26 @@ export const deckSchema = z.discriminatedUnion('game', [
       .array(z.string().trim().min(1).max(MOST_LIKELY_LINE_MAX_LENGTH))
       .min(1)
       .max(LINE_DECK_MAX_ITEMS)
+  }),
+  /**
+   * The table's own dates, five a round, ordered by distinct years alone:
+   * the bank's spacing would deal nothing from two births two years apart.
+   */
+  z.object({
+    game: z.literal('timeline'),
+    items: z
+      .array(timelineDeckItemSchema)
+      .min(TIMELINE_EVENTS_PER_ROUND)
+      .max(TIMELINE_DECK_MAX_ITEMS)
+  }),
+  /**
+   * The answer key of the entry's sheet, by item index. A sheet is one
+   * entry's whole round — a prepared game plays once — so a tasting of three
+   * flights is three slate entries, each with its labels and its keys.
+   */
+  z.object({
+    game: z.literal('slate'),
+    items: z.array(slateDeckKeySchema).min(1).max(MAX_SLATE_ITEMS)
   })
 ])
 

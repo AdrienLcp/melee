@@ -2052,6 +2052,14 @@ export const FR_DICTIONARY = defineDictionary({
       nobody: 'Personne n’a rien écrit pour celui-là.',
       previous: 'Précédent'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} corrigé maison', other: '{?} corrigés maison' }
+        }
+      }),
+      spent: 'Corrigés maison épuisés'
+    },
     home: {
       description:
         'Des choses numérotées à deviner — des verres à goûter, des photos, des prix — et chacun écrit sur une feuille que personne ne voit, dans l’ordre qu’il veut. Puis l’hôte corrige les copies numéro par numéro, et chaque réponse qu’il accepte rapporte sa part des 100 points de la feuille.'
@@ -2274,6 +2282,12 @@ export const FR_DICTIONARY = defineDictionary({
     },
     dealt:
       'Lequel d’abord ? Remettez-les dans l’ordre, du plus ancien au plus récent.',
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} date maison', other: '{?} dates maison' } }
+      }),
+      spent: 'Dates maison épuisées'
+    },
     duration: 'Temps par manche',
     home: {
       description:

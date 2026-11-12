@@ -16,17 +16,24 @@ const isBlank = (text: string | null | undefined): boolean =>
  * console can tell: a challenge with no line typed, a slate with no item
  * labelled and no key noted, and every buzzer — its questions are never on a
  * screen. The line and the keys are the console's, not the entry's, which is
- * why only the next round can be asked.
+ * why only the next round can be asked. An entry still holding a deck of the
+ * evening's own is prepared, whatever the game.
  */
 const isUnprepared = ({
+  bringsADeck,
   challengeText,
   entry,
   slateKeys
 }: {
+  bringsADeck: boolean
   challengeText: string | undefined
   entry: GameSettings
   slateKeys: readonly (string | null)[]
 }): boolean => {
+  if (bringsADeck) {
+    return false
+  }
+
   switch (entry.kind) {
     case 'buzzer':
       return true
@@ -49,12 +56,15 @@ const withoutIndex = <T>(items: readonly T[], at: number): T[] =>
  * *End game* already says.
  */
 export const offersSkip = ({
+  bringsADeck,
   challengeText,
   lineUp,
   lineUpAt,
   played,
   slateKeys
 }: {
+  /** Whether the entry drawn next still holds items of a deck the evening brought. */
+  bringsADeck: boolean
   /** The challenge line typed at the press. */
   challengeText: string | undefined
   lineUp: readonly GameSettings[]
@@ -76,7 +86,7 @@ export const offersSkip = ({
   return (
     !capabilitiesOf(entry.kind).servesItsOwnContent &&
     (played[lineUpAt] ?? 0) === 0 &&
-    isUnprepared({ challengeText, entry, slateKeys }) &&
+    isUnprepared({ bringsADeck, challengeText, entry, slateKeys }) &&
     rest.some(
       (other, index) =>
         !isPlayedOut({ entry: other, played: restPlayed[index] ?? 0 })

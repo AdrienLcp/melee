@@ -15,6 +15,8 @@ import {
 import { challengeContent } from '@/domain/round/challenge-round'
 import {
   nextDeckQuestion,
+  nextDeckSlateKeys,
+  nextDeckTimelineRound,
   unplayedEveningLines
 } from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
@@ -254,8 +256,21 @@ const servedContent = ({
       return petitBacContent({ room, settings: game })
     case 'reflex':
       return reflexContent()
-    case 'slate':
-      return slateContent({ keys: slateKeys, settings: game })
+    case 'slate': {
+      const fromDeck = nextDeckSlateKeys({
+        lineUpAt: room.settings.lineUpAt,
+        room
+      })
+
+      for (const id of fromDeck?.playedIds ?? []) {
+        room.playedContentIds.add(id)
+      }
+
+      return slateContent({
+        keys: fromDeck?.keys ?? slateKeys,
+        settings: game
+      })
+    }
   }
 }
 
@@ -265,7 +280,7 @@ const servedContent = ({
  * itself are not messages anyone sent, but they still end in a broadcast.
  *
  * `slateKeys` is what a host prepared before the evening, carried by the press
- * that opens the sheet, `challenge` which line a challenge asks the table and
+ * that opens the sheet and set aside when the entry's deck keys the sheet, `challenge` which line a challenge asks the table and
  * `innerclockTargetSeconds` how long a count runs — every path nobody pressed
  * opens with none, and a count is then drawn.
  * `heldUntil` is the instant the hold promised the next clip, on the one path
@@ -485,10 +500,16 @@ export const beginRound = async (
   }
 
   if (game.kind === 'timeline') {
-    const events = drawTimelineEvents({
-      difficulty: game.difficulty,
-      playedIds: room.playedContentIds
+    const fromDeck = nextDeckTimelineRound({
+      lineUpAt: room.settings.lineUpAt,
+      room
     })
+    const events =
+      fromDeck?.events ??
+      drawTimelineEvents({
+        difficulty: game.difficulty,
+        playedIds: room.playedContentIds
+      })
 
     if (events === null) {
       tellHost(engine, {
@@ -500,8 +521,9 @@ export const beginRound = async (
       return
     }
 
-    for (const { id } of events) {
-      room.playedContentIds.add(playedTimelineEventId(id))
+    for (const id of fromDeck?.playedIds ??
+      events.map((event) => playedTimelineEventId(event.id))) {
+      room.playedContentIds.add(id)
     }
 
     openRound({

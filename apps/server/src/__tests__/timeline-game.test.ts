@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import type { Deck } from '@melee/protocol/deck'
 import { DEFAULT_TIMELINE_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
 import {
@@ -11,6 +12,8 @@ import {
 } from '@melee/protocol/room'
 import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
+  type HostServerMessage,
+  type PlayerServerMessage,
   type WallServerMessage,
   wallServerMessageSchema
 } from '@melee/protocol/server-message'
@@ -307,5 +310,135 @@ describe('a timeline round through the seam', () => {
     expect(errorsIn(host).map(({ code }) => code)).toContain(
       'no_content_available'
     )
+  })
+})
+
+const FAMILY_DATES = [
+  { label: 'Grandpa and Grandma marry', year: 1968 },
+  { label: 'The house in Cholet', year: 1999 },
+  { label: 'Léa is born', year: 2015 },
+  { label: 'Tom is born', year: 2017 },
+  { label: 'The dog joins us', year: 2019 },
+  { label: 'The new kitchen', year: 2021 },
+  { label: 'Grandma turns eighty', year: 2023 }
+]
+
+const FAMILY_TIMELINE: RoomSettings = {
+  ...TIMELINE,
+  lineUp: [DEFAULT_TIMELINE_SETTINGS],
+  lineUpAt: 0,
+  roundCount: 5
+}
+
+const datedYears = (host: Peer<HostServerMessage>): number[] | null => {
+  const console = hostView(host)?.currentContent
+
+  return console?.kind === 'timeline'
+    ? (console.datedEvents?.map(({ year }) => year) ?? null)
+    : null
+}
+
+const familyRoom = async (deck: Deck) => {
+  const { code, host } = await harness.openRoom(FAMILY_TIMELINE)
+  const zoe = await harness.seat({ code, nickname: 'Zoe' })
+
+  await harness.seat({ code, nickname: 'Max' })
+  host.send({ decks: [deck], type: 'host.setDecks' })
+
+  return { host, zoe }
+}
+
+const dealRound = async ({
+  host,
+  zoe
+}: {
+  host: Peer<HostServerMessage>
+  zoe: Peer<PlayerServerMessage>
+}) => {
+  const before = playerView(zoe)?.round?.id ?? null
+
+  if (before !== null) {
+    host.send({ roundId: before, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+  }
+
+  host.send({ type: before === null ? 'host.startRound' : 'host.nextRound' })
+  await waitFor(
+    () =>
+      playerView(zoe)?.phase === 'playing' &&
+      playerView(zoe)?.round?.id !== before,
+    'the events to go up'
+  )
+}
+
+describe('a timeline deck', () => {
+  it('[timeline] deals a deck by distinct years, the years on the console alone', async () => {
+    const { host, zoe } = await familyRoom({
+      game: 'timeline',
+      items: FAMILY_DATES.slice(2)
+    })
+
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0] != null,
+      'the deck to load'
+    )
+    await dealRound({ host, zoe })
+
+    expect(datedYears(host)?.toSorted()).toEqual([2015, 2017, 2019, 2021, 2023])
+    expect(
+      timelineRound(playerView(zoe))
+        ?.events.map(({ labels }) => labels.fr)
+        .toSorted()
+    ).toEqual(
+      FAMILY_DATES.slice(2)
+        .map(({ label }) => label)
+        .toSorted()
+    )
+    expect(transcriptOf(zoe)).not.toContain('"year"')
+  })
+
+  it('[timeline] refuses a deck with two events of one year', async () => {
+    const { host } = await familyRoom({
+      game: 'timeline',
+      items: [...FAMILY_DATES, { label: 'The first car', year: 2017 }]
+    })
+
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'invalid_message'),
+      'the tied deck to be refused'
+    )
+    expect(hostView(host)?.deckSummaries).toEqual([null])
+  })
+
+  it('[timeline] plays every date of a deck, then hands over to the bank', async () => {
+    const { host, zoe } = await familyRoom({
+      game: 'timeline',
+      items: FAMILY_DATES
+    })
+    const dealtIds = () =>
+      timelineRound(playerView(zoe))?.events.map(({ id }) => id) ?? []
+
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0] != null,
+      'the deck to load'
+    )
+    await dealRound({ host, zoe })
+    const first = dealtIds()
+
+    await dealRound({ host, zoe })
+    const second = dealtIds()
+
+    expect([...first, ...second].every((id) => id.startsWith('deck-'))).toBe(
+      true
+    )
+    expect(second).toHaveLength(5)
+    expect(new Set([...first, ...second]).size).toBe(FAMILY_DATES.length)
+    expect(hostView(host)?.deckSummaries).toEqual([
+      { played: FAMILY_DATES.length, size: FAMILY_DATES.length }
+    ])
+
+    await dealRound({ host, zoe })
+
+    expect(dealtIds().toSorted()).toEqual(TRUE_ORDER.toSorted())
   })
 })

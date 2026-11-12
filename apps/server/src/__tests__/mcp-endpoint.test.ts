@@ -22,6 +22,14 @@ const EVENING = {
   runningOrder: [0, 1]
 }
 
+const FAMILY_DATES = [
+  { label: 'Grandpa and Grandma marry', year: 1968 },
+  { label: 'The house in Cholet', year: 1999 },
+  { label: 'Léa is born', year: 2015 },
+  { label: 'Tom is born', year: 2017 },
+  { label: 'The dog joins us', year: 2019 }
+]
+
 const FAMILY_QUESTION = {
   answer: 'Biscotte',
   decoys: ['Rex', 'Caramel', 'Filou'],
@@ -188,6 +196,86 @@ describe('mcp endpoint', () => {
 
     expect(isError).toBe(false)
     expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
+  it('[mcp] carries a timeline deck of family dates in the link as written', async () => {
+    const evening = {
+      ...EVENING,
+      decks: [null, null, { game: 'timeline', items: FAMILY_DATES }],
+      lineUp: [...EVENING.lineUp, 'timeline']
+    }
+    const { isError, text } = await call('prepare_evening', {
+      evening,
+      locale: 'en'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
+  it('[mcp] answers two dates of one year by their path', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [
+          null,
+          null,
+          {
+            game: 'timeline',
+            items: [...FAMILY_DATES, { label: 'The first car', year: 2017 }]
+          }
+        ],
+        lineUp: [...EVENING.lineUp, 'timeline']
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('decks[2].items[5].year')
+  })
+
+  it('[mcp] carries a slate deck of answer keys in the link as written', async () => {
+    const evening = {
+      ...EVENING,
+      decks: [
+        null,
+        null,
+        {
+          game: 'slate',
+          items: ['Merlot', null, 'Syrah']
+        }
+      ],
+      lineUp: [
+        ...EVENING.lineUp,
+        { ...DEFAULT_GAME_SETTINGS.slate, itemCount: 3 }
+      ]
+    }
+    const { isError, text } = await call('prepare_evening', {
+      evening,
+      locale: 'en'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
+  it('[mcp] answers a key past the sheet by its path', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [null, null, { game: 'slate', items: ['Merlot', 'Syrah'] }],
+        lineUp: [
+          ...EVENING.lineUp,
+          { ...DEFAULT_GAME_SETTINGS.slate, itemCount: 1 }
+        ]
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('decks[2].items[1]')
   })
 
   it('[mcp] answers a decoy that is the answer by its path', async () => {

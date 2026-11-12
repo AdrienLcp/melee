@@ -798,7 +798,12 @@ is dealt as an ordinary round, through the same host and player arms as a
 bank's row, so its answer reaches a player at the reveal and not before. The
 console is told `deckSummaries`, a `{ size, played }` count per entry and
 never an item, because a seated host is a player too; `played === size` is a
-spent deck, and that entry deals from the game's bank from then on. The room's
+spent deck, and that entry deals from the game's bank from then on. A timeline
+deck deals five events a round by distinct years, its last round filled with
+events already ordered, each on the wire as `deck-<index>` because an order
+names events by an id the deck's own does not fit. A slate deck is the key of
+its entry's one sheet: it lands on the host arm as the sheet opens, however it
+opens, and the keys a `host.startRound` carried are set aside. The room's
 storage is wiped with it when the table closes or expires.
 
 **So do the lines a host wrote ahead.** `host.setOwnLines` hands the server
