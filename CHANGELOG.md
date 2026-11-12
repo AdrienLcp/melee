@@ -336,6 +336,10 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The start's house and the finish's flag sit in the middle of
+  their case** in the standings, where they leaned into the corner a number
+  is printed in.
+
 - **The QR code's link is no longer indexable.** It encodes `/PLAY/<code>` in
   upper case, and the asset server's `noindex` rule matched `/play/*` only, so
   the one room address everybody scans was the one served without it.

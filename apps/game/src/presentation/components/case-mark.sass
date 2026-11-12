@@ -23,6 +23,11 @@
       background: var(--track-five)
       color: var(--track-ink)
 
+    // A glyph is the whole case, not a number printed in its corner.
+    &[data-mark='start'], &[data-mark='finish']
+      padding: 0.2em 0.2em 0.3em
+      place-items: center
+
     .number
       @include typography.numeric
       @include typography.solid
