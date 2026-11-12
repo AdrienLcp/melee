@@ -3,11 +3,17 @@ import type { Difficulty } from '@melee/protocol/difficulty'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { RoundId, SessionId } from '@melee/protocol/identifiers'
 
-import { shuffled } from '@melee/core/helpers/random'
+import { randomUnit, shuffled } from '@melee/core/helpers/random'
+import { playedPerEntry } from '@melee/core/room/next-game'
+import { withNextEntryDealt } from '@melee/core/room/running-order'
 
 import type { AtlasRoundTarget, Room, Round } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
-import { releaseAbandonedSeats } from '@/domain/room/room-service'
+import {
+  releaseAbandonedSeats,
+  updateSettings
+} from '@/domain/room/room-service'
+import { fitTeamsToSettings } from '@/domain/room/team-service'
 import {
   blackSquareContent,
   canTakeSpokenTurn
@@ -61,6 +67,7 @@ import { slateContent } from '@/domain/round/slate-round'
 import { swatchContent } from '@/domain/round/swatch-round'
 import { timelineContent } from '@/domain/round/timeline-round'
 import {
+  discardPoolIfStale,
   drawPlayableTrack,
   replacementTrackFor
 } from '@/domain/round/track-pool'
@@ -74,6 +81,7 @@ import {
 } from '@/infrastructure/questions/black-square-bank'
 import {
   type ChallengePick,
+  keepChallengeAhead,
   pickChallengeLabels
 } from '@/infrastructure/questions/challenge-dealer'
 import { drawCity, playedCityId } from '@/infrastructure/questions/city-bank'
@@ -110,6 +118,7 @@ import {
   playedCapitalId
 } from '@/infrastructure/questions/world-capitals'
 
+import { unseatConsolesThatMustJudge } from './host-judging'
 import { sendError } from './outbound'
 import { forgetSeat, hostConnectionIn } from './room-connections'
 import {
@@ -281,6 +290,42 @@ const servedContent = ({
 }
 
 /**
+ * Moves an evening off the entry just played when the console's draw never
+ * landed (`withNextEntryDealt`), with what a settings frame sets off.
+ */
+const dealNextEntryIfUndrawn = (engine: RoomEngine): void => {
+  const { room } = engine
+  const round = room.round
+
+  if (room.phase !== 'revealed' || round === null) {
+    return
+  }
+
+  const settings = withNextEntryDealt({
+    lastAt: round.lineUpAt,
+    played: playedPerEntry({
+      lineUp: room.settings.lineUp,
+      opened: room.openedEntries
+    }),
+    random: randomUnit,
+    roundAt: round.index,
+    settings: room.settings
+  })
+
+  if (settings === room.settings) {
+    return
+  }
+
+  const previousGame = room.settings.game
+
+  updateSettings(room, settings, engine.now())
+  fitTeamsToSettings(room)
+  discardPoolIfStale({ previousGame, room })
+  keepChallengeAhead(room)
+  unseatConsolesThatMustJudge(engine)
+}
+
+/**
  * The time-driven transitions live here rather than in the socket handler: a
  * countdown that lands, a round that runs out, and a reveal that moves on by
  * itself are not messages anyone sent, but they still end in a broadcast.
@@ -317,6 +362,8 @@ export const beginRound = async (
   if (engine.isDrawing) {
     return
   }
+
+  dealNextEntryIfUndrawn(engine)
 
   const game = room.settings.game
 

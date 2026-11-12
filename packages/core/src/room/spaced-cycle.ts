@@ -35,18 +35,29 @@ export const spacingKeyOf = (kind: GameKind): SpacingKey =>
  * two rounds of one game run back to back while another game is left, and of
  * the game drawn, the entry played longest ago takes the row.
  *
+ * A cycle that `loops` comes back to the order's first row after its last,
+ * so that row's game is dealt its last round early enough to rest its gap
+ * before it comes round again.
+ *
  * On a cycle dealt whole, every ready-made evening keeps the gap for every
  * game (`spaced-cycle.test.ts`).
  */
 export const spacedCycle = ({
   entries,
   lineUp,
+  loops = false,
   opened,
   random
 }: {
   /** The line-up indices to deal, each once. */
   entries: readonly number[]
   lineUp: readonly GameSettings[]
+  /**
+   * Whether the cycle closes an order played round again: its last row is
+   * followed by the order's first — `opened`'s first entry, or the cycle's own
+   * first row when `opened` holds none. `false` when absent.
+   */
+  loops?: boolean
   /** The entry each round before the cycle opened on, oldest first, `null` for one no longer in the line-up. */
   opened: readonly (number | null)[]
   /** In `[0, 1)`, as `Math.random`. */
@@ -68,8 +79,14 @@ export const spacedCycle = ({
   }
   const shareByKey = countByKey(entries)
   const owedByKey = countByKey(entries)
+  const loop = [...new Set(opened.filter((at) => at !== null)), ...entries]
+  const shareOfLoopByKey = countByKey(loop)
   const gapOf = (kind: SpacingKey | undefined) =>
     Math.floor(entries.length / (shareByKey.get(kind) ?? 0))
+  const loopGapOf = (kind: SpacingKey | undefined) =>
+    isLoopedBackTo(kind)
+      ? Math.floor(loop.length / (shareOfLoopByKey.get(kind) ?? 0))
+      : gapOf(kind)
   const dealt: number[] = []
   const left = [...entries]
   const lastRowOfKey = new Map<SpacingKey | undefined, number>()
@@ -86,14 +103,21 @@ export const spacedCycle = ({
     markPlayed({ at, row })
   }
 
+  let loopsBackToAt = loops ? (opened.find((at) => at !== null) ?? null) : null
+  const isLoopedBackTo = (kind: SpacingKey | undefined) =>
+    loopsBackToAt !== null && keyAt(loopsBackToAt) === kind
+
   const roundsSince = (lastRow: number | undefined) =>
     lastRow === undefined
       ? Number.POSITIVE_INFINITY
       : opened.length + dealt.length - lastRow
+  const rowsOpenTo = (kind: SpacingKey | undefined) =>
+    isLoopedBackTo(kind) ? left.length - loopGapOf(kind) + 1 : left.length
   const roomLeftFor = (kind: SpacingKey | undefined) =>
-    left.length - (((owedByKey.get(kind) ?? 0) - 1) * gapOf(kind) + 1)
+    rowsOpenTo(kind) - (((owedByKey.get(kind) ?? 0) - 1) * gapOf(kind) + 1)
   const waitOf = (kind: SpacingKey | undefined) =>
-    roundsSince(lastRowOfKey.get(kind)) - gapOf(kind)
+    roundsSince(lastRowOfKey.get(kind)) -
+    (roomLeftFor(kind) > 0 ? gapOf(kind) : loopGapOf(kind))
   const tightestOf = (kinds: readonly (SpacingKey | undefined)[]) => {
     const tightest = Math.min(...kinds.map(roomLeftFor))
     const tight = kinds.filter((kind) => roomLeftFor(kind) === tightest)
@@ -134,6 +158,11 @@ export const spacedCycle = ({
     }
 
     markPlayed({ at: drawn, row: opened.length + dealt.length })
+
+    if (loops && loopsBackToAt === null) {
+      loopsBackToAt = drawn
+    }
+
     dealt.push(drawn)
     left.splice(left.indexOf(drawn), 1)
     owedByKey.set(game, (owedByKey.get(game) ?? 0) - 1)

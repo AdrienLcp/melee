@@ -107,6 +107,68 @@ export const scheduledEntryAt = ({
   )
 }
 
+/**
+ * The settings the next round of an evening opens on. The console deals it
+ * as the reveal goes up, and when that frame never lands — a console asleep,
+ * reconnecting, or a frame refused — the room is still on the entry just
+ * played, and would play it again. Unless the order holds that entry on the
+ * next row, which is how a host asks for it back, the next round is dealt here
+ * instead, on the settings the room already holds: the console's remembered
+ * setup for that game is on the console alone.
+ */
+export const withNextEntryDealt = ({
+  lastAt,
+  played,
+  random,
+  roundAt,
+  settings
+}: {
+  /** The entry the round just played was opened from. */
+  lastAt: number | null
+  /** As `nextEntryAt`'s. */
+  played: readonly number[]
+  /** As `nextEntryAt`'s. */
+  random: () => number
+  /** The round about to open, counted from 0. */
+  roundAt: number
+  settings: RoomSettings
+}): RoomSettings => {
+  const { lineUp, lineUpAt, runningOrder, roundCount } = settings
+
+  if (
+    lineUp.length < 2 ||
+    lastAt === null ||
+    lineUpAt !== lastAt ||
+    runningOrder[roundAt] === lastAt
+  ) {
+    return settings
+  }
+
+  const drawn = scheduledEntryAt({
+    deals: settings.lineUpDeals,
+    lastAt,
+    lineUp,
+    order: runningOrder,
+    played,
+    random,
+    repeatsOrder: settings.repeatsRunningOrder,
+    roundAt,
+    roundsLeft: roundCount === null ? null : roundCount - roundAt
+  })
+  const entry = drawn === null ? undefined : lineUp[drawn]
+
+  if (drawn === null || drawn === lastAt || entry === undefined) {
+    return settings
+  }
+
+  return {
+    ...settings,
+    game: entry,
+    lineUpAt: drawn,
+    mode: modeOfferedBy({ game: entry, preferred: settings.mode })
+  }
+}
+
 const entryAfterInOrder = ({
   isOwed,
   lastAt,
@@ -188,7 +250,8 @@ export const orderWithEntryAdded = ({
  * rows first in the host's order, then every entry never played and given no
  * row yet — save one the host put in the draw alone — dealt by `spacedCycle`
  * after the rows before them, each game as far from its last round as its
- * share of the entries allows. A row the evening no longer holds — an entry
+ * share of the entries allows — and from the first row, which an order played
+ * again comes back to after its last (`loops`). A row the evening no longer holds — an entry
  * taken out or played out, a second row for one entry — is dropped, and the
  * list closes up. The round about to open is `drawnAt`'s when it is settled. Every round
  * past the last row is drawn as it comes (`scheduledEntryAt`), and a row past
@@ -241,17 +304,18 @@ export const dealtOrder = ({
       ? [at]
       : []
   )
+  const before = [
+    ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
+    ...kept
+  ]
 
   return [
-    ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
-    ...kept,
+    ...before,
     ...spacedCycle({
       entries: owed,
       lineUp,
-      opened: [
-        ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
-        ...kept
-      ],
+      loops: true,
+      opened: before,
       random
     })
   ].slice(0, RUNNING_ORDER_MAX_ROWS)

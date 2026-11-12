@@ -336,6 +336,14 @@ one part.
 
 ### Fixes
 
+- **A line-up never plays the same game twice in a row.** The room moved to
+  its next entry only on the console's word as each reveal went up, so a
+  console asleep or reconnecting at that moment replayed the entry just
+  played — two French-city maps, two mystery words, rounds 42 and 43. The
+  server now deals the next entry itself when the room is still on the one
+  just played, unless the host asked for it again; and an order played round
+  again no longer ends on the game it starts with.
+
 - `[Game]` **The map arrives with its round instead of popping in after it.**
   Its frame enters with the stage and the drawing fades in once ready, a
   loader centred in the frame while it is not; and a line-up holding an Atlas

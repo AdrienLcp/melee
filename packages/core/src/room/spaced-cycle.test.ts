@@ -4,6 +4,7 @@ import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_GAME_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
+  type GameKind,
   type GameSettings
 } from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS, type RoomSettings } from '@melee/protocol/room'
@@ -15,7 +16,11 @@ import {
   rememberedOnReadyMade,
   savedEveningOfReadyMade
 } from './ready-made-line-ups'
-import { dealtOrder, scheduledEntryAt } from './running-order'
+import {
+  dealtOrder,
+  scheduledEntryAt,
+  withNextEntryDealt
+} from './running-order'
 import { withSavedEvening } from './saved-evening'
 import { spacedCycle, spacingKeyOf } from './spaced-cycle'
 
@@ -65,55 +70,101 @@ const shortGaps = ({
     return previous !== -1 && isShort(gap) ? [{ ...gap, at }] : []
   })
 
-/** The game each round plays, the evening drawn the way the console and the server draw it. */
+/**
+ * The game each round plays, the evening drawn the way the console and the
+ * server draw it: the console as each reveal goes up, unless `isDrawMissed`
+ * says its frame never landed, and the server as the next round opens.
+ */
 const playedKinds = ({
+  isDrawMissed = () => false,
   lineUp,
   order,
+  repeatsOrder = false,
   rounds,
   seed
 }: {
+  isDrawMissed?: (roundAt: number) => boolean
   lineUp: readonly GameSettings[]
   order: RoomSettings['runningOrder']
+  repeatsOrder?: boolean
   rounds: number
   seed: number
-}): string[] => {
+}): GameKind[] => {
   const random = seededRandom(seed)
   const played = lineUp.map(() => 0)
-  let runningOrder = dealtOrder({
-    deals: [],
-    drawnAt: 0,
-    lineUp,
-    order,
-    played,
-    random,
-    upcoming: 0
-  })
-  let at: number | null = 0
-  const kinds: string[] = []
-
-  for (let roundAt = 1; roundAt <= rounds && at !== null; roundAt += 1) {
-    played[at] = (played[at] ?? 0) + 1
-    kinds.push(lineUp[at]?.kind ?? 'none')
-    at = scheduledEntryAt({
-      deals: [],
-      lastAt: at,
-      lineUp,
-      order: runningOrder,
-      played,
-      random,
-      repeatsOrder: false,
-      roundAt,
-      roundsLeft: null
-    })
-    runningOrder = dealtOrder({
+  const settledOn = ({
+    at,
+    roundAt,
+    settings
+  }: {
+    at: number
+    roundAt: number
+    settings: RoomSettings
+  }): RoomSettings => ({
+    ...settings,
+    game: lineUp[at] ?? null,
+    lineUpAt: at,
+    runningOrder: dealtOrder({
       deals: [],
       drawnAt: at,
       lineUp,
-      order: runningOrder,
+      order: settings.runningOrder,
       played,
       random,
       upcoming: roundAt
     })
+  })
+  let settings = settledOn({
+    at: 0,
+    roundAt: 0,
+    settings: {
+      ...DEFAULT_ROOM_SETTINGS,
+      lineUp: [...lineUp],
+      repeatsRunningOrder: repeatsOrder,
+      roundCount: null,
+      runningOrder: [...order]
+    }
+  })
+  const kinds: GameKind[] = []
+
+  for (let roundAt = 1; roundAt <= rounds; roundAt += 1) {
+    const at = settings.lineUpAt
+    const kind = at === null ? undefined : lineUp[at]?.kind
+
+    if (at === null || kind === undefined) {
+      break
+    }
+
+    played[at] = (played[at] ?? 0) + 1
+    kinds.push(kind)
+
+    const drawn = scheduledEntryAt({
+      deals: [],
+      lastAt: at,
+      lineUp,
+      order: settings.runningOrder,
+      played,
+      random,
+      repeatsOrder,
+      roundAt,
+      roundsLeft: null
+    })
+
+    if (drawn !== null && drawn !== at && !isDrawMissed(roundAt)) {
+      settings = settledOn({ at: drawn, roundAt, settings })
+    }
+
+    const opening = withNextEntryDealt({
+      lastAt: at,
+      played,
+      random,
+      roundAt,
+      settings
+    })
+
+    if (opening !== settings && opening.lineUpAt !== null) {
+      settings = settledOn({ at: opening.lineUpAt, roundAt, settings: opening })
+    }
   }
 
   return kinds
@@ -200,6 +251,27 @@ describe('spacedCycle', () => {
     }
   })
 
+  it('[line-up] deals a looped cycle’s last row off the game its order opens on', () => {
+    const lineUp = [
+      DEFAULT_GAME_SETTINGS.quiz,
+      { ...DEFAULT_QUIZ_SETTINGS, categories: ['flags' as const] },
+      DEFAULT_GAME_SETTINGS.atlas,
+      DEFAULT_GAME_SETTINGS.blindtest
+    ]
+
+    for (const seed of SEEDS) {
+      const cycle = spacedCycle({
+        entries: [1, 2, 3],
+        lineUp,
+        loops: true,
+        opened: [0],
+        random: seededRandom(seed)
+      })
+
+      expect(cycle[1]).toBe(1)
+    }
+  })
+
   it('[line-up] deals the variant played longest ago first', () => {
     const blindTests = [
       DEFAULT_BLINDTEST_SETTINGS,
@@ -239,11 +311,7 @@ describe('a ready-made evening, played through', () => {
         order: runningOrder,
         rounds: 2 * lineUp.length,
         seed
-      }).map((kind) =>
-        spacingKeyOf(
-          lineUp.find((entry) => entry.kind === kind)?.kind ?? 'quiz'
-        )
-      )
+      }).map(spacingKeyOf)
 
       expect(kinds).toHaveLength(2 * lineUp.length)
       expect(
@@ -251,6 +319,52 @@ describe('a ready-made evening, played through', () => {
           isShort: ({ gap, kind }) =>
             gap < Math.max(2, Math.floor(shareOf(kind) / 2)),
           kinds
+        })
+      ).toEqual([])
+    }
+  })
+
+  it('[line-up] never runs one game of Free-for-all twice in a row over 150 rounds, played again or drawn', () => {
+    const { lineUp, runningOrder } = readyMade('grandMix')
+
+    for (const seed of SEEDS.slice(0, 10)) {
+      for (const repeatsOrder of [false, true]) {
+        const kinds = playedKinds({
+          lineUp,
+          order: runningOrder,
+          repeatsOrder,
+          rounds: 150,
+          seed
+        })
+
+        expect(kinds).toHaveLength(150)
+        expect(
+          shortGaps({
+            isShort: ({ gap }) => gap < 2,
+            kinds: kinds.map(spacingKeyOf)
+          })
+        ).toEqual([])
+      }
+    }
+  })
+
+  it('[line-up] moves Free-for-all off the game just played when the console’s draw never lands', () => {
+    const { lineUp, runningOrder } = readyMade('grandMix')
+
+    for (const seed of SEEDS.slice(0, 10)) {
+      const kinds = playedKinds({
+        isDrawMissed: (roundAt) => roundAt % 3 === 0 || roundAt > 40,
+        lineUp,
+        order: runningOrder,
+        rounds: 150,
+        seed
+      })
+
+      expect(kinds).toHaveLength(150)
+      expect(
+        shortGaps({
+          isShort: ({ gap }) => gap < 2,
+          kinds: kinds.map(spacingKeyOf)
         })
       ).toEqual([])
     }
@@ -295,5 +409,78 @@ describe('a ready-made evening, played through', () => {
         })
       ).toEqual([])
     }
+  })
+})
+
+describe('withNextEntryDealt', () => {
+  const lineUp = [
+    DEFAULT_GAME_SETTINGS.quiz,
+    DEFAULT_GAME_SETTINGS.atlas,
+    DEFAULT_GAME_SETTINGS.blindtest
+  ]
+  const evening = (
+    runningOrder: RoomSettings['runningOrder']
+  ): RoomSettings => ({
+    ...DEFAULT_ROOM_SETTINGS,
+    game: DEFAULT_GAME_SETTINGS.atlas,
+    lineUp,
+    lineUpAt: 1,
+    roundCount: null,
+    runningOrder
+  })
+
+  it('[line-up] opens the next row when the room is still on the entry just played', () => {
+    const settings = withNextEntryDealt({
+      lastAt: 1,
+      played: [1, 1, 0],
+      random: seededRandom(1),
+      roundAt: 2,
+      settings: evening([0, 1, 2])
+    })
+
+    expect(settings.lineUpAt).toBe(2)
+    expect(settings.game).toEqual(DEFAULT_GAME_SETTINGS.blindtest)
+  })
+
+  it('[line-up] draws another game past the order’s end', () => {
+    for (const seed of SEEDS) {
+      const settings = withNextEntryDealt({
+        lastAt: 1,
+        played: [1, 1, 1],
+        random: seededRandom(seed),
+        roundAt: 3,
+        settings: evening([0, 2, 1])
+      })
+
+      expect(settings.lineUpAt).not.toBe(1)
+    }
+  })
+
+  it('[line-up] keeps the entry just played when the host put it on the next row', () => {
+    const asked = evening([0, 1, 1, 2])
+
+    expect(
+      withNextEntryDealt({
+        lastAt: 1,
+        played: [1, 1, 0],
+        random: seededRandom(1),
+        roundAt: 2,
+        settings: asked
+      })
+    ).toBe(asked)
+  })
+
+  it('[line-up] leaves a round the console already drew', () => {
+    const drawn = { ...evening([0, 1, 2]), lineUpAt: 2 }
+
+    expect(
+      withNextEntryDealt({
+        lastAt: 1,
+        played: [1, 1, 0],
+        random: seededRandom(1),
+        roundAt: 2,
+        settings: drawn
+      })
+    ).toBe(drawn)
   })
 })
