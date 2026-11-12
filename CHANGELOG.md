@@ -120,8 +120,10 @@ one part.
   line-up plans some fifty rows, and the side panel's draw, _Ajouter un jeu_,
   the level and the saved line-ups sat three thousand pixels below them. The
   rows past the fifth now fold inside the same list, opened by _Voir les N
-  suivantes_ and closed by _Replier_; the keyboard still walks every row and
-  opens the fold as it reaches one, and a line-up of seven rows or fewer shows
+  suivantes_ and closed by _Replier_ in one motion: the toggle stays where it
+  was pressed — or comes down until the first five fit above it — and they
+  settle in as the rest close. The keyboard still walks every row and opens
+  the fold as it reaches one, and a line-up of seven rows or fewer shows
   whole, with no toggle. A row dragged past the list's edge — over the
   panel's sticky foot — is now dropped there rather than left lifted.
 - **A round clock reads in minutes past a minute.** The figure beside the

@@ -67,6 +67,7 @@ import { DifficultyChoice } from './difficulty-choice'
 import { arrangedEvening, eveningOrderOf } from './evening-order'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
+import { useFoldInView } from './use-fold-in-view'
 
 import './evening-rounds.sass'
 
@@ -509,6 +510,8 @@ const OrderedRounds: React.FC<{
   const isFoldable = foldedCount >= FEWEST_ROWS_WORTH_FOLDING
   const isFolded = isFoldable && !isUnfolded
   const shownFoldedCount = useLastShown(isFoldable ? foldedCount : null)
+  const toggle = useRef<HTMLDivElement>(null)
+  const foldInView = useFoldInView({ list, toggle })
 
   const arrange = ({ at, ids }: { at: number; ids: ReadonlySet<string> }) => {
     remember()
@@ -665,12 +668,24 @@ const OrderedRounds: React.FC<{
         data-open={isFoldable || undefined}
         data-unfolded={isUnfolded || undefined}
         inert={!isFoldable}
+        ref={toggle}
       >
         <div>
           <Button
             aria-expanded={isUnfolded}
             icon={<ChevronIcon />}
             onPress={() => {
+              const firstFolded =
+                list.current?.querySelectorAll(ROWS_BEFORE_THE_FOLD)[
+                  ROWS_SHOWN_FOLDED
+                ]
+
+              if (isUnfolded && firstFolded !== undefined) {
+                foldInView.fold(firstFolded)
+              } else {
+                foldInView.release()
+              }
+
               setIsUnfolded(!isUnfolded)
             }}
             size='small'

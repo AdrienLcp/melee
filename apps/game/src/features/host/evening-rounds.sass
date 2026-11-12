@@ -3,7 +3,6 @@
 @use '../../presentation/styles/typography'
 
 $row-opens: var(--transition-base, 0s) var(--ease-out)
-$row-closes: var(--transition-base, 0s) var(--ease-in)
 $row-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
 
 @layer components
@@ -175,14 +174,19 @@ $row-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
       translate: 0rem var(--drag-shift, 0rem)
 
       // Folded rows stay in the list, so a drag and the keyboard still walk
-      // every round: the row closes to nothing rather than leaving.
+      // every round: the row closes to nothing rather than leaving. Fifty
+      // rows closing on `--ease-in` left a blank band, then dropped the five
+      // kept ones in over the last frames: they close on the decelerating
+      // curve, and fade over twice as long, so the band they leave is never
+      // empty. The hairline goes at once: a border thinner than a pixel is
+      // drawn a pixel wide, and fifty of them snapped off on the last frame.
       &[data-folded]
         block-size: 0rem
         border-top-width: 0rem
         min-height: 0rem
         opacity: 0
         padding-block: 0rem
-        transition: translate var(--transition-fast, 0s) var(--ease-out), block-size $row-closes $row-after-the-room, min-height $row-closes $row-after-the-room, padding-block $row-closes $row-after-the-room, border-top-width $row-closes $row-after-the-room, opacity var(--transition-fast, 0s) var(--ease-in)
+        transition: translate var(--transition-fast, 0s) var(--ease-out), block-size $row-opens, min-height $row-opens, padding-block $row-opens, opacity var(--transition-slow, 0s) var(--ease-out)
 
       &[data-lifted]
         background: var(--field)

@@ -686,6 +686,14 @@ What this found, each invisible in any still:
   harness keeps such a window (`keep: [from, to]`):
   `.playwright-mcp/panel-film.mjs <scenario> [width height]`, its scenarios in
   `panel-scenarios.mjs` beside it.
+- **A hairline that snaps on the last frame**: a border eased toward `0` is
+  drawn a whole pixel wide until it reaches it, so fifty folding rows each
+  kept 1px and the list dropped 54px in the final frame. A per-frame probe of
+  the list's height showed it; the closing state drops the border at once.
+- **A fold the scroll leaves behind**: the running order closing fifty rows
+  above its toggle kept the panel's scroll still, then clamped it, and the
+  five kept rows ended above the panel's top edge. Film a fold with its
+  toggle at the bottom of the viewport and at the top.
 - **A height that will not ease to `auto`**: `interpolate-size` was on and the
   own lines' fold still flipped to its new height at once. A linear animation
   sampled at its half (`currentTime`) tells whether a box eases there.
