@@ -19,6 +19,8 @@ import { useLean } from './use-lean'
 import './map-answer.sass'
 
 type MapAnswerProps = {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
   /** Saves what the screen holds before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
@@ -39,6 +41,7 @@ type MapAnswerProps = {
  * Mounted under `key={round.id}`, so the pawn is about this round alone.
  */
 export const MapAnswer: React.FC<MapAnswerProps> = ({
+  closesInMs,
   onAnswer,
   onLean,
   round,
@@ -46,7 +49,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
   youId
 }) => {
   const translate = useTranslate()
-  const leaning = useLean(onLean)
+  const leaning = useLean({ closesInMs, onLean })
   const piece = usePawnPiece({ seat })
   const [point, setPoint] = useState<GeoPoint | null>(null)
   const [isSent, setIsSent] = useState(false)

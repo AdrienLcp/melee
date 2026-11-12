@@ -53,6 +53,7 @@ import { usePairAsks } from '@/presentation/components/use-pair-asks'
 import { useShownColour } from '@/presentation/components/use-shown-colour'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
@@ -125,6 +126,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mysteryWord = mysteryWordContent(round)
   const longestWord = longestWordContent(round)
   const shownColour = useShownColour({ clock, round })
+  const closesInMs = currentDeadline({ clock, view })?.remainingMs ?? null
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
   const roundCard = (sticks: React.ReactNode): React.ReactNode => (
@@ -355,6 +357,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       )}
       {atlas?.target != null && onAnswer !== null && (
         <MapAnswer
+          closesInMs={closesInMs}
           key={round.id}
           onAnswer={onAnswer}
           onLean={onLean}
@@ -372,6 +375,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           />
         ) : (
           <TimelineAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={onAnswer}
             onLean={onLean}
@@ -382,6 +386,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {swatch !== null && (
         <SwatchRound
           clock={clock}
+          closesInMs={closesInMs}
           isCaptioned={false}
           onAnswer={onAnswer}
           onLean={onLean}
@@ -426,6 +431,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <LongestWordTowers players={view.players} round={round} />
         ) : (
           <LongestWordAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={onAnswer}
             onLean={onLean}

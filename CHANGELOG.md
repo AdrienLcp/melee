@@ -357,6 +357,14 @@ one part.
 
 ### Fixes
 
+- **A change made in the last moments of a round counts.** Atlas, Shades,
+  Timeline and Mot le plus long save what a screen holds at most every 300 ms,
+  so a pawn moved, a colour nudged, a card dropped or a letter laid in the
+  round's last 300 ms was still waiting when the clock closed, and the reveal
+  paid the screen's state before it. The save now gives way as the clock runs
+  out: what is held back goes before the close, and every change in the last
+  quarter second is sent at once. The server still closes on its own clock.
+  [Game]
 - **A tie for the win fits the wall's final board.** The winners' names were
   sized by their longest word alone, so five tied names of short words ran
   nine lines on a 9:16 wall and pushed the standings off its foot. The heading

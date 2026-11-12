@@ -2,27 +2,35 @@ import { useEffect, useRef } from 'react'
 
 import type { LeanAnswer } from '@melee/protocol/client-message'
 
-/**
- * How often an answer being built on screen saves where it stands. A trailing
- * throttle rather than a debounce: a picker dragged without a pause until the
- * clock runs out would never settle long enough for a debounce to send.
- */
-const LEAN_INTERVAL_MS = 300
+import { leanDelayMs } from '@/helpers/lean-delay'
+import { nowMs } from '@/infrastructure/clock'
 
 /**
  * Saves what the seat's screen holds and has not sent — see `player.lean` —
- * at most once every `LEAN_INTERVAL_MS`, the latest state winning, `null`
- * taking it back. `cancel`
- * drops whatever is waiting, for the press that sends the answer itself.
+ * on a trailing throttle, the latest state winning, `null` taking it back.
+ * The throttle gives way as the round's clock runs out (`leanDelayMs`), so
+ * the last change before it lands rather than waiting past the close.
+ * `cancel` drops whatever is waiting, for the press that sends the answer
+ * itself.
  */
-export const useLean = (
+export const useLean = ({
+  closesInMs,
+  onLean
+}: {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   onLean: ((answer: LeanAnswer | null) => boolean) | null
-): {
+}): {
   cancel: () => void
   lean: (answer: LeanAnswer | null) => void
 } => {
   const waiting = useRef<{ answer: LeanAnswer | null } | null>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const closesAt = useRef<number | null>(null)
+
+  useEffect(() => {
+    closesAt.current = closesInMs === null ? null : nowMs() + closesInMs
+  }, [closesInMs])
 
   const cancel = () => {
     waiting.current = null
@@ -53,14 +61,17 @@ export const useLean = (
       return
     }
 
-    timer.current = setTimeout(() => {
-      timer.current = null
+    timer.current = setTimeout(
+      () => {
+        timer.current = null
 
-      if (waiting.current !== null) {
-        onLean(waiting.current.answer)
-        waiting.current = null
-      }
-    }, LEAN_INTERVAL_MS)
+        if (waiting.current !== null) {
+          onLean(waiting.current.answer)
+          waiting.current = null
+        }
+      },
+      leanDelayMs(closesAt.current === null ? null : closesAt.current - nowMs())
+    )
   }
 
   return { cancel, lean }

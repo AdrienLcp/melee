@@ -59,6 +59,8 @@ const releaseFocus = (event: PressEvent): void => {
 }
 
 type LongestWordAnswerProps = {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
   /** Saves the word on the row before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
@@ -80,13 +82,14 @@ type ShownRefusal = { code: SaidRefusal; word: string }
  * Mounted under `key={round.id}`, so a round always opens on an empty row.
  */
 export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
+  closesInMs,
   onAnswer,
   onLean,
   refusal,
   round
 }) => {
   const { translate } = useI18n()
-  const leaning = useLean(onLean)
+  const leaning = useLean({ closesInMs, onLean })
   const content = longestWordContent(round)
   const letters = content?.letters ?? []
   const words = content?.yourWords ?? []

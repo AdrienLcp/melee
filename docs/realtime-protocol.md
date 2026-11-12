@@ -196,7 +196,11 @@ neither is in `HOST_ONLY_MESSAGE_TYPES` and why both guard on
 
 `player.lean` saves what a seat's screen holds before it is sent — the colour
 on the picker, the pawn on the map, the cards in their order — on a trailing
-throttle as it moves. It ends nobody's round, so it stays off `attempts` and
+throttle as it moves, which gives way as the round's clock runs out
+(`leanDelayMs`): a change held back is sent `LAST_LEAN_LEAD_MS` before the
+screen's close, and every change after that goes at once, because the screen's
+clock trails the server's by a trip and the server pays only what reached it
+before its own. There is no grace after the close. It ends nobody's round, so it stays off `attempts` and
 `everyoneIsDone` never counts it; it is graded as it lands, so closing the round
 measures no pawn. When the round closes, every seat still in the room with a
 lean and no attempt is paid on its last lean, flagged `isUnsent` on its award,

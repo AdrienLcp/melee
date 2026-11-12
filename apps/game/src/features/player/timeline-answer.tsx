@@ -19,6 +19,8 @@ import { useLean } from './use-lean'
 import './timeline-answer.sass'
 
 type TimelineAnswerProps = {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
   /** Saves what the screen holds before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
@@ -37,13 +39,14 @@ type TimelineAnswerProps = {
  * Mounted under `key={round.id}`, so the order is about this round alone.
  */
 export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
+  closesInMs,
   onAnswer,
   onLean,
   round,
   youId
 }) => {
   const translate = useTranslate()
-  const leaning = useLean(onLean)
+  const leaning = useLean({ closesInMs, onLean })
   const events = timelineContent(round)?.events ?? []
   const [order, setOrder] = useState<TimelineEventId[]>(() =>
     events.map((event) => event.id)

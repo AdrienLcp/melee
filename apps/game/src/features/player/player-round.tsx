@@ -168,6 +168,7 @@ import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { buzzBlockerKey, type Translate } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
+import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import './player-round.sass'
 import { shownPoints } from '@/helpers/shown-points'
@@ -847,6 +848,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
       onAnswer(answer, round.id)
     const leanWithRound = (answer: LeanAnswer | null): boolean =>
       onLean(answer, round.id)
+    const closesInMs = currentDeadline({ clock, view })?.remainingMs ?? null
 
     if (round.content.kind === 'innerclock') {
       return <InnerclockPress onPress={onBuzz} round={round} />
@@ -873,6 +875,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
             <RoundClock clock={clock} view={view} />
           </div>
           <MapAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={answerWithRound}
             onLean={leanWithRound}
@@ -890,6 +893,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
           <RoundClock clock={clock} view={view} />
           <SwatchRound
             clock={clock}
+            closesInMs={closesInMs}
             onAnswer={answerWithRound}
             onLean={leanWithRound}
             round={round}
@@ -959,6 +963,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
         <section className='player-round longest-word-round'>
           <RoundClock clock={clock} view={view} />
           <LongestWordAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={answerWithRound}
             onLean={leanWithRound}
@@ -994,6 +999,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
         <section className='player-round timeline-round'>
           <RoundClock clock={clock} view={view} />
           <TimelineAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={answerWithRound}
             onLean={leanWithRound}

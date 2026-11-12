@@ -22,6 +22,8 @@ import { useLean } from './use-lean'
 import './swatch-answer.sass'
 
 type SwatchAnswerProps = {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` where a card above already says the colour has hidden. */
   isCaptioned?: boolean
   /** `false` from the socket means the frame was never written. */
@@ -40,6 +42,7 @@ type SwatchAnswerProps = {
  * Mounted under `key={round.id}`, so every round opens on the neutral grey.
  */
 export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
+  closesInMs,
   isCaptioned = true,
   onAnswer,
   onLean,
@@ -47,7 +50,7 @@ export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
   youId
 }) => {
   const translate = useTranslate()
-  const leaning = useLean(onLean)
+  const leaning = useLean({ closesInMs, onLean })
   const [colour, setColour] = useState<ColourHex>(PICKER_START_COLOUR)
   const [sentColour, setSentColour] = useState<ColourHex | null>(null)
   // The server's record is what survives a reload, and it carries the colour

@@ -14,6 +14,8 @@ import { SwatchAnswer } from './swatch-answer'
 
 type SwatchRoundProps = {
   clock: ClockEstimate | null
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` where a card above already says what the round is doing. */
   isCaptioned?: boolean
   /** Sends the seat's colour, and `null` on a screen that answers nothing. */
@@ -30,6 +32,7 @@ type SwatchRoundProps = {
  */
 export const SwatchRound: React.FC<SwatchRoundProps> = ({
   clock,
+  closesInMs,
   isCaptioned,
   onAnswer,
   onLean,
@@ -44,6 +47,7 @@ export const SwatchRound: React.FC<SwatchRoundProps> = ({
 
   return (
     <SwatchAnswer
+      closesInMs={closesInMs}
       isCaptioned={isCaptioned}
       key={round.id}
       onAnswer={onAnswer}
