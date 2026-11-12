@@ -2,10 +2,13 @@
 
 @layer components
   // Sized by its caller through `--pin-size`; the lanes stack upward from the
-  // ruler so the line keeps its place whatever the crowd above it.
+  // ruler so the line keeps its place whatever the crowd above it. Past six
+  // lanes a pile packs tighter instead of growing: every pin past ×3 lands on
+  // one spot, and a tower that grew pushed the podium off a wall that never
+  // scrolls.
   .estimate-line
     --pin-size: 1.6rem
-    --lane-step: calc(var(--pin-size) * 0.8)
+    --lane-step: min(calc(var(--pin-size) * 0.8), calc(var(--pin-size) * 4 / max(var(--lanes) - 1, 1)))
 
     color: var(--card-ink)
     display: grid

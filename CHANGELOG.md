@@ -326,6 +326,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A crowd of far-off guesses no longer pushes Le juste chiffre's
+  reveal off a wall.** Every guess past three times off stands on the same
+  spot, and the pile of pawns there grew a lane per guess: fourteen of them
+  pushed the round's podium and its tally under the edge of a 1280×720 wall,
+  which never scrolls. Past six lanes the pile now packs tighter instead of
+  growing.
 - `[Game]` **The menu and every popover open and close where you can see
   it.** They grew in from the press that opened them in a blink and closed
   as the opening played backwards, which held them whole and then cut them:
