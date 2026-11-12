@@ -7,3 +7,17 @@ $ring-reach: 6px
 /// The ring is the ink itself, which is the one colour guaranteed to carry
 /// against whichever field is currently painted.
 @forward '@adrienlcp/react-aria/focus' with ($ring-color: var(--ink), $ring-offset: calc($ring-reach / 2), $ring-width: calc($ring-reach / 2))
+
+/// A box that scrolls clips at its padding edge, which cuts the ring of a
+/// field laid against it — `overflow-clip-margin` moves a clip, never a
+/// scroller's. The reach opens on every side: the start and the block ends
+/// take it back in margin, so nothing laid out around the box moves, and the
+/// end keeps it as room beside the bar, where the stable gutter holds the bar
+/// rather than letting it draw over the padding. The scroll padding brings a
+/// focused field into view with its ring.
+@mixin leaves-room-for-rings
+  margin-block: calc(-1 * $ring-reach)
+  margin-inline-start: calc(-1 * $ring-reach)
+  padding: $ring-reach
+  scroll-padding-block: $ring-reach
+  scrollbar-gutter: stable

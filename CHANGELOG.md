@@ -336,6 +336,9 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A focused field's ring shows whole in Petit Bac's sheet and vote**,
+  where the box that scrolls them cut it under its bar and below the last line.
+
 - `[Game]` **The old bar no longer flashes as the Ready press fills.** On a
   player's screen, the moment every seat was ready the wait to the next round
   drew its former bar for a third of a second, shrinking away above the press

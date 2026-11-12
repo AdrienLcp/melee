@@ -1,4 +1,5 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/focus'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/mark'
@@ -44,8 +45,8 @@
       min-height: 0
       overflow-y: auto
       overscroll-behavior: contain
-      scrollbar-gutter: stable
 
+      @include focus.leaves-room-for-rings
       @include scrollbar.bar($size: thin)
 
     .letter-piece
@@ -320,6 +321,7 @@
 
         align-content: start
         grid-area: list
+        margin: 0
         padding: var(--space-xs) clamp(var(--space-s), 2.4vmin, var(--space-m))
 
       > :not(.answer-sheet)
