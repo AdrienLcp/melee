@@ -26,6 +26,7 @@ import {
   UMBRELLA_SERIES
 } from './black-square-themes'
 import { frenchViewsOf } from './frwiki-notability'
+import { frenchYearlyViewsOf } from './frwiki-yearly-views'
 import { jsonOf, orStop, parseJson } from './json-file'
 import { cached } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
@@ -401,10 +402,25 @@ const build = async (): Promise<void> => {
   const entityIds = themes.flatMap(({ candidates, truths }) =>
     [...truths, ...candidates].map(({ id }) => id)
   )
-  const views = await frenchViewsOf({ entityIds, label: 'black square' })
-  const viewsOf = (entity: Entity): number => views.get(entity.id) ?? 0
+  const everyTruthId = themes.flatMap(({ truths }) =>
+    truths.map(({ id }) => id)
+  )
+  const yearlyViews = await frenchYearlyViewsOf({
+    entityIds: everyTruthId,
+    label: 'black square truths',
+    today: TODAY
+  })
+  const viewsOf = (entity: Entity): number => yearlyViews.get(entity.id) ?? 0
   const byViews = (entities: readonly Entity[]): Entity[] =>
     entities.toSorted((a, b) => viewsOf(b) - viewsOf(a))
+  const recentViews = await frenchViewsOf({
+    entityIds,
+    label: 'black square'
+  })
+  const recentViewsOf = (entity: Entity): number =>
+    recentViews.get(entity.id) ?? 0
+  const byRecentViews = (entities: readonly Entity[]): Entity[] =>
+    entities.toSorted((a, b) => recentViewsOf(b) - recentViewsOf(a))
 
   const aliases = {
     en: await aliasesOf({ entityIds, language: 'en' }),
@@ -415,9 +431,7 @@ const build = async (): Promise<void> => {
     fr: [...(aliases.fr.get(id) ?? []), ...(SPOKEN_ALIASES[id] ?? [])]
   })
 
-  const facts = await seriesFactsOf({
-    entityIds: themes.flatMap(({ truths }) => truths.map(({ id }) => id))
-  })
+  const facts = await seriesFactsOf({ entityIds: everyTruthId })
   const factsOf = ({ id }: Entity) => facts.get(id)
 
   const rows: BankedRow[] = []
@@ -468,7 +482,7 @@ const build = async (): Promise<void> => {
     )
     const truthIds = new Set(truths.map(({ id: truthId }) => truthId))
     const excluded = new Set(spec.excluded ?? [])
-    const eligible = byViews(candidates).filter(
+    const eligible = byRecentViews(candidates).filter(
       (candidate) =>
         !truthIds.has(candidate.id) &&
         !excluded.has(candidate.id) &&
@@ -487,7 +501,7 @@ const build = async (): Promise<void> => {
       .slice(0, 5)
       .map(
         (candidate) =>
-          `${candidate.labels.fr} ${candidate.id} ${viewsOf(candidate)}`
+          `${candidate.labels.fr} ${candidate.id} ${recentViewsOf(candidate)}`
       )
       .join(' | ')
 

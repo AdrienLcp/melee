@@ -9,8 +9,8 @@ its nine most read are all easy, so the 3-point cells pay for nothing hard.
 The bank is `apps/server/src/infrastructure/questions/black-square-bank.json`,
 built by `apps/server/scripts/build-black-square-bank.ts` from
 `black-square-themes.ts` / `black-square-templates.ts`. Today it keeps each
-theme's nine most read truths (French Wikipedia, `PAGEVIEW_DAYS = 60` in
-`frwiki-notability.ts`), and a round on `answerCount` deals the first
+theme's nine most read truths (French Wikipedia, a typical year since step 2:
+`frwiki-yearly-views.ts`), and a round on `answerCount` deals the first
 `answerCount` of them (`black-square-round.ts`); `tierOfCell` in
 `packages/core/src/blacksquare/sheet-pay.ts` pays by third of that rank.
 
@@ -142,16 +142,53 @@ The bank is 59 Wikidata themes; the floor in `black-square-bank.test.ts` is
 55. Views did not move on the rebuild — the build reads them from its cache —
 so every theme not named above banks the same nine.
 
-## Step 2 — rank on a year, not on sixty days (one session)
+## Step 2 — rank on a year, not on sixty days — done 12/11/2026
 
-`pvipdays` stops at 60. The yearly figure comes from the Wikimedia REST
-per-article endpoint (`metrics/pageviews/per-article/fr.wikipedia/all-access/
-user/<title>/monthly/<from>/<to>`), one request per candidate, cached in
-`scripts/.cache` like the rest. Sum the last twelve full months. Check the
-three news-bent themes above reorder as a table would expect, then rebuild.
-The sixty-day figures sit in `VIEWS_CACHE` (`frwiki-notability.ts`), keyed by
-entity alone with no window, which is why step 1's rebuild kept October's
-numbers: the yearly sum takes a cache of its own.
+`frwiki-yearly-views.ts` reads each truth's twelve whole months from the
+Wikimedia REST per-article endpoint, one request per article (2 629 for the
+59 themes, about twenty minutes), cached in `scripts/.cache` under the
+window's own name (`frwiki-monthly-views-<from>-<until>.json`), so a rebuild
+next month reads a new year and a second build this month asks nothing.
+Only the truths are measured: every theme pins its black word, so a
+candidate's views only order the build's review line, which keeps the
+sixty-day figure.
+
+**A year's sum still bent; the median month does not.** The first pass
+summed the twelve months and put a spike back on top: a series about James
+Garfield made him sixth of the American presidents, the Netflix _Seven
+Dials_ put it first of Agatha Christie, a death put _Les Oiseaux_ over
+_Psychose_, a TV _Mr. Mercedes_ and two new Stephen King titles pushed out
+_Shining_ and _Carrie_. The figure is
+now the **median month × 12** — five months of news are ignored, a work
+read for half the year still counts, and a month the endpoint leaves out
+counts as zero, so an article written mid-year ranks low.
+
+What moved, against the sixty-day bank (all 59 themes reordered, 42 changed
+at least one of their nine):
+
+- _Hitchcock_: _Psychose_, _Sueurs froides_, _Les Oiseaux_ on top; _La
+  Corde_ and _L'Homme qui en savait trop_ out.
+- _Ridley Scott_: _Gladiator_, _Blade Runner_, _Alien_ — the sixty days had
+  _The Dog Stars_ and _Black Rain_ first.
+- _Présidents des États-Unis_: Eisenhower and Biden stay, Garfield never
+  arrives.
+- _Oscar du meilleur film_: _La Liste de Schindler_, _Oppenheimer_ and
+  _Forrest Gump_ in, for three winners a table names later.
+- Still news-led where the news _is_ the year: Marvel opens on _Spider-Man:
+  Brand New Day_, Spielberg on _Disclosure Day_, Pixar holds _Hoppers_. A
+  release read for six months is what a table has heard of; step 3's spread
+  is what keeps such a cell cheap or dear.
+
+The three news-bent themes this step was to check (Nobel, physics, Wes
+Anderson) were cut by step 1; the ones above are the check.
+
+**The REST endpoint is rate-limited per client**: ten requests a minute for
+an anonymous User-Agent, two hundred for one naming a contact (the shared
+`USER_AGENT`). A 429 is waited out (`retry-after`, else a minute) rather
+than counted as a failure. The endpoint clips its last monthly bucket to
+the end stamp, so the request runs to the first of the current month and
+drops that partial bucket — a first pass ending on the first of the last
+month read eleven months and a day.
 
 — cut here: specialist themes gone, ranking on a year, bank rebuilt and
 tests green —

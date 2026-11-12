@@ -115,7 +115,10 @@ one part.
   Raimi — and Monet and Vermeer are back. The painters now hide the titles a
   table names first, missing until now because they are filed as a mural or a
   series of versions: _La Cène_, _Les Tournesols_, _La Chambre à Arles_, _La
-  Vierge aux rochers_, _Les Nymphéas_ counted once.
+  Vierge aux rochers_, _Les Nymphéas_ counted once. Each theme's answers are
+  ranked on a typical month of the last year instead of the last sixty days,
+  so a news week no longer buys a cell: _Psychose_ heads Hitchcock, _Gladiator_
+  Ridley Scott.
 - `[Game]` **A room's screen standing tall seats its teams in the height.**
   On a television on its side, four teams now stand two by two and five or
   six three by two, their names larger and on one line, instead of four

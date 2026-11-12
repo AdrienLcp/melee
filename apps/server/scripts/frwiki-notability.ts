@@ -230,23 +230,19 @@ export const frenchViewsOfTitles = async ({
 }
 
 /**
- * The same figure for an entity named by its Wikidata identifier, which is what
- * PolyFact rows carry. One hop more than `frenchViewsOfTitles`: the sitelink is
- * the only thing that knows an entity's French title is not its French name.
+ * The French article title of each entity, `null` where there is none, for
+ * every measure that is read off an article rather than off the entity.
  *
- * Both hops accumulate, so asking again over a wider set costs only what was not
- * already known, and a run that dies at minute fifty resumes. That is what makes
- * the rule affordable to apply in two passes: the options of a row whose subject
- * nobody has heard of are never looked up at all, and they are six sevenths of
- * the work.
+ * Accumulated, so asking again over a wider set costs only what was not
+ * already known, and a run that dies at minute fifty resumes.
  */
-export const frenchViewsOf = async ({
+export const frenchTitlesOf = async ({
   entityIds,
   label
 }: {
   entityIds: readonly string[]
   label: string
-}): Promise<Map<string, number>> => {
+}): Promise<Map<string, string | null>> => {
   const titles = await readCachedEntries(TITLES_CACHE, z.string().nullable())
 
   const asked = [...new Set(entityIds)]
@@ -270,22 +266,36 @@ export const frenchViewsOf = async ({
     }
   }
 
-  const titleOf = (entityId: string): string | null => titles[entityId] ?? null
+  return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
+}
+
+/**
+ * The same figure for an entity named by its Wikidata identifier, which is what
+ * PolyFact rows carry. One hop more than `frenchViewsOfTitles`: the sitelink is
+ * the only thing that knows an entity's French title is not its French name.
+ *
+ * Both hops accumulate, which is what makes the rule affordable to apply in two
+ * passes: the options of a row whose subject nobody has heard of are never
+ * looked up at all, and they are six sevenths of the work.
+ */
+export const frenchViewsOf = async ({
+  entityIds,
+  label
+}: {
+  entityIds: readonly string[]
+  label: string
+}): Promise<Map<string, number>> => {
+  const titles = await frenchTitlesOf({ entityIds, label })
 
   const views = await frenchViewsOfTitles({
     label,
-    titles: asked.flatMap((entityId) => {
-      const title = titleOf(entityId)
-
-      return title === null ? [] : [title]
-    })
+    titles: [...titles.values()].filter((title) => title !== null)
   })
 
   return new Map(
-    asked.map((entityId) => {
-      const title = titleOf(entityId)
-
-      return [entityId, title === null ? 0 : (views.get(title) ?? 0)]
-    })
+    [...titles].map(([entityId, title]) => [
+      entityId,
+      title === null ? 0 : (views.get(title) ?? 0)
+    ])
   )
 }
