@@ -1880,12 +1880,14 @@ bounced. Durations:
   re-keyed on every snapshot; absent while the host is away. One groove
   everywhere (`--groove`, deeper than `--socket` in the dark so every phase
   ink holds 3:1 along it), drained in the phase ink, with the whole seconds
-  beside it: an animated `@property` (`--seconds-left`) read through a counter
-  rounded up, so the digit ticks without a render. The same clock counts the
-  reveal's hold, along the foot of the console's stage. Under reduced motion
-  the groove holds where the last snapshot put it and the digit keeps counting
-  — it opts out of the collapse through `--reduced-motion-duration`, being a
-  measurement rather than motion.
+  beside it, rounded up and rendered once a second through the dictionary
+  (`round.clock`): `m:ss` all the way down a clock of a minute or more, bare
+  seconds under one, so the shape never changes mid-round. The full clock's
+  figure sits unseen under it and holds the box at its widest, so the groove
+  never twitches. The same clock counts the reveal's hold, along the foot of
+  the console's stage. Under reduced motion the groove holds where the last
+  snapshot put it and the figure keeps counting, being a measurement rather
+  than motion.
 - **The flip** — instant: the reflex stimulus is a colour change and nothing
   else.
 - **Continuous motion** — only `Spinner` and the reconnecting dot of

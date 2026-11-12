@@ -10,7 +10,10 @@ import {
   serverNow
 } from '@melee/core/time/clock-sync'
 
+import { clockReadingOf } from '@/helpers/clock-reading'
 import { nowMs } from '@/infrastructure/clock'
+import { clockFigure } from '@/presentation/i18n/clock-figure'
+import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './floor-clock.sass'
 
@@ -32,7 +35,12 @@ type FloorClockProps = {
  * screen and the buzzing player disagree about how long someone has been quiet.
  */
 export const FloorClock: React.FC<FloorClockProps> = ({ buzz, clock }) => {
+  const translate = useTranslate()
   const seconds = useFloorSeconds(buzz, clock)
+  const figure = clockFigure({
+    reading: clockReadingOf({ seconds, spanSeconds: floorSpanSeconds(buzz) }),
+    translate
+  })
 
   return (
     <p
@@ -45,12 +53,19 @@ export const FloorClock: React.FC<FloorClockProps> = ({ buzz, clock }) => {
       // and a question do: one digit and three are the same fact, and only a
       // surface fitting this into a box of its own can say what that costs.
       // Ignored where the number is a line in a column.
-      style={{ '--reading-length': String(seconds).length }}
+      style={{ '--reading-length': figure.length }}
     >
-      {seconds}
+      {figure}
     </p>
   )
 }
+
+/** The whole window a closing floor started from; `null` for a floor counting up. */
+const floorSpanSeconds = ({
+  atServerTime,
+  expiresAt
+}: ActiveBuzz): number | null =>
+  expiresAt === null ? null : Math.ceil((expiresAt - atServerTime) / 1_000)
 
 /**
  * `millisecondsUntil` is clamped at zero — a target already past means "now" —

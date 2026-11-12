@@ -109,6 +109,12 @@ one part.
 
 ### Improvements
 
+- **A round clock reads in minutes past a minute.** The figure beside the
+  clock's bar read `80` for eighty seconds; it reads `1:20` now, on the wall,
+  the console and every seat. A clock of a minute or more keeps `m:ss` all the
+  way down — `0:45`, `0:05` — and one under a minute keeps its bare seconds,
+  so a figure never changes shape mid-round. A floor held until the host judges
+  counts `59`, then `1:00`.
 - **The menu opens at the first press.** A touch screen has no hover, so its
   first press fetched the menu's code — some twenty files — and showed nothing
   until they landed, a second or more on a phone. In a room the menu is now

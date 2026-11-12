@@ -1,11 +1,15 @@
 import type React from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   type ClockEstimate,
   millisecondsUntil
 } from '@melee/core/time/clock-sync'
 
+import { clockReadingOf } from '@/helpers/clock-reading'
 import { nowMs } from '@/infrastructure/clock'
+import { clockFigure } from '@/presentation/i18n/clock-figure'
+import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './round-progress.sass'
 
@@ -23,10 +27,10 @@ type RoundProgressProps = {
 
 /**
  * How much of the round is left, as a groove draining in the phase's ink and
- * the whole seconds beside it. Both run on CSS animations rather than a React
- * timer: the server has already decided when this ends, so a per-frame render
- * would only add work. The seconds are an animated `@property` read through a
- * counter, so the digit ticks without a render either.
+ * the whole seconds beside it. The groove runs on a CSS animation rather than a
+ * React timer: the server has already decided when this ends, so a per-frame
+ * render would only add work. The figure renders once a second, because a
+ * locale writes it.
  *
  * It starts at the fraction still standing rather than at full, which is what
  * lets a screen arriving mid-round — a player back from a lock, a host who
@@ -49,16 +53,83 @@ export const RoundProgress: React.FC<RoundProgressProps> = ({
       key={remainingMs}
       style={{
         '--drain-duration': `${remainingMs}ms`,
-        '--drain-from': (remainingMs / durationMs).toFixed(3),
-        '--seconds-from': (remainingMs / 1_000).toFixed(3)
+        '--drain-from': (remainingMs / durationMs).toFixed(3)
       }}
     >
       {label !== undefined && <span className='label'>{label}</span>}
       <div className='groove' />
-      {/* Read by the eye alone: a number announced every second would talk over the round. */}
-      <span aria-hidden className='seconds' />
+      <SecondsLeft durationMs={durationMs} remainingMs={remainingMs} />
     </div>
   )
+}
+
+const MILLISECONDS_A_SECOND = 1_000
+
+const wholeSecondsIn = (milliseconds: number): number =>
+  Math.ceil(milliseconds / MILLISECONDS_A_SECOND)
+
+/**
+ * The figure beside the groove, shaped by the whole clock rather than by what
+ * is left of it, so a clock of a minute and a half still reads `0:45` at the
+ * end. The full clock's figure is set under it unseen, which holds the box at
+ * its widest reading: the groove does not twitch when `10:00` becomes `9:59`.
+ */
+const SecondsLeft: React.FC<{
+  durationMs: number
+  remainingMs: number
+}> = ({ durationMs, remainingMs }) => {
+  const translate = useTranslate()
+  const seconds = useSecondsLeft(remainingMs)
+  const spanSeconds = wholeSecondsIn(durationMs)
+
+  return (
+    // Read by the eye alone: a number announced every second would talk over the round.
+    <span aria-hidden className='seconds'>
+      <span className='widest'>
+        {clockFigure({
+          reading: clockReadingOf({ seconds: spanSeconds, spanSeconds }),
+          translate
+        })}
+      </span>
+      <span>
+        {clockFigure({
+          reading: clockReadingOf({ seconds, spanSeconds }),
+          translate
+        })}
+      </span>
+    </span>
+  )
+}
+
+/**
+ * Whole seconds left of `remainingMs` read at mount, rendered as each one
+ * begins. The bar re-keys on every snapshot, which is what re-reads it.
+ */
+const useSecondsLeft = (remainingMs: number): number => {
+  const [endsAt] = useState(() => nowMs() + remainingMs)
+  const [seconds, setSeconds] = useState(() => wholeSecondsIn(remainingMs))
+
+  useEffect(() => {
+    let timer = 0
+
+    const tick = (): void => {
+      const leftMs = Math.max(0, endsAt - nowMs())
+
+      setSeconds(wholeSecondsIn(leftMs))
+
+      if (leftMs > 0) {
+        timer = window.setTimeout(tick, (leftMs % MILLISECONDS_A_SECOND) + 1)
+      }
+    }
+
+    tick()
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [endsAt])
+
+  return seconds
 }
 
 type RevealHoldProps = {

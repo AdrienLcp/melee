@@ -1,14 +1,6 @@
 @use '../styles/typography'
 @use '../styles/text-box'
 
-// A `<number>` rather than an `<integer>`: an animated integer rounds to the
-// nearest, and the digit would turn half a second early. The counter rounds it
-// up instead, which is what a countdown says.
-@property --seconds-left
-  syntax: '<number>'
-  inherits: false
-  initial-value: 0
-
 @layer components
   // A groove pressed into whatever it lies on, draining in the phase's ink,
   // with the whole seconds beside it. `tokens-contrast.test.ts` holds every
@@ -47,25 +39,21 @@
         height: 100%
         transform-origin: left
 
-    // Two figures wide whatever it reads, so the groove does not twitch when
-    // ten becomes nine: a digit of the display face sets at about 0.6em.
     .seconds
       @include typography.numeric
       @include text-box.trimmed-figure
 
       color: var(--clock-ink, var(--ink))
+      display: grid
+      flex: none
       font-size: var(--clock-seconds-size)
-      min-width: 1.2em
-      text-align: end
+      justify-items: end
 
-      // A digit changing in place is the measurement, not motion, so it opts
-      // out of the reduced-motion collapse and keeps counting.
-      &::before
-        --reduced-motion-duration: var(--drain-duration, 0ms)
+      > *
+        grid-area: 1 / 1
 
-        animation: seconds-left var(--drain-duration, 0ms) linear forwards
-        content: counter(seconds)
-        counter-reset: seconds round(up, var(--seconds-left), 1)
+      .widest
+        visibility: hidden
 
     // Still the measurement, minus the moving: someone who asked for no motion
     // gets where the round stands each time a snapshot corrects it.
@@ -79,9 +67,3 @@
     transform: scaleX(var(--drain-from, 1))
   to
     transform: scaleX(0)
-
-@keyframes seconds-left
-  from
-    --seconds-left: var(--seconds-from, 0)
-  to
-    --seconds-left: 0

@@ -2156,6 +2156,17 @@ export const EN_DICTIONARY = defineDictionary({
      * table learns that answering early pays without anybody explaining it.
      */
     awardWithSpeed: '{answer:number} +{speed:number}',
+    /**
+     * The figure beside a round clock. A clock of a minute or more reads
+     * `minutes` from its first second to its last; one under a minute reads
+     * `seconds`.
+     */
+    clock: {
+      minutes: defineTranslation('{minutes:number}:{seconds:number}', {
+        number: { seconds: { minimumIntegerDigits: 2 } }
+      }),
+      seconds: '{seconds:number}'
+    },
     /** One entry of an evening's line-up nothing else tells from another of its game. */
     entryNumbered: '{name} {number:number}',
     /** The ruled heading over the board that ends the game. */

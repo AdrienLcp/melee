@@ -2032,6 +2032,12 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     awardWithSpeed: '{answer:number} +{speed:number}',
+    clock: {
+      minutes: defineTranslation('{minutes:number}:{seconds:number}', {
+        number: { seconds: { minimumIntegerDigits: 2 } }
+      }),
+      seconds: '{seconds:number}'
+    },
     entryNumbered: '{name} {number:number}',
     finalStandings: 'Classement final',
     found: 'Trouvé : {found:number} sur {total:number}',
