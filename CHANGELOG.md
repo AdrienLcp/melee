@@ -276,6 +276,9 @@ one part.
 
 ### Fixes
 
+- `[Game]` **An empty seat in the lobby is a dashed outline again.** The
+  pawns waiting in the box were drawn solid, in the first pawn's colour, as
+  if every empty seat were taken.
 - `[Game]` **A seated host's field and a long name keep to a phone lying
   down.** On a console held sideways, what a guess banked or missed rose
   under the menu once its column ran short: the menu's corner now comes off

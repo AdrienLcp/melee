@@ -123,6 +123,14 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
     display: grid
     place-items: center
 
+    .pawn
+      fill: none
+      filter: none
+      font-size: clamp(1.5rem, calc(var(--stage-unit) * 3.4), 2rem)
+      stroke: var(--socket-line)
+      stroke-dasharray: 2.5 2
+      stroke-width: 1.4
+
   // Faded and never scaled: the chip anchored on it would shrink with it.
   .socket[data-filled]
     anchor-name: --filled-socket
@@ -156,11 +164,3 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
 
     &:has(.scoreboard li[data-leaving]) .socket:nth-child(1 of :not([data-filled]))
       display: none
-
-    .pawn
-      fill: none
-      filter: none
-      font-size: clamp(1.5rem, calc(var(--stage-unit) * 3.4), 2rem)
-      stroke: var(--socket-line)
-      stroke-dasharray: 2.5 2
-      stroke-width: 1.4
