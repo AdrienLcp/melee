@@ -1,4 +1,11 @@
+@use '../styles/figures'
 @use '../styles/typography'
+
+// The most figures a plain case prints: a track is at most 100 cases long
+// (`MAX_BOARD_LENGTH`), and the 100th is the finish's flag.
+$most-figures: 2
+$padding-inline-start: 0.2em
+$padding-inline-end: 0.4em
 
 @layer components
   // A case of the track in miniature, sized by the font it stands in: the
@@ -16,8 +23,10 @@
     flex: none
     justify-items: start
     min-block-size: 1.5em
-    min-inline-size: 1.5em
-    padding: 0.1em 0.4em 0.3em 0.2em
+    // As wide as its widest number whatever it prints, so a column of cases
+    // keeps one edge on either side: a 9 beside a 12 is the same case.
+    min-inline-size: $most-figures * figures.$numeric-width + $padding-inline-start + $padding-inline-end
+    padding: 0.1em $padding-inline-end 0.3em $padding-inline-start
 
     &[data-mark]
       background: var(--track-five)

@@ -2545,13 +2545,11 @@ for (const reveal of PLAYER_REVEALS) {
       ).toBeVisible()
       expect(
         await page.evaluate(() => {
-          const figure = document.querySelector(
-            '.overall .scoreboard :is(.score, .case)'
-          )
+          const rank = document.querySelector('.overall .scoreboard .rank')
 
-          return figure === null
-            ? 'no figure on the standings'
-            : getComputedStyle(figure).getPropertyValue('text-box-trim')
+          return rank === null
+            ? 'no rank on the standings'
+            : getComputedStyle(rank).getPropertyValue('text-box-trim')
         })
       ).toBe(isWithoutTextBox ? 'none' : 'trim-both')
 

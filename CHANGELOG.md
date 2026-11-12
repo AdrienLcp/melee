@@ -397,7 +397,8 @@ one part.
   and the folded roster's one-line summary did too, where the track and the
   console's panel draw the case as the track's own square, the finish flagged.
   Every ranked list of a room on a track now draws that square, the slate's
-  marking stage included.
+  marking stage included, each as wide as two figures, so a 9 under a 12
+  keeps the column's edges.
 - **A line-up never plays the same game twice in a row.** The room moved to
   its next entry only on the console's word as each reveal went up, so a
   console asleep or reconnecting at that moment replayed the entry just
