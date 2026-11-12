@@ -247,16 +247,16 @@ export const drawQuestion = ({
   )
 
   const categoryToDeal = (
-    isDealable: (question: BankedQuestion) => boolean
+    canBeDealt: (question: BankedQuestion) => boolean
   ): BankedQuestion[] => {
-    const dealable = ticked.filter(([, rows]) => rows.some(isDealable))
+    const stocked = ticked.filter(([, rows]) => rows.some(canBeDealt))
     const fresh =
-      previousCategory !== null && dealable.length > 1
-        ? dealable.filter(([category]) => category !== previousCategory)
-        : dealable
+      previousCategory !== null && stocked.length > 1
+        ? stocked.filter(([category]) => category !== previousCategory)
+        : stocked
     const [, rows] = pickRandom(fresh) ?? [null, []]
 
-    return rows.filter(isDealable)
+    return rows.filter(canBeDealt)
   }
 
   if (settings.difficulty === 'mixed') {
