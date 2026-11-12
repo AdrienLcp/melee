@@ -412,7 +412,16 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
 
   return (
     <>
-      <ScoreTrack players={view.players} teams={view.teams} youId={null} />
+      <ScoreTrack
+        players={view.players}
+        teams={view.teams}
+        trackLength={
+          view.settings.board.kind === 'track'
+            ? view.settings.board.length
+            : undefined
+        }
+        youId={null}
+      />
       <div
         className='stage slate-correcting'
         style={{

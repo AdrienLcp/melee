@@ -472,7 +472,16 @@ const PhaseStage: React.FC<RoomStageProps> = ({
       // screen the three formulas below are dividing, so they have to know
       // whether it is there.
       <>
-        <ScoreTrack players={view.players} teams={view.teams} youId={youId} />
+        <ScoreTrack
+          players={view.players}
+          teams={view.teams}
+          trackLength={
+            view.settings.board.kind === 'track'
+              ? view.settings.board.length
+              : undefined
+          }
+          youId={youId}
+        />
         <div
           className={classNames('stage revealed', hold !== null && 'holding')}
           style={{

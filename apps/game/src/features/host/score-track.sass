@@ -70,6 +70,17 @@
         flex: none
         inline-size: auto
 
+      // The square stands as tall as a figure would, its number the size the
+      // board prints in a case's corner, so a piece on a track keeps the
+      // height of one counting points.
+      .case-mark
+        font-size: 0.7em
+
+      // The piece is a plain case itself, so a plain case drawn on it takes
+      // the track's other shade to read as a square rather than a bare number.
+      .case-mark:not([data-mark])
+        background: var(--track-b)
+
     .figure
       @include typography.solid
 

@@ -23,7 +23,7 @@ type DisclosureProps = Omit<ReactAriaDisclosureProps, 'children'> & {
    * the collapse honest: a section nobody can see the state of is a section
    * nobody knows to open.
    */
-  summary: string
+  summary: React.ReactNode
 }
 
 /**

@@ -374,10 +374,11 @@ one part.
   their own within seconds.
 - **[Game] On a track, every standings list draws the case.** The overall
   standings read _Case 12_ in words on a player's reveal and final board, and
-  the wall's podium steps did too, where the track and the console's panel
-  draw the case as the track's own square, the finish flagged. Every ranked
-  list of a room on a track now draws that square, the slate's marking stage
-  included.
+  the wall's podium steps, the score track along the top of a narrow console
+  and the folded roster's one-line summary did too, where the track and the
+  console's panel draw the case as the track's own square, the finish flagged.
+  Every ranked list of a room on a track now draws that square, the slate's
+  marking stage included.
 - **A line-up never plays the same game twice in a row.** The room moved to
   its next entry only on the console's word as each reveal went up, so a
   console asleep or reconnecting at that moment replayed the entry just

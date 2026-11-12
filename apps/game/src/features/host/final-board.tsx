@@ -125,7 +125,12 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
         teams={teams}
         youId={youId}
       />
-      <ScoreTrack players={players} teams={teams} youId={youId} />
+      <ScoreTrack
+        players={players}
+        teams={teams}
+        trackLength={board.kind === 'track' ? board.length : undefined}
+        youId={youId}
+      />
     </section>
   )
 }

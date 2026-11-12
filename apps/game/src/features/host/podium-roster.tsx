@@ -190,39 +190,42 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
   )
 }
 
-/** The roster read in one line, for a screen that folds it: the first three seats, then how many more. */
-export const useRosterSummary = (view: HostRoomView): string => {
+/**
+ * The roster read in one line, for a screen that folds it: the first three
+ * seats with where each stands — on a track, the case as the track draws it —
+ * then how many more.
+ */
+export const useRosterSummary = (view: HostRoomView): React.ReactNode => {
   const translate = useTranslate()
 
   if (view.players.length === 0) {
     return translate('team.empty')
   }
 
+  const { board } = view.settings
+  const isRanked = hasAnybodyScored(view.players)
   const ranked = buildScoreboard(view.players)
-  const standingOf = (player: PublicPlayer): string | null => {
-    if (view.settings.board.kind === 'points') {
+  const standingOf = (player: PublicPlayer): React.ReactNode => {
+    if (board.kind === 'points') {
       return translate('player.score', { points: shownPoints(player.score) })
     }
 
-    return player.board === null
-      ? null
-      : translate('board.at', { case: player.board.case })
+    return player.board === null ? null : (
+      <CaseMark at={player.board.case} length={board.length} />
+    )
   }
-  const firstThree = ranked
-    .slice(0, 3)
-    .map(({ player }) => {
-      const standing = hasAnybodyScored(view.players)
-        ? standingOf(player)
-        : null
-
-      return standing === null
-        ? player.nickname
-        : `${player.nickname} ${standing}`
-    })
-    .join(' · ')
   const more = ranked.length - 3
 
-  return more > 0
-    ? `${firstThree} ${translate('host.podium.more', { count: more })}`
-    : firstThree
+  return (
+    <>
+      {ranked.slice(0, 3).map(({ player }, index) => (
+        <span className='roster-summary-seat' key={player.id}>
+          {index > 0 && ' · '}
+          {player.nickname}
+          {isRanked && <> {standingOf(player)}</>}
+        </span>
+      ))}
+      {more > 0 && ` ${translate('host.podium.more', { count: more })}`}
+    </>
+  )
 }

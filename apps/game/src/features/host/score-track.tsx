@@ -1,6 +1,7 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 
+import type { BoardPosition } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
@@ -11,10 +12,12 @@ import {
 } from '@melee/core/scoring/scoreboard'
 import { buildTeamBoard, hasAnyTeamScored } from '@melee/core/team/team-board'
 
+import { shownPoints } from '@/helpers/shown-points'
+import { CaseMark } from '@/presentation/components/case-mark'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useStandingOf } from '@/presentation/i18n/use-standing-of'
+import type { Translate } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './score-track.sass'
@@ -39,9 +42,61 @@ type ScoreTrackProps = {
    * one screen's.
    */
   teams?: readonly Team[]
+  /**
+   * The track's length, passed when the room races on one: each piece draws
+   * its case as the track draws it, its finish flagged. Omitted, a piece
+   * walking a pawn prints no case.
+   */
+  trackLength?: number
   /** The seated host's own piece, in a keyline; `null` on a screen nobody sits at. */
   youId: PlayerId | null
 }
+
+type Standing = {
+  board: BoardPosition | null
+  score: number
+}
+
+/**
+ * What a piece prints for where it stands: the case as the track's square on a
+ * track, its points otherwise — never both, because two figures ranking the
+ * same people would disagree.
+ */
+const StandingFigure: React.FC<{
+  standing: Standing
+  trackLength: number | undefined
+}> = ({ standing, trackLength }) => {
+  const translate = useTranslate()
+
+  if (standing.board !== null) {
+    return trackLength === undefined ? null : (
+      <CaseMark at={standing.board.case} length={trackLength} />
+    )
+  }
+
+  return (
+    <span className='figure'>
+      {translate('player.score', { points: shownPoints(standing.score) })}
+    </span>
+  )
+}
+
+/**
+ * How many characters wide the widest reading is, which sizes every piece: a
+ * case's square is a character wider than its number.
+ */
+const longestFigureOf = (
+  standings: readonly Standing[],
+  translate: Translate
+): number =>
+  Math.max(
+    1,
+    ...standings.map(({ board, score }) =>
+      board === null
+        ? translate('player.score', { points: shownPoints(score) }).length
+        : String(board.case).length + 1
+    )
+  )
 
 /**
  * The standings as one line of pieces along the top of a console held in a
@@ -53,13 +108,13 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
   players,
   progressOf,
   teams = [],
+  trackLength,
   youId
 }) => {
   const translate = useTranslate()
-  const standingOf = useStandingOf()
 
   if (progressOf === undefined && teams.length > 0) {
-    return <TeamTrack teams={teams} youId={youId} />
+    return <TeamTrack teams={teams} trackLength={trackLength} youId={youId} />
   }
 
   const isRanked = progressOf === undefined && hasAnybodyScored(players)
@@ -67,19 +122,10 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
     progressOf === undefined
       ? buildScoreboard(players).map(({ player }) => player)
       : players
-  ).map((player) => {
-    const progress = progressOf?.(player) ?? null
-
-    return {
-      figure: progress?.figure ?? (isRanked ? standingOf(player) : null),
-      player,
-      progress
-    }
-  })
-  const longestFigure = Math.max(
-    1,
-    ...seats.map(({ figure }) => figure?.length ?? 0)
-  )
+  ).map((player) => ({ player, progress: progressOf?.(player) ?? null }))
+  const longestFigure = isRanked
+    ? longestFigureOf(players, translate)
+    : Math.max(1, ...seats.map(({ progress }) => progress?.figure.length ?? 0))
 
   return (
     <ol
@@ -87,7 +133,7 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
       className='score-track'
       style={{ '--figure-length': longestFigure }}
     >
-      {seats.map(({ figure, player, progress }) => (
+      {seats.map(({ player, progress }) => (
         <li
           className={classNames(
             'seat',
@@ -102,7 +148,13 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
         >
           <span className='reading'>
             <Pawn seat={players.indexOf(player)} />
-            {figure !== null && <span className='figure'>{figure}</span>}
+            {progress !== null ? (
+              <span className='figure'>{progress.figure}</span>
+            ) : (
+              isRanked && (
+                <StandingFigure standing={player} trackLength={trackLength} />
+              )
+            )}
           </span>
           <span className='name'>{player.nickname}</span>
           {!player.isConnected && (
@@ -120,20 +172,14 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
 /** The track with a piece per team: its pawn, its score, its name. */
 const TeamTrack: React.FC<{
   teams: readonly Team[]
+  trackLength: number | undefined
   youId: PlayerId | null
-}> = ({ teams, youId }) => {
+}> = ({ teams, trackLength, youId }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
-  const standingOf = useStandingOf()
   const isRanked = hasAnyTeamScored(teams)
-  const pieces = buildTeamBoard(teams).map(({ team }) => ({
-    figure: isRanked ? standingOf(team) : null,
-    team
-  }))
-  const longestFigure = Math.max(
-    1,
-    ...pieces.map(({ figure }) => figure?.length ?? 0)
-  )
+  const ranked = buildTeamBoard(teams).map(({ team }) => team)
+  const longestFigure = isRanked ? longestFigureOf(teams, translate) : 1
 
   return (
     <ol
@@ -141,7 +187,7 @@ const TeamTrack: React.FC<{
       className='score-track'
       style={{ '--figure-length': longestFigure }}
     >
-      {pieces.map(({ figure, team }) => (
+      {ranked.map((team) => (
         <li
           className={classNames(
             'seat',
@@ -151,7 +197,9 @@ const TeamTrack: React.FC<{
         >
           <span className='reading'>
             <Pawn colour={team.colour} />
-            {figure !== null && <span className='figure'>{figure}</span>}
+            {isRanked && (
+              <StandingFigure standing={team} trackLength={trackLength} />
+            )}
           </span>
           <span className='name'>{teamName(team)}</span>
         </li>
