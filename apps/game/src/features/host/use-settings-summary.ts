@@ -6,6 +6,7 @@ import {
   type SettingsSummaryPart,
   settingsSummary
 } from '@melee/core/room/settings-summary'
+import { mayAskReady } from '@melee/core/round/asks-ready'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {
@@ -55,6 +56,11 @@ export const useSetupSummaries = (settings: RoomSettings): SetupSummaries => {
       ? translate('host.familyFriendly.summaryOff')
       : ''
 
+  const hostAlone =
+    settings.hostOpensNextRound && mayAskReady(settings)
+      ? translate('host.ready.hostAlone.summaryOn')
+      : ''
+
   const hold =
     settings.autoAdvanceMs === null
       ? translate('host.setup.summary.holdOpen')
@@ -65,10 +71,13 @@ export const useSetupSummaries = (settings: RoomSettings): SetupSummaries => {
   return {
     room: [
       hold,
+      hostAlone,
       translate('host.setup.summary.countdown', {
         duration: seconds(settings.countdownMs)
       })
-    ].join(' · '),
+    ]
+      .filter((part) => part !== '')
+      .join(' · '),
     table: [
       join(parts.filter(isRoundCount)),
       teamsSummary,

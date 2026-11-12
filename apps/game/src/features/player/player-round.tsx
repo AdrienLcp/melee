@@ -450,7 +450,8 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
  * Between two rounds, the press that tells the table this seat is back. Every
  * seat ready starts the next round after a short hold, and the host still
  * starts it whenever they like. The next game stays unnamed until its
- * countdown, so a planned line-up keeps its surprises.
+ * countdown, so a planned line-up keeps its surprises. A room whose host alone
+ * opens the next round folds it away: a press there would arm nothing.
  */
 const BackAtTheTable: React.FC<{
   clock: ClockEstimate | null
@@ -471,22 +472,29 @@ const BackAtTheTable: React.FC<{
   }
 
   const label = translate('player.lineUp.ready')
+  const isAsked = !view.settings.hostOpensNextRound
 
   return (
-    <div className='back-at-the-table'>
-      <ToggleButton
-        isSelected={you.isReady}
-        onChange={(isReady) => {
-          onReady(isReady)
-        }}
-        size='large'
-      >
-        <span aria-hidden className='ready-mark'>
-          <CheckIcon />
-        </span>
-        {label}
-        <ReadyHoldFill clock={clock} hold={hold} label={label} />
-      </ToggleButton>
+    <div
+      className='back-at-the-table'
+      data-open={isAsked || undefined}
+      inert={!isAsked}
+    >
+      <div>
+        <ToggleButton
+          isSelected={you.isReady}
+          onChange={(isReady) => {
+            onReady(isReady)
+          }}
+          size='large'
+        >
+          <span aria-hidden className='ready-mark'>
+            <CheckIcon />
+          </span>
+          {label}
+          <ReadyHoldFill clock={clock} hold={hold} label={label} />
+        </ToggleButton>
+      </div>
     </div>
   )
 }

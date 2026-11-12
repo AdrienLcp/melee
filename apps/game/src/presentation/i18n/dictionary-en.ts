@@ -1052,7 +1052,15 @@ export const EN_DICTIONARY = defineDictionary({
       take: '{points:number} points less for {name}'
     },
     ready: {
-      everyone: 'Everyone’s ready'
+      everyone: 'Everyone’s ready',
+      hostAlone: {
+        hint: {
+          off: 'Once the whole table is ready, the next round starts on its own.',
+          on: 'Nobody is asked whether they’re ready: the next round starts when you start it.'
+        },
+        label: 'You start every round',
+        summaryOn: 'you start every round'
+      }
     },
     recovery: {
       action: 'Run the table from here',

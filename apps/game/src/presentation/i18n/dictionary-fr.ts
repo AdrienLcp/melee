@@ -996,7 +996,15 @@ export const FR_DICTIONARY = defineDictionary({
       take: '{points:number} points de moins pour {name}'
     },
     ready: {
-      everyone: 'Tout le monde est prêt'
+      everyone: 'Tout le monde est prêt',
+      hostAlone: {
+        hint: {
+          off: 'Dès que toute la table est prête, la manche suivante part d’elle-même.',
+          on: 'Personne n’a à dire qu’il est prêt : la manche suivante part quand tu la lances.'
+        },
+        label: 'Tu lances chaque manche',
+        summaryOn: 'tu lances chaque manche'
+      }
     },
     recovery: {
       action: 'Tenir la table d’ici',

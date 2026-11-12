@@ -32,6 +32,9 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 
 const WON_IT = halves(true, true)
 
+/** Long enough for two frames sent together to have been read, or refused. */
+const READIES_SETTLE_MS = 300
+
 /** The shortest hold the settings allow, so no suite waits out a real one. */
 const HOLD_MS = 2_000
 
@@ -175,8 +178,8 @@ describe('a table that says it is ready for the next round', () => {
     await harness.stop()
   })
 
-  const revealedTable = async () => {
-    const { code, host } = await harness.openRoom(FAST_GAME)
+  const revealedTable = async (settings: RoomSettings = FAST_GAME) => {
+    const { code, host } = await harness.openRoom(settings)
     const zoe = await harness.seat({ code, nickname: 'Zoe' })
     const max = await harness.seat({ code, nickname: 'Max' })
 
@@ -286,5 +289,42 @@ describe('a table that says it is ready for the next round', () => {
 
     expect(hostView(host)?.round?.advancesAt).toBeNull()
     expect(hostView(host)?.round?.isReadyHold).toBe(false)
+  })
+
+  it('[ready-hold] arms nothing at a table whose host alone opens the next round', async () => {
+    const { host, max, zoe } = await revealedTable({
+      ...FAST_GAME,
+      hostOpensNextRound: true
+    })
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await sleep(READIES_SETTLE_MS)
+
+    expect(hostView(host)?.players.some((seat) => seat.isReady)).toBe(false)
+    expect(hostView(host)?.round?.isReadyHold).toBe(false)
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+  })
+
+  it('[ready-hold] lets a whole table’s hold go when the host takes the next round to themselves', async () => {
+    const { host, max, zoe } = await revealedTable()
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === true,
+      'the ready hold'
+    )
+    host.send({
+      settings: { ...FAST_GAME, hostOpensNextRound: true },
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === false,
+      'the hold to go'
+    )
+
+    expect(hostView(host)?.players.some((seat) => seat.isReady)).toBe(false)
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
   })
 })

@@ -312,7 +312,9 @@ export const releaseAbandonedSeats = (room: Room, now: number): PlayerId[] => {
  * where it would mean nothing: the round opening is what cleared it, and the
  * next reveal is when it is asked again. A press landing in the countdown
  * crossed that opening on the wire — often the very round it armed — and is
- * dropped without a word rather than told it came too late.
+ * dropped without a word rather than told it came too late, as is one in a
+ * room whose host alone opens the next round, sent by a screen that drew the
+ * press before the setting reached it.
  */
 export const markReady = ({
   isReady,
@@ -325,7 +327,7 @@ export const markReady = ({
   participant: Participant
   room: Room
 }): Result<void, 'wrong_phase'> => {
-  if (room.phase === 'countdown') {
+  if (room.phase === 'countdown' || room.settings.hostOpensNextRound) {
     return Result.success()
   }
 
@@ -343,6 +345,10 @@ export const markReady = ({
  * Writes the settings a host sent, with the running order dealt over them
  * (`dealtOrder`). The round about to open is settled in the lobby, and on a
  * reveal once the console has drawn it off the entry just played.
+ *
+ * A host taking the next round to themselves clears every seat's ready, so no
+ * mark stays up saying a seat is waited on, and the hold a whole table armed
+ * goes back to the setting's (`settleReadyHold`).
  */
 export const updateSettings = (
   room: Room,
@@ -372,6 +378,13 @@ export const updateSettings = (
       upcoming: room.round?.index ?? 0
     })
   }
+
+  if (settings.hostOpensNextRound) {
+    for (const seat of room.players.values()) {
+      seat.isReady = false
+    }
+  }
+
   touch(room, now)
 }
 

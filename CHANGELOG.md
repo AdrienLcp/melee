@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- **A host can keep the next round to themselves.** A new switch in the
+  room's settings, _Tu lances chaque manche_, stops a whole table's Ready from
+  starting the next round: the reveal asks no seat whether it is back, the
+  player's Ready press folds away, and only the host's _Manche suivante_ — or
+  the reveal hold they chose — goes on. Turning it on mid-reveal clears every
+  seat's ready and lets a hold the table had armed go. It is remembered with
+  the host's other table-wide settings, and off by default.
 - **An evening brings its own black square themes.** An assistant can now
   write up to three themes for a Case noire entry — a broad label, 12 to 20
   answers each tiered by how obvious it is, their spellings, and a black word

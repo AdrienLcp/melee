@@ -278,6 +278,16 @@ export const roomSettingsSchema = z.object({
    */
   game: gameSettingsSchema.nullable(),
   /**
+   * Whether the host's press alone opens the next round. On, a reveal asks no
+   * seat whether it is back and every seat ready arms nothing: a table that
+   * talks over each reveal goes on when its host says so. The setting's own
+   * hold still runs, since the host chose it too.
+   *
+   * Off by default, and defaulted, so a stored setup from before it lets a
+   * whole table ready arm the next round, as every room did.
+   */
+  hostOpensNextRound: z.boolean().default(false),
+  /**
    * Whether every game keeps to content a child may be dealt — today the
    * quiz's adult-rated questions, the only rows any bank rates. A room setting
    * rather than the quiz's, because it describes who sits at the table, and two
@@ -404,6 +414,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   endsAtFinish: true,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
+  hostOpensNextRound: false,
   isFamilyFriendly: true,
   lineUp: [],
   lineUpAt: null,

@@ -582,9 +582,13 @@
     // Under the round, where the next press of the evening lands: the word to
     // the wall that this seat is back.
     .back-at-the-table
+      @include fold.opens-in-column(var(--space-m))
+
       align-self: stretch
-      display: flex
-      flex-direction: column
+
+      > div
+        display: flex
+        flex-direction: column
 
       .toggle-button
         position: relative
