@@ -1,6 +1,6 @@
 import type { BlackSquareCell } from '@melee/protocol/black-square'
 
-import { matchesAnswer } from '../round/answer-matching'
+import { answerMatcherFor } from '../round/answer-matching'
 
 /** Every name a table may type for one answer, in every language. */
 type Names = readonly string[]
@@ -10,18 +10,27 @@ export type LineGrade =
   | { kind: 'blackWord' }
   | { kind: 'nothing' }
 
-const matchesAnyOf = ({
-  line,
+type Board = {
+  /** The answers dealt, in cell order. */
+  answers: readonly Names[]
+  blackWord: Names
+  /** Every name of the theme's true answers the deal did not draw. */
+  leftOut: Names
+}
+
+const matcherOfAny = ({
   names,
   rivals
 }: {
-  line: string
   names: Names
   rivals: Names
-}): boolean =>
-  names.some((expected) =>
-    matchesAnswer({ distinctFrom: rivals, expected, given: line })
+}): ((line: string) => boolean) => {
+  const matchers = names.map((expected) =>
+    answerMatcherFor({ distinctFrom: rivals, expected })
   )
+
+  return (line) => matchers.some((matches) => matches(line))
+}
 
 /**
  * One line against the answers dealt and the black word, matched whole with the quiz's
@@ -42,21 +51,18 @@ const matchesAnyOf = ({
  * every one, because it names each of them as well as the other.
  */
 export const gradeLine = ({
+  line,
+  ...board
+}: Board & { line: string }): LineGrade => lineGraderFor(board)(line)
+
+/** `gradeLine` with each name's forgiveness settled once, for one board read line after line. */
+export const lineGraderFor = ({
   answers,
   blackWord,
-  leftOut,
-  line
-}: {
-  /** The answers dealt, in cell order. */
-  answers: readonly Names[]
-  blackWord: Names
-  /** Every name of the theme's true answers the deal did not draw. */
-  leftOut: Names
-  line: string
-}): LineGrade => {
-  const cells = answers.flatMap((names, cell) =>
-    matchesAnyOf({
-      line,
+  leftOut
+}: Board): ((line: string) => LineGrade) => {
+  const cellMatchers = answers.map((names, cell) =>
+    matcherOfAny({
       names,
       rivals: [
         ...blackWord,
@@ -64,19 +70,21 @@ export const gradeLine = ({
         ...answers.flatMap((other, index) => (index === cell ? [] : other))
       ]
     })
-      ? [cell]
-      : []
   )
-
-  if (cells.length > 0) {
-    return { cells, kind: 'cells' }
-  }
-
-  return matchesAnyOf({
-    line,
+  const matchesBlackWord = matcherOfAny({
     names: blackWord,
     rivals: [...answers.flat(), ...leftOut]
   })
-    ? { kind: 'blackWord' }
-    : { kind: 'nothing' }
+
+  return (line) => {
+    const cells = cellMatchers.flatMap((matches, cell) =>
+      matches(line) ? [cell] : []
+    )
+
+    if (cells.length > 0) {
+      return { cells, kind: 'cells' }
+    }
+
+    return matchesBlackWord(line) ? { kind: 'blackWord' } : { kind: 'nothing' }
+  }
 }

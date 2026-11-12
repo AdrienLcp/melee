@@ -57,7 +57,30 @@ const CONJUNCTIONS: ReadonlySet<string> = new Set(['and', 'et'])
  */
 const MOST_NORMALIZED_KEPT = 10_000
 
-const normalized = new Map<string, string>()
+/** A fold remembered per text, emptied whole once it holds `MOST_NORMALIZED_KEPT`. */
+const remembered = (
+  fold: (text: string) => string
+): ((text: string) => string) => {
+  const folds = new Map<string, string>()
+
+  return (text) => {
+    const known = folds.get(text)
+
+    if (known !== undefined) {
+      return known
+    }
+
+    if (folds.size >= MOST_NORMALIZED_KEPT) {
+      folds.clear()
+    }
+
+    const folded = fold(text)
+
+    folds.set(text, folded)
+
+    return folded
+  }
+}
 
 /**
  * Both what the player typed and what the bank holds go through this before
@@ -69,29 +92,14 @@ const normalized = new Map<string, string>()
  * `hip-hop` and `hip hop` too. Word boundaries carry no information here: two
  * answers that differ only in where the spaces fall are the same guess.
  */
-export const normalizeAnswer = (answer: string): string => {
-  const known = normalized.get(answer)
-
-  if (known !== undefined) {
-    return known
-  }
-
-  if (normalized.size >= MOST_NORMALIZED_KEPT) {
-    normalized.clear()
-  }
-
-  const folded = wordsOf(
-    foldCaseAndAccents(answer).replace(LEADING_ARTICLE, '')
-  ).join('')
-
-  normalized.set(answer, folded)
-
-  return folded
-}
+export const normalizeAnswer = remembered((answer) =>
+  wordsOf(foldCaseAndAccents(answer).replace(LEADING_ARTICLE, '')).join('')
+)
 
 /** `normalizeAnswer` with the article kept: *La Rochelle* is `larochelle` here and `rochelle` there. */
-export const normalizeKeepingArticle = (answer: string): string =>
+export const normalizeKeepingArticle = remembered((answer) =>
   wordsOf(foldCaseAndAccents(answer)).join('')
+)
 
 const foldCaseAndAccents = (answer: string): string =>
   answer
@@ -155,19 +163,26 @@ type AnswerComparison = {
 }
 
 export const matchesAnswer = ({
-  distinctFrom = [],
-  expected,
-  given
-}: AnswerComparison): boolean => {
-  const target = normalizeAnswer(expected)
+  given,
+  ...comparison
+}: AnswerComparison): boolean => answerMatcherFor(comparison)(given)
 
-  return (
-    matchesNormalized(
-      target,
-      normalizeAnswer(given),
-      forgivenessBetween(target, distinctFrom)
-    ) || isElidedArticleTypedWhole({ expected, given })
-  )
+/**
+ * `matchesAnswer` with everything that does not depend on what was typed —
+ * the answer's folds and how far its rivals let forgiveness reach — settled
+ * once, for one answer asked about line after line.
+ */
+export const answerMatcherFor = ({
+  distinctFrom = [],
+  expected
+}: Omit<AnswerComparison, 'given'>): ((given: string) => boolean) => {
+  const target = normalizeAnswer(expected)
+  const allowed = forgivenessBetween(target, distinctFrom)
+  const whole = normalizeKeepingArticle(expected)
+
+  return (given) =>
+    matchesNormalized(target, normalizeAnswer(given), allowed) ||
+    isElidedArticleTypedWhole({ given, whole })
 }
 
 /**
@@ -177,13 +192,13 @@ export const matchesAnswer = ({
  * so it never reaches across a decoy.
  */
 const isElidedArticleTypedWhole = ({
-  expected,
-  given
-}: AnswerComparison): boolean => {
-  const whole = normalizeKeepingArticle(expected)
-
-  return whole.length > 0 && whole === normalizeKeepingArticle(given)
-}
+  given,
+  whole
+}: {
+  given: string
+  /** The answer folded with its article kept. */
+  whole: string
+}): boolean => whole.length > 0 && whole === normalizeKeepingArticle(given)
 
 const forgivenessBetween = (
   target: string,

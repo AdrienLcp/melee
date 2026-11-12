@@ -7,6 +7,7 @@ import {
   hostQuestionSchema,
   type QuestionCategory,
   type QuestionDrawSettings,
+  type QuestionLanguage,
   questionCategorySchema,
   questionLanguageSchema,
   silhouetteFileSchema
@@ -127,20 +128,28 @@ export const bankedQuestions = (): BankedQuestion[] => {
 export type BankedQuestion = z.infer<typeof bankedQuestionSchema>
 
 /**
- * Split once, with the parse, because a room only ever draws from one of them:
- * the two banks are separate downloads from separate sources, and scanning the
- * other four and a half thousand rows on every draw was work that could never
- * match.
+ * Split once, with the parse, because a room only ever draws from one language
+ * and, at `mixed`, from one category: the two banks are separate downloads from
+ * separate sources, and scanning every row on every draw to keep one category
+ * of them cost a test of twelve hundred draws its timeout on a loaded machine.
  */
-let questionsByLanguage: Map<string, BankedQuestion[]> | undefined
+let questionsByLanguage:
+  | Map<string, Map<QuestionCategory, BankedQuestion[]>>
+  | undefined
 
-const byLanguage = (): Map<string, BankedQuestion[]> => {
-  questionsByLanguage ??= Map.groupBy(
-    bankedQuestions(),
-    (question) => question.language
+const categoriesIn = (
+  language: QuestionLanguage
+): Map<QuestionCategory, BankedQuestion[]> => {
+  questionsByLanguage ??= new Map(
+    [...Map.groupBy(bankedQuestions(), (question) => question.language)].map(
+      ([rowsLanguage, rows]) => [
+        rowsLanguage,
+        Map.groupBy(rows, (question) => question.category)
+      ]
+    )
   )
 
-  return questionsByLanguage
+  return questionsByLanguage.get(language) ?? new Map()
 }
 
 /** The round's question, with the softer decoys when the room plays `easy` and the row has them. */
@@ -196,7 +205,7 @@ const tierOfQuestion = ({ isWellKnown, tier }: BankedQuestion): ContentTier =>
  * happens to be. Drawing uniformly over questions gave an English room a video
  * game once every five rounds and a history question once every twenty, because
  * `arts` is 55% of that bank and `history` 10%. It self-corrects as an evening
- * runs: a category whose questions have all been played is not in `eligible`
+ * runs: a category whose questions have all been played holds nothing eligible
  * any more, so it stops being offered.
  *
  * `isUsable` is how a game asks for a shape of question rather than a subject.
@@ -228,37 +237,44 @@ export const drawQuestion = ({
   previousCategory?: QuestionCategory | null
   settings: QuestionDrawSettings
 }): BankedQuestion | null => {
-  const eligible = (byLanguage().get(settings.language) ?? []).filter(
-    (question) =>
-      !playedIds.has(question.id) &&
-      !(isFamilyFriendly && question.isAdult) &&
-      (settings.categories.length === 0 ||
-        settings.categories.includes(question.category)) &&
-      isUsable(question)
+  const isEligible = (question: BankedQuestion): boolean =>
+    !playedIds.has(question.id) &&
+    !(isFamilyFriendly && question.isAdult) &&
+    isUsable(question)
+  const ticked = [...categoriesIn(settings.language)].filter(
+    ([category]) =>
+      settings.categories.length === 0 || settings.categories.includes(category)
   )
 
-  const categoryToDeal = (share: readonly BankedQuestion[]) => {
-    const byCategory = Map.groupBy(share, (question) => question.category)
+  const categoryToDeal = (
+    isDealable: (question: BankedQuestion) => boolean
+  ): BankedQuestion[] => {
+    const dealable = ticked.filter(([, rows]) => rows.some(isDealable))
+    const fresh =
+      previousCategory !== null && dealable.length > 1
+        ? dealable.filter(([category]) => category !== previousCategory)
+        : dealable
+    const [, rows] = pickRandom(fresh) ?? [null, []]
 
-    if (previousCategory !== null && byCategory.size > 1) {
-      byCategory.delete(previousCategory)
-    }
-
-    return pickRandom([...byCategory.values()]) ?? []
+    return rows.filter(isDealable)
   }
 
   if (settings.difficulty === 'mixed') {
     return drawByDifficulty({
       difficulty: 'mixed',
-      pool: categoryToDeal(eligible),
+      pool: categoryToDeal(isEligible),
       tierOf: tierOfQuestion
     })
   }
 
   return dealByDifficulty({
-    deal: (share) => pickRandom(categoryToDeal(share)),
+    deal: (share) => {
+      const inShare = new Set(share)
+
+      return pickRandom(categoryToDeal((question) => inShare.has(question)))
+    },
     difficulty: settings.difficulty,
-    pool: eligible,
+    pool: ticked.flatMap(([, rows]) => rows.filter(isEligible)),
     tierOf: tierOfQuestion
   })
 }

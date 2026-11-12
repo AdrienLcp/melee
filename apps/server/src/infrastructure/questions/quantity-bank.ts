@@ -49,16 +49,44 @@ export const bankedQuantities = (): readonly QuantityRow[] => {
   return parsed
 }
 
-export const playedQuantityId = ({ entity, family }: QuantityRow): string =>
-  `estimate:${family}:${entity}`
+/**
+ * Every draw reads the id and the tier of all five thousand rows, and an id
+ * built afresh is hashed afresh by the played set: that alone cost a mixed
+ * estimate three milliseconds a draw.
+ */
+const perRow = <TValue>(
+  compute: (row: QuantityRow) => TValue
+): ((row: QuantityRow) => TValue) => {
+  const known = new WeakMap<QuantityRow, TValue>()
+
+  return (row) => {
+    const held = known.get(row)
+
+    if (held !== undefined) {
+      return held
+    }
+
+    const value = compute(row)
+
+    known.set(row, value)
+
+    return value
+  }
+}
+
+export const playedQuantityId = perRow(
+  ({ entity, family }) => `estimate:${family}:${entity}`
+)
 
 /**
  * A famous quantity is one a French table knows by heart, a well-known one one
  * it has heard of, and the rest the height of a summit nobody at the table has
  * — a guess at the zeros, which `easy` never deals while anything else is left.
  */
-export const tierOfQuantity = (row: QuantityRow): ContentTier =>
-  isFamousQuantity(row) ? 'easy' : row.isWellKnown ? 'medium' : 'hard'
+export const tierOfQuantity = perRow(
+  (row): ContentTier =>
+    isFamousQuantity(row) ? 'easy' : row.isWellKnown ? 'medium' : 'hard'
+)
 
 /**
  * A quantity the room has not been dealt, at the room's level. `null` once the
@@ -92,10 +120,9 @@ const dealPairsForChildren = (
     rules: { band: WIDE_PAIR_BAND, prefers: ({ isInFrance }) => isInFrance }
   })
 
-export const playedPairedQuantityId = ({
-  entity,
-  family
-}: QuantityRow): string => `higherlower:${family}:${entity}`
+export const playedPairedQuantityId = perRow(
+  ({ entity, family }) => `higherlower:${family}:${entity}`
+)
 
 /**
  * A round of quantities the room has not compared, every pair from one tier

@@ -363,6 +363,16 @@ one part.
 
 ### Internal
 
+- `[Server]` **The bank suites stop racing their timeouts under load.**
+  `lineGraderFor` settles each name's forgiveness once a board, through
+  `answerMatcherFor`, instead of once a line: grading every name of the banked
+  black-square themes went from ten seconds to two hundred milliseconds. The
+  quiz draw picks its category from a bank indexed by language and category
+  before filtering a row, and the quantity bank remembers each row's id and
+  tier: twelve hundred mixed quiz draws went from a second to two hundred
+  milliseconds, four hundred and fifty estimates from a second and a half to
+  three hundred. No timeout moved.
+
 - `[Game]` **Fewer motions, written once.** `page-leave` reads
   `--travel-offset` and `--travel-scale` like `page-enter`, which retires
   `notice-leave`, `countdown-lifts`, `seat-arrives` and `card-strike`; the

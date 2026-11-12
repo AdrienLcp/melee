@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
 import { franchiseStemOf } from '@melee/core/blacksquare/franchise-stem'
-import { gradeLine, type LineGrade } from '@melee/core/blacksquare/line-match'
+import {
+  type LineGrade,
+  lineGraderFor
+} from '@melee/core/blacksquare/line-match'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import {
@@ -57,15 +60,15 @@ type GradedTheme = {
  */
 const misgradedNamesOf = ({ answers, blackWord, id }: GradedTheme): string[] =>
   answers.flatMap((dealt, dealtIndex) => {
-    const board = {
+    const grade = lineGraderFor({
       answers: [namesOf(dealt)],
       blackWord: namesOf(blackWord),
       leftOut: answers.flatMap((other, index) =>
         index === dealtIndex ? [] : namesOf(other)
       )
-    }
+    })
     const misgraded = (line: string, expected: LineGrade['kind']): string[] =>
-      gradeLine({ ...board, line }).kind === expected
+      grade(line).kind === expected
         ? []
         : [`${id}: ${line} beside ${dealt.labels.en}`]
 
@@ -185,13 +188,11 @@ describe('the black-square bank', () => {
       throw new Error('capitals of Western Europe are not banked')
     }
 
-    const grade = (line: string) =>
-      gradeLine({
-        answers: theme.answers.map(namesOf),
-        blackWord: namesOf(theme.blackWord),
-        leftOut: [],
-        line
-      })
+    const grade = lineGraderFor({
+      answers: theme.answers.map(namesOf),
+      blackWord: namesOf(theme.blackWord),
+      leftOut: []
+    })
     const bern = theme.answers.findIndex(({ labels }) => labels.en === 'Bern')
 
     expect(grade('Berne')).toEqual({ cells: [bern], kind: 'cells' })
