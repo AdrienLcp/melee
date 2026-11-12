@@ -128,6 +128,16 @@ for two seconds. An animation the code starts itself is kept where it starts
 (`use-rows-travel.ts`, `travelsOf`); `getAnimations` stays for a one-off read,
 never in an observer or a handler a layout move can fire.
 
+## A view transition is paid per named element, every frame
+
+Each `view-transition-name` is a snapshot captured before the move and a
+group whose size is eased through style and layout on every frame. A
+hundred cases named one by one cost the side panel's fold 55–85ms a frame
+and 300ms before it moved, in a production build; the board named once costs
+3ms. A many-piece layout moves as one picture (`board-cases`), and a piece
+travels alone only on the move where its travel is the point (`board-relaid`).
+`.playwright-mcp/fold-perf.mjs` times a fold.
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive

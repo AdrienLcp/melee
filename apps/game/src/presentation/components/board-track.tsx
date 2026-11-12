@@ -203,7 +203,7 @@ const useRelaidLength = ({
           flushSync(() => {
             onLaid(length)
           })
-        })
+        }, 'board-relaid')
       }
     })
 

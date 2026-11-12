@@ -111,6 +111,12 @@
       // comes after it.
       z-index: 1
 
+      // One picture through a layout move: a hundred cases captured and eased
+      // one by one cost every frame of the side panel's fold 40ms of style
+      // and layout, and its start a hundred more.
+      :root[data-layout-move]:not(:active-view-transition-type(board-relaid)) &
+        view-transition-name: board-cases
+
       &:is([data-shape='line'] > *)
         grid-template-columns: repeat(var(--track-columns), minmax(0, 1fr))
         grid-template-rows: var(--board-band)
@@ -133,9 +139,9 @@
       // stood off.
       --track-from: 0 calc(-100% - var(--board-edge))
 
-      // Only a layout move travels the cases: a page change keeps the board in
+      // Only a new length travels the cases: a page change keeps the board in
       // the page's own picture, which lifts off whole.
-      :root[data-layout-move] &
+      :root[data-layout-move]:active-view-transition-type(board-relaid) &
         view-transition-name: match-element
 
       &[data-side='left']
@@ -280,15 +286,18 @@
       font-size: min(clamp(var(--text-3xs), 18cqmin, var(--text-s)), 33cqi)
       padding: 0.2em 0.4em
 
-  // When the stage beside the track changes size, each case travels to its
-  // new place on the board rather than the board being redrawn.
+  // Stretched over its group on both axes: the board is laid round the stage,
+  // and a picture scaled by its width alone carried the bottom row off it.
+  ::view-transition-old(board-cases),
+  ::view-transition-new(board-cases),
   ::view-transition-old(*.board-case),
   ::view-transition-new(*.board-case)
     block-size: 100%
 
-  // A new length moves the same way, the finish travelling with the end of
-  // the course. A case only the new length has is set down once the course
-  // has started moving, and a case it dropped is picked up at once.
+  // A new length travels each case to its new place on the board, the finish
+  // with the end of the course. A case only the new length has is set down
+  // once the course has started moving, and a case it dropped is picked up at
+  // once.
   ::view-transition-new(*.board-case):only-child
     --travel-scale: 0.6
 

@@ -234,6 +234,9 @@ const LAYOUT_MOVE_ATTRIBUTE = 'data-layout-move'
 
 let layoutMovesRunning = 0
 
+/** A layout move a stylesheet plays apart from the others, as a view transition type. */
+export type LayoutMoveType = 'board-relaid'
+
 const markLayoutMoveEnded = (): void => {
   layoutMovesRunning -= 1
 
@@ -248,11 +251,15 @@ const markLayoutMoveEnded = (): void => {
  * reach the DOM before it returns, so a React state change goes in `flushSync`.
  *
  * The root carries `data-layout-move` for as long as a move runs, and only
- * then do the panel, the stage and the board's cases take a transition name of
- * their own: on a page change they stay in the page's picture, which the page
- * being left fades over, rather than each fading in on the browser's default.
+ * then do the panel, the stage and the board take a transition name of their
+ * own: on a page change they stay in the page's picture, which the page being
+ * left fades over, rather than each fading in on the browser's default.
+ *
+ * `type` names what a stylesheet must tell apart from any other move —
+ * `board-relaid`, a new length laid under the board, travels each case to its
+ * new cell where every other move carries the board as one picture.
  */
-export const moveLayout = (update: () => void): void => {
+export const moveLayout = (update: () => void, type?: LayoutMoveType): void => {
   if (
     prefersReducedMotion() ||
     typeof document.startViewTransition !== 'function'
@@ -265,9 +272,12 @@ export const moveLayout = (update: () => void): void => {
   layoutMovesRunning += 1
   document.documentElement.setAttribute(LAYOUT_MOVE_ATTRIBUTE, '')
 
-  const transition = document.startViewTransition(() => {
-    update()
-    window.dispatchEvent(new Event(LAYOUT_MOVED_EVENT))
+  const transition = document.startViewTransition({
+    types: type === undefined ? [] : [type],
+    update: () => {
+      update()
+      window.dispatchEvent(new Event(LAYOUT_MOVED_EVENT))
+    }
   })
 
   transition.finished.then(markLayoutMoveEnded, markLayoutMoveEnded)

@@ -282,7 +282,11 @@ one part.
 - `[Game]` **The side panel folds at once over a long board.** On a board of
   a hundred cases the panel took seconds to open or close: the lobby's empty
   seats asked the browser for their running motions while the fold moved
-  every case, and each answer walked hundreds of them.
+  every case, and each answer walked hundreds of them. The board now rides
+  every fold, change of side and change of tab as one picture rather than a
+  hundred cases moved one by one, which started the move twice as soon and
+  freed every frame of it; only a new length still walks each case to its
+  new cell.
 - `[Game]` **A seated host's field and a long name keep to a phone lying
   down.** On a console held sideways, what a guess banked or missed rose
   under the menu once its column ran short: the menu's corner now comes off
