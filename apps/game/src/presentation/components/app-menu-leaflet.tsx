@@ -6,9 +6,7 @@ import {
 import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
 import { useState, useSyncExternalStore } from 'react'
-import { Form } from 'react-aria-components'
 
-import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import { isLocale, LOCALES } from '@melee/protocol/locale'
 
 import {
@@ -34,10 +32,7 @@ import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
 import { RichText } from '@/presentation/i18n/rich-text'
-import {
-  type PlainTranslationKey,
-  protocolErrorKey
-} from '@/presentation/i18n/translation'
+import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import {
   useIsInsideRoom,
   useRoomActions
@@ -47,24 +42,19 @@ import { themeStore } from '@/presentation/theme/theme-store'
 
 import { Button } from './button'
 import { ConnectionStatus } from './connection-status'
-import { Disclosure } from './disclosure'
 import {
   FullscreenEnterIcon,
   FullscreenExitIcon,
   InstallIcon,
-  QrCodeIcon,
   ReloadIcon,
   ScreenIcon,
   ShareIcon
 } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
-import { MenuPawn } from './menu-pawn'
 import { ProjectWithCode } from './project-with-code'
-import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
 import { Slider } from './slider'
-import { TextField } from './text-field'
 import { TextLink } from './text-link'
 
 /**
@@ -74,76 +64,6 @@ import { TextLink } from './text-link'
  * is bounded by the screen instead.
  */
 const MENU_MAX_HEIGHT_PX = 520
-
-/**
- * The name this screen is playing under. A device that has played before never
- * passes through the join form, so what that form used to show has to live
- * somewhere on every screen at every phase — and the row carries the name
- * itself, which leaves the panel for the rarer half of the job.
- */
-const SeatName: React.FC = () => {
-  const { refusedNickname, rename, seatNickname } = useRoomActions()
-  const translate = useTranslate()
-  const [draft, setDraft] = useState<string | null>(null)
-
-  if (rename === null || seatNickname === null) {
-    return null
-  }
-
-  // Empty rather than filled with the name the row above already carries. A
-  // prefilled field printed it twice in four lines, and editing two characters
-  // of your own name is not what changing it means.
-  const value = draft ?? ''
-  const next = value.trim()
-  // The refusal belongs to the name it was given for, so any other draft
-  // submits again — a controlled `isInvalid` outliving its reason leaves the
-  // field's native validity false and the press a silent no-op.
-  const isRefused = next === refusedNickname
-
-  return (
-    <Disclosure
-      className='seat-name'
-      label={translate('menu.nickname.label')}
-      summary={seatNickname}
-    >
-      <Form
-        onSubmit={(event) => {
-          event.preventDefault()
-          rename(next)
-        }}
-      >
-        <TextField
-          autoComplete='nickname'
-          enterKeyHint='done'
-          errorMessage={
-            isRefused
-              ? translate(protocolErrorKey('nickname_taken'))
-              : undefined
-          }
-          isInvalid={isRefused}
-          label={translate('menu.nickname.field')}
-          maxLength={NICKNAME_MAX_LENGTH}
-          name='nickname'
-          onChange={setDraft}
-          value={value}
-        />
-        {/*
-          `small`, and beside the field rather than under the width of the
-          popover: a 52px block here is the same shape as the exit below it, and
-          changing a label is not a peer of leaving the room.
-        */}
-        <Button
-          isDisabled={next.length === 0 || next === seatNickname}
-          size='small'
-          type='submit'
-          variant='outlined'
-        >
-          {translate('menu.nickname.action')}
-        </Button>
-      </Form>
-    </Disclosure>
-  )
-}
 
 /**
  * The ways out of a room, in the one piece of chrome that is on every screen at
@@ -380,6 +300,11 @@ export type DeployedBuild = {
 type AppMenuLeafletProps = {
   /** The build the server reports, once the first open has asked for it. */
   build: DeployedBuild | null
+  /**
+   * The rows of a screen in a room — invitation, seat name, pawn — or `null`
+   * where there is none: a chunk of their own, loaded by the trigger.
+   */
+  seatRows: React.ReactNode
 }
 
 /**
@@ -391,21 +316,17 @@ type AppMenuLeafletProps = {
  * invitation square and react-aria's popover were a sixth of what the front
  * door downloads.
  */
-export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
+export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
+  build,
+  seatRows
+}) => {
   const { locale, setLocale, translate } = useI18n()
   const navigateToLocale = useNavigateToLocale()
   const { preference, setPreference } = useThemePreference(themeStore)
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
-  const {
-    closeRoom,
-    invitation,
-    pauseRound,
-    revealRound,
-    roomVolume,
-    setRoomVolume
-  } = useRoomActions()
-  const runsTheRoom = closeRoom !== null
+  const { pauseRound, revealRound, roomVolume, setRoomVolume } =
+    useRoomActions()
   const isOnAssistant = useIsCurrentPath(assistantPathFor(locale))
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
@@ -474,29 +395,7 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
             />
           )}
 
-          {/*
-                Unfolded on a player's screen, where passing the square along
-                a row of seats is what it is for. Folded on the console, whose
-                stage carries a square already: what the row adds there is
-                the link to copy or send.
-              */}
-          {invitation !== null &&
-            (runsTheRoom ? (
-              <Disclosure
-                className='invitation-row'
-                icon={<QrCodeIcon />}
-                label={translate('invite.action')}
-                summary={invitation}
-              >
-                <RoomInvitation roomCode={invitation} />
-              </Disclosure>
-            ) : (
-              <RoomInvitation roomCode={invitation} />
-            ))}
-
-          <SeatName />
-
-          <MenuPawn />
+          {seatRows}
 
           <SegmentedControl
             label={translate('preferences.language')}

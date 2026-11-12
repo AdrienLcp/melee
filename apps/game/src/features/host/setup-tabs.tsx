@@ -8,7 +8,7 @@ import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
 
 import { dealsAdultContent } from '@melee/core/quiz/adult-content'
-import { decksForLineUp } from '@melee/core/room/evening-decks'
+import { decksForLineUp, decksKeptOver } from '@melee/core/room/evening-decks'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
@@ -25,7 +25,6 @@ import {
 } from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import {
-  decksKeptOver,
   type SavedEvening,
   savedEveningOf,
   withSavedEvening

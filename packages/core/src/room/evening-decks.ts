@@ -1,5 +1,6 @@
 import type { Deck, OwnLinesGame } from '@melee/protocol/deck'
 import type { GameKind, GameSettings } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 
 import { blackSquareDeckProblems } from '../blacksquare/black-square-deck'
 import { estimateDeckProblems } from '../estimate/estimate-deck'
@@ -8,6 +9,7 @@ import { quizDeckProblems } from '../quiz/quiz-deck'
 import { slateDeckProblems } from '../slate/slate-deck'
 import { timelineDeckProblems } from '../timeline/timeline-deck'
 import { lineDeckProblems } from './line-deck'
+import { isSameName, type SavedEvening } from './saved-evening'
 
 const deckProblemsAt = ({
   deck,
@@ -157,6 +159,32 @@ export const decksForLineUp = ({
   )
 
   return fitting.some((deck) => deck !== null) ? fitting : []
+}
+
+/**
+ * The decks a console keeps an evening with: those of the evening already
+ * saved under `name`, following their entries onto `settings`' line-up. A
+ * console is told counts and never a deck, so this is what stops keeping an
+ * evening again from wiping the questions it was saved with.
+ */
+export const decksKeptOver = ({
+  evenings,
+  name,
+  settings
+}: {
+  evenings: readonly SavedEvening[]
+  name: string
+  settings: RoomSettings
+}): (Deck | null)[] => {
+  const previous = evenings.find((saved) => isSameName(saved.name, name))
+
+  return previous === undefined
+    ? []
+    : decksForLineUp({
+        decks: previous.decks,
+        from: previous.lineUp,
+        to: settings.lineUp
+      })
 }
 
 /** The id a deck's item is dealt and remembered under — see `RoomDeck`. */

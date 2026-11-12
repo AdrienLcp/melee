@@ -8,7 +8,6 @@ import {
   RUNNING_ORDER_MAX_ROWS
 } from '@melee/protocol/room'
 
-import { decksForLineUp } from './evening-decks'
 import { fittedToAloud } from './line-up'
 import { dealsHold } from './line-up-deals'
 import { type GameSetup, movedToEntry, openedSetup } from './room-settings'
@@ -121,32 +120,6 @@ export const withoutEvening = ({
   evenings: readonly SavedEvening[]
   name: string
 }): SavedEvening[] => evenings.filter((saved) => !isSameName(saved.name, name))
-
-/**
- * The decks a console keeps an evening with: those of the evening already
- * saved under `name`, following their entries onto `settings`' line-up. A
- * console is told counts and never a deck, so this is what stops keeping an
- * evening again from wiping the questions it was saved with.
- */
-export const decksKeptOver = ({
-  evenings,
-  name,
-  settings
-}: {
-  evenings: readonly SavedEvening[]
-  name: string
-  settings: RoomSettings
-}): (Deck | null)[] => {
-  const previous = evenings.find((saved) => isSameName(saved.name, name))
-
-  return previous === undefined
-    ? []
-    : decksForLineUp({
-        decks: previous.decks,
-        from: previous.lineUp,
-        to: settings.lineUp
-      })
-}
 
 /** Whether two names are the same evening's: case and edges aside. */
 export const isSameName = (left: string, right: string): boolean =>

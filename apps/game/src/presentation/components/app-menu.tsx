@@ -1,5 +1,5 @@
 import type React from 'react'
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, use, useEffect, useRef, useState } from 'react'
 import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
@@ -8,6 +8,7 @@ import { usePathname } from '@/infrastructure/router/navigation'
 import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
 
 import type { DeployedBuild } from './app-menu-leaflet'
 import { ConnectionDot, connectionStatusKey } from './connection-status'
@@ -24,8 +25,50 @@ const LoadedLeaflet = lazy(
   }))
 )
 
-const preloadLeaflet = (): void => {
+type MenuSeatRowsModule = typeof import('./menu-seat-rows')
+
+let loadedSeatRows: MenuSeatRowsModule | null = null
+let seatRowsLoading: Promise<MenuSeatRowsModule> | null = null
+
+const importSeatRows = holdWhileReloading(() => import('./menu-seat-rows'))
+
+/**
+ * Fetches the menu's seat rows once: a fetch that failed is asked again by the
+ * next caller rather than kept as the answer.
+ */
+const loadMenuSeatRows = (): Promise<MenuSeatRowsModule> => {
+  seatRowsLoading ??= importSeatRows().then(
+    (rows) => {
+      loadedSeatRows = rows
+      return rows
+    },
+    (error: unknown) => {
+      seatRowsLoading = null
+      throw error
+    }
+  )
+
+  return seatRowsLoading
+}
+
+/**
+ * The seat rows, drawn at once when the idle fetch has landed them, and
+ * suspending the whole menu otherwise rather than popping in under it. Only
+ * a screen in a room draws them, and its room page has already loaded the
+ * pawn picker and the invitation square they are made of.
+ */
+const LoadedMenuSeatRows: React.FC = () => {
+  const { MenuSeatRows } = loadedSeatRows ?? use(loadMenuSeatRows())
+
+  return <MenuSeatRows />
+}
+
+const preloadMenu = ({ hasSeatRows }: { hasSeatRows: boolean }): void => {
   void loadLeaflet()
+
+  if (hasSeatRows) {
+    void loadMenuSeatRows()
+  }
 }
 
 /**
@@ -42,6 +85,9 @@ export const AppMenu: React.FC = () => {
   const [build, setBuild] = useState<DeployedBuild | null>(null)
   const [hasOpened, setHasOpened] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
+  const { invitation, pawnRoom, rename } = useRoomActions()
+  const hasSeatRows =
+    invitation !== null || pawnRoom !== null || rename !== null
   // Open on one page only: a console handed over becomes the wall under a menu
   // still open on the square that handed it, in front of the whole room.
   const pathname = usePathname()
@@ -49,9 +95,20 @@ export const AppMenu: React.FC = () => {
 
   useMenuWidth(trigger)
 
-  // A touch screen has no hover, and its first press waited on twenty chunks
-  // with nothing on screen: the menu is fetched once the page is quiet.
-  useEffect(() => onceIdle(preloadLeaflet), [])
+  // A touch screen has no hover, and a player's first press mid-round waited
+  // on twenty chunks with nothing on screen: in a room, the menu is fetched
+  // once the page is quiet. A front door waits for the press, which the
+  // cached hashed chunks and the seat rows left out make a short wait — and
+  // fetching it there unasked cost each front door an eighth of its script.
+  useEffect(
+    () =>
+      hasSeatRows ? onceIdle(() => preloadMenu({ hasSeatRows })) : undefined,
+    [hasSeatRows]
+  )
+
+  const preload = (): void => {
+    preloadMenu({ hasSeatRows })
+  }
 
   const alert =
     connection === null || connection.status === 'open'
@@ -96,8 +153,8 @@ export const AppMenu: React.FC = () => {
       >
         <ReactAriaButton
           className='trigger'
-          onHoverStart={preloadLeaflet}
-          onPressStart={preloadLeaflet}
+          onHoverStart={preload}
+          onPressStart={preload}
           ref={trigger}
         >
           {connection !== null && <ConnectionDot status={connection.status} />}
@@ -110,7 +167,10 @@ export const AppMenu: React.FC = () => {
         {/* Mounted from the first open on, so a close still plays out. */}
         {hasOpened && (
           <Suspense fallback={null}>
-            <LoadedLeaflet build={build} />
+            <LoadedLeaflet
+              build={build}
+              seatRows={hasSeatRows ? <LoadedMenuSeatRows /> : null}
+            />
           </Suspense>
         )}
       </DialogTrigger>

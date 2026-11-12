@@ -111,10 +111,14 @@ one part.
 
 - **The menu opens at the first press.** A touch screen has no hover, so its
   first press fetched the menu's code — some twenty files — and showed nothing
-  until they landed, a second or more on a phone. The menu is now fetched once
-  the page is quiet, and every file under `/assets/` is served
-  `immutable` for a year, since its name changes with its content: a reload
-  no longer asks the server again for each chunk it already holds.
+  until they landed, a second or more on a phone. In a room the menu is now
+  fetched once the page is quiet; a front door, which draws none of a seat's
+  rows, still waits for the press, and the seat's name, pawn and invitation
+  square are a chunk of their own it never downloads — the menu fetched unasked
+  had grown every front door's script by an eighth, past its budget. Every file
+  under `/assets/` is served `immutable` for a year, since its name changes
+  with its content: a reload no longer asks the server again for each chunk it
+  already holds.
 - `[Server]` **Black square's Wikidata themes are ones a table can play.**
   Four themes whose answers an ordinary table cannot name three of are gone —
   Queen's albums and the films of Francis Ford Coppola, Wes Anderson and Sam
@@ -433,6 +437,11 @@ one part.
 
 ### Internal
 
+- **The home page stops downloading every evening deck's checks.** Keeping a
+  saved evening's decks over a new line-up moved from `saved-evening` to
+  `evening-decks`, beside the check it runs: the home page reads saved
+  evenings, and the import had brought it the black square theme rules and the
+  estimate, pair, timeline and slate deck checks the console alone uses.
 - **The console's strip sweep stops running out of time.** Every tab, fold
   and resize it walks moves, and a click waits for its target to stand
   still: 231 clicks spent two and a half of its three and a half minutes
