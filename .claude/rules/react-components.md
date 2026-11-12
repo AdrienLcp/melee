@@ -119,6 +119,15 @@ already there (`use-row-arrivals.ts`). A value kept drawn until its exit
 ends is `useLeavingValue`, which owns that guard — `LeavesInPlace` and the
 arrival notice are built on it.
 
+## `getAnimations()` is paid per animation in the document
+
+Chromium answers `element.getAnimations()` by walking every animation on the
+page, not the element's. Inside a view transition a hundred-case board holds
+about 520, and eight calls from a `ResizeObserver` froze the side panel's fold
+for two seconds. An animation the code starts itself is kept where it starts
+(`use-rows-travel.ts`, `travelsOf`); `getAnimations` stays for a one-off read,
+never in an observer or a handler a layout move can fire.
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive
