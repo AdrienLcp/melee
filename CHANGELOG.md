@@ -336,6 +336,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The old bar no longer flashes as the Ready press fills.** On a
+  player's screen, the moment every seat was ready the wait to the next round
+  drew its former bar for a third of a second, shrinking away above the press
+  that now fills instead; only a room's own hold, drawn from the reveal on,
+  still counts on the bar.
+
 - `[Game]` **A seat's score sits between the presses that change it** on the
   console's roster, `− 12 +`, where it stood alone above two presses pressed
   together; beside a wall the name takes the first line whole and the presses

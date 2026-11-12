@@ -4,7 +4,7 @@ import type { PlayerRoomView } from '@melee/protocol/room'
 
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
-import { revealHoldOf } from '@/helpers/reveal-hold'
+import { isHoldInReadyPress, revealHoldOf } from '@/helpers/reveal-hold'
 import {
   RevealHold,
   RoundProgress
@@ -32,11 +32,13 @@ type RoundClockProps = {
  * Absent whenever nothing is counting. For the round that is the host being
  * away or holding the room on pause, because the server has it frozen and a groove still draining would be
  * timing nobody; for the hold `advancesAt` says the same thing on its own,
- * covering a host who advances by hand and a host who has gone at once.
+ * covering a host who advances by hand and a host who has gone at once. The
+ * wait a table all ready armed is the Ready press's to draw, never this bar's.
  */
 export const RoundClock: React.FC<RoundClockProps> = ({ clock, view }) => {
   const hold =
-    view.round == null
+    view.round == null ||
+    isHoldInReadyPress({ round: view.round, settings: view.settings })
       ? null
       : revealHoldOf({ round: view.round, settings: view.settings })
 

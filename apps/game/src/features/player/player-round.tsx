@@ -426,8 +426,8 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         )}
         <div
           className='fold'
-          data-open={(view.isHostConnected && readyHold === null) || undefined}
-          inert={!view.isHostConnected || readyHold !== null}
+          data-open={view.isHostConnected || undefined}
+          inert={!view.isHostConnected}
         >
           <RoundClock clock={clock} view={view} />
         </div>
