@@ -41,7 +41,6 @@
 
     .seconds
       @include typography.numeric
-      @include text-box.trimmed-figure
 
       color: var(--clock-ink, var(--ink))
       display: grid
@@ -49,7 +48,11 @@
       font-size: var(--clock-seconds-size)
       justify-items: end
 
+      // Trimmed on each reading, not on the grid: `text-box` trims a block
+      // container's own lines, and a grid's text sits in its items.
       > *
+        @include text-box.trimmed-figure
+
         grid-area: 1 / 1
 
       .widest
