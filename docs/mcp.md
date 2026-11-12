@@ -48,12 +48,15 @@ _Copy the link_ beside it in the console's saved line-ups.
 An evening carries `decks` beside its line-up, written by the assistant from
 what the host told it (plan 68): a quiz entry's own questions, a challenge or
 _most likely_ entry's lines, a timeline entry's dated events — the family's
-births, five a round, by distinct years alone — and a slate entry's answer key
-for its one sheet. The link page says how many, the console counts what is
-left of each and when it is spent, and the entry deals from its bank from then
-on. The content travels in the fragment, is handed to the room by
-`host.setDecks` and reaches no view but the console's, as a bank's would; a
-room's storage is wiped with the table.
+births, five a round, by distinct years alone — a slate entry's answer key
+for its one sheet, and numbers of the table's own to estimate or compare, each
+asked in its own words and unit. The link page says how many, the console
+counts what is left of each and when it is spent, and the entry deals from its
+bank from then on. The content travels in the fragment, is handed to the room
+by `host.setDecks` and reaches no view but the console's, as a bank's would; a
+room's storage is wiped with the table. An estimate pays by ratio, so
+`prepare_evening` refuses a year, an age, a percentage or a rank to estimate,
+and a pair closer than ×1.15.
 
 **The link is the answer key.** Every question travels in it with its answer,
 so whoever holds it can read them — the host included, seated or not. That is

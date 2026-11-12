@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- **An evening brings its own numbers to estimate and pairs to compare.** An
+  assistant can now write Le juste chiffre's questions — _how many kilometres
+  did we drive this summer?_ — in the table's own words and unit, and Plus ou
+  moins' pairs — _who has the longer commute, Léa or Hugo?_ — each dealt before
+  the bank, one a round, the values held on the console until the reveal and a
+  pair's sides shuffled. Every screen draws the evening's prompt where a
+  family's sentence stood, and the field prints the deck's unit, or none for a
+  bare count. `prepare_evening` refuses a year, an age, a percentage or a rank
+  to estimate, a whole number that reads as a year, and a pair closer than
+  ×1.15, each by its path, because a ratio pays everyone near a known value.
 - **An evening brings its own timeline dates and slate answer keys.** An
   assistant can now write a timeline deck — the family's births, five a round,
   ordered by distinct years alone, so two dates two years apart still deal —

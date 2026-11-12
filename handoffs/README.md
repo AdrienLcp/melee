@@ -7,8 +7,7 @@ delete this README with the last one. The content series shares one plan:
 | Series  | Wave | File                                | Depends on |
 | ------- | ---- | ----------------------------------- | ---------- |
 | Scoring | —    | `scoring-01-follow-ups.md`          | none       |
-| Content | 5    | `content-05-own-numbers.md`         | none       |
-| Content | 6    | `content-06-black-square-themes.md` | content 5  |
+| Content | 6    | `content-06-black-square-themes.md` | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the

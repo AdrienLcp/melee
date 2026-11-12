@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import type { EstimateDeckItem } from '@melee/protocol/deck'
 import { DEFAULT_ESTIMATE_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
 import {
@@ -166,6 +167,7 @@ describe('an estimate round through the seam', () => {
 
     expect(round?.question).toEqual({
       family: 'population.country',
+      kind: 'bank',
       names: NAMES
     })
     expect(round?.value).toBeNull()
@@ -258,5 +260,91 @@ describe('an estimate round through the seam', () => {
     expect(
       revealed?.revealedGuesses?.map(({ guess }) => guess).toSorted()
     ).toEqual([TRUTH * 1.01, TRUTH / 2, TRUTH * 11].toSorted())
+  })
+})
+
+/** Distinctive enough that a raw frame carrying it can only be carrying the deck's answer. */
+const DRIVEN = 7_654_321
+
+const FAMILY_ESTIMATE: RoomSettings = {
+  ...ESTIMATE,
+  lineUp: [DEFAULT_ESTIMATE_SETTINGS],
+  lineUpAt: 0
+}
+
+const familyRoom = async (items: EstimateDeckItem[]) => {
+  const { code, host } = await harness.openRoom(FAMILY_ESTIMATE)
+  const zoe = await harness.seat({ code, nickname: 'Zoe' })
+
+  await harness.seat({ code, nickname: 'Max' })
+  host.send({ decks: [{ game: 'estimate', items }], type: 'host.setDecks' })
+
+  return { host, zoe }
+}
+
+describe('an estimate deck', () => {
+  it('[estimate] deals the deck first, its value withheld until the reveal, then the bank', async () => {
+    const { host, zoe } = await familyRoom([
+      {
+        prompt: 'How many kilometres did we drive this summer?',
+        unit: 'km',
+        value: DRIVEN
+      }
+    ])
+
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0] != null,
+      'the deck to load'
+    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(
+      () => playerView(zoe)?.phase === 'playing',
+      'the question to go up'
+    )
+
+    expect(estimateRound(playerView(zoe))?.question).toEqual({
+      kind: 'own',
+      prompt: 'How many kilometres did we drive this summer?',
+      unit: 'km'
+    })
+    expect(transcriptOf(zoe.frames)).not.toContain(String(DRIVEN))
+    expect(hostView(host)?.currentContent).toEqual({
+      kind: 'estimate',
+      value: DRIVEN
+    })
+
+    const roundId = playerView(zoe)?.round?.id ?? ''
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(estimateRound(playerView(zoe))?.value).toBe(DRIVEN)
+
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () =>
+        playerView(zoe)?.phase === 'playing' &&
+        playerView(zoe)?.round?.id !== roundId,
+      'the bank to take over'
+    )
+
+    expect(estimateRound(playerView(zoe))?.question).toEqual({
+      family: 'population.country',
+      kind: 'bank',
+      names: NAMES
+    })
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 1 }])
+  })
+
+  it('[estimate] refuses a deck whose bare whole number reads as a year', async () => {
+    const { host } = await familyRoom([
+      { prompt: 'When did we buy the house?', unit: null, value: 1999 }
+    ])
+
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'invalid_message'),
+      'the year-like deck to be refused'
+    )
+    expect(hostView(host)?.deckSummaries).toEqual([null])
   })
 })

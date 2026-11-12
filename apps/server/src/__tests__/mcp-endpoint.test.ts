@@ -214,6 +214,78 @@ describe('mcp endpoint', () => {
     expect(await eveningCarriedBy(link.hash)).toEqual(evening)
   })
 
+  it('[mcp] carries an estimate and a higher or lower deck in the link as written', async () => {
+    const evening = {
+      ...EVENING,
+      decks: [
+        null,
+        null,
+        {
+          game: 'estimate',
+          items: [
+            {
+              prompt: 'How many kilometres did we drive this summer?',
+              unit: 'km',
+              value: 4200
+            }
+          ]
+        },
+        {
+          game: 'higherlower',
+          items: [
+            {
+              left: { name: 'Léa', value: 12 },
+              prompt: 'Who has the longer commute?',
+              right: { name: 'Hugo', value: 40 },
+              unit: 'km'
+            }
+          ]
+        }
+      ],
+      lineUp: [...EVENING.lineUp, 'estimate', 'higherlower']
+    }
+    const { isError, text } = await call('prepare_evening', {
+      evening,
+      locale: 'en'
+    })
+    const link = new URL(text.match(/https?:\/\/\S+/)?.[0] ?? '')
+
+    expect(isError).toBe(false)
+    expect(await eveningCarriedBy(link.hash)).toEqual(evening)
+  })
+
+  it('[mcp] answers a year to estimate and a near tie by their path', async () => {
+    const { isError, text } = await call('prepare_evening', {
+      evening: {
+        ...EVENING,
+        decks: [
+          null,
+          null,
+          {
+            game: 'estimate',
+            items: [{ prompt: 'When did we buy the house?', value: 1999 }]
+          },
+          {
+            game: 'higherlower',
+            items: [
+              {
+                left: { name: 'Léa', value: 38 },
+                prompt: 'Who has the longer commute?',
+                right: { name: 'Hugo', value: 40 }
+              }
+            ]
+          }
+        ],
+        lineUp: [...EVENING.lineUp, 'estimate', 'higherlower']
+      },
+      locale: 'en'
+    })
+
+    expect(isError).toBe(true)
+    expect(text).toContain('decks[2].items[0].value')
+    expect(text).toContain('decks[3].items[0]: 38 against 40')
+  })
+
   it('[mcp] answers two dates of one year by their path', async () => {
     const { isError, text } = await call('prepare_evening', {
       evening: {

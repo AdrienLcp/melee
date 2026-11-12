@@ -94,6 +94,7 @@ describe('a room set to easy by frame', () => {
 
       expect(
         content?.kind === 'estimate' &&
+          content.question.kind === 'bank' &&
           isFamousQuantity({
             family: content.question.family,
             names: { fr: content.question.names.fr ?? '' }
@@ -115,10 +116,12 @@ describe('a room set to easy by frame', () => {
 
       expect(pairs.length).toBeGreaterThan(0)
       expect(
-        pairs.every(({ family, left, right }) =>
-          [left, right].every((names) =>
-            isFamousQuantity({ family, names: { fr: names.fr } })
-          )
+        pairs.every(
+          ({ ask, left, right }) =>
+            ask.kind === 'bank' &&
+            [left, right].every((names) =>
+              isFamousQuantity({ family: ask.family, names: { fr: names.fr } })
+            )
         )
       ).toBe(true)
     }

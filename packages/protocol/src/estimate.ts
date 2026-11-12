@@ -53,16 +53,53 @@ export const UNIT_OF_FAMILY = {
   'population.region': 'people'
 } as const satisfies Record<QuantityFamily, QuantityUnit>
 
+/** The longest question an evening may ask of a number in its own words. */
+export const QUANTITY_PROMPT_MAX_LENGTH = 160
+
+/** The longest unit an evening may count its own number in — _km_, _litres_, _pizzas_. */
+export const QUANTITY_UNIT_MAX_LENGTH = 24
+
 /**
- * The question as every screen draws it: what is measured, and the name of
- * what it is measured on in every language the app ships, so a phone set to
- * English at a French table reads its own. The value is not here — it arrives
- * with the reveal, which is rule one.
+ * The words an evening wrote a number in, `null` for a bare count. Free text
+ * the dealer took as written, in one language shown in every one.
  */
-export const estimateQuestionSchema = z.object({
-  family: quantityFamilySchema,
-  names: z.record(localeSchema, z.string().min(1))
+export const ownQuantityUnitSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(QUANTITY_UNIT_MAX_LENGTH)
+  .nullable()
+
+/**
+ * A number asked in an evening's own words: the question as said, and what
+ * the answer is counted in. A family's sentence and unit are the dictionary's;
+ * these are the deck's.
+ */
+export const ownQuantityAskSchema = z.object({
+  kind: z.literal('own'),
+  prompt: z.string().trim().min(1).max(QUANTITY_PROMPT_MAX_LENGTH),
+  unit: ownQuantityUnitSchema
 })
+
+/** A number asked in a family's words, the sentence and the unit both the dictionary's. */
+export const bankQuantityAskSchema = z.object({
+  family: quantityFamilySchema,
+  kind: z.literal('bank')
+})
+
+/**
+ * The question as every screen draws it: a family of the bank with the name
+ * of what it is measured on in every language the app ships, so a phone set to
+ * English at a French table reads its own — or a question an evening brought,
+ * in its own words. The value is not here — it arrives with the reveal, which
+ * is rule one.
+ */
+export const estimateQuestionSchema = z.discriminatedUnion('kind', [
+  bankQuantityAskSchema.extend({
+    names: z.record(localeSchema, z.string().min(1))
+  }),
+  ownQuantityAskSchema
+])
 
 /**
  * The largest guess a field takes: past the world's population by five orders,
@@ -90,4 +127,7 @@ export const sentEstimateSchema = z.object({
 export type QuantityFamily = z.infer<typeof quantityFamilySchema>
 export type QuantityUnit = z.infer<typeof quantityUnitSchema>
 export type EstimateQuestion = z.infer<typeof estimateQuestionSchema>
+export type OwnQuantityAsk = z.infer<typeof ownQuantityAskSchema>
+/** What a number is asked as and counted in, whichever game asks it. */
+export type QuantityAsk = z.infer<typeof bankQuantityAskSchema> | OwnQuantityAsk
 export type SentEstimate = z.infer<typeof sentEstimateSchema>

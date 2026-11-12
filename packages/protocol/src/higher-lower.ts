@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { quantityFamilySchema } from './estimate'
+import { bankQuantityAskSchema, ownQuantityAskSchema } from './estimate'
 import { playerIdSchema } from './identifiers'
 import { localeSchema } from './locale'
 
@@ -24,18 +24,26 @@ export const higherLowerPicksSchema = z
 
 const quantityNamesSchema = z.record(localeSchema, z.string().min(1))
 
+/** The longest name an evening may give one side of its own pair. */
+export const HIGHER_LOWER_NAME_MAX_LENGTH = 60
+
 /**
- * Two things of one family as every screen draws them, the name of each in
- * every language the app ships. The values are not here — they arrive with the
+ * Two things compared on one measure as every screen draws them, the name of
+ * each in every language the app ships: a family of the bank, worded by the
+ * dictionary, or a comparison an evening brought in its own words — one text
+ * shown in every language. The values are not here — they arrive with the
  * reveal, which is rule one — and which side is higher is dealt at random.
  */
 export const higherLowerPairSchema = z.object({
-  family: quantityFamilySchema,
+  ask: z.discriminatedUnion('kind', [
+    bankQuantityAskSchema,
+    ownQuantityAskSchema
+  ]),
   left: quantityNamesSchema,
   right: quantityNamesSchema
 })
 
-/** A pair with both values, in the family's unit: the reveal's, or a console that holds no seat. */
+/** A pair with both values, in its measure's unit: the reveal's, or a console that holds no seat. */
 export const valuedHigherLowerPairSchema = higherLowerPairSchema.extend({
   leftValue: z.number().positive(),
   rightValue: z.number().positive()

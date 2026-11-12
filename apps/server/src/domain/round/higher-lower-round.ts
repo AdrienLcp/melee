@@ -1,3 +1,4 @@
+import type { QuantityFamily } from '@melee/protocol/estimate'
 import type {
   HigherLowerPicks,
   ValuedHigherLowerPair
@@ -10,23 +11,33 @@ import type { Round } from '@/domain/room/room'
 
 type HigherLowerContent = Extract<Round['content'], { kind: 'higherlower' }>
 
-type BankedQuantity = Pick<ValuedHigherLowerPair, 'family'> & {
+type BankedQuantity = {
+  family: QuantityFamily
   names: ValuedHigherLowerPair['left']
   value: number
 }
 
-/** A round on these pairs, each side where the deal put it. */
+/** A pair the bank dealt, asked in its family's words, each side where the deal put it. */
+export const bankedPairOf = ({
+  left,
+  right
+}: {
+  left: BankedQuantity
+  right: BankedQuantity
+}): ValuedHigherLowerPair => ({
+  ask: { family: left.family, kind: 'bank' },
+  left: left.names,
+  leftValue: left.value,
+  right: right.names,
+  rightValue: right.value
+})
+
+/** A round on these pairs. */
 export const higherLowerContent = (
-  pairs: readonly { left: BankedQuantity; right: BankedQuantity }[]
+  pairs: readonly ValuedHigherLowerPair[]
 ): HigherLowerContent => ({
   kind: 'higherlower',
-  pairs: pairs.map(({ left, right }) => ({
-    family: left.family,
-    left: left.names,
-    leftValue: left.value,
-    right: right.names,
-    rightValue: right.value
-  })),
+  pairs: [...pairs],
   sheets: []
 })
 

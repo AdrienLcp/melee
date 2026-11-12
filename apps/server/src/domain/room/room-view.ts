@@ -507,13 +507,13 @@ const saidBy = (attempts: PlayerAttempts): string =>
     : (attempts.lastMiss ?? '')
 
 const valuedPairOf = ({
-  family,
+  ask,
   left,
   leftValue,
   right,
   rightValue
 }: ValuedHigherLowerPair): ValuedHigherLowerPair => ({
-  family,
+  ask: { ...ask },
   left: { ...left },
   leftValue,
   right: { ...right },
@@ -666,8 +666,8 @@ const toContentView = ({
   if (content.kind === 'higherlower') {
     return {
       kind: 'higherlower',
-      pairs: content.pairs.map(({ family, left, right }) => ({
-        family,
+      pairs: content.pairs.map(({ ask, left, right }) => ({
+        ask: { ...ask },
         left: { ...left },
         right: { ...right }
       })),

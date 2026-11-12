@@ -14,13 +14,18 @@ import {
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
 import {
+  nextDeckPair,
+  nextDeckQuantity,
   nextDeckQuestion,
   nextDeckSlateKeys,
   nextDeckTimelineRound,
   unplayedEveningLines
 } from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
-import { higherLowerContent } from '@/domain/round/higher-lower-round'
+import {
+  bankedPairOf,
+  higherLowerContent
+} from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import { longestWordContent } from '@/domain/round/longest-word-round'
 import {
@@ -611,10 +616,16 @@ export const beginRound = async (
   }
 
   if (game.kind === 'estimate') {
-    const row = drawQuantity({
-      difficulty: game.difficulty,
-      playedIds: room.playedContentIds
+    const fromDeck = nextDeckQuantity({
+      lineUpAt: room.settings.lineUpAt,
+      room
     })
+    const row =
+      fromDeck ??
+      drawQuantity({
+        difficulty: game.difficulty,
+        playedIds: room.playedContentIds
+      })
 
     if (row === null) {
       tellHost(engine, {
@@ -626,11 +637,16 @@ export const beginRound = async (
       return
     }
 
-    room.playedContentIds.add(playedQuantityId(row))
+    room.playedContentIds.add(
+      'playedId' in row ? row.playedId : playedQuantityId(row)
+    )
 
     openRound({
       content: estimateContent({
-        question: { family: row.family, names: row.names },
+        question:
+          'question' in row
+            ? row.question
+            : { family: row.family, kind: 'bank', names: row.names },
         value: row.value
       }),
       id: newRoundId(),
@@ -645,10 +661,19 @@ export const beginRound = async (
   }
 
   if (game.kind === 'higherlower') {
-    const pairs = drawPairs({
-      difficulty: game.difficulty,
-      playedIds: room.playedContentIds
+    const fromDeck = nextDeckPair({
+      lineUpAt: room.settings.lineUpAt,
+      room
     })
+    const banked =
+      fromDeck === null
+        ? drawPairs({
+            difficulty: game.difficulty,
+            playedIds: room.playedContentIds
+          })
+        : null
+    const pairs =
+      fromDeck === null ? (banked?.map(bankedPairOf) ?? null) : [fromDeck.pair]
 
     if (pairs === null) {
       tellHost(engine, {
@@ -661,9 +686,16 @@ export const beginRound = async (
       return
     }
 
-    for (const { left, right } of pairs) {
-      room.playedContentIds.add(playedPairedQuantityId(left))
-      room.playedContentIds.add(playedPairedQuantityId(right))
+    const playedIds =
+      fromDeck === null
+        ? (banked ?? []).flatMap(({ left, right }) => [
+            playedPairedQuantityId(left),
+            playedPairedQuantityId(right)
+          ])
+        : [fromDeck.playedId]
+
+    for (const id of playedIds) {
+      room.playedContentIds.add(id)
     }
 
     openRound({

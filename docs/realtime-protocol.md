@@ -803,7 +803,10 @@ deck deals five events a round by distinct years, its last round filled with
 events already ordered, each on the wire as `deck-<index>` because an order
 names events by an id the deck's own does not fit. A slate deck is the key of
 its entry's one sheet: it lands on the host arm as the sheet opens, however it
-opens, and the keys a `host.startRound` carried are set aside. The room's
+opens, and the keys a `host.startRound` carried are set aside. An estimate
+deck deals one number a round and a higher or lower deck one pair, each asked
+in its own words (`kind: 'own'`), the values held back exactly as a bank
+row's. The room's
 storage is wiped with it when the table closes or expires.
 
 **So do the lines a host wrote ahead.** `host.setOwnLines` hands the server
@@ -989,8 +992,9 @@ paid ballot went with the room. `most-likely-game.test.ts` checks every frame
 sent before the reveal.
 
 **An estimate's value is the console's until the reveal.** A player's round
-carries the question — its family and the place's names, the unit derived from
-the family — and `value: null`; the console reads the value on
+carries the question — `kind: 'bank'` with its family and the place's names,
+the unit derived from the family, or `kind: 'own'` with an evening's prompt
+and unit as written — and `value: null`; the console reads the value on
 `currentContent` while it holds no seat, and the wall never does. Every seat's
 guess is hidden too (`revealedGuesses: null`), since a number seen on another
 screen is an anchor to copy; a seat reads back its own as `yourGuess`. A guess
@@ -1002,8 +1006,9 @@ clock, because rushing an estimate is guessing. `estimate-game.test.ts` searches
 every frame for the value.
 
 **A higher-or-lower pair carries no value until the reveal.** A player's round
-holds the round's pairs (one, `HIGHER_LOWER_PAIR_COUNT`), each the family and the two names, and which side is higher
-is the server's shuffle; the console reads `valuedPairs` while it holds no
+holds the round's pairs (one, `HIGHER_LOWER_PAIR_COUNT`), each its `ask` — a
+family of the bank, or an evening's own prompt and unit — and the two names,
+and which side is higher is the server's shuffle, a deck's pair included; the console reads `valuedPairs` while it holds no
 seat, and the wall reads nothing. The sheet is one frame of a pick per pair, refused
 at any other length and refused a second time, and a seat's own verdict stays
 `null` until the reveal so a count of right pairs cannot be read as a hint.

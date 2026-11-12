@@ -1,6 +1,5 @@
 import type React from 'react'
 
-import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type {
   HigherLowerPair,
   HigherLowerPicks,
@@ -17,6 +16,7 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { CheckIcon, CrossIcon } from './icons'
 import { Pawn } from './pawn'
+import { usePairAsks } from './use-pair-asks'
 import { useShortQuantityWords } from './use-quantity-words'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -55,6 +55,7 @@ export const HigherLowerPairs: React.FC<HigherLowerPairsProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const quantityWords = useShortQuantityWords()
+  const asksOf = usePairAsks()
 
   return (
     <ol className='higher-lower-pairs'>
@@ -72,9 +73,7 @@ export const HigherLowerPairs: React.FC<HigherLowerPairsProps> = ({
             data-revealed={higher !== null || undefined}
             key={`${pair.left.en}|${pair.right.en}`}
           >
-            <p className='asks'>
-              {translate(`higherlower.asks.${pair.family}`)}
-            </p>
+            <p className='asks'>{asksOf(pair.ask)}</p>
             <div className='sides'>
               {SIDES.map((side) => {
                 const isYours = yours === side
@@ -102,7 +101,7 @@ export const HigherLowerPairs: React.FC<HigherLowerPairsProps> = ({
                       <span className='value'>
                         {quantityWords(
                           side === 'left' ? pair.leftValue : pair.rightValue,
-                          UNIT_OF_FAMILY[pair.family]
+                          pair.ask
                         )}
                       </span>
                     )}

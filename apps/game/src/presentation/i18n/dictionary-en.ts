@@ -639,6 +639,14 @@ export const EN_DICTIONARY = defineDictionary({
         region: 'How many people live in this region?'
       }
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made number', other: '{?} home-made numbers' }
+        }
+      }),
+      spent: 'Home-made numbers used up'
+    },
     home: {
       description:
         'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, how long is the Loire — and everyone types an estimate. Nobody has to know: the three closest score, and the reveal lines every guess up against the truth.'
@@ -648,6 +656,8 @@ export const EN_DICTIONARY = defineDictionary({
       times: '×{factor}'
     },
     name: 'Close enough',
+    /** A number the evening asked in its own unit, which is written as given. */
+    ownUnit: '{value} {unit}',
     play: 'Play Close enough',
     reveal: {
       over: 'Too high · ×{factor}',
@@ -710,6 +720,14 @@ export const EN_DICTIONARY = defineDictionary({
       }
     },
     dealt: 'Two names. Which is bigger?',
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made pair', other: '{?} home-made pairs' }
+        }
+      }),
+      spent: 'Home-made pairs used up'
+    },
     home: {
       description:
         'Two cities, two rivers, two mountains: which one has more people, which is longer, which is higher? One pair a round, one pick, and the reveal puts both numbers up.'

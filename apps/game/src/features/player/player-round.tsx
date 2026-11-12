@@ -11,7 +11,7 @@ import type {
   LeanAnswer,
   PlayerClientMessage
 } from '@melee/protocol/client-message'
-import { type SentEstimate, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import type { SentEstimate } from '@melee/protocol/estimate'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SentMove } from '@melee/protocol/matchsticks'
@@ -1723,12 +1723,10 @@ const EstimateRevealed: React.FC<{
     return null
   }
 
-  const unit = UNIT_OF_FAMILY[content.question.family]
-
   return (
     <div className='answer-card estimate-revealed' data-game='estimate'>
       <EstimateQuestion question={content.question} />
-      <p className='truth'>{quantityWords(value, unit)}</p>
+      <p className='truth'>{quantityWords(value, content.question)}</p>
       <EstimateLine
         guesses={guesses}
         players={players}
@@ -1739,7 +1737,7 @@ const EstimateRevealed: React.FC<{
         <p className='yours'>
           <span>
             {translate('estimate.reveal.yours', {
-              guess: quantityWords(yours.guess, unit)
+              guess: quantityWords(yours.guess, content.question)
             })}
           </span>
           <span

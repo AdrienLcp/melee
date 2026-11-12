@@ -2,7 +2,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import { MAX_ESTIMATE, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import { MAX_ESTIMATE } from '@melee/protocol/estimate'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
@@ -10,7 +10,10 @@ import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { estimateContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { QuantityField } from '@/presentation/components/quantity-field'
-import { useQuantityWords } from '@/presentation/components/use-quantity-words'
+import {
+  useQuantityWords,
+  useUnitName
+} from '@/presentation/components/use-quantity-words'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
@@ -40,6 +43,7 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
 }) => {
   const translate = useTranslate()
   const quantityWords = useQuantityWords()
+  const unitName = useUnitName()
   const [guess, setGuess] = useState(Number.NaN)
   const [sentGuess, setSentGuess] = useState<number | null>(null)
   const content = estimateContent(round)
@@ -53,11 +57,13 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
     return null
   }
 
-  const unit = UNIT_OF_FAMILY[content.question.family]
+  const question = content.question
   if (hasAnswered) {
     return (
       <section className='answer-form estimate-answer' data-sent>
-        {sent !== null && <p className='yours'>{quantityWords(sent, unit)}</p>}
+        {sent !== null && (
+          <p className='yours'>{quantityWords(sent, question)}</p>
+        )}
         <p className='hint' role='status'>
           {translate('estimate.answer.sent')}
         </p>
@@ -86,7 +92,7 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
           maxValue={MAX_ESTIMATE}
           minValue={0}
           onChange={setGuess}
-          unit={translate(`estimate.unitNames.${unit}`)}
+          unit={unitName(question)}
           value={guess}
         />
         {/* Never disabled: the field commits its number on blur, so a button

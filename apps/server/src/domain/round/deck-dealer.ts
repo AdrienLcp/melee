@@ -1,4 +1,6 @@
 import type { Deck, OwnLinesGame, QuizDeckItem } from '@melee/protocol/deck'
+import type { OwnQuantityAsk } from '@melee/protocol/estimate'
+import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { DeckSummary } from '@melee/protocol/room'
 import {
@@ -7,6 +9,7 @@ import {
   type TimelineLabels
 } from '@melee/protocol/timeline'
 
+import { shuffled } from '@melee/core/helpers/random'
 import { deckItemId, ownLineId } from '@melee/core/room/evening-decks'
 import { keyedItemIndexes } from '@melee/core/slate/slate-deck'
 import { dealDeckEvents } from '@melee/core/timeline/deal'
@@ -65,6 +68,111 @@ export const nextDeckQuestion = ({
 }
 
 const labelsOf = (label: string): TimelineLabels => ({ en: label, fr: label })
+
+/** The first item of a deck the room has not played, under the id it is remembered by, and `null` once the deck is spent. */
+const firstUnplayed = <TItem>({
+  deckId,
+  items,
+  room
+}: {
+  deckId: string
+  items: readonly TItem[]
+  room: Room
+}): { id: string; item: TItem } | null => {
+  for (const [index, item] of items.entries()) {
+    const id = deckItemId({ deckId, index })
+
+    if (!room.playedContentIds.has(id)) {
+      return { id, item }
+    }
+  }
+
+  return null
+}
+
+/** A number an entry's deck deals, its value the answer, and the id the room remembers it by. */
+export type DeckQuantity = {
+  playedId: string
+  question: OwnQuantityAsk
+  value: number
+}
+
+/**
+ * The next number the entry at `lineUpAt` brought for the table to estimate,
+ * in order, and `null` once its deck is spent or it brought none — the bank
+ * then deals.
+ */
+export const nextDeckQuantity = ({
+  lineUpAt,
+  room
+}: {
+  lineUpAt: number | null
+  room: Room
+}): DeckQuantity | null => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== 'estimate') {
+    return null
+  }
+
+  const next = firstUnplayed({ deckId: held.id, items: held.deck.items, room })
+
+  return next === null
+    ? null
+    : {
+        playedId: next.id,
+        question: {
+          kind: 'own',
+          prompt: next.item.prompt,
+          unit: next.item.unit
+        },
+        value: next.item.value
+      }
+}
+
+/** A pair an entry's deck deals, and the id the room remembers it by. */
+export type DeckPair = { pair: ValuedHigherLowerPair; playedId: string }
+
+/**
+ * The next pair the entry at `lineUpAt` brought, in order, its two sides
+ * shuffled — whoever wrote it most likely put the bigger first — and `null`
+ * once its deck is spent or it brought none, when the bank deals.
+ */
+export const nextDeckPair = ({
+  lineUpAt,
+  room
+}: {
+  lineUpAt: number | null
+  room: Room
+}): DeckPair | null => {
+  const held = lineUpAt === null ? null : (room.decks[lineUpAt] ?? null)
+
+  if (held === null || held.deck.game !== 'higherlower') {
+    return null
+  }
+
+  const next = firstUnplayed({ deckId: held.id, items: held.deck.items, room })
+
+  if (next === null) {
+    return null
+  }
+
+  const { prompt, unit } = next.item
+  const [left, right] = shuffled([next.item.left, next.item.right])
+
+  return left === undefined || right === undefined
+    ? null
+    : {
+        pair: {
+          ask: { kind: 'own', prompt, unit },
+          left: labelsOf(left.name),
+          leftValue: left.value,
+          right: labelsOf(right.name),
+          rightValue: right.value
+        },
+        playedId: next.id
+      }
+}
 
 /** A round of dated events an entry's deck deals, and the ids the room remembers them by. */
 export type DeckTimelineRound = {

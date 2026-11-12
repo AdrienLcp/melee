@@ -602,6 +602,14 @@ export const FR_DICTIONARY = defineDictionary({
         region: 'Combien d’habitants dans cette région ?'
       }
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} chiffre maison', other: '{?} chiffres maison' }
+        }
+      }),
+      spent: 'Chiffres maison épuisés'
+    },
     home: {
       description:
         'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, quelle longueur pour la Loire — et chacun tape son estimation. Personne n’a besoin de savoir : les trois plus proches marquent, et le dévoilement aligne chaque essai face à la vraie valeur.'
@@ -611,6 +619,7 @@ export const FR_DICTIONARY = defineDictionary({
       times: '×{factor}'
     },
     name: 'Le juste chiffre',
+    ownUnit: '{value} {unit}',
     play: 'Jouer au Juste chiffre',
     reveal: {
       over: 'Trop haut · ×{factor}',
@@ -671,6 +680,14 @@ export const FR_DICTIONARY = defineDictionary({
       }
     },
     dealt: 'Deux noms. Lequel est le plus grand ?',
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} paire maison', other: '{?} paires maison' }
+        }
+      }),
+      spent: 'Paires maison épuisées'
+    },
     home: {
       description:
         'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Une paire par manche, un choix, et le dévoilement affiche les deux chiffres.'

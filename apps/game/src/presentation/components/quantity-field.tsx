@@ -13,8 +13,8 @@ import './quantity-field.sass'
 
 type QuantityFieldProps = Omit<ReactAriaNumberFieldProps, 'children'> & {
   label: string
-  /** What the number is counted in, printed at the end of the slot and read as the field's description. */
-  unit: string
+  /** What the number is counted in, printed at the end of the slot and read as the field's description; `null` for a bare count. */
+  unit: string | null
 }
 
 /**
@@ -36,9 +36,11 @@ export const QuantityField: React.FC<QuantityFieldProps> = ({
     <Label>{label}</Label>
     <Group className='slot'>
       <Input enterKeyHint='send' inputMode='decimal' />
-      <Text className='unit' slot='description'>
-        {unit}
-      </Text>
+      {unit !== null && (
+        <Text className='unit' slot='description'>
+          {unit}
+        </Text>
+      )}
     </Group>
   </ReactAriaNumberField>
 )

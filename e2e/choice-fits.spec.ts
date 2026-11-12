@@ -3187,10 +3187,30 @@ const estimateScreen = () =>
       // The quantity bank's longest name.
       question: {
         family: 'height.building',
+        kind: 'bank',
         names: inBothLocales(
           'tour centrale de radio-télédiffusion de Pékin',
           'Central Radio & TV Tower'
         )
+      },
+      revealedGuesses: null,
+      value: null,
+      yourGuess: null
+    },
+    game: { kind: 'estimate', roundDurationMs: 30_000 },
+    mode: { kind: 'number' }
+  })
+
+/** A number of the evening's own at the longest prompt and unit a deck may write. */
+const ownEstimateScreen = () =>
+  answeringView({
+    content: {
+      kind: 'estimate',
+      question: {
+        kind: 'own',
+        prompt:
+          'Combien de kilomètres avons-nous roulés cet été, entre le départ de la maison, le détour par la Bretagne et le retour par les Alpes chez les grands-parents ?',
+        unit: 'kilomètres de route ici'
       },
       revealedGuesses: null,
       value: null,
@@ -3207,7 +3227,7 @@ const higherLowerScreen = () =>
       // The quantity bank's two longest rivers.
       pairs: [
         {
-          family: 'length.river',
+          ask: { family: 'length.river', kind: 'bank' },
           left: inBothLocales(
             'Saryozen (rivière du bassin Volga-Oural)',
             'Maly Uzen'
@@ -3526,6 +3546,15 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
       ready: '.estimate-answer'
     },
     view: estimateScreen()
+  },
+  {
+    name: 'le juste chiffre, a number of our own',
+    ready: '.estimate-answer',
+    seated: {
+      currentContent: { kind: 'estimate', value: null },
+      ready: '.estimate-answer'
+    },
+    view: ownEstimateScreen()
   },
   {
     name: 'plus ou moins pairs',

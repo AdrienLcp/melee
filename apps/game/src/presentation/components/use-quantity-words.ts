@@ -1,6 +1,42 @@
-import type { QuantityUnit } from '@melee/protocol/estimate'
+import { type QuantityAsk, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+import type { Translate } from '@/presentation/i18n/translation'
+
+/**
+ * A figure already formatted, in the unit its question counts it in: the
+ * dictionary's for a family, as the evening wrote it for its own, and bare
+ * for a count the evening gave no unit.
+ */
+const inUnitOf = ({
+  ask,
+  figure,
+  translate
+}: {
+  ask: QuantityAsk
+  figure: string
+  translate: Translate
+}): string => {
+  if (ask.kind === 'bank') {
+    return translate(`estimate.units.${UNIT_OF_FAMILY[ask.family]}`, {
+      value: figure
+    })
+  }
+
+  return ask.unit === null
+    ? figure
+    : translate('estimate.ownUnit', { unit: ask.unit, value: figure })
+}
+
+/** The unit a question counts its answer in, as a field prints it after the number, and `null` for a bare count. */
+export const useUnitName = (): ((ask: QuantityAsk) => string | null) => {
+  const { translate } = useI18n()
+
+  return (ask) =>
+    ask.kind === 'bank'
+      ? translate(`estimate.unitNames.${UNIT_OF_FAMILY[ask.family]}`)
+      : ask.unit
+}
 
 /**
  * A quantity in the reader's language with its unit — *124 000 000 habitants*,
@@ -10,16 +46,18 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
  */
 export const useQuantityWords = (): ((
   value: number,
-  unit: QuantityUnit
+  ask: QuantityAsk
 ) => string) => {
   const { locale, translate } = useI18n()
   const figures = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 })
 
   // French groups with a narrow no-break space, which the condensed display
   // face draws next to nothing wide: 2 780 read as 2780.
-  return (value, unit) =>
-    translate(`estimate.units.${unit}`, {
-      value: figures.format(value).replaceAll('\u202f', '\u00a0')
+  return (value, ask) =>
+    inUnitOf({
+      ask,
+      figure: figures.format(value).replaceAll(' ', ' '),
+      translate
     })
 }
 
@@ -45,7 +83,7 @@ const SHORTENED_FROM = 1_000_000
  */
 export const useShortQuantityWords = (): ((
   value: number,
-  unit: QuantityUnit
+  ask: QuantityAsk
 ) => string) => {
   const { locale, translate } = useI18n()
   const quantityWords = useQuantityWords()
@@ -54,10 +92,12 @@ export const useShortQuantityWords = (): ((
     notation: 'compact'
   })
 
-  return (value, unit) =>
+  return (value, ask) =>
     value < SHORTENED_FROM
-      ? quantityWords(value, unit)
-      : translate(`estimate.units.${unit}`, {
-          value: compact.format(value).replaceAll(' ', ' ')
+      ? quantityWords(value, ask)
+      : inUnitOf({
+          ask,
+          figure: compact.format(value).replaceAll(' ', ' '),
+          translate
         })
 }

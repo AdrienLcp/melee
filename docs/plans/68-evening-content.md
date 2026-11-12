@@ -1,6 +1,6 @@
 # 68 — An evening that brings its own content
 
-**In progress — sessions 1 to 4 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
+**In progress — sessions 1 to 5 done.** Six sessions, one handoff each in `handoffs/content-0N-*.md`,
 played in order. This file holds what they share. Each handoff holds that
 session's own work.
 
@@ -164,6 +164,28 @@ opens.
   set aside. The deck counts its keyed items, so the note reads _3 home-made
   answer keys_ and turns spent as the sheet opens. An entry still holding a
   deck is never offered as a skip (`offersSkip`'s `bringsADeck`).
+- **A number of the evening's own is asked in its own words.** The question
+  a screen draws became a union on `kind`: `bank` keeps the family, worded and
+  united by the dictionary, and `own` carries the deck's `prompt` and `unit`
+  as written, one language shown in every one. A pair holds the same `ask`
+  beside its two names, rather than an arm of its own, because the names and
+  the values are the same shape either way. The unit is nullable — a bare
+  count (_how many crêpes_) has none, and the field then prints no suffix.
+  `PROTOCOL_VERSION` went to 75: a tab left open would read `pair.family` off
+  a frame that no longer has it.
+- **An estimate deck refuses what a ratio cannot pay.** `SPOT_ON_RATIO` and
+  `ZERO_PAY_RATIO` pay everyone near a value the table already knows, so
+  `estimateDeckProblems` refuses a unit whose first word names a year, an
+  age, a percentage or a rank (French and English, accents folded; _litres
+  par an_ stays a quantity), and a whole number from 1000 to 2100 with no
+  unit, which reads as a year. Ages went in with years: an age of 29 still
+  scores against 87. The assistant is told to ask counts, lengths, weights,
+  durations and money instead.
+- **A pair deck is checked against the bank's own floor.** Two sides closer
+  than `MIN_PAIR_RATIO` (×1.15), a tie included, and two sides of one name are
+  refused. Its sides are shuffled as dealt, because whoever writes a pair
+  most likely puts the bigger first, and a round is one deck pair or the
+  bank's, never both.
 
 ## Not doing, and why
 
@@ -190,7 +212,7 @@ opens.
 | 2   | done                                | The link page, saved evenings and the console carry and show a quiz deck; legal and docs say what travels   |
 | 3   | done                                | Challenge and most likely decks of lines, `describe_games` notes, the host's own lines dealt by the server  |
 | 4   | done                                | A timeline deck (family dates), and a slate's answer key as a deck                                          |
-| 5   | `content-05-own-numbers.md`         | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
+| 5   | done                                | Le juste chiffre and Plus ou moins with their own prompt and unit                                           |
 | 6   | `content-06-black-square-themes.md` | A black square theme of the evening's own                                                                   |
 
 Every session commits and pushes to `main` with its changelog entry and this

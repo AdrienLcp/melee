@@ -1,6 +1,13 @@
 import { z } from 'zod'
 
 import { CHALLENGE_TEXT_MAX_LENGTH } from './challenge'
+import {
+  estimateGuessSchema,
+  MAX_ESTIMATE,
+  ownQuantityUnitSchema,
+  QUANTITY_PROMPT_MAX_LENGTH
+} from './estimate'
+import { HIGHER_LOWER_NAME_MAX_LENGTH } from './higher-lower'
 import { MOST_LIKELY_LINE_MAX_LENGTH } from './most-likely'
 import { questionCategorySchema } from './question'
 import { LINE_UP_MAX_ENTRIES } from './room'
@@ -18,6 +25,9 @@ export const TIMELINE_DECK_MAX_ITEMS = 40
 
 /** The furthest year either way a timeline deck dates an event — a typo guard, not a history lesson. */
 export const TIMELINE_DECK_MAX_YEAR = 9999
+
+/** The most numbers one estimate deck, or pairs one higher or lower deck, holds: a question and a figure each, copied by hand. */
+export const QUANTITY_DECK_MAX_ITEMS = 30
 
 export const QUIZ_DECK_PROMPT_MAX_LENGTH = 240
 export const QUIZ_DECK_ANSWER_MAX_LENGTH = 100
@@ -76,6 +86,44 @@ export const timelineDeckItemSchema = z.object({
 })
 
 export type TimelineDeckItem = z.infer<typeof timelineDeckItemSchema>
+
+const quantityPromptSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(QUANTITY_PROMPT_MAX_LENGTH)
+
+/**
+ * One number an evening asks the table to estimate — _how many kilometres did
+ * we drive this summer?_ — in the unit its answer is counted in, `null` for a
+ * bare count. Its value is the answer: it waits on the server until the reveal.
+ */
+export const estimateDeckItemSchema = z.object({
+  prompt: quantityPromptSchema,
+  unit: ownQuantityUnitSchema.default(null),
+  value: estimateGuessSchema
+})
+
+export type EstimateDeckItem = z.infer<typeof estimateDeckItemSchema>
+
+/** One side of a pair an evening brings: what it is called, and its value, which waits on the server until the reveal. */
+export const higherLowerDeckSideSchema = z.object({
+  name: z.string().trim().min(1).max(HIGHER_LOWER_NAME_MAX_LENGTH),
+  value: z.number().positive().max(MAX_ESTIMATE)
+})
+
+/**
+ * One pair an evening brings: the comparison as asked — _who has the longer
+ * commute?_ — its unit, and two named sides, dealt in a random order.
+ */
+export const higherLowerDeckItemSchema = z.object({
+  left: higherLowerDeckSideSchema,
+  prompt: quantityPromptSchema,
+  right: higherLowerDeckSideSchema,
+  unit: ownQuantityUnitSchema.default(null)
+})
+
+export type HigherLowerDeckItem = z.infer<typeof higherLowerDeckItemSchema>
 
 /**
  * One item's answer key, `null` for an item the host marks without one: a
@@ -138,6 +186,19 @@ export const deckSchema = z.discriminatedUnion('game', [
   z.object({
     game: z.literal('slate'),
     items: z.array(slateDeckKeySchema).min(1).max(MAX_SLATE_ITEMS)
+  }),
+  /** Numbers the table estimates, one a round, each paid by its ratio to the truth like a bank's. */
+  z.object({
+    game: z.literal('estimate'),
+    items: z.array(estimateDeckItemSchema).min(1).max(QUANTITY_DECK_MAX_ITEMS)
+  }),
+  /** Pairs the table compares, one a round, each on a measure of its own. */
+  z.object({
+    game: z.literal('higherlower'),
+    items: z
+      .array(higherLowerDeckItemSchema)
+      .min(1)
+      .max(QUANTITY_DECK_MAX_ITEMS)
   })
 ])
 

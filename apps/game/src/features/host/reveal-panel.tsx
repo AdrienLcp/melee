@@ -1,7 +1,6 @@
 import type React from 'react'
 import { useRef } from 'react'
 
-import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
@@ -321,10 +320,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
         <div className='head'>
           <EstimateQuestion question={estimate.question} />
           <p className='estimate-truth'>
-            {quantityWords(
-              estimate.value,
-              UNIT_OF_FAMILY[estimate.question.family]
-            )}
+            {quantityWords(estimate.value, estimate.question)}
           </p>
           <EstimateLine
             guesses={estimate.revealedGuesses}

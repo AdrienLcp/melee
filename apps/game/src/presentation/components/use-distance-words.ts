@@ -1,5 +1,4 @@
 import type { AtlasTargetKind } from '@melee/protocol/atlas'
-import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { RoundView } from '@melee/protocol/room'
 
@@ -127,10 +126,7 @@ export const useAnswerWords = (
     if (estimate !== null) {
       return {
         isFigure: true,
-        text: quantityWords(
-          Number(answer.said),
-          UNIT_OF_FAMILY[estimate.question.family]
-        )
+        text: quantityWords(Number(answer.said), estimate.question)
       }
     }
 

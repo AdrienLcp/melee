@@ -12,6 +12,7 @@ import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { higherLowerContent } from '@/helpers/round-content'
 import { AnswerTile } from '@/presentation/components/answer-tile'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
+import { usePairAsks } from '@/presentation/components/use-pair-asks'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
@@ -44,6 +45,7 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
   youId
 }) => {
   const { locale, translate } = useI18n()
+  const asksOf = usePairAsks()
   const [picks, setPicks] = useState<HigherLowerSide[]>([])
   const [sentPicks, setSentPicks] = useState<HigherLowerSide[] | null>(null)
   const content = higherLowerContent(round)
@@ -119,13 +121,11 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
               })}
             </p>
           )}
-          <h2 className='asks'>
-            {translate(`higherlower.asks.${pair.family}`)}
-          </h2>
+          <h2 className='asks'>{asksOf(pair.ask)}</h2>
         </hgroup>
       )}
       <section
-        aria-label={translate(`higherlower.asks.${pair.family}`)}
+        aria-label={asksOf(pair.ask)}
         className='answer-form higher-lower-answer'
       >
         <ul className='pair' key={picks.length}>

@@ -26,3 +26,11 @@
       // Wikidata writes *pic du Canigou* the way a sentence would carry it.
       &::first-letter
         text-transform: uppercase
+
+    .prompt
+      @include typography.question-prompt(1.18)
+
+      font-size: max(var(--text-s), calc(var(--estimate-name-size, clamp(var(--text-xl), calc(var(--stage-unit) * 6), 3rem)) * 0.72 * var(--name-scale, 1)))
+      margin: 0
+      overflow-wrap: break-word
+      text-wrap: balance

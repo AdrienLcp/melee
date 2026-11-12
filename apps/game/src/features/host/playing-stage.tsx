@@ -49,6 +49,7 @@ import { MarkLegend } from '@/presentation/components/mark-legend'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
+import { usePairAsks } from '@/presentation/components/use-pair-asks'
 import { useShownColour } from '@/presentation/components/use-shown-colour'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -108,6 +109,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
+  const asksOf = usePairAsks()
   const roundDurationMs = round.durationMs
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(candidatesIn({ locale, round }))
@@ -158,7 +160,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         (sticks ?? (
           <p className='now higher-lower-line'>
             {higherLower.pairs.length === 1 && higherLower.pairs[0]
-              ? translate(`higherlower.asks.${higherLower.pairs[0].family}`)
+              ? asksOf(higherLower.pairs[0].ask)
               : translate('higherlower.dealt')}
           </p>
         ))
