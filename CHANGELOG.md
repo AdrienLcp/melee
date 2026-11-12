@@ -109,6 +109,12 @@ one part.
 
 ### Improvements
 
+- **The menu opens at the first press.** A touch screen has no hover, so its
+  first press fetched the menu's code — some twenty files — and showed nothing
+  until they landed, a second or more on a phone. The menu is now fetched once
+  the page is quiet, and every file under `/assets/` is served
+  `immutable` for a year, since its name changes with its content: a reload
+  no longer asks the server again for each chunk it already holds.
 - `[Server]` **Black square's Wikidata themes are ones a table can play.**
   Four themes whose answers an ordinary table cannot name three of are gone —
   Queen's albums and the films of Francis Ford Coppola, Wes Anderson and Sam

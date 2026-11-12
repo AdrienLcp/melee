@@ -360,3 +360,26 @@ export const readFileText = async (
     return Result.failure('unreadable')
   }
 }
+
+/** The longest an idle task waits on a page that never goes quiet. */
+const IDLE_TASK_DEADLINE_MS = 3000
+
+/**
+ * Runs `task` once the page has nothing better to do, and returns what cancels
+ * it. Safari has no `requestIdleCallback`, and waits the deadline out instead.
+ */
+export const onceIdle = (task: () => void): (() => void) => {
+  if (typeof requestIdleCallback === 'function') {
+    const handle = requestIdleCallback(task, { timeout: IDLE_TASK_DEADLINE_MS })
+
+    return () => {
+      cancelIdleCallback(handle)
+    }
+  }
+
+  const handle = setTimeout(task, IDLE_TASK_DEADLINE_MS)
+
+  return () => {
+    clearTimeout(handle)
+  }
+}

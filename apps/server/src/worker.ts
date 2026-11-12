@@ -7,7 +7,7 @@ import { normalizeRoomCode } from '@melee/core/room/room-code'
 import { env as serverEnv } from '@/env'
 import {
   HASHED_ASSET_ROUTE,
-  refuseShellForHashedAsset
+  servedHashedAsset
 } from '@/infrastructure/http/hashed-asset'
 import { createHttpApp } from '@/infrastructure/http/http-app'
 import { limitRoomCreationWith } from '@/infrastructure/http/rate-limit'
@@ -51,7 +51,7 @@ const readAsset = async (url: URL, path: string): Promise<string | null> => {
 }
 
 app.get(HASHED_ASSET_ROUTE, async (context) =>
-  refuseShellForHashedAsset(await env.ASSETS.fetch(context.req.raw))
+  servedHashedAsset(await env.ASSETS.fetch(context.req.raw))
 )
 
 app.get('/sitemap.xml', async (context) => {

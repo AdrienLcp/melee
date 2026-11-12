@@ -1,8 +1,9 @@
 import type React from 'react'
-import { lazy, Suspense, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
+import { onceIdle } from '@/infrastructure/browser'
 import { usePathname } from '@/infrastructure/router/navigation'
 import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useConnection } from '@/presentation/connection/connection-provider'
@@ -48,13 +49,17 @@ export const AppMenu: React.FC = () => {
 
   useMenuWidth(trigger)
 
+  // A touch screen has no hover, and its first press waited on twenty chunks
+  // with nothing on screen: the menu is fetched once the page is quiet.
+  useEffect(() => onceIdle(preloadLeaflet), [])
+
   const alert =
     connection === null || connection.status === 'open'
       ? ''
       : translate(connectionStatusKey(connection.status))
 
-  // Asked for on the first open rather than at mount: nobody needs it during a
-  // game, and a player waking a sleeping instance would spend their first
+  // Asked for on the first open, unlike the menu's code: nobody needs it during
+  // a game, and a player waking a sleeping instance would spend their first
   // request on this instead of on joining.
   const loadBuild = async (): Promise<void> => {
     const health = await fetchHealth()
