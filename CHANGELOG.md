@@ -336,6 +336,10 @@ one part.
 
 ### Fixes
 
+- **The QR code's link is no longer indexable.** It encodes `/PLAY/<code>` in
+  upper case, and the asset server's `noindex` rule matched `/play/*` only, so
+  the one room address everybody scans was the one served without it.
+
 - `[Server]` **Black square counts a renamed article's readers.** French
   Wikipedia counts views by title, so an article renamed during the year lost
   every month it spent under its old name, and Frodo and Sam — _Frodo Bessac_
@@ -436,6 +440,13 @@ one part.
   tab's title is a bar held at the top, and the rows scroll under it.
 
 ### Internal
+
+- **The script budget guards the player's arrival.** Lighthouse measured four
+  front doors under one 300 000-byte cap and never the page a scanned QR code
+  opens, which weighed 432 kB against the home page's 299. The budget is now
+  per path in `lighthouserc.cjs`: the player's arrival held at 440 000 bytes
+  while it is slimmed, the front doors at 330 000, each cap with its reason
+  beside it and the intent in `docs/architecture.md`.
 
 - **The home page stops downloading every evening deck's checks.** Keeping a
   saved evening's decks over a new line-up moved from `saved-evening` to

@@ -1,6 +1,7 @@
 # Read by Cloudflare's asset server, which matches the request rather than the
 # file served, so the SPA fallback answering a room's address is covered too.
-# A room's screens last one evening and carry a code shared by hand.
+# A room's screens last one evening and carry a code shared by hand. The match
+# is case-sensitive, and the QR code encodes its link in upper case.
 /host/*
   X-Robots-Tag: noindex
 /invite/*
@@ -8,6 +9,8 @@
 /pair/*
   X-Robots-Tag: noindex
 /play/*
+  X-Robots-Tag: noindex
+/PLAY/*
   X-Robots-Tag: noindex
 /wall
   X-Robots-Tag: noindex

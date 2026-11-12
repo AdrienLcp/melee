@@ -6,7 +6,7 @@ delete this README with the last one.
 | Series  | Wave | File                       | Depends on |
 | ------- | ---- | -------------------------- | ---------- |
 | Scoring | —    | `scoring-01-follow-ups.md` | none       |
-| Budget  | —    | `bundle-budget-01.md`      | none       |
+| Budget  | —    | `bundle-budget-02.md`      | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the

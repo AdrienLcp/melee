@@ -57,9 +57,25 @@ reaches the same origin the host is served from — no second domain, no CORS
 preflight, no environment variable pointing one deployment at another, and
 nothing to reconfigure when the game runs off a laptop on someone's Wi-Fi.
 
-The usual argument for splitting is bundle size, and lazy routes settle it: the
-player chunk is 5 kB, the host chunk 19 kB, and a player never downloads the QR
-renderer. The routes are lazy for that reason — keep them that way.
+The usual argument for splitting is bundle size, and lazy routes settle it: a
+player never downloads the host console. The routes are lazy for that reason —
+keep them that way.
+
+**Weight is paid once, on arrival, and the arrival that matters is a player
+scanning the QR code**: a mid-range phone on a venue's Wi-Fi, where most of the
+cost is parsing and running the script, while the table waits. Once in, the
+room runs on the socket and loads nothing more. So the script budget is per
+path, in `lighthouserc.cjs`, and the CI `lighthouse` job holds it: the
+player's arrival (`/PLAY/<code>`, what the QR encodes) on a cap of its own,
+the front doors on a looser one. A red run asks _which path grew, and by
+what_ — the report names every script it fetched — never "raise the cap". A
+cap moves only with the measurement beside it.
+
+On 12/11/2026 the player's arrival weighed 432 kB over the wire against 299 kB
+for the home page: every game's answer screen, and the libraries behind them
+(drag and drop, the colour area, the number field), loaded before the player
+had typed a name. `handoffs/bundle-budget-02.md` carries cutting them into a
+chunk per game.
 
 ## One engine per room
 

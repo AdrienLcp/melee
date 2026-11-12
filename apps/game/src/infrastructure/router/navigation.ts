@@ -290,12 +290,6 @@ export const pairWallPathFor = (pairingCode: WallPairingCode): string =>
 export const playPathFor = (code: RoomCode): string =>
   pathFor(paths.play, { roomCode: code })
 
-/**
- * What the QR code encodes. Same origin as the page showing it, so a player who
- * scans it lands on the machine the host is already reachable at — over the LAN
- * in dev, over the public host in production — with no second domain to
- * configure and no CORS to arrange.
- */
 export const invitePathFor = (code: RoomCode): string =>
   pathFor(paths.invite, { roomCode: code })
 
@@ -307,6 +301,12 @@ export const invitePathFor = (code: RoomCode): string =>
 export const inviteUrlFor = (code: RoomCode): string =>
   `${location.origin}${invitePathFor(code)}`
 
+/**
+ * What the QR code encodes. Same origin as the page showing it, so a player who
+ * scans it lands on the machine the host is already reachable at — over the LAN
+ * in dev, over the public host in production — with no second domain to
+ * configure and no CORS to arrange.
+ */
 export const playUrlFor = (code: RoomCode): string =>
   `${location.origin}${playPathFor(code)}`
 
