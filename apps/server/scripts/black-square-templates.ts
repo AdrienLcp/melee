@@ -72,6 +72,10 @@ const PAINTED_WORK =
 
 const PERSON = '?item wdt:P31 wd:Q5 .'
 
+/** A work's places, languages and peoples are present in it as much as its characters are. */
+const FICTIONAL_CHARACTER =
+  'FILTER EXISTS { ?item wdt:P31/wdt:P279* wd:Q95074 }'
+
 /** A neighbour's neighbour, which is what lives just past the subject's border. */
 const nextCountryOver = (subject: string): string =>
   [
@@ -216,7 +220,8 @@ export const TEMPLATES = {
       fr: `Les personnages de ${fr}`
     }),
     needsNeighbour: false,
-    truths: ({ subject }) => `?item wdt:P1441 wd:${subject} .`
+    truths: ({ subject }) =>
+      `?item wdt:P1441 wd:${subject} . ${FICTIONAL_CHARACTER}`
   },
   'competition-winners': {
     candidates: (query) =>

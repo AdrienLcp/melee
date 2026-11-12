@@ -3,7 +3,6 @@ import { z } from 'zod'
 import type { Difficulty } from '@melee/protocol/difficulty'
 
 import {
-  type ContentTier,
   contentTiers,
   drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
@@ -23,6 +22,8 @@ import bank from './black-square-bank.json' with { type: 'json' }
 
 const bilingualSchema = z.object({ en: z.string(), fr: z.string() })
 
+const tierSchema = z.enum(contentTiers)
+
 const namedEntitySchema = z.object({
   /** Every other name Wikidata holds for it, per language. */
   aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
@@ -37,13 +38,21 @@ const blackSquareAnswerSchema = namedEntitySchema.extend({
    * theme banks one answer per franchise, so no two of its answers share one.
    */
   series: z.string().nullable(),
-  /** Its French Wikipedia article's sixty-day traffic, which ranks the nine and tiers them. */
+  /** How obvious it is: the theme's pool split in thirds by traffic, the most read third `easy`. */
+  tier: tierSchema,
+  /** Its French Wikipedia article's typical month of the last year, times twelve, which ranks the pool. */
   views: z.number().int().nonnegative()
 })
 
+/** How many of a theme's best-known answers its reach is read on: the same nine whatever the depth of its pool. */
+const BEST_KNOWN_COUNT = 9
+
 const blackSquareThemeSchema = z.object({
-  /** The nine most read true answers, one per franchise, most read first. */
-  answers: z.array(blackSquareAnswerSchema).length(9),
+  /**
+   * Every true answer a table still names, nine to twenty-four, one per
+   * franchise, most read first — so the rare third is rare.
+   */
+  answers: z.array(blackSquareAnswerSchema).min(BEST_KNOWN_COUNT).max(24),
   /** An answer that sounds right and is not; landing on it voids the round. */
   blackWord: namedEntitySchema.extend({
     /** Why it is wrong, one line for the reveal. */
@@ -54,8 +63,6 @@ const blackSquareThemeSchema = z.object({
   /** The theme as the wall shows it. */
   labels: bilingualSchema
 })
-
-const tierSchema = z.enum(contentTiers)
 
 const authoredBilingualSchema = z.object({
   en: z.string().min(1),
@@ -139,12 +146,10 @@ export const authoredBlackSquareThemes =
     return parsedAuthored
   }
 
-/** The thirds of a list ranked by traffic: the most read third obvious, the least read rare. */
-const tierOfRank = (rank: number, count: number): ContentTier =>
-  contentTiers[Math.floor((rank * contentTiers.length) / count)] ?? 'hard'
-
-const totalViewsOf = ({ answers }: BlackSquareTheme): number =>
-  answers.reduce((total, { views }) => total + views, 0)
+const reachOf = ({ answers }: BlackSquareTheme): number =>
+  answers
+    .slice(0, BEST_KNOWN_COUNT)
+    .reduce((total, { views }) => total + views, 0)
 
 const medianOf = (values: readonly number[]): number =>
   values.toSorted((left, right) => left - right)[
@@ -154,18 +159,18 @@ const medianOf = (values: readonly number[]): number =>
 /**
  * A Wikidata theme is never `easy`: a list of works or office holders is a
  * closed set a table has to know, which a hand-written theme is not. The
- * better read half is `medium`, the rest `hard`.
+ * half whose nine best known are better read is `medium`, the rest `hard`.
  */
 const pooledFromWikidata = (
   themes: readonly BlackSquareTheme[]
 ): PooledBlackSquareTheme[] => {
-  const medianViews = medianOf(themes.map(totalViewsOf))
+  const medianReach = medianOf(themes.map(reachOf))
 
   return themes.map((theme) => ({
-    answers: theme.answers.map(({ aliases, labels }, rank) => ({
+    answers: theme.answers.map(({ aliases, labels, tier }) => ({
       aliases,
       labels,
-      tier: tierOfRank(rank, theme.answers.length)
+      tier
     })),
     blackWord: {
       aliases: theme.blackWord.aliases,
@@ -174,7 +179,7 @@ const pooledFromWikidata = (
     },
     id: theme.id,
     labels: theme.labels,
-    tier: totalViewsOf(theme) >= medianViews ? 'medium' : 'hard'
+    tier: reachOf(theme) >= medianReach ? 'medium' : 'hard'
   }))
 }
 

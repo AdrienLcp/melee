@@ -8,11 +8,13 @@ its nine most read are all easy, so the 3-point cells pay for nothing hard.
 
 The bank is `apps/server/src/infrastructure/questions/black-square-bank.json`,
 built by `apps/server/scripts/build-black-square-bank.ts` from
-`black-square-themes.ts` / `black-square-templates.ts`. Today it keeps each
-theme's nine most read truths (French Wikipedia, a typical year since step 2:
-`frwiki-yearly-views.ts`), and a round on `answerCount` deals the first
-`answerCount` of them (`black-square-round.ts`); `tierOfCell` in
-`packages/core/src/blacksquare/sheet-pay.ts` pays by third of that rank.
+`black-square-themes.ts` / `black-square-templates.ts`. It pools each
+theme's truths down to the depth a table still names (step 3), ranked on a
+typical year of French Wikipedia (step 2: `frwiki-yearly-views.ts`), each
+answer stored with its tier; a round deals `answerCount` of them by tier
+(`dealBlackSquareAnswers`) and `pointsForCells` in
+`packages/core/src/blacksquare/sheet-pay.ts` pays a rare cell three times an
+obvious one.
 
 ## Done beside the steps — one answer per franchise (07/11/2026)
 
@@ -193,20 +195,68 @@ month read eleven months and a day.
 — cut here: specialist themes gone, ranking on a year, bank rebuilt and
 tests green —
 
-## Step 3 — the 3-point cells must be hard (one session)
+## Step 3 — the 3-point cells must be hard — done 12/11/2026
 
-Keeping the nine most read leaves an easy theme with no hard cell. Keep a
-**spread** instead: from the theme's truths ranked by views, the cheap third
-from the top, the dear third from further down the list — still answers a fan
-names, so floored on rank within the candidates that clear
-`LEAST_CANDIDATE_SITELINKS`, never on raw views (step 1's lesson).
+**A theme pools every answer a table still names, nine to twenty-four,
+tiered by thirds of that depth** (`spreadAnswers` in
+`apps/server/scripts/answer-spread.ts`). The depth runs down the ranked
+list while an answer's views reach **a quarter of the median of the nine
+best known** (`DEPTH_SHARE`), among answers clearing `LEAST_SITELINKS` (5,
+the black word's floor, now the truths' too). The tier is stored on each
+answer in the bank, the shape a hand-written theme and an evening's own deck
+(plan 68) already had, and the deal did not change: since `4b620968` a round
+deals by tier (`dealBlackSquareAnswers`, a quarter obvious, a quarter rare),
+so a pool of any depth deals its rare cells from its rare third. 57 themes,
+920 answers instead of 531; a theme's own tier (medium or hard) is still read
+on its nine best known.
 
-The deal has to follow: `slice(0, answerCount)` on a spread nine gives a
-three-answer round the three easy ones. Store the tier with each answer and
-deal `answerCount` evenly across the tiers, so `tierOfCell` still reads a
-third of the dealt cells. Decide in the session whether the bank keeps nine
-or more per theme, with the dealt subset drawn per round.
+What the 3-point cells were, and are:
 
-Verify on the wall and a player screen, muted, on a theme from each end
-(presidents, a director): the 1-point cells found in seconds, the 3-point ones
-by somebody at the table, not by nobody.
+| Theme                | Rare third of the nine                                       | Rare third of the pool                                                                                             |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Présidents des É.-U. | George W. Bush, Eisenhower, Biden                            | T. Roosevelt, L. B. Johnson, Jefferson, Ford, Garfield, Grant, Wilson                                              |
+| Spielberg            | Les Dents de la mer, A.I., Les Aventuriers de l'arche perdue | Rencontres du troisième type, Munich, The Fabelmans, Tintin, Pentagon Papers, La Couleur pourpre, Empire du soleil |
+| Ballon d'or          | Harry Kane, Ronaldo, Platini                                 | Weah, Modrić, Cruijff, Kaká                                                                                        |
+| Union européenne     | Malte, Irlande, Pologne                                      | Hongrie … Slovaquie, Lettonie, Lituanie                                                                            |
+
+Why this rule and not the plan's first wording, so it is not argued again:
+
+- **A rank floor cannot be one fraction.** The depth a table reaches, as a
+  share of the answers clearing the sitelinks floor, runs from 0.15 (Agatha
+  Christie, 95 titles nobody reads past fifteen) to 0.65 (Spielberg). Views
+  _relative to the theme's own nine_ adapt; they never compare two themes,
+  which is all step 1 forbade.
+- **The median of the nine, not the third answer.** Floored on the third
+  most read, the Ballon d'or and the Champions League stopped at nine —
+  Ronaldo's two million views put Kane and Platini in the rare third again.
+- **Past twenty-four the list is cut, not sampled.** Sampling an evenly
+  spaced 18 of 52 actresses dropped Jodie Foster and Meryl Streep from the
+  pool; the twenty-fourth best-known American state or Oscar-winning actor
+  is already one a table finds last.
+
+The deeper pools surfaced what the nine hid, fixed in the build:
+
+- **Characters are filtered to characters** (`FICTIONAL_CHARACTER`, a
+  subclass of Q95074): P1441 also lists a work's places, languages and
+  peoples — _maison Stark_, _langues valyriennes_, _Mordor_, _Gondor_,
+  _Orque_. It costs _Nazgûl_, a group of characters; allowing groups let
+  _Orque_ and _Rohirrim_ back in.
+- **Best actress is `award-winning-people`**: two films hold the award on
+  Wikidata (_Le Silence des agneaux_, _Vol au-dessus d'un nid de coucou_).
+- **An alias that normalises to nothing is dropped** — Greece's 🇬🇷 entered
+  the EU pool and graded as no cell.
+
+**Cut (2)**: _Alexandre Dumas_ and _Tolkien_ (step 1's close call). Past
+three or four titles their rare third is _La Tour de Nesle_, _Antony_,
+_Kean_ and _L'Album de Bilbo le Hobbit_, _Ainulindalë_, _Roverandom_ —
+whatever the rule, since the nine already ended on _Pauline_ and _Le Livre
+des contes perdus_. The bank floor in the test stays 55.
+
+**Known gap — an article renamed during the year loses its old months.**
+The per-article endpoint does not follow a redirect, so _Frodo Bessac_ (the
+new translation's name since October 2026) reads two hundred a month and
+Frodo and Sam are out of _Les personnages du Seigneur des anneaux_. Summing
+a renamed article's old titles needs its redirects, one more request per
+title; not done.
+
+No screen changed: a cell's pay and pips read the dealt tiers as before.

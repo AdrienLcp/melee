@@ -329,7 +329,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
       fr: "Les lauréates de l'Oscar de la meilleure actrice"
     },
     subject: 'Q103618',
-    template: 'award-winners',
+    template: 'award-winning-people',
     why: {
       en: 'Won best supporting actress, never best actress',
       fr: 'Oscar du second rôle, jamais de la meilleure actrice'
@@ -441,25 +441,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     why: {
       en: 'A novel by William Peter Blatty',
       fr: 'Un roman de William Peter Blatty'
-    }
-  },
-  {
-    blackWord: 'Q1048916',
-    labels: {
-      en: 'Books by Alexandre Dumas',
-      fr: "Les livres d'Alexandre Dumas"
-    },
-    subject: 'Q38337',
-    template: 'books-by-author',
-    why: { en: 'A play by Edmond Rostand', fr: "Une pièce d'Edmond Rostand" }
-  },
-  {
-    blackWord: 'Q485093',
-    subject: 'Q892',
-    template: 'books-by-author',
-    why: {
-      en: 'A novel by C. S. Lewis, his friend',
-      fr: 'Un roman de C. S. Lewis, son ami'
     }
   },
   {

@@ -8,6 +8,7 @@ import {
   repeatedFirstWordsOf,
   thinTiersOf
 } from '@melee/core/blacksquare/theme-checks'
+import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import {
   authoredBlackSquareSources,
@@ -73,19 +74,36 @@ describe('the black-square bank', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('[blacksquare] hides nine different answers behind every theme', () => {
+  it('[blacksquare] pools nine to twenty-four different answers a theme, every tier at least three', () => {
     for (const { answers, id } of bankedBlackSquareThemes()) {
-      expect(answers, id).toHaveLength(9)
-      expect(new Set(answers.map((answer) => answer.id)).size, id).toBe(9)
+      expect(answers.length, id).toBeGreaterThanOrEqual(9)
+      expect(answers.length, id).toBeLessThanOrEqual(24)
+      expect(new Set(answers.map((answer) => answer.id)).size, id).toBe(
+        answers.length
+      )
+      expect(thinTiersOf(answers), id).toEqual([])
     }
   })
 
-  it('[blacksquare] ranks the nine from the most read down', () => {
+  it('[blacksquare] ranks the pool from the most read down, obvious first and rare last', () => {
     for (const { answers, id } of bankedBlackSquareThemes()) {
       const views = answers.map((answer) => answer.views)
+      const tiers = answers.map(({ tier }) => contentTiers.indexOf(tier))
 
       expect(views, id).toEqual(views.toSorted((a, b) => b - a))
+      expect(tiers, id).toEqual(tiers.toSorted((a, b) => a - b))
     }
+  })
+
+  it('[blacksquare] pays three points for a president a table finds last, none of the nine best known', () => {
+    const theme = bankedBlackSquareThemes().find(
+      ({ id }) => id === 'position-holders:Q11696:Q11699'
+    )
+    const bestKnown = theme?.answers.slice(0, 9).map(({ id }) => id) ?? []
+    const rare = theme?.answers.filter(({ tier }) => tier === 'hard') ?? []
+
+    expect(rare.length).toBeGreaterThanOrEqual(3)
+    expect(rare.filter(({ id }) => bestKnown.includes(id))).toEqual([])
   })
 
   it('[blacksquare] banks one answer per franchise, by its series', () => {
@@ -297,20 +315,24 @@ describe('the black-square theme pool', () => {
     expect([...tiers].toSorted()).toEqual(['hard', 'medium'])
   })
 
-  it('[blacksquare] tiers a Wikidata theme by thirds of its nine, the most read obvious', () => {
-    const theme = blackSquareThemePool().find(({ id }) => id.includes(':'))
+  it('[blacksquare] deals a Wikidata theme on the tiers the bank stores', () => {
+    const wikidataTiers = new Map(
+      bankedBlackSquareThemes().map(({ answers, id }) => [
+        id,
+        answers.map(({ tier }) => tier)
+      ])
+    )
 
-    expect(theme?.answers.map(({ tier }) => tier)).toEqual([
-      'easy',
-      'easy',
-      'easy',
-      'medium',
-      'medium',
-      'medium',
-      'hard',
-      'hard',
-      'hard'
-    ])
+    for (const { answers, id } of blackSquareThemePool()) {
+      const banked = wikidataTiers.get(id)
+
+      if (banked !== undefined) {
+        expect(
+          answers.map(({ tier }) => tier),
+          id
+        ).toEqual(banked)
+      }
+    }
   })
 
   it('[blacksquare] deals an easy room the easy themes alone, until they run out', () => {

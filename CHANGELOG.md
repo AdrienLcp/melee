@@ -119,6 +119,16 @@ one part.
   ranked on a typical month of the last year instead of the last sixty days,
   so a news week no longer buys a cell: _Psychose_ heads Hitchcock, _Gladiator_
   Ridley Scott.
+- `[Server]` **Black square's 3-point cells are hard ones.** A Wikidata theme
+  now hides every answer a table still names — nine to twenty-four, as deep as
+  its list goes — instead of its nine best known, and its rare cells come from
+  the bottom of that depth: the American presidents pay three points for
+  Jefferson, Ford or Wilson instead of Eisenhower and Biden, Spielberg for
+  _Munich_ or _Empire du soleil_ instead of _Les Dents de la mer_, and a theme
+  met twice hides other answers. Dumas and Tolkien are gone, their rare cells
+  titles nobody says; the characters of _Game of Thrones_ and _The Lord of the
+  Rings_ no longer count Mordor or a language as one, and best actress
+  lists actresses, not two films.
 - `[Game]` **A room's screen standing tall seats its teams in the height.**
   On a television on its side, four teams now stand two by two and five or
   six three by two, their names larger and on one line, instead of four

@@ -11,8 +11,10 @@ import {
   isTitleWithin
 } from '@melee/core/blacksquare/franchise-stem'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
+import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import { nowMs } from '../src/infrastructure/clock'
+import { LEAST_POOLED_ANSWERS, spreadAnswers } from './answer-spread'
 import {
   TEMPLATES,
   type TemplateName,
@@ -45,14 +47,12 @@ const BANK_PATH = join(
   '../src/infrastructure/questions/black-square-bank.json'
 )
 
-const ANSWERS_PER_THEME = 9
-
 /**
- * A black word is only worth its cell if a table could have heard of it, and a
- * neighbour with an article in a handful of Wikipedias is not one. The cut
- * also keeps a movement's thousand paintings out of the traffic lookup.
+ * An answer or a black word is only worth its cell if a table could have heard
+ * of it, and an entity with an article in a handful of Wikipedias is not one.
+ * The cut also keeps a movement's thousand paintings out of the traffic lookup.
  */
-const LEAST_CANDIDATE_SITELINKS = 5
+const LEAST_SITELINKS = 5
 
 type Entity = { id: string; labels: Wording; sitelinks: number }
 
@@ -323,7 +323,7 @@ const entitiesOf = async (spec: ThemeSpec): Promise<ThemeEntities> => {
   const truths = await entitiesMatching(template.truths(query))
   const neighbours = (
     await entitiesMatching(template.candidates(query))
-  ).filter(({ sitelinks }) => sitelinks >= LEAST_CANDIDATE_SITELINKS)
+  ).filter(({ sitelinks }) => sitelinks >= LEAST_SITELINKS)
   const chosen = spec.blackWord
   const candidates =
     chosen === undefined || neighbours.some(({ id }) => id === chosen)
@@ -340,6 +340,9 @@ const entitiesOf = async (spec: ThemeSpec): Promise<ThemeEntities> => {
     wording: spec.labels ?? template.label(await subjectLabelsOf(spec.subject))
   }
 }
+
+/** A name a typed line can match: Greece's 🇬🇷 alias normalises to nothing. */
+const isTypeable = (name: string): boolean => normalizeAnswer(name) !== ''
 
 const namesOf = ({
   aliases,
@@ -376,6 +379,7 @@ const bankedRowSchema = z.object({
       id: z.string(),
       labels: z.object({ en: z.string(), fr: z.string() }),
       series: z.string().nullable(),
+      tier: z.enum(contentTiers),
       views: z.number()
     })
   ),
@@ -427,8 +431,10 @@ const build = async (): Promise<void> => {
     fr: await aliasesOf({ entityIds, language: 'fr' })
   }
   const aliasesOfEntity = ({ id }: Entity) => ({
-    en: aliases.en.get(id) ?? [],
-    fr: [...(aliases.fr.get(id) ?? []), ...(SPOKEN_ALIASES[id] ?? [])]
+    en: (aliases.en.get(id) ?? []).filter(isTypeable),
+    fr: [...(aliases.fr.get(id) ?? []), ...(SPOKEN_ALIASES[id] ?? [])].filter(
+      isTypeable
+    )
   })
 
   const facts = await seriesFactsOf({ entityIds: everyTruthId })
@@ -456,19 +462,29 @@ const build = async (): Promise<void> => {
       sameThing: spec.sameThing ?? [],
       template: spec.template,
       truths: released
-    }).slice(0, ANSWERS_PER_THEME)
+    })
     const chosen = franchises.flatMap((franchise) => {
       const answer = representativeOf(franchise)
 
-      return answer === undefined ? [] : [{ answer, series: franchise.series }]
+      return answer === undefined || answer.sitelinks < LEAST_SITELINKS
+        ? []
+        : [{ answer, series: franchise.series }]
     })
-    const answers = byViews(chosen.map(({ answer }) => answer))
+    const spread = spreadAnswers({
+      ranked: byViews(chosen.map(({ answer }) => answer)),
+      viewsOf
+    })
+    const answers = spread.map(({ answer }) => answer)
+    const pooledIds = new Set(answers.map(({ id: answerId }) => answerId))
     const seriesOfAnswer = new Map(
       chosen.map(({ answer, series }) => [answer.id, series])
     )
 
     for (const { members } of franchises) {
-      if (members.length > 1) {
+      if (
+        members.length > 1 &&
+        members.some(({ id: memberId }) => pooledIds.has(memberId))
+      ) {
         console.info(
           `    franchise: ${members.map((member) => `${member.labels.fr} ${member.id} ${viewsOf(member)}`).join(' | ')}`
         )
@@ -509,7 +525,7 @@ const build = async (): Promise<void> => {
       `${id} [${wording.fr}] ${truths.length} true · black: ${blackWord?.labels.fr ?? '—'} ${blackWord?.id ?? ''} · ${review}`
     )
     console.info(
-      `    nine: ${answers.map((answer) => `${answer.labels.fr} ${viewsOf(answer)}`).join(' | ')}`
+      `    pool: ${spread.map(({ answer, tier }) => `${answer.labels.fr} ${viewsOf(answer)} ${tier}`).join(' | ')}`
     )
 
     if (blackWord !== undefined && truthIds.has(blackWord.id)) {
@@ -517,7 +533,7 @@ const build = async (): Promise<void> => {
       continue
     }
 
-    if (answers.length < ANSWERS_PER_THEME) {
+    if (answers.length < LEAST_POOLED_ANSWERS) {
       dropped.push(`${id}: only ${answers.length} true answers`)
       continue
     }
@@ -540,7 +556,7 @@ const build = async (): Promise<void> => {
     )
 
     rows.push({
-      answers: answers.map((answer, index) => ({
+      answers: spread.map(({ answer, tier }, index) => ({
         aliases: aliasesOutside({
           aliases: aliasesOfEntity(answer),
           names: new Set(
@@ -552,6 +568,7 @@ const build = async (): Promise<void> => {
         id: answer.id,
         labels: answer.labels,
         series: seriesOfAnswer.get(answer.id) ?? null,
+        tier,
         views: viewsOf(answer)
       })),
       blackWord: {
