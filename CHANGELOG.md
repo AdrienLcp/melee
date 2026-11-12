@@ -427,6 +427,12 @@ one part.
 
 ### Internal
 
+- **The console's strip sweep stops running out of time.** Every tab, fold
+  and resize it walks moves, and a click waits for its target to stand
+  still: 231 clicks spent two and a half of its three and a half minutes
+  waiting, and a loaded machine or a CI runner ran it past its five-minute
+  timeout. It now runs under reduced motion, as the choice screens' spec
+  does, and takes a little over a minute a locale.
 - `[Server]` **The bank suites stop racing their timeouts under load.**
   `lineGraderFor` settles each name's forgiveness once a board, through
   `answerMatcherFor`, instead of once a line: grading every name of the banked

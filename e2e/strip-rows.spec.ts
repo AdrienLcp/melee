@@ -26,6 +26,15 @@ import { homePage } from './support/locators'
  */
 const PANEL_SCREEN = '.host-panel .panel-screen'
 
+/**
+ * The geometry is the settled layout's, and every tab, fold and resize here
+ * moves: a click waits for its target to stop moving, which spent two and a
+ * half of the spec's three and a half minutes on 231 clicks and ran it past
+ * its timeout on a loaded machine, and a sweep read mid-motion measures a
+ * row still travelling.
+ */
+test.use({ reducedMotion: 'reduce' })
+
 /** No phone is narrower, so no strip is ever handed less than it gets here. */
 const NARROWEST_SCREEN = 320
 

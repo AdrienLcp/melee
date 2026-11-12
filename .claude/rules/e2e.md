@@ -98,6 +98,12 @@ returns before React swaps the panel's column for its tab bar: `resizeTo`
 waits for the bar's _Partie_ tab to exist below the split and nowhere above
 it, or the floors are read off a face about to unmount.
 
+It runs under `reducedMotion: 'reduce'` too. Every tab, fold and resize it
+walks moves, and a click waits for its target to stand still: 231 clicks
+spent two and a half of its three and a half minutes waiting, which a loaded
+machine stretched past the timeout — the flake that failed once and passed
+on rerun.
+
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.
 
