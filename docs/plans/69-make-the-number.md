@@ -175,8 +175,12 @@ tiles — and the reveal's solution, in one pass.
    on another (81) and a far one on the third (0); no answering screen
    scrolls or overflows at the three sizes nor at 844×390; the merge filmed
    (`mn-merge-film.png`): the ghost slides 60–200 ms, the result fuses.
-   **Open**: Grand mix at 60 entries owes the blind test's 20 a gap of 3
-   instead of 2, and `spaced-cycle.test.ts`'s Free-for-all spacing goes red.
+   **Settled**: Grand mix at 60 entries owed the blind test's 20 a gap of 3,
+   a third of the evening exactly, and an exhaustive search found no order
+   spacing every game. The blind test on every decade at once left (59
+   entries, 19 blind tests), and `spacedCycle` now backs out of a dead end
+   instead of dealing nearest-first, which the nearest-first deal never
+   found at 59.
 
 ## How to tell it is done
 

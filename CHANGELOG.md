@@ -383,6 +383,15 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **The dealer spaces every game again once Make the number joins
+  _Free-for-all_.** Dealing the nearest-rested game row by row stranded the
+  last rows of a line-up with no game rested, so a game came back before its
+  share of the evening. The dealer now backs out of a dead end and tries its
+  next choice, within a bounded number of tries, and counts a game not played
+  yet as played the row before the first rather than as waiting forever.
+  _Free-for-all_ also drops its blind test on every decade at once: the
+  decades already deal it, and as the twentieth blind test of sixty entries it
+  left no order at all that spaces every game.
 - **A change made in the last moments of a round counts.** Atlas, Shades,
   Timeline and Mot le plus long save what a screen holds at most every 300 ms,
   so a pawn moved, a colour nudged, a card dropped or a letter laid in the

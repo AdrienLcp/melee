@@ -212,7 +212,7 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
       preferences: leftEveryGameOn({ locale, mode: 'typed' })
     }).filter(({ game }) => game?.kind === 'blindtest' || game?.kind === 'quiz')
 
-    expect(played).toHaveLength(33)
+    expect(played).toHaveLength(32)
     expect(new Set(played.map(({ mode }) => mode.kind))).toEqual(
       new Set(['choice'])
     )
@@ -238,7 +238,7 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
     const countOf = (game: string) =>
       grandMix.lineUp.filter((entry) => gameOfEntry(entry) === game).length
 
-    expect(countOf('blindtest')).toBe(20)
+    expect(countOf('blindtest')).toBe(19)
     expect(countOf('quiz')).toBe(13)
     expect(countOf('atlas')).toBe(6)
   })

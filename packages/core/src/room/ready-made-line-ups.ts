@@ -125,7 +125,10 @@ const GRAND_MIX_WORD_LENGTHS = [5, 7] as const
 /**
  * One entry per value of a game's main content axis — each decade, each
  * subject, each map — and never their cross product, which would hand one
- * game most of the evening. A game named nowhere here joins bare.
+ * game most of the evening. Never the whole axis either: a blind test on every
+ * decade at once added nothing the decades do not deal, and was the twentieth
+ * blind test of sixty entries, a third of the evening exactly, which leaves no
+ * order spacing every game its share. A game named nowhere here joins bare.
  */
 const grandMixVarietiesOf = (
   locale: Locale
@@ -143,7 +146,6 @@ const grandMixVarietiesOf = (
     ...trackDecades.map((decade) =>
       blindtestOn(catalogueOf({ decades: [decade] }))
     ),
-    blindtestOn(catalogueOf({ decades: [] })),
     blindtestOn(catalogueOf({ hasFilmScores: true })),
     ...GENRE_IDS.map((genre) => blindtestOn(catalogueOf({ charts: [genre] })))
   ],

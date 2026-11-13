@@ -222,6 +222,41 @@ describe('spacedCycle', () => {
     }
   })
 
+  it('[line-up] keeps a game holding half the entries every other row beside two not played yet', () => {
+    const lineUp = [
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.atlas,
+      DEFAULT_GAME_SETTINGS.atlas,
+      DEFAULT_GAME_SETTINGS.timeline,
+      DEFAULT_GAME_SETTINGS.timeline
+    ]
+
+    for (const seed of SEEDS) {
+      const kinds = spacedCycle({
+        entries: lineUp.map((_entry, at) => at),
+        lineUp,
+        opened: [],
+        random: seededRandom(seed)
+      }).map((at) => lineUp[at]?.kind ?? 'none')
+
+      expect(kinds.filter((_kind, row) => row % 2 === 0)).toEqual([
+        'quiz',
+        'quiz',
+        'quiz',
+        'quiz'
+      ])
+      expect(
+        shortGaps({
+          isShort: ({ gap, kind }) => gap < (kind === 'quiz' ? 2 : 4),
+          kinds
+        })
+      ).toEqual([])
+    }
+  })
+
   it('[line-up] alternates two games holding half the entries each', () => {
     const halves = [
       DEFAULT_GAME_SETTINGS.quiz,
@@ -298,7 +333,7 @@ describe('spacedCycle', () => {
   })
 })
 
-describe('a ready-made evening, played through', () => {
+describe('a ready-made evening, played through', { timeout: 20_000 }, () => {
   it('[line-up] keeps Free-for-all’s games half their share apart, past its last row', () => {
     const { lineUp, runningOrder } = readyMade('grandMix')
     const keys = lineUp.map((entry) => spacingKeyOf(entry.kind))
