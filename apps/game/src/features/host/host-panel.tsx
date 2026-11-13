@@ -102,8 +102,11 @@ type HostPanelProps = {
   isStageFull: boolean
   /**
    * What a console off the desk opens on: the game, or a tab whose decision
-   * the room is waiting on. `null` until the room's first view says which,
-   * and the first answer is the one kept.
+   * the room is waiting on. `null` until the room's first view says which.
+   * It is followed while the console sits on a desk, where no tab bar shows
+   * it, and kept from the first time the tab bar does: a desk narrowed
+   * mid-game opens on the game, never on the tab a lobby with no game
+   * asked for.
    */
   narrowStart: NarrowScreen | null
   /** Shown on the players' tab, so a folded rail still counts who arrived. */
@@ -142,12 +145,12 @@ export const HostPanel: React.FC<HostPanelProps> = ({
   const [isFolded, setIsFolded] = useState(storedFoldOrOpen)
   const [side, setSide] = useState(storedSideOrRight)
   const [chosenTab, setChosenTab] = useState<PanelTab | null>(null)
-  const [startScreen, setScreen] = useState(narrowStart)
-  const screen = startScreen ?? 'stage'
+  const [shownScreen, setScreen] = useState<NarrowScreen | null>(null)
+  const screen = shownScreen ?? narrowStart ?? 'stage'
   const wideTab = chosenTab ?? defaultTab
   const isRail = isDesk && isFolded
 
-  if (startScreen === null && narrowStart !== null) {
+  if (!isDesk && shownScreen === null && narrowStart !== null) {
     setScreen(narrowStart)
   }
 

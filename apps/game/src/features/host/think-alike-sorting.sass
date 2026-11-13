@@ -52,6 +52,14 @@
       padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) 0
       transition: box-shadow var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
 
+      // Too narrow to hold the word between the count and the pay: the pay
+      // goes down a line, and the word keeps the width it needs to stay whole.
+      @container (width < 22rem)
+        grid-template: 'grip count word menu' auto 'grip count pay pay' auto 'grip count authors authors' auto 'folded folded folded folded' auto / auto auto minmax(0, 1fr) auto
+
+        .pay
+          justify-self: start
+
       &[data-focus-visible]
         outline: var(--stroke-bold) solid var(--ink)
         outline-offset: 0.15rem
@@ -113,7 +121,7 @@
     .word
       @include typography.card-name
 
-      font-size: var(--text-xl)
+      font-size: clamp(var(--text-m), 7.5cqi, var(--text-xl))
       grid-area: word
       hyphens: auto
       min-inline-size: 0
@@ -212,3 +220,5 @@
 
         > .take-out
           justify-self: start
+          max-inline-size: 100%
+          white-space: normal

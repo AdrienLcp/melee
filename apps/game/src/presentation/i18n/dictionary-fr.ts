@@ -2404,7 +2404,7 @@ export const FR_DICTIONARY = defineDictionary({
       into: 'Avec « {answer} »',
       label: 'Les réponses, à regrouper',
       mergeWith: 'Mettre « {answer} » avec…',
-      open: 'Regrouper des réponses',
+      open: 'Regrouper',
       takeOut: 'Ressortir « {answer} »'
     },
     table: defineTranslation('{count:plural} sur {total:number}', {

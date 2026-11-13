@@ -19,6 +19,8 @@ import {
 import './think-alike-console-reveal.sass'
 
 type ThinkAlikeConsoleRevealProps = {
+  /** The round's heading, whose line the press swapping piles and rows shares. */
+  head: React.ReactNode
   /**
    * A wall shows the room: it turns the piles over for the table, so the
    * console goes straight to the rows it sorts them on.
@@ -39,17 +41,21 @@ type ThinkAlikeConsoleRevealProps = {
  */
 export const ThinkAlikeConsoleReveal: React.FC<
   ThinkAlikeConsoleRevealProps
-> = ({ isWallShowing, onRegroup, players, round, youId }) => {
+> = ({ head, isWallShowing, onRegroup, players, round, youId }) => {
   const translate = useTranslate()
   const [isSorting, setIsSorting] = useState(false)
+  const [hasSorted, setHasSorted] = useState(false)
 
   if (isWallShowing) {
     return (
-      <ThinkAlikeSorting
-        onRegroup={onRegroup}
-        players={players}
-        round={round}
-      />
+      <>
+        {head}
+        <ThinkAlikeSorting
+          onRegroup={onRegroup}
+          players={players}
+          round={round}
+        />
+      </>
     )
   }
 
@@ -57,22 +63,26 @@ export const ThinkAlikeConsoleReveal: React.FC<
     replaceScreen(() => {
       flushSync(() => {
         setIsSorting(!isSorting)
+        setHasSorted(true)
       })
     })
   }
 
   return (
     <div className='think-alike-console-reveal'>
-      <Button
-        className='sort-toggle'
-        icon={isSorting ? <PilesIcon /> : <MergeIcon />}
-        onPress={toggle}
-        variant='outlined'
-      >
-        {translate(
-          isSorting ? 'thinkalike.sort.close' : 'thinkalike.sort.open'
-        )}
-      </Button>
+      <div className='head-row'>
+        {head}
+        <Button
+          className='sort-toggle'
+          icon={isSorting ? <PilesIcon /> : <MergeIcon />}
+          onPress={toggle}
+          variant='outlined'
+        >
+          {translate(
+            isSorting ? 'thinkalike.sort.close' : 'thinkalike.sort.open'
+          )}
+        </Button>
+      </div>
       {isSorting ? (
         <ThinkAlikeSorting
           onRegroup={onRegroup}
@@ -80,7 +90,12 @@ export const ThinkAlikeConsoleReveal: React.FC<
           round={round}
         />
       ) : (
-        <ThinkAlikePiles players={players} round={round} youId={youId} />
+        <ThinkAlikePiles
+          isFaceUp={hasSorted}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       )}
     </div>
   )

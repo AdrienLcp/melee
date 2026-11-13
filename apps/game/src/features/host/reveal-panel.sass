@@ -476,6 +476,11 @@
       &:is([data-game='swatch'], [data-game='mysteryword'], [data-game='longestword'], [data-game='makenumber'], [data-game='thinkalike'])
         grid-template-rows: auto auto minmax(0, 1fr)
 
+      // The console with no wall holds the round's heading on the line of
+      // its own press, inside the block.
+      &[data-game='thinkalike']:has(> .think-alike-console-reveal)
+        grid-template-rows: auto minmax(0, 1fr)
+
       // An `auto` row is sized to its content, and the grid is a size
       // container with none: the wall drew it 0px tall under the theme.
       &[data-game='blacksquare']

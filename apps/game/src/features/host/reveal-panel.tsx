@@ -325,22 +325,29 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   // The prompt over every answer the room wrote, lone cards first, then the
   // piles turned over smallest to biggest: the piles are the podium, whole.
   if (thinkAlike?.groups != null) {
+    const head = (
+      <ThisRoundHead
+        lineUp={lineUp}
+        players={players}
+        round={round}
+        youId={youId}
+      />
+    )
+
     return (
       <section className='reveal-panel' data-game='thinkalike'>
         <div className='head'>
           <p className='think-alike-prompt'>{thinkAlike.prompt}</p>
         </div>
 
-        <ThisRoundHead
-          lineUp={lineUp}
-          players={players}
-          round={round}
-          youId={youId}
-        />
         {onRegroup === undefined ? (
-          <ThinkAlikePiles players={players} round={round} youId={youId} />
+          <>
+            {head}
+            <ThinkAlikePiles players={players} round={round} youId={youId} />
+          </>
         ) : (
           <ThinkAlikeConsoleReveal
+            head={head}
             isWallShowing={isWallShowing}
             key={round.id}
             onRegroup={onRegroup}

@@ -25,6 +25,11 @@ const LONE_ROWS_BESIDE_PILES = 5
 const LEAVING_ANIMATION = 'page-leave'
 
 type ThinkAlikePilesProps = {
+  /**
+   * Drawn face up from the first frame: the console coming back from the
+   * rows to piles the table already watched turn over. `false` by default.
+   */
+  isFaceUp?: boolean
   players: readonly PublicPlayer[]
   round: RoundView
   /** The seat this screen holds, whose pile is framed; `null` on the wall. */
@@ -54,6 +59,7 @@ const Author: React.FC<{ player: PublicPlayer; seat: number }> = ({
  * a card edge a pawn, what each of them was paid and who they are under it.
  */
 export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
+  isFaceUp = false,
   players,
   round,
   youId
@@ -101,6 +107,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   return (
     <section
       className='think-alike-piles'
+      data-face-up={isFaceUp || undefined}
       data-lone={loneCount > 0 || undefined}
       data-regrouped={isRegrouped || undefined}
       ref={section}

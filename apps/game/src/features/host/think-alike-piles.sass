@@ -248,6 +248,76 @@
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
       justify-self: stretch
 
+    // On a console with no wall the box scrolls rather than cut a card, so
+    // nothing is held centred past its top.
+    &:is(.think-alike-console-reveal *)
+      overflow-y: auto
+      overscroll-behavior: contain
+
+      > .lone
+        align-content: safe end
+
+    &:is(.think-alike-console-reveal *):not(:has(> .pile)) > .lone
+      align-self: safe center
+
+    // A console with no wall too narrow for the piles side by side, or too
+    // short to stand them over their names, lays each pile on a line of its own, the biggest first: the stack on the left,
+    // what it paid and who wrote it beside it, the lone cards last. The box
+    // scrolls when the round holds more than it does.
+    @container think-alike-console (inline-size < 36rem) or (block-size < 32rem)
+      --edge: 0.45rem
+
+      align-content: start
+      grid-template-columns: minmax(0, 1fr)
+      grid-template-rows: none
+      row-gap: var(--space-s)
+      scrollbar-gutter: stable
+
+      > .lone
+        align-self: start
+        grid-row: auto
+        grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr))
+        order: 1
+
+      > .pile
+        align-items: start
+        column-gap: var(--space-s)
+        grid-row: auto
+        grid-template-areas: 'stack pay' 'stack authors'
+        grid-template-columns: minmax(7rem, 2fr) minmax(0, 3fr)
+        grid-template-rows: auto minmax(0, 1fr)
+        justify-items: start
+        order: calc(-1 * var(--order))
+        row-gap: var(--space-2xs)
+
+      .lone-card .word
+        font-size: clamp(var(--text-s), calc(150cqi / var(--letters, 4)), var(--text-l))
+
+      .stack
+        align-self: start
+        block-size: auto
+        container-type: inline-size
+        grid-area: stack
+
+      .top
+        block-size: 3.25rem
+
+      .word
+        font-size: clamp(var(--text-s), calc(150cqi / var(--letters)), var(--text-xl))
+
+      .count
+        font-size: var(--text-s)
+
+      .pay
+        font-size: var(--text-l)
+        grid-area: pay
+
+      .pile > .authors
+        columns: auto
+        font-size: var(--text-xs)
+        grid-area: authors
+        justify-self: stretch
+
     // A merge or a split lays its changes in at once: the stagger was the
     // reveal's, and a delay lengthened on a played animation sends the
     // piece back to its first frame.
@@ -257,6 +327,19 @@
       > .pile
         --enter-at: 0s
         --turn-at: 0s
+
+    // Back from the rows, the piles stand as the table last saw them: the
+    // screen change brings them in, and nothing turns over again.
+    &[data-face-up]
+      --turn-at: 0s
+
+      > .pile
+        --enter-at: 0s
+        --turn-at: 0s
+
+      :is(.lone-card, .pile):not([data-leaving]),
+      :is(.top, .face, .word, .edges li, .edges .pawn)
+        animation: none
 
     :is(.lone-card, .pile)[data-leaving]
       --travel-offset: 0 -1rem
