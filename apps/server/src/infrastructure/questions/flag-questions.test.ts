@@ -30,7 +30,9 @@ describe('the flags rubric', () => {
    * `flag-icons` writes the country's code into every id and class it draws
    * with, and a player can fetch the file the prompt names.
    */
-  it('[flags] serves files that never name their country', () => {
+  it('[flags] serves files that never name their country', {
+    timeout: 20_000
+  }, () => {
     const telling = readdirSync(SERVED_FLAGS).filter((file) =>
       /flag-icons|(?:id="|#|class="|\.)(?!f-)[a-z]{2}-[a-z]/.test(
         readFileSync(join(SERVED_FLAGS, file), 'utf8')

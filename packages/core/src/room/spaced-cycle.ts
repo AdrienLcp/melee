@@ -13,6 +13,7 @@ const FAMILY_OF: Partial<Record<GameKind, GameFamily>> = {
   higherlower: 'numbers',
   innerclock: 'clockRaces',
   longestword: 'wordSheets',
+  makenumber: 'numbers',
   mysteryword: 'wordSheets',
   petitbac: 'wordSheets',
   reflex: 'clockRaces'
