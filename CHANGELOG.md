@@ -580,6 +580,11 @@ one part.
 
 ### Internal
 
+- `[Shared]` **Think alike's rules and prompts, ahead of its server.** The
+  crowd key folds a plural on top of the shared normalisation, the groups
+  travel smallest first with the console's merges applied, a seat is paid the
+  share of the other seats that wrote its answer, and 187 prompts are written
+  by hand in French and English. Plan 70.
 - **The script budget guards the player's arrival.** Lighthouse measured four
   front doors under one 300 000-byte cap and never the page a scanned QR code
   opens, which weighed 432 kB against the home page's 299. The budget is now

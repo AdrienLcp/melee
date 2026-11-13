@@ -16,6 +16,7 @@
     "apps/server/src/infrastructure/questions/question-bank.json",
     "apps/server/src/infrastructure/questions/challenge-bank.json",
     "apps/server/src/infrastructure/questions/most-likely-bank.json",
+    "apps/server/src/infrastructure/questions/think-alike-bank.json",
     "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/black-square-bank.json",
     "apps/server/src/infrastructure/questions/black-square-authored-*.json",
@@ -120,7 +121,9 @@
         "packages/core/src/mysteryword/*.test.ts",
         "apps/server/src/__tests__/mystery-word-game.test.ts",
         "packages/core/src/longestword/*.test.ts",
-        "apps/server/src/__tests__/longest-word-game.test.ts"
+        "apps/server/src/__tests__/longest-word-game.test.ts",
+        "packages/core/src/thinkalike/*.ts",
+        "docs/plans/70-think-alike.md"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -725,6 +728,7 @@
     "mysteryword",
     "longestword",
     "makenumber",
+    "thinkalike",
     "Lexique",
     "Brysbaert",
     "Ferrand",

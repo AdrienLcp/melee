@@ -1,0 +1,1311 @@
+[
+  {
+    "id": "red-fruit",
+    "labels": {
+      "en": "A red fruit",
+      "fr": "Un fruit rouge"
+    }
+  },
+  {
+    "id": "yellow-fruit",
+    "labels": {
+      "en": "A yellow fruit",
+      "fr": "Un fruit jaune"
+    }
+  },
+  {
+    "id": "green-vegetable",
+    "labels": {
+      "en": "A green vegetable",
+      "fr": "Un légume vert"
+    }
+  },
+  {
+    "id": "in-a-fridge",
+    "labels": {
+      "en": "Something you find in a fridge",
+      "fr": "Quelque chose qu'on trouve dans un frigo"
+    }
+  },
+  {
+    "id": "in-a-handbag",
+    "labels": {
+      "en": "Something you find in a handbag",
+      "fr": "Quelque chose qu'on trouve dans un sac à main"
+    }
+  },
+  {
+    "id": "in-a-pocket",
+    "labels": {
+      "en": "Something you keep in your pocket",
+      "fr": "Quelque chose qu'on a dans la poche"
+    }
+  },
+  {
+    "id": "on-a-desk",
+    "labels": {
+      "en": "Something on a desk",
+      "fr": "Un objet sur un bureau"
+    }
+  },
+  {
+    "id": "in-a-bathroom",
+    "labels": {
+      "en": "Something in a bathroom",
+      "fr": "Un objet de la salle de bain"
+    }
+  },
+  {
+    "id": "in-a-toolbox",
+    "labels": {
+      "en": "A tool in a toolbox",
+      "fr": "Un outil dans une boîte à outils"
+    }
+  },
+  {
+    "id": "in-a-pencil-case",
+    "labels": {
+      "en": "Something in a pencil case",
+      "fr": "Quelque chose dans une trousse"
+    }
+  },
+  {
+    "id": "on-a-beach",
+    "labels": {
+      "en": "Something you take to the beach",
+      "fr": "Quelque chose qu'on emporte à la plage"
+    }
+  },
+  {
+    "id": "in-a-suitcase",
+    "labels": {
+      "en": "The first thing you pack in a suitcase",
+      "fr": "La première chose qu'on met dans une valise"
+    }
+  },
+  {
+    "id": "farm-animal",
+    "labels": {
+      "en": "A farm animal",
+      "fr": "Un animal de la ferme"
+    }
+  },
+  {
+    "id": "pet",
+    "labels": {
+      "en": "A pet",
+      "fr": "Un animal de compagnie"
+    }
+  },
+  {
+    "id": "african-animal",
+    "labels": {
+      "en": "An African animal",
+      "fr": "Un animal d'Afrique"
+    }
+  },
+  {
+    "id": "sea-animal",
+    "labels": {
+      "en": "A sea animal",
+      "fr": "Un animal de la mer"
+    }
+  },
+  {
+    "id": "bird",
+    "labels": {
+      "en": "A bird",
+      "fr": "Un oiseau"
+    }
+  },
+  {
+    "id": "insect",
+    "labels": {
+      "en": "An insect",
+      "fr": "Un insecte"
+    }
+  },
+  {
+    "id": "slow-animal",
+    "labels": {
+      "en": "A slow animal",
+      "fr": "Un animal lent"
+    }
+  },
+  {
+    "id": "big-animal",
+    "labels": {
+      "en": "A very big animal",
+      "fr": "Un très gros animal"
+    }
+  },
+  {
+    "id": "scary-animal",
+    "labels": {
+      "en": "A scary animal",
+      "fr": "Un animal qui fait peur"
+    }
+  },
+  {
+    "id": "striped-animal",
+    "labels": {
+      "en": "An animal with stripes",
+      "fr": "Un animal à rayures"
+    }
+  },
+  {
+    "id": "dog-breed",
+    "labels": {
+      "en": "A breed of dog",
+      "fr": "Une race de chien"
+    }
+  },
+  {
+    "id": "fast-animal",
+    "labels": {
+      "en": "A fast animal",
+      "fr": "Un animal rapide"
+    }
+  },
+  {
+    "id": "flower",
+    "labels": {
+      "en": "A flower",
+      "fr": "Une fleur"
+    }
+  },
+  {
+    "id": "tree",
+    "labels": {
+      "en": "A tree",
+      "fr": "Un arbre"
+    }
+  },
+  {
+    "id": "colour",
+    "labels": {
+      "en": "A colour",
+      "fr": "Une couleur"
+    }
+  },
+  {
+    "id": "warm-colour",
+    "labels": {
+      "en": "A warm colour",
+      "fr": "Une couleur chaude"
+    }
+  },
+  {
+    "id": "cheese",
+    "labels": {
+      "en": "A cheese",
+      "fr": "Un fromage"
+    }
+  },
+  {
+    "id": "breakfast",
+    "labels": {
+      "en": "Something you eat for breakfast",
+      "fr": "Quelque chose qu'on mange au petit-déjeuner"
+    }
+  },
+  {
+    "id": "pizza-topping",
+    "labels": {
+      "en": "A pizza topping",
+      "fr": "Un ingrédient sur une pizza"
+    }
+  },
+  {
+    "id": "dessert",
+    "labels": {
+      "en": "A dessert",
+      "fr": "Un dessert"
+    }
+  },
+  {
+    "id": "sandwich-filling",
+    "labels": {
+      "en": "Something you put in a sandwich",
+      "fr": "Ce qu'on met dans un sandwich"
+    }
+  },
+  {
+    "id": "hot-drink",
+    "labels": {
+      "en": "A hot drink",
+      "fr": "Une boisson chaude"
+    }
+  },
+  {
+    "id": "cocktail",
+    "labels": {
+      "en": "A cocktail",
+      "fr": "Un cocktail"
+    }
+  },
+  {
+    "id": "soft-drink",
+    "labels": {
+      "en": "A soft drink",
+      "fr": "Une boisson sans alcool"
+    }
+  },
+  {
+    "id": "spice",
+    "labels": {
+      "en": "A spice",
+      "fr": "Une épice"
+    }
+  },
+  {
+    "id": "sweet",
+    "labels": {
+      "en": "A sweet",
+      "fr": "Un bonbon"
+    }
+  },
+  {
+    "id": "ice-cream-flavour",
+    "labels": {
+      "en": "An ice cream flavour",
+      "fr": "Un parfum de glace"
+    }
+  },
+  {
+    "id": "crepe-filling",
+    "labels": {
+      "en": "Something you put on a pancake",
+      "fr": "Ce qu'on met sur une crêpe"
+    }
+  },
+  {
+    "id": "sauce",
+    "labels": {
+      "en": "A sauce",
+      "fr": "Une sauce"
+    }
+  },
+  {
+    "id": "christmas-food",
+    "labels": {
+      "en": "A Christmas dish",
+      "fr": "Un plat de Noël"
+    }
+  },
+  {
+    "id": "cake",
+    "labels": {
+      "en": "A cake",
+      "fr": "Un gâteau"
+    }
+  },
+  {
+    "id": "pasta",
+    "labels": {
+      "en": "A kind of pasta",
+      "fr": "Une sorte de pâtes"
+    }
+  },
+  {
+    "id": "nut",
+    "labels": {
+      "en": "A nut",
+      "fr": "Un fruit à coque"
+    }
+  },
+  {
+    "id": "barbecue",
+    "labels": {
+      "en": "Something you grill on a barbecue",
+      "fr": "Quelque chose qu'on fait griller au barbecue"
+    }
+  },
+  {
+    "id": "cinema-snack",
+    "labels": {
+      "en": "Something you eat at the cinema",
+      "fr": "Ce qu'on mange au cinéma"
+    }
+  },
+  {
+    "id": "soup",
+    "labels": {
+      "en": "A soup",
+      "fr": "Une soupe"
+    }
+  },
+  {
+    "id": "country-europe",
+    "labels": {
+      "en": "A country in Europe",
+      "fr": "Un pays d'Europe"
+    }
+  },
+  {
+    "id": "country-big",
+    "labels": {
+      "en": "A very big country",
+      "fr": "Un très grand pays"
+    }
+  },
+  {
+    "id": "capital",
+    "labels": {
+      "en": "A capital city",
+      "fr": "Une capitale"
+    }
+  },
+  {
+    "id": "city-holiday",
+    "labels": {
+      "en": "A city for a weekend break",
+      "fr": "Une ville où partir en week-end"
+    }
+  },
+  {
+    "id": "island",
+    "labels": {
+      "en": "An island",
+      "fr": "Une île"
+    }
+  },
+  {
+    "id": "mountain",
+    "labels": {
+      "en": "A mountain",
+      "fr": "Une montagne"
+    }
+  },
+  {
+    "id": "river",
+    "labels": {
+      "en": "A river",
+      "fr": "Un fleuve"
+    }
+  },
+  {
+    "id": "monument",
+    "labels": {
+      "en": "A famous monument",
+      "fr": "Un monument célèbre"
+    }
+  },
+  {
+    "id": "cold-country",
+    "labels": {
+      "en": "A cold country",
+      "fr": "Un pays froid"
+    }
+  },
+  {
+    "id": "hot-country",
+    "labels": {
+      "en": "A hot country",
+      "fr": "Un pays chaud"
+    }
+  },
+  {
+    "id": "sport",
+    "labels": {
+      "en": "A sport",
+      "fr": "Un sport"
+    }
+  },
+  {
+    "id": "ball-sport",
+    "labels": {
+      "en": "A ball sport",
+      "fr": "Un sport de balle"
+    }
+  },
+  {
+    "id": "winter-sport",
+    "labels": {
+      "en": "A winter sport",
+      "fr": "Un sport d'hiver"
+    }
+  },
+  {
+    "id": "olympic-sport",
+    "labels": {
+      "en": "An Olympic sport",
+      "fr": "Un sport olympique"
+    }
+  },
+  {
+    "id": "board-game",
+    "labels": {
+      "en": "A board game",
+      "fr": "Un jeu de société"
+    }
+  },
+  {
+    "id": "card-game",
+    "labels": {
+      "en": "A card game",
+      "fr": "Un jeu de cartes"
+    }
+  },
+  {
+    "id": "video-game",
+    "labels": {
+      "en": "A video game",
+      "fr": "Un jeu vidéo"
+    }
+  },
+  {
+    "id": "toy",
+    "labels": {
+      "en": "A toy",
+      "fr": "Un jouet"
+    }
+  },
+  {
+    "id": "instrument",
+    "labels": {
+      "en": "A musical instrument",
+      "fr": "Un instrument de musique"
+    }
+  },
+  {
+    "id": "music-genre",
+    "labels": {
+      "en": "A kind of music",
+      "fr": "Un style de musique"
+    }
+  },
+  {
+    "id": "dance",
+    "labels": {
+      "en": "A dance",
+      "fr": "Une danse"
+    }
+  },
+  {
+    "id": "hobby",
+    "labels": {
+      "en": "A hobby",
+      "fr": "Un loisir"
+    }
+  },
+  {
+    "id": "job",
+    "labels": {
+      "en": "A job",
+      "fr": "Un métier"
+    }
+  },
+  {
+    "id": "job-uniform",
+    "labels": {
+      "en": "A job with a uniform",
+      "fr": "Un métier en uniforme"
+    }
+  },
+  {
+    "id": "dream-job",
+    "labels": {
+      "en": "A job children dream of",
+      "fr": "Le métier dont rêvent les enfants"
+    }
+  },
+  {
+    "id": "dangerous-job",
+    "labels": {
+      "en": "A dangerous job",
+      "fr": "Un métier dangereux"
+    }
+  },
+  {
+    "id": "vehicle",
+    "labels": {
+      "en": "A means of transport",
+      "fr": "Un moyen de transport"
+    }
+  },
+  {
+    "id": "car-brand",
+    "labels": {
+      "en": "A car brand",
+      "fr": "Une marque de voiture"
+    }
+  },
+  {
+    "id": "clothes",
+    "labels": {
+      "en": "An item of clothing",
+      "fr": "Un vêtement"
+    }
+  },
+  {
+    "id": "winter-clothes",
+    "labels": {
+      "en": "Something you wear in winter",
+      "fr": "Un vêtement d'hiver"
+    }
+  },
+  {
+    "id": "shoes",
+    "labels": {
+      "en": "A kind of shoe",
+      "fr": "Un type de chaussures"
+    }
+  },
+  {
+    "id": "accessory",
+    "labels": {
+      "en": "A fashion accessory",
+      "fr": "Un accessoire de mode"
+    }
+  },
+  {
+    "id": "jewel",
+    "labels": {
+      "en": "A piece of jewellery",
+      "fr": "Un bijou"
+    }
+  },
+  {
+    "id": "face",
+    "labels": {
+      "en": "A part of the face",
+      "fr": "Une partie du visage"
+    }
+  },
+  {
+    "id": "organ",
+    "labels": {
+      "en": "An organ of the body",
+      "fr": "Un organe"
+    }
+  },
+  {
+    "id": "furniture",
+    "labels": {
+      "en": "A piece of furniture",
+      "fr": "Un meuble"
+    }
+  },
+  {
+    "id": "kitchen",
+    "labels": {
+      "en": "A kitchen utensil",
+      "fr": "Un ustensile de cuisine"
+    }
+  },
+  {
+    "id": "appliance",
+    "labels": {
+      "en": "A household appliance",
+      "fr": "Un appareil électroménager"
+    }
+  },
+  {
+    "id": "room",
+    "labels": {
+      "en": "A room in a house",
+      "fr": "Une pièce de la maison"
+    }
+  },
+  {
+    "id": "garden",
+    "labels": {
+      "en": "Something in a garden",
+      "fr": "Quelque chose dans un jardin"
+    }
+  },
+  {
+    "id": "school-subject",
+    "labels": {
+      "en": "A school subject",
+      "fr": "Une matière à l'école"
+    }
+  },
+  {
+    "id": "school-bag",
+    "labels": {
+      "en": "Something in a school bag",
+      "fr": "Quelque chose dans un cartable"
+    }
+  },
+  {
+    "id": "weather",
+    "labels": {
+      "en": "A kind of weather",
+      "fr": "Un temps qu'il fait"
+    }
+  },
+  {
+    "id": "summer",
+    "labels": {
+      "en": "Something you do in summer",
+      "fr": "Quelque chose qu'on fait en été"
+    }
+  },
+  {
+    "id": "autumn",
+    "labels": {
+      "en": "Something that makes you think of autumn",
+      "fr": "Quelque chose qui fait penser à l'automne"
+    }
+  },
+  {
+    "id": "winter",
+    "labels": {
+      "en": "Something that makes you think of winter",
+      "fr": "Quelque chose qui fait penser à l'hiver"
+    }
+  },
+  {
+    "id": "christmas",
+    "labels": {
+      "en": "Something that makes you think of Christmas",
+      "fr": "Quelque chose qui fait penser à Noël"
+    }
+  },
+  {
+    "id": "halloween",
+    "labels": {
+      "en": "A Halloween costume",
+      "fr": "Un déguisement d'Halloween"
+    }
+  },
+  {
+    "id": "costume",
+    "labels": {
+      "en": "A fancy dress costume",
+      "fr": "Un déguisement"
+    }
+  },
+  {
+    "id": "birthday",
+    "labels": {
+      "en": "Something at a birthday party",
+      "fr": "Quelque chose à un anniversaire"
+    }
+  },
+  {
+    "id": "wedding",
+    "labels": {
+      "en": "Something at a wedding",
+      "fr": "Quelque chose à un mariage"
+    }
+  },
+  {
+    "id": "superhero",
+    "labels": {
+      "en": "A superhero",
+      "fr": "Un super-héros"
+    }
+  },
+  {
+    "id": "superpower",
+    "labels": {
+      "en": "A superpower",
+      "fr": "Un super-pouvoir"
+    }
+  },
+  {
+    "id": "cartoon",
+    "labels": {
+      "en": "A cartoon",
+      "fr": "Un dessin animé"
+    }
+  },
+  {
+    "id": "animated-film",
+    "labels": {
+      "en": "An animated film",
+      "fr": "Un film d'animation"
+    }
+  },
+  {
+    "id": "fairy-tale",
+    "labels": {
+      "en": "A fairy tale",
+      "fr": "Un conte de fées"
+    }
+  },
+  {
+    "id": "fairy-tale-character",
+    "labels": {
+      "en": "A fairy tale character",
+      "fr": "Un personnage de conte"
+    }
+  },
+  {
+    "id": "villain",
+    "labels": {
+      "en": "A film villain",
+      "fr": "Un grand méchant de cinéma"
+    }
+  },
+  {
+    "id": "monster",
+    "labels": {
+      "en": "A monster",
+      "fr": "Un monstre"
+    }
+  },
+  {
+    "id": "magic",
+    "labels": {
+      "en": "Something magical",
+      "fr": "Quelque chose de magique"
+    }
+  },
+  {
+    "id": "planet",
+    "labels": {
+      "en": "A planet",
+      "fr": "Une planète"
+    }
+  },
+  {
+    "id": "in-the-sky",
+    "labels": {
+      "en": "Something in the sky",
+      "fr": "Quelque chose dans le ciel"
+    }
+  },
+  {
+    "id": "in-space",
+    "labels": {
+      "en": "Something in space",
+      "fr": "Quelque chose dans l'espace"
+    }
+  },
+  {
+    "id": "round-thing",
+    "labels": {
+      "en": "Something round",
+      "fr": "Un objet rond"
+    }
+  },
+  {
+    "id": "red-thing",
+    "labels": {
+      "en": "Something red",
+      "fr": "Quelque chose de rouge"
+    }
+  },
+  {
+    "id": "white-thing",
+    "labels": {
+      "en": "Something white",
+      "fr": "Quelque chose de blanc"
+    }
+  },
+  {
+    "id": "yellow-thing",
+    "labels": {
+      "en": "Something yellow",
+      "fr": "Quelque chose de jaune"
+    }
+  },
+  {
+    "id": "cold-thing",
+    "labels": {
+      "en": "Something cold",
+      "fr": "Quelque chose de froid"
+    }
+  },
+  {
+    "id": "sticky-thing",
+    "labels": {
+      "en": "Something sticky",
+      "fr": "Quelque chose qui colle"
+    }
+  },
+  {
+    "id": "soft-thing",
+    "labels": {
+      "en": "Something soft",
+      "fr": "Quelque chose de doux"
+    }
+  },
+  {
+    "id": "loud-thing",
+    "labels": {
+      "en": "Something loud",
+      "fr": "Quelque chose de bruyant"
+    }
+  },
+  {
+    "id": "smelly-thing",
+    "labels": {
+      "en": "Something that smells bad",
+      "fr": "Quelque chose qui sent mauvais"
+    }
+  },
+  {
+    "id": "good-smell",
+    "labels": {
+      "en": "A nice smell",
+      "fr": "Une bonne odeur"
+    }
+  },
+  {
+    "id": "sharp-thing",
+    "labels": {
+      "en": "Something sharp",
+      "fr": "Quelque chose qui pique"
+    }
+  },
+  {
+    "id": "thing-with-wheels",
+    "labels": {
+      "en": "Something with wheels",
+      "fr": "Quelque chose avec des roues"
+    }
+  },
+  {
+    "id": "thing-with-buttons",
+    "labels": {
+      "en": "Something with buttons",
+      "fr": "Quelque chose avec des boutons"
+    }
+  },
+  {
+    "id": "thing-that-flies",
+    "labels": {
+      "en": "Something that flies",
+      "fr": "Quelque chose qui vole"
+    }
+  },
+  {
+    "id": "thing-that-melts",
+    "labels": {
+      "en": "Something that melts",
+      "fr": "Quelque chose qui fond"
+    }
+  },
+  {
+    "id": "thing-that-breaks",
+    "labels": {
+      "en": "Something that breaks easily",
+      "fr": "Quelque chose qui se casse facilement"
+    }
+  },
+  {
+    "id": "thing-that-rings",
+    "labels": {
+      "en": "Something that rings",
+      "fr": "Quelque chose qui sonne"
+    }
+  },
+  {
+    "id": "thing-you-lose",
+    "labels": {
+      "en": "Something you always lose",
+      "fr": "Quelque chose qu'on perd tout le temps"
+    }
+  },
+  {
+    "id": "thing-you-forget",
+    "labels": {
+      "en": "Something you forget when you go on holiday",
+      "fr": "Quelque chose qu'on oublie en partant en vacances"
+    }
+  },
+  {
+    "id": "thing-you-never-lend",
+    "labels": {
+      "en": "Something you never lend",
+      "fr": "Quelque chose qu'on ne prête jamais"
+    }
+  },
+  {
+    "id": "thing-you-collect",
+    "labels": {
+      "en": "Something people collect",
+      "fr": "Quelque chose qu'on collectionne"
+    }
+  },
+  {
+    "id": "gift-for-mother",
+    "labels": {
+      "en": "A present for your mother",
+      "fr": "Un cadeau qu'on offre à sa mère"
+    }
+  },
+  {
+    "id": "bad-gift",
+    "labels": {
+      "en": "A present nobody wants",
+      "fr": "Un cadeau qu'on n'aime pas recevoir"
+    }
+  },
+  {
+    "id": "boy-name",
+    "labels": {
+      "en": "A boy's name",
+      "fr": "Un prénom de garçon"
+    }
+  },
+  {
+    "id": "girl-name",
+    "labels": {
+      "en": "A girl's name",
+      "fr": "Un prénom de fille"
+    }
+  },
+  {
+    "id": "cat-name",
+    "labels": {
+      "en": "A name for a cat",
+      "fr": "Un nom de chat"
+    }
+  },
+  {
+    "id": "dog-name",
+    "labels": {
+      "en": "A name for a dog",
+      "fr": "Un nom de chien"
+    }
+  },
+  {
+    "id": "famous-painter",
+    "labels": {
+      "en": "A famous painter",
+      "fr": "Un peintre célèbre"
+    }
+  },
+  {
+    "id": "famous-scientist",
+    "labels": {
+      "en": "A famous scientist",
+      "fr": "Un scientifique célèbre"
+    }
+  },
+  {
+    "id": "famous-singer",
+    "labels": {
+      "en": "A famous singer",
+      "fr": "Un chanteur ou une chanteuse célèbre"
+    }
+  },
+  {
+    "id": "band",
+    "labels": {
+      "en": "A band",
+      "fr": "Un groupe de musique"
+    }
+  },
+  {
+    "id": "footballer",
+    "labels": {
+      "en": "A footballer",
+      "fr": "Un footballeur"
+    }
+  },
+  {
+    "id": "famous-monarch",
+    "labels": {
+      "en": "A famous king or queen",
+      "fr": "Un roi ou une reine célèbre"
+    }
+  },
+  {
+    "id": "social-network",
+    "labels": {
+      "en": "A social network",
+      "fr": "Un réseau social"
+    }
+  },
+  {
+    "id": "phone-app",
+    "labels": {
+      "en": "An app on a phone",
+      "fr": "Une appli sur un téléphone"
+    }
+  },
+  {
+    "id": "tv-series",
+    "labels": {
+      "en": "A TV series",
+      "fr": "Une série télé"
+    }
+  },
+  {
+    "id": "fast-food",
+    "labels": {
+      "en": "A fast food chain",
+      "fr": "Une chaîne de fast-food"
+    }
+  },
+  {
+    "id": "shop",
+    "labels": {
+      "en": "A kind of shop",
+      "fr": "Un magasin"
+    }
+  },
+  {
+    "id": "weekly-shopping",
+    "labels": {
+      "en": "Something you buy every week",
+      "fr": "Ce qu'on achète toutes les semaines"
+    }
+  },
+  {
+    "id": "emotion",
+    "labels": {
+      "en": "An emotion",
+      "fr": "Une émotion"
+    }
+  },
+  {
+    "id": "good-quality",
+    "labels": {
+      "en": "A good quality in a person",
+      "fr": "Une qualité"
+    }
+  },
+  {
+    "id": "fear",
+    "labels": {
+      "en": "Something people are afraid of",
+      "fr": "Une peur"
+    }
+  },
+  {
+    "id": "late-excuse",
+    "labels": {
+      "en": "An excuse for being late",
+      "fr": "Une excuse pour être en retard"
+    }
+  },
+  {
+    "id": "sunday",
+    "labels": {
+      "en": "Something you do on a Sunday",
+      "fr": "Ce qu'on fait le dimanche"
+    }
+  },
+  {
+    "id": "morning",
+    "labels": {
+      "en": "The first thing you do in the morning",
+      "fr": "La première chose qu'on fait le matin"
+    }
+  },
+  {
+    "id": "bedtime",
+    "labels": {
+      "en": "The last thing you do before bed",
+      "fr": "La dernière chose qu'on fait avant de dormir"
+    }
+  },
+  {
+    "id": "rainy-day",
+    "labels": {
+      "en": "Something to do on a rainy day",
+      "fr": "Ce qu'on fait un jour de pluie"
+    }
+  },
+  {
+    "id": "desert-island",
+    "labels": {
+      "en": "Something you take to a desert island",
+      "fr": "Ce qu'on emporte sur une île déserte"
+    }
+  },
+  {
+    "id": "lottery",
+    "labels": {
+      "en": "What you buy when you win the lottery",
+      "fr": "Ce qu'on achète en gagnant au loto"
+    }
+  },
+  {
+    "id": "number",
+    "labels": {
+      "en": "A number from 1 to 10",
+      "fr": "Un chiffre entre 1 et 10"
+    }
+  },
+  {
+    "id": "lucky-number",
+    "labels": {
+      "en": "A lucky number",
+      "fr": "Un chiffre porte-bonheur"
+    }
+  },
+  {
+    "id": "letter",
+    "labels": {
+      "en": "A letter of the alphabet",
+      "fr": "Une lettre de l'alphabet"
+    }
+  },
+  {
+    "id": "day",
+    "labels": {
+      "en": "A day of the week",
+      "fr": "Un jour de la semaine"
+    }
+  },
+  {
+    "id": "month",
+    "labels": {
+      "en": "A month of the year",
+      "fr": "Un mois de l'année"
+    }
+  },
+  {
+    "id": "shape",
+    "labels": {
+      "en": "A shape",
+      "fr": "Une forme géométrique"
+    }
+  },
+  {
+    "id": "rhyme",
+    "labels": {
+      "en": "A word that rhymes with “cat”",
+      "fr": "Un mot qui rime avec « amour »"
+    }
+  },
+  {
+    "id": "word-chocolate",
+    "labels": {
+      "en": "A word you link with chocolate",
+      "fr": "Un mot qu'on associe au chocolat"
+    }
+  },
+  {
+    "id": "word-sea",
+    "labels": {
+      "en": "A word you link with the sea",
+      "fr": "Un mot qu'on associe à la mer"
+    }
+  },
+  {
+    "id": "word-paris",
+    "labels": {
+      "en": "A word you link with Paris",
+      "fr": "Un mot qu'on associe à Paris"
+    }
+  },
+  {
+    "id": "word-night",
+    "labels": {
+      "en": "A word you link with the night",
+      "fr": "Un mot qu'on associe à la nuit"
+    }
+  },
+  {
+    "id": "word-holiday",
+    "labels": {
+      "en": "A word you link with holidays",
+      "fr": "Un mot qu'on associe aux vacances"
+    }
+  },
+  {
+    "id": "word-school",
+    "labels": {
+      "en": "A word you link with school",
+      "fr": "Un mot qu'on associe à l'école"
+    }
+  },
+  {
+    "id": "word-hospital",
+    "labels": {
+      "en": "A word you link with hospital",
+      "fr": "Un mot qu'on associe à l'hôpital"
+    }
+  },
+  {
+    "id": "word-fire",
+    "labels": {
+      "en": "A word you link with fire",
+      "fr": "Un mot qu'on associe au feu"
+    }
+  },
+  {
+    "id": "word-music",
+    "labels": {
+      "en": "A word you link with music",
+      "fr": "Un mot qu'on associe à la musique"
+    }
+  },
+  {
+    "id": "word-money",
+    "labels": {
+      "en": "A word you link with money",
+      "fr": "Un mot qu'on associe à l'argent"
+    }
+  },
+  {
+    "id": "word-forest",
+    "labels": {
+      "en": "A word you link with a forest",
+      "fr": "Un mot qu'on associe à la forêt"
+    }
+  },
+  {
+    "id": "word-snow",
+    "labels": {
+      "en": "A word you link with snow",
+      "fr": "Un mot qu'on associe à la neige"
+    }
+  },
+  {
+    "id": "word-castle",
+    "labels": {
+      "en": "A word you link with a castle",
+      "fr": "Un mot qu'on associe à un château"
+    }
+  },
+  {
+    "id": "word-pirate",
+    "labels": {
+      "en": "A word you link with pirates",
+      "fr": "Un mot qu'on associe aux pirates"
+    }
+  },
+  {
+    "id": "word-circus",
+    "labels": {
+      "en": "A word you link with the circus",
+      "fr": "Un mot qu'on associe au cirque"
+    }
+  },
+  {
+    "id": "word-cowboy",
+    "labels": {
+      "en": "A word you link with cowboys",
+      "fr": "Un mot qu'on associe aux cow-boys"
+    }
+  },
+  {
+    "id": "word-egypt",
+    "labels": {
+      "en": "A word you link with Egypt",
+      "fr": "Un mot qu'on associe à l'Égypte"
+    }
+  },
+  {
+    "id": "word-italy",
+    "labels": {
+      "en": "A word you link with Italy",
+      "fr": "Un mot qu'on associe à l'Italie"
+    }
+  },
+  {
+    "id": "word-japan",
+    "labels": {
+      "en": "A word you link with Japan",
+      "fr": "Un mot qu'on associe au Japon"
+    }
+  },
+  {
+    "id": "farm-noise",
+    "labels": {
+      "en": "A farmyard noise",
+      "fr": "Un bruit de la ferme"
+    }
+  }
+]
