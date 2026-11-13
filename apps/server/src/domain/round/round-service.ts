@@ -638,7 +638,8 @@ const keepAnswer = ({
 /**
  * Saves what a seat's screen holds and has not sent — see `player.lean`. A
  * seat that has answered has nothing left to lean on: its answer stands —
- * save a longest word's, which a longer draft may still beat.
+ * save a longest word's or a calculation's, which a better draft may still
+ * beat.
  */
 export const registerLean = ({
   attempt,
@@ -665,6 +666,17 @@ export const registerLean = ({
   }
 
   const round = open.data
+
+  if (round.content.kind === 'makenumber') {
+    return leanCalculation({
+      attempt,
+      content: round.content,
+      now,
+      playerId,
+      room,
+      round
+    })
+  }
 
   if (round.content.kind === 'longestword') {
     return leanWord({
@@ -751,10 +763,61 @@ const leanWord = ({
 }
 
 /**
+ * The calculation of a make-the-number rack's made tile nearest the target,
+ * kept while the seat holds no exact hit. A screen cannot build an invalid
+ * step, so one that arrives is a forged frame, refused and its lean dropped.
+ */
+const leanCalculation = ({
+  attempt,
+  content,
+  now,
+  playerId,
+  room,
+  round
+}: {
+  attempt: LeanAnswer | null
+  content: Extract<Round['content'], { kind: 'makenumber' }>
+  now: number
+  playerId: PlayerId
+  room: Room
+  round: Round
+}): Result<void, AnswerRejection> => {
+  if (attempt !== null && attempt.kind !== 'calculation') {
+    return Result.failure('invalid_message')
+  }
+
+  const held = round.attempts.find((entry) => entry.playerId === playerId)
+
+  round.leans.delete(playerId)
+  touch(room, now)
+
+  if (attempt === null || (held !== undefined && isDone(held))) {
+    return Result.success()
+  }
+
+  const value = valueOfCalculation({ content, steps: attempt.steps })
+
+  if (value === null) {
+    return Result.failure('invalid_calculation')
+  }
+
+  round.leans.set(playerId, {
+    attempt,
+    graded: {
+      said: writtenCalculation({ steps: attempt.steps, tiles: content.tiles }),
+      verdict: gradeCalculation({ content, held: null, value })
+    }
+  })
+
+  return Result.success()
+}
+
+/**
  * Every seat still in the room that leaned and never sent is given its last
  * lean as its answer, as the round closes. A sent answer is never replaced,
- * save a longest word's by a longer draft: the seat sends as often as it
- * likes, and the word left on its row is one more, never sent.
+ * save a longest word's by a longer draft and a calculation's by a nearer
+ * one: the seat sends as often as it likes, and what is left on its screen
+ * is one more, never sent.
  */
 const takeUnsentLeans = (room: Room, now: number): void => {
   const round = room.round

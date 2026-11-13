@@ -205,6 +205,39 @@ const sendCalculation = async ({
   )
 }
 
+const leanCalculation = ({
+  roundId,
+  seat,
+  steps
+}: {
+  roundId: string
+  seat: Peer<PlayerServerMessage>
+  steps: Calculation
+}): void => {
+  seat.send({
+    answer: { kind: 'calculation', steps },
+    roundId,
+    type: 'player.lean'
+  })
+}
+
+/** A lean is answered with no frame, so a ping behind it on the same socket says it was read. */
+const leansRead = async (
+  seats: readonly Peer<PlayerServerMessage>[]
+): Promise<void> => {
+  for (const seat of seats) {
+    seat.send({ clientSentAt: 1, type: 'time.ping' })
+  }
+
+  await waitFor(
+    () =>
+      seats.every((seat) =>
+        seat.frames.some(({ message }) => message.type === 'time.pong')
+      ),
+    'the leans to be read'
+  )
+}
+
 const idOf = (seat: Peer<PlayerServerMessage>) =>
   playerView(seat)?.youId ?? null
 
@@ -339,6 +372,60 @@ describe('a make-the-number round through the seam', () => {
         ({ playerId }) => playerId === idOf(zoe)
       )?.said
     ).toBe('75 + 25 = 100, 100 × 7 = 700')
+  })
+
+  it('[makenumber] pays the calculation left on a rack unsent at the close when nearer than what the seat sent, with no speed', async () => {
+    const { host, lou, max, roundId, zoe } = await roundInPlay()
+
+    await sendCalculation({ roundId, seat: zoe, steps: SEVEN_TEN })
+    await sendCalculation({ roundId, seat: max, steps: SEVEN_HUNDRED })
+    leanCalculation({ roundId, seat: zoe, steps: SEVEN_HUNDRED })
+    leanCalculation({ roundId, seat: max, steps: SEVEN_HUNDRED_AGAIN })
+    leanCalculation({ roundId, seat: lou, steps: EXACT })
+    leanCalculation({
+      roundId,
+      seat: lou,
+      steps: [{ left: 0, operator: 'add', right: 0 }]
+    })
+    leanCalculation({ roundId, seat: lou, steps: EXACT })
+    await leansRead([zoe, max, lou])
+
+    expect(errorsIn(lou).map(({ code }) => code)).toEqual([
+      'invalid_calculation'
+    ])
+    expect(seatValueIn({ seat: zoe, view: playerView(max) })).toBe(710)
+    expect(seatValueIn({ seat: lou, view: playerView(max) })).toBeUndefined()
+    expect(playerView(zoe)?.phase).toBe('playing')
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const awardOf = (seat: Peer<PlayerServerMessage>) =>
+      view?.round?.awards.find((award) => award.playerId === idOf(seat))
+
+    expect(awardOf(zoe)).toMatchObject({
+      isUnsent: true,
+      points: answerShareOf(pointsForCalculation({ distance: 3 })),
+      speedBonus: 0,
+      verdict: { distance: 3, value: 700 }
+    })
+    expect(awardOf(max)).toMatchObject({
+      isUnsent: false,
+      verdict: { distance: 3, value: 700 }
+    })
+    expect(awardOf(lou)).toMatchObject({
+      isUnsent: true,
+      points: answerShareOf(MOST_A_ROUND_PAYS),
+      speedBonus: 0
+    })
+    expect(draw(playerView(zoe))?.revealedCalculations).toEqual(
+      expect.arrayContaining([
+        { playerId: idOf(zoe), steps: SEVEN_HUNDRED },
+        { playerId: idOf(max), steps: SEVEN_HUNDRED },
+        { playerId: idOf(lou), steps: EXACT }
+      ])
+    )
   })
 
   it('[makenumber] pays an exact hit the whole round, a near miss its share and a far one nothing', async () => {

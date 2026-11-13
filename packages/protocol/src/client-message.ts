@@ -155,6 +155,16 @@ const lettersAnswerSchema = z.object({
   kind: z.literal('letters')
 })
 
+const calculationAnswerSchema = z.object({
+  kind: z.literal('calculation'),
+  /**
+   * One calculation over the tiles, sent as often as a seat likes. One the
+   * server refuses — a value used twice, a remainder, nothing left above
+   * zero — costs nothing.
+   */
+  steps: calculationSchema
+})
+
 /**
  * The other two modes' answer, and it carries no timestamp for the same reason
  * `player.buzz` does not: the server stamps arrival, because the speed bonus is
@@ -217,15 +227,7 @@ export const answerMessageSchema = z.object({
       kind: z.literal('word')
     }),
     lettersAnswerSchema,
-    z.object({
-      kind: z.literal('calculation'),
-      /**
-       * One calculation over the tiles, sent as often as a seat likes. One the
-       * server refuses — a value used twice, a remainder, nothing left above
-       * zero — costs nothing.
-       */
-      steps: calculationSchema
-    })
+    calculationAnswerSchema
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')
@@ -244,9 +246,12 @@ export const answerMessageSchema = z.object({
  * longest word's row of tiles is built up too: the word left on it is judged
  * like a sent one, and paid only if it beats what the seat already sent. A
  * row that is not a word yet — every word is spelled through some — holds no
- * lean, and is refused nothing, since nothing was sent.
+ * lean, and is refused nothing, since nothing was sent. So is a make-the-
+ * number rack: the calculation of its made tile nearest the target counts at
+ * the close like a sent one, and replaces what the seat sent only when nearer.
  */
 export const leanAnswerSchema = z.discriminatedUnion('kind', [
+  calculationAnswerSchema,
   colourAnswerSchema,
   lettersAnswerSchema,
   orderAnswerSchema,
