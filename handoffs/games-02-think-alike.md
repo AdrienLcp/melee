@@ -110,22 +110,49 @@ built and where it diverged, for part (2):
   standings. Not seen: the console with no wall at phone width (part 2
   redoes that reveal).
 
+**Part (2a) done 13/11/2026** — the console's merge and split, in
+`3149fb36`, `820f77f9`, `b6134156` (read their messages):
+
+- `features/host/think-alike-sorting.tsx` — a row per answer, lone ones
+  included (biggest crowd first): drag a row onto another (react-aria; on the
+  keyboard Enter on the handle, arrows, Enter), the `ActionMenu` ⋯ listing
+  _Avec « X »_ as the fallback, a merged answer folded under its row with
+  _Ressortir « yogourt »_. Wired like Petit Bac's strike: `onRegroup` in
+  `reveal-panel.tsx` → `room-stage.tsx`.
+- **The wire changed**: a group's `mergedKeys: string[]` is now
+  `merged: { authors, key, text }[]` (protocol, core `crowdGroups`), because
+  the key drops spaces and accents and could not print _Ressortir « Tour
+  Eiffel »_.
+- **With a wall** the console shows the rows directly; **with none**
+  (`view.isWallConnected`) it keeps the piles turning over, _Regrouper_ /
+  _Revoir les piles_ on the _Cette manche_ line swapping to the rows
+  (`think-alike-console-reveal.tsx`), back face up (`isFaceUp`). A short or
+  narrow box lays the piles one a line.
+- A regroup moves only what changed on the wall and the phones: elements keep
+  their first-drawn DOM order and take their place from CSS `order`
+  (`useFirstDrawnOrder`), because Chrome restarts an animation React moves.
+- `host-panel.tsx`: a narrowed console opens on _Partie_ in a running game
+  (`narrowStart` was frozen on the answer given before a game was picked).
+- Harnesses (git-ignored): `.playwright-mcp/ta-run.mjs` (`REGROUP=1`) and
+  `.playwright-mcp/ta-console.mjs` (`SEATED`, `WALL`, `REGROUP`, `PHONEFILM`).
+
 ## Next session
 
-State 13/11 evening: part (1) is `7361edfb` and its follow-up `a7731848`
-(the four items above, done and green), both **local, not pushed**.
+State 13/11 night: everything above is committed and pushed.
 
-1. ~~Take over the follow-up~~ — done in `a7731848`, see _Part (1)
-   finished_ above.
-2. **Part (2)**: the console's merge (drag a pile onto another, the row's
-   button listing the other words as a ≥ 44px fallback) and split (the folded
-   card legible, _Ressortir « yogourt »_) beside `ThinkAlikePiles`, Petit
-   Bac's strike as the template for a console action re-paying a revealed
-   round; the setup (language, clock 10–60 s); then the shelf
+1. **Two motion defects left by 2a**, fix both:
+   - resizing a console from wide to narrow remounts the reveal and the piles
+     turn over again;
+   - on the phone, ~480 ms into a regroup, the list scrolled to its bottom
+     jumps ~15px as the leaving row is removed.
+2. **Part (2b)**: the setup (language, clock 10–60 s); the shelf
    (`shelvedGames`), the game's front door, the ready-made line-ups, both
-   dictionaries, the catalogue and `CLAUDE.md` rows. Muted, filmed, full room.
-3. The plan's step 3 marked done with what diverged, the changelog, push
-   (`main`, staging deploys), and this file rewritten for step 4 (the
-   evening's own prompts) or deleted with `README.md`'s row.
+   dictionaries, the catalogue (`docs/game-catalogue.md`) and `CLAUDE.md`
+   rows (the game list in the intro, the `thinkalike.*` prefix). Muted, filmed,
+   full room.
+3. The plan's step 3 marked done with what diverged (the wire change, the
+   no-wall console), the changelog, push (`main`, staging deploys), and this
+   file rewritten for step 4 (the evening's own prompts) or deleted with
+   `README.md`'s row.
 
-Part (2) fits one subagent run under ~150k.
+One subagent for 1, one for 2, in turn — they share the dev server ports.
