@@ -1,0 +1,164 @@
+// Side-effect module: styles `.think-alike-revealed`, a seat's own pile with its pay and authors, over every pile in the order the room's screen turned them.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .think-alike-revealed
+    --band: clamp(0.625rem, calc(var(--stage-unit) * 2.2), 1rem)
+
+    display: grid
+    gap: var(--space-s)
+
+    > .answer-card
+      align-content: start
+      align-items: stretch
+      background: linear-gradient(var(--spine-thinkalike) 0 var(--band), var(--card) var(--band))
+      display: grid
+      flex-wrap: nowrap
+      gap: var(--space-2xs)
+      padding: calc(var(--band) + var(--space-s)) var(--space-s) var(--space-s)
+
+    .title
+      @include typography.heading
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.4), var(--text-l))
+      margin: 0
+
+    // A pile in miniature: the top card with its count, and an edge under it per author.
+    .mini-pile
+      display: grid
+      flex: none
+      inline-size: 3.25rem
+
+      > .top
+        @include typography.score
+
+        align-items: center
+        background: var(--card)
+        border: var(--stroke-thin) solid var(--card-rule)
+        border-block-start: 0.25rem solid var(--spine-thinkalike)
+        border-radius: var(--radius-xs)
+        color: var(--card-ink)
+        display: flex
+        font-size: var(--text-m)
+        justify-content: center
+        min-block-size: 2rem
+
+        &[data-blank]
+          background: repeating-linear-gradient(var(--card) 0 0.3rem, var(--card-rule) 0.3rem 0.35rem)
+
+      > .edge
+        background: var(--card)
+        block-size: 0.25rem
+        border: 0.0625rem solid var(--card-rule)
+        border-block-start: 0
+        border-radius: 0 0 var(--radius-xs) var(--radius-xs)
+
+    .word
+      @include typography.card-name
+
+      color: var(--card-ink)
+      hyphens: auto
+      margin: 0
+      min-inline-size: 0
+      overflow-wrap: anywhere
+
+      &[data-blank]
+        color: var(--card-muted)
+
+    .pawns
+      display: flex
+      flex-wrap: wrap
+      font-size: var(--text-l)
+      gap: 0.1em
+      margin: 0
+
+    .pay
+      @include typography.score
+
+      color: var(--card-muted)
+      font-size: var(--text-l)
+      margin: 0
+
+      &[data-paid]
+        color: var(--card-ink)
+
+    // The seat's own pile, large.
+    > .yours
+      align-items: center
+      grid-template: 'title title' auto 'pile pay' auto 'pawns pawns' auto / minmax(0, 1fr) auto
+
+      > .title
+        grid-area: title
+
+      > .big-pile
+        align-items: center
+        display: flex
+        gap: var(--space-s)
+        grid-area: pile
+        min-inline-size: 0
+
+        > .mini-pile
+          inline-size: 5rem
+
+          > .top
+            font-size: var(--text-xl)
+            min-block-size: 3.25rem
+
+        > .word
+          font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 9), var(--text-3xl))
+
+      > .pay
+        --travel-scale: 1.4
+
+        animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--transition-slow, 0s) backwards
+        background: var(--card-well)
+        border-radius: var(--radius-full)
+        font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 8), var(--text-3xl))
+        grid-area: pay
+        padding: 0.1em 0.6em
+
+        &[data-paid]
+          background: var(--good-soft)
+          box-shadow: 0 0.125rem 0 var(--good-edge)
+          color: var(--tile-ink)
+
+      > .pawns
+        font-size: var(--text-xl)
+        grid-area: pawns
+
+    // Every pile, in the room screen's order, the seat's own framed.
+    > .every-pile > ol
+      display: grid
+      gap: var(--space-2xs)
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        --travel-offset: 0 0.5rem
+
+        align-items: center
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * var(--row-index) * 0.5) backwards
+        border-block-end: var(--stroke-thin) solid var(--card-rule)
+        border-radius: var(--radius-s)
+        column-gap: var(--space-s)
+        display: grid
+        grid-template: 'pile word pay' auto 'pile pawns pay' auto / auto minmax(0, 1fr) auto
+        padding: var(--space-2xs) var(--space-xs)
+
+        > .mini-pile
+          grid-area: pile
+
+        > .word
+          font-size: var(--text-l)
+          grid-area: word
+
+        > .pawns
+          grid-area: pawns
+
+        > .pay
+          grid-area: pay
+
+        &[data-yours]
+          outline: var(--stroke-bold) solid var(--card-ink)

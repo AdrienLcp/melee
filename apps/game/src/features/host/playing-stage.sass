@@ -495,6 +495,28 @@
         inline-size: min(100%, 36rem)
         min-block-size: 0
 
+    // The prompt on the card and the table the cards land on under it, the
+    // names still writing beside — or, for a seated console, its own card.
+    &[data-think-alike]
+      --spine: var(--spine-thinkalike)
+
+      > .round-card
+        flex: none
+        margin-block: 0
+
+        .think-alike-prompt
+          font-size: clamp(var(--text-xl), min(6cqi, 12cqh), 6rem)
+
+      > .think-alike-table
+        align-self: stretch
+        flex: 1 1 0
+
+      > .think-alike-answer
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 36rem)
+        min-block-size: 0
+
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
     &[data-black-square]

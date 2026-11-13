@@ -70,6 +70,8 @@ import {
   SlateWholeSheet
 } from '@/features/player/slate-sheet'
 import { SwatchRound } from '@/features/player/swatch-round'
+import { ThinkAlikeAnswer } from '@/features/player/think-alike-answer'
+import { ThinkAlikeRevealed } from '@/features/player/think-alike-revealed'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
@@ -99,6 +101,7 @@ import {
   sentOrderOf,
   swappedPairsOf,
   swatchContent,
+  thinkAlikeContent,
   timelineContent
 } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
@@ -765,6 +768,27 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    const thinkAlike = thinkAlikeContent(round)
+
+    if (thinkAlike !== null) {
+      return (
+        <section className='player-round think-alike-round'>
+          <div className='round-card'>
+            <p className='think-alike-prompt'>{thinkAlike.prompt}</p>
+            <RoundClock clock={clock} view={view} />
+          </div>
+          <ThinkAlikeAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            onLean={leanWithRound}
+            players={view.players}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
     const mostLikely = mostLikelyContent(round)
 
     if (mostLikely !== null) {
@@ -1357,6 +1381,16 @@ const Revealed: React.FC<{
 
   if (makeNumberContent(round)?.solution != null) {
     return <MakeNumberRevealed round={round} youId={view.youId} />
+  }
+
+  if (thinkAlikeContent(round)?.groups != null) {
+    return (
+      <ThinkAlikeRevealed
+        players={view.players}
+        round={round}
+        youId={view.youId}
+      />
+    )
   }
 
   const shades = swatchContent(round)

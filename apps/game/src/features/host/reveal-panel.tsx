@@ -26,6 +26,7 @@ import {
   reflexContent,
   revealedInOrder,
   swatchContent,
+  thinkAlikeContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
@@ -60,6 +61,7 @@ import { MakeNumberRanking } from './make-number-ranking'
 import { MakeNumberShortest } from './make-number-shortest'
 import { MysteryWordGrids } from './mystery-word-grids'
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
+import { ThinkAlikePiles } from './think-alike-piles'
 import { useFittedGrid } from './use-fitted-grid'
 import { useWholeChips } from './use-whole-chips'
 
@@ -306,6 +308,28 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           youId={youId}
         />
         <MakeNumberRanking players={players} round={round} youId={youId} />
+      </section>
+    )
+  }
+
+  const thinkAlike = thinkAlikeContent(round)
+
+  // The prompt over every answer the room wrote, lone cards first, then the
+  // piles turned over smallest to biggest: the piles are the podium, whole.
+  if (thinkAlike?.groups != null) {
+    return (
+      <section className='reveal-panel' data-game='thinkalike'>
+        <div className='head'>
+          <p className='think-alike-prompt'>{thinkAlike.prompt}</p>
+        </div>
+
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
+        <ThinkAlikePiles players={players} round={round} youId={youId} />
       </section>
     )
   }

@@ -1,0 +1,151 @@
+// Side-effect module: styles `.think-alike-table`, the cards laid face down as each seat sends, and the names still writing beside them.
+@use '../styles/typography'
+
+/// A card dropped onto the table from a little above and a little large,
+/// settling where its seat's place is.
+@keyframes think-alike-card-lands
+  from
+    opacity: 0
+    scale: 1.35
+
+@layer components
+  .think-alike-table
+    container-type: size
+    display: grid
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-xl))
+    grid-template: 'cloth writing' minmax(0, 1fr) / minmax(0, 1.9fr) minmax(0, 1fr)
+    min-block-size: 0
+
+    @container playing (aspect-ratio < 1)
+      grid-template: 'cloth' minmax(0, 1.6fr) 'writing' minmax(0, 1fr) / minmax(0, 1fr)
+
+    &[data-compact]
+      container-type: inline-size
+      grid-template: 'cloth' auto / minmax(0, 1fr)
+
+    > .cloth
+      background: var(--well)
+      border: var(--stroke-thin) solid var(--rule)
+      border-radius: var(--radius-l)
+      grid-area: cloth
+      min-block-size: 0
+      padding: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-l))
+      position: relative
+
+    &[data-compact] > .cloth
+      aspect-ratio: 16 / 9
+      inline-size: min(100%, 22rem)
+      justify-self: center
+
+    .places
+      block-size: 100%
+      display: grid
+      grid-template: repeat(var(--rows), minmax(0, 1fr)) / repeat(var(--columns), minmax(0, 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        container-type: size
+        display: grid
+        min-block-size: 0
+        place-items: center
+
+    // The card's back in the game's spine, a rule printed inside its edge,
+    // and its seat's pawn on a white disc at its middle.
+    .laid-card
+      animation: think-alike-card-lands var(--transition-slow, 0s) var(--ease-out) backwards
+      aspect-ratio: 3 / 2
+      background: var(--spine-thinkalike)
+      border-radius: var(--radius-s)
+      box-shadow: 0 0.1875rem 0 var(--spine-edge-thinkalike), var(--shadow-card)
+      display: grid
+      inline-size: min(84cqi, 118cqh)
+      outline: 0.0625rem solid var(--card-back-rule-thinkalike)
+      outline-offset: -0.35rem
+      place-items: center
+      rotate: var(--tilt)
+      translate: var(--stray-x) var(--stray-y)
+
+    .disc
+      align-items: center
+      aspect-ratio: 1
+      background: var(--on-spine)
+      block-size: 52%
+      border-radius: 50%
+      display: flex
+      justify-content: center
+
+      > .pawn
+        block-size: 64%
+        inline-size: auto
+
+    .laid-count
+      @include typography.score
+
+      bottom: var(--space-xs)
+      color: var(--ink)
+      font-size: clamp(var(--text-l), 9cqi, var(--text-2xl))
+      inset-inline-end: calc(var(--space-s) * -1 - 2.6em)
+      margin: 0
+      position: absolute
+
+      > .of
+        color: var(--ink-muted)
+        font-size: var(--text-em-xs)
+
+    > .writing
+      align-content: start
+      display: grid
+      gap: var(--space-xs)
+      grid-area: writing
+      min-block-size: 0
+
+    .waiting
+      @include typography.title
+
+      color: var(--ink)
+      font-size: clamp(var(--text-l), 4.2cqh, var(--text-3xl))
+      margin: 0
+
+    .writing > ul
+      column-gap: var(--space-xs)
+      columns: 2
+      list-style: none
+      margin: 0
+      padding: 0
+
+      // A name stays drawn and folds away as its seat's card lands.
+      > li
+        break-inside: avoid
+        display: grid
+        grid-template-rows: 1fr
+        opacity: 1
+        overflow: hidden
+        padding-block-end: var(--space-2xs)
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out), padding-block-end var(--transition-base, 0s) var(--ease-out)
+
+        &[data-sent]
+          grid-template-rows: 0fr
+          opacity: 0
+          padding-block-end: 0rem
+
+    .name-chip
+      @include typography.caption-strong
+
+      align-items: center
+      background: var(--card)
+      border-radius: var(--radius-s)
+      box-shadow: 0 0.125rem 0 var(--chipboard)
+      color: var(--card-ink)
+      display: flex
+      font-size: clamp(var(--text-xs), 2.6cqh, var(--text-m))
+      gap: var(--space-2xs)
+      min-block-size: 0
+      overflow: hidden
+      padding: 0.35em 0.6em
+
+      > .name
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap

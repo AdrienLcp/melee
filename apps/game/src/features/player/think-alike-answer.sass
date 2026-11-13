@@ -1,0 +1,128 @@
+// Side-effect module: styles `.think-alike-answer`, a seat's line written on a paper card and, once sent, that card laid face down over the table.
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/framed'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .think-alike-answer
+    align-content: start
+    display: grid
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+    min-block-size: 0
+
+    > form
+      display: grid
+      inline-size: 100%
+      gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+
+    // The field is the card: the seat's pawn in its corner, the spine's rule
+    // under it, the count of what is left, and the line written large.
+    .paper-card
+      @include piece.card
+
+      display: grid
+      gap: var(--space-2xs)
+      padding: var(--space-s) var(--space-m) var(--space-m)
+      transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+      // A tap draws no focus ring, so the card's own edge thickens to say *typing here*.
+      &:has(.react-aria-TextArea[data-focused])
+        box-shadow: 0 var(--edge) 0 var(--chipboard), var(--shadow-card), inset 0 0 0 var(--stroke-bold) var(--card-ink)
+
+    .card-head
+      align-items: center
+      border-block-end: var(--stroke-thin) solid var(--spine-thinkalike)
+      display: flex
+      font-size: var(--text-xl)
+      justify-content: space-between
+      padding-block-end: var(--space-2xs)
+
+    .length
+      @include typography.numeric
+
+      color: var(--card-muted)
+      font-size: var(--text-s)
+
+    .text-field
+      > label
+        @include accessibility.visually-hidden
+
+      .react-aria-TextArea,
+      .react-aria-TextArea[data-focused]
+        @include typography.billboard-wrapping
+
+        background: transparent
+        block-size: auto
+        border: 0
+        box-shadow: none
+        color: var(--card-ink)
+        field-sizing: content
+        font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 7.5), var(--text-3xl))
+        hyphens: auto
+        min-block-size: 2.4em
+        padding: var(--space-xs) 0
+        resize: none
+        user-select: text
+        width: 100%
+
+    // Sent: the card turned over and laid down a little askew, the seat's
+    // pawn on its back and its own line under it, over the table.
+    &[data-sent]
+      align-content: start
+      justify-items: center
+
+    .held-card
+      --travel-offset: 0 -2rem
+      --travel-scale: 1.15
+
+      align-content: center
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
+      aspect-ratio: 3 / 2
+      background: var(--spine-thinkalike)
+      border-radius: var(--radius-l)
+      box-shadow: 0 0.25rem 0 var(--spine-edge-thinkalike), var(--shadow-card)
+      display: grid
+      gap: var(--space-s)
+      inline-size: min(88%, 24rem)
+      justify-items: center
+      outline: var(--stroke-thin) solid var(--card-back-rule-thinkalike)
+      outline-offset: -0.6rem
+      padding: var(--space-m)
+      rotate: -3deg
+
+      > .disc
+        align-items: center
+        aspect-ratio: 1
+        background: var(--on-spine)
+        block-size: clamp(2.75rem, calc(var(--stage-unit) * 15), 4.5rem)
+        border-radius: 50%
+        display: flex
+        font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 8), var(--text-3xl))
+        justify-content: center
+
+      > .line
+        @include typography.billboard-wrapping
+
+        background: var(--card)
+        border-radius: var(--radius-s)
+        box-shadow: var(--shadow-card)
+        color: var(--card-ink)
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6.5), var(--text-2xl))
+        hyphens: auto
+        inline-size: 92%
+        margin: 0
+        overflow-wrap: anywhere
+        padding: var(--space-2xs) var(--space-s)
+        text-align: center
+
+    > .hint
+      @include accessibility.visually-hidden
+
+    > .think-alike-table
+      inline-size: 100%
+
+    @include framed.lying-down
+      &[data-sent]
+        align-items: center
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)

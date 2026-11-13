@@ -2376,15 +2376,32 @@ export const FR_DICTIONARY = defineDictionary({
     yours: 'Ton équipe'
   },
   thinkalike: {
+    answer: {
+      label: 'Ta réponse',
+      length: '{length:number}/{max:number}',
+      send: 'Envoyer',
+      sent: 'Ta carte est posée, face cachée.'
+    },
     home: {
       description:
         'Une consigne s’affiche sur tous les écrans — un fruit rouge, un truc qu’on trouve dans un frigo — et chacun écrit la première chose qui lui vient, une seule fois, avant la fin du temps. Personne ne voit un mot avant la révélation, qui retourne les réponses des plus seules jusqu’à la plus grande foule, et chaque réponse est payée selon le nombre des autres qui ont écrit la même.'
     },
     name: 'Pense comme la table',
     play: 'Jouer à Pense comme la table',
+    reveal: {
+      blank: 'Rien écrit',
+      crowd: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} carte', other: '{?} cartes' } }
+      }),
+      yours: 'Ta pile'
+    },
     scoring:
       'Ta réponse est payée selon le nombre des autres qui ont écrit la même : tous les autres, 100 points ; la moitié, 50 ; personne, rien.',
-    tagline: 'Écris ce que tout le monde écrira.'
+    table: defineTranslation('{count:plural} sur {total:number}', {
+      plural: { count: { one: '{?} carte posée', other: '{?} cartes posées' } }
+    }),
+    tagline: 'Écris ce que tout le monde écrira.',
+    waiting: 'On attend {count:number}'
   },
   timeline: {
     answer: {

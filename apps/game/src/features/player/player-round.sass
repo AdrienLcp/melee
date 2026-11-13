@@ -103,7 +103,7 @@
     gap: var(--space-s)
     padding: calc(var(--band) + clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))) clamp(var(--space-m), calc(var(--stage-unit) * 4.4), var(--space-l)) clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-l))
 
-    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac, swatch, mostlikely, estimate, higherlower, mysteryword, longestword, makenumber
+    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac, swatch, mostlikely, estimate, higherlower, mysteryword, longestword, makenumber, thinkalike
       &[data-game='#{$game}']
         --spine: var(--spine-#{$game})
 
@@ -1247,3 +1247,39 @@
     clip-path: inset(0rem var(--unfilled-from, 100%) 0rem 0rem)
   to
     clip-path: inset(0rem)
+
+@layer components
+  // The prompt large on the board with the round's sand over it, and the
+  // seat's card under it — or, once sent, laid face down over the table.
+  .player-round.think-alike-round
+    display: grid
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+    grid-template: 'card' auto 'form' minmax(0, 1fr) / minmax(0, 1fr)
+    min-height: 0
+
+    .round-card
+      display: grid
+      gap: var(--space-xs)
+      grid-area: card
+
+      > .round-progress
+        order: -1
+
+    .think-alike-prompt
+      @include typography.question-prompt
+
+      color: var(--ink)
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6.5), var(--text-3xl))
+      margin: 0
+      overflow-wrap: anywhere
+      text-wrap: balance
+
+    > .think-alike-answer
+      grid-area: form
+
+    @include framed.lying-down
+      column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+      grid-template: 'card form' minmax(0, 1fr) / minmax(0, 0.8fr) minmax(0, 1.2fr)
+
+      .round-card
+        align-content: center

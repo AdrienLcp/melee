@@ -210,7 +210,7 @@
     // the race as another. Neither divides its box by its rows, because a few
     // chips stretched to a full height were set at the top of an empty field
     // — save a ranking that folds its rows to the height it is handed.
-    > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'], [data-game='makenumber'])
+    > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'], [data-game='makenumber'], [data-game='thinkalike'])
       @include layout.wide
         align-content: center
         grid-template-rows: auto auto auto minmax(0, auto)
@@ -465,7 +465,7 @@
             // The guesses divide their box too, so the colour's panel is
             // handed a share of the height rather than what it would ask —
             // and so does every seat's calculation.
-            &:has(> .reveal-panel:is([data-game='swatch'], [data-game='makenumber']))
+            &:has(> .reveal-panel:is([data-game='swatch'], [data-game='makenumber'], [data-game='thinkalike']))
               grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 1fr) / minmax(0, 1fr)
 
               &.holding
@@ -586,7 +586,7 @@
 
             // The guesses divide what the colour leaves, so they are handed
             // as much of the height as the standings rather than two fifths.
-            > .reveal-panel:is([data-game='swatch'], [data-game='makenumber'])
+            > .reveal-panel:is([data-game='swatch'], [data-game='makenumber'], [data-game='thinkalike'])
               flex-grow: 3
               max-height: 52dvh
 

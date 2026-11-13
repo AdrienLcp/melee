@@ -1,0 +1,242 @@
+// Side-effect module: styles `.think-alike-piles`, the round's answers turned over on the room's screen — lone cards in a grid, then piles from smallest to biggest.
+@use '../../presentation/styles/typography'
+
+/// A card lying face down turned over on its long side, its face up.
+@keyframes think-alike-pile-turns
+  from
+    transform: rotateY(180deg)
+
+/// A card's edge or a flat card going from its back to its face as it turns.
+@keyframes think-alike-face-shows
+  from
+    background: var(--spine-thinkalike)
+
+@keyframes think-alike-pawn-shows
+  from
+    opacity: 0
+
+@layer components
+  .think-alike-piles
+    // When each card turns: the lone ones together once the piles have
+    // gathered, then each pile a beat after the one before it.
+    --turn: 0
+    --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
+    --edge: min(1.5rem, calc(46cqh / var(--most-authors)))
+
+    align-items: end
+    column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-l))
+    container: think-alike-piles / size
+    display: grid
+    grid-template-columns: var(--columns-template)
+    grid-template-rows: minmax(0, 1fr) auto minmax(0, auto)
+    min-block-size: 0
+
+    .authors
+      @include typography.caption-strong
+
+      color: var(--ink)
+      column-gap: var(--space-s)
+      columns: 9rem
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.9), var(--text-m))
+      list-style: none
+      margin: 0
+      max-block-size: 30cqh
+      overflow: hidden
+      padding: 0
+
+      > li
+        align-items: start
+        break-inside: avoid
+        display: flex
+        gap: 0.35em
+        min-inline-size: 0
+        padding-block: 0.12em
+
+      .name
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+        display: -webkit-box
+        hyphens: auto
+        min-inline-size: 0
+        overflow: hidden
+        overflow-wrap: anywhere
+
+    // The blank seats and the lone answers: small flat cards, turned over
+    // together before the first pile.
+    > .lone
+      align-content: end
+      display: grid
+      gap: var(--space-xs) var(--space-s)
+      grid-row: 1 / -1
+      grid-template-columns: repeat(var(--lone-columns), minmax(5.5rem, 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+    // Lone answers alone, with no pile beside them: as many columns as the box holds.
+    &:not(:has(> .pile)) > .lone
+      align-content: center
+      grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr))
+
+    .lone-card
+      --travel-offset: 0 1.5rem
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
+      display: grid
+      gap: var(--space-2xs)
+      min-inline-size: 0
+
+      > .face
+        animation: think-alike-face-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
+        background: var(--card)
+        border-block-start: var(--stroke-thin) solid var(--spine-thinkalike)
+        border-radius: var(--radius-s)
+        box-shadow: 0 0.125rem 0 var(--chipboard)
+        display: grid
+        min-block-size: 2.4em
+        padding: 0.3em 0.5em
+        place-items: center
+
+      .word
+        @include typography.card-name
+
+        animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
+        color: var(--card-ink)
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.3), var(--text-xl))
+        hyphens: auto
+        overflow-wrap: anywhere
+        text-align: center
+
+      &[data-blank] .face
+        background: repeating-linear-gradient(var(--card) 0 0.4rem, var(--card-rule) 0.4rem 0.45rem)
+
+      &[data-yours] .face
+        outline: var(--stroke-bold) solid var(--ink)
+
+      > .authors
+        columns: auto
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.7), var(--text-s))
+
+    // A pile: gathered face down, then turned over — its top card's word
+    // large, a card edge under it for each author with that author's pawn,
+    // what each was paid and who they are.
+    > .pile
+      --travel-offset: 0 3rem
+      // Declared again here, where `--turn` is the pile's own: a custom property resolves where it is declared.
+      --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * var(--turn) * 0.6) backwards
+      display: grid
+      grid-row: 1 / -1
+      grid-template-rows: subgrid
+      justify-items: center
+      min-inline-size: 0
+      row-gap: var(--space-xs)
+
+    .stack
+      align-self: stretch
+      block-size: 100%
+      container-type: size
+      display: flex
+      flex-direction: column
+      inline-size: 100%
+      justify-content: end
+
+    .top
+      animation: think-alike-pile-turns var(--transition-slow, 0s) var(--ease-out) var(--turn-at) backwards
+      block-size: min(max(70cqi, 3.5rem), calc(100cqh - var(--authors) * var(--edge)))
+      display: grid
+      flex: none
+      perspective: 60rem
+      transform-style: preserve-3d
+
+      > *
+        backface-visibility: hidden
+        border-radius: var(--radius-m)
+        grid-area: 1 / 1
+
+    .back
+      background: var(--spine-thinkalike)
+      outline: var(--stroke-thin) solid var(--card-back-rule-thinkalike)
+      outline-offset: -0.5rem
+      transform: rotateY(180deg)
+
+    .front
+      align-content: start
+      background: var(--card)
+      border-block-start: 0.4rem solid var(--spine-thinkalike)
+      box-shadow: var(--shadow-card)
+      display: grid
+      grid-template-rows: auto minmax(0, 1fr)
+      min-block-size: 0
+      overflow: hidden
+      padding: var(--space-2xs) var(--space-xs)
+
+    .count
+      @include typography.score
+
+      color: var(--spine-thinkalike)
+      font-size: clamp(var(--text-s), 9cqi, var(--text-2xl))
+
+    .word
+      @include typography.billboard-revealed
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-s), min(24cqi, calc(150cqi / var(--letters)), 30cqh), 7rem)
+      hyphenate-limit-chars: 6 3 3
+      align-self: center
+      hyphens: auto
+      margin: 0
+      overflow-wrap: anywhere
+      text-align: center
+
+    [data-yours] .front
+      outline: var(--stroke-bold) solid var(--ink)
+      outline-offset: 0.2rem
+
+    .edges
+      display: grid
+      flex: none
+      grid-auto-rows: var(--edge)
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        align-items: center
+        animation: think-alike-face-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
+        background: var(--card)
+        border-block-end: 0.0625rem solid var(--card-rule)
+        border-radius: 0 0 var(--radius-xs) var(--radius-xs)
+        box-shadow: 0 0.0625rem 0 var(--chipboard)
+        display: flex
+        font-size: calc(var(--edge) * 0.8)
+        margin-inline: 0.2rem
+        padding-inline: 0.4rem
+
+        > .pawn
+          animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
+
+    .pay
+      @include typography.score
+
+      --travel-scale: 1.4
+
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
+      background: var(--well)
+      border-radius: var(--radius-full)
+      color: var(--ink)
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3.6), var(--text-3xl))
+      margin: 0
+      padding: 0.1em 0.6em
+
+      &[data-paid]
+        background: var(--good-soft)
+        box-shadow: 0 0.125rem 0 var(--good-edge)
+        color: var(--tile-ink)
+
+    .pile > .authors
+      --travel-offset: 0 0.5rem
+
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
+      justify-self: stretch

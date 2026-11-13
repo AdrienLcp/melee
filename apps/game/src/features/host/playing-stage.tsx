@@ -27,6 +27,7 @@ import { MysteryWordAnswer } from '@/features/player/mystery-word-answer'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { RoundQuestion } from '@/features/player/round-question'
 import { SwatchRound } from '@/features/player/swatch-round'
+import { ThinkAlikeAnswer } from '@/features/player/think-alike-answer'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   atlasContent,
@@ -39,6 +40,7 @@ import {
   mostLikelyContent,
   mysteryWordContent,
   swatchContent,
+  thinkAlikeContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
@@ -51,6 +53,7 @@ import { MarkLegend } from '@/presentation/components/mark-legend'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { NumberTile } from '@/presentation/components/number-tile'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { ThinkAlikeTable } from '@/presentation/components/think-alike-table'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { usePairAsks } from '@/presentation/components/use-pair-asks'
 import { useShownColour } from '@/presentation/components/use-shown-colour'
@@ -130,6 +133,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mysteryWord = mysteryWordContent(round)
   const longestWord = longestWordContent(round)
   const makeNumber = makeNumberContent(round)
+  const thinkAlike = thinkAlikeContent(round)
   const shownColour = useShownColour({ clock, round })
   const closesInMs = currentDeadline({ clock, view })?.remainingMs ?? null
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
@@ -236,6 +240,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             </span>
           </p>
         )
+      ) : thinkAlike !== null ? (
+        <p className='now think-alike-prompt'>{thinkAlike.prompt}</p>
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -323,6 +329,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           : shownColour === null && onAnswer !== null
             ? 'answering'
             : 'shown'
+      }
+      data-think-alike={
+        thinkAlike === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
       }
       data-timeline={
         timeline === null
@@ -482,6 +495,19 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             round={round}
           />
         ))}
+      {thinkAlike !== null &&
+        (onAnswer === null ? (
+          <ThinkAlikeTable players={view.players} round={round} />
+        ) : (
+          <ThinkAlikeAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            onLean={onLean}
+            players={view.players}
+            round={round}
+            youId={answersAs}
+          />
+        ))}
       {mostLikely !== null && onAnswer !== null && (
         <MostLikelyBallot
           key={round.id}
@@ -520,6 +546,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         mysteryWord === null &&
         longestWord === null &&
         makeNumber === null &&
+        thinkAlike === null &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />
         ) : (

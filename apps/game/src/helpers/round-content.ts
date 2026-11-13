@@ -94,6 +94,11 @@ export const makeNumberContent = (
 ): Extract<RoundContent, { kind: 'makenumber' }> | null =>
   round?.content.kind === 'makenumber' ? round.content : null
 
+export const thinkAlikeContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'thinkalike' }> | null =>
+  round?.content.kind === 'thinkalike' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>
