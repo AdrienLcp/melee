@@ -808,6 +808,7 @@ export const EN_DICTIONARY = defineDictionary({
       colour: 'Rebuild the colour',
       label: 'How to answer',
       letters: 'Make the longest word',
+      match: 'Think like the table',
       move: 'Move the match',
       number: 'Type a number',
       order: 'Put them in order',
@@ -2534,6 +2535,17 @@ export const EN_DICTIONARY = defineDictionary({
       drawn: 'Waiting for the draw'
     },
     yours: 'Your team'
+  },
+  thinkalike: {
+    home: {
+      description:
+        'A prompt goes up on every screen — a red fruit, something you find in a fridge — and everyone writes the first thing that comes to mind, once, before the clock runs out. Nobody sees a word until the reveal turns the answers over, from the lone ones up to the biggest crowd, and each answer is paid by how many of the others wrote it too.'
+    },
+    name: 'Great minds',
+    play: 'Play Great minds',
+    scoring:
+      'Your answer is paid by how many of the others wrote it too: all of them score 100 points, half of them 50, nobody nothing.',
+    tagline: 'Write what everyone else will.'
   },
   timeline: {
     answer: {

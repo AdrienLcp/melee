@@ -19,6 +19,7 @@ import { sheetPoints as petitBacSheetPoints } from '../petitbac/sheet-pay'
 import { answerGroupKey } from '../round/answer-groups'
 import { sheetPoints as slateSheetPoints } from '../slate/sheet-marking'
 import { pointsForColour } from '../swatch/colour-pay'
+import { pointsForMatch } from '../thinkalike/crowd-pay'
 import { pointsForOrder } from '../timeline/order-pay'
 import { clockedPay } from './speed-bonus'
 import { pointsFor } from './verdict'
@@ -73,6 +74,7 @@ const BEST_ROUND = {
       sheet: new Map(Array.from({ length: 60 }, (_, index) => [index, 'sel']))
     }),
   swatch: () => pointsForColour({ distance: 0 }),
+  thinkalike: () => pointsForMatch({ matched: 7, others: 7 }),
   timeline: () => pointsForOrder({ swappedPairs: 0 })
 } as const satisfies Record<GameKind, () => number>
 

@@ -763,6 +763,7 @@ export const FR_DICTIONARY = defineDictionary({
       colour: 'On refait la couleur',
       label: 'Comment on répond',
       letters: 'On fait le mot le plus long',
+      match: 'On pense comme la table',
       move: 'On déplace l’allumette',
       number: 'On tape un nombre',
       order: 'Dans l’ordre',
@@ -2373,6 +2374,17 @@ export const FR_DICTIONARY = defineDictionary({
       drawn: 'En attente du tirage'
     },
     yours: 'Ton équipe'
+  },
+  thinkalike: {
+    home: {
+      description:
+        'Une consigne s’affiche sur tous les écrans — un fruit rouge, un truc qu’on trouve dans un frigo — et chacun écrit la première chose qui lui vient, une seule fois, avant la fin du temps. Personne ne voit un mot avant la révélation, qui retourne les réponses des plus seules jusqu’à la plus grande foule, et chaque réponse est payée selon le nombre des autres qui ont écrit la même.'
+    },
+    name: 'Pense comme la table',
+    play: 'Jouer à Pense comme la table',
+    scoring:
+      'Ta réponse est payée selon le nombre des autres qui ont écrit la même : tous les autres, 100 points ; la moitié, 50 ; personne, rien.',
+    tagline: 'Écris ce que tout le monde écrira.'
   },
   timeline: {
     answer: {

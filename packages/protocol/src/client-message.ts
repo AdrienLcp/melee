@@ -48,6 +48,7 @@ import {
   teamNameSchema,
   teamVerdictSchema
 } from './team'
+import { thinkAlikeAnswerSchema } from './think-alike'
 import { timelineOrderSchema } from './timeline'
 
 /**
@@ -165,6 +166,15 @@ const calculationAnswerSchema = z.object({
   steps: calculationSchema
 })
 
+const matchAnswerSchema = z.object({
+  /**
+   * The first thing that came to mind, sent once: a second try would be
+   * thinking, which is the opposite game.
+   */
+  answer: thinkAlikeAnswerSchema,
+  kind: z.literal('match')
+})
+
 /**
  * The other two modes' answer, and it carries no timestamp for the same reason
  * `player.buzz` does not: the server stamps arrival, because the speed bonus is
@@ -227,7 +237,8 @@ export const answerMessageSchema = z.object({
       kind: z.literal('word')
     }),
     lettersAnswerSchema,
-    calculationAnswerSchema
+    calculationAnswerSchema,
+    matchAnswerSchema
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')
@@ -249,11 +260,15 @@ export const answerMessageSchema = z.object({
  * lean, and is refused nothing, since nothing was sent. So is a make-the-
  * number rack: the calculation of its made tile nearest the target counts at
  * the close like a sent one, and replaces what the seat sent only when nearer.
+ * A think-alike line still in its field is sent for the seat as the clock runs
+ * out: the first thing that came to mind is the game, whether or not the send
+ * was pressed.
  */
 export const leanAnswerSchema = z.discriminatedUnion('kind', [
   calculationAnswerSchema,
   colourAnswerSchema,
   lettersAnswerSchema,
+  matchAnswerSchema,
   orderAnswerSchema,
   pointAnswerSchema
 ])
@@ -450,6 +465,26 @@ export const strikePetitBacRowMessageSchema = z.object({
   roundId: roundIdSchema,
   rowKey: z.string().min(1),
   type: z.literal('host.strikeRow')
+})
+
+/**
+ * The console putting one think-alike group into another at the reveal —
+ * _fridge_ into _refrigerator_ — by their crowd keys, and the round is paid
+ * again on the spot. Refused into a group that is itself merged, so taking a
+ * merge back out is always one press.
+ */
+export const mergeThinkAlikeGroupsMessageSchema = z.object({
+  from: z.string().min(1),
+  into: z.string().min(1),
+  roundId: roundIdSchema,
+  type: z.literal('host.mergeGroups')
+})
+
+/** The console taking a merged think-alike group back out, by its own crowd key, and the round paid again. */
+export const splitThinkAlikeGroupMessageSchema = z.object({
+  key: z.string().min(1),
+  roundId: roundIdSchema,
+  type: z.literal('host.splitGroup')
 })
 
 /**
@@ -798,6 +833,8 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
   strikePetitBacRowMessageSchema,
+  mergeThinkAlikeGroupsMessageSchema,
+  splitThinkAlikeGroupMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   recolourTeamMessageSchema,
@@ -887,6 +924,8 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
   strikePetitBacRowMessageSchema,
+  mergeThinkAlikeGroupsMessageSchema,
+  splitThinkAlikeGroupMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   recolourTeamMessageSchema,
@@ -944,6 +983,8 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.nextCategory',
   'host.cancelStop',
   'host.strikeRow',
+  'host.mergeGroups',
+  'host.splitGroup',
   'host.drawTeams',
   'host.renameTeam',
   'host.recolourTeam',

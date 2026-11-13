@@ -229,6 +229,18 @@ export const calculationVerdictSchema = z.object({
   value: calculationValueSchema
 })
 
+/**
+ * A think-alike seat's answer against the room: how many of the other seats
+ * the round opened on wrote it, and how many others there were. Measured at
+ * the close, with every answer in, and again whenever the console merges.
+ * `@melee/core/thinkalike/crowd-pay` prices it.
+ */
+export const matchVerdictSchema = z.object({
+  kind: z.literal('match'),
+  matched: z.number().int().nonnegative(),
+  others: z.number().int().nonnegative()
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -242,7 +254,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   placeVerdictSchema,
   wordVerdictSchema,
   lettersVerdictSchema,
-  calculationVerdictSchema
+  calculationVerdictSchema,
+  matchVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -280,4 +293,5 @@ export type PlaceVerdict = z.infer<typeof placeVerdictSchema>
 export type WordVerdict = z.infer<typeof wordVerdictSchema>
 export type LettersVerdict = z.infer<typeof lettersVerdictSchema>
 export type CalculationVerdict = z.infer<typeof calculationVerdictSchema>
+export type MatchVerdict = z.infer<typeof matchVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

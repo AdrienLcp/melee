@@ -68,6 +68,9 @@ const CALCULATION_ONLY = [
   'calculation'
 ] as const satisfies readonly AnswerMode[]
 
+/** Think alike is answered by one line sent once, which the server groups with the room's at the close. */
+const MATCH_ONLY = ['match'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -289,6 +292,18 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         paysTheClock: true,
         playsAloud: false,
         playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // Two seats thinking alike is a coin with one side: both paid in full or
+    // neither. The crowd's answer is no quicker than a lone one, so the clock
+    // pays nothing.
+    case 'thinkalike':
+      return {
+        answerModes: MATCH_ONLY,
+        makesSound: false,
+        paysTheClock: false,
+        playsAloud: false,
+        playsDuels: false,
         servesItsOwnContent: true
       }
   }

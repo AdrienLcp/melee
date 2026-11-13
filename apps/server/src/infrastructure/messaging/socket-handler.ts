@@ -105,6 +105,11 @@ import {
   showSlateItem,
   writeSlateLine
 } from '@/domain/round/slate-round'
+import {
+  mergeThinkAlikeGroups,
+  splitThinkAlikeGroup,
+  type ThinkAlikeRejection
+} from '@/domain/round/think-alike-round'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newDeckId, newPlayerId } from '@/infrastructure/ids'
@@ -621,6 +626,35 @@ const dispatch = ({
       })
       break
     }
+    case 'host.mergeGroups': {
+      answerThinkAlikeFrame({
+        engine,
+        outbound,
+        refusal: 'Those answers cannot be merged now',
+        result: mergeThinkAlikeGroups({
+          from: message.from,
+          into: message.into,
+          now,
+          room,
+          roundId: message.roundId
+        })
+      })
+      break
+    }
+    case 'host.splitGroup': {
+      answerThinkAlikeFrame({
+        engine,
+        outbound,
+        refusal: 'That answer cannot be taken back out now',
+        result: splitThinkAlikeGroup({
+          key: message.key,
+          now,
+          room,
+          roundId: message.roundId
+        })
+      })
+      break
+    }
     case 'host.cancelStop': {
       answerPetitBacFrame({
         engine,
@@ -969,6 +1003,30 @@ const answerPetitBacFrame = ({
   outbound: Outbound
   refusal: string
   result: Result<void, PetitBacRejection>
+}): void => {
+  if (result.status === 'failure') {
+    sendError(outbound, {
+      code: result.error,
+      fatal: false,
+      message: refusal
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const answerThinkAlikeFrame = ({
+  engine,
+  outbound,
+  refusal,
+  result
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  refusal: string
+  result: Result<void, ThinkAlikeRejection>
 }): void => {
   if (result.status === 'failure') {
     sendError(outbound, {

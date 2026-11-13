@@ -67,6 +67,7 @@ import {
 } from '@/domain/round/round-service'
 import { slateContent } from '@/domain/round/slate-round'
 import { swatchContent } from '@/domain/round/swatch-round'
+import { thinkAlikeContent } from '@/domain/round/think-alike-round'
 import { timelineContent } from '@/domain/round/timeline-round'
 import {
   discardPoolIfStale,
@@ -106,6 +107,10 @@ import {
   drawQuestion,
   hostQuestionOf
 } from '@/infrastructure/questions/question-bank'
+import {
+  drawThinkAlikePrompt,
+  playedThinkAlikePromptId
+} from '@/infrastructure/questions/think-alike-bank'
 import {
   drawTimelineEvents,
   playedTimelineEventId
@@ -666,6 +671,37 @@ export const beginRound = async (
 
     openRound({
       content: mostLikelyContent(line.labels),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'thinkalike') {
+    const drawn = drawThinkAlikePrompt({
+      language: game.language,
+      playedIds: room.playedContentIds
+    })
+
+    if (drawn === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'The think-alike bank is empty'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedThinkAlikePromptId(drawn.id))
+
+    openRound({
+      content: thinkAlikeContent(drawn.prompt),
       id: newRoundId(),
       now: engine.now(),
       room,

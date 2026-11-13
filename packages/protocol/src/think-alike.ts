@@ -15,8 +15,11 @@ export const thinkAlikePromptSchema = z
 /** One word, or a name of a few: *fraise*, *Tour Eiffel*. */
 export const THINK_ALIKE_ANSWER_MAX_LENGTH = 40
 
+/** Sent once and never blank: a seat with nothing to say lets the clock run out. */
 export const thinkAlikeAnswerSchema = z
   .string()
+  .trim()
+  .min(1)
   .max(THINK_ALIKE_ANSWER_MAX_LENGTH)
 
 /**

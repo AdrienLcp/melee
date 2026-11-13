@@ -19,6 +19,7 @@ import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { pointsForWord } from '../mysteryword/word-pay'
 import { isFirstPlace, pointsForPlace } from '../reflex/place-pay'
 import { isExactColour, pointsForColour } from '../swatch/colour-pay'
+import { isWholeTable, pointsForMatch } from '../thinkalike/crowd-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
 
 /**
@@ -107,6 +108,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForCalculation(verdict)
   }
 
+  if (verdict.kind === 'match') {
+    return pointsForMatch(verdict)
+  }
+
   return pointsForHalves(verdict)
 }
 
@@ -146,6 +151,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isLongestInDraw(verdict)
     case 'calculation':
       return isExactHit(verdict)
+    case 'match':
+      return isWholeTable(verdict)
   }
 }
 
@@ -164,11 +171,13 @@ export const isFinal = (verdict: Verdict): boolean =>
  * rather than the best-read player. A colour fades as it waits, so a slow one
  * already pays itself less, and a bonus would pay rushing one nobody looked at.
  * An estimate is not a reflex either: rushing one is guessing. A reflex place
- * is the speed already, paid by its podium.
+ * is the speed already, paid by its podium. A crowd's answer is no quicker
+ * than a lone one, so a bonus on a match would pay the quickest typist.
  */
 export const isPaidForSpeed = (verdict: Verdict): boolean =>
   verdict.kind !== 'cells' &&
   verdict.kind !== 'colour' &&
+  verdict.kind !== 'match' &&
   verdict.kind !== 'number' &&
   verdict.kind !== 'place'
 

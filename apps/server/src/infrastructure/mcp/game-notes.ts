@@ -41,6 +41,8 @@ export const GAME_NOTES = {
     'A private answer sheet on every screen that the host marks on the wall, one item at a time; the host prepares the items.',
   swatch:
     'Shows a colour for a few seconds and has every screen rebuild it, paid by how far off it lands.',
+  thinkalike:
+    'Puts up a prompt — a red fruit, something you find in a fridge — that every player answers with one word on their own screen; each is paid by how many of the others wrote the same, and the host may merge two answers the table calls one.',
   timeline:
     'Deals five dated events that every player puts in order on their own screen; the years are held back until the reveal.'
 } as const satisfies Record<GameKind, string>
@@ -78,5 +80,7 @@ export const SETTING_NOTES = {
     '`labels` names the sheet’s items, by index — public on every screen, 12 characters at most, unique, null for a plain number. `itemCount` is how many items a sheet opens with, not a cap: the host adds more during the round.',
   swatch:
     '`showMs` is how long the colour stays up; `roundDurationMs` is the time to rebuild it once it has hidden, the showing not counted.',
+  thinkalike:
+    '`language` is the wording every prompt is dealt in, whatever each screen speaks: the table matches words, so it writes in one language.',
   timeline: null
 } as const satisfies Record<GameKind, string | null>

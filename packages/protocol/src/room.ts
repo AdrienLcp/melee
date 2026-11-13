@@ -110,6 +110,11 @@ import {
   teamScoringSchema,
   teamsSettingsSchema
 } from './team'
+import {
+  thinkAlikeAnswerSchema,
+  thinkAlikeGroupSchema,
+  thinkAlikePromptSchema
+} from './think-alike'
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
 import { hostTrackSchema, trackIdentitySchema } from './track'
 
@@ -140,7 +145,8 @@ export const answerModes = [
   'pairs',
   'word',
   'letters',
-  'calculation'
+  'calculation',
+  'match'
 ] as const
 
 /**
@@ -202,7 +208,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('pairs') }),
   z.object({ kind: z.literal('word') }),
   z.object({ kind: z.literal('letters') }),
-  z.object({ kind: z.literal('calculation') })
+  z.object({ kind: z.literal('calculation') }),
+  z.object({ kind: z.literal('match') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -406,6 +413,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   choice: { kind: 'choice' },
   colour: { kind: 'colour' },
   letters: { kind: 'letters' },
+  match: { kind: 'match' },
   move: { kind: 'move' },
   number: { kind: 'number' },
   order: { kind: 'order' },
@@ -892,6 +900,19 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * the one paid.
      */
     yourCalculations: z.array(calculationSchema).nullable()
+  }),
+  z.object({
+    /**
+     * Every answer the room wrote, grouped, smallest first, and `null` until
+     * the reveal — to the console and the wall too: a word seen while the
+     * field is open is a crowd to follow.
+     */
+    groups: z.array(thinkAlikeGroupSchema).nullable(),
+    kind: z.literal('thinkalike'),
+    /** The line to complete. Not the answer: every screen shows it. */
+    prompt: thinkAlikePromptSchema,
+    /** The reader's own answer once sent, and `null` before or without a seat. What a reload comes back to. */
+    yourAnswer: thinkAlikeAnswerSchema.nullable()
   })
 ])
 
@@ -1204,7 +1225,9 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('makenumber'),
     solution: calculationSchema.nullable()
-  })
+  }),
+  /** Nothing withheld, and nothing more: no answer exists before the room writes one. */
+  z.object({ kind: z.literal('thinkalike') })
 ])
 
 /**
@@ -1318,7 +1341,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('higherlower') }),
   z.object({ kind: z.literal('mysteryword') }),
   z.object({ kind: z.literal('longestword') }),
-  z.object({ kind: z.literal('makenumber') })
+  z.object({ kind: z.literal('makenumber') }),
+  z.object({ kind: z.literal('thinkalike') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

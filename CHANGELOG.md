@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Server]` **Pense comme la table is served, reachable by a settings
+  frame.** `thinkalike` joins the games the server deals, not the shelf: a
+  prompt from the bank in the room's language, one line a seat sent once
+  within a 10 to 60 second clock (20 by default), the round closing as the
+  last seat sends and a line left in the field sent for it. A seat is paid by
+  how many of the others wrote the same — case, accents, a leading article and
+  a plural folded — with no speed. Nobody reads another seat's line before the
+  close; the reveal puts every answer up grouped, smallest first, and the
+  console can merge two groups and take one back out, the round paid again on
+  the spot. Screens owed.
 - `[Game]` **Le compte est bon is on the shelf, played from every seat.**
   The target stands at the top and the six tiles at the bottom: a tile pressed
   is lifted, an operator chosen, and a second tile pressed takes the result —

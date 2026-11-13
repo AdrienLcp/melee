@@ -387,6 +387,11 @@ const settingsOf = ({
       ]
     case 'makenumber':
       return [secondsOf({ ms: entry.roundDurationMs, translate })]
+    case 'thinkalike':
+      return [
+        LANGUAGE_NAMES[entry.language],
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
   }
 }
 

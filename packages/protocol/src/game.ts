@@ -21,6 +21,10 @@ import {
 import { questionDrawSettingsSchema, questionLanguageSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { swatchShowMsSchema } from './swatch'
+import {
+  MAX_THINK_ALIKE_ROUND_MS,
+  MIN_THINK_ALIKE_ROUND_MS
+} from './think-alike'
 import { EVERY_STRAND, trackDifficultySchema, trackSourceSchema } from './track'
 
 export const gameKinds = [
@@ -42,7 +46,8 @@ export const gameKinds = [
   'higherlower',
   'mysteryword',
   'longestword',
-  'makenumber'
+  'makenumber',
+  'thinkalike'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -277,6 +282,17 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('makenumber'),
     /** How long the tiles stay open; the round closes early once every seat holds an exact hit. */
     roundDurationMs: z.number().int().min(30_000).max(120_000)
+  }),
+  z.object({
+    kind: z.literal('thinkalike'),
+    /** The wording every prompt is dealt in: a table matches words, so every seat writes in one language whatever its screen speaks. */
+    language: questionLanguageSchema,
+    /** How long the field stays open; the round closes early once every seat has sent. */
+    roundDurationMs: z
+      .number()
+      .int()
+      .min(MIN_THINK_ALIKE_ROUND_MS)
+      .max(MAX_THINK_ALIKE_ROUND_MS)
   })
 ])
 
@@ -302,6 +318,7 @@ export type HigherLowerSettings = Extract<GameSettings, { kind: 'higherlower' }>
 export type MysteryWordSettings = Extract<GameSettings, { kind: 'mysteryword' }>
 export type LongestWordSettings = Extract<GameSettings, { kind: 'longestword' }>
 export type MakeNumberSettings = Extract<GameSettings, { kind: 'makenumber' }>
+export type ThinkAlikeSettings = Extract<GameSettings, { kind: 'thinkalike' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -468,6 +485,13 @@ export const DEFAULT_MAKE_NUMBER_SETTINGS: MakeNumberSettings = {
   roundDurationMs: 60_000
 }
 
+/** Twenty seconds: the first word that comes to mind is the game, and a long clock lets a table out-think itself. */
+export const DEFAULT_THINK_ALIKE_SETTINGS: ThinkAlikeSettings = {
+  kind: 'thinkalike',
+  language: 'fr',
+  roundDurationMs: 20_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -488,5 +512,6 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,
   swatch: DEFAULT_SWATCH_SETTINGS,
+  thinkalike: DEFAULT_THINK_ALIKE_SETTINGS,
   timeline: DEFAULT_TIMELINE_SETTINGS
 }

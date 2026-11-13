@@ -51,6 +51,7 @@ export type PlayerAnswer =
   | { guess: string; kind: 'word' }
   | { guess: string; kind: 'letters' }
   | { kind: 'calculation'; steps: Calculation }
+  | { answer: string; kind: 'match' }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A
@@ -93,6 +94,7 @@ export const candidatesIn = ({
     case 'mostlikely':
     case 'longestword':
     case 'makenumber':
+    case 'thinkalike':
     case 'mysteryword':
     case 'petitbac':
     case 'reflex':

@@ -1,37 +1,37 @@
-# New game — Pense comme la table, step 2: the server
+# New game — Pense comme la table, step 3: the screens
 
 Asked by Adrien on 2026-11-12 (one of three new games, with
 `games-03-five-clues.md`). Every choice is weighed by what is more fun at the
 table, never by what it costs to build.
 
-**Step 1 landed 13/11/2026**: the plan
+**Steps 1 and 2 landed 13/11/2026**: the plan
 [`docs/plans/70-think-alike.md`](../docs/plans/70-think-alike.md) holds every
-rule as settled — read it first, it answers the questions this handoff used to
-leave open (the same answer, the host's merge at the reveal, the pay, no
-speed). On `main`: `packages/protocol/src/think-alike.ts`,
-`packages/core/src/thinkalike/` (`crowdKey`, `crowdGroups`, `matchesOf`,
-`pointsForMatch`, `isWholeTable`) and
-`apps/server/src/infrastructure/questions/think-alike-bank.{json,ts}` (187
-prompts, `drawThinkAlikePrompt({ language, playedIds })`).
+rule as settled and what step 2 decided beyond it — read it first. The server
+deals the game end to end, reachable by a settings frame and not on the shelf:
+`apps/server/src/domain/round/think-alike-round.ts`, the `match` mode, the
+attempt `{ kind: 'match', answer }` and the lean of the same shape,
+`host.mergeGroups` / `host.splitGroup`, and `think-alike-game.test.ts`. The
+app only compiles: dictionary keys, an icon and the `switch` arms, no screen.
 
-## This session: step 2 of the plan
+## This session: step 3 of the plan
 
-Serve the game end to end, reachable by a settings frame, not on the shelf.
-The template is Make the number's serve commit — `git show --stat 79124e0c`
-lists every file a new kind touches — and the closest round to copy is the
-estimate (`payEstimates`, one answer a seat priced at the close), with
-Petit Bac's `host.strikeRow` as the model for a console action that re-pays a
-revealed round.
+Start with the `impeccable` skill, and give Adrien each direction as a whole
+example page behind one index link before building. The template is Make the
+number's screens (the commits after `79124e0c` that touch `apps/game/src/features`), the
+closest round to copy is the estimate's (one answer a seat, priced at the
+close), and Petit Bac's strike is the console action that re-pays a revealed
+round.
 
-1. `thinkalike` in `gameKinds` (not `shelvedGames`), its settings arm
-   (`language`, `roundDurationMs` 10–60 s, 20 s default), ten rounds, the
-   `match` mode, attempt `{ kind: 'match', answer }` and verdict
-   `{ kind: 'match', matched, others }` — `tsc` on the three packages lists
-   every `Record` left to fill.
-2. `apps/server/src/domain/round/think-alike-round.ts`, the deal in
-   `round-conductor.ts`, the views in `room-view.ts` (own answer, who has
-   sent, `groups` at the reveal), `host.mergeGroups` / `host.splitGroup`.
-3. `apps/server/src/__tests__/think-alike-game.test.ts` as the plan lists it.
-4. Update the plan's step 2 with what it settled, the realtime protocol doc,
-   the changelog; then write the handoff for step 3 (the screens, which start
-   with the `impeccable` skill).
+1. **A seat**: the prompt large, one field (`THINK_ALIKE_ANSWER_MAX_LENGTH`),
+   _send_, then its line held while the others write; the field's draft sent
+   as a `player.lean` as it changes, so the clock running out sends it.
+2. **The wall**: the prompt, the clock, a mark per seat that has sent — never
+   a word.
+3. **The reveal**: `groups` turned over one by one, smallest first, each with
+   its authors and what it paid; the wall never scrolls.
+4. **The console**: the merge (drag or pick one group into another, a merged
+   group's _take back out_ by its `mergedKeys`), the setup (language, clock
+   10–60 s), then the shelf (`shelvedGames`), the game's front door, the
+   ready-made line-ups and both dictionaries.
+5. Muted, filmed, with `MAX_PLAYERS_PER_ROOM` seats at phone width and a paired
+   wall; then the plan's step 3, the changelog, and the handoff for step 4.

@@ -5,6 +5,7 @@ import {
   ArrowUpDown,
   BellRing,
   Bookmark,
+  Brain,
   Calculator,
   CaseSensitive,
   Check,
@@ -172,6 +173,7 @@ const GAME_GLYPHS = {
   reflex: Zap,
   slate: PencilLine,
   swatch: Palette,
+  thinkalike: Brain,
   timeline: RotateCcwClock
 } as const satisfies Record<GameKind, LucideIcon>
 

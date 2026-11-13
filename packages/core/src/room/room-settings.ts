@@ -57,6 +57,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   slate: 1,
   /** A colour is twenty-five seconds shown and rebuilt, so ten of them are a short game. */
   swatch: 10,
+  /** A prompt is twenty seconds of writing and a reveal to cheer, so ten of them are a short game. */
+  thinkalike: 10,
   /** Five events a round, so eight rounds deal forty and leave the bank plenty. */
   timeline: 8
 }
@@ -93,6 +95,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   reflex: 'buzzer',
   slate: 'typed',
   swatch: 'colour',
+  thinkalike: 'match',
   timeline: 'order'
 }
 
@@ -225,6 +228,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   reflex: null,
   slate: null,
   swatch: null,
+  thinkalike: null,
   timeline: null
 }
 

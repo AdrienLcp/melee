@@ -53,6 +53,7 @@ import {
 } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 import { hidesAtOf, isColourShown } from '@/domain/round/swatch-round'
+import { thinkAlikeContentView } from '@/domain/round/think-alike-round'
 
 import { isRoundJudgedByConsole, playingSeatIds } from './console-seat'
 import type { AtlasRoundTarget, PlayerAttempts, Room, Round } from './room'
@@ -278,7 +279,8 @@ const toHostContent = ({
     content.kind === 'innerclock' ||
     content.kind === 'reflex' ||
     content.kind === 'swatch' ||
-    content.kind === 'mostlikely'
+    content.kind === 'mostlikely' ||
+    content.kind === 'thinkalike'
   ) {
     return { kind: content.kind }
   }
@@ -416,6 +418,7 @@ const yourVerdictIn = ({
     round.content.kind === 'swatch' ||
     round.content.kind === 'mostlikely' ||
     round.content.kind === 'estimate' ||
+    round.content.kind === 'thinkalike' ||
     round.content.kind === 'higherlower' ||
     round.content.kind === 'longestword') &&
   !round.revealed
@@ -701,6 +704,14 @@ const toContentView = ({
 
   if (content.kind === 'longestword') {
     return longestWordContentView({
+      content,
+      isRevealed: round.revealed,
+      youId
+    })
+  }
+
+  if (content.kind === 'thinkalike') {
+    return thinkAlikeContentView({
       content,
       isRevealed: round.revealed,
       youId

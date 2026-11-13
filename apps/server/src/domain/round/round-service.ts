@@ -113,6 +113,7 @@ import {
 import { settleEveryCategory } from '@/domain/round/petit-bac-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { gradeColour, isColourShown } from '@/domain/round/swatch-round'
+import { payThinkAlike } from '@/domain/round/think-alike-round'
 import { gradeOrder } from '@/domain/round/timeline-round'
 import { drawChoices } from '@/domain/round/track-pool'
 
@@ -589,6 +590,10 @@ const keepAnswer = ({
 
   if (round.content.kind === 'estimate' && attempt.kind === 'number') {
     round.content.guesses.push({ guess: attempt.guess, playerId })
+  }
+
+  if (round.content.kind === 'thinkalike' && attempt.kind === 'match') {
+    round.content.answers.push({ playerId, text: attempt.answer })
   }
 
   if (round.content.kind === 'higherlower' && attempt.kind === 'pairs') {
@@ -1414,6 +1419,7 @@ type Attempt =
   | { kind: 'word'; guess: string }
   | { kind: 'letters'; guess: string }
   | { kind: 'calculation'; steps: Calculation }
+  | { kind: 'match'; answer: string }
   | TypedAttempt
 
 /**
@@ -1492,6 +1498,17 @@ const grade = ({
       ? {
           said: String(attempt.guess),
           verdict: { kind: 'number', ratio: attempt.guess / content.value }
+        }
+      : null
+  }
+
+  // Matched at the close, against every other answer, so no seat's score moves
+  // while the room is still writing.
+  if (content.kind === 'thinkalike') {
+    return attempt.kind === 'match'
+      ? {
+          said: attempt.answer,
+          verdict: { kind: 'match', matched: 0, others: 0 }
         }
       : null
   }
@@ -1599,7 +1616,8 @@ const grade = ({
     attempt.kind === 'pairs' ||
     attempt.kind === 'word' ||
     attempt.kind === 'letters' ||
-    attempt.kind === 'calculation'
+    attempt.kind === 'calculation' ||
+    attempt.kind === 'match'
   ) {
     return null
   }
@@ -2115,6 +2133,14 @@ export const closeRound = (room: Room, now: number): void => {
 
   if (round.content.kind === 'estimate') {
     payEstimates(room)
+    revealRound(room, now)
+
+    return
+  }
+
+  if (round.content.kind === 'thinkalike') {
+    takeUnsentLeans(room, now)
+    payThinkAlike(room)
     revealRound(room, now)
 
     return

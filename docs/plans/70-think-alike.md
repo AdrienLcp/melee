@@ -124,6 +124,25 @@ saying's first half, which no game owns.
   pay; a merge re-paying and its undo; a latecomer refused `joined_mid_round`;
   the round closing once every seat has sent.
 
+**Done 13/11/2026.** What it settled beyond the plan:
+
+- **`ownPrompts` waits for step 4**: the arm is `language` and
+  `roundDurationMs` alone, so no setting exists that nothing reads.
+- **The pay rewrites each seat's verdict at the close**: grading as a line is
+  sent cannot know the room, so a sent line carries `{ matched: 0, others: 0 }`
+  until `payThinkAlike` runs, at the close and again on every merge or split,
+  moving each score by the difference with what the round already paid.
+- **A round that stamped nobody** is matched over the seats that sent.
+- **A draft is a lean** of kind `match`, taken at the close like the map's
+  pawn, `isUnsent` and paid the same.
+- **The console and the wall read `{ kind: 'thinkalike' }`** on
+  `currentContent`: no answer exists before the room writes one.
+- **`think-alike-game.test.ts`**, seven cases, each seen red under a mutation:
+  groups public before the close, a re-pay without the difference, a merge not
+  re-paid, a lean not taken.
+
+— cut here: served by a settings frame, tests green, screens owed —
+
 ## Step 3 — the screens (one or two sessions)
 
 Directions through `impeccable` first. A seat: the prompt large, one field,

@@ -51,6 +51,7 @@ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 import type { TrackHistory } from '@melee/core/blindtest/track-variety'
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
+import type { CrowdAnswer, CrowdMerge } from '@melee/core/thinkalike/crowd-key'
 
 /**
  * The server's own model, deliberately richer than either wire view: it holds
@@ -572,6 +573,15 @@ export type Round = {
         target: number
         /** The six dealt tiles, in the order dealt: on every screen. */
         tiles: number[]
+      }
+    | {
+        /** Every seat's sent answer as written, first sent first: on no screen before the reveal. */
+        answers: CrowdAnswer[]
+        kind: 'thinkalike'
+        /** The groups the console put into others at the reveal, in the order merged. */
+        merges: CrowdMerge[]
+        /** The line to complete, in the room's language: on every screen. */
+        prompt: string
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving
