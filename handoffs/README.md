@@ -6,7 +6,6 @@ delete this README with the last one.
 | Series  | Wave | File                       | Depends on |
 | ------- | ---- | -------------------------- | ---------- |
 | Scoring | —    | `scoring-01-follow-ups.md` | none       |
-| Games   | 1    | `games-01-countdown.md`    | none       |
 | Games   | 2    | `games-02-think-alike.md`  | none       |
 | Games   | 3    | `games-03-five-clues.md`   | none       |
 
