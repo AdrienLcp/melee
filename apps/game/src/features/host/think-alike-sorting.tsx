@@ -172,84 +172,91 @@ export const ThinkAlikeSorting: React.FC<ThinkAlikeSortingProps> = ({
       {standing.length > 1 && (
         <p className='hint'>{translate('thinkalike.sort.hint')}</p>
       )}
-      <GridList
-        aria-label={translate('thinkalike.sort.label')}
-        className='rows'
-        disabledKeys={rows.filter((row) => row.isLeaving).map((row) => row.key)}
-        dragAndDropHooks={dragAndDropHooks}
-        items={rows}
-        ref={list}
-      >
-        {(row) => {
-          const points = payOf(row)
-          const others = standing.filter((other) => other.key !== row.key)
+      <div className='scroller'>
+        <GridList
+          aria-label={translate('thinkalike.sort.label')}
+          className='rows'
+          disabledKeys={rows
+            .filter((row) => row.isLeaving)
+            .map((row) => row.key)}
+          dragAndDropHooks={dragAndDropHooks}
+          items={rows}
+          ref={list}
+        >
+          {(row) => {
+            const points = payOf(row)
+            const others = standing.filter((other) => other.key !== row.key)
 
-          return (
-            <GridListItem
-              className='row'
-              data-crowd={row.authors.length > 1 || undefined}
-              data-leaving={row.isLeaving || undefined}
-              id={row.key}
-              onAnimationEnd={row.isLeaving ? endExitOf(row.key) : undefined}
-              style={{ '--from-last': rows.length - 1 - rows.indexOf(row) }}
-              textValue={row.text}
-            >
-              <AriaButton
-                aria-label={translate('thinkalike.sort.drag', {
-                  answer: row.text
-                })}
-                className='grip'
-                slot='drag'
+            return (
+              <GridListItem
+                className='row'
+                data-crowd={row.authors.length > 1 || undefined}
+                data-leaving={row.isLeaving || undefined}
+                id={row.key}
+                onAnimationEnd={row.isLeaving ? endExitOf(row.key) : undefined}
+                style={{ '--from-last': rows.length - 1 - rows.indexOf(row) }}
+                textValue={row.text}
               >
-                <GripIcon />
-              </AriaButton>
-              <span className='count' key={row.authors.length}>
-                {row.authors.length}
-              </span>
-              <span className='word'>{row.text}</span>
-              <span
-                className='pay'
-                data-paid={points > 0 || undefined}
-                key={points}
-              >
-                {points > 0
-                  ? translate('round.scored', { points: shownPoints(points) })
-                  : 0}
-              </span>
-              <ActionMenu
-                aria-label={translate('thinkalike.sort.mergeWith', {
-                  answer: row.text
-                })}
-                isDisabled={others.length === 0 || row.isLeaving}
-                onAction={(into) =>
-                  merge({ from: row.key, into: String(into) })
-                }
-              >
-                {others.map((other) => (
-                  <ActionMenuItem
-                    icon={<MergeIcon />}
-                    id={other.key}
-                    key={other.key}
-                  >
-                    {translate('thinkalike.sort.into', { answer: other.text })}
-                  </ActionMenuItem>
-                ))}
-              </ActionMenu>
-              <Authors
-                authorIds={row.authors.filter(
-                  (id) => !row.merged.some((card) => card.authors.includes(id))
-                )}
-                players={players}
-              />
-              <FoldedCards
-                merged={row.merged}
-                onTakeOut={(key) => regroup({ key, type: 'host.splitGroup' })}
-                players={players}
-              />
-            </GridListItem>
-          )
-        }}
-      </GridList>
+                <AriaButton
+                  aria-label={translate('thinkalike.sort.drag', {
+                    answer: row.text
+                  })}
+                  className='grip'
+                  slot='drag'
+                >
+                  <GripIcon />
+                </AriaButton>
+                <span className='count' key={row.authors.length}>
+                  {row.authors.length}
+                </span>
+                <span className='word'>{row.text}</span>
+                <span
+                  className='pay'
+                  data-paid={points > 0 || undefined}
+                  key={points}
+                >
+                  {points > 0
+                    ? translate('round.scored', { points: shownPoints(points) })
+                    : 0}
+                </span>
+                <ActionMenu
+                  aria-label={translate('thinkalike.sort.mergeWith', {
+                    answer: row.text
+                  })}
+                  isDisabled={others.length === 0 || row.isLeaving}
+                  onAction={(into) =>
+                    merge({ from: row.key, into: String(into) })
+                  }
+                >
+                  {others.map((other) => (
+                    <ActionMenuItem
+                      icon={<MergeIcon />}
+                      id={other.key}
+                      key={other.key}
+                    >
+                      {translate('thinkalike.sort.into', {
+                        answer: other.text
+                      })}
+                    </ActionMenuItem>
+                  ))}
+                </ActionMenu>
+                <Authors
+                  authorIds={row.authors.filter(
+                    (id) =>
+                      !row.merged.some((card) => card.authors.includes(id))
+                  )}
+                  players={players}
+                />
+                <FoldedCards
+                  merged={row.merged}
+                  onTakeOut={(key) => regroup({ key, type: 'host.splitGroup' })}
+                  players={players}
+                />
+              </GridListItem>
+            )
+          }}
+        </GridList>
+      </div>
     </section>
   )
 }

@@ -29,6 +29,7 @@ import {
   GripVertical,
   Hourglass,
   House,
+  Layers,
   Lock,
   type LucideIcon,
   type LucideProps,
@@ -145,6 +146,7 @@ export const ReplayIcon = inFamily(RotateCcw)
 export const RenameIcon = inFamily(Pencil)
 export const SavedIcon = inFamily(Bookmark)
 export const PenIcon = inFamily(PenLine)
+export const PilesIcon = inFamily(Layers)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)

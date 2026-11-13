@@ -10,6 +10,7 @@ import { thinkAlikeContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
 import { useChangedSinceFirstDraw } from '@/presentation/components/use-changed-since-first-draw'
+import { useFirstDrawnOrder } from '@/presentation/components/use-first-drawn-order'
 import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -81,10 +82,12 @@ export const ThinkAlikeRevealed: React.FC<{
     rows
   })
 
+  const firstDrawnAt = useFirstDrawnOrder(drawn.map(({ id }) => id))
+
   useRowsTravel({
     list,
     order: drawn.map(({ id }) => id).join(' '),
-    pace: 'reorder'
+    pace: 'gather'
   })
   const yours =
     youId === null
@@ -139,33 +142,40 @@ export const ThinkAlikeRevealed: React.FC<{
         data-regrouped={isRegrouped || undefined}
       >
         <ol ref={list}>
-          {drawn.map((row, index) => (
-            <li
-              data-key={row.id}
-              data-leaving={row.isLeaving || undefined}
-              data-yours={row.id === yours?.id || undefined}
-              key={row.id}
-              onAnimationEnd={row.isLeaving ? endExitOf(row.id) : undefined}
-              style={{ '--row-index': index }}
-            >
-              <MiniPile count={row.authorIds.length} text={row.text} />
-              <p className='word' data-blank={row.text === null || undefined}>
-                {row.text ?? translate('thinkalike.reveal.blank')}
-              </p>
-              <p className='pawns'>{pawnsOf(row)}</p>
-              <p
-                className='pay'
-                data-paid={pointsOf(row) > 0 || undefined}
-                key={pointsOf(row)}
+          {drawn
+            .toSorted(
+              (one, other) => firstDrawnAt(one.id) - firstDrawnAt(other.id)
+            )
+            .map((row) => (
+              <li
+                data-key={row.id}
+                data-leaving={row.isLeaving || undefined}
+                data-yours={row.id === yours?.id || undefined}
+                key={row.id}
+                onAnimationEnd={row.isLeaving ? endExitOf(row.id) : undefined}
+                style={{
+                  '--order': drawn.indexOf(row),
+                  '--row-index': drawn.indexOf(row)
+                }}
               >
-                {pointsOf(row) > 0
-                  ? translate('round.scored', {
-                      points: shownPoints(pointsOf(row))
-                    })
-                  : 0}
-              </p>
-            </li>
-          ))}
+                <MiniPile count={row.authorIds.length} text={row.text} />
+                <p className='word' data-blank={row.text === null || undefined}>
+                  {row.text ?? translate('thinkalike.reveal.blank')}
+                </p>
+                <p className='pawns'>{pawnsOf(row)}</p>
+                <p
+                  className='pay'
+                  data-paid={pointsOf(row) > 0 || undefined}
+                  key={pointsOf(row)}
+                >
+                  {pointsOf(row) > 0
+                    ? translate('round.scored', {
+                        points: shownPoints(pointsOf(row))
+                      })
+                    : 0}
+                </p>
+              </li>
+            ))}
         </ol>
       </section>
     </div>

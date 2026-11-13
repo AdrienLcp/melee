@@ -15,14 +15,19 @@
       color: var(--ink-muted)
       margin: 0
 
-    > .rows
+    // The list scrolls inside this box rather than on its own: react-aria
+    // puts a list it scrolls back where it last saw it whenever focus comes
+    // back in, which moved the rows away under a press and lost it.
+    > .scroller
+      min-block-size: 0
+      overflow-y: auto
+      overscroll-behavior: contain
+
+    .rows
       display: flex
       flex-direction: column
       gap: var(--space-xs)
-      min-block-size: 0
       outline: none
-      overflow-y: auto
-      overscroll-behavior: contain
       padding: var(--space-2xs)
 
     // A row: the answer on its card, how many wrote it, what it paid; who

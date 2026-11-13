@@ -61,11 +61,9 @@ import { MakeNumberRanking } from './make-number-ranking'
 import { MakeNumberShortest } from './make-number-shortest'
 import { MysteryWordGrids } from './mystery-word-grids'
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
+import { ThinkAlikeConsoleReveal } from './think-alike-console-reveal'
 import { ThinkAlikePiles } from './think-alike-piles'
-import {
-  type ThinkAlikeRegroup,
-  ThinkAlikeSorting
-} from './think-alike-sorting'
+import type { ThinkAlikeRegroup } from './think-alike-sorting'
 import { useFittedGrid } from './use-fitted-grid'
 import { useWholeChips } from './use-whole-chips'
 
@@ -77,6 +75,8 @@ type RevealPanelProps = {
   lineUp: readonly GameSettings[]
   /** The console striking a Petit Bac word out; absent wherever the reveal is only read. */
   onStrike?: (strike: PetitBacStrike) => void
+  /** Whether a wall shows the room, which turns Think alike's piles over in the console's place. */
+  isWallShowing?: boolean
   /** The console merging or splitting the room's answers; absent wherever the reveal is only read. */
   onRegroup?: (regroup: ThinkAlikeRegroup) => void
   /** Needed to turn the awards' player ids into names and pawns. */
@@ -138,6 +138,7 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
  * has nothing to give away, and the panel is the scoreline alone.
  */
 export const RevealPanel: React.FC<RevealPanelProps> = ({
+  isWallShowing = false,
   lineUp,
   onRegroup,
   onStrike,
@@ -339,10 +340,13 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
         {onRegroup === undefined ? (
           <ThinkAlikePiles players={players} round={round} youId={youId} />
         ) : (
-          <ThinkAlikeSorting
+          <ThinkAlikeConsoleReveal
+            isWallShowing={isWallShowing}
+            key={round.id}
             onRegroup={onRegroup}
             players={players}
             round={round}
+            youId={youId}
           />
         )}
       </section>
@@ -588,7 +592,7 @@ const GUESS_ASPECT = 1.7
 
 /** Every seat's guess dealt into the box the panel leaves, the wall never scrolling. */
 const FittedGuesses: React.FC<
-  Omit<RevealPanelProps, 'lineUp' | 'onRegroup' | 'onStrike'>
+  Omit<RevealPanelProps, 'isWallShowing' | 'lineUp' | 'onRegroup' | 'onStrike'>
 > = ({ players, round, youId }) => {
   const grid = useRef<HTMLOListElement>(null)
 
@@ -609,12 +613,9 @@ const FittedGuesses: React.FC<
   )
 }
 
-const Outcome: React.FC<Omit<RevealPanelProps, 'onRegroup' | 'onStrike'>> = ({
-  lineUp,
-  players,
-  round,
-  youId
-}) => {
+const Outcome: React.FC<
+  Omit<RevealPanelProps, 'isWallShowing' | 'onRegroup' | 'onStrike'>
+> = ({ lineUp, players, round, youId }) => {
   const translate = useTranslate()
   const tally = useRef<HTMLUListElement>(null)
 
@@ -690,7 +691,7 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onRegroup' | 'onStrike'>> = ({
  * the heading's row, so it costs the stage no line of its own.
  */
 const ThisRoundHead: React.FC<
-  Omit<RevealPanelProps, 'onRegroup' | 'onStrike'>
+  Omit<RevealPanelProps, 'isWallShowing' | 'onRegroup' | 'onStrike'>
 > = ({ lineUp, players, round, youId }) => {
   const seat = players.findIndex((player) => player.id === youId)
   // A seat that sat the round out to judge was never stamped on it.

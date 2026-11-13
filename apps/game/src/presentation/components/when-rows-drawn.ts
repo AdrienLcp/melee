@@ -1,9 +1,19 @@
-/** A list's direct children that carry a `data-key`, in the order the DOM holds them. */
+/**
+ * Where CSS `order` lays a row: a list that keeps its elements in the order
+ * first drawn, so moving one never replays its entrance, is laid out in its
+ * rows' `order` instead.
+ */
+const layoutOrderOf = (row: HTMLElement): number =>
+  Number.parseInt(getComputedStyle(row).order, 10) || 0
+
+/** A list's direct children that carry a `data-key`, in the order they are laid out. */
 export const keyedRowsOf = (list: HTMLElement): HTMLElement[] =>
-  [...list.children].filter(
-    (child): child is HTMLElement =>
-      child instanceof HTMLElement && child.dataset.key !== undefined
-  )
+  [...list.children]
+    .filter(
+      (child): child is HTMLElement =>
+        child instanceof HTMLElement && child.dataset.key !== undefined
+    )
+    .toSorted((one, other) => layoutOrderOf(one) - layoutOrderOf(other))
 
 /**
  * Runs `onDrawn` once the list's keyed rows stand in `order` — their keys joined

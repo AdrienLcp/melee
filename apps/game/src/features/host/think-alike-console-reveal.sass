@@ -1,0 +1,15 @@
+// Side-effect module: styles `.think-alike-console-reveal`, the piles a console with no wall turns over for the table, with the press that swaps them for the rows that sort them.
+@layer components
+  .think-alike-console-reveal
+    display: flex
+    flex-direction: column
+    gap: var(--space-xs)
+    min-block-size: 0
+
+    > .sort-toggle
+      align-self: flex-end
+      flex: none
+
+    > :is(.think-alike-piles, .think-alike-sorting)
+      flex: 1 1 0
+      min-block-size: 0

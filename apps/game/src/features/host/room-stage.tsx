@@ -226,6 +226,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
         <Countdown clock={clock} target={round.startsAt} />
         {recap !== null && (
           <RevealPanel
+            isWallShowing={view.isWallConnected}
             lineUp={view.settings.lineUp}
             players={view.players}
             round={recap}
@@ -506,6 +507,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           }}
         >
           <RevealPanel
+            isWallShowing={view.isWallConnected}
             lineUp={view.settings.lineUp}
             onRegroup={
               controls === null

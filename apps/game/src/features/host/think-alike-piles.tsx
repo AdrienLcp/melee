@@ -11,6 +11,7 @@ import { thinkAlikeContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
 import { useChangedSinceFirstDraw } from '@/presentation/components/use-changed-since-first-draw'
+import { useFirstDrawnOrder } from '@/presentation/components/use-first-drawn-order'
 import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -74,6 +75,9 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   }).filter((player) => !writers.has(player.id))
   const singles = groups.filter((group) => group.authors.length === 1)
   const piles = groups.filter((group) => group.authors.length > 1)
+  const firstDrawnAt = useFirstDrawnOrder(groups.map((group) => group.key))
+  const byFirstDrawn = (one: ThinkAlikeGroup, other: ThinkAlikeGroup) =>
+    firstDrawnAt(one.key) - firstDrawnAt(other.key)
   const seatOf = (id: PlayerId): number =>
     players.findIndex((player) => player.id === id)
   const authorsOf = (group: ThinkAlikeGroup) =>
@@ -90,7 +94,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   useRowsTravel({
     list: section,
     order: piles.map((pile) => pile.key).join(' '),
-    pace: 'reorder'
+    pace: 'gather'
   })
   const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
 
@@ -138,7 +142,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
               </ul>
             </li>
           ))}
-          {singles.map((group) => (
+          {singles.toSorted(byFirstDrawn).map((group) => (
             <li
               className='lone-card'
               data-leaving={group.isLeaving || undefined}
@@ -149,7 +153,10 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
               onAnimationEnd={
                 group.isLeaving ? endExitOf(group.key) : undefined
               }
-              style={{ '--letters': longestWordOf(group.text) }}
+              style={{
+                '--letters': longestWordOf(group.text),
+                '--order': singles.indexOf(group)
+              }}
             >
               <span className='face'>
                 <span className='word'>{group.text}</span>
@@ -167,7 +174,8 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
           ))}
         </ul>
       )}
-      {piles.map((pile, turn) => {
+      {piles.toSorted(byFirstDrawn).map((pile) => {
+        const turn = piles.indexOf(pile)
         const points = payOf(pile)
         const authors = authorsOf(pile)
 
@@ -184,6 +192,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
             style={{
               '--authors': pile.authors.length,
               '--letters': longestWordOf(pile.text),
+              '--order': turn + 1,
               '--turn': turn + 1
             }}
           >

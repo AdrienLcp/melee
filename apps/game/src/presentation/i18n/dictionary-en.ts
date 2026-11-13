@@ -2559,11 +2559,13 @@ export const EN_DICTIONARY = defineDictionary({
     scoring:
       'Your answer is paid by how many of the others wrote it too: all of them score 100 points, half of them 50, nobody nothing.',
     sort: {
+      close: 'Back to the piles',
       drag: 'Move “{answer}”',
       hint: 'Drag one answer onto another to count them as one.',
       into: 'With “{answer}”',
       label: 'The answers, to put together',
       mergeWith: 'Put “{answer}” with…',
+      open: 'Group answers',
       takeOut: 'Take “{answer}” back out'
     },
     table: defineTranslation('{count:plural} of {total:number}', {
