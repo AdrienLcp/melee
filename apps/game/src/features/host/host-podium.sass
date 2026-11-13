@@ -109,6 +109,11 @@
         &:has(> .stage.revealed > .reveal-panel:is([data-game='atlas'], [data-game='swatch']))
           height: var(--podium-atlas-height)
 
+        // Every seat's pin on the ruler, at a size one reader can still tell
+        // apart: the card grows past the fold and the column scrolls.
+        &:has(> .stage.playing[data-make-number='watching'])
+          height: max(var(--podium-round-height), 46rem)
+
         > header .round-index
           @include typography.title
 

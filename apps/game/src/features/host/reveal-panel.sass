@@ -287,12 +287,13 @@
         min-height: 0
         min-inline-size: 0
 
-    // The draw's word over the ranking, which takes what it leaves.
-    &[data-game='longestword']
+    // The draw's word over the ranking, which takes what it leaves — and
+    // the shortest calculation over every seat's.
+    &:is([data-game='longestword'], [data-game='makenumber'])
       > .head
         justify-content: center
 
-      > .longest-word-ranking
+      > :is(.longest-word-ranking, .make-number-ranking)
         flex: 1 1 0
         min-height: 0
 
@@ -464,7 +465,7 @@
       // Three blocks, and the guesses deal themselves into what the colour
       // and the heading leave — the grids and the ranking into what the
       // word leaves.
-      &:is([data-game='swatch'], [data-game='mysteryword'], [data-game='longestword'])
+      &:is([data-game='swatch'], [data-game='mysteryword'], [data-game='longestword'], [data-game='makenumber'])
         grid-template-rows: auto auto minmax(0, 1fr)
 
       // An `auto` row is sized to its content, and the grid is a size

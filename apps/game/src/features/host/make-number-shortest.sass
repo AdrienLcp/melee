@@ -1,0 +1,55 @@
+// Side-effect module: styles `.make-number-shortest`, the draw's shortest calculation written a line a step.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .make-number-shortest
+    --band: clamp(0.5rem, calc(var(--stage-unit) * 1.6), 0.875rem)
+
+    align-items: center
+    background: linear-gradient(var(--spine-makenumber) 0 var(--band), var(--card) var(--band))
+    border-radius: var(--radius-l)
+    box-shadow: 0 0.1875rem 0 var(--chipboard), var(--shadow-card)
+    color: var(--card-ink)
+    column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l))
+    display: flex
+    flex-wrap: wrap
+    inline-size: fit-content
+    justify-content: center
+    margin-inline: auto
+    max-inline-size: 100%
+    padding: calc(var(--band) + var(--space-xs)) clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-l)) var(--space-xs)
+    row-gap: var(--space-2xs)
+
+    > .title
+      @include typography.heading
+
+      font-size: clamp(var(--text-s), min(3cqh, calc(var(--stage-unit) * 3.4)), var(--text-xl))
+      margin: 0
+      text-wrap: balance
+
+    > .lines
+      column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.6), var(--space-xl))
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      list-style: none
+      margin: 0
+      padding: 0
+      row-gap: var(--space-2xs)
+
+      > li
+        @include typography.numeric
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        animation-delay: calc(var(--transition-slow, 0s) + var(--transition-fast, 0s) * 1.4 * var(--line-index, 0))
+        font-size: clamp(var(--text-s), min(3.6cqh, calc(var(--stage-unit) * 4.2)), var(--text-2xl))
+        font-stretch: 85%
+        white-space: nowrap
+
+      // The step that lands on the target, printed on the found face.
+      > li:last-child > .result
+        background: var(--good-soft)
+        border-radius: var(--radius-xs)
+        box-shadow: 0 0.125rem 0 var(--good-edge)
+        color: var(--tile-ink)
+        padding-inline: 0.2em

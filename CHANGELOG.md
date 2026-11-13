@@ -20,8 +20,16 @@ one part.
   distance, and the calculation left on screen when the clock runs out is
   paid when it is nearer, unsent and with no speed. Its reveal writes the
   seat's kept calculation beside the draw's shortest. The setup takes 45, 60
-  or 90 seconds, Grand mix deals it, and its spine is a petrol. The wall, the
-  unseated console and their reveal are still owed.
+  or 90 seconds, Grand mix deals it, and its spine is a petrol. The wall and
+  the console deal the six tiles big and stand a ruler under the target:
+  every seat a pin on the rung its distance names, under or over, past nine
+  at the far end, the exact ones stamped beside the target, and never a
+  calculation; a pin slides to its new rung as the seat comes nearer, and a
+  crowded rung stacks, then cuts names at whole words, then to initials, then
+  to pawns. Beside a wall the host alone reads the draw's shortest
+  calculation during the round. The reveal writes that calculation out, then
+  ranks every seat's kept one, nearest first: on the wall the furthest rows
+  fold to their name and value, then two columns, and it never scrolls.
 - **A host can keep the next round to themselves.** A new switch in the
   room's settings, _Tu lances chaque manche_, stops a whole table's Ready from
   starting the next round: the reveal asks no seat whether it is back, the

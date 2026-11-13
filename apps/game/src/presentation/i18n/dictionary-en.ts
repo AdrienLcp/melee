@@ -1555,6 +1555,16 @@ export const EN_DICTIONARY = defineDictionary({
         'Six number tiles and a target go up on every screen. Everyone merges the tiles two at a time — add, subtract, multiply, divide — towards the target, as many calculations as they like: only the nearest counts. The room sees everyone’s number, never how they made it, until the reveal shows the shortest way the tiles allowed.'
     },
     kept: ', the calculation kept',
+    ladder: {
+      above: 'Above',
+      below: 'Below',
+      exact: '{name}: spot on',
+      far: 'Further',
+      label: 'Everyone’s number around the target',
+      seat: '{name}: {value:number}, {distance:number} off',
+      waiting: 'Nothing sent yet',
+      waitingSeat: '{name}: nothing sent yet'
+    },
     made: ', a calculated tile',
     name: 'Make the number',
     operator: {
@@ -1573,7 +1583,9 @@ export const EN_DICTIONARY = defineDictionary({
     },
     reveal: {
       none: 'No calculation',
+      ranking: 'Everyone’s calculation, nearest first',
       shortest: 'The shortest, for {target:number}',
+      unsent: 'left unsent',
       yours: 'Your calculation'
     },
     roundDuration: 'Time to count',
@@ -1585,6 +1597,7 @@ export const EN_DICTIONARY = defineDictionary({
     startOver: 'Start over',
     tagline: 'Six tiles, one target, every operation.',
     target: 'The number to make: ',
+    tilesSaid: 'The tiles: {tiles}. The number to make: {target:number}.',
     undo: 'Undo',
     work: 'Your calculation so far'
   },

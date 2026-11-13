@@ -454,6 +454,47 @@
         flex: 1 1 0
         inline-size: min(100%, 36rem)
 
+    // The six tiles dealt on the card and the ruler under them, the target at
+    // its head — or, for a seated console, its own rack in their place.
+    &[data-make-number]
+      --spine: var(--spine-makenumber)
+
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      .make-number-draw
+        display: flex
+        justify-content: center
+        margin: 0
+
+        > .tiles
+          --tile-font-size: clamp(1.25rem, min(calc(var(--stage-unit) * 4.6), 6cqh), 3rem)
+
+          display: grid
+          gap: clamp(var(--space-2xs), calc(var(--stage-unit) * 1.4), var(--space-m))
+          grid-template-columns: repeat(6, auto)
+
+          > .number-tile
+            animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+            block-size: 1.7em
+            min-inline-size: 2.1em
+            padding-inline: 0.3em
+
+            @for $tile from 1 through 6
+              &:nth-child(#{$tile})
+                animation-delay: calc(var(--transition-fast, 0s) * #{($tile - 1) * 0.7})
+
+      > .make-number-ladder
+        align-self: stretch
+        flex: 1 1 0
+
+      > .make-number-answer
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 36rem)
+        min-block-size: 0
+
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
     &[data-black-square]

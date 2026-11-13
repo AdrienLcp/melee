@@ -43,6 +43,7 @@ import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
 import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
+import { MakeNumberShortest } from './make-number-shortest'
 import { PetitBacStage } from './petit-bac-stage'
 import { PlayingStage } from './playing-stage'
 import { ReflexStage } from './reflex-stage'
@@ -383,6 +384,18 @@ const PhaseStage: React.FC<RoomStageProps> = ({
             view={view}
           />
         )}
+        {/* The answer, where the host alone reads it: never on a console the
+            room is watching. */}
+        {controls?.isRosterBeside === true &&
+          round.content.kind === 'makenumber' &&
+          view.currentContent?.kind === 'makenumber' &&
+          view.currentContent.solution !== null && (
+            <MakeNumberShortest
+              solution={view.currentContent.solution}
+              target={round.content.target}
+              tiles={round.content.tiles}
+            />
+          )}
         {controls !== null &&
           view.settings.teams.kind === 'aloud' &&
           round.content.kind !== 'challenge' && (

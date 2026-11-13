@@ -19,6 +19,7 @@ import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
+import { MakeNumberAnswer } from '@/features/player/make-number-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -33,6 +34,7 @@ import {
   estimateContent,
   higherLowerContent,
   longestWordContent,
+  makeNumberContent,
   matchsticksContent,
   mostLikelyContent,
   mysteryWordContent,
@@ -47,6 +49,7 @@ import { LetterTile } from '@/presentation/components/letter-tile'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MarkLegend } from '@/presentation/components/mark-legend'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
+import { NumberTile } from '@/presentation/components/number-tile'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { usePairAsks } from '@/presentation/components/use-pair-asks'
@@ -58,6 +61,7 @@ import { currentDeadline } from '@/presentation/timing/last-seconds'
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
 import { LongestWordTowers } from './longest-word-towers'
+import { MakeNumberLadder } from './make-number-ladder'
 import { MysteryWordTowers } from './mystery-word-towers'
 
 import './playing-stage.sass'
@@ -125,6 +129,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const higherLower = higherLowerContent(round)
   const mysteryWord = mysteryWordContent(round)
   const longestWord = longestWordContent(round)
+  const makeNumber = makeNumberContent(round)
   const shownColour = useShownColour({ clock, round })
   const closesInMs = currentDeadline({ clock, view })?.remainingMs ?? null
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
@@ -213,6 +218,24 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             </span>
           </p>
         )
+      ) : makeNumber !== null ? (
+        onAnswer === null && (
+          <p className='now make-number-draw'>
+            <VisuallyHidden elementType='span'>
+              {translate('makenumber.tilesSaid', {
+                target: makeNumber.target,
+                tiles: makeNumber.tiles.join(', ')
+              })}
+            </VisuallyHidden>
+            <span aria-hidden className='tiles'>
+              {makeNumber.tiles
+                .map((value, position) => ({ position, value }))
+                .map(({ position, value }) => (
+                  <NumberTile key={position} value={value} />
+                ))}
+            </span>
+          </p>
+        )
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -265,6 +288,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-longest-word={
         longestWord === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
+      data-make-number={
+        makeNumber === null
           ? undefined
           : onAnswer === null
             ? 'watching'
@@ -439,6 +469,19 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             round={round}
           />
         ))}
+      {makeNumber !== null &&
+        (onAnswer === null ? (
+          <MakeNumberLadder players={view.players} round={round} />
+        ) : (
+          <MakeNumberAnswer
+            closesInMs={closesInMs}
+            key={round.id}
+            onAnswer={onAnswer}
+            onLean={onLean}
+            refusal={refusal}
+            round={round}
+          />
+        ))}
       {mostLikely !== null && onAnswer !== null && (
         <MostLikelyBallot
           key={round.id}
@@ -476,6 +519,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         mode !== 'spoken' &&
         mysteryWord === null &&
         longestWord === null &&
+        makeNumber === null &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />
         ) : (

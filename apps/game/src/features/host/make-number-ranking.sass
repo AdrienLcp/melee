@@ -1,0 +1,199 @@
+// Side-effect module: styles `.make-number-ranking`, every seat's kept calculation laid out at the reveal, nearest first.
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .make-number-ranking
+    --spine: var(--spine-makenumber)
+    --columns: var(--rank-columns, 1)
+    --column-gap: clamp(var(--space-m), calc(var(--stage-unit) * 3), var(--space-2xl))
+    // Read by `useRankingFold`: whether the list may stand in two columns.
+    --rank-can-split: 1
+
+    column-fill: auto
+    column-gap: var(--column-gap)
+    columns: var(--columns)
+    // Sized by the panel and never by its rows, which `useRankingFold`
+    // deals from this very height.
+    container-type: size
+    display: block
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    overflow: clip
+    padding: 0
+
+    // Two columns on a narrow box give up the distance beside each value
+    // first, which the value already says, before a name loses a word.
+    &[data-columns='2'] .value > .distance
+      @container (inline-size < 36rem)
+        display: none
+
+    // At 9:16 a wall has the height for one column and not the width for two.
+    @media (aspect-ratio < 2 / 3)
+      --rank-can-split: 0
+
+    // On the podium's card beside a wall, and on a phone running the table,
+    // the host reads every calculation at a size of its own, scrolled.
+    &:is(.podium-round *)
+      --columns: 1
+
+      container-type: inline-size
+      overflow-y: auto
+
+    &:not(.wall-page *)
+      @include layout.narrow
+        --columns: 1
+
+        container-type: inline-size
+        overflow-y: auto
+
+  // Laid one after the other once the shortest calculation is written,
+  // nearest first.
+  .make-number-ranking > .rank-row
+    --row-delay: calc(var(--transition-slow, 0s) * 2 + var(--transition-fast, 0s) * 0.3 * min(var(--rank, 0), 24))
+
+    align-content: center
+    align-items: center
+    animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--row-delay) backwards
+    block-size: var(--row-height, auto)
+    border-block-end: var(--stroke-thin) solid var(--rule)
+    box-sizing: border-box
+    break-inside: avoid
+    column-gap: var(--space-xs)
+    display: grid
+    font-size: clamp(var(--text-xs), calc(var(--row-unit, 3rem) * 0.42), var(--text-xl))
+    grid-template-areas: 'rank pawn name value pay'
+    grid-template-columns: 1.4em auto minmax(0, 1fr) auto 3.2em
+    min-block-size: 0
+    min-inline-size: 0
+    overflow: clip
+    row-gap: 0
+
+    &[data-full]
+      grid-template-areas: 'rank pawn name value pay' '. . steps steps steps'
+
+    > .rank
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      grid-area: rank
+      text-align: end
+
+    &[data-exact] > .rank
+      color: var(--ink)
+
+    > .pawn
+      font-size: var(--text-em-l)
+      grid-area: pawn
+
+    // Whole words on one line: a word that does not fit wraps onto the line
+    // the box hides, so a long name loses its last words, never half of one.
+    > .name
+      @include typography.title
+
+      block-size: 1.1em
+      column-gap: 0.28em
+      display: flex
+      flex-wrap: wrap
+      font-size: 1em
+      grid-area: name
+      min-inline-size: 0
+      overflow: clip
+
+    &[data-yours] > .name > span
+      text-decoration: underline var(--stroke-bold)
+      text-underline-offset: 0.2em
+
+    > .value
+      align-items: baseline
+      display: flex
+      gap: 0.35em
+      grid-area: value
+      justify-content: end
+      white-space: nowrap
+
+      > .figure
+        @include typography.score
+
+        font-size: var(--text-em-l)
+
+      > .distance
+        @include typography.strong
+
+        color: var(--ink-muted)
+        font-size: var(--text-em-s)
+
+      > .stamp
+        align-self: center
+        block-size: 1.1em
+        color: var(--good-edge)
+        inline-size: 1.1em
+
+      &[data-none]
+        @include typography.strong
+
+        color: var(--ink-muted)
+        font-size: var(--text-em-s)
+
+    &[data-exact] > .value > .figure
+      background: var(--good-soft)
+      border-radius: var(--radius-xs)
+      box-shadow: 0 0.125rem 0 var(--good-edge)
+      color: var(--tile-ink)
+      padding-inline: 0.2em
+
+    > .pay
+      @include typography.numeric
+
+      grid-area: pay
+      text-align: end
+
+      &:not([data-paid])
+        color: var(--ink-muted)
+
+    // The calculation under the name, sized so its lines fit the row's
+    // width, never over the row's own size.
+    > .steps
+      @include typography.numeric
+      @include typography.callout
+
+      color: var(--ink-muted)
+      column-gap: 1.1em
+      display: none
+      flex-wrap: wrap
+      // Never under the floor: `useRankingFold` gave the line its count of
+      // lines at the floor already.
+      font-size: clamp(var(--text-xs), calc(var(--steps-room, 40rem) * var(--step-lines, 1) / (var(--step-characters, 40) * 0.56)), max(var(--text-xs), var(--text-em-s)))
+      font-stretch: 85%
+      grid-area: steps
+      min-inline-size: 0
+
+      > .step:last-of-type
+        color: var(--ink)
+
+      > .unsent
+        @include typography.caption
+
+        font-style: italic
+
+    &[data-full] > .steps
+      animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--row-delay) + var(--transition-base, 0s)) backwards
+      display: flex
+
+  // Scrolled beside a wall or on a phone, every row keeps its calculation
+  // at a size of its own and wraps it.
+  .make-number-ranking:is(.podium-round *) > .rank-row
+    font-size: var(--text-m)
+    padding-block: var(--space-2xs)
+
+    > .steps
+      font-size: var(--text-s)
+
+  .make-number-ranking:not(.wall-page *) > .rank-row
+    @include layout.narrow
+      font-size: var(--text-m)
+      padding-block: var(--space-2xs)
+
+      > .steps
+        font-size: var(--text-s)

@@ -1478,6 +1478,16 @@ export const FR_DICTIONARY = defineDictionary({
         'Six plaques et un nombre à trouver s’affichent sur tous les écrans. Chacun assemble les plaques deux à deux — addition, soustraction, multiplication, division — vers le nombre, autant de calculs qu’il veut : seul le plus proche compte. La pièce voit le nombre de chacun, jamais comment il l’a fait, jusqu’à ce que la révélation montre le plus court chemin que permettaient les plaques.'
     },
     kept: ', le calcul gardé',
+    ladder: {
+      above: 'Au-dessus',
+      below: 'En dessous',
+      exact: '{name} : le compte est bon',
+      far: 'Plus loin',
+      label: 'Le nombre de chacun autour du compte',
+      seat: '{name} : {value:number}, à {distance:number}',
+      waiting: 'Rien envoyé encore',
+      waitingSeat: '{name} : rien envoyé encore'
+    },
     made: ', plaque calculée',
     name: 'Le compte est bon',
     operator: {
@@ -1495,7 +1505,9 @@ export const FR_DICTIONARY = defineDictionary({
     },
     reveal: {
       none: 'Aucun calcul',
+      ranking: 'Le calcul de chacun, du plus proche au plus loin',
       shortest: 'Le plus court, pour {target:number}',
+      unsent: 'pas envoyé',
       yours: 'Ton calcul'
     },
     roundDuration: 'Temps pour compter',
@@ -1507,6 +1519,7 @@ export const FR_DICTIONARY = defineDictionary({
     startOver: 'Tout reprendre',
     tagline: 'Six plaques, un nombre, toutes les opérations.',
     target: 'Le nombre à trouver : ',
+    tilesSaid: 'Les plaques : {tiles}. Le nombre à trouver : {target:number}.',
     undo: 'Défaire',
     work: 'Ton calcul en cours'
   },

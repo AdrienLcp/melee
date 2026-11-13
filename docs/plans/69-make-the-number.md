@@ -129,7 +129,7 @@ tiles — and the reveal's solution, in one pass.
    because two rounds of figures back to back read as one game played twice;
    and **the calculation left on a seat's screen counts at the close**, as
    67's row does (`ddfdf70a`) — a seat that merged its way to 703 and ran out
-   of clock before _Envoyer_ would otherwise lose a round it won. That lean
+   of clock before the send press would otherwise lose a round it won. That lean
    arm is step 2's, built with the seat.
 2. **On the shelf.** `/impeccable` first, an example page per direction behind
    one link: the tiles, the operators and the merge on a seat, the wall's
@@ -138,7 +138,7 @@ tiles — and the reveal's solution, in one pass.
    seen muted at full seats, the draw's entry and a merge filmed.
 
    **First half done** 13/11/2026 — the seat, its reveal, the lean and the
-   shelf; the wall, the unseated console and their reveal are owed. **The
+   shelf. **The
    lean**: `player.lean` takes `{ kind: 'calculation', steps }`
    (`calculationAnswerSchema`, shared with `player.answer`); `leanCalculation`
    in `round-service.ts` keeps it while the seat holds no exact hit, refuses a
@@ -155,7 +155,7 @@ tiles — and the reveal's solution, in one pass.
    asked — the target card (the sends listed by value, the kept one marked
    _à 3_ / _Le compte est bon !_), then the calculation so far and the figure
    it reaches, then the rack and the operators together, then undo, start
-   over and _Envoyer_. A merge auto-lifts its result; the first tile's
+   over and the send press. A merge auto-lifts its result; the first tile's
    `.ghost` slides onto the second (`--ghost-from` read off the places'
    columns and rows) and the result's face fuses (`number-tile-fuses`); a
    face is keyed by its source, so an undo sets the tiles back on
@@ -181,6 +181,52 @@ tiles — and the reveal's solution, in one pass.
    entries, 19 blind tests), and `spacedCycle` now backs out of a dead end
    instead of dealing nearest-first, which the nearest-first deal never
    found at 59.
+
+   **Done** 13/11/2026 — the wall, the unseated console and their reveal.
+   **During the round** the card deals the six tiles (`NumberTile`, one
+   after the other) and `make-number-ladder.tsx` stands B's ruler under it:
+   the target on the spine at the head, a rung per unit off with the seats
+   under it on the left and over it on the right, ten away or more at the
+   far end, the exact ones stamped beside the target, and the seats that
+   sent nothing waiting under the ruler; a rung's share of the height grows
+   with its crowd (`--ladder-rows`, eased), and an empty band too short for
+   the floor drops its figure. Each side of a rung is a group measured by
+   `useGroupBoxes` and fitted by `chipFit` (`helpers/make-number-ladder.ts`):
+   one line or stacked, then a name cut to its first whole words, then
+   initials, then the pawn, never under `--text-xs`. The ruler stays the
+   ladder B drew — the distance running down on every shape, under on the
+   left and over on the right — so a portrait wall needs nothing of its
+   own: it has the height to stack. `usePiecesTravel` slides a pin to its
+   new rung as a value comes nearer. Beside a wall the host's card grows to
+   46rem and shows the draw's shortest calculation under the ruler
+   (`MakeNumberShortest`, from `currentContent.solution`, only where
+   `isRosterBeside`). **The reveal** writes that calculation out a line a
+   step, then `make-number-ranking.tsx` ranks every seat's kept
+   calculation, nearest first and the clock settling a tie, with its value,
+   distance and pay, an unsent one marked as left unsent. `rankingFold`
+   (`helpers/ranking-fold.ts`) packs the rows into the height the panel
+   hands it: the nearest keep their calculation on a line or two under the
+   name, the furthest fold to one line, two columns filled top to bottom
+   where that keeps more (never at 9:16), a name cut to whole words or
+   initials by the room left (`nameWithin`), the distance dropped first in
+   a narrow column. The wall hands the ranking a share of the height rather
+   than its content's (`wall-page.sass`, beside swatch's). On the console
+   beside a wall it scrolls in its card, every row full.
+   **Seen** muted (`.playwright-mcp/mn-wall-run.mjs`, `mn-probe.mjs`) on a
+   build served by `vite preview` — the dev server kept reloading under
+   another session's edits — 22 raw seats with long names and two phones, a
+   wall paired by host token beside the unseated console at 1440×900: the
+   wall at 1440×900, 1280×720, 1366×600, 768×1024, 1080×1920 and 844×390
+   never scrolls, no chip falls outside its rung, no word is cut, and no
+   calculation is in the wall's text before the reveal; the reveal at the
+   same six shapes never scrolls, no row leaves its box and no name or
+   calculation is cut — 15 calculations kept at 1440×900, 9 at 1280×720, 6
+   at 1366×600, 4 at 768×1024, 10 at 1080×1920, none at 844×390 (two
+   columns of names and values). Filmed: the tiles dealing in
+   (`mn2-wall-film-deal.png`), a pin travelling from eight under to one over
+   (`…-pin-moves.png`), the reveal entering and leaving
+   (`…-reveal-enters.png`, `…-reveal-leaves.png`). The seated console at
+   1280×800 plays a merge and a send from the seat's rack with no scroll.
 
 ## How to tell it is done
 
