@@ -86,7 +86,7 @@
           // nothing.
           // The answer's card never shrinks under its own lines: the list
           // under the round's heading and podium gives way first, scrolling.
-          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'])
+          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'], [data-game='thinkalike'])
             grid-template-rows: minmax(min-content, 1fr) auto auto
 
             &:has(> .tally)
@@ -108,6 +108,11 @@
         // take the map's height rather than the card's.
         &:has(> .stage.revealed > .reveal-panel:is([data-game='atlas'], [data-game='swatch']))
           height: var(--podium-atlas-height)
+
+        // Every pile keeps a stack of its own height and every author's name
+        // under it: the card grows past the fold and the column scrolls.
+        &:has(> .stage.revealed > .reveal-panel[data-game='thinkalike'])
+          height: max(var(--podium-round-height), 46rem)
 
         // Every seat's pin on the ruler, at a size one reader can still tell
         // apart: the card grows past the fold and the column scrolls.

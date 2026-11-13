@@ -24,6 +24,10 @@ type ThinkAlikePilesProps = {
   youId: PlayerId | null
 }
 
+/** The letters of an answer's longest word, which its card is sized by so no word has to break. */
+const longestWordOf = (text: string): number =>
+  Math.max(4, ...text.split(/\s+/u).map((word) => word.length))
+
 /** A seat's name and pawn, under a pile or a lone card. */
 const Author: React.FC<{ player: PublicPlayer; seat: number }> = ({
   player,
@@ -68,12 +72,14 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
     round.awards.find((award) => group.authors.includes(award.playerId))
       ?.points ?? 0
   const loneCount = singles.length + blanks.length
+  const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
 
   return (
     <section
       className='think-alike-piles'
       data-lone={loneCount > 0 || undefined}
       style={{
+        '--columns': columnCount,
         '--columns-template': [
           ...(loneCount > 0
             ? [
@@ -117,6 +123,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
                 (youId !== null && group.authors.includes(youId)) || undefined
               }
               key={group.key}
+              style={{ '--letters': longestWordOf(group.text) }}
             >
               <span className='face'>
                 <span className='word'>{group.text}</span>
@@ -147,7 +154,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
             key={pile.key}
             style={{
               '--authors': pile.authors.length,
-              '--letters': Math.max(4, pile.text.length),
+              '--letters': longestWordOf(pile.text),
               '--turn': turn + 1
             }}
           >

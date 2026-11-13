@@ -100,8 +100,7 @@ export type PlayerRoundProps = {
 const roundStageModule = lazyModule(() => import('./player-round-stage'))
 
 const LoadedRoundStage: React.FC<PlayerRoundProps> = (props) => {
-  const { PlayerRoundStage } =
-    roundStageModule.loaded() ?? use(roundStageModule.load())
+  const { PlayerRoundStage } = use(roundStageModule.load())
 
   return <PlayerRoundStage {...props} />
 }

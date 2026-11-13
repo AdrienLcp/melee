@@ -35,7 +35,7 @@ const seatRowsModule = lazyModule(() => import('./menu-seat-rows'))
  * pawn picker and the invitation square they are made of.
  */
 const LoadedMenuSeatRows: React.FC = () => {
-  const { MenuSeatRows } = seatRowsModule.loaded() ?? use(seatRowsModule.load())
+  const { MenuSeatRows } = use(seatRowsModule.load())
 
   return <MenuSeatRows />
 }

@@ -31,17 +31,23 @@
     grid-template-rows: minmax(0, 1fr) auto minmax(0, auto)
     min-block-size: 0
 
+    // On the podium's card beside a wall, read at arm's length by the host,
+    // nothing hands the piles a height: each stack takes one of its own.
+    &:is(.podium-round *)
+      --edge: min(1rem, calc(4.5rem / var(--most-authors)))
+
+      container-type: inline-size
+      grid-template-rows: 9rem auto minmax(0, 1fr)
+
     .authors
       @include typography.caption-strong
 
       color: var(--ink)
       column-gap: var(--space-s)
       columns: 9rem
-      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.9), var(--text-m))
+      font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 1.9), calc(100cqi / var(--columns) / 8)), var(--text-m))
       list-style: none
       margin: 0
-      max-block-size: 30cqh
-      overflow: hidden
       padding: 0
 
       > li
@@ -52,14 +58,12 @@
         min-inline-size: 0
         padding-block: 0.12em
 
+      // A name wraps between words and nowhere else; a word wider than its
+      // column ends on an ellipsis on its own line rather than breaking.
       .name
-        -webkit-box-orient: vertical
-        -webkit-line-clamp: 2
-        display: -webkit-box
-        hyphens: auto
         min-inline-size: 0
         overflow: hidden
-        overflow-wrap: anywhere
+        text-overflow: ellipsis
 
     // The blank seats and the lone answers: small flat cards, turned over
     // together before the first pile.
@@ -73,10 +77,11 @@
       margin: 0
       padding: 0
 
-    // Lone answers alone, with no pile beside them: as many columns as the box holds.
+    // Lone answers alone, with no pile beside them: as many columns as the
+    // box holds, the block in the middle of it.
     &:not(:has(> .pile)) > .lone
-      align-content: center
-      grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr))
+      align-self: center
+      grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr))
 
     .lone-card
       --travel-offset: 0 1.5rem
@@ -89,6 +94,7 @@
       > .face
         animation: think-alike-face-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
         background: var(--card)
+        container-type: inline-size
         border-block-start: var(--stroke-thin) solid var(--spine-thinkalike)
         border-radius: var(--radius-s)
         box-shadow: 0 0.125rem 0 var(--chipboard)
@@ -102,9 +108,7 @@
 
         animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
         color: var(--card-ink)
-        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.3), var(--text-xl))
-        hyphens: auto
-        overflow-wrap: anywhere
+        font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.6), calc(190cqi / var(--letters, 4))), var(--text-xl))
         text-align: center
 
       &[data-blank] .face
@@ -183,11 +187,8 @@
 
       color: var(--card-ink)
       font-size: clamp(var(--text-s), min(24cqi, calc(150cqi / var(--letters)), 30cqh), 7rem)
-      hyphenate-limit-chars: 6 3 3
       align-self: center
-      hyphens: auto
       margin: 0
-      overflow-wrap: anywhere
       text-align: center
 
     [data-yours] .front
@@ -222,6 +223,7 @@
 
       --travel-scale: 1.4
 
+      align-self: start
       animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
       background: var(--well)
       border-radius: var(--radius-full)

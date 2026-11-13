@@ -1533,7 +1533,9 @@ board — Petit Bac's sheet included; only Atlas keeps the console's own upright
 column, its map first. A square wall (up to 13/10) cannot stack an answer over a
 table of teams: there the trays stand in one packed column beside it and what
 the table said is one chip a row. Lying down the wall keeps the console's
-split, the race on a wider column (1.35fr / 1fr). A narrow wall (810×1440)
+split, the race on a wider column (1.35fr / 1fr), and Think alike's piles on
+1.75fr beside a ranking past twelve seats in two columns: on half the width
+each pile's names broke mid-word. A narrow wall (810×1440)
 keeps its standings under the answer and draws no score track.
 
 **Every block stands in the middle of the box it is given**: the answer and

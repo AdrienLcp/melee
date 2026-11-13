@@ -328,6 +328,13 @@
         .scoreboard
           @include two-ranked-columns
 
+      // Think alike's piles are the whole round, each with its authors' names
+      // under it: on half the width a name of two words broke mid-word and a
+      // small pile's ended on an ellipsis. The ranking keeps its two columns
+      // beside them, a long name there ending on its ellipsis.
+      &.host-console-page > .stage.revealed:has(> .reveal-panel[data-game='thinkalike']):has(> .standings > .scoreboard > li:nth-child(13))
+        grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr)
+
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a
     // ledger beside the answer.

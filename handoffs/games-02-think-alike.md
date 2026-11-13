@@ -80,9 +80,35 @@ built and where it diverged, for part (2):
   `ta-film-r1-reveal.png`. Not yet seen: 9:16 and lying-down phone shapes, and
   the reveal film after the per-pile stagger fix was not re-viewed.
 - **For part (2)**: the console's merge/split UI goes beside `ThinkAlikePiles`
-  (its `key`/`mergedKeys` are on each group); the phone logged React's
-  _called use() to suspend … did not call use()_ once on joining — not
-  traced.
+  (its `key`/`mergedKeys` are on each group).
+
+**Part (1) finished 13/11/2026** (a second run on what part 1 left open):
+
+- **The React error is fixed at its root, in the shell**: `lazyModule`
+  readers wrote `loaded() ?? use(load())`, so a render that suspended and was
+  replayed once the chunk landed skipped `use()` and React threw. `load()` now
+  marks its promise fulfilled when it lands and every reader calls
+  `use(load())` unconditionally (`lazy-module.test.ts`). Not seen again in
+  five harness runs (two phones each).
+- **The wall's reveal**: piles on 1.75fr beside a two-column ranking past
+  twelve seats (`wall-page.sass`); names wrap between words only, a word
+  wider than its column ends on an ellipsis on its own line; a card's word is
+  sized by its longest word (`--letters`), so nothing hyphenates mid-word;
+  lone answers alone sit centred in wider cards. Audited at 1440×900,
+  1280×720 and 1080×1920 with piles and with 24 different answers: no
+  scroll, nothing outside, no name cut.
+- **The podium card beside a wall** (the console's reveal) collapsed every
+  stack to nothing: the card is now 46rem and each stack 9rem
+  (`host-podium.sass`). Still the part-1 piles, with no merge — part 2's.
+- **The seat's reveal**: _every pile_ scrolls inside its card (a fifth of the
+  shown height), so the round's block and _Prêt_ come up the page instead of
+  a screen and a half down. A blank seat reads _Ta pile — Rien écrit — 0_.
+- **Seen**: the reveal film (`.playwright-mcp/ta-film-r1-reveal.png`) turns
+  lone cards together, then 2, 3, 4, 5, 7 one after another about 0.9 s
+  apart, the biggest last; _Fraises_ and _une fraise_ land in one pile on
+  the wall and the phones; the phone lying down splits the round from the
+  standings. Not seen: the console with no wall at phone width (part 2
+  redoes that reveal).
 
 ## Next session
 

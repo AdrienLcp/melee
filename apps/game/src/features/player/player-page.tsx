@@ -44,8 +44,7 @@ import { Main } from '@/presentation/components/main'
 const seatedScreenModule = lazyModule(() => import('./seated-screen'))
 
 const LoadedSeatedScreen: React.FC<SeatedScreenProps> = (props) => {
-  const { SeatedScreen } =
-    seatedScreenModule.loaded() ?? use(seatedScreenModule.load())
+  const { SeatedScreen } = use(seatedScreenModule.load())
 
   return <SeatedScreen {...props} />
 }
