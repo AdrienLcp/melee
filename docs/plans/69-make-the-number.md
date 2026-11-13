@@ -124,11 +124,13 @@ tiles — and the reveal's solution, in one pass.
    `75 25 7 3 10 10` → 703 through the real solver and covers the leak over
    a seated console, four refusals at no cost, a nearer calculation
    replacing a farther one and an equal one not, the pay order, and the
-   early close timed at the exact hit. **Left for step 2**: no `player.lean`
-   arm — whether a tile merged on screen and never sent counts at the close,
-   as 67's row does (`ddfdf70a`), is the seat's design to settle first; and
-   `makenumber` sits in no `FAMILY_OF` group of `spaced-cycle.ts` — beside
-   `estimate` and `higherlower` as `numbers`, or alone.
+   early close timed at the exact hit. **Settled after**: `makenumber` joins
+   `estimate` and `higherlower` in the `numbers` family of `spaced-cycle.ts`,
+   because two rounds of figures back to back read as one game played twice;
+   and **the calculation left on a seat's screen counts at the close**, as
+   67's row does (`ddfdf70a`) — a seat that merged its way to 703 and ran out
+   of clock before _Envoyer_ would otherwise lose a round it won. That lean
+   arm is step 2's, built with the seat.
 2. **On the shelf.** `/impeccable` first, an example page per direction behind
    one link: the tiles, the operators and the merge on a seat, the wall's
    target with every seat's value, the reveal with the solution. Then screens,
