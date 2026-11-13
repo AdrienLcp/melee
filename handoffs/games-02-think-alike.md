@@ -15,6 +15,14 @@ app only compiles: dictionary keys, an icon and the `switch` arms, no screen.
 
 ## This session: step 3 of the plan
 
+**Directions done 13/11/2026, awaiting Adrien's pick**: three example pages
+behind `file:///C:/git/melee/.impeccable/directions/think-alike/index.html`
+(git-ignored, local) — A piles of cards, B columns of pawns, C countdown chart;
+`BRIEF.md` and `think-alike.js` there hold the content they share. Recommended:
+A, with B's legibility (the top card's word very large, a pile's thickness made
+of its authors' pawns). Build the direction he picks, with the corrections he
+asks for.
+
 Start with the `impeccable` skill, and give Adrien each direction as a whole
 example page behind one index link before building. The template is Make the
 number's screens (the commits after `79124e0c` that touch `apps/game/src/features`), the
