@@ -60,6 +60,9 @@ const rootOf = ({
   return root
 }
 
+const spellingOf = (members: readonly CrowdAnswer[]): string =>
+  mostWritten(members.map(({ text }) => text.trim()))
+
 const mostWritten = (texts: readonly string[]): string => {
   const counts = new Map<string, number>()
 
@@ -117,21 +120,30 @@ export const crowdGroups = ({
     const group = groups.get(root) ?? {
       authors: [],
       key: root,
-      mergedKeys: [],
-      text: mostWritten((byKey.get(root) ?? []).map(({ text }) => text.trim()))
+      merged: [],
+      text: spellingOf(byKey.get(root) ?? [])
     }
 
     group.authors.push(...members.map(({ playerId }) => playerId))
 
     if (key !== root) {
-      group.mergedKeys.push(key)
+      group.merged.push({
+        authors: members.map(({ playerId }) => playerId),
+        key,
+        text: spellingOf(members)
+      })
     }
 
     groups.set(root, group)
   }
 
   return [...groups.values()]
-    .map((group) => ({ ...group, mergedKeys: group.mergedKeys.toSorted() }))
+    .map((group) => ({
+      ...group,
+      merged: group.merged.toSorted((one, other) =>
+        compareText(one.key, other.key)
+      )
+    }))
     .toSorted(
       (one, other) =>
         one.authors.length - other.authors.length ||

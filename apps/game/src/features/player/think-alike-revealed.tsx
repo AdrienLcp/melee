@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useRef } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
@@ -8,6 +9,9 @@ import { playersOfRound } from '@melee/core/round/round-roster'
 import { thinkAlikeContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
+import { useChangedSinceFirstDraw } from '@/presentation/components/use-changed-since-first-draw'
+import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
+import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -15,7 +19,8 @@ import './think-alike-revealed.sass'
 
 type Row = {
   authorIds: readonly PlayerId[]
-  key: string
+  /** The answer's crowd key, `blank` for the seats that wrote nothing. */
+  id: string
   /** `null` for the seats that wrote nothing. */
   text: string | null
 }
@@ -49,12 +54,8 @@ export const ThinkAlikeRevealed: React.FC<{
   youId: PlayerId | null
 }> = ({ players, round, youId }) => {
   const translate = useTranslate()
-  const groups = thinkAlikeContent(round)?.groups
-
-  if (groups == null) {
-    return null
-  }
-
+  const list = useRef<HTMLOListElement>(null)
+  const groups = thinkAlikeContent(round)?.groups ?? []
   const writers = new Set(groups.flatMap((group) => group.authors))
   const blankIds = playersOfRound({
     openedWithPlayerIds: round.openedWithPlayerIds,
@@ -64,14 +65,27 @@ export const ThinkAlikeRevealed: React.FC<{
     .map((player) => player.id)
   const rows: Row[] = [
     ...(blankIds.length > 0
-      ? [{ authorIds: blankIds, key: '', text: null }]
+      ? [{ authorIds: blankIds, id: 'blank', text: null }]
       : []),
     ...groups.map((group) => ({
       authorIds: group.authors,
-      key: group.key,
+      id: group.key,
       text: group.text
     }))
   ]
+  const isRegrouped = useChangedSinceFirstDraw(
+    rows.map(({ authorIds, id }) => `${id}:${authorIds.length}`).join(' ')
+  )
+  const { endExitOf, rows: drawn } = useLeavingRows({
+    exitAnimation: 'page-leave',
+    rows
+  })
+
+  useRowsTravel({
+    list,
+    order: drawn.map(({ id }) => id).join(' '),
+    pace: 'reorder'
+  })
   const yours =
     youId === null
       ? null
@@ -106,7 +120,11 @@ export const ThinkAlikeRevealed: React.FC<{
               {yours.text ?? translate('thinkalike.reveal.blank')}
             </p>
           </div>
-          <p className='pay' data-paid={pointsOf(yours) > 0 || undefined}>
+          <p
+            className='pay'
+            data-paid={pointsOf(yours) > 0 || undefined}
+            key={pointsOf(yours)}
+          >
             {pointsOf(yours) > 0
               ? translate('round.scored', {
                   points: shownPoints(pointsOf(yours))
@@ -116,12 +134,18 @@ export const ThinkAlikeRevealed: React.FC<{
           <p className='pawns'>{pawnsOf(yours)}</p>
         </section>
       )}
-      <section className='answer-card every-pile'>
-        <ol>
-          {rows.map((row, index) => (
+      <section
+        className='answer-card every-pile'
+        data-regrouped={isRegrouped || undefined}
+      >
+        <ol ref={list}>
+          {drawn.map((row, index) => (
             <li
-              data-yours={row === yours || undefined}
-              key={row.key}
+              data-key={row.id}
+              data-leaving={row.isLeaving || undefined}
+              data-yours={row.id === yours?.id || undefined}
+              key={row.id}
+              onAnimationEnd={row.isLeaving ? endExitOf(row.id) : undefined}
               style={{ '--row-index': index }}
             >
               <MiniPile count={row.authorIds.length} text={row.text} />
@@ -129,7 +153,11 @@ export const ThinkAlikeRevealed: React.FC<{
                 {row.text ?? translate('thinkalike.reveal.blank')}
               </p>
               <p className='pawns'>{pawnsOf(row)}</p>
-              <p className='pay' data-paid={pointsOf(row) > 0 || undefined}>
+              <p
+                className='pay'
+                data-paid={pointsOf(row) > 0 || undefined}
+                key={pointsOf(row)}
+              >
                 {pointsOf(row) > 0
                   ? translate('round.scored', {
                       points: shownPoints(pointsOf(row))

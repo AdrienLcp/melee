@@ -129,7 +129,9 @@
       // Declared again here, where `--turn` is the pile's own: a custom property resolves where it is declared.
       --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
 
-      animation: page-enter var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * var(--turn) * 0.6) backwards
+      --enter-at: calc(var(--transition-fast, 0s) * var(--turn) * 0.6)
+
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) var(--enter-at) backwards
       display: grid
       grid-row: 1 / -1
       grid-template-rows: subgrid
@@ -149,6 +151,7 @@
     .top
       animation: think-alike-pile-turns var(--transition-slow, 0s) var(--ease-out) var(--turn-at) backwards
       block-size: min(max(70cqi, 3.5rem), calc(100cqh - var(--authors) * var(--edge)))
+      transition: block-size var(--transition-base, 0s) var(--ease-out)
       display: grid
       flex: none
       perspective: 60rem
@@ -242,3 +245,18 @@
 
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
       justify-self: stretch
+
+    // A merge or a split lays its changes in at once: the stagger was the
+    // reveal's, and a delay lengthened on a played animation sends the
+    // piece back to its first frame.
+    &[data-regrouped]
+      --turn-at: 0s
+
+      > .pile
+        --enter-at: 0s
+        --turn-at: 0s
+
+    :is(.lone-card, .pile)[data-leaving]
+      --travel-offset: 0 -1rem
+
+      animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards

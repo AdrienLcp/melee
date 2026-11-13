@@ -2397,6 +2397,14 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring:
       'Ta réponse est payée selon le nombre des autres qui ont écrit la même : tous les autres, 100 points ; la moitié, 50 ; personne, rien.',
+    sort: {
+      drag: 'Déplacer « {answer} »',
+      hint: 'Glisse une réponse sur une autre pour les compter ensemble.',
+      into: 'Avec « {answer} »',
+      label: 'Les réponses, à regrouper',
+      mergeWith: 'Mettre « {answer} » avec…',
+      takeOut: 'Ressortir « {answer} »'
+    },
     table: defineTranslation('{count:plural} sur {total:number}', {
       plural: { count: { one: '{?} carte posée', other: '{?} cartes posées' } }
     }),

@@ -62,6 +62,10 @@ import { MakeNumberShortest } from './make-number-shortest'
 import { MysteryWordGrids } from './mystery-word-grids'
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
 import { ThinkAlikePiles } from './think-alike-piles'
+import {
+  type ThinkAlikeRegroup,
+  ThinkAlikeSorting
+} from './think-alike-sorting'
 import { useFittedGrid } from './use-fitted-grid'
 import { useWholeChips } from './use-whole-chips'
 
@@ -73,6 +77,8 @@ type RevealPanelProps = {
   lineUp: readonly GameSettings[]
   /** The console striking a Petit Bac word out; absent wherever the reveal is only read. */
   onStrike?: (strike: PetitBacStrike) => void
+  /** The console merging or splitting the room's answers; absent wherever the reveal is only read. */
+  onRegroup?: (regroup: ThinkAlikeRegroup) => void
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
@@ -133,6 +139,7 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
  */
 export const RevealPanel: React.FC<RevealPanelProps> = ({
   lineUp,
+  onRegroup,
   onStrike,
   players,
   round,
@@ -329,7 +336,15 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           round={round}
           youId={youId}
         />
-        <ThinkAlikePiles players={players} round={round} youId={youId} />
+        {onRegroup === undefined ? (
+          <ThinkAlikePiles players={players} round={round} youId={youId} />
+        ) : (
+          <ThinkAlikeSorting
+            onRegroup={onRegroup}
+            players={players}
+            round={round}
+          />
+        )}
       </section>
     )
   }
@@ -573,7 +588,7 @@ const GUESS_ASPECT = 1.7
 
 /** Every seat's guess dealt into the box the panel leaves, the wall never scrolling. */
 const FittedGuesses: React.FC<
-  Omit<RevealPanelProps, 'lineUp' | 'onStrike'>
+  Omit<RevealPanelProps, 'lineUp' | 'onRegroup' | 'onStrike'>
 > = ({ players, round, youId }) => {
   const grid = useRef<HTMLOListElement>(null)
 
@@ -594,7 +609,7 @@ const FittedGuesses: React.FC<
   )
 }
 
-const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+const Outcome: React.FC<Omit<RevealPanelProps, 'onRegroup' | 'onStrike'>> = ({
   lineUp,
   players,
   round,
@@ -674,12 +689,9 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
  * screen says theirs, which a host who also plays reads nowhere else — and in
  * the heading's row, so it costs the stage no line of its own.
  */
-const ThisRoundHead: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
-  lineUp,
-  players,
-  round,
-  youId
-}) => {
+const ThisRoundHead: React.FC<
+  Omit<RevealPanelProps, 'onRegroup' | 'onStrike'>
+> = ({ lineUp, players, round, youId }) => {
   const seat = players.findIndex((player) => player.id === youId)
   // A seat that sat the round out to judge was never stamped on it.
   const isStamped =

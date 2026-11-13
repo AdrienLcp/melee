@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useRef } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
@@ -9,6 +10,9 @@ import { playersOfRound } from '@melee/core/round/round-roster'
 import { thinkAlikeContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
+import { useChangedSinceFirstDraw } from '@/presentation/components/use-changed-since-first-draw'
+import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
+import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -16,6 +20,8 @@ import './think-alike-piles.sass'
 
 /** How many lone cards stand one over the other beside the piles before another column starts. */
 const LONE_ROWS_BESIDE_PILES = 5
+
+const LEAVING_ANIMATION = 'page-leave'
 
 type ThinkAlikePilesProps = {
   players: readonly PublicPlayer[]
@@ -52,7 +58,15 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   youId
 }) => {
   const translate = useTranslate()
-  const groups = thinkAlikeContent(round)?.groups ?? []
+  const section = useRef<HTMLElement>(null)
+  const dealt = thinkAlikeContent(round)?.groups ?? []
+  const isRegrouped = useChangedSinceFirstDraw(
+    dealt.map(({ authors, key }) => `${key}:${authors.length}`).join(' ')
+  )
+  const { endExitOf, rows: groups } = useLeavingRows({
+    exitAnimation: LEAVING_ANIMATION,
+    rows: dealt.map((group) => ({ ...group, id: group.key }))
+  })
   const writers = new Set(groups.flatMap((group) => group.authors))
   const blanks = playersOfRound({
     openedWithPlayerIds: round.openedWithPlayerIds,
@@ -72,12 +86,20 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
     round.awards.find((award) => group.authors.includes(award.playerId))
       ?.points ?? 0
   const loneCount = singles.length + blanks.length
+
+  useRowsTravel({
+    list: section,
+    order: piles.map((pile) => pile.key).join(' '),
+    pace: 'reorder'
+  })
   const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
 
   return (
     <section
       className='think-alike-piles'
       data-lone={loneCount > 0 || undefined}
+      data-regrouped={isRegrouped || undefined}
+      ref={section}
       style={{
         '--columns': columnCount,
         '--columns-template': [
@@ -119,10 +141,14 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
           {singles.map((group) => (
             <li
               className='lone-card'
+              data-leaving={group.isLeaving || undefined}
               data-yours={
                 (youId !== null && group.authors.includes(youId)) || undefined
               }
               key={group.key}
+              onAnimationEnd={
+                group.isLeaving ? endExitOf(group.key) : undefined
+              }
               style={{ '--letters': longestWordOf(group.text) }}
             >
               <span className='face'>
@@ -148,10 +174,13 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
         return (
           <div
             className='pile'
+            data-key={pile.key}
+            data-leaving={pile.isLeaving || undefined}
             data-yours={
               (youId !== null && pile.authors.includes(youId)) || undefined
             }
             key={pile.key}
+            onAnimationEnd={pile.isLeaving ? endExitOf(pile.key) : undefined}
             style={{
               '--authors': pile.authors.length,
               '--letters': longestWordOf(pile.text),
@@ -181,7 +210,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
                 ))}
               </ol>
             </div>
-            <p className='pay' data-paid={points > 0 || undefined}>
+            <p className='pay' data-paid={points > 0 || undefined} key={points}>
               {points > 0
                 ? translate('round.scored', { points: shownPoints(points) })
                 : 0}

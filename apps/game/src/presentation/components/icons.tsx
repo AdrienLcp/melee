@@ -35,6 +35,7 @@ import {
   Maximize,
   Megaphone,
   Menu,
+  Merge,
   Minimize,
   Minus,
   MonitorPlay,
@@ -127,6 +128,7 @@ export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)
 export const FullscreenEnterIcon = inFamily(Maximize)
 export const FullscreenExitIcon = inFamily(Minimize)
+export const MergeIcon = inFamily(Merge)
 export const MinusIcon = inFamily(Minus)
 export const MoreIcon = inFamily(Ellipsis)
 export const MoveIcon = inFamily(ArrowRightLeft)

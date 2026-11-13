@@ -253,9 +253,11 @@ describe('a think-alike round through the seam', () => {
 
     const whole = pointsForMatch({ matched: 2, others: 2 })
 
-    expect(thinkAlikeRound(playerView(lou))?.groups?.[0]?.mergedKeys).toEqual([
-      lone
-    ])
+    expect(
+      thinkAlikeRound(playerView(lou))?.groups?.[0]?.merged.map(
+        ({ authors, key }) => ({ authors, key })
+      )
+    ).toEqual([{ authors: [idOf(lou)], key: lone }])
     expect(paidTo({ host, seat: lou })).toMatchObject({
       points: whole,
       score: whole

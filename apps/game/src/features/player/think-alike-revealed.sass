@@ -167,3 +167,13 @@
 
         &[data-yours]
           outline: var(--stroke-bold) solid var(--card-ink)
+
+        &[data-leaving]
+          --travel-offset: 0 -0.5rem
+
+          animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+
+    // A merge or a split lays its rows in at once: a delay lengthened on a
+    // played entrance sends the row back to its first frame.
+    > .every-pile[data-regrouped] > ol > li
+      --row-index: 0

@@ -507,6 +507,11 @@ const PhaseStage: React.FC<RoomStageProps> = ({
         >
           <RevealPanel
             lineUp={view.settings.lineUp}
+            onRegroup={
+              controls === null
+                ? undefined
+                : (regroup) => controls.send({ ...regroup, roundId: round.id })
+            }
             onStrike={
               controls === null
                 ? undefined

@@ -1,0 +1,209 @@
+// Side-effect module: styles `.think-alike-sorting`, the console's row per answer at the reveal, merged by a drag or a menu and taken back out from the card it folds into.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .think-alike-sorting
+    container-type: inline-size
+    display: flex
+    flex-direction: column
+    gap: var(--space-xs)
+    min-block-size: 0
+
+    > .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin: 0
+
+    > .rows
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      min-block-size: 0
+      outline: none
+      overflow-y: auto
+      overscroll-behavior: contain
+      padding: var(--space-2xs)
+
+    // A row: the answer on its card, how many wrote it, what it paid; who
+    // wrote it under it; the answers folded into it under that.
+    .row
+      --travel-offset: 0 0.75rem
+      // The biggest crowd lands last, as the room's screen turns it last.
+      --enter-at: calc(var(--transition-fast, 0s) * var(--from-last) * 0.5)
+
+      align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--enter-at) backwards
+      background: var(--card)
+      border-block-start: 0.3rem solid var(--spine-thinkalike)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-card)
+      color: var(--card-ink)
+      column-gap: var(--space-xs)
+      display: grid
+      flex: none
+      grid-template: 'grip count word pay menu' auto 'grip count authors authors authors' auto 'folded folded folded folded folded' auto / auto auto minmax(0, 1fr) auto auto
+      outline: none
+      padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) 0
+      transition: box-shadow var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+
+      &[data-focus-visible]
+        outline: var(--stroke-bold) solid var(--ink)
+        outline-offset: 0.15rem
+
+      // The row a drag hovers: lifted, ringed, ready to take the other in.
+      &[data-drop-target]
+        box-shadow: var(--shadow-card), 0 0 0 var(--stroke-bold) var(--spine-thinkalike)
+        translate: 0 -0.15rem
+
+      &[data-dragging]
+        opacity: 0.45
+
+      &[data-leaving]
+        --travel-offset: 0 -0.5rem
+
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+        pointer-events: none
+
+    // Laid in after the first draw: no stagger, or a delay lengthened on a
+    // played entrance would send the row back to its first frame.
+    &[data-regrouped] .row
+      --enter-at: 0s
+
+    .grip
+      align-items: center
+      align-self: stretch
+      background: transparent
+      border: 0
+      color: var(--ink-muted)
+      cursor: grab
+      display: grid
+      grid-area: grip
+      inline-size: var(--target)
+      justify-items: center
+      min-block-size: var(--target)
+      outline: none
+      touch-action: none
+
+      &[data-focus-visible]
+        outline: var(--stroke-bold) solid var(--ink)
+        outline-offset: -0.2rem
+
+      &[data-pressed]
+        cursor: grabbing
+
+    .count
+      @include typography.score
+
+      --travel-scale: 1.4
+
+      align-self: start
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--enter-at) backwards
+      color: var(--spine-thinkalike)
+      font-size: var(--text-2xl)
+      grid-area: count
+      min-inline-size: 1.4em
+      text-align: center
+
+    .word
+      @include typography.card-name
+
+      font-size: var(--text-xl)
+      grid-area: word
+      hyphens: auto
+      min-inline-size: 0
+      overflow-wrap: anywhere
+
+    .pay
+      @include typography.score
+
+      --travel-scale: 1.4
+
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--enter-at) backwards
+      background: var(--card-well)
+      border-radius: var(--radius-full)
+      font-size: var(--text-l)
+      grid-area: pay
+      padding: 0.05em 0.55em
+
+      &[data-paid]
+        background: var(--good-soft)
+        box-shadow: 0 0.125rem 0 var(--good-edge)
+        color: var(--tile-ink)
+
+    .action-menu-trigger
+      color: var(--card-ink)
+      grid-area: menu
+
+    .authors
+      @include typography.caption
+
+      display: flex
+      flex-wrap: wrap
+      gap: 0.1em var(--space-s)
+      grid-area: authors
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        --travel-offset: 0 -0.4rem
+
+        align-items: center
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        display: flex
+        gap: 0.35em
+        min-inline-size: 0
+
+      .name
+        min-inline-size: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+    // The answers folded into this one: a card tucked under it, its own
+    // word as large as a row's second line and the press that takes it out.
+    .folded
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      grid-area: folded
+      list-style: none
+      margin: 0
+      padding: 0 0 0 calc(var(--target) + var(--space-xs))
+
+      &:empty
+        display: none
+
+    .folded-card
+      --travel-offset: 0 -1rem
+
+      align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      background: var(--card)
+      border: var(--stroke-thin) solid var(--card-rule)
+      border-radius: var(--radius-s)
+      column-gap: var(--space-s)
+      display: grid
+      grid-template: 'word take-out' auto 'authors take-out' auto / minmax(0, 1fr) auto
+      margin-block-start: var(--space-2xs)
+      padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s)
+      rotate: -0.6deg
+
+      &[data-leaving]
+        --travel-offset: 0 -1rem
+
+        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+
+      > .word
+        font-size: var(--text-l)
+
+      > .take-out
+        grid-area: take-out
+
+      @container (width < 26rem)
+        grid-template: 'word' auto 'authors' auto 'take-out' auto / minmax(0, 1fr)
+        row-gap: var(--space-2xs)
+
+        > .take-out
+          justify-self: start

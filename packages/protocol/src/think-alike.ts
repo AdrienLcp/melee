@@ -37,8 +37,17 @@ export const thinkAlikeGroupSchema = z.object({
   authors: z.array(playerIdSchema).min(1),
   /** The crowd key every spelling folds to: what a merge names the group by. */
   key: z.string().min(1),
-  /** The keys of the groups the console merged into this one, which _take it back out_ names. */
-  mergedKeys: z.array(z.string().min(1)),
+  /**
+   * The groups the console merged into this one, each as it stood on its own:
+   * what _take it back out_ names, and the authors who would leave with it.
+   */
+  merged: z.array(
+    z.object({
+      authors: z.array(playerIdSchema).min(1),
+      key: z.string().min(1),
+      text: z.string().min(1).max(THINK_ALIKE_ANSWER_MAX_LENGTH)
+    })
+  ),
   /** The spelling most of its own authors wrote. */
   text: z.string().min(1).max(THINK_ALIKE_ANSWER_MAX_LENGTH)
 })

@@ -42,9 +42,9 @@ describe('the crowd groups', () => {
 
   it('[thinkalike] turns the smallest over first and leaves a blank out', () => {
     expect(crowdGroups({ answers, merges: [] })).toEqual([
-      { authors: [carl], key: 'cerise', mergedKeys: [], text: 'cerise' },
-      { authors: [dan], key: 'framboise', mergedKeys: [], text: 'Framboise' },
-      { authors: [ana, ben], key: 'fraise', mergedKeys: [], text: 'Fraise' }
+      { authors: [carl], key: 'cerise', merged: [], text: 'cerise' },
+      { authors: [dan], key: 'framboise', merged: [], text: 'Framboise' },
+      { authors: [ana, ben], key: 'fraise', merged: [], text: 'Fraise' }
     ])
   })
 
@@ -58,10 +58,10 @@ describe('the crowd groups', () => {
       {
         authors: [carl, dan],
         key: 'cerise',
-        mergedKeys: ['framboise'],
+        merged: [{ authors: [dan], key: 'framboise', text: 'Framboise' }],
         text: 'cerise'
       },
-      { authors: [ana, ben], key: 'fraise', mergedKeys: [], text: 'Fraise' }
+      { authors: [ana, ben], key: 'fraise', merged: [], text: 'Fraise' }
     ])
   })
 
@@ -78,7 +78,10 @@ describe('the crowd groups', () => {
       {
         authors: [ana, ben, carl, dan],
         key: 'fraise',
-        mergedKeys: ['cerise', 'framboise'],
+        merged: [
+          { authors: [carl], key: 'cerise', text: 'cerise' },
+          { authors: [dan], key: 'framboise', text: 'Framboise' }
+        ],
         text: 'Fraise'
       }
     ])
