@@ -136,6 +136,11 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.nonText
         },
         {
+          background: '--board',
+          foreground: '--good-ink',
+          minimum: WCAG_AA.nonText
+        },
+        {
           background: '--card',
           foreground: '--match-edge',
           minimum: WCAG_AA.nonText

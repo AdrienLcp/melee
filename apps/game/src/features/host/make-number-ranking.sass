@@ -68,6 +68,7 @@
     min-block-size: 0
     min-inline-size: 0
     overflow: clip
+    position: relative
     row-gap: 0
 
     &[data-full]
@@ -127,7 +128,7 @@
       > .stamp
         align-self: center
         block-size: 1.1em
-        color: var(--good-edge)
+        color: var(--good-ink)
         inline-size: 1.1em
 
       &[data-none]
@@ -158,9 +159,14 @@
       @include typography.numeric
       @include typography.callout
 
+      // Entering once with the row and never again: a fold that hands a row
+      // its calculation later, on a resize, fades it in rather than replaying
+      // the reveal's stagger over an empty row — what leaving `display: none`
+      // would do.
+      animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--row-delay) + var(--transition-base, 0s)) backwards
       color: var(--ink-muted)
       column-gap: 1.1em
-      display: none
+      display: flex
       flex-wrap: wrap
       // Never under the floor: `useRankingFold` gave the line its count of
       // lines at the floor already.
@@ -178,8 +184,13 @@
         font-style: italic
 
     &[data-full] > .steps
-      animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--row-delay) + var(--transition-base, 0s)) backwards
-      display: flex
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+    &:not([data-full]) > .steps
+      inset: 0
+      opacity: 0
+      position: absolute
+      visibility: hidden
 
   // Scrolled beside a wall or on a phone, every row keeps its calculation
   // at a size of its own and wraps it.
