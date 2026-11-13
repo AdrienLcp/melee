@@ -509,6 +509,18 @@ rule hiding the console's stage under an attribute React writes on the same
 query (`:not([data-screen='stage'])`) matched the frame the attribute was not
 written yet, and a reveal narrowed past the desk turned its piles over again.
 Such a rule requires the attribute present (`[data-screen]:not(…)`).
+**A screen hidden to be shown again is skipped, never `display: none`.**
+Toggled on the stage it held, `display: none` replayed every reveal and arrival
+in it on the way back from a console tab. `content-visibility: hidden` keeps
+each animation where it stood (measured in Chromium: a finished one stays
+finished, a running one runs on), takes the contents out of focus and the
+accessibility tree, and `position: absolute` out of the flow; `interactivity:
+inert` and `pointer-events: none` stop its own empty box taking presses. Not
+`visibility: hidden`: a descendant setting `visible` shows through, and a piece
+transitioning `visibility` with a delay came back that much late. A screen
+that must still lay itself down as it returns renames its animation
+(`page-lay` to `page-lay-again`): a new name restarts that one element's
+animation and nothing inside it.
 
 ## A keyframe substitutes a custom property, it does not compute with one
 

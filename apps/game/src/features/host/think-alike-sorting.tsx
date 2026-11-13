@@ -39,7 +39,7 @@ type ThinkAlikeSortingProps = {
   round: RoundView
 }
 
-const ROW_EXIT_ANIMATION = 'page-leave'
+const ROW_EXIT_ANIMATION = 'row-closes'
 
 const signatureOf = (groups: readonly ThinkAlikeGroup[]): string =>
   groups.map(({ authors, key }) => `${key}:${authors.length}`).join(' ')

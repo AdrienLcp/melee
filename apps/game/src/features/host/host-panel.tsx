@@ -146,12 +146,17 @@ export const HostPanel: React.FC<HostPanelProps> = ({
   const [side, setSide] = useState(storedSideOrRight)
   const [chosenTab, setChosenTab] = useState<PanelTab | null>(null)
   const [shownScreen, setScreen] = useState<NarrowScreen | null>(null)
+  const [isStageBack, setIsStageBack] = useState(false)
   const screen = shownScreen ?? narrowStart ?? 'stage'
   const wideTab = chosenTab ?? defaultTab
   const isRail = isDesk && isFolded
 
   if (!isDesk && shownScreen === null && narrowStart !== null) {
     setScreen(narrowStart)
+  }
+
+  if (isDesk && isStageBack) {
+    setIsStageBack(false)
   }
 
   const fold = (next: boolean, openTab?: PanelTab) => {
@@ -225,6 +230,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
       data-folded={isRail || undefined}
       data-screen={isDesk ? undefined : screen}
       data-side={side}
+      data-stage-back={isStageBack || undefined}
       data-stage-full={isStageFull || undefined}
     >
       {children}
@@ -258,6 +264,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
                 replaceScreen(() => {
                   flushSync(() => {
                     setScreen(isPanelTab(key) ? key : 'stage')
+                    setIsStageBack(!isPanelTab(key))
                   })
                 })
               } else if (isPanelTab(key)) {

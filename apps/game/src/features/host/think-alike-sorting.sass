@@ -20,6 +20,7 @@
     // back in, which moved the rows away under a press and lost it.
     > .scroller
       min-block-size: 0
+      overflow-anchor: none
       overflow-y: auto
       overscroll-behavior: contain
 
@@ -72,10 +73,16 @@
       &[data-dragging]
         opacity: 0.45
 
+      // Faded, then closed: taken out at its full height, a row scrolled to
+      // the list's foot jumped the list by its height.
       &[data-leaving]
+        --row-gap-closed: calc(-1 * var(--space-xs))
         --travel-offset: 0 -0.5rem
 
-        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        interpolate-size: allow-keywords
+        min-block-size: 0rem
+        overflow: clip
         pointer-events: none
 
     // Laid in after the first draw: no stagger, or a delay lengthened on a
@@ -203,10 +210,16 @@
       padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s)
       rotate: -0.6deg
 
+      // Its own top margin and the gap after it close with it.
       &[data-leaving]
+        --row-gap-closed: calc(-2 * var(--space-2xs))
         --travel-offset: 0 -1rem
 
-        animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        interpolate-size: allow-keywords
+        min-block-size: 0rem
+        overflow: clip
+        pointer-events: none
 
       > .word
         font-size: var(--text-l)

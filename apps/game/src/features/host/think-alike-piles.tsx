@@ -22,7 +22,7 @@ import './think-alike-piles.sass'
 /** How many lone cards stand one over the other beside the piles before another column starts. */
 const LONE_ROWS_BESIDE_PILES = 5
 
-const LEAVING_ANIMATION = 'page-leave'
+const LEAVING_ANIMATION = 'row-closes'
 
 type ThinkAlikePilesProps = {
   /**

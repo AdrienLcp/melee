@@ -411,6 +411,17 @@ one part.
   to its foot jumped. It now fades, then hands its room back. A row still
   growing to its new height while another closed above it also set off from
   where it had stood, a row's height lower.
+- `[Game]` **Coming back to the game from another tab of a narrow console no
+  longer replays it.** The stage was hidden with `display: none` while a tab
+  stood in its place, so going back restarted every motion in it: a Think
+  alike reveal turned its piles over again, a quiz reveal laid its panel down
+  again, the lobby replayed its arrivals. The stage is now skipped while
+  hidden, keeps what it played, and lays itself down once as it comes back.
+- `[Game]` **The console's regroup list and its piles close up behind what
+  leaves.** A row merged into another, a card taken back out, and a pile one
+  a line went at full height, and a list scrolled to its foot jumped. They now
+  fade, then hand their room back, and the regroup list no longer scrolls
+  itself on a merge to keep a row in view.
 - `[Shared]` **The dealer spaces every game again once Make the number joins
   _Free-for-all_.** Dealing the nearest-rested game row by row stranded the
   last rows of a line-up with no game rested, so a game came back before its

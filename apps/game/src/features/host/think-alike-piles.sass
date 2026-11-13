@@ -263,24 +263,29 @@
     // A console with no wall too narrow for the piles side by side, or too
     // short to stand them over their names, lays each pile on a line of its own, the biggest first: the stack on the left,
     // what it paid and who wrote it beside it, the lone cards last. The box
-    // scrolls when the round holds more than it does.
+    // scrolls when the round holds more than it does. A flex column rather
+    // than a grid, which keeps the gap of a pile closed to nothing.
     @container think-alike-console (inline-size < 36rem) or (block-size < 32rem)
       --edge: 0.45rem
 
-      align-content: start
-      grid-template-columns: minmax(0, 1fr)
-      grid-template-rows: none
+      display: flex
+      flex-direction: column
       row-gap: var(--space-s)
       scrollbar-gutter: stable
 
       > .lone
-        align-self: start
-        grid-row: auto
+        align-self: stretch
+        flex: none
         grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr))
         order: 1
 
+      &:is(.think-alike-console-reveal *):not(:has(> .pile)) > .lone
+        align-self: stretch
+        margin-block: auto
+
       > .pile
         align-items: start
+        flex: none
         column-gap: var(--space-s)
         grid-row: auto
         grid-template-areas: 'stack pay' 'stack authors'
@@ -341,7 +346,22 @@
       :is(.top, .face, .word, .edges li, .edges .pawn)
         animation: none
 
+    // Side by side, a pile's column goes once it has faded: closed at no
+    // duration, as a subgrid's height is not the pile's to hand back.
     :is(.lone-card, .pile)[data-leaving]
       --travel-offset: 0 -1rem
 
-      animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+      animation: page-leave var(--transition-base, 0s) var(--ease-in) both, row-closes 0s linear var(--transition-base, 0s) both
+      pointer-events: none
+
+    // One a line in a box that scrolls, faded then closed: taken out at its
+    // full height, a box scrolled to its foot jumped by it.
+    @container think-alike-console (inline-size < 36rem) or (block-size < 32rem)
+      :is(.lone-card, .pile)[data-leaving]
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        interpolate-size: allow-keywords
+        min-block-size: 0rem
+        overflow: clip
+
+      > .pile[data-leaving]
+        --row-gap-closed: calc(-1 * var(--space-s))

@@ -134,18 +134,21 @@
 /// A page settling in, and deliberately quieter than the reveal: a few pixels
 /// and a fade where the reveal strikes from a little large, on `base` where it uses `slow`.
 /// The reveal is what a round pays out, and a navigation must not borrow its
-/// weight.
-@keyframes page-lay
-  from
-    mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
-    mask-position: 0 100%
-    mask-size: 100% 300%
-    transform: translateY(0.5rem)
-  to
-    mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
-    mask-position: 0 0
-    mask-size: 100% 300%
-    transform: translateY(0)
+/// weight. `page-lay-again` is the same motion under a second name, so a page
+/// shown again lays itself down by changing its animation's name alone, where
+/// leaving `display: none` would play every animation inside it again.
+@each $name in page-lay, page-lay-again
+  @keyframes #{$name}
+    from
+      mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
+      mask-position: 0 100%
+      mask-size: 100% 300%
+      transform: translateY(0.5rem)
+    to
+      mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
+      mask-position: 0 0
+      mask-size: 100% 300%
+      transform: translateY(0)
 
 /// Where something arriving on `page-enter` starts or something leaving on
 /// `page-leave` ends, an offset in `translate`'s syntax and a `scale`, and the

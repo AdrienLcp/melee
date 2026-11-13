@@ -275,13 +275,22 @@
   // question and its four choices cannot spare.
   @include layout.off-desk
     .host-desk
-      // By its id: the stage's own phase rules set its display at a weight
-      // no class here outranks. Only once the panel names a screen: the
-      // media query flips a frame before React does, and a stage hidden for
-      // that frame restarts every animation in it — the piles of a reveal
-      // turned over again by a window narrowed past the desk.
+      // Skipped rather than `display: none`, which restarts every animation
+      // in the stage: a reveal played again on the way back from a tab.
+      // Inert too, or its own empty box takes the presses over the tab's
+      // top; never `visibility`, which a piece inside inherits and shows
+      // again only after its own delay. Only once the panel names a screen,
+      // since the media query flips a frame before React does.
       &[data-screen]:not([data-screen='stage']) > #main
-        display: none
+        content-visibility: hidden
+        interactivity: inert
+        pointer-events: none
+        position: absolute
+
+      // Back from a tab, the stage lays itself down again under the
+      // phase's own timing, and nothing in it plays again.
+      &[data-stage-back] > #main
+        animation-name: page-lay-again
 
     .host-panel
       --tab-selected: var(--board)
