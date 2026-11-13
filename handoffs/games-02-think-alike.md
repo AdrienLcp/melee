@@ -134,7 +134,7 @@ built and where it diverged, for part (2):
 - `host-panel.tsx`: a narrowed console opens on _Partie_ in a running game
   (`narrowStart` was frozen on the answer given before a game was picked).
 - Harnesses (git-ignored): `.playwright-mcp/ta-run.mjs` (`REGROUP=1`) and
-  `.playwright-mcp/ta-console.mjs` (`SEATED`, `WALL`, `REGROUP`, `PHONEFILM`).
+  `.playwright-mcp/ta-console.mjs` (`SEATED`, `WALL`, `REGROUP`, and a flag filming the phone).
 
 ## Next session
 
