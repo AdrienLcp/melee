@@ -8,6 +8,20 @@ one part.
 
 ### Features
 
+- `[Game]` **Le compte est bon is on the shelf, played from every seat.**
+  The target stands at the top and the six tiles at the bottom: a tile pressed
+  is lifted, an operator chosen, and a second tile pressed takes the result —
+  the first slides onto it and leaves an empty socket, the result lifted for
+  the next step. A step the rule refuses is out of reach, its tiles dimmed,
+  and a made tile wears the warm face with a printed bar. The calculation so
+  far and the figure it reaches sit over the keys, undo takes back the last
+  merge, and _Envoyer_ sends the lifted made tile or the one nearest the
+  target. The seat lists what it sent by value, the kept one marked with its
+  distance, and the calculation left on screen when the clock runs out is
+  paid when it is nearer, unsent and with no speed. Its reveal writes the
+  seat's kept calculation beside the draw's shortest. The setup takes 45, 60
+  or 90 seconds, Grand mix deals it, and its spine is a petrol. The wall, the
+  unseated console and their reveal are still owed.
 - **A host can keep the next round to themselves.** A new switch in the
   room's settings, _Tu lances chaque manche_, stops a whole table's Ready from
   starting the next round: the reveal asks no seat whether it is back, the

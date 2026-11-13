@@ -1470,15 +1470,45 @@ export const FR_DICTIONARY = defineDictionary({
     words: 'Tes mots acceptés'
   },
   makenumber: {
+    distance: 'à {distance:number}',
+    exact: 'Le compte est bon !',
+    hint: 'Touche une plaque, un signe, puis une autre plaque.',
     home: {
       description:
         'Six plaques et un nombre à trouver s’affichent sur tous les écrans. Chacun assemble les plaques deux à deux — addition, soustraction, multiplication, division — vers le nombre, autant de calculs qu’il veut : seul le plus proche compte. La pièce voit le nombre de chacun, jamais comment il l’a fait, jusqu’à ce que la révélation montre le plus court chemin que permettaient les plaques.'
     },
+    kept: ', le calcul gardé',
+    made: ', plaque calculée',
     name: 'Le compte est bon',
+    operator: {
+      add: 'Plus',
+      divide: 'Divisé par',
+      multiply: 'Fois',
+      subtract: 'Moins'
+    },
+    operators: 'Les opérations',
     play: 'Jouer au Compte est bon',
+    rack: 'Tes plaques',
+    refusal: {
+      already_buzzed: 'Le compte est déjà bon : rien à envoyer de plus.',
+      invalid_calculation: 'Ce calcul ne tombe pas juste avec ces plaques.'
+    },
+    reveal: {
+      none: 'Aucun calcul',
+      shortest: 'Le plus court, pour {target:number}',
+      yours: 'Ton calcul'
+    },
+    roundDuration: 'Temps pour compter',
     scoring:
       'Ton calcul le plus proche est payé selon l’écart : le nombre exact rapporte 100 points, chaque unité d’écart dix de moins, et dix d’écart ou plus ne rapportent rien.',
-    tagline: 'Six plaques, un nombre, toutes les opérations.'
+    seat: 'Ton compte',
+    send: 'Envoyer',
+    sends: 'Tes calculs envoyés',
+    startOver: 'Tout reprendre',
+    tagline: 'Six plaques, un nombre, toutes les opérations.',
+    target: 'Le nombre à trouver : ',
+    undo: 'Défaire',
+    work: 'Ton calcul en cours'
   },
   matchsticks: {
     duration: 'Temps par énigme',

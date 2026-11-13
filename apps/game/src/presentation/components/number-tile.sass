@@ -1,0 +1,59 @@
+// Side-effect module: styles `.number-tile`, a make-the-number tile — dealt, made by a merge, or the empty socket a merged tile left.
+@use '../styles/typography'
+
+@keyframes number-tile-fuses
+  from
+    filter: brightness(1.25)
+    scale: 0.82
+
+@layer components
+  .number-tile
+    --tile-edge: 0.1875rem
+
+    @include typography.numeric
+
+    align-items: center
+    background: var(--card)
+    border: 0
+    border-radius: var(--tile-radius, var(--radius-m))
+    box-shadow: 0 var(--tile-edge) 0 var(--chipboard), var(--shadow-piece)
+    color: var(--card-ink)
+    display: grid
+    font-size: var(--tile-font-size, 2rem)
+    font-stretch: 80%
+    justify-items: center
+    letter-spacing: -0.01em
+    line-height: 1
+    min-inline-size: 0
+    padding: 0
+    position: relative
+    transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-fast, 0s) var(--ease-out)
+
+    // A tile a merge made: the warm face, and a printed bar under its figure
+    // so it reads as made without the colour.
+    &[data-made]
+      background: var(--tile-2)
+      color: var(--tile-ink)
+
+    > .made-mark
+      background: var(--tile-mark-2)
+      border-radius: var(--radius-xs)
+      block-size: max(0.1875rem, 0.07em)
+      inset-block-end: max(0.3rem, 12%)
+      inset-inline: 32%
+      opacity: 0
+      position: absolute
+      scale: 0 1
+      transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in)
+
+    &[data-made] > .made-mark
+      opacity: 1
+      scale: 1
+      transition-timing-function: var(--ease-out)
+
+    // Where a tile left to merge onto another: a groove in the board, still
+    // in its place so the rack keeps its shape.
+    &[data-empty]
+      background: var(--socket)
+      box-shadow: var(--shadow-groove), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: transparent

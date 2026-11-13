@@ -33,10 +33,12 @@ import { withPreparedKey } from '@melee/core/slate/prepared-keys'
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
 import { isWordRefusal } from '@/features/player/longest-word-answer'
+import { isCalculationRefusal } from '@/features/player/make-number-answer'
 import { isTryRefusal } from '@/features/player/mystery-word-answer'
 import {
   blackSquareContent,
   longestWordContent,
+  makeNumberContent,
   mysteryWordContent,
   petitBacContent
 } from '@/helpers/round-content'
@@ -555,7 +557,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const isSaidOnTheSeat =
     error !== null &&
     ((isTryRefusal(error.code) && mysteryWordContent(view?.round) !== null) ||
-      (isWordRefusal(error.code) && longestWordContent(view?.round) !== null))
+      (isWordRefusal(error.code) && longestWordContent(view?.round) !== null) ||
+      (isCalculationRefusal(error.code) &&
+        makeNumberContent(view?.round) !== null))
   const shownError = isClosedHere || isSaidOnTheSeat ? null : error
   const footer = useRef<HTMLElement>(null)
   useCrossFadeOnReshape({

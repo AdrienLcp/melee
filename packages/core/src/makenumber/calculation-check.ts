@@ -4,6 +4,14 @@ import {
   MAKE_NUMBER_TILE_COUNT
 } from '@melee/protocol/make-number'
 
+/** How each operator is printed in a calculation written out: `75 × 8 = 600`. */
+export const OPERATOR_SIGNS = {
+  add: '+',
+  divide: '÷',
+  multiply: '×',
+  subtract: '−'
+} as const satisfies Record<CalculationOperator, string>
+
 /**
  * Two values merged into their result, or `null` when the rule refuses it: a
  * subtraction reaching zero or below, a division leaving a remainder.
@@ -74,4 +82,41 @@ export const calculationValue = ({
   }
 
   return values.length > tiles.length ? (values.at(-1) ?? null) : null
+}
+
+/** One step of a calculation with its values read in: `75 × 8 = 600`. */
+export type CalculationLine = {
+  left: number
+  operator: CalculationOperator
+  result: number
+  right: number
+}
+
+/**
+ * A calculation over these tiles, step by step with its values read in, or
+ * `null` when the tiles cannot make it — the lines a reveal prints.
+ */
+export const calculationLines = ({
+  steps,
+  tiles
+}: {
+  steps: Calculation
+  tiles: readonly number[]
+}): CalculationLine[] | null => {
+  if (calculationValue({ steps, tiles }) === null) {
+    return null
+  }
+
+  const values = [...tiles]
+
+  return steps.map(({ left, operator, right }) => {
+    const leftValue = values[left] ?? 0
+    const rightValue = values[right] ?? 0
+    const result =
+      combined({ left: leftValue, operator, right: rightValue }) ?? 0
+
+    values.push(result)
+
+    return { left: leftValue, operator, result, right: rightValue }
+  })
 }

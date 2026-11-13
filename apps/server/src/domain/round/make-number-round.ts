@@ -1,14 +1,12 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
-import type {
-  Calculation,
-  CalculationOperator
-} from '@melee/protocol/make-number'
+import type { Calculation } from '@melee/protocol/make-number'
 import type { RoundContent } from '@melee/protocol/room'
 import type { CalculationVerdict } from '@melee/protocol/scoring'
 
 import {
   calculationValue,
-  combined
+  combined,
+  OPERATOR_SIGNS
 } from '@melee/core/makenumber/calculation-check'
 import type { PlayableNumbers } from '@melee/core/makenumber/playable-draw'
 
@@ -58,13 +56,6 @@ export const gradeCalculation = ({
     ? held
     : { distance, kind: 'calculation', value }
 }
-
-const OPERATOR_SIGNS = {
-  add: '+',
-  divide: '÷',
-  multiply: '×',
-  subtract: '−'
-} as const satisfies Record<CalculationOperator, string>
 
 /** A calculation written out step by step — `75 + 25 = 100, 100 × 7 = 700` — for the console's list of what each seat said. */
 export const writtenCalculation = ({

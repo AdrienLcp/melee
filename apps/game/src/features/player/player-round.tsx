@@ -59,6 +59,8 @@ import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
 import { LongestWordRevealed } from '@/features/player/longest-word-revealed'
+import { MakeNumberAnswer } from '@/features/player/make-number-answer'
+import { MakeNumberRevealed } from '@/features/player/make-number-revealed'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -97,6 +99,7 @@ import {
   higherLowerContent,
   innerclockContent,
   longestWordContent,
+  makeNumberContent,
   matchsticksContent,
   mostLikelyContent,
   mysteryWordContent,
@@ -974,6 +977,22 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    if (makeNumberContent(round) !== null) {
+      return (
+        <section className='player-round make-number-round'>
+          <RoundClock clock={clock} view={view} />
+          <MakeNumberAnswer
+            closesInMs={closesInMs}
+            key={round.id}
+            onAnswer={answerWithRound}
+            onLean={leanWithRound}
+            refusal={refusal}
+            round={round}
+          />
+        </section>
+      )
+    }
+
     const mostLikely = mostLikelyContent(round)
 
     if (mostLikely !== null) {
@@ -1604,6 +1623,10 @@ const Revealed: React.FC<{
 
   if (longestWordContent(round)?.bestWords != null) {
     return <LongestWordRevealed round={round} youId={view.youId} />
+  }
+
+  if (makeNumberContent(round)?.solution != null) {
+    return <MakeNumberRevealed round={round} youId={view.youId} />
   }
 
   const shades = swatchContent(round)

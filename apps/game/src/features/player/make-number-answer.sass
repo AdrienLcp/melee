@@ -1,0 +1,332 @@
+// Side-effect module: styles `.make-number-answer`, a seat's target over its calculation, its six tiles and the four operators.
+@use '../../presentation/styles/framed'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+// The lifted tile's travel onto the second: from its own place, read off
+// `--ghost-from`, to the second's, fading as it lands.
+@keyframes make-number-ghost-slides
+  from
+    opacity: 1
+    translate: var(--ghost-from)
+
+  to
+    opacity: 0
+    translate: 0 0
+
+@layer components
+  .make-number-answer
+    --answer-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.8), var(--space-s))
+    --refusal-note-gap: var(--answer-gap)
+
+    display: grid
+    gap: var(--answer-gap)
+    grid-template: 'target' auto 'work' auto 'refusal' auto 'keys' minmax(0, 1fr) 'actions' auto / minmax(0, 1fr)
+    min-block-size: 0
+
+    > .refusal-note
+      grid-area: refusal
+
+    @include framed.lying-down
+      column-gap: var(--space-m)
+      grid-template: 'target keys' auto 'work keys' auto 'refusal keys' auto '. keys' minmax(0, 1fr) '. actions' auto / minmax(0, 1fr) minmax(0, 1.2fr)
+
+    // The game's lid: its spine banded across the top, the target printed
+    // large under it, and what the seat sent beside.
+    > .target-card
+      @include piece.card
+
+      --band: clamp(0.5rem, calc(var(--stage-unit) * 1.8), 0.875rem)
+
+      align-items: center
+      background: linear-gradient(var(--spine-makenumber) 0 var(--band), var(--card) var(--band))
+      display: grid
+      gap: var(--space-xs) var(--space-s)
+      grid-area: target
+      grid-template-columns: auto minmax(0, 1fr)
+      padding: calc(var(--band) + var(--space-xs)) var(--space-s) var(--space-xs)
+
+    .target
+      @include typography.monument
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-3xl), calc(var(--stage-unit) * 15), calc(var(--text-4xl) * 1.4))
+      font-variant-numeric: tabular-nums
+      margin: 0
+
+    .sends
+      align-items: end
+      display: grid
+      gap: var(--space-2xs)
+      justify-items: end
+      list-style: none
+      margin: 0
+      padding: 0
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+      &[data-empty]
+        opacity: 0
+
+      > li
+        --travel-offset: 0 calc(var(--space-xs) * -1)
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        align-items: center
+        display: inline-flex
+        gap: var(--space-2xs)
+
+      > .kept
+        @include typography.score
+
+        background: var(--track-b)
+        border-radius: var(--radius-m)
+        color: var(--card-ink)
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
+        padding: var(--space-2xs) var(--space-xs)
+        transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out)
+
+        > svg
+          block-size: var(--text-em-s)
+          inline-size: var(--text-em-s)
+
+        &[data-good]
+          background: var(--good-soft)
+          box-shadow: 0 var(--edge) 0 var(--good-edge)
+          color: var(--tile-ink)
+
+      > .other
+        @include typography.numeric
+
+        color: var(--card-muted)
+        font-size: var(--text-s)
+
+      .distance
+        @include typography.caption-strong
+
+        font-size: var(--text-em-s)
+
+    // The calculation so far, a line per merge, and the figure the send press sends.
+    > .work
+      align-items: center
+      display: grid
+      gap: var(--space-xs)
+      grid-area: work
+      grid-template-columns: minmax(0, 1fr) auto
+      min-block-size: calc(var(--target) + var(--space-xs))
+
+    .lines
+      align-content: center
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs)
+      list-style: none
+      margin: 0
+      min-block-size: 100%
+      padding: 0
+      position: relative
+
+      > .hint
+        @include typography.caption
+
+        color: var(--ink-muted)
+        inset: 0
+        display: grid
+        align-content: center
+        position: absolute
+        transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+      &:not([data-empty]) > .hint
+        opacity: 0
+        pointer-events: none
+
+      &[data-empty] > .hint
+        transition-timing-function: var(--ease-out)
+
+      > .line
+        @include typography.numeric
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        background: var(--track-b)
+        border-radius: var(--radius-s)
+        color: var(--board-ink)
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.2), var(--text-m))
+        padding: var(--space-2xs) var(--space-xs)
+        white-space: nowrap
+
+      > .line[data-last] > .result
+        animation: number-tile-fuses var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.6) backwards
+        display: inline-block
+
+      > .pending
+        background: transparent
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+
+    .current
+      display: grid
+      justify-items: end
+      margin: 0
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+      &[data-empty]
+        opacity: 0
+
+      > .value
+        @include typography.score
+
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+        color: var(--board-ink)
+        font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 8), var(--text-3xl))
+        line-height: 1
+
+      > .distance
+        @include typography.caption-strong
+
+        color: var(--ink-muted)
+        font-size: var(--text-xs)
+
+    > .keys
+      display: grid
+      gap: var(--answer-gap)
+      grid-area: keys
+      grid-template-rows: minmax(0, 1fr) auto
+      min-block-size: 0
+
+    .rack
+      --rack-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-s))
+      --tile-font-size: clamp(var(--text-l), min(calc((100cqh - var(--rack-gap)) * 0.23), calc((100cqi - 2 * var(--rack-gap)) * 0.11)), var(--text-4xl))
+
+      container: rack / size
+      display: grid
+      gap: var(--rack-gap)
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+      align-content: end
+      grid-template-rows: repeat(2, minmax(0, calc(var(--text-4xl) * 2)))
+      min-block-size: calc(var(--target) * 2 + var(--space-xs))
+
+      > .number-tile
+        @include piece.pressable
+
+        aspect-ratio: auto
+        block-size: 100%
+        cursor: pointer
+        inline-size: 100%
+        touch-action: manipulation
+
+        &[data-lifted]
+          box-shadow: 0 calc(var(--tile-edge) * 2.4) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--card-ink), var(--shadow-lifted)
+          translate: 0 calc(var(--tile-edge) * -1.6)
+
+        &[data-made][data-lifted]
+          box-shadow: 0 calc(var(--tile-edge) * 2.4) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--tile-ink), var(--shadow-lifted)
+
+        &[data-off]
+          cursor: default
+          opacity: 0.38
+
+        &[data-empty]
+          cursor: default
+
+        // Above its neighbours while the tile merging onto it slides in.
+        &:has(> .ghost)
+          z-index: 1
+
+      .face
+        --travel-offset: 0 0
+        --travel-scale: 0.86
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        font-size: calc(var(--tile-font-size) * min(1, 3 / var(--digits, 1)))
+
+        &[data-arrival='fused']
+          animation: number-tile-fuses var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.6) backwards
+
+      .ghost
+        --ghost-from: calc(var(--from-column, 0) * (100% + var(--rack-gap))) calc(var(--from-row, 0) * (100% + var(--rack-gap)))
+
+        align-items: center
+        animation: make-number-ghost-slides calc(var(--transition-base, 0s) * 1.3) var(--ease-out) forwards
+        background: var(--card)
+        border-radius: inherit
+        box-shadow: 0 var(--tile-edge) 0 var(--chipboard), var(--shadow-lifted)
+        color: var(--card-ink)
+        display: grid
+        font-size: calc(var(--tile-font-size) * min(1, 3 / var(--digits, 1)))
+        inset: 0
+        justify-items: center
+        pointer-events: none
+        position: absolute
+
+        &[data-made]
+          background: var(--tile-2)
+          color: var(--tile-ink)
+
+    .operators
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: repeat(4, minmax(0, 1fr))
+
+    .operator
+      @include piece.piece($radius: var(--radius-m), $nubs: false)
+      @include piece.pressable
+
+      align-items: center
+      background: var(--track-a)
+      color: var(--board-ink)
+      cursor: pointer
+      display: grid
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
+      justify-items: center
+      min-block-size: var(--control-height)
+      padding: 0
+      touch-action: manipulation
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+      &[aria-pressed='true']
+        background: var(--ticked)
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--ticked-ink), var(--shadow-groove)
+        color: var(--ticked-ink)
+        transform: translateY(calc(var(--edge) * 0.75))
+
+      &[data-disabled]
+        background: transparent
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+        color: var(--ink-muted)
+        cursor: default
+
+    > .actions
+      display: grid
+      gap: var(--space-xs)
+      grid-area: actions
+      grid-template-columns: auto auto minmax(0, 1fr)
+
+    .action
+      @include piece.piece($radius: var(--radius-s), $nubs: false)
+      @include piece.pressable
+      @include typography.strong
+
+      align-items: center
+      background: var(--track-a)
+      color: var(--board-ink)
+      cursor: pointer
+      display: inline-flex
+      font-size: var(--text-m)
+      gap: var(--space-2xs)
+      justify-content: center
+      min-block-size: max(var(--target), 2.75rem)
+      padding-inline: var(--space-s)
+      touch-action: manipulation
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+      &.send
+        background: var(--primary)
+        box-shadow: 0 var(--edge) 0 0 var(--primary-edge), var(--shadow-piece)
+        color: var(--on-primary)
+
+      &[data-disabled]
+        color: var(--ink-muted)
+        cursor: default
+
+      &.send[data-disabled]
+        background: var(--socket)
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)

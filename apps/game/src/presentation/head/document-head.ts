@@ -100,6 +100,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Nine letters go up on every screen, and everyone has the clock to make the longest word they can from them, each letter once. The room sees how long everyone’s word is, never the word, until the reveal names the longest the draw held. Scan the QR code and play — no install, no account.',
       title: 'Longest word — Mêlée'
     },
+    makenumber: {
+      description:
+        'Six number tiles and a target go up on every screen, and everyone has the clock to merge the tiles two at a time — add, subtract, multiply, divide — as near the target as they can. The room sees everyone’s number, never how they made it, until the reveal shows the shortest way the tiles allowed. Scan the QR code and play — no install, no account.',
+      title: 'Make the number — Mêlée'
+    },
     matchsticks: {
       description:
         'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. Everyone moves it on their own screen and the best move pays most, or the first to buzz says which and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
@@ -211,6 +216,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Neuf lettres s’affichent sur tous les écrans, et chacun a le temps du sablier pour en tirer le mot le plus long, chaque lettre une fois. La salle voit la longueur du mot de chacun, jamais le mot, jusqu’au dévoilement qui donne le plus long que cachait le tirage. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Mot le plus long — Mêlée'
+    },
+    makenumber: {
+      description:
+        'Six plaques et un nombre à trouver s’affichent sur tous les écrans, et chacun a le temps du sablier pour assembler les plaques deux à deux — addition, soustraction, multiplication, division — au plus près du compte. La salle voit le nombre de chacun, jamais son calcul, jusqu’au dévoilement qui montre le plus court chemin que permettaient les plaques. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Le compte est bon — Mêlée'
     },
     matchsticks: {
       description:

@@ -137,6 +137,47 @@ tiles — and the reveal's solution, in one pass.
    setup, spine, dictionaries, `shelvedGames`, catalogue and `CLAUDE.md` rows;
    seen muted at full seats, the draw's entry and a merge filmed.
 
+   **First half done** 13/11/2026 — the seat, its reveal, the lean and the
+   shelf; the wall, the unseated console and their reveal are owed. **The
+   lean**: `player.lean` takes `{ kind: 'calculation', steps }`
+   (`calculationAnswerSchema`, shared with `player.answer`); `leanCalculation`
+   in `round-service.ts` keeps it while the seat holds no exact hit, refuses a
+   calculation the tiles cannot make `invalid_calculation`, and
+   `takeUnsentLeans` banks it at the close when nearer than what was sent —
+   `isUnsent`, no speed; an equal one replaces nothing. **Core**
+   `makenumber/rack.ts` is the rack the seat builds (`openedRack`,
+   `mergedRack` — `null` where the rule refuses, which is what dims a tile —
+   `undoneRack`, `rackPlaces`, `rackLines`, `calculationAt`, renumbering the
+   merges behind one made tile for the wire, `nearestMadePlace`);
+   `calculation-check.ts` gained `OPERATOR_SIGNS` (the server's writer reads
+   it now) and `calculationLines`. **The seat**
+   `features/player/make-number-answer.tsx`: A's look reordered as Adrien
+   asked — the target card (the sends listed by value, the kept one marked
+   _à 3_ / _Le compte est bon !_), then the calculation so far and the figure
+   it reaches, then the rack and the operators together, then undo, start
+   over and _Envoyer_. A merge auto-lifts its result; the first tile's
+   `.ghost` slides onto the second (`--ghost-from` read off the places'
+   columns and rows) and the result's face fuses (`number-tile-fuses`); a
+   face is keyed by its source, so an undo sets the tiles back on
+   `page-enter`. `presentation/components/number-tile.{tsx,sass}` is the
+   tile face for the wall to reuse (`NumberTile`, `.number-tile`, `[data-made]`
+   with its printed `.made-mark`, `[data-empty]` the socket,
+   `--tile-font-size`). **The reveal** `make-number-revealed.tsx`: B's sheets,
+   the seat's kept calculation and _Le plus court, pour 703_, a line a step,
+   one column under 30rem. **Shelf**: `shelvedGames`, 45/60/90 s in the setup,
+   the document head, the spine `oklch(36% 0.085 200)` with
+   `--spine-edge-makenumber` `oklch(23% 0.06 200)`, Grand mix bare.
+   **Browser**, muted, a console at 1280×800 and seats at 390×844, 360×640
+   and 1280×800 (`.playwright-mcp/make-number-run.mjs`): a merge, its undo,
+   the dimmed tiles, a far send then a nearer one replacing it on the
+   console's values and an as-near one not; the clock run out with an exact
+   count unsent on one seat (paid 90, `isUnsent`, no speed), a 1-off unsent
+   on another (81) and a far one on the third (0); no answering screen
+   scrolls or overflows at the three sizes nor at 844×390; the merge filmed
+   (`mn-merge-film.png`): the ghost slides 60–200 ms, the result fuses.
+   **Open**: Grand mix at 60 entries owes the blind test's 20 a gap of 3
+   instead of 2, and `spaced-cycle.test.ts`'s Free-for-all spacing goes red.
+
 ## How to tell it is done
 
 A round in each language: a division with a remainder is refused, a nearer

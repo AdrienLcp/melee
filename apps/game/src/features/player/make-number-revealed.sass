@@ -1,0 +1,70 @@
+// Side-effect module: styles `.make-number-revealed`, a seat's kept calculation beside the draw's shortest at the reveal.
+@use '../../presentation/styles/typography'
+
+@layer components
+  .make-number-revealed
+    --band: clamp(0.625rem, calc(var(--stage-unit) * 2.2), 1rem)
+
+    display: grid
+    gap: var(--space-s)
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+
+    // Two sheets side by side want room for `1875 − 100 = 1775` each.
+    @container (inline-size < 30rem)
+      grid-template-columns: minmax(0, 1fr)
+
+    > .answer-card
+      align-content: start
+      align-items: stretch
+      background: linear-gradient(var(--spine-makenumber) 0 var(--band), var(--card) var(--band))
+      display: grid
+      flex-wrap: nowrap
+      gap: var(--space-2xs)
+      padding: calc(var(--band) + var(--space-s)) var(--space-s) var(--space-s)
+
+    .title
+      @include typography.heading
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.4), var(--text-l))
+      margin: 0
+      text-wrap: balance
+
+    .sheet-lines
+      display: grid
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        @include typography.numeric
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        animation-delay: calc(var(--transition-fast, 0s) * 0.9 * var(--line-index, 0))
+        border-block-start: var(--stroke-thin) solid var(--card-rule)
+        color: var(--card-ink)
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.2), var(--text-l))
+        padding-block: var(--space-2xs)
+        white-space: nowrap
+
+        &:first-child
+          border-block-start: 0
+
+    // The step that lands on the target, printed on the found face.
+    > .shortest .sheet-lines > li:last-child > .result
+      background: var(--good-soft)
+      border-radius: var(--radius-xs)
+      box-shadow: 0 var(--edge) 0 var(--good-edge)
+      color: var(--tile-ink)
+      padding-inline: var(--space-2xs)
+
+    .distance,
+    .none
+      @include typography.strong
+
+      color: var(--card-muted)
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 3.6), var(--text-m))
+      margin: 0
+
+    .distance[data-good]
+      color: var(--card-ink)

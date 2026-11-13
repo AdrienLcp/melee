@@ -1547,15 +1547,46 @@ export const EN_DICTIONARY = defineDictionary({
     words: 'Your accepted words'
   },
   makenumber: {
+    distance: '{distance:number} off',
+    exact: 'Spot on!',
+    hint: 'Tap a tile, a sign, then another tile.',
     home: {
       description:
         'Six number tiles and a target go up on every screen. Everyone merges the tiles two at a time — add, subtract, multiply, divide — towards the target, as many calculations as they like: only the nearest counts. The room sees everyone’s number, never how they made it, until the reveal shows the shortest way the tiles allowed.'
     },
+    kept: ', the calculation kept',
+    made: ', a calculated tile',
     name: 'Make the number',
+    operator: {
+      add: 'Plus',
+      divide: 'Divided by',
+      multiply: 'Times',
+      subtract: 'Minus'
+    },
+    operators: 'The operations',
     play: 'Play Make the number',
+    rack: 'Your tiles',
+    refusal: {
+      already_buzzed: 'You already made the number: nothing more to send.',
+      invalid_calculation:
+        'That calculation does not work out with these tiles.'
+    },
+    reveal: {
+      none: 'No calculation',
+      shortest: 'The shortest, for {target:number}',
+      yours: 'Your calculation'
+    },
+    roundDuration: 'Time to count',
     scoring:
       'Your nearest calculation is paid by how close it lands: the target itself scores 100 points, each unit off scores ten fewer, and ten away or more scores nothing.',
-    tagline: 'Six tiles, one target, every operation.'
+    seat: 'Your count',
+    send: 'Send',
+    sends: 'Your calculations sent',
+    startOver: 'Start over',
+    tagline: 'Six tiles, one target, every operation.',
+    target: 'The number to make: ',
+    undo: 'Undo',
+    work: 'Your calculation so far'
   },
   matchsticks: {
     duration: 'Time per puzzle',

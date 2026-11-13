@@ -87,6 +87,9 @@ const MYSTERY_WORD_DURATIONS_MS = [60_000, 120_000, 240_000] as const
 /** Half a minute is a race for whatever word comes, a minute and a half lets a table hunt for the nine. */
 const LONGEST_WORD_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
+/** Three quarters of a minute is a race to the nearest, a minute and a half lets a table hunt for the exact count. */
+const MAKE_NUMBER_DURATIONS_MS = [45_000, 60_000, 90_000] as const
+
 const MYSTERY_WORD_LENGTHS = Array.from(
   { length: MYSTERY_WORD_MAX_LENGTH - MYSTERY_WORD_MIN_LENGTH + 1 },
   (_, index) => MYSTERY_WORD_MIN_LENGTH + index
@@ -744,6 +747,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             value={game.roundDurationMs}
           />
         </>
+      )}
+
+      {game?.kind === 'makenumber' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('makenumber.roundDuration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={MAKE_NUMBER_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
       )}
 
       {game?.kind === 'mostlikely' && (

@@ -17,6 +17,7 @@ import {
   Crown,
   Delete,
   Dice5,
+  Divide,
   Download,
   Earth,
   EighthNotes,
@@ -59,6 +60,7 @@ import {
   Star,
   Trophy,
   Tv,
+  Undo2,
   Upload,
   Users,
   Volume2,
@@ -113,10 +115,12 @@ export const MenuIcon = inFamily(Menu, {
 // Its pips are near-zero-length strokes, which a butt cap draws as nothing.
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)
+export const DivideIcon = inFamily(Divide)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const EraseIcon = inFamily(Delete)
 export const ShuffleIcon = inFamily(Shuffle)
 export const TrophyIcon = inFamily(Trophy)
+export const UndoIcon = inFamily(Undo2)
 export const FinishIcon = inFamily(Flag)
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)

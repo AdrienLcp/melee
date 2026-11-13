@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
-import { calculationValue, combined } from './calculation-check'
+import {
+  calculationLines,
+  calculationValue,
+  combined
+} from './calculation-check'
 
 const TILES = [75, 25, 7, 3, 10, 10]
 
@@ -89,6 +93,29 @@ describe('calculationValue', () => {
     expect(
       calculationValue({
         steps: [{ left: 4, operator: 'subtract', right: 5 }],
+        tiles: TILES
+      })
+    ).toBeNull()
+  })
+})
+
+describe('calculationLines', () => {
+  it('[makenumber] reads each step’s values in, and refuses a calculation the tiles cannot make', () => {
+    expect(
+      calculationLines({
+        steps: [
+          { left: 0, operator: 'add', right: 1 },
+          { left: 6, operator: 'multiply', right: 2 }
+        ],
+        tiles: TILES
+      })
+    ).toEqual([
+      { left: 75, operator: 'add', result: 100, right: 25 },
+      { left: 100, operator: 'multiply', result: 700, right: 7 }
+    ])
+    expect(
+      calculationLines({
+        steps: [{ left: 2, operator: 'divide', right: 3 }],
         tiles: TILES
       })
     ).toBeNull()

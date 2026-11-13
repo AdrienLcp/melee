@@ -80,7 +80,8 @@ export const shelvedGames = [
   'estimate',
   'higherlower',
   'mysteryword',
-  'longestword'
+  'longestword',
+  'makenumber'
 ] as const satisfies readonly GameKind[]
 
 export const shelvedGameSchema = z.enum(shelvedGames)
