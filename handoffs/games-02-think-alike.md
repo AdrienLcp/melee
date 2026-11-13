@@ -84,25 +84,40 @@ built and where it diverged, for part (2):
   _called use() to suspend … did not call use()_ once on joining — not
   traced.
 
-Built in two parts, each its own subagent run: (1) the seat and the wall,
-playing and reveal, with their motions filmed; (2) the console's merge and
-split, the setup (language, clock), the shelf, the door, the ready-made
-line-ups, both dictionaries, the catalogue rows, the plan, the changelog. The template is Make the
-number's screens (the commits after `79124e0c` that touch `apps/game/src/features`), the
-closest round to copy is the estimate's (one answer a seat, priced at the
-close), and Petit Bac's strike is the console action that re-pays a revealed
-round.
+## Next session
 
-1. **A seat**: the prompt large, one field (`THINK_ALIKE_ANSWER_MAX_LENGTH`),
-   _send_, then its line held while the others write; the field's draft sent
-   as a `player.lean` as it changes, so the clock running out sends it.
-2. **The wall**: the prompt, the clock, a mark per seat that has sent — never
-   a word.
-3. **The reveal**: `groups` turned over one by one, smallest first, each with
-   its authors and what it paid; the wall never scrolls.
-4. **The console**: the merge (drag or pick one group into another, a merged
-   group's _take back out_ by its `mergedKeys`), the setup (language, clock
-   10–60 s), then the shelf (`shelvedGames`), the game's front door, the
-   ready-made line-ups and both dictionaries.
-5. Muted, filmed, with `MAX_PLAYERS_PER_ROOM` seats at phone width and a paired
-   wall; then the plan's step 3, the changelog, and the handoff for step 4.
+State when the session stopped (13/11 evening): part (1) is commit `7361edfb`,
+**local, not pushed**. A follow-up run was mid-work on the items below, its
+changes **uncommitted** in the tree (`think-alike-piles.*`, `wall-page.sass`,
+`host-podium.sass`, `player-page.tsx`, `player-round.tsx`,
+`think-alike-revealed.sass`, `lazy-module.ts` + a new `lazy-module.test.ts`,
+`app-menu.tsx`, `cspell.json`) — the `lazy-module` and `app-menu` edits look
+like the `use()` fix. If this section still says so, it was cut off.
+
+1. **Take over the follow-up**: read `git diff` and the new test, finish or
+   correct each item, see it green, commit:
+   - the React error _called use() to suspend … did not call use()_ logged on
+     joining the table — fix it, wherever it comes from;
+   - the wall's reveal: the piles get half the wall beside the standings and
+     cut names — give them the room they need without breaking another game's
+     wall, 24 long names, piles and 23 different answers, no scroll at
+     1440×900 and 1280×720;
+   - re-film the reveal (piles turning one after another, smallest first) and
+     the cards landing (`docs/browser-driving.md`, _Filming a motion_);
+   - see the phone of a seat that wrote nothing at the reveal, the wall at
+     9:16, a phone held sideways, and _Fraises_ / _une fraise_ in one pile.
+   The harness is `.playwright-mcp/ta-run.mjs` (muted, 22 raw seats, two
+   phones, a paired wall).
+2. **Part (2)**: the console's merge (drag a pile onto another, the row's
+   button listing the other words as a ≥ 44px fallback) and split (the folded
+   card legible, _Ressortir « yogourt »_) beside `ThinkAlikePiles`, Petit
+   Bac's strike as the template for a console action re-paying a revealed
+   round; the setup (language, clock 10–60 s); then the shelf
+   (`shelvedGames`), the game's front door, the ready-made line-ups, both
+   dictionaries, the catalogue and `CLAUDE.md` rows. Muted, filmed, full room.
+3. The plan's step 3 marked done with what diverged, the changelog, push
+   (`main`, staging deploys), and this file rewritten for step 4 (the
+   evening's own prompts) or deleted with `README.md`'s row.
+
+Each of 1 and 2 fits one subagent run under ~150k; run them in turn, never
+side by side — they touch the same files.
