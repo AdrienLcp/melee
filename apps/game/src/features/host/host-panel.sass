@@ -276,8 +276,11 @@
   @include layout.off-desk
     .host-desk
       // By its id: the stage's own phase rules set its display at a weight
-      // no class here outranks.
-      &:not([data-screen='stage']) > #main
+      // no class here outranks. Only once the panel names a screen: the
+      // media query flips a frame before React does, and a stage hidden for
+      // that frame restarts every animation in it — the piles of a reveal
+      // turned over again by a window narrowed past the desk.
+      &[data-screen]:not([data-screen='stage']) > #main
         display: none
 
     .host-panel

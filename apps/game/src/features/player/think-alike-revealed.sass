@@ -130,8 +130,10 @@
     // Every pile, in the room screen's order, the seat's own framed. The
     // list scrolls inside its card: drawn whole, ten piles put the round's
     // block and the Ready press a screen and a half down.
+    // A flex column rather than a grid: a grid keeps the gap of a row closed to nothing.
     > .every-pile > ol
-      display: grid
+      display: flex
+      flex-direction: column
       gap: var(--space-2xs)
       list-style: none
       margin: 0
@@ -149,6 +151,7 @@
         border-radius: var(--radius-s)
         column-gap: var(--space-s)
         display: grid
+        flex: none
         grid-template: 'pile word pay' auto 'pile pawns pay' auto / auto minmax(0, 1fr) auto
         order: var(--order)
         padding: var(--space-2xs) var(--space-xs)
@@ -169,10 +172,17 @@
         &[data-yours]
           outline: var(--stroke-bold) solid var(--card-ink)
 
+        // Faded, then closed: taken out at its full height, the row
+        // scrolled to the list's foot jumped the list by its height.
         &[data-leaving]
+          --row-gap-closed: calc(-1 * var(--space-2xs))
           --travel-offset: 0 -0.5rem
 
-          animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
+          animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+          interpolate-size: allow-keywords
+          min-block-size: 0rem
+          overflow: clip
+          pointer-events: none
 
     // A merge or a split lays its rows in at once: a delay lengthened on a
     // played entrance sends the row back to its first frame.

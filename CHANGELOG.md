@@ -401,6 +401,16 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Narrowing the console past the desk no longer replays the
+  stage.** For the one frame between the window crossing the breakpoint and
+  the console laying out its tab bar, the stage was hidden, and everything
+  moving in it started over: a Think alike reveal turned its piles over again.
+- `[Game]` **A row leaving a list closes up instead of jumping it.** A row
+  gone from a list that scrolls in its card — a seat's piles when the host
+  merges two answers — took its height away in one frame, and a list scrolled
+  to its foot jumped. It now fades, then hands its room back. A row still
+  growing to its new height while another closed above it also set off from
+  where it had stood, a row's height lower.
 - `[Shared]` **The dealer spaces every game again once Make the number joins
   _Free-for-all_.** Dealing the nearest-rested game row by row stranded the
   last rows of a line-up with no game rested, so a game came back before its

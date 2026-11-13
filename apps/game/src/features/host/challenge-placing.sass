@@ -1,14 +1,5 @@
 @use '../../presentation/styles/typography'
 
-@keyframes finisher-row-closes
-  from
-    block-size: auto
-  to
-    block-size: 0rem
-    border-block-start-width: 0rem
-    margin-block-end: var(--row-gap-closed)
-    padding-block-start: 0rem
-
 @layer components
   // Under the line the room reads, held to a hand's width: the host places
   // the table between two shouts, so every row is one glance and one press.
@@ -41,7 +32,7 @@
         --row-gap-closed: calc(-1 * var(--space-xs))
         --travel-offset: 0 -0.25rem
 
-        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, finisher-row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
         interpolate-size: allow-keywords
         min-block-size: 0rem
         overflow: clip

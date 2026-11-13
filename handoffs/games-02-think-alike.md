@@ -140,11 +140,12 @@ built and where it diverged, for part (2):
 
 State 13/11 night: everything above is committed and pushed.
 
-1. **Two motion defects left by 2a**, fix both:
-   - resizing a console from wide to narrow remounts the reveal and the piles
-     turn over again;
-   - on the phone, ~480 ms into a regroup, the list scrolled to its bottom
-     jumps ~15px as the leaving row is removed.
+1. **The two motion defects left by 2a are fixed** (14/11): the piles
+   turning over again on a console narrowed past the desk (the stage hidden
+   for a frame by `host-panel.sass`, not a remount), and the phone's list
+   jumping as a merged row left (`row-closes`, and `useRowsTravel` keeping a
+   height-travelling row's place current). Harness: `ta-console.mjs` with
+   `RESIZE=1` or `PHONEFILM=1`.
 2. **Part (2b)**: the setup (language, clock 10–60 s); the shelf
    (`shelvedGames`), the game's front door, the ready-made line-ups, both
    dictionaries, the catalogue (`docs/game-catalogue.md`) and `CLAUDE.md`

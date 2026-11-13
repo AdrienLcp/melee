@@ -116,6 +116,21 @@
     scale: var(--travel-scale, 1)
     translate: var(--travel-offset, 0 0)
 
+/// A row leaving a list handing back its room and the gap after it, once
+/// `page-leave` has faded it: taken out at its full height, a list scrolled to
+/// its foot jumped by that height. `--row-gap-closed` is the list's gap,
+/// negated; the row takes `interpolate-size: allow-keywords` and
+/// `overflow: clip`, and in a flex column, since a grid keeps a closed row's
+/// gap. `from` is written: an implicit `auto` start does not interpolate.
+@keyframes row-closes
+  from
+    block-size: auto
+  to
+    block-size: 0rem
+    border-block-width: 0rem
+    margin-block-end: var(--row-gap-closed)
+    padding-block: 0rem
+
 /// A page settling in, and deliberately quieter than the reveal: a few pixels
 /// and a fade where the reveal strikes from a little large, on `base` where it uses `slow`.
 /// The reveal is what a round pays out, and a navigation must not borrow its

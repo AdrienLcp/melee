@@ -21,7 +21,7 @@ import './challenge-placing.sass'
 
 const UNPLACED = 'none'
 
-const ROW_EXIT_ANIMATION = 'finisher-row-closes'
+const ROW_EXIT_ANIMATION = 'row-closes'
 
 const PLACE_KEYS: Record<ChallengePlace, PlainTranslationKey> = {
   1: 'challenge.places.first',

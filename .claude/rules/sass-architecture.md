@@ -62,6 +62,11 @@ sites is a custom property it substitutes whole:
   reveal struck from a little large.
 - `page-leave` — leaving with a fade, on the spot unless the same two
   properties say where to: a notice taken down upward, the countdown lifted.
+- `row-closes` — a row leaving a list handing its room and the gap after it
+  back once `page-leave` has faded it, and ending the exit
+  (`useLeavingRows`' `exitAnimation`): taken out at full height, a list
+  scrolled to its foot jumped by the row. A flex column, never a grid, which
+  keeps a closed row's gap.
 - `letter-turns` — a letter turned over on its top edge, back face up.
 - `tick-stamp` — a mark stamped in place, from `--travel-scale`.
 - `pawn-hops` — a pawn set down on a case, on `transform` and with no fade.
@@ -499,6 +504,11 @@ on the player's screen until it moved to `globals.sass` beside `page-enter`.
 `display: none`.** Chromium applies a false query's `display: none` for a frame
 on a nearby restyle, and leaving `display: none` restarts an animation: the
 narrow final board's standings faded in every 140ms until hidden that way.
+A media query and the `useMediaQuery` reading it flip a frame apart, too: a
+rule hiding the console's stage under an attribute React writes on the same
+query (`:not([data-screen='stage'])`) matched the frame the attribute was not
+written yet, and a reveal narrowed past the desk turned its piles over again.
+Such a rule requires the attribute present (`[data-screen]:not(…)`).
 
 ## A keyframe substitutes a custom property, it does not compute with one
 

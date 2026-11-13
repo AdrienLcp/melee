@@ -404,8 +404,11 @@ export const useRowsTravel = ({
           continue
         }
 
+        // Its height is the one it travels to, but where it stands is now:
+        // a row above it closing as it leaves moves it, and the stale place
+        // sent it back down by that row's height when the next draw set off.
         if (isTravellingInHeight(row)) {
-          kept.set(key, drawn)
+          kept.set(key, { ...is, height: drawn.height })
           continue
         }
 

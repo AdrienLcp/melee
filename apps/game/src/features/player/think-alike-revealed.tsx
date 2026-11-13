@@ -18,6 +18,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './think-alike-revealed.sass'
 
+const ROW_EXIT_ANIMATION = 'row-closes'
+
 type Row = {
   authorIds: readonly PlayerId[]
   /** The answer's crowd key, `blank` for the seats that wrote nothing. */
@@ -78,7 +80,7 @@ export const ThinkAlikeRevealed: React.FC<{
     rows.map(({ authorIds, id }) => `${id}:${authorIds.length}`).join(' ')
   )
   const { endExitOf, rows: drawn } = useLeavingRows({
-    exitAnimation: 'page-leave',
+    exitAnimation: ROW_EXIT_ANIMATION,
     rows
   })
 
