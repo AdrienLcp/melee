@@ -602,6 +602,17 @@ one part.
   length against the draw's longest, the clock read when that word was sent.
   Every screen sees each seat's length and no word until the reveal, which
   names the draw's longest words. Not on the shelf until its screens exist.
+- `[Shared]` **Make the number is served.** A room set to it by a settings
+  frame deals six tiles from a bag of twenty-four and a target from 101 to
+  999, redrawn until the tiles make it exactly and need three of them, and
+  solves the draw over the 63 subsets of the tiles in under two milliseconds
+  on average. Every seat sends as many calculations as it likes, one to five
+  steps over the tiles and the results before; a tile used twice, a
+  subtraction to zero or a division with a remainder is refused at no cost,
+  the seat's nearest is kept, and it is paid a tenth less for each unit off,
+  an exact hit racing the clock from when it was sent. Every screen sees each
+  seat's value and no step until the reveal, which shows the draw's shortest
+  solution. Not on the shelf until its screens exist.
 
 ### Features
 

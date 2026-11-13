@@ -60,7 +60,8 @@ describe('answerModesFor', () => {
       'number',
       'pairs',
       'word',
-      'letters'
+      'letters',
+      'calculation'
     ])
   })
 })

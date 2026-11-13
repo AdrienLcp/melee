@@ -9,6 +9,7 @@ import {
 import { HIGHER_LOWER_PAIR_COUNT } from './higher-lower'
 import { playerIdSchema } from './identifiers'
 import { longestWordLengthSchema } from './longest-word'
+import { calculationValueSchema } from './make-number'
 import { letterMarksSchema, MYSTERY_WORD_TRY_COUNT } from './mystery-word'
 
 /**
@@ -216,6 +217,18 @@ export const lettersVerdictSchema = z.object({
   length: longestWordLengthSchema
 })
 
+/**
+ * A make-the-number seat's nearest calculation, by its value and how far that
+ * lands from the target. No step, so a verdict on any screen is a copy of
+ * nothing: the value is on every screen already, and so is the target.
+ * `@melee/core/makenumber/calculation-pay` prices it.
+ */
+export const calculationVerdictSchema = z.object({
+  distance: z.number().int().nonnegative(),
+  kind: z.literal('calculation'),
+  value: calculationValueSchema
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -228,7 +241,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   pairsVerdictSchema,
   placeVerdictSchema,
   wordVerdictSchema,
-  lettersVerdictSchema
+  lettersVerdictSchema,
+  calculationVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -265,4 +279,5 @@ export type PairsVerdict = z.infer<typeof pairsVerdictSchema>
 export type PlaceVerdict = z.infer<typeof placeVerdictSchema>
 export type WordVerdict = z.infer<typeof wordVerdictSchema>
 export type LettersVerdict = z.infer<typeof lettersVerdictSchema>
+export type CalculationVerdict = z.infer<typeof calculationVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

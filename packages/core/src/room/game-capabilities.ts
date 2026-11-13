@@ -63,6 +63,11 @@ const WORD_ONLY = ['word'] as const satisfies readonly AnswerMode[]
 /** A longest word is answered by typing words from the draw, which the server checks and keeps the longest of. */
 const LETTERS_ONLY = ['letters'] as const satisfies readonly AnswerMode[]
 
+/** Make the number is answered by calculations over the tiles, which the server checks and keeps the nearest of. */
+const CALCULATION_ONLY = [
+  'calculation'
+] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -270,6 +275,16 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'longestword':
       return {
         answerModes: LETTERS_ONLY,
+        makesSound: false,
+        paysTheClock: true,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // The longest word's twin: two seats on one draw, as on television.
+    case 'makenumber':
+      return {
+        answerModes: CALCULATION_ONLY,
         makesSound: false,
         paysTheClock: true,
         playsAloud: false,

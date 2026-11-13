@@ -24,6 +24,8 @@ export const GAME_NOTES = {
     'Everyone counts a number of seconds in their head, on screens where nothing moves, and presses once; paid by the gap to the target.',
   longestword:
     'Draws nine letters on every screen; every player types the longest word they can make from them, each letter used once, and is paid by its length against the longest the draw held.',
+  makenumber:
+    'Deals six number tiles and a target from 101 to 999 on every screen; every player builds a calculation from the tiles, each used once, and is paid by how near it lands — an exact hit pays the whole round.',
   matchsticks:
     'Draws an equation or a number in matches that one moved match fixes, moved on every screen and judged by the server.',
   mostlikely:
@@ -63,6 +65,7 @@ export const SETTING_NOTES = {
   innerclock:
     'Nothing to set: the target is drawn between 20 and 60 seconds each round.',
   longestword: null,
+  makenumber: null,
   matchsticks:
     '`goals` lists what a round may ask, one drawn per round: "equation" fixes a false equation by moving one match, "biggest" makes the biggest number one move allows, "smallest" the smallest.',
   mostlikely: null,

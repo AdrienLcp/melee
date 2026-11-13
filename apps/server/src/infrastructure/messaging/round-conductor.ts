@@ -4,6 +4,7 @@ import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { RoundId, SessionId } from '@melee/protocol/identifiers'
 
 import { randomUnit, shuffled } from '@melee/core/helpers/random'
+import { drawPlayableNumbers } from '@melee/core/makenumber/playable-draw'
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { withNextEntryDealt } from '@melee/core/room/running-order'
 
@@ -35,6 +36,7 @@ import {
 } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import { longestWordContent } from '@/domain/round/longest-word-round'
+import { makeNumberContent } from '@/domain/round/make-number-round'
 import {
   matchsticksContent,
   playedPuzzleId
@@ -786,6 +788,32 @@ export const beginRound = async (
 
     openRound({
       content: longestWordContent({ ...drawn, language: game.language }),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'makenumber') {
+    const drawn = drawPlayableNumbers()
+
+    if (drawn === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'No draw made its target from three tiles or more'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    openRound({
+      content: makeNumberContent(drawn),
       id: newRoundId(),
       now: engine.now(),
       room,

@@ -21,6 +21,7 @@ import type {
   RoundId,
   SessionId
 } from '@melee/protocol/identifiers'
+import type { Calculation, CalculationStep } from '@melee/protocol/make-number'
 import type {
   MatchsticksPuzzle,
   MatchsticksSolution,
@@ -278,6 +279,9 @@ export type RoomTeam = {
  * judged in belongs to the game, not to the mode.
  */
 /** One seat's unsent answer — see `player.lean`. */
+/** A calculation a seat sent and the server accepted, with the value it reaches over the round's tiles. */
+export type SentCalculation = { steps: Calculation; value: number }
+
 export type Lean = {
   attempt: LeanAnswer
   graded: { said: string; verdict: Verdict }
@@ -557,6 +561,17 @@ export type Round = {
         letters: string[]
         /** Every seat's accepted words, folded, first sent first; a refused word is never kept. */
         words: Map<PlayerId, string[]>
+      }
+    | {
+        /** Every seat's accepted calculations, first sent first; a refused one is never kept. */
+        calculations: Map<PlayerId, SentCalculation[]>
+        kind: 'makenumber'
+        /** One exact calculation using the fewest tiles: sent to no screen but a seatless console before the reveal. */
+        solution: CalculationStep[]
+        /** The number to make: on every screen. */
+        target: number
+        /** The six dealt tiles, in the order dealt: on every screen. */
+        tiles: number[]
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

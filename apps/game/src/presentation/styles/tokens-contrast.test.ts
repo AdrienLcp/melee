@@ -201,6 +201,16 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.nonText
         },
         {
+          background: '--spine-makenumber',
+          foreground: '--on-spine-makenumber',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--on-spine',
+          foreground: '--spine-mark-makenumber',
+          minimum: WCAG_AA.nonText
+        },
+        {
           background: '--black-word',
           foreground: '--on-black-word',
           minimum: WCAG_AA.text

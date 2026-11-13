@@ -6,6 +6,7 @@ import type { GeoPoint } from '@melee/protocol/atlas'
 import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
+import type { Calculation } from '@melee/protocol/make-number'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
@@ -49,6 +50,7 @@ export type PlayerAnswer =
   | { kind: 'seat'; playerId: PlayerId }
   | { guess: string; kind: 'word' }
   | { guess: string; kind: 'letters' }
+  | { kind: 'calculation'; steps: Calculation }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A
@@ -90,6 +92,7 @@ export const candidatesIn = ({
     case 'matchsticks':
     case 'mostlikely':
     case 'longestword':
+    case 'makenumber':
     case 'mysteryword':
     case 'petitbac':
     case 'reflex':

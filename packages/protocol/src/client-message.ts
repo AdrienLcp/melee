@@ -20,6 +20,7 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import { longestWordGuessSchema } from './longest-word'
+import { calculationSchema } from './make-number'
 import { stickMoveSchema } from './matchsticks'
 import { wordGuessSchema } from './mystery-word'
 import { petitBacAnswerSchema, petitBacCategoryIndexSchema } from './petit-bac'
@@ -215,7 +216,16 @@ export const answerMessageSchema = z.object({
       guess: wordGuessSchema,
       kind: z.literal('word')
     }),
-    lettersAnswerSchema
+    lettersAnswerSchema,
+    z.object({
+      kind: z.literal('calculation'),
+      /**
+       * One calculation over the tiles, sent as often as a seat likes. One the
+       * server refuses — a value used twice, a remainder, nothing left above
+       * zero — costs nothing.
+       */
+      steps: calculationSchema
+    })
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')

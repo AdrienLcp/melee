@@ -385,6 +385,8 @@ const settingsOf = ({
         LANGUAGE_NAMES[entry.language],
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
+    case 'makenumber':
+      return [secondsOf({ ms: entry.roundDurationMs, translate })]
   }
 }
 

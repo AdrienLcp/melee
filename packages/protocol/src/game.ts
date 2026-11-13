@@ -41,7 +41,8 @@ export const gameKinds = [
   'estimate',
   'higherlower',
   'mysteryword',
-  'longestword'
+  'longestword',
+  'makenumber'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -270,6 +271,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     language: questionLanguageSchema,
     /** How long the draw stays open; the round closes early once every seat holds a word as long as the draw's longest. */
     roundDurationMs: z.number().int().min(30_000).max(90_000)
+  }),
+  z.object({
+    kind: z.literal('makenumber'),
+    /** How long the tiles stay open; the round closes early once every seat holds an exact hit. */
+    roundDurationMs: z.number().int().min(30_000).max(120_000)
   })
 ])
 
@@ -294,6 +300,7 @@ export type EstimateSettings = Extract<GameSettings, { kind: 'estimate' }>
 export type HigherLowerSettings = Extract<GameSettings, { kind: 'higherlower' }>
 export type MysteryWordSettings = Extract<GameSettings, { kind: 'mysteryword' }>
 export type LongestWordSettings = Extract<GameSettings, { kind: 'longestword' }>
+export type MakeNumberSettings = Extract<GameSettings, { kind: 'makenumber' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -454,6 +461,12 @@ export const DEFAULT_LONGEST_WORD_SETTINGS: LongestWordSettings = {
   roundDurationMs: 45_000
 }
 
+/** A minute: building on a phone, tile by tile, takes longer than typing a word. */
+export const DEFAULT_MAKE_NUMBER_SETTINGS: MakeNumberSettings = {
+  kind: 'makenumber',
+  roundDurationMs: 60_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -465,6 +478,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   higherlower: DEFAULT_HIGHER_LOWER_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   longestword: DEFAULT_LONGEST_WORD_SETTINGS,
+  makenumber: DEFAULT_MAKE_NUMBER_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,
   mysteryword: DEFAULT_MYSTERY_WORD_SETTINGS,

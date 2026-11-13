@@ -1062,6 +1062,29 @@ longest is `already_buzzed`. The reveal puts up every seat's longest word
 first) and `bestLength`. `longest-word-game.test.ts` searches every frame of a
 round, a seated console's included, for another seat's word.
 
+**A make-the-number calculation travels to nobody but its own seat before the
+reveal**, a seated console included. The six tiles and the target are not the
+answer and every screen reads them (`tiles`, `target`), with each seat's
+nearest value as `values` — _812_ is pressure, the steps would be a copy. A
+seat reads its own accepted calculations (`yourCalculations`); the console
+reads one shortest solution on `currentContent` while it holds no seat, and
+the wall reads nothing more than a seat. A seat's own verdict,
+`{ kind: 'calculation', value, distance }`, is sent during the round, since
+its value and the target are on every screen already. A calculation is one
+`player.answer` of kind `calculation`, one to five `steps` of
+`{ left, operator, right }`, `operator` one of `add`, `subtract`, `multiply`,
+`divide`, each operand an index into the values so far — 0–5 the tiles, 6
+onward the results of the steps before. It is sent as often as the seat likes:
+an operand not reached yet or used twice, a subtraction reaching zero or a
+division leaving a remainder is `invalid_calculation`, and costs nothing — a
+tapping screen never sends one. The seat keeps its nearest; a later one as far
+off does not replace it, and the clock reads when the nearest was sent. A
+calculation once the seat's makes the target is `already_buzzed`, and the round
+closes once every stamped seat has. The reveal puts up every seat's nearest
+calculation (`revealedCalculations`) and the draw's `solution`, in the same
+step shape, using the fewest tiles. `make-number-game.test.ts` searches every
+frame of a round, a seated console's included, for another seat's steps.
+
 ## Errors
 
 ```jsonc
@@ -1073,7 +1096,8 @@ round, a seated console's included, for another seat's word.
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
 `invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`, a
-mystery word's four refused tries and a longest word's three refused words.
+mystery word's four refused tries, a longest word's three refused words and
+`invalid_calculation`.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.

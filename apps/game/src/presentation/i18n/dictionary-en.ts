@@ -577,6 +577,8 @@ export const EN_DICTIONARY = defineDictionary({
     host_reconnecting:
       'This table has just lost its host, and is waiting for them.',
     internal_error: 'Something broke on our side. Try again.',
+    invalid_calculation:
+      'Those tiles cannot make that: a tile used twice, a subtraction below one or a division with a remainder.',
     invalid_message: 'We did not understand that. Try again.',
     joined_mid_round: 'You are in from the next round.',
     judging_round: 'You are judging this round, and play again from the next.',
@@ -801,6 +803,7 @@ export const EN_DICTIONARY = defineDictionary({
     }),
     answerMode: {
       buzzer: 'First to buzz',
+      calculation: 'Make the number',
       choice: 'Four choices',
       colour: 'Rebuild the colour',
       label: 'How to answer',
@@ -1542,6 +1545,17 @@ export const EN_DICTIONARY = defineDictionary({
     },
     typing: 'Your word: {word}',
     words: 'Your accepted words'
+  },
+  makenumber: {
+    home: {
+      description:
+        'Six number tiles and a target go up on every screen. Everyone merges the tiles two at a time — add, subtract, multiply, divide — towards the target, as many calculations as they like: only the nearest counts. The room sees everyone’s number, never how they made it, until the reveal shows the shortest way the tiles allowed.'
+    },
+    name: 'Make the number',
+    play: 'Play Make the number',
+    scoring:
+      'Your nearest calculation is paid by how close it lands: the target itself scores 100 points, each unit off scores ten fewer, and ten away or more scores nothing.',
+    tagline: 'Six tiles, one target, every operation.'
   },
   matchsticks: {
     duration: 'Time per puzzle',

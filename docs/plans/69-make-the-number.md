@@ -73,6 +73,62 @@ tiles — and the reveal's solution, in one pass.
    refused, a nearer calculation replacing a farther one and an equal one not,
    the early close timed at the exact hit). `makenumber` in `gameKinds`, not
    `shelvedGames`.
+
+   **Done** 13/11/2026. `makenumber` is in `gameKinds`, not `shelvedGames`:
+   `roundDurationMs` 30–120 s (60), eight rounds by default, the reveal held
+   for the host. The answer mode is `calculation`; `player.answer` carries
+   `{ kind: 'calculation', steps }`, one to five `{ left, operator, right }`,
+   `operator` one of `add`, `subtract`, `multiply`, `divide`, an operand
+   0–9 (`protocol/make-number.ts`). **Core** `@melee/core/makenumber/`:
+   `tile-draw` (`TILE_BAG`, `drawNumbers`), `shortest-solution` (the subset
+   DP, each subset a `Map` of value to its first way, merged from the
+   partitions that hold the subset's lowest tile so each pair is met once,
+   the larger operand first for `−` and `÷`; a tile that is the target is a
+   solution of no step), `playable-draw` (`drawPlayableNumbers`, injectable
+   drawer, `FEWEST_TILES_A_SOLUTION_USES` 3, `MOST_DRAW_ATTEMPTS` 500),
+   `calculation-check` (`combined`, `calculationValue`) and
+   `calculation-pay` (`pointsForCalculation`, `isExactHit`,
+   `MISS_THAT_PAYS_NOTHING` 10), each with a test. **Timing** on Node, this
+   machine, over 300 draws: a solve 1.6 ms on average (it stops at the first
+   subset holding the target), 24 ms at worst — a target no subset reaches,
+   which walks all 63; 93 % of raw draws are exact; a playable draw 1.8 ms
+   on average, 1.07 attempts, 14 ms at worst. The shortest solution took 3
+   tiles 15 times, 4 tiles 75, 5 tiles 146 and 6 tiles 64. **The refusal**
+   is one code, `invalid_calculation` (an operand out of reach or used twice,
+   a subtraction to zero, a remainder), free. **The verdict** `calculation`
+   is `{ value, distance }`, and — unlike 67's — it is sent to its own seat
+   during the round, since the value and the target are on every screen
+   already. `raisesVerdict` takes a nearer distance, ten away or more
+   included, and `bank` re-stamps `scoredAfterMs` on it as on 67
+   (`isPaidOnItsBest`, letters or calculation), so the clock reads the
+   seat's nearest; an equal distance replaces nothing. `calculation` joins
+   the retry gate, `isFinal` holds on an exact hit — a further calculation
+   is `already_buzzed`, and the round closes once every stamped seat holds
+   one. **Views**: every screen reads `tiles`, `target` and `values` (each
+   seat's nearest value), the reader its own `yourCalculations` in the order
+   sent, the reveal `revealedCalculations` and `solution`; the console reads
+   `currentContent.solution` while it holds no seat, `null` seated; the
+   wall's arm is bare. The server keeps each seat's accepted calculations
+   with their values on the round (`calculations`,
+   `domain/round/make-number-round.ts`), and `said` writes the kept one out
+   as `75 + 25 = 100, 100 × 7 = 700` for the console's list. The conductor
+   calls core's `drawPlayableNumbers` directly — no bank, nothing to
+   `playedContentIds`. The game app compiles with the dictionary keys
+   (`makenumber.name`, `play`, `tagline`, `scoring`, `home.description`,
+   `host.answerMode.calculation`, `error.invalid_calculation`, both
+   locales), `CLOCK_PAID_SCORING`, the line-up entry name (seconds), the
+   `Calculator` icon and a provisional spine `oklch(43% 0.11 88)`, in the
+   gap between the reflex's hue (75) and the timeline's (100) — step 2 may
+   move it. No `PROTOCOL_VERSION` bump: every change is a new arm.
+   `make-number-game.test.ts` (six tests, each mutation seen red) deals
+   `75 25 7 3 10 10` → 703 through the real solver and covers the leak over
+   a seated console, four refusals at no cost, a nearer calculation
+   replacing a farther one and an equal one not, the pay order, and the
+   early close timed at the exact hit. **Left for step 2**: no `player.lean`
+   arm — whether a tile merged on screen and never sent counts at the close,
+   as 67's row does (`ddfdf70a`), is the seat's design to settle first; and
+   `makenumber` sits in no `FAMILY_OF` group of `spaced-cycle.ts` — beside
+   `estimate` and `higherlower` as `numbers`, or alone.
 2. **On the shelf.** `/impeccable` first, an example page per direction behind
    one link: the tiles, the operators and the merge on a seat, the wall's
    target with every seat's value, the reveal with the solution. Then screens,

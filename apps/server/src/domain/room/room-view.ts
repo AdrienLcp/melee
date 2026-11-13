@@ -38,6 +38,7 @@ import {
 } from '@/domain/round/black-square-round'
 import { deckSummariesOf } from '@/domain/round/deck-dealer'
 import { longestWordContentView } from '@/domain/round/longest-word-round'
+import { makeNumberContentView } from '@/domain/round/make-number-round'
 import { mysteryWordContentView } from '@/domain/round/mystery-word-round'
 import {
   canCancelPetitBacStop,
@@ -262,6 +263,13 @@ const toHostContent = ({
       bestLength: seatId === null ? content.bestLength : null,
       bestWords: seatId === null ? content.bestWords : null,
       kind: 'longestword'
+    }
+  }
+
+  if (content.kind === 'makenumber') {
+    return {
+      kind: 'makenumber',
+      solution: seatId === null ? content.solution : null
     }
   }
 
@@ -693,6 +701,14 @@ const toContentView = ({
 
   if (content.kind === 'longestword') {
     return longestWordContentView({
+      content,
+      isRevealed: round.revealed,
+      youId
+    })
+  }
+
+  if (content.kind === 'makenumber') {
+    return makeNumberContentView({
       content,
       isRevealed: round.revealed,
       youId

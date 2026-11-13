@@ -53,6 +53,13 @@ import {
   seatWordSchema
 } from './longest-word'
 import {
+  calculationSchema,
+  makeNumberTargetSchema,
+  numberTilesSchema,
+  seatCalculationSchema,
+  seatValueSchema
+} from './make-number'
+import {
   matchsticksPuzzleSchema,
   matchsticksSolutionSchema,
   sentMoveSchema,
@@ -132,7 +139,8 @@ export const answerModes = [
   'number',
   'pairs',
   'word',
-  'letters'
+  'letters',
+  'calculation'
 ] as const
 
 /**
@@ -193,7 +201,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('number') }),
   z.object({ kind: z.literal('pairs') }),
   z.object({ kind: z.literal('word') }),
-  z.object({ kind: z.literal('letters') })
+  z.object({ kind: z.literal('letters') }),
+  z.object({ kind: z.literal('calculation') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -393,6 +402,7 @@ export const DEFAULT_BUZZER_MODE_SETTINGS: BuzzerModeSettings = {
 /** A record rather than a switch, so a new mode without a default cannot compile. */
 export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
+  calculation: { kind: 'calculation' },
   choice: { kind: 'choice' },
   colour: { kind: 'colour' },
   letters: { kind: 'letters' },
@@ -857,6 +867,31 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * seat. Its longest — the first of the greatest length — is the one paid.
      */
     yourWords: z.array(drawnWordSchema).nullable()
+  }),
+  z.object({
+    kind: z.literal('makenumber'),
+    /** Every seat's nearest calculation, and `null` until the reveal. */
+    revealedCalculations: z.array(seatCalculationSchema).nullable(),
+    /**
+     * One exact calculation using the fewest tiles, and `null` until the
+     * reveal — to a seated console too.
+     */
+    solution: calculationSchema.nullable(),
+    /** The number to make, 101 to 999. Not the answer: every screen shows it. */
+    target: makeNumberTargetSchema,
+    /** The six dealt tiles, in the order dealt. Not the answer: every screen shows them. */
+    tiles: numberTilesSchema,
+    /**
+     * Each seat holding a calculation, with the value of its nearest and never
+     * the steps: _812_ is pressure, the steps would be a copy.
+     */
+    values: z.array(seatValueSchema),
+    /**
+     * The reader's own accepted calculations, first sent first, and `null`
+     * without a seat. Its nearest — the first of the smallest distance — is
+     * the one paid.
+     */
+    yourCalculations: z.array(calculationSchema).nullable()
   })
 ])
 
@@ -1164,6 +1199,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     bestLength: longestWordLengthSchema.nullable(),
     bestWords: z.array(drawnWordSchema).nullable(),
     kind: z.literal('longestword')
+  }),
+  /** One exact solution, for the console to follow the race, and `null` while the console holds a seat. */
+  z.object({
+    kind: z.literal('makenumber'),
+    solution: calculationSchema.nullable()
   })
 ])
 
@@ -1277,7 +1317,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('estimate') }),
   z.object({ kind: z.literal('higherlower') }),
   z.object({ kind: z.literal('mysteryword') }),
-  z.object({ kind: z.literal('longestword') })
+  z.object({ kind: z.literal('longestword') }),
+  z.object({ kind: z.literal('makenumber') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

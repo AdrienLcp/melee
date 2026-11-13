@@ -540,6 +540,8 @@ export const FR_DICTIONARY = defineDictionary({
     host_reconnecting:
       'Cette table vient de perdre son hôte, et l’attend encore.',
     internal_error: 'Ça a cassé de notre côté. Réessaie.',
+    invalid_calculation:
+      'Ces plaques ne donnent pas ça : une plaque prise deux fois, une soustraction sous un ou une division qui ne tombe pas juste.',
     invalid_message: 'On n’a pas compris. Réessaie.',
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
     judging_round: 'Tu juges cette manche, tu rejoues à la suivante.',
@@ -756,6 +758,7 @@ export const FR_DICTIONARY = defineDictionary({
     }),
     answerMode: {
       buzzer: 'Le premier qui buzze',
+      calculation: 'On fait le compte',
       choice: 'Quatre propositions',
       colour: 'On refait la couleur',
       label: 'Comment on répond',
@@ -1465,6 +1468,17 @@ export const FR_DICTIONARY = defineDictionary({
     },
     typing: 'Ton mot : {word}',
     words: 'Tes mots acceptés'
+  },
+  makenumber: {
+    home: {
+      description:
+        'Six plaques et un nombre à trouver s’affichent sur tous les écrans. Chacun assemble les plaques deux à deux — addition, soustraction, multiplication, division — vers le nombre, autant de calculs qu’il veut : seul le plus proche compte. La pièce voit le nombre de chacun, jamais comment il l’a fait, jusqu’à ce que la révélation montre le plus court chemin que permettaient les plaques.'
+    },
+    name: 'Le compte est bon',
+    play: 'Jouer au Compte est bon',
+    scoring:
+      'Ton calcul le plus proche est payé selon l’écart : le nombre exact rapporte 100 points, chaque unité d’écart dix de moins, et dix d’écart ou plus ne rapportent rien.',
+    tagline: 'Six plaques, un nombre, toutes les opérations.'
   },
   matchsticks: {
     duration: 'Temps par énigme',

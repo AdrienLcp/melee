@@ -141,6 +141,13 @@ export const protocolErrorCodes = [
   'not_in_dictionary',
   /** A longest-word line using a letter the draw lacks, or more often than it was drawn. */
   'letter_not_in_draw',
+  /**
+   * A make-the-number calculation the tiles cannot make: an operand out of
+   * reach or used twice, a subtraction reaching zero, a division leaving a
+   * remainder. Non-fatal and free: a tapping screen never sends one, so it
+   * only meets a forged frame.
+   */
+  'invalid_calculation',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

@@ -7,6 +7,7 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
 import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import type { Calculation } from '@melee/protocol/make-number'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import { PETIT_BAC_IN_FLIGHT_GRACE_MS } from '@melee/protocol/petit-bac'
 import type { HostQuestion } from '@melee/protocol/question'
@@ -94,6 +95,11 @@ import {
   checkLongestWord,
   gradeLongestWord
 } from '@/domain/round/longest-word-round'
+import {
+  gradeCalculation,
+  valueOfCalculation,
+  writtenCalculation
+} from '@/domain/round/make-number-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import {
   isOnTheBallot,
@@ -480,6 +486,7 @@ export type AnswerRejection = Extract<
   ProtocolErrorCode,
   | 'already_buzzed'
   | 'colour_still_shown'
+  | 'invalid_calculation'
   | 'invalid_message'
   | 'joined_mid_round'
   | 'letter_not_in_draw'
@@ -600,6 +607,20 @@ const keepAnswer = ({
       ...(round.content.words.get(playerId) ?? []),
       attempt.guess
     ])
+  }
+
+  if (round.content.kind === 'makenumber' && attempt.kind === 'calculation') {
+    const value = valueOfCalculation({
+      content: round.content,
+      steps: attempt.steps
+    })
+
+    if (value !== null) {
+      round.content.calculations.set(playerId, [
+        ...(round.content.calculations.get(playerId) ?? []),
+        { steps: attempt.steps, value }
+      ])
+    }
   }
 
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
@@ -861,15 +882,18 @@ const isDone = (attempts: PlayerAttempts): boolean => isFinal(attempts.verdict)
 /**
  * The modes a seat sends more than once in: typing until both halves land, a
  * word until it is found or six tries are spent, words from a draw until one
- * is as long as the draw's longest.
+ * is as long as the draw's longest, calculations until one makes the target.
  */
 const takesRetries = (mode: ModeSettings): boolean =>
-  mode.kind === 'typed' || mode.kind === 'word' || mode.kind === 'letters'
+  mode.kind === 'typed' ||
+  mode.kind === 'word' ||
+  mode.kind === 'letters' ||
+  mode.kind === 'calculation'
 
 /**
- * A word game's line folded and checked, or why it is refused — a refusal
- * costs nothing, so it is answered before anything is banked. Every other
- * answer passes as sent.
+ * A word game's line folded and checked, or a calculation checked against the
+ * tiles, or why it is refused — a refusal costs nothing, so it is answered
+ * before anything is banked. Every other answer passes as sent.
  */
 const acceptedTry = ({
   attempt,
@@ -880,6 +904,15 @@ const acceptedTry = ({
   isWord: IsWord
   round: Round
 }): Result<Attempt, AnswerRejection> => {
+  if (attempt.kind === 'calculation' && round.content.kind === 'makenumber') {
+    return valueOfCalculation({
+      content: round.content,
+      steps: attempt.steps
+    }) === null
+      ? Result.failure('invalid_calculation')
+      : Result.success(attempt)
+  }
+
   if (attempt.kind === 'letters' && round.content.kind === 'longestword') {
     const checked = checkLongestWord({
       content: round.content,
@@ -909,9 +942,10 @@ const acceptedTry = ({
 
 /**
  * Whether what a seat now holds is better than what it held. A longest word
- * raises it by being longer, three letters included, so the seat's word is
- * the one kept and timed even before it pays; everything else by what it is
- * worth.
+ * raises it by being longer, three letters included, and a calculation by
+ * landing nearer the target, ten away or more included, so the seat's answer
+ * is the one kept and timed even before it pays; everything else by what it
+ * is worth.
  */
 const raisesVerdict = ({
   after,
@@ -919,10 +953,21 @@ const raisesVerdict = ({
 }: {
   after: Verdict
   before: Verdict | null
-}): boolean =>
-  after.kind === 'letters'
-    ? before?.kind !== 'letters' || after.length > before.length
-    : pointsFor(after) > (before === null ? 0 : pointsFor(before))
+}): boolean => {
+  if (after.kind === 'letters') {
+    return before?.kind !== 'letters' || after.length > before.length
+  }
+
+  if (after.kind === 'calculation') {
+    return before?.kind !== 'calculation' || after.distance < before.distance
+  }
+
+  return pointsFor(after) > (before === null ? 0 : pointsFor(before))
+}
+
+/** The verdicts paid on one answer, the seat's best, timed when that answer was sent rather than when the seat first scored. */
+const isPaidOnItsBest = (verdict: Verdict): boolean =>
+  verdict.kind === 'letters' || verdict.kind === 'calculation'
 
 const bank = ({
   graded,
@@ -959,10 +1004,10 @@ const bank = ({
 
   entry.verdict = graded.verdict
 
-  // A longest word is paid on one word, the seat's longest, so it is the one
-  // said and the one timed: the clock pays the moment the best was sent, not
-  // the first short word on the way to it.
-  if (gained && graded.verdict.kind === 'letters') {
+  // A longest word is paid on one word, the seat's longest, and a calculation
+  // on the seat's nearest, so it is the one said and the one timed: the clock
+  // pays the moment the best was sent, not the first try on the way to it.
+  if (gained && isPaidOnItsBest(graded.verdict)) {
     entry.landed = [graded.said]
     entry.scoredAfterMs = elapsedRoundMs(round, now)
   } else if (gained) {
@@ -1305,6 +1350,7 @@ type Attempt =
   | { kind: 'pairs'; picks: HigherLowerPicks }
   | { kind: 'word'; guess: string }
   | { kind: 'letters'; guess: string }
+  | { kind: 'calculation'; steps: Calculation }
   | TypedAttempt
 
 /**
@@ -1422,6 +1468,28 @@ const grade = ({
       : null
   }
 
+  if (content.kind === 'makenumber') {
+    if (attempt.kind !== 'calculation') {
+      return null
+    }
+
+    const value = valueOfCalculation({ content, steps: attempt.steps })
+
+    return value === null
+      ? null
+      : {
+          said: writtenCalculation({
+            steps: attempt.steps,
+            tiles: content.tiles
+          }),
+          verdict: gradeCalculation({
+            content,
+            held: held?.verdict.kind === 'calculation' ? held.verdict : null,
+            value
+          })
+        }
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1467,7 +1535,8 @@ const grade = ({
     attempt.kind === 'number' ||
     attempt.kind === 'pairs' ||
     attempt.kind === 'word' ||
-    attempt.kind === 'letters'
+    attempt.kind === 'letters' ||
+    attempt.kind === 'calculation'
   ) {
     return null
   }
