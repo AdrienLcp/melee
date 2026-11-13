@@ -63,19 +63,33 @@ keep them that way.
 
 **Weight is paid once, on arrival, and the arrival that matters is a player
 scanning the QR code**: a mid-range phone on a venue's Wi-Fi, where most of the
-cost is parsing and running the script, while the table waits. Once in, the
-room runs on the socket and loads nothing more. So the script budget is per
-path, in `lighthouserc.cjs`, and the CI `lighthouse` job holds it: the
-player's arrival (`/PLAY/<code>`, what the QR encodes) on a cap of its own,
-the front doors on a looser one. A red run asks _which path grew, and by
+cost is parsing and running the script, while the table waits. So the script
+budget is per path, in `lighthouserc.cjs`, and the CI `lighthouse` job holds
+it: the player's arrival (`/PLAY/<code>`, what the QR encodes) on a cap of its
+own, below the front doors' looser one. A red run asks _which path grew, and by
 what_ — the report names every script it fetched — never "raise the cap". A
 cap moves only with the measurement beside it.
 
-On 12/11/2026 the player's arrival weighed 432 kB over the wire against 299 kB
-for the home page: every game's answer screen, and the libraries behind them
-(drag and drop, the colour area, the number field), loaded before the player
-had typed a name. `handoffs/bundle-budget-02.md` carries cutting them into a
-chunk per game.
+The arrival is the name form and nothing else. What a seat draws comes in two
+chunks behind it, each through `lazyModule` (`infrastructure/lazy-module.ts`),
+which renders a landed module in the same frame rather than suspending one
+the way `React.lazy` does: `seated-screen.tsx` — the lobby, the board, the
+invitation — fetched on the first keystroke in the name field or at once
+from a stored name, behind the same _seating_ wait the socket already shows;
+then `player-round-stage.tsx` — every game's answer and reveal screens, with
+drag and drop, the colour area and the number field — fetched as the lobby
+mounts, long before a countdown ends, while the countdown itself stays in the
+lobby's chunk. On 13/11/2026 that took the arrival from 432 kB over the wire
+to 289 kB, under the front doors' 273–305 kB, and its cap to 300 000.
+
+The base every page loads is about 253 kB of it: React DOM 72, the i18n
+chunk 65 — nearly half of it the English dictionary and the country names —
+the router 35, react-aria's collections and overlays 30, the protocol's
+schemas 27. French
+is already a chunk of its own; English cannot be, because `@adrienlcp/i18n`
+holds the default locale's dictionary as the reference every key is typed
+from and what shows while another locale loads — sparing it to a French
+reader is a change to the library, worth about 26 kB to that reader alone.
 
 ## One engine per room
 

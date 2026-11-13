@@ -130,6 +130,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A scanned QR code opens on the name form alone.** The player's
+  arrival loaded 432 kB of script — every game's answer and reveal screens —
+  before a name was typed; it loads 289 kB now, below every front door. The
+  lobby comes in a chunk fetched on the first keystroke in the name field, or
+  at once from a stored name, and the round screens in another fetched from
+  the lobby, which lands inside the countdown even on a slow connection. Its
+  cap in `lighthouserc.cjs` goes from 440 000 to 300 000.
+
 - **[Game] The running order shows the next five rounds.** A Mêlée générale
   line-up plans some fifty rows, and the side panel's draw, _Ajouter un jeu_,
   the level and the saved line-ups sat three thousand pixels below them. The

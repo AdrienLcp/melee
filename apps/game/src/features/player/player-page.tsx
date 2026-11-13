@@ -1,20 +1,22 @@
-import { useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { type FormEvent, useCallback, useEffect, useState } from 'react'
+import {
+  type FormEvent,
+  Suspense,
+  use,
+  useCallback,
+  useEffect,
+  useState
+} from 'react'
 import { Form } from 'react-aria-components'
 import { flushSync } from 'react-dom'
 
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
-import type { PlayerRoomView } from '@melee/protocol/room'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
-import { slateContent } from '@/helpers/round-content'
 import { replaceScreen } from '@/infrastructure/browser'
-import {
-  type PlayerConnection,
-  usePlayerConnection
-} from '@/infrastructure/messaging/use-player-connection'
+import { lazyModule } from '@/infrastructure/lazy-module'
+import { usePlayerConnection } from '@/infrastructure/messaging/use-player-connection'
 import { useRoomCodeParam } from '@/infrastructure/router/navigation'
 import {
   readStoredNickname,
@@ -22,12 +24,7 @@ import {
 } from '@/infrastructure/storage/preferences-storage'
 import { forgetSessionId } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
-import { ConnectionRefused } from '@/presentation/components/connection-refused'
-import { NoticeCard } from '@/presentation/components/notice-card'
-import { RoundChrome } from '@/presentation/components/round-chrome'
 import { TextField } from '@/presentation/components/text-field'
-import { useReportConnection } from '@/presentation/connection/connection-provider'
-import { useTimeOutNudge } from '@/presentation/haptics/time-out-nudge'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
@@ -36,21 +33,33 @@ import {
   useReportRoomActions
 } from '@/presentation/room-actions/room-actions-provider'
 import { useSeatPawn } from '@/presentation/room-actions/use-seat-pawn'
-import { useMarkingField } from '@/presentation/theme/use-marking-field'
-import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { fadeOffTheCountdown } from './countdown-leaving-copy'
-import { LiftedNotice } from './lifted-notice'
-import { PauseHold } from './pause-hold'
-import { PlayerRound, showsTheHostAwayCard } from './player-round'
-import { RoundClock } from './round-clock'
+import type { SeatedScreenProps } from './seated-screen'
 
 import './player-page.sass'
 
-import { useWorldMapAhead } from '@/presentation/components/lazy-world-map'
 import { Main } from '@/presentation/components/main'
-import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
-import { useRoundDealt } from '@/presentation/use-round-dealt'
+
+const seatedScreenModule = lazyModule(() => import('./seated-screen'))
+
+const LoadedSeatedScreen: React.FC<SeatedScreenProps> = (props) => {
+  const { SeatedScreen } =
+    seatedScreenModule.loaded() ?? use(seatedScreenModule.load())
+
+  return <SeatedScreen {...props} />
+}
+
+/** What the seated screen shows until its view arrives, drawn while its module is still on the way. */
+const SeatingWait: React.FC = () => {
+  const translate = useTranslate()
+
+  return (
+    <Main className='player-page playing'>
+      <p className='waiting'>{translate('player.seating')}</p>
+    </Main>
+  )
+}
 
 export const PlayerPage: React.FC = () => {
   const roomCode = useRoomCodeParam()
@@ -80,8 +89,6 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     roomCode
   })
   const { clearError, send, view } = connection
-
-  useWorldMapAhead(view?.settings.lineUp ?? [])
 
   // Offered to the menu above, which owns the only way off this screen. The
   // frame goes first: navigating away closes the socket, and a seat given up
@@ -181,7 +188,9 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           roomCode={roomCode}
         />
       ) : (
-        <Lobby connection={connection} roomCode={roomCode} />
+        <Suspense fallback={<SeatingWait />}>
+          <LoadedSeatedScreen connection={connection} roomCode={roomCode} />
+        </Suspense>
       )}
     </>
   )
@@ -244,7 +253,10 @@ const NicknameForm: React.FC<{
             label={translate('player.nickname.label')}
             maxLength={NICKNAME_MAX_LENGTH}
             name='nickname'
-            onChange={setDraft}
+            onChange={(next) => {
+              setDraft(next)
+              void seatedScreenModule.load()
+            }}
             value={draft}
           />
           <Button
@@ -259,157 +271,3 @@ const NicknameForm: React.FC<{
     </Main>
   )
 }
-
-const Lobby: React.FC<{
-  connection: PlayerConnection
-  roomCode: RoomCode
-}> = ({ connection, roomCode }) => {
-  const translate = useTranslate()
-  const { clock, error, send, status, view } = connection
-
-  useReportConnection({ clock, status })
-  usePhaseField(view?.phase ?? null)
-  const isRoundDealt = useRoundDealt(view)
-  const slate = slateContent(view?.round)
-  useMarkingField(
-    view?.phase === 'playing' &&
-      slate?.currentItemIndex != null &&
-      !slate.itemStates.includes('open')
-  )
-  useScreenAwake(status !== 'refused' && view?.phase !== 'finished')
-  useTimeOutNudge({ clock, view })
-
-  // A table answering aloud turns every phone away without closing the
-  // socket, since the host may switch it back; until then this is a dead end.
-  if (
-    status === 'refused' ||
-    (view === null && error?.code === 'room_plays_aloud')
-  ) {
-    return (
-      <Main className='player-page'>
-        <ConnectionRefused error={error} />
-      </Main>
-    )
-  }
-
-  const hostReturns = (
-    <LiftedNotice
-      isShown={view !== null && showsTheHostAwayCard(view)}
-      liftsInPlace={view?.isHostConnected === true}
-    >
-      <NoticeCard title={translate('buzz.blocked.host_away')} />
-    </LiftedNotice>
-  )
-
-  if (view !== null && isFramed(view)) {
-    return (
-      <PawnPiecesProvider view={view}>
-        <Main
-          className='player-page playing framed'
-          data-round-dealt={isRoundDealt || undefined}
-        >
-          {hostReturns}
-          <RoundChrome
-            duel={view.round?.duel ?? null}
-            players={view.players}
-            roundCount={view.settings.roundCount}
-            roundIndex={view.round?.index ?? 0}
-            teams={view.teams}
-            youId={view.youId}
-          />
-          <div className='card-clock'>
-            <RoundClock clock={clock} view={view} />
-          </div>
-          <PauseHold isPaused={view.isPaused}>
-            <PlayerRound
-              clock={clock}
-              onAnswer={(answer, roundId) =>
-                send({ answer, roundId, type: 'player.answer' })
-              }
-              onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-              onLean={(answer, roundId) =>
-                send({ answer, roundId, type: 'player.lean' })
-              }
-              onPetitBac={(message) => send(message)}
-              onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-              onTeam={(message) => send(message)}
-              onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
-              onWriteLine={(itemIndex, answer, roundId) =>
-                send({ answer, itemIndex, roundId, type: 'slate.write' })
-              }
-              refusal={error}
-              view={view}
-            />
-          </PauseHold>
-        </Main>
-      </PawnPiecesProvider>
-    )
-  }
-
-  return (
-    <PawnPiecesProvider view={view}>
-      <Main
-        className='player-page playing'
-        data-round-dealt={isRoundDealt || undefined}
-      >
-        {hostReturns}
-        {view === null ? (
-          <p className='waiting'>{translate('player.seating')}</p>
-        ) : (
-          <>
-            <RoundChrome
-              duel={view.round?.duel ?? null}
-              players={view.players}
-              roomCode={roomCode}
-              roundCount={view.settings.roundCount}
-              roundIndex={
-                view.round === null ||
-                view.phase === 'lobby' ||
-                view.phase === 'finished'
-                  ? null
-                  : view.round.index
-              }
-              teams={view.teams}
-              youId={view.youId}
-            />
-            <PauseHold isPaused={view.isPaused}>
-              <PlayerRound
-                clock={clock}
-                onAnswer={(answer, roundId) =>
-                  send({ answer, roundId, type: 'player.answer' })
-                }
-                onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-                onLean={(answer, roundId) =>
-                  send({ answer, roundId, type: 'player.lean' })
-                }
-                onPetitBac={(message) => send(message)}
-                onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-                onTeam={(message) => send(message)}
-                onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
-                onWriteLine={(itemIndex, answer, roundId) =>
-                  send({ answer, itemIndex, roundId, type: 'slate.write' })
-                }
-                refusal={error}
-                view={view}
-              />
-            </PauseHold>
-          </>
-        )}
-      </Main>
-    </PawnPiecesProvider>
-  )
-}
-
-/**
- * The screens held to the viewport: four tiles, or the buzzer and the floor it
- * hands over, visible at once on any screen at any ratio. Everything else on a
- * player's screen may scroll; these may not, because the tile or the buzzer
- * that scrolled away is the round.
- */
-const isFramed = (view: PlayerRoomView): boolean =>
-  view.isHostConnected &&
-  view.round !== null &&
-  !view.round.joinedAfterStart &&
-  ((view.phase === 'playing' && view.round.answerMode === 'choice') ||
-    ((view.phase === 'playing' || view.phase === 'buzzed') &&
-      view.round.answerMode === 'buzzer'))

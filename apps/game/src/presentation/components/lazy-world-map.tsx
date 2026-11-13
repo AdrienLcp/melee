@@ -12,6 +12,7 @@ import type { GameSettings } from '@melee/protocol/game'
 
 import type { Size } from '@/helpers/map-view'
 import { onceIdle } from '@/infrastructure/browser'
+import { lazyModule } from '@/infrastructure/lazy-module'
 import type { MapRegion } from '@/infrastructure/map/world-geometry'
 import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -22,34 +23,10 @@ import type { WorldMapProps } from './world-map'
 
 import './world-map.sass'
 
-type WorldMapModule = typeof import('./world-map')
-
-let isWorldMapLoaded = false
-let worldMapLoading: Promise<WorldMapModule> | null = null
-
-const importWorldMap = holdWhileReloading(() => import('./world-map'))
+const worldMapModule = lazyModule(() => import('./world-map'))
 const importWorldGeometry = holdWhileReloading(
   () => import('@/infrastructure/map/world-geometry')
 )
-
-/**
- * Fetches the map's chunk once: a fetch that failed is asked again by the next
- * caller rather than kept as the answer.
- */
-const loadWorldMap = (): Promise<WorldMapModule> => {
-  worldMapLoading ??= importWorldMap().then(
-    (module) => {
-      isWorldMapLoaded = true
-      return module
-    },
-    (error: unknown) => {
-      worldMapLoading = null
-      throw error
-    }
-  )
-
-  return worldMapLoading
-}
 
 const placesAhead = (lineUp: readonly GameSettings[]) =>
   new Set(
@@ -79,7 +56,7 @@ export const useWorldMapAhead = (lineUp: readonly GameSettings[]): void => {
 
     const controller = new AbortController()
     let cancelIdle = onceIdle(() => {
-      void loadWorldMap()
+      void worldMapModule.load()
       void importWorldGeometry().then(({ mapGeometryOf }) => {
         const projectFrom = (pending: readonly MapRegion[]): void => {
           const [region, ...rest] = pending
@@ -115,7 +92,7 @@ const LoadedWorldMap: React.FC<LoadedWorldMapProps> = ({
   onDrawn,
   ...props
 }) => {
-  const { WorldMap } = use(loadWorldMap())
+  const { WorldMap } = use(worldMapModule.load())
   const reportDrawn = useEffectEvent(onDrawn)
 
   useEffect(() => {
@@ -137,7 +114,7 @@ export const LazyWorldMap: React.FC<WorldMapProps> = (props) => {
   const translate = useTranslate()
   const frameRef = useRef<HTMLDivElement>(null)
   const [frame, setFrame] = useState<Size | null>(null)
-  const [isWaiting, setIsWaiting] = useState(!isWorldMapLoaded)
+  const [isWaiting, setIsWaiting] = useState(worldMapModule.loaded() === null)
   const waiting = useLeavingValue(isWaiting ? true : null)
 
   useEffect(() => {
@@ -147,7 +124,7 @@ export const LazyWorldMap: React.FC<WorldMapProps> = (props) => {
       return
     }
 
-    void loadWorldMap()
+    void worldMapModule.load()
 
     const observer = new ResizeObserver(() => {
       setFrame({ height: element.clientHeight, width: element.clientWidth })

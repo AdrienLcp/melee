@@ -4,6 +4,7 @@ import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
 import { onceIdle } from '@/infrastructure/browser'
+import { lazyModule } from '@/infrastructure/lazy-module'
 import { usePathname } from '@/infrastructure/router/navigation'
 import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useConnection } from '@/presentation/connection/connection-provider'
@@ -25,31 +26,7 @@ const LoadedLeaflet = lazy(
   }))
 )
 
-type MenuSeatRowsModule = typeof import('./menu-seat-rows')
-
-let loadedSeatRows: MenuSeatRowsModule | null = null
-let seatRowsLoading: Promise<MenuSeatRowsModule> | null = null
-
-const importSeatRows = holdWhileReloading(() => import('./menu-seat-rows'))
-
-/**
- * Fetches the menu's seat rows once: a fetch that failed is asked again by the
- * next caller rather than kept as the answer.
- */
-const loadMenuSeatRows = (): Promise<MenuSeatRowsModule> => {
-  seatRowsLoading ??= importSeatRows().then(
-    (rows) => {
-      loadedSeatRows = rows
-      return rows
-    },
-    (error: unknown) => {
-      seatRowsLoading = null
-      throw error
-    }
-  )
-
-  return seatRowsLoading
-}
+const seatRowsModule = lazyModule(() => import('./menu-seat-rows'))
 
 /**
  * The seat rows, drawn at once when the idle fetch has landed them, and
@@ -58,7 +35,7 @@ const loadMenuSeatRows = (): Promise<MenuSeatRowsModule> => {
  * pawn picker and the invitation square they are made of.
  */
 const LoadedMenuSeatRows: React.FC = () => {
-  const { MenuSeatRows } = loadedSeatRows ?? use(loadMenuSeatRows())
+  const { MenuSeatRows } = seatRowsModule.loaded() ?? use(seatRowsModule.load())
 
   return <MenuSeatRows />
 }
@@ -67,7 +44,7 @@ const preloadMenu = ({ hasSeatRows }: { hasSeatRows: boolean }): void => {
   void loadLeaflet()
 
   if (hasSeatRows) {
-    void loadMenuSeatRows()
+    void seatRowsModule.load()
   }
 }
 

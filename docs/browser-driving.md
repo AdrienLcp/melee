@@ -590,6 +590,11 @@ schemes, came back clean after the dark hover fixes, and costs two minutes of
 browser per run. Wait past the countdown before measuring a round: a sweep
 that starts on the `3` hovers one control and reports nothing.
 
+**A `wrangler dev` in a shared checkout reloads on another session's edit.**
+It watches `apps/server`, and a reload drops the sockets in the pass: a
+driver awaiting a socket's `open` waits forever. Read the server log for
+_Local server updated_ before chasing a run that hung, and bound every wait.
+
 ## What a pass covers
 
 At 414 px and 1920 px:

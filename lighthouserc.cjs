@@ -39,11 +39,11 @@ module.exports = {
           aggregationMethod: 'median',
           assertions: {
             // A scanned QR code on a mid-range phone over a venue's Wi-Fi,
-            // with the table waiting: set just above the 432 kB measured on
-            // 12/11/2026, so it cannot grow while it is being slimmed.
+            // with the table waiting: set just above the 289 kB measured on
+            // 13/11/2026, the name form alone, and below the front doors'.
             'resource-summary:script:size': [
               'error',
-              { maxNumericValue: 440_000 }
+              { maxNumericValue: 300_000 }
             ]
           },
           matchingUrlPattern: '/PLAY/'
