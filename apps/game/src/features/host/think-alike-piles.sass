@@ -22,14 +22,22 @@
     --turn: 0
     --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
     --edge: min(1.5rem, calc(46cqh / var(--most-authors)))
+    --pile-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-l))
+    --lone-card-least: 5.5rem
+    // The lone column's floor, its cards' own rather than its `min-content`,
+    // which follows the widest word: a card leaving with it narrowed the
+    // column, and moved every pile, in one frame.
+    --lone-least: calc(var(--lone-columns, 1) * var(--lone-card-least) + (var(--lone-columns, 1) - 1) * var(--space-s))
 
     align-items: end
-    column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-l))
     container: think-alike-piles / size
     display: grid
     grid-template-columns: var(--columns-template)
     grid-template-rows: minmax(0, 1fr) auto minmax(0, auto)
     min-block-size: 0
+    // A regroup moves the columns on the timing a leaving row closes on: a
+    // pile's column shuts as the one taking its answers in widens.
+    transition: grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5)
 
     // On the podium's card beside a wall, read at arm's length by the host,
     // nothing hands the piles a height: each stack takes one of its own.
@@ -71,8 +79,9 @@
       align-content: end
       display: grid
       gap: var(--space-xs) var(--space-s)
+      grid-column: 1
       grid-row: 1 / -1
-      grid-template-columns: repeat(var(--lone-columns), minmax(5.5rem, 1fr))
+      grid-template-columns: repeat(var(--lone-columns), minmax(var(--lone-card-least), 1fr))
       list-style: none
       margin: 0
       padding: 0
@@ -125,6 +134,9 @@
     // A pile: gathered face down, then turned over — its top card's word
     // large, a card edge under it for each author with that author's pawn,
     // what each was paid and who they are.
+    // A pile changing places with another travels to its new column's
+    // width as well as to its place: the tracks stay where they are, and the
+    // two piles traded widths at once.
     > .pile
       --travel-offset: 0 3rem
       // Declared again here, where `--turn` is the pile's own: a custom property resolves where it is declared.
@@ -134,8 +146,10 @@
 
       animation: page-enter var(--transition-slow, 0s) var(--ease-out) var(--enter-at) backwards
       display: grid
+      grid-column: var(--column)
       grid-row: 1 / -1
       grid-template-rows: subgrid
+      interpolate-size: allow-keywords
       justify-items: center
       min-inline-size: 0
       order: var(--order)
@@ -346,13 +360,21 @@
       :is(.top, .face, .word, .edges li, .edges .pawn)
         animation: none
 
-    // Side by side, a pile's column goes once it has faded: closed at no
-    // duration, as a subgrid's height is not the pile's to hand back.
+    // Side by side, a lone card goes once it has faded and the cards after
+    // it travel up a place; a pile fades as its column shuts, and goes once
+    // the column is shut. Each ends on `row-closes` at no duration and
+    // filling backwards alone, which closes nothing: a lone card's cell
+    // closed under its column's cards dropped them a card's height at once,
+    // and a subgrid's height is not the pile's to hand back.
     :is(.lone-card, .pile)[data-leaving]
       --travel-offset: 0 -1rem
 
-      animation: page-leave var(--transition-base, 0s) var(--ease-in) both, row-closes 0s linear var(--transition-base, 0s) both
+      animation: page-leave var(--transition-base, 0s) var(--ease-in) both, row-closes 0s linear var(--transition-base, 0s) backwards
       pointer-events: none
+
+    > .pile[data-leaving]
+      animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes 0s linear calc(var(--transition-base, 0s) * 1.5) backwards
+      overflow: clip
 
     // One a line in a box that scrolls, faded then closed: taken out at its
     // full height, a box scrolled to its foot jumped by it.

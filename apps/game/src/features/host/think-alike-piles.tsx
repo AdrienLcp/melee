@@ -36,6 +36,35 @@ type ThinkAlikePilesProps = {
   youId: PlayerId | null
 }
 
+const CLOSED_TRACK = 'minmax(0, 0fr)'
+
+/** A column of the piles side by side: its track, and whether it stays once the regroup has played. */
+type Column = { isStanding: boolean; track: string }
+
+/**
+ * The grid's columns with a track of their own for each gap: a column leaving
+ * closes its track and the gap it brought to no width, so taking it out
+ * changes nothing, where `column-gap` handed a gap back at once. A gap stands
+ * before a column that stays with another staying before it.
+ */
+const columnsTemplateOf = (columns: readonly Column[]): string =>
+  columns
+    .flatMap(({ isStanding, track }, at) => {
+      if (at === 0) {
+        return [track]
+      }
+
+      const hasStandingBefore = columns
+        .slice(0, at)
+        .some((column) => column.isStanding)
+
+      return [
+        isStanding && hasStandingBefore ? 'var(--pile-gap)' : '0rem',
+        isStanding ? track : CLOSED_TRACK
+      ]
+    })
+    .join(' ')
+
 /** The letters of an answer's longest word, which its card is sized by so no word has to break. */
 const longestWordOf = (text: string): number =>
   Math.max(4, ...text.split(/\s+/u).map((word) => word.length))
@@ -66,6 +95,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
 }) => {
   const translate = useTranslate()
   const section = useRef<HTMLElement>(null)
+  const loneList = useRef<HTMLUListElement>(null)
   const dealt = thinkAlikeContent(round)?.groups ?? []
   const isRegrouped = useChangedSinceFirstDraw(
     dealt.map(({ authors, key }) => `${key}:${authors.length}`).join(' ')
@@ -102,7 +132,30 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
     order: piles.map((pile) => pile.key).join(' '),
     pace: 'gather'
   })
+  useRowsTravel({
+    list: loneList,
+    order: [
+      ...blanks.map((player) => player.id),
+      ...singles.map((group) => group.key)
+    ].join(' '),
+    pace: 'gather'
+  })
   const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
+  const loneColumns: readonly Column[] =
+    loneCount > 0
+      ? [
+          {
+            isStanding: true,
+            track: `minmax(var(--lone-least), ${Math.min(6, Math.ceil(Math.sqrt(loneCount)) * 1.3)}fr)`
+          }
+        ]
+      : []
+  const pileColumns: readonly Column[] = piles.map((pile) => ({
+    isStanding: !pile.isLeaving,
+    track: `minmax(0, ${3 + pile.authors.length * 0.6}fr)`
+  }))
+  const gridLineOf = (pileAt: number): number =>
+    1 + (loneColumns.length + pileAt) * 2
 
   return (
     <section
@@ -113,16 +166,10 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
       ref={section}
       style={{
         '--columns': columnCount,
-        '--columns-template': [
-          ...(loneCount > 0
-            ? [
-                `minmax(min-content, ${Math.min(6, Math.ceil(Math.sqrt(loneCount)) * 1.3)}fr)`
-              ]
-            : []),
-          ...piles.map(
-            (pile) => `minmax(0, ${3 + pile.authors.length * 0.6}fr)`
-          )
-        ].join(' '),
+        '--columns-template': columnsTemplateOf([
+          ...loneColumns,
+          ...pileColumns
+        ]),
         '--lone-columns':
           piles.length > 0
             ? Math.ceil(loneCount / LONE_ROWS_BESIDE_PILES)
@@ -134,9 +181,14 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
       }}
     >
       {loneCount > 0 && (
-        <ul className='lone'>
+        <ul className='lone' ref={loneList}>
           {blanks.map((player) => (
-            <li className='lone-card' data-blank key={player.id}>
+            <li
+              className='lone-card'
+              data-blank
+              data-key={player.id}
+              key={player.id}
+            >
               <span className='face'>
                 <span className='word'>
                   <VisuallyHidden elementType='span'>
@@ -152,6 +204,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
           {singles.toSorted(byFirstDrawn).map((group) => (
             <li
               className='lone-card'
+              data-key={group.key}
               data-leaving={group.isLeaving || undefined}
               data-yours={
                 (youId !== null && group.authors.includes(youId)) || undefined
@@ -198,6 +251,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
             onAnimationEnd={pile.isLeaving ? endExitOf(pile.key) : undefined}
             style={{
               '--authors': pile.authors.length,
+              '--column': gridLineOf(turn),
               '--letters': longestWordOf(pile.text),
               '--order': turn + 1,
               '--turn': turn + 1

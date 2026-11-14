@@ -421,7 +421,15 @@ one part.
   leaves.** A row merged into another, a card taken back out, and a pile one
   a line went at full height, and a list scrolled to its foot jumped. They now
   fade, then hand their room back, and the regroup list no longer scrolls
-  itself on a merge to keep a row in view.
+  itself on a merge to keep a row in view. The row taking an answer in grows
+  as the row giving it closes, where it grew first and sent the rows under
+  both down and back up; a row only moved by a regroup no longer fades in
+  again; and after a merge or a take-out from a row's own presses, focus goes
+  to a row in view rather than falling to the page. On the wall and a wide
+  console, a pile's column shuts as it fades instead of the others widening
+  at once, piles trading places trade their widths as they travel, a pile
+  coming back makes room for itself, and the lone cards travel to their new
+  places when one leaves or comes back.
 - `[Shared]` **The dealer spaces every game again once Make the number joins
   _Free-for-all_.** Dealing the nearest-rested game row by row stranded the
   last rows of a line-up with no game rested, so a game came back before its

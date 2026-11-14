@@ -131,6 +131,23 @@
     margin-block-end: var(--row-gap-closed)
     padding-block: 0rem
 
+/// `row-closes` played forwards: a row arriving in a list that is already
+/// drawn opens its room on the same timing as the row leaving beside it, so
+/// what moves the room by is the difference between them and never their
+/// sum — a merge grew the row taking the answer in before the row giving it
+/// closed, and the rows under both went down a row's height and back up.
+/// Clipped while it opens; `to` is written, as `from` is in `row-closes`.
+@keyframes row-opens
+  from
+    block-size: 0rem
+    border-block-width: 0rem
+    margin-block-end: var(--row-gap-closed)
+    overflow: clip
+    padding-block: 0rem
+  to
+    block-size: auto
+    overflow: clip
+
 /// A page settling in, and deliberately quieter than the reveal: a few pixels
 /// and a fade where the reveal strikes from a little large, on `base` where it uses `slow`.
 /// The reveal is what a round pays out, and a navigation must not borrow its

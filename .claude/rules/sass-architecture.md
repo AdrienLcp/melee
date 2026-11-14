@@ -67,6 +67,11 @@ sites is a custom property it substitutes whole:
   (`useLeavingRows`' `exitAnimation`): taken out at full height, a list
   scrolled to its foot jumped by the row. A flex column, never a grid, which
   keeps a closed row's gap.
+- `row-opens` — `row-closes` played forwards, for a row arriving in a list
+  already drawn, on the same timing as the row leaving beside it: a merge grew
+  the row taking an answer in before the row giving it closed, and the rows
+  under both went down a row's height and back up. Keyed on
+  `useLeavingRows`' `isArriving`, never on the row's mount (below).
 - `letter-turns` — a letter turned over on its top edge, back face up.
 - `tick-stamp` — a mark stamped in place, from `--travel-scale`.
 - `pawn-hops` — a pawn set down on a case, on `transform` and with no fade.
@@ -521,6 +526,34 @@ transitioning `visibility` with a delay came back that much late. A screen
 that must still lay itself down as it returns renames its animation
 (`page-lay` to `page-lay-again`): a new name restarts that one element's
 animation and nothing inside it.
+
+**A row React moves in the DOM plays every CSS animation it holds again** —
+a reorder is a remove and an insert, and the subtree loses its style. A list
+that reorders (react-aria's `GridList`, which cannot lay out by `order`)
+holds no entrance on a row once its first draw has played, and keys a row's
+entrance on `useLeavingRows`' `isArriving` and `isChanged` instead: the
+regroup list's rows faded in again as they travelled, and a row opening its
+room collapsed to nothing. A WAAPI travel survives the move, a CSS one does
+not. A zero-length animation that only ends an exit fills `backwards`:
+filling `both`, `row-closes` closed a lone card's cell under its column's
+cards and dropped them a card's height at once.
+
+**A grid's columns move by their template, and a track holds no identity.**
+`column-gap` cannot close for one column, so the piles side by side write
+each gap as a track of its own (`columnsTemplateOf`) and a leaving pile shuts
+its track and its gap to nothing under a `grid-template-columns` transition —
+which interpolates only between lists of the same length, so removal comes
+after and changes nothing. Two piles trading places trade tracks, and so
+their widths, at once: `useRowsTravel` carries a row's width to `auto` for a
+row allowing `interpolate-size: allow-keywords`, so it follows a track still
+transitioning under it. A track floored at `min-content` follows its widest
+word, and moved every column a frame after that word left: the lone column is
+floored on its cards' least width.
+
+**Focus given back after a row's own press removed it goes to a row in
+view**, with `preventScroll`: react-aria scrolls a row focused from the
+keyboard into view at once, 261px in a frame on the regroup list, so the
+merged-into row takes it only when shown, else the row beside the one leaving.
 
 ## A keyframe substitutes a custom property, it does not compute with one
 

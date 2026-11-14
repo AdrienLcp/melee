@@ -4,8 +4,11 @@ import { keyedRowsOf, whenRowsDrawn } from './when-rows-drawn'
 
 type Offset = { x: number; y: number }
 
-/** Where a row sits, and how tall: a grid stretches a row it moves to the row it lands in. */
-type Box = Offset & { height: number }
+/**
+ * Where a row sits, how tall and how wide: a grid stretches a row it moves to
+ * the row it lands in, and to the column's width.
+ */
+type Box = Offset & { height: number; width: number }
 
 type Boxes = ReadonlyMap<string, Box>
 
@@ -57,6 +60,7 @@ const measure = (list: HTMLElement): Map<string, Box> => {
         row.dataset.key ?? '',
         {
           height: row.offsetHeight,
+          width: row.offsetWidth,
           x: box.left - origin.left,
           y: box.top - origin.top
         }
@@ -73,7 +77,12 @@ const measureLaidOut = (list: HTMLElement): Map<string, Box> =>
   new Map(
     keyedRowsOf(list).map((row) => [
       row.dataset.key ?? '',
-      { height: row.offsetHeight, x: row.offsetLeft, y: row.offsetTop }
+      {
+        height: row.offsetHeight,
+        width: row.offsetWidth,
+        x: row.offsetLeft,
+        y: row.offsetTop
+      }
     ])
   )
 
@@ -93,7 +102,7 @@ const slotsOf = ({
 
       return slot === undefined || own === undefined
         ? []
-        : [[key, { ...slot, height: own.height }] as const]
+        : [[key, { ...slot, height: own.height, width: own.width }] as const]
     })
   )
 }
@@ -187,6 +196,16 @@ const isMovedOtherwise = (row: Element): boolean =>
         animation.id !== TRAVEL_ID && animation.playState === 'running'
     )
 
+/**
+ * A row whose width changes travels to `auto` rather than to the width it was
+ * measured at, so it follows a column still being resized under it — which
+ * only a row allowing `interpolate-size: allow-keywords` can: anywhere else
+ * `auto` does not interpolate, and the row keeps its width as it travels.
+ */
+const isWidthTravelling = (row: HTMLElement): boolean =>
+  getComputedStyle(row).getPropertyValue('interpolate-size') ===
+  'allow-keywords'
+
 const isSameRows = (left: Boxes, right: Boxes): boolean =>
   left.size === right.size && [...left.keys()].every((key) => right.has(key))
 
@@ -219,8 +238,10 @@ const play = ({
     const x = was.x - is.x
     const y = was.y - is.y
     const isResized = Math.abs(was.height - is.height) >= MIN_TRAVEL_PX
+    const isWidened =
+      Math.abs(was.width - is.width) >= MIN_TRAVEL_PX && isWidthTravelling(row)
 
-    if (Math.hypot(x, y) < MIN_TRAVEL_PX && !isResized) {
+    if (Math.hypot(x, y) < MIN_TRAVEL_PX && !isResized && !isWidened) {
       continue
     }
 
@@ -229,11 +250,19 @@ const play = ({
     const heights = isResized
       ? [{ height: `${was.height}px` }, { height: `${is.height}px` }]
       : [{}, {}]
+    const widths = isWidened
+      ? [{ width: `${was.width}px` }, { width: 'auto' }]
+      : [{}, {}]
 
     const animation = row.animate(
       [
-        { transform: `translate(${x}px, ${y}px)`, zIndex, ...heights[0] },
-        { transform: 'none', zIndex, ...heights[1] }
+        {
+          transform: `translate(${x}px, ${y}px)`,
+          zIndex,
+          ...heights[0],
+          ...widths[0]
+        },
+        { transform: 'none', zIndex, ...heights[1], ...widths[1] }
       ],
       { ...timing, id: TRAVEL_ID }
     )
@@ -256,12 +285,13 @@ const haltTravelOf = (row: HTMLElement): Halt | null => {
 
   const shift = new DOMMatrixReadOnly(getComputedStyle(row).transform)
   const height = row.offsetHeight
+  const width = row.offsetWidth
 
   for (const { animation } of travels) {
     animation.cancel()
   }
 
-  return { height, x: shift.m41, y: shift.m42 }
+  return { height, width, x: shift.m41, y: shift.m42 }
 }
 
 const haltTravels = (list: HTMLElement): Map<string, Halt> =>
@@ -288,7 +318,12 @@ const shiftedBy = ({
         key,
         shift === undefined
           ? box
-          : { height: shift.height, x: box.x + shift.x, y: box.y + shift.y }
+          : {
+              height: shift.height,
+              width: shift.width,
+              x: box.x + shift.x,
+              y: box.y + shift.y
+            }
       ]
     })
   )

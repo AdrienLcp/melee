@@ -34,6 +34,7 @@
     // A row: the answer on its card, how many wrote it, what it paid; who
     // wrote it under it; the answers folded into it under that.
     .row
+      --row-gap-closed: calc(-1 * var(--space-xs))
       --travel-offset: 0 0.75rem
       // The biggest crowd lands last, as the room's screen turns it last.
       --enter-at: calc(var(--transition-fast, 0s) * var(--from-last) * 0.5)
@@ -49,6 +50,8 @@
       display: grid
       flex: none
       grid-template: 'grip count word pay menu' auto 'grip count authors authors authors' auto 'folded folded folded folded folded' auto / auto auto minmax(0, 1fr) auto auto
+      interpolate-size: allow-keywords
+      min-block-size: 0rem
       outline: none
       padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) 0
       transition: box-shadow var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
@@ -73,22 +76,31 @@
       &[data-dragging]
         opacity: 0.45
 
+      // After the first draw a row holds no entrance of its own: one the list
+      // reorders is moved in the DOM, which plays every animation it holds
+      // again, and a row only moved faded in once more as it travelled. No
+      // stagger either, or a delay lengthened on a played entrance would send
+      // the row back to its first frame.
+      &:is([data-regrouped] *)
+        --enter-at: 0s
+
+        animation: none
+
+        &:not([data-arriving], [data-changed]) :is(.count, .pay, .authors > li)
+          animation: none
+
+      // Taken back out of another: its room opens as the card it was closes.
+      &[data-arriving]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--enter-at) backwards, row-opens var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) backwards
+
       // Faded, then closed: taken out at its full height, a row scrolled to
       // the list's foot jumped the list by its height.
       &[data-leaving]
-        --row-gap-closed: calc(-1 * var(--space-xs))
         --travel-offset: 0 -0.5rem
 
         animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
-        interpolate-size: allow-keywords
-        min-block-size: 0rem
         overflow: clip
         pointer-events: none
-
-    // Laid in after the first draw: no stagger, or a delay lengthened on a
-    // played entrance would send the row back to its first frame.
-    &[data-regrouped] .row
-      --enter-at: 0s
 
     .grip
       align-items: center
@@ -196,6 +208,8 @@
         display: none
 
     .folded-card
+      // Its own top margin and the gap after it close and open with it.
+      --row-gap-closed: calc(-2 * var(--space-2xs))
       --travel-offset: 0 -1rem
 
       align-items: center
@@ -206,18 +220,21 @@
       column-gap: var(--space-s)
       display: grid
       grid-template: 'word take-out' auto 'authors take-out' auto / minmax(0, 1fr) auto
+      interpolate-size: allow-keywords
       margin-block-start: var(--space-2xs)
+      min-block-size: 0rem
       padding: var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s)
       rotate: -0.6deg
 
-      // Its own top margin and the gap after it close with it.
-      &[data-leaving]
-        --row-gap-closed: calc(-2 * var(--space-2xs))
-        --travel-offset: 0 -1rem
+      &:is([data-regrouped] *)
+        animation: none
 
+      // Folded in by a merge: its room opens as the row it was closes.
+      &[data-arriving]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards, row-opens var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) backwards
+
+      &[data-leaving]
         animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
-        interpolate-size: allow-keywords
-        min-block-size: 0rem
         overflow: clip
         pointer-events: none
 
