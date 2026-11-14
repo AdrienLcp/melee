@@ -138,15 +138,23 @@ built and where it diverged, for part (2):
 
 ## Next session
 
-State 13/11 night: everything above is committed and pushed.
+State 14/11: everything is committed and pushed. Motion fixes landed in
+`ffd58aa6`, `30b1e138` and `41858cea` (read their messages): no replay across
+a narrowed console or a tab round-trip (every game's stage), leaving rows and
+piles close up (`row-closes` / `row-opens`), focus after a merge kept in the
+list, side-by-side piles shut their own track, lone cards travel. Traps are in
+`.claude/rules/sass-architecture.md`. The subagent behind `41858cea` was
+stopped as it finished, so its checks were never reported.
 
-1. **The two motion defects left by 2a are fixed** (14/11): the piles
-   turning over again on a console narrowed past the desk (the stage hidden
-   for a frame by `host-panel.sass`, not a remount), and the phone's list
-   jumping as a merged row left (`row-closes`, and `useRowsTravel` keeping a
-   height-travelling row's place current). Harness: `ta-console.mjs` with
-   `RESIZE=1` or `PHONEFILM=1`.
-2. **Part (2b)**: the setup (language, clock 10–60 s); the shelf
+**Every session and every subagent stays under 150k tokens.** The three
+subagents of 14/11 each passed 230k: one narrow job per subagent, and hand off
+rather than chain another.
+
+1. **Check `41858cea`, nothing more**: biome, typecheck, the game's tests; film
+   a regroup on a paired wall (`.playwright-mcp/ta-run.mjs`, `REGROUP=1`) at
+   1440×900 and 1280×720 — no wall scroll, leaving piles close smoothly; re-run
+   the console resize film (`ta-console.mjs`, `RESIZE=1`). Fix what cuts.
+2. **Part (2b)**, one subagent per job: the setup (language, clock 10–60 s); the shelf
    (`shelvedGames`), the game's front door, the ready-made line-ups, both
    dictionaries, the catalogue (`docs/game-catalogue.md`) and `CLAUDE.md`
    rows (the game list in the intro, the `thinkalike.*` prefix). Muted, filmed,
