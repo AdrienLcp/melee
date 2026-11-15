@@ -454,6 +454,17 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The menu opens on its first press as fast as on its second.**
+  The menu fetched once the page was quiet still waited on its first open: it
+  was read through `React.lazy`, which suspends even on a chunk already in
+  hand, and React holds what a fallback stood in for 300ms behind it. A front
+  door did not fetch it ahead at all, and paid the download on the press. The
+  menu is now drawn in the frame it is asked for once its chunk has landed, a
+  front door fetches it at the first press, key or scroll anywhere on the
+  page, and a press that comes first waits for the download alone. On a phone
+  slowed four times, the home page's first open after a key went from 704ms
+  to 411ms and a seated player's from 688ms to 384ms.
+
 - `[Game]` **A keyboard no longer blanks the screen.** On a phone that lays
   its keyboard over the page, a field low on the screen — a late line of a
   Petit Bac sheet — could leave nothing but the board in view: the page shrank

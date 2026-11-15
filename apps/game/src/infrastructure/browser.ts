@@ -444,3 +444,30 @@ export const onceIdle = (task: () => void): (() => void) => {
     clearTimeout(handle)
   }
 }
+
+/** A finger, a mouse button, a key or a wheel: the first sign of a hand on the page. */
+const GESTURE_EVENTS = ['pointerdown', 'keydown', 'wheel'] as const
+
+/**
+ * Runs `task` once, at the first press, key or scroll anywhere on the page,
+ * and returns what cancels it. A robot measuring a page's arrival never makes
+ * one, so what waits for it costs that arrival nothing.
+ */
+export const onFirstGesture = (task: () => void): (() => void) => {
+  const options = { capture: true, passive: true }
+  const stop = () => {
+    for (const type of GESTURE_EVENTS) {
+      window.removeEventListener(type, run, options)
+    }
+  }
+  const run = () => {
+    stop()
+    task()
+  }
+
+  for (const type of GESTURE_EVENTS) {
+    window.addEventListener(type, run, options)
+  }
+
+  return stop
+}

@@ -82,6 +82,15 @@ mounts, long before a countdown ends, while the countdown itself stays in the
 lobby's chunk. On 13/11/2026 that took the arrival from 432 kB over the wire
 to 289 kB, under the front doors' 273–305 kB, and its cap to 300 000.
 
+The menu is the one chunk every screen may want at any moment, and a phone
+has no hover to fetch it ahead of the press. In a room it is fetched once the
+page is quiet; on a front door and on the name form it waits for the first
+press, key or wheel anywhere on the page (`onFirstGesture`), because fetched
+unasked it added an eighth to each front door's script and Lighthouse, which
+never touches a page, counts it. A first press on the menu itself still pays
+the fetch, and nothing else: the open waits for the chunk instead of
+suspending, which React holds 300ms (`.claude/rules/react-components.md`).
+
 The base every page loads is about 253 kB of it: React DOM 72, the i18n
 chunk 65 — nearly half of it the English dictionary and the country names —
 the router 35, react-aria's collections and overlays 30, the protocol's

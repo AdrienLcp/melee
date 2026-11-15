@@ -37,7 +37,7 @@ later at a launch that stays greyed out.
 Playwright is the slowest tool available. Before adding a fourth spec, ask what
 it covers that a socket test cannot; the answer is usually "nothing".
 
-## Two specs that are not journeys
+## Three specs that are not journeys
 
 `choice-fits.spec.ts` plays nothing: it answers the player's socket in
 the page (`page.routeWebSocket`) with a snapshot built in the spec, so the
@@ -106,6 +106,14 @@ on rerun.
 
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.
+
+`menu-opens.spec.ts` plays nothing either: on the home page, after one key
+press, the menu's first open fetches no script or stylesheet and draws its
+panel within two frames of the press. A claim about the network and the
+frame, which no socket test can make. It guards two ways the first open went
+slow while the build stayed green: a front door that fetched the menu's chunk
+on the press itself, and `React.lazy`, whose suspension React holds 300ms
+behind its fallback even with the chunk already in hand.
 
 ## Locators are roles and accessible names
 

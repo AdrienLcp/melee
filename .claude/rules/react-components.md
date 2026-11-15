@@ -138,6 +138,18 @@ and 300ms before it moved, in a production build; the board named once costs
 travels alone only on the move where its travel is the point (`board-relaid`).
 `.playwright-mcp/fold-perf.mjs` times a fold.
 
+## A split chunk is read through `lazyModule`, never `React.lazy`
+
+`React.lazy` suspends its first render even when its chunk has already
+landed, and React 19 holds the content back `FALLBACK_THROTTLE_MS` — 300ms —
+behind the fallback it committed. The menu fetched at idle still opened that
+late on its first press, and a fetch that never seemed to stick was the only
+symptom. `lazyModule` (`infrastructure/lazy-module.ts`) read with `use(load())`
+draws a landed chunk in the frame it is asked for. A press whose chunk is not
+in hand yet waits for `load()` before it changes state, rather than
+suspending into the same 300ms (`app-menu.tsx`).
+`e2e/menu-opens.spec.ts` holds the menu to it.
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive

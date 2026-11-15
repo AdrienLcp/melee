@@ -1,30 +1,37 @@
 import type React from 'react'
-import { lazy, Suspense, use, useEffect, useRef, useState } from 'react'
+import { Suspense, use, useEffect, useRef, useState } from 'react'
 import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
-import { onceIdle } from '@/infrastructure/browser'
+import { onceIdle, onFirstGesture } from '@/infrastructure/browser'
 import { lazyModule } from '@/infrastructure/lazy-module'
 import { usePathname } from '@/infrastructure/router/navigation'
-import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
 
-import type { DeployedBuild } from './app-menu-leaflet'
+import type { AppMenuLeaflet, DeployedBuild } from './app-menu-leaflet'
 import { ConnectionDot, connectionStatusKey } from './connection-status'
 import { MenuIcon } from './shell-icons'
 import { useMenuWidth } from './use-menu-width'
 
 import './app-menu.sass'
 
-const loadLeaflet = () => import('./app-menu-leaflet')
+const leafletModule = lazyModule(() => import('./app-menu-leaflet'))
 
-const LoadedLeaflet = lazy(
-  holdWhileReloading(async () => ({
-    default: (await loadLeaflet()).AppMenuLeaflet
-  }))
-)
+/**
+ * The menu itself, read through `lazyModule` rather than `React.lazy`: a lazy
+ * component suspends its first render even on a chunk already fetched, and
+ * React then holds the content back 300ms behind the empty fallback — the
+ * "loads on the first press" the idle fetch alone never cured.
+ */
+const LoadedLeaflet: React.FC<React.ComponentProps<typeof AppMenuLeaflet>> = (
+  props
+) => {
+  const leaflet = use(leafletModule.load())
+
+  return <leaflet.AppMenuLeaflet {...props} />
+}
 
 const seatRowsModule = lazyModule(() => import('./menu-seat-rows'))
 
@@ -40,12 +47,23 @@ const LoadedMenuSeatRows: React.FC = () => {
   return <MenuSeatRows />
 }
 
-const preloadMenu = ({ hasSeatRows }: { hasSeatRows: boolean }): void => {
-  void loadLeaflet()
+const loadMenu = async ({
+  hasSeatRows
+}: {
+  hasSeatRows: boolean
+}): Promise<void> => {
+  await Promise.all([
+    leafletModule.load(),
+    hasSeatRows ? seatRowsModule.load() : null
+  ])
+}
 
-  if (hasSeatRows) {
-    void seatRowsModule.load()
-  }
+const isMenuLoaded = ({ hasSeatRows }: { hasSeatRows: boolean }): boolean =>
+  leafletModule.loaded() !== null &&
+  (!hasSeatRows || seatRowsModule.loaded() !== null)
+
+const preloadMenu = ({ hasSeatRows }: { hasSeatRows: boolean }): void => {
+  loadMenu({ hasSeatRows }).catch(() => undefined)
 }
 
 /**
@@ -72,16 +90,26 @@ export const AppMenu: React.FC = () => {
 
   useMenuWidth(trigger)
 
-  // A touch screen has no hover, and a player's first press mid-round waited
-  // on twenty chunks with nothing on screen: in a room, the menu is fetched
-  // once the page is quiet. A front door waits for the press, which the
-  // cached hashed chunks and the seat rows left out make a short wait — and
-  // fetching it there unasked cost each front door an eighth of its script.
-  useEffect(
-    () =>
-      hasSeatRows ? onceIdle(() => preloadMenu({ hasSeatRows })) : undefined,
-    [hasSeatRows]
-  )
+  // A touch screen has no hover. In a room the menu is fetched once the page
+  // is quiet; a front door waits for the first press, key or scroll anywhere,
+  // because fetching it unasked put every front door past its script budget.
+  useEffect(() => {
+    const preloadOnceIdle = () => onceIdle(() => preloadMenu({ hasSeatRows }))
+
+    if (hasSeatRows) {
+      return preloadOnceIdle()
+    }
+
+    let cancelIdle: () => void = () => undefined
+    const cancelGesture = onFirstGesture(() => {
+      cancelIdle = preloadOnceIdle()
+    })
+
+    return () => {
+      cancelGesture()
+      cancelIdle()
+    }
+  }, [hasSeatRows])
 
   const preload = (): void => {
     preloadMenu({ hasSeatRows })
@@ -117,14 +145,28 @@ export const AppMenu: React.FC = () => {
       <DialogTrigger
         isOpen={openOn === pathname}
         onOpenChange={(isOpen) => {
-          setOpenOn(isOpen ? pathname : null)
+          if (!isOpen) {
+            setOpenOn(null)
+            return
+          }
 
-          if (isOpen) {
+          if (build === null) {
+            void loadBuild()
+          }
+
+          const open = () => {
+            setOpenOn(pathname)
             setHasOpened(true)
           }
 
-          if (isOpen && build === null) {
-            void loadBuild()
+          // Opened once the menu's code is in hand, never on a suspended
+          // render: React holds what a fallback stood in for 300ms past it.
+          if (isMenuLoaded({ hasSeatRows })) {
+            open()
+          } else {
+            void loadMenu({ hasSeatRows })
+              .catch(() => undefined)
+              .then(open)
           }
         }}
       >
