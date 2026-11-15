@@ -85,11 +85,14 @@
 
       // The chip takes what the two lines under it leave, at a fan deck's
       // proportions, whichever of the slot's sides runs out first.
+      // The chip's chipboard edge is a shadow drawn under its box, so the
+      // slot keeps it clear before the name's gap begins.
       .slot
         align-self: stretch
         container-type: size
         display: grid
         inline-size: 100%
+        padding-block-end: calc(var(--edge, 0.1875rem) + var(--space-2xs))
         place-items: end center
 
       .swatch-chip

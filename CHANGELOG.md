@@ -454,6 +454,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A Shades name no longer touches its chip at the reveal.** On the
+  wall and the console, each seat's pawn and name sat 2px under its colour
+  chip, inside the chipboard edge drawn below it, so the pawn's head rested
+  on the edge. The name now clears the edge by a quarter rem at every cell
+  size, and a full table of 24 still fits the wall without scrolling.
+
 - `[Game]` **The menu opens on its first press as fast as on its second.**
   The menu fetched once the page was quiet still waited on its first open: it
   was read through `React.lazy`, which suspends even on a chunk already in

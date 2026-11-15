@@ -1399,7 +1399,9 @@ in the order the chips land).
 **The reveal is the table's colours** (`SwatchGuesses`). On the wall and the
 console every seat that sent one stands as a comparison chip, nearest first,
 its pawn and name on one line under it (cut on an ellipsis) and what the
-round paid it under that. It replaces the podium and the tally: shades pays
+round paid it under that. The name clears the chip's chipboard edge, a shadow
+drawn under the chip's box, by `--space-2xs`: the bare 0.15em row gap set the
+pawn's head on that edge, and the name read as glued to the chip. It replaces the podium and the tally: shades pays
 nothing for speed, so nearest first _is_ the round's order, and the first
 three carry their place before the pawn. The grid deals itself into the box
 the colour and the heading leave (`useFittedGrid`, a cell 1.7 times as tall as
