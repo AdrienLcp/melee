@@ -37,6 +37,7 @@ keepServerReportsIn(reports)
 const app = createHttpApp()
 
 registerHttpRoutes({
+  adminToken: serverEnv.ADMIN_TOKEN ?? null,
   app,
   limitRoomCreation: limitRoomCreationWith(env.ROOM_CREATION_LIMITER),
   reportLimiter: env.REPORT_LIMITER,

@@ -29,7 +29,12 @@ export const REPORTS_BEFORE_RATE_LIMIT = 20
  * `vi.mock` of the music client and the question bank only reaches code in the
  * test's own process. Nothing deploys it — production is `worker.ts`.
  */
-export const createApp = () => {
+export const createApp = ({
+  adminToken = null
+}: {
+  /** What opens `/api/admin/*` in this process; none by default, as on a server with no secret set. */
+  adminToken?: string | null
+} = {}) => {
   const app = createHttpApp()
   const websocket = { server: new WebSocketServer({ noServer: true }) }
   const reports = inProcessReportStore()
@@ -49,6 +54,7 @@ export const createApp = () => {
   )
 
   registerHttpRoutes({
+    adminToken,
     app,
     limitRoomCreation: limitRoomCreationWith(
       inProcessRateLimiter(ROOMS_BEFORE_RATE_LIMIT)

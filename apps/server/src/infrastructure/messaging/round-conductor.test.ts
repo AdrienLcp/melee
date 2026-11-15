@@ -116,6 +116,7 @@ const heldRoom = () => {
   const clock = { now: REVEALED_AT }
   const wakes: (number | null)[] = []
   const engine = createRoomEngine(revealedBlindtest(), {
+    background: () => {},
     connections: { add: () => {}, all: () => [host], remove: () => {} },
     discard: () => {},
     now: () => clock.now,
@@ -397,6 +398,7 @@ describe('a seat whose screen went away', () => {
     markPlayerDisconnected(room, joined.data.id, OPENED_AT)
 
     const engine = createRoomEngine(room, {
+      background: () => {},
       connections: {
         add: () => {},
         all: () => [

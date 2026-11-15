@@ -1,6 +1,8 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
+  /** A Worker secret (`wrangler secret put ADMIN_TOKEN`) that opens `/api/admin/*`; absent, those routes answer 404. */
+  ADMIN_TOKEN: z.string().optional(),
   /** Comma-separated. Only consulted when the browser is not behind the Vite dev proxy. */
   ALLOWED_ORIGINS: z.string().default('http://localhost:5273'),
   DEEZER_API_URL: z.url().default('https://api.deezer.com'),

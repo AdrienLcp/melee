@@ -271,6 +271,9 @@ export class RoomObject extends DurableObject<Env> {
 
   private engineFor(room: Room): RoomEngine {
     return createRoomEngine(room, {
+      background: (task) => {
+        this.ctx.waitUntil(task)
+      },
       connections: {
         add: (connection) => {
           if (this.arriving === null) {

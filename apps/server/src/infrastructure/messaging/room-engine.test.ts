@@ -43,6 +43,7 @@ const restore = (snapshot: Room, { at }: { at: number }) => {
   const wakes: (number | null)[] = []
   const discarded = { count: 0 }
   const engine: RoomEngine = createRoomEngine(structuredClone(snapshot), {
+    background: () => {},
     connections: { add: () => {}, all: () => [host], remove: () => {} },
     discard: () => {
       discarded.count += 1
@@ -199,6 +200,7 @@ describe('a published room', () => {
       sessionId: 'wall-session'
     }
     const engine = createRoomEngine(buzzerRoomInCountdown(), {
+      background: () => {},
       connections: { add: () => {}, all: () => [wall], remove: () => {} },
       discard: () => {},
       now: () => OPENED_AT,

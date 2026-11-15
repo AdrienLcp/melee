@@ -1,4 +1,10 @@
 import type {
+  AdminLiveRoom,
+  AdminReportResponse,
+  AdminReportsQuery,
+  AdminReportsResponse
+} from '@melee/protocol/admin'
+import type {
   ClientReportKind,
   ErrorReport,
   ServerReportKind
@@ -11,6 +17,9 @@ export const REPORT_RETENTION_MS = 30 * DAY_MS
 
 /** A live-room row nothing has touched for this long is a room that went without saying. */
 export const LIVE_ROOM_STALE_MS = DAY_MS
+
+/** How long `/admin` keeps listing a room after it closed, so a room ending is seen leaving. */
+export const CLOSED_ROOM_SHOWN_MS = 15 * 60_000
 
 /**
  * What the server notes about its own faults. Built from what the server
@@ -60,11 +69,28 @@ export type StoredReport = {
  * because failing the request would only make another report.
  */
 export type ReportStore = {
+  /** Writes a room's row whole, replacing what it held: a code drawn again is a new room. Never throws. */
+  keepLiveRoom: (row: AdminLiveRoom) => Promise<void>
+  /** Open rooms, and the ones closed since `closedSince`, most recently moved first. */
+  liveRooms: (input: { closedSince: number }) => Promise<AdminLiveRoom[]>
   purge: (input: { now: number }) => Promise<{
     liveRooms: number
     reports: number
   }>
   record: (report: StoredReport) => Promise<void>
+  /** `null` for an id never kept, or purged since. */
+  report: (id: number) => Promise<AdminReportResponse | null>
+  /** Newest first, narrowed by every filter the query names. */
+  reports: (query: AdminReportsQuery) => Promise<AdminReportsResponse>
+}
+
+/** The whole report back out of its `context` column, which only the server ever wrote. */
+export const parsedContext = (context: string): Record<string, unknown> => {
+  const parsed: unknown = JSON.parse(context)
+
+  return typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed)
+    ? Object.fromEntries(Object.entries(parsed))
+    : { value: parsed }
 }
 
 export const storedClientReport = ({

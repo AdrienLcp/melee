@@ -67,6 +67,9 @@ export const engineFor = (room: Room): RoomEngine => {
   let wake: ReturnType<typeof setTimeout> | null = null
 
   const engine: RoomEngine = createRoomEngine(room, {
+    background: (task) => {
+      void task
+    },
     connections: {
       add: (connection) => {
         connections.add(connection)

@@ -29,6 +29,7 @@ import { normalizeRoomCode } from '@melee/core/room/room-code'
 
 import { env } from '@/env'
 import { nowMs } from '@/infrastructure/clock'
+import { registerAdminRoutes } from '@/infrastructure/http/admin-routes'
 import { invalidInput } from '@/infrastructure/http/error-responses'
 import type { RoomDoor, WallPairings } from '@/infrastructure/http/http-ports'
 import {
@@ -118,11 +119,13 @@ const pairingNotFound: ApiErrorResponse = {
 }
 
 /**
- * Eleven routes, and none of them play a game — creating a room, checking one
- * exists, browsing the catalogue, keeping a screen's error report. Everything
+ * Fourteen routes, and none of them play a game — creating a room, checking one
+ * exists, browsing the catalogue, keeping a screen's error report, reading
+ * those reports back on `/admin`. Everything
  * that happens while people are playing is a WebSocket frame.
  */
 export const registerHttpRoutes = ({
+  adminToken,
   app,
   limitRoomCreation,
   reportLimiter,
@@ -130,6 +133,8 @@ export const registerHttpRoutes = ({
   rooms,
   walls
 }: {
+  /** `ADMIN_TOKEN`, which opens `/api/admin/*`; `null` keeps those routes answering 404. */
+  adminToken: string | null
   app: Hono
   /** Each runtime counts by its own means: one process's memory, or the platform's binding. */
   limitRoomCreation: MiddlewareHandler
@@ -146,6 +151,8 @@ export const registerHttpRoutes = ({
   // Open to every origin: it holds no credential and opens no room, and an
   // assistant may run in a browser.
   app.use(MCP_ROUTE, cors({ origin: '*' }))
+
+  registerAdminRoutes({ adminToken, app, reports })
 
   app.post(MCP_ROUTE, async (context) => {
     const answer = await answerMcp({

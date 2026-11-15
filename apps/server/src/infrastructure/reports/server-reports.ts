@@ -1,3 +1,5 @@
+import type { AdminLiveRoom } from '@melee/protocol/admin'
+
 import { env } from '@/env'
 import { nowMs } from '@/infrastructure/clock'
 import {
@@ -24,4 +26,9 @@ export const recordServerReport = async (
   await store?.record(
     storedServerReport({ receivedAt: nowMs(), report, serverBuild: env.build })
   )
+}
+
+/** A room's row in `rooms_live`; resolves once written, or at once where no store is set. */
+export const keepLiveRoom = async (row: AdminLiveRoom): Promise<void> => {
+  await store?.keepLiveRoom(row)
 }

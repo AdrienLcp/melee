@@ -2,6 +2,7 @@ import { createServer } from 'node:http'
 
 import { serve } from '@hono/node-server'
 
+import type { InProcessReportStore } from '@/infrastructure/node/in-process-report-store'
 import { createApp } from '@/infrastructure/node/node-app'
 
 import { harnessAt, type RoomHarness } from './room-harness'
@@ -47,8 +48,13 @@ await warmHttpClient()
  * the stubs from there: an app import in that file would load the mocked module
  * while its own factory waits on the harness, a cycle.
  */
-export const startRoomHarness = async (): Promise<RoomHarness> => {
-  const { app, websocket } = createApp()
+export const startRoomHarness = async (): Promise<
+  RoomHarness & {
+    /** What the rooms and the routes of this process wrote about themselves. */
+    reports: InProcessReportStore
+  }
+> => {
+  const { app, reports, websocket } = createApp()
 
   const started = await new Promise<ReturnType<typeof serve>>((resolve) => {
     const server = serve({ fetch: app.fetch, port: 0, websocket }, () => {
@@ -62,7 +68,7 @@ export const startRoomHarness = async (): Promise<RoomHarness> => {
     throw new Error('The test server did not report a port')
   }
 
-  return harnessAt({
+  const harness = harnessAt({
     origin: `localhost:${address.port}`,
     shutDown: async () => {
       if ('closeAllConnections' in started) {
@@ -76,4 +82,6 @@ export const startRoomHarness = async (): Promise<RoomHarness> => {
       })
     }
   })
+
+  return { ...harness, reports }
 }
