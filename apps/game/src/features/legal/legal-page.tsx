@@ -164,6 +164,7 @@ export const LegalPage: React.FC = () => {
         <p>{translate('legal.storage.server')}</p>
         <p>{translate('legal.storage.logs')}</p>
         <p>{translate('legal.storage.errorReports')}</p>
+        <p>{translate('legal.storage.bugReports')}</p>
       </LegalSection>
 
       <LegalSection heading={translate('legal.thirdParties.heading')}>

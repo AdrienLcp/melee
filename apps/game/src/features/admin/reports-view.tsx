@@ -7,6 +7,7 @@ import type {
   AdminReportsQuery
 } from '@melee/protocol/admin'
 import {
+  BUG_REPORT_KIND,
   clientReportKinds,
   reportBrowsers,
   serverReportKinds
@@ -28,7 +29,7 @@ import { timeAgo } from './admin-time'
 import { ReportDetail } from './report-detail'
 import { Unreachable } from './unreachable'
 
-const KINDS = [...clientReportKinds, ...serverReportKinds]
+const KINDS = [...clientReportKinds, BUG_REPORT_KIND, ...serverReportKinds]
 
 const ANY = '__any'
 

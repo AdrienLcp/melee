@@ -42,6 +42,7 @@ const app = createHttpApp()
 registerHttpRoutes({
   adminToken: serverEnv.ADMIN_TOKEN ?? null,
   app,
+  bugReportLimiter: env.BUG_REPORT_LIMITER,
   limitRoomCreation: limitRoomCreationWith(env.ROOM_CREATION_LIMITER),
   limitSoundChecks: limitSoundChecksWith(env.SOUND_CHECK_LIMITER),
   reportLimiter: env.REPORT_LIMITER,

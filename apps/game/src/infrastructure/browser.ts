@@ -471,3 +471,219 @@ export const onFirstGesture = (task: () => void): (() => void) => {
 
   return stop
 }
+
+type ScreenDetail = Record<string, string | number | boolean | null>
+
+/** One thing the screen went through, in the words of `bugReportEventTypes`. */
+export type ScreenChange = {
+  detail: ScreenDetail
+  type:
+    | 'focus-in'
+    | 'focus-out'
+    | 'orientation'
+    | 'viewport-resize'
+    | 'viewport-scroll'
+    | 'visibility'
+    | 'window-resize'
+}
+
+const ELEMENT_CLASS_MAX = 80
+const ELEMENT_DATA_MAX = 200
+
+/** Two decimals: a visual viewport reports fractions of a pixel, and the rest is noise. */
+const roundedPx = (value: number): number => Math.round(value * 100) / 100
+
+const visualViewportNow = (): {
+  height: number
+  offsetLeft: number
+  offsetTop: number
+  scale: number
+  width: number
+} | null => {
+  const viewport = window.visualViewport
+
+  return viewport === null
+    ? null
+    : {
+        height: roundedPx(viewport.height),
+        offsetLeft: roundedPx(viewport.offsetLeft),
+        offsetTop: roundedPx(viewport.offsetTop),
+        scale: roundedPx(viewport.scale),
+        width: roundedPx(viewport.width)
+      }
+}
+
+/**
+ * Which element took or lost the focus, by what the code gave it — its tag,
+ * role, type, name, class and `data-*` attributes — and never by its value
+ * or its text, which is what somebody typed or read.
+ */
+const describeElement = (target: EventTarget | null): ScreenDetail => {
+  if (!(target instanceof Element)) {
+    return { tag: null }
+  }
+
+  const data = Object.entries(
+    target instanceof HTMLElement ? target.dataset : {}
+  )
+    .map(([name, value]) => `${name}=${value ?? ''}`)
+    .join(';')
+
+  return {
+    class: target.getAttribute('class')?.slice(0, ELEMENT_CLASS_MAX) ?? null,
+    data: data.slice(0, ELEMENT_DATA_MAX) || null,
+    inputMode: target.getAttribute('inputmode'),
+    name: target.getAttribute('name'),
+    role: target.getAttribute('role'),
+    tag: target.tagName.toLowerCase(),
+    type: target.getAttribute('type')
+  }
+}
+
+/**
+ * Everything that moves the page under a person — the keyboard opening and
+ * panning the visual viewport, a rotation, the focus going to a field, the
+ * tab going to the background — from the first script on, for the report
+ * somebody may send once it has broken. Passive and capturing, so no
+ * handler of the page can hide one from it.
+ */
+export const onScreenChanges = (
+  listener: (change: ScreenChange) => void
+): void => {
+  const options = { capture: true, passive: true }
+  const viewport = window.visualViewport
+  const visualDetail = (): ScreenDetail => ({
+    ...visualViewportNow(),
+    innerHeight: window.innerHeight
+  })
+
+  viewport?.addEventListener('resize', () => {
+    listener({ detail: visualDetail(), type: 'viewport-resize' })
+  })
+  viewport?.addEventListener('scroll', () => {
+    listener({ detail: visualDetail(), type: 'viewport-scroll' })
+  })
+  window.addEventListener('resize', () => {
+    listener({
+      detail: {
+        clientHeight: document.documentElement.clientHeight,
+        height: window.innerHeight,
+        width: window.innerWidth
+      },
+      type: 'window-resize'
+    })
+  })
+  screen.orientation?.addEventListener('change', () => {
+    listener({
+      detail: {
+        angle: screen.orientation.angle,
+        type: screen.orientation.type
+      },
+      type: 'orientation'
+    })
+  })
+  document.addEventListener(
+    'focusin',
+    (event) => {
+      listener({ detail: describeElement(event.target), type: 'focus-in' })
+    },
+    options
+  )
+  document.addEventListener(
+    'focusout',
+    (event) => {
+      listener({ detail: describeElement(event.target), type: 'focus-out' })
+    },
+    options
+  )
+  document.addEventListener('visibilitychange', () => {
+    listener({
+      detail: { state: document.visibilityState },
+      type: 'visibility'
+    })
+  })
+}
+
+type UserAgentData = {
+  brands: { brand: string; version: string }[]
+  mobile: boolean
+  platform: string
+}
+
+const isBrand = (value: unknown): value is UserAgentData['brands'][number] =>
+  typeof value === 'object' &&
+  value !== null &&
+  'brand' in value &&
+  typeof value.brand === 'string' &&
+  'version' in value &&
+  typeof value.version === 'string'
+
+/** User-Agent Client Hints, which only Chromium engines expose, and only in a secure context. */
+const userAgentDataNow = (): UserAgentData | null => {
+  if (!('userAgentData' in navigator)) {
+    return null
+  }
+
+  const data: unknown = navigator.userAgentData
+
+  if (
+    typeof data !== 'object' ||
+    data === null ||
+    !('brands' in data) ||
+    !Array.isArray(data.brands) ||
+    !('mobile' in data) ||
+    !('platform' in data)
+  ) {
+    return null
+  }
+
+  return {
+    brands: data.brands.filter(isBrand),
+    mobile: data.mobile === true,
+    platform: typeof data.platform === 'string' ? data.platform : ''
+  }
+}
+
+/** `env(safe-area-inset-*)` as this page resolves it, read off a probe the layout never sees. */
+const safeAreaNow = (): {
+  bottom: number
+  left: number
+  right: number
+  top: number
+} | null => {
+  if (document.body === null) {
+    return null
+  }
+
+  const probe = document.createElement('div')
+  probe.style.cssText =
+    'position:fixed;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)'
+  document.body.append(probe)
+  const style = getComputedStyle(probe)
+  const insets = {
+    bottom: Number.parseFloat(style.paddingBottom) || 0,
+    left: Number.parseFloat(style.paddingLeft) || 0,
+    right: Number.parseFloat(style.paddingRight) || 0,
+    top: Number.parseFloat(style.paddingTop) || 0
+  }
+  probe.remove()
+
+  return insets
+}
+
+/** What a report somebody sends says about the device, read at the press. */
+export const describeDevice = () => ({
+  colorScheme: matchMedia('(prefers-color-scheme: dark)').matches
+    ? ('dark' as const)
+    : ('light' as const),
+  reducedMotion: prefersReducedMotion(),
+  safeArea: safeAreaNow(),
+  screen: {
+    devicePixelRatio: window.devicePixelRatio || 1,
+    height: screen.height,
+    orientation: screen.orientation?.type ?? null,
+    width: screen.width
+  },
+  userAgentData: userAgentDataNow(),
+  visualViewport: visualViewportNow()
+})

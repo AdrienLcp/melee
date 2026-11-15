@@ -29,6 +29,7 @@ export const SOUND_CHECKS_BEFORE_RATE_LIMIT = 10
 
 /** What `error-reports.test.ts` spends from one room before the next is refused. */
 export const REPORTS_BEFORE_RATE_LIMIT = 20
+export const BUG_REPORTS_BEFORE_RATE_LIMIT = 2
 
 /**
  * The engine on one Node process, which is what the socket suites run: their
@@ -62,6 +63,7 @@ export const createApp = ({
   registerHttpRoutes({
     adminToken,
     app,
+    bugReportLimiter: inProcessRateLimiter(BUG_REPORTS_BEFORE_RATE_LIMIT),
     limitRoomCreation: limitRoomCreationWith(
       inProcessRateLimiter(ROOMS_BEFORE_RATE_LIMIT)
     ),

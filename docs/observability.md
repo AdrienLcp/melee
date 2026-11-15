@@ -2,11 +2,11 @@
 
 What the deployed game tells us about itself, and where to read it.
 
-| Source            | Holds                                                  | Kept    | Read with                                     |
-| ----------------- | ------------------------------------------------------ | ------- | --------------------------------------------- |
-| Workers Logs      | every request, and every `logger` line                 | 3 days  | Cloudflare dashboard → Workers → melee → Logs |
-| `reports` (D1)    | each screen's errors, the server's own, reported clips | 30 days | `wrangler d1 execute` (below)                 |
-| `rooms_live` (D1) | one row per open room: game, phase, seats, walls       | 1 day   | written by every room as it changes           |
+| Source            | Holds                                                                              | Kept    | Read with                                     |
+| ----------------- | ---------------------------------------------------------------------------------- | ------- | --------------------------------------------- |
+| Workers Logs      | every request, and every `logger` line                                             | 3 days  | Cloudflare dashboard → Workers → melee → Logs |
+| `reports` (D1)    | each screen's errors, the server's own, reported clips, reports sent from the menu | 30 days | `wrangler d1 execute` (below)                 |
+| `rooms_live` (D1) | one row per open room: game, phase, seats, walls                                   | 1 day   | written by every room as it changes           |
 
 ## Error reports
 
@@ -53,6 +53,84 @@ Limits: identical faults are sent once and ten at most per page load
 screen in no room — the address is the limiter's key and is never written.
 Reports are operational, not audience: the analytics opt-out does not stop
 them.
+
+## Reports somebody sends
+
+The menu's _Report a problem_ (`presentation/components/report-problem.tsx`),
+on every screen at every phase, sends one to `POST /api/bug-reports` when its
+_Send_ is pressed, and never otherwise. `reportProblem` in `diagnostics.ts`
+builds it, `bugReportSchema` in `packages/protocol/src/http.ts` is the whole
+list, and it is kept in the same `reports` table with `kind = 'bug-report'`,
+`source = 'client'`, the person's note in `error_message` (500 characters; the
+whole note is in `context`) and everything else in `context`:
+
+- **the note** (`note`, up to 2000 characters, often empty);
+- **the device**: the raw `userAgent`, `userAgentData` (client hints, Chromium
+  only), `inAppBrowser` (Instagram, Messenger, WhatsApp, Facebook, TikTok,
+  Snapchat, read off the user agent), `screen` with `devicePixelRatio` and
+  orientation, `viewport`, `visualViewport` (height, width, offsets, scale),
+  `safeArea` (the resolved `env(safe-area-inset-*)`), `preferences` (colour
+  scheme, reduced motion, theme, locale), `build`;
+- **the room**: `role` (`host`, `seated-host`, `player`, `wall`,
+  `front-door`), `roomCode`, `game`, `phase`, `roundIndex`,
+  `roundContentKind`, `settings`, and `view` — this screen's own room view,
+  nicknames included, never another role's; dropped first when the body
+  would pass 64 KiB;
+- **the wire**: `connection` (socket status, clock offset and round trip)
+  and the types of the last 20 `frames`;
+- **the trail**: `events`, what the screen went through in the two minutes
+  before `sentAt` — `viewport-resize` and `viewport-scroll` (the visual
+  viewport's values and `innerHeight`), `window-resize`, `orientation`,
+  `focus-in` / `focus-out` (the element's tag, role, type, name, class and
+  `data-*`, never its value), `visibility`, `route`, `socket-open` /
+  `socket-close` (code, reason, clean) / `socket-error`, `uncaught`,
+  `unhandled-rejection` and `console-error` (message and stack, 2000
+  characters). Each carries `ago`, milliseconds before `sentAt`, and `count`:
+  a run of one type less than 120ms apart is one entry holding the last
+  values (`helpers/event-ring.ts`). The ring is filled from the first script
+  on (`watchScreenForReports`, `main.tsx`) and holds 200; the oldest go first
+  when the body would pass 64 KiB (`helpers/fitted-bug-report.ts`).
+
+Never a session id, a host token or an address. Limits: the menu offers no
+second send for 30 seconds on one page (`BUG_REPORT_COOLDOWN_MS`), and
+`BUG_REPORT_LIMITER` keeps two a minute per address within a room — the
+address is the limiter's key and is never written. The Worker also writes one
+`A screen sent a bug report` line to Workers Logs, holding the room code,
+game, phase, role, route, browser, in-app browser, whether there is a note
+and how many events, with the report's `receivedAt` to find its row — never
+the note or the view.
+
+### Reading them
+
+On `/admin`, _Reports_ filtered by the kind `bug-report`. From `apps/server`:
+
+```sh
+# The last twenty sent, newest first, with their notes
+pnpm exec wrangler d1 execute OBSERVABILITY --remote --command \
+  "SELECT id, datetime(received_at / 1000, 'unixepoch') AS at, role, game, phase,
+          room_code, browser_name, browser_version, system, error_message AS note
+   FROM reports WHERE kind = 'bug-report' ORDER BY received_at DESC LIMIT 20"
+
+# One report whole: device, room, view and the event trail
+pnpm exec wrangler d1 execute OBSERVABILITY --remote --json --command \
+  "SELECT context FROM reports WHERE id = 42"
+
+# The trail alone, oldest first, of the last report from an in-app browser
+pnpm exec wrangler d1 execute OBSERVABILITY --remote --json --command \
+  "SELECT json_extract(e.value, '$.ago') AS ago, json_extract(e.value, '$.type') AS type,
+          json_extract(e.value, '$.count') AS n, json_extract(e.value, '$.detail') AS detail
+   FROM reports, json_each(reports.context, '$.events') AS e
+   WHERE reports.id = (SELECT id FROM reports WHERE kind = 'bug-report'
+               AND json_extract(context, '$.inAppBrowser') IS NOT NULL
+               ORDER BY received_at DESC LIMIT 1)
+   ORDER BY ago DESC"
+```
+
+Add `--env staging` for staging, and `--local` for the copy `pnpm dev`
+writes. The same rows answer the admin API, for a session holding the
+admin key: `GET /api/admin/reports?kind=bug-report` lists them and
+`GET /api/admin/reports/:id` returns one with its whole `context`, both with
+`Authorization: Bearer <ADMIN_TOKEN>`.
 
 ## The back office: `/admin`
 

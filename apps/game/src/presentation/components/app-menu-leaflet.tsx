@@ -55,6 +55,7 @@ import {
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { ProjectWithCode } from './project-with-code'
+import { ReportProblem } from './report-problem'
 import { SegmentedControl } from './segmented-control'
 import { Slider } from './slider'
 import { TextLink } from './text-link'
@@ -463,6 +464,8 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
           <InstallApp />
 
           <ReloadApp />
+
+          <ReportProblem />
 
           {!isInsideRoom && !isOnWall && (
             <div className='this-device'>

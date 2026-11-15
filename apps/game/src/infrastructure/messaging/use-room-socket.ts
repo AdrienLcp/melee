@@ -34,6 +34,7 @@ import {
   forgetRoom,
   isOurOwnMalformedFrame,
   noteFrame,
+  noteSocketEvent,
   reportFatalRefusal,
   reportRefusedFrame
 } from '@/infrastructure/diagnostics'
@@ -96,6 +97,7 @@ const controlFrameSchema = z.discriminatedUnion('type', [
 ])
 
 const CLOCK_SAMPLE_LIMIT = 8
+const SOCKET_CLOSE_REASON_KEPT = 120
 /** A burst on connect, so the first countdown is already synchronised. */
 const OPENING_PING_COUNT = 3
 const OPENING_PING_SPACING_MS = 250
@@ -186,6 +188,7 @@ export const useRoomSocket = ({
       setSocketStatus('connecting')
 
       socket.addEventListener('open', () => {
+        noteSocketEvent('socket-open', { attempt })
         attempt = 0
         lastHeardAt = nowMs()
         setSocketStatus('open')
@@ -312,7 +315,17 @@ export const useRoomSocket = ({
         socket.close()
       })
 
-      socket.addEventListener('close', () => {
+      socket.addEventListener('error', () => {
+        noteSocketEvent('socket-error')
+      })
+
+      socket.addEventListener('close', (event) => {
+        noteSocketEvent('socket-close', {
+          code: event.code,
+          reason: event.reason.slice(0, SOCKET_CLOSE_REASON_KEPT),
+          wasClean: event.wasClean
+        })
+
         // A torn-down or replaced socket closes after its successor has
         // opened, and its status would overwrite the live one with a false
         // reconnecting. A refusal set its own status, inside the screen it

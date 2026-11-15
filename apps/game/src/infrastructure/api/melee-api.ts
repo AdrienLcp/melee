@@ -13,6 +13,7 @@ import {
 import type { Difficulty } from '@melee/protocol/difficulty'
 import type { ShelvedGame } from '@melee/protocol/game'
 import {
+  type BugReport,
   type CatalogueTrack,
   type CreateRoomRequest,
   type CreateRoomResponse,
@@ -82,6 +83,30 @@ export const sendErrorReport = (report: ErrorReport): void => {
     keepalive: true,
     method: 'POST'
   }).catch(() => undefined)
+}
+
+/**
+ * A report somebody pressed _Send_ on, so unlike an error report it is
+ * awaited: the menu says it went, or offers to send it again.
+ */
+export const sendBugReport = async (
+  report: BugReport
+): Promise<Result<void, ApiError>> => {
+  try {
+    const response = await fetch(API_ROUTES.bugReports, {
+      body: JSON.stringify(report),
+      headers: { 'content-type': 'application/json' },
+      method: 'POST'
+    })
+
+    if (response.status === TOO_MANY_REQUESTS) {
+      return Result.failure('rate_limited')
+    }
+
+    return response.ok ? Result.success() : Result.failure('rejected')
+  } catch {
+    return Result.failure('unreachable')
+  }
 }
 
 /**

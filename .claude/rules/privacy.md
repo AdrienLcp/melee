@@ -69,6 +69,18 @@ to `errorReportSchema` rewrites `legal.storage.errorReports` in both
 dictionaries in the same commit; the analytics opt-out does not cover reports,
 and the page says so.
 
+## A report somebody sends says so first
+
+The menu's _Report a problem_ sends `bugReportSchema` only on its _Send_:
+the note typed, the raw user agent, the screen, the table and this screen's
+own room view — nicknames included — and its last two minutes of viewport,
+focus, socket and error events, never a typed value, a session id, a host
+token or an IP. It shares the error reports' table, retention and purge. The
+field says what goes with it (`menu.report.attached`), and a field added to
+the schema rewrites `legal.storage.bugReports` in both dictionaries in the
+same commit. `BUG_REPORT_LIMITER` keys on `CF-Connecting-IP` within a room and
+never stores it.
+
 ## Logs keep no more than the page claims
 
 `observability` is on, so Cloudflare logs every request with its IP and user

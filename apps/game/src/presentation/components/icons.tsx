@@ -6,6 +6,7 @@ import {
   BellRing,
   Bookmark,
   Brain,
+  Bug,
   Calculator,
   CaseSensitive,
   Check,
@@ -81,6 +82,7 @@ import { FAMILY, inFamily } from './shell-icons'
 export const AnnounceIcon = inFamily(Megaphone)
 export const ArrowIcon = inFamily(ArrowRight)
 export const CheckIcon = inFamily(Check)
+export const BugIcon = inFamily(Bug)
 export const ChevronIcon = inFamily(ChevronDown)
 export const ChevronLeftIcon = inFamily(ChevronLeft)
 export const ChevronRightIcon = inFamily(ChevronRight)

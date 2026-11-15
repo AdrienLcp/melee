@@ -1460,6 +1460,8 @@ export const FR_DICTIONARY = defineDictionary({
     storage: {
       analyticsOptOut:
         'Ton refus de la mesure d’audience, si tu la coupes plus bas.',
+      bugReports:
+        'Si tu appuies sur « Signaler un problème » dans le menu, cet écran envoie à Mêlée ce que tu y as tapé, s’il y a quelque chose, avec ce qu’il sait à ce moment-là : la chaîne d’identification complète du navigateur, l’appli dans laquelle il a été ouvert, la taille de l’écran, son zoom et ses marges de sécurité, ton thème et ta langue, l’adresse de la page, le code de la table, son jeu, sa phase et sa manche, la table telle que cet écran l’affiche — pseudos compris —, l’état de sa connexion, et ce que l’écran a traversé ces deux dernières minutes : redimensionnements, rotations, ouverture du clavier, le type de champ qui avait le focus — jamais ce qui y a été tapé — et ses erreurs. Rien ne part avant que tu appuies sur Envoyer, aucune adresse IP n’est gardée avec, et tout est supprimé au bout de 30 jours.',
       challengeLines:
         'Les défis que l’hôte a écrits à l’avance, et lesquels ont déjà été joués.',
       device:
@@ -1704,6 +1706,17 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Pseudo'
     },
     reload: 'Recharger',
+    report: {
+      attached:
+        'Part avec ce que cet écran sait : le navigateur, sa taille, la table, et ses deux dernières minutes.',
+      failed: 'Ça n’est pas parti. Réessaie.',
+      field: 'Ce qui s’est passé (facultatif)',
+      label: 'Signaler un problème',
+      retry: 'Réessayer',
+      send: 'Envoyer',
+      sent: 'Merci, c’est envoyé.',
+      tooSoon: 'Un rapport vient de partir. Réessaie dans une minute.'
+    },
     source: 'Code source',
     thisDevice: {
       qrCode: {

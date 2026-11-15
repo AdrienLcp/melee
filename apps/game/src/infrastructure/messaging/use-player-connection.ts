@@ -50,11 +50,15 @@ export const usePlayerConnection = ({
 
       noteRoomView({
         game: view.settings.game?.kind ?? null,
+        isSeated: false,
         isSpeaker: false,
         phase: view.phase,
         role: 'player',
         roomCode,
-        roundIndex: view.round?.index ?? null
+        roundContentKind: view.round?.content.kind ?? null,
+        roundIndex: view.round?.index ?? null,
+        settings: view.settings,
+        view
       })
       receiveView(view)
     }

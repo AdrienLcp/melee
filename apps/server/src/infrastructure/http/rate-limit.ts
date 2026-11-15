@@ -66,3 +66,18 @@ export const limitSoundChecksWith = (limiter: RateLimiter): MiddlewareHandler =>
       message: 'Too many sound checks from this address'
     }
   })
+
+/**
+ * A sent report is counted per screen as near as the server can tell one
+ * without an identifier of its own: the address within the room, so a whole
+ * table on one Wi-Fi does not share two reports a minute with a table across
+ * town. The address is the limiter's key and is never written.
+ */
+export const bugReportLimitKey = ({
+  address,
+  roomCode
+}: {
+  address: string | undefined
+  roomCode: string | null
+}): string =>
+  `${roomCode === null ? 'no-room' : `room:${roomCode}`}:address:${address ?? 'unknown'}`

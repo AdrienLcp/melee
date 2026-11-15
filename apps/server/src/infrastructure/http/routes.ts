@@ -14,6 +14,8 @@ import type {
   WallPairingPollResponse
 } from '@melee/protocol/http'
 import {
+  BUG_REPORT_BODY_MAX_BYTES,
+  bugReportSchema,
   createRoomRequestSchema,
   errorReportSchema,
   pairWallRequestSchema,
@@ -35,6 +37,7 @@ import { registerAdminRoutes } from '@/infrastructure/http/admin-routes'
 import { invalidInput } from '@/infrastructure/http/error-responses'
 import type { RoomDoor, WallPairings } from '@/infrastructure/http/http-ports'
 import {
+  bugReportLimitKey,
   type RateLimiter,
   reportLimitKey
 } from '@/infrastructure/http/rate-limit'
@@ -51,6 +54,7 @@ import {
 } from '@/infrastructure/music/music-source'
 import {
   type ReportStore,
+  storedBugReport,
   storedClientReport
 } from '@/infrastructure/reports/report-store'
 
@@ -110,6 +114,11 @@ const tooManyReports: ApiErrorResponse = {
   message: 'Too many reports from this room or address'
 }
 
+const tooManyBugReports: ApiErrorResponse = {
+  code: 'rate_limited',
+  message: 'Too many reports from this screen'
+}
+
 const parsedJson = (text: string): unknown => {
   try {
     return JSON.parse(text)
@@ -143,6 +152,7 @@ const pairingNotFound: ApiErrorResponse = {
 export const registerHttpRoutes = ({
   adminToken,
   app,
+  bugReportLimiter,
   limitRoomCreation,
   limitSoundChecks,
   reportLimiter,
@@ -153,6 +163,8 @@ export const registerHttpRoutes = ({
   /** `ADMIN_TOKEN`, which opens `/api/admin/*`; `null` keeps those routes answering 404. */
   adminToken: string | null
   app: Hono
+  /** Counted per address within a room — see `bugReportLimitKey`. */
+  bugReportLimiter: RateLimiter
   /** Each runtime counts by its own means: one process's memory, or the platform's binding. */
   limitRoomCreation: MiddlewareHandler
   /** Counted per address, like room creation: each check is a Deezer request. */
@@ -232,6 +244,60 @@ export const registerHttpRoutes = ({
         serverBuild: env.build
       })
     )
+
+    return context.body(null, 204)
+  })
+
+  // Sent by a press, so the screen waits for this answer and offers a retry.
+  // The log line names the report and never its note or view: those can hold
+  // a nickname, and they are read from the store, not from Workers Logs.
+  app.post(API_ROUTES.bugReports, async (context) => {
+    const text = await context.req.text()
+
+    if (new TextEncoder().encode(text).length > BUG_REPORT_BODY_MAX_BYTES) {
+      return context.json(reportRefused, 413)
+    }
+
+    const report = bugReportSchema.safeParse(parsedJson(text))
+
+    if (!report.success) {
+      return context.json(reportRefused, 400)
+    }
+
+    const { success } = await bugReportLimiter.limit({
+      key: bugReportLimitKey({
+        address: context.req.header('CF-Connecting-IP'),
+        roomCode: report.data.roomCode
+      })
+    })
+
+    if (!success) {
+      return context.json(tooManyBugReports, 429)
+    }
+
+    const receivedAt = nowMs()
+
+    await reports.record(
+      storedBugReport({
+        receivedAt,
+        report: report.data,
+        serverBuild: env.build
+      })
+    )
+
+    logger.info('A screen sent a bug report', {
+      browser: `${report.data.browser.name} ${report.data.browser.version}`,
+      code: report.data.roomCode,
+      events: report.data.events.length,
+      game: report.data.game,
+      hasNote: report.data.note.length > 0,
+      inAppBrowser: report.data.inAppBrowser,
+      phase: report.data.phase,
+      receivedAt,
+      role: report.data.role,
+      route: report.data.route,
+      system: report.data.browser.system
+    })
 
     return context.body(null, 204)
   })

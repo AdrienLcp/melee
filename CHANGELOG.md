@@ -8,6 +8,24 @@ one part.
 
 ### Features
 
+- `[Shared]` **Report a problem from any screen.** The menu, on every screen
+  at every phase, gains _Report a problem_: an optional line and _Send_, then
+  a thanks that holds for the thirty seconds before the device may send
+  another, or the refusal and _Try again_. The report carries what a bug
+  hunt kept asking for — the full user agent and its client hints, the app a
+  shared link opened in (Instagram, Messenger, WhatsApp, Facebook, TikTok,
+  Snapchat), the screen, the visual viewport, the safe areas, the theme and
+  language, the role (seated or not), the table's game, phase, round and
+  settings, the screen's own room view, the socket and its clock — and the
+  last two minutes of what the screen went through: every visual-viewport
+  and window resize with its values, rotations, which field took and lost
+  the focus (never what was typed), the tab hiding, socket opens and closes,
+  page changes, uncaught errors and `console.error`, kept from the first
+  script on in a ring of 200, so the moment a keyboard broke the page is
+  still there once it has been closed. Reports land beside the error reports
+  in D1 for thirty days (`kind = 'bug-report'`), readable on `/admin` and
+  with `wrangler d1 execute`; `/legal` says what one holds.
+
 - `[Shared]` **Close enough asks prices.** _Le juste chiffre_ was meant to be
   a _juste prix_ and never asked one: 194 prices written by hand join the
   bank, from a kilowatt-hour of electricity to the Grand Paris Express — a

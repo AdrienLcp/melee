@@ -271,6 +271,36 @@ const viewportSideSchema = z
   .nonnegative()
   .max(REPORT_VIEWPORT_MAX)
 
+const reportBrowserSchema = z.strictObject({
+  name: z.enum(reportBrowsers),
+  system: z.enum(reportSystems),
+  version: z
+    .string()
+    .max(REPORT_VERSION_MAX)
+    .regex(/^[\d.]*$/)
+})
+
+/** The entry chunk's hashed name, which tells one deployed build from another. */
+const reportBuildSchema = z
+  .string()
+  .max(REPORT_BUILD_MAX)
+  .regex(/^[\w.-]+$/)
+
+const reportFramesSchema = z
+  .array(
+    z.strictObject({
+      direction: z.enum(['in', 'out']),
+      type: z.enum(reportFrameTypes)
+    })
+  )
+  .max(REPORT_FRAMES_KEPT)
+
+/** The path alone: no query, no fragment — the evening link rides in one. */
+const reportRouteSchema = z
+  .string()
+  .max(REPORT_ROUTE_MAX)
+  .regex(/^\/[\w/.-]*$/)
+
 export const errorReportSchema = z.strictObject({
   audio: z.strictObject({
     contextState: z.enum(reportAudioContextStates).nullable(),
@@ -284,19 +314,8 @@ export const errorReportSchema = z.strictObject({
     /** This device's own level, 0 to 1 — not the room's. */
     volume: z.number().min(0).max(1).nullable()
   }),
-  browser: z.strictObject({
-    name: z.enum(reportBrowsers),
-    system: z.enum(reportSystems),
-    version: z
-      .string()
-      .max(REPORT_VERSION_MAX)
-      .regex(/^[\d.]*$/)
-  }),
-  /** The entry chunk's hashed name, which tells one deployed build from another. */
-  build: z
-    .string()
-    .max(REPORT_BUILD_MAX)
-    .regex(/^[\w.-]+$/),
+  browser: reportBrowserSchema,
+  build: reportBuildSchema,
   /** The refusal's code, or the clip's fault — never a sentence. */
   code: z.union([protocolErrorCodeSchema, clipFaultSchema]).nullable(),
   devicePixelRatio: z.number().positive().max(REPORT_PIXEL_RATIO_MAX),
@@ -307,14 +326,7 @@ export const errorReportSchema = z.strictObject({
       stack: z.string().max(REPORT_ERROR_STACK_MAX).nullable()
     })
     .nullable(),
-  frames: z
-    .array(
-      z.strictObject({
-        direction: z.enum(['in', 'out']),
-        type: z.enum(reportFrameTypes)
-      })
-    )
-    .max(REPORT_FRAMES_KEPT),
+  frames: reportFramesSchema,
   game: gameKindSchema.nullable(),
   isSpeaker: z.boolean().nullable(),
   kind: clientReportKindSchema,
@@ -322,15 +334,172 @@ export const errorReportSchema = z.strictObject({
   role: z.enum(['host', 'player', 'wall']).nullable(),
   roomCode: roomCodeSchema.nullable(),
   roundIndex: z.number().int().positive().nullable(),
-  /** The path alone: no query, no fragment — the evening link rides in one. */
-  route: z
-    .string()
-    .max(REPORT_ROUTE_MAX)
-    .regex(/^\/[\w/.-]*$/),
+  route: reportRouteSchema,
   viewport: z.strictObject({
     height: viewportSideSchema,
     width: viewportSideSchema
   })
+})
+
+/**
+ * What somebody sends from the menu's _Report a problem_ to
+ * `POST /api/bug-reports`, kept beside the error reports for thirty days.
+ * Unlike `errorReportSchema` it leaves only on a press, so it carries what
+ * that person chose to send: their own note, the raw user agent, the room as
+ * this screen holds it — its own role's view, nicknames included, never
+ * another role's — and what the screen went through in the last two minutes
+ * (`events`), because the press comes after the keyboard that broke the page
+ * has been closed. Never a session id, a host token or an address.
+ */
+export const BUG_REPORT_KIND = 'bug-report' as const
+export const BUG_REPORT_BODY_MAX_BYTES = 65_536
+export const BUG_REPORT_EVENTS_KEPT = 200
+export const BUG_REPORT_NOTE_MAX = 2000
+export const BUG_REPORT_EVENT_TEXT_MAX = 2000
+const BUG_REPORT_EVENT_DETAIL_KEYS_MAX = 16
+const BUG_REPORT_EVENT_AGE_MAX_MS = 600_000
+export const BUG_REPORT_USER_AGENT_MAX = 512
+export const BUG_REPORT_SHORT_TEXT_MAX = 80
+const BUG_REPORT_VISUAL_SCALE_MAX = 20
+
+export const bugReportRoles = [
+  'host',
+  'seated-host',
+  'player',
+  'wall',
+  'front-door'
+] as const
+
+/** The apps whose own browser opens a shared link, read off their user-agent token. */
+export const inAppBrowsers = [
+  'instagram',
+  'messenger',
+  'whatsapp',
+  'facebook',
+  'tiktok',
+  'snapchat'
+] as const
+
+export const bugReportEventTypes = [
+  'viewport-resize',
+  'viewport-scroll',
+  'window-resize',
+  'orientation',
+  'focus-in',
+  'focus-out',
+  'visibility',
+  'route',
+  'socket-open',
+  'socket-close',
+  'socket-error',
+  'uncaught',
+  'unhandled-rejection',
+  'console-error'
+] as const
+
+const shortTextSchema = z.string().max(BUG_REPORT_SHORT_TEXT_MAX)
+
+const bugReportEventSchema = z.strictObject({
+  /** Milliseconds before `sentAt`. */
+  ago: z.number().int().nonnegative().max(BUG_REPORT_EVENT_AGE_MAX_MS),
+  /** How many in a row were folded into this one, the last one's values kept. */
+  count: z.number().int().positive(),
+  detail: z
+    .record(
+      z.string().max(40),
+      z.union([
+        z.string().max(BUG_REPORT_EVENT_TEXT_MAX),
+        z.number(),
+        z.boolean(),
+        z.null()
+      ])
+    )
+    .refine(
+      (detail) => Object.keys(detail).length <= BUG_REPORT_EVENT_DETAIL_KEYS_MAX
+    ),
+  type: z.enum(bugReportEventTypes)
+})
+
+const lengthSchema = z.number().nonnegative().max(REPORT_VIEWPORT_MAX)
+const offsetSchema = z
+  .number()
+  .min(-REPORT_VIEWPORT_MAX)
+  .max(REPORT_VIEWPORT_MAX)
+
+export const bugReportSchema = z.strictObject({
+  browser: reportBrowserSchema,
+  build: reportBuildSchema,
+  connection: z
+    .strictObject({
+      clockOffsetMs: z.number().nullable(),
+      roundTripMs: z.number().nonnegative().nullable(),
+      status: z.enum(['connecting', 'open', 'closed', 'refused'])
+    })
+    .nullable(),
+  events: z.array(bugReportEventSchema).max(BUG_REPORT_EVENTS_KEPT),
+  frames: reportFramesSchema,
+  game: gameKindSchema.nullable(),
+  inAppBrowser: z.enum(inAppBrowsers).nullable(),
+  kind: z.literal(BUG_REPORT_KIND),
+  /** What the person typed, which may be nothing. */
+  note: z.string().max(BUG_REPORT_NOTE_MAX),
+  phase: roomPhaseSchema.nullable(),
+  preferences: z.strictObject({
+    colorScheme: z.enum(['light', 'dark']),
+    locale: localeSchema,
+    reducedMotion: z.boolean(),
+    theme: z.enum(['dark', 'light', 'system'])
+  }),
+  role: z.enum(bugReportRoles),
+  roomCode: roomCodeSchema.nullable(),
+  /** The arm of `round.content` on screen. */
+  roundContentKind: shortTextSchema.regex(/^[\w-]*$/).nullable(),
+  roundIndex: z.number().int().positive().nullable(),
+  route: reportRouteSchema,
+  /** `env(safe-area-inset-*)` as the page resolves it, in CSS pixels. */
+  safeArea: z
+    .strictObject({
+      bottom: lengthSchema,
+      left: lengthSchema,
+      right: lengthSchema,
+      top: lengthSchema
+    })
+    .nullable(),
+  screen: z.strictObject({
+    devicePixelRatio: z.number().positive().max(REPORT_PIXEL_RATIO_MAX),
+    height: lengthSchema,
+    orientation: shortTextSchema.nullable(),
+    width: lengthSchema
+  }),
+  /** The client's own clock, epoch milliseconds: what each event's `ago` counts back from. */
+  sentAt: z.number().int().positive(),
+  /** The room's settings as this screen holds them. */
+  settings: z.json().nullable(),
+  userAgent: z.string().max(BUG_REPORT_USER_AGENT_MAX),
+  /** User-Agent Client Hints, where the browser has them. */
+  userAgentData: z
+    .strictObject({
+      brands: z
+        .array(
+          z.strictObject({ brand: shortTextSchema, version: shortTextSchema })
+        )
+        .max(12),
+      mobile: z.boolean(),
+      platform: shortTextSchema
+    })
+    .nullable(),
+  /** This screen's whole room view, its own role's; `null` past the body's budget. */
+  view: z.json().nullable(),
+  viewport: z.strictObject({ height: lengthSchema, width: lengthSchema }),
+  visualViewport: z
+    .strictObject({
+      height: lengthSchema,
+      offsetLeft: offsetSchema,
+      offsetTop: offsetSchema,
+      scale: z.number().positive().max(BUG_REPORT_VISUAL_SCALE_MAX),
+      width: lengthSchema
+    })
+    .nullable()
 })
 
 export type CreateRoomRequest = z.infer<typeof createRoomRequestSchema>
@@ -356,3 +525,8 @@ export type ErrorReport = z.infer<typeof errorReportSchema>
 export type ClientReportKind = z.infer<typeof clientReportKindSchema>
 export type ServerReportKind = (typeof serverReportKinds)[number]
 export type ReportFrameType = (typeof reportFrameTypes)[number]
+export type BugReport = z.infer<typeof bugReportSchema>
+export type BugReportEvent = BugReport['events'][number]
+export type BugReportEventType = (typeof bugReportEventTypes)[number]
+export type BugReportRole = (typeof bugReportRoles)[number]
+export type InAppBrowser = (typeof inAppBrowsers)[number]

@@ -1,21 +1,48 @@
+import { Result } from '@adrienlcp/result'
+
 import type {
+  BugReport,
+  BugReportEventType,
   ClientReportKind,
   ErrorReport,
   ReportFrameType
 } from '@melee/protocol/http'
 import {
+  BUG_REPORT_BODY_MAX_BYTES,
+  BUG_REPORT_EVENT_TEXT_MAX,
+  BUG_REPORT_EVENTS_KEPT,
+  BUG_REPORT_KIND,
+  BUG_REPORT_NOTE_MAX,
+  BUG_REPORT_SHORT_TEXT_MAX,
+  BUG_REPORT_USER_AGENT_MAX,
+  bugReportSchema,
   REPORT_FRAMES_KEPT,
   REPORT_TEXT_LIMITS,
   reportAudioContextStates
 } from '@melee/protocol/http'
 import type { RoomCode } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 import type { ClipFault } from '@melee/protocol/sound'
 
-import { browserIdentityOf } from '@/helpers/browser-identity'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
+
+import { browserIdentityOf, inAppBrowserOf } from '@/helpers/browser-identity'
+import { createEventRing } from '@/helpers/event-ring'
+import { fittedBugReport } from '@/helpers/fitted-bug-report'
 import { createReportGate } from '@/helpers/report-gate'
-import { sendErrorReport } from '@/infrastructure/api/melee-api'
-import { describeScreen, onUnhandledFaults } from '@/infrastructure/browser'
+import {
+  type ApiError,
+  sendBugReport,
+  sendErrorReport
+} from '@/infrastructure/api/melee-api'
+import {
+  describeDevice,
+  describeScreen,
+  onScreenChanges,
+  onUnhandledFaults
+} from '@/infrastructure/browser'
+import { nowMs } from '@/infrastructure/clock'
 import { readStoredVolume } from '@/infrastructure/storage/preferences-storage'
 
 /**
@@ -29,6 +56,14 @@ export type RoomReportContext = Pick<
 > & {
   role: NonNullable<ErrorReport['role']>
   roomCode: RoomCode
+  /** A console holding a seat as well; `false` on every other screen. */
+  isSeated: boolean
+  /** The arm of `round.content` on screen, `null` between rounds. */
+  roundContentKind: string | null
+  /** Read only into a report somebody sends, never into an error report. */
+  settings: unknown
+  /** This screen's whole snapshot, its own role's: read only into a report somebody sends. */
+  view: unknown
 }
 
 type Frame = ErrorReport['frames'][number]
@@ -195,10 +230,16 @@ export const rootErrorHandlers = {
 export const watchUnhandledFaults = (): void => {
   onUnhandledFaults({
     onError: (error) => {
-      reportFault({ error: faultOf(error), kind: 'uncaught' })
+      const fault = faultOf(error)
+
+      noteFaultEvent({ fault, type: 'uncaught' })
+      reportFault({ error: fault, kind: 'uncaught' })
     },
     onRejection: (reason) => {
-      reportFault({ error: faultOf(reason), kind: 'unhandled-rejection' })
+      const fault = faultOf(reason)
+
+      noteFaultEvent({ fault, type: 'unhandled-rejection' })
+      reportFault({ error: fault, kind: 'unhandled-rejection' })
     }
   })
 }
@@ -240,4 +281,237 @@ export const reportFatalRefusal = (error: ProtocolErrorMessage): void => {
 /** A clip this screen should be sounding and is not. */
 export const reportClipFault = (fault: ClipFault): void => {
   reportFault({ code: fault, error: null, kind: 'clip-fault' })
+}
+
+/**
+ * Two minutes rather than the thirty seconds a fault takes to happen: the
+ * person presses only after closing the keyboard that broke the page, then
+ * the menu, then typing what they saw.
+ */
+const BUG_REPORT_EVENTS_WINDOW_MS = 120_000
+const BUG_REPORT_EVENT_FOLD_MS = 120
+
+/** One report per device per this long: the menu holds its thanks for as long. */
+export const BUG_REPORT_COOLDOWN_MS = 30_000
+
+type EventDetail = BugReport['events'][number]['detail']
+
+const screenEvents = createEventRing<BugReportEventType, EventDetail>({
+  capacity: BUG_REPORT_EVENTS_KEPT,
+  coalesceMs: BUG_REPORT_EVENT_FOLD_MS
+})
+
+const noteEvent = (type: BugReportEventType, detail: EventDetail): void => {
+  screenEvents.note({ at: nowMs(), detail, type })
+}
+
+const clippedText = (text: string): string =>
+  text.slice(0, BUG_REPORT_EVENT_TEXT_MAX)
+
+const noteFaultEvent = ({
+  fault,
+  type
+}: {
+  fault: Fault
+  type: Extract<BugReportEventType, 'uncaught' | 'unhandled-rejection'>
+}): void => {
+  noteEvent(type, {
+    message: clippedText(fault.message),
+    name: fault.name,
+    stack: fault.stack === null ? null : clippedText(fault.stack)
+  })
+}
+
+const textOfLogged = (value: unknown): string => {
+  if (value instanceof Error) {
+    return `${value.name}: ${value.message}`
+  }
+
+  if (typeof value === 'string') {
+    return value
+  }
+
+  try {
+    return JSON.stringify(value) ?? String(value)
+  } catch {
+    return String(value)
+  }
+}
+
+/**
+ * What the screen goes through, kept from the first script on in a ring a
+ * report somebody sends will carry: the viewport and the focus, the tab's
+ * visibility, and every `console.error`, which is where React and this app
+ * say what went wrong without throwing.
+ */
+export const watchScreenForReports = (): void => {
+  onScreenChanges(({ detail, type }) => {
+    noteEvent(type, detail)
+  })
+
+  const logError = console.error.bind(console)
+
+  console.error = (...values: unknown[]) => {
+    noteEvent('console-error', {
+      message: clippedText(values.map(textOfLogged).join(' '))
+    })
+    logError(...values)
+  }
+}
+
+/** The page the router settled on, its path alone. */
+export const noteRoute = (path: string): void => {
+  noteEvent('route', {
+    path: path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX)
+  })
+}
+
+/** The room's socket opening, closing or failing, with what the close said. */
+export const noteSocketEvent = (
+  type: Extract<BugReportEventType, `socket-${string}`>,
+  detail: EventDetail = {}
+): void => {
+  noteEvent(type, detail)
+}
+
+let lastBugReportAt: number | null = null
+
+/** How long before this device may send another report; `0` once it may. */
+export const bugReportCooldownLeftMs = (): number =>
+  lastBugReportAt === null
+    ? 0
+    : Math.max(0, lastBugReportAt + BUG_REPORT_COOLDOWN_MS - nowMs())
+
+/** A value the report can carry as JSON, or `null` for one it cannot. */
+const asJson = (value: unknown): BugReport['view'] => {
+  if (value === undefined || value === null) {
+    return null
+  }
+
+  const parsed = bugReportSchema.shape.view.safeParse(
+    JSON.parse(JSON.stringify(value))
+  )
+
+  return parsed.success ? parsed.data : null
+}
+
+const USER_AGENT_BRANDS_KEPT = 12
+
+const clippedUserAgentData = (
+  data: ReturnType<typeof describeDevice>['userAgentData']
+): BugReport['userAgentData'] =>
+  data === null
+    ? null
+    : {
+        brands: data.brands
+          .slice(0, USER_AGENT_BRANDS_KEPT)
+          .map(({ brand, version }) => ({
+            brand: brand.slice(0, BUG_REPORT_SHORT_TEXT_MAX),
+            version: version.slice(0, BUG_REPORT_SHORT_TEXT_MAX)
+          })),
+        mobile: data.mobile,
+        platform: data.platform.slice(0, BUG_REPORT_SHORT_TEXT_MAX)
+      }
+
+const reportRoleOf = (context: RoomReportContext | null): BugReport['role'] => {
+  if (context === null) {
+    return 'front-door'
+  }
+
+  return context.role === 'host' && context.isSeated
+    ? 'seated-host'
+    : context.role
+}
+
+/** What the menu holds that this module does not: the socket's state, the theme and the language. */
+export type BugReportScreen = {
+  connection: {
+    clock: ClockEstimate | null
+    status: NonNullable<BugReport['connection']>['status']
+  } | null
+  locale: Locale
+  theme: BugReport['preferences']['theme']
+}
+
+/**
+ * Everything the screen knows about itself, with the note somebody typed,
+ * sent the moment they press _Send_ and never before. `too_soon` is this
+ * device asking again inside `BUG_REPORT_COOLDOWN_MS`.
+ */
+export const reportProblem = async ({
+  note,
+  screen: { connection, locale, theme }
+}: {
+  note: string
+  screen: BugReportScreen
+}): Promise<Result<void, ApiError | 'too_soon'>> => {
+  if (bugReportCooldownLeftMs() > 0) {
+    return Result.failure('too_soon')
+  }
+
+  const sentAt = nowMs()
+  const page = describeScreen()
+  const device = describeDevice()
+  const report: BugReport = {
+    browser: browserIdentityOf(page.userAgent),
+    build: buildOfThisBundle(),
+    connection:
+      connection === null
+        ? null
+        : {
+            clockOffsetMs: connection.clock?.offsetMs ?? null,
+            roundTripMs: connection.clock?.roundTripMs ?? null,
+            status: connection.status
+          },
+    events: screenEvents
+      .since(sentAt - BUG_REPORT_EVENTS_WINDOW_MS)
+      .map(({ at, count, detail, type }) => ({
+        ago: Math.max(0, sentAt - at),
+        count,
+        detail,
+        type
+      })),
+    frames,
+    game: room?.game ?? null,
+    inAppBrowser: inAppBrowserOf(page.userAgent),
+    kind: BUG_REPORT_KIND,
+    note: note.trim().slice(0, BUG_REPORT_NOTE_MAX),
+    phase: room?.phase ?? null,
+    preferences: {
+      colorScheme: device.colorScheme,
+      locale,
+      reducedMotion: device.reducedMotion,
+      theme
+    },
+    role: reportRoleOf(room),
+    roomCode: room?.roomCode ?? null,
+    roundContentKind: room?.roundContentKind ?? null,
+    roundIndex: room?.roundIndex ?? null,
+    route: page.path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX),
+    safeArea: device.safeArea,
+    screen: device.screen,
+    sentAt,
+    settings: asJson(room?.settings),
+    userAgent: page.userAgent.slice(0, BUG_REPORT_USER_AGENT_MAX),
+    userAgentData: clippedUserAgentData(device.userAgentData),
+    view: asJson(room?.view),
+    viewport: page.viewport,
+    visualViewport: device.visualViewport
+  }
+  const fitted = fittedBugReport({
+    maxBytes: BUG_REPORT_BODY_MAX_BYTES,
+    report
+  })
+
+  if (fitted === null) {
+    return Result.failure('rejected')
+  }
+
+  const sent = await sendBugReport(fitted)
+
+  if (sent.status === 'success') {
+    lastBugReportAt = nowMs()
+  }
+
+  return sent
 }

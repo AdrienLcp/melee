@@ -8,7 +8,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 
 import { replaceScreen, watchViewTransitions } from '@/infrastructure/browser'
 import {
+  noteRoute,
   rootErrorHandlers,
+  watchScreenForReports,
   watchUnhandledFaults
 } from '@/infrastructure/diagnostics'
 import { listenForInstallPrompt } from '@/infrastructure/install-prompt'
@@ -23,6 +25,7 @@ import { RouteFallback } from '@/presentation/route-fallback'
 import '@/presentation/styles/globals.sass'
 
 watchUnhandledFaults()
+watchScreenForReports()
 reloadOnStaleBuild()
 listenForInstallPrompt()
 watchViewTransitions()
@@ -57,6 +60,15 @@ const start = (): void => {
   }
 
   const router = createBrowserRouter(routes)
+  let notedPath = router.state.location.pathname
+
+  noteRoute(notedPath)
+  router.subscribe(({ location }) => {
+    if (location.pathname !== notedPath) {
+      notedPath = location.pathname
+      noteRoute(notedPath)
+    }
+  })
 
   holdLandingArrival()
 

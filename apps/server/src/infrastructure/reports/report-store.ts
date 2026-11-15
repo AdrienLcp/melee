@@ -5,12 +5,15 @@ import type {
   AdminReportsResponse
 } from '@melee/protocol/admin'
 import type {
+  BugReport,
   ClientReportKind,
   ErrorReport,
   ServerReportKind
 } from '@melee/protocol/http'
 
 const DAY_MS = 86_400_000
+
+const BUG_REPORT_LISTED_NOTE_MAX = 500
 
 /** How long a report is kept, said on the legal page in both dictionaries. */
 export const REPORT_RETENTION_MS = 30 * DAY_MS
@@ -53,7 +56,7 @@ export type StoredReport = {
   errorMessage: string | null
   errorName: string | null
   game: string | null
-  kind: ClientReportKind | ServerReportKind
+  kind: ClientReportKind | BugReport['kind'] | ServerReportKind
   phase: string | null
   receivedAt: number
   role: string | null
@@ -164,3 +167,31 @@ export const storedServerReport = ({
         roomCode: report.roomCode
       }
 }
+
+/** The person's note stands where an error's message would, so the list on `/admin` shows it. */
+export const storedBugReport = ({
+  receivedAt,
+  report,
+  serverBuild
+}: {
+  receivedAt: number
+  report: BugReport
+  serverBuild: string
+}): StoredReport => ({
+  browserName: report.browser.name,
+  browserVersion: report.browser.version,
+  clientBuild: report.build,
+  code: null,
+  context: JSON.stringify(report),
+  errorMessage: report.note.slice(0, BUG_REPORT_LISTED_NOTE_MAX) || null,
+  errorName: null,
+  game: report.game,
+  kind: report.kind,
+  phase: report.phase,
+  receivedAt,
+  role: report.role,
+  roomCode: report.roomCode,
+  serverBuild,
+  source: 'client',
+  system: report.browser.system
+})

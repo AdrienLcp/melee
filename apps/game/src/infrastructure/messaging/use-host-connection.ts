@@ -57,11 +57,15 @@ export const useHostConnection = ({
 
       noteRoomView({
         game: view.settings.game?.kind ?? null,
+        isSeated: view.youId !== null,
         isSpeaker: !view.walls.some((wall) => wall.isSpeaker),
         phase: view.phase,
         role: 'host',
         roomCode,
-        roundIndex: view.round?.index ?? null
+        roundContentKind: view.round?.content.kind ?? null,
+        roundIndex: view.round?.index ?? null,
+        settings: view.settings,
+        view
       })
       receiveView(view)
     }

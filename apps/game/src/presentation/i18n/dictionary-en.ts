@@ -1534,6 +1534,8 @@ export const EN_DICTIONARY = defineDictionary({
     storage: {
       analyticsOptOut:
         'Your refusal of audience measurement, if you turn it off below.',
+      bugReports:
+        'If you press “Report a problem” in the menu, that screen sends Mêlée what you typed there, if anything, with what it knows at that moment: the browser’s full identification string, the app it was opened in, the screen’s size, zoom and safe margins, your theme and language, the page’s address, the table’s code, game, phase and round, the table as that screen shows it — the nicknames at it included —, the state of its connection, and what the screen went through in the last two minutes: resizes, rotations, the keyboard opening, which kind of field had the focus — never what was typed in it — and its errors. Nothing leaves before you press Send, no IP address is kept with it, and it is deleted after 30 days.',
       challengeLines:
         'The challenge lines the host wrote in advance, and which of them have been played.',
       device:
@@ -1789,6 +1791,21 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Nickname'
     },
     reload: 'Reload',
+    /**
+     * `attached` sits under the field because what it lists leaves the device
+     * whether or not anything is typed.
+     */
+    report: {
+      attached:
+        'Sent with what this screen knows: the browser, its size, the table, and its last two minutes.',
+      failed: 'It did not go through. Try again.',
+      field: 'What happened (optional)',
+      label: 'Report a problem',
+      retry: 'Try again',
+      send: 'Send',
+      sent: 'Thanks, it is on its way.',
+      tooSoon: 'One already went a moment ago. Try again in a minute.'
+    },
     source: 'Source code',
     /** Said by the host, about the machine rather than the table: it outlives the room. */
     thisDevice: {

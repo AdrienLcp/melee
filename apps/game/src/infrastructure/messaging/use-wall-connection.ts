@@ -62,11 +62,15 @@ export const useWallConnection = ({
 
       noteRoomView({
         game: view.settings.game?.kind ?? null,
+        isSeated: false,
         isSpeaker: view.isSpeaker,
         phase: view.phase,
         role: 'wall',
         roomCode,
-        roundIndex: view.round?.index ?? null
+        roundContentKind: view.round?.content.kind ?? null,
+        roundIndex: view.round?.index ?? null,
+        settings: view.settings,
+        view
       })
       receiveView(view)
     }

@@ -70,6 +70,11 @@
           "simple": { "limit": 20, "period": 60 }
         },
         {
+          "name": "BUG_REPORT_LIMITER",
+          "namespace_id": "1008",
+          "simple": { "limit": 2, "period": 60 }
+        },
+        {
           "name": "SOUND_CHECK_LIMITER",
           "namespace_id": "1006",
           "simple": { "limit": 10, "period": 60 }
@@ -101,6 +106,13 @@
       "name": "REPORT_LIMITER",
       "namespace_id": "1003",
       "simple": { "limit": 20, "period": 60 }
+    },
+    // Two reports a minute from one address in one room: a report is sent by
+    // hand, and the menu itself waits thirty seconds between two.
+    {
+      "name": "BUG_REPORT_LIMITER",
+      "namespace_id": "1007",
+      "simple": { "limit": 2, "period": 60 }
     },
     // Ten sound checks a minute from one address: each is a Deezer request.
     {

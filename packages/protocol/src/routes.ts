@@ -10,6 +10,7 @@ export const API_ROUTES = {
   adminReport: `${API_PREFIX}/admin/reports/:id`,
   adminReports: `${API_PREFIX}/admin/reports`,
   adminRooms: `${API_PREFIX}/admin/rooms`,
+  bugReports: `${API_PREFIX}/bug-reports`,
   health: `${API_PREFIX}/health`,
   playlistTracks: `${API_PREFIX}/playlists/:playlistId/tracks`,
   reports: `${API_PREFIX}/reports`,

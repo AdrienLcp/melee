@@ -1,6 +1,11 @@
 import { z } from 'zod'
 
-import { clientReportKinds, reportBrowsers, serverReportKinds } from './http'
+import {
+  BUG_REPORT_KIND,
+  clientReportKinds,
+  reportBrowsers,
+  serverReportKinds
+} from './http'
 
 /**
  * The `/admin` page's reads: the rooms open now and the error reports kept.
@@ -48,7 +53,9 @@ export const adminReportsQuerySchema = z.object({
   build: optionalText,
   from: z.coerce.number().int().nonnegative().optional(),
   game: optionalText,
-  kind: z.enum([...clientReportKinds, ...serverReportKinds]).optional(),
+  kind: z
+    .enum([...clientReportKinds, BUG_REPORT_KIND, ...serverReportKinds])
+    .optional(),
   limit: z.coerce
     .number()
     .int()

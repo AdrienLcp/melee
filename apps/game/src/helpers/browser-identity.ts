@@ -1,4 +1,4 @@
-import type { ErrorReport } from '@melee/protocol/http'
+import type { ErrorReport, InAppBrowser } from '@melee/protocol/http'
 
 export type BrowserIdentity = ErrorReport['browser']
 
@@ -52,3 +52,21 @@ export const browserIdentityOf = (userAgent: string): BrowserIdentity => {
     version: fullVersion.split('.').slice(0, 2).join('.')
   }
 }
+
+/**
+ * Ordered: Messenger's browser says `FBAN` like Facebook's, so it is asked
+ * first. These are the browsers a link shared in a chat opens in, and the
+ * ones whose keyboard and viewport behave least like the engine they wrap.
+ */
+const IN_APP_PATTERNS: readonly [InAppBrowser, RegExp][] = [
+  ['messenger', /\bMessenger|FB_IAB\/MESSENGER|FBAN\/Messenger/i],
+  ['instagram', /\bInstagram\b/],
+  ['facebook', /\bFBAN\/|\bFBAV\/|\bFB_IAB\//],
+  ['whatsapp', /\bWhatsApp\b/],
+  ['tiktok', /\bmusical_ly\b|\bTikTok\b|\bBytedanceWebview\b/],
+  ['snapchat', /\bSnapchat\b/]
+]
+
+/** The app whose own browser this is, or `null` for a browser of its own. */
+export const inAppBrowserOf = (userAgent: string): InAppBrowser | null =>
+  IN_APP_PATTERNS.find(([, pattern]) => pattern.test(userAgent))?.[0] ?? null

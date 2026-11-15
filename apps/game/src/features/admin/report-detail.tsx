@@ -18,6 +18,9 @@ const isFrame = (value: unknown): value is Frame =>
   'direction' in value &&
   'type' in value
 
+/** A sent report's room view and settings, read as the one blob they were on the screen. */
+const WHOLE_PATHS: ReadonlySet<string> = new Set(['settings', 'view'])
+
 /** Every leaf of the context under its dotted path, the frames and the stack drawn apart. */
 const contextRows = (
   value: unknown,
@@ -25,6 +28,10 @@ const contextRows = (
 ): { name: string; value: string }[] => {
   if (path === 'frames' || path === 'error.stack') {
     return []
+  }
+
+  if (WHOLE_PATHS.has(path)) {
+    return [{ name: path, value: JSON.stringify(value) }]
   }
 
   if (typeof value === 'object' && value !== null && !Array.isArray(value)) {

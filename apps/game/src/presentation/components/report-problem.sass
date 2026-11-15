@@ -1,0 +1,36 @@
+@use '../styles/fold'
+@use '../styles/typography'
+
+@layer components
+  .report-problem
+    .panel-content
+      display: flex
+      flex-direction: column
+
+    // The form folds away as the thanks unfolds, so the row ends at the
+    // height of what it says rather than at the form's.
+    .report-form,
+    .report-sent
+      @include fold.opens-in-column(var(--space-s), $side: end, $trades-places: true)
+
+    .react-aria-Form
+      --refusal-note-gap: var(--space-s)
+
+      align-items: start
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      .text-field
+        align-self: stretch
+
+    // The press renames itself where it stands once a send has failed.
+    .react-aria-Button .name
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+
+    .report-sent p
+      @include typography.caption
+
+      color: var(--ink)
+      margin: 0
+      text-wrap: pretty
