@@ -225,14 +225,13 @@
 
   // What the ruler waits for, under it, folding away as the first pin lands.
   .make-number-ladder > .empty
-    @include typography.strong
+    @include typography.waiting-line
 
     align-content: center
     block-size: clamp(2.5rem, 9cqh, 4.5rem)
     color: var(--ink-muted)
     font-size: clamp(var(--text-s), 3cqh, var(--text-xl))
     grid-column: 1 / -1
-    line-height: 1.15
     margin: var(--space-xs) 0 0
     min-block-size: 0
     overflow: clip
