@@ -1,0 +1,261 @@
+// Side-effect module: the back office's page.
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .admin-page
+    @include layout.screen
+
+    padding-block-start: var(--menu-block-inset)
+
+    h1
+      @include typography.billboard
+
+    .key-form
+      align-items: end
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-s)
+
+      .text-field
+        flex: 1
+        min-width: min(100%, 16rem)
+
+    .admin-view
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+      min-width: 0
+
+    .admin-empty
+      @include typography.body
+
+      color: var(--ink-muted)
+
+    .admin-rows
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      list-style: none
+
+    .admin-row
+      @include piece.card(var(--radius-m))
+
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      display: grid
+      gap: var(--space-2xs) var(--space-s)
+      grid-template-columns: auto 1fr
+      padding: var(--space-s) var(--space-m)
+      text-align: start
+      width: 100%
+
+    .room-row
+      &[data-closed]
+        background: var(--track-a)
+        box-shadow: none
+        color: var(--board-ink)
+
+    .room-code
+      @include typography.score
+
+      grid-row: span 2
+
+    .row-title
+      @include typography.title
+
+      align-items: baseline
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)
+      min-width: 0
+      overflow-wrap: anywhere
+
+    .row-tag
+      @include typography.caption-strong
+
+      border: var(--stroke-hair) solid currentColor
+      border-radius: var(--radius-s)
+      padding-inline: var(--space-2xs)
+
+    .row-facts,
+    .row-message
+      @include typography.caption
+
+      overflow-wrap: anywhere
+
+    .report-row
+      cursor: pointer
+      grid-template-columns: 1fr
+      transition: translate var(--transition-fast, 0s) var(--ease-out)
+
+      &[data-selected]
+        outline: var(--stroke-bold) solid var(--primary)
+        outline-offset: 2px
+
+      @media (hover: hover) and (pointer: fine)
+        &[data-hovered]
+          translate: 0 -0.125rem
+
+    .reports-view
+      display: grid
+      gap: var(--space-l)
+      grid-template-areas: 'filters' 'list' 'detail'
+      min-width: 0
+
+      // On a narrow screen an opened report takes the list's place; the
+      // filters stay, the list comes back on close.
+      &[data-opened]
+        grid-template-areas: 'filters' 'detail'
+
+        .report-list
+          display: none
+
+      @media (min-width: 60rem)
+        grid-template-areas: 'filters filters' 'list list'
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr)
+
+        &[data-opened]
+          grid-template-areas: 'filters filters' 'list detail'
+
+          .report-list
+            display: flex
+
+    .report-filters
+      align-items: end
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-s)
+      grid-area: filters
+
+      > *
+        flex: 1 1 10rem
+
+      .segmented-control
+        flex-basis: 100%
+
+    .report-list
+      align-items: start
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+      grid-area: list
+      min-width: 0
+
+    .report-detail
+      @include piece.card
+
+      --travel-offset: 1.5rem 0
+
+      align-content: start
+      align-self: start
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      display: grid
+      gap: var(--space-s)
+      grid-area: detail
+      min-width: 0
+      padding: var(--space-m)
+
+      &[data-leaving]
+        animation: page-leave var(--transition-fast, 0s) var(--ease-out) forwards
+
+      h2
+        @include typography.title
+
+        align-items: baseline
+        display: flex
+        gap: var(--space-xs)
+
+      h3
+        @include typography.label
+
+        padding-block-start: var(--space-s)
+
+    .detail-message
+      @include typography.body
+
+      overflow-wrap: anywhere
+
+    .detail-fields
+      display: grid
+      gap: var(--space-2xs)
+
+      > div
+        display: grid
+        gap: var(--space-xs)
+        grid-template-columns: minmax(8rem, 40%) 1fr
+
+      dt
+        @include typography.caption-strong
+
+        overflow-wrap: anywhere
+
+      dd
+        @include typography.code
+
+        overflow-wrap: anywhere
+
+    .detail-frames
+      @include typography.code
+
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      list-style: none
+
+    .detail-stack
+      @include typography.code
+
+      background: var(--field)
+      border-radius: var(--radius-s)
+      max-height: 20rem
+      overflow: auto
+      padding: var(--space-s)
+      white-space: pre-wrap
+      word-break: break-word
+
+  .admin-select
+    display: flex
+    flex-direction: column
+    gap: var(--space-2xs)
+
+    .react-aria-Label
+      @include typography.label
+
+  .admin-select-button
+    @include piece.card(var(--radius-s))
+
+    align-items: center
+    cursor: pointer
+    display: flex
+    gap: var(--space-xs)
+    justify-content: space-between
+    min-block-size: 3.25rem
+    padding-inline: var(--space-s)
+
+  .admin-select-popover
+    @include piece.card(var(--radius-s))
+
+    max-height: 20rem
+    min-width: var(--trigger-width)
+    overflow: auto
+    padding: var(--space-2xs)
+
+    &[data-entering]
+      animation: page-enter var(--transition-fast, 0s) var(--ease-out)
+
+    &[data-exiting]
+      animation: page-leave var(--transition-fast, 0s) var(--ease-out) forwards
+
+    .react-aria-ListBoxItem
+      @include typography.body
+
+      border-radius: var(--radius-s)
+      cursor: pointer
+      padding: var(--space-2xs) var(--space-s)
+
+      &[data-focused],
+      &[data-selected]
+        background: var(--card-ticked)
+        color: var(--card-ticked-ink)

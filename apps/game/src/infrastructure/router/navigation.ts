@@ -90,6 +90,11 @@ export const pairingPaths = {
   wallPairing: '/wall'
 } as const
 
+/** The back office: one page, read by its owner alone, never indexed and never translated into a path. */
+export const adminPaths = {
+  admin: '/admin'
+} as const
+
 /**
  * `root` carries no language and is the one URL that cannot: it is what
  * `hreflang="x-default"` points at, so it answers by negotiating and redirecting
@@ -99,6 +104,7 @@ export const paths = {
   ...localizedPaths,
   ...roomPaths,
   ...pairingPaths,
+  ...adminPaths,
   root: '/'
 } as const
 
@@ -395,7 +401,8 @@ export const localeFreePathUnder = (pathname: string): string | null => {
   const unprefixed = `/${rest.join('/')}`
   const isLocaleFree = [
     ...Object.values(roomPaths),
-    ...Object.values(pairingPaths)
+    ...Object.values(pairingPaths),
+    ...Object.values(adminPaths)
   ].some((path) => matchPath(path, unprefixed) !== null)
 
   return isLocaleFree ? unprefixed : null

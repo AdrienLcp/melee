@@ -12,6 +12,78 @@ import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
  * word chosen at the call site.
  */
 export const FR_DICTIONARY = defineDictionary({
+  /** The back office at `/admin`: live rooms and error reports, read by the site's owner alone. */
+  admin: {
+    detail: {
+      close: 'Retour à la liste',
+      context: 'Contexte',
+      frames: 'Derniers messages',
+      noFrames: 'Aucun message gardé',
+      noStack: 'Aucune pile',
+      stack: 'Pile'
+    },
+    key: {
+      label: 'Clé d’administration',
+      refused: 'Cette clé n’ouvre rien ici.',
+      submit: 'Ouvrir',
+      unreachable: 'Le serveur ne répond pas.'
+    },
+    reports: {
+      any: 'Tous',
+      empty: 'Aucun rapport pour ces filtres.',
+      filters: {
+        browser: 'Navigateur',
+        build: 'Version',
+        game: 'Jeu',
+        kind: 'Type',
+        room: 'Code de la table',
+        since: 'Depuis'
+      },
+      more: 'Rapports plus anciens',
+      noMessage: 'Aucun message',
+      received: {
+        days: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'day' } }
+        }),
+        hours: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'hour' } }
+        }),
+        minutes: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'minute' } }
+        })
+      },
+      windows: {
+        day: '24 heures',
+        hour: '1 heure',
+        month: '30 jours',
+        week: '7 jours'
+      }
+    },
+    rooms: {
+      closed: 'Fermée',
+      empty: 'Aucune table ouverte en ce moment.',
+      moved: defineTranslation('bougée {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      }),
+      noGame: 'Aucun jeu choisi',
+      opened: defineTranslation('ouverte {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      }),
+      round: 'Manche {n:number}',
+      seats: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} place', other: '{?} places' } }
+      }),
+      walls: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} mur', other: '{?} murs' } }
+      })
+    },
+    title: 'Coulisses',
+    views: {
+      label: 'Vue',
+      reports: 'Rapports',
+      rooms: 'Tables en cours'
+    }
+  },
   assistant: {
     address: {
       copy: 'Copier l’adresse',

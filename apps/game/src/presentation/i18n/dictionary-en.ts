@@ -17,6 +17,78 @@ import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
  * `docs/game-catalogue.md`.
  */
 export const EN_DICTIONARY = defineDictionary({
+  /** The back office at `/admin`: live rooms and error reports, read by the site's owner alone. */
+  admin: {
+    detail: {
+      close: 'Back to the list',
+      context: 'Context',
+      frames: 'Last frames',
+      noFrames: 'No frame kept',
+      noStack: 'No stack',
+      stack: 'Stack'
+    },
+    key: {
+      label: 'Admin key',
+      refused: 'This key opens nothing here.',
+      submit: 'Open',
+      unreachable: 'The server cannot be reached.'
+    },
+    reports: {
+      any: 'Any',
+      empty: 'No report matches these filters.',
+      filters: {
+        browser: 'Browser',
+        build: 'Build',
+        game: 'Game',
+        kind: 'Kind',
+        room: 'Table code',
+        since: 'Since'
+      },
+      more: 'Older reports',
+      noMessage: 'No message',
+      received: {
+        days: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'day' } }
+        }),
+        hours: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'hour' } }
+        }),
+        minutes: defineTranslation('{when:relative}', {
+          relative: { when: { numeric: 'auto', unit: 'minute' } }
+        })
+      },
+      windows: {
+        day: '24 hours',
+        hour: '1 hour',
+        month: '30 days',
+        week: '7 days'
+      }
+    },
+    rooms: {
+      closed: 'Closed',
+      empty: 'No table is open right now.',
+      moved: defineTranslation('moved {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      }),
+      noGame: 'No game picked',
+      opened: defineTranslation('opened {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      }),
+      round: 'Round {n:number}',
+      seats: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} seat', other: '{?} seats' } }
+      }),
+      walls: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} wall', other: '{?} walls' } }
+      })
+    },
+    title: 'Back office',
+    views: {
+      label: 'View',
+      reports: 'Reports',
+      rooms: 'Live tables'
+    }
+  },
   assistant: {
     address: {
       copy: 'Copy the address',

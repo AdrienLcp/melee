@@ -1,6 +1,15 @@
 import { Result } from '@adrienlcp/result'
 import type { z } from 'zod'
 
+import {
+  type AdminLiveRoomsResponse,
+  type AdminReportResponse,
+  type AdminReportsQuery,
+  type AdminReportsResponse,
+  adminLiveRoomsResponseSchema,
+  adminReportResponseSchema,
+  adminReportsResponseSchema
+} from '@melee/protocol/admin'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import type { ShelvedGame } from '@melee/protocol/game'
 import {
@@ -101,6 +110,52 @@ export const fetchHealth = async ({
   signal
 }: Cancellable = {}): Promise<Result<HealthResponse, ApiFailure>> =>
   request(API_ROUTES.health, healthResponseSchema, { signal })
+
+type AdminRequest = Cancellable & {
+  /** `ADMIN_TOKEN`; a wrong one fails with `rejected`, as the server answers 404. */
+  adminKey: string
+}
+
+const asAdmin = ({ adminKey, signal }: AdminRequest): RequestInit => ({
+  headers: { Authorization: `Bearer ${adminKey}` },
+  signal
+})
+
+export const fetchAdminRooms = async (
+  admin: AdminRequest
+): Promise<Result<AdminLiveRoomsResponse, ApiFailure>> =>
+  request(API_ROUTES.adminRooms, adminLiveRoomsResponseSchema, asAdmin(admin))
+
+export const fetchAdminReports = async ({
+  query,
+  ...admin
+}: AdminRequest & {
+  query: Partial<AdminReportsQuery>
+}): Promise<Result<AdminReportsResponse, ApiFailure>> =>
+  request(
+    withQuery(
+      API_ROUTES.adminReports,
+      Object.fromEntries(
+        Object.entries(query)
+          .filter(([, value]) => value !== undefined)
+          .map(([name, value]) => [name, String(value)])
+      )
+    ),
+    adminReportsResponseSchema,
+    asAdmin(admin)
+  )
+
+export const fetchAdminReport = async ({
+  id,
+  ...admin
+}: AdminRequest & { id: number }): Promise<
+  Result<AdminReportResponse, ApiFailure>
+> =>
+  request(
+    fillRoute(API_ROUTES.adminReport, { id: String(id) }),
+    adminReportResponseSchema,
+    asAdmin(admin)
+  )
 
 export const roomExists = async ({
   code,

@@ -6,6 +6,7 @@ import {
   UnmatchedPathPage
 } from '@/infrastructure/router/locale-prefix'
 import {
+  adminPaths,
   localizedPaths,
   pairingPaths,
   paths,
@@ -46,6 +47,12 @@ type LazyPage = {
 }
 
 const pageFor = {
+  [paths.admin]: {
+    lazy: async () => ({
+      Component: (await import('@/features/admin/admin-page')).AdminPage
+    }),
+    module: 'src/features/admin/admin-page.tsx'
+  },
   [paths.assistant]: {
     lazy: async () => ({
       Component: (await import('@/features/assistant/assistant-page'))
@@ -154,6 +161,7 @@ export const routes: RouteObject[] = [
       },
       ...Object.values(roomPaths).map(routeFor),
       ...Object.values(pairingPaths).map(routeFor),
+      ...Object.values(adminPaths).map(routeFor),
       { Component: UnmatchedPathPage, path: '*' }
     ],
     // On the root, so a throw anywhere below replaces the shell instead of
