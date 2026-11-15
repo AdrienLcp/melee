@@ -95,6 +95,11 @@ team on the player model and a turn owner.
 | **Le compte est bon** — six tiles, one target, a calculation — stage [69](plans/69-make-the-number.md)                                       | Everyone at once                          | A draw and its solver in core, no bank; a mode of its own, `calculation`, built by tapping and checked by the server, many a seat and the nearest kept; every seat's value public, its working hidden                                                                                                                                                                                                                                                                                                                            | shelved                                                                      |
 | **Pense comme la table** (_Great minds_) — a prompt, one answer each, paid for thinking like the table — stage [70](plans/70-think-alike.md) | Everyone at once                          | One answer a seat paid at the close against every other, as the estimate is; a mode of its own, `match`; Petit Bac's grouping with a plural fold, the console merging two groups at the reveal; every answer hidden until the close                                                                                                                                                                                                                                                                                              | step 2                                                                       |
 | **Silhouettes** — a country's outline — stage [57](plans/57-silhouettes.md)                                                                  | Buzz-first, a quiz rubric                 | Nothing: a third rubric beside flags and capitals, outlines drawn once from the atlas topology                                                                                                                                                                                                                                                                                                                                                                                                                                   | **shipped**                                                                  |
+| **Road signs** — a sign, what it means | Buzz-first, a quiz rubric | Nothing new: the flags rubric's shape over the French road signs, which Wikimedia Commons carries as public-domain drawings. Mostly `choiceOnly`, because a sign's meaning typed is a sentence nobody types the same way | a session |
+| **Animals** — a photo, which animal | Buzz-first, a quiz rubric | Photos under a free licence (Commons, iNaturalist), credited on the credits page, and a ladder of difficulty: a familiar animal is asked by its breed or species — a border collie, not _a dog_ — so the rubric is not over at the first cow | a session, and the photo hunt |
+| **Animal calls** — a sound, which animal | Buzz-first, a quiz rubric | A question carrying a clip, played on the speaker screen as the blind test plays its track; recordings under a free licence (Commons, and the open archives of birdsong). The reverse — a name, four calls — is dropped: four clips in turn is a minute of listening for one question | two sessions |
+| **Pick the picture** — a name, four pictures | Everyone at once, a quiz answer shape | The reverse of every picture rubric at once: a `choice` whose candidates are pictures — a country to its flag or its outline, an animal to its photo, a meaning to its sign. One seam serving four rubrics, so it is built once and never per rubric | a session, after the first picture rubric |
+| **Logos** — a logo partly hidden, which brand; or a brand, four logos | Buzz-first, a quiz rubric | Rights, before anything. A logo is a trademark and often a copyrighted drawing; Melee would host and hand out the files, and a cropped or altered logo is the use brand owners object to most. A plain lettered logo is public domain on Commons for copyright and still a trademark | **parked** — not clearly allowed |
 
 Submit-then-vote is the shape that unlocks the most: six games share it. Their
 appetites assume the engine exists, so the first of them also pays for it, and
@@ -113,6 +118,14 @@ inherits it.
 
 The lesson for the rest of this table: this column costs _parts_, and a game can
 still owe a rule. Ask what a game **measures** before trusting its appetite.
+
+**A picture or a sound is a rubric of the quiz, not a game.** Road signs,
+animals and their calls measure what flags and silhouettes already measure —
+recognise it and name it — so they slot in beside them, typed or picked, buzzed
+or all at once, and inherit every setting the quiz has. What they owe is one
+shape the quiz lacks, _pick the picture_, and it is owed once for all four
+rubrics. A family of them would earn its own game only the day it measures
+something else (see _An answer mode is not a game_).
 
 ## The quiz, costed — and it needs no database
 
