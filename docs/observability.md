@@ -6,7 +6,7 @@ What the deployed game tells us about itself, and where to read it.
 | ----------------- | ------------------------------------------------------ | ------- | --------------------------------------------- |
 | Workers Logs      | every request, and every `logger` line                 | 3 days  | Cloudflare dashboard → Workers → melee → Logs |
 | `reports` (D1)    | each screen's errors, the server's own, reported clips | 30 days | `wrangler d1 execute` (below)                 |
-| `rooms_live` (D1) | one row per open room: game, phase, seats, walls       | 1 day   | written by every room as it changes          |
+| `rooms_live` (D1) | one row per open room: game, phase, seats, walls       | 1 day   | written by every room as it changes           |
 
 ## Error reports
 
