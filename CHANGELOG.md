@@ -219,6 +219,26 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A name inside a sentence is set in the read face.** Somebody
+  arriving, _playing as_, Petit Bac's stop, the duel, black square's fall, its
+  keeper and team, the track's leader, the slate's blanks, a team to move to
+  and the remove item now set the name in the read face as the buzz line
+  does, so a capital I and a small l stand apart there too; the rest of the
+  sentence keeps its face.
+
+- `[Game]` **The next-round press names the next game on its own spine.**
+  With no wall paired, the console's press carries the next game's spine at
+  its start — its box colour, glyph and name — in place of the line above it;
+  it slides in and out with the name, repaints when the next game changes,
+  and runs across the top as a band below the split.
+
+- `[Game]` **Every page loads a little less before it can be used.** _Report
+  a problem_ had put everything it needs to build and send a report into the
+  script every page loads first. Only the recorder of the screen's last two
+  minutes still loads up front; the rest now comes with the menu, which every
+  screen already fetches before it is opened — about 1 kB less on each front
+  door and a scanned code's page.
+
 - `[Game]` **What somebody typed tells I from l.** Players read _Ilan_ and
   _llan_ as the same name: Bricolage Grotesque draws a capital I and a small l
   as one bar and carries no alternate for either. Every name a seat chose —
@@ -484,6 +504,41 @@ one part.
   answers, the fastest still takes up to ten points more.
 
 ### Fixes
+
+- `[Game]` **A console whose host sits far down a full table no longer runs
+  wider than the screen.** The score track's hidden _(you)_ and _(away)_ laid
+  out against the page and stretched it to the strip's far end — 675px on a
+  320px phone, which could pan sideways; they now stay inside the track.
+
+- `[Game]` **A map to name keeps its zoom-out press on a phone held
+  upright.** As the room's screen, the press stuck out past the map's foot;
+  the round's sand now sits on a strip beside the menu and the map gets the
+  height back.
+
+- `[Game]` **The first countdown no longer slides down as it lands after the
+  lobby** — 9px on a console, 13 to 15px on a wall and the console beside it:
+  the round's number and the way in now arrive in the header at their full
+  height, and still open and fade in.
+
+- `[Game]` **The nickname form and a seated Petit Bac sheet keep clear of the
+  menu with a keyboard up.** Under a keyboard laid over the page, the nickname
+  form's card ran its corner and the end of its question under the corner
+  menu: it now starts under the menu's line, its padding and its press cut so
+  the question, the field and the press stay above the keyboard. A seated
+  console's letter and clock stood 12px under the menu's line at 320×284,
+  360×320 and 390×300, and now stand on it as the player's do; under a
+  keyboard laid over the page the seated console kept its header and drew its
+  sheet as a 24px sliver, its short-screen rules now reading the shown height.
+
+- `[Game]` **The room code's copy press shows its whole label on a narrow
+  console.** In the lobby it read _Copy the_; it now wraps onto two lines and
+  keeps one size as it turns to _Copied_.
+
+- `[Game]` **Opening _Report a problem_ no longer files an error report.** The
+  menu widened frame by frame as the section opened, and the browser's
+  resize-loop notice went out as an uncaught error; the menu now has a fixed
+  width, and that notice is kept in a report's trail but never sent as an
+  error.
 
 - `[Game]` **The menu opens as fast every time.** Every open, not only the
   first, took a quarter to a third of a second on a phone before the menu
@@ -812,6 +867,11 @@ one part.
   tab's title is a bar held at the top, and the rows scroll under it.
 
 ### Internal
+
+- `[Game]` **The guard against root `:has()` rules that restyle the whole
+  page reads every stylesheet**, the console's, the player's and the wall's
+  included, not only the front door's, and catches two more ways of writing
+  one. None was found.
 
 - `[Game]` The notice region is fetched with the first notice instead of on
   every page, and the menu's glyph no longer brings every other glyph into
