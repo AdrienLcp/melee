@@ -11,13 +11,13 @@ give the value away.
 
 ## What already exists, and what it costs
 
-| Family                       | Picture                                   | New asset?                                 |
-| ---------------------------- | ----------------------------------------- | ------------------------------------------ |
-| `population.country`, `area.country` | the outline the silhouettes rubric draws (stage 57), 173 SVGs in `apps/game/public/silhouettes/`, 813 KiB | **none** — a mapping only |
-| `*.region`, `*.department`   | the France map's own shapes (`world-geometry.ts`'s conic projection) | an outline per region and department, built like the silhouettes |
-| `population.city`, `area.city` | a dot on the country's outline, or nothing | none at first |
-| `elevation.mountain`, `height.building`, `length.river` | a Wikimedia Commons photograph | yes |
-| `price.item`                 | a Wikimedia Commons photograph            | yes, sixty, chosen by hand                 |
+| Family                                                  | Picture                                                                                                   | New asset?                                                       |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `population.country`, `area.country`                    | the outline the silhouettes rubric draws (stage 57), 173 SVGs in `apps/game/public/silhouettes/`, 813 KiB | **none** — a mapping only                                        |
+| `*.region`, `*.department`                              | the France map's own shapes (`world-geometry.ts`'s conic projection)                                      | an outline per region and department, built like the silhouettes |
+| `population.city`, `area.city`                          | a dot on the country's outline, or nothing                                                                | none at first                                                    |
+| `elevation.mountain`, `height.building`, `length.river` | a Wikimedia Commons photograph                                                                            | yes                                                              |
+| `price.item`                                            | a Wikimedia Commons photograph                                                                            | yes, sixty, chosen by hand                                       |
 
 **Step 1 is the countries, because it costs no asset.** A country row carries
 its Wikidata id (`Q142`) and a silhouette its ISO alpha-3 code (`FRA`):

@@ -643,7 +643,7 @@ the screen shows the band below it — the black square's whole round sat at
 window is over, since inside it the band reads at the top too.
 
 Two orderings to drive, because they disagree: a tap focuses first and the
-keyboard takes its room after, and Safari pans to the field *before* the page
+keyboard takes its room after, and Safari pans to the field _before_ the page
 hears of the resize, where Chromium resizes first and pans only if the field is
 still covered. On the emulator, Chrome's own mode is reached by stripping
 `interactive-widget=resizes-content` from the served HTML (a
