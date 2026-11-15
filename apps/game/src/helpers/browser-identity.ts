@@ -11,7 +11,7 @@ const BROWSER_PATTERNS: readonly [BrowserIdentity['name'], RegExp][] = [
   ['opera', /\b(?:OPR|Opera)\/([\d.]+)/],
   ['samsung-internet', /\bSamsungBrowser\/([\d.]+)/],
   ['firefox', /\b(?:Firefox|FxiOS)\/([\d.]+)/],
-  ['chrome', /\b(?:Chrome|CriOS|Chromium)\/([\d.]+)/],
+  ['chrome', /\b(?:HeadlessChrome|Chrome|CriOS|Chromium)\/([\d.]+)/],
   ['safari', /\bVersion\/([\d.]+).*\bSafari\//]
 ]
 

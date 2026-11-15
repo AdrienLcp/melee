@@ -24,6 +24,10 @@ describe('browser identity', () => {
       'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0',
       { name: 'firefox', system: 'linux', version: '78.0' }
     ],
+    [
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/140.0.7339.16 Safari/537.36',
+      { name: 'chrome', system: 'windows', version: '140.0' }
+    ],
     ['curl/8.4.0', { name: 'other', system: 'other', version: '' }]
   ])('[reports] reads %s', (userAgent, identity) => {
     expect(browserIdentityOf(userAgent)).toEqual(identity)
