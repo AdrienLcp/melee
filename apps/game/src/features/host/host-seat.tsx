@@ -17,6 +17,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './host-seat.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type HostSeatProps = {
   /** Gives the seat this console holds back to the room. */
   onLeaveSeat: () => void
@@ -71,7 +74,14 @@ export const HostSeat: React.FC<HostSeatProps> = ({
   if (takenAs !== null) {
     return (
       <section className='host-seat taken'>
-        <p>{translate('host.seat.taken', { nickname: takenAs })}</p>
+        <p>
+          <RichText
+            parts={translate.rich('host.seat.taken', {
+              name: typedName,
+              nickname: takenAs
+            })}
+          />
+        </p>
         {isRoundJudgedByHost(view.round) && (
           <p>{translate('host.seat.sittingOut')}</p>
         )}

@@ -24,6 +24,9 @@ import { VisuallyHidden } from './visually-hidden'
 
 import './black-square-reveal.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 /** The longest name the grid's type was fitted on; nine in ten of the bank's answers are no longer. */
 const NAME_LENGTH_AT_FULL_SIZE = 26
 
@@ -154,9 +157,12 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
             fell.map((playerId) => (
               <span className='fell' key={playerId}>
                 <Pawn seat={seatOf(playerId)} />
-                {translate('blacksquare.blackWord.fell', {
-                  nickname: nameOf(playerId)
-                })}
+                <RichText
+                  parts={translate.rich('blacksquare.blackWord.fell', {
+                    name: typedName,
+                    nickname: nameOf(playerId)
+                  })}
+                />
               </span>
             ))
           )}

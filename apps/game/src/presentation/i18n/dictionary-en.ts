@@ -233,7 +233,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     blackWord: {
       ends: 'Your round stops here. It is worth nothing.',
-      fell: '{nickname} lost the round on it',
+      fell: '<name>{nickname}</name> lost the round on it',
       nobodyFell: 'Nobody fell for it',
       stamp: 'Black word'
     },
@@ -276,14 +276,15 @@ export const EN_DICTIONARY = defineDictionary({
         confirm: 'They said it',
         keep: 'Not said'
       },
-      guessing: 'Out loud: {team}',
+      guessing: 'Out loud: <name>{team}</name>',
       hidden:
         'Hidden, so you can hold the screen up without giving anything away.',
       hide: 'Hide the list',
-      keep: 'You keep the list for {team}. Tick each answer you hear.',
-      keeper: '{nickname} keeps the list',
+      keep: 'You keep the list for <name>{team}</name>. Tick each answer you hear.',
+      keeper: '<name>{nickname}</name> keeps the list',
       show: 'Show the list',
-      yourTeam: 'Say your answers out loud. {nickname} ticks them off.'
+      yourTeam:
+        'Say your answers out loud. <name>{nickname}</name> ticks them off.'
     },
     tagline: 'Hidden answers. One black word.',
     tier: defineTranslation('{points:plural}', {
@@ -465,9 +466,12 @@ export const EN_DICTIONARY = defineDictionary({
       ahead: defineTranslation('In front by {gap:plural}', {
         plural: { gap: { one: '{?} square', other: '{?} squares' } }
       }),
-      behind: defineTranslation('{leader} in front, {gap:plural} ahead', {
-        plural: { gap: { one: '{?} square', other: '{?} squares' } }
-      }),
+      behind: defineTranslation(
+        '<name>{leader}</name> in front, {gap:plural} ahead',
+        {
+          plural: { gap: { one: '{?} square', other: '{?} squares' } }
+        }
+      ),
       level: 'Level at the front'
     },
     more: '+{count:number}',
@@ -918,7 +922,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Time to answer after a buzz'
     },
     /** A seat taken while a game runs, said for a few seconds and gone. */
-    arrival: '{nickname} joins',
+    arrival: '<name>{nickname}</name> joins',
     autoAdvance: 'Time before the next round',
     backToRoom: 'Back to the table',
     closeRoom: {
@@ -1122,7 +1126,7 @@ export const EN_DICTIONARY = defineDictionary({
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} player', other: '{?} players' } }
       }),
-      removeNamed: 'Remove {nickname}'
+      removeNamed: 'Remove <name>{nickname}</name>'
     },
     /** The console laid out in three zones while a wall shows the game. */
     podium: {
@@ -1318,7 +1322,7 @@ export const EN_DICTIONARY = defineDictionary({
       leave: 'Give up the seat',
       offer: 'Play from this screen',
       sittingOut: 'You judge this round, and play again from the next.',
-      taken: 'You are playing as {nickname}.',
+      taken: 'You are playing as <name>{nickname}</name>.',
       /**
        * Why there is no seat here, one line per `SeatWithheldReason`. `mode`
        * names the way out rather than the rule, because the strip that undoes
@@ -1472,7 +1476,7 @@ export const EN_DICTIONARY = defineDictionary({
      */
     rightAway: {
       action: 'Play right away',
-      as: 'As {nickname}',
+      as: 'As <name>{nickname}</name>',
       change: 'Change',
       name: 'What should we call you?',
       starting: 'Setting the table…'
@@ -2100,7 +2104,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     stop: {
       barred: 'Your stop was taken back: the others finish the round.',
-      called: '{name} said stop',
+      called: '<name>{nickname}</name> said stop',
       calledByHost: 'The host said stop',
       calledByYou: 'You said stop',
       filling: 'Stop · {filled:number}/{count:number}',
@@ -2429,7 +2433,8 @@ export const EN_DICTIONARY = defineDictionary({
     thisRound: 'This round',
     /** A seat that never sent, paid on what its screen held as the round closed. */
     unsent: 'Never sent: taken as your screen held it.',
-    unsentSeats: 'Never sent, taken as their screen held it: {names}'
+    unsentSeats:
+      'Never sent, taken as their screen held it: <name>{names}</name>'
   },
   slate: {
     board: {
@@ -2445,7 +2450,7 @@ export const EN_DICTIONARY = defineDictionary({
       }
     },
     correct: {
-      blanks: 'Left blank: {names}',
+      blanks: 'Left blank: <name>{names}</name>',
       finish: 'Show the scores',
       judge: 'Right',
       key: {
@@ -2613,7 +2618,7 @@ export const EN_DICTIONARY = defineDictionary({
       'At least {count:number} players to make {count:number} teams — or pick fewer teams.',
     /** Two seats head to head, each named beside its team's pawn. */
     duel: {
-      title: '{first} vs {second}'
+      title: '<name>{first}</name> vs <name>{second}</name>'
     },
     empty: 'Nobody yet',
     final: {
@@ -2632,7 +2637,7 @@ export const EN_DICTIONARY = defineDictionary({
     move: {
       label: 'Move {nickname} to another team',
       short: 'Team',
-      to: 'To the {team}'
+      to: 'To the <name>{team}</name>'
     },
     needsSeats:
       'Teams start at {count:number} players — until then, everyone plays for themselves.',

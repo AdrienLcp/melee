@@ -17,6 +17,9 @@ import { BlackSquareTurn } from './black-square-turn'
 
 import './black-square-spoken.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type BlackSquareSpokenProps = {
   /** The tier of every answer the round dealt, three to nine of them. */
   cellTiers: BlackSquareCellTiers
@@ -67,9 +70,12 @@ export const BlackSquareSpoken: React.FC<BlackSquareSpokenProps> = ({
     <section className='black-square-spoken'>
       {isGuessing ? (
         <p className='say'>
-          {translate('blacksquare.spoken.yourTeam', {
-            nickname: keeper?.nickname ?? ''
-          })}
+          <RichText
+            parts={translate.rich('blacksquare.spoken.yourTeam', {
+              name: typedName,
+              nickname: keeper?.nickname ?? ''
+            })}
+          />
         </p>
       ) : (
         <BlackSquareTurn

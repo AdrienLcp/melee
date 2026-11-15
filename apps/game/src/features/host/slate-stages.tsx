@@ -30,6 +30,9 @@ import type { SlateWall } from './use-slate-wall'
 
 import './slate-stages.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type SlateStageProps = {
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
   isLive: boolean
@@ -537,9 +540,12 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
                       ))}
                     </span>
                     <span className='names'>
-                      {translate('slate.correct.blanks', {
-                        names: nicknamesOf(view.players, blankPlayerIds)
-                      })}
+                      <RichText
+                        parts={translate.rich('slate.correct.blanks', {
+                          name: typedName,
+                          names: nicknamesOf(view.players, blankPlayerIds)
+                        })}
+                      />
                     </span>
                   </span>
                 </li>

@@ -11,6 +11,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './duel-badge.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type DuelBadgeProps = {
   duel: RoundDuel
   /** Who the two seats are named by. */
@@ -56,10 +59,13 @@ export const DuelBadge: React.FC<DuelBadgeProps> = ({
     >
       <Pawn colour={team.colour} />
       <span className='plays'>
-        {translate('team.duel.title', {
-          first: nameOf(firstId),
-          second: nameOf(secondId)
-        })}
+        <RichText
+          parts={translate.rich('team.duel.title', {
+            first: nameOf(firstId),
+            name: typedName,
+            second: nameOf(secondId)
+          })}
+        />
       </span>
       <Pawn colour={rival.colour} />
     </p>

@@ -251,9 +251,12 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             )}
             {onRemove !== undefined && (
               <Button
-                aria-label={translate('host.players.removeNamed', {
-                  nickname: player.nickname
-                })}
+                aria-label={translate
+                  .rich('host.players.removeNamed', {
+                    name: (nickname) => nickname,
+                    nickname: player.nickname
+                  })
+                  .join('')}
                 className='remove'
                 onPress={() => {
                   onRemove(player.id)

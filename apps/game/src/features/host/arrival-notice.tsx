@@ -13,6 +13,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './arrival-notice.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 /** Long enough to read a name, short enough to be gone by the next question. */
 const ARRIVAL_SHOWN_MS = 4_500
 
@@ -105,7 +108,12 @@ export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
         <>
           <Pawn seat={drawn.seat} />
           <span className='words'>
-            {translate('host.arrival', { nickname: drawn.nickname })}
+            <RichText
+              parts={translate.rich('host.arrival', {
+                name: typedName,
+                nickname: drawn.nickname
+              })}
+            />
           </span>
         </>
       )}

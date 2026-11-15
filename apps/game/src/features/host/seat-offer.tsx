@@ -14,6 +14,9 @@ import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './seat-offer.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type SeatOfferProps = {
   /** What the room is playing, which decides what the seat costs this screen. */
   game: GameKind | null
@@ -89,7 +92,12 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
             ) : (
               <p className='as'>
                 <span className='seated-as'>
-                  {translate('join.rightAway.as', { nickname })}
+                  <RichText
+                    parts={translate.rich('join.rightAway.as', {
+                      name: typedName,
+                      nickname
+                    })}
+                  />
                 </span>
                 <Button
                   onPress={() => setIsNaming(true)}

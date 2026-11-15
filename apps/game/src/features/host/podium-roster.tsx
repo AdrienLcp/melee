@@ -28,6 +28,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './podium-roster.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type PodiumRosterProps = {
   /** Takes a seat off the table. Never offered on this console's own seat. */
   onRemovePlayer: (playerId: PlayerId) => void
@@ -160,10 +163,19 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                     onAction={() => {
                       onRemovePlayer(player.id)
                     }}
+                    textValue={translate
+                      .rich('host.players.removeNamed', {
+                        name: (nickname) => nickname,
+                        nickname: player.nickname
+                      })
+                      .join('')}
                   >
-                    {translate('host.players.removeNamed', {
-                      nickname: player.nickname
-                    })}
+                    <RichText
+                      parts={translate.rich('host.players.removeNamed', {
+                        name: typedName,
+                        nickname: player.nickname
+                      })}
+                    />
                   </ActionMenuItem>
                 </ActionMenu>
               )}

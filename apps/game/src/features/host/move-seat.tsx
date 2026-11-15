@@ -13,6 +13,9 @@ import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './team-leaflet.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type MoveSeatProps = {
   onMove: (teamId: TeamId) => void
   player: PublicPlayer
@@ -58,7 +61,12 @@ export const MoveSeat: React.FC<MoveSeatProps> = ({
                   variant='outlined'
                 >
                   <Pawn colour={team.colour} />
-                  {translate('team.move.to', { team: teamName(team) })}
+                  <RichText
+                    parts={translate.rich('team.move.to', {
+                      name: typedName,
+                      team: teamName(team)
+                    })}
+                  />
                 </Button>
               </li>
             ))}

@@ -37,6 +37,9 @@ import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import './petit-bac-sheet.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 /**
  * The list scrolls inside its card, and a keyboard coming up shrinks that box
  * under the line being typed: the line, its category with it, is brought back
@@ -297,13 +300,18 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
             {stopCall?.kind === 'seat' && <Pawn seat={stopCall.seat} />}
             {stopCall !== null && (
               <span>
-                {stopCall.kind === 'host'
-                  ? translate('petitbac.stop.calledByHost')
-                  : view.players[stopCall.seat]?.id === view.youId
-                    ? translate('petitbac.stop.calledByYou')
-                    : translate('petitbac.stop.called', {
-                        name: view.players[stopCall.seat]?.nickname ?? ''
-                      })}
+                {stopCall.kind === 'host' ? (
+                  translate('petitbac.stop.calledByHost')
+                ) : view.players[stopCall.seat]?.id === view.youId ? (
+                  translate('petitbac.stop.calledByYou')
+                ) : (
+                  <RichText
+                    parts={translate.rich('petitbac.stop.called', {
+                      name: typedName,
+                      nickname: view.players[stopCall.seat]?.nickname ?? ''
+                    })}
+                  />
+                )}
               </span>
             )}
           </p>

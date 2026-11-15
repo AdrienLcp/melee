@@ -18,6 +18,7 @@ import { RichText } from '@/presentation/i18n/rich-text'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 
 import './verdict-panel.sass'
+import { typedName } from '@/presentation/components/typed-name'
 
 type VerdictChoice = {
   /**
@@ -125,11 +126,7 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
         <h2>
           <RichText
             parts={translate.rich('buzz.theyBuzzed', {
-              name: (typed) => (
-                <span className='nickname' key='nickname'>
-                  {typed}
-                </span>
-              ),
+              name: typedName,
               nickname
             })}
           />

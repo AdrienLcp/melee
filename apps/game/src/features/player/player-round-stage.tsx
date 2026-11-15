@@ -138,6 +138,7 @@ import { TeamRoster } from '@/presentation/components/team-roster'
 import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
+import { typedName } from '@/presentation/components/typed-name'
 import {
   useMoveWords,
   useOrderWords
@@ -152,6 +153,7 @@ import {
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
+import { RichText } from '@/presentation/i18n/rich-text'
 import { buzzBlockerKey, type Translate } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 import { currentDeadline } from '@/presentation/timing/last-seconds'
@@ -1760,7 +1762,7 @@ const statusLine = ({
   isWon: boolean
   translate: Translate
   view: PlayerRoomView
-}): { isFloor: boolean; text: string } => {
+}): { isFloor: boolean; text: React.ReactNode } => {
   if (hasFailed) {
     return { isFloor: false, text: translate('buzz.sendFailed') }
   }
@@ -1776,9 +1778,14 @@ const statusLine = ({
   if (view.phase === 'buzzed' && nickname !== undefined) {
     return {
       isFloor: true,
-      text: translate
-        .rich('buzz.theyBuzzed', { name: (typed) => typed, nickname })
-        .join('')
+      text: (
+        <RichText
+          parts={translate.rich('buzz.theyBuzzed', {
+            name: typedName,
+            nickname
+          })}
+        />
+      )
     }
   }
 

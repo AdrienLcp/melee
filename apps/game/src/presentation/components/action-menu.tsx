@@ -54,25 +54,35 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   </MenuTrigger>
 )
 
-type ActionMenuItemProps = Omit<MenuItemProps, 'children' | 'textValue'> & {
-  children: string
-  icon: React.ReactNode
-  /** Takes something away: the item lights in the danger stamp when reached. */
-  isDestructive?: boolean
-}
+type ActionMenuItemLabel =
+  | { children: string; textValue?: never }
+  | {
+      /** A label marked up — a name set in the read face. */
+      children: React.ReactNode
+      /** The label as plain text, which the typeahead and a reader are given. */
+      textValue: string
+    }
+
+type ActionMenuItemProps = Omit<MenuItemProps, 'children' | 'textValue'> &
+  ActionMenuItemLabel & {
+    icon: React.ReactNode
+    /** Takes something away: the item lights in the danger stamp when reached. */
+    isDestructive?: boolean
+  }
 
 export const ActionMenuItem: React.FC<ActionMenuItemProps> = ({
   children,
   className,
   icon,
   isDestructive,
+  textValue,
   ...props
 }) => (
   <MenuItem
     {...props}
     className={composeClassName(className, 'action-menu-item')}
     data-destructive={isDestructive || undefined}
-    textValue={children}
+    textValue={typeof children === 'string' ? children : textValue}
   >
     {icon}
     <span>{children}</span>

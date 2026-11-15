@@ -13,6 +13,9 @@ import { TextField } from './text-field'
 
 import './play-right-away.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type PlayRightAwayProps = Omit<FormProps, 'children' | 'onSubmit'> & {
   /** The socket or the network is not there to carry the press. */
   isDisabled?: boolean
@@ -84,7 +87,12 @@ export const PlayRightAway: React.FC<PlayRightAwayProps> = ({
       <div className='fold' data-open={!isNaming || undefined} inert={isNaming}>
         <p className='as'>
           <span className='seated-as'>
-            {translate('join.rightAway.as', { nickname })}
+            <RichText
+              parts={translate.rich('join.rightAway.as', {
+                name: typedName,
+                nickname
+              })}
+            />
           </span>
           <Button
             isDisabled={isPending}

@@ -227,7 +227,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     blackWord: {
       ends: 'Ta manche s’arrête là. Elle ne rapporte rien.',
-      fell: '{nickname} y a laissé sa manche',
+      fell: '<name>{nickname}</name> y a laissé sa manche',
       nobodyFell: 'Personne n’est tombé dedans',
       stamp: 'Mot noir'
     },
@@ -275,13 +275,14 @@ export const FR_DICTIONARY = defineDictionary({
         confirm: 'Ils l’ont dit',
         keep: 'Pas dit'
       },
-      guessing: 'À voix haute : {team}',
+      guessing: 'À voix haute : <name>{team}</name>',
       hidden: 'Cachée : tu peux montrer l’écran sans rien dévoiler.',
       hide: 'Cacher la liste',
-      keep: 'Tu tiens la liste pour {team}. Coche chaque réponse entendue.',
-      keeper: '{nickname} tient la liste',
+      keep: 'Tu tiens la liste pour <name>{team}</name>. Coche chaque réponse entendue.',
+      keeper: '<name>{nickname}</name> tient la liste',
       show: 'Voir la liste',
-      yourTeam: 'Dites vos réponses à voix haute. {nickname} les coche.'
+      yourTeam:
+        'Dites vos réponses à voix haute. <name>{nickname}</name> les coche.'
     },
     tagline: 'Des réponses cachées. Un mot noir.',
     tier: defineTranslation('{points:plural}', {
@@ -436,9 +437,12 @@ export const FR_DICTIONARY = defineDictionary({
       ahead: defineTranslation('En tête de {gap:plural}', {
         plural: { gap: { one: '{?} case', other: '{?} cases' } }
       }),
-      behind: defineTranslation('{leader} en tête, {gap:plural} devant', {
-        plural: { gap: { one: '{?} case', other: '{?} cases' } }
-      }),
+      behind: defineTranslation(
+        '<name>{leader}</name> en tête, {gap:plural} devant',
+        {
+          plural: { gap: { one: '{?} case', other: '{?} cases' } }
+        }
+      ),
       level: 'À égalité en tête'
     },
     more: '+{count:number}',
@@ -871,7 +875,7 @@ export const FR_DICTIONARY = defineDictionary({
     answerWindow: {
       label: 'Temps pour répondre après un buzz'
     },
-    arrival: '{nickname} arrive',
+    arrival: '<name>{nickname}</name> arrive',
     autoAdvance: 'Temps avant la manche suivante',
     backToRoom: 'Retour à la table',
     closeRoom: {
@@ -1073,7 +1077,7 @@ export const FR_DICTIONARY = defineDictionary({
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} joueur', other: '{?} joueurs' } }
       }),
-      removeNamed: 'Retirer {nickname}'
+      removeNamed: 'Retirer <name>{nickname}</name>'
     },
     podium: {
       actions: 'Options pour {nickname}',
@@ -1257,7 +1261,7 @@ export const FR_DICTIONARY = defineDictionary({
       leave: 'Rendre sa place',
       offer: 'Jouer depuis cet écran',
       sittingOut: 'Tu juges cette manche, tu rejoues à la suivante.',
-      taken: 'Tu joues sous le nom de {nickname}.',
+      taken: 'Tu joues sous le nom de <name>{nickname}</name>.',
       withheld: {
         aloud:
           'Les équipes répondent à voix haute et tu les juges, donc pas de place ici.'
@@ -1397,7 +1401,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     rightAway: {
       action: 'Jouer tout de suite',
-      as: 'Sous le nom de {nickname}',
+      as: 'Sous le nom de <name>{nickname}</name>',
       change: 'Changer',
       name: 'On t’appelle comment ?',
       starting: 'On installe la table…'
@@ -1998,7 +2002,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     stop: {
       barred: 'Ton stop a été annulé : les autres finissent la manche.',
-      called: '{name} a dit stop',
+      called: '<name>{nickname}</name> a dit stop',
       calledByHost: 'L’hôte a dit stop',
       calledByYou: 'Tu as dit stop',
       filling: 'Stop · {filled:number}/{count:number}',
@@ -2270,7 +2274,7 @@ export const FR_DICTIONARY = defineDictionary({
       'Sur la montre, une réponse parfaite garde 90 points, et la donner tôt ajoute jusqu’à 10 de plus.',
     thisRound: 'Cette manche',
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
-    unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'
+    unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : <name>{names}</name>'
   },
   slate: {
     board: {
@@ -2286,7 +2290,7 @@ export const FR_DICTIONARY = defineDictionary({
       }
     },
     correct: {
-      blanks: 'Rien écrit : {names}',
+      blanks: 'Rien écrit : <name>{names}</name>',
       finish: 'Voir les scores',
       judge: 'Juste',
       key: {
@@ -2448,7 +2452,7 @@ export const FR_DICTIONARY = defineDictionary({
     drawNeeds:
       'Il faut au moins {count:number} joueurs pour faire {count:number} équipes — ou choisis moins d’équipes.',
     duel: {
-      title: '{first} contre {second}'
+      title: '<name>{first}</name> contre <name>{second}</name>'
     },
     empty: 'Personne pour l’instant',
     final: {
@@ -2467,7 +2471,7 @@ export const FR_DICTIONARY = defineDictionary({
     move: {
       label: 'Mettre {nickname} dans une autre équipe',
       short: 'Équipe',
-      to: 'Chez les {team}'
+      to: 'Chez les <name>{team}</name>'
     },
     needsSeats:
       'Les équipes se forment à partir de {count:number} joueurs — d’ici là, chacun joue pour soi.',

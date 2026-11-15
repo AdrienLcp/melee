@@ -21,6 +21,9 @@ import { CheckIcon } from './icons'
 
 import './black-square-keeper.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 /** A cell's place on the grid is its identity: the list is dealt once a round and never reordered. */
 const cellKeyOf = (cell: number): string => `cell-${cell}`
 
@@ -62,7 +65,12 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
       data-shown={isShown || undefined}
     >
       <p className='brief'>
-        {translate('blacksquare.spoken.keep', { team: guessingTeam })}
+        <RichText
+          parts={translate.rich('blacksquare.spoken.keep', {
+            name: typedName,
+            team: guessingTeam
+          })}
+        />
       </p>
       <div className='keeper-grid'>
         <ol

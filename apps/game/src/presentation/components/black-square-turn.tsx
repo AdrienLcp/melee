@@ -10,6 +10,9 @@ import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './black-square-turn.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type BlackSquareTurnProps = {
   /** Who keeps the list is named by. */
   players: readonly PublicPlayer[]
@@ -49,14 +52,22 @@ export const BlackSquareTurn: React.FC<BlackSquareTurnProps> = ({
     >
       <Pawn colour={team.colour} />
       <span className='guessing'>
-        {translate('blacksquare.spoken.guessing', { team: teamName(team) })}
+        <RichText
+          parts={translate.rich('blacksquare.spoken.guessing', {
+            name: typedName,
+            team: teamName(team)
+          })}
+        />
       </span>
       {keeper !== undefined && (
         <span className='keeper'>
           <Pawn seat={players.indexOf(keeper)} />
-          {translate('blacksquare.spoken.keeper', {
-            nickname: keeper.nickname
-          })}
+          <RichText
+            parts={translate.rich('blacksquare.spoken.keeper', {
+              name: typedName,
+              nickname: keeper.nickname
+            })}
+          />
         </span>
       )}
     </p>

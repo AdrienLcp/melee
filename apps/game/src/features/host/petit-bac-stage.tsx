@@ -25,6 +25,9 @@ import { ScoreTrack, type SeatProgress } from './score-track'
 
 import './petit-bac-stage.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type PetitBacStageProps = {
   round: RoundView
   view: HostRoomView
@@ -145,11 +148,16 @@ const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
             <p className='stop-banner' role='status'>
               {stopCall?.kind === 'seat' && <Pawn seat={stopCall.seat} />}
               <span>
-                {stopCall?.kind === 'seat'
-                  ? translate('petitbac.stop.called', {
-                      name: view.players[stopCall.seat]?.nickname ?? ''
-                    })
-                  : translate('petitbac.stop.calledByHost')}
+                {stopCall?.kind === 'seat' ? (
+                  <RichText
+                    parts={translate.rich('petitbac.stop.called', {
+                      name: typedName,
+                      nickname: view.players[stopCall.seat]?.nickname ?? ''
+                    })}
+                  />
+                ) : (
+                  translate('petitbac.stop.calledByHost')
+                )}
               </span>
             </p>
           </div>

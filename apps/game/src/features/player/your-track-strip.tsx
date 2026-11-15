@@ -11,6 +11,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './your-track-strip.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 const isPlayersPawn = ({
   pawn,
   view
@@ -75,14 +78,19 @@ const TrackLeadLine: React.FC<{
 
   return (
     <p className='track-lead'>
-      {lead.kind === 'ahead'
-        ? translate('board.lead.ahead', { gap: lead.gap })
-        : lead.kind === 'level'
-          ? translate('board.lead.level')
-          : translate('board.lead.behind', {
-              gap: lead.gap,
-              leader: pawnName(lead.leader)
-            })}
+      {lead.kind === 'ahead' ? (
+        translate('board.lead.ahead', { gap: lead.gap })
+      ) : lead.kind === 'level' ? (
+        translate('board.lead.level')
+      ) : (
+        <RichText
+          parts={translate.rich('board.lead.behind', {
+            gap: lead.gap,
+            leader: pawnName(lead.leader),
+            name: typedName
+          })}
+        />
+      )}
     </p>
   )
 }

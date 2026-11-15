@@ -23,6 +23,9 @@ import { VisuallyHidden } from './visually-hidden'
 
 import './round-podium.sass'
 
+import { typedName } from '@/presentation/components/typed-name'
+import { RichText } from '@/presentation/i18n/rich-text'
+
 type RoundPodiumProps = {
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
@@ -170,9 +173,12 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
         </span>
         {unsentScorers.length > 0 && (
           <span className='unsent'>
-            {translate('round.unsentSeats', {
-              names: unsentScorers.map(nameOf).join(', ')
-            })}
+            <RichText
+              parts={translate.rich('round.unsentSeats', {
+                name: typedName,
+                names: unsentScorers.map(nameOf).join(', ')
+              })}
+            />
           </span>
         )}
       </p>
