@@ -1,4 +1,10 @@
+import { globSync } from 'node:fs'
+import { basename, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { expect, test } from '@playwright/test'
+
+const GAME_ROOT = fileURLToPath(new URL('../apps/game', import.meta.url))
 
 /**
  * Not a journey. A phone has no hover, so the menu's chunk has to be in hand
@@ -86,16 +92,41 @@ test('[e2e] a seated player opens the menu again without drawing what it folds a
   expect(elementCount).toBeLessThan(MOST_ELEMENTS_IN_A_SEATED_MENU)
 })
 
+/**
+ * Every stylesheet the app owns, partials aside — they reach the page only
+ * through the sheets that `@use` them. A room's screens load theirs with their
+ * route, so reading the front door's `document.styleSheets` left every rule
+ * of the console, the player and the wall unchecked.
+ */
+const STYLESHEETS = globSync('src/**/*.{sass,css}', {
+  cwd: GAME_ROOT
+})
+  .filter((path) => !basename(path).startsWith('_'))
+  .map((path) => path.split(sep).join('/'))
+
 test('[e2e] no rule keyed on the root reaches past it through :has()', async ({
-  page
+  page,
+  request
 }) => {
   await page.goto('/en')
 
+  // Compiled by the dev server exactly as a page would get it.
+  const sheets = await Promise.all(
+    STYLESHEETS.map(async (path) => {
+      const served = await request.get(`/${path}?direct`)
+
+      expect(served.ok(), path).toBe(true)
+
+      return { css: await served.text(), path }
+    })
+  )
+
   // Chromium answers a `:root:has(…) .descendant` rule by restyling the whole
   // document on every change anywhere in it: the menu's corner was written so
-  // and every open of it restyled a console five times over.
-  const offenders = await page.evaluate(() => {
-    const ROOT_HAS = /^\s*(:root|html):has\(/
+  // and every open of it restyled a console five times over. Sass writes a
+  // list of them as `:is(:root:has(…), :root:has(…))`, so that is read too.
+  const offenders = await page.evaluate((stylesheets) => {
+    const ROOT_HAS = /^\s*(?:(?::is|:where)\(\s*)?(?::root|html):has\(/
 
     const afterRootHas = (selector: string): string | null => {
       const match = ROOT_HAS.exec(selector)
@@ -104,7 +135,7 @@ test('[e2e] no rule keyed on the root reaches past it through :has()', async ({
         return null
       }
 
-      let depth = 1
+      let depth = match[0].split('(').length - 1
       let index = match[0].length
 
       while (index < selector.length && depth > 0) {
@@ -112,7 +143,21 @@ test('[e2e] no rule keyed on the root reaches past it through :has()', async ({
         index += 1
       }
 
-      return selector.slice(index)
+      return selector.slice(index).trimEnd()
+    }
+
+    const hasTopLevelCombinator = (rest: string): boolean => {
+      let depth = 0
+
+      for (const character of rest) {
+        depth += character === '(' ? 1 : character === ')' ? -1 : 0
+
+        if (depth === 0 && /[\s>~+]/.test(character)) {
+          return true
+        }
+      }
+
+      return false
     }
 
     const splitTopLevel = (list: string): string[] => {
@@ -134,30 +179,38 @@ test('[e2e] no rule keyed on the root reaches past it through :has()', async ({
 
     const found: string[] = []
 
-    const visit = (rules: CSSRuleList): void => {
+    const visit = (path: string, rules: CSSRuleList): void => {
       for (const rule of rules) {
         if (rule instanceof CSSStyleRule) {
           for (const selector of splitTopLevel(rule.selectorText)) {
             const rest = afterRootHas(selector)
 
-            if (rest !== null && /^\s*[>~+]|^\s+\S/.test(rest)) {
-              found.push(selector.trim())
+            if (rest !== null && hasTopLevelCombinator(rest)) {
+              found.push(`${path}: ${selector.trim()}`)
             }
           }
         }
 
         if ('cssRules' in rule && rule.cssRules instanceof CSSRuleList) {
-          visit(rule.cssRules)
+          visit(path, rule.cssRules)
         }
       }
     }
 
+    for (const { css, path } of stylesheets) {
+      const sheet = new CSSStyleSheet()
+
+      sheet.replaceSync(css)
+      visit(path, sheet.cssRules)
+    }
+
     for (const sheet of document.styleSheets) {
-      visit(sheet.cssRules)
+      visit('the front door', sheet.cssRules)
     }
 
     return found
-  })
+  }, sheets)
 
+  expect(sheets.length).toBeGreaterThan(100)
   expect(offenders).toEqual([])
 })

@@ -599,4 +599,7 @@ A `:root:has()` that styles the root itself is fine — `board-track` and
 `player-page` set tokens that way. A value resolved on the root resolves
 there: check nothing between the root and the reader overrides a token it
 names. `e2e/menu-opens.spec.ts` refuses a root `:has()` followed by a
-combinator in any stylesheet the front door loads.
+combinator — bare or inside the `:is()` Sass writes for a list of them — in
+every stylesheet under `apps/game/src`, each compiled by the dev server
+(`?direct`): reading the front door's sheets alone left every room screen's
+rules unchecked. A sweep on 15/11/2026 found none left there.
