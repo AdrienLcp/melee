@@ -229,7 +229,7 @@ tiles — and the reveal's solution, in one pass.
    1280×800 plays a merge and a send from the seat's rack with no scroll.
    **Revised** 15/11/2026, after Adrien read an empty ruler through a round
    and took it for a results screen shown early: a seat that merged and never
-   pressed _Envoyer_ stayed _Rien envoyé encore_ until the reveal, because
+   pressed _Send_ stayed _Nothing sent yet_ until the reveal, because
    `values` read the sent calculations alone while the close paid the lean.
    `values` now holds the nearer of the two (`heldValueOf`), and a lean that
    moves it is broadcast, so a pin lands on the first merge and follows the
