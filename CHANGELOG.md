@@ -9,10 +9,11 @@ one part.
 ### Features
 
 - `[Shared]` **Close enough asks prices.** _Le juste chiffre_ was meant to be
-  a _juste prix_ and never asked one: 59 prices written by hand join the bank,
-  from a 1 € medicine deductible to the Paris 2024 budget — a PS5 at launch, a
-  Paris square metre, Neymar's transfer — each worded with its year and
-  reference, and counted in euros with their cents. The game's page gains
+  a _juste prix_ and never asked one: 194 prices written by hand join the
+  bank, from a kilowatt-hour of electricity to the Grand Paris Express — a
+  baguette, a PS5 at launch, a Renault 5, a Paris square metre, Neymar's
+  transfer, the Salvator Mundi — each worded with its year and reference,
+  checked against a named source, and counted in euros with their cents. The game's page gains
   _Questions on_: populations, areas, heights, lengths and prices, all ticked
   by default. Each round draws a topic first, so a room on every topic meets
   a price one round in five instead of drowning it under two thousand rivers.

@@ -56,7 +56,7 @@ draw) shows no picture rather than a placeholder.
   change once a year.
 - **Budget**: one WebP per picture, 640px on its long side, quality 75 —
   about 40 KiB each. Every well-known mountain, tower and river (223 rows)
-  and the sixty prices come to about 11 MiB, inside Workers' static-asset
+  and the 194 prices come to about 16 MiB, inside Workers' static-asset
   limits (25 MiB per file, 20 000 files). Hard-tier rows get no picture
   until the budget says otherwise.
 - **Fetched when the round deals it**, never preloaded with the shell: the

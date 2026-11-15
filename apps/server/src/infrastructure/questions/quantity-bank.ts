@@ -164,7 +164,7 @@ let rowsByTopic: ReadonlyMap<QuantityTopic, readonly QuantityRow[]> | null =
 /**
  * A quantity of a topic the table ticked that the room has not been dealt, at
  * the room's level, the topic drawn first: drawn over the rows, two thousand
- * rivers drown sixty prices. `null` once every ticked topic is spent, because
+ * rivers drown two hundred prices. `null` once every ticked topic is spent, because
  * a number heard again is its answer.
  */
 export const drawQuantity = ({

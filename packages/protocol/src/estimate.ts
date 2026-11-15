@@ -97,7 +97,7 @@ export const TOPIC_OF_FAMILY = {
 
 /**
  * Every topic the table ticked, at least one and each once. Each round draws
- * a topic first and a question inside it, so sixty prices meet as many rounds
+ * a topic first and a question inside it, so two hundred prices meet as many rounds
  * as two thousand rivers.
  */
 export const quantityTopicSetSchema = z

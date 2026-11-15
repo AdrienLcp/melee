@@ -113,10 +113,10 @@ drawn over the rows, two thousand rivers and a thousand summits took most
 evenings. Two changes:
 
 - **A hand-written price bank**, `price-bank.json` beside the quantity bank:
-  59 objects and services from a 1 € deductible to the 4.4 billion of the Paris
-  2024 budget, each worded with its reference — the year, the edition, before
-  tax or not — and each row carrying the `source` it was read from and a
-  `tier` picked by hand. Family `price.item`, unit `euros`, asked _Combien ça
+  194 objects, services, deals and works from a 20-cent kilowatt-hour to the
+  36 billion of the Grand Paris Express, each worded with its reference — the
+  year, the edition, before tax or not — and each row carrying the `source`
+  it was read from and a `tier` picked by hand. Family `price.item`, unit `euros`, asked _Combien ça
   coûte ?_ with the row's name under it. A price keeps its cents (499,99 €):
   it is a figure printed on a label, not a measure, and three significant
   figures would pay a table on 500 € for a PS5 as spot on. The ratio pay

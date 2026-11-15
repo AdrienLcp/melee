@@ -1,14 +1,25 @@
 [
   {
-    "entity": "stamp-green-letter",
+    "entity": "edf-kwh-base",
     "isInFrance": true,
     "names": {
-      "en": "A French green-letter stamp (2025)",
-      "fr": "Un timbre lettre verte (2025)"
+      "en": "One kWh of electricity on EDF’s regulated base tariff (February 2025)",
+      "fr": "Un kWh d’électricité au tarif bleu EDF, option base (février 2025)"
     },
-    "source": "La Poste rates from 1 January 2025",
+    "source": "Regulated tariff of 1 February 2025, reported by Hello Watt, Kelwatt and Selectra",
+    "tier": "hard",
+    "value": 0.2016
+  },
+  {
+    "entity": "icloud-50gb-month",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of iCloud+ 50 GB storage in France (2026)",
+      "fr": "Un mois de stockage iCloud+ de 50 Go (2026)"
+    },
+    "source": "Apple France, iCloud page, 50 GB plan at 0.99 euros a month, November 2026",
     "tier": "easy",
-    "value": 1.39
+    "value": 0.99
   },
   {
     "entity": "medicine-deductible",
@@ -22,6 +33,61 @@
     "value": 1
   },
   {
+    "entity": "bakery-baguette",
+    "isInFrance": true,
+    "names": {
+      "en": "A classic baguette from a French bakery (average price, early 2025)",
+      "fr": "Une baguette classique en boulangerie (prix moyen, début 2025)"
+    },
+    "source": "UFC-Que Choisir, national survey of bakeries, 15 February to 1 March 2025",
+    "tier": "easy",
+    "value": 1.09
+  },
+  {
+    "entity": "stamp-green-letter",
+    "isInFrance": true,
+    "names": {
+      "en": "A French green-letter stamp (2025)",
+      "fr": "Un timbre lettre verte (2025)"
+    },
+    "source": "La Poste rates from 1 January 2025",
+    "tier": "easy",
+    "value": 1.39
+  },
+  {
+    "entity": "trevi-fountain-ticket",
+    "isInFrance": false,
+    "names": {
+      "en": "The ticket a visitor pays to get close to the Trevi Fountain in Rome (2026)",
+      "fr": "Le ticket pour approcher la fontaine de Trevi à Rome (2026)"
+    },
+    "source": "City of Rome fee for non-residents in force from 1 February 2026, 2 euros (Reuters and NPR, 2 February 2026; Le Routard)",
+    "tier": "easy",
+    "value": 2
+  },
+  {
+    "entity": "diesel-record-2022",
+    "isInFrance": true,
+    "names": {
+      "en": "A litre of diesel at the March 2022 peak (national average)",
+      "fr": "Un litre de gazole au pic de mars 2022 (moyenne nationale)"
+    },
+    "source": "Ministry of Ecological Transition weekly average, 2.1407 euros on 11 March 2022, per AFP",
+    "tier": "medium",
+    "value": 2.14
+  },
+  {
+    "entity": "doliprane-box",
+    "isInFrance": true,
+    "names": {
+      "en": "A box of 8 Doliprane 1000 mg tablets, reimbursable price (2026)",
+      "fr": "Une boîte de 8 comprimés de Doliprane 1000 mg, prix remboursable (2026)"
+    },
+    "source": "Base de données publique des médicaments, price on prescription, cited by Selectra, October 2026",
+    "tier": "easy",
+    "value": 2.18
+  },
+  {
     "entity": "loto-grid",
     "isInFrance": true,
     "names": {
@@ -31,17 +97,6 @@
     "source": "FDJ, price since the 2019 reform",
     "tier": "easy",
     "value": 2.2
-  },
-  {
-    "entity": "paris-metro-ticket",
-    "isInFrance": true,
-    "names": {
-      "en": "A single Paris metro ticket (2025)",
-      "fr": "Un ticket de métro parisien à l’unité (2025)"
-    },
-    "source": "Île-de-France Mobilités, Metro-Train-RER ticket from 1 January 2025",
-    "tier": "easy",
-    "value": 2.5
   },
   {
     "entity": "euromillions-grid",
@@ -55,6 +110,50 @@
     "value": 2.5
   },
   {
+    "entity": "paris-metro-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A single Paris metro ticket (2025)",
+      "fr": "Un ticket de métro parisien à l’unité (2025)"
+    },
+    "source": "Île-de-France Mobilités, Metro-Train-RER ticket from 1 January 2025",
+    "tier": "easy",
+    "value": 2.5
+  },
+  {
+    "entity": "crous-meal-non-scholarship",
+    "isInFrance": true,
+    "names": {
+      "en": "A Crous university canteen meal for a student without a grant (2024-2025)",
+      "fr": "Un repas au Crous pour un étudiant non boursier (2024-2025)"
+    },
+    "source": "service-public.gouv.fr news A16017, Crous 'social' rate of 3.30 euros, unchanged for 2025-2026",
+    "tier": "easy",
+    "value": 3.3
+  },
+  {
+    "entity": "pedestrian-fine",
+    "isInFrance": true,
+    "names": {
+      "en": "The fine for a pedestrian crossing the road away from the zebra crossing",
+      "fr": "L’amende d’un piéton qui traverse hors du passage piéton"
+    },
+    "source": "Code de procédure pénale, article R49: 4 euros for highway-code contraventions by pedestrians",
+    "tier": "hard",
+    "value": 4
+  },
+  {
+    "entity": "fdj-cash-scratchcard",
+    "isInFrance": true,
+    "names": {
+      "en": "An FDJ ’Cash’ scratch card (2026)",
+      "fr": "Un ticket à gratter Cash de la FDJ (2026)"
+    },
+    "source": "FDJ official game page, Cash ticket at 5 euros, top prize up to 500,000 euros, November 2026",
+    "tier": "easy",
+    "value": 5
+  },
+  {
     "entity": "amazon-prime-month",
     "isInFrance": true,
     "names": {
@@ -64,6 +163,94 @@
     "source": "Amazon.fr, monthly price since September 2022",
     "tier": "medium",
     "value": 6.99
+  },
+  {
+    "entity": "lrar-letter",
+    "isInFrance": true,
+    "names": {
+      "en": "A 20 g registered letter with proof of delivery (2026)",
+      "fr": "Une lettre recommandée de 20 g avec avis de réception (2026)"
+    },
+    "source": "La Poste rates from 1 January 2026: R1 20 g 6.11 euros plus 1.45 euros receipt",
+    "tier": "medium",
+    "value": 7.56
+  },
+  {
+    "entity": "ouigo-child-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A Ouigo high-speed train ticket for a child under 12 (2026)",
+      "fr": "Un billet enfant de moins de 12 ans en TGV Ouigo (2026)"
+    },
+    "source": "OUIGO official site, families page: fixed fare of 8 euros per trip on OUIGO Grande Vitesse for ages 4 to 11, November 2026",
+    "tier": "easy",
+    "value": 8
+  },
+  {
+    "entity": "velib-vmax",
+    "isInFrance": true,
+    "names": {
+      "en": "One month of the Vélib’ V-Max subscription in Paris (2025)",
+      "fr": "Un mois d’abonnement Vélib’ V-Max (2025)"
+    },
+    "source": "Vélib’ Métropole price grid of 12 August 2025, reported by Cleanrider",
+    "tier": "hard",
+    "value": 9.3
+  },
+  {
+    "entity": "apple-tv-month",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of Apple TV (formerly Apple TV+) in France (2026)",
+      "fr": "Un mois d’abonnement à Apple TV, ex-Apple TV+, en France (2026)"
+    },
+    "source": "Apple France, Apple TV page, 9.99 euros a month after the free trial, November 2026",
+    "tier": "easy",
+    "value": 9.99
+  },
+  {
+    "entity": "goncourt-cheque",
+    "isInFrance": true,
+    "names": {
+      "en": "The cheque handed to the winner of the Prix Goncourt",
+      "fr": "Le chèque remis au lauréat du prix Goncourt"
+    },
+    "source": "Académie Goncourt, symbolic cheque since the euro, reported by Sud Radio and Sortir à Paris, 2025-2026",
+    "tier": "medium",
+    "value": 10
+  },
+  {
+    "entity": "cinema-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A standard-price cinema ticket in France (average, September 2025)",
+      "fr": "Une place de cinéma au tarif standard (prix moyen, septembre 2025)"
+    },
+    "source": "UFC-Que Choisir Observatoire de la consommation, survey of 911 cinemas, 13-27 September 2025, published March 2026",
+    "tier": "easy",
+    "value": 11.3
+  },
+  {
+    "entity": "smic-hourly",
+    "isInFrance": true,
+    "names": {
+      "en": "One hour at the French minimum wage, gross (1 January 2026)",
+      "fr": "Une heure payée au SMIC, brut (1er janvier 2026)"
+    },
+    "source": "Government (info.gouv.fr), SMIC revaluation of 1 January 2026",
+    "tier": "easy",
+    "value": 12.02
+  },
+  {
+    "entity": "spotify-premium",
+    "isInFrance": true,
+    "names": {
+      "en": "One month of Spotify Premium Individual in France (2025)",
+      "fr": "Un mois de Spotify Premium Individuel en France (2025)"
+    },
+    "source": "Spotify France price rise of June-July 2025, reported by iPhoneSoft and Fnac L’Éclaireur",
+    "tier": "easy",
+    "value": 12.14
   },
   {
     "entity": "marlboro-pack",
@@ -88,6 +275,28 @@
     "value": 13
   },
   {
+    "entity": "mont-saint-michel-abbey",
+    "isInFrance": true,
+    "names": {
+      "en": "Admission to the Mont-Saint-Michel abbey, full price (2026)",
+      "fr": "Une entrée à l’abbaye du Mont-Saint-Michel, plein tarif (2026)"
+    },
+    "source": "Abbaye du Mont-Saint-Michel (Centre des monuments nationaux), official site, November 2026",
+    "tier": "medium",
+    "value": 13
+  },
+  {
+    "entity": "pantheon-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A ticket to the Panthéon in Paris, full price (2026)",
+      "fr": "Une entrée au Panthéon à Paris, plein tarif (2026)"
+    },
+    "source": "Centre des monuments nationaux, official Panthéon site, ticket at 13 euros, November 2026",
+    "tier": "medium",
+    "value": 13
+  },
+  {
     "entity": "netflix-standard",
     "isInFrance": true,
     "names": {
@@ -97,6 +306,61 @@
     "source": "Netflix France price list, 2024",
     "tier": "easy",
     "value": 13.49
+  },
+  {
+    "entity": "ligue1-plus",
+    "isInFrance": true,
+    "names": {
+      "en": "One month of Ligue 1+ on a one-year commitment, at launch (2025)",
+      "fr": "Un mois de Ligue 1+ avec engagement d’un an, à son lancement (2025)"
+    },
+    "source": "LFP Media, Ligue 1+ launch on 15 August 2025, reported by Selectra and Mac4Ever",
+    "tier": "medium",
+    "value": 14.99
+  },
+  {
+    "entity": "disney-plus-premium",
+    "isInFrance": true,
+    "names": {
+      "en": "One month of Disney+ Premium in France (late 2025)",
+      "fr": "Un mois de Disney+ Premium en France (fin 2025)"
+    },
+    "source": "Disney+ France price rise of 2 October 2025, reported by KultureGeek and Fnac L’Éclaireur",
+    "tier": "easy",
+    "value": 15.99
+  },
+  {
+    "entity": "orsay-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A Musée d’Orsay ticket bought online, full price (2026)",
+      "fr": "Une entrée au musée d’Orsay achetée en ligne, plein tarif (2026)"
+    },
+    "source": "Musée d’Orsay official ticketing page, 2026 (14 euros at the desk)",
+    "tier": "medium",
+    "value": 16
+  },
+  {
+    "entity": "paris-suv-parking",
+    "isInFrance": true,
+    "names": {
+      "en": "One hour of SUV street parking in central Paris (2024)",
+      "fr": "Une heure de stationnement d’un SUV dans le centre de Paris (2024)"
+    },
+    "source": "Ville de Paris, visitor rate for heavy vehicles from 1 October 2024",
+    "tier": "medium",
+    "value": 18
+  },
+  {
+    "entity": "apple-20w-charger",
+    "isInFrance": true,
+    "names": {
+      "en": "Apple’s 20 W USB-C power adapter in France (2026)",
+      "fr": "L’adaptateur secteur USB-C 20 W d’Apple (2026)"
+    },
+    "source": "Apple Store France product page, 20 W USB-C power adapter at 19.00 euros, November 2026",
+    "tier": "easy",
+    "value": 19
   },
   {
     "entity": "free-mobile-launch",
@@ -110,6 +374,17 @@
     "value": 19.99
   },
   {
+    "entity": "bateaux-mouches-cruise",
+    "isInFrance": true,
+    "names": {
+      "en": "An adult Bateaux-Mouches Seine cruise in Paris, at the ticket office (2026)",
+      "fr": "Une croisière Bateaux-Mouches sur la Seine, adulte, au guichet (2026)"
+    },
+    "source": "Bateaux-Mouches official booking page, adult cruise 20 euros (17 euros with the web discount), November 2026",
+    "tier": "medium",
+    "value": 20
+  },
+  {
     "entity": "louvre-ticket",
     "isInFrance": true,
     "names": {
@@ -119,6 +394,28 @@
     "source": "Musée du Louvre, price from 15 January 2024",
     "tier": "easy",
     "value": 22
+  },
+  {
+    "entity": "paris-zoo-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "An adult ticket to the Paris Zoological Park, full price (2026)",
+      "fr": "Une entrée adulte au Parc zoologique de Paris, plein tarif (2026)"
+    },
+    "source": "Parc zoologique de Paris official tariffs page, full price from age 13 at 22 euros, November 2026",
+    "tier": "easy",
+    "value": 22
+  },
+  {
+    "entity": "hospital-daily-charge",
+    "isInFrance": true,
+    "names": {
+      "en": "The daily hospital charge in France (March 2026)",
+      "fr": "Le forfait hospitalier pour une journée à l’hôpital (mars 2026)"
+    },
+    "source": "Arrêté of 27 February 2026, Journal officiel of 28 February 2026, up from 20 euros",
+    "tier": "medium",
+    "value": 23
   },
   {
     "entity": "olympics-cheapest",
@@ -132,6 +429,50 @@
     "value": 24
   },
   {
+    "entity": "apple-polishing-cloth",
+    "isInFrance": true,
+    "names": {
+      "en": "Apple's polishing cloth at its launch (2021)",
+      "fr": "Le chiffon de nettoyage d’Apple à sa sortie (2021)"
+    },
+    "source": "Apple France online store, October 2021 (iPhoneSoft, Paris Match Belgique)",
+    "tier": "easy",
+    "value": 25
+  },
+  {
+    "entity": "id-card-loss",
+    "isInFrance": true,
+    "names": {
+      "en": "The tax stamp to replace a lost French ID card",
+      "fr": "Le timbre fiscal pour refaire une carte d’identité perdue"
+    },
+    "source": "Service-public, CGI article 1628 bis: 25 euros in case of loss or theft",
+    "tier": "medium",
+    "value": 25
+  },
+  {
+    "entity": "game-pass-ultimate-hike",
+    "isInFrance": false,
+    "names": {
+      "en": "A month of Xbox Game Pass Ultimate after the October 2025 price rise",
+      "fr": "Un mois de Xbox Game Pass Ultimate après la hausse d’octobre 2025"
+    },
+    "source": "Xbox Wire France, 21 April 2026 (cut from 26.99 to 20.99 euros); KultureGeek, October 2025 (rise from 17.99 to 26.99 euros)",
+    "tier": "medium",
+    "value": 26.99
+  },
+  {
+    "entity": "freebox-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "One month of Free’s broadband offer at launch (2002)",
+      "fr": "Un mois d’Internet chez Free à son lancement (2002)"
+    },
+    "source": "Free, offer presented in September 2002, reported by Univers Freebox and Next INpact",
+    "tier": "medium",
+    "value": 29.99
+  },
+  {
     "entity": "gp-appointment",
     "isInFrance": true,
     "names": {
@@ -141,6 +482,39 @@
     "source": "Assurance Maladie, contracted rate from 22 December 2024",
     "tier": "easy",
     "value": 30
+  },
+  {
+    "entity": "christmas-tree",
+    "isInFrance": true,
+    "names": {
+      "en": "A real Christmas tree in France (average price, 2024)",
+      "fr": "Un sapin de Noël naturel (prix moyen, 2024)"
+    },
+    "source": "Kantar for FranceAgriMer and Val’hor, cited in Val’hor press kit, December 2025",
+    "tier": "easy",
+    "value": 30.94
+  },
+  {
+    "entity": "catacombs-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "Admission to the Paris catacombs, full price (2026)",
+      "fr": "Une entrée aux catacombes de Paris, plein tarif (2026)"
+    },
+    "source": "Catacombes de Paris after renovation, 31 euros with audioguide, reported by Ulysse and Paris je t’aime, 2026",
+    "tier": "medium",
+    "value": 31
+  },
+  {
+    "entity": "airtag-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A single AirTag at its launch (2021)",
+      "fr": "Un AirTag à l’unité à sa sortie (2021)"
+    },
+    "source": "Apple France launch price, April 2021 (Consomac, Mac4Ever)",
+    "tier": "easy",
+    "value": 35
   },
   {
     "entity": "parking-fine",
@@ -165,6 +539,50 @@
     "value": 36.7
   },
   {
+    "entity": "switch-online-expansion-year",
+    "isInFrance": true,
+    "names": {
+      "en": "A year of Nintendo Switch Online + Expansion Pack, individual plan (2026)",
+      "fr": "Un an de Nintendo Switch Online + Pack additionnel, formule individuelle (2026)"
+    },
+    "source": "Nintendo France, Nintendo Switch Online page, 12-month individual membership with Expansion Pack at 39.99 euros, November 2026",
+    "tier": "medium",
+    "value": 39.99
+  },
+  {
+    "entity": "sncf-carte-avantage",
+    "isInFrance": true,
+    "names": {
+      "en": "A one-year SNCF Carte Avantage (2026)",
+      "fr": "La carte Avantage SNCF pour un an (2026)"
+    },
+    "source": "SNCF Connect, price in force on 1 January 2026",
+    "tier": "medium",
+    "value": 49
+  },
+  {
+    "entity": "taxi-roissy",
+    "isInFrance": true,
+    "names": {
+      "en": "The flat taxi fare from Roissy-Charles-de-Gaulle to Paris right bank (2025)",
+      "fr": "Le forfait taxi entre Roissy-Charles-de-Gaulle et la rive droite (2025)"
+    },
+    "source": "Arrêté of 20 January 2025 on taxi fares, Journal officiel of 1 February 2025",
+    "tier": "medium",
+    "value": 56
+  },
+  {
+    "entity": "carte-grise-bretagne",
+    "isInFrance": true,
+    "names": {
+      "en": "One fiscal horsepower on a vehicle registration in Brittany (2025)",
+      "fr": "Un cheval fiscal sur la carte grise en Bretagne (2025)"
+    },
+    "source": "Région Bretagne rate from 1 February 2025, up from 55 euros, reported by Weka and L’argus",
+    "tier": "hard",
+    "value": 60
+  },
+  {
     "entity": "speeding-fine",
     "isInFrance": true,
     "names": {
@@ -174,6 +592,28 @@
     "source": "Code de la route R413-14, third-class fixed fine",
     "tier": "medium",
     "value": 68
+  },
+  {
+    "entity": "dualsense-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PS5 DualSense controller at launch (2020)",
+      "fr": "Une manette DualSense de PS5 à sa sortie (2020)"
+    },
+    "source": "PlayStation Blog, 16 September 2020, DualSense wireless controller 69.99 euros RRP",
+    "tier": "easy",
+    "value": 69.99
+  },
+  {
+    "entity": "val-thorens-day-pass",
+    "isInFrance": true,
+    "names": {
+      "en": "An adult one-day ski pass at Val Thorens (2025-2026 season)",
+      "fr": "Un forfait de ski adulte d’une journée à Val Thorens (saison 2025-2026)"
+    },
+    "source": "Val Thorens official 2025-2026 price list",
+    "tier": "hard",
+    "value": 71
   },
   {
     "entity": "passport-stamp",
@@ -198,6 +638,28 @@
     "value": 88.8
   },
   {
+    "entity": "mario-kart-world-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "Mario Kart World, boxed edition, at its launch (2025)",
+      "fr": "Le jeu Mario Kart World en boîte à sa sortie (2025)"
+    },
+    "source": "Nintendo, recommended price of the physical edition, announced 2 April 2025, released 5 June 2025",
+    "tier": "easy",
+    "value": 89.99
+  },
+  {
+    "entity": "kindle-france-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "The first Kindle sold in France (2011)",
+      "fr": "Le premier Kindle vendu en France (2011)"
+    },
+    "source": "Amazon.fr press release, 7 October 2011",
+    "tier": "medium",
+    "value": 99
+  },
+  {
     "entity": "phone-driving-fine",
     "isInFrance": true,
     "names": {
@@ -209,6 +671,94 @@
     "value": 135
   },
   {
+    "entity": "tv-licence-2021",
+    "isInFrance": true,
+    "names": {
+      "en": "The French TV licence fee in mainland France, the last year it was paid (2021)",
+      "fr": "La redevance télé en métropole, la dernière année où elle a été payée (2021)"
+    },
+    "source": "Contribution à l’audiovisuel public, 138 euros in 2021; the 2022 fee was abolished by the amending finance law of 16 August 2022",
+    "tier": "easy",
+    "value": 138
+  },
+  {
+    "entity": "kinect-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Kinect sensor for Xbox 360 at its launch (2010)",
+      "fr": "Un capteur Kinect pour Xbox 360 à sa sortie (2010)"
+    },
+    "source": "Microsoft, European price with Kinect Adventures, launch 10 November 2010",
+    "tier": "hard",
+    "value": 149.99
+  },
+  {
+    "entity": "nintendo-ds-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Nintendo DS at its European launch (2005)",
+      "fr": "Une Nintendo DS à sa sortie en Europe (2005)"
+    },
+    "source": "Nintendo of Europe press release, January 2005, estimated retail price at launch on 11 March 2005",
+    "tier": "medium",
+    "value": 149.99
+  },
+  {
+    "entity": "pass-culture-18",
+    "isInFrance": true,
+    "names": {
+      "en": "The pass Culture credit for an 18-year-old (since March 2025)",
+      "fr": "Le pass Culture d’un jeune de 18 ans (depuis mars 2025)"
+    },
+    "source": "Decree of 27 February 2025 (via service-public.gouv.fr), 18-year-old share cut from 300 to 150 euros from 1 March 2025",
+    "tier": "easy",
+    "value": 150
+  },
+  {
+    "entity": "rsa-christmas-bonus",
+    "isInFrance": true,
+    "names": {
+      "en": "The Christmas bonus of a single person on RSA (2025)",
+      "fr": "La prime de Noël d’une personne seule au RSA (2025)"
+    },
+    "source": "CNAF circular IT 2025-211 and decree 2025-1212 of 12 December 2025, 152.45 euros for a single person",
+    "tier": "medium",
+    "value": 152.45
+  },
+  {
+    "entity": "university-licence-fees",
+    "isInFrance": true,
+    "names": {
+      "en": "One year of university bachelor’s tuition fees in France (2025-2026)",
+      "fr": "Les frais d’inscription d’une année de licence à l’université (2025-2026)"
+    },
+    "source": "National rates for 2025-2026, Service-public and Sorbonne Université",
+    "tier": "medium",
+    "value": 178
+  },
+  {
+    "entity": "gamecube-europe-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A GameCube at its European launch (2002)",
+      "fr": "Une GameCube à sa sortie en Europe (2002)"
+    },
+    "source": "Nintendo, European recommended price cut from 249 to 199 euros before the 3 May 2002 launch (The Register, Nintendo World Report)",
+    "tier": "hard",
+    "value": 199
+  },
+  {
+    "entity": "psp-europe-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PSP at its European launch (2005)",
+      "fr": "Une PSP à sa sortie en Europe (2005)"
+    },
+    "source": "Sony Computer Entertainment Europe, Value Pack launch price, 1 September 2005",
+    "tier": "medium",
+    "value": 249
+  },
+  {
     "entity": "wii-launch",
     "isInFrance": true,
     "names": {
@@ -218,6 +768,17 @@
     "source": "Nintendo, European launch price, 8 December 2006",
     "tier": "medium",
     "value": 249
+  },
+  {
+    "entity": "ps-vita-wifi-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Wi-Fi PS Vita at its launch (2012)",
+      "fr": "Une PS Vita Wi-Fi à sa sortie (2012)"
+    },
+    "source": "Sony Computer Entertainment Europe press release, recommended price, launch 22 February 2012",
+    "tier": "medium",
+    "value": 249.99
   },
   {
     "entity": "airpods-pro-2",
@@ -253,6 +814,28 @@
     "value": 349.99
   },
   {
+    "entity": "apple-watch-sport-2015",
+    "isInFrance": true,
+    "names": {
+      "en": "The first 38 mm Apple Watch Sport at its launch (2015)",
+      "fr": "La première Apple Watch Sport de 38 mm à sa sortie (2015)"
+    },
+    "source": "Apple France launch price, 24 April 2015 (iPhoneSoft, Blog Nouvelles Technologies)",
+    "tier": "medium",
+    "value": 399
+  },
+  {
+    "entity": "first-iphone-france",
+    "isInFrance": true,
+    "names": {
+      "en": "The first iPhone in France, with an Orange plan (2007)",
+      "fr": "Le premier iPhone en France, avec un forfait Orange (2007)"
+    },
+    "source": "Apple press release of 16 October 2007, 8 GB model with an Orange plan, on sale 29 November 2007",
+    "tier": "medium",
+    "value": 399
+  },
+  {
     "entity": "ps4-launch",
     "isInFrance": true,
     "names": {
@@ -264,6 +847,17 @@
     "value": 399
   },
   {
+    "entity": "xbox-360-premium-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An Xbox 360 Premium with hard drive at its launch (2005)",
+      "fr": "Une Xbox 360 Premium avec disque dur à sa sortie (2005)"
+    },
+    "source": "Microsoft press release, European price of 17 August 2005, launch 2 December 2005",
+    "tier": "medium",
+    "value": 399.99
+  },
+  {
     "entity": "steam-deck",
     "isInFrance": true,
     "names": {
@@ -273,6 +867,17 @@
     "source": "Valve, European launch price, February 2022",
     "tier": "hard",
     "value": 419
+  },
+  {
+    "entity": "back-to-school-allowance",
+    "isInFrance": true,
+    "names": {
+      "en": "The back-to-school allowance for a child aged 6 to 10 (2025)",
+      "fr": "L’allocation de rentrée scolaire pour un enfant de 6 à 10 ans (2025)"
+    },
+    "source": "CAF, 2025 school-year amount after a 1.7% revaluation",
+    "tier": "hard",
+    "value": 423.48
   },
   {
     "entity": "switch-2-launch",
@@ -294,6 +899,17 @@
     },
     "source": "Apple France, 28 May 2010",
     "tier": "medium",
+    "value": 499
+  },
+  {
+    "entity": "xbox-one-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An Xbox One with Kinect at its launch in France (2013)",
+      "fr": "Une Xbox One avec Kinect à sa sortie en France (2013)"
+    },
+    "source": "Microsoft, French launch price, 22 November 2013 (Lyon Capitale, KultureGeek)",
+    "tier": "easy",
     "value": 499
   },
   {
@@ -330,6 +946,39 @@
     "value": 549.99
   },
   {
+    "entity": "ps3-europe-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PlayStation 3 at its European launch (2007)",
+      "fr": "Une PlayStation 3 à sa sortie en Europe (2007)"
+    },
+    "source": "Sony Computer Entertainment Europe, launch price for the 60 GB model, 23 March 2007",
+    "tier": "easy",
+    "value": 599
+  },
+  {
+    "entity": "ps-vr2-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PlayStation VR2 headset at launch (2023)",
+      "fr": "Un casque PlayStation VR2 à sa sortie (2023)"
+    },
+    "source": "PlayStation Blog, 2 November 2022, 599.99 euros recommended retail price for the 22 February 2023 launch",
+    "tier": "medium",
+    "value": 599.99
+  },
+  {
+    "entity": "airpods-max-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "AirPods Max headphones at their launch (2020)",
+      "fr": "Un casque AirPods Max à sa sortie (2020)"
+    },
+    "source": "Apple France launch price, announced 8 December 2020",
+    "tier": "medium",
+    "value": 629
+  },
+  {
     "entity": "lego-eiffel-tower",
     "isInFrance": true,
     "names": {
@@ -339,6 +988,28 @@
     "source": "Lego, set 10307, launch price, November 2022",
     "tier": "medium",
     "value": 629.99
+  },
+  {
+    "entity": "rsa-single",
+    "isInFrance": true,
+    "names": {
+      "en": "The monthly RSA benefit for a single person without children (2026)",
+      "fr": "Le RSA d’une personne seule sans enfant, par mois (2026)"
+    },
+    "source": "Service-public, RSA page verified 1 April 2026",
+    "tier": "medium",
+    "value": 651.69
+  },
+  {
+    "entity": "lego-millennium-falcon",
+    "isInFrance": true,
+    "names": {
+      "en": "The Ultimate Collector Lego Millennium Falcon (2017)",
+      "fr": "Le Faucon Millenium en Lego, édition Ultimate Collector (2017)"
+    },
+    "source": "Lego, set 75192, launch price, October 2017",
+    "tier": "medium",
+    "value": 799.99
   },
   {
     "entity": "ps5-pro",
@@ -352,15 +1023,15 @@
     "value": 799.99
   },
   {
-    "entity": "lego-millennium-falcon",
+    "entity": "mac-pro-wheels-kit",
     "isInFrance": true,
     "names": {
-      "en": "The Ultimate Collector Lego Millennium Falcon (2017)",
-      "fr": "Le Faucon Millenium en Lego, édition Ultimate Collector (2017)"
+      "en": "The Mac Pro wheels kit, sold separately by Apple (2020)",
+      "fr": "Le kit de roulettes du Mac Pro, vendu à part par Apple (2020)"
     },
-    "source": "Lego, set 75192, launch price, October 2017",
-    "tier": "medium",
-    "value": 799.99
+    "source": "Apple France, separate sale of the wheels kit, April 2020 (iPhoneSoft)",
+    "tier": "hard",
+    "value": 849
   },
   {
     "entity": "iphone-16",
@@ -383,6 +1054,39 @@
     "source": "Apple France, September 2022",
     "tier": "medium",
     "value": 999
+  },
+  {
+    "entity": "aspa-single",
+    "isInFrance": true,
+    "names": {
+      "en": "The French old-age minimum (ASPA) for a single person, per month (2026)",
+      "fr": "Le minimum vieillesse (ASPA) d’une personne seule, par mois (2026)"
+    },
+    "source": "service-public.gouv.fr F16871, maximum 1,043.59 euros a month since 1 January 2026",
+    "tier": "medium",
+    "value": 1043.59
+  },
+  {
+    "entity": "caf-birth-bonus",
+    "isInFrance": true,
+    "names": {
+      "en": "The Caf birth bonus for one child (April 2026)",
+      "fr": "La prime à la naissance de la Caf pour un enfant (avril 2026)"
+    },
+    "source": "service-public.gouv.fr F2550, net amount 1,093.11 euros after the 1 April 2026 revaluation",
+    "tier": "hard",
+    "value": 1093.11
+  },
+  {
+    "entity": "macbook-air-m1-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An M1 MacBook Air at its launch (2020)",
+      "fr": "Un MacBook Air M1 à sa sortie (2020)"
+    },
+    "source": "Apple France launch price, 8 GB / 256 GB model, November 2020",
+    "tier": "easy",
+    "value": 1129
   },
   {
     "entity": "iphone-16-pro",
@@ -418,6 +1122,61 @@
     "value": 1469
   },
   {
+    "entity": "galaxy-fold-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "The first Samsung Galaxy Fold at its launch in France (2019)",
+      "fr": "Le premier Samsung Galaxy Fold à sa sortie en France (2019)"
+    },
+    "source": "Samsung France, launch price on 18 September 2019",
+    "tier": "medium",
+    "value": 2020
+  },
+  {
+    "entity": "e-bike-average",
+    "isInFrance": true,
+    "names": {
+      "en": "A new electric bike in France (average price, 2024)",
+      "fr": "Un vélo à assistance électrique neuf (prix moyen, 2024)"
+    },
+    "source": "Union Sport & Cycle, Observatoire du cycle 2024, reported by Cleanrider",
+    "tier": "medium",
+    "value": 2045
+  },
+  {
+    "entity": "iphone-17-pro-max-2tb",
+    "isInFrance": true,
+    "names": {
+      "en": "A 2 TB iPhone 17 Pro Max at its launch (2025)",
+      "fr": "Un iPhone 17 Pro Max de 2 To à sa sortie (2025)"
+    },
+    "source": "Apple France launch price, September 2025 (iPhoneSoft, TechRadar France)",
+    "tier": "easy",
+    "value": 2479
+  },
+  {
+    "entity": "olympics-opening-top-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "The most expensive ticket to the Paris 2024 Olympic opening ceremony",
+      "fr": "Le billet le plus cher de la cérémonie d’ouverture des JO de Paris 2024"
+    },
+    "source": "Paris 2024 ticketing, top category price, reported by Paris Match and L’Avenir, 2023",
+    "tier": "medium",
+    "value": 2700
+  },
+  {
+    "entity": "private-sector-salary",
+    "isInFrance": true,
+    "names": {
+      "en": "The average monthly net full-time salary in the French private sector (2023)",
+      "fr": "Le salaire net mensuel moyen dans le privé, à temps plein (2023)"
+    },
+    "source": "INSEE Première, private-sector salaries in 2023",
+    "tier": "medium",
+    "value": 2735
+  },
+  {
     "entity": "vision-pro",
     "isInFrance": true,
     "names": {
@@ -427,6 +1186,28 @@
     "source": "Apple France, 12 July 2024",
     "tier": "medium",
     "value": 3999
+  },
+  {
+    "entity": "citroen-ami-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Citroën Ami at its launch, before the bonus (2020)",
+      "fr": "Une Citroën Ami à sa sortie, bonus non déduit (2020)"
+    },
+    "source": "Citroën France list price before the 900-euro bonus, 2020 (L'argus)",
+    "tier": "easy",
+    "value": 6900
+  },
+  {
+    "entity": "deputy-indemnity",
+    "isInFrance": true,
+    "names": {
+      "en": "A French MP’s gross monthly allowance (since 2024)",
+      "fr": "L’indemnité mensuelle brute d’un député (depuis 2024)"
+    },
+    "source": "Assemblée nationale, fiche 7 on the deputy’s material situation, updated January 2026",
+    "tier": "medium",
+    "value": 7637.39
   },
   {
     "entity": "paris-square-metre",
@@ -440,6 +1221,28 @@
     "value": 9460
   },
   {
+    "entity": "mep-salary",
+    "isInFrance": false,
+    "names": {
+      "en": "The gross monthly salary of a Member of the European Parliament (2026)",
+      "fr": "Le salaire brut mensuel d’un député européen (2026)"
+    },
+    "source": "European Parliament, About MEPs page, monthly pre-tax salary of 11,255.26 euros, November 2026",
+    "tier": "hard",
+    "value": 11255.26
+  },
+  {
+    "entity": "dacia-sandero-2025",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Dacia Sandero, entry version (late 2025)",
+      "fr": "Une Dacia Sandero neuve, version de base (fin 2025)"
+    },
+    "source": "Dacia France, Essential SCe 65 after the November 2025 facelift (L'argus price list, Caroom)",
+    "tier": "easy",
+    "value": 13290
+  },
+  {
     "entity": "dacia-spring",
     "isInFrance": true,
     "names": {
@@ -449,6 +1252,28 @@
     "source": "Dacia France, Spring Electric 45 Essential",
     "tier": "medium",
     "value": 16900
+  },
+  {
+    "entity": "renault-twingo-etech",
+    "isInFrance": true,
+    "names": {
+      "en": "A new electric Renault Twingo, entry version (2026)",
+      "fr": "Une Renault Twingo électrique neuve, version de base (2026)"
+    },
+    "source": "Renault France, Twingo E-Tech Évolution before any bonus (L'argus, 2 June 2026)",
+    "tier": "medium",
+    "value": 19490
+  },
+  {
+    "entity": "renault-clio-6",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Renault Clio 6, entry version (2026)",
+      "fr": "Une Renault Clio 6 neuve, version de base (2026)"
+    },
+    "source": "Renault France, Évolution TCe 115 manual, 2026 (L'argus)",
+    "tier": "easy",
+    "value": 19900
   },
   {
     "entity": "citroen-e-c3",
@@ -462,6 +1287,50 @@
     "value": 23300
   },
   {
+    "entity": "toyota-yaris-2026",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Toyota Yaris hybrid, entry version (January 2026)",
+      "fr": "Une Toyota Yaris hybride neuve, version de base (janvier 2026)"
+    },
+    "source": "Toyota France price list of 6 January 2026, Yaris Hybride 116h Dynamic",
+    "tier": "medium",
+    "value": 24750
+  },
+  {
+    "entity": "renault-5-five",
+    "isInFrance": true,
+    "names": {
+      "en": "A new electric Renault 5, Five trim (2025)",
+      "fr": "Une Renault 5 électrique neuve, finition Five (2025)"
+    },
+    "source": "Renault France, R5 E-Tech Five before the bonus (L'argus, 5 June 2025)",
+    "tier": "easy",
+    "value": 24990
+  },
+  {
+    "entity": "renault-4-etech-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An electric Renault 4 at its launch, entry version (2025)",
+      "fr": "Une Renault 4 électrique à son lancement, version de base (2025)"
+    },
+    "source": "Renault France, R4 E-Tech Évolution 120 hp before the bonus, March 2025 (Actu-Automobile, Phonandroid)",
+    "tier": "medium",
+    "value": 29990
+  },
+  {
+    "entity": "alpine-a290-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An electric Alpine A290 at its launch, entry version (2024)",
+      "fr": "Une Alpine A290 électrique à son lancement, version de base (2024)"
+    },
+    "source": "Alpine, A290 GT 180 hp before the bonus, orders opened summer 2024 (Actu-Automobile, Caroom)",
+    "tier": "hard",
+    "value": 38700
+  },
+  {
     "entity": "tesla-model-3",
     "isInFrance": true,
     "names": {
@@ -471,6 +1340,72 @@
     "source": "L'argus, Tesla price list, October 2024",
     "tier": "easy",
     "value": 39990
+  },
+  {
+    "entity": "peugeot-e-3008-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "An electric Peugeot e-3008 at its launch, entry price (2024)",
+      "fr": "Un Peugeot e-3008 électrique à son lancement, prix d’entrée (2024)"
+    },
+    "source": "Peugeot France, prices announced 11 January 2024 (Automobile Propre)",
+    "tier": "medium",
+    "value": 44990
+  },
+  {
+    "entity": "alpine-a110-premiere-edition",
+    "isInFrance": true,
+    "names": {
+      "en": "An Alpine A110 Première Édition (2017)",
+      "fr": "Une Alpine A110 Première Édition (2017)"
+    },
+    "source": "Alpine, list price of the 1,955-unit launch series (L'argus)",
+    "tier": "hard",
+    "value": 58500
+  },
+  {
+    "entity": "car-malus-cap-2026",
+    "isInFrance": true,
+    "names": {
+      "en": "The cap on the French emissions penalty for a new car (2026)",
+      "fr": "Le plafond du malus écologique sur une voiture neuve (2026)"
+    },
+    "source": "French Ministry of Economy (economie.gouv.fr), 2026 scale, up from 70,000 in 2025",
+    "tier": "hard",
+    "value": 80000
+  },
+  {
+    "entity": "olympic-gold-bonus",
+    "isInFrance": true,
+    "names": {
+      "en": "The French state’s bonus for a gold medal at Paris 2024",
+      "fr": "La prime de l’État pour une médaille d’or aux JO de Paris 2024"
+    },
+    "source": "French Ministry of Sports, medal bonus schedule, order of 30 January 2024",
+    "tier": "easy",
+    "value": 80000
+  },
+  {
+    "entity": "porsche-911-carrera-2026",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Porsche 911 Carrera, no options (2026)",
+      "fr": "Une Porsche 911 Carrera neuve, sans option (2026)"
+    },
+    "source": "Porsche France configurator, 911 Carrera model year 2027, November 2026, incl. VAT",
+    "tier": "medium",
+    "value": 141500
+  },
+  {
+    "entity": "mercedes-g-class-2024",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Mercedes G-Class, entry price (2024)",
+      "fr": "Un Mercedes Classe G neuf, prix d’entrée (2024)"
+    },
+    "source": "Mercedes-Benz France press release, March 2024, on-the-road price incl. VAT",
+    "tier": "medium",
+    "value": 168500
   },
   {
     "entity": "ferrari-12cilindri",
@@ -484,6 +1419,61 @@
     "value": 395000
   },
   {
+    "entity": "eiffel-tower-staircase",
+    "isInFrance": true,
+    "names": {
+      "en": "A section of the Eiffel Tower’s original staircase sold at auction (2026)",
+      "fr": "Un tronçon de l’escalier d’origine de la tour Eiffel vendu aux enchères (2026)"
+    },
+    "source": "Artcurial, Paris, 21 May 2026, 14 steps, as reported by Euronews and Sud Radio",
+    "tier": "medium",
+    "value": 450160
+  },
+  {
+    "entity": "romanee-conti-1945",
+    "isInFrance": false,
+    "names": {
+      "en": "A bottle of Romanée-Conti 1945, auction record (2018)",
+      "fr": "Une bouteille de Romanée-Conti 1945, record aux enchères (2018)"
+    },
+    "source": "Sotheby's New York, 13 October 2018, 558,000 USD fees included, 481,976 euros per Guinness World Records",
+    "tier": "easy",
+    "value": 481976
+  },
+  {
+    "entity": "lamborghini-revuelto",
+    "isInFrance": true,
+    "names": {
+      "en": "A Lamborghini Revuelto at its launch (2023, base price)",
+      "fr": "Une Lamborghini Revuelto à son lancement (2023, prix de base)"
+    },
+    "source": "Lamborghini, launch price announced by its CEO; French price from 500,000 euros incl. VAT (Automobile Propre)",
+    "tier": "medium",
+    "value": 500000
+  },
+  {
+    "entity": "mothe-chandeniers-castle",
+    "isInFrance": true,
+    "names": {
+      "en": "The Château de la Mothe-Chandeniers bought by crowdfunding (2017)",
+      "fr": "Le château de la Mothe-Chandeniers racheté par financement participatif (2017)"
+    },
+    "source": "Dartagnans and Adopte un château, purchase price raised by crowdfunding, December 2017 (AFP)",
+    "tier": "medium",
+    "value": 500000
+  },
+  {
+    "entity": "tour-de-france-winner-prize",
+    "isInFrance": true,
+    "names": {
+      "en": "The prize for winning the Tour de France (2025)",
+      "fr": "La prime du vainqueur du Tour de France (2025)"
+    },
+    "source": "ASO prize list for the 2025 Tour de France, unchanged since 2016",
+    "tier": "easy",
+    "value": 500000
+  },
+  {
     "entity": "bugatti-veyron",
     "isInFrance": true,
     "names": {
@@ -493,6 +1483,28 @@
     "source": "Bugatti, launch price before tax",
     "tier": "medium",
     "value": 1000000
+  },
+  {
+    "entity": "asterix-britain-cover",
+    "isInFrance": false,
+    "names": {
+      "en": "Uderzo’s original cover for Asterix in Britain sold at auction (2026)",
+      "fr": "La couverture originale d’« Astérix chez les Bretons » vendue aux enchères (2026)"
+    },
+    "source": "BD Enchères, Liège, 13 September 2026, 1.2M euros hammer, about 1.474M euros fees included per RTBF and ORF",
+    "tier": "medium",
+    "value": 1474000
+  },
+  {
+    "entity": "new-kim-pigeon",
+    "isInFrance": false,
+    "names": {
+      "en": "New Kim, a Belgian racing pigeon sold at auction (2020)",
+      "fr": "New Kim, pigeon voyageur belge vendu aux enchères (2020)"
+    },
+    "source": "PIPA online auction, 15 November 2020, world record per AFP and Guinness World Records",
+    "tier": "medium",
+    "value": 1600000
   },
   {
     "entity": "napoleon-bicorne",
@@ -515,6 +1527,72 @@
     "source": "Bugatti, launch price before tax, Geneva 2016",
     "tier": "medium",
     "value": 2400000
+  },
+  {
+    "entity": "macallan-1926",
+    "isInFrance": false,
+    "names": {
+      "en": "A bottle of Macallan 1926 whisky, auction record (2023)",
+      "fr": "Une bouteille de whisky Macallan 1926, record aux enchères (2023)"
+    },
+    "source": "Sotheby's London, 18 November 2023, 2,187,500 GBP fees included, about 2.5M euros per AFP (La Libre)",
+    "tier": "easy",
+    "value": 2500000
+  },
+  {
+    "entity": "roland-garros-winner-prize",
+    "isInFrance": true,
+    "names": {
+      "en": "The prize for winning a Roland-Garros singles title (2025)",
+      "fr": "La prime du vainqueur d’un simple à Roland-Garros (2025)"
+    },
+    "source": "FFT prize money grid for the 2025 tournament, reported by La finance pour tous, May 2025",
+    "tier": "medium",
+    "value": 2550000
+  },
+  {
+    "entity": "tintin-lotus-bleu-cover",
+    "isInFrance": true,
+    "names": {
+      "en": "Hergé’s cover drawing for The Blue Lotus sold at auction (2021)",
+      "fr": "Le dessin de couverture du « Lotus bleu » d’Hergé vendu aux enchères (2021)"
+    },
+    "source": "Artcurial, Paris, 14 January 2021, fees included",
+    "tier": "easy",
+    "value": 3175400
+  },
+  {
+    "entity": "ferrari-f80",
+    "isInFrance": false,
+    "names": {
+      "en": "A Ferrari F80 at its unveiling (2024, base price)",
+      "fr": "Une Ferrari F80 à sa présentation (2024, prix de base)"
+    },
+    "source": "Ferrari, Italian base price at the 17 October 2024 unveiling (Bloomberg, Tuttotech)",
+    "tier": "medium",
+    "value": 3600000
+  },
+  {
+    "entity": "bugatti-tourbillon",
+    "isInFrance": true,
+    "names": {
+      "en": "A Bugatti Tourbillon at its unveiling (2024, before tax)",
+      "fr": "Une Bugatti Tourbillon à sa présentation (2024, hors taxes)"
+    },
+    "source": "Bugatti, base price before tax at the 20 June 2024 unveiling (Hagerty, La Libre Belgique)",
+    "tier": "medium",
+    "value": 3800000
+  },
+  {
+    "entity": "napoleon-marengo-sabre",
+    "isInFrance": true,
+    "names": {
+      "en": "The sabre Bonaparte carried at Marengo, sold at auction (2007)",
+      "fr": "Le sabre de Bonaparte à Marengo vendu aux enchères (2007)"
+    },
+    "source": "Osenat, Fontainebleau, 10 June 2007, per Guinness World Records and contemporary reports",
+    "tier": "medium",
+    "value": 4800000
   },
   {
     "entity": "big-john",
@@ -550,6 +1628,138 @@
     "value": 11000000
   },
   {
+    "entity": "hall-of-mirrors-restoration",
+    "isInFrance": true,
+    "names": {
+      "en": "Restoring the Hall of Mirrors at Versailles (2004-2007)",
+      "fr": "La restauration de la galerie des Glaces de Versailles (2004-2007)"
+    },
+    "source": "VINCI press release, sponsorship financing the works, June 2007",
+    "tier": "medium",
+    "value": 12000000
+  },
+  {
+    "entity": "christo-arc-wrapped",
+    "isInFrance": true,
+    "names": {
+      "en": "The cost of Christo’s wrapped Arc de Triomphe (2021)",
+      "fr": "Le coût de l’Arc de Triomphe empaqueté par Christo (2021)"
+    },
+    "source": "Reuters, 16 September 2021, and Ville de Paris: about 14 million euros, paid by the artist’s estate",
+    "tier": "medium",
+    "value": 14000000
+  },
+  {
+    "entity": "paul-newman-daytona",
+    "isInFrance": false,
+    "names": {
+      "en": "Paul Newman’s Rolex Daytona sold at auction (2017)",
+      "fr": "La Rolex Daytona de Paul Newman vendue aux enchères (2017)"
+    },
+    "source": "Phillips New York, 26 October 2017, 17,752,500 USD, 15,228,095 euros per the Phillips press release",
+    "tier": "medium",
+    "value": 15228095
+  },
+  {
+    "entity": "banksy-love-is-in-the-bin",
+    "isInFrance": false,
+    "names": {
+      "en": "Love is in the Bin, Banksy’s shredded painting, resold at auction (2021)",
+      "fr": "« Love is in the Bin », la toile déchiquetée de Banksy, revendue (2021)"
+    },
+    "source": "Sotheby's London, 14 October 2021, 18,582,000 GBP fees included, about 21.8M euros per Euronews",
+    "tier": "easy",
+    "value": 21800000
+  },
+  {
+    "entity": "cimabue-christ-mocked",
+    "isInFrance": true,
+    "names": {
+      "en": "Cimabue’s Christ Mocked, found in a kitchen, sold at auction (2019)",
+      "fr": "Le Christ moqué de Cimabue, trouvé dans une cuisine, vendu aux enchères (2019)"
+    },
+    "source": "Actéon, Senlis, 27 October 2019, fees included",
+    "tier": "medium",
+    "value": 24180000
+  },
+  {
+    "entity": "chardin-strawberries",
+    "isInFrance": true,
+    "names": {
+      "en": "Chardin’s Basket of Wild Strawberries sold at auction in Paris (2022)",
+      "fr": "Le Panier de fraises des bois de Chardin vendu aux enchères à Paris (2022)"
+    },
+    "source": "Artcurial, Paris, 23 March 2022, fees included (Artcurial results release)",
+    "tier": "hard",
+    "value": 24381400
+  },
+  {
+    "entity": "loto-record-jackpot",
+    "isInFrance": true,
+    "names": {
+      "en": "The biggest jackpot in the history of the French Loto (2021)",
+      "fr": "Le plus gros jackpot de l’histoire du Loto (2021)"
+    },
+    "source": "FDJ United press kit for Loto's 50th anniversary, April 2026: record 30 million euros won in Brittany on 4 December 2021",
+    "tier": "medium",
+    "value": 30000000
+  },
+  {
+    "entity": "apex-stegosaurus",
+    "isInFrance": false,
+    "names": {
+      "en": "Apex, a stegosaurus skeleton sold at auction (2024)",
+      "fr": "Apex, squelette de stégosaure vendu aux enchères (2024)"
+    },
+    "source": "Sotheby's New York, 17 July 2024, 44.6M USD fees included, 40.78M euros per The Art Newspaper France",
+    "tier": "medium",
+    "value": 40780000
+  },
+  {
+    "entity": "caillebotte-boating-party",
+    "isInFrance": true,
+    "names": {
+      "en": "Caillebotte’s Boating Party, bought by LVMH for the Musée d’Orsay (2023)",
+      "fr": "« La Partie de bateau » de Caillebotte, offerte au musée d’Orsay par LVMH (2023)"
+    },
+    "source": "The Art Newspaper and Euronews, LVMH patronage, unveiled at the Musée d'Orsay on 30 January 2023",
+    "tier": "medium",
+    "value": 43000000
+  },
+  {
+    "entity": "beeple-everydays",
+    "isInFrance": false,
+    "names": {
+      "en": "Beeple’s NFT artwork sold at Christie’s (2021)",
+      "fr": "L’œuvre NFT de Beeple vendue chez Christie’s (2021)"
+    },
+    "source": "Christie's online sale, 11 March 2021, 69.3M USD fees included, 57.8M euros per Paris Match",
+    "tier": "medium",
+    "value": 57800000
+  },
+  {
+    "entity": "lucas-hernandez-transfer",
+    "isInFrance": false,
+    "names": {
+      "en": "Lucas Hernandez’s release clause paid by Bayern Munich (2019)",
+      "fr": "La clause libératoire de Lucas Hernandez payée par le Bayern Munich (2019)"
+    },
+    "source": "FC Bayern Munich and Atlético Madrid statements, buyout clause of 80M euros, 27 March 2019",
+    "tier": "medium",
+    "value": 80000000
+  },
+  {
+    "entity": "louvre-jewel-heist",
+    "isInFrance": true,
+    "names": {
+      "en": "The estimated loss from the Louvre jewel heist (2025)",
+      "fr": "Le préjudice estimé du vol des bijoux du Louvre (2025)"
+    },
+    "source": "Paris prosecutor Laure Beccuau, estimate by the museum’s curator, 21 October 2025",
+    "tier": "easy",
+    "value": 88000000
+  },
+  {
     "entity": "ronaldo-transfer",
     "isInFrance": true,
     "names": {
@@ -561,6 +1771,39 @@
     "value": 94000000
   },
   {
+    "entity": "klimt-lady-with-a-fan",
+    "isInFrance": false,
+    "names": {
+      "en": "Klimt’s Lady with a Fan sold at auction in London (2023)",
+      "fr": "La Dame à l’éventail de Klimt vendue aux enchères à Londres (2023)"
+    },
+    "source": "Sotheby's London, 27 June 2023, 85.3M GBP fees included, 99M euros per The Art Newspaper France",
+    "tier": "medium",
+    "value": 99000000
+  },
+  {
+    "entity": "bellingham-transfer",
+    "isInFrance": false,
+    "names": {
+      "en": "Jude Bellingham’s transfer to Real Madrid, fixed fee (2023)",
+      "fr": "Le transfert de Jude Bellingham au Real Madrid, part fixe (2023)"
+    },
+    "source": "Borussia Dortmund statement, fixed fee of 103M euros before add-ons, June 2023 (Reuters)",
+    "tier": "medium",
+    "value": 103000000
+  },
+  {
+    "entity": "dembele-barcelona-transfer",
+    "isInFrance": false,
+    "names": {
+      "en": "Ousmane Dembélé’s transfer to FC Barcelona, fixed fee (2017)",
+      "fr": "Le transfert d’Ousmane Dembélé au FC Barcelone, part fixe (2017)"
+    },
+    "source": "FC Barcelona and Borussia Dortmund statements, fixed fee of 105M euros before add-ons, August 2017",
+    "tier": "easy",
+    "value": 105000000
+  },
+  {
     "entity": "pogba-transfer",
     "isInFrance": true,
     "names": {
@@ -570,6 +1813,28 @@
     "source": "Juventus statement, August 2016",
     "tier": "medium",
     "value": 105000000
+  },
+  {
+    "entity": "griezmann-release-clause",
+    "isInFrance": false,
+    "names": {
+      "en": "Antoine Griezmann’s release clause paid by FC Barcelona (2019)",
+      "fr": "La clause libératoire d’Antoine Griezmann payée par le FC Barcelone (2019)"
+    },
+    "source": "FC Barcelona statement, release clause paid at La Liga headquarters, 12 July 2019",
+    "tier": "easy",
+    "value": 120000000
+  },
+  {
+    "entity": "enzo-fernandez-transfer",
+    "isInFrance": false,
+    "names": {
+      "en": "Enzo Fernández’s transfer from Benfica to Chelsea (2023)",
+      "fr": "Le transfert d’Enzo Fernández de Benfica à Chelsea (2023)"
+    },
+    "source": "Benfica filing to the Portuguese market regulator CMVM, 1 February 2023",
+    "tier": "hard",
+    "value": 121000000
   },
   {
     "entity": "uhlenhaut-coupe",
@@ -605,6 +1870,39 @@
     "value": 180000000
   },
   {
+    "entity": "warhol-marilyn",
+    "isInFrance": false,
+    "names": {
+      "en": "Warhol’s portrait of Marilyn Monroe sold at auction (2022)",
+      "fr": "Le portrait de Marilyn Monroe par Warhol vendu aux enchères (2022)"
+    },
+    "source": "Christie's New York, 9 May 2022, 195.04M USD fees included, 184M euros per Guinness World Records and Numéro",
+    "tier": "medium",
+    "value": 184000000
+  },
+  {
+    "entity": "villers-cotterets-cite",
+    "isInFrance": true,
+    "names": {
+      "en": "The Cité internationale de la langue française at Villers-Cotterêts (2023)",
+      "fr": "La Cité internationale de la langue française à Villers-Cotterêts (2023)"
+    },
+    "source": "French Ministry of Culture, restoration and fit-out of the château by the Centre des monuments nationaux",
+    "tier": "hard",
+    "value": 185000000
+  },
+  {
+    "entity": "valerian-budget",
+    "isInFrance": true,
+    "names": {
+      "en": "The budget of Luc Besson’s Valerian, the most expensive French film (2017)",
+      "fr": "Le budget de « Valérian » de Luc Besson, film français le plus cher (2017)"
+    },
+    "source": "CNC report on 2016 French film production, via Cineuropa",
+    "tier": "medium",
+    "value": 197470000
+  },
+  {
     "entity": "neymar-transfer",
     "isInFrance": true,
     "names": {
@@ -614,6 +1912,50 @@
     "source": "Release clause paid to FC Barcelona, August 2017",
     "tier": "easy",
     "value": 222000000
+  },
+  {
+    "entity": "euromillions-france-record",
+    "isInFrance": true,
+    "names": {
+      "en": "The biggest EuroMillions win in France, ticket bought in Paris (2025)",
+      "fr": "Le plus gros gain de l’EuroMillions en France, joué à Paris (2025)"
+    },
+    "source": "FDJ United press release, 6 October 2025: 250 million euros won on 19 August 2025, top of its table of the five biggest French wins",
+    "tier": "easy",
+    "value": 250000000
+  },
+  {
+    "entity": "ysl-berge-collection",
+    "isInFrance": true,
+    "names": {
+      "en": "The sale of the Yves Saint Laurent and Pierre Bergé collection (2009)",
+      "fr": "La vente de la collection Yves Saint Laurent et Pierre Bergé (2009)"
+    },
+    "source": "Christie's Paris, 23-25 February 2009, total of the three-day sale per AFP and Artprice",
+    "tier": "hard",
+    "value": 373500000
+  },
+  {
+    "entity": "salvator-mundi",
+    "isInFrance": false,
+    "names": {
+      "en": "Leonardo da Vinci’s Salvator Mundi sold at auction (2017)",
+      "fr": "Le Salvator Mundi de Léonard de Vinci vendu aux enchères (2017)"
+    },
+    "source": "Christie's New York, 15 November 2017, 450.3M USD fees included, 381.8M euros per Numéro and Hérodote",
+    "tier": "easy",
+    "value": 381800000
+  },
+  {
+    "entity": "philharmonie-de-paris",
+    "isInFrance": true,
+    "names": {
+      "en": "Building the Philharmonie de Paris (opened in 2015)",
+      "fr": "La construction de la Philharmonie de Paris (ouverte en 2015)"
+    },
+    "source": "Ministry of Culture answer to a written question at the Assemblée nationale, total project cost",
+    "tier": "hard",
+    "value": 386000000
   },
   {
     "entity": "millau-viaduct",
@@ -627,6 +1969,17 @@
     "value": 400000000
   },
   {
+    "entity": "grand-palais-restoration",
+    "isInFrance": true,
+    "names": {
+      "en": "Restoring the Grand Palais in Paris (reopened 2024-2025)",
+      "fr": "La restauration du Grand Palais à Paris (rouvert en 2024-2025)"
+    },
+    "source": "French Ministry of Culture, total cost of the operation including financing costs",
+    "tier": "medium",
+    "value": 466000000
+  },
+  {
     "entity": "notre-dame-restoration",
     "isInFrance": true,
     "names": {
@@ -638,6 +1991,72 @@
     "value": 700000000
   },
   {
+    "entity": "ligue-1-tv-rights-2018",
+    "isInFrance": true,
+    "names": {
+      "en": "Ligue 1 TV rights per season, auctioned in 2018 for 2020-2024",
+      "fr": "Les droits TV de la Ligue 1 par saison, vendus en 2018 pour 2020-2024"
+    },
+    "source": "LFP tender result (Mediapro, beIN Sports, Free), 29 May 2018",
+    "tier": "hard",
+    "value": 1153000000
+  },
+  {
+    "entity": "seine-bathing-plan",
+    "isInFrance": true,
+    "names": {
+      "en": "The plan to make the Seine swimmable (Paris 2024)",
+      "fr": "Le plan pour rendre la Seine baignable (JO de Paris 2024)"
+    },
+    "source": "Préfecture de la région Île-de-France, Plan Baignade, total cost estimated at 1.4bn euros",
+    "tier": "easy",
+    "value": 1400000000
+  },
+  {
+    "entity": "juice-probe",
+    "isInFrance": false,
+    "names": {
+      "en": "The total cost of the European Juice probe, launched to Jupiter (2023)",
+      "fr": "Le coût total de la sonde européenne Juice, partie vers Jupiter (2023)"
+    },
+    "source": "ESA estimate of the total mission cost, reported at launch in April 2023 (deutschland.de, Planetary Society, Paperjam)",
+    "tier": "hard",
+    "value": 1600000000
+  },
+  {
+    "entity": "tgv-m-order",
+    "isInFrance": true,
+    "names": {
+      "en": "SNCF’s order of 100 TGV M trains from Alstom (2018)",
+      "fr": "La commande de 100 TGV M passée par la SNCF à Alstom (2018)"
+    },
+    "source": "Alstom press release, July 2018, contract worth 2.7bn euros",
+    "tier": "hard",
+    "value": 2700000000
+  },
+  {
+    "entity": "lucasfilm-disney",
+    "isInFrance": false,
+    "names": {
+      "en": "Disney’s purchase of Lucasfilm, the Star Wars studio (2012)",
+      "fr": "Le rachat de Lucasfilm (Star Wars) par Disney (2012)"
+    },
+    "source": "Disney announcement, 30 October 2012, 4.05bn USD, 3.12bn euros per Journal du Net (3.1bn per Slate)",
+    "tier": "easy",
+    "value": 3120000000
+  },
+  {
+    "entity": "google-android-fine",
+    "isInFrance": false,
+    "names": {
+      "en": "The EU fine on Google over Android (2018)",
+      "fr": "L’amende infligée à Google par Bruxelles pour Android (2018)"
+    },
+    "source": "European Commission press release, 18 July 2018, 4.34 billion euros (cut to 4.125 billion by the General Court in 2022)",
+    "tier": "hard",
+    "value": 4340000000
+  },
+  {
     "entity": "paris-2024-budget",
     "isInFrance": true,
     "names": {
@@ -647,5 +2066,71 @@
     "source": "Paris 2024 organising committee, final budget",
     "tier": "medium",
     "value": 4400000000
+  },
+  {
+    "entity": "dior-couture-lvmh",
+    "isInFrance": true,
+    "names": {
+      "en": "LVMH’s purchase of Christian Dior Couture, debt included (2017)",
+      "fr": "Le rachat de Christian Dior Couture par LVMH, dette comprise (2017)"
+    },
+    "source": "LVMH and Christian Dior joint release, 25 April 2017, enterprise value",
+    "tier": "hard",
+    "value": 6500000000
+  },
+  {
+    "entity": "canal-seine-nord-cost",
+    "isInFrance": true,
+    "names": {
+      "en": "The Seine-Nord Europe canal, cost per the Cour des comptes (2026)",
+      "fr": "Le canal Seine-Nord Europe, coût estimé par la Cour des comptes (2026)"
+    },
+    "source": "Cour des comptes, cost to completion of 7.3bn euros before tax, current euros, April 2026 (Banque des Territoires)",
+    "tier": "hard",
+    "value": 7300000000
+  },
+  {
+    "entity": "rafale-india-contract",
+    "isInFrance": true,
+    "names": {
+      "en": "India’s contract for 36 Rafale jets (2016)",
+      "fr": "Le contrat de 36 Rafale vendus à l’Inde (2016)"
+    },
+    "source": "India-France intergovernmental agreement signed 23 September 2016, 7.87bn euros (The Hindu, The Indian Express)",
+    "tier": "hard",
+    "value": 7870000000
+  },
+  {
+    "entity": "lyon-turin-tunnel",
+    "isInFrance": true,
+    "names": {
+      "en": "The Lyon-Turin base tunnel, revised cost (2024)",
+      "fr": "Le tunnel de base Lyon-Turin, coût réévalué (2024)"
+    },
+    "source": "TELT board, July 2024, up from 8.6bn euros in 2015 (Économie Matin, 31 July 2024)",
+    "tier": "medium",
+    "value": 11100000000
+  },
+  {
+    "entity": "flamanville-epr-cost",
+    "isInFrance": true,
+    "names": {
+      "en": "The cost of the Flamanville EPR according to the Cour des comptes (2025)",
+      "fr": "Le coût de l’EPR de Flamanville selon la Cour des comptes (2025)"
+    },
+    "source": "Cour des comptes, report on the EPR programme, 14 January 2025, 23.7bn euros (2023 euros, financing costs included)",
+    "tier": "medium",
+    "value": 23700000000
+  },
+  {
+    "entity": "grand-paris-express-cost",
+    "isInFrance": true,
+    "names": {
+      "en": "The planned cost of the Grand Paris Express (target set in 2022)",
+      "fr": "Le coût prévu du Grand Paris Express (objectif fixé en 2022)"
+    },
+    "source": "Société des grands projets, cost target of 36.1bn euros including risk provisions, in 2012 economic conditions, set in 2022",
+    "tier": "medium",
+    "value": 36100000000
   }
 ]
