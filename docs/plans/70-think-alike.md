@@ -143,14 +143,36 @@ saying's first half, which no game owns.
 
 — cut here: served by a settings frame, tests green, screens owed —
 
-## Step 3 — the screens (one or two sessions)
+## Step 3 — the screens (done 16/11/2026, four sessions)
 
-Directions through `impeccable` first. A seat: the prompt large, one field,
-_send_, then its answer held while the others write. The wall: the prompt, the
-clock, a mark per seat that has sent. The reveal: the groups turned over one
-by one, smallest first, each with its authors and what it paid. The console:
-the merge, the setup (language, clock), the shelf, the door, both
-dictionaries.
+Direction _A, piles of cards_, with two corrections from _B_: the top card's
+word very large, and a pile's thickness made of its authors' pawns, one card
+edge a pawn, so a crowd counts at four metres. A seat writes on a paper card
+and lays it face down; the wall shows a card landing face down per seat that
+sent and _On attend N_, never a word; at the reveal the cards gather into face-
+down piles, smallest to biggest, and turn over one by one, the lone answers
+small flat cards beside them. The console regroups a row per answer, by drag
+or by the ⋯ menu, a merged answer folded under its row with _Ressortir_. The
+setup offers the prompt language and 10, 20 or 60 seconds; the game is on the
+shelf with its front door, in _Mêlée générale_, and its spine is an
+aubergine, `oklch(36% 0.12 320)`.
+
+What diverged from the plan:
+
+- **The wire changed**: a group's `mergedKeys: string[]` became
+  `merged: { authors, key, text }[]`, because the key drops spaces and accents
+  and could not print _Ressortir « Tour Eiffel »_.
+- **A console with no wall keeps the spectacle**: it turns the piles over as
+  the wall would, and _Regrouper_ swaps them for the rows; with a wall the
+  console shows the rows directly.
+- **A regroup moves only what changed**: elements keep their first-drawn DOM
+  order and take their place from CSS `order` (`useFirstDrawnOrder`), because
+  Chrome restarts an animation React moves.
+- **Out of the word-game family** in `spaced-cycle.ts`: a ninth word entry in
+  _Mêlée générale_ left the dealer no order spacing every game apart, and
+  nothing in Think alike is spelt or found — the table is guessed.
+- **Only _Mêlée générale_ deals it** among the ready-made line-ups: it falls
+  flat at two seats, the reason _Première partie_ leaves out _Qui de nous ?_.
 
 ## Step 4 — the evening's own prompts
 

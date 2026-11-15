@@ -79,6 +79,20 @@ one part.
   `/legal` says so in both languages; `docs/observability.md` says how to
   read them.
 
+- `[Game]` **Pense comme la table is on the shelf, played from every seat.**
+  A prompt goes up — _a red fruit_, _something in a fridge_ — and each seat
+  writes one answer on a paper card, its pawn in the corner, and lays it face
+  down. The wall shows a card landing face down for each seat that sent and
+  the names still writing, never a word. At the close the cards gather into
+  face-down piles, smallest to biggest, and turn over one by one: the top
+  card's word large, the pile as thick as its authors, one edge a pawn, the
+  pay and the names under it, the biggest crowd last; lone answers lie flat
+  beside them. The console regroups at the reveal — drag _frigo_ onto
+  _réfrigérateur_, or pick it from the row's menu — and takes a merged answer
+  back out, the round paid again on the spot and only what changed moving on
+  every screen. A console with no wall turns the piles over itself. The setup
+  takes the prompt language and 10, 20 or 60 seconds, _Mêlée générale_ deals
+  it, and its spine is an aubergine.
 - `[Server]` **Pense comme la table is served, reachable by a settings
   frame.** `thinkalike` joins the games the server deals, not the shelf: a
   prompt from the bank in the room's language, one line a seat sent once
