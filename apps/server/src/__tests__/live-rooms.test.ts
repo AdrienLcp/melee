@@ -38,7 +38,7 @@ describe('live rooms and what a room reports', () => {
       wallCount: 0
     })
 
-    await harness.seat({ code, nickname: 'Zoe Lefebvre' })
+    await harness.seat({ code, nickname: 'Zoe Martin' })
     await waitFor(() => rowOf()?.seatCount === 1, 'the seat to be counted')
 
     expect(JSON.stringify(rowOf())).not.toContain('Zoe')
