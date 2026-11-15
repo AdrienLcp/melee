@@ -90,9 +90,11 @@ browser untouched:
   its layers flattened into specificity (each layer lifted by `:not(#\#)`
   above the most ids the one below carries), `oklch()` lowered to hex by
   Lightning CSS, a `color-mix()` over a token replaced by its larger share,
-  and `translate`, `rotate` and `scale` folded into `transform`. A copy keeps
-  its source's name, so a change to that script alone reaches a cached
-  browser only on the next stylesheet change.
+  and `translate`, `rotate` and `scale` folded into `transform`. A copy is
+  named after its source plus a hash of every copy written
+  (`name-<hash>.<copies hash>.legacy.css`), stamped over
+  `__LEGACY_CSS_VERSION__` in that head script, so a change to the script
+  alone renames every copy rather than leaving a cached one stale.
 
 What the floor still lacks degrades rule by rule and is accepted: `:has()`,
 container queries, `dvh`, `subgrid`, `text-box` and view transitions. The

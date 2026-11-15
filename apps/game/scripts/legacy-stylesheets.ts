@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import { readdir, readFile, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
@@ -20,12 +21,19 @@ import postcss, {
  *
  * The modern stylesheets are not touched, so a current browser renders exactly
  * what it did.
+ *
+ * Each copy is named after its sheet **and** a hash of every copy written, and
+ * that hash replaces `LEGACY_VERSION_PLACEHOLDER` in the head script: a change
+ * to this script alone leaves every modern name as it was, and a copy under the
+ * same name would stay cached, stale, on the very browsers it is for.
  */
 
 const GAME_ROOT = resolve(import.meta.dirname, '..')
 const CLIENT_DIR = join(GAME_ROOT, 'dist')
 const ASSETS_DIR = join(CLIENT_DIR, 'assets')
 const LEGACY_SUFFIX = '.legacy.css'
+const LEGACY_VERSION_PLACEHOLDER = '__LEGACY_CSS_VERSION__'
+const LEGACY_VERSION_LENGTH = 8
 
 const LEGACY_TARGETS = {
   chrome: 87 << 16,
@@ -279,6 +287,8 @@ layerOrder.reduce((lift, layer) => {
   return lift + (mostIdsByLayer.get(layer) ?? 0) + 1
 }, 0)
 
+const legacyCopies: { code: Uint8Array; file: string }[] = []
+
 for (const { file, root } of sheets) {
   for (const rule of styleRules(root)) {
     const lift = liftByLayer.get(layerOf(rule)) ?? 0
@@ -299,9 +309,42 @@ for (const { file, root } of sheets) {
     targets: LEGACY_TARGETS
   })
 
-  await writeFile(join(ASSETS_DIR, file.replace(/\.css$/, LEGACY_SUFFIX)), code)
+  legacyCopies.push({ code, file })
 }
 
+const legacyVersion = legacyCopies
+  .toSorted((first, second) => first.file.localeCompare(second.file))
+  .reduce(
+    (hash, { code, file }) => hash.update(file).update(code),
+    createHash('sha256')
+  )
+  .digest('hex')
+  .slice(0, LEGACY_VERSION_LENGTH)
+
+await Promise.all(
+  legacyCopies.map(({ code, file }) =>
+    writeFile(
+      join(
+        ASSETS_DIR,
+        file.replace(/\.css$/, `.${legacyVersion}${LEGACY_SUFFIX}`)
+      ),
+      code
+    )
+  )
+)
+
+const shellPath = join(CLIENT_DIR, 'index.html')
+const shell = await readFile(shellPath, 'utf8')
+
+if (!shell.includes(LEGACY_VERSION_PLACEHOLDER)) {
+  throw new Error(`index.html names no \`${LEGACY_VERSION_PLACEHOLDER}\``)
+}
+
+await writeFile(
+  shellPath,
+  shell.replaceAll(LEGACY_VERSION_PLACEHOLDER, legacyVersion)
+)
+
 console.info(
-  `wrote ${stylesheets.length} legacy stylesheets, layers lifted by ${JSON.stringify(Object.fromEntries(liftByLayer))}`
+  `wrote ${stylesheets.length} legacy stylesheets as .${legacyVersion}${LEGACY_SUFFIX}, layers lifted by ${JSON.stringify(Object.fromEntries(liftByLayer))}`
 )

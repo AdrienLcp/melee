@@ -74,7 +74,8 @@
       a TV among them — reads none of the stylesheets: their tokens are
       `oklch()` and `color-mix()`, and before Chrome 99 every `@layer` block is
       dropped whole. It is handed the `.legacy.css` copy of each instead,
-      written by `scripts/legacy-stylesheets.ts`, as the parser and the router
+      written by `scripts/legacy-stylesheets.ts` — which stamps the hash of
+      its copies over the placeholder below —, as the parser and the router
       add them; the inlined critical sheet is switched off, since its links
       stay in the head as `text/plain` markers that each get a copy. No syntax
       past what Chrome 87 and Safari 14.1 parse, the floor `vite.config.ts`
@@ -96,7 +97,7 @@
           const copy = document.createElement('link')
           copy.setAttribute('data-legacy', '')
           copy.rel = 'stylesheet'
-          copy.href = href.replace(/\.css$/, '.legacy.css')
+          copy.href = href.replace(/\.css$/, '.__LEGACY_CSS_VERSION__.legacy.css')
           node.after(copy)
           if (node.type !== 'text/plain') node.media = 'not all'
         }
