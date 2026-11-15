@@ -139,6 +139,7 @@
 
     .word
       @include typography.card-name
+      @include typography.typed
 
       font-size: clamp(var(--text-m), 7.5cqi, var(--text-xl))
       grid-area: word
@@ -188,6 +189,8 @@
         min-inline-size: 0
 
       .name
+        @include typography.typed
+
         min-inline-size: 0
         overflow: hidden
         text-overflow: ellipsis

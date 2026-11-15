@@ -63,6 +63,8 @@
     // Ends on an ellipsis at the last whole line its cell holds, never cut
     // through one: the cell's height decides `--typed-lines` below.
     .typed
+      @include typography.typed
+
       animation: swap-in var(--transition-base, 0s) var(--ease-out)
       -webkit-box-orient: vertical
       display: -webkit-box

@@ -171,6 +171,8 @@
           inline-size: auto
 
       .nickname
+        @include typography.typed
+
         flex: 1 1 auto
         min-width: 0
         overflow: hidden
@@ -234,6 +236,7 @@
 
       .text
         @include typography.billboard-wrapping
+        @include typography.typed
 
         font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 5), 3.6rem)
         overflow-wrap: anywhere

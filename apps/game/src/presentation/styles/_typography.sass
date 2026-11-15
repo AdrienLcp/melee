@@ -132,10 +132,18 @@
 @mixin regular
   font-weight: 400
 
-/// What somebody typed, set in the read face beside the display type around it.
-@mixin aside
+/// What somebody typed — a name, a word, an answer — in the read face at the
+/// weight around it: the display face draws a capital I and a small l as the
+/// same bar, and the read face does not.
+@mixin typed
   font-family: var(--font-base)
   font-stretch: normal
+  font-variation-settings: normal
+
+/// What somebody typed, set regular beside the bold display type around it.
+@mixin aside
+  @include typed
+
   font-weight: 400
 
 @mixin heading

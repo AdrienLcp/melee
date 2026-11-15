@@ -525,7 +525,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     ready: 'Hit it the moment you know',
     sendFailed: 'That buzz did not get through. Hit it again.',
-    theyBuzzed: '{nickname} buzzed',
+    theyBuzzed: '<name>{nickname}</name> buzzed',
     won: 'You are in. Say it out loud'
   },
   buzzer: {

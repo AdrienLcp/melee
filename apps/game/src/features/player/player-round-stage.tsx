@@ -1776,7 +1776,9 @@ const statusLine = ({
   if (view.phase === 'buzzed' && nickname !== undefined) {
     return {
       isFloor: true,
-      text: translate('buzz.theyBuzzed', { nickname })
+      text: translate
+        .rich('buzz.theyBuzzed', { name: (typed) => typed, nickname })
+        .join('')
     }
   }
 

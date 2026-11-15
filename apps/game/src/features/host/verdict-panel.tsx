@@ -14,6 +14,7 @@ import { FloorClock } from '@/presentation/components/floor-clock'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { RichText } from '@/presentation/i18n/rich-text'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 
 import './verdict-panel.sass'
@@ -121,7 +122,18 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
     <section className='verdict-panel'>
       <div className='holder'>
         <Pawn seat={seat} />
-        <h2>{translate('buzz.theyBuzzed', { nickname })}</h2>
+        <h2>
+          <RichText
+            parts={translate.rich('buzz.theyBuzzed', {
+              name: (typed) => (
+                <span className='nickname' key='nickname'>
+                  {typed}
+                </span>
+              ),
+              nickname
+            })}
+          />
+        </h2>
         <FloorClock buzz={buzz} clock={clock} />
       </div>
 

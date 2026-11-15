@@ -69,6 +69,8 @@
       // A name wraps between words and nowhere else; a word wider than its
       // column ends on an ellipsis on its own line rather than breaking.
       .name
+        @include typography.typed
+
         min-inline-size: 0
         overflow: hidden
         text-overflow: ellipsis
@@ -115,6 +117,7 @@
 
       .word
         @include typography.card-name
+        @include typography.typed
 
         animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
         color: var(--card-ink)
@@ -203,6 +206,7 @@
 
     .word
       @include typography.billboard-revealed
+      @include typography.typed
 
       color: var(--card-ink)
       font-size: clamp(var(--text-s), min(24cqi, calc(150cqi / var(--letters)), 30cqh), 7rem)

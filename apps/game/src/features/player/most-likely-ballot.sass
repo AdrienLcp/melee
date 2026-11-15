@@ -1,4 +1,5 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/typography'
 
 @layer components
   // Pressed against the clock, so every seat is in view at once: the list
@@ -34,6 +35,8 @@
       padding-block: var(--space-2xs)
 
       .nickname
+        @include typography.typed
+
         -webkit-box-orient: vertical
         -webkit-line-clamp: var(--seat-name-lines, 2)
         display: -webkit-box

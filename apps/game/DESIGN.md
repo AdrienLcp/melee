@@ -205,7 +205,8 @@ never scrolls.
 - Twelve pawn colours and three heads; the same piece names the same player
   on every screen, and no two seats ever hold the same one.
 - Two faces: Bricolage Grotesque condensed for what is printed on the box,
-  Atkinson Hyperlegible Next for what is read.
+  Atkinson Hyperlegible Next for what is read and for everything a person
+  typed.
 - A question and its four choices never scroll, measured at sixteen viewports.
 
 ## Colors
@@ -388,7 +389,7 @@ grow, which is the one thing a 4K wall draws thinner.
   name of whoever buzzed, a winner, a notice's title. A line with a French
   grave (`à`) set in it needs line-height 1.2: the accent rises past 0.95.
 - **`title`** (700, stretch 90%, line-height 1.05): control labels, roster
-  names, and every block's ruled heading (`SectionHeading`): _Cette manche_,
+  names (in the read face, through `typed`), and every block's ruled heading (`SectionHeading`): _Cette manche_,
   _Classement général_, _Classement final_.
 - **`body`** (400, line-height 1.45): the default on `<body>`.
 - **`caption`** (500, line-height 1.35): reasons, details, strip segments.
@@ -401,6 +402,20 @@ grow, which is the one thing a 4K wall draws thinner.
   Atkinson draws `--` as one long dash at every weight, which a reader
   retyping `--transport` copies wrong. The one face not self-hosted, because
   nothing is downloaded for it.
+- **`typed`** (Atkinson, stretch and optical size reset, the weight left to
+  the register around it): **everything a person typed** — a seat's name
+  wherever it is printed, a Petit Bac word, a typed answer or guess, a
+  slate or think-alike word, black square's typed line, and the text field
+  itself. Bricolage draws a capital I and a small l as the same bar and has
+  no alternate for either, so _Ilan_ and _llan_ read as one name; a word we
+  wrote can be told from its context, a name somebody chose cannot. Atkinson
+  serifs its I, tails its l and foots its 1. What we print stays Bricolage —
+  titles, the letter tiles, scores, the room code, game names — and a bank
+  answer sharing a list with typed ones takes `typed` with them, so one list
+  never mixes two faces. A sentence carrying a name marks it
+  (`buzz.theyBuzzed`) and only the name changes face. Atkinson is wider than
+  condensed Bricolage: a name in a fixed box loses about one character to
+  its ellipsis, which is the trade. `aside` is `typed` set regular.
 
 `body`, `caption` and `label` carry a `--stage-unit` term because a player's
 column widens from 343 to 828px and the faces above them double over the same

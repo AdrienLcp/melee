@@ -56,6 +56,8 @@
       box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--tile-ink)
 
     .nickname
+      @include typography.typed
+
       grid-area: name
       overflow: hidden
       text-overflow: ellipsis

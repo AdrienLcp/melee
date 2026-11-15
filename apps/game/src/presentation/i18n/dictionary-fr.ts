@@ -492,7 +492,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     ready: 'Appuie dès que tu sais',
     sendFailed: 'Ce buzz n’est pas parti. Réappuie.',
-    theyBuzzed: '{nickname} a buzzé',
+    theyBuzzed: '<name>{nickname}</name> a buzzé',
     won: 'C’est à toi. Annonce\u00a0!'
   },
   buzzer: {

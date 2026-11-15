@@ -73,6 +73,8 @@
         inline-size: auto
 
       .name
+        @include typography.typed
+
         min-inline-size: 0
         overflow: hidden
         text-overflow: ellipsis
@@ -122,6 +124,8 @@
     // answer keeps the row's two lines and trails off rather than pushing
     // the seats under it off the wall.
     .answer
+      @include typography.typed
+
       -webkit-box-orient: vertical
       -webkit-line-clamp: 2
       display: -webkit-box

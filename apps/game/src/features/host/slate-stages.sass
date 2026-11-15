@@ -258,6 +258,8 @@
           inline-size: auto
 
       .nickname
+        @include typography.typed
+
         flex: 1 1 auto
         font-size: 1em
         min-width: 0
@@ -437,6 +439,7 @@
 
       .text
         @include typography.billboard-wrapping
+        @include typography.typed
 
         flex: none
         font-size: 1em

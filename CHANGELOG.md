@@ -219,6 +219,19 @@ one part.
 
 ### Improvements
 
+- `[Game]` **What somebody typed tells I from l.** Players read _Ilan_ and
+  _llan_ as the same name: Bricolage Grotesque draws a capital I and a small l
+  as one bar and carries no alternate for either. Every name a seat chose —
+  the standings, the rosters, the podiums, the score track, the buzz, the
+  Shades and most-likely tallies, the word games' rows — every Petit Bac word
+  on the sheet, the vote and the reveal, every typed answer on a reveal, the
+  slate's and think-alike's words, black square's typed lines and every text
+  field are now set in Atkinson Hyperlegible Next at the weight around them
+  (serifed I, tailed l, footed 1), through the new `typography.typed` mixin.
+  Titles, the letter tiles, scores, the room code and game names keep
+  Bricolage. The buzz line splits its name from the sentence
+  (`buzz.theyBuzzed` marks it), so only the name changes face.
+
 - `[Game]` **A scanned QR code opens on the name form alone.** The player's
   arrival loaded 432 kB of script — every game's answer and reveal screens —
   before a name was typed; it loads 289 kB now, below every front door. The
@@ -471,6 +484,16 @@ one part.
   answers, the fastest still takes up to ten points more.
 
 ### Fixes
+
+- `[Game]` **The menu opens as fast every time.** Every open, not only the
+  first, took a quarter to a third of a second on a phone before the menu
+  drew: the console's corner was placed by rules that made the browser
+  restyle the whole screen on any change, the language and theme strips
+  measured themselves while the menu was still being built, and a seated
+  player's menu drew the whole pawn picker folded away under its row. The
+  corner and the strips now cost nothing on open and the picker is drawn when
+  its row is opened, so the menu draws in about half the time on every
+  screen.
 
 - `[Shared]` **Make the number's ruler pins a seat from its first merge.** A
   seat that merged tiles and never pressed _Send_ stayed under _Nothing sent
