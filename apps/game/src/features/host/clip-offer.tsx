@@ -14,7 +14,6 @@ import {
   showPassingNotice,
   useStandingNotice
 } from '@/presentation/components/notices'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { clipRefusalKey } from '@/presentation/i18n/translation'
 
 /**
@@ -103,7 +102,6 @@ export const useClipNotice = ({
   onUnlockAudio,
   refusal
 }: ClipNoticeOf): void => {
-  const translate = useTranslate()
   const wasSilentRef = useRef(false)
 
   const noticeOf = (shown: ClipOfferState): Notice => {
@@ -112,25 +110,24 @@ export const useClipNotice = ({
         return {
           action: null,
           description: null,
-          title: translate(`blindtest.audio.onWall.${shown.cause}`),
+          title: `blindtest.audio.onWall.${shown.cause}`,
           tone: 'fault'
         }
       case 'fault':
         return {
           action: null,
           description: null,
-          title: translate(`blindtest.audio.fault.${shown.fault}`),
+          title: `blindtest.audio.fault.${shown.fault}`,
           tone: 'fault'
         }
       case 'silent':
         return {
           action: {
-            label: translate('blindtest.audio.start'),
+            label: 'blindtest.audio.start',
             onPress: onUnlockAudio
           },
-          description:
-            refusal === null ? null : translate(clipRefusalKey(refusal)),
-          title: translate('blindtest.audio.silent'),
+          description: refusal === null ? null : clipRefusalKey(refusal),
+          title: 'blindtest.audio.silent',
           tone: 'fault'
         }
       default:
@@ -145,7 +142,7 @@ export const useClipNotice = ({
       showPassingNotice({
         action: null,
         description: null,
-        title: translate('blindtest.audio.playing'),
+        title: 'blindtest.audio.playing',
         tone: 'news'
       })
     }

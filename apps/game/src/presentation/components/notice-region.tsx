@@ -56,11 +56,11 @@ const NoticeCard: React.FC<NoticeCardProps> = ({
       </span>
       <ToastContent className='notice-words'>
         <Text className='notice-title' slot='title'>
-          {notice.title}
+          {translate(notice.title)}
         </Text>
         {notice.description !== null && (
           <Text className='notice-description' slot='description'>
-            {notice.description}
+            {translate(notice.description)}
           </Text>
         )}
       </ToastContent>
@@ -70,7 +70,7 @@ const NoticeCard: React.FC<NoticeCardProps> = ({
           onPress={notice.action.onPress}
           size='small'
         >
-          {notice.action.label}
+          {translate(notice.action.label)}
         </Button>
       )}
       {notice.action === null && (

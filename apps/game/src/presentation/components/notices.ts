@@ -1,14 +1,18 @@
 import { useEffect, useEffectEvent, useRef, useSyncExternalStore } from 'react'
 import { UNSTABLE_ToastQueue as ToastQueue } from 'react-aria-components'
 
+import type { PlainTranslationKey } from '@/presentation/i18n/translation'
+
 /** The one press a notice may carry: what fixes what it says. */
 export type NoticeAction = {
-  label: string
+  label: PlainTranslationKey
   onPress: () => void
 }
 
 /**
- * A line laid over every screen, above whatever page is open.
+ * A line laid over every screen, above whatever page is open. It holds keys,
+ * read in the locale of the moment it is drawn, so a language switched while
+ * it stands is followed.
  * - `fault` — something on this screen is wrong and stays wrong until it is
  *   fixed: stamped in danger
  * - `news` — something happened, and nothing has to be done about it
@@ -17,8 +21,8 @@ export type Notice = {
   /** A press that fixes the fault, or `null`. */
   action: NoticeAction | null
   /** What to do about it, or `null` when the title says enough. */
-  description: string | null
-  title: string
+  description: PlainTranslationKey | null
+  title: PlainTranslationKey
   tone: 'fault' | 'news'
 }
 

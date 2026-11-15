@@ -434,6 +434,10 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A notice follows a language switched while it stands.** A
+  passing notice held its words in the language of the moment it was said;
+  every notice now holds its keys and is read in the locale it is drawn in.
+
 - `[Game]` **A browser of 2020 plays instead of showing the error screen.**
   A smart TV running Chromium 94 met `toSorted` on its first render and fell
   to the error screen, unstyled, because every stylesheet sits in a cascade
