@@ -11,6 +11,7 @@ import {
   DEFAULT_PETIT_BAC_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SWATCH_SETTINGS,
+  DEFAULT_THINK_ALIKE_SETTINGS,
   type GameKind,
   type ShelvedGame,
   shelvedGames
@@ -179,7 +180,10 @@ const grandMixVarietiesOf = (
   swatch: SWATCH_SHOW_MS.map((showMs) => ({
     ...DEFAULT_SWATCH_SETTINGS,
     showMs
-  }))
+  })),
+  thinkalike: [
+    { ...DEFAULT_THINK_ALIKE_SETTINGS, language: questionLanguageFor(locale) }
+  ]
 })
 
 /**

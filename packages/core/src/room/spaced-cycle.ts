@@ -5,7 +5,9 @@ type GameFamily = 'clockRaces' | 'numbers' | 'wordSheets'
 /**
  * Games the table feels as one: two word sheets, two races against the
  * clock or two numbers to weigh in a row read as the same round twice, so the
- * dealer spaces a family as it spaces a game.
+ * dealer spaces a family as it spaces a game. Think alike is no word sheet:
+ * nothing is spelt or found, the table is guessed — and a ninth word entry
+ * leaves Free-for-all no order that spaces every game its share.
  */
 const FAMILY_OF: Partial<Record<GameKind, GameFamily>> = {
   blacksquare: 'wordSheets',
@@ -16,8 +18,7 @@ const FAMILY_OF: Partial<Record<GameKind, GameFamily>> = {
   makenumber: 'numbers',
   mysteryword: 'wordSheets',
   petitbac: 'wordSheets',
-  reflex: 'clockRaces',
-  thinkalike: 'wordSheets'
+  reflex: 'clockRaces'
 }
 
 type SpacingKey = GameKind | GameFamily

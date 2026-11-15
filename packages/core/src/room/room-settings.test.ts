@@ -67,7 +67,7 @@ describe('roomSettingsFor', () => {
     ).toEqual(DEFAULT_MODE_SETTINGS.move)
   })
 
-  it.each(['mysteryword', 'longestword'] as const)(
+  it.each(['mysteryword', 'longestword', 'thinkalike'] as const)(
     '[room-settings] deals %s in the language the host reads',
     (game) => {
       const inEnglish = roomSettingsFor({ games: [game], locale: 'en' })

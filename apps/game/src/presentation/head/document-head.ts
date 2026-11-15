@@ -145,6 +145,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A colour comes up on every screen for a few seconds, then hides, and the whole room rebuilds it from memory on their own screens. The reveal lays every guess beside the real one, nearest first. Scan the QR code and play — no install, no account.',
       title: 'Shades — Mêlée'
     },
+    thinkalike: {
+      description:
+        'A prompt goes up on every screen — a red fruit, something you find in a fridge — and everyone writes the first thing that comes to mind before the clock runs out. Nobody sees a word until the reveal turns the answers over, and each one is paid by how many of the others wrote it too. Scan the QR code and play — no install, no account.',
+      title: 'Great minds — Mêlée'
+    },
     timeline: {
       description:
         'Five events come up at once — the Moon landing, the fall of the Berlin Wall, the first iPhone — and the whole room puts them in order on their own screens, earliest first. The years come out at the reveal. Scan the QR code and play — no install, no account.',
@@ -261,6 +266,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Une couleur s’affiche sur tous les écrans quelques secondes, puis disparaît, et toute la salle la refait de mémoire depuis son écran. Le dévoilement pose chaque essai à côté de la vraie, la plus proche en premier. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Nuancier — Mêlée'
+    },
+    thinkalike: {
+      description:
+        'Une consigne s’affiche sur tous les écrans — un fruit rouge, un truc qu’on trouve dans un frigo — et chacun écrit la première chose qui lui vient avant la fin du temps. Personne ne voit un mot avant la révélation, et chaque réponse rapporte selon le nombre des autres qui ont écrit la même. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Pense comme la table — Mêlée'
     },
     timeline: {
       description:

@@ -244,7 +244,7 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
   })
 })
 
-it.each(['quiz', 'mysteryword', 'longestword'] as const)(
+it.each(['quiz', 'mysteryword', 'longestword', 'thinkalike'] as const)(
   '[ready-made] deals %s in the language the table speaks',
   (game) => {
     const languagesOf = (locale: 'en' | 'fr') =>
