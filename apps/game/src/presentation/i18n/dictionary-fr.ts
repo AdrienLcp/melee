@@ -307,7 +307,7 @@ export const FR_DICTIONARY = defineDictionary({
         stalled:
           'La musique reste bloquée au chargement ici. Vérifie la connexion de cet écran.',
         unreachable:
-          'La musique de ce morceau ne charge pas. C’est le fichier ou la connexion, pas les enceintes.'
+          'La musique ne charge pas ici. Un bloqueur de pub, la protection contre le pistage du navigateur ou un filtre réseau la bloque souvent : autorise ce site, ou révèle ce morceau et passe au suivant.'
       },
       onWall: {
         blocked:
@@ -315,9 +315,10 @@ export const FR_DICTIONARY = defineDictionary({
         stalled:
           'La musique reste bloquée au chargement sur l’écran de la salle. Révèle ce morceau et passe au suivant, ou vérifie la connexion de cet écran.',
         unreachable:
-          'L’écran de la salle n’arrive pas à charger la musique de ce morceau. Révèle-le et passe au suivant.'
+          'L’écran de la salle n’arrive pas à charger la musique. Un bloqueur de pub, la protection contre le pistage du navigateur ou un filtre réseau la bloque souvent : autorise ce site sur cet écran, ou révèle ce morceau et passe au suivant.'
       },
       pause: 'Pause',
+      playing: 'La musique joue ici.',
       refused: {
         blocked:
           'Le navigateur a refusé le son. Autorise-le pour ce site, ou tiens la table depuis un autre écran.',
@@ -1823,6 +1824,9 @@ export const FR_DICTIONARY = defineDictionary({
     description: 'La partie est finie, ou le code a été mal tapé.',
     documentTitle: 'Personne ici — Mêlée',
     title: 'Personne ici'
+  },
+  notice: {
+    dismiss: 'Fermer'
   },
   pawn: {
     betweenRounds: 'Il se change entre deux manches, pas pendant.',

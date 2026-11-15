@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Game]` **A fault with the music is said where the room sees it.** Every
+  screen has one place for notices, under the menu's row and over the page,
+  each arriving and leaving with its room opening and closing. A clip the
+  speaker cannot sound — the browser refusing it, the music server blocked,
+  the file stalling — stands there until it is fixed instead of a small line
+  in a panel, with _Start the music_ when a press is what it needs; once the
+  music plays a passing word says so and goes. The console says it too when
+  the wall is the speaker, and a blocked server names the usual culprits: an
+  ad blocker, the browser's tracking protection, a network filter.
+
 - `[Shared]` **A back office at `/admin`.** Behind a key the server checks
   (any other request there answers 404), it lists the tables open now — game,
   phase, round, seats, walls — refreshed every ten seconds, each room writing

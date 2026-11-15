@@ -1,4 +1,4 @@
-import type React from 'react'
+import { useEffect, useRef } from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
 import type { ClipFault, SilentClip } from '@melee/protocol/sound'
@@ -9,8 +9,11 @@ import {
 } from '@melee/core/blindtest/clip-audio'
 
 import { blindtestHostContent } from '@/helpers/round-content'
-import { Button } from '@/presentation/components/button'
-import { RefusalNote } from '@/presentation/components/refusal-note'
+import {
+  type Notice,
+  showPassingNotice,
+  useStandingNotice
+} from '@/presentation/components/notices'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { clipRefusalKey } from '@/presentation/i18n/translation'
 
@@ -78,18 +81,9 @@ export const clipOfferOf = ({
     : null
 }
 
-/** Two offers that say the same thing, whatever objects carry them. */
-export const isSameClipOffer = (
-  left: ClipOfferState,
-  right: ClipOfferState
-): boolean =>
-  left.kind === right.kind &&
-  (left.kind !== 'onWall' ||
-    (right.kind === 'onWall' && left.cause === right.cause)) &&
-  (left.kind !== 'fault' ||
-    (right.kind === 'fault' && left.fault === right.fault))
-
-type ClipOfferNoteProps = {
+type ClipNoticeOf = {
+  /** Whether a press has blessed an audio element on this screen. */
+  canPlay: boolean
   /** What is said, or `null` to say nothing. */
   offer: ClipOfferState | null
   onUnlockAudio: () => void
@@ -97,67 +91,65 @@ type ClipOfferNoteProps = {
   refusal: ClipRefusal | null
 }
 
-/** The words and the press of a `ClipOfferState`. */
-export const ClipOfferNote: React.FC<ClipOfferNoteProps> = ({
+/**
+ * Says a `ClipOfferState` as a notice standing over the page until the clip
+ * plays — a fault laid at the foot of a panel was read by nobody across a
+ * room — with the press that arms the screen when one is owed, and a passing
+ * word once that press has made the music sound.
+ */
+export const useClipNotice = ({
+  canPlay,
   offer,
   onUnlockAudio,
   refusal
-}) => {
+}: ClipNoticeOf): void => {
   const translate = useTranslate()
+  const wasSilentRef = useRef(false)
 
-  if (offer === null) {
-    return null
+  const noticeOf = (shown: ClipOfferState): Notice => {
+    switch (shown.kind) {
+      case 'onWall':
+        return {
+          action: null,
+          description: null,
+          title: translate(`blindtest.audio.onWall.${shown.cause}`),
+          tone: 'fault'
+        }
+      case 'fault':
+        return {
+          action: null,
+          description: null,
+          title: translate(`blindtest.audio.fault.${shown.fault}`),
+          tone: 'fault'
+        }
+      case 'silent':
+        return {
+          action: {
+            label: translate('blindtest.audio.start'),
+            onPress: onUnlockAudio
+          },
+          description:
+            refusal === null ? null : translate(clipRefusalKey(refusal)),
+          title: translate('blindtest.audio.silent'),
+          tone: 'fault'
+        }
+      default:
+        return shown satisfies never
+    }
   }
 
-  switch (offer.kind) {
-    case 'onWall':
-      return (
-        <div className='muted-clip'>
-          <p className='refusal' role='alert'>
-            {translate(`blindtest.audio.onWall.${offer.cause}`)}
-          </p>
-        </div>
-      )
-    case 'fault':
-      return (
-        <div className='muted-clip'>
-          <p className='refusal' role='alert'>
-            {translate(`blindtest.audio.fault.${offer.fault}`)}
-          </p>
-        </div>
-      )
-    case 'silent':
-      return (
-        <div className='muted-clip'>
-          <p>{translate('blindtest.audio.silent')}</p>
-          <Button onPress={onUnlockAudio} size='small' variant='outlined'>
-            {translate('blindtest.audio.start')}
-          </Button>
-          {/* Below the offer, because it is what the last one came back with. */}
-          <RefusalNote
-            message={
-              refusal === null ? null : translate(clipRefusalKey(refusal))
-            }
-          />
-        </div>
-      )
-    default:
-      return offer satisfies never
-  }
+  useStandingNotice(offer === null ? null : noticeOf(offer))
+
+  useEffect(() => {
+    if (wasSilentRef.current && offer === null && canPlay) {
+      showPassingNotice({
+        action: null,
+        description: null,
+        title: translate('blindtest.audio.playing'),
+        tone: 'news'
+      })
+    }
+
+    wasSilentRef.current = offer?.kind === 'silent'
+  })
 }
-
-type ClipOfferProps = ClipOfferOf &
-  Omit<ClipOfferNoteProps, 'offer'> & { view: HostRoomView }
-
-/** The offer this screen owes the clip right now, or nothing. */
-export const ClipOffer: React.FC<ClipOfferProps> = ({
-  onUnlockAudio,
-  refusal,
-  ...state
-}) => (
-  <ClipOfferNote
-    offer={clipOfferOf(state)}
-    onUnlockAudio={onUnlockAudio}
-    refusal={refusal}
-  />
-)

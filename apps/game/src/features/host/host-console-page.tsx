@@ -80,7 +80,6 @@ import { Loader } from '@/presentation/components/loader'
 import { RefusalNote } from '@/presentation/components/refusal-note'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
-import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import {
   reflexOutcome,
@@ -101,7 +100,7 @@ import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { ArrivalNotice, useArrival } from './arrival-notice'
 import type { ChallengeLine } from './challenge-line'
-import { ClipOfferNote, clipOfferOf, isSameClipOffer } from './clip-offer'
+import { clipOfferOf, useClipNotice } from './clip-offer'
 import {
   HostActions,
   type HostActionsProps,
@@ -568,9 +567,14 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
   const shownRefusal =
     shownError === null ? null : translate(protocolErrorKey(shownError.code))
-  const clipOffer = clipOfferOf({ canPlay, fault, isSpeaker, view })
-  const isNoticeOpen = shownRefusal !== null || clipOffer !== null
-  const lastClipOffer = useLastShown(clipOffer, isSameClipOffer)
+  const isNoticeOpen = shownRefusal !== null
+
+  useClipNotice({
+    canPlay,
+    offer: clipOfferOf({ canPlay, fault, isSpeaker, view }),
+    onUnlockAudio: armAudio,
+    refusal
+  })
 
   if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
@@ -644,11 +648,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           inert={!isNoticeOpen}
         >
           <div>
-            <ClipOfferNote
-              offer={isNoticeOpen ? clipOffer : lastClipOffer}
-              onUnlockAudio={armAudio}
-              refusal={refusal}
-            />
             <RefusalNote message={shownRefusal} />
           </div>
         </div>
@@ -848,14 +847,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       {header}
 
       <RoomStage
-        canPlay={canPlay}
         clock={clock}
         controls={controls}
-        fault={fault}
         isBoardAround={isSpeaker && isDesk}
-        isSpeaker={isSpeaker}
-        onUnlockAudio={armAudio}
-        refusal={refusal}
         roomCode={roomCode}
         slateWall={slateWall}
         view={view}
@@ -921,14 +915,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
               >
                 {header}
                 <RoomStage
-                  canPlay={canPlay}
                   clock={clock}
                   controls={controls}
-                  fault={fault}
                   isBoardAround={false}
-                  isSpeaker={isSpeaker}
-                  onUnlockAudio={armAudio}
-                  refusal={refusal}
                   roomCode={roomCode}
                   slateWall={slateWall}
                   view={view}

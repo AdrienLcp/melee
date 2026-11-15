@@ -333,7 +333,7 @@ export const EN_DICTIONARY = defineDictionary({
         stalled:
           'The music is stuck loading here. Check this screen’s connection.',
         unreachable:
-          'This track’s music would not load. It is the file or the connection, not the speakers.'
+          'The music would not load here. An ad blocker, the browser’s tracking protection or a network filter often stops it: allow this site, or reveal this one and go on.'
       },
       /**
        * Told to the console about the room’s screen, which is the one sounding
@@ -345,9 +345,10 @@ export const EN_DICTIONARY = defineDictionary({
         stalled:
           'The music is stuck loading on the room’s screen. Reveal this one and go on, or check that screen’s connection.',
         unreachable:
-          'The room’s screen could not load this track’s music. Reveal it and go on to the next.'
+          'The room’s screen could not load the music. An ad blocker, the browser’s tracking protection or a network filter often stops it there: allow this site on that screen, or reveal this one and go on.'
       },
       pause: 'Pause',
+      playing: 'The music plays here now.',
       refused: {
         blocked:
           'The browser refused the sound. Allow it for this site, or run the room from another screen.',
@@ -1911,6 +1912,9 @@ export const EN_DICTIONARY = defineDictionary({
     description: 'That game is over, or the code was mistyped.',
     documentTitle: 'Nobody here — Mêlée',
     title: 'Nobody here'
+  },
+  notice: {
+    dismiss: 'Dismiss'
   },
   pawn: {
     /** Under the pieces while a round plays, which is when the server refuses a change. */

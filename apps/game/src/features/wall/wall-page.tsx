@@ -7,6 +7,7 @@ import type { RoomCode } from '@melee/protocol/identifiers'
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isEveningSilent } from '@melee/core/room/game-capabilities'
 
+import { clipOfferOf, useClipNotice } from '@/features/host/clip-offer'
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'
 import { useRoundAudio } from '@/features/host/round-audio'
@@ -156,6 +157,13 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // this tab already carries the browser's permission to play. When it does
   // not, the offer in the header stays until somebody presses it.
   const tryArmingUnasked = useEffectEvent(armAudio)
+
+  useClipNotice({
+    canPlay,
+    offer: clipOfferOf({ canPlay, fault, isSpeaker, view }),
+    onUnlockAudio: armAudio,
+    refusal
+  })
 
   useEffect(() => {
     tryArmingUnasked()
@@ -307,14 +315,9 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           </div>
         ) : (
           <RoomStage
-            canPlay={canPlay}
             clock={clock}
             controls={null}
-            fault={fault}
             isBoardAround
-            isSpeaker={isSpeaker}
-            onUnlockAudio={armAudio}
-            refusal={refusal}
             roomCode={roomCode}
             slateWall={slateWall}
             view={view}

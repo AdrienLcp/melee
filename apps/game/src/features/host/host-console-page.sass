@@ -7,7 +7,6 @@
 @use '../../presentation/styles/scrollbar'
 @use 'boxed-standings'
 @use '../../presentation/styles/typography'
-@use '../../presentation/styles/text-box'
 
 // Hidden from sight only: it holds the arrival notice's live region, which a
 // removed header would silence. Its own height and the menu's inset would keep
@@ -177,37 +176,6 @@
 
             .link-actions
               justify-content: center
-
-    // The one screen in the product that admits to being silent, and it is a
-    // line and a press rather than a warning block: the round is running, the
-    // room is playing, and the only thing wrong is that this screen was never
-    // asked for permission to make a sound.
-    .muted-clip
-      --refusal-note-gap: var(--space-xs)
-
-      align-items: center
-      align-self: center
-      display: flex
-      flex-direction: column
-      gap: var(--space-xs)
-
-      > p
-        @include typography.caption
-
-        color: var(--ink-muted)
-
-      // A stamped block rather than tinted text, the same as the footer's
-      // error: this sits on the countdown's chrome yellow as often as on the
-      // playing teal, and red text against the first tops out at 4.0:1.
-      .refusal
-        @include typography.strong
-
-        background: var(--danger)
-        color: var(--danger-ink)
-        padding: var(--space-2xs) var(--space-s)
-        text-align: center
-
-        @include text-box.trimmed-block(var(--space-2xs))
 
     // The host's own column, beside the invitation the room is reading: what
     // they are about to play, and who has turned up for it.
@@ -1032,15 +1000,6 @@
         align-items: center
         display: flex
         flex-direction: column
-
-      .muted-clip
-        flex-direction: row
-        flex-wrap: wrap
-        justify-content: center
-
-        // A line of its own: closed in the row, it held its text's width.
-        > .refusal-note
-          flex-basis: 100%
 
   // Above the split the lobby is one composition across the page: the
   // invitation down the left, and the shelf, the table and the launch stacked

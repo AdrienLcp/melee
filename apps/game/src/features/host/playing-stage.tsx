@@ -80,8 +80,6 @@ type PlayingStageProps = {
   answersAs: PlayerId | null
   /** What the host does to the round from beside the card — a challenge's placings — and nothing on the wall. */
   children?: React.ReactNode
-  /** The offer to unmute this screen, or nothing when it owes the room none. */
-  clipOffer: React.ReactNode
   /** What a shades round hides its colour on, the same estimate every seat reads. */
   clock: ClockEstimate | null
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
@@ -107,7 +105,6 @@ type PlayingStageProps = {
 export const PlayingStage: React.FC<PlayingStageProps> = ({
   answersAs,
   children,
-  clipOffer,
   clock,
   onAnswer,
   onLean,
@@ -346,7 +343,6 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       }
       style={{ '--choice-length': choiceLength }}
     >
-      {clipOffer}
       {isMoving && onAnswer !== null ? (
         <MatchsticksMove
           card={roundCard}

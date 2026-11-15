@@ -56,7 +56,6 @@
         display: grid
         min-height: 0
 
-    > .muted-clip,
     > .answered-pawns,
     > .answer-form:not(.choices)
       align-self: center
@@ -773,12 +772,6 @@
 
           > .answered-pawns
             display: none
-
-        &:has(> .muted-clip)
-          grid-template: 'notice notice' auto 'card choices' minmax(0, 1fr) 'tally tally' auto / minmax(0, 0.85fr) minmax(0, 1.15fr)
-
-        > .muted-clip
-          grid-area: notice
 
         > .round-card
           grid-area: card

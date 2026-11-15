@@ -11,9 +11,7 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
-import type { ClipFault } from '@melee/protocol/sound'
 
-import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import { isRoundJudgedByHost } from '@melee/core/room/game-modes'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { asksReady } from '@melee/core/round/asks-ready'
@@ -39,7 +37,6 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { ChallengePlacing } from './challenge-placing'
-import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
 import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
@@ -87,8 +84,6 @@ export type StageControls = {
 }
 
 type RoomStageProps = {
-  /** Whether a press has blessed an audio element on this screen. */
-  canPlay: boolean
   clock: ClockEstimate | null
   /** `null` on the wall, which shows the room and changes nothing about it. */
   controls: StageControls | null
@@ -97,17 +92,6 @@ type RoomStageProps = {
    * the room no preview of it.
    */
   isBoardAround: boolean
-  /**
-   * This screen plays the clip. A console stops being the speaker while a wall
-   * is there, and then owes the room no offer to unmute itself.
-   */
-  isSpeaker: boolean
-  /** The gesture a screen that cannot play a clip has to be offered. */
-  onUnlockAudio: () => void
-  /** Why the round's clip is not sounding on this screen, when it is the speaker. */
-  fault: ClipFault | null
-  /** Why the last press did not arm this screen, and `null` while none has failed. */
-  refusal: ClipRefusal | null
   roomCode: RoomCode
   slateWall: SlateWall
   view: HostRoomView | null
@@ -143,14 +127,9 @@ export const RoomStage: React.FC<RoomStageProps> = (props) => {
 }
 
 const PhaseStage: React.FC<RoomStageProps> = ({
-  canPlay,
   clock,
   controls,
-  fault,
   isBoardAround,
-  isSpeaker,
-  onUnlockAudio,
-  refusal,
   roomCode,
   slateWall,
   view
@@ -179,17 +158,6 @@ const PhaseStage: React.FC<RoomStageProps> = ({
     isSeated &&
     seatPlaysRound({ duel: round?.duel ?? null, seatId: view.youId })
 
-  const clipOffer = (
-    <ClipOffer
-      canPlay={canPlay}
-      fault={fault}
-      isSpeaker={isSpeaker}
-      onUnlockAudio={onUnlockAudio}
-      refusal={refusal}
-      view={view}
-    />
-  )
-
   // The count is said before it starts, so the room has read the target by
   // the time the countdown lands rather than reading it while counting.
   const counting = innerclockContent(round)
@@ -203,7 +171,6 @@ const PhaseStage: React.FC<RoomStageProps> = ({
       <div className='stage counting-in'>
         <Countdown clock={clock} target={round.startsAt} />
         <CountPrompt targetSeconds={counting.targetSeconds} />
-        {clipOffer}
       </div>
     )
   }
@@ -233,7 +200,6 @@ const PhaseStage: React.FC<RoomStageProps> = ({
             youId={null}
           />
         )}
-        {clipOffer}
       </div>
     )
   }
@@ -339,7 +305,6 @@ const PhaseStage: React.FC<RoomStageProps> = ({
         answersAs={
           playsThisRound ? youId : (round.openedWithPlayerIds?.[0] ?? null)
         }
-        clipOffer={clipOffer}
         clock={clock}
         onAnswer={
           playsThisRound

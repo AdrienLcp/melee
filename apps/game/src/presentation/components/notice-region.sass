@@ -1,0 +1,82 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  .notice-region
+    inline-size: min(30rem, 100% - var(--gutter-left, var(--space-m)) - var(--gutter-right, var(--space-m)))
+    // Below the menu's row rather than beside it: a phone has no width beside
+    // the trigger, and the menu holds the exits a round must keep in reach.
+    inset-block-start: calc(var(--layout-padding-block-start) + var(--control-height) + var(--space-xs))
+    inset-inline-start: 50%
+    margin: 0
+    padding: 0
+    position: fixed
+    translate: -50% 0
+    z-index: 3
+
+    > ol
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      list-style: none
+      margin: 0
+      padding: 0
+
+    .notice-piece
+      @include piece.card(var(--radius-m))
+
+      --row-gap-closed: calc(-1 * var(--space-xs))
+      --travel-offset: 0 -0.75rem
+
+      align-items: center
+      // Its room opens as it arrives and closes once it has faded, so the
+      // notices beside it travel rather than jump.
+      animation: row-opens var(--transition-base, 0s) var(--ease-out) both, page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      interpolate-size: allow-keywords
+      overflow: clip
+      display: grid
+      gap: var(--space-xs) var(--space-s)
+      grid-template-columns: auto minmax(0, 1fr) auto
+      padding: var(--space-s) var(--space-s) var(--space-s) var(--space-m)
+
+      &[data-leaving]
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        pointer-events: none
+
+    .notice-mark
+      align-items: center
+      block-size: 2rem
+      border-radius: var(--radius-s)
+      display: inline-flex
+      inline-size: 2rem
+      justify-content: center
+
+      svg
+        block-size: 1.25rem
+        inline-size: 1.25rem
+
+
+    .notice-piece[data-tone='fault'] .notice-mark
+      background: var(--danger)
+      color: var(--danger-ink)
+
+    .notice-words
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      min-inline-size: 0
+
+    .notice-title
+      @include typography.caption-strong
+
+    .notice-description
+      @include typography.caption
+
+    // A press too long for the row beside the words goes under them, aligned
+    // with them, rather than squeezing the sentence to a word a line.
+    .notice-action
+      grid-column: 2 / -1
+      justify-self: start
+
+    .notice-dismiss
+      align-self: start

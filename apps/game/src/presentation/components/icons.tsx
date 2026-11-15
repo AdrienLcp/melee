@@ -61,6 +61,7 @@ import {
   SpellCheck,
   SquarePlus,
   Star,
+  TriangleAlert,
   Trophy,
   Tv,
   Undo2,
@@ -108,6 +109,7 @@ export const ChevronUpIcon = inFamily(ChevronUp)
 export const ControlsIcon = inFamily(SlidersHorizontal)
 export const CopyIcon = inFamily(Copy)
 export const CrossIcon = inFamily(X)
+export const FaultIcon = inFamily(TriangleAlert)
 export const CrownIcon = inFamily(Crown, { fill: 'currentColor' })
 export const LockIcon = inFamily(Lock)
 export const MenuIcon = inFamily(Menu, {
