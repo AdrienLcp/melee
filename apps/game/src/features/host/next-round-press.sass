@@ -1,0 +1,182 @@
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The spine is flush with the piece's start, so the press gives up its own
+  // padding and hands it to the label.
+  .button.large.next-round-press
+    align-items: stretch
+    gap: 0
+    padding: 0
+    // A glide clips the press while it eases, and the spine's edge hangs below
+    // the press's box like the press's own.
+    overflow-clip-margin: calc(var(--edge) * 1.75)
+
+    > .control-label
+      align-self: center
+      padding-inline: var(--space-l)
+
+    // While a spine opens the press is still easing to its width, and what
+    // it cannot hold yet spills past its start, where the spine slides in
+    // from, rather than past its end, which would cut the label.
+    &:has(> .spine[data-open])
+      justify-content: flex-end
+
+    > .spine
+      @include typography.spine-name
+
+      align-items: center
+      background-color: var(--spine)
+      border-radius: var(--radius-m) 0 0 var(--radius-m)
+      box-shadow: 0 var(--edge) 0 var(--spine-edge)
+      clip-path: inset(0 0 0 0)
+      color: var(--spine-ink)
+      display: grid
+      flex-shrink: 0
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
+      // Measured on the footer rather than on the press, which is easing
+      // through every width between two names, and a spine wrapping to each
+      // of them would reflow on every frame of the glide.
+      max-inline-size: min(18em, 45cqi)
+      padding: var(--space-xs) calc(var(--space-m) + var(--stroke-bold)) var(--space-xs) var(--space-m)
+      position: relative
+      text-align: start
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), clip-path var(--transition-base, 0s) var(--ease-out)
+      white-space: normal
+
+      // The cut between spine and coral, through the edge too: the ground
+      // showing through it is what parts them when their lightness is the
+      // same — buzzer red beside the coral is 1.35:1.
+      &[data-open]
+        animation: spine-opens var(--transition-base, 0s) var(--ease-out) backwards
+
+      &::after
+        background: var(--ground, var(--field))
+        content: ''
+        inset-block: 0 calc(var(--edge) * -1)
+        inset-inline-end: 0
+        position: absolute
+        width: var(--stroke-bold)
+
+      // Closed, the spine is lifted out of the press's flow where it stood and
+      // the coral sweeps back over it as the press narrows. Both directions
+      // ease out, the glide's own curve, so the label keeps to the cut.
+      &:not([data-open])
+        clip-path: inset(0 100% 0 0)
+        inset-block: 0
+        inset-inline-start: 0
+        max-inline-size: 100%
+        pointer-events: none
+        position: absolute
+
+    // One grid cell, so a face rolling out stays where it stood while the next
+    // one rolls in over it.
+    .face
+      align-items: center
+      display: flex
+      gap: 0.35em
+      grid-area: 1 / 1
+      text-wrap: balance
+
+      .game-icon
+        block-size: 1.05em
+        inline-size: 1.05em
+
+      &[data-rolled-in]
+        --travel-offset: 0 0.55em
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.4) backwards
+
+      &[data-leaving]
+        --travel-offset: 0 -0.55em
+
+        animation: page-leave var(--transition-fast, 0s) var(--ease-in) forwards
+        pointer-events: none
+
+    @media (hover: hover) and (pointer: fine)
+      &:not([data-disabled])[data-hovered]:not([data-pressed]) > .spine
+        box-shadow: 0 calc(var(--edge) * 1.75) 0 var(--spine-edge)
+
+        &::after
+          inset-block-end: calc(var(--edge) * -1.75)
+
+    &:not([data-disabled])[data-pressed] > .spine
+      box-shadow: 0 calc(var(--edge) * 0.25) 0 var(--spine-edge)
+
+    // The empty socket keeps the name in its muted ink, the glyph in the
+    // game's colour, and the cut as a die-line.
+    &[data-disabled] > .spine
+      background-color: transparent
+      box-shadow: none
+      color: var(--ink-muted)
+
+      .game-icon
+        color: var(--spine)
+
+      &::after
+        background: none
+        border-inline-end: var(--stroke-thin) dashed var(--socket-line)
+        inset-block-end: 0
+
+    // Upright on a phone the spine runs across the top, a lid's band, and the
+    // coral rises over it as it closes.
+    @include layout.narrow
+      flex-direction: column
+      inline-size: min(100%, 24rem)
+
+      > .control-label
+        align-self: stretch
+        margin-block: auto
+        padding: var(--space-m) var(--space-l)
+        text-align: center
+
+      > .spine
+        border-radius: var(--radius-m) var(--radius-m) 0 0
+        box-shadow: none
+        justify-content: center
+        max-inline-size: none
+        padding: var(--space-xs) var(--space-m) calc(var(--space-xs) + var(--stroke-bold))
+        text-align: center
+
+        &::after
+          block-size: var(--stroke-bold)
+          inset-block: auto 0
+          inset-inline: 0
+          width: auto
+
+        // A band is a rem of travel, which the base duration lands in a
+        // frame or two on `--ease-out`: it reads as a cut.
+        transition-duration: var(--transition-slow, 0s)
+
+        &[data-open]
+          animation-duration: var(--transition-slow, 0s)
+          animation-name: band-opens
+
+        &:not([data-open])
+          clip-path: inset(0 0 100% 0)
+          inset-block: 0 auto
+          inset-inline: 0
+
+      .face
+        justify-content: center
+
+      &:not([data-disabled])[data-hovered]:not([data-pressed]) > .spine,
+      &:not([data-disabled])[data-pressed] > .spine
+        box-shadow: none
+
+        &::after
+          inset-block-end: 0
+
+      &[data-disabled] > .spine::after
+        border-block-end: var(--stroke-thin) dashed var(--socket-line)
+        border-inline-end: 0
+
+// A spine is drawn afresh each time it opens, so it comes in from its closed
+// clip in the colour it opens in, never repainting from the last game's.
+@keyframes spine-opens
+  from
+    clip-path: inset(0 100% 0 0)
+
+@keyframes band-opens
+  from
+    clip-path: inset(0 0 100% 0)

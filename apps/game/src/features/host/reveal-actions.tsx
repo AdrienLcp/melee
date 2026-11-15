@@ -8,7 +8,6 @@ import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
-import { GameIcon } from '@/presentation/components/icons'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { useNextRoundName } from '@/presentation/i18n/line-up-entry-names'
 
@@ -19,6 +18,7 @@ import { ClipControls } from './clip-controls'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { isLastRound } from './is-last-round'
+import { NextRoundPress } from './next-round-press'
 
 /**
  * Whether the next round may be a duel, read off the room as it stands: two
@@ -151,20 +151,12 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
-      {announced !== null && (
-        <p className='next-round-name' id={nextNameId}>
-          <GameIcon game={announced.game} />
-          {announced.name}
-        </p>
-      )}
-      <Button
-        aria-describedby={describedBy}
+      <NextRoundPress
+        announced={announced}
         isDisabled={!isLive}
         onPress={() => openNextRound({ isDuel: false })}
-        size='large'
-      >
-        {translate('host.nextRound')}
-      </Button>
+        spineId={nextNameId}
+      />
       {/* Beside the press it varies. */}
       {offersDuel(view) && (
         <Button

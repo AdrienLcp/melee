@@ -300,19 +300,6 @@
         flex-direction: column
         gap: var(--reveal-gap)
 
-        // The line belongs to the press under it, like `.reason` to its own.
-        .next-round-name
-          @include typography.caption-strong
-
-          align-items: center
-          color: var(--ink-muted)
-          display: flex
-          gap: var(--space-2xs)
-          justify-content: center
-          margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
-          text-align: center
-          text-wrap: balance
-
         .quiet-actions
           column-gap: var(--space-m)
           display: flex
@@ -395,16 +382,10 @@
           flex-flow: row wrap
           justify-content: center
 
-          .next-round-name
-            margin: 0 calc(var(--space-xs) - var(--reveal-gap)) 0 0
-
           @container reveal-footer (width < 66rem)
             --reveal-gap: var(--space-s)
 
             flex-direction: column
-
-            .next-round-name
-              margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
 
   // A piece opens on one line, and the keeper wrapping under the team as the
   // opening ended was a jump. On one line, two long names in it, the turn

@@ -246,8 +246,10 @@ A cool printed board under warm, saturated die-cut inks, every value one
   the paper game was played with, twenty degrees short of the plum and as far
   again past the quiz's indigo): each
   game's box colour, on the shelf, the band across a game's lid, the player's
-  _up next_ lid. Names print in `--on-spine-<game>`: pale `--on-spine`
-  everywhere but reflex, which takes the dark `--on-spine-light`.
+  _up next_ lid, the start of the next-round press. Names print in
+  `--on-spine-<game>`: pale `--on-spine` everywhere but reflex, which takes
+  the dark `--on-spine-light`. A spine laid as a piece stands on
+  `--spine-edge-<game>`, the spine at 62% over black.
 
 ### Tertiary
 
@@ -942,6 +944,26 @@ when a game joins the shelf.
 - **Pending** (`data-pending`): the label goes `color: transparent` and the
   spinner paints over it in `--on-control`, so the button keeps its size and
   its accessible name.
+- **The next-round press** (`NextRoundPress`, the console with no wall): the
+  coral piece carries at its start the **spine** of the game it opens — the
+  game's `--spine-*` ground, its glyph and the entry's name in `spine-name`,
+  edged in `--spine-edge-*` (the spine at 62% over black) — so the host
+  reads which box comes off the shelf before the label. A 3px cut in the
+  ground parts the two pieces through their edge, because the buzzer's
+  vermilion beside the coral is 1.35:1. One press, one target: the spine is
+  `aria-hidden` and describes the press (and _As a duel_ beside it). It is
+  capped at `min(18em, 45cqi)` and never shrinks, measured on the footer so
+  it does not reflow while the press eases between two widths. Below the
+  split it runs across the top as a band, the press `min(100%, 24rem)` wide.
+  It slides out from the press's start when a name arrives (the press
+  spilling past its start while it eases), the coral sweeps back over it
+  when the name goes (lifted out of the flow, both on the glide's
+  `--ease-out` so the label keeps to the cut), and a change of game repaints
+  it on `base` and rolls the name (`page-leave` up, `page-enter` from below).
+  The band takes `slow`: a rem of travel on `base` reads as a cut. Disabled,
+  the spine is the socket too — muted name, glyph in the game's colour, the
+  cut a dashed die-line. Beside a wall, `NextRoundCard` names the game
+  instead.
 
 ### Answer tile (`AnswerTile`)
 
