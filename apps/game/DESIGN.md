@@ -575,9 +575,22 @@ upright, so lying down also asks for `layout.$phone-upright-width` (28rem):
 the ratio alone laid Petit Bac's sheet in two columns of five-letter fields
 and pushed the console's tab bar into a rail beside a 24px field. The spec
 holds the question, the field and the press in view at 320×284, 360×320,
-390×300 and 390×422, with the field focused before the screen shrinks as a
-tap does and after it, and again under a 336px keyboard laid over a 390×664
-page that keeps its height.
+360×400, 390×300, 390×422 and 390×450, with the field focused before the
+screen shrinks as a tap does and after it, and again under a 336px keyboard
+laid over a 390×664 page that keeps its height.
+
+Nothing of the round sits under the corner menu with a keyboard up, its
+paper included: the menu's line goes to the table or to a piece of its own.
+Petit Bac's sheet ran its card on under the menu with the clock squeezed
+beside it, and a seated console's question card did the same. Where 24rem is
+shown, which a 390×422 keyboard leaves and a 390×300 one does not, the player
+keeps the round's line beside the menu and the sheet its whole head, and the
+console's card starts under the menu with its sand across it — a line of
+the list traded for a clock read at its length. Under 24rem the letter and the clock
+leave the sheet for a strip of paper on the menu's line, as tall as the menu
+(the letter drawn to that height) and stopping short of it, and the list
+takes a card of its own (`petit-bac-head.on-the-menu-line`). The strip's sand
+runs two thirds of its length on the sheet; its seconds keep their size.
 
 An Android app hosting the page in a WebView may resize it (the layout follows,
 as in Chrome) or, targeting Android 15 without handling the keyboard's insets,

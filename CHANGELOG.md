@@ -454,6 +454,18 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A keyboard up no longer slides the round under the menu.** With
+  a phone's keyboard open, Petit Bac's sheet ran its card on under the corner
+  menu, the clock squeezed into what the menu left, and a seated console's
+  question card did the same in every typed round. Where the screen keeps
+  24rem, the sheet now stays whole under the round's line and the console's
+  card starts under the menu, its clock across it; shorter, the letter and the
+  clock take a strip of their own on the menu's line, stopping short of it,
+  and the list keeps its card under them. A unit longer than _Le juste
+  chiffre_'s field leaves room for wraps inside the field's end rather than
+  running out of it. The keyboard layout test now fails on anything of the
+  round the menu is drawn over.
+
 - `[Game]` **A Shades name no longer touches its chip at the reveal.** On the
   wall and the console, each seat's pawn and name sat 2px under its colour
   chip, inside the chipboard edge drawn below it, so the pawn's head rested

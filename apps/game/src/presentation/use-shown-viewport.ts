@@ -6,7 +6,7 @@ import { onShownViewportChange } from '@/infrastructure/browser'
  * The heights, in rem, a stylesheet's `shown-height-below` may test: the ones
  * a keyboard coming up takes an answering screen under.
  */
-const SHOWN_HEIGHT_STEPS_REM = [30, 36] as const
+const SHOWN_HEIGHT_STEPS_REM = [24, 30, 36] as const
 
 /** A media query's rem, which is the initial font size and not the root's. */
 const MEDIA_REM_PX = 16

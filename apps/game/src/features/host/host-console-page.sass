@@ -6,6 +6,7 @@
 @use '../../presentation/styles/reshape'
 @use '../../presentation/styles/scrollbar'
 @use 'boxed-standings'
+@use '../player/petit-bac-head'
 @use '../../presentation/styles/typography'
 
 // Hidden from sight only: it holds the arrival notice's live region, which a
@@ -457,14 +458,12 @@
       > header:not(.round-chrome)
         +hidden-header
 
-      // Upright, the menu then stands in the card's top corner: the sand runs
-      // beside it and the words start under it, rather than under the menu.
+      // Upright, the card starts under the menu, its sand across it: run
+      // beside the menu, the card's paper went on under it and the sand
+      // shrank to what the menu left.
       @media #{layout.$upright}
         > .stage.playing > .round-card:first-child
-          padding-block-start: calc(var(--control-height) + var(--space-xs))
-
-          > .round-progress
-            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+          margin-block-start: calc(var(--control-height) + var(--space-xs))
 
       // Lying down, a card across the whole stage keeps its one row: the sand
       // and the words stop short of the menu beside them.
@@ -909,11 +908,18 @@
           > .stage.petit-bac-seat .head
             margin-block-start: calc(var(--control-height) + var(--space-xs))
 
-      // Upright, the menu stands in the sheet's top corner once the header
-      // has gone: the clock runs beside it, level with the letter.
+      // Upright, once the header has gone, the sheet starts under the menu
+      // and keeps its whole head; under 24rem the letter and the clock take
+      // the menu's line instead (`petit-bac-head`).
       @media (height < 36rem) and #{layout.$upright}
-        > .stage.petit-bac-seat .answer-sheet > .head
-          padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+        > .stage.petit-bac-seat
+          margin-block-start: calc(var(--control-height) + var(--space-xs))
+
+        @include layout.shown-height-below(24)
+          > .stage.petit-bac-seat
+            margin-block-start: 0
+
+            @include petit-bac-head.on-the-menu-line
 
       // A keyboard up under one of the seat's lines, upright: the host's own
       // stop waits with the tab bar (`host-panel.sass`), or the list kept

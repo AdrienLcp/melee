@@ -1,0 +1,33 @@
+// Pure module: one mixin, no top-level CSS.
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/piece'
+
+/// Petit Bac's sheet on a screen too short to give the corner menu a line of
+/// its own: the letter and the clock leave the sheet for a strip of paper on
+/// the menu's line, as tall as the menu and stopping short of it, and the
+/// list keeps a card of its own under them. Kept on the sheet, they left the
+/// card's paper running under the menu. Included on any ancestor of the
+/// sheet.
+@mixin on-the-menu-line
+  .petit-bac-sheet
+    .answer-sheet
+      display: contents
+
+    .head
+      @include piece.card(var(--radius-l))
+      @include box-lid.paper
+
+      margin-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+      min-block-size: var(--control-height)
+      padding: var(--space-2xs) var(--space-s) var(--space-2xs) var(--space-2xs)
+
+    .letter-piece
+      font-size: calc((var(--control-height) - 2 * var(--space-2xs)) / 1.35)
+
+    .lines
+      @include piece.card(var(--radius-l))
+      @include box-lid.paper
+
+      flex: 0 1 auto
+      margin: 0
+      padding: var(--space-xs) clamp(var(--space-s), 2.4vmin, var(--space-m))

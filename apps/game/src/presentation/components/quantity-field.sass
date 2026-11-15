@@ -40,12 +40,17 @@
       // An input is twenty characters wide until told otherwise, and that is
       // the width the whole slot would refuse to give up in a narrow column.
       inline-size: 0
-      min-width: 0
+      min-width: 3em
       outline: none
       padding: 0
 
+    // A unit longer than the slot leaves the digits wraps inside its end,
+    // rather than run out of the slot: _kilomètres de route ici_ at 320.
     .unit
       @include typography.strong
 
       color: var(--card-muted)
-      flex: none
+      flex: 0 1 auto
+      hyphens: auto
+      min-width: 0
+      text-align: end

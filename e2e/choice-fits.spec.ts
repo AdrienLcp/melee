@@ -4003,8 +4003,10 @@ for (const screen of ANSWERING_SCREENS) {
 const KEYBOARD_UP_VIEWPORTS = [
   [320, 284],
   [360, 320],
+  [360, 400],
   [390, 300],
-  [390, 422]
+  [390, 422],
+  [390, 450]
 ] as const
 
 /**
@@ -4160,6 +4162,118 @@ const measureKeyboardUp = ({
   }
 }
 
+/**
+ * Every piece of the round the corner menu's trigger is drawn over: a word, a
+ * clock, the round's letter, a field or a press, each by the part of it its
+ * scrolling box leaves on screen. A keyboard up packs the round towards the
+ * top of the screen, where the trigger stands.
+ */
+const measureUnderTheMenu = (): string[] => {
+  const menu = document
+    .querySelector('.app-menu .trigger')
+    ?.getBoundingClientRect()
+
+  if (menu === undefined) {
+    return ['no menu trigger']
+  }
+
+  const visibleBoxOf = (box: DOMRect, from: Element) => {
+    let { bottom, left, right, top } = box
+
+    for (
+      let ancestor = from.parentElement;
+      ancestor !== null;
+      ancestor = ancestor.parentElement
+    ) {
+      const { overflowX, overflowY } = getComputedStyle(ancestor)
+
+      if (overflowX !== 'visible' || overflowY !== 'visible') {
+        const clip = ancestor.getBoundingClientRect()
+
+        top = Math.max(top, clip.top)
+        left = Math.max(left, clip.left)
+        bottom = Math.min(bottom, clip.bottom)
+        right = Math.min(right, clip.right)
+      }
+    }
+
+    return { bottom, left, right, top }
+  }
+  const isUnderTheMenu = (box: DOMRect, from: Element): boolean => {
+    const { bottom, left, right, top } = visibleBoxOf(box, from)
+
+    return (
+      right - left > 1 &&
+      bottom - top > 1 &&
+      left < menu.right - 1 &&
+      right > menu.left + 1 &&
+      top < menu.bottom - 1 &&
+      bottom > menu.top + 1
+    )
+  }
+  const isOffstage = (element: Element): boolean =>
+    element.closest('.app-menu, [role=dialog], .skip-link') !== null ||
+    !element.checkVisibility({ visibilityProperty: true }) ||
+    (() => {
+      const { height, width } = element.getBoundingClientRect()
+
+      return Math.min(height, width) <= 1
+    })()
+  const trigger = document.querySelector('.app-menu .trigger')
+  // A card is drawn: its paper running on under the trigger is the round
+  // under the menu as much as a word is, and the page around both is not.
+  const isPainted = (element: Element): boolean => {
+    const style = getComputedStyle(element)
+
+    return (
+      style.backgroundColor !== 'rgba(0, 0, 0, 0)' ||
+      style.backgroundImage !== 'none' ||
+      style.boxShadow !== 'none'
+    )
+  }
+  const pieces = [
+    ...document.body.querySelectorAll(
+      '.round-progress, .clock, .letter-piece, input:not([type=hidden]), button, [role=radio]'
+    ),
+    ...[...document.body.querySelectorAll('main *')].filter(
+      (element) => isPainted(element) && !element.contains(trigger)
+    )
+  ].filter(
+    (piece) =>
+      !isOffstage(piece) && isUnderTheMenu(piece.getBoundingClientRect(), piece)
+  )
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+  const words: Element[] = []
+
+  for (let node = walker.nextNode(); node !== null; node = walker.nextNode()) {
+    const parent = node.parentElement
+
+    if (
+      parent === null ||
+      (node.textContent ?? '').trim() === '' ||
+      isOffstage(parent)
+    ) {
+      continue
+    }
+
+    const range = document.createRange()
+    range.selectNodeContents(node)
+
+    if (
+      [...range.getClientRects()].some((box) => isUnderTheMenu(box, parent))
+    ) {
+      words.push(parent)
+    }
+  }
+
+  return [...new Set([...pieces, ...words])].map((piece) => {
+    const box = piece.getBoundingClientRect()
+    const classes = String(piece.className).trim().split(/\s+/).join('.')
+
+    return `${piece.tagName.toLowerCase()}.${classes} "${(piece.textContent ?? '').trim().slice(0, 24)}" at ${Math.round(box.left)},${Math.round(box.top)} ${Math.round(box.width)}×${Math.round(box.height)}`
+  })
+}
+
 for (const keyboard of KEYBOARD_SCREENS) {
   const screen = ANSWERING_SCREENS.find(({ name }) => name === keyboard.name)
 
@@ -4222,10 +4336,16 @@ for (const keyboard of KEYBOARD_SCREENS) {
             fieldMinWidthPx: FIELD_MIN_WIDTH_PX,
             inView: keyboard.inView
           })
+          const underTheMenu = await page.evaluate(measureUnderTheMenu)
 
-          if (outOfView.length > 0 || scrolled > 0 || narrowField !== null) {
+          if (
+            outOfView.length > 0 ||
+            scrolled > 0 ||
+            narrowField !== null ||
+            underTheMenu.length > 0
+          ) {
             faults.push(
-              `${width}×${height} ${JSON.stringify({ narrowField, outOfView, page: scrolled })}`
+              `${width}×${height} ${JSON.stringify({ narrowField, outOfView, page: scrolled, underTheMenu })}`
             )
           }
         }
@@ -4344,6 +4464,8 @@ const OVERLAID_KEYBOARD_SCREENS = [
       '.nickname-form input',
       '.nickname-form button[type=submit]'
     ],
+    /** A round's screen, held clear of the corner menu under its keyboard. */
+    isRound: false,
     name: 'the nickname form',
     path: `/play/${ROOM_CODE}`,
     view: { ...typedChoosing, phase: 'lobby', round: null },
@@ -4366,6 +4488,7 @@ const OVERLAID_KEYBOARD_SCREENS = [
         {
           field: keyboard.field,
           inView: keyboard.inView,
+          isRound: true,
           name: `${role}, ${screen.name}`,
           path,
           view:
@@ -4408,6 +4531,9 @@ for (const screen of OVERLAID_KEYBOARD_SCREENS) {
     }, OVERLAID_KEYBOARD.heightPx)
 
     expect(await page.evaluate(measureInShownBand, screen.inView)).toEqual([])
+    expect(
+      screen.isRound ? await page.evaluate(measureUnderTheMenu) : []
+    ).toEqual([])
     expect(new Set(await page.evaluate(readPanOverRepeatedScrolls)).size).toBe(
       1
     )

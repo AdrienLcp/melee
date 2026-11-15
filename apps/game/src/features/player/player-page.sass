@@ -3,6 +3,7 @@
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
+@use 'petit-bac-head'
 
 @layer components
   .player-page
@@ -89,19 +90,19 @@
         .most-likely-ballot
           grid-area: seats
 
-  // Petit Bac's sheet with a keyboard up: the score and the round give way,
-  // the sheet's head stands beside the menu in their place, and the list
-  // keeps a line to type on between the letter and the press.
+  // Petit Bac's sheet under a keyboard leaving less than 24rem: the score and
+  // the round give way, the letter and the clock take their line beside the
+  // menu, and the list keeps a line to type on between them and the press.
+  // Taller, the sheet keeps its whole head under the round's line.
   .player-page.playing:has(> .player-round.petit-bac-round)
     @media #{layout.$upright}
-      @include layout.shown-height-below(30)
+      @include layout.shown-height-below(24)
         grid-template-rows: minmax(0, 1fr)
 
         > .round-chrome
           @include accessibility.visually-hidden
 
-        .answer-sheet > .head
-          padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+        @include petit-bac-head.on-the-menu-line
 
   // Lying down, five cards under the chrome are five rows too short for a
   // finger: they take the whole height on one side, and the chrome, the sand,
