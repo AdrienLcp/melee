@@ -66,6 +66,14 @@
         flex-shrink: 0
         max-width: 100%
 
+    // The countdown is centred under the header, and the lobby before it holds
+    // none of the header's pieces: the round's number and the way in opening
+    // from no height slid the token down 9 to 15px as it landed. A piece
+    // arriving with a countdown takes its height at once, inside the stage's
+    // swap and before its own fade, and opens only its width.
+    &:has(> .stage > .countdown) > header .leaves-in-place > *
+      --piece-height-closed: auto
+
     .stage
       display: flex
       flex: 1

@@ -115,12 +115,15 @@ slow while the build stayed green: a front door that fetched the menu's chunk
 on the press itself, and `React.lazy`, whose suspension React holds 300ms
 behind its fallback even with the chunk already in hand.
 
-`countdown-stays.spec.ts` plays one buzzer round on a wide console with no
-wall and probes the countdown's top on every frame from _Next round_ to its
-second tick: it moves less than a pixel. The token is centred in what the
-header and footer leave, so anything still settling in either slides it — a
-header piece re-keyed and reopening from no height, a folded note handing
-back a height — and only the painted frames show it.
+`countdown-stays.spec.ts` probes the countdown's top on every frame from
+the press that opens it to its second tick: it moves less than a pixel. Once
+after _Next round_ on a wide console, and once after the lobby's launch on a
+laptop console, a desk console, and a wall with the console beside it. The
+token is centred in what the header and footer leave, so anything still
+settling in either slides it — a header piece re-keyed and reopening from no
+height, a folded note handing back a height, the round's number and the way
+in opening in the header the lobby left empty — and only the painted frames
+show it.
 
 ## Locators are roles and accessible names
 

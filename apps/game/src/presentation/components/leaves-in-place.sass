@@ -7,6 +7,7 @@
 
     > *
       --piece-gap-closed: calc(-1 * var(--space-m))
+      --piece-height-closed: 0rem
 
       animation: piece-opens var(--transition-base, 0s) var(--ease-out), swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5) backwards
       interpolate-size: allow-keywords
@@ -33,7 +34,7 @@
 // with its width, so a header it held alone opens and closes with it.
 @keyframes piece-opens
   from
-    block-size: 0
+    block-size: var(--piece-height-closed)
     flex-wrap: nowrap
     inline-size: 0
     margin-inline-end: var(--piece-gap-closed)

@@ -770,7 +770,11 @@ What this found, each invisible in any still:
   refusal note still holding the reveal's badge height and folding it away
   under the next stage. `getBoundingClientRect` on the live elements reads
   the new view a view transition draws, so the probe is right even inside
-  the swap.
+  the swap. The first countdown slid too, 9px on a console and 13 to 15px on
+  a wall and the console beside it: the lobby's header holds none of its
+  pieces, and the round's number and the way in opened from no height under
+  the swap. A piece arriving with a countdown now takes its height at once
+  (`--piece-height-closed`) and opens only its width.
 
 A change that happens at a moment the action cannot time — a round flipping to
 its reveal, a countdown ending — is filmed by marking it: have the action wait

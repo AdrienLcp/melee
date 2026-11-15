@@ -412,6 +412,9 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   line, so the piece's descendants take `text-wrap-mode: inherit` at no
   specificity. A piece whose settled layout is two lines stacks them for good
   (the narrow console's black-square turn), or it jumps as the hold ends.
+  A piece arriving over a centred block opens its width only: the console
+  sets `--piece-height-closed: auto` on the header's pieces while a countdown
+  is on the stage, or the header growing under the swap slides the token.
 - **A block laid over the page is positioned, never left in its flow.** The
   wall's _host away_ band, a flex item between header and stage, became a
   grid row on every phase laid out as a grid and pushed the round under the
