@@ -504,6 +504,13 @@ export const useRowsTravel = ({
       }
     })
 
+    // A remount keeps the rows but not the observer: under StrictMode the
+    // first draw observed them on the one torn down, so no resize reached the
+    // last draw's width and the next change set off from nowhere.
+    for (const row of keyedRowsOf(element)) {
+      observer.observe(row)
+    }
+
     resizes.current = observer
 
     return () => {
