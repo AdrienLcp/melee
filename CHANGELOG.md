@@ -401,6 +401,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A browser of 2020 plays instead of showing the error screen.**
+  A smart TV running Chromium 94 met `toSorted` on its first render and fell
+  to the error screen, unstyled, because every stylesheet sits in a cascade
+  layer and colours in `oklch()`. The syntax is now lowered to Chrome 87 and
+  Safari 14.1, the built-ins they lack are defined where missing, and a
+  browser that cannot `color-mix()` is handed a flattened `.legacy.css` copy
+  of each stylesheet — what a current browser reads is unchanged. The error
+  screen keeps its own few rules for a browser that read none, and prints the
+  error and the build to report. See `docs/deploying.md`, _Browser support_.
 - `[Game]` **Narrowing the console past the desk no longer replays the
   stage.** For the one frame between the window crossing the breakpoint and
   the console laying out its tab bar, the stage was hidden, and everything

@@ -569,9 +569,11 @@ export const FR_DICTIONARY = defineDictionary({
     room_plays_aloud:
       'Cette table joue à voix haute, sans écran pour rejoindre.',
     screen: {
+      build: 'version {build}',
       description:
         'Le jeu est tombé sur quelque chose dont il ne sait pas repartir. Recharger suffit presque toujours — et si le site a été mis à jour pendant que cet onglet était ouvert, toujours.',
       reload: 'Recharger la page',
+      report: 'Si ça recommence, cette ligne nous dit ce qui a cassé :',
       title: 'Quelque chose a cassé'
     },
     sheet_not_full:

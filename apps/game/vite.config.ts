@@ -30,6 +30,13 @@ const FALLBACK_FACES_WRITTEN_BY_HAND = new Set([
 
 const HOME_HEAD = PAGE_HEADS[DEFAULT_LOCALE].home
 
+/**
+ * The oldest browsers the syntax is lowered for — a TV of 2020 among them.
+ * The built-ins they lack are `src/infrastructure/polyfills.ts`, and the
+ * reasoning is `docs/deploying.md`, _Browser support_.
+ */
+const SUPPORTED_BROWSERS = ['chrome87', 'edge88', 'firefox78', 'safari14.1']
+
 const SERVER_ORIGIN = process.env.VITE_SERVER_ORIGIN ?? 'http://localhost:3100'
 
 // Offset from the usual 5173 so this repo runs alongside the other dev servers
@@ -38,9 +45,14 @@ const DEV_PORT = Number(process.env.VITE_DEV_PORT) || 5273
 
 export default defineConfig({
   build: {
+    // Vite's own default, written out so lowering `target` leaves every
+    // stylesheet byte for byte what it was: an older browser is served the
+    // copies `scripts/legacy-stylesheets.ts` writes instead.
+    cssTarget: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'ios16.4'],
     // Read by `scripts/prerender.ts`, which needs to know the stylesheet each
     // page's chunk carries before it can inline it.
-    manifest: true
+    manifest: true,
+    target: SUPPORTED_BROWSERS
   },
   css: {
     postcss: {

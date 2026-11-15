@@ -7,30 +7,36 @@ import { glidesWhenTheGridResizes } from './use-rows-travel'
 /** How many seats a roster draws at the least: the taken ones, then a socket each to this. */
 export const PAWNS_IN_THE_BOX = 8
 
-const SEAT_TAKING_THE_SOCKET =
-  '.scoreboard > li:nth-last-child(1 of :not([data-leaving]))'
-const SEAT_LEAVING_OVER_THE_SOCKET = '.scoreboard > li[data-leaving]:last-child'
+/**
+ * The last seat still in the grid. Not `:nth-last-child(1 of …)`, which a
+ * Chrome before 111 refuses as a selector and throws on.
+ */
+const seatTakingTheSocket = (around: Element): HTMLElement | undefined =>
+  [...around.querySelectorAll<HTMLElement>('.scoreboard > li')]
+    .filter((seat) => !seat.hasAttribute('data-leaving'))
+    .at(-1)
+
+const seatLeavingOverTheSocket = (around: Element): HTMLElement | null =>
+  around.querySelector<HTMLElement>('.scoreboard > li[data-leaving]:last-child')
 
 /**
- * Hands a socket the height of the seat `seatSelector` finds pinned on it,
- * out of the grid, so the row the two share grows or shrinks with the socket
- * rather than in one frame as the seat goes back into the grid or off it.
+ * Hands a socket the height of the seat `findSeat` finds pinned on it, out of
+ * the grid, so the row the two share grows or shrinks with the socket rather
+ * than in one frame as the seat goes back into the grid or off it.
  */
 const holdsHeightOf =
-  (seatSelector: string) =>
+  (findSeat: (around: Element) => HTMLElement | null | undefined) =>
   (socket: HTMLLIElement | null): void => {
-    const seat =
-      socket?.parentElement?.parentElement?.querySelector<HTMLElement>(
-        seatSelector
-      )
+    const around = socket?.parentElement?.parentElement
+    const seat = around == null ? undefined : findSeat(around)
 
-    if (socket !== null && seat !== null && seat !== undefined) {
+    if (socket !== null && seat != null) {
       socket.style.setProperty('--seat-height', `${seat.offsetHeight}px`)
     }
   }
 
-const holdsTheTakingSeatHeight = holdsHeightOf(SEAT_TAKING_THE_SOCKET)
-const holdsTheLeavingSeatHeight = holdsHeightOf(SEAT_LEAVING_OVER_THE_SOCKET)
+const holdsTheTakingSeatHeight = holdsHeightOf(seatTakingTheSocket)
+const holdsTheLeavingSeatHeight = holdsHeightOf(seatLeavingOverTheSocket)
 
 type EmptySocketsProps = {
   /** How many seats are taken; the sockets carry on from the next pawn. */

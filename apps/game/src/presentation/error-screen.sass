@@ -24,3 +24,19 @@
       flex-direction: column
       gap: var(--space-s)
       margin-top: var(--space-l)
+
+    .report
+      @include typography.caption
+
+      color: var(--ink-muted)
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      margin-top: var(--space-xl)
+      max-width: var(--measure-error)
+      user-select: text
+
+      code
+        @include typography.code
+
+        overflow-wrap: anywhere

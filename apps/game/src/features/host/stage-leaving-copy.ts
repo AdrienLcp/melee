@@ -48,7 +48,7 @@ export const fadeOffTheStage = (change: {
   }
 
   for (const piece of document.querySelectorAll(
-    '.host-console-page > :is(.stage, footer)'
+    '.host-console-page > .stage, .host-console-page > footer'
   )) {
     if (isDrawn(piece)) {
       fadeOffAStillCopy({

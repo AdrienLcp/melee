@@ -605,9 +605,11 @@ export const EN_DICTIONARY = defineDictionary({
     room_paused: 'The game is paused. Wait for the host.',
     room_plays_aloud: 'This table answers aloud, with no screen to join on.',
     screen: {
+      build: 'build {build}',
       description:
         'The game hit something it could not carry on from. Reloading almost always fixes it — and if the site updated while this tab was open, it always does.',
       reload: 'Reload the page',
+      report: 'If it happens again, this line tells us what broke:',
       title: 'Something broke'
     },
     sheet_not_full:

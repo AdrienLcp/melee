@@ -604,6 +604,29 @@ At 414 px and 1920 px:
 - that a locale or theme switch leaves the socket alone — it is not in the
   hook's dependencies, and a remount there ends a round.
 
+## An old browser, through the repository's Playwright
+
+The floor (`docs/deploying.md`, _Browser support_) is checked on a real old
+Chromium: a snapshot from
+`storage.googleapis.com/chromium-browser-snapshots/Win_x64/<position>/chrome-win.zip`
+(position 911519 is Chromium 94), unzipped outside the repository and
+launched with `chromium.launch({ executablePath })` against the built app
+under `wrangler dev`. Two traps:
+
+- **Playwright's own selector engine calls `checkVisibility`**, which
+  Chromium 94 lacks in the utility world where that engine runs — so every
+  `getByRole`, `click` and `fill`, `force` or not, throws there whatever the
+  page polyfills. Drive the page from the main world instead: a
+  `page.waitForFunction` that finds the control by its accessible name and
+  calls `element.click()`, and fills a field through the native `value`
+  setter and an `input` event.
+- **The bug to reproduce is a missing built-in**, so the error screen is
+  forced on any browser by an init script that sets
+  `Array.prototype.toSorted` to `undefined`: the polyfill defines only what is
+  absent, and the first render throws as the TV did. `page.route(/\.css$/,
+  (route) => route.abort())` on the old browser shows the screen's own
+  unstyled fallback.
+
 ## A keyboard, which no desktop browser has
 
 Chromium, DevTools' device mode and Playwright's emulation have no on-screen
