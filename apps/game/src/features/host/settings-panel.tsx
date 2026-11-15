@@ -11,7 +11,10 @@ import {
   BLACK_SQUARE_MIN_ANSWER_COUNT
 } from '@melee/protocol/black-square'
 import { QUANTITY_TOPICS } from '@melee/protocol/estimate'
-import type { QuizSettings } from '@melee/protocol/game'
+import {
+  DEFAULT_THINK_ALIKE_SETTINGS,
+  type QuizSettings
+} from '@melee/protocol/game'
 import {
   type MatchsticksGoal,
   matchsticksGoals
@@ -34,6 +37,10 @@ import {
 } from '@melee/protocol/room'
 import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
 import { SWATCH_SHOW_MS } from '@melee/protocol/swatch'
+import {
+  MAX_THINK_ALIKE_ROUND_MS,
+  MIN_THINK_ALIKE_ROUND_MS
+} from '@melee/protocol/think-alike'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import {
@@ -90,6 +97,13 @@ const LONGEST_WORD_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
 /** Three quarters of a minute is a race to the nearest, a minute and a half lets a table hunt for the exact count. */
 const MAKE_NUMBER_DURATIONS_MS = [45_000, 60_000, 90_000] as const
+
+/** Ten seconds is the first word that comes, a minute lets a slower hand write it out. */
+const THINK_ALIKE_DURATIONS_MS = [
+  MIN_THINK_ALIKE_ROUND_MS,
+  DEFAULT_THINK_ALIKE_SETTINGS.roundDurationMs,
+  MAX_THINK_ALIKE_ROUND_MS
+] as const
 
 const MYSTERY_WORD_LENGTHS = Array.from(
   { length: MYSTERY_WORD_MAX_LENGTH - MYSTERY_WORD_MIN_LENGTH + 1 },
@@ -783,6 +797,35 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           options={MAKE_NUMBER_DURATIONS_MS}
           value={game.roundDurationMs}
         />
+      )}
+
+      {game?.kind === 'thinkalike' && (
+        <>
+          <SegmentedControl
+            isDisabled={isDisabled}
+            label={translate('thinkalike.language')}
+            onChange={(next) => {
+              if (isQuestionLanguage(next)) {
+                onChange({ ...settings, game: { ...game, language: next } })
+              }
+            }}
+            options={questionLanguages.map((language) => ({
+              label: LANGUAGE_NAMES[language],
+              value: language
+            }))}
+            value={game.language}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('thinkalike.roundDuration')}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={THINK_ALIKE_DURATIONS_MS}
+            value={game.roundDurationMs}
+          />
+        </>
       )}
 
       {game?.kind === 'mostlikely' && (

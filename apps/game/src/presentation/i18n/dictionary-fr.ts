@@ -2529,6 +2529,7 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Une consigne s’affiche sur tous les écrans — un fruit rouge, un truc qu’on trouve dans un frigo — et chacun écrit la première chose qui lui vient, une seule fois, avant la fin du temps. Personne ne voit un mot avant la révélation, qui retourne les réponses des plus seules jusqu’à la plus grande foule, et chaque réponse est payée selon le nombre des autres qui ont écrit la même.'
     },
+    language: 'Consignes en',
     name: 'Pense comme la table',
     play: 'Jouer à Pense comme la table',
     reveal: {
@@ -2538,6 +2539,7 @@ export const FR_DICTIONARY = defineDictionary({
       }),
       yours: 'Ta pile'
     },
+    roundDuration: 'Temps pour écrire',
     scoring:
       'Ta réponse est payée selon le nombre des autres qui ont écrit la même : tous les autres, 100 points ; la moitié, 50 ; personne, rien.',
     sort: {

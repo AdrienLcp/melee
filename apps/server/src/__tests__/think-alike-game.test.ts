@@ -1,7 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_THINK_ALIKE_SETTINGS } from '@melee/protocol/game'
+import {
+  DEFAULT_THINK_ALIKE_SETTINGS,
+  type ThinkAlikeSettings
+} from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
+import type { QuestionLanguage } from '@melee/protocol/question'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -31,6 +35,8 @@ import {
 
 const PROMPT = 'Un fruit rouge'
 
+const ENGLISH_PROMPT = 'A red fruit'
+
 /** Distinctive enough that a raw frame carrying it can only be carrying that seat's answer. */
 const SECRET = 'Pomegranate'
 
@@ -40,7 +46,10 @@ vi.mock(
     ...(await importOriginal<
       typeof import('@/infrastructure/questions/think-alike-bank')
     >()),
-    drawThinkAlikePrompt: () => ({ id: 'red-fruit', prompt: PROMPT })
+    drawThinkAlikePrompt: ({ language }: { language: QuestionLanguage }) => ({
+      id: 'red-fruit',
+      prompt: language === 'en' ? ENGLISH_PROMPT : PROMPT
+    })
   })
 )
 
@@ -367,5 +376,71 @@ describe('a think-alike round through the seam', () => {
       verdict: { kind: 'match', matched: 1, others: 2 }
     })
     expect(thinkAlikeRound(playerView(lou))?.yourAnswer).toBe('Fraise')
+  })
+})
+
+/** The console's own settings with the game's arm swapped, so nothing but the setup can refuse the frame. */
+const withSetup = ({
+  game,
+  host
+}: {
+  game: ThinkAlikeSettings
+  host: Peer<HostServerMessage>
+}): RoomSettings => {
+  const settings = hostView(host)?.settings ?? THINK_ALIKE
+
+  return { ...settings, game, lineUp: settings.lineUp.map(() => game) }
+}
+
+describe('the think-alike setup', () => {
+  it('[thinkalike] deals the prompt in the language the host set and holds the field for the clock they set', async () => {
+    const { code, host } = await harness.openRoom(THINK_ALIKE)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    host.send({
+      settings: withSetup({
+        game: { kind: 'thinkalike', language: 'en', roundDurationMs: 60_000 },
+        host
+      }),
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => {
+      const game = hostView(host)?.settings.game
+
+      return game?.kind === 'thinkalike' && game.language === 'en'
+    }, 'the language to land')
+    host.send({ type: 'host.startRound' })
+    await waitFor(
+      () => playerView(zoe)?.phase === 'playing',
+      'the prompt to go up'
+    )
+
+    expect(thinkAlikeRound(playerView(zoe))?.prompt).toBe(ENGLISH_PROMPT)
+    expect(playerView(zoe)?.round?.durationMs).toBe(60_000)
+  })
+
+  it('[thinkalike] refuses a clock under ten seconds or over a minute', async () => {
+    const { host } = await harness.openRoom(THINK_ALIKE)
+
+    for (const roundDurationMs of [9_999, 60_001]) {
+      const refusalsBefore = errorsIn(host).length
+
+      host.send({
+        settings: withSetup({
+          game: { ...DEFAULT_THINK_ALIKE_SETTINGS, roundDurationMs },
+          host
+        }),
+        type: 'host.updateSettings'
+      })
+      await waitFor(
+        () => errorsIn(host).length > refusalsBefore,
+        'the clock to be refused'
+      )
+    }
+
+    expect(errorsIn(host).map(({ code }) => code)).toEqual([
+      'invalid_message',
+      'invalid_message'
+    ])
+    expect(hostView(host)?.settings.game).toEqual(DEFAULT_THINK_ALIKE_SETTINGS)
   })
 })
