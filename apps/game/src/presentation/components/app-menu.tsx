@@ -13,7 +13,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 
 import type { DeployedBuild } from './app-menu-leaflet'
 import { ConnectionDot, connectionStatusKey } from './connection-status'
-import { MenuIcon } from './icons'
+import { MenuIcon } from './shell-icons'
 import { useMenuWidth } from './use-menu-width'
 
 import './app-menu.sass'

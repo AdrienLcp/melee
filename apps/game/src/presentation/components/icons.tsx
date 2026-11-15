@@ -32,10 +32,8 @@ import {
   Layers,
   Lock,
   type LucideIcon,
-  type LucideProps,
   Maximize,
   Megaphone,
-  Menu,
   Merge,
   Minimize,
   Minus,
@@ -78,27 +76,7 @@ import type React from 'react'
 
 import type { GameKind } from '@melee/protocol/game'
 
-/**
- * The family every glyph is drawn in, so none arrives in someone else's
- * weight: `1.25em`, and 3.5 units of stroke on the 24-unit grid — the stem
- * weight of the display face's heaviest cut. Lucide's 2-unit round hairline
- * read as another product beside lettering this heavy. Butt caps and miter
- * joins because nothing here is round but the buzzer.
- *
- * Decorative: a glyph sits beside the word, or its control carries the name.
- */
-const FAMILY = {
-  'aria-hidden': true,
-  focusable: false,
-  size: '1.25em',
-  strokeLinecap: 'butt',
-  strokeLinejoin: 'miter',
-  strokeWidth: 3.5
-} as const satisfies LucideProps
-
-const inFamily =
-  (Glyph: LucideIcon, overrides: LucideProps = {}): React.FC<LucideProps> =>
-  (props) => <Glyph {...FAMILY} {...overrides} {...props} />
+import { FAMILY, inFamily } from './shell-icons'
 
 export const AnnounceIcon = inFamily(Megaphone)
 export const ArrowIcon = inFamily(ArrowRight)
@@ -113,11 +91,6 @@ export const CrossIcon = inFamily(X)
 export const FaultIcon = inFamily(TriangleAlert)
 export const CrownIcon = inFamily(Crown, { fill: 'currentColor' })
 export const LockIcon = inFamily(Lock)
-export const MenuIcon = inFamily(Menu, {
-  className: 'menu-icon',
-  strokeLinecap: 'round',
-  strokeWidth: 2.6
-})
 // Its pips are near-zero-length strokes, which a butt cap draws as nothing.
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)

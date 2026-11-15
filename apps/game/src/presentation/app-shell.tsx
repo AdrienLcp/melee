@@ -8,7 +8,7 @@ import {
   usePageKey
 } from '@/infrastructure/router/navigation'
 import { AppMenu } from '@/presentation/components/app-menu'
-import { NoticeRegion } from '@/presentation/components/notice-region'
+import { LazyNoticeRegion } from '@/presentation/components/lazy-notice-region'
 import { SkipLink } from '@/presentation/components/skip-link'
 import { ConnectionProvider } from '@/presentation/connection/connection-provider'
 import { ReconnectingNotice } from '@/presentation/connection/reconnecting-notice'
@@ -52,7 +52,7 @@ export const AppShell: React.FC = () => {
               <Outlet />
             </ViewTransition>
             <ReconnectingNotice />
-            <NoticeRegion />
+            <LazyNoticeRegion />
           </div>
         </RoomActionsProvider>
       </ConnectionProvider>

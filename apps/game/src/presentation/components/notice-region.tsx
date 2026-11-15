@@ -18,8 +18,6 @@ import {
   useLeavingNotices
 } from './notices'
 
-import './notice-region.sass'
-
 type NoticeCardProps = {
   isLeaving: boolean
   noticeKey: string

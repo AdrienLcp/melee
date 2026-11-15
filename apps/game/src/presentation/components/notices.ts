@@ -38,6 +38,17 @@ const LEAVE_FALLBACK_MS = 1_000
 /** Three fit at a phone's width below the menu; a fourth waits its turn. */
 export const noticeQueue = new ToastQueue<Notice>({ maxVisibleToasts: 3 })
 
+const subscribeToNotices = (listener: () => void): (() => void) =>
+  noticeQueue.subscribe(listener)
+
+const readHasNotices = (): boolean => noticeQueue.visibleToasts.length > 0
+
+const readNoNotices = (): boolean => false
+
+/** Whether any notice is drawn or leaving, which is when the region is needed at all. */
+export const useHasNotices = (): boolean =>
+  useSyncExternalStore(subscribeToNotices, readHasNotices, readNoNotices)
+
 let leaving: ReadonlySet<string> = new Set()
 const leavingListeners = new Set<() => void>()
 

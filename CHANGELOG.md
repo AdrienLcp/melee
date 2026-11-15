@@ -675,6 +675,11 @@ one part.
 
 ### Internal
 
+- `[Game]` The notice region is fetched with the first notice instead of on
+  every page, and the menu's glyph no longer brings every other glyph into
+  the entry chunk: the player's arrival page loads about 15 kB less script,
+  back under its Lighthouse budget.
+
 - `[Server]` Log lines about a room carry its game and phase beside its
   code, and the role where a socket is known.
 - `[Game]` A `.legacy.css` copy is named after a hash of every copy, so a

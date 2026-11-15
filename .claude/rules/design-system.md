@@ -61,6 +61,11 @@ draw a path by hand. `inFamily` is what keeps the library's 2-unit round
 hairline off this product's lettering; why the family is that weight is in
 [`apps/game/DESIGN.md`](../../apps/game/DESIGN.md).
 
+**A glyph the shell draws goes in `shell-icons.tsx` instead**, beside
+`inFamily` itself. A module lands whole in the entry chunk once the shell
+imports it: `MenuIcon` read from `icons.tsx` put every game's glyph on the
+player's arrival page, about 7 kB gzipped against its Lighthouse budget.
+
 ## Two controls that look alike share a mixin, not a component
 
 `Button` and `Link` render different elements for different reasons — one acts,
