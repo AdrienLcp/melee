@@ -4,17 +4,24 @@
   // Every word the press can say sits in one cell at no width but the one it
   // says now, so the press narrows and widens with its word rather than
   // jumping to the next one's width.
+  //
+  // A stage holding the press narrower than its words sets
+  // `--copy-words-folded: auto` and `--copy-words-wrap: wrap`: every word keeps
+  // the cell's width and wraps, so the press stays as tall as its longest word
+  // across a copy instead of cutting it.
   .copy-button
     .copy-words
       display: grid
       interpolate-size: allow-keywords
 
     .control-label
-      @include mark.pops-in-line('&[data-shown]', 0rem, auto, inline-size)
+      @include mark.pops-in-line('&[data-shown]', var(--copy-words-folded, 0rem), auto, inline-size)
 
       grid-area: 1 / 1
       min-inline-size: 0
       overflow-x: clip
+      text-wrap-mode: var(--copy-words-wrap, nowrap)
+      text-wrap-style: balance
 
   // The glyph is stamped in on every outcome. Nothing moves before the first
   // press, so a page laying the button down plays nothing of its own.

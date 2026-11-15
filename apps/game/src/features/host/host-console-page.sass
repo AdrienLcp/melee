@@ -1148,9 +1148,19 @@
         flex-direction: row
         gap: var(--space-s)
 
+        // A third of a phone's row is narrower than "Copy the code": the
+        // token spends its padding on the press, and the press wraps its words
+        // rather than cut them.
         .code
           flex: 1 1 auto
           justify-content: center
+          padding-inline: var(--space-xs)
+
+          .copy-button
+            --copy-words-folded: auto
+            --copy-words-wrap: wrap
+
+            padding: var(--space-xs)
 
         .qr
           align-content: start
