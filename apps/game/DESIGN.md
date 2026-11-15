@@ -608,6 +608,10 @@ leave the sheet for a strip of paper on the menu's line, as tall as the menu
 (the letter drawn to that height) and stopping short of it, and the list
 takes a card of its own (`petit-bac-head.on-the-menu-line`). The strip's sand
 runs two thirds of its length on the sheet; its seconds keep their size.
+A place to name on a short upright console sends its sand to the same strip:
+the map is the question, and a line of sand across its card left the map
+92px tall at 320×568, under the 104px its zoom column takes. On the strip the
+map is 113px.
 
 A card beside the menu stands on its line or clears it, never a few pixels
 under its top: a seated console's strip stood 12px under the trigger at

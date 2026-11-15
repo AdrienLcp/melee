@@ -1,4 +1,5 @@
 @use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/fold'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/seat-grid'
@@ -7,6 +8,7 @@
 @use '../../presentation/styles/scrollbar'
 @use 'boxed-standings'
 @use '../player/petit-bac-head'
+@use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
 // Hidden from sight only: it holds the arrival notice's live region, which a
@@ -460,6 +462,21 @@
       @media #{layout.$upright}
         > .stage.playing > .round-card:first-child
           margin-block-start: calc(var(--control-height) + var(--space-xs))
+
+        // A place to name keeps the sand off the card, on a strip of paper on
+        // the menu's line, as tall as the menu and stopping short of it: the
+        // map is the question and its zoom column needs the card's height,
+        // which a line of sand across it took at 320×568.
+        > .stage.playing[data-map-question] > .round-card:first-child
+          padding-block-start: clamp(var(--space-xs), 3cqmin, var(--space-l))
+
+          > .round-progress
+            @include piece.card
+            @include box-lid.paper
+
+            block-size: var(--control-height)
+            inset: calc(-1 * (var(--control-height) + var(--space-xs))) calc(var(--menu-width, 7.25rem) + var(--space-xs)) auto 0
+            padding-inline: var(--space-s)
 
       // Lying down, a card across the whole stage keeps its one row: the sand
       // and the words stop short of the menu beside them.

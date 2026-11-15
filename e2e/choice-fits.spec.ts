@@ -659,6 +659,10 @@ for (const seat of SEATS) {
     await page.goto(seat.path)
     await expect(page.locator('.answer-tile')).toHaveCount(4)
     await expect(page.locator('.map-question .world-map')).toBeVisible()
+    // The map is a lazy chunk: measured before it lands, it has no presses to cut.
+    await expect(
+      page.locator('.map-question .world-map .controls .button')
+    ).toHaveCount(3)
     await page.evaluate(() => document.fonts.ready.then(() => {}))
 
     const faults: string[] = []
