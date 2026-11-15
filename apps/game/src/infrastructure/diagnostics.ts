@@ -17,6 +17,7 @@ import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 import type { ClipFault } from '@melee/protocol/sound'
 
 import { browserIdentityOf } from '@/helpers/browser-identity'
+import { isBrowserNotice } from '@/helpers/browser-notice'
 import { createEventRing } from '@/helpers/event-ring'
 import { createReportGate } from '@/helpers/report-gate'
 import { sendErrorReport } from '@/infrastructure/api/melee-api'
@@ -219,6 +220,11 @@ export const watchUnhandledFaults = (): void => {
       const fault = faultOf(error)
 
       noteFaultEvent({ fault, type: 'uncaught' })
+
+      if (isBrowserNotice(error)) {
+        return
+      }
+
       reportFault({ error: fault, kind: 'uncaught' })
     },
     onRejection: (reason) => {

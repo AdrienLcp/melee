@@ -200,9 +200,13 @@
   // A host's menu on a landscape phone holds the invitation, the points,
   // the seat, the preferences and three exits, and ran off the bottom with the
   // exits unreachable until the leaflet scrolled inside itself.
+  //
+  // A width, never a cap: shrunk to its content, a disclosure opening inside
+  // widened it one step a frame, each capped by the room right of where
+  // react-aria's `ResizeObserver` had just placed it — a resize loop.
   .app-menu-leaflet
     &.sheet-popover
-      max-width: min(92vw, 20rem)
+      inline-size: min(92vw, 20rem)
 
     // The control register is sized in `vmin` and this box is not: at a fixed
     // 320px, a host console on a television burst every one of these labels out

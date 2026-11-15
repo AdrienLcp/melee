@@ -47,6 +47,13 @@ error's own text — so none has a field to travel in, and `http.test.ts` fails
 if one is accepted. `/legal` says this in both dictionaries
 (`legal.storage.errorReports`).
 
+A `window` `error` that is a browser's notice rather than a fault — the
+`ResizeObserver` loop notice, a bare message with no `Error` behind it — goes
+into the trail as an `uncaught` event and is never sent as a report
+(`helpers/browser-notice.ts`). The loop itself is still a fault to fix where
+it starts: the menu's leaflet sized to its content raised it on every
+disclosure opened inside, until it took a width.
+
 Limits: identical faults are sent once and ten at most per page load
 (`helpers/report-gate.ts`); the body is refused past 16 KiB before parsing; the
 `REPORT_LIMITER` binding keeps 20 a minute per room, or per address for a
