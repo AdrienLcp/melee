@@ -18,6 +18,7 @@ import {
 
 import { blindtestHostContent } from '@/helpers/round-content'
 import { nowMs } from '@/infrastructure/clock'
+import { noteMediaError } from '@/infrastructure/diagnostics'
 
 /**
  * `setTimeout` is only accurate to a handful of milliseconds under load, which
@@ -263,6 +264,7 @@ export const useRoundAudio = ({
       const loaded = loadedRef.current
 
       if (loaded !== null && event.target === loaded.deck) {
+        noteMediaError(loaded.deck.error?.code ?? null)
         failClip('unreachable', loaded)
       }
     }

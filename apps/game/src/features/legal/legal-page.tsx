@@ -163,6 +163,7 @@ export const LegalPage: React.FC = () => {
         <StoredKeys keys={SESSION_KEYS} />
         <p>{translate('legal.storage.server')}</p>
         <p>{translate('legal.storage.logs')}</p>
+        <p>{translate('legal.storage.errorReports')}</p>
       </LegalSection>
 
       <LegalSection heading={translate('legal.thirdParties.heading')}>

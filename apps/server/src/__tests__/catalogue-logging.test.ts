@@ -111,6 +111,8 @@ describe('a catalogue failure is logged once, where it is decided', () => {
     expect(error).toHaveBeenCalledExactlyOnceWith('Could not draw a track', {
       code,
       faults: [OUTAGE],
+      game: 'blindtest',
+      phase: 'lobby',
       reason: 'music_source_unavailable'
     })
   })
@@ -128,7 +130,7 @@ describe('a catalogue failure is logged once, where it is decided', () => {
     expect(error).not.toHaveBeenCalled()
     expect(warn).toHaveBeenCalledExactlyOnceWith(
       'Drew a track past failing catalogue paths',
-      { code, faults: [TYPO] }
+      { code, faults: [TYPO], game: 'blindtest', phase: 'lobby' }
     )
   })
 })

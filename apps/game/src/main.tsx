@@ -7,6 +7,10 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
 import { replaceScreen, watchViewTransitions } from '@/infrastructure/browser'
+import {
+  rootErrorHandlers,
+  watchUnhandledFaults
+} from '@/infrastructure/diagnostics'
 import { listenForInstallPrompt } from '@/infrastructure/install-prompt'
 import { routes } from '@/infrastructure/router/routes'
 import { reloadOnStaleBuild } from '@/infrastructure/stale-build'
@@ -18,6 +22,7 @@ import { RouteFallback } from '@/presentation/route-fallback'
 
 import '@/presentation/styles/globals.sass'
 
+watchUnhandledFaults()
 reloadOnStaleBuild()
 listenForInstallPrompt()
 watchViewTransitions()
@@ -64,7 +69,7 @@ const start = (): void => {
    * none. Nothing on these pages comes from a loader, so hydration would buy the
    * reuse of a few dozen nodes and nothing else.
    */
-  const root = createRoot(container)
+  const root = createRoot(container, rootErrorHandlers)
 
   const renderApp = (): void => {
     root.render(<App router={router} />)

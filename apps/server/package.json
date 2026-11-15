@@ -35,7 +35,7 @@
     "build": "wrangler types && tsc --noEmit && tsc --noEmit -p tsconfig.worker.json && wrangler deploy --dry-run --outdir dist",
     "capitals:build": "node --import tsx scripts/build-capital-bank.ts",
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
+    "dev": "wrangler d1 migrations apply OBSERVABILITY --local && wrangler dev",
     "flags:build": "node --import tsx scripts/build-flag-bank.ts",
     "quantities:build": "node --import tsx scripts/build-quantity-bank.ts",
     "questions:build": "node --import tsx scripts/build-question-bank.ts",

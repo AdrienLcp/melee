@@ -18,6 +18,9 @@ import {
   robotsTxt,
   sitemapXml
 } from '@/infrastructure/http/site-index'
+import { logger } from '@/infrastructure/logging/logger'
+import { keepServerReportsIn } from '@/infrastructure/reports/server-reports'
+import { d1ReportStore } from '@/infrastructure/worker/d1-report-store'
 import {
   durableRoomDoor,
   durableWallPairings,
@@ -27,11 +30,17 @@ import {
 export { RoomObject } from '@/infrastructure/worker/room-object'
 export { WallPairingObject } from '@/infrastructure/worker/wall-pairing-object'
 
+const reports = d1ReportStore(env.OBSERVABILITY)
+
+keepServerReportsIn(reports)
+
 const app = createHttpApp()
 
 registerHttpRoutes({
   app,
   limitRoomCreation: limitRoomCreationWith(env.ROOM_CREATION_LIMITER),
+  reportLimiter: env.REPORT_LIMITER,
+  reports,
   rooms: durableRoomDoor,
   walls: durableWallPairings
 })
@@ -75,4 +84,20 @@ app.get('/robots.txt', async (context) => {
   )
 })
 
-export default app
+/**
+ * The daily Cron Trigger of `wrangler.jsonc`: reports past their thirty days,
+ * and live-room rows no room has touched in a day. A failed run throws, so
+ * Cloudflare lists it as failed and the next day tries again.
+ */
+const purgeObservability: ExportedHandlerScheduledHandler<Env> = async (
+  controller
+) => {
+  const purged = await reports.purge({ now: controller.scheduledTime })
+
+  logger.info('Purged expired observability rows', purged)
+}
+
+export default {
+  fetch: app.fetch,
+  scheduled: purgeObservability
+} satisfies ExportedHandler<Env>

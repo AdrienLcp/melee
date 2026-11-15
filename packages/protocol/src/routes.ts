@@ -9,6 +9,7 @@ export const SOCKET_PREFIX = '/ws'
 export const API_ROUTES = {
   health: `${API_PREFIX}/health`,
   playlistTracks: `${API_PREFIX}/playlists/:playlistId/tracks`,
+  reports: `${API_PREFIX}/reports`,
   room: `${API_PREFIX}/rooms/:code`,
   rooms: `${API_PREFIX}/rooms`,
   trackSearch: `${API_PREFIX}/tracks/search`,

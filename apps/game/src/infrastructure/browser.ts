@@ -20,6 +20,42 @@ export const servedPath = (): string => location.pathname
 
 export { canShareLinks, reloadPage, shareLink } from '@adrienlcp/browser'
 
+/** What an error report says about the screen it happened on; the agent is the caller's to boil down. */
+export const describeScreen = (): {
+  devicePixelRatio: number
+  path: string
+  userAgent: string
+  viewport: { height: number; width: number }
+} => ({
+  devicePixelRatio: window.devicePixelRatio || 1,
+  path: location.pathname,
+  userAgent: navigator.userAgent,
+  viewport: { height: window.innerHeight, width: window.innerWidth }
+})
+
+/** A script of another origin — the audience tracker — says only this, and nothing to act on. */
+const OPAQUE_SCRIPT_ERROR = 'Script error.'
+
+/** What no handler caught: a throw outside React, and a promise nobody awaited. */
+export const onUnhandledFaults = ({
+  onError,
+  onRejection
+}: {
+  onError: (error: unknown) => void
+  onRejection: (reason: unknown) => void
+}): void => {
+  window.addEventListener('error', (event) => {
+    if (event.error == null && event.message === OPAQUE_SCRIPT_ERROR) {
+      return
+    }
+
+    onError(event.error ?? event.message)
+  })
+  window.addEventListener('unhandledrejection', (event) => {
+    onRejection(event.reason)
+  })
+}
+
 /** The thumb landing, and the server's answer to it one round trip later. */
 export type BuzzMoment = 'lost' | 'press' | 'won'
 

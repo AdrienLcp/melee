@@ -16,6 +16,17 @@
   "compatibility_date": "2026-11-05",
   // `process.env` is how `env.ts` reads its variables on both runtimes.
   "compatibility_flags": ["nodejs_compat"],
+  // Error reports and the live-room list (`docs/observability.md`), one
+  // database per environment. Its migrations are applied by the deploy job
+  // before the Worker ships, and by `pnpm dev` on the local copy.
+  "d1_databases": [
+    {
+      "binding": "OBSERVABILITY",
+      "database_id": "67578d39-7e76-4ba7-92c3-52ee46de2a22",
+      "database_name": "melee-observability",
+      "migrations_dir": "migrations"
+    }
+  ],
   // Offset from 8787 like the app from 5173: this repo runs beside the other
   // dev servers on the machine, and Vite proxies `/api` and `/ws` here.
   "dev": {
@@ -33,6 +44,14 @@
   // inherited, so each is declared again.
   "env": {
     "staging": {
+      "d1_databases": [
+        {
+          "binding": "OBSERVABILITY",
+          "database_id": "f064adf3-8ebd-4d8c-9516-6812bb197208",
+          "database_name": "melee-staging-observability",
+          "migrations_dir": "migrations"
+        }
+      ],
       "durable_objects": {
         "bindings": [
           { "class_name": "RoomObject", "name": "ROOMS" },
@@ -44,11 +63,17 @@
           "name": "ROOM_CREATION_LIMITER",
           "namespace_id": "1002",
           "simple": { "limit": 10, "period": 60 }
+        },
+        {
+          "name": "REPORT_LIMITER",
+          "namespace_id": "1004",
+          "simple": { "limit": 20, "period": 60 }
         }
       ],
       "routes": [
         { "custom_domain": true, "pattern": "staging.melee.adrienlcp.com" }
       ],
+      "triggers": { "crons": ["23 3 * * *"] },
       "vars": { "INDEXABLE": "false" }
     }
   },
@@ -64,11 +89,20 @@
       "name": "ROOM_CREATION_LIMITER",
       "namespace_id": "1001",
       "simple": { "limit": 10, "period": 60 }
+    },
+    // A room, or a screen in none by its address, keeps twenty reports a
+    // minute: one table's screens all hitting one bug is one allowance.
+    {
+      "name": "REPORT_LIMITER",
+      "namespace_id": "1003",
+      "simple": { "limit": 20, "period": 60 }
     }
   ],
   // Declared here so a deploy keeps the custom domain attached rather than
   // detaching what was set up outside this file.
   "routes": [{ "custom_domain": true, "pattern": "melee.adrienlcp.com" }],
+  // The daily purge: reports past thirty days, live-room rows a day stale.
+  "triggers": { "crons": ["23 3 * * *"] },
   // The workers.dev address was never shared: the game is only served at its
   // own domain.
   "workers_dev": false

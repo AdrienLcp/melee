@@ -8,6 +8,21 @@ one part.
 
 ### Features
 
+- `[Shared]` **Every screen reports what breaks on it.** An uncaught error, a
+  boundary's catch, an unhandled rejection, a frame the server refused, a
+  fatal refusal nobody chose and a silent clip are each sent once to
+  `POST /api/reports` with `sendBeacon`, ten at most per page load: the
+  error and its stack, the browser's name, version and system read off the
+  user agent (never the agent itself), the viewport, the room's code, game,
+  phase and round, the role, whether the screen is the speaker, its volume,
+  the cue context's state, the last media error, and the types of the last
+  twenty frames. The schema is closed, so a nickname, an answer or a
+  session id has nowhere to go. The server keeps them in a D1 database per
+  environment beside its own unhandled errors and every reported clip,
+  twenty a minute per room, and a daily cron deletes them after 30 days.
+  `/legal` says so in both languages; `docs/observability.md` says how to
+  read them.
+
 - `[Server]` **Pense comme la table is served, reachable by a settings
   frame.** `thinkalike` joins the games the server deals, not the shelf: a
   prompt from the bank in the room's language, one line a seat sent once
@@ -627,6 +642,11 @@ one part.
   tab's title is a bar held at the top, and the rows scroll under it.
 
 ### Internal
+
+- `[Server]` Log lines about a room carry its game and phase beside its
+  code, and the role where a socket is known.
+- `[Game]` A `.legacy.css` copy is named after a hash of every copy, so a
+  change to the legacy script reaches a cached old browser.
 
 - `[Shared]` **Think alike's rules and prompts, ahead of its server.** The
   crowd key folds a plural on top of the shared normalisation, the groups

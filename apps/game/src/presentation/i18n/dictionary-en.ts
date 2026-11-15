@@ -1445,6 +1445,8 @@ export const EN_DICTIONARY = defineDictionary({
         'The challenge lines the host wrote in advance, and which of them have been played.',
       device:
         'Mêlée sets no cookies. What it remembers stays in your browser, for this site only, until you clear it:',
+      errorReports:
+        'When something breaks on a screen — a page that will not draw, a clip that stays silent — that screen sends Mêlée a report: the error and where in the code it happened, the page’s address, the browser’s name and version, the screen’s size, the table’s code, its game, phase and round, whether the screen plays the sound and at what volume, and the kinds of the last messages it exchanged, never what they said. It holds no nickname, no answer, nothing you typed and no IP address, and it is deleted after 30 days. It is how a fault seen once on a TV gets fixed, not audience measurement, so the audience switch below does not stop it.',
       heading: 'What Mêlée keeps',
       hostSetup:
         'How you set up the last table you ran, game by game, so the next one opens the same way.',
@@ -1486,7 +1488,7 @@ export const EN_DICTIONARY = defineDictionary({
       assistant:
         'If you plan with an assistant, its provider sends Mêlée what it put together — the line-up, and any questions it wrote for you, such as a quiz about your family — and gets a link back. Mêlée keeps none of it on the way: the questions travel in the link alone, and in a table opened from it they last as long as that table. What you tell the assistant falls under its provider’s own terms.',
       cloudflare:
-        'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table counts against your IP address for one minute, so that nobody can open hundreds.',
+        'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table, or sending an error report from outside one, counts against your IP address for one minute, so that nobody can flood the site; the address itself is never kept.',
       deezer:
         'The blind test takes its music from Deezer. What the host searches for, or the playlist they name, is sent to Deezer by Mêlée’s server, with nothing about you. The 30-second clips and the album covers, though, are loaded by your browser straight from Deezer’s servers, which therefore receive your IP address and your browser’s name. <policy>Deezer’s privacy policy</policy> applies to them.',
       heading: 'Who else receives your data',

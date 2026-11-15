@@ -31,7 +31,10 @@ import {
 } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import {
+  forgetRoom,
   isOurOwnMalformedFrame,
+  noteFrame,
+  reportFatalRefusal,
   reportRefusedFrame
 } from '@/infrastructure/diagnostics'
 import { reloadOntoNewBuild } from '@/infrastructure/stale-build'
@@ -192,6 +195,8 @@ export const useRoomSocket = ({
         // room's token holds it only from the press that reopens this socket.
         const askedPiece = nickname === null ? null : storedPawnPiece()
 
+        noteFrame({ direction: 'out', type: 'hello' })
+
         socket.send(
           encodeMessage({
             hostToken:
@@ -249,6 +254,8 @@ export const useRoomSocket = ({
           return
         }
 
+        noteFrame({ direction: 'in', type: control.message.type })
+
         if (isOurOwnMalformedFrame(control.message)) {
           reportRefusedFrame(control.message)
 
@@ -276,6 +283,8 @@ export const useRoomSocket = ({
 
           return
         }
+
+        reportFatalRefusal(refusal)
 
         // The end of the line is what the frame says, not what the socket does
         // next. Waiting for a close left a player on a stale scoreboard when
@@ -390,6 +399,7 @@ export const useRoomSocket = ({
 
     return () => {
       disposed = true
+      forgetRoom()
       reconnectRef.current = null
       stopWatchingForeground()
       window.clearTimeout(reconnectTimer)
@@ -419,6 +429,7 @@ export const useRoomSocket = ({
       }
 
       socket.send(encodeMessage(message))
+      noteFrame({ direction: 'out', type: message.type })
 
       return true
     },

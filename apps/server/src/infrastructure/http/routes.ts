@@ -14,8 +14,10 @@ import type {
 } from '@melee/protocol/http'
 import {
   createRoomRequestSchema,
+  errorReportSchema,
   pairWallRequestSchema,
   playlistPreviewQuerySchema,
+  REPORT_BODY_MAX_BYTES,
   trackSearchQuerySchema,
   wallPairingCodeSchema,
   wallPairingPollQuerySchema
@@ -26,8 +28,13 @@ import { PROTOCOL_VERSION } from '@melee/protocol/version'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 
 import { env } from '@/env'
+import { nowMs } from '@/infrastructure/clock'
 import { invalidInput } from '@/infrastructure/http/error-responses'
 import type { RoomDoor, WallPairings } from '@/infrastructure/http/http-ports'
+import {
+  type RateLimiter,
+  reportLimitKey
+} from '@/infrastructure/http/rate-limit'
 import { logger } from '@/infrastructure/logging/logger'
 import { answerMcp } from '@/infrastructure/mcp/mcp-endpoint'
 import { fetchTracksFor } from '@/infrastructure/music/deezer-client'
@@ -36,6 +43,10 @@ import {
   isOutage,
   type MusicSourceFailure
 } from '@/infrastructure/music/music-source'
+import {
+  type ReportStore,
+  storedClientReport
+} from '@/infrastructure/reports/report-store'
 
 /**
  * A catalogue that matched nothing well-known enough to guess is an empty
@@ -83,25 +94,48 @@ const respondWithTracks = (
   return context.json(body)
 }
 
+const reportRefused: ApiErrorResponse = {
+  code: 'invalid_input',
+  message: 'A report holds only the fields its schema names'
+}
+
+const tooManyReports: ApiErrorResponse = {
+  code: 'rate_limited',
+  message: 'Too many reports from this room or address'
+}
+
+const parsedJson = (text: string): unknown => {
+  try {
+    return JSON.parse(text)
+  } catch {
+    return undefined
+  }
+}
+
 const pairingNotFound: ApiErrorResponse = {
   code: 'pairing_not_found',
   message: 'That screen code has expired or was never shown'
 }
 
 /**
- * Ten routes, and none of them run during a game — creating a room, checking
- * one exists, browsing the catalogue. Everything that happens while people are
- * playing is a WebSocket frame.
+ * Eleven routes, and none of them play a game — creating a room, checking one
+ * exists, browsing the catalogue, keeping a screen's error report. Everything
+ * that happens while people are playing is a WebSocket frame.
  */
 export const registerHttpRoutes = ({
   app,
   limitRoomCreation,
+  reportLimiter,
+  reports,
   rooms,
   walls
 }: {
   app: Hono
   /** Each runtime counts by its own means: one process's memory, or the platform's binding. */
   limitRoomCreation: MiddlewareHandler
+  /** Counted per room, or per address for a screen in none — see `reportLimitKey`. */
+  reportLimiter: RateLimiter
+  reports: ReportStore
   rooms: RoomDoor
   walls: WallPairings
 }): void => {
@@ -137,6 +171,43 @@ export const registerHttpRoutes = ({
     }
 
     return context.json(body)
+  })
+
+  // Sent with `sendBeacon`, so nobody reads the answer: the body is measured
+  // before it is parsed, and the limit is checked once the room is known.
+  app.post(API_ROUTES.reports, async (context) => {
+    const text = await context.req.text()
+
+    if (new TextEncoder().encode(text).length > REPORT_BODY_MAX_BYTES) {
+      return context.json(reportRefused, 413)
+    }
+
+    const report = errorReportSchema.safeParse(parsedJson(text))
+
+    if (!report.success) {
+      return context.json(reportRefused, 400)
+    }
+
+    const { success } = await reportLimiter.limit({
+      key: reportLimitKey({
+        address: context.req.header('CF-Connecting-IP'),
+        roomCode: report.data.roomCode
+      })
+    })
+
+    if (!success) {
+      return context.json(tooManyReports, 429)
+    }
+
+    await reports.record(
+      storedClientReport({
+        receivedAt: nowMs(),
+        report: report.data,
+        serverBuild: env.build
+      })
+    )
+
+    return context.body(null, 204)
   })
 
   app.post(

@@ -3,6 +3,8 @@ import { useEffect, useRef } from 'react'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { ClipFault } from '@melee/protocol/sound'
 
+import { reportClipFault } from '@/infrastructure/diagnostics'
+
 /**
  * Tells the room what the speaker hears of the round on screen's clip: a fault
  * as it appears, and `null` once the clip plays again. Only changes are sent —
@@ -39,6 +41,10 @@ export const useSilentClipReport = ({
 
     if (send({ fault, roundId, type: 'speaker.reportClip' })) {
       reportedRef.current = { fault, roundId }
+
+      if (fault !== null) {
+        reportClipFault(fault)
+      }
     }
   })
 }

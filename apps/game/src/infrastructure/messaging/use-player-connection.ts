@@ -4,6 +4,7 @@ import type { PlayerRoomView } from '@melee/protocol/room'
 import { playerServerMessageSchema } from '@melee/protocol/server-message'
 
 import { playerScreenLanding } from '@/helpers/player-screen-swap'
+import { noteFrame, noteRoomView } from '@/infrastructure/diagnostics'
 
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
@@ -38,8 +39,24 @@ export const usePlayerConnection = ({
   const onFrame = (raw: string): void => {
     const decoded = decodeMessage(playerServerMessageSchema, raw)
 
-    if (decoded.status === 'success' && 'view' in decoded.message) {
-      receiveView(decoded.message.view)
+    if (decoded.status === 'failure') {
+      return
+    }
+
+    noteFrame({ direction: 'in', type: decoded.message.type })
+
+    if ('view' in decoded.message) {
+      const { view } = decoded.message
+
+      noteRoomView({
+        game: view.settings.game?.kind ?? null,
+        isSpeaker: false,
+        phase: view.phase,
+        role: 'player',
+        roomCode,
+        roundIndex: view.round?.index ?? null
+      })
+      receiveView(view)
     }
   }
 

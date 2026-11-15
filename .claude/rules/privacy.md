@@ -58,6 +58,17 @@ When the user types something that leaves the site, the field says where it
 goes, naming the service — `blindtest.source.queryHint` under the search,
 `playlistIdHint` under the playlist id.
 
+## Error reports hold nothing about a person
+
+A screen's error report (`docs/observability.md`) is kept 30 days in D1 and
+purged by the daily cron. Its schema is closed — a field it does not name is
+refused — and names no nickname, answer, typed text, session id, host token,
+frame payload, raw user agent or IP. `REPORT_LIMITER` keys on
+`CF-Connecting-IP` for a screen in no room and never stores it. A field added
+to `errorReportSchema` rewrites `legal.storage.errorReports` in both
+dictionaries in the same commit; the analytics opt-out does not cover reports,
+and the page says so.
+
 ## Logs keep no more than the page claims
 
 `observability` is on, so Cloudflare logs every request with its IP and user

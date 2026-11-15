@@ -66,6 +66,14 @@ jobs:
       - name: Build
         run: pnpm build
 
+      # Before the Worker, so the code that writes a new column never meets a
+      # database without it. A migration is additive for the same reason.
+      - name: Migrate the observability database
+        run: pnpm --filter @melee/server exec wrangler d1 migrations apply OBSERVABILITY --remote
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
       # A room in progress survives the deploy: its Durable Object keeps its
       # state, and the screens reconnect on their own.
       - name: Deploy

@@ -8,6 +8,7 @@ import {
   type CreateRoomRequest,
   type CreateRoomResponse,
   createRoomResponseSchema,
+  type ErrorReport,
   type HealthResponse,
   healthResponseSchema,
   type OpenWallPairingResponse,
@@ -46,6 +47,31 @@ type Cancellable = {
 }
 
 const TOO_MANY_REQUESTS = 429
+
+/**
+ * Fire and forget: `sendBeacon` survives the page unloading under it, which is
+ * when an error screen's tab is closed; `fetch` with `keepalive` stands in on a
+ * browser that refuses the beacon. Nobody reads the answer.
+ */
+export const sendErrorReport = (report: ErrorReport): void => {
+  const body = JSON.stringify(report)
+
+  if (
+    navigator.sendBeacon?.(
+      API_ROUTES.reports,
+      new Blob([body], { type: 'application/json' })
+    )
+  ) {
+    return
+  }
+
+  void fetch(API_ROUTES.reports, {
+    body,
+    headers: { 'content-type': 'application/json' },
+    keepalive: true,
+    method: 'POST'
+  }).catch(() => undefined)
+}
 
 /**
  * The whole HTTP surface of the app. Everything that happens during a game goes

@@ -76,6 +76,7 @@ import {
 } from '@/domain/round/track-pool'
 import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
+import { roomLogFields } from '@/infrastructure/logging/room-log-fields'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
 import {
@@ -939,7 +940,7 @@ export const beginRound = async (
     const log = isOutage(drawn.error.faults) ? logger.error : logger.warn
 
     log('Could not draw a track', {
-      code: room.code,
+      ...roomLogFields(room),
       faults: drawn.error.faults,
       reason: drawn.error.code
     })
@@ -967,7 +968,7 @@ export const beginRound = async (
     const log = isOutage(drawn.data.faults) ? logger.error : logger.warn
 
     log('Drew a track past failing catalogue paths', {
-      code: room.code,
+      ...roomLogFields(room),
       faults: drawn.data.faults
     })
   }
@@ -1043,7 +1044,7 @@ export const replaceUnplayableClip = async (
     const log = isOutage(faults) ? logger.error : logger.warn
 
     log('Could not replace a clip that would not load', {
-      code: room.code,
+      ...roomLogFields(room),
       faults,
       reason: replaced.status === 'failure' ? replaced.error.code : null
     })
@@ -1228,7 +1229,7 @@ const runDeadline = (
     }
 
     case 'expiry': {
-      logger.info('Closed an abandoned room', { code: room.code })
+      logger.info('Closed an abandoned room', roomLogFields(room))
       closeRoomEngine(engine)
 
       return
@@ -1270,8 +1271,8 @@ const releaseSeats = (engine: RoomEngine, now: number): void => {
   }
 
   logger.info('Released abandoned seats', {
-    released: released.length,
-    room: room.code
+    ...roomLogFields(room),
+    released: released.length
   })
   publishRoom(engine)
 }

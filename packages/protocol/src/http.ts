@@ -1,13 +1,21 @@
 import { z } from 'zod'
 
+import { clientMessageSchema } from './client-message'
 import { protocolErrorCodeSchema } from './error-code'
-import { shelvedGameSchema, shelvedGames } from './game'
+import { gameKindSchema, shelvedGameSchema, shelvedGames } from './game'
 import {
   hostTokenSchema,
   ROOM_CODE_ALPHABET,
   roomCodeSchema
 } from './identifiers'
 import { DEFAULT_LOCALE, localeSchema } from './locale'
+import { roomPhaseSchema } from './room'
+import {
+  hostServerMessageSchema,
+  playerServerMessageSchema,
+  wallServerMessageSchema
+} from './server-message'
+import { clipFaultSchema } from './sound'
 import { trackDifficultySchema, trackIdentitySchema } from './track'
 
 /**
@@ -165,6 +173,157 @@ export const apiErrorResponseSchema = z.object({
   message: z.string()
 })
 
+/**
+ * What a screen says went wrong on it, sent to `POST /api/reports` and kept
+ * thirty days. Every field is a closed shape — an enum, a bounded number, a
+ * pattern no sentence matches — save the error's own name, message and stack,
+ * which the browser writes. That is what makes a nickname, an answer, a typed
+ * guess, a session id or a host token **structurally** unable to ride along:
+ * there is no free-form bag to put one in, and `strictObject` refuses a key
+ * nobody declared. Payloads of frames never travel, only their `type`.
+ */
+export const clientReportKinds = [
+  'uncaught',
+  'caught-by-boundary',
+  'unhandled-rejection',
+  'refused-frame',
+  'clip-fault',
+  'socket-fatal'
+] as const
+
+/** Written by the server itself, never accepted from a screen. */
+export const serverReportKinds = ['server-error', 'clip-reported'] as const
+
+export const clientReportKindSchema = z.enum(clientReportKinds)
+
+export const reportBrowsers = [
+  'chrome',
+  'edge',
+  'firefox',
+  'safari',
+  'samsung-internet',
+  'opera',
+  'other'
+] as const
+
+export const reportSystems = [
+  'windows',
+  'macos',
+  'ios',
+  'android',
+  'linux',
+  'chromeos',
+  'tizen',
+  'webos',
+  'other'
+] as const
+
+export const reportAudioContextStates = [
+  'suspended',
+  'running',
+  'closed',
+  'interrupted'
+] as const
+
+/** The frame types either end may name, read off the unions so a new frame is covered as it lands. */
+export const reportFrameTypes = [
+  ...new Set(
+    [
+      ...clientMessageSchema.options,
+      ...hostServerMessageSchema.options,
+      ...playerServerMessageSchema.options,
+      ...wallServerMessageSchema.options
+    ].map((option) => option.shape.type.value)
+  )
+]
+
+export const REPORT_FRAMES_KEPT = 20
+export const REPORT_BODY_MAX_BYTES = 16_384
+
+const REPORT_ERROR_NAME_MAX = 80
+const REPORT_ERROR_MESSAGE_MAX = 500
+const REPORT_ERROR_STACK_MAX = 4000
+const REPORT_ROUTE_MAX = 200
+const REPORT_BUILD_MAX = 64
+const REPORT_VERSION_MAX = 24
+const REPORT_VIEWPORT_MAX = 20_000
+const REPORT_PIXEL_RATIO_MAX = 10
+const MEDIA_ERROR_CODE_MAX = 4
+
+export const REPORT_TEXT_LIMITS = {
+  errorMessage: REPORT_ERROR_MESSAGE_MAX,
+  errorName: REPORT_ERROR_NAME_MAX,
+  errorStack: REPORT_ERROR_STACK_MAX
+} as const
+
+const viewportSideSchema = z
+  .number()
+  .int()
+  .nonnegative()
+  .max(REPORT_VIEWPORT_MAX)
+
+export const errorReportSchema = z.strictObject({
+  audio: z.strictObject({
+    contextState: z.enum(reportAudioContextStates).nullable(),
+    /** `MediaError.code` of the clip that last failed on this screen. */
+    mediaErrorCode: z
+      .number()
+      .int()
+      .positive()
+      .max(MEDIA_ERROR_CODE_MAX)
+      .nullable(),
+    /** This device's own level, 0 to 1 — not the room's. */
+    volume: z.number().min(0).max(1).nullable()
+  }),
+  browser: z.strictObject({
+    name: z.enum(reportBrowsers),
+    system: z.enum(reportSystems),
+    version: z
+      .string()
+      .max(REPORT_VERSION_MAX)
+      .regex(/^[\d.]*$/)
+  }),
+  /** The entry chunk's hashed name, which tells one deployed build from another. */
+  build: z
+    .string()
+    .max(REPORT_BUILD_MAX)
+    .regex(/^[\w.-]+$/),
+  /** The refusal's code, or the clip's fault — never a sentence. */
+  code: z.union([protocolErrorCodeSchema, clipFaultSchema]).nullable(),
+  devicePixelRatio: z.number().positive().max(REPORT_PIXEL_RATIO_MAX),
+  error: z
+    .strictObject({
+      message: z.string().max(REPORT_ERROR_MESSAGE_MAX),
+      name: z.string().max(REPORT_ERROR_NAME_MAX),
+      stack: z.string().max(REPORT_ERROR_STACK_MAX).nullable()
+    })
+    .nullable(),
+  frames: z
+    .array(
+      z.strictObject({
+        direction: z.enum(['in', 'out']),
+        type: z.enum(reportFrameTypes)
+      })
+    )
+    .max(REPORT_FRAMES_KEPT),
+  game: gameKindSchema.nullable(),
+  isSpeaker: z.boolean().nullable(),
+  kind: clientReportKindSchema,
+  phase: roomPhaseSchema.nullable(),
+  role: z.enum(['host', 'player', 'wall']).nullable(),
+  roomCode: roomCodeSchema.nullable(),
+  roundIndex: z.number().int().positive().nullable(),
+  /** The path alone: no query, no fragment — the evening link rides in one. */
+  route: z
+    .string()
+    .max(REPORT_ROUTE_MAX)
+    .regex(/^\/[\w/.-]*$/),
+  viewport: z.strictObject({
+    height: viewportSideSchema,
+    width: viewportSideSchema
+  })
+})
+
 export type CreateRoomRequest = z.infer<typeof createRoomRequestSchema>
 export type CreateRoomResponse = z.infer<typeof createRoomResponseSchema>
 export type RoomExistsResponse = z.infer<typeof roomExistsResponseSchema>
@@ -183,3 +342,7 @@ export type ApiErrorResponse = z.infer<typeof apiErrorResponseSchema>
 export type WallPairingPollQuery = z.input<typeof wallPairingPollQuerySchema>
 export type TrackSearchQuery = z.input<typeof trackSearchQuerySchema>
 export type PlaylistPreviewQuery = z.input<typeof playlistPreviewQuerySchema>
+export type ErrorReport = z.infer<typeof errorReportSchema>
+export type ClientReportKind = z.infer<typeof clientReportKindSchema>
+export type ServerReportKind = (typeof serverReportKinds)[number]
+export type ReportFrameType = (typeof reportFrameTypes)[number]

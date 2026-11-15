@@ -5,6 +5,16 @@ import { z } from 'zod'
 import type { ApiErrorResponse } from '@melee/protocol/http'
 
 import { logger } from '@/infrastructure/logging/logger'
+import { recordServerReport } from '@/infrastructure/reports/server-reports'
+
+/** `executionCtx` throws where the runtime gives none — Node, and a test's `app.request`. */
+const keepAlive = (context: Context, work: Promise<void>): void => {
+  try {
+    context.executionCtx.waitUntil(work)
+  } catch {
+    void work
+  }
+}
 
 type ValidationOutcome =
   | { error: z.core.$ZodError; success: false }
@@ -56,6 +66,18 @@ export const answerUnexpected: ErrorHandler = (error, context) => {
     path: context.req.path,
     stack: error.stack
   })
+  keepAlive(
+    context,
+    recordServerReport({
+      error: {
+        message: error.message,
+        name: error.name,
+        stack: error.stack ?? null
+      },
+      kind: 'server-error',
+      route: context.req.path
+    })
+  )
 
   const body: ApiErrorResponse = {
     code: 'internal_error',

@@ -61,6 +61,7 @@ export default defineConfig({
       // Durable Object the deployed room lives in. A state directory of the
       // run's own, or a room from the last run would still hold its code.
       command: [
+        `pnpm --filter @melee/server exec wrangler d1 migrations apply OBSERVABILITY --local --persist-to ${WORKER_STATE} &&`,
         'pnpm --filter @melee/server exec wrangler dev',
         `--ip 127.0.0.1 --port ${SERVER_PORT}`,
         `--persist-to ${WORKER_STATE}`,

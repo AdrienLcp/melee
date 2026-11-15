@@ -1,3 +1,5 @@
+import { noteAudioContext } from '@/infrastructure/diagnostics'
+
 /**
  * One per tab, shared by every cue, and **only ever built inside a gesture**: a
  * context created from an effect is born `suspended` and a later `resume()` is
@@ -11,7 +13,12 @@ let context: AudioContext | null = null
  * ever sounds.
  */
 export const unlockCues = (): void => {
-  context ??= new AudioContext()
+  if (context === null) {
+    const created = new AudioContext()
+
+    context = created
+    noteAudioContext(() => created.state)
+  }
 
   void context.resume()
 }

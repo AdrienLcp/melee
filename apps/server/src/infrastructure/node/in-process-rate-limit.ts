@@ -1,12 +1,10 @@
-import type { RoomCreationLimiter } from '@/infrastructure/http/rate-limit'
+import type { RateLimiter } from '@/infrastructure/http/rate-limit'
 
 /**
  * The binding's stand-in for the socket suites: a count per key that never
  * resets, because no suite outlives one window.
  */
-export const inProcessRoomCreationLimiter = (
-  allowance: number
-): RoomCreationLimiter => {
+export const inProcessRateLimiter = (allowance: number): RateLimiter => {
   const counts = new Map<string, number>()
 
   return {

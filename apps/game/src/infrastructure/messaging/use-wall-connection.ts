@@ -4,6 +4,7 @@ import type { WallRoomView } from '@melee/protocol/room'
 import { wallServerMessageSchema } from '@melee/protocol/server-message'
 
 import { wallStageLanding } from '@/helpers/stage-replacement'
+import { noteFrame, noteRoomView } from '@/infrastructure/diagnostics'
 
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
 import { useRoomView } from './use-room-view'
@@ -25,8 +26,24 @@ export const useWallConnection = (roomCode: RoomCode): WallConnection => {
   const onFrame = (raw: string): void => {
     const decoded = decodeMessage(wallServerMessageSchema, raw)
 
-    if (decoded.status === 'success' && 'view' in decoded.message) {
-      receiveView(decoded.message.view)
+    if (decoded.status === 'failure') {
+      return
+    }
+
+    noteFrame({ direction: 'in', type: decoded.message.type })
+
+    if ('view' in decoded.message) {
+      const { view } = decoded.message
+
+      noteRoomView({
+        game: view.settings.game?.kind ?? null,
+        isSpeaker: view.isSpeaker,
+        phase: view.phase,
+        role: 'wall',
+        roomCode,
+        roundIndex: view.round?.index ?? null
+      })
+      receiveView(view)
     }
   }
 

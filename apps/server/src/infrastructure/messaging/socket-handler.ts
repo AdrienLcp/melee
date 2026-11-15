@@ -114,6 +114,7 @@ import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newDeckId, newPlayerId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
+import { roomLogFields } from '@/infrastructure/logging/room-log-fields'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import {
   type ChallengePick,
@@ -121,6 +122,7 @@ import {
   redealChallenge
 } from '@/infrastructure/questions/challenge-dealer'
 import { isValidWord } from '@/infrastructure/questions/word-bank'
+import { recordServerReport } from '@/infrastructure/reports/server-reports'
 
 import type { Connection, Outbound, Socket } from './connection'
 import {
@@ -285,7 +287,10 @@ const introduce = ({
 
   sendWelcome(seated, { engine, sessionId })
   publishRoom(engine)
-  logger.info('Socket joined', { code: engine.room.code, role: seated.role })
+  logger.info('Socket joined', {
+    ...roomLogFields(engine.room),
+    role: seated.role
+  })
 
   return seated
 }
@@ -1617,6 +1622,19 @@ const reportClip = ({
     return
   }
 
+  if (message.fault !== null && active.role !== 'player') {
+    void recordServerReport({
+      code: message.fault,
+      game: room.settings.game?.kind ?? null,
+      isSpeaker,
+      kind: 'clip-reported',
+      phase: room.phase,
+      role: active.role,
+      roomCode: room.code,
+      roundIndex: room.round.index
+    })
+  }
+
   const isReplaceable =
     (message.fault === 'unreachable' || message.fault === 'stalled') &&
     room.phase === 'countdown' &&
@@ -2454,7 +2472,15 @@ export const receiveFrame = ({
   const decoded = decodeMessage(clientMessageSchema, raw)
 
   if (decoded.status === 'failure') {
-    logger.warn('Rejected a socket frame', { reason: decoded.reason })
+    logger.warn('Rejected a socket frame', {
+      ...(joined === null
+        ? {}
+        : {
+            ...roomLogFields(joined.engine.room),
+            role: joined.connection.role
+          }),
+      reason: decoded.reason
+    })
     sendError(socket, {
       code: 'invalid_message',
       fatal: false,

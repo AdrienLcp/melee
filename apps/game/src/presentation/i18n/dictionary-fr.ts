@@ -1372,6 +1372,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Les défis que l’hôte a écrits à l’avance, et lesquels ont déjà été joués.',
       device:
         'Mêlée ne dépose aucun cookie. Ce qu’elle retient reste dans ton navigateur, pour ce site seulement, jusqu’à ce que tu l’effaces :',
+      errorReports:
+        'Quand quelque chose casse sur un écran — une page qui ne s’affiche pas, un extrait qui reste muet —, cet écran envoie un rapport à Mêlée : l’erreur et l’endroit du code où elle est survenue, l’adresse de la page, le nom et la version du navigateur, la taille de l’écran, le code de la table, son jeu, sa phase et sa manche, si l’écran joue le son et à quel volume, et le type des derniers messages échangés, jamais leur contenu. Il ne contient ni pseudo, ni réponse, ni rien de ce que tu as tapé, ni adresse IP, et il est supprimé au bout de 30 jours. C’est ce qui permet de corriger une panne vue une seule fois sur une télé, pas une mesure d’audience : l’interrupteur de mesure d’audience plus bas ne l’arrête donc pas.',
       heading: 'Ce que Mêlée garde',
       hostSetup:
         'Comment tu as réglé la dernière table que tu as tenue, jeu par jeu, pour que la suivante s’ouvre pareil.',
@@ -1414,7 +1416,7 @@ export const FR_DICTIONARY = defineDictionary({
       assistant:
         'Si tu prépares la partie avec un assistant, son éditeur envoie à Mêlée ce qu’il a composé — la partie, et les questions qu’il a écrites pour toi, comme un quiz sur ta famille — et reçoit un lien en retour. Mêlée n’en garde rien au passage : les questions ne voyagent que dans le lien, et dans une table ouverte depuis lui elles durent autant que cette table. Ce que tu dis à l’assistant relève des conditions de son propre éditeur.',
       cloudflare:
-        'Cloudflare, l’hébergeur, reçoit ton adresse IP à chaque requête, pour livrer la page et protéger le site des abus. Ouvrir une table est compté sur ton adresse IP pendant une minute, pour que personne ne puisse en ouvrir des centaines.',
+        'Cloudflare, l’hébergeur, reçoit ton adresse IP à chaque requête, pour livrer la page et protéger le site des abus. Ouvrir une table, ou envoyer un rapport d’erreur hors de toute table, est compté sur ton adresse IP pendant une minute, pour que personne ne puisse inonder le site ; l’adresse elle-même n’est jamais gardée.',
       deezer:
         'Le blind test prend sa musique chez Deezer. Ce que l’hôte recherche, ou la playlist qu’il donne, est envoyé à Deezer par le serveur de Mêlée, sans rien sur toi. Les extraits de 30 secondes et les pochettes d’album, eux, sont chargés par ton navigateur directement depuis les serveurs de Deezer, qui reçoivent donc ton adresse IP et le nom de ton navigateur. <policy>La politique de confidentialité de Deezer</policy> s’y applique.',
       heading: 'Qui d’autre reçoit tes données',
