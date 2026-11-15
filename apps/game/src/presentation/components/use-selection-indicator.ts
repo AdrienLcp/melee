@@ -2,11 +2,6 @@ import { type RefObject, useLayoutEffect } from 'react'
 
 const SELECTED_SEGMENT = '.segment[data-selected]'
 
-/** Reading a box flushes every style written before it, so what is written next is a change from them. */
-const flushStyles = (element: HTMLElement): void => {
-  element.getBoundingClientRect()
-}
-
 /**
  * Offsets rather than client rects: they ignore the transforms a strip rises
  * through as its page is laid down, so a strip measured mid-entrance is not
@@ -19,10 +14,12 @@ const coverSegment = ({
   indicator: HTMLElement
   segment: HTMLElement
 }): void => {
-  indicator.style.setProperty('--indicator-x', `${segment.offsetLeft}px`)
-  indicator.style.setProperty('--indicator-y', `${segment.offsetTop}px`)
-  indicator.style.setProperty('--indicator-width', `${segment.offsetWidth}px`)
-  indicator.style.setProperty('--indicator-height', `${segment.offsetHeight}px`)
+  const { offsetHeight, offsetLeft, offsetTop, offsetWidth } = segment
+
+  indicator.style.setProperty('--indicator-x', `${offsetLeft}px`)
+  indicator.style.setProperty('--indicator-y', `${offsetTop}px`)
+  indicator.style.setProperty('--indicator-width', `${offsetWidth}px`)
+  indicator.style.setProperty('--indicator-height', `${offsetHeight}px`)
 }
 
 type SelectionIndicatorOptions = {
@@ -47,6 +44,14 @@ type SelectionIndicatorOptions = {
  * its first placement and a choice made where there was none are set down in
  * place — a piece crossing the strip because the window was resized is motion
  * nobody caused.
+ *
+ * **Nothing is read while the strip mounts.** The first placement waits for
+ * the `ResizeObserver`'s first answer, which the browser gives after its own
+ * layout and before it paints, so the piece is down in the strip's first
+ * frame with no layout forced ahead of it. Read in the commit instead, every
+ * offset restyled the whole page the panel had just been added to — the
+ * menu's two strips cost a sixth of its open on a phone. A new choice is read
+ * on the next frame, with the layout that frame does anyway.
  */
 export const useSelectionIndicator = ({
   indicator,
@@ -66,6 +71,9 @@ export const useSelectionIndicator = ({
     }
 
     let coveredSegment: HTMLElement | null = null
+    let isPlaced = false
+    let placedFrame: number | null = null
+    let choiceFrame: number | null = null
 
     const place = ({ glides }: { glides: boolean }): void => {
       const segment = segments.querySelector<HTMLElement>(SELECTED_SEGMENT)
@@ -86,18 +94,20 @@ export const useSelectionIndicator = ({
       coveredSegment = segment
     }
 
-    place({ glides: false })
-    flushStyles(piece)
-    piece.toggleAttribute('data-placed', true)
+    const layout = new ResizeObserver(() => {
+      place({ glides: false })
 
-    const selection = new MutationObserver(() => place({ glides: true }))
+      if (isPlaced) {
+        return
+      }
 
-    selection.observe(segments, {
-      attributeFilter: ['data-selected'],
-      subtree: true
+      isPlaced = true
+      // A frame later, once the first placement is styled: a transition on
+      // from the start plays the piece in from the strip's corner.
+      placedFrame = requestAnimationFrame(() => {
+        piece.toggleAttribute('data-placed', true)
+      })
     })
-
-    const layout = new ResizeObserver(() => place({ glides: false }))
 
     layout.observe(segments)
 
@@ -105,9 +115,31 @@ export const useSelectionIndicator = ({
       layout.observe(segment)
     }
 
+    const selection = new MutationObserver(() => {
+      if (!isPlaced || choiceFrame !== null) {
+        return
+      }
+
+      choiceFrame = requestAnimationFrame(() => {
+        choiceFrame = null
+        place({ glides: true })
+      })
+    })
+
+    selection.observe(segments, {
+      attributeFilter: ['data-selected'],
+      subtree: true
+    })
+
     return () => {
       selection.disconnect()
       layout.disconnect()
+
+      for (const frame of [placedFrame, choiceFrame]) {
+        if (frame !== null) {
+          cancelAnimationFrame(frame)
+        }
+      }
     }
   }, [indicator, segmentKeys])
 }

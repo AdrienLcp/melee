@@ -581,3 +581,19 @@ Measured on three keyframes of one 10s animation, read at 1.5s:
 `var()` and a literal `0.3` both read `0.406176px`. The floor dial is where it
 cost a stage — the ring looked like it stepped once a second, because a
 snapshot re-keying the circle was the only thing moving it at all.
+
+## A `:has()` on the root never reaches past it
+
+`:root:has(.home-page) .app-menu` costs every change on the page, not the
+change it names: Chromium restyled the whole document on any attribute or
+node written anywhere under the root while one such rule applied — the
+console's 666 elements five times over for one open of the menu, its two
+segmented strips' four reads each a full restyle. A page's state that
+something outside it answers is a custom property the root carries
+(`:root:has(.home-page)` sets `--app-menu-position`, and `.app-menu` reads
+it with its own value as the fallback), so the root alone is matched again.
+A `:root:has()` that styles the root itself is fine — `board-track` and
+`player-page` set tokens that way. A value resolved on the root resolves
+there: check nothing between the root and the reader overrides a token it
+names. `e2e/menu-opens.spec.ts` refuses a root `:has()` followed by a
+combinator in any stylesheet the front door loads.

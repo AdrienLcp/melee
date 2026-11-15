@@ -1,7 +1,9 @@
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
+import { useContext, useState } from 'react'
 import {
   DisclosurePanel,
+  DisclosureStateContext,
   Heading,
   Button as ReactAriaButton,
   Disclosure as ReactAriaDisclosure,
@@ -14,6 +16,13 @@ import './disclosure.sass'
 
 type DisclosureProps = Omit<ReactAriaDisclosureProps, 'children'> & {
   children: React.ReactNode
+  /**
+   * Draws the panel's content from its first opening on rather than folded
+   * away from the start: for a long content in something opened often, like
+   * the pawn picker that was four fifths of what the menu drew on every open.
+   * A find in the page does not reach it until then.
+   */
+  drawsPanelOnOpen?: boolean
   /** A glyph printed before the label; decorative, the label stays the name. */
   icon?: React.ReactNode
   /** Names the section, in the trigger. */
@@ -34,6 +43,7 @@ type DisclosureProps = Omit<ReactAriaDisclosureProps, 'children'> & {
 export const Disclosure: React.FC<DisclosureProps> = ({
   children,
   className,
+  drawsPanelOnOpen = false,
   icon,
   label,
   summary,
@@ -61,7 +71,25 @@ export const Disclosure: React.FC<DisclosureProps> = ({
       the layout.
     */}
     <DisclosurePanel className='panel'>
-      <div className='panel-content'>{children}</div>
+      <div className='panel-content'>
+        {drawsPanelOnOpen ? <OnceOpened>{children}</OnceOpened> : children}
+      </div>
     </DisclosurePanel>
   </ReactAriaDisclosure>
 )
+
+/**
+ * Kept once drawn, so a fold closing still has its content to fold away. Read
+ * from react-aria's state rather than an `onExpandedChange`, which a
+ * controlled disclosure's parent may be the one to change.
+ */
+const OnceOpened: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const isExpanded = useContext(DisclosureStateContext)?.isExpanded ?? true
+  const [hasOpened, setHasOpened] = useState(isExpanded)
+
+  if (isExpanded && !hasOpened) {
+    setHasOpened(true)
+  }
+
+  return hasOpened ? children : null
+}

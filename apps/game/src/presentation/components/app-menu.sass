@@ -2,93 +2,115 @@
 @use '../styles/fold'
 @use '../styles/invitation'
 @use '../styles/layout'
-@use '../styles/mark'
 @use '../styles/swap'
 @use '../styles/typography'
 @use '@adrienlcp/styles/accessibility'
 
 @layer components
+  // **Where the corner is, the page says on the root.** Each page's condition
+  // is a `:root:has()` that sets an `--app-menu-*` property, read below with
+  // the corner's own value as its fallback. Written as `:root:has(…) .app-menu`
+  // instead, Chromium restyled the whole document on every change anywhere in
+  // it: one open of the menu on a console restyled all 666 of its elements
+  // five times over.
+  :root:has(.player-page.framed, .host-console-page.framed)
+    --app-menu-inset-block-start: var(--framed-padding-block-start)
+
+  // In the podium's bar, whose padding it shares — matched as deep as the
+  // framed page's rule, which the seated host's tiles also wear.
+  :root:has(.host-podium .podium-bar)
+    --app-menu-inset-block-start: var(--space-xs)
+
+  // The front door scrolls a long shelf: fixed, the menu floated over the
+  // spines, so there it scrolls away with the masthead.
+  :root:has(.home-page)
+    --app-menu-position: absolute
+
+  // Over the stage rather than the host's panel, when the panel stands along
+  // the same edge — or its tab bar, down the side of a screen lying down.
+  @include layout.desk
+    :root:has(.host-desk[data-side='right'])
+      --app-menu-inset-inline-end: calc(var(--host-panel-width) + var(--gutter-right))
+
+    :root:has(.host-desk[data-side='right'][data-folded])
+      --app-menu-inset-inline-end: calc(var(--host-rail-width) + var(--gutter-right))
+
+  // It moves aside with the tab bar, at the bar's pace, rather than jumping
+  // ahead of it.
+  @include layout.off-desk
+    @media #{layout.$lying-down}
+      :root:has(.host-desk)
+        --app-menu-transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-in)
+
+      :root:has(.host-desk:not([data-screen='stage'][data-stage-full]))
+        --app-menu-inset-inline-end: calc(var(--panel-bar-width) + var(--gutter-right))
+        --app-menu-transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-out)
+
+  // A screen of four tiles lying down gives the tiles the whole right-hand
+  // column, so the menu moves to the start of the chrome over the question.
+  // So does a ballot of seats, whose line takes the left.
+  @media #{layout.$lying-down}
+    :root:has(.player-page.framed, .host-console-page.framed, .player-page.playing > .player-round.most-likely-round, .host-console-page > .stage.playing[data-most-likely='voting'])
+      --app-menu-align-items: flex-start
+      --app-menu-inset-inline-start: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left)))
+      --app-menu-inset-inline-end: auto
+      // A corner is not a length a transition can travel between, so the
+      // menu fades in at the one it lands in, and the rule it leaves for
+      // plays `page-enter` again on the way back.
+      --app-menu-animation: swap-in var(--transition-base, 0s) var(--ease-out)
+
+    // Not in the podium, whose four tiles are in its middle column: the menu
+    // keeps the bar's corner. Matched as deep as the rule above.
+    :root:has(.host-podium .podium-round)
+      --app-menu-align-items: flex-end
+      --app-menu-inset-inline-start: auto
+      --app-menu-inset-inline-end: max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
+      --app-menu-animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+
+  // A room's screen waits for the room's first view, and so does the menu:
+  // where the console's corner is depends on the board, which only that view
+  // says, and drawn before it the menu jumped 57px down and in. A socket that
+  // never answers still shows it, a second later. Two keyframes, because a
+  // delay dropped from a running animation shows it mid-way rather than
+  // starting it over.
+  :root:has(.host-console-page > .stage:empty, .player-page > .waiting, .wall-page > .stage.arriving)
+    --app-menu-animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
+
+  // On the screen of four tiles the trigger is the icon alone, the label kept
+  // for whoever cannot see it: every pixel of that line is the round's. A
+  // round dealt and revealed swaps the two where they stand, the word fading
+  // before its room closes as the icon's opens — `fold.opens-in-line` and
+  // `mark.pops-in-line` written out, since the state they turn on is the
+  // root's.
+  :root:has(.player-page.framed)
+    --app-menu-label-columns: 0fr
+    --app-menu-label-margin: calc(-1 * var(--space-xs))
+    --app-menu-label-opacity: 0
+    --app-menu-label-transition: opacity var(--transition-base, 0s) var(--ease-in), grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-inline-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+    --app-menu-icon-margin: 0
+    --app-menu-icon-opacity: 1
+    --app-menu-icon-scale: 1
+    --app-menu-icon-transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
   .app-menu
-    align-items: flex-end
+    align-items: var(--app-menu-align-items, flex-end)
+    // It rises with the page it is chrome for, which the shell mounts it
+    // beside: standing from the first frame, it was there before the page
+    // was laid down under it.
+    animation: var(--app-menu-animation, page-enter var(--transition-base, 0s) var(--ease-out) backwards)
     display: flex
     flex-direction: column
-    inset-block-start: var(--layout-padding-block-start)
+    inset-block-start: var(--app-menu-inset-block-start, var(--layout-padding-block-start))
+    inset-inline-start: var(--app-menu-inset-inline-start, auto)
     // Fixed to the viewport, but never further out than the field it belongs
     // to. Past `--stage-max-width` the host's surface stops widening, and a
     // menu left in the true corner of a 21:9 display sits hundreds of pixels
     // clear of everything it is chrome for.
-    inset-inline-end: max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
-    position: fixed
-    transition: opacity var(--transition-base, 0s) var(--ease-out)
+    inset-inline-end: var(--app-menu-inset-inline-end, max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right))))
+    position: var(--app-menu-position, fixed)
+    transition: var(--app-menu-transition, opacity var(--transition-base, 0s) var(--ease-out))
     // Above the podium's bar, which is sticky on the same edge.
     z-index: 2
-
-    :root:has(.player-page.framed, .host-console-page.framed) &
-      inset-block-start: var(--framed-padding-block-start)
-
-    // In the podium's bar, whose padding it shares — matched as deep as the
-    // framed page's rule, which the seated host's tiles also wear.
-    :root:has(.host-podium .podium-bar) &
-      inset-block-start: var(--space-xs)
-
-    // The front door scrolls a long shelf: fixed, the menu floated over the
-    // spines, so there it scrolls away with the masthead.
-    :root:has(.home-page) &
-      position: absolute
-
-    // Over the stage rather than the host's panel, when the panel stands
-    // along the same edge — or its tab bar, down the side of a screen lying
-    // down.
-    @include layout.desk
-      :root:has(.host-desk[data-side='right']) &
-        inset-inline-end: calc(var(--host-panel-width) + var(--gutter-right))
-
-      :root:has(.host-desk[data-side='right'][data-folded]) &
-        inset-inline-end: calc(var(--host-rail-width) + var(--gutter-right))
-
-    // It moves aside with the tab bar, at the bar's pace, rather than
-    // jumping ahead of it.
-    @include layout.off-desk
-      @media #{layout.$lying-down}
-        :root:has(.host-desk) &
-          transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-in)
-
-        :root:has(.host-desk:not([data-screen='stage'][data-stage-full])) &
-          inset-inline-end: calc(var(--panel-bar-width) + var(--gutter-right))
-          transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-out)
-
-    // A screen of four tiles lying down gives the tiles the whole right-hand
-    // column, so the menu moves to the start of the chrome over the question.
-    // So does a ballot of seats, whose line takes the left.
-    @media #{layout.$lying-down}
-      :root:has(.player-page.framed, .host-console-page.framed, .player-page.playing > .player-round.most-likely-round, .host-console-page > .stage.playing[data-most-likely='voting']) &
-        align-items: flex-start
-        inset-inline: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left))) auto
-        // A corner is not a length a transition can travel between, so the
-        // menu fades in at the one it lands in, and the rule it leaves for
-        // plays `page-enter` again on the way back.
-        animation: swap-in var(--transition-base, 0s) var(--ease-out)
-
-      // Not in the podium, whose four tiles are in its middle column: the
-      // menu keeps the bar's corner. Matched as deep as the rule above.
-      :root:has(.host-podium .podium-round) &
-        align-items: flex-end
-        inset-inline: auto max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
-        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
-
-    // It rises with the page it is chrome for, which the shell mounts it
-    // beside: standing from the first frame, it was there before the page
-    // was laid down under it.
-    animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
-
-    // A room's screen waits for the room's first view, and so does the menu:
-    // where the console's corner is depends on the board, which only that
-    // view says, and drawn before it the menu jumped 57px down and in. A
-    // socket that never answers still shows it, a second later. Two
-    // keyframes, because a delay dropped from a running animation shows it
-    // mid-way rather than starting it over.
-    :root:has(.host-console-page > .stage:empty, .player-page > .waiting, .wall-page > .stage.arriving) &
-      animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
 
     // A wall is furniture, and after a few seconds nobody is at it. Only the
     // screen that knows that says so — the invitation page stamps `data-idle`
@@ -150,7 +172,16 @@
       // round's. A round dealt and revealed swaps the two where they stand,
       // the word fading before its room closes as the icon's opens.
       .trigger-label
-        @include fold.opens-in-line($closed: ':root:has(.player-page.framed) &')
+        display: inline-grid
+        grid-template-columns: var(--app-menu-label-columns, 1fr)
+        margin-inline-start: var(--app-menu-label-margin, 0)
+        opacity: var(--app-menu-label-opacity, 1)
+        transition: var(--app-menu-label-transition, grid-template-columns var(--transition-base, 0s) var(--ease-out), margin-inline-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5))
+
+        > *
+          min-inline-size: 0
+          overflow-x: clip
+          white-space: nowrap
 
         // Held at 52px by its floor, so the trim only lowers the caps onto
         // the centre the dot beside them already sits on. The fold clips it
@@ -159,7 +190,10 @@
           text-box: trim-both cap alphabetic
 
       .menu-icon
-        @include mark.pops-in-line(':root:has(.player-page.framed) &', calc(-1 * (1.25em + var(--space-xs))), 0)
+        margin-inline-end: var(--app-menu-icon-margin, calc(-1 * (1.25em + var(--space-xs))))
+        opacity: var(--app-menu-icon-opacity, 0)
+        scale: var(--app-menu-icon-scale, 0.6)
+        transition: var(--app-menu-icon-transition, opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5))
 
         flex: none
 

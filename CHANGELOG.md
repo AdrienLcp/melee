@@ -485,6 +485,16 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The menu opens as fast every time.** Every open, not only the
+  first, took a quarter to a third of a second on a phone before the menu
+  drew: the console's corner was placed by rules that made the browser
+  restyle the whole screen on any change, the language and theme strips
+  measured themselves while the menu was still being built, and a seated
+  player's menu drew the whole pawn picker folded away under its row. The
+  corner and the strips now cost nothing on open and the picker is drawn when
+  its row is opened, so the menu draws in about half the time on every
+  screen.
+
 - `[Shared]` **Make the number's ruler pins a seat from its first merge.** A
   seat that merged tiles and never pressed _Send_ stayed under _Nothing sent
   yet_ on the wall and the console until the reveal, so a whole round could

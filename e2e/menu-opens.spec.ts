@@ -56,3 +56,108 @@ test('[e2e] the menu opens on the frame after its first press, fetching nothing'
   expect(framesToDraw).toBeLessThanOrEqual(MOST_FRAMES_TO_DRAW)
   expect(fetchedOnOpen).toEqual([])
 })
+
+/** The seat's rows, its exits and its preferences, with the pawn picker still folded away undrawn. */
+const MOST_ELEMENTS_IN_A_SEATED_MENU = 200
+
+test('[e2e] a seated player opens the menu again without drawing what it folds away', async ({
+  page,
+  request
+}) => {
+  const { code } = await (await request.post('/api/rooms', { data: {} })).json()
+  await page.addInitScript(() => {
+    localStorage.setItem('melee:volume', '0')
+    localStorage.setItem('melee:nickname', 'Menu probe')
+  })
+  await page.goto(`/play/${code}`)
+
+  const trigger = page.locator('.app-menu .trigger')
+  await trigger.click()
+  await expect(page.locator('.app-menu-leaflet .menu-pawn')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toBeHidden()
+
+  await trigger.click()
+  await expect(page.locator('.app-menu-leaflet .menu-pawn')).toBeVisible()
+  const elementCount = await page
+    .locator('.app-menu-leaflet')
+    .evaluate((menu) => menu.querySelectorAll('*').length)
+
+  expect(elementCount).toBeLessThan(MOST_ELEMENTS_IN_A_SEATED_MENU)
+})
+
+test('[e2e] no rule keyed on the root reaches past it through :has()', async ({
+  page
+}) => {
+  await page.goto('/en')
+
+  // Chromium answers a `:root:has(…) .descendant` rule by restyling the whole
+  // document on every change anywhere in it: the menu's corner was written so
+  // and every open of it restyled a console five times over.
+  const offenders = await page.evaluate(() => {
+    const ROOT_HAS = /^\s*(:root|html):has\(/
+
+    const afterRootHas = (selector: string): string | null => {
+      const match = ROOT_HAS.exec(selector)
+
+      if (match === null) {
+        return null
+      }
+
+      let depth = 1
+      let index = match[0].length
+
+      while (index < selector.length && depth > 0) {
+        depth += selector[index] === '(' ? 1 : selector[index] === ')' ? -1 : 0
+        index += 1
+      }
+
+      return selector.slice(index)
+    }
+
+    const splitTopLevel = (list: string): string[] => {
+      const parts: string[] = []
+      let depth = 0
+      let start = 0
+
+      for (const [index, character] of [...list].entries()) {
+        depth += character === '(' ? 1 : character === ')' ? -1 : 0
+
+        if (character === ',' && depth === 0) {
+          parts.push(list.slice(start, index))
+          start = index + 1
+        }
+      }
+
+      return [...parts, list.slice(start)]
+    }
+
+    const found: string[] = []
+
+    const visit = (rules: CSSRuleList): void => {
+      for (const rule of rules) {
+        if (rule instanceof CSSStyleRule) {
+          for (const selector of splitTopLevel(rule.selectorText)) {
+            const rest = afterRootHas(selector)
+
+            if (rest !== null && /^\s*[>~+]|^\s+\S/.test(rest)) {
+              found.push(selector.trim())
+            }
+          }
+        }
+
+        if ('cssRules' in rule && rule.cssRules instanceof CSSRuleList) {
+          visit(rule.cssRules)
+        }
+      }
+    }
+
+    for (const sheet of document.styleSheets) {
+      visit(sheet.cssRules)
+    }
+
+    return found
+  })
+
+  expect(offenders).toEqual([])
+})

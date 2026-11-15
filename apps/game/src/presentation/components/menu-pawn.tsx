@@ -29,6 +29,7 @@ export const MenuPawn: React.FC = () => {
   return (
     <Disclosure
       className='menu-pawn'
+      drawsPanelOnOpen
       icon={<Pawn colour={pawn.piece.colour} head={pawn.piece.head} />}
       label={pawn.label}
       summary={

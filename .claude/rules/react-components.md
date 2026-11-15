@@ -150,6 +150,21 @@ in hand yet waits for `load()` before it changes state, rather than
 suspending into the same 300ms (`app-menu.tsx`).
 `e2e/menu-opens.spec.ts` holds the menu to it.
 
+## Nothing is read from layout while a panel mounts
+
+A read of `offsetLeft` or `getBoundingClientRect` in a layout effect forces
+the restyle of everything the commit just wrote, and a write after it makes
+the next read pay it again: the menu's two segmented strips cost a seated
+player 70ms of a 360ms open that way. A placement that needs a box waits for
+the `ResizeObserver`'s first answer, which comes after the browser's own
+layout and before its paint (`use-selection-indicator.ts`), and a later
+change is read in the next frame. A long content folded away in something
+opened often is drawn on its first opening (`Disclosure`'s
+`drawsPanelOnOpen`): the pawn picker was 443 of the menu's 549 elements.
+What is still read on open is react-aria's own — its scroll lock, its
+viewport size and its `inert` on the page behind a modal — and the sheet's
+scrollbar-gutter probe in `@adrienlcp/react-aria`.
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive
