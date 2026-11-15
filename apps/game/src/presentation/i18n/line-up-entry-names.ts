@@ -1,4 +1,5 @@
 import type { Difficulty } from '@melee/protocol/difficulty'
+import { QUANTITY_TOPICS, type QuantityTopic } from '@melee/protocol/estimate'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings, RoundView } from '@melee/protocol/room'
@@ -166,6 +167,21 @@ const subjectsOf = ({
   picks: categories.map((category) => translate(questionCategoryKey(category)))
 })
 
+/** Every topic ticked reads as no pick at all: the game asks everything it has. */
+const topicsOf = ({
+  topics,
+  translate
+}: {
+  topics: readonly QuantityTopic[]
+  translate: Translate
+}): Picks => ({
+  everything: translate('host.evening.detail.allSubjects'),
+  picks:
+    topics.length === QUANTITY_TOPICS.length
+      ? []
+      : topics.map((topic) => translate(`estimate.topics.${topic}`))
+})
+
 const levelOf = ({
   difficulty,
   translate
@@ -258,6 +274,13 @@ const namingOf = ({
         : []
     case 'mysteryword':
       return [translate('mysteryword.length', { count: entry.wordLength })]
+    case 'estimate': {
+      const [topic, ...others] = entry.topics
+
+      return topic !== undefined && others.length === 0
+        ? [translate(`estimate.topics.${topic}`)]
+        : []
+    }
     default:
       return []
   }
@@ -366,6 +389,11 @@ const settingsOf = ({
     case 'reflex':
       return []
     case 'estimate':
+      return [
+        allPicks(topicsOf({ topics: entry.topics, translate })),
+        levelOf({ difficulty: entry.difficulty, translate }),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
     case 'higherlower':
     case 'timeline':
       return [

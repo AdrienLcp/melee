@@ -10,7 +10,7 @@ import { localeSchema } from './locale'
  * names and Wikidata's label carries none, and a wording that names the place
  * after a colon needs none.
  */
-export const QUANTITY_FAMILIES = [
+export const WIKIDATA_QUANTITY_FAMILIES = [
   'area.city',
   'area.country',
   'area.department',
@@ -24,6 +24,17 @@ export const QUANTITY_FAMILIES = [
   'population.region'
 ] as const
 
+/**
+ * Every family a question is dealt from: Wikidata's, and the prices, written
+ * by hand because Wikidata files no price a table could be paid on.
+ */
+export const QUANTITY_FAMILIES = [
+  ...WIKIDATA_QUANTITY_FAMILIES,
+  'price.item'
+] as const
+
+export const wikidataQuantityFamilySchema = z.enum(WIKIDATA_QUANTITY_FAMILIES)
+
 export const quantityFamilySchema = z.enum(QUANTITY_FAMILIES)
 
 /**
@@ -31,6 +42,7 @@ export const quantityFamilySchema = z.enum(QUANTITY_FAMILIES)
  * to metres against kilometres.
  */
 export const QUANTITY_UNITS = [
+  'euros',
   'kilometres',
   'metres',
   'people',
@@ -50,8 +62,48 @@ export const UNIT_OF_FAMILY = {
   'population.city': 'people',
   'population.country': 'people',
   'population.department': 'people',
-  'population.region': 'people'
+  'population.region': 'people',
+  'price.item': 'euros'
 } as const satisfies Record<QuantityFamily, QuantityUnit>
+
+/**
+ * What a host ticks to choose the questions: a summit and a tower are both a
+ * height in metres, and a table asks for heights, not for Wikidata's families.
+ */
+export const QUANTITY_TOPICS = [
+  'population',
+  'area',
+  'height',
+  'length',
+  'price'
+] as const
+
+export const quantityTopicSchema = z.enum(QUANTITY_TOPICS)
+
+export const TOPIC_OF_FAMILY = {
+  'area.city': 'area',
+  'area.country': 'area',
+  'area.department': 'area',
+  'area.region': 'area',
+  'elevation.mountain': 'height',
+  'height.building': 'height',
+  'length.river': 'length',
+  'population.city': 'population',
+  'population.country': 'population',
+  'population.department': 'population',
+  'population.region': 'population',
+  'price.item': 'price'
+} as const satisfies Record<QuantityFamily, QuantityTopic>
+
+/**
+ * Every topic the table ticked, at least one and each once. Each round draws
+ * a topic first and a question inside it, so sixty prices meet as many rounds
+ * as two thousand rivers.
+ */
+export const quantityTopicSetSchema = z
+  .array(quantityTopicSchema)
+  .min(1)
+  .refine((topics) => new Set(topics).size === topics.length)
 
 /** The longest question an evening may ask of a number in its own words. */
 export const QUANTITY_PROMPT_MAX_LENGTH = 160
@@ -125,6 +177,10 @@ export const sentEstimateSchema = z.object({
 })
 
 export type QuantityFamily = z.infer<typeof quantityFamilySchema>
+export type WikidataQuantityFamily = z.infer<
+  typeof wikidataQuantityFamilySchema
+>
+export type QuantityTopic = z.infer<typeof quantityTopicSchema>
 export type QuantityUnit = z.infer<typeof quantityUnitSchema>
 export type EstimateQuestion = z.infer<typeof estimateQuestionSchema>
 export type OwnQuantityAsk = z.infer<typeof ownQuantityAskSchema>

@@ -4,8 +4,8 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import {
-  QUANTITY_FAMILIES,
-  type QuantityFamily
+  WIKIDATA_QUANTITY_FAMILIES,
+  type WikidataQuantityFamily
 } from '@melee/protocol/estimate'
 
 import type { QuantityRow } from '../src/infrastructure/questions/quantity-bank'
@@ -136,7 +136,7 @@ const populationOf = (entities: string): FamilySource => ({
   property: 'P1082'
 })
 
-const SOURCES: Record<QuantityFamily, readonly FamilySource[]> = {
+const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
   'area.city': [areaOf(FRENCH_TOWNS)],
   'area.country': [areaOf(COUNTRIES)],
   'area.department': [areaOf(FRENCH_DEPARTMENTS)],
@@ -299,7 +299,7 @@ const oneRowPerName = (
 const main = async () => {
   const rows: (QuantityRow & { sitelinks: number })[] = []
 
-  for (const family of QUANTITY_FAMILIES) {
+  for (const family of WIKIDATA_QUANTITY_FAMILIES) {
     const found = new Map<string, Measured>()
 
     for (const source of SOURCES[family]) {

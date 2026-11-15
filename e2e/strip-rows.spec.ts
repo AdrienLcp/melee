@@ -57,7 +57,7 @@ const WIDEST_PX = 1_400
  * reports exactly what a console with nothing wrong on it reports, and this is
  * the difference. Raise it when a game brings a strip of its own.
  */
-const STRIPS_EXPECTED = 30
+const STRIPS_EXPECTED = 31
 
 /**
  * The faces are `font-display: swap`, so a page measured the moment it is

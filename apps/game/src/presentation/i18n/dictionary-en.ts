@@ -727,7 +727,8 @@ export const EN_DICTIONARY = defineDictionary({
         country: 'How many people live in this country?',
         department: 'How many people live in this department?',
         region: 'How many people live in this region?'
-      }
+      },
+      price: { item: 'How much does it cost?' }
     },
     deck: {
       count: defineTranslation('{count:plural}', {
@@ -739,7 +740,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, how long is the Loire — and everyone types an estimate. Nobody has to know: the three closest score, and the reveal lines every guess up against the truth.'
+        'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, what a PlayStation 5 cost at launch — and everyone types an estimate. Nobody has to know: the closer, the more it pays, and the reveal lines every guess up against the truth.'
     },
     line: {
       divided: '÷{factor}',
@@ -759,13 +760,24 @@ export const EN_DICTIONARY = defineDictionary({
     scoring:
       'A question whose answer is a number, and everyone types an estimate. Spot on scores 100 points, falling to nothing at three times off, either way — the closer, the more. No bonus for speed.',
     tagline: 'Nobody knows. Who comes closest?',
+    /** What the host ticks to choose the questions, each a measure rather than a source. */
+    topics: {
+      area: 'Areas',
+      height: 'Heights',
+      label: 'Questions on',
+      length: 'Lengths',
+      population: 'Populations',
+      price: 'Prices'
+    },
     unitNames: {
+      euros: '€',
       kilometres: 'km',
       metres: 'm',
       people: 'people',
       squareKilometres: 'km²'
     },
     units: {
+      euros: '€{value}',
       kilometres: '{value}\u00a0km',
       metres: '{value}\u00a0m',
       people: '{value} people',
@@ -807,7 +819,8 @@ export const EN_DICTIONARY = defineDictionary({
         country: 'Which country has more people?',
         department: 'Which department has more people?',
         region: 'Which region has more people?'
-      }
+      },
+      price: { item: 'Which costs more?' }
     },
     dealt: 'Two names. Which is bigger?',
     deck: {

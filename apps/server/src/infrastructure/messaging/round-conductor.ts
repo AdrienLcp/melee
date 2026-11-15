@@ -723,7 +723,8 @@ export const beginRound = async (
       fromDeck ??
       drawQuantity({
         difficulty: game.difficulty,
-        playedIds: room.playedContentIds
+        playedIds: room.playedContentIds,
+        topics: game.topics
       })
 
     if (row === null) {

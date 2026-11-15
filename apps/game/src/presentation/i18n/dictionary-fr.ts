@@ -691,7 +691,8 @@ export const FR_DICTIONARY = defineDictionary({
         country: 'Combien d’habitants dans ce pays ?',
         department: 'Combien d’habitants dans ce département ?',
         region: 'Combien d’habitants dans cette région ?'
-      }
+      },
+      price: { item: 'Combien ça coûte ?' }
     },
     deck: {
       count: defineTranslation('{count:plural}', {
@@ -703,7 +704,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, quelle longueur pour la Loire — et chacun tape son estimation. Personne n’a besoin de savoir : les trois plus proches marquent, et le dévoilement aligne chaque essai face à la vraie valeur.'
+        'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, combien coûtait une PlayStation 5 à sa sortie — et chacun tape son estimation. Personne n’a besoin de savoir : plus on tombe près, plus ça paie, et le dévoilement aligne chaque essai face à la vraie valeur.'
     },
     line: {
       divided: '÷{factor}',
@@ -722,13 +723,23 @@ export const FR_DICTIONARY = defineDictionary({
     scoring:
       'Une question dont la réponse est un nombre, et chacun tape son estimation. Pile juste, ça rapporte 100 points, puis de moins en moins jusqu’à rien à trois fois d’écart, dans un sens comme dans l’autre — plus c’est près, plus ça paie. Pas de bonus de vitesse.',
     tagline: 'Personne ne sait. Qui tombe le plus près ?',
+    topics: {
+      area: 'Superficies',
+      height: 'Hauteurs',
+      label: 'Questions sur',
+      length: 'Longueurs',
+      population: 'Populations',
+      price: 'Prix'
+    },
     unitNames: {
+      euros: '€',
       kilometres: 'km',
       metres: 'm',
       people: 'habitants',
       squareKilometres: 'km²'
     },
     units: {
+      euros: '{value}\u00a0€',
       kilometres: '{value}\u00a0km',
       metres: '{value}\u00a0m',
       people: '{value} habitants',
@@ -768,7 +779,8 @@ export const FR_DICTIONARY = defineDictionary({
         country: 'Quel pays a le plus d’habitants ?',
         department: 'Quel département a le plus d’habitants ?',
         region: 'Quelle région a le plus d’habitants ?'
-      }
+      },
+      price: { item: 'Lequel coûte le plus cher ?' }
     },
     dealt: 'Deux noms. Lequel est le plus grand ?',
     deck: {

@@ -1,0 +1,651 @@
+[
+  {
+    "entity": "stamp-green-letter",
+    "isInFrance": true,
+    "names": {
+      "en": "A French green-letter stamp (2025)",
+      "fr": "Un timbre lettre verte (2025)"
+    },
+    "source": "La Poste rates from 1 January 2025",
+    "tier": "easy",
+    "value": 1.39
+  },
+  {
+    "entity": "medicine-deductible",
+    "isInFrance": true,
+    "names": {
+      "en": "The French deductible on a reimbursed box of medicine (2024)",
+      "fr": "La franchise sur une boîte de médicaments remboursée (2024)"
+    },
+    "source": "Decree 2024-114, doubled to 1 euro on 31 March 2024",
+    "tier": "hard",
+    "value": 1
+  },
+  {
+    "entity": "loto-grid",
+    "isInFrance": true,
+    "names": {
+      "en": "One French Loto grid (2024)",
+      "fr": "Une grille simple de Loto (2024)"
+    },
+    "source": "FDJ, price since the 2019 reform",
+    "tier": "easy",
+    "value": 2.2
+  },
+  {
+    "entity": "paris-metro-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A single Paris metro ticket (2025)",
+      "fr": "Un ticket de métro parisien à l’unité (2025)"
+    },
+    "source": "Île-de-France Mobilités, Metro-Train-RER ticket from 1 January 2025",
+    "tier": "easy",
+    "value": 2.5
+  },
+  {
+    "entity": "euromillions-grid",
+    "isInFrance": true,
+    "names": {
+      "en": "One EuroMillions grid in France (2024)",
+      "fr": "Une grille d’EuroMillions en France (2024)"
+    },
+    "source": "FDJ, French price since 2016",
+    "tier": "medium",
+    "value": 2.5
+  },
+  {
+    "entity": "amazon-prime-month",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of Amazon Prime in France (2024)",
+      "fr": "Un mois d’Amazon Prime en France (2024)"
+    },
+    "source": "Amazon.fr, monthly price since September 2022",
+    "tier": "medium",
+    "value": 6.99
+  },
+  {
+    "entity": "marlboro-pack",
+    "isInFrance": true,
+    "names": {
+      "en": "A pack of 20 Marlboro Red in France (January 2024)",
+      "fr": "Un paquet de 20 Marlboro Red (janvier 2024)"
+    },
+    "source": "Tobacco price order of 1 January 2024, up from 11.50",
+    "tier": "easy",
+    "value": 12.5
+  },
+  {
+    "entity": "airport-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "A Paris metro or RER ticket to the airports (2025)",
+      "fr": "Un billet de métro ou de RER pour les aéroports de Paris (2025)"
+    },
+    "source": "Île-de-France Mobilités, airport ticket from 20 January 2025",
+    "tier": "medium",
+    "value": 13
+  },
+  {
+    "entity": "netflix-standard",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of ad-free Netflix Standard in France (2024)",
+      "fr": "Un mois de Netflix Standard sans pub en France (2024)"
+    },
+    "source": "Netflix France price list, 2024",
+    "tier": "easy",
+    "value": 13.49
+  },
+  {
+    "entity": "free-mobile-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of Free Mobile’s unlimited plan at its launch (2012)",
+      "fr": "Un mois du forfait illimité de Free Mobile à son lancement (2012)"
+    },
+    "source": "Free Mobile launch, 10 January 2012",
+    "tier": "medium",
+    "value": 19.99
+  },
+  {
+    "entity": "louvre-ticket",
+    "isInFrance": true,
+    "names": {
+      "en": "Full-price entry to the Louvre (2024)",
+      "fr": "Une entrée au Louvre, plein tarif (2024)"
+    },
+    "source": "Musée du Louvre, price from 15 January 2024",
+    "tier": "easy",
+    "value": 22
+  },
+  {
+    "entity": "olympics-cheapest",
+    "isInFrance": true,
+    "names": {
+      "en": "The cheapest ticket to the Paris 2024 Olympics",
+      "fr": "Le billet le moins cher des Jeux de Paris 2024"
+    },
+    "source": "Paris 2024 organising committee ticketing",
+    "tier": "medium",
+    "value": 24
+  },
+  {
+    "entity": "gp-appointment",
+    "isInFrance": true,
+    "names": {
+      "en": "A GP appointment in France (end of 2024)",
+      "fr": "Une consultation chez le médecin généraliste (fin 2024)"
+    },
+    "source": "Assurance Maladie, contracted rate from 22 December 2024",
+    "tier": "easy",
+    "value": 30
+  },
+  {
+    "entity": "parking-fine",
+    "isInFrance": true,
+    "names": {
+      "en": "The French fine for obstructive parking",
+      "fr": "L’amende pour un stationnement gênant"
+    },
+    "source": "Code de la route, second-class fixed fine",
+    "tier": "medium",
+    "value": 35
+  },
+  {
+    "entity": "eiffel-summit",
+    "isInFrance": true,
+    "names": {
+      "en": "An adult lift ticket to the top of the Eiffel Tower (2026)",
+      "fr": "Un billet adulte pour le sommet de la tour Eiffel en ascenseur (2026)"
+    },
+    "source": "toureiffel.paris price list, January 2026",
+    "tier": "easy",
+    "value": 36.7
+  },
+  {
+    "entity": "speeding-fine",
+    "isInFrance": true,
+    "names": {
+      "en": "The French fine for speeding by under 20 km/h outside a town",
+      "fr": "L’amende pour un excès de vitesse de moins de 20 km/h hors agglomération"
+    },
+    "source": "Code de la route R413-14, third-class fixed fine",
+    "tier": "medium",
+    "value": 68
+  },
+  {
+    "entity": "passport-stamp",
+    "isInFrance": true,
+    "names": {
+      "en": "The tax stamp for an adult French passport (2024)",
+      "fr": "Le timbre fiscal d’un passeport adulte (2024)"
+    },
+    "source": "service-public.fr, adult passport",
+    "tier": "medium",
+    "value": 86
+  },
+  {
+    "entity": "navigo-month",
+    "isInFrance": true,
+    "names": {
+      "en": "A month of the all-zones Paris Navigo pass (2025)",
+      "fr": "Un mois de passe Navigo toutes zones (2025)"
+    },
+    "source": "Île-de-France Mobilités, price from 1 January 2025",
+    "tier": "medium",
+    "value": 88.8
+  },
+  {
+    "entity": "phone-driving-fine",
+    "isInFrance": true,
+    "names": {
+      "en": "The French fine for holding a phone while driving",
+      "fr": "L’amende pour un téléphone tenu en main au volant"
+    },
+    "source": "Code de la route R412-6-1, fourth-class fixed fine",
+    "tier": "easy",
+    "value": 135
+  },
+  {
+    "entity": "wii-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Wii at its European launch (2006)",
+      "fr": "Une Wii à sa sortie en Europe (2006)"
+    },
+    "source": "Nintendo, European launch price, 8 December 2006",
+    "tier": "medium",
+    "value": 249
+  },
+  {
+    "entity": "airpods-pro-2",
+    "isInFrance": true,
+    "names": {
+      "en": "Second-generation AirPods Pro at their French launch (2022)",
+      "fr": "Des AirPods Pro de deuxième génération à leur sortie (2022)"
+    },
+    "source": "Apple France, September 2022",
+    "tier": "medium",
+    "value": 299
+  },
+  {
+    "entity": "switch-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Nintendo Switch at its launch (2017)",
+      "fr": "Une Nintendo Switch à sa sortie (2017)"
+    },
+    "source": "Price charged by French retailers at launch, 3 March 2017",
+    "tier": "medium",
+    "value": 329.99
+  },
+  {
+    "entity": "switch-oled",
+    "isInFrance": true,
+    "names": {
+      "en": "A Nintendo Switch OLED at its launch (2021)",
+      "fr": "Une Nintendo Switch OLED à sa sortie (2021)"
+    },
+    "source": "Nintendo, European launch price, 8 October 2021",
+    "tier": "medium",
+    "value": 349.99
+  },
+  {
+    "entity": "ps4-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PlayStation 4 at its French launch (2013)",
+      "fr": "Une PlayStation 4 à sa sortie en France (2013)"
+    },
+    "source": "Sony, European launch price, 29 November 2013",
+    "tier": "medium",
+    "value": 399
+  },
+  {
+    "entity": "steam-deck",
+    "isInFrance": true,
+    "names": {
+      "en": "A 64 GB Steam Deck at its launch (2022)",
+      "fr": "Un Steam Deck 64 Go à sa sortie (2022)"
+    },
+    "source": "Valve, European launch price, February 2022",
+    "tier": "hard",
+    "value": 419
+  },
+  {
+    "entity": "switch-2-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A Nintendo Switch 2 at its launch (2025)",
+      "fr": "Une Nintendo Switch 2 à sa sortie (2025)"
+    },
+    "source": "Nintendo, European launch price, 5 June 2025",
+    "tier": "easy",
+    "value": 469.99
+  },
+  {
+    "entity": "first-ipad",
+    "isInFrance": true,
+    "names": {
+      "en": "The first iPad at its French launch (2010, 16 GB Wi-Fi)",
+      "fr": "Le premier iPad à sa sortie en France (2010, 16 Go Wi-Fi)"
+    },
+    "source": "Apple France, 28 May 2010",
+    "tier": "medium",
+    "value": 499
+  },
+  {
+    "entity": "ps5-launch",
+    "isInFrance": true,
+    "names": {
+      "en": "A PlayStation 5 with a disc drive at its launch (2020)",
+      "fr": "Une PlayStation 5 avec lecteur à sa sortie (2020)"
+    },
+    "source": "Sony, French launch price, 19 November 2020",
+    "tier": "easy",
+    "value": 499.99
+  },
+  {
+    "entity": "xbox-series-x",
+    "isInFrance": true,
+    "names": {
+      "en": "An Xbox Series X at its launch (2020)",
+      "fr": "Une Xbox Series X à sa sortie (2020)"
+    },
+    "source": "Microsoft, European launch price, 10 November 2020",
+    "tier": "medium",
+    "value": 499.99
+  },
+  {
+    "entity": "meta-quest-3",
+    "isInFrance": true,
+    "names": {
+      "en": "A 128 GB Meta Quest 3 headset at its launch (2023)",
+      "fr": "Un casque Meta Quest 3 de 128 Go à sa sortie (2023)"
+    },
+    "source": "Meta, European launch price, October 2023",
+    "tier": "hard",
+    "value": 549.99
+  },
+  {
+    "entity": "lego-eiffel-tower",
+    "isInFrance": true,
+    "names": {
+      "en": "The 10,001-piece Lego Eiffel Tower (2022)",
+      "fr": "La tour Eiffel en Lego, 10 001 pièces (2022)"
+    },
+    "source": "Lego, set 10307, launch price, November 2022",
+    "tier": "medium",
+    "value": 629.99
+  },
+  {
+    "entity": "ps5-pro",
+    "isInFrance": true,
+    "names": {
+      "en": "A PlayStation 5 Pro at its launch (2024)",
+      "fr": "Une PlayStation 5 Pro à sa sortie (2024)"
+    },
+    "source": "Sony, European launch price, 7 November 2024",
+    "tier": "medium",
+    "value": 799.99
+  },
+  {
+    "entity": "lego-millennium-falcon",
+    "isInFrance": true,
+    "names": {
+      "en": "The Ultimate Collector Lego Millennium Falcon (2017)",
+      "fr": "Le Faucon Millenium en Lego, édition Ultimate Collector (2017)"
+    },
+    "source": "Lego, set 75192, launch price, October 2017",
+    "tier": "medium",
+    "value": 799.99
+  },
+  {
+    "entity": "iphone-16",
+    "isInFrance": true,
+    "names": {
+      "en": "A 128 GB iPhone 16 at its launch (2024)",
+      "fr": "Un iPhone 16 de 128 Go à sa sortie (2024)"
+    },
+    "source": "Apple France, September 2024",
+    "tier": "easy",
+    "value": 969
+  },
+  {
+    "entity": "apple-watch-ultra",
+    "isInFrance": true,
+    "names": {
+      "en": "An Apple Watch Ultra at its launch (2022)",
+      "fr": "Une Apple Watch Ultra à sa sortie (2022)"
+    },
+    "source": "Apple France, September 2022",
+    "tier": "medium",
+    "value": 999
+  },
+  {
+    "entity": "iphone-16-pro",
+    "isInFrance": true,
+    "names": {
+      "en": "A 128 GB iPhone 16 Pro at its launch (2024)",
+      "fr": "Un iPhone 16 Pro de 128 Go à sa sortie (2024)"
+    },
+    "source": "Apple France, September 2024",
+    "tier": "easy",
+    "value": 1229
+  },
+  {
+    "entity": "thermomix-tm6",
+    "isInFrance": true,
+    "names": {
+      "en": "A Thermomix TM6 at its launch (2019)",
+      "fr": "Un Thermomix TM6 à sa sortie (2019)"
+    },
+    "source": "Vorwerk France, launch price, 2019",
+    "tier": "medium",
+    "value": 1299
+  },
+  {
+    "entity": "galaxy-s24-ultra",
+    "isInFrance": true,
+    "names": {
+      "en": "A 256 GB Samsung Galaxy S24 Ultra at its launch (2024)",
+      "fr": "Un Samsung Galaxy S24 Ultra de 256 Go à sa sortie (2024)"
+    },
+    "source": "Samsung France, January 2024",
+    "tier": "hard",
+    "value": 1469
+  },
+  {
+    "entity": "vision-pro",
+    "isInFrance": true,
+    "names": {
+      "en": "An Apple Vision Pro headset at its French launch (2024)",
+      "fr": "Un casque Apple Vision Pro à sa sortie en France (2024)"
+    },
+    "source": "Apple France, 12 July 2024",
+    "tier": "medium",
+    "value": 3999
+  },
+  {
+    "entity": "paris-square-metre",
+    "isInFrance": true,
+    "names": {
+      "en": "A square metre of an old Paris flat (average price, November 2024)",
+      "fr": "Un mètre carré d’appartement ancien à Paris (prix moyen, novembre 2024)"
+    },
+    "source": "Notaires du Grand Paris, November 2024",
+    "tier": "easy",
+    "value": 9460
+  },
+  {
+    "entity": "dacia-spring",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Dacia Spring, entry version (2025)",
+      "fr": "Une Dacia Spring neuve, version de base (2025)"
+    },
+    "source": "Dacia France, Spring Electric 45 Essential",
+    "tier": "medium",
+    "value": 16900
+  },
+  {
+    "entity": "citroen-e-c3",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Citroën ë-C3, entry version (2024)",
+      "fr": "Une Citroën ë-C3 neuve, version de base (2024)"
+    },
+    "source": "Citroën France, launch price, 2024",
+    "tier": "hard",
+    "value": 23300
+  },
+  {
+    "entity": "tesla-model-3",
+    "isInFrance": true,
+    "names": {
+      "en": "A new rear-wheel-drive Tesla Model 3 in France (October 2024)",
+      "fr": "Une Tesla Model 3 Propulsion neuve en France (octobre 2024)"
+    },
+    "source": "L'argus, Tesla price list, October 2024",
+    "tier": "easy",
+    "value": 39990
+  },
+  {
+    "entity": "ferrari-12cilindri",
+    "isInFrance": true,
+    "names": {
+      "en": "A new Ferrari 12Cilindri, no options (2024)",
+      "fr": "Une Ferrari 12Cilindri neuve, sans option (2024)"
+    },
+    "source": "Ferrari European list price, May 2024",
+    "tier": "medium",
+    "value": 395000
+  },
+  {
+    "entity": "bugatti-veyron",
+    "isInFrance": true,
+    "names": {
+      "en": "A Bugatti Veyron at its launch (2005, before tax)",
+      "fr": "Une Bugatti Veyron à sa sortie (2005, hors taxes)"
+    },
+    "source": "Bugatti, launch price before tax",
+    "tier": "medium",
+    "value": 1000000
+  },
+  {
+    "entity": "napoleon-bicorne",
+    "isInFrance": true,
+    "names": {
+      "en": "A Napoleon bicorne hat sold at auction (2023)",
+      "fr": "Un bicorne de Napoléon vendu aux enchères (2023)"
+    },
+    "source": "Osenat, Fontainebleau, 19 November 2023, fees included",
+    "tier": "medium",
+    "value": 1932000
+  },
+  {
+    "entity": "bugatti-chiron",
+    "isInFrance": true,
+    "names": {
+      "en": "A Bugatti Chiron at its launch (2016, before tax)",
+      "fr": "Une Bugatti Chiron à sa sortie (2016, hors taxes)"
+    },
+    "source": "Bugatti, launch price before tax, Geneva 2016",
+    "tier": "medium",
+    "value": 2400000
+  },
+  {
+    "entity": "big-john",
+    "isInFrance": true,
+    "names": {
+      "en": "Big John, a triceratops skeleton sold at auction in Paris (2021)",
+      "fr": "Big John, squelette de tricératops vendu aux enchères à Paris (2021)"
+    },
+    "source": "Giquello at Drouot, 21 October 2021, fees included",
+    "tier": "hard",
+    "value": 6600000
+  },
+  {
+    "entity": "birkin-original",
+    "isInFrance": true,
+    "names": {
+      "en": "The very first Birkin bag, sold at auction in Paris (2025)",
+      "fr": "Le tout premier sac Birkin, vendu aux enchères à Paris (2025)"
+    },
+    "source": "Sotheby's Paris, 10 July 2025, fees included",
+    "tier": "hard",
+    "value": 8582500
+  },
+  {
+    "entity": "bugatti-voiture-noire",
+    "isInFrance": true,
+    "names": {
+      "en": "The one-off Bugatti La Voiture Noire (2019, before tax)",
+      "fr": "La Bugatti « La Voiture Noire », exemplaire unique (2019, hors taxes)"
+    },
+    "source": "Bugatti, Geneva 2019, price before tax",
+    "tier": "hard",
+    "value": 11000000
+  },
+  {
+    "entity": "ronaldo-transfer",
+    "isInFrance": true,
+    "names": {
+      "en": "Cristiano Ronaldo’s transfer to Real Madrid (2009)",
+      "fr": "Le transfert de Cristiano Ronaldo au Real Madrid (2009)"
+    },
+    "source": "Real Madrid and Manchester United, July 2009",
+    "tier": "medium",
+    "value": 94000000
+  },
+  {
+    "entity": "pogba-transfer",
+    "isInFrance": true,
+    "names": {
+      "en": "Paul Pogba’s transfer to Manchester United (2016)",
+      "fr": "Le transfert de Paul Pogba à Manchester United (2016)"
+    },
+    "source": "Juventus statement, August 2016",
+    "tier": "medium",
+    "value": 105000000
+  },
+  {
+    "entity": "uhlenhaut-coupe",
+    "isInFrance": true,
+    "names": {
+      "en": "The Mercedes 300 SLR Uhlenhaut, the dearest car ever sold at auction (2022)",
+      "fr": "La Mercedes 300 SLR Uhlenhaut, voiture la plus chère jamais vendue aux enchères (2022)"
+    },
+    "source": "RM Sotheby's, Stuttgart, 5 May 2022",
+    "tier": "hard",
+    "value": 135000000
+  },
+  {
+    "entity": "rembrandt-portraits",
+    "isInFrance": true,
+    "names": {
+      "en": "The two Rembrandt portraits bought by France and the Netherlands (2016)",
+      "fr": "Les deux portraits de Rembrandt achetés par la France et les Pays-Bas (2016)"
+    },
+    "source": "Louvre and Rijksmuseum, Maerten Soolmans and Oopjen Coppit, 2016",
+    "tier": "hard",
+    "value": 160000000
+  },
+  {
+    "entity": "mbappe-transfer",
+    "isInFrance": true,
+    "names": {
+      "en": "Kylian Mbappé’s transfer from Monaco to PSG (2018)",
+      "fr": "Le transfert de Kylian Mbappé de Monaco au PSG (2018)"
+    },
+    "source": "AS Monaco and PSG, bonuses included",
+    "tier": "easy",
+    "value": 180000000
+  },
+  {
+    "entity": "neymar-transfer",
+    "isInFrance": true,
+    "names": {
+      "en": "Neymar’s transfer to PSG (2017)",
+      "fr": "Le transfert de Neymar au PSG (2017)"
+    },
+    "source": "Release clause paid to FC Barcelona, August 2017",
+    "tier": "easy",
+    "value": 222000000
+  },
+  {
+    "entity": "millau-viaduct",
+    "isInFrance": true,
+    "names": {
+      "en": "Building the Millau Viaduct (2004)",
+      "fr": "La construction du viaduc de Millau (2004)"
+    },
+    "source": "Eiffage, construction cost",
+    "tier": "medium",
+    "value": 400000000
+  },
+  {
+    "entity": "notre-dame-restoration",
+    "isInFrance": true,
+    "names": {
+      "en": "Restoring Notre-Dame de Paris up to its reopening (2019-2024)",
+      "fr": "La restauration de Notre-Dame de Paris jusqu’à sa réouverture (2019-2024)"
+    },
+    "source": "Rebâtir Notre-Dame de Paris, cost of the two phases to December 2024",
+    "tier": "medium",
+    "value": 700000000
+  },
+  {
+    "entity": "paris-2024-budget",
+    "isInFrance": true,
+    "names": {
+      "en": "The budget of the Paris 2024 organising committee",
+      "fr": "Le budget du comité d’organisation des Jeux de Paris 2024"
+    },
+    "source": "Paris 2024 organising committee, final budget",
+    "tier": "medium",
+    "value": 4400000000
+  }
+]

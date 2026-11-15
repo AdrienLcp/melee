@@ -18,6 +18,8 @@
     //   row of twelve, which is also where six by two takes over
     //   rounds 276 · auto-advance and answer window 296
     //   what the map places 572, in English
+    //   the estimate's topics 560, in French — five of them, so a row of five
+    //   or a column, since no other column count fills every row
     //
     // All of them measured with the labels at their **ceiling**: a label is
     // sized against the viewport and these against the container, so a strip in
@@ -35,6 +37,9 @@
       @include strip.tiles-below(22rem, 1)
 
     .atlas-places
+      @include strip.stacks-below(36rem)
+
+    .estimate-topics
       @include strip.stacks-below(36rem)
 
     .matchsticks-goals

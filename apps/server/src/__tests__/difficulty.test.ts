@@ -13,6 +13,11 @@ import {
 } from '@melee/protocol/room'
 
 import { isFamousQuantity } from '@/infrastructure/questions/famous-quantities'
+import {
+  bankedPrices,
+  bankedQuantities,
+  tierOfQuantity
+} from '@/infrastructure/questions/quantity-bank'
 import { bankedQuestions } from '@/infrastructure/questions/question-bank'
 
 import { startRoomHarness } from './node-room-harness'
@@ -92,14 +97,16 @@ describe('a room set to easy by frame', () => {
       )
       const content = hostView(host)?.round?.content
 
-      expect(
-        content?.kind === 'estimate' &&
-          content.question.kind === 'bank' &&
-          isFamousQuantity({
-            family: content.question.family,
-            names: { fr: content.question.names.fr ?? '' }
-          })
-      ).toBe(true)
+      const question =
+        content?.kind === 'estimate' && content.question.kind === 'bank'
+          ? content.question
+          : null
+      const row = [...bankedQuantities(), ...bankedPrices()].find(
+        ({ family, names }) =>
+          family === question?.family && names.fr === question.names.fr
+      )
+
+      expect(row === undefined ? null : tierOfQuantity(row)).toBe('easy')
     }
   })
 
@@ -116,13 +123,17 @@ describe('a room set to easy by frame', () => {
 
       expect(pairs.length).toBeGreaterThan(0)
       expect(
-        pairs.every(
-          ({ ask, left, right }) =>
-            ask.kind === 'bank' &&
-            [left, right].every((names) =>
-              isFamousQuantity({ family: ask.family, names: { fr: names.fr } })
-            )
-        )
+        pairs.every(({ ask, left, right }) => {
+          if (ask.kind !== 'bank' || ask.family === 'price.item') {
+            return false
+          }
+
+          const { family } = ask
+
+          return [left, right].every((names) =>
+            isFamousQuantity({ family, names: { fr: names.fr } })
+          )
+        })
       ).toBe(true)
     }
   })

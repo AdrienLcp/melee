@@ -17,7 +17,7 @@ export const GAME_NOTES = {
   challenge:
     'Played at the table, off every screen: the wall shows a line — dealt, or the host’s own — and the host places the first three.',
   estimate:
-    'Asks for a number — a population, a height, a length — that every screen estimates, each paid by how close it lands.',
+    'Asks for a number — a population, a height, a length, a price — that every screen estimates, each paid by how close it lands.',
   higherlower:
     'Deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:

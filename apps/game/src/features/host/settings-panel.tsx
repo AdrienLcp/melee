@@ -10,6 +10,7 @@ import {
   BLACK_SQUARE_CELL_COUNT,
   BLACK_SQUARE_MIN_ANSWER_COUNT
 } from '@melee/protocol/black-square'
+import { QUANTITY_TOPICS } from '@melee/protocol/estimate'
 import type { QuizSettings } from '@melee/protocol/game'
 import {
   type MatchsticksGoal,
@@ -626,6 +627,28 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             value={game.roundDurationMs}
           />
         </>
+      )}
+
+      {game?.kind === 'estimate' && (
+        <ToggleGroup
+          className='estimate-topics'
+          isDisabled={isDisabled}
+          label={translate('estimate.topics.label')}
+          onSelectionChange={(keys) => {
+            const ticked = QUANTITY_TOPICS.filter((topic) => keys.has(topic))
+
+            // The server refuses a game with nothing to ask, so the last
+            // topic stays ticked rather than being sent and bounced.
+            if (ticked.length > 0) {
+              onChange({ ...settings, game: { ...game, topics: ticked } })
+            }
+          }}
+          options={QUANTITY_TOPICS.map((topic) => ({
+            label: translate(`estimate.topics.${topic}`),
+            value: topic
+          }))}
+          selectedKeys={game.topics}
+        />
       )}
 
       {game?.kind === 'estimate' && (

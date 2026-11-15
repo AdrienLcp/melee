@@ -6,6 +6,7 @@ import {
   blackSquareAnswerCountSchema
 } from './black-square'
 import { difficultySchema } from './difficulty'
+import { QUANTITY_TOPICS, quantityTopicSetSchema } from './estimate'
 import { matchsticksGoalSchema } from './matchsticks'
 import { mysteryWordLengthSchema } from './mystery-word'
 import {
@@ -253,7 +254,9 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     difficulty: difficultySchema.default('mixed'),
     kind: z.literal('estimate'),
     /** How long the field stays open; it closes early once every seat has sent. */
-    roundDurationMs: z.number().int().min(15_000).max(60_000)
+    roundDurationMs: z.number().int().min(15_000).max(60_000),
+    /** Defaulted to every topic, so a setup remembered before the choice existed still parses. */
+    topics: quantityTopicSetSchema.default([...QUANTITY_TOPICS])
   }),
   z.object({
     /** Defaulted so a setup remembered before the level existed still parses. */
@@ -453,7 +456,8 @@ export const DEFAULT_MOST_LIKELY_SETTINGS: MostLikelySettings = {
 export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
   difficulty: 'mixed',
   kind: 'estimate',
-  roundDurationMs: 30_000
+  roundDurationMs: 30_000,
+  topics: [...QUANTITY_TOPICS]
 }
 
 /** Ten seconds: enough to weigh two names, too short to look one up. */

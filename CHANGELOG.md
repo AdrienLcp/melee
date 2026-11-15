@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Close enough asks prices.** _Le juste chiffre_ was meant to be
+  a _juste prix_ and never asked one: 59 prices written by hand join the bank,
+  from a 1 € medicine deductible to the Paris 2024 budget — a PS5 at launch, a
+  Paris square metre, Neymar's transfer — each worded with its year and
+  reference, and counted in euros with their cents. The game's page gains
+  _Questions on_: populations, areas, heights, lengths and prices, all ticked
+  by default. Each round draws a topic first, so a room on every topic meets
+  a price one round in five instead of drowning it under two thousand rivers.
+
 - `[Shared]` **Test the sound before the first round.** In the lobby, the
   console's menu offers _Test the sound_ under the room volume: five seconds
   of a well-known track, played at the room volume on whichever screen is the

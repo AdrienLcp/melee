@@ -1,16 +1,21 @@
 import { describe, expect, it } from 'vitest'
 
-import { QUANTITY_FAMILIES } from '@melee/protocol/estimate'
+import {
+  QUANTITY_TOPICS,
+  WIKIDATA_QUANTITY_FAMILIES
+} from '@melee/protocol/estimate'
 
 import { WIDE_PAIR_BAND } from '@melee/core/higherlower/pair-deal'
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import { FAMOUS_QUANTITY_NAMES, isFamousQuantity } from './famous-quantities'
 import {
+  bankedPrices,
   bankedQuantities,
   drawPairs,
   drawQuantity,
   playedPairedQuantityId,
+  playedQuantityId,
   type QuantityRow,
   tierOfQuantity
 } from './quantity-bank'
@@ -42,7 +47,7 @@ describe('the quantity bank', () => {
   })
 
   it('[estimate] holds every family, and every region of France', () => {
-    const empty = QUANTITY_FAMILIES.filter(
+    const empty = WIKIDATA_QUANTITY_FAMILIES.filter(
       (family) => !bankedQuantities().some((row) => row.family === family)
     )
 
@@ -105,7 +110,7 @@ describe('the quantity bank', () => {
   })
 
   it('[higherlower] names no famous row the bank does not hold', () => {
-    const unbanked = QUANTITY_FAMILIES.flatMap((family) =>
+    const unbanked = WIKIDATA_QUANTITY_FAMILIES.flatMap((family) =>
       FAMOUS_QUANTITY_NAMES[family].filter(
         (fr) =>
           !isFamousQuantity({ family, names: { fr } }) ||
@@ -145,8 +150,12 @@ describe('the quantity bank', () => {
   }, () => {
     const draws = 450
     const famous = Array.from({ length: draws }, () =>
-      drawQuantity({ difficulty: 'mixed', playedIds: new Set() })
-    ).filter((row) => row !== null && isFamousQuantity(row)).length
+      drawQuantity({
+        difficulty: 'mixed',
+        playedIds: new Set(),
+        topics: QUANTITY_TOPICS
+      })
+    ).filter((row) => row !== null && tierOfQuantity(row) === 'easy').length
 
     expect(famous / draws).toBeGreaterThan(0.25)
     expect(famous / draws).toBeLessThan(0.42)
@@ -161,15 +170,94 @@ describe('the quantity bank', () => {
       expect(pairs).toHaveLength(1)
 
       for (const { left, right } of pairs ?? []) {
-        expect([isFamousQuantity(left), isFamousQuantity(right)]).toEqual([
-          true,
-          true
+        expect([tierOfQuantity(left), tierOfQuantity(right)]).toEqual([
+          'easy',
+          'easy'
         ])
 
         for (const row of [left, right]) {
           expect(playedIds.has(playedPairedQuantityId(row))).toBe(false)
           playedIds.add(playedPairedQuantityId(row))
         }
+      }
+    }
+  })
+
+  // Four standard deviations either side of a fifth, so the bounds hold on every run.
+  it('[estimate] asks a price in a fifth of the rounds of a room on every topic', {
+    timeout: 15_000
+  }, () => {
+    const draws = 450
+    const prices = Array.from({ length: draws }, () =>
+      drawQuantity({
+        difficulty: 'mixed',
+        playedIds: new Set(),
+        topics: QUANTITY_TOPICS
+      })
+    ).filter((row) => row?.family === 'price.item').length
+
+    expect(prices / draws).toBeGreaterThan(0.12)
+    expect(prices / draws).toBeLessThan(0.28)
+  })
+
+  it('[estimate] asks only the topics the room ticked, and stops once they are spent', () => {
+    const playedIds = new Set<string>()
+    const dealt: string[] = []
+
+    for (
+      let row = drawQuantity({
+        difficulty: 'mixed',
+        playedIds,
+        topics: ['price']
+      });
+      row !== null;
+      row = drawQuantity({ difficulty: 'mixed', playedIds, topics: ['price'] })
+    ) {
+      dealt.push(row.family)
+      playedIds.add(playedQuantityId(row))
+    }
+
+    expect(dealt).toHaveLength(bankedPrices().length)
+    expect(new Set(dealt)).toEqual(new Set(['price.item']))
+  })
+
+  it('[estimate] prices from a coin to a budget, every tier of them stocked', () => {
+    const values = bankedPrices().map(({ value }) => value)
+
+    expect(Math.min(...values)).toBeLessThanOrEqual(2)
+    expect(Math.max(...values)).toBeGreaterThanOrEqual(1e9)
+
+    for (const tier of contentTiers) {
+      expect(
+        bankedPrices().filter((row) => tierOfQuantity(row) === tier).length
+      ).toBeGreaterThanOrEqual(8)
+    }
+  })
+
+  it('[estimate] holds one row per price, and one per name in each language', () => {
+    for (const key of [
+      ({ entity }: QuantityRow) => entity,
+      ({ names }: QuantityRow) => names.fr,
+      ({ names }: QuantityRow) => names.en
+    ]) {
+      const keys = bankedPrices().map(key)
+
+      expect(new Set(keys).size).toBe(keys.length)
+    }
+  })
+
+  it('[higherlower] pairs no price yet, whose names are too long for a pair', () => {
+    const playedIds = new Set<string>()
+
+    for (let round = 0; round < 24; round++) {
+      for (const { left, right } of drawPairs({
+        difficulty: 'mixed',
+        playedIds
+      }) ?? []) {
+        expect([left.family, right.family]).not.toContain('price.item')
+
+        playedIds.add(playedPairedQuantityId(left))
+        playedIds.add(playedPairedQuantityId(right))
       }
     }
   })

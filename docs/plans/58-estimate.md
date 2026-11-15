@@ -105,6 +105,35 @@ normalised to SI (`psn:`), so a summit filed in feet lands in metres. China
 is renamed from its official label; the Jeddah Tower and the second World
 Trade Center are refused as unbuilt (`P5817`).
 
+## Prices, added 15/11/2026
+
+The game was meant to be a _juste prix_ and a table that played it often had
+never been asked a price: Wikidata files none a table could be paid on, and
+drawn over the rows, two thousand rivers and a thousand summits took most
+evenings. Two changes:
+
+- **A hand-written price bank**, `price-bank.json` beside the quantity bank:
+  59 objects and services from a 1 € deductible to the 4.4 billion of the Paris
+  2024 budget, each worded with its reference — the year, the edition, before
+  tax or not — and each row carrying the `source` it was read from and a
+  `tier` picked by hand. Family `price.item`, unit `euros`, asked _Combien ça
+  coûte ?_ with the row's name under it. A price keeps its cents (499,99 €):
+  it is a figure printed on a label, not a measure, and three significant
+  figures would pay a table on 500 € for a PS5 as spot on. The ratio pay
+  holds unchanged: a timbre guessed at 1 € keeps 70 points, a transfer fee
+  guessed at half 37.
+- **Topics the host ticks**, `topics` on the game's arm (`population`,
+  `area`, `height`, `length`, `price`, all by default, at least one), a
+  `ToggleGroup` on the game's page like the map's places. Each round draws a
+  topic first, then a row inside it at the room's level (`drawQuantity`), so
+  a room on every topic meets a price one round in five. A summit and a tower
+  are one topic, heights in metres: a host chooses measures, not Wikidata's
+  families.
+
+Prices are dealt to the estimate alone: `drawPairs` reads `bankedQuantities`,
+the Wikidata rows, because a price's name is a sentence too long for a
+pair's tile. Stage 71 holds the pictures that would let them in.
+
 **The verdict carries the place**, not only the ratio: `numberVerdictSchema`
 is `{ ratio, placesFromBest }`, `placesFromBest` counting the seats strictly
 closer (two tied firsts, then a third) and `null` beyond a factor of ten —
