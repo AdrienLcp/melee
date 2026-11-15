@@ -365,7 +365,12 @@ fives went undrawn that way. Write `&:is([data-x] > *)` instead.
 
 Visually hidden text is `accessibility.visually-hidden` from
 `@adrienlcp/styles/accessibility`, and the ring is `_focus.sass`'s — neither is
-written by hand. A ring drawn on a descendant of the focused element passes it
+written by hand. **Hidden text is positioned absolutely**, react-aria's
+`VisuallyHidden` included, so the element holding it inside a box that scrolls
+sideways is `position: relative`: otherwise it lays out against the page, past
+the scroller's clip and `#root`'s, and widens the document to where it sits —
+the score track's "(you)" at the far end of 24 seats took a 320px console to
+795px wide. A ring drawn on a descendant of the focused element passes it
 as `$on` — the switch rings its track with `@include focus.ring('.track')` —
 and a box around a field takes `focus.ring-within`. Every focusable rings by
 default: `globals.sass` includes `focus.ring-focusables` once in `@layer base`,

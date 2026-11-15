@@ -2298,6 +2298,101 @@ for (const youId of [null, 'p3']) {
   })
 }
 
+/**
+ * A console seated far down a full table, a seat beyond it away: the score
+ * track's pieces carry a visually hidden "(you)" and "(away)", and each stage
+ * that draws the track or a list of seats is held inside the viewport sideways.
+ */
+const seatedFarDownTheTable = (view: object) => ({
+  ...view,
+  players: fullTable.map((player) => ({
+    ...player,
+    isConnected: player.id !== 'p20'
+  })),
+  wallCount: 0,
+  youId: 'p17'
+})
+
+const SEATED_FAR_DOWN_STAGES = [
+  {
+    name: 'the lobby',
+    view: { ...consoleView(LONGEST_PROMPT), phase: 'lobby', round: null }
+  },
+  { name: 'the countdown', view: blindTestRound('countdown') },
+  {
+    name: 'the reveal',
+    view: (() => {
+      const { wallNumber: _, ...reveal } = wallRevealOfAFullTable()
+
+      return reveal
+    })()
+  },
+  { name: 'the slate marked', view: slateView({ currentItemIndex: 0 }) },
+  { name: 'the final board', view: finishedView(LONG_NAME_WINNING) }
+]
+
+/**
+ * The page, and each box holding the score track, whose contents reach past
+ * the viewport's right edge. A box is measured from its own left edge, so the
+ * final board's ruled rows bleeding into the stage's padding are not a fault.
+ */
+const measureSideways = (): string[] => {
+  const root = document.scrollingElement ?? document.documentElement
+  const track = document.querySelector('.score-track')
+  const holders: HTMLElement[] = []
+
+  for (
+    let holder = track?.parentElement ?? null;
+    holder !== null && holder !== document.body;
+    holder = holder.parentElement
+  ) {
+    holders.push(holder)
+  }
+
+  return [
+    ...(root.scrollWidth > innerWidth ? [`page ${root.scrollWidth}`] : []),
+    ...holders
+      .filter(
+        (holder) =>
+          holder.getBoundingClientRect().left + holder.scrollWidth >
+          innerWidth + 1
+      )
+      .map(
+        (holder) =>
+          `${holder.tagName.toLowerCase()}.${String(holder.className).replaceAll(' ', '.')} ${holder.scrollWidth}/${holder.clientWidth}`
+      )
+  ]
+}
+
+for (const stage of SEATED_FAR_DOWN_STAGES) {
+  test(`[layout] seated host far down a full table, ${stage.name}: never runs off the side`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: seatedFarDownTheTable(stage.view) })
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+      localStorage.setItem('melee:volume', '0')
+    })
+    await page.setViewportSize({ height: 568, width: 320 })
+    await page.goto(`/host/${ROOM_CODE}`)
+    await expect(page.locator('.stage').first()).toBeVisible()
+
+    const faults: string[] = []
+
+    for (const [width, height] of VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const sideways = await page.evaluate(measureSideways)
+
+      if (sideways.length > 0) {
+        faults.push(`${width}×${height} ${sideways.join(', ')}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
 /** Every answering screen with the room at its largest, each seat named long. */
 for (const seat of SEATS) {
   test(`[layout] ${seat.name}, a full table: the question and its four choices never scroll`, async ({

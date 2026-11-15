@@ -50,7 +50,10 @@ slate's two stages and the reflex race's wait, flip and finishing order: no
 scroll, and no row drawn past the list that holds it nor squeezed narrower than
 its own contents — a size container keeps its overflow off the page, so a
 scroll check alone never sees a chip under the hold bar, nor a board drawn 0px
-wide. A geometry claim, for the same reason as the one below.
+wide. A geometry claim, for the same reason as the one below. A console
+seated far down a full table, a seat beyond it away, is held inside the
+viewport sideways from the lobby to the final board: the page and every box
+holding the score track, whose hidden "(you)" once widened the page.
 
 It runs under `reducedMotion: 'reduce'`. Every page arrives on `page-enter`,
 8px low for 260ms, and the first viewport is measured inside that window: a
