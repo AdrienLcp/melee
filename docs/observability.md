@@ -59,9 +59,8 @@ them.
 `/admin` on any environment (`https://staging.melee.adrienlcp.com/admin`,
 the production host likewise) asks for the admin key and keeps it in memory
 alone: a reload asks again. The key is the Worker secret `ADMIN_TOKEN`, set on
-`melee` and `melee-staging` with `wrangler secret put`, and its value is the
-password of the Bitwarden item **"Melee admin token"**; a password manager
-fills the field. `pnpm dev` reads a local-only key from
+`melee` and `melee-staging` with `wrangler secret put`, and its value lives in
+the owner's password manager, which fills the field. `pnpm dev` reads a local-only key from
 `apps/server/.dev.vars` (git-ignored). The page calls
 `GET /api/admin/rooms`, `/api/admin/reports` and `/api/admin/reports/:id`
 with `Authorization: Bearer <key>`; anything else — no key, a wrong one, a
