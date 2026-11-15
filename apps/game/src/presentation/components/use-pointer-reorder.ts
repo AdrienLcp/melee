@@ -51,13 +51,21 @@ const settle = (rows: readonly HTMLElement[]): void => {
   }
 }
 
-/** Settles rows without the step home a transition would draw: they are already there. */
+/**
+ * Settles rows without the step home a transition would draw: they are already
+ * there. The shift may sit on a piece inside the row rather than on the row —
+ * the timeline's card travels while its number stays — so its transition is
+ * looked for in the whole row.
+ */
 const settleInPlace = (rows: readonly HTMLElement[]): void => {
   settle(rows)
 
   for (const row of rows) {
-    for (const animation of row.getAnimations()) {
-      if (animation instanceof CSSTransition) {
+    for (const animation of row.getAnimations({ subtree: true })) {
+      if (
+        animation instanceof CSSTransition &&
+        animation.transitionProperty === 'translate'
+      ) {
         animation.cancel()
       }
     }

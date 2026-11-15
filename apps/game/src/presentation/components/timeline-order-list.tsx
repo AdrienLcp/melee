@@ -15,6 +15,7 @@ import { Button } from './button'
 import { ChevronIcon, ChevronUpIcon } from './icons'
 import { TimelineCard } from './timeline-card'
 import { usePointerReorder } from './use-pointer-reorder'
+import { useRowsTravel } from './use-rows-travel'
 
 import './timeline-order-list.sass'
 
@@ -26,6 +27,9 @@ type TimelineOrderListProps = {
   /** Called with every id, earliest first, after a drop or an arrow. */
   onReorder: (eventIds: TimelineEventId[]) => void
 }
+
+/** What travels when a row changes places: its number stays on its place. */
+const TRAVELLING_PIECES = '.timeline-card, .steps'
 
 const moved = ({
   at,
@@ -57,11 +61,23 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   const order = events.map((event) => event.id)
   const list = useRef<HTMLDivElement>(null)
 
+  const reorder = (eventIds: TimelineEventId[]): void => {
+    remember()
+    onReorder(eventIds)
+  }
+
   usePointerReorder({
     grip: '.timeline-card',
     list,
-    onMove: (id, at) => onReorder(moved({ at, ids: [id], order })),
+    onMove: (id, at) => reorder(moved({ at, ids: [id], order })),
     order: order.join(' ')
+  })
+
+  const remember = useRowsTravel({
+    list,
+    order: order.join(' '),
+    pace: 'reorder',
+    piece: TRAVELLING_PIECES
   })
 
   const { dragAndDropHooks } = useDragAndDrop({
@@ -80,7 +96,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
       const rest = order.filter((id) => !ids.includes(id))
       const targetAt = rest.indexOf(String(target.key))
 
-      onReorder(
+      reorder(
         moved({
           at: target.dropPosition === 'after' ? targetAt + 1 : targetAt,
           ids,
@@ -94,7 +110,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   })
 
   const step = (id: TimelineEventId, by: -1 | 1): void => {
-    onReorder(moved({ at: order.indexOf(id) + by, ids: [id], order }))
+    reorder(moved({ at: order.indexOf(id) + by, ids: [id], order }))
   }
 
   return (

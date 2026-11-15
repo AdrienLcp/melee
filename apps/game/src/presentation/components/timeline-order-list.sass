@@ -24,7 +24,7 @@
       // The shift lands on what travels, so a row's number stays on its place.
       .timeline-card,
       .steps
-        transition: translate var(--transition-fast, 0s) var(--ease-out)
+        transition: translate var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out)
         translate: 0rem var(--drag-shift, 0rem)
 
       &[data-lifted]
@@ -33,7 +33,7 @@
 
         .timeline-card,
         .steps
-          transition: none
+          transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
 
         .timeline-card
           box-shadow: var(--shadow-lifted)

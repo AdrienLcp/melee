@@ -35,6 +35,12 @@ type RowsTravelOptions = {
   /** The rows' keys in the order drawn, joined: a change is what travels. */
   order: string
   pace: TravelPace
+  /**
+   * Matches what travels inside each row in the row's place, for a row part
+   * of which stays put — the timeline's card and arrows beside a number that
+   * never moves. The row itself by default.
+   */
+  piece?: string
 }
 
 type Drawn = { boxes: Boxes; width: number }
@@ -48,13 +54,34 @@ const frameOf = (list: HTMLElement): HTMLElement =>
     ? list.parentElement
     : list
 
-/** Where each row sits inside the list, so a scrolled panel measures the same. */
-const measure = (list: HTMLElement): Map<string, Box> => {
+/** What travels in a row's place: its pieces, or the row itself. */
+const travellersOf = ({
+  piece,
+  row
+}: {
+  piece: string | undefined
+  row: HTMLElement
+}): HTMLElement[] =>
+  piece === undefined ? [row] : [...row.querySelectorAll<HTMLElement>(piece)]
+
+/**
+ * Where each row is drawn inside the list, so a scrolled panel measures the
+ * same: where its first piece is drawn, when its pieces travel without it.
+ */
+const measure = ({
+  list,
+  piece
+}: {
+  list: HTMLElement
+  piece?: string
+}): Map<string, Box> => {
   const origin = frameOf(list).getBoundingClientRect()
 
   return new Map(
     keyedRowsOf(list).map((row) => {
-      const box = row.getBoundingClientRect()
+      const box = (
+        travellersOf({ piece, row })[0] ?? row
+      ).getBoundingClientRect()
 
       return [
         row.dataset.key ?? '',
@@ -213,12 +240,14 @@ const play = ({
   before,
   list,
   now,
-  pace
+  pace,
+  piece
 }: {
   before: Boxes
   list: HTMLElement
   now: Boxes
   pace: TravelPace
+  piece?: string
 }): void => {
   const timing = timingOf({ list, pace })
 
@@ -254,20 +283,22 @@ const play = ({
       ? [{ width: `${was.width}px` }, { width: 'auto' }]
       : [{}, {}]
 
-    const animation = row.animate(
-      [
-        {
-          transform: `translate(${x}px, ${y}px)`,
-          zIndex,
-          ...heights[0],
-          ...widths[0]
-        },
-        { transform: 'none', zIndex, ...heights[1], ...widths[1] }
-      ],
-      { ...timing, id: TRAVEL_ID }
-    )
+    for (const traveller of travellersOf({ piece, row })) {
+      const animation = traveller.animate(
+        [
+          {
+            transform: `translate(${x}px, ${y}px)`,
+            zIndex,
+            ...heights[0],
+            ...widths[0]
+          },
+          { transform: 'none', zIndex, ...heights[1], ...widths[1] }
+        ],
+        { ...timing, id: TRAVEL_ID }
+      )
 
-    keepTravel({ row, travel: { animation, isResized } })
+      keepTravel({ row: traveller, travel: { animation, isResized } })
+    }
   }
 }
 
@@ -399,7 +430,8 @@ export const useRowsTravel = ({
   from,
   list,
   order,
-  pace
+  pace,
+  piece
 }: RowsTravelOptions): (() => void) => {
   const remembered = useRef<Boxes | null>(null)
   const drawnOrder = useRef<string | null>(null)
@@ -521,12 +553,12 @@ export const useRowsTravel = ({
           return
         }
 
-        const now = measure(element)
+        const now = measure({ list: element, piece })
         const before =
           seen ?? (isFirst && from != null ? slotsOf({ from, now }) : null)
 
         if (before !== null && isSameRows(before, now)) {
-          play({ before, list: element, now, pace })
+          play({ before, list: element, now, pace, piece })
         }
       },
       order: drawn
@@ -537,7 +569,7 @@ export const useRowsTravel = ({
 
   return () => {
     if (list.current !== null) {
-      remembered.current = measure(list.current)
+      remembered.current = measure({ list: list.current, piece })
     }
   }
 }

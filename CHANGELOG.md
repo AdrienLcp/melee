@@ -444,6 +444,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A timeline card lands where it is dropped.** Released between two
+  places, a dragged card leapt a whole row past its place and eased back,
+  and the card it had passed did the same. It now glides the rest of the way
+  from under the finger, its lifted shadow settling as it goes, and a card
+  moved by its arrows travels its row instead of appearing there.
+
 - `[Server]` **Black square's _Disney princesses_ are all princesses.** The
   theme dealt Mulan, Pocahontas or Vaiana beside a table arguing they hold no
   crown. It now pools the official Disney Princess line and every heroine

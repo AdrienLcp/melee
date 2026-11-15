@@ -735,6 +735,15 @@ What this found, each invisible in any still:
   entry's evaluation freezing `page-lay` so the page appeared three quarters
   laid. A `layout-shift` `PerformanceObserver` and a per-frame probe of
   `document.getAnimations()` name each one.
+- **A drop that jumps a row and steps back**: the timeline's card, released
+  between two places, leapt a whole row the wrong way and eased home, and
+  the card it passed did the same. The drop settled the shift on the row
+  while the timeline shifts the card _inside_ it, so the cancel missed the
+  card's transition and the shift played back from the new slot. Touch it
+  through CDP (`Input.dispatchTouchEvent` in a context with `hasTouch`,
+  twenty-four moves of 16ms, a release off the slot) and probe the card's
+  painted top on every frame from the `touchend`: 398 → 452 → 365px before,
+  398 → 387 → 365px in a glide after.
 
 A change that happens at a moment the action cannot time — a round flipping to
 its reveal, a countdown ending — is filmed by marking it: have the action wait
