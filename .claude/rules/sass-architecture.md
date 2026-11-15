@@ -318,6 +318,12 @@ written from what its rows take at their cap, and a `minmax(0, auto)` row hands
 it no more than is left: the upright wall's final board, whose rows spilled up
 over their heading from a 0px box.
 
+**A grid item that is a grid itself names its columns.** With no template its
+one implicit column is `auto`, sized to its widest word or multi-column list,
+and that column overflows the item's own `minmax(0, …fr)` track: think alike's
+narrow piles on the console ran their cards and names into the next pile's.
+`grid-template-columns: minmax(0, 1fr)` holds it to the track.
+
 **A container added inside another takes over its unnamed queries.**
 `@container (height < 6.5rem)` asks the nearest ancestor able to answer a
 height, so making black square's cells size containers turned the sheet's

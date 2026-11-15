@@ -65,6 +65,9 @@ const columnsTemplateOf = (columns: readonly Column[]): string =>
     })
     .join(' ')
 
+/** A pile's share of the width beside the others, which grows with its authors. */
+const pileWeightOf = (authorCount: number): number => 3 + authorCount * 0.6
+
 /** The letters of an answer's longest word, which its card is sized by so no word has to break. */
 const longestWordOf = (text: string): number =>
   Math.max(4, ...text.split(/\s+/u).map((word) => word.length))
@@ -141,18 +144,30 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
     pace: 'gather'
   })
   const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
+  const loneWeight = Math.min(6, Math.ceil(Math.sqrt(loneCount)) * 1.3)
+  const standingWeights = piles
+    .filter((pile) => !pile.isLeaving)
+    .map((pile) => pileWeightOf(pile.authors.length))
+  const totalWeight =
+    standingWeights.reduce((sum, weight) => sum + weight, 0) +
+    (loneCount > 0 ? loneWeight : 0)
+  const shareOf = (pile: ThinkAlikeGroup): number => {
+    const weight = pileWeightOf(pile.authors.length)
+
+    return weight / Math.max(totalWeight, weight)
+  }
   const loneColumns: readonly Column[] =
     loneCount > 0
       ? [
           {
             isStanding: true,
-            track: `minmax(var(--lone-least), ${Math.min(6, Math.ceil(Math.sqrt(loneCount)) * 1.3)}fr)`
+            track: `minmax(var(--lone-least), ${loneWeight}fr)`
           }
         ]
       : []
   const pileColumns: readonly Column[] = piles.map((pile) => ({
     isStanding: !pile.isLeaving,
-    track: `minmax(0, ${3 + pile.authors.length * 0.6}fr)`
+    track: `minmax(0, ${pileWeightOf(pile.authors.length)}fr)`
   }))
   const gridLineOf = (pileAt: number): number =>
     1 + (loneColumns.length + pileAt) * 2
@@ -254,6 +269,8 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
               '--column': gridLineOf(turn),
               '--letters': longestWordOf(pile.text),
               '--order': turn + 1,
+              '--pay-glyphs': points > 0 ? `+${shownPoints(points)}`.length : 1,
+              '--share': shareOf(pile),
               '--turn': turn + 1
             }}
           >

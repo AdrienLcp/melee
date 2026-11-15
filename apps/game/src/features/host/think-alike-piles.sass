@@ -151,6 +151,9 @@
       display: grid
       grid-column: var(--column)
       grid-row: 1 / -1
+      // Held to its own track: an `auto` column grew to its widest word or
+      // name and ran into the next pile's.
+      grid-template-columns: minmax(0, 1fr)
       grid-template-rows: subgrid
       interpolate-size: allow-keywords
       justify-items: center
@@ -209,8 +212,9 @@
       @include typography.typed
 
       color: var(--card-ink)
-      font-size: clamp(var(--text-s), min(24cqi, calc(150cqi / var(--letters)), 30cqh), 7rem)
+      font-size: clamp(var(--text-xs), min(24cqi, calc((100cqi - 2 * var(--space-xs)) * 1.5 / var(--letters)), 30cqh), 7rem)
       align-self: center
+      hyphens: auto
       margin: 0
       text-align: center
 
@@ -251,9 +255,13 @@
       background: var(--well)
       border-radius: var(--radius-full)
       color: var(--ink)
-      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3.6), var(--text-3xl))
+      // As large as its pile's column holds it: a glyph is about two thirds
+      // of an em, the padding another 1.2.
+      font-size: clamp(var(--text-s), min(calc(var(--stage-unit) * 3.6), calc((100cqi - var(--columns) * var(--pile-gap)) * var(--share, 1) / (var(--pay-glyphs) * 0.65 + 1.3))), var(--text-3xl))
       margin: 0
+      max-inline-size: 100%
       padding: 0.1em 0.6em
+      transition: font-size var(--transition-base, 0s) var(--ease-out)
 
       &[data-paid]
         background: var(--good-soft)
