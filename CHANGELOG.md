@@ -444,6 +444,16 @@ one part.
 
 ### Fixes
 
+- `[Server]` **Black square's _Disney princesses_ are all princesses.** The
+  theme dealt Mulan, Pocahontas or Vaiana beside a table arguing they hold no
+  crown. It now pools the official Disney Princess line and every heroine
+  titled princess in her own film — Anna, Elsa, Kida, Vanellope, Atta,
+  Eilonwy, Sofia — with _Fiona_, DreamWorks', as its black word. Beside it,
+  _Disney or Pixar heroines, princesses aside_ pools nineteen others, from
+  Alice and Megara to Mei and EVE, with _Anna_ as the trap. _Pulses_ is
+  renamed _Legumes (the pea family)_ in English, since it holds clover,
+  liquorice and carob.
+
 - `[Game]` **A notice follows a language switched while it stands.** A
   passing notice held its words in the language of the moment it was said;
   every notice now holds its keys and is read in the locale it is drawn in.

@@ -4257,6 +4257,39 @@
       },
       {
         "aliases": {
+          "en": ["Sleeping Beauty"],
+          "fr": ["La Belle au bois dormant"]
+        },
+        "labels": {
+          "en": "Aurora",
+          "fr": "Aurore"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anna",
+          "fr": "Anna"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Elsa",
+          "fr": "Elsa"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
           "en": [],
           "fr": []
         },
@@ -4279,34 +4312,12 @@
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Vaiana"],
+          "fr": ["Moana"]
         },
         "labels": {
           "en": "Moana",
           "fr": "Vaiana"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": ["Sleeping Beauty"],
-          "fr": ["La Belle au bois dormant"]
-        },
-        "labels": {
-          "en": "Aurora",
-          "fr": "Aurore"
-        },
-        "tier": "medium"
-      },
-      {
-        "aliases": {
-          "en": [],
-          "fr": []
-        },
-        "labels": {
-          "en": "Anna",
-          "fr": "Anna"
         },
         "tier": "medium"
       },
@@ -4319,18 +4330,29 @@
           "en": "Tiana",
           "fr": "Tiana"
         },
-        "tier": "hard"
+        "tier": "medium"
       },
       {
         "aliases": {
-          "en": [],
-          "fr": []
+          "en": ["Brave"],
+          "fr": ["Merida", "Rebelle"]
         },
         "labels": {
           "en": "Merida",
           "fr": "Mérida"
         },
-        "tier": "hard"
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Sofia the First", "Princess Sofia"],
+          "fr": ["Princesse Sofia"]
+        },
+        "labels": {
+          "en": "Sofia",
+          "fr": "Sofia"
+        },
+        "tier": "medium"
       },
       {
         "aliases": {
@@ -4342,20 +4364,64 @@
           "fr": "Raya"
         },
         "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Vanellope von Schweetz"],
+          "fr": ["Vanellope von Schweetz"]
+        },
+        "labels": {
+          "en": "Vanellope",
+          "fr": "Vanellope"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Kidagakash"],
+          "fr": ["Kidagakash"]
+        },
+        "labels": {
+          "en": "Kida",
+          "fr": "Kida"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Princess Atta"],
+          "fr": ["Princesse Atta"]
+        },
+        "labels": {
+          "en": "Atta",
+          "fr": "Atta"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Princess Eilonwy"],
+          "fr": ["Princesse Eilonwy"]
+        },
+        "labels": {
+          "en": "Eilonwy",
+          "fr": "Eilonwy"
+        },
+        "tier": "hard"
       }
     ],
     "blackWord": {
       "aliases": {
-        "en": [],
-        "fr": []
+        "en": ["Princess Fiona"],
+        "fr": ["Princesse Fiona"]
       },
       "labels": {
-        "en": "Elsa",
-        "fr": "Elsa"
+        "en": "Fiona",
+        "fr": "Fiona"
       },
       "why": {
-        "en": "Crowned at the start of Frozen: a queen, not a princess.",
-        "fr": "Couronnée au début de La Reine des neiges : une reine, pas une princesse."
+        "en": "Shrek's princess, made by DreamWorks: not a Disney one.",
+        "fr": "La princesse de Shrek, chez DreamWorks : pas chez Disney."
       }
     },
     "id": "disney-princesses",
@@ -4364,6 +4430,239 @@
       "fr": "Princesses Disney"
     },
     "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Alice",
+          "fr": "Alice"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Wendy Darling"],
+          "fr": ["Wendy Darling"]
+        },
+        "labels": {
+          "en": "Wendy",
+          "fr": "Wendy"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tinkerbell"],
+          "fr": ["Clochette"]
+        },
+        "labels": {
+          "en": "Tinker Bell",
+          "fr": "Fée Clochette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Esmeralda",
+          "fr": "Esmeralda"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Meg"],
+          "fr": ["Megara", "Meg"]
+        },
+        "labels": {
+          "en": "Megara",
+          "fr": "Mégara"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dory",
+          "fr": "Dory"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lilo",
+          "fr": "Lilo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Jessie",
+          "fr": "Jessie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mirabel Madrigal"],
+          "fr": ["Mirabel Madrigal"]
+        },
+        "labels": {
+          "en": "Mirabel",
+          "fr": "Mirabel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Judy"],
+          "fr": ["Judy"]
+        },
+        "labels": {
+          "en": "Judy Hopps",
+          "fr": "Judy Hopps"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Jane Porter"],
+          "fr": ["Jane Porter"]
+        },
+        "labels": {
+          "en": "Jane",
+          "fr": "Jane"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Helen Parr", "Mrs. Incredible"],
+          "fr": ["Hélène Parr", "Madame Indestructible"]
+        },
+        "labels": {
+          "en": "Elastigirl",
+          "fr": "Elastigirl"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Joy",
+          "fr": "Joie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Asha",
+          "fr": "Asha"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Meilin", "Mei Lee"],
+          "fr": ["Meilin", "Mei Lee"]
+        },
+        "labels": {
+          "en": "Mei",
+          "fr": "Mei"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Colette Tatou"],
+          "fr": ["Colette Tatou"]
+        },
+        "labels": {
+          "en": "Colette",
+          "fr": "Colette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Eve"],
+          "fr": ["Ève", "Eve"]
+        },
+        "labels": {
+          "en": "EVE",
+          "fr": "EVE"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bianca",
+          "fr": "Bianca"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kim Possible",
+          "fr": "Kim Possible"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Princess Anna"],
+        "fr": ["Princesse Anna"]
+      },
+      "labels": {
+        "en": "Anna",
+        "fr": "Anna"
+      },
+      "why": {
+        "en": "Elsa's sister in Frozen, a princess of Arendelle: the one kind this theme leaves out.",
+        "fr": "La sœur d'Elsa dans La Reine des neiges, princesse d'Arendelle : justement ce que le thème écarte."
+      }
+    },
+    "id": "disney-heroines",
+    "labels": {
+      "en": "Disney or Pixar heroines, princesses aside",
+      "fr": "Héroïnes Disney ou Pixar, hors princesses"
+    },
+    "tier": "medium"
   },
   {
     "answers": [
