@@ -4195,22 +4195,29 @@ for (const keyboard of KEYBOARD_SCREENS) {
  * pans, so the page is handed a `visualViewport` that does it:
  * `raiseOverlaidKeyboard` brings a keyboard of that height up under the
  * focused field, firing what the real one fires.
+ *
+ * Given `staleForMs`, the pan reads 0 inside the events it fires and only
+ * reads true that long after, with no event to say so — WebKit bug 237851,
+ * which a page shrunk on the event and placed on that reading drew wholly
+ * above the band the screen showed.
  */
 const mockOverlaidKeyboard = () => {
-  const shown = { heightPx: innerHeight, offsetTopPx: 0 }
+  const shown = { heightPx: innerHeight, isStale: false, offsetTopPx: 0 }
   const viewport = Object.defineProperties(new EventTarget(), {
     height: { get: () => shown.heightPx },
     offsetLeft: { value: 0 },
-    offsetTop: { get: () => shown.offsetTopPx },
+    offsetTop: { get: () => (shown.isStale ? 0 : shown.offsetTopPx) },
     pageLeft: { get: () => scrollX },
-    pageTop: { get: () => scrollY + shown.offsetTopPx },
+    pageTop: {
+      get: () => scrollY + (shown.isStale ? 0 : shown.offsetTopPx)
+    },
     scale: { value: 1 },
     width: { get: () => innerWidth }
   })
 
   Object.defineProperty(window, 'visualViewport', { get: () => viewport })
   Object.defineProperty(window, 'raiseOverlaidKeyboard', {
-    value: (keyboardPx: number) => {
+    value: (keyboardPx: number, staleForMs = 0) => {
       const field = document.activeElement?.getBoundingClientRect()
       const heightPx = innerHeight - keyboardPx
       const clearance = Math.max((field?.bottom ?? 0) + 8 - heightPx, 0)
@@ -4223,8 +4230,12 @@ const mockOverlaidKeyboard = () => {
       scrollBy(0, scrolled)
       shown.heightPx = heightPx
       shown.offsetTopPx = Math.min(clearance - scrolled, keyboardPx)
+      shown.isStale = staleForMs > 0
       viewport.dispatchEvent(new Event('resize'))
       viewport.dispatchEvent(new Event('scroll'))
+      setTimeout(() => {
+        shown.isStale = false
+      }, staleForMs)
     }
   })
 }
@@ -4268,7 +4279,12 @@ const measureInShownBand = (inView: string[]) => {
 }
 
 /** Safari's page on a 390×844 iPhone, its bars up, under its 336px keyboard. */
-const OVERLAID_KEYBOARD = { heightPx: 336, page: { height: 664, width: 390 } }
+const OVERLAID_KEYBOARD = {
+  heightPx: 336,
+  page: { height: 664, width: 390 },
+  /** How late the pan reads true, as WebKit bug 237851 measured it. */
+  staleForMs: 50
+}
 
 const OVERLAID_KEYBOARD_SCREENS = [
   {
@@ -4345,6 +4361,36 @@ for (const screen of OVERLAID_KEYBOARD_SCREENS) {
     expect(new Set(await page.evaluate(readPanOverRepeatedScrolls)).size).toBe(
       1
     )
+  })
+
+  test(`[layout] ${screen.name}: with a keyboard laid over the page whose pan reads late, the field and its press still end in the band it shows`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: screen.view })
+    await page.addInitScript(
+      ({ withoutNickname }) => {
+        localStorage.setItem('melee:locale', 'fr')
+
+        if (withoutNickname) {
+          localStorage.removeItem('melee:nickname')
+        }
+      },
+      { withoutNickname: screen.withoutNickname }
+    )
+    await page.addInitScript(mockOverlaidKeyboard)
+    await page.setViewportSize(OVERLAID_KEYBOARD.page)
+    await page.goto(screen.path)
+    await page.locator(screen.field).first().focus()
+    // Measured once the pan reads true: inside the stale window the band
+    // itself reads at the top, where the page wrongly is.
+    await page.evaluate(async ({ heightPx, staleForMs }) => {
+      Reflect.get(window, 'raiseOverlaidKeyboard')(heightPx, staleForMs)
+      await new Promise((resolve) => setTimeout(resolve, staleForMs))
+    }, OVERLAID_KEYBOARD)
+
+    await expect
+      .poll(() => page.evaluate(measureInShownBand, screen.inView))
+      .toEqual([])
   })
 }
 

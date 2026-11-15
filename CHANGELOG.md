@@ -453,6 +453,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A keyboard no longer blanks the screen.** On a phone that lays
+  its keyboard over the page, a field low on the screen — a late line of a
+  Petit Bac sheet — could leave nothing but the board in view: the page shrank
+  to the strip above the keys on the first reading of where that strip was,
+  which Safari gives late, and stayed at the top of the screen while the strip
+  showed further down. The screen now reads it again until it settles, and a
+  page it cannot place keeps its full height, where the browser's own scroll
+  keeps the field in sight.
+
 - `[Game]` **A timeline card lands where it is dropped.** Released between two
   places, a dragged card leapt a whole row past its place and eased back,
   and the card it had passed did the same. It now glides the rest of the way

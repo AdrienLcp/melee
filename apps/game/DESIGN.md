@@ -554,7 +554,15 @@ black square's field sat 16px above what the screen showed. So the shell also
 moves `#root` down by `visualViewport.offsetTop` (`--visual-viewport-pan`)
 while the page is no taller than the screen, and opens the rules a short
 screen opens (`layout.shown-height-below`) off the shown height, since a media
-query reads the layout viewport the keys never touch. A field's round is a size container
+query reads the layout viewport the keys never touch. The shrink and the move
+are one decision: a page held to the band's height but left at the top of the
+screen while the band is panned down is drawn wholly above what the screen
+shows — every piece gone, a blank board: the symptom a phone reported on Petit
+Bac, whose low lines are panned to furthest. So the viewport is
+read again a little after each of its events (WebKit reads its pan as 0 inside
+the event, and every engine pans again once the page moves under the field),
+and a page the band cannot hold keeps its whole height, where the browser's own
+scroll keeps the field. A field's round is a size container
 and its form another, so what gives way is decided by the box the question
 leaves the form, never by the device: the hint and the count, then the press's
 height, then the press beside the field, then the label into the field. A

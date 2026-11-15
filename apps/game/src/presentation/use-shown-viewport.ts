@@ -37,7 +37,10 @@ const isPageHeld = (offsetTopPx: number): boolean =>
  *   over the page.
  *
  * A page taller than the screen is scrolled to the field by the browser
- * itself, and never moved.
+ * itself, and never moved — nor shrunk: a page held to the band's height
+ * but not moved to it is drawn above what the screen shows, and the whole
+ * screen goes blank. Whole, the page at least keeps the field the browser
+ * scrolled to.
  */
 export const usePublishShownViewport = (): void => {
   useEffect(() => {
@@ -51,10 +54,13 @@ export const usePublishShownViewport = (): void => {
         ).join(' ')
       )
 
-      if (offsetTopPx > 0.5 && isPageHeld(offsetTopPx)) {
+      if (offsetTopPx <= 0.5) {
+        root.style.removeProperty('--visual-viewport-pan')
+      } else if (isPageHeld(offsetTopPx)) {
         root.style.setProperty('--visual-viewport-pan', `0 ${offsetTopPx}px`)
       } else {
         root.style.removeProperty('--visual-viewport-pan')
+        root.style.removeProperty('--visual-viewport-height')
       }
     })
 

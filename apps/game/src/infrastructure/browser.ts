@@ -187,12 +187,22 @@ export type ShownViewport = {
 }
 
 /**
+ * When the visual viewport is read again after each of its events. WebKit
+ * reads its pan as 0 inside the event and true some 50ms later with no event
+ * to say so (bug 237851), and an engine pans again once the page has moved
+ * under the field: a value read once, on the event, can be the last one
+ * heard while the screen shows somewhere else.
+ */
+const VIEWPORT_REREAD_DELAYS_MS = [60, 180, 500] as const
+
+/**
  * Calls `listener` now and again whenever an on-screen keyboard, the browser's
- * bars or a pan change what the screen shows. Safari on iOS and the WebView a
- * messaging app opens a link in leave the layout viewport whole under their
- * keyboard, so `dvh` never shrinks there and only the visual viewport says
- * what is left, and where. Times its scale, so a pinch-zoom is not read as a
- * keyboard.
+ * bars or a pan change what the screen shows — and again a little after each
+ * change, until the engine has settled (`VIEWPORT_REREAD_DELAYS_MS`). Safari
+ * on iOS and the WebView a messaging app opens a link in leave the layout
+ * viewport whole under their keyboard, so `dvh` never shrinks there and only
+ * the visual viewport says what is left, and where. Times its scale, so a
+ * pinch-zoom is not read as a keyboard.
  */
 export const onShownViewportChange = (
   listener: (shown: ShownViewport) => void
@@ -212,13 +222,28 @@ export const onShownViewportChange = (
     })
   }
 
+  let rereads: ReturnType<typeof setTimeout>[] = []
+  const stopRereading = () => {
+    for (const reread of rereads) {
+      clearTimeout(reread)
+    }
+  }
+  const publishUntilSettled = () => {
+    publish()
+    stopRereading()
+    rereads = VIEWPORT_REREAD_DELAYS_MS.map((delayMs) =>
+      setTimeout(publish, delayMs)
+    )
+  }
+
   publish()
-  viewport.addEventListener('resize', publish)
-  viewport.addEventListener('scroll', publish)
+  viewport.addEventListener('resize', publishUntilSettled)
+  viewport.addEventListener('scroll', publishUntilSettled)
 
   return () => {
-    viewport.removeEventListener('resize', publish)
-    viewport.removeEventListener('scroll', publish)
+    stopRereading()
+    viewport.removeEventListener('resize', publishUntilSettled)
+    viewport.removeEventListener('scroll', publishUntilSettled)
   }
 }
 

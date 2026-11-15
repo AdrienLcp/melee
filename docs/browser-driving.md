@@ -635,6 +635,23 @@ window measures Chrome on Android and nothing else — it passed twice while
 iPhones lost the field. `choice-fits.spec.ts` hands the page a
 `visualViewport` that pans like Safari's (`mockOverlaidKeyboard`) and measures
 each piece against `offsetTop … offsetTop + height`, never `innerHeight`.
+`raiseOverlaidKeyboard(px, staleForMs)` also plays WebKit bug 237851, the pan
+reading 0 inside the events and true 50ms later with no event: a shell that
+believes the one reading on the event draws the page shrunk at the top while
+the screen shows the band below it — the black square's whole round sat at
+80–312 under a band at 328–656, a blank screen. Measure only once the stale
+window is over, since inside it the band reads at the top too.
+
+Two orderings to drive, because they disagree: a tap focuses first and the
+keyboard takes its room after, and Safari pans to the field *before* the page
+hears of the resize, where Chromium resizes first and pans only if the field is
+still covered. On the emulator, Chrome's own mode is reached by stripping
+`interactive-widget=resizes-content` from the served HTML (a
+`context.route` on the page's path), and Safari's ordering by an init script
+that delays every `visualViewport` listener ~700ms: Chrome then pans first
+(121px), the page moves, and Chrome pans again under the moved field (360px)
+— an engine keeps panning after the event, which is why a single read on the
+event is not enough.
 
 For the real thing, the Android emulator (`Medium_Phone_API_36.1`, started
 with `-no-audio`) has a keyboard. Turn it on over the emulator's hardware one
