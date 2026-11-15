@@ -7,6 +7,7 @@ import { Button } from '@/presentation/components/button'
 import { Main } from '@/presentation/components/main'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { TextField } from '@/presentation/components/text-field'
+import { useLeavingValue } from '@/presentation/components/use-leaving-value'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -28,6 +29,7 @@ const KeyForm: React.FC<{
     reason: 'admin.key.refused' | 'admin.key.unreachable'
   } | null>(null)
   const [isPending, setIsPending] = useState(false)
+  const [admitted, setAdmitted] = useState<string | null>(null)
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -38,7 +40,7 @@ const KeyForm: React.FC<{
     setIsPending(false)
 
     if (rooms.status === 'success') {
-      onAdmitted(draft)
+      setAdmitted(draft)
       return
     }
 
@@ -54,7 +56,16 @@ const KeyForm: React.FC<{
   const isRefused = refusal !== null && refusal.draft === draft
 
   return (
-    <Form className='key-form' onSubmit={submit}>
+    <Form
+      className='key-form'
+      data-leaving={admitted !== null || undefined}
+      onAnimationEnd={(event) => {
+        if (admitted !== null && event.target === event.currentTarget) {
+          onAdmitted(admitted)
+        }
+      }}
+      onSubmit={submit}
+    >
       <TextField
         autoComplete='current-password'
         errorMessage={isRefused ? translate(refusal.reason) : undefined}
@@ -83,6 +94,9 @@ export const AdminPage: React.FC = () => {
   const translate = useTranslate()
   const [adminKey, setAdminKey] = useState<string | null>(null)
   const [view, setView] = useState<AdminView>('rooms')
+  const [shownView, setShownView] = useState<AdminView>('rooms')
+  const admitted = useLeavingValue(adminKey)
+  const isViewLeaving = view !== shownView
 
   const forgetKey = () => {
     setAdminKey(null)
@@ -93,10 +107,14 @@ export const AdminPage: React.FC = () => {
       <DocumentTitle>{translate('admin.title')}</DocumentTitle>
       <meta content='noindex, nofollow' name='robots' />
       <h1>{translate('admin.title')}</h1>
-      {adminKey === null ? (
+      {admitted.drawn === null ? (
         <KeyForm onAdmitted={setAdminKey} />
       ) : (
-        <>
+        <div
+          className='admin-console'
+          data-leaving={admitted.isLeaving || undefined}
+          onAnimationEnd={admitted.onAnimationEnd}
+        >
           <SegmentedControl
             label={translate('admin.views.label')}
             onChange={(next) => {
@@ -108,14 +126,23 @@ export const AdminPage: React.FC = () => {
             ]}
             value={view}
           />
-          <div className='admin-view' key={view}>
-            {view === 'rooms' ? (
-              <LiveRoomsView adminKey={adminKey} onRefused={forgetKey} />
+          <div
+            className='admin-view'
+            data-leaving={isViewLeaving || undefined}
+            key={shownView}
+            onAnimationEnd={(event) => {
+              if (isViewLeaving && event.target === event.currentTarget) {
+                setShownView(view)
+              }
+            }}
+          >
+            {shownView === 'rooms' ? (
+              <LiveRoomsView adminKey={admitted.drawn} onRefused={forgetKey} />
             ) : (
-              <ReportsView adminKey={adminKey} onRefused={forgetKey} />
+              <ReportsView adminKey={admitted.drawn} onRefused={forgetKey} />
             )}
           </div>
-        </>
+        </div>
       )}
     </Main>
   )

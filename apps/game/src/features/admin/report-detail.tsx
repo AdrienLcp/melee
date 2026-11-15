@@ -1,11 +1,13 @@
 import type React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import type { AdminReportResponse } from '@melee/protocol/admin'
 
 import { fetchAdminReport } from '@/infrastructure/api/melee-api'
 import { Button } from '@/presentation/components/button'
+import { ArrowIcon } from '@/presentation/components/icons'
 import { Loader } from '@/presentation/components/loader'
+import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 type Frame = { direction: string; type: string }
@@ -56,9 +58,12 @@ export const ReportDetail: React.FC<{
 }> = ({ adminKey, id, isLeaving, onAnimationEnd, onClose }) => {
   const translate = useTranslate()
   const [report, setReport] = useState<AdminReportResponse | null>(null)
+  const [failedId, setFailedId] = useState<number | null>(null)
+  const section = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const controller = new AbortController()
+    section.current?.scrollIntoView({ block: 'nearest' })
 
     const load = async () => {
       const found = await fetchAdminReport({
@@ -67,8 +72,14 @@ export const ReportDetail: React.FC<{
         signal: controller.signal
       })
 
-      if (!controller.signal.aborted && found.status === 'success') {
+      if (controller.signal.aborted) {
+        return
+      }
+
+      if (found.status === 'success') {
         setReport(found.data)
+      } else if (found.error !== 'aborted') {
+        setFailedId(id)
       }
     }
 
@@ -80,7 +91,9 @@ export const ReportDetail: React.FC<{
   }, [adminKey, id])
 
   const frames = Array.isArray(report?.context.frames)
-    ? report.context.frames.filter(isFrame)
+    ? report.context.frames
+        .filter(isFrame)
+        .map((frame, ordinal) => ({ ...frame, ordinal }))
     : []
   const stack = report === null ? null : stackOf(report.context)
 
@@ -90,14 +103,17 @@ export const ReportDetail: React.FC<{
       className='report-detail'
       data-leaving={isLeaving || undefined}
       onAnimationEnd={onAnimationEnd}
+      ref={section}
     >
       <Button onPress={onClose} size='small' variant='underlined'>
         {translate('admin.detail.close')}
       </Button>
-      {report === null || report.id !== id ? (
+      {failedId === id ? (
+        <p className='admin-empty'>{translate('admin.detail.failed')}</p>
+      ) : report === null || report.id !== id ? (
         <Loader label={translate('admin.detail.context')} />
       ) : (
-        <>
+        <div className='detail-body' key={report.id}>
           <h2 id='report-detail-title'>
             {report.kind}
             <span className='row-tag'>#{report.id}</span>
@@ -125,12 +141,17 @@ export const ReportDetail: React.FC<{
             <p className='admin-empty'>{translate('admin.detail.noFrames')}</p>
           ) : (
             <ol className='detail-frames'>
-              {frames.map((frame, index) => (
-                <li
-                  data-direction={frame.direction}
-                  key={`${index}-${frame.type}`}
-                >
-                  {frame.direction === 'in' ? '←' : '→'} {frame.type}
+              {frames.map((frame) => (
+                <li data-direction={frame.direction} key={frame.ordinal}>
+                  <ArrowIcon aria-hidden />
+                  <VisuallyHidden>
+                    {translate(
+                      frame.direction === 'in'
+                        ? 'admin.detail.received'
+                        : 'admin.detail.sent'
+                    )}
+                  </VisuallyHidden>
+                  {frame.type}
                 </li>
               ))}
             </ol>
@@ -141,7 +162,7 @@ export const ReportDetail: React.FC<{
           ) : (
             <pre className='detail-stack'>{stack}</pre>
           )}
-        </>
+        </div>
       )}
     </section>
   )

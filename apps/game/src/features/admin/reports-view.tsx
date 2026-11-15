@@ -16,16 +16,32 @@ import { fetchAdminReports } from '@/infrastructure/api/melee-api'
 import { nowMs } from '@/infrastructure/clock'
 import { Button } from '@/presentation/components/button'
 import { Loader } from '@/presentation/components/loader'
+import { NoticeCard } from '@/presentation/components/notice-card'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
+import { Select, type SelectOption } from '@/presentation/components/select'
 import { TextField } from '@/presentation/components/text-field'
+import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useLeavingValue } from '@/presentation/components/use-leaving-value'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { AdminSelect } from './admin-select'
-import { receivedAgo } from './admin-time'
+import { timeAgo } from './admin-time'
 import { ReportDetail } from './report-detail'
+import { Unreachable } from './unreachable'
 
 const KINDS = [...clientReportKinds, ...serverReportKinds]
+
+const ANY = '__any'
+
+const optionsOf = (
+  anyLabel: string,
+  values: readonly string[]
+): SelectOption[] => [
+  { id: ANY, label: anyLabel },
+  ...values.map((value) => ({ id: value, label: value }))
+]
+
+const pickedOf = (key: React.Key | null): string | undefined =>
+  key === ANY || key === null ? undefined : String(key)
 
 const WINDOW_MS = {
   day: 86_400_000,
@@ -66,6 +82,7 @@ export const ReportsView: React.FC<{
   const translate = useTranslate()
   const [filters, setFilters] = useState<Filters>({ since: 'week' })
   const [listed, setListed] = useState<Listed | null>(null)
+  const [isUnreachable, setIsUnreachable] = useState(false)
   const [openedId, setOpenedId] = useState<number | null>(null)
   const [listedAt, setListedAt] = useState(0)
   const olderRequest = useRef<AbortController | null>(null)
@@ -88,9 +105,11 @@ export const ReportsView: React.FC<{
 
       if (page.status === 'failure') {
         if (page.error === 'rejected') onRefused()
+        else setIsUnreachable(true)
         return
       }
 
+      setIsUnreachable(false)
       setListedAt(now)
       setListed(page.data)
     }
@@ -130,6 +149,16 @@ export const ReportsView: React.FC<{
     }
   }
 
+  const drawn = useLeavingRows({
+    exitAnimation: 'row-closes',
+    rows: (listed?.reports ?? []).map((report) => ({
+      ...report,
+      id: String(report.id),
+      reportId: report.id
+    }))
+  })
+  const isEmpty = listed !== null && listed.reports.length === 0
+
   const narrow = (change: Partial<Filters>) => {
     setOpenedId(null)
     setFilters({ ...filters, ...change })
@@ -141,19 +170,19 @@ export const ReportsView: React.FC<{
       data-opened={opened.drawn !== null || undefined}
     >
       <div className='report-filters'>
-        <AdminSelect
-          anyLabel={translate('admin.reports.any')}
+        <Select
           label={translate('admin.reports.filters.kind')}
-          onChange={(kind) => narrow({ kind: asKind(kind) })}
-          options={KINDS}
-          value={filters.kind}
+          onSelectionChange={(kind) => narrow({ kind: asKind(pickedOf(kind)) })}
+          options={optionsOf(translate('admin.reports.any'), KINDS)}
+          selectedKey={filters.kind ?? ANY}
         />
-        <AdminSelect
-          anyLabel={translate('admin.reports.any')}
+        <Select
           label={translate('admin.reports.filters.browser')}
-          onChange={(browser) => narrow({ browser: asBrowser(browser) })}
-          options={reportBrowsers}
-          value={filters.browser}
+          onSelectionChange={(browser) =>
+            narrow({ browser: asBrowser(pickedOf(browser)) })
+          }
+          options={optionsOf(translate('admin.reports.any'), reportBrowsers)}
+          selectedKey={filters.browser ?? ANY}
         />
         {(['game', 'build', 'room'] as const).map((field) => (
           <TextField
@@ -178,25 +207,52 @@ export const ReportsView: React.FC<{
       </div>
       <div className='report-list'>
         {listed === null ? (
-          <Loader label={translate('admin.views.reports')} />
-        ) : listed.reports.length === 0 ? (
-          <p className='admin-empty'>{translate('admin.reports.empty')}</p>
+          isUnreachable ? (
+            <Unreachable
+              onRetry={() => {
+                setIsUnreachable(false)
+                setFilters({ ...filters })
+              }}
+            />
+          ) : (
+            <Loader label={translate('admin.views.reports')} />
+          )
         ) : (
           <>
+            <div
+              className='fold'
+              data-open={isEmpty || undefined}
+              inert={!isEmpty}
+            >
+              <div>
+                <NoticeCard
+                  detail={translate('admin.reports.emptyDetail')}
+                  title={translate('admin.reports.empty')}
+                />
+              </div>
+            </div>
             <ul className='admin-rows'>
-              {listed.reports.map((report) => {
-                const ago = receivedAgo({
+              {drawn.rows.map((report) => {
+                const ago = timeAgo({
                   at: report.receivedAt,
                   now: listedAt
                 })
 
                 return (
-                  <li key={report.id}>
+                  <li
+                    className='admin-slot'
+                    data-arriving={report.isArriving || undefined}
+                    data-leaving={report.isLeaving || undefined}
+                    key={report.id}
+                    onAnimationEnd={
+                      report.isLeaving ? drawn.endExitOf(report.id) : undefined
+                    }
+                  >
                     <ToggleButton
                       className='admin-row report-row'
-                      isSelected={report.id === openedId}
+                      isSelected={report.reportId === openedId}
                       onChange={(isOpened) => {
-                        setOpenedId(isOpened ? report.id : null)
+                        setOpenedId(isOpened ? report.reportId : null)
                       }}
                     >
                       <span className='row-title'>

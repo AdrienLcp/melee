@@ -19,12 +19,26 @@ import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 export const EN_DICTIONARY = defineDictionary({
   /** The back office at `/admin`: live rooms and error reports, read by the site's owner alone. */
   admin: {
+    ago: {
+      days: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'day' } }
+      }),
+      hours: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'hour' } }
+      }),
+      minutes: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      })
+    },
     detail: {
       close: 'Back to the list',
       context: 'Context',
+      failed: 'This report could not be loaded.',
       frames: 'Last frames',
       noFrames: 'No frame kept',
       noStack: 'No stack',
+      received: 'Received',
+      sent: 'Sent',
       stack: 'Stack'
     },
     key: {
@@ -35,7 +49,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     reports: {
       any: 'Any',
-      empty: 'No report matches these filters.',
+      empty: 'No report',
+      emptyDetail: 'Widen the window or clear a filter.',
       filters: {
         browser: 'Browser',
         build: 'Build',
@@ -46,17 +61,6 @@ export const EN_DICTIONARY = defineDictionary({
       },
       more: 'Older reports',
       noMessage: 'No message',
-      received: {
-        days: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'day' } }
-        }),
-        hours: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'hour' } }
-        }),
-        minutes: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'minute' } }
-        })
-      },
       windows: {
         day: '24 hours',
         hour: '1 hour',
@@ -66,14 +70,11 @@ export const EN_DICTIONARY = defineDictionary({
     },
     rooms: {
       closed: 'Closed',
-      empty: 'No table is open right now.',
-      moved: defineTranslation('moved {when:relative}', {
-        relative: { when: { numeric: 'auto', unit: 'minute' } }
-      }),
+      empty: 'No table open',
+      emptyDetail: 'This list asks again every ten seconds.',
+      moved: 'moved {when}',
       noGame: 'No game picked',
-      opened: defineTranslation('opened {when:relative}', {
-        relative: { when: { numeric: 'auto', unit: 'minute' } }
-      }),
+      opened: 'opened {when}',
       round: 'Round {n:number}',
       seats: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} seat', other: '{?} seats' } }
@@ -83,6 +84,12 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     title: 'Back office',
+    unreachable: {
+      detail: 'Check the connection, then try again.',
+      retry: 'Try again',
+      retrying: 'Trying again every ten seconds.',
+      title: 'Server unreachable'
+    },
     views: {
       label: 'View',
       reports: 'Reports',

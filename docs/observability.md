@@ -6,7 +6,7 @@ What the deployed game tells us about itself, and where to read it.
 | ----------------- | ------------------------------------------------------ | ------- | --------------------------------------------- |
 | Workers Logs      | every request, and every `logger` line                 | 3 days  | Cloudflare dashboard → Workers → melee → Logs |
 | `reports` (D1)    | each screen's errors, the server's own, reported clips | 30 days | `wrangler d1 execute` (below)                 |
-| `rooms_live` (D1) | one row per open room: game, phase, seats, walls       | 1 day   | written from part 2b on; schema in place      |
+| `rooms_live` (D1) | one row per open room: game, phase, seats, walls       | 1 day   | written by every room as it changes          |
 
 ## Error reports
 
@@ -54,7 +54,32 @@ screen in no room — the address is the limiter's key and is never written.
 Reports are operational, not audience: the analytics opt-out does not stop
 them.
 
-## Reading them
+## The back office: `/admin`
+
+`/admin` on any environment (`https://staging.melee.adrienlcp.com/admin`,
+the production host likewise) asks for the admin key and keeps it in memory
+alone: a reload asks again. The key is the Worker secret `ADMIN_TOKEN`, set on
+`melee` and `melee-staging` with `wrangler secret put`, and its value is the
+password of the Bitwarden item **"Melee admin token"**; a password manager
+fills the field. `pnpm dev` reads a local-only key from
+`apps/server/.dev.vars` (git-ignored). The page calls
+`GET /api/admin/rooms`, `/api/admin/reports` and `/api/admin/reports/:id`
+with `Authorization: Bearer <key>`; anything else — no key, a wrong one, a
+Worker with no secret — answers 404, so the routes cannot be told from absent
+ones. Cloudflare Access would have put an email login in front instead, but it
+is not enabled on the account, so the bearer key stands in.
+
+- **Live tables** lists each `rooms_live` row, refreshed every ten seconds:
+  code, game, phase, round, seats, walls, when it opened and last moved, and a
+  closed room until the daily sweep takes it. A room writes its row on every
+  change of game, phase, round, seats or walls, and at least every five
+  minutes (`LIVE_ROOM_TOUCH_MS`), through `waitUntil` so no frame waits on it.
+- **Reports** lists the reports kept, newest first, filtered by kind,
+  browser, game, build, table code and window; a row opens beside the list on
+  a wide screen, in its place on a narrow one, with every context field, the
+  frame trail and the stack.
+
+## Reading them in SQL
 
 The databases are `melee-observability` (production) and
 `melee-staging-observability` (staging), bound as `OBSERVABILITY`. From

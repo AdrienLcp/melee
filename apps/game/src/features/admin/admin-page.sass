@@ -1,4 +1,5 @@
 // Side-effect module: the back office's page.
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
@@ -12,6 +13,15 @@
     h1
       @include typography.billboard
 
+    .key-form,
+    .admin-console,
+    .admin-view
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+
+      &[data-leaving]
+        animation: page-leave var(--transition-fast, 0s) var(--ease-in) forwards
+        pointer-events: none
+
     .key-form
       align-items: end
       display: flex
@@ -22,8 +32,13 @@
         flex: 1
         min-width: min(100%, 16rem)
 
+    .admin-console
+      display: flex
+      flex-direction: column
+      gap: var(--space-l)
+      min-width: 0
+
     .admin-view
-      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
       display: flex
       flex-direction: column
       gap: var(--space-m)
@@ -34,16 +49,45 @@
 
       color: var(--ink-muted)
 
+    .admin-unreachable
+      align-items: start
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+    .live-rooms
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
+      > .fold
+        @include fold.opens-in-column(var(--space-m), $side: end)
+
     .admin-rows
+      --row-gap-closed: calc(-1 * var(--space-xs))
+
       display: flex
       flex-direction: column
       gap: var(--space-xs)
       list-style: none
 
+    .admin-slot
+      interpolate-size: allow-keywords
+
+      &[data-arriving]
+        animation: row-opens var(--transition-base, 0s) var(--ease-out) backwards, page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5) backwards
+
+      &[data-leaving]
+        --travel-offset: 0 -0.5rem
+
+        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
+        min-block-size: 0rem
+        overflow: clip
+        pointer-events: none
+
     .admin-row
       @include piece.card(var(--radius-m))
 
-      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
       display: grid
       gap: var(--space-2xs) var(--space-s)
       grid-template-columns: auto 1fr
@@ -52,6 +96,8 @@
       width: 100%
 
     .room-row
+      transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+
       &[data-closed]
         background: var(--track-a)
         box-shadow: none
@@ -88,11 +134,12 @@
     .report-row
       cursor: pointer
       grid-template-columns: 1fr
-      transition: translate var(--transition-fast, 0s) var(--ease-out)
+      outline: var(--stroke-bold) solid transparent
+      outline-offset: 2px
+      transition: translate var(--transition-fast, 0s) var(--ease-out), outline-color var(--transition-fast, 0s) var(--ease-out)
 
       &[data-selected]
-        outline: var(--stroke-bold) solid var(--primary)
-        outline-offset: 2px
+        outline-color: var(--primary)
 
       @media (hover: hover) and (pointer: fine)
         &[data-hovered]
@@ -101,26 +148,53 @@
     .reports-view
       display: grid
       gap: var(--space-l)
-      grid-template-areas: 'filters' 'list' 'detail'
+      grid-template-areas: 'filters' 'list'
       min-width: 0
+      position: relative
 
-      // On a narrow screen an opened report takes the list's place; the
-      // filters stay, the list comes back on close.
+      // On a narrow screen an opened report takes the list's place: the list
+      // fades off over it out of the flow, and comes back on close.
       &[data-opened]
         grid-template-areas: 'filters' 'detail'
 
         .report-list
-          display: none
+          --travel-offset: 0 -1rem
 
+          animation: page-leave var(--transition-fast, 0s) var(--ease-in) forwards
+          grid-area: detail
+          inset: 0
+          overflow: clip
+          pointer-events: none
+          position: absolute
+          transition: visibility 0s linear var(--transition-fast, 0s)
+          visibility: hidden
+
+      // Side by side, the detail's column grows out of the list's edge.
       @media (min-width: 60rem)
-        grid-template-areas: 'filters filters' 'list list'
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr)
+        column-gap: 0rem
+        grid-template-areas: 'filters filters' 'list detail'
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0fr)
+        transition: grid-template-columns var(--transition-base, 0s) var(--ease-out), column-gap var(--transition-base, 0s) var(--ease-out)
 
         &[data-opened]
+          column-gap: var(--space-l)
           grid-template-areas: 'filters filters' 'list detail'
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr)
 
           .report-list
-            display: flex
+            animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+            grid-area: list
+            overflow: visible
+            pointer-events: auto
+            position: static
+            transition: none
+            visibility: visible
+
+        .report-detail
+          max-block-size: calc(100dvh - 2 * var(--space-m))
+          overflow-y: auto
+          position: sticky
+          top: var(--space-m)
 
     .report-filters
       align-items: end
@@ -130,18 +204,22 @@
       grid-area: filters
 
       > *
-        flex: 1 1 10rem
+        flex: 1 1 9rem
 
       .segmented-control
         flex-basis: 100%
 
     .report-list
       align-items: start
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
       display: flex
       flex-direction: column
       gap: var(--space-s)
       grid-area: list
       min-width: 0
+
+      > .fold
+        @include fold.opens-in-column(var(--space-s), $side: end)
 
     .report-detail
       @include piece.card
@@ -159,6 +237,11 @@
 
       &[data-leaving]
         animation: page-leave var(--transition-fast, 0s) var(--ease-out) forwards
+
+      .detail-body
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+        display: grid
+        gap: var(--space-s)
 
       h2
         @include typography.title
@@ -204,6 +287,17 @@
       gap: var(--space-2xs)
       list-style: none
 
+      li
+        align-items: center
+        display: flex
+        gap: var(--space-2xs)
+
+      svg
+        flex: none
+
+      [data-direction='in'] svg
+        rotate: 180deg
+
     .detail-stack
       @include typography.code
 
@@ -214,48 +308,3 @@
       padding: var(--space-s)
       white-space: pre-wrap
       word-break: break-word
-
-  .admin-select
-    display: flex
-    flex-direction: column
-    gap: var(--space-2xs)
-
-    .react-aria-Label
-      @include typography.label
-
-  .admin-select-button
-    @include piece.card(var(--radius-s))
-
-    align-items: center
-    cursor: pointer
-    display: flex
-    gap: var(--space-xs)
-    justify-content: space-between
-    min-block-size: 3.25rem
-    padding-inline: var(--space-s)
-
-  .admin-select-popover
-    @include piece.card(var(--radius-s))
-
-    max-height: 20rem
-    min-width: var(--trigger-width)
-    overflow: auto
-    padding: var(--space-2xs)
-
-    &[data-entering]
-      animation: page-enter var(--transition-fast, 0s) var(--ease-out)
-
-    &[data-exiting]
-      animation: page-leave var(--transition-fast, 0s) var(--ease-out) forwards
-
-    .react-aria-ListBoxItem
-      @include typography.body
-
-      border-radius: var(--radius-s)
-      cursor: pointer
-      padding: var(--space-2xs) var(--space-s)
-
-      &[data-focused],
-      &[data-selected]
-        background: var(--card-ticked)
-        color: var(--card-ticked-ink)

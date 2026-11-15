@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Shared]` **A back office at `/admin`.** Behind a key the server checks
+  (any other request there answers 404), it lists the tables open now — game,
+  phase, round, seats, walls — refreshed every ten seconds, each room writing
+  its row as it changes, and the error reports kept, filtered by kind,
+  browser, game, build, table and window, each opened to its whole context,
+  frame trail and stack. Its filters are the design system's new `Select`.
+  `docs/observability.md` says how to log in.
+
 - `[Shared]` **Every screen reports what breaks on it.** An uncaught error, a
   boundary's catch, an unhandled rejection, a frame the server refused, a
   fatal refusal nobody chose and a silent clip are each sent once to

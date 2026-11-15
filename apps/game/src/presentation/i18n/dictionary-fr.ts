@@ -14,12 +14,26 @@ import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 export const FR_DICTIONARY = defineDictionary({
   /** The back office at `/admin`: live rooms and error reports, read by the site's owner alone. */
   admin: {
+    ago: {
+      days: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'day' } }
+      }),
+      hours: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'hour' } }
+      }),
+      minutes: defineTranslation('{when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'minute' } }
+      })
+    },
     detail: {
       close: 'Retour à la liste',
       context: 'Contexte',
+      failed: 'Impossible de charger ce rapport.',
       frames: 'Derniers messages',
       noFrames: 'Aucun message gardé',
       noStack: 'Aucune pile',
+      received: 'Reçu',
+      sent: 'Envoyé',
       stack: 'Pile'
     },
     key: {
@@ -30,7 +44,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     reports: {
       any: 'Tous',
-      empty: 'Aucun rapport pour ces filtres.',
+      empty: 'Aucun rapport',
+      emptyDetail: 'Élargis la période ou retire un filtre.',
       filters: {
         browser: 'Navigateur',
         build: 'Version',
@@ -41,17 +56,6 @@ export const FR_DICTIONARY = defineDictionary({
       },
       more: 'Rapports plus anciens',
       noMessage: 'Aucun message',
-      received: {
-        days: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'day' } }
-        }),
-        hours: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'hour' } }
-        }),
-        minutes: defineTranslation('{when:relative}', {
-          relative: { when: { numeric: 'auto', unit: 'minute' } }
-        })
-      },
       windows: {
         day: '24 heures',
         hour: '1 heure',
@@ -61,14 +65,11 @@ export const FR_DICTIONARY = defineDictionary({
     },
     rooms: {
       closed: 'Fermée',
-      empty: 'Aucune table ouverte en ce moment.',
-      moved: defineTranslation('bougée {when:relative}', {
-        relative: { when: { numeric: 'auto', unit: 'minute' } }
-      }),
+      empty: 'Aucune table ouverte',
+      emptyDetail: 'Cette liste se met à jour toutes les dix secondes.',
+      moved: 'bougée {when}',
       noGame: 'Aucun jeu choisi',
-      opened: defineTranslation('ouverte {when:relative}', {
-        relative: { when: { numeric: 'auto', unit: 'minute' } }
-      }),
+      opened: 'ouverte {when}',
       round: 'Manche {n:number}',
       seats: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} place', other: '{?} places' } }
@@ -78,6 +79,12 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     title: 'Coulisses',
+    unreachable: {
+      detail: 'Vérifie la connexion, puis réessaie.',
+      retry: 'Réessayer',
+      retrying: 'Nouvel essai toutes les dix secondes.',
+      title: 'Serveur injoignable'
+    },
     views: {
       label: 'Vue',
       reports: 'Rapports',
