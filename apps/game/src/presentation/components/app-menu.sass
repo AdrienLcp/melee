@@ -49,7 +49,7 @@
     // It moves aside with the tab bar, at the bar's pace, rather than
     // jumping ahead of it.
     @include layout.off-desk
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         :root:has(.host-desk) &
           transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-in)
 
@@ -60,7 +60,7 @@
     // A screen of four tiles lying down gives the tiles the whole right-hand
     // column, so the menu moves to the start of the chrome over the question.
     // So does a ballot of seats, whose line takes the left.
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       :root:has(.player-page.framed, .host-console-page.framed, .player-page.playing > .player-round.most-likely-round, .host-console-page > .stage.playing[data-most-likely='voting']) &
         align-items: flex-start
         inset-inline: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left))) auto

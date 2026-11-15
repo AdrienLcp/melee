@@ -362,7 +362,7 @@
             transition: opacity var(--transition-fast, 0s) var(--ease-out)
 
   @include layout.off-desk
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       .host-desk
         --panel-bar-foot: var(--panel-bar-height)
 
@@ -383,7 +383,7 @@
     // A keyboard up under a seat's own field leaves an upright console a
     // strip: the bar gives way while the seat types, and comes back with the
     // keyboard going down.
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       .host-desk:has(.stage.playing .answer-form input:focus, .stage.petit-bac-seat input:focus)
         @include layout.shown-height-below(30)
           --panel-bar-foot: 0rem
@@ -394,7 +394,7 @@
           .panel-tabs
             @include fade.stepped-aside(var(--panel-arrival-from), var(--transition-slow, 0s))
 
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       .host-desk
         > #main,
         .panel-screen

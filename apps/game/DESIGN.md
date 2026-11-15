@@ -566,10 +566,18 @@ scroll keeps the field. A field's round is a size container
 and its form another, so what gives way is decided by the box the question
 leaves the form, never by the device: the hint and the count, then the press's
 height, then the press beside the field, then the label into the field. A
-seated console standing upright also lets its tab bar and its reveal press wait
-while its own field is focused. The spec holds the question, the field and the
-press in view at 320×284, 360×320 and 390×422, and again under a 336px
-keyboard laid over a 390×664 page that keeps its height.
+seated console standing upright also lets its tab bar, its reveal press and
+Petit Bac's host stop wait while its own field is focused: at 320×284 the stop
+left the sheet's list 55px, less than the line being typed. That line is
+scrolled back into the list whole, its category with it. A phone resizing
+the page under its keyboard is wider than 13 to 10 at 390×300 and still
+upright, so lying down also asks for `layout.$phone-upright-width` (28rem):
+the ratio alone laid Petit Bac's sheet in two columns of five-letter fields
+and pushed the console's tab bar into a rail beside a 24px field. The spec
+holds the question, the field and the press in view at 320×284, 360×320,
+390×300 and 390×422, with the field focused before the screen shrinks as a
+tap does and after it, and again under a 336px keyboard laid over a 390×664
+page that keeps its height.
 
 An Android app hosting the page in a WebView may resize it (the layout follows,
 as in Chrome) or, targeting Android 15 without handling the keyboard's insets,

@@ -1,5 +1,6 @@
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/framed'
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
@@ -101,7 +102,7 @@
 
       // Under a keyboard there is not a row's height left, and a sliver of
       // pieces is noise: the two presses step through the sheet instead.
-      @media (aspect-ratio < 13 / 10)
+      @media #{layout.$upright}
         @container slate (height < 17rem)
           display: none
 
@@ -351,7 +352,7 @@
       justify-content: stretch
 
       // A keyboard up: the field and its presses keep the screen.
-      @media (aspect-ratio < 13 / 10)
+      @media #{layout.$upright}
         @container slate (height < 24rem)
           display: none
 
@@ -386,7 +387,7 @@
         max-block-size: 40cqh
         overflow-y: auto
 
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @container slate (height < 32rem)
         display: none
 

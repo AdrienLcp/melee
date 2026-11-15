@@ -90,7 +90,8 @@ giving things up in this order, never by scrolling the page:
 3. size, down to `--text-xs` and a 44px press — the send press drops from
    large to the control height, a board (sticks, a map, the picker's square)
    shrinks to a floor of its own before any press leaves the screen;
-4. layout — lying down (`framed.lying-down`, 13/10) the question takes one
+4. layout — lying down (`framed.lying-down`, 13/10 and 28rem wide, so a
+   phone upright under its keyboard stays upright) the question takes one
    side and the answer the other; a list of seats takes the columns its
    height allows (`seatColumns`).
 

@@ -1,4 +1,5 @@
 @use '../../presentation/styles/framed'
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/question-card'
 @use '../../presentation/styles/typography'
 
@@ -37,7 +38,7 @@
 
       // Standing up on a short screen, that is no more than their names: the
       // map's three presses stack down its height.
-      @container choosing (aspect-ratio < 13 / 10) and (height < 45rem)
+      @container choosing #{layout.$upright} and (height < 45rem)
         .answer-tile
           min-height: var(--target)
 

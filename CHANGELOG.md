@@ -463,6 +463,17 @@ one part.
   page it cannot place keeps its full height, where the browser's own scroll
   keeps the field in sight.
 
+- `[Game]` **A phone upright under its keyboard stays upright.** A browser
+  that shrinks the page to what the keyboard leaves hands a 390-wide phone a
+  screen wider than it is tall, and every screen took it for one lying down:
+  Petit Bac's sheet split into two columns of fields three letters wide with
+  its categories broken mid-word, and a seated console moved its tabs into a
+  rail beside a field 24px wide. Lying down now also asks for a screen wider
+  than any phone held upright. On a seated console, Petit Bac's host stop
+  waits with the tab bar while one of the seat's own lines is typed: at the
+  smallest phone it left the sheet's list shorter than the line, which was
+  cut off, and the line now comes back into the list whole with its category.
+
 - `[Game]` **A timeline card lands where it is dropped.** Released between two
   places, a dragged card leapt a whole row past its place and eased back,
   and the card it had passed did the same. It now glides the rest of the way

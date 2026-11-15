@@ -3995,12 +3995,23 @@ for (const screen of ANSWERING_SCREENS) {
   }
 }
 
-/** A phone with its keyboard up: the shape the screen keeps above it. */
+/**
+ * A phone with its keyboard up: the shape the screen keeps above it. At
+ * 390×300 an upright phone is wider than 13 to 10 and still no screen lying
+ * down.
+ */
 const KEYBOARD_UP_VIEWPORTS = [
   [320, 284],
   [360, 320],
+  [390, 300],
   [390, 422]
 ] as const
+
+/**
+ * The narrowest a field is usable at: a population's digits, where a field
+ * squeezed beside a column lying down showed a word's first three letters.
+ */
+const FIELD_MIN_WIDTH_PX = 96
 
 const KEYBOARD_SCREENS = [
   {
@@ -4028,6 +4039,7 @@ const KEYBOARD_SCREENS = [
     field: '.petit-bac-sheet .line:nth-child(8) input',
     inView: [
       '.petit-bac-sheet .letter-piece',
+      '.petit-bac-sheet .line:nth-child(8) label',
       '.petit-bac-sheet .line:nth-child(8) input',
       '.petit-bac-sheet .stop .button'
     ],
@@ -4061,8 +4073,19 @@ const KEYBOARD_SCREENS = [
   }
 ]
 
-const measureKeyboardUp = (inView: string[]) => {
+const measureKeyboardUp = ({
+  fieldMinWidthPx,
+  inView
+}: {
+  fieldMinWidthPx: number
+  inView: string[]
+}) => {
   const root = document.scrollingElement ?? document.documentElement
+  const focused = document.activeElement
+  const fieldWidth =
+    focused instanceof HTMLInputElement
+      ? focused.getBoundingClientRect().width
+      : null
   const outOfView = inView.flatMap((selector) => {
     const pieces = [...document.querySelectorAll(selector)].filter((piece) =>
       piece.checkVisibility({ visibilityProperty: true })
@@ -4124,6 +4147,10 @@ const measureKeyboardUp = (inView: string[]) => {
   })
 
   return {
+    narrowField:
+      fieldWidth === null || fieldWidth >= fieldMinWidthPx
+        ? null
+        : Math.round(fieldWidth),
     outOfView,
     page: Math.max(
       root.scrollHeight - innerHeight,
@@ -4143,46 +4170,69 @@ for (const keyboard of KEYBOARD_SCREENS) {
       continue
     }
 
-    test(`[layout] ${role}, ${screen.name}: with the keyboard up, the question, the field and the send press stay in view`, async ({
-      page
-    }) => {
-      await serveRoom({
-        page,
-        view:
-          seated === null || role === 'player'
-            ? screen.view
-            : seatedOn({
-                currentContent: seated.currentContent,
-                view: screen.view
-              })
-      })
-      await page.addInitScript(() => {
-        localStorage.setItem('melee:locale', 'fr')
-      })
-      await page.setViewportSize({ height: 844, width: 390 })
-      await page.goto(path)
-      await expect(page.locator(keyboard.field).first()).toBeVisible()
+    // A tap focuses the field first and the keyboard comes up after it, so
+    // the screen shrinks under a field already focused; focusing it once the
+    // screen is small lets the browser scroll it into view on the focus.
+    for (const focusesFirst of [false, true]) {
+      const when = focusesFirst
+        ? 'with the keyboard coming up under a field focused first'
+        : 'with the keyboard up'
 
-      const faults: string[] = []
+      test(`[layout] ${role}, ${screen.name}: ${when}, the question, the field and the send press stay in view`, async ({
+        page
+      }) => {
+        await serveRoom({
+          page,
+          view:
+            seated === null || role === 'player'
+              ? screen.view
+              : seatedOn({
+                  currentContent: seated.currentContent,
+                  view: screen.view
+                })
+        })
+        await page.addInitScript(() => {
+          localStorage.setItem('melee:locale', 'fr')
+        })
+        await page.setViewportSize({ height: 844, width: 390 })
+        await page.goto(path)
 
-      for (const [width, height] of KEYBOARD_UP_VIEWPORTS) {
-        await resizeTo({ height, page, width })
-        await page.locator(keyboard.field).first().focus()
+        const field = page.locator(keyboard.field).first()
 
-        const { outOfView, page: scrolled } = await page.evaluate(
-          measureKeyboardUp,
-          keyboard.inView
-        )
+        await expect(field).toBeVisible()
 
-        if (outOfView.length > 0 || scrolled > 0) {
-          faults.push(
-            `${width}×${height} ${JSON.stringify({ outOfView, page: scrolled })}`
-          )
+        const faults: string[] = []
+
+        for (const [width, height] of KEYBOARD_UP_VIEWPORTS) {
+          if (focusesFirst) {
+            await resizeTo({ height: 844, page, width: 390 })
+            await field.blur()
+            await field.focus()
+            await resizeTo({ height, page, width })
+          } else {
+            await resizeTo({ height, page, width })
+            await field.focus()
+          }
+
+          const {
+            narrowField,
+            outOfView,
+            page: scrolled
+          } = await page.evaluate(measureKeyboardUp, {
+            fieldMinWidthPx: FIELD_MIN_WIDTH_PX,
+            inView: keyboard.inView
+          })
+
+          if (outOfView.length > 0 || scrolled > 0 || narrowField !== null) {
+            faults.push(
+              `${width}×${height} ${JSON.stringify({ narrowField, outOfView, page: scrolled })}`
+            )
+          }
         }
-      }
 
-      expect(faults).toEqual([])
-    })
+        expect(faults).toEqual([])
+      })
+    }
   }
 }
 

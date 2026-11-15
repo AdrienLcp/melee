@@ -1,3 +1,4 @@
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
@@ -17,7 +18,7 @@
     &:has(> .judging)
       gap: clamp(var(--space-m), calc(var(--stage-unit) * 3.5), var(--space-xl))
 
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         gap: var(--space-stage-split)
         grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr)
 
@@ -57,7 +58,7 @@
 
   // Upright, the answer and the presses need the height, so the pawn stands
   // beside the name rather than over it.
-  @media (aspect-ratio <= 13 / 10)
+  @media ((aspect-ratio <= 13 / 10) or (width < #{layout.$phone-upright-width}))
     .verdict-panel:has(> .judging) .holder
       column-gap: var(--space-m)
       display: grid
@@ -165,7 +166,7 @@
   .verdict-panel:has(> .matchsticks-prompt) .holder .pawn
     font-size: clamp(3rem, calc(var(--stage-unit) * 13), 9rem)
 
-  @media (aspect-ratio >= 13 / 10)
+  @media #{layout.$lying-down}
     .verdict-panel:has(> .matchsticks-prompt)
       grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr)
 

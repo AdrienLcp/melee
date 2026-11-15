@@ -67,7 +67,7 @@
   // height for the card over the table: the card takes one side and the seats
   // the other, starting under the menu's corner. The header gives its band
   // up, as at a reveal this short.
-  @media (aspect-ratio >= 13 / 10) and (height < 36rem)
+  @media #{layout.$lying-down} and (height < 36rem)
     .host-console-page:has(> .stage.table-lobby)
       > header:not(:has(.sound-offer))
         @include accessibility.visually-hidden

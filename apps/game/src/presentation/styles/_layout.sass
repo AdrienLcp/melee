@@ -6,6 +6,19 @@
 @forward '@adrienlcp/styles/containers'
 @use '@adrienlcp/styles/breakpoints'
 
+/// The widest a phone held upright is drawn. Under its keyboard, a browser
+/// resizing the page to what the keyboard leaves hands an upright phone a
+/// screen wider than 13 to 10 — 390×300 — and no phone lying down is this
+/// narrow, so past the ratio a screen still has to be this wide to lie down.
+$phone-upright-width: 28rem
+
+/// A screen lying down, which takes the question and the answer side by side.
+$lying-down: '(aspect-ratio >= 13 / 10) and (width >= #{$phone-upright-width})'
+
+/// Every screen that is not lying down, an upright phone under its keyboard
+/// included.
+$upright: '((aspect-ratio < 13 / 10) or (width < #{$phone-upright-width}))'
+
 /// Where a front door has room to be a poster: display type down one side and
 /// everything you can act on down the other. Content-driven rather than a device
 /// size — it is the width at which a 72px headline still falls in three or four

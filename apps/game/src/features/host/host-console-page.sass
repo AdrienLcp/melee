@@ -459,7 +459,7 @@
 
       // Upright, the menu then stands in the card's top corner: the sand runs
       // beside it and the words start under it, rather than under the menu.
-      @media (aspect-ratio < 13 / 10)
+      @media #{layout.$upright}
         > .stage.playing > .round-card:first-child
           padding-block-start: calc(var(--control-height) + var(--space-xs))
 
@@ -468,7 +468,7 @@
 
       // Lying down, a card across the whole stage keeps its one row: the sand
       // and the words stop short of the menu beside them.
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         > .stage.playing:is([data-higher-lower], [data-swatch]:not(:has(.workbench))) > .round-card:first-child
           padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
 
@@ -491,7 +491,7 @@
     // A keyboard up under the seat's own field, on a console standing
     // upright: the press that gives the answer away waits with the tab bar
     // (`host-panel.sass`), and both come back with the keyboard going down.
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       &:has(> .stage.playing .answer-form input:focus)
         @include layout.shown-height-below(30)
           grid-template-rows: minmax(0, 1fr)
@@ -501,7 +501,7 @@
 
     // One row above the split, and on any screen lying down: the press that
     // gives the answer away, and whatever stands beside it.
-    @media (width >= layout.$wide-screen), (aspect-ratio >= 13 / 10)
+    @media (width >= layout.$wide-screen), #{layout.$lying-down}
       > footer
         column-gap: var(--space-l)
         flex-flow: row wrap
@@ -647,7 +647,7 @@
   // cut every team's name short. A board of seats keeps its column, which it
   // needs the height of.
   .host-console-page:has(> .stage.revealed > .standings > .team-roster)
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @include layout.wide
         > .stage.revealed
           display: flex
@@ -693,7 +693,7 @@
   // screen left empty. Not on the podium's card, whose height is fixed: a
   // map sized off its width ran the outcome out of it.
   .host-console-page:not(.podium-round):has(> .stage.revealed > .reveal-panel[data-game='atlas'])
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @include layout.wide
         > .stage.revealed
           display: flex
@@ -742,7 +742,7 @@
       // The corner the menu keeps once the header that held it beside the
       // round's index has gone. The final board keeps its header upright:
       // its winner's name wants the whole width, and the board has the room.
-      @media (height < 36rem) and (aspect-ratio < 13 / 10)
+      @media (height < 36rem) and #{layout.$upright}
         &:not(:has(> .stage.finished))
           grid-template-areas: 'track' 'stage' 'footer'
           grid-template-rows: auto minmax(0, 1fr) auto
@@ -753,7 +753,7 @@
           > .score-track
             margin-inline-end: var(--menu-inset)
 
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         &:not(.wall-page)
           grid-template-areas: 'header header' 'track track' 'stage footer'
           grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr)
@@ -892,7 +892,7 @@
 
       // Lying down the sheet lays its own column beside the list, so the
       // host's presses go under the stage rather than take a third.
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         grid-template-areas: 'header' 'track' 'stage' 'footer'
         grid-template-columns: minmax(0, 1fr)
         grid-template-rows: auto auto minmax(0, 1fr) auto
@@ -911,9 +911,21 @@
 
       // Upright, the menu stands in the sheet's top corner once the header
       // has gone: the clock runs beside it, level with the letter.
-      @media (height < 36rem) and (aspect-ratio < 13 / 10)
+      @media (height < 36rem) and #{layout.$upright}
         > .stage.petit-bac-seat .answer-sheet > .head
           padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+      // A keyboard up under one of the seat's lines, upright: the host's own
+      // stop waits with the tab bar (`host-panel.sass`), or the list kept
+      // less than the line being typed. Both come back with the keyboard.
+      @media #{layout.$upright}
+        &:has(> .stage.petit-bac-seat input:focus)
+          @include layout.shown-height-below(30)
+            grid-template-areas: 'track' 'stage'
+            grid-template-rows: auto minmax(0, 1fr)
+
+            > footer
+              display: none
 
   // The stages with one idea on them keep their presses under it, lying down
   // too: a column beside the floor's pawn would hold one quiet press.
@@ -943,7 +955,7 @@
 
         // Lying down the presses stand at the end of the line, under the
         // menu, and the stage keeps the whole height.
-        @media (aspect-ratio >= 13 / 10)
+        @media #{layout.$lying-down}
           grid-template: 'stage footer' minmax(0, 1fr) / minmax(0, 1fr) auto
 
           > .stage

@@ -320,7 +320,7 @@
     // Lying down, a table past twelve seats is read in two columns over an
     // even split: one column of twenty-four rows on a 720p wall is drawn
     // under the text floor.
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)),
       &.host-console-page > .stage.finished > .final-board:has(> .standings > .scoreboard > li:nth-child(13))
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
@@ -338,7 +338,7 @@
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a
     // ledger beside the answer.
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       &.host-console-page:has(> .stage.revealed > .standings > .track-podium) > .stage.revealed
         grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
 
@@ -347,7 +347,7 @@
     // phone lying down as the room's screen left the right half of the board
     // empty beside a track that scrolled sideways. Evenly, because each row is
     // capped by its column's width long before the height binds.
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       @include layout.narrow
         // The header and the stage alone: the console's rows for a track and
         // presses the wall never draws cost two gaps of the board's height.
@@ -425,7 +425,7 @@
     // A square wall has the height for neither the answer nor a table of
     // teams once they are stacked, and a column of trays fits beside it: a
     // second row of trays pushed the panel's chips over the answer.
-    @media (1 <= aspect-ratio < 13 / 10)
+    @media (1 <= aspect-ratio) and #{layout.$upright}
       @include layout.wide
         &.host-console-page:has(> .stage.revealed > .standings > .team-roster) > .stage.revealed
           display: grid
@@ -559,7 +559,7 @@
 
           font-size: var(--text-em-xl)
 
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @include layout.narrow
         &:has(> .stage.revealed > .standings) > .stage.revealed
           justify-content: center

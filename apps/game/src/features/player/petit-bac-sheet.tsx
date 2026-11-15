@@ -39,7 +39,8 @@ import './petit-bac-sheet.sass'
 
 /**
  * The list scrolls inside its card, and a keyboard coming up shrinks that box
- * under the line being typed: the line is brought back into it each time.
+ * under the line being typed: the line, its category with it, is brought back
+ * into it each time.
  */
 const keepFocusedLineInView = (list: HTMLOListElement | null) => {
   if (list === null) {
@@ -50,7 +51,9 @@ const keepFocusedLineInView = (list: HTMLOListElement | null) => {
     const typed = document.activeElement
 
     if (typed instanceof HTMLElement && list.contains(typed)) {
-      typed.scrollIntoView({ block: 'nearest' })
+      const line = typed.closest('li') ?? typed
+
+      line.scrollIntoView({ block: 'nearest' })
     }
   })
 

@@ -257,7 +257,7 @@
     &:has(> .black-square-answer)
       container: black-square-round / size
 
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @container black-square-round (height < 16rem)
         .round-card .black-square-theme
           font-size: var(--text-s)
@@ -678,7 +678,7 @@
           line-clamp: 2
 
     @include layout.narrow
-      @media (aspect-ratio >= 13 / 10)
+      @media #{layout.$lying-down}
         @include round-beside-standings
 
       @media (height < 50rem)

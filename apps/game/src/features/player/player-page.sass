@@ -71,7 +71,7 @@
   // seats the other and the whole height, and the menu moves to the chrome's
   // start, as on a framed round.
   .player-page.playing:has(> .player-round.most-likely-round)
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       column-gap: var(--space-m)
       grid-template: 'chrome seats' auto 'card seats' minmax(0, 1fr) / minmax(10rem, 0.45fr) minmax(0, 1fr)
 
@@ -93,7 +93,7 @@
   // the sheet's head stands beside the menu in their place, and the list
   // keeps a line to type on between the letter and the press.
   .player-page.playing:has(> .player-round.petit-bac-round)
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @include layout.shown-height-below(30)
         grid-template-rows: minmax(0, 1fr)
 

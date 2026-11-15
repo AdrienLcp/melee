@@ -4,16 +4,17 @@
 @use 'question-card'
 @use 'typography'
 
-/// Lying down: wider than 13 to 10. A page of its own reads the window; a page
+/// Lying down: wider than 13 to 10, and wider than a phone held upright
+/// (`layout.$lying-down`). A page of its own reads the window; a page
 /// set inside a box declared `container: framed-box / size` — the round on the
 /// host's podium — reads that box, because there a laptop lying down holds a
 /// card standing up.
 @mixin lying-down
-  @media (aspect-ratio >= 13 / 10)
+  @media #{layout.$lying-down}
     &:not(.framed-box *)
       @content
 
-  @container framed-box (aspect-ratio >= 13 / 10)
+  @container framed-box #{layout.$lying-down}
     @content
 
 /// A screen held to the viewport: the page does not scroll, the type fits the
@@ -103,7 +104,7 @@
 
     // And the menu has moved to the line's start, over the question — on a
     // page of its own only, since a boxed page's menu stays in its bar.
-    @media (aspect-ratio >= 13 / 10)
+    @media #{layout.$lying-down}
       &:not(.framed-box *)
         padding-inline: calc(var(--menu-width, 3.5rem) + var(--space-xs)) 0
 

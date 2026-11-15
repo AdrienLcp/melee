@@ -285,7 +285,7 @@
   // A keyboard up leaves an upright screen a strip: the press keeps its
   // place under the card at a control's height rather than a stop's.
   .petit-bac-sheet
-    @media (aspect-ratio < 13 / 10)
+    @media #{layout.$upright}
       @include layout.shown-height-below(30)
         .stop .button,
         .stop-banner
