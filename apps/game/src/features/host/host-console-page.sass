@@ -46,6 +46,12 @@
         // number beside the room's code.
         text-wrap: balance
 
+        // A new round's number fades in over the last where it stands. The
+        // piece itself stays: reopened from no height, it lifted the stage
+        // under the header and dropped the countdown arriving on it.
+        > span
+          animation: swap-in var(--transition-base, 0s) var(--ease-out)
+
       // It holds the end of the line whether or not the round index is there to
       // push it. `space-between` hands a lone child the *start*, and at
       // `finished` the index is gone — so the way in would cross the screen at
@@ -363,11 +369,12 @@
 
         // Beside the presses, widening into the centred row: folded by its
         // height, it came in at its whole width and threw them sideways.
+        // Closed, it gives its height back too: left a badge tall, it folded
+        // that height away under the next stage and pushed the countdown.
         > .refusal-note
-          @include fold.opens-in-line(var(--space-l), $side: end)
+          @include fold.opens-in-line(var(--space-l), $side: end, $gives-back-height: true)
 
           align-self: center
-          grid-template-rows: 1fr
           margin-block-start: 0
 
           // The reset's own `text-wrap` refuses the line the fold holds.

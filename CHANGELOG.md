@@ -472,6 +472,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The countdown lands where it stays.** On a console wide enough
+  to sit its presses under the round, the countdown _Next round_ opens slid
+  down 13px in its first third of a second — 28px beside a wall — because
+  the round's number in the header reopened from no height and a folded
+  refusal note handed back the height the reveal's footer had left it. The
+  number now fades in over the last where it stands, the folded note holds
+  no height, and a guard (`e2e/countdown-stays.spec.ts`) holds the token to
+  one pixel from its first frame to its second tick.
+
 - `[Game]` **A keyboard up no longer slides the round under the menu.** With
   a phone's keyboard open, Petit Bac's sheet ran its card on under the corner
   menu, the clock squeezed into what the menu left, and a seated console's

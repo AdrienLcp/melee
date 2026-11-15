@@ -30,6 +30,8 @@ export const hostConsole = (page: Page) => ({
   buzzerMode: page.getByText(/^First to buzz/),
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
+  /** The reveal's press that counts the next round in. */
+  nextRound: page.getByRole('button', { exact: true, name: 'Next round' }),
   /**
    * On the podium, the card under the reveal naming the round that comes next
    * and holding the press that opens it.

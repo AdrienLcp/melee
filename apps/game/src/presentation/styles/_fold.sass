@@ -67,47 +67,62 @@ $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
     overflow: clip
     overflow-clip-margin: focus.$ring-reach
 
-@mixin -line-closed($gap, $side)
+@mixin -line-closed($gap, $side, $gives-back-height)
   grid-template-columns: 0fr
   margin-inline-#{$side}: calc(-1 * #{$gap})
   opacity: 0
-  transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-#{$side} $-closes $-after-the-room
 
-@mixin -line-open($side)
+  @if $gives-back-height
+    grid-template-rows: 0fr
+    transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-#{$side} $-closes $-after-the-room, grid-template-rows 0s linear calc(var(--transition-base, 0s) + #{$-after-the-room})
+  @else
+    transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-#{$side} $-closes $-after-the-room
+
+@mixin -line-open($side, $gives-back-height)
   grid-template-columns: 1fr
   margin-inline-#{$side}: 0
   opacity: 1
   transition: grid-template-columns $-opens, margin-inline-#{$side} $-opens, opacity $-opens $-after-the-room
+
+  @if $gives-back-height
+    grid-template-rows: 1fr
 
 /// A word of a line that a state shows and hides — a reading after a status,
 /// a label beside an icon — kept mounted and opened by `$open`, or open
 /// unless `$closed`. It widens to its text, then fades in, and fades before
 /// it narrows. Closed it sits at no width, and its negative margin eats the
 /// line's `$gap` on its `$side`, so the line closes up: `end` for a word first
-/// in its line.
+/// in its line. `$gives-back-height` is for a word that sits in a column once
+/// its line is laid out another way: closed, it takes no height either,
+/// handed back at once when it opens and only once it has narrowed and faded
+/// when it closes, so the line never sees the height move.
 ///
 /// One grid column going `0fr → 1fr`, because a word's width is not a length
 /// a transition can reach. The child is clipped across only and held on one
 /// line, or the text wraps as its room narrows. Folded, the word is still read:
 /// it only stops being drawn. Under reduced motion it is shown or gone at once.
-@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null, $side: start)
+@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null, $side: start, $gives-back-height: false)
   display: inline-grid
 
   @if $closed
-    @include -line-open($side)
+    @include -line-open($side, $gives-back-height)
 
     #{$closed}
-      @include -line-closed($gap, $side)
+      @include -line-closed($gap, $side, $gives-back-height)
   @else
-    @include -line-closed($gap, $side)
+    @include -line-closed($gap, $side, $gives-back-height)
 
     #{$open}
-      @include -line-open($side)
+      @include -line-open($side, $gives-back-height)
 
   > *
     min-inline-size: 0
     overflow-x: clip
     white-space: nowrap
+
+    @if $gives-back-height
+      min-block-size: 0
+      overflow-y: clip
 
 @mixin -row-closed($rows-before, $rows-after, $content)
   gap: 0rem

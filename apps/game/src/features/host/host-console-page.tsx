@@ -757,8 +757,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       <ArrivalNotice arrival={arrival} />
       <LeavesInPlace value={roundIndex}>
         {(index) => (
-          <p className='round-index' key={index}>
-            {index}
+          <p className='round-index'>
+            <span key={index}>{index}</span>
           </p>
         )}
       </LeavesInPlace>

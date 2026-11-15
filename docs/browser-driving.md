@@ -762,6 +762,16 @@ What this found, each invisible in any still:
   painted top on every frame from the `touchend`: 398 → 452 → 365px before,
   398 → 387 → 365px in a glide after.
 
+- **A token centred in a box that is still moving**: the countdown sits in
+  the middle of what the console's header and footer leave it, so it slid
+  13px as it landed though nothing on it moved. A per-frame probe of the
+  token's top beside the header's and footer's boxes named both pushes: the
+  round's number re-keyed, its piece reopening from no height, and a folded
+  refusal note still holding the reveal's badge height and folding it away
+  under the next stage. `getBoundingClientRect` on the live elements reads
+  the new view a view transition draws, so the probe is right even inside
+  the swap.
+
 A change that happens at a moment the action cannot time — a round flipping to
 its reveal, a countdown ending — is filmed by marking it: have the action wait
 for it (a `MutationObserver` storing `performance.now()` on `window`), then set
