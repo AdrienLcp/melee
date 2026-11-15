@@ -9,6 +9,7 @@ import type {
   HealthResponse,
   OpenWallPairingResponse,
   RoomExistsResponse,
+  SoundCheckResponse,
   TrackListResponse,
   WallPairingPollResponse
 } from '@melee/protocol/http'
@@ -18,6 +19,7 @@ import {
   pairWallRequestSchema,
   playlistPreviewQuerySchema,
   REPORT_BODY_MAX_BYTES,
+  soundCheckResponseSchema,
   trackSearchQuerySchema,
   wallPairingCodeSchema,
   wallPairingPollQuerySchema
@@ -38,7 +40,10 @@ import {
 } from '@/infrastructure/http/rate-limit'
 import { logger } from '@/infrastructure/logging/logger'
 import { answerMcp } from '@/infrastructure/mcp/mcp-endpoint'
-import { fetchTracksFor } from '@/infrastructure/music/deezer-client'
+import {
+  fetchHostTrack,
+  fetchTracksFor
+} from '@/infrastructure/music/deezer-client'
 import {
   type CataloguePool,
   isOutage,
@@ -113,13 +118,24 @@ const parsedJson = (text: string): unknown => {
   }
 }
 
+/**
+ * Daft Punk's _Harder, Better, Faster, Stronger_: on Deezer since its first
+ * day, ranked near the top for twenty years, and recognised in the first bar.
+ */
+export const SOUND_CHECK_TRACK_ID = '3135556'
+
+const soundCheckUnavailable: ApiErrorResponse = {
+  code: 'music_source_unavailable',
+  message: 'The music catalogue is unavailable right now'
+}
+
 const pairingNotFound: ApiErrorResponse = {
   code: 'pairing_not_found',
   message: 'That screen code has expired or was never shown'
 }
 
 /**
- * Fourteen routes, and none of them play a game — creating a room, checking one
+ * Fifteen routes, and none of them play a game — creating a room, checking one
  * exists, browsing the catalogue, keeping a screen's error report, reading
  * those reports back on `/admin`. Everything
  * that happens while people are playing is a WebSocket frame.
@@ -128,6 +144,7 @@ export const registerHttpRoutes = ({
   adminToken,
   app,
   limitRoomCreation,
+  limitSoundChecks,
   reportLimiter,
   reports,
   rooms,
@@ -138,6 +155,8 @@ export const registerHttpRoutes = ({
   app: Hono
   /** Each runtime counts by its own means: one process's memory, or the platform's binding. */
   limitRoomCreation: MiddlewareHandler
+  /** Counted per address, like room creation: each check is a Deezer request. */
+  limitSoundChecks: MiddlewareHandler
   /** Counted per room, or per address for a screen in none — see `reportLimitKey`. */
   reportLimiter: RateLimiter
   reports: ReportStore
@@ -332,6 +351,41 @@ export const registerHttpRoutes = ({
       return context.body(null, 204)
     }
   )
+
+  app.get(API_ROUTES.soundCheck, limitSoundChecks, async (context) => {
+    const sample = await fetchHostTrack(
+      SOUND_CHECK_TRACK_ID,
+      context.req.raw.signal
+    )
+
+    if (sample.status === 'failure') {
+      const log = isOutage(sample.error.faults) ? logger.error : logger.warn
+
+      log('Could not resolve the sound check sample', {
+        faults: sample.error.faults,
+        path: context.req.path
+      })
+
+      return context.json(soundCheckUnavailable, 502)
+    }
+
+    const body = soundCheckResponseSchema.safeParse({
+      previewUrl: sample.data.previewUrl
+    })
+
+    if (!body.success) {
+      logger.error('The sound check sample is served from an unknown host', {
+        path: context.req.path,
+        previewUrl: sample.data.previewUrl
+      })
+
+      return context.json(soundCheckUnavailable, 502)
+    }
+
+    const answered: SoundCheckResponse = body.data
+
+    return context.json(answered)
+  })
 
   app.get(
     API_ROUTES.trackSearch,

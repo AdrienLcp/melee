@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Shared]` **Test the sound before the first round.** In the lobby, the
+  console's menu offers _Test the sound_ under the room volume: five seconds
+  of a well-known track, played at the room volume on whichever screen is the
+  speaker — the console itself, or the room's screen when a wall sounds — and
+  stopped from the same press. A notice says how it went on the console, and
+  on the wall too: the sound comes through, the browser refused it (with
+  _Start the sound_ to play it again), or the music server is blocked, naming
+  the usual culprits. The sample is resolved fresh at `GET /api/sound-check`,
+  limited to ten a minute per address, so its signed link never goes stale.
+
 - `[Game]` **A fault with the music is said where the room sees it.** Every
   screen has one place for notices, under the menu's row and over the page,
   each arriving and leaving with its room opening and closing. A clip the

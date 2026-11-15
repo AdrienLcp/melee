@@ -108,6 +108,13 @@ export type RoomActions = {
   scoredTeams: readonly Team[]
   /** Sets `roomVolume` for the whole room. The host console's alone. */
   setRoomVolume: ((volume: number) => void) | null
+  /**
+   * Plays a short sample on the room's speaker, or stops the one running.
+   * The console's alone, and only in the lobby.
+   */
+  testSound: (() => void) | null
+  /** Whether a sample `testSound` started is still running. */
+  isTestingSound: boolean
   /** What the room calls this screen right now. `null` where no seat is held. */
   seatNickname: string | null
   /** The board's last case, so *Points* reads a team's pawn rather than its score. */
@@ -123,6 +130,7 @@ const NO_ACTIONS: RoomActions = {
   endGame: null,
   handOver: null,
   invitation: null,
+  isTestingSound: false,
   leaveSeat: null,
   pauseRound: null,
   pawnRoom: null,
@@ -136,6 +144,7 @@ const NO_ACTIONS: RoomActions = {
   scoredTeams: NOBODY,
   seatNickname: null,
   setRoomVolume: null,
+  testSound: null,
   trackLength: null
 }
 
@@ -224,6 +233,8 @@ export const useReportRoomActions = ({
   scoredTeams,
   seatNickname,
   setRoomVolume,
+  testSound,
+  isTestingSound,
   trackLength
 }: RoomActions) => {
   const { report } = useChannel()
@@ -238,6 +249,7 @@ export const useReportRoomActions = ({
       endGame,
       handOver,
       invitation,
+      isTestingSound,
       leaveSeat,
       pauseRound,
       pawnRoom: keptPawnRoom,
@@ -251,6 +263,7 @@ export const useReportRoomActions = ({
       scoredTeams: keptScoredTeams,
       seatNickname,
       setRoomVolume,
+      testSound,
       trackLength
     })
 
@@ -277,6 +290,8 @@ export const useReportRoomActions = ({
     keptScoredTeams,
     seatNickname,
     setRoomVolume,
+    testSound,
+    isTestingSound,
     trackLength
   ])
 }

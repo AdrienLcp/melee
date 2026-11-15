@@ -53,7 +53,7 @@ export const newRoom = ({
     presenceAnnouncedUntil: now,
     round: null,
     settings: roomSettingsFor({ games, locale }),
-    sound: { silentClip: null, speaker: null, volume: null },
+    sound: { silentClip: null, soundCheck: null, speaker: null, volume: null },
     teams: [],
     trackHistory: NOTHING_HEARD,
     trackPool: []

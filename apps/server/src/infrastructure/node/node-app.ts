@@ -6,7 +6,10 @@ import { ROOM_SOCKET_ROUTE } from '@melee/protocol/routes'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 
 import { createHttpApp } from '@/infrastructure/http/http-app'
-import { limitRoomCreationWith } from '@/infrastructure/http/rate-limit'
+import {
+  limitRoomCreationWith,
+  limitSoundChecksWith
+} from '@/infrastructure/http/rate-limit'
 import { registerHttpRoutes } from '@/infrastructure/http/routes'
 import { createRoomSocketEvents } from '@/infrastructure/messaging/socket-handler'
 import { inProcessRateLimiter } from '@/infrastructure/node/in-process-rate-limit'
@@ -20,6 +23,9 @@ import { keepServerReportsIn } from '@/infrastructure/reports/server-reports'
 
 /** What `http-routes.test.ts` spends to the last room before it is refused. */
 export const ROOMS_BEFORE_RATE_LIMIT = 30
+
+/** What `http-routes.test.ts` spends from one address before the next check is refused. */
+export const SOUND_CHECKS_BEFORE_RATE_LIMIT = 10
 
 /** What `error-reports.test.ts` spends from one room before the next is refused. */
 export const REPORTS_BEFORE_RATE_LIMIT = 20
@@ -58,6 +64,9 @@ export const createApp = ({
     app,
     limitRoomCreation: limitRoomCreationWith(
       inProcessRateLimiter(ROOMS_BEFORE_RATE_LIMIT)
+    ),
+    limitSoundChecks: limitSoundChecksWith(
+      inProcessRateLimiter(SOUND_CHECKS_BEFORE_RATE_LIMIT)
     ),
     reportLimiter: inProcessRateLimiter(REPORTS_BEFORE_RATE_LIMIT),
     reports,

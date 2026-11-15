@@ -215,9 +215,13 @@ const withoutRepeats = (tracks: CatalogueTrack[]): CatalogueTrack[] => [
  * played later would hand the host dead links.
  */
 export const fetchHostTrack = async (
-  trackId: string
+  trackId: string,
+  signal?: AbortSignal
 ): Promise<Result<HostTrack, MusicSourceFailure>> => {
-  const body = await requestJson(`/track/${encodeURIComponent(trackId)}`)
+  const body = await requestJson(
+    `/track/${encodeURIComponent(trackId)}`,
+    signal
+  )
 
   if (body.status === 'failure') {
     return body

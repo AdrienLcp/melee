@@ -1914,7 +1914,28 @@ export const EN_DICTIONARY = defineDictionary({
     title: 'Nobody here'
   },
   notice: {
-    dismiss: 'Dismiss'
+    dismiss: 'Dismiss',
+    /** What a sound check found, on the screen that played it or, `onWall`, on the console. */
+    soundCheck: {
+      blocked: 'The browser refused the sound here.',
+      catalogue: 'The music catalogue is not answering. Try again in a moment.',
+      heard: 'The sound comes through here.',
+      onWall: {
+        blocked:
+          'The room’s screen stays silent until someone presses Start the sound on it.',
+        heard: 'The sound comes through the room’s screen.',
+        stalled:
+          'The music stays stuck loading on the room’s screen. Check that screen’s connection.',
+        unreachable:
+          'The room’s screen cannot load the music. An ad blocker, the browser’s tracking protection or a network filter often blocks it: allow this site on that screen.'
+      },
+      stalled:
+        'The music stays stuck loading here. Check this screen’s connection.',
+      start: 'Start the sound',
+      tooMany: 'That is a lot of tests. Wait a minute and try again.',
+      unreachable:
+        'The music does not load here. An ad blocker, the browser’s tracking protection or a network filter often blocks it: allow this site.'
+    }
   },
   pawn: {
     /** Under the pieces while a round plays, which is when the server refuses a change. */
@@ -2157,6 +2178,10 @@ export const EN_DICTIONARY = defineDictionary({
   },
   preferences: {
     language: 'Language',
+    soundCheck: {
+      press: 'Test the sound',
+      stop: 'Stop the sample'
+    },
     theme: {
       dark: 'Dark',
       label: 'Theme',

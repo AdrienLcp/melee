@@ -15,7 +15,7 @@ import {
   playerServerMessageSchema,
   wallServerMessageSchema
 } from './server-message'
-import { clipFaultSchema } from './sound'
+import { clipFaultSchema, soundCheckUrlSchema } from './sound'
 import { trackDifficultySchema, trackIdentitySchema } from './track'
 
 /**
@@ -139,6 +139,15 @@ export const playlistPreviewQuerySchema = z.object({
 })
 
 /** Shared by every route that answers "what would the pool hold?", not just the search. */
+/**
+ * A sample the console plays to check the room hears it: a preview resolved
+ * as it is asked for, because Deezer signs each with an expiry and a cached
+ * one would be a dead link the next evening.
+ */
+export const soundCheckResponseSchema = z.object({
+  previewUrl: soundCheckUrlSchema
+})
+
 export const trackListResponseSchema = z.object({
   tracks: z.array(catalogueTrackSchema)
 })
@@ -336,6 +345,7 @@ export type WallPairingPollResponse = z.infer<
 >
 export type PairWallRequest = z.infer<typeof pairWallRequestSchema>
 export type CatalogueTrack = z.infer<typeof catalogueTrackSchema>
+export type SoundCheckResponse = z.infer<typeof soundCheckResponseSchema>
 export type TrackListResponse = z.infer<typeof trackListResponseSchema>
 export type HealthResponse = z.infer<typeof healthResponseSchema>
 export type ApiErrorResponse = z.infer<typeof apiErrorResponseSchema>

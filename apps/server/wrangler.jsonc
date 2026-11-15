@@ -68,6 +68,11 @@
           "name": "REPORT_LIMITER",
           "namespace_id": "1004",
           "simple": { "limit": 20, "period": 60 }
+        },
+        {
+          "name": "SOUND_CHECK_LIMITER",
+          "namespace_id": "1006",
+          "simple": { "limit": 10, "period": 60 }
         }
       ],
       "routes": [
@@ -96,6 +101,12 @@
       "name": "REPORT_LIMITER",
       "namespace_id": "1003",
       "simple": { "limit": 20, "period": 60 }
+    },
+    // Ten sound checks a minute from one address: each is a Deezer request.
+    {
+      "name": "SOUND_CHECK_LIMITER",
+      "namespace_id": "1005",
+      "simple": { "limit": 10, "period": 60 }
     }
   ],
   // Declared here so a deploy keeps the custom domain attached rather than

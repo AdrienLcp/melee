@@ -48,7 +48,9 @@ import {
   InstallIcon,
   ReloadIcon,
   ScreenIcon,
-  ShareIcon
+  ShareIcon,
+  SoundIcon,
+  StopIcon
 } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
@@ -325,8 +327,14 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
   const { preference, setPreference } = useThemePreference(themeStore)
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
-  const { pauseRound, revealRound, roomVolume, setRoomVolume } =
-    useRoomActions()
+  const {
+    isTestingSound,
+    pauseRound,
+    revealRound,
+    roomVolume,
+    setRoomVolume,
+    testSound
+  } = useRoomActions()
   const isOnAssistant = useIsCurrentPath(assistantPathFor(locale))
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
@@ -394,6 +402,31 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
               value={roomVolume}
             />
           )}
+
+          {/* Beside the level it checks; the outcome is a notice, so the
+                  menu closes on a start to let it be read. */}
+          <HeldPress isOpen={testSound !== null}>
+            <Button
+              className='sound-check-press'
+              isDisabled={connection?.status !== 'open'}
+              onPress={() => {
+                testSound?.()
+
+                if (!isTestingSound) {
+                  close()
+                }
+              }}
+              size='small'
+              variant='outlined'
+            >
+              {isTestingSound ? <StopIcon /> : <SoundIcon />}
+              {translate(
+                isTestingSound
+                  ? 'preferences.soundCheck.stop'
+                  : 'preferences.soundCheck.press'
+              )}
+            </Button>
+          </HeldPress>
 
           {seatRows}
 

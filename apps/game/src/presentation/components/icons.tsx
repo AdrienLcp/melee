@@ -59,6 +59,7 @@ import {
   Shuffle,
   SlidersHorizontal,
   SpellCheck,
+  Square,
   SquarePlus,
   Star,
   TriangleAlert,
@@ -155,6 +156,7 @@ export const ScreenIcon = inFamily(Tv)
 export const SoundIcon = inFamily(Volume2)
 export const StageIcon = inFamily(MonitorPlay)
 export const StarIcon = inFamily(Star)
+export const StopIcon = inFamily(Square)
 export const StartIcon = inFamily(House)
 export const TableIcon = inFamily(PanelsTopLeft)
 export const ShareIcon = inFamily(Share)

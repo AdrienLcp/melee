@@ -130,7 +130,7 @@ import {
   unseat,
   unseatConsolesThatMustJudge
 } from './host-judging'
-import { sendError, sendPong, sendWelcome } from './outbound'
+import { sendError, sendPong, sendToWall, sendWelcome } from './outbound'
 import { isHostConnected, isSeatConnected, wallsOf } from './room-connections'
 import {
   closeRoomEngine,
@@ -937,6 +937,33 @@ const dispatch = ({
       reportClip({ active, engine, message })
       break
     }
+    case 'host.testSound': {
+      testSound({ engine, outbound, url: message.url })
+      break
+    }
+    case 'host.stopSoundTest': {
+      const speaking = wallsOf(engine).find((wall) => wall.isSpeaker)
+
+      if (speaking !== undefined) {
+        sendToWall(speaking, { type: 'wall.stopSoundTest' })
+      }
+      break
+    }
+    case 'speaker.reportSoundCheck': {
+      const isAwaited =
+        active.role === 'wall' &&
+        active.isSpeaker &&
+        engine.soundCheckSent === message.checkId
+
+      if (isAwaited) {
+        room.sound.soundCheck = {
+          checkId: message.checkId,
+          outcome: message.outcome
+        }
+        publishRoom(engine)
+      }
+      break
+    }
     case 'host.setVolume': {
       room.sound.volume = message.volume
       touch(room, now)
@@ -1658,6 +1685,41 @@ const reportClip = ({
           wallId: active.role === 'wall' ? active.sessionId : null
         }
   publishRoom(engine)
+}
+
+/**
+ * Hands the sample to the wall that sounds, in the lobby alone: a round's
+ * clip is already the test, and two tracks on one speaker are noise.
+ */
+const testSound = ({
+  engine,
+  outbound,
+  url
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  url: string
+}): void => {
+  if (engine.room.phase !== 'lobby') {
+    sendError(outbound, {
+      code: 'wrong_phase',
+      fatal: false,
+      message: 'The sound is tested from the lobby'
+    })
+
+    return
+  }
+
+  const speaking = wallsOf(engine).find((wall) => wall.isSpeaker)
+
+  if (speaking === undefined) {
+    return
+  }
+
+  const checkId = engine.now()
+
+  engine.soundCheckSent = checkId
+  sendToWall(speaking, { checkId, type: 'wall.testSound', url })
 }
 
 const steerClip = (

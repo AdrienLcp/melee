@@ -25,6 +25,8 @@ import {
   type PairWallRequest,
   type PlaylistPreviewQuery,
   roomExistsResponseSchema,
+  type SoundCheckResponse,
+  soundCheckResponseSchema,
   type TrackSearchQuery,
   trackListResponseSchema,
   type WallPairingCode,
@@ -110,6 +112,12 @@ export const fetchHealth = async ({
   signal
 }: Cancellable = {}): Promise<Result<HealthResponse, ApiFailure>> =>
   request(API_ROUTES.health, healthResponseSchema, { signal })
+
+/** A sample the console plays to check the room hears it, signed afresh. */
+export const fetchSoundCheck = async ({
+  signal
+}: Cancellable = {}): Promise<Result<SoundCheckResponse, ApiFailure>> =>
+  request(API_ROUTES.soundCheck, soundCheckResponseSchema, { signal })
 
 type AdminRequest = Cancellable & {
   /** `ADMIN_TOKEN`; a wrong one fails with `rejected`, as the server answers 404. */

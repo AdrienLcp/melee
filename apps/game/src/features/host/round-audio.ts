@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 
 import type { ClipPlayback, HostRoomView } from '@melee/protocol/room'
-import type { ClipFault } from '@melee/protocol/sound'
+import type { ClipFault, SoundCheckOutcome } from '@melee/protocol/sound'
 
 import {
   type ClipRefusal,
@@ -89,6 +89,109 @@ type LoadedClip = { deck: HTMLAudioElement; roundId: string; url: string }
 
 const clipKeyOf = ({ roundId, url }: { roundId: string; url: string }) =>
   `${roundId} ${url}`
+
+/** How long a sample sounds once it is heard, unless it is stopped sooner. */
+export const SOUND_CHECK_MS = 5_000
+
+/** How long a sample may load without moving before it is called stalled. */
+const SOUND_CHECK_STALL_MS = 8_000
+
+export type SoundCheck = {
+  /**
+   * Plays `url` through the element blessed when the check was armed, and
+   * resolves as soon as the browser has said how it went: `heard` once it
+   * moves — then it sounds for `SOUND_CHECK_MS` — or the fault it met.
+   */
+  play: (url: string) => Promise<SoundCheckOutcome>
+  stop: () => void
+}
+
+/**
+ * Blesses an element for a sound check. On a screen with nobody at it, call it
+ * from the frame: a tab that was clicked once may sound, and one that was not
+ * comes back `blocked`. Anywhere else it MUST be called synchronously inside
+ * the press, for the reason `SILENCE` gives.
+ */
+export const armSoundCheck = ({
+  onEnded,
+  volume
+}: {
+  /** Called once the sample stops sounding, cut or stopped. */
+  onEnded: () => void
+  /** 0 to 1, the room volume. */
+  volume: number
+}): SoundCheck => {
+  const audio = new Audio(SILENCE)
+  let cut: number | undefined
+
+  audio.volume = volume
+
+  const blessing = audio.play().then(
+    () => null,
+    (refused: unknown) => nameOf(refused)
+  )
+
+  const stop = (): void => {
+    window.clearTimeout(cut)
+    audio.pause()
+    onEnded()
+  }
+
+  const outcomeOf = (url: string) =>
+    new Promise<SoundCheckOutcome>((resolve) => {
+      const settle = (outcome: SoundCheckOutcome): void => {
+        window.clearTimeout(stalled)
+        audio.removeEventListener('error', onError)
+        audio.removeEventListener('timeupdate', onMoved)
+        resolve(outcome)
+      }
+      const onError = (): void => {
+        noteMediaError(audio.error?.code ?? null)
+        settle('unreachable')
+      }
+      const onMoved = (): void => {
+        if (audio.currentTime > 0) {
+          settle('heard')
+        }
+      }
+      const stalled = window.setTimeout(() => {
+        settle('stalled')
+      }, SOUND_CHECK_STALL_MS)
+
+      audio.addEventListener('error', onError)
+      audio.addEventListener('timeupdate', onMoved)
+      audio.pause()
+      loadClip(audio, url)
+      void audio.play().catch((refused: unknown) => {
+        // A source that will not load rejects the play as well, and its
+        // error event is the one that says which.
+        if (nameOf(refused) === 'NotAllowedError') {
+          settle('blocked')
+        }
+      })
+    })
+
+  return {
+    play: async (url) => {
+      if ((await blessing) === 'NotAllowedError') {
+        onEnded()
+
+        return 'blocked'
+      }
+
+      const outcome = await outcomeOf(url)
+
+      if (outcome === 'heard') {
+        cut = window.setTimeout(stop, SOUND_CHECK_MS)
+      } else {
+        stop()
+      }
+
+      return outcome
+    },
+    stop
+  }
+}
 
 export type RoundAudio = {
   /**

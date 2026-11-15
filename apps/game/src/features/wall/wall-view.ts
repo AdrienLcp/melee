@@ -26,6 +26,7 @@ export const asRoomScreenView = ({
   lineUpPlayed: [],
   remainingPoolSize: 0,
   silentClip: null,
+  soundCheck: null,
   wallCount: 1,
   walls: [],
   youId: null

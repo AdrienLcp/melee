@@ -98,7 +98,12 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
-import { roomVolumeSchema, silentClipSchema, wallScreenSchema } from './sound'
+import {
+  roomVolumeSchema,
+  silentClipSchema,
+  soundCheckReportSchema,
+  wallScreenSchema
+} from './sound'
 import { colourHexSchema, sentColourSchema } from './swatch'
 import {
   DEFAULT_TEAM_SCORING,
@@ -1272,6 +1277,12 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
    * it, and `null` while it plays or there is none — see `silentClipSchema`.
    */
   silentClip: silentClipSchema.nullable(),
+  /**
+   * How the wall that is the speaker reported the last sound check, and
+   * `null` until one has — see `host.testSound`. Answered by its id, so a
+   * console tells a fresh outcome from the one it already said.
+   */
+  soundCheck: soundCheckReportSchema.nullable(),
   /**
    * How loud the speaker plays, set from the console, and `null` until the
    * console says — the speaker then keeps its own level.

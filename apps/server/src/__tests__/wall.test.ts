@@ -490,6 +490,135 @@ describe('the wall', () => {
     )
   })
 
+  const SAMPLE_URL = 'https://cdnt-preview.dzcdn.net/api/1/1/sample.mp3'
+
+  const soundTestsIn = (wall: Peer<WallServerMessage>) =>
+    wall.frames
+      .map(({ message }) => message)
+      .filter(
+        (message) =>
+          message.type === 'wall.testSound' ||
+          message.type === 'wall.stopSoundTest'
+      )
+
+  it('[sound-check] hands the sample to the wall that sounds, and its outcome back to the console', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const speaking = await pairedWall({ code, hostToken })
+    const silent = await pairedWall({ code, hostToken })
+
+    host.send({ type: 'host.testSound', url: SAMPLE_URL })
+    await waitFor(
+      () => soundTestsIn(speaking).length === 1,
+      'the speaking wall to be handed the sample'
+    )
+
+    const [handed] = soundTestsIn(speaking)
+
+    if (handed?.type !== 'wall.testSound') {
+      throw new Error('the wall was not handed a sample')
+    }
+
+    expect(handed.url).toBe(SAMPLE_URL)
+    expect(soundTestsIn(silent)).toEqual([])
+
+    speaking.send({
+      checkId: handed.checkId,
+      outcome: 'unreachable',
+      type: 'speaker.reportSoundCheck'
+    })
+    await waitFor(
+      () => hostView(host)?.soundCheck != null,
+      'the console to hear how the sample went'
+    )
+    expect(hostView(host)?.soundCheck).toEqual({
+      checkId: handed.checkId,
+      outcome: 'unreachable'
+    })
+
+    host.send({ type: 'host.stopSoundTest' })
+    await waitFor(
+      () => soundTestsIn(speaking).length === 2,
+      'the speaking wall to be told to stop'
+    )
+    expect(soundTestsIn(speaking).at(-1)).toEqual({
+      type: 'wall.stopSoundTest'
+    })
+  })
+
+  it('[sound-check] keeps no report from a wall that is not the speaker, or for another check', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const speaking = await pairedWall({ code, hostToken })
+    const silent = await pairedWall({ code, hostToken })
+
+    host.send({ type: 'host.testSound', url: SAMPLE_URL })
+    await waitFor(
+      () => soundTestsIn(speaking).length === 1,
+      'the speaking wall to be handed the sample'
+    )
+
+    const [handed] = soundTestsIn(speaking)
+    const checkId = handed?.type === 'wall.testSound' ? handed.checkId : 0
+
+    silent.send({ checkId, outcome: 'heard', type: 'speaker.reportSoundCheck' })
+    speaking.send({
+      checkId: checkId + 1,
+      outcome: 'heard',
+      type: 'speaker.reportSoundCheck'
+    })
+
+    for (const wall of [silent, speaking]) {
+      wall.send({ clientSentAt: 0, type: 'time.ping' })
+      await waitFor(
+        () => wall.frames.some(({ message }) => message.type === 'time.pong'),
+        'the wall to be answered past its report'
+      )
+    }
+
+    host.send({ type: 'host.setVolume', volume: 0.5 })
+    await waitFor(
+      () => hostView(host)?.volume === 0.5,
+      'the console to see the room once more'
+    )
+    expect(hostView(host)?.soundCheck).toBeNull()
+
+    speaking.send({
+      checkId,
+      outcome: 'blocked',
+      type: 'speaker.reportSoundCheck'
+    })
+    await waitFor(
+      () => hostView(host)?.soundCheck != null,
+      'the console to hear the speaker'
+    )
+    expect(hostView(host)?.soundCheck?.outcome).toBe('blocked')
+  })
+
+  it('[sound-check] refuses a sample off Deezer and a test once the game is on', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const wall = await pairedWall({ code, hostToken })
+
+    host.send({
+      type: 'host.testSound',
+      url: 'https://elsewhere.example/a.mp3'
+    })
+    await waitFor(
+      () => errorsIn(host).length === 1,
+      'the console to be refused the sample'
+    )
+    expect(errorsIn(host)[0]?.code).toBe('invalid_message')
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase !== 'lobby', 'the round to open')
+    host.send({ type: 'host.testSound', url: SAMPLE_URL })
+    await waitFor(
+      () => errorsIn(host).length === 2,
+      'the console to be refused the test'
+    )
+    expect(errorsIn(host)[1]?.code).toBe('wrong_phase')
+    expect(soundTestsIn(wall)).toEqual([])
+  })
+
   it('[wall] is not listened to on a clip another screen sounds', async () => {
     const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
     const speaking = await pairedWall({ code, hostToken })

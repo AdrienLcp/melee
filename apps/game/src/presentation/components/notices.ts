@@ -103,15 +103,16 @@ const isSameNotice = (left: Notice, right: Notice): boolean =>
 
 /**
  * Says something that happened, and takes it down after `PASSING_NOTICE_MS`.
- * The same notice already on screen is not stacked a second time.
+ * The same notice already on screen is not stacked a second time, and its
+ * key is the one handed back, for whoever wants it gone sooner.
  */
-export const showPassingNotice = (notice: Notice): void => {
-  const isAlreadyShown = noticeQueue.visibleToasts.some(
+export const showPassingNotice = (notice: Notice): string => {
+  const shown = noticeQueue.visibleToasts.find(
     (toast) => !leaving.has(toast.key) && isSameNotice(toast.content, notice)
   )
 
-  if (isAlreadyShown) {
-    return
+  if (shown !== undefined) {
+    return shown.key
   }
 
   const key = noticeQueue.add(notice)
@@ -119,6 +120,8 @@ export const showPassingNotice = (notice: Notice): void => {
   window.setTimeout(() => {
     dismissNotice(key)
   }, PASSING_NOTICE_MS)
+
+  return key
 }
 
 const signatureOf = (notice: Notice | null): string | null =>

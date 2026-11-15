@@ -45,6 +45,7 @@ import { useIdleChrome } from '@/presentation/use-idle-chrome'
 
 import { publishHostAwayHeight } from './host-away-height'
 import { useAbsentFor } from './use-absent-for'
+import { useWallSoundCheck } from './wall-sound-check'
 import { asRoomScreenView } from './wall-view'
 
 import '@/features/host/host-console-page.sass'
@@ -86,13 +87,19 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     send,
     status,
     view: wallView
-  } = useWallConnection(roomCode)
+  } = useWallConnection({
+    onSoundTest: (frame) => {
+      onSoundTest(frame)
+    },
+    roomCode
+  })
   const view = wallView === null ? null : asRoomScreenView(wallView)
   useWorldMapAhead(view?.settings.lineUp ?? [])
   const isSpeaker = wallView?.isSpeaker === true
   const speakingView = isSpeaker ? view : null
   const { volume: ownVolume } = useVolume()
   const volume = wallView?.volume ?? ownVolume
+  const onSoundTest = useWallSoundCheck({ send, volume })
   const slateWall = useSlateWall(view)
   const isRoundDealt = useRoundDealt(view)
   const isRefused = status === 'refused'
@@ -132,6 +139,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     endGame: null,
     handOver: null,
     invitation: null,
+    isTestingSound: false,
     leaveSeat: null,
     pauseRound: null,
     pawnRoom: null,
@@ -145,6 +153,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredTeams: NOBODY,
     seatNickname: null,
     setRoomVolume: null,
+    testSound: null,
     trackLength: null
   })
 

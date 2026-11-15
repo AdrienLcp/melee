@@ -42,7 +42,12 @@ import type {
   RoundDuel
 } from '@melee/protocol/room'
 import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
-import type { ClipFault, Speaker, WallId } from '@melee/protocol/sound'
+import type {
+  ClipFault,
+  SoundCheckReport,
+  Speaker,
+  WallId
+} from '@melee/protocol/sound'
 import type { ColourHex, SentColour } from '@melee/protocol/swatch'
 import type { PawnHead, TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
@@ -183,6 +188,8 @@ export type Room = {
    * `silentClip` is the last silent clip a speaker reported, by the round and
    * the wall it sounds on (`null` for the console), kept as reported and read
    * only while both are still the ones on screen — see `silentClipOf`.
+   * `soundCheck` is how the speaking wall reported the last sample the console
+   * had it play, `null` until one has.
    */
   sound: {
     silentClip: {
@@ -190,6 +197,7 @@ export type Room = {
       roundId: RoundId
       wallId: WallId | null
     } | null
+    soundCheck: SoundCheckReport | null
     speaker: Speaker | null
     volume: number | null
   }

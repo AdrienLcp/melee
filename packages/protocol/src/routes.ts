@@ -15,6 +15,7 @@ export const API_ROUTES = {
   reports: `${API_PREFIX}/reports`,
   room: `${API_PREFIX}/rooms/:code`,
   rooms: `${API_PREFIX}/rooms`,
+  soundCheck: `${API_PREFIX}/sound-check`,
   trackSearch: `${API_PREFIX}/tracks/search`,
   wall: `${API_PREFIX}/walls/:pairingCode`,
   wallPair: `${API_PREFIX}/walls/:pairingCode/pair`,

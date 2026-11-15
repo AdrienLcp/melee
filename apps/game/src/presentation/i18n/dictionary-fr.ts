@@ -1826,7 +1826,28 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Personne ici'
   },
   notice: {
-    dismiss: 'Fermer'
+    dismiss: 'Fermer',
+    soundCheck: {
+      blocked: 'Le navigateur a refusé le son ici.',
+      catalogue:
+        'Le catalogue de musique ne répond pas. Réessaie dans un instant.',
+      heard: 'Le son passe ici.',
+      onWall: {
+        blocked:
+          'L’écran de la salle reste muet tant que personne n’y appuie sur Lancer le son.',
+        heard: 'Le son passe sur l’écran de la salle.',
+        stalled:
+          'La musique reste bloquée au chargement sur l’écran de la salle. Vérifie la connexion de cet écran.',
+        unreachable:
+          'L’écran de la salle n’arrive pas à charger la musique. Un bloqueur de pub, la protection contre le pistage du navigateur ou un filtre réseau la bloque souvent : autorise ce site sur cet écran.'
+      },
+      stalled:
+        'La musique reste bloquée au chargement ici. Vérifie la connexion de cet écran.',
+      start: 'Lancer le son',
+      tooMany: 'Ça fait beaucoup d’essais. Attends une minute et réessaie.',
+      unreachable:
+        'La musique ne charge pas ici. Un bloqueur de pub, la protection contre le pistage du navigateur ou un filtre réseau la bloque souvent : autorise ce site.'
+    }
   },
   pawn: {
     betweenRounds: 'Il se change entre deux manches, pas pendant.',
@@ -2045,6 +2066,10 @@ export const FR_DICTIONARY = defineDictionary({
   },
   preferences: {
     language: 'Langue',
+    soundCheck: {
+      press: 'Tester le son',
+      stop: 'Couper l’extrait'
+    },
     theme: {
       dark: 'Sombre',
       label: 'Thème',

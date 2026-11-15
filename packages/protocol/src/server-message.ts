@@ -7,6 +7,7 @@ import {
   playerRoomViewSchema,
   wallRoomViewSchema
 } from './room'
+import { soundCheckUrlSchema } from './sound'
 
 /**
  * Mirrors `time.ping` back with the server's own clock reading. The client
@@ -73,6 +74,21 @@ export const wallRoomUpdatedMessageSchema = z.object({
 })
 
 /**
+ * The two frames that are not a view, both to the wall that is the speaker:
+ * a sample to play now, and the word to cut it short. An event rather than
+ * state, because a wall reloading an hour later must not play it again.
+ */
+export const wallTestSoundMessageSchema = z.object({
+  checkId: z.number().int(),
+  type: z.literal('wall.testSound'),
+  url: soundCheckUrlSchema
+})
+
+export const wallStopSoundTestMessageSchema = z.object({
+  type: z.literal('wall.stopSoundTest')
+})
+
+/**
  * Split by role so that handing a player the answer is a compile error rather
  * than a review comment: only the host variants reference `hostRoomViewSchema`,
  * the one place `HostTrack` — title, artist, audio — reaches the wire before a
@@ -95,6 +111,8 @@ export const playerServerMessageSchema = z.discriminatedUnion('type', [
 export const wallServerMessageSchema = z.discriminatedUnion('type', [
   wallWelcomeMessageSchema,
   wallRoomUpdatedMessageSchema,
+  wallTestSoundMessageSchema,
+  wallStopSoundTestMessageSchema,
   timePongMessageSchema,
   protocolErrorMessageSchema
 ])

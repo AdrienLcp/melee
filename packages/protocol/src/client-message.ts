@@ -36,7 +36,13 @@ import {
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
-import { clipFaultSchema, roomVolumeSchema, speakerSchema } from './sound'
+import {
+  clipFaultSchema,
+  roomVolumeSchema,
+  soundCheckOutcomeSchema,
+  soundCheckUrlSchema,
+  speakerSchema
+} from './sound'
 import { colourHexSchema } from './swatch'
 import {
   MAX_TEAMS,
@@ -793,6 +799,28 @@ export const setVolumeMessageSchema = z.object({
 })
 
 /**
+ * A sample played on the wall that is the speaker, from the lobby, so a
+ * blocked or silent screen is found before the first round rather than
+ * during it. A console that is the speaker plays its own and sends nothing.
+ */
+export const testSoundMessageSchema = z.object({
+  type: z.literal('host.testSound'),
+  url: soundCheckUrlSchema
+})
+
+/** Cuts the wall's sample short. */
+export const stopSoundTestMessageSchema = z.object({
+  type: z.literal('host.stopSoundTest')
+})
+
+/** The wall saying how the sample it was handed went. */
+export const reportSoundCheckMessageSchema = z.object({
+  checkId: z.number().int(),
+  outcome: soundCheckOutcomeSchema,
+  type: z.literal('speaker.reportSoundCheck')
+})
+
+/**
  * The speaker saying its clip is not sounding, or — `fault: null` — sounding
  * again. Sent by whichever screen plays the clip, console or wall, because the
  * wall that most often does is the screen the host is not looking at, and a
@@ -852,7 +880,9 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   dismissWallMessageSchema,
   chooseSpeakerMessageSchema,
   setVolumeMessageSchema,
-  reportClipMessageSchema
+  reportClipMessageSchema,
+  testSoundMessageSchema,
+  stopSoundTestMessageSchema
 ])
 
 export const playerClientMessageSchema = z.discriminatedUnion('type', [
@@ -882,7 +912,8 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
 export const wallClientMessageSchema = z.discriminatedUnion('type', [
   helloMessageSchema,
   timePingMessageSchema,
-  reportClipMessageSchema
+  reportClipMessageSchema,
+  reportSoundCheckMessageSchema
 ])
 
 /** Everything the server's decoder accepts, before it knows which role sent it. */
@@ -943,7 +974,10 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   dismissWallMessageSchema,
   chooseSpeakerMessageSchema,
   setVolumeMessageSchema,
-  reportClipMessageSchema
+  reportClipMessageSchema,
+  testSoundMessageSchema,
+  stopSoundTestMessageSchema,
+  reportSoundCheckMessageSchema
 ])
 
 export type ConnectionRole = z.infer<typeof connectionRoleSchema>
@@ -1001,7 +1035,9 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.closeRoom',
   'host.dismissWall',
   'host.chooseSpeaker',
-  'host.setVolume'
+  'host.setVolume',
+  'host.testSound',
+  'host.stopSoundTest'
 ])
 
 /**

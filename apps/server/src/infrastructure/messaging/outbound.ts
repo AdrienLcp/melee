@@ -6,6 +6,7 @@ import {
   playerServerMessageSchema,
   protocolErrorMessageSchema,
   timePongMessageSchema,
+  type WallServerMessage,
   wallServerMessageSchema
 } from '@melee/protocol/server-message'
 import type { WallScreen } from '@melee/protocol/sound'
@@ -34,6 +35,17 @@ export const sendError = (
       type: 'error'
     })
   )
+}
+
+/** A wall frame that is not a view: the sound check's start and stop. */
+export const sendToWall = (
+  outbound: Outbound,
+  frame: Extract<
+    WallServerMessage,
+    { type: 'wall.stopSoundTest' | 'wall.testSound' }
+  >
+): void => {
+  outbound.send(encodeChecked(wallServerMessageSchema, frame))
 }
 
 export const sendPong = (

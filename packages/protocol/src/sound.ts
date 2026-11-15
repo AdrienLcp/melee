@@ -53,7 +53,33 @@ export const silentClipSchema = z.object({
   wallNumber: z.number().int().positive().nullable()
 })
 
+/**
+ * Where a sample may be fetched from: Deezer's preview CDN and nowhere else,
+ * so a forged console cannot make the room's screen sound an address of its
+ * choosing.
+ */
+export const soundCheckUrlSchema = z
+  .url({ protocol: /^https$/ })
+  .refine((url) => new URL(url).hostname.endsWith('.dzcdn.net'))
+
+/**
+ * How a sound check went on the speaker: `heard` — the sample moved, at the
+ * room volume; otherwise the `ClipFault` a round's clip would have met there.
+ */
+export const soundCheckOutcomeSchema = z.enum([
+  'heard',
+  ...clipFaultSchema.options
+])
+
+/** The last sound check a wall reported, by the check it answers. */
+export const soundCheckReportSchema = z.object({
+  checkId: z.number().int(),
+  outcome: soundCheckOutcomeSchema
+})
+
 export type ClipFault = z.infer<typeof clipFaultSchema>
+export type SoundCheckOutcome = z.infer<typeof soundCheckOutcomeSchema>
+export type SoundCheckReport = z.infer<typeof soundCheckReportSchema>
 export type SilentClip = z.infer<typeof silentClipSchema>
 export type WallId = z.infer<typeof wallIdSchema>
 export type Speaker = z.infer<typeof speakerSchema>

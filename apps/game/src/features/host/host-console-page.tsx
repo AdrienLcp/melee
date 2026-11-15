@@ -124,6 +124,7 @@ import {
 } from './setup-tabs'
 import { useSilentClipReport } from './silent-clip-report'
 import { SlateEditors } from './slate-stages'
+import { useSoundCheck } from './sound-check'
 import { fadeOffTheStage } from './stage-leaving-copy'
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 import { useLaidOutWall } from './use-laid-out-wall'
@@ -479,6 +480,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [keepVolume, send]
   )
 
+  const soundCheck = useSoundCheck({
+    isSpeaker,
+    send,
+    soundCheck: view?.soundCheck ?? null,
+    volume: roomVolume
+  })
+
   const isVolumeUnsaid = isLive && view?.volume === null
 
   useEffect(() => {
@@ -508,6 +516,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     leaveSeat: view?.youId == null ? null : leaveSeat,
     pauseRound: pausableRoundId === null ? null : pauseRound,
     ...pawn,
+    isTestingSound: soundCheck.isTesting,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname
@@ -519,6 +528,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
     setRoomVolume: view === null ? null : setRoomVolume,
+    testSound:
+      view?.phase === 'lobby' || soundCheck.isTesting
+        ? soundCheck.onPress
+        : null,
     trackLength:
       view?.settings.board.kind === 'track' ? view.settings.board.length : null
   })

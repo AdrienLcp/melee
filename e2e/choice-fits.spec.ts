@@ -240,6 +240,7 @@ const seatedHostView = (question: Question) => ({
   lineUpPlayed: [],
   remainingPoolSize: 40,
   silentClip: null,
+  soundCheck: null,
   volume: null,
   wallCount: 0,
   walls: []

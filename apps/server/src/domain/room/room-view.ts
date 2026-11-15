@@ -106,6 +106,8 @@ export const toHostView = ({
       roundId: room.round?.id ?? null,
       walls
     }),
+    // A room stored before sound checks existed has no such field.
+    soundCheck: room.sound.soundCheck ?? null,
     volume: room.sound.volume,
     wallCount: walls.length,
     walls: [...walls],

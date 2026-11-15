@@ -1,7 +1,10 @@
 import { decodeMessage } from '@melee/protocol/codec'
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { WallRoomView } from '@melee/protocol/room'
-import { wallServerMessageSchema } from '@melee/protocol/server-message'
+import {
+  type WallServerMessage,
+  wallServerMessageSchema
+} from '@melee/protocol/server-message'
 
 import { wallStageLanding } from '@/helpers/stage-replacement'
 import { noteFrame, noteRoomView } from '@/infrastructure/diagnostics'
@@ -13,12 +16,25 @@ export type WallConnection = RoomSocket & {
   view: WallRoomView | null
 }
 
+/** The two frames that are not a view: a sample to play now, and its stop. */
+export type WallSoundTest = Extract<
+  WallServerMessage,
+  { type: 'wall.stopSoundTest' | 'wall.testSound' }
+>
+
 /**
  * The room's own screen. It sends its hello, its clock and what it hears of
  * the clip when it is the speaker, and the token it carries in that hello is
  * the whole of what lets it in.
  */
-export const useWallConnection = (roomCode: RoomCode): WallConnection => {
+export const useWallConnection = ({
+  onSoundTest,
+  roomCode
+}: {
+  /** Called as the frame lands, which is no press: see `armSoundCheck`. */
+  onSoundTest: (frame: WallSoundTest) => void
+  roomCode: RoomCode
+}): WallConnection => {
   const [view, receiveView] = useRoomView<WallRoomView>({
     landingOf: wallStageLanding
   })
@@ -31,6 +47,15 @@ export const useWallConnection = (roomCode: RoomCode): WallConnection => {
     }
 
     noteFrame({ direction: 'in', type: decoded.message.type })
+
+    if (
+      decoded.message.type === 'wall.testSound' ||
+      decoded.message.type === 'wall.stopSoundTest'
+    ) {
+      onSoundTest(decoded.message)
+
+      return
+    }
 
     if ('view' in decoded.message) {
       const { view } = decoded.message

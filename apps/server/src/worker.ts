@@ -10,7 +10,10 @@ import {
   servedHashedAsset
 } from '@/infrastructure/http/hashed-asset'
 import { createHttpApp } from '@/infrastructure/http/http-app'
-import { limitRoomCreationWith } from '@/infrastructure/http/rate-limit'
+import {
+  limitRoomCreationWith,
+  limitSoundChecksWith
+} from '@/infrastructure/http/rate-limit'
 import { registerHttpRoutes } from '@/infrastructure/http/routes'
 import {
   PRERENDER_MANIFEST,
@@ -40,6 +43,7 @@ registerHttpRoutes({
   adminToken: serverEnv.ADMIN_TOKEN ?? null,
   app,
   limitRoomCreation: limitRoomCreationWith(env.ROOM_CREATION_LIMITER),
+  limitSoundChecks: limitSoundChecksWith(env.SOUND_CHECK_LIMITER),
   reportLimiter: env.REPORT_LIMITER,
   reports,
   rooms: durableRoomDoor,

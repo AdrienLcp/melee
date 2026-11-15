@@ -56,6 +56,11 @@ export type RoomEngine = RoomPorts & {
   /** Not persisted: an object woken from hibernation writes its row once more, which is cheap. */
   liveRoomWritten: WrittenLiveRoom | null
   room: Room
+  /**
+   * The sound check last handed to the speaking wall, whose report alone is
+   * kept. Not persisted: a sample lasts seconds, and a woken object asks again.
+   */
+  soundCheckSent: number | null
 }
 
 export const createRoomEngine = (room: Room, ports: RoomPorts): RoomEngine => ({
@@ -64,7 +69,8 @@ export const createRoomEngine = (room: Room, ports: RoomPorts): RoomEngine => ({
   isClosed: false,
   isDrawing: false,
   liveRoomWritten: null,
-  room
+  room,
+  soundCheckSent: null
 })
 
 const liveRoomFactsOfEngine = (engine: RoomEngine) =>
