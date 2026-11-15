@@ -9,7 +9,7 @@ import type { ApiError } from '@/infrastructure/api/melee-api'
 import {
   bugReportCooldownLeftMs,
   reportProblem
-} from '@/infrastructure/diagnostics'
+} from '@/infrastructure/bug-report'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'

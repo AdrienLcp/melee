@@ -58,8 +58,10 @@ them.
 
 The menu's _Report a problem_ (`presentation/components/report-problem.tsx`),
 on every screen at every phase, sends one to `POST /api/bug-reports` when its
-_Send_ is pressed, and never otherwise. `reportProblem` in `diagnostics.ts`
-builds it, `bugReportSchema` in `packages/protocol/src/http.ts` is the whole
+_Send_ is pressed, and never otherwise. `reportProblem` in `bug-report.ts`
+builds it from what `diagnostics.ts` kept (`reportTrailAt`) and what
+`browser-device.ts` reads at the press — both in the menu's chunk, so only the
+ring that records the screen runs from the entry — `bugReportSchema` in `packages/protocol/src/http.ts` is the whole
 list, and it is kept in the same `reports` table with `kind = 'bug-report'`,
 `source = 'client'`, the person's note in `error_message` (500 characters; the
 whole note is in `context`) and everything else in `context`:

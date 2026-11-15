@@ -36,3 +36,9 @@ Never a `git checkout` in `C:/git/melee`: other sessions run there.
   `cpSync(from, to, { dereference: true, recursive: true })`. pnpm and a
   worktree's copied data use junctions, and `cpSync` copying the junction
   itself fails with `EPERM`.
+- **`wrangler dev --persist-to` takes a long path, never an 8.3 short one**
+  (`C:/Users/ABCDEF~1/…`, what `%TEMP%` hands out): under one, D1 and the
+  Durable Objects work and every rate limiter throws `internal error` inside
+  miniflare, so `POST /api/rooms` answers 500 and the home page says _That
+  did not go through_. Spell the folder out — `cygpath -ml <path>` in Git
+  Bash.

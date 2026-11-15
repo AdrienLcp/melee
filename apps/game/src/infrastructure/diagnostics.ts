@@ -1,5 +1,3 @@
-import { Result } from '@adrienlcp/result'
-
 import type {
   BugReport,
   BugReportEventType,
@@ -8,36 +6,21 @@ import type {
   ReportFrameType
 } from '@melee/protocol/http'
 import {
-  BUG_REPORT_BODY_MAX_BYTES,
   BUG_REPORT_EVENT_TEXT_MAX,
   BUG_REPORT_EVENTS_KEPT,
-  BUG_REPORT_KIND,
-  BUG_REPORT_NOTE_MAX,
-  BUG_REPORT_SHORT_TEXT_MAX,
-  BUG_REPORT_USER_AGENT_MAX,
-  bugReportSchema,
   REPORT_FRAMES_KEPT,
   REPORT_TEXT_LIMITS,
   reportAudioContextStates
 } from '@melee/protocol/http'
 import type { RoomCode } from '@melee/protocol/identifiers'
-import type { Locale } from '@melee/protocol/locale'
 import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 import type { ClipFault } from '@melee/protocol/sound'
 
-import type { ClockEstimate } from '@melee/core/time/clock-sync'
-
-import { browserIdentityOf, inAppBrowserOf } from '@/helpers/browser-identity'
+import { browserIdentityOf } from '@/helpers/browser-identity'
 import { createEventRing } from '@/helpers/event-ring'
-import { fittedBugReport } from '@/helpers/fitted-bug-report'
 import { createReportGate } from '@/helpers/report-gate'
+import { sendErrorReport } from '@/infrastructure/api/melee-api'
 import {
-  type ApiError,
-  sendBugReport,
-  sendErrorReport
-} from '@/infrastructure/api/melee-api'
-import {
-  describeDevice,
   describeScreen,
   onScreenChanges,
   onUnhandledFaults
@@ -123,6 +106,9 @@ const storedVolume = (): number | null => {
 const ROUTE_UNSAFE = /[^\w/.-]/g
 const ROUTE_MAX = 200
 
+const reportedRoute = (path: string): string =>
+  path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX)
+
 /** The entry chunk's hashed name in a build; this module is part of the entry. */
 const buildOfThisBundle = (): string => {
   if (import.meta.env.DEV) {
@@ -200,7 +186,7 @@ const reportFault = ({
       role: room?.role ?? null,
       roomCode: room?.roomCode ?? null,
       roundIndex: room?.roundIndex ?? null,
-      route: screen.path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX),
+      route: reportedRoute(screen.path),
       viewport: screen.viewport
     })
   } catch (failure) {
@@ -291,9 +277,6 @@ export const reportClipFault = (fault: ClipFault): void => {
 const BUG_REPORT_EVENTS_WINDOW_MS = 120_000
 const BUG_REPORT_EVENT_FOLD_MS = 120
 
-/** One report per device per this long: the menu holds its thanks for as long. */
-export const BUG_REPORT_COOLDOWN_MS = 30_000
-
 type EventDetail = BugReport['events'][number]['detail']
 
 const screenEvents = createEventRing<BugReportEventType, EventDetail>({
@@ -361,9 +344,7 @@ export const watchScreenForReports = (): void => {
 
 /** The page the router settled on, its path alone. */
 export const noteRoute = (path: string): void => {
-  noteEvent('route', {
-    path: path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX)
-  })
+  noteEvent('route', { path: reportedRoute(path) })
 }
 
 /** The room's socket opening, closing or failing, with what the close said. */
@@ -374,144 +355,23 @@ export const noteSocketEvent = (
   noteEvent(type, detail)
 }
 
-let lastBugReportAt: number | null = null
-
-/** How long before this device may send another report; `0` once it may. */
-export const bugReportCooldownLeftMs = (): number =>
-  lastBugReportAt === null
-    ? 0
-    : Math.max(0, lastBugReportAt + BUG_REPORT_COOLDOWN_MS - nowMs())
-
-/** A value the report can carry as JSON, or `null` for one it cannot. */
-const asJson = (value: unknown): BugReport['view'] => {
-  if (value === undefined || value === null) {
-    return null
-  }
-
-  const parsed = bugReportSchema.shape.view.safeParse(
-    JSON.parse(JSON.stringify(value))
-  )
-
-  return parsed.success ? parsed.data : null
-}
-
-const USER_AGENT_BRANDS_KEPT = 12
-
-const clippedUserAgentData = (
-  data: ReturnType<typeof describeDevice>['userAgentData']
-): BugReport['userAgentData'] =>
-  data === null
-    ? null
-    : {
-        brands: data.brands
-          .slice(0, USER_AGENT_BRANDS_KEPT)
-          .map(({ brand, version }) => ({
-            brand: brand.slice(0, BUG_REPORT_SHORT_TEXT_MAX),
-            version: version.slice(0, BUG_REPORT_SHORT_TEXT_MAX)
-          })),
-        mobile: data.mobile,
-        platform: data.platform.slice(0, BUG_REPORT_SHORT_TEXT_MAX)
-      }
-
-const reportRoleOf = (context: RoomReportContext | null): BugReport['role'] => {
-  if (context === null) {
-    return 'front-door'
-  }
-
-  return context.role === 'host' && context.isSeated
-    ? 'seated-host'
-    : context.role
-}
-
-/** What the menu holds that this module does not: the socket's state, the theme and the language. */
-export type BugReportScreen = {
-  connection: {
-    clock: ClockEstimate | null
-    status: NonNullable<BugReport['connection']>['status']
-  } | null
-  locale: Locale
-  theme: BugReport['preferences']['theme']
-}
-
 /**
- * Everything the screen knows about itself, with the note somebody typed,
- * sent the moment they press _Send_ and never before. `too_soon` is this
- * device asking again inside `BUG_REPORT_COOLDOWN_MS`.
+ * What this module holds for a report somebody sends at `sentAt` — the room
+ * as its last snapshot drew it, the frames, and the ring's last two minutes.
+ * The report itself is built by `bug-report.ts`, which the menu's chunk
+ * carries: only the ring has to run from the first script.
  */
-export const reportProblem = async ({
-  note,
-  screen: { connection, locale, theme }
-}: {
-  note: string
-  screen: BugReportScreen
-}): Promise<Result<void, ApiError | 'too_soon'>> => {
-  if (bugReportCooldownLeftMs() > 0) {
-    return Result.failure('too_soon')
-  }
-
-  const sentAt = nowMs()
-  const page = describeScreen()
-  const device = describeDevice()
-  const report: BugReport = {
-    browser: browserIdentityOf(page.userAgent),
-    build: buildOfThisBundle(),
-    connection:
-      connection === null
-        ? null
-        : {
-            clockOffsetMs: connection.clock?.offsetMs ?? null,
-            roundTripMs: connection.clock?.roundTripMs ?? null,
-            status: connection.status
-          },
-    events: screenEvents
-      .since(sentAt - BUG_REPORT_EVENTS_WINDOW_MS)
-      .map(({ at, count, detail, type }) => ({
-        ago: Math.max(0, sentAt - at),
-        count,
-        detail,
-        type
-      })),
-    frames,
-    game: room?.game ?? null,
-    inAppBrowser: inAppBrowserOf(page.userAgent),
-    kind: BUG_REPORT_KIND,
-    note: note.trim().slice(0, BUG_REPORT_NOTE_MAX),
-    phase: room?.phase ?? null,
-    preferences: {
-      colorScheme: device.colorScheme,
-      locale,
-      reducedMotion: device.reducedMotion,
-      theme
-    },
-    role: reportRoleOf(room),
-    roomCode: room?.roomCode ?? null,
-    roundContentKind: room?.roundContentKind ?? null,
-    roundIndex: room?.roundIndex ?? null,
-    route: page.path.replace(ROUTE_UNSAFE, '_').slice(0, ROUTE_MAX),
-    safeArea: device.safeArea,
-    screen: device.screen,
-    sentAt,
-    settings: asJson(room?.settings),
-    userAgent: page.userAgent.slice(0, BUG_REPORT_USER_AGENT_MAX),
-    userAgentData: clippedUserAgentData(device.userAgentData),
-    view: asJson(room?.view),
-    viewport: page.viewport,
-    visualViewport: device.visualViewport
-  }
-  const fitted = fittedBugReport({
-    maxBytes: BUG_REPORT_BODY_MAX_BYTES,
-    report
-  })
-
-  if (fitted === null) {
-    return Result.failure('rejected')
-  }
-
-  const sent = await sendBugReport(fitted)
-
-  if (sent.status === 'success') {
-    lastBugReportAt = nowMs()
-  }
-
-  return sent
-}
+export const reportTrailAt = (sentAt: number) => ({
+  build: buildOfThisBundle(),
+  events: screenEvents
+    .since(sentAt - BUG_REPORT_EVENTS_WINDOW_MS)
+    .map(({ at, count, detail, type }) => ({
+      ago: Math.max(0, sentAt - at),
+      count,
+      detail,
+      type
+    })),
+  frames,
+  room,
+  route: reportedRoute(describeScreen().path)
+})
