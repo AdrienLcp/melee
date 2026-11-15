@@ -62,6 +62,7 @@ import {
   everyoneHasCounted,
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
+import { seatValueOf } from '@/domain/round/make-number-round'
 import {
   callPetitBacStopForRoom,
   cancelPetitBacStop,
@@ -1978,7 +1979,8 @@ const answer = (
 /**
  * A lean is kept and nothing more: no view draws it, so no screen is sent a
  * frame for it, and a picker dragged by every seat at once costs the room no
- * broadcast.
+ * broadcast — save a make-the-number lean that moves the seat's value, which
+ * every screen pins on the ruler (`seatValueOf`), at most once a merge.
  */
 const lean = (
   message: Extract<ClientMessage, { type: 'player.lean' }>,
@@ -1998,6 +2000,8 @@ const lean = (
     return
   }
 
+  const round = engine.room.round
+  const valueBefore = round === null ? null : seatValueOf({ playerId, round })
   const leaned = registerLean({
     attempt: message.answer,
     isWord: isValidWord,
@@ -2014,6 +2018,12 @@ const lean = (
       fatal: false,
       message: 'That lean was not kept'
     })
+
+    return
+  }
+
+  if (round !== null && seatValueOf({ playerId, round }) !== valueBefore) {
+    publishRoom(engine)
 
     return
   }

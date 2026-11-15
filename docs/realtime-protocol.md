@@ -221,7 +221,11 @@ touched sends nothing, so the neutral grey is never a guess.
 
 A lean is refused wherever an answer would be, and answered with no frame when
 kept: no view draws it, so it is committed and never broadcast — every seat
-dragging at once costs the room no snapshot. It is not a floor frame, for the
+dragging at once costs the room no snapshot. Make the number is the one
+exception: every screen pins each seat's value on the ruler, and a value left
+on the rack is the one the close pays, so a seat's `values` entry is the nearer
+of its sent calculations and its lean (`heldValueOf`) — the value, never the
+steps — and a lean that moves it is broadcast, at most once a merge. It is not a floor frame, for the
 slate's reason. A pawn lifted off the map sends `null`, which takes the lean
 back: what the screen no longer holds is no guess. The order as dealt is never
 sent either — only an order the seat has moved.

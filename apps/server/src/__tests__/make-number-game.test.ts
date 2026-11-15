@@ -374,6 +374,32 @@ describe('a make-the-number round through the seam', () => {
     ).toBe('75 + 25 = 100, 100 × 7 = 700')
   })
 
+  it('[makenumber] pins a calculation left on a rack unsent on every screen when nearer than what the seat sent, and never its steps', async () => {
+    const { host, lou, max, roundId, wall, zoe } = await roundInPlay()
+
+    await sendCalculation({ roundId, seat: zoe, steps: SEVEN_TEN })
+    await sendCalculation({ roundId, seat: max, steps: SEVEN_HUNDRED })
+    leanCalculation({ roundId, seat: zoe, steps: SEVEN_HUNDRED })
+    leanCalculation({ roundId, seat: max, steps: SEVEN_HUNDRED_AGAIN })
+    leanCalculation({ roundId, seat: lou, steps: SEVEN_TEN })
+    await leansRead([zoe, max, lou])
+
+    for (const view of [playerView(max), wallView(wall), hostView(host)]) {
+      expect(seatValueIn({ seat: zoe, view })).toBe(700)
+      expect(seatValueIn({ seat: max, view })).toBe(700)
+      expect(seatValueIn({ seat: lou, view })).toBe(710)
+    }
+
+    leanCalculation({ roundId, seat: lou, steps: EXACT })
+    await waitFor(
+      () => seatValueIn({ seat: lou, view: wallView(wall) }) === TARGET,
+      'the exact lean to reach the wall'
+    )
+
+    expect(draw(playerView(lou))?.yourCalculations).toEqual([])
+    expect(transcriptOf(wall.frames)).not.toContain('"operator"')
+  })
+
   it('[makenumber] pays the calculation left on a rack unsent at the close when nearer than what the seat sent, with no speed', async () => {
     const { host, lou, max, roundId, zoe } = await roundInPlay()
 
@@ -393,8 +419,6 @@ describe('a make-the-number round through the seam', () => {
     expect(errorsIn(lou).map(({ code }) => code)).toEqual([
       'invalid_calculation'
     ])
-    expect(seatValueIn({ seat: zoe, view: playerView(max) })).toBe(710)
-    expect(seatValueIn({ seat: lou, view: playerView(max) })).toBeUndefined()
     expect(playerView(zoe)?.phase).toBe('playing')
 
     host.send({ roundId, type: 'host.reveal' })

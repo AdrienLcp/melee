@@ -227,6 +227,19 @@ tiles — and the reveal's solution, in one pass.
    (`…-pin-moves.png`), the reveal entering and leaving
    (`…-reveal-enters.png`, `…-reveal-leaves.png`). The seated console at
    1280×800 plays a merge and a send from the seat's rack with no scroll.
+   **Revised** 15/11/2026, after Adrien read an empty ruler through a round
+   and took it for a results screen shown early: a seat that merged and never
+   pressed _Envoyer_ stayed _Rien envoyé encore_ until the reveal, because
+   `values` read the sent calculations alone while the close paid the lean.
+   `values` now holds the nearer of the two (`heldValueOf`), and a lean that
+   moves it is broadcast, so a pin lands on the first merge and follows the
+   rack. Until the first pin, a line under the ruler says what it waits for
+   (`makenumber.ladder.empty`, folding away as the first pin lands), the
+   waiting row lends the empty rows its height to keep every name, the ticks
+   fade away from the ruler so the empty rungs read as a scale rather than a
+   table's rows, and the target's plate is wider. Seen muted at 1920×1080
+   and 1024×768, both palettes, 24 seats: empty, half and full, no scroll,
+   no chip outside its rung, the first pin filmed entering.
 
 ## How to tell it is done
 

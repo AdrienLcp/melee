@@ -5,12 +5,12 @@
   .make-number-ladder
     --spine: var(--spine-makenumber)
     --spine-edge: var(--spine-edge-makenumber)
-    --mid-width: clamp(4.5rem, 12cqi, 8.5rem)
+    --mid-width: clamp(4.5rem, 15cqi, 11rem)
     --chip-edge: 0.15em
 
     display: grid
     grid-template-columns: minmax(0, 1fr) var(--mid-width) minmax(0, 1fr)
-    grid-template-rows: auto minmax(0, 1fr) auto
+    grid-template-rows: auto minmax(0, 1fr) auto auto
     min-block-size: 0
     min-inline-size: 0
 
@@ -50,8 +50,16 @@
     grid-template-columns: subgrid
     min-block-size: 0
 
+    // A tick running out from the ruler and fading away from it, so the
+    // empty rungs read as a scale and not as the rows of a table.
     > .side
-      border-block-start: var(--stroke-thin) solid var(--rule)
+      background: linear-gradient(to var(--tick-towards), var(--rule), transparent) top / 100% var(--stroke-thin) no-repeat
+
+    > .under
+      --tick-towards: left
+
+    > .over
+      --tick-towards: right
 
     > .mid
       @include typography.numeric
@@ -91,7 +99,7 @@
     // The target, on the game's spine: what every pin is measured from.
     &[data-distance='0']
       > .side
-        border-block-start: 0
+        background: none
 
       > .mid
         background: var(--spine)
@@ -215,7 +223,30 @@
       outline: var(--stroke-thin) dashed var(--socket-line)
       outline-offset: calc(var(--stroke-thin) * -1)
 
-  // Who has sent nothing yet, under the ruler, folding away once nobody is
+  // What the ruler waits for, under it, folding away as the first pin lands.
+  .make-number-ladder > .empty
+    @include typography.strong
+
+    align-content: center
+    block-size: clamp(2.5rem, 9cqh, 4.5rem)
+    color: var(--ink-muted)
+    font-size: clamp(var(--text-s), 3cqh, var(--text-xl))
+    grid-column: 1 / -1
+    line-height: 1.15
+    margin: var(--space-xs) 0 0
+    min-block-size: 0
+    overflow: clip
+    text-align: center
+    text-wrap: balance
+    transition: block-size var(--transition-base, 0s) var(--ease-out), margin var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+
+  .make-number-ladder:not([data-unpinned]) > .empty
+    block-size: 0
+    margin-block-start: 0
+    opacity: 0
+    transition-timing-function: var(--ease-in)
+
+  // Who holds no number yet, under the ruler, folding away once nobody is
   // left in it.
   .make-number-ladder > .waiting
     align-items: center
@@ -246,3 +277,8 @@
       margin-block-start: 0
       opacity: 0
       transition-timing-function: var(--ease-in)
+
+  // The whole table still waiting, under an empty ruler: the rows they will
+  // land on lend it the height to keep their names.
+  .make-number-ladder[data-unpinned] > .waiting
+    block-size: clamp(2rem, 12cqh, 6rem)

@@ -1658,12 +1658,14 @@ export const EN_DICTIONARY = defineDictionary({
     ladder: {
       above: 'Above',
       below: 'Below',
+      empty:
+        'Everyone shows up on the ruler once they hold a number — the closer to {target:number}, the higher',
       exact: '{name}: spot on',
       far: 'Further',
       label: 'Everyone’s number around the target',
       seat: '{name}: {value:number}, {distance:number} off',
-      waiting: 'Nothing sent yet',
-      waitingSeat: '{name}: nothing sent yet'
+      waiting: 'No number yet',
+      waitingSeat: '{name}: no number yet'
     },
     made: ', a calculated tile',
     name: 'Make the number',

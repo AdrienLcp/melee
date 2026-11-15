@@ -127,11 +127,13 @@ type MakeNumberLadderProps = {
 }
 
 /**
- * Every seat's nearest value as a pin on a ruler standing under the target:
- * a rung per unit off, the seats under the target on one side and over it on
- * the other, ten away or more parked at the far end, the exact ones stamped
- * beside the target — and never a calculation. Each crowded rung gives way
- * by itself: stacked, then names cut to whole words, initials, pawns.
+ * Every seat's value — sent or still on its screen — as a pin on a ruler
+ * standing under the target: a rung per unit off, the seats under the target
+ * on one side and over it on the other, ten away or more parked at the far
+ * end, the exact ones stamped beside the target — and never a calculation.
+ * Until the first pin lands, a line under the ruler says what it waits for.
+ * Each crowded rung gives way by itself: stacked, then names cut to whole
+ * words, initials, pawns.
  */
 export const MakeNumberLadder: React.FC<MakeNumberLadderProps> = ({
   players,
@@ -165,11 +167,13 @@ export const MakeNumberLadder: React.FC<MakeNumberLadderProps> = ({
 
   const crowdOf = (rung: (typeof ladder.rungs)[number]): number =>
     Math.max(rung.under.length, rung.over.length)
+  const isUnpinned = ladder.waiting.length === seats.length
 
   return (
     <section
       aria-label={translate('makenumber.ladder.label')}
       className='make-number-ladder'
+      data-unpinned={isUnpinned || undefined}
       ref={ladderBox}
       style={{
         '--ladder-rows': [
@@ -243,6 +247,9 @@ export const MakeNumberLadder: React.FC<MakeNumberLadderProps> = ({
           </li>
         ))}
       </ol>
+      <p className='empty' inert={!isUnpinned}>
+        {translate('makenumber.ladder.empty', { target })}
+      </p>
       <div
         className='waiting'
         data-empty={ladder.waiting.length === 0 || undefined}

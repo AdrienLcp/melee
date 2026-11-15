@@ -472,6 +472,19 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **Make the number's ruler pins a seat from its first merge.** A
+  seat that merged tiles and never pressed _Send_ stayed under _Nothing sent
+  yet_ on the wall and the console until the reveal, so a whole round could
+  run on an empty ruler that read as a results screen shown too early — while
+  the close paid what was left on that rack all along. Every screen now pins
+  the nearer of a seat's sent value and the one on its rack, still never how
+  it got there, and the pin follows the rack as it moves. The empty ruler
+  says what it waits for — everyone shows up once they hold a number, the
+  closer to the target the higher — and folds that line away as the first pin
+  lands; the seats still without a number keep their names under it, the
+  ticks fade away from the ruler so the empty rungs read as a scale, and the
+  target stands larger.
+
 - `[Game]` **The countdown lands where it stays.** On a console wide enough
   to sit its presses under the round, the countdown _Next round_ opens slid
   down 13px in its first third of a second — 28px beside a wall — because

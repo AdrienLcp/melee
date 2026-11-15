@@ -10,7 +10,7 @@ import {
 } from '@melee/core/makenumber/calculation-check'
 import type { PlayableNumbers } from '@melee/core/makenumber/playable-draw'
 
-import type { Round, SentCalculation } from '@/domain/room/room'
+import type { Lean, Round, SentCalculation } from '@/domain/room/room'
 
 type MakeNumberContent = Extract<Round['content'], { kind: 'makenumber' }>
 
@@ -99,24 +99,87 @@ export const nearestOf = ({
   )
 
 /**
+ * The value a seat stands on while the round runs: its nearest sent
+ * calculation's, or what its screen holds unsent when that is strictly nearer,
+ * because the close banks that lean in its place. `null` while it holds
+ * neither.
+ */
+export const heldValueOf = ({
+  content,
+  lean,
+  sent
+}: {
+  content: MakeNumberContent
+  lean: Lean | undefined
+  sent: readonly SentCalculation[]
+}): number | null => {
+  const sentValue = nearestOf({ sent, target: content.target })?.value ?? null
+  const leanValue =
+    lean?.graded.verdict.kind === 'calculation'
+      ? lean.graded.verdict.value
+      : null
+
+  if (leanValue === null) {
+    return sentValue
+  }
+
+  return sentValue === null ||
+    Math.abs(leanValue - content.target) < Math.abs(sentValue - content.target)
+    ? leanValue
+    : sentValue
+}
+
+/** The value a seat shows every screen in this round, or `null` when it holds none — see `heldValueOf`. */
+export const seatValueOf = ({
+  playerId,
+  round
+}: {
+  playerId: PlayerId
+  round: Round
+}): number | null =>
+  round.content.kind === 'makenumber'
+    ? heldValueOf({
+        content: round.content,
+        lean: round.leans.get(playerId),
+        sent: round.content.calculations.get(playerId) ?? []
+      })
+    : null
+
+/**
  * The round as a seat, the wall or a seated console reads it. Every screen
- * reads the tiles, the target and each seat's nearest value; the reader reads
- * its own calculations, and the reveal spells out every seat's beside the
- * draw's shortest solution.
+ * reads the tiles, the target and each seat's value — sent or still on its
+ * screen, never the steps; the reader reads its own calculations, and the
+ * reveal spells out every seat's beside the draw's shortest solution.
  */
 export const makeNumberContentView = ({
   content,
   isRevealed,
+  leans,
   youId
 }: {
   content: MakeNumberContent
   isRevealed: boolean
+  /** What each seat's screen holds unsent: drawn while the round runs, and banked or dropped by its reveal. */
+  leans: ReadonlyMap<PlayerId, Lean>
   youId: PlayerId | null
 }): Extract<RoundContent, { kind: 'makenumber' }> => {
   const nearest = [...content.calculations].flatMap(([playerId, sent]) => {
     const calculation = nearestOf({ sent, target: content.target })
 
     return calculation === null ? [] : [{ ...calculation, playerId }]
+  })
+  const seats = new Set([
+    ...content.calculations.keys(),
+    ...(isRevealed ? [] : leans.keys())
+  ])
+  const values = [...seats].flatMap((playerId) => {
+    const value = heldValueOf({
+      content,
+      lean: isRevealed ? undefined : leans.get(playerId),
+      sent: content.calculations.get(playerId) ?? []
+    })
+
+    return value === null ? [] : [{ playerId, value }]
   })
 
   return {
@@ -127,7 +190,7 @@ export const makeNumberContentView = ({
     solution: isRevealed ? content.solution : null,
     target: content.target,
     tiles: content.tiles,
-    values: nearest.map(({ playerId, value }) => ({ playerId, value })),
+    values,
     yourCalculations:
       youId === null
         ? null

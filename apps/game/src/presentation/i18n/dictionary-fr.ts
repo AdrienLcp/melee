@@ -1580,12 +1580,14 @@ export const FR_DICTIONARY = defineDictionary({
     ladder: {
       above: 'Au-dessus',
       below: 'En dessous',
+      empty:
+        'Chacun apparaît sur la règle dès qu’il tient un nombre — plus il est proche de {target:number}, plus il monte',
       exact: '{name} : le compte est bon',
       far: 'Plus loin',
       label: 'Le nombre de chacun autour du compte',
       seat: '{name} : {value:number}, à {distance:number}',
-      waiting: 'Rien envoyé encore',
-      waitingSeat: '{name} : rien envoyé encore'
+      waiting: 'Pas encore de nombre',
+      waitingSeat: '{name} : pas encore de nombre'
     },
     made: ', plaque calculée',
     name: 'Le compte est bon',

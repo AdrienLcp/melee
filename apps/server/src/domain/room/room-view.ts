@@ -724,6 +724,7 @@ const toContentView = ({
     return makeNumberContentView({
       content,
       isRevealed: round.revealed,
+      leans: round.leans,
       youId
     })
   }
