@@ -756,16 +756,17 @@
       // The corner the menu keeps once the header that held it beside the
       // round's index has gone. The final board keeps its header upright:
       // its winner's name wants the whole width, and the board has the room.
-      @media (height < 36rem) and #{layout.$upright}
-        &:not(:has(> .stage.finished))
-          grid-template-areas: 'track' 'stage' 'footer'
-          grid-template-rows: auto minmax(0, 1fr) auto
+      @media #{layout.$upright}
+        @include layout.shown-height-below(36)
+          &:not(:has(> .stage.finished))
+            grid-template-areas: 'track' 'stage' 'footer'
+            grid-template-rows: auto minmax(0, 1fr) auto
 
-          > header:not(.round-chrome)
-            +hidden-header
+            > header:not(.round-chrome)
+              +hidden-header
 
-          > .score-track
-            margin-inline-end: var(--menu-inset)
+            > .score-track
+              margin-inline-end: var(--menu-inset)
 
       @media #{layout.$lying-down}
         &:not(.wall-page)
@@ -925,14 +926,18 @@
 
       // Upright, once the header has gone, the sheet starts under the menu
       // and keeps its whole head; under 24rem the letter and the clock take
-      // the menu's line instead (`petit-bac-head`).
-      @media (height < 36rem) and #{layout.$upright}
-        > .stage.petit-bac-seat
-          margin-block-start: calc(var(--control-height) + var(--space-xs))
+      // the menu's line instead (`petit-bac-head`). A seat's sheet has no
+      // score track over it, and the track's empty row still keeps its gap:
+      // each margin hands that gap back, or the strip stood a gap under the
+      // menu's line.
+      @media #{layout.$upright}
+        @include layout.shown-height-below(36)
+          > .stage.petit-bac-seat
+            margin-block-start: calc(var(--control-height) + var(--space-xs) - var(--space-s))
 
         @include layout.shown-height-below(24)
           > .stage.petit-bac-seat
-            margin-block-start: 0
+            margin-block-start: calc(-1 * var(--space-s))
 
             @include petit-bac-head.on-the-menu-line
 

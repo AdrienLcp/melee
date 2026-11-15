@@ -607,6 +607,18 @@ leave the sheet for a strip of paper on the menu's line, as tall as the menu
 takes a card of its own (`petit-bac-head.on-the-menu-line`). The strip's sand
 runs two thirds of its length on the sheet; its seconds keep their size.
 
+A card beside the menu stands on its line or clears it, never a few pixels
+under its top: a seated console's strip stood 12px under the trigger at
+320×284, 360×320 and 390×300, pushed by the empty row the score track keeps
+over a seat's sheet, whose gap the sheet's margin now hands back. A rule the
+keyboard opens on the console keys on the shown height, not the window's: under
+a keyboard laid over a 390×664 page, the seated console kept its header and
+drew its sheet as a 24px sliver beside the round's index. The nickname form
+under 30rem shown starts its card under the menu's line, its block padding cut
+to `--space-m`, its gaps to `--space-s` and its press to the control height
+(323px of card to 251px): centred on what a 336px keyboard left, its corner
+and the end of the question sat under the menu.
+
 An Android app hosting the page in a WebView may resize it (the layout follows,
 as in Chrome) or, targeting Android 15 without handling the keyboard's insets,
 lay the keys over it and tell the page nothing at all — no viewport moves, and

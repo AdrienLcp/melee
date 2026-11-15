@@ -170,5 +170,23 @@
       flex-direction: column
       gap: var(--space-m)
 
+    // Upright and under a keyboard, the card centred on what was left ran its
+    // corner and the question's end under the menu: it starts under the
+    // menu's line, its height and its press cut so the question, the field
+    // and the press still sit above the keyboard.
+    @media #{layout.$upright}
+      @include layout.shown-height-below(30)
+        padding-block: calc(var(--layout-padding-block-start) + var(--control-height) + var(--space-xs)) var(--space-xs)
+
+        .lid
+          gap: var(--space-s)
+          padding-block: var(--space-m)
+
+        .react-aria-Form
+          gap: var(--space-s)
+
+          .large
+            min-height: var(--control-height)
+
   .player-page.framed
     @include framed.page

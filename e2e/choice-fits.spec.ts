@@ -4163,10 +4163,10 @@ const measureKeyboardUp = ({
 }
 
 /**
- * Every piece of the round the corner menu's trigger is drawn over: a word, a
+ * Every piece of the screen the corner menu's trigger is drawn over: a word, a
  * clock, the round's letter, a field or a press, each by the part of it its
- * scrolling box leaves on screen. A keyboard up packs the round towards the
- * top of the screen, where the trigger stands.
+ * scrolling box leaves on screen. A keyboard up packs the screen towards the
+ * top, where the trigger stands.
  */
 const measureUnderTheMenu = (): string[] => {
   const menu = document
@@ -4274,6 +4274,71 @@ const measureUnderTheMenu = (): string[] => {
   })
 }
 
+/**
+ * Every card beside the corner menu's trigger that neither stands on the
+ * trigger's line nor clears it: its top inside the trigger's height, which
+ * reads as a strip slipped off the menu's line. Only the outermost painted
+ * boxes, since a piece inside a strip stands inside it.
+ */
+const measureOffTheMenuLine = (): string[] => {
+  const menu = document
+    .querySelector('.app-menu .trigger')
+    ?.getBoundingClientRect()
+
+  if (menu === undefined) {
+    return ['no menu trigger']
+  }
+
+  const isPainted = (element: Element): boolean => {
+    const style = getComputedStyle(element)
+
+    return (
+      style.backgroundColor !== 'rgba(0, 0, 0, 0)' ||
+      style.backgroundImage !== 'none' ||
+      style.boxShadow !== 'none'
+    )
+  }
+  const main = document.querySelector('main')
+
+  if (main === null) {
+    return []
+  }
+
+  return [...main.querySelectorAll('*')]
+    .filter((element) => {
+      if (
+        !isPainted(element) ||
+        !element.checkVisibility({ visibilityProperty: true }) ||
+        element.closest('.app-menu, [role=dialog]') !== null
+      ) {
+        return false
+      }
+
+      for (
+        let ancestor = element.parentElement;
+        ancestor !== null && ancestor !== main;
+        ancestor = ancestor.parentElement
+      ) {
+        if (
+          isPainted(ancestor) &&
+          getComputedStyle(ancestor).display !== 'contents'
+        ) {
+          return false
+        }
+      }
+
+      const { bottom, top } = element.getBoundingClientRect()
+
+      return top > menu.top + 1 && top < menu.bottom - 1 && bottom > top + 1
+    })
+    .map((element) => {
+      const box = element.getBoundingClientRect()
+      const classes = String(element.className).trim().split(/\s+/).join('.')
+
+      return `${element.tagName.toLowerCase()}.${classes} at ${Math.round(box.left)},${Math.round(box.top)}, the menu at ${Math.round(menu.top)}–${Math.round(menu.bottom)}`
+    })
+}
+
 for (const keyboard of KEYBOARD_SCREENS) {
   const screen = ANSWERING_SCREENS.find(({ name }) => name === keyboard.name)
 
@@ -4337,15 +4402,17 @@ for (const keyboard of KEYBOARD_SCREENS) {
             inView: keyboard.inView
           })
           const underTheMenu = await page.evaluate(measureUnderTheMenu)
+          const offTheMenuLine = await page.evaluate(measureOffTheMenuLine)
 
           if (
             outOfView.length > 0 ||
             scrolled > 0 ||
             narrowField !== null ||
-            underTheMenu.length > 0
+            underTheMenu.length > 0 ||
+            offTheMenuLine.length > 0
           ) {
             faults.push(
-              `${width}×${height} ${JSON.stringify({ narrowField, outOfView, page: scrolled, underTheMenu })}`
+              `${width}×${height} ${JSON.stringify({ narrowField, offTheMenuLine, outOfView, page: scrolled, underTheMenu })}`
             )
           }
         }
@@ -4464,8 +4531,6 @@ const OVERLAID_KEYBOARD_SCREENS = [
       '.nickname-form input',
       '.nickname-form button[type=submit]'
     ],
-    /** A round's screen, held clear of the corner menu under its keyboard. */
-    isRound: false,
     name: 'the nickname form',
     path: `/play/${ROOM_CODE}`,
     view: { ...typedChoosing, phase: 'lobby', round: null },
@@ -4488,7 +4553,6 @@ const OVERLAID_KEYBOARD_SCREENS = [
         {
           field: keyboard.field,
           inView: keyboard.inView,
-          isRound: true,
           name: `${role}, ${screen.name}`,
           path,
           view:
@@ -4531,9 +4595,8 @@ for (const screen of OVERLAID_KEYBOARD_SCREENS) {
     }, OVERLAID_KEYBOARD.heightPx)
 
     expect(await page.evaluate(measureInShownBand, screen.inView)).toEqual([])
-    expect(
-      screen.isRound ? await page.evaluate(measureUnderTheMenu) : []
-    ).toEqual([])
+    expect(await page.evaluate(measureUnderTheMenu)).toEqual([])
+    expect(await page.evaluate(measureOffTheMenuLine)).toEqual([])
     expect(new Set(await page.evaluate(readPanOverRepeatedScrolls)).size).toBe(
       1
     )
