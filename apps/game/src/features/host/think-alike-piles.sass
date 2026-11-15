@@ -261,7 +261,15 @@
       margin: 0
       max-inline-size: 100%
       padding: 0.1em 0.6em
+      white-space: nowrap
       transition: font-size var(--transition-base, 0s) var(--ease-out)
+
+      // The pill stays as a regroup changes its figure, so its size eases;
+      // the figure alone is stamped again.
+      .points
+        --travel-scale: 1
+
+        animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
 
       &[data-paid]
         background: var(--good-soft)
@@ -358,6 +366,9 @@
       > .pile
         --enter-at: 0s
         --turn-at: 0s
+
+      .pay .points
+        animation-delay: 0s
 
     // Back from the rows, the piles stand as the table last saw them: the
     // screen change brings them in, and nothing turns over again.

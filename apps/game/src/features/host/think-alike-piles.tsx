@@ -103,9 +103,16 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   const isRegrouped = useChangedSinceFirstDraw(
     dealt.map(({ authors, key }) => `${key}:${authors.length}`).join(' ')
   )
+  const payOf = (group: ThinkAlikeGroup): number =>
+    round.awards.find((award) => group.authors.includes(award.playerId))
+      ?.points ?? 0
   const { endExitOf, rows: groups } = useLeavingRows({
     exitAnimation: LEAVING_ANIMATION,
-    rows: dealt.map((group) => ({ ...group, id: group.key }))
+    rows: dealt.map((group) => ({
+      ...group,
+      id: group.key,
+      points: payOf(group)
+    }))
   })
   const writers = new Set(groups.flatMap((group) => group.authors))
   const blanks = playersOfRound({
@@ -125,9 +132,6 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
 
       return player === undefined ? [] : [player]
     })
-  const payOf = (group: ThinkAlikeGroup): number =>
-    round.awards.find((award) => group.authors.includes(award.playerId))
-      ?.points ?? 0
   const loneCount = singles.length + blanks.length
 
   useRowsTravel({
@@ -251,7 +255,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
       )}
       {piles.toSorted(byFirstDrawn).map((pile) => {
         const turn = piles.indexOf(pile)
-        const points = payOf(pile)
+        const { points } = pile
         const authors = authorsOf(pile)
 
         return (
@@ -297,10 +301,12 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
                 ))}
               </ol>
             </div>
-            <p className='pay' data-paid={points > 0 || undefined} key={points}>
-              {points > 0
-                ? translate('round.scored', { points: shownPoints(points) })
-                : 0}
+            <p className='pay' data-paid={points > 0 || undefined}>
+              <span className='points' key={points}>
+                {points > 0
+                  ? translate('round.scored', { points: shownPoints(points) })
+                  : 0}
+              </span>
             </p>
             <ul className='authors'>
               {authors.map((player) => (
