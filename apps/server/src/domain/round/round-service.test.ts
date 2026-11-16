@@ -9,8 +9,11 @@ import { newRoom } from '@/domain/room/new-room'
 import {
   advanceDueAt,
   controlClip,
+  elapsedRoundMs,
   openRound,
+  resumeRoundClock,
   revealRound,
+  startRoundClock,
   TRACK_DRAW_LEAD_MS
 } from './round-service'
 
@@ -152,5 +155,42 @@ describe('controlClip', () => {
 
     expect(steered).toEqual({ error: 'wrong_phase', status: 'failure' })
     expect(playbackOf(room)).toEqual({ isPaused: false, restarts: 0 })
+  })
+})
+
+describe('resumeRoundClock', () => {
+  const PLAYING_AT = OPENED_AT + COUNTDOWN_MS
+  const RESTARTED_AFTER_MS = 22_000
+
+  const playingRoom = () => {
+    const room = newRoom({
+      code: 'ABCD',
+      games: ['buzzer'],
+      hostToken: generateHostToken(),
+      locale: 'fr',
+      now: OPENED_AT
+    })
+
+    room.settings.countdownMs = COUNTDOWN_MS
+    openRound({
+      content: { kind: 'buzzer' },
+      id: 'round-1',
+      now: OPENED_AT,
+      room
+    })
+    startRoundClock({ now: PLAYING_AT, room, roundId: 'round-1' })
+
+    return room
+  }
+
+  it('[clock] keeps the time a round ran when its host comes back to a clock nobody held', () => {
+    const room = playingRoom()
+    const backAt = PLAYING_AT + RESTARTED_AFTER_MS
+
+    resumeRoundClock(room, backAt)
+
+    expect(room.round && elapsedRoundMs(room.round, backAt)).toBe(
+      RESTARTED_AFTER_MS
+    )
   })
 })

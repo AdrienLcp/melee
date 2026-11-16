@@ -1931,7 +1931,10 @@ export const resumeRoundClock = (room: Room, now: number): void => {
     return
   }
 
-  if (room.phase === 'playing') {
+  // A restart drops every socket before the object can hold the round, so the
+  // host comes back to a clock still running: resetting it would pay the next
+  // answer as if the round had just opened.
+  if (room.phase === 'playing' && round.runningSince === null) {
     round.runningSince = now
     touch(room, now)
 
