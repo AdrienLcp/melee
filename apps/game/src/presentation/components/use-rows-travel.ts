@@ -255,7 +255,11 @@ const isSameRows = (left: Boxes, right: Boxes): boolean =>
  * How a row passes another: along a `line` or down a `column`, and whether it
  * goes over — forwards on a line, up a column, as a climber does — or under.
  */
-type Passing = { axis: 'column' | 'line'; isOver: boolean }
+/**
+ * How a row passes another: along which axis, over or under, and at what
+ * share of the travel it stops overlapping every row it crosses.
+ */
+type Passing = { axis: 'column' | 'line'; clearsAt: number; isOver: boolean }
 
 type Move = { is: Box; key: string; was: Box }
 
@@ -281,6 +285,32 @@ const isCrossing = ({
   )
 }
 
+/**
+ * The share of the travel past which two crossing rows no longer overlap:
+ * both move, and grow, linearly in the travel's progress, so the gap between
+ * the one landing ahead and the one landing behind it is linear too.
+ */
+const clearanceOf = ({
+  axis,
+  one,
+  other
+}: {
+  axis: Passing['axis']
+  one: Move
+  other: Move
+}): number => {
+  const along = axis === 'line' ? 'x' : 'y'
+  const size = axis === 'line' ? 'width' : 'height'
+  const [ahead, behind] =
+    one.is[along] < other.is[along] ? [one, other] : [other, one]
+  const gapAt = (box: 'is' | 'was'): number =>
+    behind[box][along] - ahead[box][along] - ahead[box][size]
+  const atStart = gapAt('was')
+  const atEnd = gapAt('is')
+
+  return atEnd <= 0 || atStart >= 0 ? 1 : atStart / (atStart - atEnd)
+}
+
 /** The rows that cross another, each with how it passes. */
 const passingOf = ({
   before,
@@ -298,14 +328,22 @@ const passingOf = ({
 
   for (const one of moves) {
     const others = moves.filter((other) => other !== one)
+    const axis = (['line', 'column'] as const).find((each) =>
+      others.some((other) => isCrossing({ axis: each, one, other }))
+    )
 
-    if (others.some((other) => isCrossing({ axis: 'line', one, other }))) {
-      passing.set(one.key, { axis: 'line', isOver: one.is.x > one.was.x })
-    } else if (
-      others.some((other) => isCrossing({ axis: 'column', one, other }))
-    ) {
-      passing.set(one.key, { axis: 'column', isOver: one.is.y < one.was.y })
+    if (axis === undefined) {
+      continue
     }
+
+    const clearsAt = Math.max(
+      ...others
+        .filter((other) => isCrossing({ axis, one, other }))
+        .map((other) => clearanceOf({ axis, one, other }))
+    )
+    const isOver = axis === 'line' ? one.is.x > one.was.x : one.is.y < one.was.y
+
+    passing.set(one.key, { axis, clearsAt, isOver })
   }
 
   return passing
@@ -318,15 +356,23 @@ const ARC_RISE_OF_TRAVEL = 0.3
 const PASSING_OVER_SCALE = 0.04
 const PASSING_UNDER_SCALE = -0.06
 const PASSING_UNDER_DIMMED = 0.7
-/** How long the row passing under stays pale: past the arc's middle, until the other has nearly gone by. */
+/** How fast the row passing under pales as it sets off, against the arc's bulge. */
 const PASSING_UNDER_PALE_HOLD = 1.8
+/**
+ * The latest the row passing under starts to come back: rows that still
+ * touch as they land need some of the travel's tail to fade back in.
+ */
+const PASSING_UNDER_LATEST_RETURN = 0.98
 
 /**
  * The positions a passing row goes through, sampled along a half sine so the
  * path in space stays an arc whatever easing the travel runs on. The row
- * sinking under pales as it passes, so the text of the two never reads one
- * over the other — through `filter`, never `opacity`, which a row leaving
- * fades on and a travel would take over.
+ * sinking under pales as it passes, and stays pale until the rows it crosses
+ * no longer overlap it, so the text of the two never reads one over the
+ * other — through `filter`, never `opacity`, which a row leaving fades on and
+ * a travel would take over. The fade back is a keyframe of its own: an ease
+ * out crawls through the last hundredth of the way, and a fade sampled with
+ * the arc came back while the climber's last line still sat over it.
  */
 const arcOf = ({
   passing,
@@ -350,20 +396,35 @@ const arcOf = ({
   // it passed as that row settled under it.
   const overSwell = passing.axis === 'line' ? PASSING_OVER_SCALE : 0
   const swell = passing.isOver ? overSwell : PASSING_UNDER_SCALE
+  const returnsAt = Math.min(
+    Math.max(passing.clearsAt, 0.5),
+    PASSING_UNDER_LATEST_RETURN
+  )
+  const paleAt = (paled: number): Keyframe => ({
+    filter: `opacity(${1 - PASSING_UNDER_DIMMED * paled})`
+  })
 
-  return Array.from({ length: ARC_STEPS - 1 }, (_, step) => {
+  const path = Array.from({ length: ARC_STEPS - 1 }, (_, step): Keyframe => {
     const at = (step + 1) / ARC_STEPS
     const bulge = Math.sin(Math.PI * at)
-    const paled = Math.min(1, bulge * PASSING_UNDER_PALE_HOLD)
+    const paled = at < 0.5 ? Math.min(1, bulge * PASSING_UNDER_PALE_HOLD) : 1
 
     return {
       offset: at,
       transform: `translate(${x * (1 - at)}px, ${y * (1 - at) - rise * bulge}px) scale(${1 + swell * bulge})`,
-      ...(!passing.isOver && {
-        filter: `opacity(${1 - PASSING_UNDER_DIMMED * paled})`
-      })
+      ...(!passing.isOver && at < returnsAt && paleAt(paled))
     }
   })
+
+  if (passing.isOver) {
+    return path
+  }
+
+  const returning = { offset: returnsAt, ...paleAt(1) }
+
+  return [...path, returning].toSorted(
+    (left, right) => (left.offset ?? 0) - (right.offset ?? 0)
+  )
 }
 
 const play = ({

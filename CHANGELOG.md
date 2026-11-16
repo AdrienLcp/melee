@@ -533,7 +533,8 @@ one part.
   screen the room reads, a merge that reorders the piles had two of them slide
   through each other, cards and names overlapping: the pile moving up the order
   now rises over the other in an arc while that one shrinks and pales under
-  it. On a narrow console, one pile a line, a regroup moved nothing at all —
+  it, and stays pale until the other has gone by — its score no longer shows
+  through the last names of the pile climbing over it. On a narrow console, one pile a line, a regroup moved nothing at all —
   the piles jumped to their new places — and now travels the same way. A pay
   pill whose figure gains a digit (+9 → +13) widens smoothly rather than by a
   character in one frame.
