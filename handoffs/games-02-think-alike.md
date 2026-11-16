@@ -1,5 +1,7 @@
 # Pense comme la table — one motion touch left on the narrow console
 
+<!-- cspell:words PILEREGROUP NOSHOOT PAYDIGITS yaour -->
+
 Asked by Adrien on 2026-11-12. Every choice is weighed by what is more fun at
 the table, never by what it costs to build.
 
