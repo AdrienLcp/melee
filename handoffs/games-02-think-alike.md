@@ -1,44 +1,46 @@
-# Pense comme la table — three motion faults left on the console
+# Pense comme la table — one motion touch left on the narrow console
 
 Asked by Adrien on 2026-11-12. Every choice is weighed by what is more fun at
 the table, never by what it costs to build.
 
-**The game is done** (16/11/2026): served, on the shelf, and dealing the
-evening's own prompts — read
-[`docs/plans/70-think-alike.md`](../docs/plans/70-think-alike.md) for the rules
-as settled. What is left was seen on the films of the last screens session and
-never fixed. Start with the `impeccable` skill: all three are motion.
+**The game is done** (16/11/2026): served, on the shelf, dealing the evening's
+own prompts — [`docs/plans/70-think-alike.md`](../docs/plans/70-think-alike.md)
+holds the rules as settled. `4a9d78cf` (17/11) fixed the three motion faults
+this file listed: piles trading places pass one over the other
+(`useRowsTravel`'s `arcsWhenPassing`), the narrow console's regroup travels
+at all (`isOrderedByStyle` — it never ran there, the piles reverse their CSS
+`order`), and the pay pill glides through a digit change
+(`useSizeGlideOnSwap` landing on `auto`). Start with the `impeccable` skill.
 
 ## This session
 
-1. **Two piles trading places on the console slide across each other** for
-   about a quarter of a second, cards and names overlapping as they pass.
-   Seen in `.playwright-mcp/ta-console.mjs` with `REGROUP=1` (a merge that
-   reorders the piles, smallest first). Files: `think-alike-piles.sass`,
-   `think-alike-sorting.sass` and their components in
-   `apps/game/src/features/host/`. A trade must read as two piles changing
-   seats — one lifts or fades while the other moves, or both arc — never a
-   collision.
-2. **A regroup that changes the pay's number of digits (+9 → +13) steps the
-   pill's width** by one character instead of easing. The pay pill is the
-   one `8b63ead2` kept on screen through a regroup; its width has to ease
-   with the digits (`interpolate-size` / a measured width, as other pills
-   in `sass-architecture` do).
-3. **Not filmed since `8b63ead2`: the console at 390 px wide, seated.**
-   `SEATED=1 node .playwright-mcp/ta-console.mjs`, with a regroup, full room
-   (24 seats, long names).
-
-Film each fix before calling it done (`docs/browser-driving.md`, _Filming a
-motion_), muted, full room, then the changelog line, push, and delete this
-file with its row in `README.md`.
+1. **Narrow console, seated, 390×844: a brush at the end of a vertical
+   trade.** Merging _fromage_ into _beurre_ sends _beurre_ (8) up over _Lait_
+   (7). Around 530 ms of the film, as _Lait_ settles under it and its pale
+   fades back, its `+26` pill touches _beurre_'s last name for about two
+   frames. Tuning lives in `arcOf` in
+   `apps/game/src/presentation/components/use-rows-travel.ts`
+   (`PASSING_UNDER_PALE_HOLD`, `PASSING_UNDER_DIMMED`); the under row could
+   also hold back a little (a short delay on its travel) so the climber has
+   cleared before it lands. Film it with
+   `SEATED=1 PILEREGROUP=390x844 EVERY=2 FROM=0 QUICK=1 NOSHOOT=1 node .playwright-mcp/ta-console.mjs`
+   → `.playwright-mcp/tc-film-seated-alone-console-390-pile-merge.png`.
+2. Film the 1440 trade once more after any change
+   (`PILEREGROUP=1440x900`, same flags), then the changelog line if the fix
+   is visible, push, and delete this file with its row in `README.md`.
 
 ## Context
 
-- **Harnesses** (git-ignored, all muted by init script, protocol 76):
-  `.playwright-mcp/ta-run.mjs` (a paired wall, a regroup, a wall film at
-  either size), `ta-console.mjs` (seated or not, with or without a wall, a
-  resize, the rows and piles films — the flags are at its top),
-  `ta-shelf.mjs`, `ta-shelf-dark.mjs`. They read `PORT`.
+- **Harness flags added on 17/11** (git-ignored `ta-console.mjs`):
+  `FROM=<s>` starts the crop sheet earlier (default 0.1 s, which missed a
+  regroup that lands fast); `PAYDIGITS=1` with `PILEREGROUP` merges
+  _yogourt_ into _fromage_ (+9 → +13) and prints the pill's width per frame;
+  each probe line now carries `TRAVEL<n>` (running `rows-travel`
+  animations) and every pile's `^top`. A probe line is long — print the part
+  from `| yaour` on, never `cut` the head of it (a truncated line looked like
+  an empty box once).
+- **Harnesses** (all muted by init script, protocol 76): `ta-run.mjs`,
+  `ta-console.mjs`, `ta-shelf.mjs`, `ta-shelf-dark.mjs`. They read `PORT`.
 - **Another session may hold 3100**: run your own pair on other ports —
   `wrangler dev --port 3200 --inspector-port 9330 --persist-to <long path>`
   and `VITE_SERVER_ORIGIN=http://localhost:3200 VITE_DEV_PORT=5373 vite`.
