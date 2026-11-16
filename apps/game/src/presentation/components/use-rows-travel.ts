@@ -36,6 +36,21 @@ type RowsTravelOptions = {
   order: string
   pace: TravelPace
   /**
+   * Rows that trade places pass one over the other: the one moving forwards
+   * along a line — or up a column — travels on the layer above, rising in an
+   * arc on a line, while the one going the other way shrinks and pales under
+   * it, rather than both sliding through each other. `false` by default.
+   */
+  arcsWhenPassing?: boolean
+  /**
+   * The rows keep the order they were first drawn in and are laid out by
+   * their CSS `order`, which lands in the same commit: the travel measures at
+   * once rather than waiting for `order` to stand in the layout — which a
+   * container query laying the list out backwards never does. `false` by
+   * default.
+   */
+  isOrderedByStyle?: boolean
+  /**
    * Matches what travels inside each row in the row's place, for a row part
    * of which stays put — the timeline's card and arrows beside a number that
    * never moves. The row itself by default.
@@ -236,13 +251,130 @@ const isWidthTravelling = (row: HTMLElement): boolean =>
 const isSameRows = (left: Boxes, right: Boxes): boolean =>
   left.size === right.size && [...left.keys()].every((key) => right.has(key))
 
+/**
+ * How a row passes another: along a `line` or down a `column`, and whether it
+ * goes over — forwards on a line, up a column, as a climber does — or under.
+ */
+type Passing = { axis: 'column' | 'line'; isOver: boolean }
+
+type Move = { is: Box; key: string; was: Box }
+
+/** Whether two rows that stay on one line, or in one column, swapped their order along it. */
+const isCrossing = ({
+  axis,
+  one,
+  other
+}: {
+  axis: Passing['axis']
+  one: Move
+  other: Move
+}): boolean => {
+  const across = axis === 'line' ? 'y' : 'x'
+  const along = axis === 'line' ? 'x' : 'y'
+
+  return (
+    Math.abs(one.was[across] - other.was[across]) < MIN_TRAVEL_PX &&
+    Math.abs(one.is[across] - other.is[across]) < MIN_TRAVEL_PX &&
+    Math.sign(one.was[along] - other.was[along]) *
+      Math.sign(one.is[along] - other.is[along]) <
+      0
+  )
+}
+
+/** The rows that cross another, each with how it passes. */
+const passingOf = ({
+  before,
+  now
+}: {
+  before: Boxes
+  now: Boxes
+}): Map<string, Passing> => {
+  const moves = [...now].flatMap(([key, is]): Move[] => {
+    const was = before.get(key)
+
+    return was === undefined ? [] : [{ is, key, was }]
+  })
+  const passing = new Map<string, Passing>()
+
+  for (const one of moves) {
+    const others = moves.filter((other) => other !== one)
+
+    if (others.some((other) => isCrossing({ axis: 'line', one, other }))) {
+      passing.set(one.key, { axis: 'line', isOver: one.is.x > one.was.x })
+    } else if (
+      others.some((other) => isCrossing({ axis: 'column', one, other }))
+    ) {
+      passing.set(one.key, { axis: 'column', isOver: one.is.y < one.was.y })
+    }
+  }
+
+  return passing
+}
+
+const ARC_STEPS = 8
+/** How high a row rises passing over, against its own height and against how far it goes. */
+const ARC_RISE_OF_HEIGHT = 0.08
+const ARC_RISE_OF_TRAVEL = 0.3
+const PASSING_OVER_SCALE = 0.04
+const PASSING_UNDER_SCALE = -0.06
+const PASSING_UNDER_DIMMED = 0.7
+/** How long the row passing under stays pale: past the arc's middle, until the other has nearly gone by. */
+const PASSING_UNDER_PALE_HOLD = 1.8
+
+/**
+ * The positions a passing row goes through, sampled along a half sine so the
+ * path in space stays an arc whatever easing the travel runs on. The row
+ * sinking under pales as it passes, so the text of the two never reads one
+ * over the other — through `filter`, never `opacity`, which a row leaving
+ * fades on and a travel would take over.
+ */
+const arcOf = ({
+  passing,
+  row,
+  x,
+  y
+}: {
+  passing: Passing
+  row: HTMLElement
+  x: number
+  y: number
+}): Keyframe[] => {
+  const rise =
+    passing.isOver && passing.axis === 'line'
+      ? Math.min(
+          row.offsetHeight * ARC_RISE_OF_HEIGHT,
+          Math.abs(x) * ARC_RISE_OF_TRAVEL
+        )
+      : 0
+  // A row swelling down a column grows taller too, and reached into the row
+  // it passed as that row settled under it.
+  const overSwell = passing.axis === 'line' ? PASSING_OVER_SCALE : 0
+  const swell = passing.isOver ? overSwell : PASSING_UNDER_SCALE
+
+  return Array.from({ length: ARC_STEPS - 1 }, (_, step) => {
+    const at = (step + 1) / ARC_STEPS
+    const bulge = Math.sin(Math.PI * at)
+    const paled = Math.min(1, bulge * PASSING_UNDER_PALE_HOLD)
+
+    return {
+      offset: at,
+      transform: `translate(${x * (1 - at)}px, ${y * (1 - at) - rise * bulge}px) scale(${1 + swell * bulge})`,
+      ...(!passing.isOver && {
+        filter: `opacity(${1 - PASSING_UNDER_DIMMED * paled})`
+      })
+    }
+  })
+}
+
 const play = ({
+  arcsWhenPassing = false,
   before,
   list,
   now,
   pace,
   piece
 }: {
+  arcsWhenPassing?: boolean
   before: Boxes
   list: HTMLElement
   now: Boxes
@@ -254,6 +386,10 @@ const play = ({
   if (timing.duration === 0) {
     return
   }
+
+  const passing = arcsWhenPassing
+    ? passingOf({ before, now })
+    : new Map<string, Passing>()
 
   for (const row of keyedRowsOf(list)) {
     const key = row.dataset.key ?? ''
@@ -275,13 +411,16 @@ const play = ({
     }
 
     const layer = restingLayerOf(row)
-    const zIndex = String(y > 0 ? layer + 1 : layer)
+    const way = passing.get(key)
+    const isClimbing = way === undefined ? y > 0 : way.isOver
+    const zIndex = String(isClimbing ? layer + 1 : layer)
     const heights = isResized
       ? [{ height: `${was.height}px` }, { height: `${is.height}px` }]
       : [{}, {}]
     const widths = isWidened
       ? [{ width: `${was.width}px` }, { width: 'auto' }]
       : [{}, {}]
+    const arc = way === undefined ? [] : arcOf({ passing: way, row, x, y })
 
     for (const traveller of travellersOf({ piece, row })) {
       const animation = traveller.animate(
@@ -292,6 +431,7 @@ const play = ({
             ...heights[0],
             ...widths[0]
           },
+          ...arc.map((frame) => ({ ...frame, zIndex })),
           { transform: 'none', zIndex, ...heights[1], ...widths[1] }
         ],
         { ...timing, id: TRAVEL_ID }
@@ -427,7 +567,9 @@ export const glidesWhenTheGridResizes = (
  * the rows where they are drawn at that moment.
  */
 export const useRowsTravel = ({
+  arcsWhenPassing = false,
   from,
+  isOrderedByStyle = false,
   list,
   order,
   pace,
@@ -532,44 +674,48 @@ export const useRowsTravel = ({
     drawnOrder.current = drawn
     remembered.current = null
 
-    return whenRowsDrawn({
-      list: element,
-      onDrawn: () => {
-        if (pace === 'gather') {
-          const shifts = haltTravels(element)
-          const now = measureLaidOut(element)
-          const before = gatheredFrom({
-            list: element,
-            previous: lastDrawn.current,
-            shifts
-          })
+    const onDrawn = () => {
+      if (pace === 'gather') {
+        const shifts = haltTravels(element)
+        const now = measureLaidOut(element)
+        const before = gatheredFrom({
+          list: element,
+          previous: lastDrawn.current,
+          shifts
+        })
 
-          lastDrawn.current = {
-            boxes: now,
-            width: frameOf(element).clientWidth
-          }
-
-          for (const row of keyedRowsOf(element)) {
-            resizes.current?.observe(row)
-          }
-
-          if (before !== null) {
-            play({ before, list: element, now, pace })
-          }
-
-          return
+        lastDrawn.current = {
+          boxes: now,
+          width: frameOf(element).clientWidth
         }
 
-        const now = measure({ list: element, piece })
-        const before =
-          seen ?? (isFirst && from != null ? slotsOf({ from, now }) : null)
-
-        if (before !== null && isSameRows(before, now)) {
-          play({ before, list: element, now, pace, piece })
+        for (const row of keyedRowsOf(element)) {
+          resizes.current?.observe(row)
         }
-      },
-      order: drawn
-    })
+
+        if (before !== null) {
+          play({ arcsWhenPassing, before, list: element, now, pace })
+        }
+
+        return
+      }
+
+      const now = measure({ list: element, piece })
+      const before =
+        seen ?? (isFirst && from != null ? slotsOf({ from, now }) : null)
+
+      if (before !== null && isSameRows(before, now)) {
+        play({ arcsWhenPassing, before, list: element, now, pace, piece })
+      }
+    }
+
+    if (isOrderedByStyle) {
+      onDrawn()
+
+      return
+    }
+
+    return whenRowsDrawn({ list: element, onDrawn, order: drawn })
   })
 
   useLayoutEffect(() => travel(order), [order])

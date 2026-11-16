@@ -560,7 +560,11 @@ which interpolates only between lists of the same length, so removal comes
 after and changes nothing. Two piles trading places trade tracks, and so
 their widths, at once: `useRowsTravel` carries a row's width to `auto` for a
 row allowing `interpolate-size: allow-keywords`, so it follows a track still
-transitioning under it. A track floored at `min-content` follows its widest
+transitioning under it. Rows trading places pass one over the other
+(`arcsWhenPassing`) or slide through each other, names on names. A list laid
+out by CSS `order` passes `isOrderedByStyle`: the piles one a line reverse
+their `order`, and a travel waiting for the order to stand in the layout never
+ran. A track floored at `min-content` follows its widest
 word, and moved every column a frame after that word left: the lone column is
 floored on its cards' least width.
 

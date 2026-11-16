@@ -14,6 +14,7 @@ import { useChangedSinceFirstDraw } from '@/presentation/components/use-changed-
 import { useFirstDrawnOrder } from '@/presentation/components/use-first-drawn-order'
 import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
+import { useSizeGlideOnSwap } from '@/presentation/components/use-size-glide-on-swap'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -84,6 +85,27 @@ const Author: React.FC<{ player: PublicPlayer; seat: number }> = ({
 )
 
 /**
+ * What a pile's authors were each paid, on a pill that stays through a
+ * regroup: its width eases to the new figure's, the figure alone stamped again.
+ */
+const PayPill: React.FC<{ points: number }> = ({ points }) => {
+  const translate = useTranslate()
+  const pill = useRef<HTMLParagraphElement>(null)
+
+  useSizeGlideOnSwap({ box: pill, swap: points })
+
+  return (
+    <p className='pay' data-paid={points > 0 || undefined} ref={pill}>
+      <span className='points' key={points}>
+        {points > 0
+          ? translate('round.scored', { points: shownPoints(points) })
+          : 0}
+      </span>
+    </p>
+  )
+}
+
+/**
  * The round's reveal on the screen the room shares: the blank seats and the
  * lone answers as small flat cards first, then every answer two or more
  * wrote as a pile, smallest to biggest, gathered face down and turned over
@@ -135,6 +157,8 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   const loneCount = singles.length + blanks.length
 
   useRowsTravel({
+    arcsWhenPassing: true,
+    isOrderedByStyle: true,
     list: section,
     order: piles.map((pile) => pile.key).join(' '),
     pace: 'gather'
@@ -301,13 +325,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
                 ))}
               </ol>
             </div>
-            <p className='pay' data-paid={points > 0 || undefined}>
-              <span className='points' key={points}>
-                {points > 0
-                  ? translate('round.scored', { points: shownPoints(points) })
-                  : 0}
-              </span>
-            </p>
+            <PayPill points={points} />
             <ul className='authors'>
               {authors.map((player) => (
                 <Author

@@ -529,6 +529,14 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Think alike's piles change places instead of colliding.** On the
+  screen the room reads, a merge that reorders the piles had two of them slide
+  through each other, cards and names overlapping: the pile moving up the order
+  now rises over the other in an arc while that one shrinks and pales under
+  it. On a narrow console, one pile a line, a regroup moved nothing at all —
+  the piles jumped to their new places — and now travels the same way. A pay
+  pill whose figure gains a digit (+9 → +13) widens smoothly rather than by a
+  character in one frame.
 - `[Game]` **A console whose host sits far down a full table no longer runs
   wider than the screen.** The score track's hidden _(you)_ and _(away)_ laid
   out against the page and stretched it to the strip's far end — 675px on a

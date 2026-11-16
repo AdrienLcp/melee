@@ -51,7 +51,14 @@ const glide = ({
     return null
   }
 
-  return box.animate([frameOf(from), frameOf(to)], {
+  // A box allowing `interpolate-size` glides to `auto`, so it follows its
+  // content still resizing under it — a font size easing with the text.
+  const landing =
+    style.getPropertyValue('interpolate-size') === 'allow-keywords'
+      ? { ...frameOf(to), blockSize: 'auto', inlineSize: 'auto' }
+      : frameOf(to)
+
+  return box.animate([frameOf(from), landing], {
     duration,
     easing: style.getPropertyValue('--ease-out').trim() || DEFAULT_EASE_OUT
   })
