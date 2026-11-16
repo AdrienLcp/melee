@@ -22,15 +22,33 @@
         animation: page-leave var(--transition-fast, 0s) var(--ease-in) forwards
         pointer-events: none
 
+    // The button is held to the input's row, so the refusal folding open
+    // under the field moves nothing beside it. No row gap: the fold is a row
+    // of this grid, and a gap stays open before a row however closed it is.
     .key-form
-      align-items: end
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-s)
+      display: grid
+      gap: 0 var(--space-s)
+      grid-template: 'label .' auto 'field submit' auto 'fold fold' auto / minmax(0, 1fr) auto
 
       .text-field
-        flex: 1
-        min-width: min(100%, 16rem)
+        display: contents
+
+      .react-aria-Label
+        grid-area: label
+        margin-block-end: var(--space-2xs)
+
+      .react-aria-Input
+        grid-area: field
+
+      .text-field > .fold
+        grid-area: fold
+        margin-block-start: 0
+
+        &[data-open]
+          margin-block-start: var(--space-2xs)
+
+      > .button
+        grid-area: submit
 
     .admin-console
       display: flex

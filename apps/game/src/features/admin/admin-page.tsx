@@ -35,12 +35,13 @@ const KeyForm: React.FC<{
     event.preventDefault()
     setIsPending(true)
 
-    const rooms = await fetchAdminRooms({ adminKey: draft })
+    const adminKey = draft.trim()
+    const rooms = await fetchAdminRooms({ adminKey })
 
     setIsPending(false)
 
     if (rooms.status === 'success') {
-      setAdmitted(draft)
+      setAdmitted(adminKey)
       return
     }
 
