@@ -47,7 +47,7 @@ vi.mock(
       typeof import('@/infrastructure/questions/think-alike-bank')
     >()),
     drawThinkAlikePrompt: ({ language }: { language: QuestionLanguage }) => ({
-      id: 'red-fruit',
+      playedId: 'thinkalike:red-fruit',
       prompt: language === 'en' ? ENGLISH_PROMPT : PROMPT
     })
   })
@@ -443,4 +443,90 @@ describe('the think-alike setup', () => {
     ])
     expect(hostView(host)?.settings.game).toEqual(DEFAULT_THINK_ALIKE_SETTINGS)
   })
+})
+
+describe('the evening’s own think-alike prompts', () => {
+  const DECKED = 'Something on Grandma’s mantelpiece'
+  const WRITTEN = ['A word Léa says too often', 'The family’s holiday spot']
+  const ON_THEIR_OWN: RoomSettings = {
+    ...THINK_ALIKE,
+    autoAdvanceMs: 2_000,
+    lineUp: [DEFAULT_THINK_ALIKE_SETTINGS],
+    lineUpAt: 0,
+    roundCount: null
+  }
+
+  const promptsOn = (seats: Seat[]) =>
+    seats.map((seat) =>
+      playerView(seat)?.phase === 'playing'
+        ? thinkAlikeRound(playerView(seat))?.prompt
+        : undefined
+    )
+
+  const answerThenNext = async (seats: Seat[]) => {
+    const before = seats.map((seat) => playerView(seat)?.round?.id)
+
+    for (const seat of seats) {
+      write({
+        answer: 'Clock',
+        roundId: playerView(seat)?.round?.id ?? '',
+        seat
+      })
+    }
+
+    await waitFor(
+      () =>
+        seats.every(
+          (seat, at) =>
+            playerView(seat)?.phase === 'playing' &&
+            playerView(seat)?.round?.id !== before[at]
+        ),
+      'the held reveal to open the next prompt by itself',
+      6_000
+    )
+
+    return promptsOn(seats)[0]
+  }
+
+  it('[thinkalike] deals the entry’s deck, then the host’s own, then the bank, on rounds nobody pressed, and to no screen early', async () => {
+    const { code, host } = await harness.openRoom(ON_THEIR_OWN)
+    const seats = [
+      await harness.seat({ code, nickname: 'Zoe' }),
+      await harness.seat({ code, nickname: 'Max' })
+    ]
+
+    host.send({
+      decks: [{ game: 'thinkalike', items: [DECKED] }],
+      type: 'host.setDecks'
+    })
+    host.send({
+      ownLines: { challenge: [], mostlikely: [], thinkalike: WRITTEN },
+      type: 'host.setOwnLines'
+    })
+    await waitFor(
+      () => hostView(host)?.deckSummaries[0]?.size === 1,
+      'the deck to load'
+    )
+
+    for (const peer of [host, ...seats]) {
+      expect(transcriptOf(peer.frames)).not.toContain(DECKED)
+      expect(transcriptOf(peer.frames)).not.toContain(WRITTEN[0])
+    }
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(
+      () => promptsOn(seats).every((prompt) => prompt === DECKED),
+      'the deck’s prompt first'
+    )
+
+    for (const peer of [host, ...seats]) {
+      expect(transcriptOf(peer.frames)).not.toContain(WRITTEN[0])
+    }
+
+    expect(await answerThenNext(seats)).toBe(WRITTEN[0])
+    expect(await answerThenNext(seats)).toBe(WRITTEN[1])
+    expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 1 }])
+    expect(await answerThenNext(seats)).toBe(PROMPT)
+    expect(errorsIn(host)).toEqual([])
+  }, 20_000)
 })

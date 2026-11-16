@@ -20,6 +20,10 @@ const dealtLineOf = (
     return { game: 'mostlikely', text: content.labels.en }
   }
 
+  if (content?.kind === 'thinkalike') {
+    return { game: 'thinkalike', text: content.prompt }
+  }
+
   if (content?.kind === 'challenge' && content.labels !== null) {
     return { game: 'challenge', text: content.labels.en }
   }
@@ -42,6 +46,7 @@ export const useOwnLinesInRoom = ({
 }): void => {
   const challenge = useOwnLines('challenge')
   const mostlikely = useOwnLines('mostlikely')
+  const thinkalike = useOwnLines('thinkalike')
   const hasRoom = view !== null
   const dealt = dealtLineOf(view)
   const dealtGame = dealt?.game ?? null
@@ -50,11 +55,11 @@ export const useOwnLinesInRoom = ({
   useEffect(() => {
     if (hasRoom) {
       send({
-        ownLines: unplayedOwnLinesOf({ challenge, mostlikely }),
+        ownLines: unplayedOwnLinesOf({ challenge, mostlikely, thinkalike }),
         type: 'host.setOwnLines'
       })
     }
-  }, [challenge, hasRoom, mostlikely, send])
+  }, [challenge, hasRoom, mostlikely, send, thinkalike])
 
   useEffect(() => {
     if (dealtGame === null || dealtText === null) {
@@ -63,8 +68,8 @@ export const useOwnLinesInRoom = ({
 
     markOwnLinePlayed({
       game: dealtGame,
-      lines: dealtGame === 'challenge' ? challenge : mostlikely,
+      lines: { challenge, mostlikely, thinkalike }[dealtGame],
       text: dealtText
     })
-  }, [challenge, dealtGame, dealtText, mostlikely])
+  }, [challenge, dealtGame, dealtText, mostlikely, thinkalike])
 }

@@ -10,7 +10,11 @@ import type { Room } from './room'
 import { fitTeamsToSettings } from './team-service'
 
 /** A room the console has told of no line its host wrote — never mutated, only replaced. */
-export const NO_OWN_LINES: OwnLines = { challenge: [], mostlikely: [] }
+export const NO_OWN_LINES: OwnLines = {
+  challenge: [],
+  mostlikely: [],
+  thinkalike: []
+}
 
 /**
  * The code is the caller's because uniqueness is: the process that keeps the

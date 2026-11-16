@@ -13,6 +13,7 @@ export type HostExport = {
   challengeLines: readonly OwnLine[]
   mostlikelyLines: readonly OwnLine[]
   savedEvenings: readonly SavedEvening[]
+  thinkalikeLines: readonly OwnLine[]
 }
 
 const HOST_EXPORT_KIND = 'melee-host-export'
@@ -33,14 +34,16 @@ const hostExportSchema = z.object({
   challengeLines: ownLinesSchemaOf('challenge'),
   kind: z.literal(HOST_EXPORT_KIND),
   mostlikelyLines: ownLinesSchemaOf('mostlikely').default([]),
-  savedEvenings: savedEveningsSchema.catch([])
+  savedEvenings: savedEveningsSchema.catch([]),
+  thinkalikeLines: ownLinesSchemaOf('thinkalike').default([])
 })
 
 /** The file's text: the same shapes the stores write, under a kind that names it. */
 export const hostExportText = ({
   challengeLines,
   mostlikelyLines,
-  savedEvenings
+  savedEvenings,
+  thinkalikeLines
 }: HostExport): string =>
   JSON.stringify(
     {
@@ -48,6 +51,7 @@ export const hostExportText = ({
       kind: HOST_EXPORT_KIND,
       mostlikelyLines,
       savedEvenings,
+      thinkalikeLines,
       version: 1
     },
     null,

@@ -75,9 +75,11 @@ saying's first half, which no game owns.
   merged group carries the keys folded into it, which is what _take it back
   out_ names.
 - **A latecomer** is the estimate's: the round is stamped as it opens.
-- **The host's own prompts** — an evening brought by an assistant
-  ([68](68-evening-content.md)) — are public lines like most likely's: on the
-  game's settings arm, dealt before the bank.
+- **The evening's own prompts** are lines like most likely's, and take its
+  path ([68](68-evening-content.md)): a `thinkalike` arm in `deckSchema` for
+  an entry's deck, and `thinkalike` in `ownLines` for the host's own, never
+  the settings arm, which rides every snapshot to every screen. Dealt before
+  the bank, deck first.
 
 ## Step 1 — plan, protocol and core (one session)
 
@@ -174,10 +176,18 @@ What diverged from the plan:
 - **Only _Mêlée générale_ deals it** among the ready-made line-ups: it falls
   flat at two seats, the reason _Première partie_ leaves out _Qui de nous ?_.
 
-## Step 4 — the evening's own prompts
+## Step 4 — the evening's own prompts (done 16/11/2026)
 
-`ownPrompts` filled from an evening ([68](68-evening-content.md)), the MCP's
-`describe_games` note, the ready-made line-ups.
+The handoff asked for `ownPrompts` on the settings arm; plan 68 had settled
+that nothing an evening brings goes there, so the prompts took most likely's
+path whole. `deckSchema` gains a `thinkalike` arm of lines (80 characters,
+60 at most, checked by `lineDeckProblems`), `ownLines` a `thinkalike` list
+kept under `melee:thinkalike-lines`, and the round conductor deals
+`unplayedEveningLines` before `drawThinkAlikePrompt`, which now returns the
+`playedId` itself. The entry's page shows the own-lines editor and the deck
+note; the export file carries `thinkalikeLines`; `prepare_evening` tells the
+assistant what makes a prompt split a table. The ready-made line-ups already
+dealt the game since step 3.
 
 ## How to tell it is done
 

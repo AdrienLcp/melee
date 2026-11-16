@@ -40,7 +40,7 @@ describe('the think-alike bank', () => {
     expect(
       drawThinkAlikePrompt({ language: 'en', playedIds: allButOne })
     ).toEqual({
-      id: kept.id,
+      playedId: playedThinkAlikePromptId(kept.id),
       prompt: kept.labels.en
     })
 

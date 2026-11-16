@@ -690,7 +690,7 @@ describe('the challenge lines a host wrote ahead', () => {
     peer.frames.map(({ raw }) => raw).join('')
   const writeLines = (host: Peer<HostServerMessage>, challenge: string[]) => {
     host.send({
-      ownLines: { challenge, mostlikely: [] },
+      ownLines: { challenge, mostlikely: [], thinkalike: [] },
       type: 'host.setOwnLines'
     })
   }
@@ -791,7 +791,7 @@ describe('the challenge lines a host wrote ahead', () => {
     const { anna } = await openDealtChallenge()
 
     anna.send({
-      ownLines: { challenge: WRITTEN, mostlikely: [] },
+      ownLines: { challenge: WRITTEN, mostlikely: [], thinkalike: [] },
       type: 'host.setOwnLines'
     })
     await waitFor(() => errorsIn(anna).length > 0, 'the refusal')

@@ -1578,6 +1578,8 @@ export const EN_DICTIONARY = defineDictionary({
       slateKeys:
         'The answers to a slate the host typed in advance, before the table opens.',
       theme: 'The theme you picked: light, dark or your system’s.',
+      thinkalikeLines:
+        'The “great minds” prompts the host wrote in advance, and which of them have been played.',
       volume:
         'The room volume last set from this screen, which the next table it opens starts at.',
       wallSessions:
@@ -2692,12 +2694,32 @@ export const EN_DICTIONARY = defineDictionary({
       send: 'Send',
       sent: 'Your card is laid face down.'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} home-made prompt', other: '{?} home-made prompts' }
+        }
+      }),
+      spent: 'Home-made prompts used up'
+    },
     home: {
       description:
         'A prompt goes up on every screen — a red fruit, something you find in a fridge — and everyone writes the first thing that comes to mind, once, before the clock runs out. Nobody sees a word until the reveal turns the answers over, from the lone ones up to the biggest crowd, and each answer is paid by how many of the others wrote it too.'
     },
     language: 'Prompts in',
     name: 'Great minds',
+    own: {
+      add: 'Add',
+      description:
+        'Drawn before the bank, in this order, even on a round that opens by itself. Kept on this device.',
+      field: 'Prompt {index:number}',
+      new: 'A new prompt',
+      newPlaceholder: 'Something you…',
+      played: 'Played',
+      remove: 'Remove prompt {index:number}',
+      summary: '{count:number} to come',
+      title: 'Your prompts'
+    },
     play: 'Play Great minds',
     reveal: {
       blank: 'Nothing written',

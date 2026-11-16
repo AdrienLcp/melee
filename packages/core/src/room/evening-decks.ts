@@ -35,6 +35,7 @@ const deckProblemsAt = ({
       return quizDeckProblems({ items: deck.items, path })
     case 'challenge':
     case 'mostlikely':
+    case 'thinkalike':
       return lineDeckProblems({ items: deck.items, path })
     case 'estimate':
       return estimateDeckProblems({ items: deck.items, path })

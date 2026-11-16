@@ -12,12 +12,13 @@ import { MOST_LIKELY_LINE_MAX_LENGTH } from './most-likely'
 import { questionCategorySchema } from './question'
 import { LINE_UP_MAX_ENTRIES } from './room'
 import { MAX_SLATE_ITEMS, SLATE_KEY_MAX_LENGTH } from './slate'
+import { THINK_ALIKE_PROMPT_MAX_LENGTH } from './think-alike'
 import { TIMELINE_EVENTS_PER_ROUND, timelineLabelSchema } from './timeline'
 
 /** The most questions one quiz deck holds: each carries its answer and three decoys, and the link is copied by hand. */
 export const QUIZ_DECK_MAX_ITEMS = 30
 
-/** The most lines a challenge or most likely deck holds — as many as a long evening plays. */
+/** The most lines a challenge, most likely or think alike deck holds — as many as a long evening plays. */
 export const LINE_DECK_MAX_ITEMS = 60
 
 /** The most dated events one timeline deck holds: eight rounds of five. */
@@ -226,6 +227,14 @@ export const deckSchema = z.discriminatedUnion('game', [
       .min(1)
       .max(LINE_DECK_MAX_ITEMS)
   }),
+  /** Prompts the whole table answers in one word, one a round, read off every screen as written. */
+  z.object({
+    game: z.literal('thinkalike'),
+    items: z
+      .array(z.string().trim().min(1).max(THINK_ALIKE_PROMPT_MAX_LENGTH))
+      .min(1)
+      .max(LINE_DECK_MAX_ITEMS)
+  }),
   /**
    * The table's own dates, five a round, ordered by distinct years alone:
    * the bank's spacing would deal nothing from two births two years apart.
@@ -295,7 +304,8 @@ const ownLineListSchema = (maxLength: number) =>
  */
 export const ownLinesSchema = z.object({
   challenge: ownLineListSchema(CHALLENGE_TEXT_MAX_LENGTH),
-  mostlikely: ownLineListSchema(MOST_LIKELY_LINE_MAX_LENGTH)
+  mostlikely: ownLineListSchema(MOST_LIKELY_LINE_MAX_LENGTH),
+  thinkalike: ownLineListSchema(THINK_ALIKE_PROMPT_MAX_LENGTH)
 })
 
 export type OwnLines = z.infer<typeof ownLinesSchema>

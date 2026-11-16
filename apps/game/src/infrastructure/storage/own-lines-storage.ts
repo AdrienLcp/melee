@@ -4,13 +4,15 @@ import { z } from 'zod'
 import { CHALLENGE_TEXT_MAX_LENGTH } from '@melee/protocol/challenge'
 import { LINE_DECK_MAX_ITEMS, type OwnLinesGame } from '@melee/protocol/deck'
 import { MOST_LIKELY_LINE_MAX_LENGTH } from '@melee/protocol/most-likely'
+import { THINK_ALIKE_PROMPT_MAX_LENGTH } from '@melee/protocol/think-alike'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
 /** Where each game's own lines are kept; the challenge's key predates the second game. */
 export const OWN_LINES_KEYS: Readonly<Record<OwnLinesGame, string>> = {
   challenge: 'melee:challenge-lines',
-  mostlikely: 'melee:mostlikely-lines'
+  mostlikely: 'melee:mostlikely-lines',
+  thinkalike: 'melee:thinkalike-lines'
 }
 
 /** As many as a long evening plays — a line deck's own cap, since they are dealt beside one. */
@@ -19,7 +21,8 @@ export const OWN_LINES_MAX = LINE_DECK_MAX_ITEMS
 /** The longest line each game reads off the wall. */
 export const OWN_LINE_MAX_LENGTH: Readonly<Record<OwnLinesGame, number>> = {
   challenge: CHALLENGE_TEXT_MAX_LENGTH,
-  mostlikely: MOST_LIKELY_LINE_MAX_LENGTH
+  mostlikely: MOST_LIKELY_LINE_MAX_LENGTH,
+  thinkalike: THINK_ALIKE_PROMPT_MAX_LENGTH
 }
 
 /** One own line of a game, refused past what the room would accept for it. */

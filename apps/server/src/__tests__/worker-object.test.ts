@@ -353,7 +353,7 @@ describe('the room object', () => {
       const { code, host, hostToken } = await runtime.openRoom(ON_THE_CHALLENGE)
 
       host.send({
-        ownLines: { challenge: [WRITTEN], mostlikely: [] },
+        ownLines: { challenge: [WRITTEN], mostlikely: [], thinkalike: [] },
         type: 'host.setOwnLines'
       })
       await waitFor(

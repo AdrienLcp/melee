@@ -47,7 +47,7 @@ _Copy the link_ beside it in the console's saved line-ups.
 
 An evening carries `decks` beside its line-up, written by the assistant from
 what the host told it (plan 68): a quiz entry's own questions, a challenge or
-_most likely_ entry's lines, a timeline entry's dated events — the family's
+_most likely_ entry's lines, a think alike entry's prompts, a timeline entry's dated events — the family's
 births, five a round, by distinct years alone — a slate entry's answer key
 for its one sheet, numbers of the table's own to estimate or compare, each
 asked in its own words and unit, and black square themes, up to three an

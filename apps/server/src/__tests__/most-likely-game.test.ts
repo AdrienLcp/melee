@@ -310,7 +310,7 @@ describe('the most-likely lines a host wrote ahead', () => {
     peer.frames.map(({ raw }) => raw).join('')
   const writeLines = (host: Peer<HostServerMessage>, mostlikely: string[]) => {
     host.send({
-      ownLines: { challenge: [], mostlikely },
+      ownLines: { challenge: [], mostlikely, thinkalike: [] },
       type: 'host.setOwnLines'
     })
   }

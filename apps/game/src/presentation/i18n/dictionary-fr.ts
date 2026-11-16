@@ -1505,6 +1505,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Les réponses d’une ardoise que l’hôte a tapées à l’avance, avant d’ouvrir la table.',
       theme:
         'Le thème que tu as choisi : clair, sombre ou celui de ton système.',
+      thinkalikeLines:
+        'Les consignes de « Pense comme la table » que l’hôte a écrites à l’avance, et celles déjà jouées.',
       volume:
         'Le dernier volume de salle réglé depuis cet écran, celui où démarre la prochaine table qu’il ouvre.',
       wallSessions:
@@ -2525,12 +2527,32 @@ export const FR_DICTIONARY = defineDictionary({
       send: 'Envoyer',
       sent: 'Ta carte est posée, face cachée.'
     },
+    deck: {
+      count: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} consigne maison', other: '{?} consignes maison' }
+        }
+      }),
+      spent: 'Consignes maison épuisées'
+    },
     home: {
       description:
         'Une consigne s’affiche sur tous les écrans — un fruit rouge, un truc qu’on trouve dans un frigo — et chacun écrit la première chose qui lui vient, une seule fois, avant la fin du temps. Personne ne voit un mot avant la révélation, qui retourne les réponses des plus seules jusqu’à la plus grande foule, et chaque réponse est payée selon le nombre des autres qui ont écrit la même.'
     },
     language: 'Consignes en',
     name: 'Pense comme la table',
+    own: {
+      add: 'Ajouter',
+      description:
+        'Tirées avant la banque, dans cet ordre, même sur une manche qui se lance seule. Gardées sur cet appareil.',
+      field: 'Consigne {index:number}',
+      new: 'Une nouvelle consigne',
+      newPlaceholder: 'Quelque chose que…',
+      played: 'Jouée',
+      remove: 'Retirer la consigne {index:number}',
+      summary: '{count:number} à venir',
+      title: 'Tes consignes'
+    },
     play: 'Jouer à Pense comme la table',
     reveal: {
       blank: 'Rien écrit',

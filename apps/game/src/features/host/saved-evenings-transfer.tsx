@@ -40,6 +40,7 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
   const translate = useTranslate()
   const challengeLines = useOwnLines('challenge')
   const mostlikelyLines = useOwnLines('mostlikely')
+  const thinkalikeLines = useOwnLines('thinkalike')
   const [outcome, setOutcome] = useState<ImportOutcome>({ status: 'idle' })
 
   const importFile = async (file: File) => {
@@ -62,17 +63,25 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
       lines: mostlikelyLines,
       max: OWN_LINES_MAX
     })
+    const thinkalike = withOwnLinesImported({
+      imported: read.data.thinkalikeLines,
+      lines: thinkalikeLines,
+      max: OWN_LINES_MAX
+    })
 
     onImport(read.data.savedEvenings)
     setOwnLines({ game: 'challenge', lines: challenge })
     setOwnLines({ game: 'mostlikely', lines: mostlikely })
+    setOwnLines({ game: 'thinkalike', lines: thinkalike })
     setOutcome({
       evenings: read.data.savedEvenings.length,
       lines:
         challenge.length +
-        mostlikely.length -
+        mostlikely.length +
+        thinkalike.length -
         challengeLines.length -
-        mostlikelyLines.length,
+        mostlikelyLines.length -
+        thinkalikeLines.length,
       status: 'imported'
     })
   }
@@ -85,7 +94,8 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
           isDisabled={
             evenings.length === 0 &&
             challengeLines.length === 0 &&
-            mostlikelyLines.length === 0
+            mostlikelyLines.length === 0 &&
+            thinkalikeLines.length === 0
           }
           onPress={() => {
             saveTextFile({
@@ -93,7 +103,8 @@ export const SavedEveningsTransfer: React.FC<SavedEveningsTransferProps> = ({
               text: hostExportText({
                 challengeLines,
                 mostlikelyLines,
-                savedEvenings: evenings
+                savedEvenings: evenings,
+                thinkalikeLines
               })
             })
           }}

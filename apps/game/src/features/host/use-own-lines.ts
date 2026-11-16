@@ -52,12 +52,17 @@ export const useOwnLines = (game: OwnLinesGame): readonly OwnLine[] =>
 /** What the room is sent: every game's lines still to be played, in the order written. */
 export const unplayedOwnLinesOf = ({
   challenge,
-  mostlikely
+  mostlikely,
+  thinkalike
 }: Readonly<Record<OwnLinesGame, readonly OwnLine[]>>): OwnLines => {
   const unplayed = (lines: readonly OwnLine[]) =>
     lines.filter((line) => !line.isPlayed).map((line) => line.text)
 
-  return { challenge: unplayed(challenge), mostlikely: unplayed(mostlikely) }
+  return {
+    challenge: unplayed(challenge),
+    mostlikely: unplayed(mostlikely),
+    thinkalike: unplayed(thinkalike)
+  }
 }
 
 /** Marks played every unplayed own line reading as the line a round just opened on — one id on the server, however often written. */

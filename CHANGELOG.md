@@ -79,6 +79,16 @@ one part.
   `/legal` says so in both languages; `docs/observability.md` says how to
   read them.
 
+- `[Shared]` **Pense comme la table plays the evening's own prompts.** An
+  evening prepared by an assistant may bring a deck of prompts for a Pense
+  comme la table entry — _Grandma's signature dish_, _where this family goes
+  on holiday_ — and the host may write their own on the entry's page, kept on
+  their device like the lines of _Qui de nous ?_. The room deals the entry's
+  deck, then the host's prompts, then the bank, on a round nobody pressed as
+  much as on a picked one, and no screen reads a prompt before it goes up.
+  The assistant is told what makes a good one: an obvious answer and a few
+  runners-up, never one right answer, never fifty. The prompts travel in the
+  host's export file, and `/legal` lists where they are kept.
 - `[Game]` **Pense comme la table is on the shelf, played from every seat.**
   A prompt goes up — _a red fruit_, _something in a fridge_ — and each seat
   writes one answer on a paper card, its pawn in the corner, and lays it face

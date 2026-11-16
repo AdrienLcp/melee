@@ -108,10 +108,7 @@ import {
   drawQuestion,
   hostQuestionOf
 } from '@/infrastructure/questions/question-bank'
-import {
-  drawThinkAlikePrompt,
-  playedThinkAlikePromptId
-} from '@/infrastructure/questions/think-alike-bank'
+import { drawThinkAlikePrompt } from '@/infrastructure/questions/think-alike-bank'
 import {
   drawTimelineEvents,
   playedTimelineEventId
@@ -684,10 +681,18 @@ export const beginRound = async (
   }
 
   if (game.kind === 'thinkalike') {
-    const drawn = drawThinkAlikePrompt({
-      language: game.language,
-      playedIds: room.playedContentIds
-    })
+    const fromEvening = unplayedEveningLines({
+      game: 'thinkalike',
+      lineUpAt: room.settings.lineUpAt,
+      room
+    })[0]
+    const drawn =
+      fromEvening === undefined
+        ? drawThinkAlikePrompt({
+            language: game.language,
+            playedIds: room.playedContentIds
+          })
+        : { playedId: fromEvening.id, prompt: fromEvening.text }
 
     if (drawn === null) {
       tellHost(engine, {
@@ -699,7 +704,7 @@ export const beginRound = async (
       return
     }
 
-    room.playedContentIds.add(playedThinkAlikePromptId(drawn.id))
+    room.playedContentIds.add(drawn.playedId)
 
     openRound({
       content: thinkAlikeContent(drawn.prompt),

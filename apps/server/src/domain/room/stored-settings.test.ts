@@ -61,7 +61,7 @@ describe('a room stored before a deploy', () => {
         },
         DEFAULT_BLACK_SQUARE_SETTINGS
       ],
-      ownLines: { challenge: [], mostlikely: [] },
+      ownLines: { challenge: [], mostlikely: [], thinkalike: [] },
       refusals: [],
       settings: {
         ...DEFAULT_ROOM_SETTINGS,
@@ -89,7 +89,11 @@ describe('a room stored before a deploy', () => {
         null
       ],
       openedEntries: Object.values(DEFAULT_GAME_SETTINGS),
-      ownLines: { challenge: ['Hum it'], mostlikely: ['Who sings?'] },
+      ownLines: {
+        challenge: ['Hum it'],
+        mostlikely: ['Who sings?'],
+        thinkalike: ['A red fruit']
+      },
       settings: {
         ...DEFAULT_ROOM_SETTINGS,
         board: { ...DEFAULT_TRACK_SETTINGS, catchUp: true },
@@ -134,7 +138,11 @@ describe('a room stored before a deploy', () => {
       settings: DEFAULT_ROOM_SETTINGS
     })
 
-    expect(restored.ownLines).toEqual({ challenge: [], mostlikely: [] })
+    expect(restored.ownLines).toEqual({
+      challenge: [],
+      mostlikely: [],
+      thinkalike: []
+    })
     expect(restored.refusals).toEqual(['ownLines'])
   })
 })

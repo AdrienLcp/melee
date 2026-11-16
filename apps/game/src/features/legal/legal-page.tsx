@@ -64,6 +64,7 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: OWN_LINE_UPS_HEIGHT_KEY, what: 'legal.storage.ownLineUpsHeight' },
   { key: OWN_LINES_KEYS.challenge, what: 'legal.storage.challengeLines' },
   { key: OWN_LINES_KEYS.mostlikely, what: 'legal.storage.mostlikelyLines' },
+  { key: OWN_LINES_KEYS.thinkalike, what: 'legal.storage.thinkalikeLines' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },
   { key: PANEL_SIDE_KEY, what: 'legal.storage.panelSide' },

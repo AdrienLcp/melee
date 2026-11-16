@@ -46,7 +46,7 @@ export const drawThinkAlikePrompt = ({
 }: {
   language: QuestionLanguage
   playedIds: ReadonlySet<string>
-}): { id: string; prompt: string } | null => {
+}): { playedId: string; prompt: string } | null => {
   const prompts = bankedThinkAlikePrompts()
   const drawn =
     pickRandom(
@@ -55,5 +55,8 @@ export const drawThinkAlikePrompt = ({
 
   return drawn === null
     ? null
-    : { id: drawn.id, prompt: drawn.labels[language] }
+    : {
+        playedId: playedThinkAlikePromptId(drawn.id),
+        prompt: drawn.labels[language]
+      }
 }

@@ -185,9 +185,9 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
         )}
       </div>
 
-      {(entry.kind === 'challenge' || entry.kind === 'mostlikely') && (
-        <OwnLinesEditor game={entry.kind} />
-      )}
+      {(entry.kind === 'challenge' ||
+        entry.kind === 'mostlikely' ||
+        entry.kind === 'thinkalike') && <OwnLinesEditor game={entry.kind} />}
     </EveningPage>
   )
 }
