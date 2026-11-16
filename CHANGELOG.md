@@ -529,6 +529,21 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The console's games tab says what a round pays again.** With one
+  game planned, its scoring sentence sits above the planned games, as it did
+  before the tab was rebuilt; it folds away once a second game joins, since it
+  could only speak for one of them.
+- `[Game]` **A round podium no longer cuts the winner's name to make room
+  for a figure.** On _Le juste chiffre_ at 1280×800 the first row printed
+  `B..` beside `2 500 000 habitants`; a row whose answer is a figure, a
+  moved match or a rebuilt colour now sends it and the points under a whole
+  name.
+- `[Game]` **Black square no longer prints per-answer points that cannot add
+  up.** The reveal printed 6, 11 and 17 three times each on a nine-answer
+  sheet (102), and a lone find paid 33 while its card said 6 + 17 × 2,
+  because a sheet re-weighs what it found. The pips (and the _×2_) say the
+  tier, the seat's real pay stays on the podium and the standings, and a hit
+  is echoed as _found_.
 - `[Game]` **Think alike's piles change places instead of colliding.** On the
   screen the room reads, a merge that reorders the piles had two of them slide
   through each other, cards and names overlapping: the pile moving up the order

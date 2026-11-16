@@ -3,12 +3,11 @@
 One file per fresh session. Delete a file in the commit that finishes it, and
 delete this README with the last one.
 
-| Series  | Wave | File                       | Depends on |
-| ------- | ---- | -------------------------- | ---------- |
-| Scoring | —    | `scoring-01-follow-ups.md` | none       |
-| Games   | 3    | `games-03-five-clues.md`   | none       |
+| Series | Wave | File                     | Depends on |
+| ------ | ---- | ------------------------ | ---------- |
+| Games  | 3    | `games-03-five-clues.md` | none       |
 
-The three games each add arms to the same protocol unions (game kinds, round
+Each game adds arms to the same protocol unions (game kinds, round
 content, answer modes), so they run one after another, never side by side.
 
 Sessions in the same wave share one checkout. Commit with

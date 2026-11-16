@@ -92,6 +92,18 @@
         justify-content: flex-end
         margin-inline-start: auto
 
+      // Neither a figure nor a picture gives way, so a row too narrow for both
+      // sends them and the points under a whole name rather than cutting it.
+      // The name pushes the rest to the end of its line, so whatever wraps —
+      // the points alone, or the figure with them — lands at the end too.
+      li:has(> .words[data-figure], > .words > .matchstick-row, > .words > .swatch-chip)
+        flex-wrap: wrap
+        justify-content: flex-end
+        row-gap: 0rem
+
+        > .nickname
+          margin-inline-end: auto
+
       // A moved stick printed on a slip of paper, the way every match is laid.
 
       .words > .matchstick-row

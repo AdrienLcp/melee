@@ -7,7 +7,6 @@ import {
   isSheetClosed,
   loneCellsOf,
   pointsForCells,
-  pointsForTier,
   withCellTicked,
   withLineBanked
 } from './sheet-pay'
@@ -32,8 +31,6 @@ describe('what a black-square sheet pays', () => {
   })
 
   it('[blacksquare] shares the round by tier, a rare answer weighing three times an obvious one', () => {
-    expect(pointsForTier({ cellTiers: NINE_CELLS, tier: 1 })).toBe(5_556)
-    expect(pointsForTier({ cellTiers: NINE_CELLS, tier: 3 })).toBe(16_667)
     expect(pointsForCells(sheetOf([0, 8]))).toBe(22_222)
   })
 

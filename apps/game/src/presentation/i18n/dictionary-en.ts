@@ -218,9 +218,7 @@ export const EN_DICTIONARY = defineDictionary({
   },
   blacksquare: {
     answer: {
-      /** `hit` on a track, where the cells walk a pawn and no point is printed. */
       found: '“{line}”: found',
-      hit: '“{line}” +{points:number}',
       label: 'An answer',
       miss: '“{line}”: nothing',
       retry: 'As many as you like. One of them is the black word.'
@@ -287,10 +285,7 @@ export const EN_DICTIONARY = defineDictionary({
         'Say your answers out loud. <name>{nickname}</name> ticks them off.'
     },
     tagline: 'Hidden answers. One black word.',
-    tier: defineTranslation('{points:plural}', {
-      plural: { points: { one: '{?} point', other: '{?} points' } }
-    }),
-    /** A cell's tier said aloud on a track, where no point is printed. */
+    /** A cell's tier said aloud, where the pips show it and the sheet's pay is the seat's own figure. */
     tierOf: 'Tier {tier:number} of {most:number}',
     yours: 'You found it'
   },

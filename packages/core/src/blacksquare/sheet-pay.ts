@@ -1,7 +1,6 @@
 import type {
   BlackSquareCell,
-  BlackSquareCellTiers,
-  BlackSquareTier
+  BlackSquareCellTiers
 } from '@melee/protocol/black-square'
 import type { CellsVerdict } from '@melee/protocol/scoring'
 
@@ -32,9 +31,6 @@ const weightOf = ({
 
 const allCellsOf = (cellTiers: BlackSquareCellTiers): BlackSquareCell[] =>
   cellTiers.map((_, cell) => cell)
-
-const totalWeightOf = (cellTiers: BlackSquareCellTiers): number =>
-  cellTiers.reduce((total, tier) => total + tier, 0)
 
 /**
  * What a sheet is worth: a full one is the whole round, and each answer takes
@@ -70,16 +66,6 @@ export const pointsForCells = ({
     )
   return paidShare(weighed(foundCells) / weighed(allCellsOf(cellTiers)))
 }
-
-/** What one answer of this tier adds to a sheet that shares it, which is what its pips say. */
-export const pointsForTier = ({
-  cellTiers,
-  tier
-}: {
-  /** Every cell the round dealt, which the round is shared across. */
-  cellTiers: BlackSquareCellTiers
-  tier: BlackSquareTier
-}): number => paidShare(tier / totalWeightOf(cellTiers))
 
 /**
  * The cells exactly one sheet found — *Pointless* without a survey, the table

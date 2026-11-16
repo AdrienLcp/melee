@@ -671,7 +671,7 @@ floor and the reflex race keep their footer under the stage at every ratio.
 The host's controls live in one panel the room never sees (`HostPanel`,
 direction D of `.impeccable/directions/host-panel/`, local, approved
 2026-10-24). Four tabs, each a `TabPanel` of `setup-tabs.tsx`: **Games** (the
-lobby's shelf and the game's scoring line, then the planned games, each
+lobby's shelf and, while one game is planned, its scoring line, then the planned games, each
 opening its own page in the tab's place — hoisted above the shelf once two
 are ticked, under a heading carrying the round count, each row's number
 printed in its spine band and the rounds drawn at random one socket row of
@@ -1381,15 +1381,16 @@ an empty cell is a socket printing one to three pips, a found one a
 `--good-soft` piece with the line the seat typed, read back by the server
 (`yourLines`), never the answer's own name. Under 10rem of box — a small
 screen with its keyboard up — the cells go to one row and print their pips
-alone. The last line is echoed above the field in muted ink, a hit with what
-it paid; before the first, the line says one of them is the black word. **The
+alone. The last line is echoed above the field in muted ink, a hit as
+_found_ and never with a figure, since the sheet re-weighs what it found and
+the seat's real pay is its own line on the podium; before the first, the line says one of them is the black word. **The
 black word is an ink piece** (`--black-word`, `--on-black-word`,
 `--black-word-muted`), never the danger stamp: a trap, not a fault. On a seat
 it lies over the grid with the found cells voided under it, and the field
 gives way to _the others are still looking_. The room's screen bands the
 theme's card in the spine and counts the room's finds as a token per answer — a
-gauge, never positions. The reveal is a paper card per answer (name, pips and what
-it pays, the finders' pawns, _Nobody_ on a socket, the seat's own in the
+gauge, never positions. The reveal is a paper card per answer (name and pips, never
+a figure, the finders' pawns, _Nobody_ on a socket, the seat's own in the
 _yours_ keyline) and the black word as an ink card beside them on a box wider
 than 3:2, a strip under them otherwise. Nothing moves inside the round: a hit
 lights its cell without the strike the comp drew.

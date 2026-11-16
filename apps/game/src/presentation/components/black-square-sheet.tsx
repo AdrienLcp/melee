@@ -73,7 +73,7 @@ export const BlackSquareSheet: React.FC<BlackSquareSheetProps> = ({
               style={blackSquareCellStyle({ cell, cellTiers })}
             >
               {typed !== undefined && <span className='typed'>{typed}</span>}
-              <BlackSquarePips cellTiers={cellTiers} tier={tier} />
+              <BlackSquarePips tier={tier} />
             </li>
           )
         })}

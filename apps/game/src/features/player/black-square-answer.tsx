@@ -5,12 +5,10 @@ import { Form } from 'react-aria-components'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 
-import { isSheetClosed, pointsForTier } from '@melee/core/blacksquare/sheet-pay'
+import { isSheetClosed } from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareContent } from '@/helpers/round-content'
-import { shownPoints } from '@/helpers/shown-points'
 import { BlackSquareSheet } from '@/presentation/components/black-square-sheet'
-import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -40,7 +38,6 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
   verdict
 }) => {
   const translate = useTranslate()
-  const isOnTrack = usePlaysOnTrack()
   const [guess, setGuess] = useState('')
   const content = blackSquareContent(round)
   const cellTiers = content?.cellTiers ?? []
@@ -62,22 +59,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
           : !last.hitBlackWord &&
             (last.cells.length === 0
               ? translate('blacksquare.answer.miss', { line: last.line })
-              : isOnTrack
-                ? translate('blacksquare.answer.found', { line: last.line })
-                : translate('blacksquare.answer.hit', {
-                    line: last.line,
-                    points: shownPoints(
-                      last.cells.reduce(
-                        (total, cell) =>
-                          total +
-                          pointsForTier({
-                            cellTiers,
-                            tier: cellTiers[cell] ?? 0
-                          }),
-                        0
-                      )
-                    )
-                  }))}
+              : translate('blacksquare.answer.found', { line: last.line }))}
       </p>
       {isClosed ? (
         <p className='others'>{translate('blacksquare.othersLooking')}</p>

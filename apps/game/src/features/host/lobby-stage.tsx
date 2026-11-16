@@ -285,13 +285,13 @@ const LobbyTeams: React.FC<{
 
 /**
  * On the wall, what the chosen game is and what a round of it pays: the pitch
- * a game's own front door shows, which the console reads off its games tab.
+ * a game's own front door shows. The console prints the scoring sentence
+ * alone, on its games tab above the planned game, while one game is planned.
  *
  * The pitch alone was half of it. Every player in the room is told what the
- * round pays — `UpNext` prints it while the table fills up — and the one screen
- * that never was is the one whose job is to explain the game out loud: the
- * sentence was in the setup fold, which is collapsed at every width. So it is
- * here too, under the promise it is the terms of.
+ * round pays — `UpNext` prints it while the table fills up — and the screen
+ * whose job is to explain the game out loud owes the same sentence, under the
+ * promise it is the terms of.
  */
 const GamePitch: React.FC<{ view: HostRoomView }> = ({ view }) => {
   const translate = useTranslate()

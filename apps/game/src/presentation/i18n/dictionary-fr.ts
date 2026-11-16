@@ -214,7 +214,6 @@ export const FR_DICTIONARY = defineDictionary({
   blacksquare: {
     answer: {
       found: '« {line} » : trouvée',
-      hit: '« {line} » +{points:number}',
       label: 'Une réponse',
       miss: '« {line} » : rien',
       retry: 'Autant que tu veux. L’une d’elles est le mot noir.'
@@ -285,9 +284,6 @@ export const FR_DICTIONARY = defineDictionary({
         'Dites vos réponses à voix haute. <name>{nickname}</name> les coche.'
     },
     tagline: 'Des réponses cachées. Un mot noir.',
-    tier: defineTranslation('{points:plural}', {
-      plural: { points: { one: '{?} point', other: '{?} points' } }
-    }),
     tierOf: 'Palier {tier:number} sur {most:number}',
     yours: 'Trouvée par toi'
   },

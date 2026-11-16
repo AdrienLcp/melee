@@ -5,20 +5,13 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 
 import {
-  LONE_FIND_MULTIPLIER,
-  pointsForTier
-} from '@melee/core/blacksquare/sheet-pay'
-
-import {
   blackSquareCellStyle,
   blackSquareGridStyle
 } from '@/helpers/black-square-cell-place'
 import { scaleForLength } from '@/helpers/length-scale'
-import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
-import { BlackSquarePips } from './black-square-pips'
-import { usePlaysOnTrack } from './board-kind'
+import { BlackSquarePips, MOST_PIPS } from './black-square-pips'
 import { Pawn } from './pawn'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -44,8 +37,8 @@ type BlackSquareRevealProps = {
 }
 
 /**
- * The grid turned over: a paper card per answer, one tier a row — the name, its pips
- * and what it pays, the pawns of whoever found it, a socket for one nobody did,
+ * The grid turned over: a paper card per answer, one tier a row — the name and
+ * its pips, the pawns of whoever found it, a socket for one nobody did,
  * an ink tag on one a seat alone found when the round paid that double — and
  * the black word beside them as a tall ink card, with why it is wrong
  * and who lost the round on it.
@@ -56,7 +49,6 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
   youId
 }) => {
   const { locale, translate } = useI18n()
-  const isOnTrack = usePlaysOnTrack()
   const seatOf = (playerId: PlayerId): number =>
     players.findIndex((player) => player.id === playerId)
   const nameOf = (playerId: PlayerId): string =>
@@ -104,15 +96,8 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                     <VisuallyHidden>
                       {answer.foundBy.map(nameOf).join(', ')}
                       {isYours && ` — ${translate('blacksquare.yours')}`}
-                      {isDoubled && ` — ${translate('blacksquare.lone.said')}`}
                       {isDoubled &&
-                        !isOnTrack &&
-                        `, ${translate('blacksquare.tier', {
-                          points: shownPoints(
-                            pointsForTier({ cellTiers, tier: answer.tier }) *
-                              LONE_FIND_MULTIPLIER
-                          )
-                        })}`}
+                        ` — ${translate('blacksquare.lone.said')}, ${translate('blacksquare.tierOf', { most: MOST_PIPS, tier: answer.tier })}`}
                     </VisuallyHidden>
                   </span>
                   <span className='worth'>
@@ -122,20 +107,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                         {translate('blacksquare.lone.doubled')}
                       </span>
                     ) : (
-                      <BlackSquarePips
-                        cellTiers={cellTiers}
-                        tier={answer.tier}
-                      />
-                    )}
-                    {!isOnTrack && (
-                      <span aria-hidden='true'>
-                        {translate('round.scored', {
-                          points: shownPoints(
-                            pointsForTier({ cellTiers, tier: answer.tier }) *
-                              (isDoubled ? LONE_FIND_MULTIPLIER : 1)
-                          )
-                        })}
-                      </span>
+                      <BlackSquarePips tier={answer.tier} />
                     )}
                   </span>
                 </span>

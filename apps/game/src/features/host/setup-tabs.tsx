@@ -33,6 +33,7 @@ import { mayAskReady } from '@melee/core/round/asks-ready'
 
 import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { ScoringRule } from '@/presentation/components/scoring-rule'
 import { Switch } from '@/presentation/components/switch'
 import { useLastShown } from '@/presentation/components/use-last-shown'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -200,6 +201,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       isOnReadyMade({ lineUp, settings: view.settings })
   )
   const lastReadyMade = useLastShown(loadedReadyMade?.id ?? null)
+  const isOneGamePlanned = view.settings.lineUp.length === 1
 
   const planned = plannedFrom('list')
   const plan = usePlanGame({
@@ -333,6 +335,25 @@ export const GameTab: React.FC<SetupTabsProps> = ({
                   }}
                 />
               )}
+            </div>
+          </div>
+          <div
+            className='scoring-fold'
+            data-open={isOneGamePlanned || undefined}
+            inert={!isOneGamePlanned}
+          >
+            <div>
+              <ScoringRule
+                className='tab-summary'
+                game={view.settings.game}
+                key={JSON.stringify([
+                  view.settings.game,
+                  view.settings.mode.kind,
+                  view.settings.paysForSpeed,
+                  view.settings.board
+                ])}
+                settings={view.settings}
+              />
             </div>
           </div>
           <EveningRounds
