@@ -8,12 +8,12 @@ Banks live in `apps/server/src/infrastructure/questions/`.
 Add a `pt` label beside `en` and `fr` on every row — written in European
 Portuguese by subagents in batches, each batch spot-read by a second agent:
 
-| Bank | File | Rows | Note |
-| --- | --- | --- | --- |
-| Challenge | `challenge-bank.json` | 89 | `fillLetterSlot` (`core/challenge/letter-slot.ts`) |
-| Most likely | `most-likely-bank.json` | 127 | about a person at the table, never the moment |
-| Timeline | `timeline-bank.json` | 218 | the event, not the year |
-| Think alike | `think-alike-bank.json` | 187 | a prompt in one language per room — it must suit a Portuguese table, not only translate |
+| Bank        | File                    | Rows | Note                                                                                    |
+| ----------- | ----------------------- | ---- | --------------------------------------------------------------------------------------- |
+| Challenge   | `challenge-bank.json`   | 89   | `fillLetterSlot` (`core/challenge/letter-slot.ts`)                                      |
+| Most likely | `most-likely-bank.json` | 127  | about a person at the table, never the moment                                           |
+| Timeline    | `timeline-bank.json`    | 218  | the event, not the year                                                                 |
+| Think alike | `think-alike-bank.json` | 187  | a prompt in one language per room — it must suit a Portuguese table, not only translate |
 
 Then the two that are not a translation:
 
