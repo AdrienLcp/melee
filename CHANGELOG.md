@@ -920,7 +920,7 @@ one part.
   offered: `dictionary-pt.ts` is held to the English shape by the compiler,
   the map's country names and the page heads have their Portuguese, and the
   spell check reads them in `pt-PT`. The language turns on once every
-  question bank speaks it (`docs/plans/72-portuguese.md`).
+  question bank speaks it (stage 72 in `docs/plans/`).
 
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
