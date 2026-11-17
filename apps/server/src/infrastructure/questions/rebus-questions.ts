@@ -1,6 +1,9 @@
 import { z } from 'zod'
 
-import type { QuestionLanguage } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
@@ -55,7 +58,7 @@ export const AUTHORED_REBUSES = {
 let rebusQuestions: BankedQuestion[] | undefined
 
 export const bankedRebusQuestions = (): BankedQuestion[] => {
-  rebusQuestions ??= (['en', 'fr'] as const).flatMap((language) =>
+  rebusQuestions ??= questionLanguages.flatMap((language) =>
     z
       .array(authoredRebusSchema)
       .parse(AUTHORED_REBUSES[language])

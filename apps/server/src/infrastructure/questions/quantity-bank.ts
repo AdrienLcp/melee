@@ -7,6 +7,7 @@ import {
   TOPIC_OF_FAMILY,
   wikidataQuantityFamilySchema
 } from '@melee/protocol/estimate'
+import { localizedSchema } from '@melee/protocol/locale'
 
 import { shuffled } from '@melee/core/helpers/random'
 import {
@@ -37,7 +38,7 @@ export const quantityRowSchema = z.object({
   isInFrance: z.boolean(),
   /** Whether a French room can be expected to have heard of it, by its article's traffic. */
   isWellKnown: z.boolean(),
-  names: z.object({ en: z.string().min(1), fr: z.string().min(1) }),
+  names: localizedSchema(z.string().min(1)),
   /**
    * In the family's unit, rounded to three significant figures: Wikidata's
    * population of Japan is a census figure no table should be paid on to the unit.
@@ -60,7 +61,7 @@ const wikidataRowSchema = quantityRowSchema.extend({
 const pricedRowSchema = z.object({
   entity: z.string(),
   isInFrance: z.boolean(),
-  names: z.object({ en: z.string().min(1), fr: z.string().min(1) }),
+  names: localizedSchema(z.string().min(1)),
   source: z.string().min(1),
   tier: z.enum(contentTiers),
   value: z.number().positive()

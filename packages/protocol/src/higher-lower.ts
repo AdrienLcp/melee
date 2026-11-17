@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 import { bankQuantityAskSchema, ownQuantityAskSchema } from './estimate'
 import { playerIdSchema } from './identifiers'
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 
 /**
  * One, because only a few hundred things are famous enough to rank: five a
@@ -22,7 +22,7 @@ export const higherLowerPicksSchema = z
   .array(higherLowerSideSchema)
   .length(HIGHER_LOWER_PAIR_COUNT)
 
-const quantityNamesSchema = z.record(localeSchema, z.string().min(1))
+const quantityNamesSchema = localizedSchema(z.string().min(1))
 
 /** The longest name an evening may give one side of its own pair. */
 export const HIGHER_LOWER_NAME_MAX_LENGTH = 60

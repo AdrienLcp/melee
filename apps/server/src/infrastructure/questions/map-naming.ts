@@ -71,8 +71,11 @@ const placeAndRivalsOf = (
   }
 }
 
-const spellingsOfNames = ({ en, fr }: LocalizedName): string[] => [
-  ...new Set([...spellingsOf(fr), ...spellingsOf(en)])
+const spellingsOfNames = (names: LocalizedName): string[] => [
+  ...new Set([
+    ...spellingsOf(names.fr),
+    ...Object.values(names).flatMap((name) => spellingsOf(name))
+  ])
 ]
 
 /**

@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { countryCodeSchema } from './country-code'
 import { playerIdSchema } from './identifiers'
+import { localizedSchema } from './locale'
 
 /**
  * A place on the globe, in degrees. The device inverts its own projection to
@@ -57,10 +58,7 @@ export const atlasPlaceSetSchema = z.preprocess(
 export const atlasDirectionSchema = z.enum(['place', 'name'])
 
 /** A place's name in each language a screen speaks — *Allemagne*, *Germany*. */
-export const localizedNameSchema = z.object({
-  en: z.string().min(1),
-  fr: z.string().min(1)
-})
+export const localizedNameSchema = localizedSchema(z.string().min(1))
 
 /**
  * What one round asks for. A country is public from the first frame, because

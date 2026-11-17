@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { LOCALES } from '@melee/protocol/locale'
+
 import { franchiseStemOf } from '@melee/core/blacksquare/franchise-stem'
 import { lineGraderFor } from '@melee/core/blacksquare/line-match'
 import {
@@ -124,7 +126,7 @@ describe('the black-square bank', () => {
     const clusters = bankedBlackSquareThemes()
       .filter(({ id }) => WORK_TEMPLATES.has(id.split(':')[0] ?? ''))
       .flatMap(({ answers, id }) =>
-        (['en', 'fr'] as const).flatMap((language) => {
+        LOCALES.flatMap((language) => {
           const stems = answers.map(({ labels }) =>
             franchiseStemOf(labels[language])
           )

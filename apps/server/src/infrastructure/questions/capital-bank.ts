@@ -2,16 +2,17 @@ import { z } from 'zod'
 
 import { geoPointSchema } from '@melee/protocol/atlas'
 import { countryCodeSchema } from '@melee/protocol/country-code'
+import { localizedSchema } from '@melee/protocol/locale'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import bank from './capital-bank.json' with { type: 'json' }
 
-const wordingSchema = z.object({ en: z.string(), fr: z.string() })
+const wordingSchema = localizedSchema(z.string())
 
 const placeSchema = z.object({
   /** Every other name the place answers to, per language — never its own name. */
-  aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
+  aliases: localizedSchema(z.array(z.string())),
   /** Its Wikidata id, which is what stops one city standing twice under two spellings. */
   id: z.string(),
   names: wordingSchema

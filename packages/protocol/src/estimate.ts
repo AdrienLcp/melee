@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { playerIdSchema } from './identifiers'
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 
 /**
  * What a quantity measures and of what, each one SPARQL query in the bank's
@@ -148,7 +148,7 @@ export const bankQuantityAskSchema = z.object({
  */
 export const estimateQuestionSchema = z.discriminatedUnion('kind', [
   bankQuantityAskSchema.extend({
-    names: z.record(localeSchema, z.string().min(1))
+    names: localizedSchema(z.string().min(1))
   }),
   ownQuantityAskSchema
 ])

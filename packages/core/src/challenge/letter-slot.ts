@@ -1,4 +1,5 @@
 import type { ChallengeLabels } from '@melee/protocol/challenge'
+import { byLocale } from '@melee/protocol/locale'
 
 import { randomUnit } from '../helpers/random'
 
@@ -40,8 +41,5 @@ export const fillLetterSlot = ({
   const letter =
     SLOT_LETTERS[Math.floor(unit * SLOT_LETTERS.length)] ?? SLOT_LETTERS[0]
 
-  return {
-    en: labels.en.replaceAll(LETTER_SLOT, letter),
-    fr: labels.fr.replaceAll(LETTER_SLOT, letter)
-  }
+  return byLocale((locale) => labels[locale].replaceAll(LETTER_SLOT, letter))
 }

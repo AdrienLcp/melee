@@ -30,3 +30,25 @@ export type Locale = z.infer<typeof localeSchema>
  */
 export const isLocale = (value: string): value is Locale =>
   LOCALES.some((locale) => locale === value)
+
+const withShippedLocalesOnly = (input: unknown): unknown =>
+  typeof input === 'object' && input !== null && !Array.isArray(input)
+    ? Object.fromEntries(Object.entries(input).filter(([key]) => isLocale(key)))
+    : input
+
+/**
+ * A value in every language this app ships, missing none. A language not
+ * shipped yet is dropped rather than refused: a bank gains its rows before the
+ * locale joins `LOCALES`, and a screen loaded before a deploy still reads a
+ * frame from the server after it.
+ */
+export const localizedSchema = <Value extends z.ZodType>(value: Value) =>
+  z.preprocess(withShippedLocalesOnly, z.record(localeSchema, value))
+
+/**
+ * Builds a value for every language this app ships. The one place that spells
+ * the keys out, so a locale added to `LOCALES` fails to compile here first.
+ */
+export const byLocale = <Value>(
+  valueIn: (locale: Locale) => Value
+): Record<Locale, Value> => ({ en: valueIn('en'), fr: valueIn('fr') })

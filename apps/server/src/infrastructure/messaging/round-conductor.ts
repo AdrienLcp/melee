@@ -2,6 +2,7 @@ import type { AtlasPlaces } from '@melee/protocol/atlas'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { RoundId, SessionId } from '@melee/protocol/identifiers'
+import { byLocale } from '@melee/protocol/locale'
 
 import { randomUnit, shuffled } from '@melee/core/helpers/random'
 import { drawPlayableNumbers } from '@melee/core/makenumber/playable-draw'
@@ -649,7 +650,7 @@ export const beginRound = async (
       fromEvening === undefined
         ? drawMostLikelyLine({ playedIds: room.playedContentIds })
         : {
-            labels: { en: fromEvening.text, fr: fromEvening.text },
+            labels: byLocale(() => fromEvening.text),
             playedId: fromEvening.id
           }
 

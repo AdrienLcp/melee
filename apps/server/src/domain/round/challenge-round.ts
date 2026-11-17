@@ -6,6 +6,7 @@ import type {
 } from '@melee/protocol/challenge'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import { byLocale } from '@melee/protocol/locale'
 import type { Award } from '@melee/protocol/scoring'
 
 import { pointsForPlace } from '@melee/core/challenge/place-pay'
@@ -33,7 +34,7 @@ export const typedChallengeLabels = (
 ): ChallengeLabels | undefined =>
   text === undefined || text.trim() === ''
     ? undefined
-    : { en: text.trim(), fr: text.trim() }
+    : byLocale(() => text.trim())
 
 /**
  * The host's word on who finished where. Sent while the table plays, it pays

@@ -75,7 +75,7 @@ export type AtlasRoundTarget =
   | {
       countryCode: CountryCode
       kind: 'capital'
-      names: { en: string; fr: string }
+      names: LocalizedName
       point: GeoPoint
     }
 

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 import { scoreTargetSchema } from './team'
 
 /**
@@ -20,8 +20,7 @@ export const challengeTextSchema = z
  * table reads its own. A record keyed on an enum is exhaustive, so a locale
  * added to the app is a label missing from every line until written.
  */
-export const challengeLabelsSchema = z.record(
-  localeSchema,
+export const challengeLabelsSchema = localizedSchema(
   z.string().min(1).max(CHALLENGE_TEXT_MAX_LENGTH)
 )
 

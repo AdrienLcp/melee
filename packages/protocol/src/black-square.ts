@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { playerIdSchema } from './identifiers'
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 
 /** The most answers a round deals; every theme's pool holds at least this many, so any count a host picks can be dealt. */
 export const BLACK_SQUARE_CELL_COUNT = 9
@@ -48,14 +48,13 @@ export const blackSquareTierSchema = z.number().int().min(1).max(3)
 export const blackSquareCellTiersSchema = dealtAnswersOf(blackSquareTierSchema)
 
 /** A theme, an answer or the black word, in every language the app ships. */
-export const blackSquareLabelsSchema = z.record(
-  localeSchema,
+export const blackSquareLabelsSchema = localizedSchema(
   z.string().min(1).max(200)
 )
 
 const namedSchema = z.object({
   /** Every other name a table may type for it, per language. */
-  aliases: z.record(localeSchema, z.array(z.string().min(1).max(200))),
+  aliases: localizedSchema(z.array(z.string().min(1).max(200))),
   labels: blackSquareLabelsSchema
 })
 

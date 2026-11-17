@@ -1727,7 +1727,7 @@ const gradeNaming = ({
           question: {
             accepted,
             answer,
-            decoys: naming.decoys.flatMap(({ en, fr }) => [en, fr])
+            decoys: naming.decoys.flatMap((names) => Object.values(names))
           }
         }).isCorrect,
       kind: 'single'

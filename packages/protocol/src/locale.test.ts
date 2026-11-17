@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import { isLocale } from './locale'
+import { z } from 'zod'
+
+import { isLocale, localizedSchema } from './locale'
 
 describe('isLocale', () => {
   it('[locale] accepts a language this product ships a dictionary for', () => {
@@ -15,5 +17,19 @@ describe('isLocale', () => {
     expect(isLocale('fr-FR')).toBe(false)
     expect(isLocale('de')).toBe(false)
     expect(isLocale('')).toBe(false)
+  })
+})
+
+describe('localizedSchema', () => {
+  const namesSchema = localizedSchema(z.string().min(1))
+
+  it('[locale] drops a language not shipped yet', () => {
+    expect(
+      namesSchema.parse({ de: 'Lissabon', en: 'Lisbon', fr: 'Lisbonne' })
+    ).toEqual({ en: 'Lisbon', fr: 'Lisbonne' })
+  })
+
+  it('[locale] refuses a value missing a shipped language', () => {
+    expect(namesSchema.safeParse({ en: 'Lisbon' }).success).toBe(false)
   })
 })

@@ -6,6 +6,7 @@ import type {
 } from '@melee/protocol/deck'
 import type { OwnQuantityAsk } from '@melee/protocol/estimate'
 import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
+import { byLocale } from '@melee/protocol/locale'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { DeckSummary } from '@melee/protocol/room'
 import {
@@ -73,7 +74,7 @@ export const nextDeckQuestion = ({
   return null
 }
 
-const labelsOf = (label: string): TimelineLabels => ({ en: label, fr: label })
+const labelsOf = (label: string): TimelineLabels => byLocale(() => label)
 
 /** The first item of a deck the room has not played, under the id it is remembered by, and `null` once the deck is spent. */
 const firstUnplayed = <TItem>({

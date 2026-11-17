@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { gameSettingsSchema, shelvedGames } from '@melee/protocol/game'
-import type { Locale } from '@melee/protocol/locale'
+import { LOCALES, type Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
@@ -10,6 +10,7 @@ import {
 } from '@melee/protocol/room'
 import { catalogueOf } from '@melee/protocol/track'
 
+import { questionLanguageFor } from '../quiz/question-language'
 import {
   isJudgedByHost,
   isJudgedInEveryMode,
@@ -247,7 +248,7 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
 it.each(['quiz', 'mysteryword', 'longestword', 'thinkalike'] as const)(
   '[ready-made] deals %s in the language the table speaks',
   (game) => {
-    const languagesOf = (locale: 'en' | 'fr') =>
+    const languagesOf = (locale: Locale) =>
       readyMadeLineUpsFor(locale)
         .flatMap(({ lineUp }) => lineUp)
         .flatMap((entry) =>
@@ -256,8 +257,11 @@ it.each(['quiz', 'mysteryword', 'longestword', 'thinkalike'] as const)(
             : []
         )
 
-    expect(new Set(languagesOf('en'))).toEqual(new Set(['en']))
-    expect(new Set(languagesOf('fr'))).toEqual(new Set(['fr']))
+    for (const locale of LOCALES) {
+      expect(new Set(languagesOf(locale))).toEqual(
+        new Set([questionLanguageFor(locale)])
+      )
+    }
   }
 )
 

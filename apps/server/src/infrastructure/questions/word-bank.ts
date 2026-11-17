@@ -1,7 +1,10 @@
 import { z } from 'zod'
 
 import type { Difficulty } from '@melee/protocol/difficulty'
-import type { QuestionLanguage } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguageSchema
+} from '@melee/protocol/question'
 
 import {
   type FormIndex,
@@ -28,7 +31,7 @@ export const wordBankSchema = z.object({
       author: z.string(),
       /** What the build did to the list, which CC BY-SA asks to be said. */
       changes: z.string(),
-      language: z.enum(['en', 'fr']),
+      language: questionLanguageSchema,
       licence: z.string(),
       /** A notice the licence asks to travel with every copy, verbatim. */
       notice: z.string().optional(),

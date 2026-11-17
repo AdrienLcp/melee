@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import type { Difficulty } from '@melee/protocol/difficulty'
+import { localizedSchema } from '@melee/protocol/locale'
 
 import {
   contentTiers,
@@ -20,13 +21,13 @@ import table from './black-square-authored-table.json' with { type: 'json' }
 import world from './black-square-authored-world.json' with { type: 'json' }
 import bank from './black-square-bank.json' with { type: 'json' }
 
-const bilingualSchema = z.object({ en: z.string(), fr: z.string() })
+const bilingualSchema = localizedSchema(z.string())
 
 const tierSchema = z.enum(contentTiers)
 
 const namedEntitySchema = z.object({
   /** Every other name Wikidata holds for it, per language. */
-  aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
+  aliases: localizedSchema(z.array(z.string())),
   /** Its Wikidata identifier, unique within a theme. */
   id: z.string(),
   labels: bilingualSchema
@@ -64,15 +65,9 @@ const blackSquareThemeSchema = z.object({
   labels: bilingualSchema
 })
 
-const authoredBilingualSchema = z.object({
-  en: z.string().min(1),
-  fr: z.string().min(1)
-})
+const authoredBilingualSchema = localizedSchema(z.string().min(1))
 
-const aliasesSchema = z.object({
-  en: z.array(z.string().min(1)),
-  fr: z.array(z.string().min(1))
-})
+const aliasesSchema = localizedSchema(z.array(z.string().min(1)))
 
 /**
  * A theme written by hand: broad, so a table says plenty before it lands on the

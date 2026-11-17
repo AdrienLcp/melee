@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
-import { questionLanguages } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
@@ -77,7 +80,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides lemmas, never an inflected form', () => {
-    const hidden = (language: 'en' | 'fr', word: string) =>
+    const hidden = (language: QuestionLanguage, word: string) =>
       mysteryWordAnswers({ language, length: word.length }).some(
         (answer) => answer.word === word
       )

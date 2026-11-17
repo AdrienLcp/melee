@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
+
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
@@ -8,6 +13,11 @@ import { normalizeAnswer } from '@melee/core/round/answer-matching'
 import { bankedCapitals } from './capital-bank'
 import { bankedCapitalQuestions } from './capital-questions'
 import { bankedQuestions } from './question-bank'
+
+const COUNTRY_NAMES = {
+  en: COUNTRY_NAMES_EN,
+  fr: COUNTRY_NAMES_FR
+} satisfies Record<QuestionLanguage, unknown>
 
 const QUESTIONS = bankedCapitalQuestions()
 
@@ -66,12 +76,8 @@ describe('the capitals rubric', () => {
 
   it('[capitals] never forgives the country’s own name into a capital called otherwise', () => {
     const forgiven = bankedCapitals().flatMap((row) =>
-      (
-        [
-          ['en', COUNTRY_NAMES_EN[row.code].name],
-          ['fr', COUNTRY_NAMES_FR[row.code].name]
-        ] as const
-      ).flatMap(([language, country]) => {
+      questionLanguages.flatMap((language) => {
+        const country = COUNTRY_NAMES[language][row.code].name
         const question = QUESTIONS.find(
           (candidate) => candidate.id === `capital-${language}-${row.code}`
         )

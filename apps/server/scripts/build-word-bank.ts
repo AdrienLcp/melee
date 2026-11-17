@@ -5,7 +5,11 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import type { QuestionLanguage } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguageSchema,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import {
   type ContentTier,
@@ -101,7 +105,7 @@ const ATTRIBUTIONS: Record<QuestionLanguage, WordBank['attributions']> = {
 }
 
 const blocklistSchema = z.record(
-  z.enum(['en', 'fr']),
+  questionLanguageSchema,
   z.array(z.string().regex(/^[A-Z]+$/))
 )
 
@@ -425,7 +429,7 @@ const main = async () => {
     })
   }
 
-  for (const language of ['en', 'fr'] as const) {
+  for (const language of questionLanguages) {
     const path = join(QUESTIONS, `word-bank-${language}.json`)
 
     await writeFile(path, `${JSON.stringify(banks[language], null, 2)}\n`)

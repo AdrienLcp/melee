@@ -8,6 +8,7 @@ import {
   DEFAULT_TIMELINE_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
+import { LOCALES } from '@melee/protocol/locale'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 import {
   catalogueOf,
@@ -148,7 +149,7 @@ describe('lineUpEntryNames', () => {
   })
 })
 
-it.each(['en', 'fr'] as const)(
+it.each(LOCALES)(
   '[line-up] names every entry of the grand mix apart in %s',
   (locale) => {
     const grandMix = readyMadeLineUpsFor(locale).find(

@@ -530,10 +530,9 @@ describe('drawQuestion', () => {
       }
     }
 
-    expect({
-      en: (paying.get('en') ?? 0) > 500,
-      fr: (paying.get('fr') ?? 0) > 500
-    }).toEqual({ en: true, fr: true })
+    expect(
+      questionLanguages.filter((language) => (paying.get(language) ?? 0) <= 500)
+    ).toEqual([])
   })
 
   /**

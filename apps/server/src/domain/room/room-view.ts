@@ -554,7 +554,7 @@ const atlasTargetView = ({
       return {
         countryCode: isRevealed ? target.countryCode : null,
         kind: 'capital',
-        names: { en: target.names.en, fr: target.names.fr },
+        names: { ...target.names },
         point: isRevealed ? { ...target.point } : null
       }
   }
@@ -746,7 +746,7 @@ const toContentView = ({
     const { naming, target } = content
 
     return {
-      choices: (naming?.choices ?? []).map(({ en, fr }) => ({ en, fr })),
+      choices: (naming?.choices ?? []).map((names) => ({ ...names })),
       direction: naming === null ? 'place' : 'name',
       kind: 'atlas',
       revealedPlacements: round.revealed

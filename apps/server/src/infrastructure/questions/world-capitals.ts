@@ -1,4 +1,4 @@
-import type { GeoPoint } from '@melee/protocol/atlas'
+import type { GeoPoint, LocalizedName } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 
@@ -13,7 +13,7 @@ import { BANKED_COUNTRIES } from './country-bank'
 /** A capital a map round may ask a table to place on the world. */
 export type BankedCapital = {
   countryCode: CountryCode
-  names: { en: string; fr: string }
+  names: LocalizedName
   point: GeoPoint
   tier: ContentTier
 }
