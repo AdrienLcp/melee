@@ -1,5 +1,7 @@
 import type { GeoPoint, LocalizedName } from '@melee/protocol/atlas'
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
+import { byLocale, type Locale } from '@melee/protocol/locale'
 
 import { nearbyDecoys, spellingsOf } from '@melee/core/atlas/place-naming'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
@@ -17,6 +19,14 @@ const DECOY_COUNT = 3
 
 type NamedPlace = { names: LocalizedName; point: GeoPoint }
 
+const COUNTRY_NAMES = {
+  en: COUNTRY_NAMES_EN,
+  fr: COUNTRY_NAMES_FR
+} satisfies Record<Locale, unknown>
+
+const countryNamesOf = (code: CountryCode): LocalizedName =>
+  byLocale((locale) => COUNTRY_NAMES[locale][code].name)
+
 const bankedCountryPlaces = (): NamedPlace[] =>
   BANKED_COUNTRIES.flatMap((code) => {
     const point = pointInsideCountry(code)
@@ -25,10 +35,7 @@ const bankedCountryPlaces = (): NamedPlace[] =>
       ? []
       : [
           {
-            names: {
-              en: COUNTRY_NAMES_EN[code].name,
-              fr: COUNTRY_NAMES_FR[code].name
-            },
+            names: countryNamesOf(code),
             point
           }
         ]
@@ -44,11 +51,11 @@ const placeAndRivalsOf = (
     case 'city':
       return {
         place: {
-          names: { en: target.name, fr: target.name },
+          names: byLocale(() => target.name),
           point: target.point
         },
         rivals: BANKED_CITIES.map(({ name, point }) => ({
-          names: { en: name, fr: name },
+          names: byLocale(() => name),
           point
         }))
       }
@@ -59,10 +66,7 @@ const placeAndRivalsOf = (
         ? null
         : {
             place: {
-              names: {
-                en: COUNTRY_NAMES_EN[target.countryCode].name,
-                fr: COUNTRY_NAMES_FR[target.countryCode].name
-              },
+              names: countryNamesOf(target.countryCode),
               point
             },
             rivals: bankedCountryPlaces()
