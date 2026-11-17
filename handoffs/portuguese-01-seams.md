@@ -89,4 +89,13 @@ this file is deleted and its row struck from `handoffs/README.md`.
   (`protocol/locale.ts`); every runtime `{ en, fr }` and the listed tests go
   through them or `questionLanguages`. The bank build scripts still spell
   `en`/`fr` — each wave-2 session extends its own builder.
-- [ ] Steps 2, 4, 5, 6 — not started. Resume at step 2.
+- [x] Step 2 — done: a pick is recorded as its index among `choices`
+  (`atlasPickSaid` / `atlasPickIndexOf` in `protocol/atlas.ts`), read back in
+  each screen's language; test in `atlas-game.test.ts`. Seen in a real
+  console in French (the reveal read `"1"` back as _Corée du Nord — Zoe_).
+  **Not seen in English**: with the browser pane hidden, the console stuck on
+  _Loading…_ after every reload (French too) and opened no socket. Check it
+  first in a headless Playwright run — a name round in `choice` mode, the
+  console in `en`, the reveal reading _North Korea_ — and find out whether a
+  reload of a console on a revealed round really hangs.
+- [ ] Steps 4, 5, 6 — not started. Resume at step 4.
