@@ -85,4 +85,8 @@ this file is deleted and its row struck from `handoffs/README.md`.
 
 - [x] Step 3 `askedIn` — done: longest word and think alike now follow the
   host's locale too (test in `host-preferences.test.ts`).
-- [ ] Steps 1, 2, 4, 5, 6 — not started. Resume at step 1.
+- [x] Step 1 — done: `localizedSchema` and `byLocale` beside `LOCALES`
+  (`protocol/locale.ts`); every runtime `{ en, fr }` and the listed tests go
+  through them or `questionLanguages`. The bank build scripts still spell
+  `en`/`fr` — each wave-2 session extends its own builder.
+- [ ] Steps 2, 4, 5, 6 — not started. Resume at step 2.
