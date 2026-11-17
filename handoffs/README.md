@@ -3,12 +3,26 @@
 One file per fresh session. Delete a file in the commit that finishes it, and
 delete this README with the last one.
 
-| Series | Wave | File                     | Depends on |
-| ------ | ---- | ------------------------ | ---------- |
-| Games  | 3    | `games-03-five-clues.md` | none       |
+| Series     | Wave | File                                | Depends on |
+| ---------- | ---- | ----------------------------------- | ---------- |
+| Games      | 3    | `games-03-five-clues.md`            | none       |
+| Portuguese | 1    | `portuguese-01-seams.md`            | none       |
+| Portuguese | 2    | `portuguese-02-interface.md`        | 01         |
+| Portuguese | 2    | `portuguese-03-small-banks.md`      | 01         |
+| Portuguese | 2    | `portuguese-04-black-square.md`     | 01         |
+| Portuguese | 2    | `portuguese-05-quantities.md`       | 01         |
+| Portuguese | 2    | `portuguese-06-quiz-bank.md`        | 01         |
+| Portuguese | 2    | `portuguese-07-words.md`            | 01         |
+| Portuguese | 3    | `portuguese-08-flip.md`             | 02-07      |
+| Portuguese | 4    | `portuguese-09-portugal.md`         | 08         |
 
 Each game adds arms to the same protocol unions (game kinds, round
 content, answer modes), so they run one after another, never side by side.
+
+Portuguese wave 2 touches separate files — one bank, one dictionary, one
+word list each — so its six sessions may run side by side once 01 has
+landed. `games-03` and `portuguese-01` both touch protocol and core: run
+them one after the other.
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the
