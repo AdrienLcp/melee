@@ -1,6 +1,6 @@
 import { Result } from '@adrienlcp/result'
 
-import type { GeoPoint } from '@melee/protocol/atlas'
+import { atlasPickSaid, type GeoPoint } from '@melee/protocol/atlas'
 import type { ClipAction, LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
@@ -1702,7 +1702,7 @@ const gradeNaming = ({
     return picked === undefined
       ? null
       : {
-          said: picked.fr,
+          said: atlasPickSaid(attempt.choiceIndex),
           verdict: {
             isCorrect: attempt.choiceIndex === naming.correctChoiceIndex,
             kind: 'single'

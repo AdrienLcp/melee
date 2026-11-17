@@ -1,4 +1,4 @@
-import type { AtlasTargetKind } from '@melee/protocol/atlas'
+import { type AtlasTargetKind, atlasPickIndexOf } from '@melee/protocol/atlas'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { RoundView } from '@melee/protocol/room'
 
@@ -132,10 +132,9 @@ export const useAnswerWords = (
 
     const distanceKm = distanceOf(round, answer.playerId)
     const swappedPairs = swappedPairsOf(round, answer.playerId)
-    // A place picked by name is recorded in French, whatever the picker read.
-    const pickedName = atlas?.choices.find(
-      (choice) => choice.fr === answer.said
-    )
+    const pickedIndex = atlasPickIndexOf(answer.said)
+    const pickedName =
+      pickedIndex === null ? undefined : atlas?.choices[pickedIndex]
 
     if (distanceKm !== null) {
       return { isFigure: true, text: distanceWords(distanceKm, 'away') }

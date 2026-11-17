@@ -2,7 +2,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import type { GeoPoint } from '@melee/protocol/atlas'
+import { atlasPickSaid, type GeoPoint } from '@melee/protocol/atlas'
 import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
@@ -109,8 +109,8 @@ export const candidatesIn = ({
         title: choice
       }))
     case 'atlas':
-      return content.choices.map((choice) => ({
-        key: choice.fr,
+      return content.choices.map((choice, index) => ({
+        key: atlasPickSaid(index),
         subtitle: null,
         title: choice[locale]
       }))

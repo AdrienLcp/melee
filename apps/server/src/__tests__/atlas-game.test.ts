@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { atlasPickIndexOf } from '@melee/protocol/atlas'
 import { DEFAULT_ATLAS_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
@@ -597,6 +598,30 @@ describe('a map round that shows a place for the table to name', () => {
     expect(
       basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
     ).toBe(0)
+  })
+
+  it('[atlas] records a pick by its place among the four, in no language', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay(NAME_THE_COUNTRY)
+    const choices = atlasRound(playerView(zoe))?.choices ?? []
+    const france = choices.findIndex(({ en }) => en === 'France')
+
+    zoe.send({
+      answer: { choiceIndex: france, kind: 'choice' },
+      roundId,
+      type: 'player.answer'
+    })
+    max.send({
+      answer: { choiceIndex: (france + 1) % 4, kind: 'choice' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const said = hostView(host)?.round?.revealedAnswers.find(
+      ({ playerId }) => playerId === playerView(zoe)?.youId
+    )?.said
+
+    expect(atlasPickIndexOf(said ?? '')).toBe(france)
   })
 
   it('[atlas] sends no screen the city’s name in a typed round, and takes it typed', async () => {
