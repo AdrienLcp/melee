@@ -5,6 +5,7 @@ import {
   drawThinkAlikePrompt,
   playedThinkAlikePromptId
 } from './think-alike-bank'
+import bank from './think-alike-bank.json' with { type: 'json' }
 
 describe('the think-alike bank', () => {
   it('[thinkalike] parses every prompt, each id once, in both languages', () => {
@@ -13,6 +14,16 @@ describe('the think-alike bank', () => {
 
     expect(prompts.length).toBeGreaterThanOrEqual(150)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('[thinkalike] writes every prompt in Portuguese ahead of the language, as a line', () => {
+    expect(
+      bank
+        .filter(
+          ({ labels }) => labels.pt.trim() === '' || /[?.!]$/u.test(labels.pt)
+        )
+        .map(({ id }) => id)
+    ).toEqual([])
   })
 
   it('[thinkalike] words every prompt as a line, never a question to answer aloud', () => {

@@ -922,6 +922,15 @@ one part.
   spell check reads them in `pt-PT`. The language turns on once every
   question bank speaks it (stage 72 in `docs/plans/`).
 
+- `[Server]` **Five small banks speak European Portuguese**, not yet
+  offered: every challenge, most-likely, timeline and think-alike line holds
+  a `pt` label — the think-alike prompts written for a Portuguese table, so
+  _a word for Paris_ asks for Lisboa — the capitals are rebuilt with
+  Wikidata's Portuguese names and other names (_Lisboa_, _Cidade do
+  México_, _Moscovo_), and a rebus list of Portugal's own waits in
+  `rebus-pt.json`: films as released there, Portuguese songs and sayings.
+  The schemas drop the key until the language joins them.
+
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
   included, not only the front door's, and catches two more ways of writing

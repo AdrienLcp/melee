@@ -3,889 +3,1016 @@
     "id": "become-famous",
     "labels": {
       "en": "Who is most likely to become famous?",
-      "fr": "Qui a le plus de chances de devenir célèbre ?"
+      "fr": "Qui a le plus de chances de devenir célèbre ?",
+      "pt": "Quem tem mais hipóteses de se tornar uma celebridade?"
     }
   },
   {
     "id": "win-the-lottery",
     "labels": {
       "en": "Who is most likely to win the lottery?",
-      "fr": "Qui a le plus de chances de gagner au loto ?"
+      "fr": "Qui a le plus de chances de gagner au loto ?",
+      "pt": "Quem tem mais hipóteses de ganhar o Euromilhões?"
     }
   },
   {
     "id": "lose-the-ticket",
     "labels": {
       "en": "Who is most likely to win the lottery and lose the ticket?",
-      "fr": "Qui a le plus de chances de gagner au loto et de perdre le ticket ?"
+      "fr": "Qui a le plus de chances de gagner au loto et de perdre le ticket ?",
+      "pt": "Quem tem mais hipóteses de ganhar o Euromilhões e perder o talão?"
     }
   },
   {
     "id": "live-to-a-hundred",
     "labels": {
       "en": "Who is most likely to live to a hundred?",
-      "fr": "Qui a le plus de chances de vivre jusqu’à cent ans ?"
+      "fr": "Qui a le plus de chances de vivre jusqu’à cent ans ?",
+      "pt": "Quem tem mais hipóteses de chegar aos cem anos?"
     }
   },
   {
     "id": "write-a-book",
     "labels": {
       "en": "Who is most likely to write a book?",
-      "fr": "Qui a le plus de chances d’écrire un livre ?"
+      "fr": "Qui a le plus de chances d’écrire un livre ?",
+      "pt": "Quem tem mais hipóteses de escrever um livro?"
     }
   },
   {
     "id": "survive-a-desert-island",
     "labels": {
       "en": "Who is most likely to survive on a desert island?",
-      "fr": "Qui a le plus de chances de survivre sur une île déserte ?"
+      "fr": "Qui a le plus de chances de survivre sur une île déserte ?",
+      "pt": "Quem tem mais hipóteses de sobreviver numa ilha deserta?"
     }
   },
   {
     "id": "first-out-of-a-desert-island",
     "labels": {
       "en": "Who is most likely to give up first on a desert island?",
-      "fr": "Qui a le plus de chances d’abandonner en premier sur une île déserte ?"
+      "fr": "Qui a le plus de chances d’abandonner en premier sur une île déserte ?",
+      "pt": "Quem tem mais hipóteses de desistir antes de todos numa ilha deserta?"
     }
   },
   {
     "id": "survive-a-zombie-apocalypse",
     "labels": {
       "en": "Who is most likely to survive a zombie apocalypse?",
-      "fr": "Qui a le plus de chances de survivre à une invasion de zombies ?"
+      "fr": "Qui a le plus de chances de survivre à une invasion de zombies ?",
+      "pt": "Quem tem mais hipóteses de sobreviver a uma invasão de zombies?"
     }
   },
   {
     "id": "go-to-space",
     "labels": {
       "en": "Who is most likely to go to space?",
-      "fr": "Qui a le plus de chances d’aller dans l’espace ?"
+      "fr": "Qui a le plus de chances d’aller dans l’espace ?",
+      "pt": "Quem tem mais hipóteses de ir ao espaço?"
     }
   },
   {
     "id": "meet-a-president",
     "labels": {
       "en": "Who is most likely to shake hands with a president?",
-      "fr": "Qui a le plus de chances de serrer la main d’un président ?"
+      "fr": "Qui a le plus de chances de serrer la main d’un président ?",
+      "pt": "Quem tem mais hipóteses de apertar a mão a um presidente?"
     }
   },
   {
     "id": "appear-on-tv",
     "labels": {
       "en": "Who is most likely to end up on television?",
-      "fr": "Qui a le plus de chances de passer à la télévision ?"
+      "fr": "Qui a le plus de chances de passer à la télévision ?",
+      "pt": "Quem tem mais hipóteses de aparecer na televisão?"
     }
   },
   {
     "id": "win-a-game-show",
     "labels": {
       "en": "Who is most likely to win a TV game show?",
-      "fr": "Qui a le plus de chances de gagner un jeu télévisé ?"
+      "fr": "Qui a le plus de chances de gagner un jeu télévisé ?",
+      "pt": "Quem tem mais hipóteses de ganhar um concurso de televisão?"
     }
   },
   {
     "id": "world-record",
     "labels": {
       "en": "Who is most likely to break a world record?",
-      "fr": "Qui a le plus de chances de battre un record du monde ?"
+      "fr": "Qui a le plus de chances de battre un record du monde ?",
+      "pt": "Quem tem mais hipóteses de bater um recorde mundial?"
     }
   },
   {
     "id": "olympic-medal",
     "labels": {
       "en": "Who is most likely to win an Olympic medal?",
-      "fr": "Qui a le plus de chances de gagner une médaille olympique ?"
+      "fr": "Qui a le plus de chances de gagner une médaille olympique ?",
+      "pt": "Quem tem mais hipóteses de ganhar uma medalha olímpica?"
     }
   },
   {
     "id": "become-mayor",
     "labels": {
       "en": "Who is most likely to become mayor of their town?",
-      "fr": "Qui a le plus de chances de devenir maire de sa ville ?"
+      "fr": "Qui a le plus de chances de devenir maire de sa ville ?",
+      "pt": "Quem tem mais hipóteses de vir a ser presidente da câmara da sua terra?"
     }
   },
   {
     "id": "open-a-restaurant",
     "labels": {
       "en": "Who is most likely to open a restaurant?",
-      "fr": "Qui a le plus de chances d’ouvrir un restaurant ?"
+      "fr": "Qui a le plus de chances d’ouvrir un restaurant ?",
+      "pt": "Quem tem mais hipóteses de abrir um restaurante?"
     }
   },
   {
     "id": "move-abroad",
     "labels": {
       "en": "Who is most likely to move to the other side of the world?",
-      "fr": "Qui a le plus de chances de partir vivre à l’autre bout du monde ?"
+      "fr": "Qui a le plus de chances de partir vivre à l’autre bout du monde ?",
+      "pt": "Quem tem mais hipóteses de ir viver para o outro lado do mundo?"
     }
   },
   {
     "id": "live-on-a-boat",
     "labels": {
       "en": "Who is most likely to live on a boat?",
-      "fr": "Qui a le plus de chances de vivre sur un bateau ?"
+      "fr": "Qui a le plus de chances de vivre sur un bateau ?",
+      "pt": "Quem tem mais hipóteses de viver num barco?"
     }
   },
   {
     "id": "live-in-a-castle",
     "labels": {
       "en": "Who is most likely to live in a castle one day?",
-      "fr": "Qui a le plus de chances de vivre un jour dans un château ?"
+      "fr": "Qui a le plus de chances de vivre un jour dans un château ?",
+      "pt": "Quem tem mais hipóteses de um dia viver num castelo?"
     }
   },
   {
     "id": "live-in-the-mountains",
     "labels": {
       "en": "Who is most likely to move to a cabin in the mountains?",
-      "fr": "Qui a le plus de chances de s’installer dans un chalet en montagne ?"
+      "fr": "Qui a le plus de chances de s’installer dans un chalet en montagne ?",
+      "pt": "Quem tem mais hipóteses de se mudar para uma cabana na montanha?"
     }
   },
   {
     "id": "run-a-marathon",
     "labels": {
       "en": "Who is most likely to run a marathon?",
-      "fr": "Qui a le plus de chances de courir un marathon ?"
+      "fr": "Qui a le plus de chances de courir un marathon ?",
+      "pt": "Quem tem mais hipóteses de correr uma maratona?"
     }
   },
   {
     "id": "climb-everest",
     "labels": {
       "en": "Who is most likely to climb Mount Everest?",
-      "fr": "Qui a le plus de chances de grimper l’Everest ?"
+      "fr": "Qui a le plus de chances de grimper l’Everest ?",
+      "pt": "Quem tem mais hipóteses de escalar o Evereste?"
     }
   },
   {
     "id": "travel-the-world",
     "labels": {
       "en": "Who is most likely to travel around the world?",
-      "fr": "Qui a le plus de chances de faire le tour du monde ?"
+      "fr": "Qui a le plus de chances de faire le tour du monde ?",
+      "pt": "Quem tem mais hipóteses de dar a volta ao mundo?"
     }
   },
   {
     "id": "learn-five-languages",
     "labels": {
       "en": "Who is most likely to speak five languages?",
-      "fr": "Qui a le plus de chances de parler cinq langues ?"
+      "fr": "Qui a le plus de chances de parler cinq langues ?",
+      "pt": "Quem tem mais hipóteses de falar cinco línguas?"
     }
   },
   {
     "id": "invent-something",
     "labels": {
       "en": "Who is most likely to invent something everyone uses?",
-      "fr": "Qui a le plus de chances d’inventer un objet que tout le monde utilise ?"
+      "fr": "Qui a le plus de chances d’inventer un objet que tout le monde utilise ?",
+      "pt": "Quem tem mais hipóteses de inventar uma coisa que toda a gente usa?"
     }
   },
   {
     "id": "become-a-millionaire",
     "labels": {
       "en": "Who is most likely to become a millionaire?",
-      "fr": "Qui a le plus de chances de devenir millionnaire ?"
+      "fr": "Qui a le plus de chances de devenir millionnaire ?",
+      "pt": "Quem tem mais hipóteses de chegar ao primeiro milhão?"
     }
   },
   {
     "id": "spend-it-all",
     "labels": {
       "en": "Who is most likely to spend a fortune in one day?",
-      "fr": "Qui a le plus de chances de dépenser une fortune en une journée ?"
+      "fr": "Qui a le plus de chances de dépenser une fortune en une journée ?",
+      "pt": "Quem tem mais hipóteses de gastar uma fortuna num só dia?"
     }
   },
   {
     "id": "become-a-teacher",
     "labels": {
       "en": "Who would make the best teacher?",
-      "fr": "Qui ferait le meilleur prof ?"
+      "fr": "Qui ferait le meilleur prof ?",
+      "pt": "Quem teria mais jeito para dar aulas?"
     }
   },
   {
     "id": "become-a-spy",
     "labels": {
       "en": "Who would make the best secret agent?",
-      "fr": "Qui ferait le meilleur agent secret ?"
+      "fr": "Qui ferait le meilleur agent secret ?",
+      "pt": "Quem teria mais jeito para ser agente secreto?"
     }
   },
   {
     "id": "worst-spy",
     "labels": {
       "en": "Who would be the first secret agent to give everything away?",
-      "fr": "Qui serait l’agent secret qui révèle tout en premier ?"
+      "fr": "Qui serait l’agent secret qui révèle tout en premier ?",
+      "pt": "Quem daria com a língua nos dentes logo no primeiro dia de agente secreto?"
     }
   },
   {
     "id": "become-a-detective",
     "labels": {
       "en": "Who would solve a mystery first?",
-      "fr": "Qui résoudrait une énigme policière en premier ?"
+      "fr": "Qui résoudrait une énigme policière en premier ?",
+      "pt": "Quem desvendaria um mistério policial antes de todos?"
     }
   },
   {
     "id": "become-a-chef",
     "labels": {
       "en": "Who would win a cooking contest?",
-      "fr": "Qui gagnerait un concours de cuisine ?"
+      "fr": "Qui gagnerait un concours de cuisine ?",
+      "pt": "Quem ganharia um concurso de culinária?"
     }
   },
   {
     "id": "burn-the-pasta",
     "labels": {
       "en": "Who is most likely to burn a pan of pasta?",
-      "fr": "Qui a le plus de chances de faire brûler des pâtes ?"
+      "fr": "Qui a le plus de chances de faire brûler des pâtes ?",
+      "pt": "Quem tem mais hipóteses de deixar queimar a massa?"
     }
   },
   {
     "id": "become-a-comedian",
     "labels": {
       "en": "Who could make a whole theatre laugh?",
-      "fr": "Qui pourrait faire rire une salle de spectacle entière ?"
+      "fr": "Qui pourrait faire rire une salle de spectacle entière ?",
+      "pt": "Quem conseguiria pôr uma sala de espetáculos inteira a rir?"
     }
   },
   {
     "id": "become-a-singer",
     "labels": {
       "en": "Who is most likely to release an album?",
-      "fr": "Qui a le plus de chances de sortir un album ?"
+      "fr": "Qui a le plus de chances de sortir un album ?",
+      "pt": "Quem tem mais hipóteses de lançar um álbum?"
     }
   },
   {
     "id": "become-an-actor",
     "labels": {
       "en": "Who is most likely to star in a film?",
-      "fr": "Qui a le plus de chances de jouer dans un film ?"
+      "fr": "Qui a le plus de chances de jouer dans un film ?",
+      "pt": "Quem tem mais hipóteses de entrar num filme?"
     }
   },
   {
     "id": "become-a-youtuber",
     "labels": {
       "en": "Who is most likely to become a star of the internet?",
-      "fr": "Qui a le plus de chances de devenir une star d’Internet ?"
+      "fr": "Qui a le plus de chances de devenir une star d’Internet ?",
+      "pt": "Quem tem mais hipóteses de se tornar uma estrela da internet?"
     }
   },
   {
     "id": "become-a-superhero",
     "labels": {
       "en": "Who would make the best superhero?",
-      "fr": "Qui ferait le meilleur super-héros ?"
+      "fr": "Qui ferait le meilleur super-héros ?",
+      "pt": "Quem teria mais jeito para ser super-herói?"
     }
   },
   {
     "id": "become-a-villain",
     "labels": {
       "en": "Who would make the best film villain?",
-      "fr": "Qui ferait le meilleur méchant de film ?"
+      "fr": "Qui ferait le meilleur méchant de film ?",
+      "pt": "Quem teria mais jeito para fazer de mau da fita?"
     }
   },
   {
     "id": "be-a-wizard",
     "labels": {
       "en": "Who would be the most gifted at magic?",
-      "fr": "Qui aurait le plus de talent pour la magie ?"
+      "fr": "Qui aurait le plus de talent pour la magie ?",
+      "pt": "Quem teria mais talento para a magia?"
     }
   },
   {
     "id": "talk-to-animals",
     "labels": {
       "en": "Who would most like to be able to talk to animals?",
-      "fr": "Qui aimerait le plus pouvoir parler aux animaux ?"
+      "fr": "Qui aimerait le plus pouvoir parler aux animaux ?",
+      "pt": "Quem gostaria mais de poder falar com os animais?"
     }
   },
   {
     "id": "adopt-ten-cats",
     "labels": {
       "en": "Who is most likely to adopt ten cats?",
-      "fr": "Qui a le plus de chances d’adopter dix chats ?"
+      "fr": "Qui a le plus de chances d’adopter dix chats ?",
+      "pt": "Quem tem mais hipóteses de adotar dez gatos?"
     }
   },
   {
     "id": "open-a-farm",
     "labels": {
       "en": "Who is most likely to retire to a farm full of animals?",
-      "fr": "Qui a le plus de chances de finir dans une ferme pleine d’animaux ?"
+      "fr": "Qui a le plus de chances de finir dans une ferme pleine d’animaux ?",
+      "pt": "Quem tem mais hipóteses de acabar numa quinta cheia de animais?"
     }
   },
   {
     "id": "talk-to-plants",
     "labels": {
       "en": "Who is most likely to talk to their plants?",
-      "fr": "Qui a le plus de chances de parler à ses plantes ?"
+      "fr": "Qui a le plus de chances de parler à ses plantes ?",
+      "pt": "Quem tem mais hipóteses de falar com as plantas?"
     }
   },
   {
     "id": "forget-a-birthday",
     "labels": {
       "en": "Who is most likely to forget a birthday?",
-      "fr": "Qui a le plus de chances d’oublier un anniversaire ?"
+      "fr": "Qui a le plus de chances d’oublier un anniversaire ?",
+      "pt": "Quem tem mais hipóteses de se esquecer de um aniversário?"
     }
   },
   {
     "id": "remember-every-birthday",
     "labels": {
       "en": "Who remembers everyone’s birthday?",
-      "fr": "Qui se souvient de l’anniversaire de tout le monde ?"
+      "fr": "Qui se souvient de l’anniversaire de tout le monde ?",
+      "pt": "Quem se lembra dos anos de toda a gente?"
     }
   },
   {
     "id": "be-late",
     "labels": {
       "en": "Who is most likely to be late to their own wedding?",
-      "fr": "Qui a le plus de chances d’arriver en retard à son propre mariage ?"
+      "fr": "Qui a le plus de chances d’arriver en retard à son propre mariage ?",
+      "pt": "Quem tem mais hipóteses de chegar tarde ao próprio casamento?"
     }
   },
   {
     "id": "be-early",
     "labels": {
       "en": "Who is most likely to turn up an hour early?",
-      "fr": "Qui a le plus de chances d’arriver avec une heure d’avance ?"
+      "fr": "Qui a le plus de chances d’arriver avec une heure d’avance ?",
+      "pt": "Quem tem mais hipóteses de aparecer com uma hora de antecedência?"
     }
   },
   {
     "id": "miss-a-train",
     "labels": {
       "en": "Who is most likely to miss a train?",
-      "fr": "Qui a le plus de chances de rater son train ?"
+      "fr": "Qui a le plus de chances de rater son train ?",
+      "pt": "Quem tem mais hipóteses de perder o comboio?"
     }
   },
   {
     "id": "wrong-airport",
     "labels": {
       "en": "Who is most likely to go to the wrong airport?",
-      "fr": "Qui a le plus de chances de se tromper d’aéroport ?"
+      "fr": "Qui a le plus de chances de se tromper d’aéroport ?",
+      "pt": "Quem tem mais hipóteses de se enganar no aeroporto?"
     }
   },
   {
     "id": "lose-their-keys",
     "labels": {
       "en": "Who is most likely to lose their keys?",
-      "fr": "Qui a le plus de chances de perdre ses clés ?"
+      "fr": "Qui a le plus de chances de perdre ses clés ?",
+      "pt": "Quem tem mais hipóteses de perder as chaves?"
     }
   },
   {
     "id": "phone-in-hand",
     "labels": {
       "en": "Who is most likely to look for their phone while holding it?",
-      "fr": "Qui a le plus de chances de chercher son téléphone en l’ayant à la main ?"
+      "fr": "Qui a le plus de chances de chercher son téléphone en l’ayant à la main ?",
+      "pt": "Quem tem mais hipóteses de procurar o telemóvel com ele na mão?"
     }
   },
   {
     "id": "glasses-on-head",
     "labels": {
       "en": "Who is most likely to look for their glasses while wearing them?",
-      "fr": "Qui a le plus de chances de chercher ses lunettes en les ayant sur le nez ?"
+      "fr": "Qui a le plus de chances de chercher ses lunettes en les ayant sur le nez ?",
+      "pt": "Quem tem mais hipóteses de procurar os óculos que tem postos?"
     }
   },
   {
     "id": "get-lost-with-gps",
     "labels": {
       "en": "Who is most likely to get lost even with a GPS?",
-      "fr": "Qui a le plus de chances de se perdre même avec un GPS ?"
+      "fr": "Qui a le plus de chances de se perdre même avec un GPS ?",
+      "pt": "Quem tem mais hipóteses de se perder mesmo com GPS?"
     }
   },
   {
     "id": "never-get-lost",
     "labels": {
       "en": "Who always knows the way without a map?",
-      "fr": "Qui retrouve toujours son chemin sans carte ?"
+      "fr": "Qui retrouve toujours son chemin sans carte ?",
+      "pt": "Quem dá sempre com o caminho sem mapa?"
     }
   },
   {
     "id": "pack-too-much",
     "labels": {
       "en": "Who is most likely to pack three suitcases for a weekend?",
-      "fr": "Qui a le plus de chances de prendre trois valises pour un week-end ?"
+      "fr": "Qui a le plus de chances de prendre trois valises pour un week-end ?",
+      "pt": "Quem tem mais hipóteses de levar três malas para um fim de semana?"
     }
   },
   {
     "id": "forget-the-passport",
     "labels": {
       "en": "Who is most likely to forget their passport?",
-      "fr": "Qui a le plus de chances d’oublier son passeport ?"
+      "fr": "Qui a le plus de chances d’oublier son passeport ?",
+      "pt": "Quem tem mais hipóteses de se esquecer do passaporte?"
     }
   },
   {
     "id": "laugh-at-own-jokes",
     "labels": {
       "en": "Who is most likely to laugh at their own jokes?",
-      "fr": "Qui a le plus de chances de rire de ses propres blagues ?"
+      "fr": "Qui a le plus de chances de rire de ses propres blagues ?",
+      "pt": "Quem tem mais hipóteses de se rir das próprias piadas?"
     }
   },
   {
     "id": "tell-the-same-story",
     "labels": {
       "en": "Who is most likely to tell the same story twice?",
-      "fr": "Qui a le plus de chances de raconter deux fois la même histoire ?"
+      "fr": "Qui a le plus de chances de raconter deux fois la même histoire ?",
+      "pt": "Quem tem mais hipóteses de contar a mesma história duas vezes?"
     }
   },
   {
     "id": "spoil-the-ending",
     "labels": {
       "en": "Who is most likely to spoil the end of a film?",
-      "fr": "Qui a le plus de chances de dévoiler la fin d’un film ?"
+      "fr": "Qui a le plus de chances de dévoiler la fin d’un film ?",
+      "pt": "Quem tem mais hipóteses de revelar o fim de um filme?"
     }
   },
   {
     "id": "cry-at-a-cartoon",
     "labels": {
       "en": "Who is most likely to cry at a cartoon?",
-      "fr": "Qui a le plus de chances de pleurer devant un dessin animé ?"
+      "fr": "Qui a le plus de chances de pleurer devant un dessin animé ?",
+      "pt": "Quem tem mais hipóteses de chorar a ver um desenho animado?"
     }
   },
   {
     "id": "fall-asleep-at-the-cinema",
     "labels": {
       "en": "Who is most likely to fall asleep at the cinema?",
-      "fr": "Qui a le plus de chances de s’endormir au cinéma ?"
+      "fr": "Qui a le plus de chances de s’endormir au cinéma ?",
+      "pt": "Quem tem mais hipóteses de adormecer no cinema?"
     }
   },
   {
     "id": "scream-at-a-horror-film",
     "labels": {
       "en": "Who is most likely to scream at a horror film?",
-      "fr": "Qui a le plus de chances de crier devant un film d’horreur ?"
+      "fr": "Qui a le plus de chances de crier devant un film d’horreur ?",
+      "pt": "Quem tem mais hipóteses de gritar a ver um filme de terror?"
     }
   },
   {
     "id": "sing-in-the-shower",
     "labels": {
       "en": "Who is most likely to sing in the shower?",
-      "fr": "Qui a le plus de chances de chanter sous la douche ?"
+      "fr": "Qui a le plus de chances de chanter sous la douche ?",
+      "pt": "Quem tem mais hipóteses de cantar no duche?"
     }
   },
   {
     "id": "dance-in-the-street",
     "labels": {
       "en": "Who is most likely to dance in the street?",
-      "fr": "Qui a le plus de chances de danser dans la rue ?"
+      "fr": "Qui a le plus de chances de danser dans la rue ?",
+      "pt": "Quem tem mais hipóteses de dançar no meio da rua?"
     }
   },
   {
     "id": "karaoke-first",
     "labels": {
       "en": "Who is most likely to grab the microphone first at a karaoke?",
-      "fr": "Qui a le plus de chances de prendre le micro en premier au karaoké ?"
+      "fr": "Qui a le plus de chances de prendre le micro en premier au karaoké ?",
+      "pt": "Quem tem mais hipóteses de agarrar o microfone antes de todos no karaoke?"
     }
   },
   {
     "id": "know-every-lyric",
     "labels": {
       "en": "Who knows the lyrics of every song?",
-      "fr": "Qui connaît les paroles de toutes les chansons ?"
+      "fr": "Qui connaît les paroles de toutes les chansons ?",
+      "pt": "Quem sabe a letra de todas as canções?"
     }
   },
   {
     "id": "wrong-lyrics",
     "labels": {
       "en": "Who is most likely to sing the wrong lyrics with confidence?",
-      "fr": "Qui a le plus de chances de chanter les mauvaises paroles avec assurance ?"
+      "fr": "Qui a le plus de chances de chanter les mauvaises paroles avec assurance ?",
+      "pt": "Quem tem mais hipóteses de cantar a letra errada com toda a confiança?"
     }
   },
   {
     "id": "bad-loser",
     "labels": {
       "en": "Who is the worst loser at board games?",
-      "fr": "Qui supporte le moins bien de perdre aux jeux de société ?"
+      "fr": "Qui supporte le moins bien de perdre aux jeux de société ?",
+      "pt": "Quem tem pior perder nos jogos de tabuleiro?"
     }
   },
   {
     "id": "invent-the-rules",
     "labels": {
       "en": "Who is most likely to make up a rule to win?",
-      "fr": "Qui a le plus de chances d’inventer une règle pour gagner ?"
+      "fr": "Qui a le plus de chances d’inventer une règle pour gagner ?",
+      "pt": "Quem tem mais hipóteses de inventar uma regra para ganhar?"
     }
   },
   {
     "id": "read-the-rules",
     "labels": {
       "en": "Who actually reads the rules before playing?",
-      "fr": "Qui lit vraiment les règles avant de jouer ?"
+      "fr": "Qui lit vraiment les règles avant de jouer ?",
+      "pt": "Quem lê mesmo as regras antes de jogar?"
     }
   },
   {
     "id": "cheat-at-cards",
     "labels": {
       "en": "Who is most likely to cheat at cards?",
-      "fr": "Qui a le plus de chances de tricher aux cartes ?"
+      "fr": "Qui a le plus de chances de tricher aux cartes ?",
+      "pt": "Quem tem mais hipóteses de fazer batota às cartas?"
     }
   },
   {
     "id": "keep-a-secret",
     "labels": {
       "en": "Who keeps a secret best?",
-      "fr": "Qui garde le mieux un secret ?"
+      "fr": "Qui garde le mieux un secret ?",
+      "pt": "Quem guarda melhor um segredo?"
     }
   },
   {
     "id": "tell-a-secret",
     "labels": {
       "en": "Who is most likely to let a secret slip?",
-      "fr": "Qui a le plus de chances de laisser échapper un secret ?"
+      "fr": "Qui a le plus de chances de laisser échapper un secret ?",
+      "pt": "Quem tem mais hipóteses de deixar escapar um segredo?"
     }
   },
   {
     "id": "guess-the-present",
     "labels": {
       "en": "Who is most likely to guess their present before opening it?",
-      "fr": "Qui a le plus de chances de deviner son cadeau avant de l’ouvrir ?"
+      "fr": "Qui a le plus de chances de deviner son cadeau avant de l’ouvrir ?",
+      "pt": "Quem tem mais hipóteses de adivinhar a prenda antes de a abrir?"
     }
   },
   {
     "id": "wrap-badly",
     "labels": {
       "en": "Who wraps presents the worst?",
-      "fr": "Qui emballe le plus mal les cadeaux ?"
+      "fr": "Qui emballe le plus mal les cadeaux ?",
+      "pt": "Quem embrulha pior as prendas?"
     }
   },
   {
     "id": "give-the-best-presents",
     "labels": {
       "en": "Who gives the best presents?",
-      "fr": "Qui fait les meilleurs cadeaux ?"
+      "fr": "Qui fait les meilleurs cadeaux ?",
+      "pt": "Quem dá as melhores prendas?"
     }
   },
   {
     "id": "shop-at-the-last-minute",
     "labels": {
       "en": "Who is most likely to buy every present at the last minute?",
-      "fr": "Qui a le plus de chances d’acheter tous ses cadeaux à la dernière minute ?"
+      "fr": "Qui a le plus de chances d’acheter tous ses cadeaux à la dernière minute ?",
+      "pt": "Quem tem mais hipóteses de comprar as prendas todas à última hora?"
     }
   },
   {
     "id": "decorate-in-october",
     "labels": {
       "en": "Who is most likely to put up Christmas decorations in October?",
-      "fr": "Qui a le plus de chances de décorer pour Noël dès octobre ?"
+      "fr": "Qui a le plus de chances de décorer pour Noël dès octobre ?",
+      "pt": "Quem tem mais hipóteses de pôr as decorações de Natal logo em outubro?"
     }
   },
   {
     "id": "believe-in-father-christmas",
     "labels": {
       "en": "Who would most like Father Christmas to be real?",
-      "fr": "Qui aimerait le plus que le père Noël existe ?"
+      "fr": "Qui aimerait le plus que le père Noël existe ?",
+      "pt": "Quem gostaria mais que o Pai Natal existisse?"
     }
   },
   {
     "id": "eat-the-chocolates",
     "labels": {
       "en": "Who is most likely to finish a box of chocolates in an hour?",
-      "fr": "Qui a le plus de chances de finir une boîte de chocolats en une heure ?"
+      "fr": "Qui a le plus de chances de finir une boîte de chocolats en une heure ?",
+      "pt": "Quem tem mais hipóteses de acabar com uma caixa de bombons numa hora?"
     }
   },
   {
     "id": "eat-anything",
     "labels": {
       "en": "Who would eat anything at all?",
-      "fr": "Qui mangerait absolument n’importe quoi ?"
+      "fr": "Qui mangerait absolument n’importe quoi ?",
+      "pt": "Quem come absolutamente de tudo?"
     }
   },
   {
     "id": "fussy-eater",
     "labels": {
       "en": "Who refuses to taste the most dishes?",
-      "fr": "Qui refuse de goûter le plus de plats ?"
+      "fr": "Qui refuse de goûter le plus de plats ?",
+      "pt": "Quem torce mais o nariz à comida?"
     }
   },
   {
     "id": "try-insects",
     "labels": {
       "en": "Who is most likely to try eating insects?",
-      "fr": "Qui a le plus de chances de goûter des insectes ?"
+      "fr": "Qui a le plus de chances de goûter des insectes ?",
+      "pt": "Quem tem mais hipóteses de provar insetos?"
     }
   },
   {
     "id": "eat-breakfast-at-midnight",
     "labels": {
       "en": "Who is most likely to eat breakfast at midnight?",
-      "fr": "Qui a le plus de chances de prendre son petit-déjeuner à minuit ?"
+      "fr": "Qui a le plus de chances de prendre son petit-déjeuner à minuit ?",
+      "pt": "Quem tem mais hipóteses de tomar o pequeno-almoço à meia-noite?"
     }
   },
   {
     "id": "sleep-twelve-hours",
     "labels": {
       "en": "Who is most likely to sleep twelve hours straight?",
-      "fr": "Qui a le plus de chances de dormir douze heures d’affilée ?"
+      "fr": "Qui a le plus de chances de dormir douze heures d’affilée ?",
+      "pt": "Quem tem mais hipóteses de dormir doze horas seguidas?"
     }
   },
   {
     "id": "up-at-dawn",
     "labels": {
       "en": "Who is most likely to be up before sunrise?",
-      "fr": "Qui a le plus de chances d’être debout avant le lever du soleil ?"
+      "fr": "Qui a le plus de chances d’être debout avant le lever du soleil ?",
+      "pt": "Quem tem mais hipóteses de estar a pé antes do nascer do sol?"
     }
   },
   {
     "id": "snooze-ten-times",
     "labels": {
       "en": "Who is most likely to snooze the alarm ten times?",
-      "fr": "Qui a le plus de chances de repousser son réveil dix fois ?"
+      "fr": "Qui a le plus de chances de repousser son réveil dix fois ?",
+      "pt": "Quem tem mais hipóteses de adiar o despertador dez vezes?"
     }
   },
   {
     "id": "nap-anywhere",
     "labels": {
       "en": "Who can nap absolutely anywhere?",
-      "fr": "Qui peut faire une sieste absolument n’importe où ?"
+      "fr": "Qui peut faire une sieste absolument n’importe où ?",
+      "pt": "Quem consegue fazer uma sesta seja onde for?"
     }
   },
   {
     "id": "talk-in-their-sleep",
     "labels": {
       "en": "Who is most likely to talk in their sleep?",
-      "fr": "Qui a le plus de chances de parler en dormant ?"
+      "fr": "Qui a le plus de chances de parler en dormant ?",
+      "pt": "Quem tem mais hipóteses de falar a dormir?"
     }
   },
   {
     "id": "binge-a-series",
     "labels": {
       "en": "Who is most likely to watch a whole series in one weekend?",
-      "fr": "Qui a le plus de chances de regarder une série entière en un week-end ?"
+      "fr": "Qui a le plus de chances de regarder une série entière en un week-end ?",
+      "pt": "Quem tem mais hipóteses de ver uma série inteira num fim de semana?"
     }
   },
   {
     "id": "hundred-tabs",
     "labels": {
       "en": "Who is most likely to have a hundred unread messages?",
-      "fr": "Qui a le plus de chances d’avoir cent messages non lus ?"
+      "fr": "Qui a le plus de chances d’avoir cent messages non lus ?",
+      "pt": "Quem tem mais hipóteses de ter cem mensagens por ler?"
     }
   },
   {
     "id": "reply-in-a-week",
     "labels": {
       "en": "Who is most likely to answer a message a week later?",
-      "fr": "Qui a le plus de chances de répondre à un message une semaine plus tard ?"
+      "fr": "Qui a le plus de chances de répondre à un message une semaine plus tard ?",
+      "pt": "Quem tem mais hipóteses de responder a uma mensagem uma semana depois?"
     }
   },
   {
     "id": "send-to-the-wrong-person",
     "labels": {
       "en": "Who is most likely to send a message to the wrong person?",
-      "fr": "Qui a le plus de chances d’envoyer un message à la mauvaise personne ?"
+      "fr": "Qui a le plus de chances d’envoyer un message à la mauvaise personne ?",
+      "pt": "Quem tem mais hipóteses de mandar uma mensagem à pessoa errada?"
     }
   },
   {
     "id": "voice-messages",
     "labels": {
       "en": "Who is most likely to send five-minute voice messages?",
-      "fr": "Qui a le plus de chances d’envoyer des messages vocaux de cinq minutes ?"
+      "fr": "Qui a le plus de chances d’envoyer des messages vocaux de cinq minutes ?",
+      "pt": "Quem tem mais hipóteses de mandar mensagens de voz de cinco minutos?"
     }
   },
   {
     "id": "fix-anything",
     "labels": {
       "en": "Who can fix anything with a bit of tape?",
-      "fr": "Qui peut tout réparer avec un bout de scotch ?"
+      "fr": "Qui peut tout réparer avec un bout de scotch ?",
+      "pt": "Quem consegue arranjar tudo com um bocado de fita-cola?"
     }
   },
   {
     "id": "break-the-new-thing",
     "labels": {
       "en": "Who is most likely to break something on its first day?",
-      "fr": "Qui a le plus de chances de casser un objet le jour où il l’a reçu ?"
+      "fr": "Qui a le plus de chances de casser un objet le jour où il l’a reçu ?",
+      "pt": "Quem tem mais hipóteses de partir uma coisa no próprio dia em que a recebeu?"
     }
   },
   {
     "id": "skip-the-manual",
     "labels": {
       "en": "Who is most likely to build furniture without the instructions?",
-      "fr": "Qui a le plus de chances de monter un meuble sans la notice ?"
+      "fr": "Qui a le plus de chances de monter un meuble sans la notice ?",
+      "pt": "Quem tem mais hipóteses de montar um móvel sem ler as instruções?"
     }
   },
   {
     "id": "spare-screws",
     "labels": {
       "en": "Who is most likely to finish building furniture with screws left over?",
-      "fr": "Qui a le plus de chances de finir de monter un meuble avec des vis en trop ?"
+      "fr": "Qui a le plus de chances de finir de monter un meuble avec des vis en trop ?",
+      "pt": "Quem tem mais hipóteses de acabar de montar um móvel com parafusos a mais?"
     }
   },
   {
     "id": "keep-everything",
     "labels": {
       "en": "Who is most likely to keep everything just in case?",
-      "fr": "Qui a le plus de chances de tout garder au cas où ?"
+      "fr": "Qui a le plus de chances de tout garder au cas où ?",
+      "pt": "Quem tem mais hipóteses de guardar tudo, não vá dar jeito um dia?"
     }
   },
   {
     "id": "tidiest",
     "labels": {
       "en": "Who has the tidiest home?",
-      "fr": "Qui a la maison la mieux rangée ?"
+      "fr": "Qui a la maison la mieux rangée ?",
+      "pt": "Quem tem a casa mais arrumada?"
     }
   },
   {
     "id": "plan-everything",
     "labels": {
       "en": "Who plans their holidays down to the minute?",
-      "fr": "Qui organise ses vacances à la minute près ?"
+      "fr": "Qui organise ses vacances à la minute près ?",
+      "pt": "Quem planeia as férias ao minuto?"
     }
   },
   {
     "id": "decide-last-minute",
     "labels": {
       "en": "Who is most likely to book a trip the night before?",
-      "fr": "Qui a le plus de chances de réserver un voyage la veille du départ ?"
+      "fr": "Qui a le plus de chances de réserver un voyage la veille du départ ?",
+      "pt": "Quem tem mais hipóteses de marcar uma viagem na véspera?"
     }
   },
   {
     "id": "say-yes-to-anything",
     "labels": {
       "en": "Who is most likely to say yes to any adventure?",
-      "fr": "Qui a le plus de chances de dire oui à n’importe quelle aventure ?"
+      "fr": "Qui a le plus de chances de dire oui à n’importe quelle aventure ?",
+      "pt": "Quem tem mais hipóteses de dizer que sim a qualquer aventura?"
     }
   },
   {
     "id": "skydive",
     "labels": {
       "en": "Who is most likely to go skydiving?",
-      "fr": "Qui a le plus de chances de sauter en parachute ?"
+      "fr": "Qui a le plus de chances de sauter en parachute ?",
+      "pt": "Quem tem mais hipóteses de saltar de paraquedas?"
     }
   },
   {
     "id": "scared-of-a-spider",
     "labels": {
       "en": "Who is most likely to run away from a spider?",
-      "fr": "Qui a le plus de chances de fuir devant une araignée ?"
+      "fr": "Qui a le plus de chances de fuir devant une araignée ?",
+      "pt": "Quem tem mais hipóteses de fugir de uma aranha?"
     }
   },
   {
     "id": "rescue-a-spider",
     "labels": {
       "en": "Who is most likely to carry a spider gently outside?",
-      "fr": "Qui a le plus de chances de porter délicatement une araignée dehors ?"
+      "fr": "Qui a le plus de chances de porter délicatement une araignée dehors ?",
+      "pt": "Quem tem mais hipóteses de levar uma aranha lá para fora com todo o cuidado?"
     }
   },
   {
     "id": "talk-to-strangers",
     "labels": {
       "en": "Who is most likely to make friends with a stranger in a queue?",
-      "fr": "Qui a le plus de chances de se faire un ami dans une file d’attente ?"
+      "fr": "Qui a le plus de chances de se faire un ami dans une file d’attente ?",
+      "pt": "Quem tem mais hipóteses de fazer amizade numa fila de espera?"
     }
   },
   {
     "id": "haggle",
     "labels": {
       "en": "Who is most likely to haggle over the price of anything?",
-      "fr": "Qui a le plus de chances de négocier le prix de n’importe quoi ?"
+      "fr": "Qui a le plus de chances de négocier le prix de n’importe quoi ?",
+      "pt": "Quem tem mais hipóteses de regatear o preço de tudo e mais alguma coisa?"
     }
   },
   {
     "id": "win-an-argument",
     "labels": {
       "en": "Who always wins an argument?",
-      "fr": "Qui gagne toujours les débats ?"
+      "fr": "Qui gagne toujours les débats ?",
+      "pt": "Quem ganha sempre as discussões?"
     }
   },
   {
     "id": "admit-being-wrong",
     "labels": {
       "en": "Who finds it hardest to admit being wrong?",
-      "fr": "Qui a le plus de mal à admettre avoir tort ?"
+      "fr": "Qui a le plus de mal à admettre avoir tort ?",
+      "pt": "Quem tem mais dificuldade em admitir que não tem razão?"
     }
   },
   {
     "id": "give-advice",
     "labels": {
       "en": "Who gives the best advice?",
-      "fr": "Qui donne les meilleurs conseils ?"
+      "fr": "Qui donne les meilleurs conseils ?",
+      "pt": "Quem dá os melhores conselhos?"
     }
   },
   {
     "id": "cheer-everyone-up",
     "labels": {
       "en": "Who can cheer anyone up?",
-      "fr": "Qui arrive à remonter le moral de n’importe qui ?"
+      "fr": "Qui arrive à remonter le moral de n’importe qui ?",
+      "pt": "Quem consegue animar seja quem for?"
     }
   },
   {
     "id": "best-hugs",
     "labels": {
       "en": "Who gives the best hugs?",
-      "fr": "Qui fait les meilleurs câlins ?"
+      "fr": "Qui fait les meilleurs câlins ?",
+      "pt": "Quem dá os melhores abraços?"
     }
   },
   {
     "id": "know-a-fun-fact",
     "labels": {
       "en": "Who always has a fun fact to share?",
-      "fr": "Qui a toujours une anecdote à raconter ?"
+      "fr": "Qui a toujours une anecdote à raconter ?",
+      "pt": "Quem tem sempre uma curiosidade para contar?"
     }
   },
   {
     "id": "win-a-quiz",
     "labels": {
       "en": "Who would win a general knowledge quiz?",
-      "fr": "Qui gagnerait un quiz de culture générale ?"
+      "fr": "Qui gagnerait un quiz de culture générale ?",
+      "pt": "Quem ganharia um quiz de cultura geral?"
     }
   },
   {
     "id": "google-everything",
     "labels": {
       "en": "Who is most likely to look everything up to prove a point?",
-      "fr": "Qui a le plus de chances de tout vérifier sur Internet pour avoir raison ?"
+      "fr": "Qui a le plus de chances de tout vérifier sur Internet pour avoir raison ?",
+      "pt": "Quem tem mais hipóteses de ir confirmar tudo à internet só para ter razão?"
     }
   },
   {
     "id": "believe-anything",
     "labels": {
       "en": "Who is most likely to believe an April fool?",
-      "fr": "Qui a le plus de chances de croire à un poisson d’avril ?"
+      "fr": "Qui a le plus de chances de croire à un poisson d’avril ?",
+      "pt": "Quem tem mais hipóteses de cair numa partida do Dia das Mentiras?"
     }
   },
   {
     "id": "best-prank",
     "labels": {
       "en": "Who is most likely to pull off the best prank?",
-      "fr": "Qui a le plus de chances de réussir la meilleure farce ?"
+      "fr": "Qui a le plus de chances de réussir la meilleure farce ?",
+      "pt": "Quem tem mais hipóteses de pregar a melhor partida?"
     }
   },
   {
     "id": "keep-a-straight-face",
     "labels": {
       "en": "Who can keep a straight face no matter what?",
-      "fr": "Qui arrive à garder son sérieux en toutes circonstances ?"
+      "fr": "Qui arrive à garder son sérieux en toutes circonstances ?",
+      "pt": "Quem consegue manter a cara séria aconteça o que acontecer?"
     }
   },
   {
     "id": "laugh-at-the-wrong-moment",
     "labels": {
       "en": "Who is most likely to get the giggles at the wrong moment?",
-      "fr": "Qui a le plus de chances d’avoir le fou rire au mauvais moment ?"
+      "fr": "Qui a le plus de chances d’avoir le fou rire au mauvais moment ?",
+      "pt": "Quem tem mais hipóteses de ter um ataque de riso na pior altura?"
     }
   },
   {
     "id": "hide-and-seek",
     "labels": {
       "en": "Who would win a game of hide and seek?",
-      "fr": "Qui gagnerait une partie de cache-cache ?"
+      "fr": "Qui gagnerait une partie de cache-cache ?",
+      "pt": "Quem ganharia um jogo das escondidas?"
     }
   },
   {
     "id": "snowball-fight",
     "labels": {
       "en": "Who would win a snowball fight?",
-      "fr": "Qui gagnerait une bataille de boules de neige ?"
+      "fr": "Qui gagnerait une bataille de boules de neige ?",
+      "pt": "Quem ganharia uma guerra de bolas de neve?"
     }
   },
   {
     "id": "biggest-snowman",
     "labels": {
       "en": "Who would build the biggest snowman?",
-      "fr": "Qui construirait le plus grand bonhomme de neige ?"
+      "fr": "Qui construirait le plus grand bonhomme de neige ?",
+      "pt": "Quem faria o maior boneco de neve?"
     }
   },
   {
     "id": "time-machine",
     "labels": {
       "en": "Who would be first in a time machine?",
-      "fr": "Qui monterait en premier dans une machine à remonter le temps ?"
+      "fr": "Qui monterait en premier dans une machine à remonter le temps ?",
+      "pt": "Quem entraria antes de todos numa máquina do tempo?"
     }
   },
   {
     "id": "meet-aliens",
     "labels": {
       "en": "Who would aliens choose to talk to first?",
-      "fr": "À qui les extraterrestres parleraient-ils en premier ?"
+      "fr": "À qui les extraterrestres parleraient-ils en premier ?",
+      "pt": "Quem é que os extraterrestres abordariam primeiro?"
     }
   },
   {
     "id": "become-a-legend",
     "labels": {
       "en": "Who will people still be telling stories about in fifty years?",
-      "fr": "De qui racontera-t-on encore des histoires dans cinquante ans ?"
+      "fr": "De qui racontera-t-on encore des histoires dans cinquante ans ?",
+      "pt": "Quem vai continuar a dar que falar daqui a cinquenta anos?"
     }
   }
 ]

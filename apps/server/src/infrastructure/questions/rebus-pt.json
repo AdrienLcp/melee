@@ -1,0 +1,2309 @@
+[
+  {
+    "accepted": [],
+    "answer": "Titanic",
+    "decoys": ["Pearl Harbor", "Piratas das Caraíbas", "Poseidon"],
+    "id": "rebus-pt-titanic",
+    "kind": "film",
+    "note": "James Cameron, 1997.",
+    "rebus": "🚢🧊💔",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["The Lion King", "Rei Leão"],
+    "answer": "O Rei Leão",
+    "decoys": ["O Livro da Selva", "Tarzan", "Madagáscar"],
+    "id": "rebus-pt-o-rei-leao",
+    "kind": "film",
+    "note": "Roger Allers e Rob Minkoff, 1994.",
+    "rebus": "👑🦁",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Ratatouille"],
+    "answer": "Ratatui",
+    "decoys": ["O Panda do Kung Fu", "À Procura de Nemo", "Zootrópolis"],
+    "id": "rebus-pt-ratatui",
+    "kind": "film",
+    "note": "Brad Bird, 2007.",
+    "rebus": "🐀👨‍🍳",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Spider-Man", "Spiderman"],
+    "answer": "Homem-Aranha",
+    "decoys": ["Homem de Ferro", "Homem-Formiga", "Batman"],
+    "id": "rebus-pt-homem-aranha",
+    "kind": "film",
+    "note": "Sam Raimi, 2002.",
+    "rebus": "👨🕷️",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Frozen", "O Reino do Gelo"],
+    "answer": "Frozen: O Reino do Gelo",
+    "decoys": ["Entrelaçados", "Cinderela", "Vaiana"],
+    "id": "rebus-pt-frozen-o-reino-do-gelo",
+    "kind": "film",
+    "note": "Chris Buck e Jennifer Lee, 2013.",
+    "rebus": "👑🏰🧊⛄",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Finding Nemo", "Nemo"],
+    "answer": "À Procura de Nemo",
+    "decoys": ["A Pequena Sereia", "O Gang dos Tubarões", "Vaiana"],
+    "id": "rebus-pt-a-procura-de-nemo",
+    "kind": "film",
+    "note": "Andrew Stanton, 2003.",
+    "rebus": "🔍🐠🌊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Jaws"],
+    "answer": "Tubarão",
+    "decoys": ["O Abismo", "Waterworld", "Moby Dick"],
+    "id": "rebus-pt-tubarao",
+    "kind": "film",
+    "note": "Steven Spielberg, 1975.",
+    "rebus": "🦈🌊🏊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Harry Potter", "Harry Potter and the Philosopher's Stone"],
+    "answer": "Harry Potter e a Pedra Filosofal",
+    "decoys": [
+      "Monstros Fantásticos e Onde Encontrá-los",
+      "As Crónicas de Nárnia",
+      "O Hobbit"
+    ],
+    "id": "rebus-pt-harry-potter-e-a-pedra-filosofal",
+    "kind": "film",
+    "note": "Chris Columbus, 2001.",
+    "rebus": "🧙‍♂️⚡👓💎",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Star Wars", "Guerra das Estrelas"],
+    "answer": "A Guerra das Estrelas",
+    "decoys": ["Star Trek", "Dune", "Guardiões da Galáxia"],
+    "id": "rebus-pt-a-guerra-das-estrelas",
+    "kind": "film",
+    "note": "George Lucas, 1977.",
+    "rebus": "⚔️⭐⭐🌌",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Jurassic Park"],
+    "answer": "Parque Jurássico",
+    "decoys": ["King Kong", "Godzilla", "Jumanji"],
+    "id": "rebus-pt-parque-jurassico",
+    "kind": "film",
+    "note": "Steven Spielberg, 1993.",
+    "rebus": "🦖🦕🏞️",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Ice Age", "Idade do Gelo"],
+    "answer": "A Idade do Gelo",
+    "decoys": ["Madagáscar", "Rio", "Os Croods"],
+    "id": "rebus-pt-a-idade-do-gelo",
+    "kind": "film",
+    "note": "Chris Wedge, 2002.",
+    "rebus": "🧊🦥🐿️",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Home Alone"],
+    "answer": "Sozinho em Casa",
+    "decoys": ["O Grinch", "À Noite, no Museu", "Papá para Sempre"],
+    "id": "rebus-pt-sozinho-em-casa",
+    "kind": "film",
+    "note": "Chris Columbus, 1990.",
+    "rebus": "👦🏠🎄😱",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Toy Story - Os Rivais"],
+    "answer": "Toy Story",
+    "decoys": ["WALL-E", "Carros", "Monstros e Companhia"],
+    "id": "rebus-pt-toy-story",
+    "kind": "film",
+    "note": "John Lasseter, 1995.",
+    "rebus": "🤠🚀🧸",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Cars"],
+    "answer": "Carros",
+    "decoys": ["Aviões", "Turbo", "Velocidade Furiosa"],
+    "id": "rebus-pt-carros",
+    "kind": "film",
+    "note": "John Lasseter, 2006.",
+    "rebus": "🏎️🏁⚡",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Up", "Altamente"],
+    "answer": "Up - Altamente!",
+    "decoys": ["Coco", "Divertida-Mente", "WALL-E"],
+    "id": "rebus-pt-up-altamente",
+    "kind": "film",
+    "note": "Pete Docter, 2009.",
+    "rebus": "🎈🏠☁️",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Shrek",
+    "decoys": ["Entrelaçados", "O Gato das Botas", "Monstros e Companhia"],
+    "id": "rebus-pt-shrek",
+    "kind": "film",
+    "note": "Andrew Adamson e Vicky Jenson, 2001.",
+    "rebus": "👹💚🐴👸",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Beauty and the Beast", "Bela e o Monstro"],
+    "answer": "A Bela e o Monstro",
+    "decoys": ["A Bela Adormecida", "Cinderela", "Shrek"],
+    "id": "rebus-pt-a-bela-e-o-monstro",
+    "kind": "film",
+    "note": "Gary Trousdale e Kirk Wise, 1991.",
+    "rebus": "👸🌹👹",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Branca de Neve", "Snow White"],
+    "answer": "Branca de Neve e os Sete Anões",
+    "decoys": ["A Bela Adormecida", "Cinderela", "Entrelaçados"],
+    "id": "rebus-pt-branca-de-neve-e-os-sete-anoes",
+    "kind": "film",
+    "note": "David Hand, 1937.",
+    "rebus": "⚪❄️7️⃣🍎",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Cinderella", "A Gata Borralheira"],
+    "answer": "Cinderela",
+    "decoys": [
+      "A Bela Adormecida",
+      "Branca de Neve e os Sete Anões",
+      "Entrelaçados"
+    ],
+    "id": "rebus-pt-cinderela",
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson e Hamilton Luske, 1950.",
+    "rebus": "👠🎃🕛",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Sleeping Beauty", "Bela Adormecida"],
+    "answer": "A Bela Adormecida",
+    "decoys": ["Branca de Neve e os Sete Anões", "Cinderela", "Entrelaçados"],
+    "id": "rebus-pt-a-bela-adormecida",
+    "kind": "film",
+    "note": "Clyde Geronimi, 1959.",
+    "rebus": "👸😴🌹🧚‍♀️",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Pinocchio"],
+    "answer": "Pinóquio",
+    "decoys": ["Peter Pan", "Dumbo", "Bambi"],
+    "id": "rebus-pt-pinoquio",
+    "kind": "film",
+    "note": "Ben Sharpsteen e Hamilton Luske, 1940.",
+    "rebus": "🤥👃🐋",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Minions"],
+    "answer": "Mínimos",
+    "decoys": ["Trolls", "Hotel Transylvania", "Os Croods"],
+    "id": "rebus-pt-minimos",
+    "kind": "film",
+    "note": "Pierre Coffin e Kyle Balda, 2015.",
+    "rebus": "🟡👓🍌",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Avatar",
+    "decoys": ["Dune", "Pocahontas", "Interstellar"],
+    "id": "rebus-pt-avatar",
+    "kind": "film",
+    "note": "James Cameron, 2009.",
+    "rebus": "🔵👽🌳",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Monsters, Inc.", "Monstros & Companhia"],
+    "answer": "Monstros e Companhia",
+    "decoys": ["Hotel Transylvania", "Toy Story", "Os Croods"],
+    "id": "rebus-pt-monstros-e-companhia",
+    "kind": "film",
+    "note": "Pete Docter, 2001.",
+    "rebus": "👾👁️🚪😱",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Coco",
+    "decoys": ["Encanto", "A Noiva Cadáver", "Vaiana"],
+    "id": "rebus-pt-coco",
+    "kind": "film",
+    "note": "Lee Unkrich, 2017.",
+    "rebus": "💀🎸🌼",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Jungle Book", "Livro da Selva"],
+    "answer": "O Livro da Selva",
+    "decoys": ["Tarzan", "O Rei Leão", "Bambi"],
+    "id": "rebus-pt-o-livro-da-selva",
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1967.",
+    "rebus": "📖🌴🐻🐍",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Aladino"],
+    "answer": "Aladdin",
+    "decoys": ["Hércules", "Mulan", "Sinbad"],
+    "id": "rebus-pt-aladdin",
+    "kind": "film",
+    "note": "Ron Clements e John Musker, 1992.",
+    "rebus": "🧞🪔🐒",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Little Mermaid", "Pequena Sereia"],
+    "answer": "A Pequena Sereia",
+    "decoys": ["À Procura de Nemo", "Vaiana", "Peter Pan"],
+    "id": "rebus-pt-a-pequena-sereia",
+    "kind": "film",
+    "note": "Ron Clements e John Musker, 1989.",
+    "rebus": "🤏🧜‍♀️🐚🦀",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["101 Dálmatas", "101 Dalmatians"],
+    "answer": "Os 101 Dálmatas",
+    "decoys": ["A Dama e o Vagabundo", "Bolt", "Os Aristogatos"],
+    "id": "rebus-pt-os-101-dalmatas",
+    "kind": "film",
+    "note": "Wolfgang Reitherman, Hamilton Luske e Clyde Geronimi, 1961.",
+    "rebus": "1️⃣0️⃣1️⃣🐕",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Aristocats", "Aristogatos"],
+    "answer": "Os Aristogatos",
+    "decoys": ["A Dama e o Vagabundo", "O Gato das Botas", "Os 101 Dálmatas"],
+    "id": "rebus-pt-os-aristogatos",
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1970.",
+    "rebus": "🎩🐱🎹",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Kung Fu Panda", "Panda do Kung Fu"],
+    "answer": "O Panda do Kung Fu",
+    "decoys": ["Karate Kid", "Mulan", "Madagáscar"],
+    "id": "rebus-pt-o-panda-do-kung-fu",
+    "kind": "film",
+    "note": "Mark Osborne e John Stevenson, 2008.",
+    "rebus": "🐼🥋",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Peter Pan",
+    "decoys": ["Pinóquio", "Alice no País das Maravilhas", "O Livro da Selva"],
+    "id": "rebus-pt-peter-pan",
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson e Hamilton Luske, 1953.",
+    "rebus": "🧚‍♀️👦🐊⏰",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Zootopia"],
+    "answer": "Zootrópolis",
+    "decoys": ["Robin dos Bosques", "Madagáscar", "O Panda do Kung Fu"],
+    "id": "rebus-pt-zootropolis",
+    "kind": "film",
+    "note": "Byron Howard e Rich Moore, 2016.",
+    "rebus": "🐰👮‍♀️🦊🏙️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Moana"],
+    "answer": "Vaiana",
+    "decoys": ["Lilo & Stitch", "Os Croods", "Pocahontas"],
+    "id": "rebus-pt-vaiana",
+    "kind": "film",
+    "note": "Ron Clements e John Musker, 2016.",
+    "rebus": "🌊🛶🐔🌺",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Wall E", "Walle"],
+    "answer": "WALL-E",
+    "decoys": ["Robôs", "O Gigante de Ferro", "Big Hero 6"],
+    "id": "rebus-pt-wall-e",
+    "kind": "film",
+    "note": "Andrew Stanton, 2008.",
+    "rebus": "🤖🌱🗑️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Mary Poppins",
+    "decoys": ["Nanny McPhee", "Chitty Chitty Bang Bang", "Música no Coração"],
+    "id": "rebus-pt-mary-poppins",
+    "kind": "film",
+    "note": "Robert Stevenson, 1964.",
+    "rebus": "☂️👩💨",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Batman",
+    "decoys": ["Super-Homem", "Homem de Ferro", "Hulk"],
+    "id": "rebus-pt-batman",
+    "kind": "film",
+    "note": "Tim Burton, 1989.",
+    "rebus": "🦇👨",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["E.T.", "ET", "E.T. O Extraterrestre"],
+    "answer": "E.T. - O Extraterrestre",
+    "decoys": [
+      "Encontros Imediatos do Terceiro Grau",
+      "Homens de Negro",
+      "O Dia da Independência"
+    ],
+    "id": "rebus-pt-e-t-o-extraterrestre",
+    "kind": "film",
+    "note": "Steven Spielberg, 1982.",
+    "rebus": "👽🚲🌕☎️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Pirates of the Caribbean", "Piratas das Caraibas"],
+    "answer": "Piratas das Caraíbas",
+    "decoys": ["Peter Pan", "A Ilha do Tesouro", "Os Goonies"],
+    "id": "rebus-pt-piratas-das-caraibas",
+    "kind": "film",
+    "note": "Gore Verbinski, 2003.",
+    "rebus": "☠️⛵🏝️🦜",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Back to the Future"],
+    "answer": "Regresso ao Futuro",
+    "decoys": [
+      "O Exterminador Implacável",
+      "Interstellar",
+      "A Máquina do Tempo"
+    ],
+    "id": "rebus-pt-regresso-ao-futuro",
+    "kind": "film",
+    "note": "Robert Zemeckis, 1985.",
+    "rebus": "🔙🔮🚗⚡",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Godfather", "Padrinho"],
+    "answer": "O Padrinho",
+    "decoys": ["Tudo Bons Rapazes", "Scarface", "Os Intocáveis"],
+    "id": "rebus-pt-o-padrinho",
+    "kind": "film",
+    "note": "Francis Ford Coppola, 1972.",
+    "rebus": "🤵🐴🛏️🍝",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Terminator", "The Terminator", "O Exterminador"],
+    "answer": "O Exterminador Implacável",
+    "decoys": ["RoboCop", "Matrix", "Predador"],
+    "id": "rebus-pt-o-exterminador-implacavel",
+    "kind": "film",
+    "note": "James Cameron, 1984.",
+    "rebus": "🤖🔫🏍️🕶️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Jumanji",
+    "decoys": ["Zathura", "À Noite, no Museu", "Parque Jurássico"],
+    "id": "rebus-pt-jumanji",
+    "kind": "film",
+    "note": "Joe Johnston, 1995.",
+    "rebus": "🎲🦏🐘🌴",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Puss in Boots", "Gato das Botas"],
+    "answer": "O Gato das Botas",
+    "decoys": ["Shrek", "Os Aristogatos", "Garfield"],
+    "id": "rebus-pt-o-gato-das-botas",
+    "kind": "film",
+    "note": "Chris Miller, 2011.",
+    "rebus": "🐱👢⚔️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Alice in Wonderland", "Alice"],
+    "answer": "Alice no País das Maravilhas",
+    "decoys": ["O Feiticeiro de Oz", "Peter Pan", "Pinóquio"],
+    "id": "rebus-pt-alice-no-pais-das-maravilhas",
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson e Hamilton Luske, 1951.",
+    "rebus": "👧🐇🎩🍄",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Charlie and the Chocolate Factory", "A Fábrica de Chocolate"],
+    "answer": "Charlie e a Fábrica de Chocolate",
+    "decoys": ["Matilda", "O Grinch", "Jumanji"],
+    "id": "rebus-pt-charlie-e-a-fabrica-de-chocolate",
+    "kind": "film",
+    "note": "Tim Burton, 2005.",
+    "rebus": "👦🏭🍫🎫",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Despicable Me", "Gru", "Gru O Maldisposto"],
+    "answer": "Gru - O Maldisposto",
+    "decoys": ["Shrek", "Monstros e Companhia", "O Gato das Botas"],
+    "id": "rebus-pt-gru-o-maldisposto",
+    "kind": "film",
+    "note": "Pierre Coffin e Chris Renaud, 2010.",
+    "rebus": "👨‍🦲😠🍌🌙",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Ghostbusters", "Caça-Fantasmas", "Caca-Fantasmas"],
+    "answer": "Os Caça-Fantasmas",
+    "decoys": ["Beetlejuice", "Casper", "Gremlins"],
+    "id": "rebus-pt-os-caca-fantasmas",
+    "kind": "film",
+    "note": "Ivan Reitman, 1984.",
+    "rebus": "🏹👻👻",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Sound of Music", "Musica no Coracao"],
+    "answer": "Música no Coração",
+    "decoys": ["Mary Poppins", "Mamma Mia!", "Grease"],
+    "id": "rebus-pt-musica-no-coracao",
+    "kind": "film",
+    "note": "Robert Wise, 1965.",
+    "rebus": "🎶💓⛰️👧👦",
+    "tier": "medium"
+  },
+  {
+    "accepted": [
+      "The Lord of the Rings",
+      "Senhor dos Anéis",
+      "O Senhor dos Anéis: A Irmandade do Anel"
+    ],
+    "answer": "O Senhor dos Anéis",
+    "decoys": ["As Crónicas de Nárnia", "Willow", "Eragon"],
+    "id": "rebus-pt-o-senhor-dos-aneis",
+    "kind": "film",
+    "note": "Peter Jackson, 2001.",
+    "rebus": "👑💍💍🌋",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Matrix"],
+    "answer": "Matrix",
+    "decoys": ["O Exterminador Implacável", "A Origem", "Equilibrium"],
+    "id": "rebus-pt-matrix",
+    "kind": "film",
+    "note": "Lana e Lilly Wachowski, 1999.",
+    "rebus": "💊🔴🔵🕶️💻",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Leão da Estrela"],
+    "answer": "O Leão da Estrela",
+    "decoys": [
+      "O Pátio das Cantigas",
+      "O Costa do Castelo",
+      "A Menina da Rádio"
+    ],
+    "id": "rebus-pt-o-leao-da-estrela",
+    "kind": "film",
+    "note": "Arthur Duarte, 1947.",
+    "rebus": "🦁⭐",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Balas e Bolinhos"],
+    "answer": "Balas & Bolinhos",
+    "decoys": ["Zona J", "Call Girl", "O Crime do Padre Amaro"],
+    "id": "rebus-pt-balas-e-bolinhos",
+    "kind": "film",
+    "note": "Luís Ismael, 2001.",
+    "rebus": "🔫🍪",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Wolf of Wall Street", "Lobo de Wall Street"],
+    "answer": "O Lobo de Wall Street",
+    "decoys": ["Apanha-me Se Puderes", "Wall Street", "A Queda de Wall Street"],
+    "id": "rebus-pt-o-lobo-de-wall-street",
+    "kind": "film",
+    "note": "Martin Scorsese, 2013.",
+    "rebus": "🐺💵📈",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["The Silence of the Lambs", "Silêncio dos Inocentes"],
+    "answer": "O Silêncio dos Inocentes",
+    "decoys": ["Sete Pecados Mortais", "Psico", "Hannibal"],
+    "id": "rebus-pt-o-silencio-dos-inocentes",
+    "kind": "film",
+    "note": "Jonathan Demme, 1991.",
+    "rebus": "🤫😇🦋",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Top Gun - Ases Indomáveis"],
+    "answer": "Top Gun",
+    "decoys": ["Pearl Harbor", "O Dia da Independência", "Dunkirk"],
+    "id": "rebus-pt-top-gun",
+    "kind": "film",
+    "note": "Tony Scott, 1986.",
+    "rebus": "🔝🔫✈️🕶️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["The Shawshank Redemption", "Shawshank"],
+    "answer": "Os Condenados de Shawshank",
+    "decoys": ["À Espera de um Milagre", "Fuga de Alcatraz", "Forrest Gump"],
+    "id": "rebus-pt-os-condenados-de-shawshank",
+    "kind": "film",
+    "note": "Frank Darabont, 1994.",
+    "rebus": "⛓️🔨🕳️🌧️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["The Wizard of Oz", "Feiticeiro de Oz"],
+    "answer": "O Feiticeiro de Oz",
+    "decoys": [
+      "Alice no País das Maravilhas",
+      "A História Interminável",
+      "Peter Pan"
+    ],
+    "id": "rebus-pt-o-feiticeiro-de-oz",
+    "kind": "film",
+    "note": "Victor Fleming, 1939.",
+    "rebus": "🧙‍♂️👧👠🌪️🦁",
+    "tier": "hard"
+  },
+  {
+    "accepted": [
+      "Indiana Jones",
+      "Raiders of the Lost Ark",
+      "Indiana Jones e os Salteadores da Arca Perdida"
+    ],
+    "answer": "Os Salteadores da Arca Perdida",
+    "decoys": ["A Múmia", "Os Goonies", "Tomb Raider"],
+    "id": "rebus-pt-os-salteadores-da-arca-perdida",
+    "kind": "film",
+    "note": "Steven Spielberg, 1981.",
+    "rebus": "🤠📦❓🐍",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Psycho"],
+    "answer": "Psico",
+    "decoys": ["Os Pássaros", "O Exorcista", "Sete Pecados Mortais"],
+    "id": "rebus-pt-psico",
+    "kind": "film",
+    "note": "Alfred Hitchcock, 1960.",
+    "rebus": "🔪🚿😱",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Fight Club", "O Clube de Combate"],
+    "answer": "Clube de Combate",
+    "decoys": ["Sete Pecados Mortais", "Pulp Fiction", "Memento"],
+    "id": "rebus-pt-clube-de-combate",
+    "kind": "film",
+    "note": "David Fincher, 1999.",
+    "rebus": "🥊👊🧼",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Se7en", "Seven"],
+    "answer": "Sete Pecados Mortais",
+    "decoys": ["O Silêncio dos Inocentes", "Zodiac", "Clube de Combate"],
+    "id": "rebus-pt-sete-pecados-mortais",
+    "kind": "film",
+    "note": "David Fincher, 1995.",
+    "rebus": "7️⃣😈💀📦",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Reservoir Dogs", "Caes Danados"],
+    "answer": "Cães Danados",
+    "decoys": ["Pulp Fiction", "Kill Bill - A Vingança", "Jackie Brown"],
+    "id": "rebus-pt-caes-danados",
+    "kind": "film",
+    "note": "Quentin Tarantino, 1992.",
+    "rebus": "🐕🐕😡🕴️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Saturday Night Fever", "Febre de Sabado a Noite"],
+    "answer": "Febre de Sábado à Noite",
+    "decoys": ["Grease", "Dirty Dancing", "Flashdance"],
+    "id": "rebus-pt-febre-de-sabado-a-noite",
+    "kind": "film",
+    "note": "John Badham, 1977.",
+    "rebus": "🤒🕺🌃",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Inception", "Origem"],
+    "answer": "A Origem",
+    "decoys": ["Interstellar", "Matrix", "Tenet"],
+    "id": "rebus-pt-a-origem",
+    "kind": "film",
+    "note": "Christopher Nolan, 2010.",
+    "rebus": "💤🌀🏙️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Dances with Wolves", "Danca com Lobos"],
+    "answer": "Dança com Lobos",
+    "decoys": ["O Último dos Moicanos", "Pocahontas", "Gladiador"],
+    "id": "rebus-pt-danca-com-lobos",
+    "kind": "film",
+    "note": "Kevin Costner, 1990.",
+    "rebus": "🕺🐺🐺",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["The Devil Wears Prada", "Diabo Veste Prada"],
+    "answer": "O Diabo Veste Prada",
+    "decoys": ["Pretty Woman", "Legalmente Loira", "O Sexo e a Cidade"],
+    "id": "rebus-pt-o-diabo-veste-prada",
+    "kind": "film",
+    "note": "David Frankel, 2006.",
+    "rebus": "😈👗👠",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Edward Scissorhands", "Edward Maos de Tesoura"],
+    "answer": "Edward Mãos de Tesoura",
+    "decoys": ["Beetlejuice", "O Estranho Mundo de Jack", "A Noiva Cadáver"],
+    "id": "rebus-pt-edward-maos-de-tesoura",
+    "kind": "film",
+    "note": "Tim Burton, 1990.",
+    "rebus": "✂️✋👨❄️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Pátio das Cantigas", "Patio das Cantigas"],
+    "answer": "O Pátio das Cantigas",
+    "decoys": ["O Leão da Estrela", "A Canção de Lisboa", "O Costa do Castelo"],
+    "id": "rebus-pt-o-patio-das-cantigas",
+    "kind": "film",
+    "note": "Francisco Ribeiro, 1942.",
+    "rebus": "🏘️🎶🎤",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Canção de Lisboa", "Cancao de Lisboa"],
+    "answer": "A Canção de Lisboa",
+    "decoys": [
+      "O Pátio das Cantigas",
+      "A Aldeia da Roupa Branca",
+      "O Pai Tirano"
+    ],
+    "id": "rebus-pt-a-cancao-de-lisboa",
+    "kind": "film",
+    "note": "Cottinelli Telmo, 1933.",
+    "rebus": "🎶🚋",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Menina da Rádio", "Menina da Radio"],
+    "answer": "A Menina da Rádio",
+    "decoys": ["O Leão da Estrela", "A Canção de Lisboa", "O Costa do Castelo"],
+    "id": "rebus-pt-a-menina-da-radio",
+    "kind": "film",
+    "note": "Arthur Duarte, 1944.",
+    "rebus": "👧📻",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Aldeia da Roupa Branca"],
+    "answer": "A Aldeia da Roupa Branca",
+    "decoys": ["A Canção de Lisboa", "O Pátio das Cantigas", "Aniki-Bóbó"],
+    "id": "rebus-pt-a-aldeia-da-roupa-branca",
+    "kind": "film",
+    "note": "Chianca de Garcia, 1939.",
+    "rebus": "🏘️👕⚪🧺",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Crime do Padre Amaro"],
+    "answer": "O Crime do Padre Amaro",
+    "decoys": ["Call Girl", "Balas & Bolinhos", "Corrupção"],
+    "id": "rebus-pt-o-crime-do-padre-amaro",
+    "kind": "film",
+    "note": "Carlos Coelho da Silva, 2005.",
+    "rebus": "🔪⛪❤️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["La Cage dorée", "Gaiola Dourada"],
+    "answer": "A Gaiola Dourada",
+    "decoys": ["Balas & Bolinhos", "Call Girl", "Os Gatos Não Têm Vertigens"],
+    "id": "rebus-pt-a-gaiola-dourada",
+    "kind": "film",
+    "note": "Ruben Alves, 2013.",
+    "rebus": "🐦🔒🟡",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Game of Thrones", "Guerra dos Tronos"],
+    "answer": "A Guerra dos Tronos",
+    "decoys": ["The Witcher", "Vikings", "Os Anéis do Poder"],
+    "id": "rebus-pt-a-guerra-dos-tronos",
+    "kind": "series",
+    "note": "David Benioff e D. B. Weiss (HBO), 2011.",
+    "rebus": "⚔️👑🪑🐉",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Casa de Papel", "Money Heist"],
+    "answer": "La Casa de Papel",
+    "decoys": ["Elite", "Narcos", "Lupin"],
+    "id": "rebus-pt-la-casa-de-papel",
+    "kind": "series",
+    "note": "Álex Pina (Antena 3), 2017.",
+    "rebus": "🏠📄💰🎭",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Stranger Things",
+    "decoys": ["Dark", "Locke & Key", "Twin Peaks"],
+    "id": "rebus-pt-stranger-things",
+    "kind": "series",
+    "note": "Matt e Ross Duffer (Netflix), 2016.",
+    "rebus": "🧇🚲🔦👾",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["The Simpsons", "Simpsons"],
+    "answer": "Os Simpsons",
+    "decoys": ["Family Guy", "South Park", "Futurama"],
+    "id": "rebus-pt-os-simpsons",
+    "kind": "series",
+    "note": "Matt Groening (Fox), 1989.",
+    "rebus": "🍩💛👨‍👩‍👧‍👦🛋️",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["Foi Assim Que Aconteceu", "Seinfeld", "A Teoria do Big Bang"],
+    "id": "rebus-pt-friends",
+    "kind": "series",
+    "note": "David Crane e Marta Kauffman (NBC), 1994.",
+    "rebus": "👫👬👭☕",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Squid Game",
+    "decoys": ["Alice in Borderland", "Kingdom", "Sweet Home"],
+    "id": "rebus-pt-squid-game",
+    "kind": "series",
+    "note": "Hwang Dong-hyuk (Netflix), 2021.",
+    "rebus": "🦑🎮🔺⚪",
+    "tier": "easy"
+  },
+  {
+    "accepted": [
+      "SpongeBob SquarePants",
+      "SpongeBob Calças Quadradas",
+      "Bob Esponja"
+    ],
+    "answer": "SpongeBob",
+    "decoys": ["Phineas e Ferb", "Ben 10", "Tom & Jerry"],
+    "id": "rebus-pt-spongebob",
+    "kind": "series",
+    "note": "Stephen Hillenburg (Nickelodeon), 1999.",
+    "rebus": "🧽🍍🌊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Pokemon"],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Yu-Gi-Oh!", "Beyblade"],
+    "id": "rebus-pt-pokemon",
+    "kind": "series",
+    "note": "OLM (TV Tokyo), 1997.",
+    "rebus": "⚡🐭⚪🔴",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Dragon Ball Z"],
+    "answer": "Dragon Ball",
+    "decoys": ["Naruto", "Os Cavaleiros do Zodíaco", "One Piece"],
+    "id": "rebus-pt-dragon-ball",
+    "kind": "series",
+    "note": "Toei Animation (Fuji TV), 1986.",
+    "rebus": "🐉⚪🟠⭐👊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Abelha Maia", "Maya the Bee"],
+    "answer": "A Abelha Maia",
+    "decoys": ["Heidi", "Tom Sawyer", "Os Estrumpfes"],
+    "id": "rebus-pt-a-abelha-maia",
+    "kind": "series",
+    "note": "Zuiyo e Nippon Animation, 1975.",
+    "rebus": "🐝🌼",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Morangos com Acucar", "Morangos"],
+    "answer": "Morangos com Açúcar",
+    "decoys": ["Floribella", "Rebelde Way", "Uma Aventura"],
+    "id": "rebus-pt-morangos-com-acucar",
+    "kind": "series",
+    "note": "TVI, 2003.",
+    "rebus": "🍓🍓🍬",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["The Big Bang Theory", "Teoria do Big Bang"],
+    "answer": "A Teoria do Big Bang",
+    "decoys": ["Friends", "Foi Assim Que Aconteceu", "Silicon Valley"],
+    "id": "rebus-pt-a-teoria-do-big-bang",
+    "kind": "series",
+    "note": "Chuck Lorre e Bill Prady (CBS), 2007.",
+    "rebus": "💥🌌🤓🔬",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Breaking Bad - Ruptura Total"],
+    "answer": "Breaking Bad",
+    "decoys": ["Narcos", "Ozark", "Weeds"],
+    "id": "rebus-pt-breaking-bad",
+    "kind": "series",
+    "note": "Vince Gilligan (AMC), 2008.",
+    "rebus": "🧪🚐👨‍🦲",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The Walking Dead",
+    "decoys": ["The Last of Us", "Z Nation", "Kingdom"],
+    "id": "rebus-pt-the-walking-dead",
+    "kind": "series",
+    "note": "Frank Darabont (AMC), 2010.",
+    "rebus": "🚶🧟‍♂️🧟‍♀️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["House", "Dr House", "House M.D."],
+    "answer": "Dr. House",
+    "decoys": ["Anatomia de Grey", "Serviço de Urgência", "Scrubs"],
+    "id": "rebus-pt-dr-house",
+    "kind": "series",
+    "note": "David Shore (Fox), 2004.",
+    "rebus": "👨‍⚕️🏠💊🦯",
+    "tier": "medium"
+  },
+  {
+    "accepted": [
+      "The Fresh Prince of Bel-Air",
+      "Príncipe de Bel-Air",
+      "Principe de Bel-Air"
+    ],
+    "answer": "O Príncipe de Bel-Air",
+    "decoys": ["Friends", "Seinfeld", "Foi Assim Que Aconteceu"],
+    "id": "rebus-pt-o-principe-de-bel-air",
+    "kind": "series",
+    "note": "Andy e Susan Borowitz (NBC), 1990.",
+    "rebus": "🤴🏀🌴🏡",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Lost"],
+    "answer": "Perdidos",
+    "decoys": ["Prison Break", "Manifest", "Heroes"],
+    "id": "rebus-pt-perdidos",
+    "kind": "series",
+    "note": "J. J. Abrams, Damon Lindelof e Jeffrey Lieber (ABC), 2004.",
+    "rebus": "✈️💥🏝️❓",
+    "tier": "medium"
+  },
+  {
+    "accepted": [
+      "CSI",
+      "Crime Sob Investigação",
+      "CSI: Crime Scene Investigation"
+    ],
+    "answer": "CSI: Crime Sob Investigação",
+    "decoys": ["Mentes Criminosas", "Ossos", "NCIS"],
+    "id": "rebus-pt-csi-crime-sob-investigacao",
+    "kind": "series",
+    "note": "Anthony E. Zuiker (CBS), 2000.",
+    "rebus": "🔬🔍🧤🩸",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The X-Files", "X-Files"],
+    "answer": "Ficheiros Secretos",
+    "decoys": ["Twin Peaks", "Fringe", "Millennium"],
+    "id": "rebus-pt-ficheiros-secretos",
+    "kind": "series",
+    "note": "Chris Carter (Fox), 1993.",
+    "rebus": "👽📁🔦🕵️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Baywatch", "Mares Vivas"],
+    "answer": "Marés Vivas",
+    "decoys": ["O Justiceiro", "MacGyver", "Magnum"],
+    "id": "rebus-pt-mares-vivas",
+    "kind": "series",
+    "note": "Michael Berk, Douglas Schwartz e Gregory J. Bonann (NBC), 1989.",
+    "rebus": "🌊🏖️🏊‍♀️🚨",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Mac Gyver"],
+    "answer": "MacGyver",
+    "decoys": ["O Justiceiro", "Marés Vivas", "Magnum"],
+    "id": "rebus-pt-macgyver",
+    "kind": "series",
+    "note": "Lee David Zlotoff (ABC), 1985.",
+    "rebus": "🔧📎💣🧠",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["The Muppet Show", "Marretas", "Muppets"],
+    "answer": "Os Marretas",
+    "decoys": ["Rua Sésamo", "Fraggle Rock", "Alf"],
+    "id": "rebus-pt-os-marretas",
+    "kind": "series",
+    "note": "Jim Henson (ITV), 1976.",
+    "rebus": "🐸🐷🎭🎤",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Inspector Max"],
+    "answer": "Inspetor Max",
+    "decoys": ["Médico de Família", "Conta-me Como Foi", "Uma Aventura"],
+    "id": "rebus-pt-inspetor-max",
+    "kind": "series",
+    "note": "TVI, 2004.",
+    "rebus": "🐕🕵️‍♂️🔍",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Malucos do Riso"],
+    "answer": "Os Malucos do Riso",
+    "decoys": ["Herman Enciclopédia", "Os Contemporâneos", "O Último a Sair"],
+    "id": "rebus-pt-os-malucos-do-riso",
+    "kind": "series",
+    "note": "SIC, 1995.",
+    "rebus": "🤪🤪😂",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Por do Sol"],
+    "answer": "Pôr do Sol",
+    "decoys": ["Conta-me Como Foi", "Bem-Vindos a Beirais", "Mar Salgado"],
+    "id": "rebus-pt-por-do-sol",
+    "kind": "series",
+    "note": "RTP1, 2021.",
+    "rebus": "☀️⬇️🌇",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Mar Salgado",
+    "decoys": ["Ilha dos Amores", "Coração d'Ouro", "Jardins Proibidos"],
+    "id": "rebus-pt-mar-salgado",
+    "kind": "series",
+    "note": "SIC, 2014.",
+    "rebus": "🌊🧂",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Grey's Anatomy"],
+    "answer": "Anatomia de Grey",
+    "decoys": ["Dr. House", "Serviço de Urgência", "Scrubs"],
+    "id": "rebus-pt-anatomia-de-grey",
+    "kind": "series",
+    "note": "Shonda Rhimes (ABC), 2005.",
+    "rebus": "🦴🩺🏥💔",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Knight Rider", "Justiceiro"],
+    "answer": "O Justiceiro",
+    "decoys": ["MacGyver", "Marés Vivas", "Magnum"],
+    "id": "rebus-pt-o-justiceiro",
+    "kind": "series",
+    "note": "Glen A. Larson (NBC), 1982.",
+    "rebus": "⚖️🚗🗣️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Little House on the Prairie", "Casa na Pradaria"],
+    "answer": "Uma Casa na Pradaria",
+    "decoys": ["Bonanza", "Heidi", "Dallas"],
+    "id": "rebus-pt-uma-casa-na-pradaria",
+    "kind": "series",
+    "note": "NBC, 1974.",
+    "rebus": "1️⃣🏠🌾",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Estrumpfes", "Os Smurfs", "Smurfs"],
+    "answer": "Os Estrumpfes",
+    "decoys": ["A Abelha Maia", "Heidi", "Os Flintstones"],
+    "id": "rebus-pt-os-estrumpfes",
+    "kind": "series",
+    "note": "Hanna-Barbera (NBC), 1981.",
+    "rebus": "🔵👤🍄🏡",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Columbo",
+    "decoys": ["Kojak", "Derrick", "Crime, Disse Ela"],
+    "id": "rebus-pt-columbo",
+    "kind": "series",
+    "note": "Richard Levinson e William Link (NBC), 1968.",
+    "rebus": "🧥🚬🐶🚗",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Conta me Como Foi"],
+    "answer": "Conta-me Como Foi",
+    "decoys": ["Médico de Família", "Bem-Vindos a Beirais", "Pôr do Sol"],
+    "id": "rebus-pt-conta-me-como-foi",
+    "kind": "series",
+    "note": "RTP1, 2007.",
+    "rebus": "🗣️📺⏪👨‍👩‍👦",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Herman Enciclopedia"],
+    "answer": "Herman Enciclopédia",
+    "decoys": ["Os Malucos do Riso", "Os Contemporâneos", "O Último a Sair"],
+    "id": "rebus-pt-herman-enciclopedia",
+    "kind": "series",
+    "note": "Herman José (RTP1), 1997.",
+    "rebus": "👨📚🔤😂",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Medico de Familia"],
+    "answer": "Médico de Família",
+    "decoys": ["Conta-me Como Foi", "Inspetor Max", "Dr. House"],
+    "id": "rebus-pt-medico-de-familia",
+    "kind": "series",
+    "note": "SIC, 1998.",
+    "rebus": "👨‍⚕️👨‍👩‍👧‍👦",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Ilha dos Amores",
+    "decoys": ["Mar Salgado", "Jardins Proibidos", "Lua Vermelha"],
+    "id": "rebus-pt-ilha-dos-amores",
+    "kind": "series",
+    "note": "TVI, 2007.",
+    "rebus": "🏝️❤️❤️",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Lua Vermelha",
+    "decoys": ["Morangos com Açúcar", "Floribella", "Mar Salgado"],
+    "id": "rebus-pt-lua-vermelha",
+    "kind": "series",
+    "note": "SIC, 2010.",
+    "rebus": "🌕🔴🧛",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Jardins Proibidos",
+    "decoys": ["Ilha dos Amores", "Mar Salgado", "Coração d'Ouro"],
+    "id": "rebus-pt-jardins-proibidos",
+    "kind": "series",
+    "note": "TVI, 2000.",
+    "rebus": "🌷🌳🚫",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Casa Portuguesa"],
+    "answer": "Uma Casa Portuguesa",
+    "decoys": [
+      "Barco Negro",
+      "Estranha Forma de Vida",
+      "Povo Que Lavas no Rio"
+    ],
+    "id": "rebus-pt-uma-casa-portuguesa",
+    "kind": "song",
+    "note": "Amália Rodrigues, 1953.",
+    "rebus": "🏠🐓 🍞🍷",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Barco Negro",
+    "decoys": ["Uma Casa Portuguesa", "Gaivota", "Lágrima"],
+    "id": "rebus-pt-barco-negro",
+    "kind": "song",
+    "note": "Amália Rodrigues, 1955.",
+    "rebus": "⛵⬛ 🌊",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Grândola", "Grândola Vila Morena"],
+    "answer": "Grândola, Vila Morena",
+    "decoys": ["Os Vampiros", "E Depois do Adeus", "Somos Livres"],
+    "id": "rebus-pt-grandola-vila-morena",
+    "kind": "song",
+    "note": "Zeca Afonso, 1971.",
+    "rebus": "🏘️🟤 🌹✊",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Depois do Adeus"],
+    "answer": "E Depois do Adeus",
+    "decoys": [
+      "Grândola, Vila Morena",
+      "Desfolhada Portuguesa",
+      "Lisboa, Menina e Moça"
+    ],
+    "id": "rebus-pt-e-depois-do-adeus",
+    "kind": "song",
+    "note": "Paulo de Carvalho, 1974.",
+    "rebus": "👋 ➡️ 💔",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Canção do Mar",
+    "decoys": [
+      "Lusitana Paixão",
+      "O Meu Coração Não Tem Cor",
+      "Amor d'Água Fresca"
+    ],
+    "id": "rebus-pt-cancao-do-mar",
+    "kind": "song",
+    "note": "Dulce Pontes, 1993.",
+    "rebus": "🎶🌊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Desfolhada"],
+    "answer": "Desfolhada Portuguesa",
+    "decoys": ["E Depois do Adeus", "Sobe, Sobe, Balão Sobe", "Bem Bom"],
+    "id": "rebus-pt-desfolhada-portuguesa",
+    "kind": "song",
+    "note": "Simone de Oliveira, 1969.",
+    "rebus": "🌽🍂 🐓",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Sobe Sobe Balão Sobe", "Balão Sobe"],
+    "answer": "Sobe, Sobe, Balão Sobe",
+    "decoys": ["Bem Bom", "Desfolhada Portuguesa", "Conquistador"],
+    "id": "rebus-pt-sobe-sobe-balao-sobe",
+    "kind": "song",
+    "note": "Manuela Bravo, 1979.",
+    "rebus": "🎈⬆️⬆️",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Bem Bom",
+    "decoys": ["Sobe, Sobe, Balão Sobe", "Conquistador", "Amor d'Água Fresca"],
+    "id": "rebus-pt-bem-bom",
+    "kind": "song",
+    "note": "Doce, 1982.",
+    "rebus": "👍👍 💃💃",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Amor de Água Fresca"],
+    "answer": "Amor d'Água Fresca",
+    "decoys": ["O Meu Coração Não Tem Cor", "Canção do Mar", "Bem Bom"],
+    "id": "rebus-pt-amor-de-agua-fresca",
+    "kind": "song",
+    "note": "Dina, 1992.",
+    "rebus": "❤️💧❄️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Meu Coração Não Tem Cor"],
+    "answer": "O Meu Coração Não Tem Cor",
+    "decoys": ["Amor d'Água Fresca", "Amar pelos Dois", "Lusitana Paixão"],
+    "id": "rebus-pt-o-meu-coracao-nao-tem-cor",
+    "kind": "song",
+    "note": "Lúcia Moniz, 1996.",
+    "rebus": "❤️🚫🎨",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Amar pelos Dois",
+    "decoys": ["O Jardim", "Telemóveis", "O Meu Coração Não Tem Cor"],
+    "id": "rebus-pt-amar-pelos-dois",
+    "kind": "song",
+    "note": "Salvador Sobral, 2017.",
+    "rebus": "❤️ ✖️ 2️⃣",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Telemóveis",
+    "decoys": ["Amar pelos Dois", "O Jardim", "Bem Bom"],
+    "id": "rebus-pt-telemoveis",
+    "kind": "song",
+    "note": "Conan Osiris, 2019.",
+    "rebus": "📱📱📱",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Jardim"],
+    "answer": "O Jardim",
+    "decoys": ["Amar pelos Dois", "Telemóveis", "Canção do Mar"],
+    "id": "rebus-pt-o-jardim",
+    "kind": "song",
+    "note": "Cláudia Pascoal, 2018.",
+    "rebus": "🌷🌻🌳",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Homem do Leme",
+    "decoys": ["A Minha Casinha", "Contentores", "Não Sou o Único"],
+    "id": "rebus-pt-homem-do-leme",
+    "kind": "song",
+    "note": "Xutos & Pontapés, 1985.",
+    "rebus": "👨☸️ 🌊",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Minha Casinha"],
+    "answer": "A Minha Casinha",
+    "decoys": ["Homem do Leme", "Contentores", "Para Ti Maria"],
+    "id": "rebus-pt-a-minha-casinha",
+    "kind": "song",
+    "note": "Xutos & Pontapés, 1987.",
+    "rebus": "🏠🤏",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Dunas",
+    "decoys": ["Pronúncia do Norte", "Ana Lee", "Sangue Oculto"],
+    "id": "rebus-pt-dunas",
+    "kind": "song",
+    "note": "GNR, 1985.",
+    "rebus": "🏜️🌬️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Pronúncia do Norte",
+    "decoys": ["Dunas", "Sangue Oculto", "Porto Sentido"],
+    "id": "rebus-pt-pronuncia-do-norte",
+    "kind": "song",
+    "note": "GNR, 1992.",
+    "rebus": "🗣️ 🧭⬆️",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Chico Fininho",
+    "decoys": ["Anel de Rubi", "Porto Covo", "Não Há Estrelas no Céu"],
+    "id": "rebus-pt-chico-fininho",
+    "kind": "song",
+    "note": "Rui Veloso, 1980.",
+    "rebus": "🧍🥢",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["A Paixão", "A Paixão (Segundo Nicolau da Viola)", "Paixão"],
+    "answer": "Anel de Rubi",
+    "decoys": ["Não Há Estrelas no Céu", "Chico Fininho", "Porto Sentido"],
+    "id": "rebus-pt-anel-de-rubi",
+    "kind": "song",
+    "note": "Rui Veloso, 1990.",
+    "rebus": "💍🔴",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Não Há Estrelas no Céu",
+    "decoys": ["Anel de Rubi", "Porto Sentido", "Porto Covo"],
+    "id": "rebus-pt-nao-ha-estrelas-no-ceu",
+    "kind": "song",
+    "note": "Rui Veloso, 1990.",
+    "rebus": "🚫⭐ 🌌",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Canção de Engate",
+    "decoys": ["O Corpo É Que Paga", "É P'ra Amanhã", "Estou Além"],
+    "id": "rebus-pt-cancao-de-engate",
+    "kind": "song",
+    "note": "António Variações, 1984.",
+    "rebus": "🎶 🎣💋",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "O Corpo É Que Paga",
+    "decoys": ["Canção de Engate", "Estou Além", "É P'ra Amanhã"],
+    "id": "rebus-pt-o-corpo-e-que-paga",
+    "kind": "song",
+    "note": "António Variações, 1983.",
+    "rebus": "🧍 💸",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Primeiro Dia"],
+    "answer": "O Primeiro Dia",
+    "decoys": [
+      "Com um Brilhozinho nos Olhos",
+      "Liberdade",
+      "Lisboa Que Amanhece"
+    ],
+    "id": "rebus-pt-o-primeiro-dia",
+    "kind": "song",
+    "note": "Sérgio Godinho, 1978.",
+    "rebus": "1️⃣📅☀️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Tudo o Que Eu Te Dou",
+    "decoys": ["Não Posso Mais", "Ilumina-me", "Momento"],
+    "id": "rebus-pt-tudo-o-que-eu-te-dou",
+    "kind": "song",
+    "note": "Pedro Abrunhosa, 1994.",
+    "rebus": "💯🎁👉",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Ouvi Dizer",
+    "decoys": ["Capitão Romance", "Encosta-te a Mim", "Frágil"],
+    "id": "rebus-pt-ouvi-dizer",
+    "kind": "song",
+    "note": "Ornatos Violeta, 1999.",
+    "rebus": "👂🗣️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Capitão Romance",
+    "decoys": ["Ouvi Dizer", "Homem do Leme", "Sou Como Um Rio"],
+    "id": "rebus-pt-capitao-romance",
+    "kind": "song",
+    "note": "Ornatos Violeta, 1999.",
+    "rebus": "👨‍✈️💘",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Encosta-te a Mim",
+    "decoys": ["Frágil", "Deixa-me Rir", "A Gente Vai Continuar"],
+    "id": "rebus-pt-encosta-te-a-mim",
+    "kind": "song",
+    "note": "Jorge Palma, 2007.",
+    "rebus": "⛰️ 👉 🙋",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Sou Como Um Rio",
+    "decoys": ["Dunas", "Canção do Mar", "Barco Negro"],
+    "id": "rebus-pt-sou-como-um-rio",
+    "kind": "song",
+    "note": "Delfins, 1995.",
+    "rebus": "🙋 🏞️🌊",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Garagem da Vizinha"],
+    "answer": "A Garagem da Vizinha",
+    "decoys": ["Quero Cheirar o Teu Bacalhau", "A Cabritinha", "Pimba Pimba"],
+    "id": "rebus-pt-a-garagem-da-vizinha",
+    "kind": "song",
+    "note": "Quim Barreiros, 2000.",
+    "rebus": "🚗🏠 👩",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Sonhos de Menino",
+    "decoys": ["Depois de Ti (Mais Nada)", "Ai Destino", "Coração Perdido"],
+    "id": "rebus-pt-sonhos-de-menino",
+    "kind": "song",
+    "note": "Tony Carreira, 1997.",
+    "rebus": "💭👦",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Cavalos de Corrida",
+    "decoys": ["Rua do Carmo", "Chico Fininho", "Dunas"],
+    "id": "rebus-pt-cavalos-de-corrida",
+    "kind": "song",
+    "note": "UHF, 1980.",
+    "rebus": "🐎🐎🏁",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Conquistador",
+    "decoys": ["Sobe, Sobe, Balão Sobe", "Bem Bom", "Lusitana Paixão"],
+    "id": "rebus-pt-conquistador",
+    "kind": "song",
+    "note": "Da Vinci, 1989.",
+    "rebus": "⛵🗺️👑",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Bohemian Rhapsody",
+    "decoys": ["We Are the Champions", "Don't Stop Me Now", "Somebody to Love"],
+    "id": "rebus-pt-bohemian-rhapsody",
+    "kind": "song",
+    "note": "Queen, 1975.",
+    "rebus": "👑 🎭🎹",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "We Are the Champions",
+    "decoys": [
+      "Bohemian Rhapsody",
+      "We Will Rock You",
+      "Another One Bites the Dust"
+    ],
+    "id": "rebus-pt-we-are-the-champions",
+    "kind": "song",
+    "note": "Queen, 1977.",
+    "rebus": "🏆🥇🎤",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Despacito",
+    "decoys": ["Bailando", "Gasolina", "La Bicicleta"],
+    "id": "rebus-pt-despacito",
+    "kind": "song",
+    "note": "Luis Fonsi e Daddy Yankee, 2017.",
+    "rebus": "🐢🐌 🎶",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Thriller",
+    "decoys": ["Billie Jean", "Beat It", "Bad"],
+    "id": "rebus-pt-thriller",
+    "kind": "song",
+    "note": "Michael Jackson, 1982.",
+    "rebus": "🧟🌕🕺",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Yellow Submarine",
+    "decoys": ["Let It Be", "Hey Jude", "Yesterday"],
+    "id": "rebus-pt-yellow-submarine",
+    "kind": "song",
+    "note": "The Beatles, 1966.",
+    "rebus": "🟡 🌊⬇️🚢",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Hotel California",
+    "decoys": [
+      "Stairway to Heaven",
+      "Smoke on the Water",
+      "Sweet Child O' Mine"
+    ],
+    "id": "rebus-pt-hotel-california",
+    "kind": "song",
+    "note": "Eagles, 1976.",
+    "rebus": "🏨🌴☀️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Smoke on the Water",
+    "decoys": ["Highway to Hell", "Hotel California", "Child in Time"],
+    "id": "rebus-pt-smoke-on-the-water",
+    "kind": "song",
+    "note": "Deep Purple, 1972.",
+    "rebus": "💨🌊",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Purple Rain",
+    "decoys": ["Umbrella", "November Rain", "Kiss"],
+    "id": "rebus-pt-purple-rain",
+    "kind": "song",
+    "note": "Prince, 1984.",
+    "rebus": "🟣🌧️",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Highway to Hell",
+    "decoys": ["Back in Black", "Smoke on the Water", "Thunderstruck"],
+    "id": "rebus-pt-highway-to-hell",
+    "kind": "song",
+    "note": "AC/DC, 1979.",
+    "rebus": "🛣️🔥😈",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Dancing Queen",
+    "decoys": ["Mamma Mia", "Waterloo", "Gimme! Gimme! Gimme!"],
+    "id": "rebus-pt-dancing-queen",
+    "kind": "song",
+    "note": "ABBA, 1976.",
+    "rebus": "💃👑",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Another Brick in the Wall",
+    "decoys": ["Wish You Were Here", "Comfortably Numb", "Money"],
+    "id": "rebus-pt-another-brick-in-the-wall",
+    "kind": "song",
+    "note": "Pink Floyd, 1979.",
+    "rebus": "➕🧱 🧱🧱",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Sweet Child of Mine"],
+    "answer": "Sweet Child O' Mine",
+    "decoys": ["November Rain", "Welcome to the Jungle", "Paradise City"],
+    "id": "rebus-pt-sweet-child-o-mine",
+    "kind": "song",
+    "note": "Guns N' Roses, 1987.",
+    "rebus": "🍬👶⛏️",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Umbrella",
+    "decoys": ["Diamonds", "Purple Rain", "Rude Boy"],
+    "id": "rebus-pt-umbrella",
+    "kind": "song",
+    "note": "Rihanna, 2007.",
+    "rebus": "☂️💃",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["África"],
+    "answer": "Africa",
+    "decoys": ["Rosanna", "Hold the Line", "Waka Waka"],
+    "id": "rebus-pt-africa",
+    "kind": "song",
+    "note": "Toto, 1982.",
+    "rebus": "🌍🦁🌧️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Ai Se Eu Te Pego",
+    "decoys": ["Despacito", "Bailando", "Danza Kuduro"],
+    "id": "rebus-pt-ai-se-eu-te-pego",
+    "kind": "song",
+    "note": "Michel Teló, 2011.",
+    "rebus": "😱 ❓🙋👉🤲",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Waka Waka (This Time for Africa)"],
+    "answer": "Waka Waka",
+    "decoys": ["Hips Don't Lie", "La Tortura", "Whenever, Wherever"],
+    "id": "rebus-pt-waka-waka",
+    "kind": "song",
+    "note": "Shakira, 2010.",
+    "rebus": "⚽🌍💃",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Cão que ladra não morde",
+    "decoys": [
+      "Quem não tem cão caça com gato",
+      "Dar-se como o cão e o gato",
+      "Levar uma vida de cão"
+    ],
+    "id": "rebus-pt-cao-que-ladra-nao-morde",
+    "kind": "saying",
+    "note": "Quem ameaça muito raramente passa aos atos.",
+    "rebus": "🐕🗣️ 🚫🦷",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Mais vale um pássaro na mão que dois a voar"],
+    "answer": "Mais vale um pássaro na mão do que dois a voar",
+    "decoys": [
+      "Uma andorinha não faz a primavera",
+      "Deus ajuda quem cedo madruga",
+      "Matar dois coelhos de uma cajadada"
+    ],
+    "id": "rebus-pt-mais-vale-um-passaro-na-mao-do-que-dois-a-voar",
+    "kind": "saying",
+    "note": "Mais vale o que é certo do que o que é incerto.",
+    "rebus": "✋🐦 👍 🐦🐦☁️",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Pagar o pato",
+    "decoys": [
+      "Cair que nem um patinho",
+      "Pagar as favas",
+      "Ser o bode expiatório"
+    ],
+    "id": "rebus-pt-pagar-o-pato",
+    "kind": "saying",
+    "note": "Sofrer as consequências do que outros fizeram.",
+    "rebus": "💶🦆",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Chover a potes", "Está a chover a cântaros"],
+    "answer": "Chover a cântaros",
+    "decoys": [
+      "Depois da tempestade vem a bonança",
+      "Fazer uma tempestade num copo de água",
+      "Tirar o cavalinho da chuva"
+    ],
+    "id": "rebus-pt-chover-a-cantaros",
+    "kind": "saying",
+    "note": "Chover muito.",
+    "rebus": "🌧️🏺🏺",
+    "tier": "easy"
+  },
+  {
+    "accepted": [
+      "Matar dois coelhos de uma cajadada só",
+      "Matar dois coelhos com uma cajadada"
+    ],
+    "answer": "Matar dois coelhos de uma cajadada",
+    "decoys": [
+      "Mais vale um pássaro na mão do que dois a voar",
+      "Quem não tem cão caça com gato",
+      "Ir buscar lã e vir tosquiado"
+    ],
+    "id": "rebus-pt-matar-dois-coelhos-de-uma-cajadada",
+    "kind": "saying",
+    "note": "Resolver duas coisas de uma só vez.",
+    "rebus": "🏏 🐇🐇",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Chorar lágrimas de crocodilo"],
+    "answer": "Lágrimas de crocodilo",
+    "decoys": [
+      "Chorar sobre leite derramado",
+      "Lobo em pele de cordeiro",
+      "Ter memória de elefante"
+    ],
+    "id": "rebus-pt-lagrimas-de-crocodilo",
+    "kind": "saying",
+    "note": "Choro fingido, sem sentimento verdadeiro.",
+    "rebus": "😢🐊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Memória de elefante"],
+    "answer": "Ter memória de elefante",
+    "decoys": [
+      "Como um elefante numa loja de porcelanas",
+      "Lágrimas de crocodilo",
+      "Ter olhos de lince"
+    ],
+    "id": "rebus-pt-ter-memoria-de-elefante",
+    "kind": "saying",
+    "note": "Lembrar-se de tudo, mesmo muito tempo depois.",
+    "rebus": "🧠🐘",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Chorar sobre o leite derramado"],
+    "answer": "Chorar sobre leite derramado",
+    "decoys": [
+      "Lágrimas de crocodilo",
+      "Águas passadas não movem moinhos",
+      "Fazer uma tempestade num copo de água"
+    ],
+    "id": "rebus-pt-chorar-sobre-leite-derramado",
+    "kind": "saying",
+    "note": "Lamentar o que já não tem remédio.",
+    "rebus": "😭🥛💦",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["A faca e o queijo na mão"],
+    "answer": "Ter a faca e o queijo na mão",
+    "decoys": [
+      "Pôr as mãos no fogo",
+      "Mais vale um pássaro na mão do que dois a voar",
+      "Meter a mão na massa"
+    ],
+    "id": "rebus-pt-ter-a-faca-e-o-queijo-na-mao",
+    "kind": "saying",
+    "note": "Ter todo o poder para decidir.",
+    "rebus": "🔪🧀✋",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Filho de peixe sabe nadar",
+    "decoys": [
+      "Estar como peixe na água",
+      "Tal pai, tal filho",
+      "Pela boca morre o peixe"
+    ],
+    "id": "rebus-pt-filho-de-peixe-sabe-nadar",
+    "kind": "saying",
+    "note": "Os filhos herdam os talentos dos pais.",
+    "rebus": "👶🐟🏊",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Ovelha negra", "A ovelha negra"],
+    "answer": "Ser a ovelha negra",
+    "decoys": [
+      "Lobo em pele de cordeiro",
+      "Ovelha que berra, bocado que perde",
+      "Cada macaco no seu galho"
+    ],
+    "id": "rebus-pt-ser-a-ovelha-negra",
+    "kind": "saying",
+    "note": "Ser quem destoa do resto da família ou do grupo.",
+    "rebus": "🐑⬛ 👪",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Depois da tempestade vem a bonança",
+    "decoys": [
+      "Quem semeia ventos colhe tempestades",
+      "Fazer uma tempestade num copo de água",
+      "Há males que vêm por bem"
+    ],
+    "id": "rebus-pt-depois-da-tempestade-vem-a-bonanca",
+    "kind": "saying",
+    "note": "Depois dos maus momentos vêm os bons.",
+    "rebus": "⛈️➡️☀️",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Mais vale tarde que nunca"],
+    "answer": "Mais vale tarde do que nunca",
+    "decoys": [
+      "Mais vale prevenir do que remediar",
+      "Mais vale só do que mal acompanhado",
+      "Deus ajuda quem cedo madruga"
+    ],
+    "id": "rebus-pt-mais-vale-tarde-do-que-nunca",
+    "kind": "saying",
+    "note": "É melhor fazer algo com atraso do que não o fazer.",
+    "rebus": "⏰🐢👍",
+    "tier": "easy"
+  },
+  {
+    "accepted": ["Pôr as mãos no fogo por alguém", "Pôr a mão no fogo"],
+    "answer": "Pôr as mãos no fogo",
+    "decoys": [
+      "Brincar com o fogo",
+      "Ter a faca e o queijo na mão",
+      "Meter os pés pelas mãos"
+    ],
+    "id": "rebus-pt-por-as-maos-no-fogo",
+    "kind": "saying",
+    "note": "Garantir a honestidade de alguém.",
+    "rebus": "🙌🔥",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Ficar a ver navios",
+    "decoys": [
+      "Ir por água abaixo",
+      "Quem vai ao mar perde o lugar",
+      "Andar com a cabeça nas nuvens"
+    ],
+    "id": "rebus-pt-ficar-a-ver-navios",
+    "kind": "saying",
+    "note": "Ficar desiludido, sem aquilo que se esperava.",
+    "rebus": "👀🚢🚢",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Engolir sapos",
+    "decoys": [
+      "Engolir em seco",
+      "Pagar o pato",
+      "Comer o pão que o diabo amassou"
+    ],
+    "id": "rebus-pt-engolir-sapos",
+    "kind": "saying",
+    "note": "Aceitar calado algo desagradável.",
+    "rebus": "👄🐸🐸",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Macaquinhos no sótão"],
+    "answer": "Ter macaquinhos no sótão",
+    "decoys": [
+      "Cada macaco no seu galho",
+      "Vai pentear macacos",
+      "Ter um parafuso a menos"
+    ],
+    "id": "rebus-pt-ter-macaquinhos-no-sotao",
+    "kind": "saying",
+    "note": "Ter ideias disparatadas, ser um pouco maluco.",
+    "rebus": "🐒🐒 🏠⬆️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [
+      "Com a pulga atrás da orelha",
+      "Ficar com a pulga atrás da orelha"
+    ],
+    "answer": "Estar com a pulga atrás da orelha",
+    "decoys": [
+      "Fazer ouvidos de mercador",
+      "Dar com a língua nos dentes",
+      "Ter macaquinhos no sótão"
+    ],
+    "id": "rebus-pt-estar-com-a-pulga-atras-da-orelha",
+    "kind": "saying",
+    "note": "Desconfiar de alguma coisa.",
+    "rebus": "🦟👂🤔",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Meter o nariz onde não se é chamado"],
+    "answer": "Meter o nariz onde não é chamado",
+    "decoys": [
+      "Torcer o nariz",
+      "Meter a foice em seara alheia",
+      "Dar com o nariz na porta"
+    ],
+    "id": "rebus-pt-meter-o-nariz-onde-nao-e-chamado",
+    "kind": "saying",
+    "note": "Intrometer-se no que não lhe diz respeito.",
+    "rebus": "👃📍 🚫📞",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Quem não tem cão caça com gato",
+    "decoys": [
+      "Cão que ladra não morde",
+      "Gato escaldado de água fria tem medo",
+      "À noite todos os gatos são pardos"
+    ],
+    "id": "rebus-pt-quem-nao-tem-cao-caca-com-gato",
+    "kind": "saying",
+    "note": "Quem não tem o que precisa arranja-se com o que tem.",
+    "rebus": "🚫🐕 🏹🐈",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Grão a grão enche a galinha o papo"],
+    "answer": "De grão a grão enche a galinha o papo",
+    "decoys": [
+      "A galinha da vizinha é sempre melhor do que a minha",
+      "Deitar-se com as galinhas",
+      "Água mole em pedra dura, tanto bate até que fura"
+    ],
+    "id": "rebus-pt-de-grao-a-grao-enche-a-galinha-o-papo",
+    "kind": "saying",
+    "note": "Pouco a pouco junta-se muito.",
+    "rebus": "🌾🌾🐔",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Quem vê caras não vê corações",
+    "decoys": [
+      "Nem tudo o que reluz é ouro",
+      "Longe da vista, longe do coração",
+      "O hábito não faz o monge"
+    ],
+    "id": "rebus-pt-quem-ve-caras-nao-ve-coracoes",
+    "kind": "saying",
+    "note": "As aparências enganam.",
+    "rebus": "👀😀 🚫❤️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [
+      "Cavalo dado não se olha o dente",
+      "A cavalo dado não se olha os dentes"
+    ],
+    "answer": "A cavalo dado não se olha o dente",
+    "decoys": [
+      "Tirar o cavalinho da chuva",
+      "Cão que ladra não morde",
+      "Pôr o carro à frente dos bois"
+    ],
+    "id": "rebus-pt-a-cavalo-dado-nao-se-olha-o-dente",
+    "kind": "saying",
+    "note": "Não se critica um presente.",
+    "rebus": "🎁🐴 🚫👀🦷",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Dar com a língua nos dentes",
+    "decoys": [
+      "Morder a língua",
+      "Não ter papas na língua",
+      "Cão que ladra não morde"
+    ],
+    "id": "rebus-pt-dar-com-a-lingua-nos-dentes",
+    "kind": "saying",
+    "note": "Revelar um segredo.",
+    "rebus": "👅🦷💬",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Tempestade num copo de água"],
+    "answer": "Fazer uma tempestade num copo de água",
+    "decoys": [
+      "Depois da tempestade vem a bonança",
+      "Quem semeia ventos colhe tempestades",
+      "Chover a cântaros"
+    ],
+    "id": "rebus-pt-fazer-uma-tempestade-num-copo-de-agua",
+    "kind": "saying",
+    "note": "Exagerar um problema pequeno.",
+    "rebus": "⛈️🥃💧",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Estar com a cabeça nas nuvens", "Cabeça nas nuvens"],
+    "answer": "Andar com a cabeça nas nuvens",
+    "decoys": ["Pensar na morte da bezerra", "Ver-se grego", "Perder a cabeça"],
+    "id": "rebus-pt-andar-com-a-cabeca-nas-nuvens",
+    "kind": "saying",
+    "note": "Estar distraído, alheado da realidade.",
+    "rebus": "🚶 🗣️☁️☁️",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Deitar com as galinhas"],
+    "answer": "Deitar-se com as galinhas",
+    "decoys": [
+      "De grão a grão enche a galinha o papo",
+      "A galinha da vizinha é sempre melhor do que a minha",
+      "Deus ajuda quem cedo madruga"
+    ],
+    "id": "rebus-pt-deitar-se-com-as-galinhas",
+    "kind": "saying",
+    "note": "Deitar-se muito cedo.",
+    "rebus": "🛌🐔🐔",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Tira o cavalinho da chuva"],
+    "answer": "Tirar o cavalinho da chuva",
+    "decoys": [
+      "A cavalo dado não se olha o dente",
+      "Chover a cântaros",
+      "Pôr o carro à frente dos bois"
+    ],
+    "id": "rebus-pt-tirar-o-cavalinho-da-chuva",
+    "kind": "saying",
+    "note": "Desistir de uma pretensão.",
+    "rebus": "🐴🌧️ 🚫",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Um lobo em pele de cordeiro", "Lobo com pele de cordeiro"],
+    "answer": "Lobo em pele de cordeiro",
+    "decoys": [
+      "Ser a ovelha negra",
+      "Quem não quer ser lobo não lhe veste a pele",
+      "Lágrimas de crocodilo"
+    ],
+    "id": "rebus-pt-lobo-em-pele-de-cordeiro",
+    "kind": "saying",
+    "note": "Alguém mau que se faz passar por inofensivo.",
+    "rebus": "🐺🐑",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Quem semeia ventos colhe tempestades",
+    "decoys": [
+      "Depois da tempestade vem a bonança",
+      "Quem com ferros mata com ferros morre",
+      "Fazer uma tempestade num copo de água"
+    ],
+    "id": "rebus-pt-quem-semeia-ventos-colhe-tempestades",
+    "kind": "saying",
+    "note": "Quem provoca o mal acaba por sofrer as consequências.",
+    "rebus": "🌱🌬️ ➡️ ⛈️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Bater as botas",
+    "decoys": [
+      "Esticar o pernil",
+      "Ir desta para melhor",
+      "Levantar-se com o pé esquerdo"
+    ],
+    "id": "rebus-pt-bater-as-botas",
+    "kind": "saying",
+    "note": "Morrer.",
+    "rebus": "👢👢💀",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Cada macaco no seu galho",
+    "decoys": [
+      "Ter macaquinhos no sótão",
+      "Vai pentear macacos",
+      "Cada um puxa a brasa à sua sardinha"
+    ],
+    "id": "rebus-pt-cada-macaco-no-seu-galho",
+    "kind": "saying",
+    "note": "Cada um deve ocupar-se do que é seu.",
+    "rebus": "🐒🌳 🐒🌳",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Quem tudo quer tudo perde",
+    "decoys": [
+      "Mais vale um pássaro na mão do que dois a voar",
+      "Quem muito abarca pouco aperta",
+      "Quem espera sempre alcança"
+    ],
+    "id": "rebus-pt-quem-tudo-quer-tudo-perde",
+    "kind": "saying",
+    "note": "Quem é ganancioso acaba sem nada.",
+    "rebus": "🤲💰💰💰 ➡️ 🕳️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Em casa de ferreiro espeto de pau"],
+    "answer": "Em casa de ferreiro, espeto de pau",
+    "decoys": [
+      "Santos da casa não fazem milagres",
+      "Cada um puxa a brasa à sua sardinha",
+      "Quem com ferros mata com ferros morre"
+    ],
+    "id": "rebus-pt-em-casa-de-ferreiro-espeto-de-pau",
+    "kind": "saying",
+    "note": "Falta muitas vezes em casa aquilo que se faz para os outros.",
+    "rebus": "🏠⚒️ 🍢🌳",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Água mole em pedra dura tanto bate até que fura"],
+    "answer": "Água mole em pedra dura, tanto bate até que fura",
+    "decoys": [
+      "De grão a grão enche a galinha o papo",
+      "Quem espera sempre alcança",
+      "Águas passadas não movem moinhos"
+    ],
+    "id": "rebus-pt-agua-mole-em-pedra-dura-tanto-bate-ate-que-fura",
+    "kind": "saying",
+    "note": "Com persistência consegue-se tudo.",
+    "rebus": "💧💧🗿 🕳️",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Dar pérolas a porcos"],
+    "answer": "Deitar pérolas a porcos",
+    "decoys": [
+      "Ser a ovelha negra",
+      "Comprar gato por lebre",
+      "Burro velho não aprende línguas"
+    ],
+    "id": "rebus-pt-deitar-perolas-a-porcos",
+    "kind": "saying",
+    "note": "Oferecer algo valioso a quem não o sabe apreciar.",
+    "rebus": "🦪🐖🐖",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Gato escaldado de água fria tem medo",
+    "decoys": [
+      "À noite todos os gatos são pardos",
+      "Comprar gato por lebre",
+      "Quem não tem cão caça com gato"
+    ],
+    "id": "rebus-pt-gato-escaldado-de-agua-fria-tem-medo",
+    "kind": "saying",
+    "note": "Quem já sofreu uma vez fica desconfiado.",
+    "rebus": "🐈♨️ 💧❄️😱",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Comer o pão que o diabo amassou",
+    "decoys": ["Engolir sapos", "Comer e calar", "Pagar o pato"],
+    "id": "rebus-pt-comer-o-pao-que-o-diabo-amassou",
+    "kind": "saying",
+    "note": "Passar por grandes dificuldades.",
+    "rebus": "🍞😈",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Ver-se grego para", "Estar a ver-se grego"],
+    "answer": "Ver-se grego",
+    "decoys": [
+      "Pensar na morte da bezerra",
+      "Andar com a cabeça nas nuvens",
+      "Ficar a ver navios"
+    ],
+    "id": "rebus-pt-ver-se-grego",
+    "kind": "saying",
+    "note": "Ter muita dificuldade em fazer algo.",
+    "rebus": "👀🏛️ 😰",
+    "tier": "hard"
+  },
+  {
+    "accepted": ["Rei na barriga"],
+    "answer": "Ter o rei na barriga",
+    "decoys": [
+      "Ter a faca e o queijo na mão",
+      "Ter o coração ao pé da boca",
+      "Ter macaquinhos no sótão"
+    ],
+    "id": "rebus-pt-ter-o-rei-na-barriga",
+    "kind": "saying",
+    "note": "Ser arrogante, julgar-se superior aos outros.",
+    "rebus": "👑🤰",
+    "tier": "medium"
+  },
+  {
+    "accepted": ["Zero à esquerda"],
+    "answer": "Ser um zero à esquerda",
+    "decoys": [
+      "Levantar-se com o pé esquerdo",
+      "Meter os pés pelas mãos",
+      "Ser a ovelha negra"
+    ],
+    "id": "rebus-pt-ser-um-zero-a-esquerda",
+    "kind": "saying",
+    "note": "Não valer nada, ser incompetente.",
+    "rebus": "0️⃣⬅️",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Pensar na morte da bezerra",
+    "decoys": [
+      "Andar com a cabeça nas nuvens",
+      "Ver-se grego",
+      "Bater as botas"
+    ],
+    "id": "rebus-pt-pensar-na-morte-da-bezerra",
+    "kind": "saying",
+    "note": "Estar distraído, absorto nos pensamentos.",
+    "rebus": "🤔💀🐄",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Pôr o carro à frente dos bois",
+    "decoys": [
+      "Tirar o cavalinho da chuva",
+      "A cavalo dado não se olha o dente",
+      "Meter os pés pelas mãos"
+    ],
+    "id": "rebus-pt-por-o-carro-a-frente-dos-bois",
+    "kind": "saying",
+    "note": "Fazer as coisas pela ordem errada, precipitar-se.",
+    "rebus": "🛒🐂🐂",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Custar os olhos da cara",
+    "decoys": [
+      "Pagar o pato",
+      "Quem vê caras não vê corações",
+      "Abrir os olhos a alguém"
+    ],
+    "id": "rebus-pt-custar-os-olhos-da-cara",
+    "kind": "saying",
+    "note": "Ser muito caro.",
+    "rebus": "💸👀",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Uma andorinha não faz a primavera",
+    "decoys": [
+      "Mais vale um pássaro na mão do que dois a voar",
+      "Depois da tempestade vem a bonança",
+      "Quem semeia ventos colhe tempestades"
+    ],
+    "id": "rebus-pt-uma-andorinha-nao-faz-a-primavera",
+    "kind": "saying",
+    "note": "Um caso isolado não faz a regra.",
+    "rebus": "🐦1️⃣ 🚫🌸",
+    "tier": "hard"
+  },
+  {
+    "accepted": [],
+    "answer": "Burro velho não aprende línguas",
+    "decoys": [
+      "A cavalo dado não se olha o dente",
+      "Cada macaco no seu galho",
+      "Filho de peixe sabe nadar"
+    ],
+    "id": "rebus-pt-burro-velho-nao-aprende-linguas",
+    "kind": "saying",
+    "note": "Com a idade é difícil aprender coisas novas.",
+    "rebus": "🐴👴 🚫📚",
+    "tier": "hard"
+  }
+]

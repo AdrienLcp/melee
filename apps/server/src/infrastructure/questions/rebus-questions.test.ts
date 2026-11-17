@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest'
+import { z } from 'zod'
 
 import emojiTwelve from './rebus-emoji.json' with { type: 'json' }
-import { bankedRebusQuestions } from './rebus-questions'
+import rebusPt from './rebus-pt.json' with { type: 'json' }
+import {
+  authoredRebusSchema,
+  bankedRebusQuestions,
+  PORTUGUESE_ASK_BY_KIND
+} from './rebus-questions'
 
 /**
  * Every fully-qualified emoji of Unicode Emoji 12.0 (2019), yellow, with no
@@ -18,9 +24,27 @@ const emojisOf = (rebus: string): string[] =>
     .map(({ segment }) => segment)
     .filter((segment) => segment !== ' ')
 
+/** Portugal's list is written ahead of the language, so it is checked from its file. */
+const PORTUGUESE_REBUSES = z
+  .array(authoredRebusSchema)
+  .parse(rebusPt)
+  .map((row) => ({ ...row, language: 'pt' }))
+
+const REBUSES = [...bankedRebusQuestions(), ...PORTUGUESE_REBUSES]
+
 describe('the rebus rubric', () => {
+  it('[rebus] writes Portugal a list of its own, every kind asked in Portuguese', () => {
+    expect(PORTUGUESE_REBUSES.length).toBeGreaterThanOrEqual(180)
+    expect(
+      PORTUGUESE_REBUSES.filter(
+        ({ id, kind }) =>
+          !id.startsWith('rebus-pt-') || !(kind in PORTUGUESE_ASK_BY_KIND)
+      ).map(({ id }) => id)
+    ).toEqual([])
+  })
+
   it('[rebus] writes every rebus in emojis every phone at the table draws', () => {
-    const unreadable = bankedRebusQuestions().flatMap(({ id, rebus }) =>
+    const unreadable = REBUSES.flatMap(({ id, rebus }) =>
       emojisOf(rebus ?? '')
         .filter((emoji) => !READABLE_EVERYWHERE.has(emoji))
         .map((emoji) => `${id}: ${emoji}`)
@@ -30,7 +54,7 @@ describe('the rebus rubric', () => {
   })
 
   it('[rebus] holds every rebus to between two and eight emojis', () => {
-    const misshapen = bankedRebusQuestions().filter(({ rebus }) => {
+    const misshapen = REBUSES.filter(({ rebus }) => {
       const count = emojisOf(rebus ?? '').length
 
       return count < 2 || count > 8
@@ -40,7 +64,7 @@ describe('the rebus rubric', () => {
   })
 
   it('[rebus] stands every answer beside three others', () => {
-    const lopsided = bankedRebusQuestions().filter(
+    const lopsided = REBUSES.filter(
       ({ answer, decoys }) =>
         new Set([answer, ...decoys].map((title) => title.toLowerCase()))
           .size !== 4
@@ -53,7 +77,7 @@ describe('the rebus rubric', () => {
     const seen = new Set<string>()
     const repeated: string[] = []
 
-    for (const { id, language, rebus } of bankedRebusQuestions()) {
+    for (const { id, language, rebus } of REBUSES) {
       const key = `${language}::${rebus}`
 
       if (seen.has(key)) {

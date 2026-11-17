@@ -387,6 +387,10 @@ const m49Groups = async (): Promise<Map<string, M49Group>> => {
   return groups
 }
 
+/** Wikidata files a few Portuguese category pages among a city's names. */
+const isCategoryPageTitle = (alias: string): boolean =>
+  alias.startsWith('Categoria:')
+
 const checkedOverride = ({
   code,
   names,
@@ -471,7 +475,8 @@ const main = async () => {
   ]
   const aliases = {
     en: await aliasesOf({ entityIds: aliasIds, language: 'en' }),
-    fr: await aliasesOf({ entityIds: aliasIds, language: 'fr' })
+    fr: await aliasesOf({ entityIds: aliasIds, language: 'fr' }),
+    pt: await aliasesOf({ entityIds: aliasIds, language: 'pt' })
   }
   const views = await frenchViewsOf({
     entityIds: resolved.map(({ capital }) => capital),
@@ -512,16 +517,20 @@ const main = async () => {
     const placeNames = names.get(id)
 
     if (placeNames === undefined) {
-      throw new Error(`${id} is not named in both languages`)
+      throw new Error(`${id} is not named in English and French`)
     }
 
     const otherNames = (language: keyof Names) =>
       (aliases[language].get(id) ?? []).filter(
-        (alias) => alias !== placeNames[language]
+        (alias) => alias !== placeNames[language] && !isCategoryPageTitle(alias)
       )
 
     return {
-      aliases: { en: otherNames('en'), fr: otherNames('fr') },
+      aliases: {
+        en: otherNames('en'),
+        fr: otherNames('fr'),
+        pt: otherNames('pt')
+      },
       id,
       names: placeNames
     }

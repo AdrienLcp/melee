@@ -12,6 +12,7 @@ import {
   drawTimelineEvents,
   playedTimelineEventId
 } from './timeline-bank'
+import bank from './timeline-bank.json' with { type: 'json' }
 
 describe('the timeline bank', () => {
   it('[timeline] parses every row, each id once', () => {
@@ -19,6 +20,17 @@ describe('the timeline bank', () => {
 
     expect(ids.length).toBeGreaterThan(150)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('[timeline] writes every event in Portuguese ahead of the locale, never its year', () => {
+    expect(
+      bank
+        .filter(
+          ({ labels, year }) =>
+            labels.pt.trim() === '' || labels.pt.includes(String(year))
+        )
+        .map(({ id }) => id)
+    ).toEqual([])
   })
 
   it('[timeline] deals an evening of rounds before it runs out', () => {

@@ -18,13 +18,15 @@ const labelsSchema = z.object({
   )
 })
 
-export type Names = { en: string; fr: string }
+export type Names = { en: string; fr: string; pt: string }
 
 /**
- * Both names of each entity, read from the action API: the query service is
+ * Every name of each entity, read from the action API: the query service is
  * silent on some labels (Oslo in French, St. John's in English) that the
  * database holds, and the language-neutral `mul` label stands in where a
- * language has none. An entity missing either name is left out of the map.
+ * language has none. An entity missing its English or French name is left out
+ * of the map; one with no Portuguese name is said in English, which is what a
+ * Portuguese table calls a place nobody has translated.
  */
 export const namesOf = async ({
   cache,
@@ -35,9 +37,15 @@ export const namesOf = async ({
 }): Promise<Map<string, Names>> => {
   const known = await readCachedEntries(
     cache,
-    z.object({ en: z.string(), fr: z.string() }).nullable()
+    z
+      .object({ en: z.string(), fr: z.string(), pt: z.string().optional() })
+      .nullable()
   )
-  const missing = [...new Set(entityIds)].filter((id) => !(id in known))
+  const missing = [...new Set(entityIds)].filter((id) => {
+    const names = known[id]
+
+    return names === undefined || (names !== null && names.pt === undefined)
+  })
 
   for (const batch of chunked({ items: missing, size: 50 })) {
     const parameters = new URLSearchParams({
@@ -45,7 +53,7 @@ export const namesOf = async ({
       format: 'json',
       formatversion: '2',
       ids: batch.join('|'),
-      languages: 'en|fr|mul',
+      languages: 'en|fr|pt|mul',
       props: 'labels'
     })
     const body = await withRetries(labelsSchema, async () =>
@@ -60,7 +68,10 @@ export const namesOf = async ({
       const en = labels.en?.value ?? fallback
       const fr = labels.fr?.value ?? fallback
 
-      known[id] = en === undefined || fr === undefined ? null : { en, fr }
+      known[id] =
+        en === undefined || fr === undefined
+          ? null
+          : { en, fr, pt: labels.pt?.value ?? fallback ?? en }
     }
   }
 
@@ -70,7 +81,9 @@ export const namesOf = async ({
     entityIds.flatMap((id) => {
       const names = known[id]
 
-      return names == null ? [] : [[id, names] as const]
+      return names == null
+        ? []
+        : [[id, { ...names, pt: names.pt ?? names.en }] as const]
     })
   )
 }

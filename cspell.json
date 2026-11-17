@@ -249,7 +249,12 @@
     },
     {
       "filename": [
+        "CHANGELOG.md",
         "apps/game/src/presentation/head/document-head.ts",
+        "apps/server/scripts/build-capital-bank.ts",
+        "apps/server/src/infrastructure/questions/capital-questions.test.ts",
+        "apps/server/src/infrastructure/questions/capital-questions.ts",
+        "apps/server/src/infrastructure/questions/rebus-questions.ts",
         "cspell.json"
       ],
       "language": "en,en-GB,fr,pt-PT"

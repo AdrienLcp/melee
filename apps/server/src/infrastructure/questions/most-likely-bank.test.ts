@@ -5,6 +5,7 @@ import {
   drawMostLikelyLine,
   playedMostLikelyLineId
 } from './most-likely-bank'
+import bank from './most-likely-bank.json' with { type: 'json' }
 
 describe('the most-likely bank', () => {
   it('[mostlikely] parses every line, each id once, in both languages', () => {
@@ -18,6 +19,14 @@ describe('the most-likely bank', () => {
       expect(labels.en, id).toMatch(/^Who .+\?$/)
       expect(labels.fr, id).toMatch(/\bqui\b.+ \?$/i)
     }
+  })
+
+  it('[mostlikely] writes every line in Portuguese ahead of the locale', () => {
+    expect(
+      bank
+        .filter(({ labels }) => !/^Quem .+[^ ]\?$/.test(labels.pt))
+        .map(({ id }) => id)
+    ).toEqual([])
   })
 
   it('[mostlikely] writes no French line with “susceptible”, which agrees with nobody yet', () => {

@@ -23,8 +23,12 @@ Series: `handoffs/README.md`. Needs 02-07 landed. Read
    rendering in Portuguese, so it waits for the flip. `legal-details.ts` and
    `site-credits.ts` need a `pt` link: the author's site's Portuguese page if
    it has one, else its English one. `COUNTRY_NAMES_PT` joins
-   `country-answers.ts`, `map-naming.ts` and `capital-questions.ts` on the
-   server.
+   `country-answers.ts` and `map-naming.ts` on the server.
+   Written in 03 and waiting: `PORTUGUESE_CAPITAL_PROMPT` folds into
+   `PROMPT_BY_LANGUAGE` (`capital-questions.ts`), `PORTUGUESE_ASK_BY_KIND`
+   into `ASK_BY_KIND` and `rebus-pt.json` into `AUTHORED_REBUSES`
+   (`rebus-questions.ts`, whose test then reads it through the bank), and
+   `inQuestionLanguagesOnly` in `think-alike-bank.ts` can go.
 4. **cspell**: `@cspell/dict-pt-pt` is in since 02, with a `pt-PT`
    override for the dictionary and the country names; add the new files.
 5. **Plurals**: `pt` is the Brazilian CLDR rule (0 is `one`), so every

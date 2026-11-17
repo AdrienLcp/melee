@@ -13,9 +13,22 @@ import bank from './think-alike-bank.json' with { type: 'json' }
  * and a few runners-up, so a table of eight splits five, two and one. A prompt
  * every seat answers alike, or one nobody shares an answer to, is a dead round.
  */
+/** A language gains its prompts before it joins the question languages. */
+const inQuestionLanguagesOnly = (labels: unknown): unknown =>
+  typeof labels === 'object' && labels !== null
+    ? Object.fromEntries(
+        Object.entries(labels).filter(
+          ([language]) => questionLanguageSchema.safeParse(language).success
+        )
+      )
+    : labels
+
 const bankedThinkAlikePromptSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]{1,64}$/),
-  labels: z.record(questionLanguageSchema, thinkAlikePromptSchema)
+  labels: z.preprocess(
+    inQuestionLanguagesOnly,
+    z.record(questionLanguageSchema, thinkAlikePromptSchema)
+  )
 })
 
 export type BankedThinkAlikePrompt = z.infer<

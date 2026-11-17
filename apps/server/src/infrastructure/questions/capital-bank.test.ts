@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { bankedCapitals } from './capital-bank'
+import bank from './capital-bank.json' with { type: 'json' }
 
 describe('the capital bank', () => {
   it('[capitals] names every capital, seat and city in both languages', () => {
@@ -9,6 +10,19 @@ describe('the capital bank', () => {
         [capital, ...seats, ...largestCities]
           .filter(({ names }) => names.en === '' || names.fr === '')
           .map(({ id }) => `${code}:${id}`)
+    )
+
+    expect(unnamed).toEqual([])
+  })
+
+  it('[capitals] names every capital, seat and city in Portuguese ahead of the locale', () => {
+    const unnamed = bank.flatMap(({ capital, code, largestCities, seats }) =>
+      [capital, ...seats, ...largestCities]
+        .filter(
+          ({ aliases, names }) =>
+            names.pt.trim() === '' || aliases.pt.includes(names.pt)
+        )
+        .map(({ id }) => `${code}:${id}`)
     )
 
     expect(unnamed).toEqual([])

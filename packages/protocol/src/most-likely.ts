@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { playerIdSchema } from './identifiers'
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 
 export const MOST_LIKELY_LINE_MAX_LENGTH = 160
 
@@ -10,8 +10,7 @@ export const MOST_LIKELY_LINE_MAX_LENGTH = 160
  * French table reads its own — the challenge's argument. Public from the first
  * frame: it is the question, and no answer exists before the votes do.
  */
-export const mostLikelyLabelsSchema = z.record(
-  localeSchema,
+export const mostLikelyLabelsSchema = localizedSchema(
   z.string().min(1).max(MOST_LIKELY_LINE_MAX_LENGTH)
 )
 

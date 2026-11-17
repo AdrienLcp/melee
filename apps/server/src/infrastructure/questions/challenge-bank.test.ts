@@ -9,6 +9,7 @@ import {
   drawChallengeLine,
   playedChallengeLineId
 } from './challenge-bank'
+import bank from './challenge-bank.json' with { type: 'json' }
 
 describe('the challenge bank', () => {
   it('[challenge] parses every row, each id once, in every locale', () => {
@@ -21,6 +22,16 @@ describe('the challenge bank', () => {
     for (const { labels } of lines) {
       expect(Object.keys(labels).toSorted()).toEqual([...LOCALES].toSorted())
     }
+  })
+
+  it('[challenge] writes every line in Portuguese ahead of the locale, the letter slot included', () => {
+    const unwritten = bank.filter(
+      ({ labels }) =>
+        labels.pt.trim() === '' ||
+        labels.pt.includes(LETTER_SLOT) !== labels.en.includes(LETTER_SLOT)
+    )
+
+    expect(unwritten.map(({ id }) => id)).toEqual([])
   })
 
   it('[challenge] holds no slot but the letter, and the letter in every locale or none', () => {

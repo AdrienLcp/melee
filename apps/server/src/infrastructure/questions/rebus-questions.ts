@@ -22,7 +22,7 @@ export const authoredRebusSchema = z.object({
   accepted: z.array(z.string()),
   answer: z.string().min(1),
   decoys: z.tuple([z.string(), z.string(), z.string()]),
-  id: z.string().regex(/^rebus-(fr|en)-[a-z0-9-]+$/),
+  id: z.string().regex(/^rebus-(en|fr|pt)-[a-z0-9-]+$/),
   kind: z.enum(['film', 'saying', 'series', 'song']),
   note: z.string().nullable(),
   rebus: z.string().min(1).max(64),
@@ -49,6 +49,14 @@ const ASK_BY_KIND = {
     song: 'Quelle chanson ?'
   }
 } as const satisfies Record<QuestionLanguage, Record<RebusKind, string>>
+
+/** Joins `ASK_BY_KIND` the day Portuguese joins the question languages. */
+export const PORTUGUESE_ASK_BY_KIND = {
+  film: 'Que filme?',
+  saying: 'Que expressão?',
+  series: 'Que série?',
+  song: 'Que canção?'
+} as const satisfies Record<RebusKind, string>
 
 export const AUTHORED_REBUSES = {
   en: rebusEn,

@@ -7,6 +7,7 @@ import {
 import { greatCircleKm } from '@melee/core/atlas/distance'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
+import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { bankedCapitals, type CapitalRow } from './capital-bank'
@@ -42,6 +43,30 @@ const ofCountryFr = (withArticle: string): string => {
     ? `d’${withArticle}`
     : `de ${withArticle}`
 }
+
+const PORTUGUESE_DE_WITH_ARTICLE = {
+  a: 'da',
+  as: 'das',
+  o: 'do',
+  os: 'dos'
+} as const
+
+/** The Portuguese *de* before a country, contracted with its article. */
+const ofCountryPt = (withArticle: string): string => {
+  for (const [article, contracted] of Object.entries(
+    PORTUGUESE_DE_WITH_ARTICLE
+  )) {
+    if (withArticle.startsWith(`${article} `)) {
+      return `${contracted} ${withArticle.slice(article.length + 1)}`
+    }
+  }
+
+  return `de ${withArticle}`
+}
+
+/** Joins `PROMPT_BY_LANGUAGE` the day Portuguese joins the question languages. */
+export const PORTUGUESE_CAPITAL_PROMPT = (code: CountryCode): string =>
+  `Qual é a capital ${ofCountryPt(COUNTRY_NAMES_PT[code].withArticle)}?`
 
 const PROMPT_BY_LANGUAGE = {
   en: (code: CountryCode) =>

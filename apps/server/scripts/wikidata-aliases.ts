@@ -34,6 +34,9 @@ import {
  * shouts is the spelling the question was written in.
  */
 
+/** Portuguese reads aliases ahead of the bank languages it is about to join. */
+type AliasLanguage = QuestionLanguage | 'pt'
+
 /** Entities per query, the same figure the kind and birth-date lookups settled on. */
 const ENTITIES_PER_QUERY = 300
 
@@ -46,7 +49,7 @@ const SAVE_EVERY = 10
  * resolved in different runs, and a single file would make every English miss
  * look like a French entity nobody had asked for yet.
  */
-const cacheOf = (language: QuestionLanguage): string =>
+const cacheOf = (language: AliasLanguage): string =>
   `wikidata-aliases-${language}.json`
 
 const aliasesBindingsSchema = sparqlBindingsSchema({
@@ -68,7 +71,7 @@ const aliasesOfBatch = async ({
   language
 }: {
   entityIds: readonly string[]
-  language: QuestionLanguage
+  language: AliasLanguage
 }): Promise<Map<string, string[]>> => {
   const values = entityIds.map((entityId) => `wd:${entityId}`).join(' ')
   const query = [
@@ -125,7 +128,7 @@ export const aliasesOf = async ({
   language
 }: {
   entityIds: readonly string[]
-  language: QuestionLanguage
+  language: AliasLanguage
 }): Promise<Map<string, string[]>> => {
   const cache = cacheOf(language)
   const cached = await readCachedEntries(cache, z.array(z.string()))

@@ -185,7 +185,7 @@ const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
 
 /** Where Wikidata's label is the official form, the name a table says. */
 const NAMES_SAID: Readonly<Record<string, Names>> = {
-  Q148: { en: 'China', fr: 'Chine' }
+  Q148: { en: 'China', fr: 'Chine', pt: 'China' }
 }
 
 const entityIdOf = (uri: string): string => uri.split('/').at(-1) ?? uri

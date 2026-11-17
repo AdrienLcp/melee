@@ -11,7 +11,10 @@ import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { bankedCapitals } from './capital-bank'
-import { bankedCapitalQuestions } from './capital-questions'
+import {
+  bankedCapitalQuestions,
+  PORTUGUESE_CAPITAL_PROMPT
+} from './capital-questions'
 import { bankedQuestions } from './question-bank'
 
 const COUNTRY_NAMES = {
@@ -44,6 +47,20 @@ describe('the capitals rubric', () => {
       'Quelle est la capitale de la France ?',
       'Quelle est la capitale de Cuba ?',
       'Quelle est la capitale d’Oman ?'
+    ])
+  })
+
+  it('[capitals] contracts the Portuguese article into the question', () => {
+    expect(
+      (['FRA', 'JPN', 'USA', 'SYC', 'PRT'] as const).map(
+        PORTUGUESE_CAPITAL_PROMPT
+      )
+    ).toEqual([
+      'Qual é a capital da França?',
+      'Qual é a capital do Japão?',
+      'Qual é a capital dos Estados Unidos?',
+      'Qual é a capital das Seicheles?',
+      'Qual é a capital de Portugal?'
     ])
   })
 

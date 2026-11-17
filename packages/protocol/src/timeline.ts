@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { localeSchema } from './locale'
+import { localizedSchema } from './locale'
 
 /**
  * How many events a round deals. Five is ten pairs to get right, which is
@@ -26,8 +26,7 @@ export const timelineLabelSchema = z
  * French table reads its own. A record keyed on an enum is exhaustive, so a
  * locale added to the app is a label missing from every event until written.
  */
-export const timelineLabelsSchema = z.record(
-  localeSchema,
+export const timelineLabelsSchema = localizedSchema(
   z.string().min(1).max(TIMELINE_LABEL_MAX_LENGTH)
 )
 

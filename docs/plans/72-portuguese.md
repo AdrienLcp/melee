@@ -95,7 +95,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | --- | ------------------------------- | ----------------------------------------------------------------------------- | ------------------- |
 | 01  | `portuguese-01-seams.md`        | The seams, the measurements and this plan                                     | **done** 17/11/2026 |
 | 02  | `portuguese-02-interface.md`    | The interface dictionary in Portuguese                                        | **done** 17/11/2026 |
-| 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | to do               |
+| 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | **done** 17/11/2026 |
 | 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | to do               |
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | to do               |
@@ -139,4 +139,28 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - Petit bac's default excluded letters stand: K, W and Y are loan letters in
   Portuguese too, and Q, X and Z start too few words for six categories.
 
-<!-- cspell:words CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo -->
+### 03 — what landed
+
+- `pt` on every row of the challenge, most-likely, timeline and think-alike
+  banks, seven writers and four second readers. Conventions: _Traz algo …_,
+  _Quem tem mais hipóteses de …?_ with no adjective agreeing with the seat
+  where a verb does, a film _estreia nos cinemas_ under its Portugal title
+  (_Psico_, _Regresso ao Futuro_, _O Padrinho_), bands with their article
+  (_os ABBA_). Think alike adapts what was French: Lisboa for Paris,
+  Euromilhões for the lottery, Carnaval for a costume.
+- **Two schemas still refused a key they did not know**:
+  `mostLikelyLabelsSchema` and `timelineLabelsSchema` were strict records,
+  missed by 01; both are `localizedSchema` now. The think-alike bank keys by
+  `QuestionLanguage` and strips the same way (`inQuestionLanguagesOnly`),
+  which 08 can delete once `pt` is a question language.
+- Capitals: `namesOf` reads `pt` (falling back to `mul`, then English) and
+  fetches again a cached entry without it; `aliasesOf` takes `pt`. The build
+  replays from cache byte for byte, so the diff is the `pt` keys alone.
+  Wikidata files `Categoria:Luanda` among a city's names, filtered.
+  `PORTUGUESE_CAPITAL_PROMPT` contracts _de_ with the article (_da França,
+  dos Estados Unidos, de Portugal_) and waits beside `PROMPT_BY_LANGUAGE`.
+- `rebus-pt.json`, Portugal's own list, parsed and checked by the rebus
+  tests from its file; `PORTUGUESE_ASK_BY_KIND` waits beside `ASK_BY_KIND`,
+  and `AUTHORED_REBUSES` takes the file at the flip.
+
+<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo -->

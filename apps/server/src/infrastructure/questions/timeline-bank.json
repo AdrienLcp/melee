@@ -4,7 +4,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Vesuvius buries Pompeii",
-      "fr": "Le Vésuve ensevelit Pompéi"
+      "fr": "Le Vésuve ensevelit Pompéi",
+      "pt": "O Vesúvio soterra Pompeia"
     },
     "theme": "history",
     "year": 79
@@ -14,7 +15,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Charlemagne crowned emperor",
-      "fr": "Charlemagne sacré empereur"
+      "fr": "Charlemagne sacré empereur",
+      "pt": "Carlos Magno coroado imperador"
     },
     "theme": "history",
     "year": 800
@@ -24,7 +26,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Battle of Hastings",
-      "fr": "Bataille d'Hastings"
+      "fr": "Bataille d'Hastings",
+      "pt": "Batalha de Hastings"
     },
     "theme": "history",
     "year": 1066
@@ -34,7 +37,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Magna Carta sealed",
-      "fr": "Signature de la Magna Carta"
+      "fr": "Signature de la Magna Carta",
+      "pt": "Magna Carta selada"
     },
     "theme": "history",
     "year": 1215
@@ -44,7 +48,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Black Death reaches Europe",
-      "fr": "La peste noire arrive en Europe"
+      "fr": "La peste noire arrive en Europe",
+      "pt": "A Peste Negra chega à Europa"
     },
     "theme": "history",
     "year": 1347
@@ -54,7 +59,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Joan of Arc burned at the stake",
-      "fr": "Jeanne d'Arc meurt sur le bûcher"
+      "fr": "Jeanne d'Arc meurt sur le bûcher",
+      "pt": "Joana d'Arc queimada na fogueira"
     },
     "theme": "history",
     "year": 1431
@@ -64,7 +70,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Fall of Constantinople",
-      "fr": "Chute de Constantinople"
+      "fr": "Chute de Constantinople",
+      "pt": "Queda de Constantinopla"
     },
     "theme": "history",
     "year": 1453
@@ -74,7 +81,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Columbus reaches the Americas",
-      "fr": "Christophe Colomb atteint l'Amérique"
+      "fr": "Christophe Colomb atteint l'Amérique",
+      "pt": "Cristóvão Colombo chega à América"
     },
     "theme": "history",
     "year": 1492
@@ -84,7 +92,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Battle of Marignano",
-      "fr": "Bataille de Marignan"
+      "fr": "Bataille de Marignan",
+      "pt": "Batalha de Marignano"
     },
     "theme": "history",
     "year": 1515
@@ -94,7 +103,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Luther posts his 95 Theses",
-      "fr": "Luther affiche ses 95 thèses"
+      "fr": "Luther affiche ses 95 thèses",
+      "pt": "Lutero afixa as suas 95 teses"
     },
     "theme": "history",
     "year": 1517
@@ -104,7 +114,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Galileo turns his telescope to the sky",
-      "fr": "Galilée pointe sa lunette vers le ciel"
+      "fr": "Galilée pointe sa lunette vers le ciel",
+      "pt": "Galileu aponta o telescópio para o céu"
     },
     "theme": "science",
     "year": 1609
@@ -114,7 +125,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Great Fire of London",
-      "fr": "Grand incendie de Londres"
+      "fr": "Grand incendie de Londres",
+      "pt": "Grande Incêndio de Londres"
     },
     "theme": "history",
     "year": 1666
@@ -124,7 +136,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Louis XIV moves his court to Versailles",
-      "fr": "Louis XIV installe la cour à Versailles"
+      "fr": "Louis XIV installe la cour à Versailles",
+      "pt": "Luís XIV instala a corte em Versalhes"
     },
     "theme": "history",
     "year": 1682
@@ -134,7 +147,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Newton publishes his laws of gravitation",
-      "fr": "Newton publie ses lois de la gravitation"
+      "fr": "Newton publie ses lois de la gravitation",
+      "pt": "Newton publica as suas leis da gravitação"
     },
     "theme": "science",
     "year": 1687
@@ -144,7 +158,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Death of Louis XIV",
-      "fr": "Mort de Louis XIV"
+      "fr": "Mort de Louis XIV",
+      "pt": "Morte de Luís XIV"
     },
     "theme": "history",
     "year": 1715
@@ -154,7 +169,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Mozart is born",
-      "fr": "Naissance de Mozart"
+      "fr": "Naissance de Mozart",
+      "pt": "Nasce Mozart"
     },
     "theme": "music",
     "year": 1756
@@ -164,7 +180,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "US Declaration of Independence",
-      "fr": "Déclaration d'indépendance des États-Unis"
+      "fr": "Déclaration d'indépendance des États-Unis",
+      "pt": "Declaração de Independência dos Estados Unidos"
     },
     "theme": "history",
     "year": 1776
@@ -174,7 +191,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First crewed hot-air balloon flight",
-      "fr": "Premier vol habité en montgolfière"
+      "fr": "Premier vol habité en montgolfière",
+      "pt": "Primeiro voo tripulado de balão de ar quente"
     },
     "theme": "science",
     "year": 1783
@@ -184,7 +202,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Storming of the Bastille",
-      "fr": "Prise de la Bastille"
+      "fr": "Prise de la Bastille",
+      "pt": "Tomada da Bastilha"
     },
     "theme": "history",
     "year": 1789
@@ -194,7 +213,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Louis XVI executed",
-      "fr": "Exécution de Louis XVI"
+      "fr": "Exécution de Louis XVI",
+      "pt": "Luís XVI executado"
     },
     "theme": "history",
     "year": 1793
@@ -204,7 +224,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Jenner performs the first vaccination",
-      "fr": "Jenner réalise la première vaccination"
+      "fr": "Jenner réalise la première vaccination",
+      "pt": "Jenner realiza a primeira vacinação"
     },
     "theme": "science",
     "year": 1796
@@ -214,7 +235,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Napoleon crowned emperor",
-      "fr": "Napoléon sacré empereur"
+      "fr": "Napoléon sacré empereur",
+      "pt": "Napoleão coroado imperador"
     },
     "theme": "history",
     "year": 1804
@@ -224,7 +246,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Battle of Waterloo",
-      "fr": "Bataille de Waterloo"
+      "fr": "Bataille de Waterloo",
+      "pt": "Batalha de Waterloo"
     },
     "theme": "history",
     "year": 1815
@@ -234,7 +257,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Napoleon dies on Saint Helena",
-      "fr": "Mort de Napoléon à Sainte-Hélène"
+      "fr": "Mort de Napoléon à Sainte-Hélène",
+      "pt": "Napoleão morre em Santa Helena"
     },
     "theme": "history",
     "year": 1821
@@ -244,7 +268,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Premiere of Beethoven's Ninth Symphony",
-      "fr": "Création de la Neuvième Symphonie de Beethoven"
+      "fr": "Création de la Neuvième Symphonie de Beethoven",
+      "pt": "Estreia da Nona Sinfonia de Beethoven"
     },
     "theme": "music",
     "year": 1824
@@ -254,7 +279,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "France abolishes slavery",
-      "fr": "Abolition de l'esclavage en France"
+      "fr": "Abolition de l'esclavage en France",
+      "pt": "A França abole a escravatura"
     },
     "theme": "history",
     "year": 1848
@@ -264,7 +290,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Darwin publishes On the Origin of Species",
-      "fr": "Darwin publie L'Origine des espèces"
+      "fr": "Darwin publie L'Origine des espèces",
+      "pt": "Darwin publica A Origem das Espécies"
     },
     "theme": "science",
     "year": 1859
@@ -274,7 +301,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Victor Hugo publishes Les Misérables",
-      "fr": "Victor Hugo publie Les Misérables"
+      "fr": "Victor Hugo publie Les Misérables",
+      "pt": "Victor Hugo publica Os Miseráveis"
     },
     "theme": "culture",
     "year": 1862
@@ -284,7 +312,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Abraham Lincoln assassinated",
-      "fr": "Assassinat d'Abraham Lincoln"
+      "fr": "Assassinat d'Abraham Lincoln",
+      "pt": "Abraham Lincoln assassinado"
     },
     "theme": "history",
     "year": 1865
@@ -294,7 +323,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Suez Canal opens",
-      "fr": "Ouverture du canal de Suez"
+      "fr": "Ouverture du canal de Suez",
+      "pt": "O Canal de Suez é inaugurado"
     },
     "theme": "history",
     "year": 1869
@@ -304,7 +334,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Jules Verne publishes Around the World in Eighty Days",
-      "fr": "Jules Verne publie Le Tour du monde en quatre-vingts jours"
+      "fr": "Jules Verne publie Le Tour du monde en quatre-vingts jours",
+      "pt": "Júlio Verne publica A Volta ao Mundo em Oitenta Dias"
     },
     "theme": "culture",
     "year": 1872
@@ -314,7 +345,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Bell patents the telephone",
-      "fr": "Graham Bell fait breveter le téléphone"
+      "fr": "Graham Bell fait breveter le téléphone",
+      "pt": "Graham Bell patenteia o telefone"
     },
     "theme": "science",
     "year": 1876
@@ -324,7 +356,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Edison demonstrates his light bulb",
-      "fr": "Edison présente son ampoule électrique"
+      "fr": "Edison présente son ampoule électrique",
+      "pt": "Edison apresenta a sua lâmpada elétrica"
     },
     "theme": "science",
     "year": 1879
@@ -334,7 +367,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Pasteur's rabies vaccine saves a boy",
-      "fr": "Pasteur vaccine un enfant contre la rage"
+      "fr": "Pasteur vaccine un enfant contre la rage",
+      "pt": "A vacina de Pasteur contra a raiva salva um rapaz"
     },
     "theme": "science",
     "year": 1885
@@ -344,7 +378,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Karl Benz patents the first car",
-      "fr": "Karl Benz fait breveter la première automobile"
+      "fr": "Karl Benz fait breveter la première automobile",
+      "pt": "Karl Benz patenteia o primeiro automóvel"
     },
     "theme": "tech",
     "year": 1886
@@ -354,7 +389,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Statue of Liberty dedicated",
-      "fr": "Inauguration de la statue de la Liberté"
+      "fr": "Inauguration de la statue de la Liberté",
+      "pt": "A Estátua da Liberdade é inaugurada"
     },
     "theme": "history",
     "year": 1886
@@ -364,7 +400,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Eiffel Tower opens",
-      "fr": "Inauguration de la tour Eiffel"
+      "fr": "Inauguration de la tour Eiffel",
+      "pt": "A Torre Eiffel é inaugurada"
     },
     "theme": "history",
     "year": 1889
@@ -374,7 +411,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Lumière brothers' first public screening",
-      "fr": "Première projection publique des frères Lumière"
+      "fr": "Première projection publique des frères Lumière",
+      "pt": "Primeira projeção pública dos irmãos Lumière"
     },
     "theme": "tech",
     "year": 1895
@@ -384,7 +422,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First modern Olympic Games in Athens",
-      "fr": "Premiers Jeux olympiques modernes à Athènes"
+      "fr": "Premiers Jeux olympiques modernes à Athènes",
+      "pt": "Primeiros Jogos Olímpicos modernos, em Atenas"
     },
     "theme": "sport",
     "year": 1896
@@ -394,7 +433,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Becquerel discovers radioactivity",
-      "fr": "Becquerel découvre la radioactivité"
+      "fr": "Becquerel découvre la radioactivité",
+      "pt": "Becquerel descobre a radioatividade"
     },
     "theme": "science",
     "year": 1896
@@ -404,7 +444,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First Paris Metro line opens",
-      "fr": "Première ligne du métro de Paris"
+      "fr": "Première ligne du métro de Paris",
+      "pt": "É inaugurada a primeira linha do metro de Paris"
     },
     "theme": "history",
     "year": 1900
@@ -414,7 +455,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First Nobel Prizes awarded",
-      "fr": "Premiers prix Nobel"
+      "fr": "Premiers prix Nobel",
+      "pt": "Primeiros Prémios Nobel atribuídos"
     },
     "theme": "science",
     "year": 1901
@@ -424,7 +466,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Marie Curie wins her first Nobel Prize",
-      "fr": "Marie Curie reçoit son premier prix Nobel"
+      "fr": "Marie Curie reçoit son premier prix Nobel",
+      "pt": "Marie Curie recebe o seu primeiro Prémio Nobel"
     },
     "theme": "science",
     "year": 1903
@@ -434,7 +477,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First Tour de France",
-      "fr": "Premier Tour de France"
+      "fr": "Premier Tour de France",
+      "pt": "Primeira Volta a França"
     },
     "theme": "sport",
     "year": 1903
@@ -444,7 +488,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Wright brothers' first flight",
-      "fr": "Premier vol des frères Wright"
+      "fr": "Premier vol des frères Wright",
+      "pt": "Primeiro voo dos irmãos Wright"
     },
     "theme": "science",
     "year": 1903
@@ -454,7 +499,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Einstein publishes special relativity",
-      "fr": "Einstein publie la relativité restreinte"
+      "fr": "Einstein publie la relativité restreinte",
+      "pt": "Einstein publica a relatividade restrita"
     },
     "theme": "science",
     "year": 1905
@@ -464,7 +510,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Amundsen reaches the South Pole",
-      "fr": "Amundsen atteint le pôle Sud"
+      "fr": "Amundsen atteint le pôle Sud",
+      "pt": "Amundsen chega ao Polo Sul"
     },
     "theme": "science",
     "year": 1911
@@ -474,7 +521,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Mona Lisa is stolen from the Louvre",
-      "fr": "Vol de La Joconde au Louvre"
+      "fr": "Vol de La Joconde au Louvre",
+      "pt": "A Mona Lisa é roubada do Louvre"
     },
     "theme": "culture",
     "year": 1911
@@ -484,7 +532,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Titanic sinks",
-      "fr": "Naufrage du Titanic"
+      "fr": "Naufrage du Titanic",
+      "pt": "O Titanic afunda-se"
     },
     "theme": "history",
     "year": 1912
@@ -494,7 +543,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Panama Canal opens",
-      "fr": "Ouverture du canal de Panama"
+      "fr": "Ouverture du canal de Panama",
+      "pt": "O Canal do Panamá é inaugurado"
     },
     "theme": "history",
     "year": 1914
@@ -504,7 +554,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "October Revolution in Russia",
-      "fr": "Révolution d'Octobre en Russie"
+      "fr": "Révolution d'Octobre en Russie",
+      "pt": "Revolução de Outubro na Rússia"
     },
     "theme": "history",
     "year": 1917
@@ -514,7 +565,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Armistice ends the First World War",
-      "fr": "Armistice de la Première Guerre mondiale"
+      "fr": "Armistice de la Première Guerre mondiale",
+      "pt": "O armistício põe fim à Primeira Guerra Mundial"
     },
     "theme": "history",
     "year": 1918
@@ -524,7 +576,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Treaty of Versailles signed",
-      "fr": "Signature du traité de Versailles"
+      "fr": "Signature du traité de Versailles",
+      "pt": "Tratado de Versalhes assinado"
     },
     "theme": "history",
     "year": 1919
@@ -534,7 +587,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Jazz Singer, the first talking picture",
-      "fr": "Le Chanteur de jazz, premier film parlant"
+      "fr": "Le Chanteur de jazz, premier film parlant",
+      "pt": "O Cantor de Jazz, o primeiro filme sonoro"
     },
     "theme": "film",
     "year": 1927
@@ -544,7 +598,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Lindbergh flies solo across the Atlantic",
-      "fr": "Lindbergh traverse l'Atlantique en solitaire"
+      "fr": "Lindbergh traverse l'Atlantique en solitaire",
+      "pt": "Lindbergh atravessa o Atlântico sozinho"
     },
     "theme": "science",
     "year": 1927
@@ -554,7 +609,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Fleming discovers penicillin",
-      "fr": "Fleming découvre la pénicilline"
+      "fr": "Fleming découvre la pénicilline",
+      "pt": "Fleming descobre a penicilina"
     },
     "theme": "science",
     "year": 1928
@@ -564,7 +620,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Mickey Mouse's first appearance",
-      "fr": "Première apparition de Mickey Mouse"
+      "fr": "Première apparition de Mickey Mouse",
+      "pt": "Primeira aparição do Rato Mickey"
     },
     "theme": "film",
     "year": 1928
@@ -574,7 +631,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Tintin's first adventure",
-      "fr": "Première aventure de Tintin"
+      "fr": "Première aventure de Tintin",
+      "pt": "Primeira aventura de Tintim"
     },
     "theme": "culture",
     "year": 1929
@@ -584,7 +642,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Wall Street Crash",
-      "fr": "Krach de Wall Street"
+      "fr": "Krach de Wall Street",
+      "pt": "Crash de Wall Street"
     },
     "theme": "history",
     "year": 1929
@@ -594,7 +653,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First football World Cup",
-      "fr": "Première Coupe du monde de football"
+      "fr": "Première Coupe du monde de football",
+      "pt": "Primeiro Campeonato do Mundo de futebol"
     },
     "theme": "sport",
     "year": 1930
@@ -604,7 +664,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Empire State Building opens",
-      "fr": "Inauguration de l'Empire State Building"
+      "fr": "Inauguration de l'Empire State Building",
+      "pt": "O Empire State Building é inaugurado"
     },
     "theme": "culture",
     "year": 1931
@@ -614,7 +675,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Jesse Owens wins four golds in Berlin",
-      "fr": "Jesse Owens gagne quatre médailles d'or à Berlin"
+      "fr": "Jesse Owens gagne quatre médailles d'or à Berlin",
+      "pt": "Jesse Owens ganha quatro medalhas de ouro em Berlim"
     },
     "theme": "sport",
     "year": 1936
@@ -624,7 +686,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Golden Gate Bridge opens",
-      "fr": "Ouverture du Golden Gate Bridge"
+      "fr": "Ouverture du Golden Gate Bridge",
+      "pt": "A ponte Golden Gate é inaugurada"
     },
     "theme": "culture",
     "year": 1937
@@ -634,7 +697,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Hindenburg airship bursts into flames",
-      "fr": "Le dirigeable Hindenburg prend feu"
+      "fr": "Le dirigeable Hindenburg prend feu",
+      "pt": "O dirigível Hindenburg incendeia-se"
     },
     "theme": "science",
     "year": 1937
@@ -644,7 +708,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Snow White, Disney's first feature film",
-      "fr": "Blanche-Neige, premier long métrage de Disney"
+      "fr": "Blanche-Neige, premier long métrage de Disney",
+      "pt": "Branca de Neve, a primeira longa-metragem da Disney"
     },
     "theme": "film",
     "year": 1937
@@ -654,7 +719,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Gone with the Wind opens",
-      "fr": "Sortie d'Autant en emporte le vent"
+      "fr": "Sortie d'Autant en emporte le vent",
+      "pt": "E Tudo o Vento Levou estreia nos cinemas"
     },
     "theme": "film",
     "year": 1939
@@ -664,7 +730,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "De Gaulle's Appeal of 18 June",
-      "fr": "Appel du 18 Juin du général de Gaulle"
+      "fr": "Appel du 18 Juin du général de Gaulle",
+      "pt": "Apelo de 18 de Junho do general de Gaulle"
     },
     "theme": "history",
     "year": 1940
@@ -674,7 +741,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Little Prince is published",
-      "fr": "Publication du Petit Prince"
+      "fr": "Publication du Petit Prince",
+      "pt": "O Principezinho é publicado"
     },
     "theme": "culture",
     "year": 1943
@@ -684,7 +752,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "D-Day landings in Normandy",
-      "fr": "Débarquement en Normandie"
+      "fr": "Débarquement en Normandie",
+      "pt": "Desembarque do Dia D na Normandia"
     },
     "theme": "history",
     "year": 1944
@@ -694,7 +763,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "End of the Second World War",
-      "fr": "Fin de la Seconde Guerre mondiale"
+      "fr": "Fin de la Seconde Guerre mondiale",
+      "pt": "Fim da Segunda Guerra Mundial"
     },
     "theme": "history",
     "year": 1945
@@ -704,7 +774,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First Cannes Film Festival",
-      "fr": "Premier Festival de Cannes"
+      "fr": "Premier Festival de Cannes",
+      "pt": "Primeiro Festival de Cannes"
     },
     "theme": "film",
     "year": 1946
@@ -714,7 +785,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The structure of DNA is described",
-      "fr": "Découverte de la structure de l'ADN"
+      "fr": "Découverte de la structure de l'ADN",
+      "pt": "É descrita a estrutura do ADN"
     },
     "theme": "science",
     "year": 1953
@@ -724,7 +796,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Coronation of Elizabeth II",
-      "fr": "Couronnement d'Elizabeth II"
+      "fr": "Couronnement d'Elizabeth II",
+      "pt": "Coroação de Isabel II"
     },
     "theme": "history",
     "year": 1953
@@ -734,7 +807,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First ascent of Mount Everest",
-      "fr": "Première ascension de l'Everest"
+      "fr": "Première ascension de l'Everest",
+      "pt": "Primeira ascensão ao Evereste"
     },
     "theme": "science",
     "year": 1953
@@ -744,7 +818,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First Eurovision Song Contest",
-      "fr": "Premier concours Eurovision de la chanson"
+      "fr": "Premier concours Eurovision de la chanson",
+      "pt": "Primeiro Festival Eurovisão da Canção"
     },
     "theme": "music",
     "year": 1956
@@ -754,7 +829,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Elvis Presley releases Heartbreak Hotel",
-      "fr": "Elvis Presley sort Heartbreak Hotel"
+      "fr": "Elvis Presley sort Heartbreak Hotel",
+      "pt": "Elvis Presley lança Heartbreak Hotel"
     },
     "theme": "music",
     "year": 1956
@@ -764,7 +840,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Sputnik 1 is launched",
-      "fr": "Lancement de Spoutnik 1"
+      "fr": "Lancement de Spoutnik 1",
+      "pt": "O Sputnik 1 é lançado"
     },
     "theme": "science",
     "year": 1957
@@ -774,7 +851,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "France's Fifth Republic founded",
-      "fr": "Naissance de la Ve République"
+      "fr": "Naissance de la Ve République",
+      "pt": "É fundada a Quinta República francesa"
     },
     "theme": "history",
     "year": 1958
@@ -784,7 +862,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The LEGO brick is patented",
-      "fr": "Brevet de la brique LEGO"
+      "fr": "Brevet de la brique LEGO",
+      "pt": "A peça de LEGO é patenteada"
     },
     "theme": "culture",
     "year": 1958
@@ -794,7 +873,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Barbie doll is launched",
-      "fr": "Naissance de la poupée Barbie"
+      "fr": "Naissance de la poupée Barbie",
+      "pt": "A boneca Barbie é lançada"
     },
     "theme": "culture",
     "year": 1959
@@ -804,7 +884,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Asterix's first appearance",
-      "fr": "Première apparition d'Astérix"
+      "fr": "Première apparition d'Astérix",
+      "pt": "Primeira aparição de Astérix"
     },
     "theme": "culture",
     "year": 1959
@@ -814,7 +895,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Édith Piaf sings Non, je ne regrette rien",
-      "fr": "Édith Piaf chante Non, je ne regrette rien"
+      "fr": "Édith Piaf chante Non, je ne regrette rien",
+      "pt": "Édith Piaf canta Non, je ne regrette rien"
     },
     "theme": "music",
     "year": 1960
@@ -824,7 +906,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Psycho opens",
-      "fr": "Sortie de Psychose"
+      "fr": "Sortie de Psychose",
+      "pt": "Psico estreia nos cinemas"
     },
     "theme": "film",
     "year": 1960
@@ -834,7 +917,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Yuri Gagarin, first person in space",
-      "fr": "Youri Gagarine, premier homme dans l'espace"
+      "fr": "Youri Gagarine, premier homme dans l'espace",
+      "pt": "Iuri Gagarin, o primeiro ser humano no espaço"
     },
     "theme": "science",
     "year": 1961
@@ -844,7 +928,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Algeria wins independence",
-      "fr": "Indépendance de l'Algérie"
+      "fr": "Indépendance de l'Algérie",
+      "pt": "A Argélia conquista a independência"
     },
     "theme": "history",
     "year": 1962
@@ -854,7 +939,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Cuban Missile Crisis",
-      "fr": "Crise des missiles de Cuba"
+      "fr": "Crise des missiles de Cuba",
+      "pt": "Crise dos mísseis de Cuba"
     },
     "theme": "history",
     "year": 1962
@@ -864,7 +950,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The first James Bond film opens",
-      "fr": "Sortie du premier James Bond"
+      "fr": "Sortie du premier James Bond",
+      "pt": "O primeiro filme de James Bond estreia nos cinemas"
     },
     "theme": "film",
     "year": 1962
@@ -874,7 +961,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "John F. Kennedy assassinated",
-      "fr": "Assassinat de John F. Kennedy"
+      "fr": "Assassinat de John F. Kennedy",
+      "pt": "John F. Kennedy assassinado"
     },
     "theme": "history",
     "year": 1963
@@ -884,7 +972,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Beatles' first album",
-      "fr": "Premier album des Beatles"
+      "fr": "Premier album des Beatles",
+      "pt": "Primeiro álbum dos Beatles"
     },
     "theme": "music",
     "year": 1963
@@ -894,7 +983,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "La Grande Vadrouille opens",
-      "fr": "Sortie de La Grande Vadrouille"
+      "fr": "Sortie de La Grande Vadrouille",
+      "pt": "La Grande Vadrouille estreia nos cinemas"
     },
     "theme": "film",
     "year": 1966
@@ -904,7 +994,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First human heart transplant",
-      "fr": "Première greffe du cœur"
+      "fr": "Première greffe du cœur",
+      "pt": "Primeiro transplante de coração humano"
     },
     "theme": "science",
     "year": 1967
@@ -914,7 +1005,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "May 1968 protests in France",
-      "fr": "Mai 68"
+      "fr": "Mai 68",
+      "pt": "Protestos de Maio de 68 em França"
     },
     "theme": "history",
     "year": 1968
@@ -924,7 +1016,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First steps on the Moon",
-      "fr": "Premiers pas sur la Lune"
+      "fr": "Premiers pas sur la Lune",
+      "pt": "Primeiros passos na Lua"
     },
     "theme": "science",
     "year": 1969
@@ -934,7 +1027,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Woodstock festival",
-      "fr": "Festival de Woodstock"
+      "fr": "Festival de Woodstock",
+      "pt": "Festival de Woodstock"
     },
     "theme": "music",
     "year": 1969
@@ -944,7 +1038,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Apollo 13 mission",
-      "fr": "Mission Apollo 13"
+      "fr": "Mission Apollo 13",
+      "pt": "Missão Apollo 13"
     },
     "theme": "science",
     "year": 1970
@@ -954,7 +1049,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Beatles break up",
-      "fr": "Séparation des Beatles"
+      "fr": "Séparation des Beatles",
+      "pt": "Os Beatles separam-se"
     },
     "theme": "music",
     "year": 1970
@@ -964,7 +1060,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First email sent",
-      "fr": "Envoi du premier e-mail"
+      "fr": "Envoi du premier e-mail",
+      "pt": "Primeiro e-mail enviado"
     },
     "theme": "tech",
     "year": 1971
@@ -974,7 +1071,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Pong is released",
-      "fr": "Sortie du jeu Pong"
+      "fr": "Sortie du jeu Pong",
+      "pt": "O Pong é lançado"
     },
     "theme": "tech",
     "year": 1972
@@ -984,7 +1082,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Godfather opens",
-      "fr": "Sortie du Parrain"
+      "fr": "Sortie du Parrain",
+      "pt": "O Padrinho estreia nos cinemas"
     },
     "theme": "film",
     "year": 1972
@@ -994,7 +1093,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Montparnasse Tower opens",
-      "fr": "Inauguration de la tour Montparnasse"
+      "fr": "Inauguration de la tour Montparnasse",
+      "pt": "A Torre Montparnasse é inaugurada"
     },
     "theme": "culture",
     "year": 1973
@@ -1004,7 +1104,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Sydney Opera House opens",
-      "fr": "Inauguration de l'opéra de Sydney"
+      "fr": "Inauguration de l'opéra de Sydney",
+      "pt": "A Ópera de Sydney é inaugurada"
     },
     "theme": "culture",
     "year": 1973
@@ -1014,7 +1115,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "ABBA win Eurovision with Waterloo",
-      "fr": "ABBA gagne l'Eurovision avec Waterloo"
+      "fr": "ABBA gagne l'Eurovision avec Waterloo",
+      "pt": "Os ABBA vencem a Eurovisão com Waterloo"
     },
     "theme": "music",
     "year": 1974
@@ -1024,7 +1126,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Rubik's Cube is invented",
-      "fr": "Invention du Rubik's Cube"
+      "fr": "Invention du Rubik's Cube",
+      "pt": "O cubo de Rubik é inventado"
     },
     "theme": "culture",
     "year": 1974
@@ -1034,7 +1137,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Ali v Foreman, the Rumble in the Jungle",
-      "fr": "Ali contre Foreman à Kinshasa"
+      "fr": "Ali contre Foreman à Kinshasa",
+      "pt": "Ali contra Foreman em Kinshasa"
     },
     "theme": "sport",
     "year": 1974
@@ -1044,7 +1148,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Queen release Bohemian Rhapsody",
-      "fr": "Queen sort Bohemian Rhapsody"
+      "fr": "Queen sort Bohemian Rhapsody",
+      "pt": "Os Queen lançam Bohemian Rhapsody"
     },
     "theme": "music",
     "year": 1975
@@ -1054,7 +1159,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Jaws opens",
-      "fr": "Sortie des Dents de la mer"
+      "fr": "Sortie des Dents de la mer",
+      "pt": "Tubarão estreia nos cinemas"
     },
     "theme": "film",
     "year": 1975
@@ -1064,7 +1170,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "France legalises abortion (Veil law)",
-      "fr": "Loi Veil sur l'IVG"
+      "fr": "Loi Veil sur l'IVG",
+      "pt": "A França legaliza o aborto (lei Veil)"
     },
     "theme": "history",
     "year": 1975
@@ -1074,7 +1181,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Nadia Comăneci scores the first perfect 10",
-      "fr": "Nadia Comăneci obtient le premier 10 parfait"
+      "fr": "Nadia Comăneci obtient le premier 10 parfait",
+      "pt": "Nadia Comăneci obtém o primeiro 10 perfeito"
     },
     "theme": "sport",
     "year": 1976
@@ -1084,7 +1192,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Concorde's first commercial flight",
-      "fr": "Premier vol commercial du Concorde"
+      "fr": "Premier vol commercial du Concorde",
+      "pt": "Primeiro voo comercial do Concorde"
     },
     "theme": "science",
     "year": 1976
@@ -1094,7 +1203,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Centre Pompidou opens",
-      "fr": "Ouverture du Centre Pompidou"
+      "fr": "Ouverture du Centre Pompidou",
+      "pt": "O Centro Pompidou abre ao público"
     },
     "theme": "culture",
     "year": 1977
@@ -1104,7 +1214,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Elvis Presley",
-      "fr": "Mort d'Elvis Presley"
+      "fr": "Mort d'Elvis Presley",
+      "pt": "Morte de Elvis Presley"
     },
     "theme": "music",
     "year": 1977
@@ -1114,7 +1225,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Star Wars opens",
-      "fr": "Sortie de La Guerre des étoiles"
+      "fr": "Sortie de La Guerre des étoiles",
+      "pt": "A Guerra das Estrelas estreia nos cinemas"
     },
     "theme": "film",
     "year": 1977
@@ -1124,7 +1236,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "John Paul II elected pope",
-      "fr": "Jean-Paul II élu pape"
+      "fr": "Jean-Paul II élu pape",
+      "pt": "João Paulo II eleito papa"
     },
     "theme": "history",
     "year": 1978
@@ -1134,7 +1247,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Les Bronzés opens",
-      "fr": "Sortie des Bronzés"
+      "fr": "Sortie des Bronzés",
+      "pt": "Les Bronzés estreia nos cinemas"
     },
     "theme": "film",
     "year": 1978
@@ -1144,7 +1258,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Birth of the first test-tube baby",
-      "fr": "Naissance du premier bébé-éprouvette"
+      "fr": "Naissance du premier bébé-éprouvette",
+      "pt": "Nascimento do primeiro bebé-proveta"
     },
     "theme": "science",
     "year": 1978
@@ -1154,7 +1269,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Sony launches the Walkman",
-      "fr": "Sortie du Walkman de Sony"
+      "fr": "Sortie du Walkman de Sony",
+      "pt": "A Sony lança o Walkman"
     },
     "theme": "tech",
     "year": 1979
@@ -1164,7 +1280,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "John Lennon is killed",
-      "fr": "Assassinat de John Lennon"
+      "fr": "Assassinat de John Lennon",
+      "pt": "John Lennon é assassinado"
     },
     "theme": "music",
     "year": 1980
@@ -1174,7 +1291,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Pac-Man is released",
-      "fr": "Sortie de Pac-Man"
+      "fr": "Sortie de Pac-Man",
+      "pt": "O Pac-Man é lançado"
     },
     "theme": "tech",
     "year": 1980
@@ -1184,7 +1302,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Bob Marley",
-      "fr": "Mort de Bob Marley"
+      "fr": "Mort de Bob Marley",
+      "pt": "Morte de Bob Marley"
     },
     "theme": "music",
     "year": 1981
@@ -1194,7 +1313,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "France abolishes the death penalty",
-      "fr": "Abolition de la peine de mort en France"
+      "fr": "Abolition de la peine de mort en France",
+      "pt": "A França abole a pena de morte"
     },
     "theme": "history",
     "year": 1981
@@ -1204,7 +1324,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "François Mitterrand elected president for the first time",
-      "fr": "François Mitterrand élu président pour la première fois"
+      "fr": "François Mitterrand élu président pour la première fois",
+      "pt": "François Mitterrand eleito presidente pela primeira vez"
     },
     "theme": "history",
     "year": 1981
@@ -1214,7 +1335,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The TGV enters service",
-      "fr": "Mise en service du TGV"
+      "fr": "Mise en service du TGV",
+      "pt": "O TGV entra em serviço"
     },
     "theme": "science",
     "year": 1981
@@ -1224,7 +1346,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The first audio CD goes on sale",
-      "fr": "Sortie du premier CD audio"
+      "fr": "Sortie du premier CD audio",
+      "pt": "O primeiro CD áudio é posto à venda"
     },
     "theme": "tech",
     "year": 1982
@@ -1234,7 +1357,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "E.T. the Extra-Terrestrial opens",
-      "fr": "Sortie d'E.T. l'extra-terrestre"
+      "fr": "Sortie d'E.T. l'extra-terrestre",
+      "pt": "E.T. – O Extraterrestre estreia nos cinemas"
     },
     "theme": "film",
     "year": 1982
@@ -1244,7 +1368,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First Fête de la Musique",
-      "fr": "Première Fête de la musique"
+      "fr": "Première Fête de la musique",
+      "pt": "Primeira Fête de la Musique"
     },
     "theme": "music",
     "year": 1982
@@ -1254,7 +1379,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Michael Jackson releases Thriller",
-      "fr": "Michael Jackson sort Thriller"
+      "fr": "Michael Jackson sort Thriller",
+      "pt": "Michael Jackson lança Thriller"
     },
     "theme": "music",
     "year": 1982
@@ -1264,7 +1390,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Yannick Noah wins the French Open",
-      "fr": "Yannick Noah gagne Roland-Garros"
+      "fr": "Yannick Noah gagne Roland-Garros",
+      "pt": "Yannick Noah vence Roland Garros"
     },
     "theme": "sport",
     "year": 1983
@@ -1274,7 +1401,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Tetris is created",
-      "fr": "Invention de Tetris"
+      "fr": "Invention de Tetris",
+      "pt": "O Tetris é criado"
     },
     "theme": "tech",
     "year": 1984
@@ -1284,7 +1412,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Back to the Future opens",
-      "fr": "Sortie de Retour vers le futur"
+      "fr": "Sortie de Retour vers le futur",
+      "pt": "Regresso ao Futuro estreia nos cinemas"
     },
     "theme": "film",
     "year": 1985
@@ -1294,7 +1423,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Live Aid concerts",
-      "fr": "Concerts Live Aid"
+      "fr": "Concerts Live Aid",
+      "pt": "Concertos Live Aid"
     },
     "theme": "music",
     "year": 1985
@@ -1304,7 +1434,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Super Mario Bros. is released",
-      "fr": "Sortie de Super Mario Bros."
+      "fr": "Sortie de Super Mario Bros.",
+      "pt": "O Super Mario Bros. é lançado"
     },
     "theme": "tech",
     "year": 1985
@@ -1314,7 +1445,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Space Shuttle Challenger explodes",
-      "fr": "Explosion de la navette Challenger"
+      "fr": "Explosion de la navette Challenger",
+      "pt": "O vaivém espacial Challenger explode"
     },
     "theme": "science",
     "year": 1986
@@ -1324,7 +1456,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Chernobyl disaster",
-      "fr": "Catastrophe de Tchernobyl"
+      "fr": "Catastrophe de Tchernobyl",
+      "pt": "Catástrofe de Chernobil"
     },
     "theme": "history",
     "year": 1986
@@ -1334,7 +1467,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Maradona's “Hand of God” goal",
-      "fr": "La « main de Dieu » de Maradona"
+      "fr": "La « main de Dieu » de Maradona",
+      "pt": "O golo da «mão de Deus» de Maradona"
     },
     "theme": "sport",
     "year": 1986
@@ -1344,7 +1478,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Céline Dion wins Eurovision",
-      "fr": "Céline Dion gagne l'Eurovision"
+      "fr": "Céline Dion gagne l'Eurovision",
+      "pt": "Céline Dion vence a Eurovisão"
     },
     "theme": "music",
     "year": 1988
@@ -1354,7 +1489,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Fall of the Berlin Wall",
-      "fr": "Chute du mur de Berlin"
+      "fr": "Chute du mur de Berlin",
+      "pt": "Queda do Muro de Berlim"
     },
     "theme": "history",
     "year": 1989
@@ -1364,7 +1500,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Game Boy is released",
-      "fr": "Sortie de la Game Boy"
+      "fr": "Sortie de la Game Boy",
+      "pt": "O Game Boy é lançado"
     },
     "theme": "tech",
     "year": 1989
@@ -1374,7 +1511,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Louvre Pyramid opens",
-      "fr": "Inauguration de la pyramide du Louvre"
+      "fr": "Inauguration de la pyramide du Louvre",
+      "pt": "A Pirâmide do Louvre abre ao público"
     },
     "theme": "culture",
     "year": 1989
@@ -1384,7 +1522,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First episode of The Simpsons",
-      "fr": "Premier épisode des Simpson"
+      "fr": "Premier épisode des Simpson",
+      "pt": "Primeiro episódio de Os Simpsons"
     },
     "theme": "film",
     "year": 1989
@@ -1394,7 +1533,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Hubble Space Telescope launched",
-      "fr": "Lancement du télescope Hubble"
+      "fr": "Lancement du télescope Hubble",
+      "pt": "Lançamento do Telescópio Espacial Hubble"
     },
     "theme": "science",
     "year": 1990
@@ -1404,7 +1544,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Nelson Mandela freed from prison",
-      "fr": "Libération de Nelson Mandela"
+      "fr": "Libération de Nelson Mandela",
+      "pt": "Nelson Mandela libertado da prisão"
     },
     "theme": "history",
     "year": 1990
@@ -1414,7 +1555,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The first website goes online",
-      "fr": "Mise en ligne du premier site web"
+      "fr": "Mise en ligne du premier site web",
+      "pt": "O primeiro site da Web fica online"
     },
     "theme": "tech",
     "year": 1991
@@ -1424,7 +1566,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Freddie Mercury",
-      "fr": "Mort de Freddie Mercury"
+      "fr": "Mort de Freddie Mercury",
+      "pt": "Morte de Freddie Mercury"
     },
     "theme": "music",
     "year": 1991
@@ -1434,7 +1577,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Nirvana release Nevermind",
-      "fr": "Nirvana sort Nevermind"
+      "fr": "Nirvana sort Nevermind",
+      "pt": "Os Nirvana lançam Nevermind"
     },
     "theme": "music",
     "year": 1991
@@ -1444,7 +1588,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Albertville Winter Olympics",
-      "fr": "Jeux olympiques d'hiver d'Albertville"
+      "fr": "Jeux olympiques d'hiver d'Albertville",
+      "pt": "Jogos Olímpicos de Inverno de Albertville"
     },
     "theme": "sport",
     "year": 1992
@@ -1454,7 +1599,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Disneyland Paris opens",
-      "fr": "Ouverture de Disneyland Paris"
+      "fr": "Ouverture de Disneyland Paris",
+      "pt": "A Disneyland Paris abre ao público"
     },
     "theme": "culture",
     "year": 1992
@@ -1464,7 +1610,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First text message sent",
-      "fr": "Envoi du premier SMS"
+      "fr": "Envoi du premier SMS",
+      "pt": "Primeira mensagem SMS enviada"
     },
     "theme": "tech",
     "year": 1992
@@ -1474,7 +1621,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Maastricht Treaty signed",
-      "fr": "Signature du traité de Maastricht"
+      "fr": "Signature du traité de Maastricht",
+      "pt": "Tratado de Maastricht assinado"
     },
     "theme": "history",
     "year": 1992
@@ -1484,7 +1632,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Jurassic Park opens",
-      "fr": "Sortie de Jurassic Park"
+      "fr": "Sortie de Jurassic Park",
+      "pt": "Parque Jurássico estreia nos cinemas"
     },
     "theme": "film",
     "year": 1993
@@ -1494,7 +1643,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Les Visiteurs opens",
-      "fr": "Sortie des Visiteurs"
+      "fr": "Sortie des Visiteurs",
+      "pt": "Os Visitantes estreia nos cinemas"
     },
     "theme": "film",
     "year": 1993
@@ -1504,7 +1654,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Channel Tunnel opens",
-      "fr": "Ouverture du tunnel sous la Manche"
+      "fr": "Ouverture du tunnel sous la Manche",
+      "pt": "O Túnel da Mancha abre ao público"
     },
     "theme": "history",
     "year": 1994
@@ -1514,7 +1665,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Kurt Cobain",
-      "fr": "Mort de Kurt Cobain"
+      "fr": "Mort de Kurt Cobain",
+      "pt": "Morte de Kurt Cobain"
     },
     "theme": "music",
     "year": 1994
@@ -1524,7 +1676,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First episode of Friends",
-      "fr": "Premier épisode de Friends"
+      "fr": "Premier épisode de Friends",
+      "pt": "Primeiro episódio de Friends"
     },
     "theme": "film",
     "year": 1994
@@ -1534,7 +1687,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The first PlayStation is released",
-      "fr": "Sortie de la première PlayStation"
+      "fr": "Sortie de la première PlayStation",
+      "pt": "A primeira PlayStation é lançada"
     },
     "theme": "tech",
     "year": 1994
@@ -1544,7 +1698,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Ayrton Senna",
-      "fr": "Mort d'Ayrton Senna"
+      "fr": "Mort d'Ayrton Senna",
+      "pt": "Morte de Ayrton Senna"
     },
     "theme": "sport",
     "year": 1994
@@ -1554,7 +1709,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Lion King opens",
-      "fr": "Sortie du Roi lion"
+      "fr": "Sortie du Roi lion",
+      "pt": "O Rei Leão estreia nos cinemas"
     },
     "theme": "film",
     "year": 1994
@@ -1564,7 +1720,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Jacques Chirac elected president for the first time",
-      "fr": "Jacques Chirac élu président pour la première fois"
+      "fr": "Jacques Chirac élu président pour la première fois",
+      "pt": "Jacques Chirac eleito presidente pela primeira vez"
     },
     "theme": "history",
     "year": 1995
@@ -1574,7 +1731,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Toy Story, the first computer-animated feature",
-      "fr": "Toy Story, premier long métrage en images de synthèse"
+      "fr": "Toy Story, premier long métrage en images de synthèse",
+      "pt": "Toy Story: Os Rivais, a primeira longa-metragem animada por computador"
     },
     "theme": "film",
     "year": 1995
@@ -1584,7 +1742,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Windows 95 is released",
-      "fr": "Sortie de Windows 95"
+      "fr": "Sortie de Windows 95",
+      "pt": "O Windows 95 é lançado"
     },
     "theme": "tech",
     "year": 1995
@@ -1594,7 +1753,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Dolly the sheep is born",
-      "fr": "Naissance de la brebis Dolly"
+      "fr": "Naissance de la brebis Dolly",
+      "pt": "Nasce a ovelha Dolly"
     },
     "theme": "science",
     "year": 1996
@@ -1604,7 +1764,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The first Pokémon games are released",
-      "fr": "Sortie des premiers jeux Pokémon"
+      "fr": "Sortie des premiers jeux Pokémon",
+      "pt": "Os primeiros jogos Pokémon são lançados"
     },
     "theme": "tech",
     "year": 1996
@@ -1614,7 +1775,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Daft Punk release Homework",
-      "fr": "Daft Punk sort Homework"
+      "fr": "Daft Punk sort Homework",
+      "pt": "Os Daft Punk lançam Homework"
     },
     "theme": "music",
     "year": 1997
@@ -1624,7 +1786,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Princess Diana",
-      "fr": "Mort de Lady Diana"
+      "fr": "Mort de Lady Diana",
+      "pt": "Morte da princesa Diana"
     },
     "theme": "history",
     "year": 1997
@@ -1634,7 +1797,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The first Harry Potter book is published",
-      "fr": "Publication du premier Harry Potter"
+      "fr": "Publication du premier Harry Potter",
+      "pt": "O primeiro livro de Harry Potter é publicado"
     },
     "theme": "culture",
     "year": 1997
@@ -1644,7 +1808,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Titanic, the film, opens",
-      "fr": "Sortie du film Titanic"
+      "fr": "Sortie du film Titanic",
+      "pt": "Titanic, o filme, estreia nos cinemas"
     },
     "theme": "film",
     "year": 1997
@@ -1654,7 +1819,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "France win their first football World Cup",
-      "fr": "La France gagne sa première Coupe du monde"
+      "fr": "La France gagne sa première Coupe du monde",
+      "pt": "A França vence o seu primeiro Mundial de futebol"
     },
     "theme": "sport",
     "year": 1998
@@ -1664,7 +1830,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Google is founded",
-      "fr": "Création de Google"
+      "fr": "Création de Google",
+      "pt": "A Google é fundada"
     },
     "theme": "tech",
     "year": 1998
@@ -1674,7 +1841,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First module of the ISS launched",
-      "fr": "Lancement du premier module de l'ISS"
+      "fr": "Lancement du premier module de l'ISS",
+      "pt": "Primeiro módulo da Estação Espacial Internacional lançado"
     },
     "theme": "science",
     "year": 1998
@@ -1684,7 +1852,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Matrix opens",
-      "fr": "Sortie de Matrix"
+      "fr": "Sortie de Matrix",
+      "pt": "Matrix estreia nos cinemas"
     },
     "theme": "film",
     "year": 1999
@@ -1694,7 +1863,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Amélie opens",
-      "fr": "Sortie du Fabuleux Destin d'Amélie Poulain"
+      "fr": "Sortie du Fabuleux Destin d'Amélie Poulain",
+      "pt": "O Fabuloso Destino de Amélie estreia nos cinemas"
     },
     "theme": "film",
     "year": 2001
@@ -1704,7 +1874,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The first Harry Potter film opens",
-      "fr": "Sortie du premier film Harry Potter"
+      "fr": "Sortie du premier film Harry Potter",
+      "pt": "O primeiro filme de Harry Potter estreia nos cinemas"
     },
     "theme": "film",
     "year": 2001
@@ -1714,7 +1885,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "September 11 attacks",
-      "fr": "Attentats du 11 septembre"
+      "fr": "Attentats du 11 septembre",
+      "pt": "Atentados de 11 de Setembro"
     },
     "theme": "history",
     "year": 2001
@@ -1724,7 +1896,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Wikipedia is launched",
-      "fr": "Lancement de Wikipédia"
+      "fr": "Lancement de Wikipédia",
+      "pt": "A Wikipédia é lançada"
     },
     "theme": "tech",
     "year": 2001
@@ -1734,7 +1907,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Euro notes and coins enter circulation",
-      "fr": "Arrivée des pièces et billets en euros"
+      "fr": "Arrivée des pièces et billets en euros",
+      "pt": "As notas e moedas de euro entram em circulação"
     },
     "theme": "history",
     "year": 2002
@@ -1744,7 +1918,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Roger Federer wins his first Wimbledon",
-      "fr": "Roger Federer gagne son premier Wimbledon"
+      "fr": "Roger Federer gagne son premier Wimbledon",
+      "pt": "Roger Federer vence o seu primeiro Wimbledon"
     },
     "theme": "sport",
     "year": 2003
@@ -1754,7 +1929,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Facebook is launched",
-      "fr": "Lancement de Facebook"
+      "fr": "Lancement de Facebook",
+      "pt": "O Facebook é lançado"
     },
     "theme": "tech",
     "year": 2004
@@ -1764,7 +1940,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Indian Ocean tsunami",
-      "fr": "Tsunami dans l'océan Indien"
+      "fr": "Tsunami dans l'océan Indien",
+      "pt": "Tsunami no oceano Índico"
     },
     "theme": "history",
     "year": 2004
@@ -1774,7 +1951,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Millau Viaduct opens",
-      "fr": "Inauguration du viaduc de Millau"
+      "fr": "Inauguration du viaduc de Millau",
+      "pt": "O Viaduto de Millau é inaugurado"
     },
     "theme": "culture",
     "year": 2004
@@ -1784,7 +1962,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Rafael Nadal wins his first French Open",
-      "fr": "Rafael Nadal gagne son premier Roland-Garros"
+      "fr": "Rafael Nadal gagne son premier Roland-Garros",
+      "pt": "Rafael Nadal vence o seu primeiro Roland Garros"
     },
     "theme": "sport",
     "year": 2005
@@ -1794,7 +1973,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "YouTube is launched",
-      "fr": "Lancement de YouTube"
+      "fr": "Lancement de YouTube",
+      "pt": "O YouTube é lançado"
     },
     "theme": "tech",
     "year": 2005
@@ -1804,7 +1984,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Pluto is no longer a planet",
-      "fr": "Pluton n'est plus une planète"
+      "fr": "Pluton n'est plus une planète",
+      "pt": "Plutão deixa de ser um planeta"
     },
     "theme": "science",
     "year": 2006
@@ -1814,7 +1995,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Twitter is launched",
-      "fr": "Lancement de Twitter"
+      "fr": "Lancement de Twitter",
+      "pt": "O Twitter é lançado"
     },
     "theme": "tech",
     "year": 2006
@@ -1824,7 +2006,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Wii is released",
-      "fr": "Sortie de la Wii"
+      "fr": "Sortie de la Wii",
+      "pt": "A Wii é lançada"
     },
     "theme": "tech",
     "year": 2006
@@ -1834,7 +2017,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Zidane's headbutt in the World Cup final",
-      "fr": "Coup de tête de Zidane en finale de Coupe du monde"
+      "fr": "Coup de tête de Zidane en finale de Coupe du monde",
+      "pt": "A cabeçada de Zidane na final do Mundial"
     },
     "theme": "sport",
     "year": 2006
@@ -1844,7 +2028,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The first iPhone is unveiled",
-      "fr": "Présentation du premier iPhone"
+      "fr": "Présentation du premier iPhone",
+      "pt": "O primeiro iPhone é apresentado"
     },
     "theme": "tech",
     "year": 2007
@@ -1854,7 +2039,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Nicolas Sarkozy elected president",
-      "fr": "Nicolas Sarkozy élu président"
+      "fr": "Nicolas Sarkozy élu président",
+      "pt": "Nicolas Sarkozy eleito presidente"
     },
     "theme": "history",
     "year": 2007
@@ -1864,7 +2050,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Welcome to the Sticks opens",
-      "fr": "Sortie de Bienvenue chez les Ch'tis"
+      "fr": "Sortie de Bienvenue chez les Ch'tis",
+      "pt": "Bem-Vindo ao Norte estreia nos cinemas"
     },
     "theme": "film",
     "year": 2008
@@ -1874,7 +2061,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Barack Obama elected US president for the first time",
-      "fr": "Barack Obama élu président des États-Unis pour la première fois"
+      "fr": "Barack Obama élu président des États-Unis pour la première fois",
+      "pt": "Barack Obama eleito presidente dos EUA pela primeira vez"
     },
     "theme": "history",
     "year": 2008
@@ -1884,7 +2072,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Michael Phelps wins eight golds",
-      "fr": "Michael Phelps gagne huit médailles d'or"
+      "fr": "Michael Phelps gagne huit médailles d'or",
+      "pt": "Michael Phelps conquista oito medalhas de ouro"
     },
     "theme": "sport",
     "year": 2008
@@ -1894,7 +2083,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Spotify is launched",
-      "fr": "Lancement de Spotify"
+      "fr": "Lancement de Spotify",
+      "pt": "O Spotify é lançado"
     },
     "theme": "music",
     "year": 2008
@@ -1904,7 +2094,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Avatar opens",
-      "fr": "Sortie d'Avatar"
+      "fr": "Sortie d'Avatar",
+      "pt": "Avatar estreia nos cinemas"
     },
     "theme": "film",
     "year": 2009
@@ -1914,7 +2105,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Bitcoin is born",
-      "fr": "Naissance du bitcoin"
+      "fr": "Naissance du bitcoin",
+      "pt": "Nasce a bitcoin"
     },
     "theme": "tech",
     "year": 2009
@@ -1924,7 +2116,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Usain Bolt runs 100 m in 9.58 s",
-      "fr": "Usain Bolt court le 100 m en 9,58 s"
+      "fr": "Usain Bolt court le 100 m en 9,58 s",
+      "pt": "Usain Bolt corre os 100 m em 9,58 s"
     },
     "theme": "sport",
     "year": 2009
@@ -1934,7 +2127,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Michael Jackson",
-      "fr": "Mort de Michael Jackson"
+      "fr": "Mort de Michael Jackson",
+      "pt": "Morte de Michael Jackson"
     },
     "theme": "music",
     "year": 2009
@@ -1944,7 +2138,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Burj Khalifa opens",
-      "fr": "Inauguration de la Burj Khalifa"
+      "fr": "Inauguration de la Burj Khalifa",
+      "pt": "O Burj Khalifa é inaugurado"
     },
     "theme": "culture",
     "year": 2010
@@ -1954,7 +2149,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Fukushima nuclear disaster",
-      "fr": "Catastrophe de Fukushima"
+      "fr": "Catastrophe de Fukushima",
+      "pt": "Desastre nuclear de Fukushima"
     },
     "theme": "history",
     "year": 2011
@@ -1964,7 +2160,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "First episode of Game of Thrones",
-      "fr": "Premier épisode de Game of Thrones"
+      "fr": "Premier épisode de Game of Thrones",
+      "pt": "Primeiro episódio de A Guerra dos Tronos"
     },
     "theme": "film",
     "year": 2011
@@ -1974,7 +2171,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "The Intouchables opens",
-      "fr": "Sortie d'Intouchables"
+      "fr": "Sortie d'Intouchables",
+      "pt": "Amigos Improváveis estreia nos cinemas"
     },
     "theme": "film",
     "year": 2011
@@ -1984,7 +2182,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Curiosity rover lands on Mars",
-      "fr": "Le robot Curiosity se pose sur Mars"
+      "fr": "Le robot Curiosity se pose sur Mars",
+      "pt": "O jipe-robô Curiosity aterra em Marte"
     },
     "theme": "science",
     "year": 2012
@@ -1994,7 +2193,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Gangnam Style is released",
-      "fr": "Sortie de Gangnam Style"
+      "fr": "Sortie de Gangnam Style",
+      "pt": "O Gangnam Style é lançado"
     },
     "theme": "music",
     "year": 2012
@@ -2004,7 +2204,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Discovery of the Higgs boson",
-      "fr": "Découverte du boson de Higgs"
+      "fr": "Découverte du boson de Higgs",
+      "pt": "Descoberta do bosão de Higgs"
     },
     "theme": "science",
     "year": 2012
@@ -2014,7 +2215,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "François Hollande elected president",
-      "fr": "François Hollande élu président"
+      "fr": "François Hollande élu président",
+      "pt": "François Hollande eleito presidente"
     },
     "theme": "history",
     "year": 2012
@@ -2024,7 +2226,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Frozen opens",
-      "fr": "Sortie de La Reine des neiges"
+      "fr": "Sortie de La Reine des neiges",
+      "pt": "Frozen: O Reino do Gelo estreia nos cinemas"
     },
     "theme": "film",
     "year": 2013
@@ -2034,7 +2237,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "France legalises same-sex marriage",
-      "fr": "Mariage pour tous en France"
+      "fr": "Mariage pour tous en France",
+      "pt": "A França legaliza o casamento entre pessoas do mesmo sexo"
     },
     "theme": "history",
     "year": 2013
@@ -2044,7 +2248,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Brexit referendum",
-      "fr": "Référendum du Brexit"
+      "fr": "Référendum du Brexit",
+      "pt": "Referendo do Brexit"
     },
     "theme": "history",
     "year": 2016
@@ -2054,7 +2259,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Despacito is released",
-      "fr": "Sortie de Despacito"
+      "fr": "Sortie de Despacito",
+      "pt": "O Despacito é lançado"
     },
     "theme": "music",
     "year": 2017
@@ -2064,7 +2270,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Fortnite is released",
-      "fr": "Sortie de Fortnite"
+      "fr": "Sortie de Fortnite",
+      "pt": "O Fortnite é lançado"
     },
     "theme": "tech",
     "year": 2017
@@ -2074,7 +2281,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Johnny Hallyday",
-      "fr": "Mort de Johnny Hallyday"
+      "fr": "Mort de Johnny Hallyday",
+      "pt": "Morte de Johnny Hallyday"
     },
     "theme": "music",
     "year": 2017
@@ -2084,7 +2292,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Emmanuel Macron elected president for the first time",
-      "fr": "Emmanuel Macron élu président pour la première fois"
+      "fr": "Emmanuel Macron élu président pour la première fois",
+      "pt": "Emmanuel Macron eleito presidente pela primeira vez"
     },
     "theme": "history",
     "year": 2017
@@ -2094,7 +2303,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "The Nintendo Switch is released",
-      "fr": "Sortie de la Nintendo Switch"
+      "fr": "Sortie de la Nintendo Switch",
+      "pt": "A Nintendo Switch é lançada"
     },
     "theme": "tech",
     "year": 2017
@@ -2104,7 +2314,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "France win their second football World Cup",
-      "fr": "La France gagne sa deuxième Coupe du monde"
+      "fr": "La France gagne sa deuxième Coupe du monde",
+      "pt": "A França vence o seu segundo Mundial de futebol"
     },
     "theme": "sport",
     "year": 2018
@@ -2114,7 +2325,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Notre-Dame de Paris catches fire",
-      "fr": "Incendie de Notre-Dame de Paris"
+      "fr": "Incendie de Notre-Dame de Paris",
+      "pt": "A catedral de Notre-Dame de Paris arde"
     },
     "theme": "history",
     "year": 2019
@@ -2124,7 +2336,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "First Covid-19 lockdowns",
-      "fr": "Premiers confinements contre le Covid-19"
+      "fr": "Premiers confinements contre le Covid-19",
+      "pt": "Primeiros confinamentos contra a covid-19"
     },
     "theme": "history",
     "year": 2020
@@ -2134,7 +2347,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "James Webb Space Telescope launched",
-      "fr": "Lancement du télescope James-Webb"
+      "fr": "Lancement du télescope James-Webb",
+      "pt": "Lançamento do Telescópio Espacial James Webb"
     },
     "theme": "science",
     "year": 2021
@@ -2144,7 +2358,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "ChatGPT is launched",
-      "fr": "Lancement de ChatGPT"
+      "fr": "Lancement de ChatGPT",
+      "pt": "O ChatGPT é lançado"
     },
     "theme": "tech",
     "year": 2022
@@ -2154,7 +2369,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Death of Queen Elizabeth II",
-      "fr": "Mort d'Elizabeth II"
+      "fr": "Mort d'Elizabeth II",
+      "pt": "Morte da rainha Isabel II"
     },
     "theme": "history",
     "year": 2022
@@ -2164,7 +2380,8 @@
     "knownToChildren": false,
     "labels": {
       "en": "Messi's Argentina win the World Cup",
-      "fr": "L'Argentine de Messi gagne la Coupe du monde"
+      "fr": "L'Argentine de Messi gagne la Coupe du monde",
+      "pt": "A Argentina de Messi vence o Mundial"
     },
     "theme": "sport",
     "year": 2022
@@ -2174,7 +2391,8 @@
     "knownToChildren": true,
     "labels": {
       "en": "Paris Olympics open on the Seine",
-      "fr": "Jeux olympiques de Paris, ouverts sur la Seine"
+      "fr": "Jeux olympiques de Paris, ouverts sur la Seine",
+      "pt": "Os Jogos Olímpicos de Paris abrem no Sena"
     },
     "theme": "sport",
     "year": 2024
