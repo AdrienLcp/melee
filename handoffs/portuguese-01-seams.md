@@ -78,3 +78,5 @@ user-visible string: it makes the third locale a compiler-guided job.
 
 `pnpm validate` is green, nothing on screen changed, the plan is committed,
 this file is deleted and its row struck from `handoffs/README.md`.
+
+<!-- cspell:words outdir portuguese -->

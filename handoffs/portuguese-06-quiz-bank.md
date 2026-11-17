@@ -34,3 +34,5 @@ and leave the rest in this file.
 The bank holds `pt` rows in every category, the question-bank tests pass on
 them, the credits name the source, `pnpm validate` is green, this file is
 deleted and its row struck from `handoffs/README.md`.
+
+<!-- cspell:words portuguese -->

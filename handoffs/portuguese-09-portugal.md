@@ -31,3 +31,5 @@ Atlas plans in `docs/plans/`.
 A Portuguese table plays Portuguese cities on its own map and Portuguese
 decades in the blind test, `pnpm validate` is green, staging shows it, this
 file is deleted and the series' rows struck from `handoffs/README.md`.
+
+<!-- cspell:words Nazaré Sintra portugal portuguese -->

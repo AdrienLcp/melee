@@ -27,3 +27,5 @@ especially session 01's decision on "the room's country", and
 Every row holds `pt`, figures are unchanged, a Portuguese table is dealt no
 France-only row and some Portugal rows, `pnpm validate` is green, this file
 is deleted and its row struck from `handoffs/README.md`.
+
+<!-- cspell:words Abril Clérigos Torre altura bica nata população portuguese -->

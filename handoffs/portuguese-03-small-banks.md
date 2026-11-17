@@ -34,3 +34,5 @@ Black square (04) and the quantities (05) are their own sessions.
 Every row of the six banks holds `pt`, the bank tests check it is non-empty
 (break one on purpose once), `pnpm validate` is green, this file is deleted
 and its row struck from `handoffs/README.md`.
+
+<!-- cspell:words Cidade Lisboa México portuguese quer tudo -->

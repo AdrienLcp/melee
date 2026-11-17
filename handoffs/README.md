@@ -28,3 +28,5 @@ Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the
 dev server the session started itself, and run `pnpm validate` only when no
 other session is running it.
+
+<!-- cspell:words portugal portuguese -->

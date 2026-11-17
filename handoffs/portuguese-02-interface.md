@@ -39,3 +39,5 @@ session 08, and a `DICTIONARIES` entry for a locale the union lacks fails its
 The files typecheck against the English shape, `pnpm validate` is green, this
 file is deleted and its row struck from `handoffs/README.md`. Nothing is seen
 in a browser yet — that is session 08's.
+
+<!-- cspell:words Estados Filipinas França Moçambique Unidos celular ecrã equipa pontuação portuguese tela telemóvel -->

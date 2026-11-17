@@ -32,3 +32,5 @@ reorder silently.
 Every theme holds `pt` everywhere it holds `fr`, the bank test checks it,
 `pnpm validate` is green, this file is deleted and its row struck from
 `handoffs/README.md`.
+
+<!-- cspell:words portuguese -->

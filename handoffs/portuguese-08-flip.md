@@ -32,3 +32,5 @@ Series: `handoffs/README.md`. Needs 02-07 landed. Read
 `pnpm validate` is green, the browser pass above is done, the push deploys
 staging (production only on Adrien's word), this file is deleted and its row
 struck from `handoffs/README.md`.
+
+<!-- cspell:words Português portuguese -->

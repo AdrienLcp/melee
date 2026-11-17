@@ -39,3 +39,5 @@ Series: `handoffs/README.md`. Read `docs/plans/72-portuguese.md` first, then
 `word-bank-pt.json` loads, a mystery word and a longest-word draw in `pt`
 work in core tests, matching tests pass, `pnpm validate` is green, this file
 is deleted and its row struck from `handoffs/README.md`.
+
+<!-- cspell:words Natura Ortográfico Português Projecto Vocabulário acção ação portuguese umas -->
