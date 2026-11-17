@@ -40,7 +40,9 @@ to eight letters; ENABLE 105 241 words of two to nine letters, 263 KB gzipped;
 SCOWL sizes 10 / 20 / 35 hold 2 459 / 3 816 / 15 332 words of five to eight
 letters. Both valid lists folded together are under 400 KB gzipped — measure the
 Worker with `wrangler deploy --dry-run` before and after, against the free
-plan's 3 MB compressed script cap.
+plan's 3 MB compressed script cap. Cloudflare lifted that cap on 2026-09-04:
+only the 64 MiB uncompressed size counts now, and the startup second
+(`28-cloudflare.md`).
 
 ## Rules, as settled
 

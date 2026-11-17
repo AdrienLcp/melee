@@ -87,6 +87,13 @@ the bank is not in it: it is the Worker's own first request. Revisit if the
 startup figure, which grows with the bank, nears the second, or if a cold
 creation starts failing with `exceeded CPU`.
 
+**Measured again on 2026-11-17**, with every bank bundled: 12 047 KiB uploaded
+(2 198 KiB gzipped), **119 ms of startup** on the staging deploy. The size that
+limits a Worker is the uncompressed bundle, 64 MiB on every plan since
+Cloudflare dropped the 3 MB compressed cap on 2026-09-04 — so the startup
+second is the one to watch, and the deploy log prints it
+(`Worker Startup Time`).
+
 ## Session A — the room engine, still on Node
 
 The refactor that carries the risk, done where every test already runs.

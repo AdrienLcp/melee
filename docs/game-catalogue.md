@@ -373,6 +373,16 @@ every entry of the line-up, and reads one back only while they agree. A room
 value beside the games' would need a precedence rule, and every precedence
 rule is one more thing a host cannot see from the setup.
 
+**The table's language and its country are the game's too, never the room's.**
+`language` sits on the four arms whose content is written in one language
+(quiz, mystery word, longest word, think alike); `homeCountry` on the three
+that deal a country's own content to that country's table (estimate, higher
+or lower, the blind test's decades). Both are seeded from the host's locale as
+the room opens and re-synced by `askedIn`, and no arm holds both, so no
+precedence rule exists to explain. Atlas holds neither: its place set names the
+country itself. The argument, measured on those three cases, is
+`docs/plans/72-portuguese.md`.
+
 **A country's tier is one list, and it is not the traffic.** Sixty days of
 French Wikipedia readers follow the news — a coup put Burkina Faso above
 Thailand, and Denmark's top entity is the constituent country nobody reads —
@@ -580,3 +590,5 @@ Adrien on 2026-10-31.
 - `docs/architecture.md` — how the pieces fit today
 - `docs/plans/` — the staged build of the blind test itself
 - `.claude/rules/realtime-protocol.md` — the guarantees any second game inherits
+
+<!-- cspell:words portuguese -->
