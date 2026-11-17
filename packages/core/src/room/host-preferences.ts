@@ -51,7 +51,7 @@ export const askedIn = ({
   preferences: HostPreferences
 }): HostPreferences => {
   const language = questionLanguageFor(locale)
-  const { mysteryword, quiz } = preferences.games
+  const { longestword, mysteryword, quiz, thinkalike } = preferences.games
   const games = { ...preferences.games }
 
   if (quiz?.game.kind === 'quiz') {
@@ -62,6 +62,20 @@ export const askedIn = ({
     games.mysteryword = {
       ...mysteryword,
       game: { ...mysteryword.game, language }
+    }
+  }
+
+  if (longestword?.game.kind === 'longestword') {
+    games.longestword = {
+      ...longestword,
+      game: { ...longestword.game, language }
+    }
+  }
+
+  if (thinkalike?.game.kind === 'thinkalike') {
+    games.thinkalike = {
+      ...thinkalike,
+      game: { ...thinkalike.game, language }
     }
   }
 

@@ -80,3 +80,9 @@ user-visible string: it makes the third locale a compiler-guided job.
 this file is deleted and its row struck from `handoffs/README.md`.
 
 <!-- cspell:words outdir portuguese -->
+
+## Progress (2026-11-17, session cut short by token quota)
+
+- [x] Step 3 `askedIn` — done: longest word and think alike now follow the
+      host's locale too (test in `host-preferences.test.ts`).
+- [ ] Steps 1, 2, 4, 5, 6 — not started. Resume at step 1.

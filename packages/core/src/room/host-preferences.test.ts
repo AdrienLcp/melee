@@ -170,6 +170,22 @@ describe('askedIn', () => {
 
     expect(remembered?.kind === 'mysteryword' && remembered.language).toBe('fr')
   })
+
+  it.each(['longestword', 'thinkalike'] as const)(
+    '[host-preferences] deals the remembered %s in the language the host reads',
+    (game) => {
+      const inEnglish = rememberSettings({
+        preferences: null,
+        settings: roomSettingsFor({ games: [game], locale: 'en' })
+      })
+      const asked = askedIn({ locale: 'fr', preferences: inEnglish })
+      const remembered = rememberedSetupFor({ game, preferences: asked })?.game
+
+      expect(
+        remembered && 'language' in remembered && remembered.language
+      ).toBe('fr')
+    }
+  )
 })
 
 describe('rememberedSetupFor', () => {
