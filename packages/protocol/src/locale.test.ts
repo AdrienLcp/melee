@@ -24,11 +24,11 @@ describe('localizedSchema', () => {
 
   it('[locale] drops a language not shipped yet', () => {
     expect(
-      namesSchema.parse({ de: 'Lissabon', en: 'Lisbon', fr: 'Lisbonne' })
-    ).toEqual({ en: 'Lisbon', fr: 'Lisbonne' })
+      namesSchema.parse({ en: 'London', fr: 'London', pt: 'London' })
+    ).toEqual({ en: 'London', fr: 'London' })
   })
 
   it('[locale] refuses a value missing a shipped language', () => {
-    expect(namesSchema.safeParse({ en: 'Lisbon' }).success).toBe(false)
+    expect(namesSchema.safeParse({ en: 'London' }).success).toBe(false)
   })
 })
