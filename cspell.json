@@ -28,7 +28,10 @@
     "apps/server/src/infrastructure/questions/city-bank.ts",
     "apps/server/src/infrastructure/questions/word-bank-*.json"
   ],
-  "import": ["@cspell/dict-fr-fr/cspell-ext.json"],
+  "import": [
+    "@cspell/dict-fr-fr/cspell-ext.json",
+    "@cspell/dict-pt-pt/cspell-ext.json"
+  ],
   "language": "en,en-GB",
   "overrides": [
     {
@@ -217,6 +220,39 @@
         "maisôn",
         "pongo"
       ]
+    },
+    {
+      "filename": [
+        "apps/game/src/presentation/i18n/dictionary-pt.ts",
+        "packages/core/src/countries/country-names-pt.ts",
+        "cspell.json"
+      ],
+      "language": "en,en-GB,pt-PT",
+      "words": [
+        "Anguila",
+        "Antígua",
+        "Butão",
+        "CLDR",
+        "Emirados",
+        "Faroé",
+        "Iémen",
+        "Jibuti",
+        "Micronésia",
+        "Miquelão",
+        "Recentrar",
+        "rébus",
+        "Turquemenistão",
+        "pontiaguda",
+        "recarregamento",
+        "wikitexto"
+      ]
+    },
+    {
+      "filename": [
+        "apps/game/src/presentation/head/document-head.ts",
+        "cspell.json"
+      ],
+      "language": "en,en-GB,fr,pt-PT"
     }
   ],
   "version": "0.2",

@@ -94,7 +94,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | #   | Handoff                         | What it lands                                                                 | State               |
 | --- | ------------------------------- | ----------------------------------------------------------------------------- | ------------------- |
 | 01  | `portuguese-01-seams.md`        | The seams, the measurements and this plan                                     | **done** 17/11/2026 |
-| 02  | `portuguese-02-interface.md`    | The interface dictionary in Portuguese                                        | to do               |
+| 02  | `portuguese-02-interface.md`    | The interface dictionary in Portuguese                                        | **done** 17/11/2026 |
 | 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | to do               |
 | 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | to do               |
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
@@ -115,4 +115,28 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
   the hidden browser pane, not the app.
 - `askedIn` re-syncs the `language` of longest word and think alike too.
 
-<!-- cspell:words portuguese portugal outdir Eusébio Haïti -->
+### 02 — what landed
+
+- `dictionary-pt.ts` (`PT_DICTIONARY`), typed now through
+  `MatchingDictionary<typeof EN_DICTIONARY, …>`: a missing key or a renamed
+  placeholder fails to compile though `pt` is not registered. Written by
+  eleven agents from one glossary (_tu_, _a mesa_, _a ronda_, _o anfitrião_,
+  _o ecrã da sala_, _a partida_ for the line-up), each batch re-read by
+  another. The game names: _Adivinha a música, Campainha, Casa negra,
+  Desafio, O número certo, Mais ou menos, Relógio interno, Palavra mais
+  longa, Conta certa, Fósforos, Quem de nós?, Palavra mistério, Stop, Reflexo,
+  A Ardósia, Tons, Pensa como a mesa, Linha do tempo_; Atlas and Quiz unchanged.
+- **`pt` plurals are Brazil's.** `@adrienlcp/i18n` hands the dictionary key
+  to `Intl.PluralRules`, and the CLDR rule for `pt` counts 0 as `one`
+  (`pt-PT` does not). Every inflecting count declares a `zero` reading as the
+  plural, which the library selects at 0 before asking `Intl`.
+- `COUNTRY_NAMES_PT` (236 countries, `withArticle` written by hand: _a
+  França, o Japão, os Estados Unidos_, none on _Portugal, Angola, Cuba_).
+- `PT_PAGE_HEADS` and `PT_IMAGE_ALT` in `document-head.ts`, beside the
+  records keyed by `Locale` that cannot hold them yet. `og-pt.png`, the legal
+  and credits links and `llms.txt` need `pt` registered, and moved to 08.
+- `@cspell/dict-pt-pt`, with a `pt-PT` override on the new files.
+- Petit bac's default excluded letters stand: K, W and Y are loan letters in
+  Portuguese too, and Q, X and Z start too few words for six categories.
+
+<!-- cspell:words CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo -->

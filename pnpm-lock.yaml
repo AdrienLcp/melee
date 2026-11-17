@@ -178,6 +178,9 @@ importers:
       '@cspell/dict-fr-fr':
         specifier: ^2.3.2
         version: 2.3.2
+      '@cspell/dict-pt-pt':
+        specifier: 3.0.8
+        version: 3.0.8
       '@lhci/cli':
         specifier: ^0.16.0
         version: 0.16.0(@types/node@26.6.6)(supports-color@10.2.2)
@@ -811,6 +814,9 @@ packages:
 
   '@cspell/dict-powershell@5.0.17':
     resolution: {integrity: sha512-khOoIdBgKRk2scnr7888pf70yJ1Tr3RGdnYcAN0MJ2vtaNRKoOTCFc13gXUkNDHwEyhMI1h9oz3KsT180F2amw==}
+
+  '@cspell/dict-pt-pt@3.0.8':
+    resolution: {integrity: sha512-0u391FzXGGw+FX6f/ohTKt9F2mii7fILyqzTpA5rnmx3wTY1Cl0Tcl1UdlnIgDUj/hxUhvJlauedn4R8y55Nvg==}
 
   '@cspell/dict-public-licenses@2.0.17':
     resolution: {integrity: sha512-Asdumgg3oZ4ki//b2a+beiVIsNZA5thim4t4v3lTDLY/6a8VAPmTjzC3Y2t0x7ywC/bzAhi1KW/fg8JlwHDgig==}
@@ -4168,6 +4174,8 @@ snapshots:
   '@cspell/dict-php@4.1.3': {}
 
   '@cspell/dict-powershell@5.0.17': {}
+
+  '@cspell/dict-pt-pt@3.0.8': {}
 
   '@cspell/dict-public-licenses@2.0.17': {}
 

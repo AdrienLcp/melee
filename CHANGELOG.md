@@ -916,6 +916,12 @@ one part.
 
 ### Internal
 
+- `[Game]` **The interface is written in European Portuguese**, not yet
+  offered: `dictionary-pt.ts` is held to the English shape by the compiler,
+  the map's country names and the page heads have their Portuguese, and the
+  spell check reads them in `pt-PT`. The language turns on once every
+  question bank speaks it (`docs/plans/72-portuguese.md`).
+
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
   included, not only the front door's, and catches two more ways of writing
