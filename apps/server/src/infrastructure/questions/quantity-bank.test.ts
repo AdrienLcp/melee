@@ -8,7 +8,9 @@ import {
 import { WIDE_PAIR_BAND } from '@melee/core/higherlower/pair-deal'
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
+import { FAMOUS_IN_PORTUGAL } from './famous-in-portugal'
 import { FAMOUS_QUANTITY_NAMES, isFamousQuantity } from './famous-quantities'
+import priceBank from './price-bank.json' with { type: 'json' }
 import {
   bankedPrices,
   bankedQuantities,
@@ -19,12 +21,18 @@ import {
   type QuantityRow,
   tierOfQuantity
 } from './quantity-bank'
+import bank from './quantity-bank.json' with { type: 'json' }
 
 /** Four evenings of twenty rounds, which a level dealt from one tier alone must last. */
 const TIER_FLOOR = 80
 
 /** France's thirteen metropolitan regions and its five overseas ones. */
 const FRENCH_REGIONS = 18
+
+const TABLES = ['FRA', 'PRT', null] as const
+
+const tierAtFrenchTable = (row: QuantityRow) =>
+  tierOfQuantity({ homeCountry: 'FRA', row })
 
 const bankedValueOf = (englishName: string) =>
   bankedQuantities().find(({ names }) => names.en === englishName)?.value
@@ -36,15 +44,75 @@ const bankedRow = ({
   bankedQuantities().find((row) => row.family === family && row.names.fr === fr)
 
 describe('the quantity bank', () => {
-  it('[difficulty] holds four evenings of rows in every tier', () => {
-    const thin = contentTiers.filter(
-      (tier) =>
-        bankedQuantities().filter((row) => tierOfQuantity(row) === tier)
-          .length < TIER_FLOOR
-    )
+  it.each(TABLES)(
+    '[difficulty] holds four evenings of rows in every tier at a table of %s',
+    (homeCountry) => {
+      const thin = contentTiers.filter(
+        (tier) =>
+          bankedQuantities().filter(
+            (row) =>
+              (row.homeCountry === null || row.homeCountry === homeCountry) &&
+              tierOfQuantity({ homeCountry, row }) === tier
+          ).length < TIER_FLOOR
+      )
 
-    expect(thin).toEqual([])
+      expect(thin).toEqual([])
+    }
+  )
+
+  it('[estimate] names every row and every price in Portuguese', () => {
+    const unnamed = [...bank, ...priceBank].filter((row) => {
+      const pt = new Map(Object.entries(row.names)).get('pt')
+
+      return pt === undefined || pt.trim() === ''
+    })
+
+    expect(unnamed).toEqual([])
   })
+
+  it('[estimate] keeps a place everyone knows for every table, wherever it lies', () => {
+    for (const [family, fr] of [
+      ['height.building', 'tour Eiffel'],
+      ['length.river', 'Seine'],
+      ['population.city', 'Paris'],
+      ['area.country', 'France']
+    ] as const) {
+      expect(bankedRow({ family, fr })?.homeCountry).toBeNull()
+    }
+
+    for (const [family, fr] of [
+      ['area.city', 'Paris'],
+      ['population.department', 'Creuse'],
+      ['area.region', 'Bretagne']
+    ] as const) {
+      expect(bankedRow({ family, fr })?.homeCountry).toBe('FRA')
+    }
+  })
+
+  it.each([
+    { homeCountry: 'PRT', own: 'PRT' },
+    { homeCountry: 'FRA', own: 'FRA' },
+    { homeCountry: null, own: null }
+  ] as const)(
+    "[estimate] deals a table of $homeCountry everyone's rows and its own, never another country's",
+    {
+      timeout: 15_000
+    },
+    ({ homeCountry, own }) => {
+      const homes = new Set(
+        Array.from({ length: 400 }, () =>
+          drawQuantity({
+            difficulty: 'mixed',
+            homeCountry,
+            playedIds: new Set(),
+            topics: QUANTITY_TOPICS
+          })
+        ).map((row) => row?.homeCountry)
+      )
+
+      expect(homes).toEqual(new Set(own === null ? [null] : [null, own]))
+    }
+  )
 
   it('[estimate] holds every family, and every region of France', () => {
     const empty = WIKIDATA_QUANTITY_FAMILIES.filter(
@@ -72,12 +140,15 @@ describe('the quantity bank', () => {
       ['length.river', 'Rhin'],
       ['population.city', 'Lyon']
     ] as const) {
-      expect(bankedRow({ family, fr })?.isInFrance).toBe(true)
+      expect(bankedRow({ family, fr })?.liesIn).toContain('FRA')
     }
 
-    expect(
-      bankedRow({ family: 'length.river', fr: 'Danube' })?.isInFrance
-    ).toBe(false)
+    expect(bankedRow({ family: 'length.river', fr: 'Danube' })?.liesIn).toEqual(
+      []
+    )
+    expect(bankedRow({ family: 'length.river', fr: 'Tage' })?.liesIn).toEqual([
+      'PRT'
+    ])
   })
 
   it('[estimate] holds one row per place in a family, and one per name', () => {
@@ -113,7 +184,12 @@ describe('the quantity bank', () => {
     const unbanked = WIKIDATA_QUANTITY_FAMILIES.flatMap((family) =>
       FAMOUS_QUANTITY_NAMES[family].filter(
         (fr) =>
-          !isFamousQuantity({ family, names: { fr } }) ||
+          !isFamousQuantity({
+            country: 'FRA',
+            entity: '',
+            family,
+            names: { fr }
+          }) ||
           !bankedQuantities().some(
             (row) => row.family === family && row.names.fr === fr
           )
@@ -123,26 +199,39 @@ describe('the quantity bank', () => {
     expect(unbanked).toEqual([])
   })
 
-  it('[difficulty] holds France on one side of every pair at easy, never a near tie', () => {
-    const playedIds = new Set<string>()
+  it('[higherlower] names no row famous in Portugal the bank does not hold', () => {
+    const banked = new Set(bankedQuantities().map(({ entity }) => entity))
 
-    for (let round = 0; round < 48; round++) {
-      for (const { left, right } of drawPairs({
-        difficulty: 'easy',
-        playedIds
-      }) ?? []) {
-        const ratio =
-          Math.max(left.value, right.value) / Math.min(left.value, right.value)
+    expect(
+      Object.keys(FAMOUS_IN_PORTUGAL).filter((entity) => !banked.has(entity))
+    ).toEqual([])
+  })
 
-        expect(left.isInFrance || right.isInFrance).toBe(true)
-        expect(ratio).toBeGreaterThanOrEqual(WIDE_PAIR_BAND.min)
-        expect(ratio).toBeLessThanOrEqual(WIDE_PAIR_BAND.max)
+  it.each(['FRA', 'PRT'] as const)(
+    '[difficulty] holds %s on one side of every pair at easy, never a near tie',
+    (homeCountry) => {
+      const playedIds = new Set<string>()
 
-        playedIds.add(playedPairedQuantityId(left))
-        playedIds.add(playedPairedQuantityId(right))
+      for (let round = 0; round < 48; round++) {
+        for (const { left, right } of drawPairs({
+          difficulty: 'easy',
+          homeCountry,
+          playedIds
+        }) ?? []) {
+          const ratio =
+            Math.max(left.value, right.value) /
+            Math.min(left.value, right.value)
+
+          expect([...left.liesIn, ...right.liesIn]).toContain(homeCountry)
+          expect(ratio).toBeGreaterThanOrEqual(WIDE_PAIR_BAND.min)
+          expect(ratio).toBeLessThanOrEqual(WIDE_PAIR_BAND.max)
+
+          playedIds.add(playedPairedQuantityId(left))
+          playedIds.add(playedPairedQuantityId(right))
+        }
       }
     }
-  })
+  )
 
   // Four standard deviations either side of a third, so the bounds hold on every run.
   it('[difficulty] asks a third of its estimates from the famous tier when mixed', {
@@ -152,36 +241,40 @@ describe('the quantity bank', () => {
     const famous = Array.from({ length: draws }, () =>
       drawQuantity({
         difficulty: 'mixed',
+        homeCountry: 'FRA',
         playedIds: new Set(),
         topics: QUANTITY_TOPICS
       })
-    ).filter((row) => row !== null && tierOfQuantity(row) === 'easy').length
+    ).filter((row) => row !== null && tierAtFrenchTable(row) === 'easy').length
 
     expect(famous / draws).toBeGreaterThan(0.25)
     expect(famous / draws).toBeLessThan(0.42)
   })
 
-  it('[difficulty] deals four evenings of famous pairs at easy without comparing a row twice', () => {
-    const playedIds = new Set<string>()
+  it.each(TABLES)(
+    '[difficulty] deals four evenings of famous pairs at easy without comparing a row twice at a table of %s',
+    (homeCountry) => {
+      const playedIds = new Set<string>()
 
-    for (let round = 0; round < 48; round++) {
-      const pairs = drawPairs({ difficulty: 'easy', playedIds })
+      for (let round = 0; round < 48; round++) {
+        const pairs = drawPairs({ difficulty: 'easy', homeCountry, playedIds })
 
-      expect(pairs).toHaveLength(1)
+        expect(pairs).toHaveLength(1)
 
-      for (const { left, right } of pairs ?? []) {
-        expect([tierOfQuantity(left), tierOfQuantity(right)]).toEqual([
-          'easy',
-          'easy'
-        ])
+        for (const { left, right } of pairs ?? []) {
+          expect([
+            tierOfQuantity({ homeCountry, row: left }),
+            tierOfQuantity({ homeCountry, row: right })
+          ]).toEqual(['easy', 'easy'])
 
-        for (const row of [left, right]) {
-          expect(playedIds.has(playedPairedQuantityId(row))).toBe(false)
-          playedIds.add(playedPairedQuantityId(row))
+          for (const row of [left, right]) {
+            expect(playedIds.has(playedPairedQuantityId(row))).toBe(false)
+            playedIds.add(playedPairedQuantityId(row))
+          }
         }
       }
     }
-  })
+  )
 
   // Four standard deviations either side of a fifth, so the bounds hold on every run.
   it('[estimate] asks a price in a fifth of the rounds of a room on every topic', {
@@ -191,6 +284,7 @@ describe('the quantity bank', () => {
     const prices = Array.from({ length: draws }, () =>
       drawQuantity({
         difficulty: 'mixed',
+        homeCountry: 'FRA',
         playedIds: new Set(),
         topics: QUANTITY_TOPICS
       })
@@ -203,21 +297,22 @@ describe('the quantity bank', () => {
   it('[estimate] asks only the topics the room ticked, and stops once they are spent', () => {
     const playedIds = new Set<string>()
     const dealt: string[] = []
-
-    for (
-      let row = drawQuantity({
+    const drawn = () =>
+      drawQuantity({
         difficulty: 'mixed',
+        homeCountry: 'FRA',
         playedIds,
         topics: ['price']
-      });
-      row !== null;
-      row = drawQuantity({ difficulty: 'mixed', playedIds, topics: ['price'] })
-    ) {
+      })
+
+    for (let row = drawn(); row !== null; row = drawn()) {
       dealt.push(row.family)
       playedIds.add(playedQuantityId(row))
     }
 
-    expect(dealt).toHaveLength(bankedPrices().length)
+    expect(dealt).toHaveLength(
+      bankedPrices().filter(({ homeCountry }) => homeCountry !== 'PRT').length
+    )
     expect(new Set(dealt)).toEqual(new Set(['price.item']))
   })
 
@@ -227,10 +322,16 @@ describe('the quantity bank', () => {
     expect(Math.min(...values)).toBeLessThanOrEqual(2)
     expect(Math.max(...values)).toBeGreaterThanOrEqual(1e9)
 
-    for (const tier of contentTiers) {
-      expect(
-        bankedPrices().filter((row) => tierOfQuantity(row) === tier).length
-      ).toBeGreaterThanOrEqual(8)
+    for (const homeCountry of TABLES) {
+      for (const tier of contentTiers) {
+        expect(
+          bankedPrices().filter(
+            (row) =>
+              (row.homeCountry === null || row.homeCountry === homeCountry) &&
+              tierOfQuantity({ homeCountry, row }) === tier
+          ).length
+        ).toBeGreaterThanOrEqual(8)
+      }
     }
   })
 
@@ -252,6 +353,7 @@ describe('the quantity bank', () => {
     for (let round = 0; round < 24; round++) {
       for (const { left, right } of drawPairs({
         difficulty: 'mixed',
+        homeCountry: 'FRA',
         playedIds
       }) ?? []) {
         expect([left.family, right.family]).not.toContain('price.item')

@@ -82,7 +82,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - **Atlas holds none.** `frenchCities` and `portugueseCities` name the country
   themselves; only the ready-made evenings pick a set, from the locale they are
   built in (session 09).
-- **The banks follow.** `isInFrance` becomes `homeCountry: CountryCode | null`
+- **The banks follow** (corrected by 05, below: by source, not by place). `isInFrance` becomes `homeCountry: CountryCode | null`
   per row — the country whose table it belongs to, `null` for an international
   row. A table deals the international rows and its own country's; a `null`
   table deals the international ones alone, which stops an English table
@@ -97,7 +97,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 02  | `portuguese-02-interface.md`    | The interface dictionary in Portuguese                                        | **done** 17/11/2026 |
 | 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | **done** 17/11/2026 |
 | 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | **done** 18/11/2026 |
-| 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
+| 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | **done** 18/11/2026 |
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | **done** 18/11/2026 |
 | 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
 | 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | to do               |
@@ -235,6 +235,40 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - The bank goes from 6.7 to 8.5 MB uncompressed, under the budget measured
   above.
 
+### 05 — what landed
+
+- **`homeCountry` on the blind test, estimate and higher or lower arms**,
+  defaulted to `null`, seeded by `homeCountryFor(locale)`
+  (`core/room/home-country.ts`, `fr` → `FRA`, `en` → `null`) in
+  `openedGameSettings` and re-synced by `askedIn`. 08 adds `pt: 'PRT'`; the
+  blind test reads it in 09.
+- **The decision above was corrected on one point: a row's `homeCountry` is
+  set by the source that measured it, not by where it lies.** Read off
+  `isInFrance`, it would have taken the Eiffel Tower, the Seine and Paris
+  away from every table but France's. A row is a country's when only that
+  country's own sources measure it — French towns, departments and regions,
+  Portugal's municipalities of 20 000, its rivers and summits under the
+  world's sitelink floor, thirteen landmarks by hand — and a source of the
+  world's wins over a country's (Paris is everyone's). Where a row lies is
+  `liesIn`, which only `easy` higher or lower reads, preferring a side from
+  the table's country.
+- **Tiers are per country**: `wellKnownIn` from each table's Wikipedia
+  traffic (`wikipediaViewsOf`, `frwiki-notability.ts`, French and
+  Portuguese, the same 2 000 views), and a famous list per country —
+  France's by French name, Portugal's by entity (`famous-in-portugal.ts`).
+  A table with no country plays on France's tiers.
+- **273 Portuguese rows, 58 Portuguese prices.** Figures unchanged: the
+  build re-fetched its queries, so the 4 993 existing rows were merged back
+  with their values and en/fr names as they were, `pt` and `homeCountry`
+  added. 1 723 Wikidata `pt` labels rewritten by twelve writers and a second
+  reader — Brazilian spellings (_Moscou_, _Teerã_), English labels, rivers
+  bare (_Tejo_, _Danúbio_) — and the prices re-read with eight figures
+  re-checked. The France-flagged prices that hold across the euro (auction
+  records, console launches) are everyone's now, so a table with no
+  country keeps every tier stocked.
+- Wikidata holds few heights for Portugal: the Torre dos Clérigos' 75 m sits
+  on a heritage duplicate with no article, so it is not in the bank.
+
 ### 07 — what landed
 
 - `word-bank-pt.json`: **143 310 forms**, 5 154 hidden words (easy / medium /
@@ -266,4 +300,4 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - Keyboard: `KEY_ROWS` is held to `QuestionLanguage`, so `pt` takes QWERTY
   at the flip (noted in 08's handoff).
 
-<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa -->
+<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa Danúbio Tejo Torre Clérigos Moscou Teerã Padrão Descobrimentos -->

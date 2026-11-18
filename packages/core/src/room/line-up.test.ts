@@ -290,6 +290,7 @@ describe('withEntrySource', () => {
 
     expect(saved.game).toEqual({
       ...DEFAULT_BLINDTEST_SETTINGS,
+      homeCountry: 'FRA',
       source: EIGHTIES
     })
     expect(saved.lineUp[0]).toEqual(saved.game)
@@ -302,6 +303,7 @@ describe('withEntrySource', () => {
 
     expect(saved.lineUp[1]).toEqual({
       ...DEFAULT_BLINDTEST_SETTINGS,
+      homeCountry: 'FRA',
       source: EIGHTIES
     })
     expect(saved.game).toEqual(onTheCharts.game)

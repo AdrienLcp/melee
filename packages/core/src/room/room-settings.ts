@@ -17,6 +17,7 @@ import { randomUnit } from '../helpers/random'
 import { questionLanguageFor } from '../quiz/question-language'
 import { isPlayableWithTeams } from './game-capabilities'
 import { modeOfferedBy } from './game-modes'
+import { homeCountryFor } from './home-country'
 import { dealtOrder } from './running-order'
 
 /**
@@ -258,7 +259,8 @@ export const openedSetup = ({
  * question drawn in a language the host does not read is the wrong game, and the
  * protocol's default has no way of knowing which that is — so a game that draws
  * from a bank in either language, the quiz's questions, the word games'
- * dictionary or think alike's prompts, takes the host's.
+ * dictionary or think alike's prompts, takes the host's. A game that deals a
+ * country's own content beside everyone's takes the host's country the same way.
  */
 const openedGameSettings = ({
   game,
@@ -269,12 +271,19 @@ const openedGameSettings = ({
 }): GameSettings => {
   const opened = DEFAULT_GAME_SETTINGS[game]
 
-  return opened.kind === 'quiz' ||
-    opened.kind === 'mysteryword' ||
-    opened.kind === 'longestword' ||
-    opened.kind === 'thinkalike'
-    ? { ...opened, language: questionLanguageFor(locale) }
-    : opened
+  switch (opened.kind) {
+    case 'quiz':
+    case 'mysteryword':
+    case 'longestword':
+    case 'thinkalike':
+      return { ...opened, language: questionLanguageFor(locale) }
+    case 'blindtest':
+    case 'estimate':
+    case 'higherlower':
+      return { ...opened, homeCountry: homeCountryFor(locale) }
+    default:
+      return opened
+  }
 }
 
 /**

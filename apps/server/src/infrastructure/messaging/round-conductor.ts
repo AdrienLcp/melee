@@ -729,6 +729,7 @@ export const beginRound = async (
       fromDeck ??
       drawQuantity({
         difficulty: game.difficulty,
+        homeCountry: game.homeCountry,
         playedIds: room.playedContentIds,
         topics: game.topics
       })
@@ -775,6 +776,7 @@ export const beginRound = async (
       fromDeck === null
         ? drawPairs({
             difficulty: game.difficulty,
+            homeCountry: game.homeCountry,
             playedIds: room.playedContentIds
           })
         : null

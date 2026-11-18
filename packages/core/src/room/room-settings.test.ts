@@ -80,6 +80,25 @@ describe('roomSettingsFor', () => {
     }
   )
 
+  it.each(['blindtest', 'estimate', 'higherlower'] as const)(
+    '[room-settings] sits %s at the table of the host’s country',
+    (game) => {
+      const inEnglish = roomSettingsFor({ games: [game], locale: 'en' })
+      const inFrench = roomSettingsFor({ games: [game], locale: 'fr' })
+
+      expect(
+        inEnglish.game && 'homeCountry' in inEnglish.game
+          ? inEnglish.game.homeCountry
+          : undefined
+      ).toBeNull()
+      expect(
+        inFrench.game && 'homeCountry' in inFrench.game
+          ? inFrench.game.homeCountry
+          : undefined
+      ).toBe('FRA')
+    }
+  )
+
   it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {
     const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
 

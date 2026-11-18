@@ -43,9 +43,11 @@ const RIGHT: HigherLowerPicks = ['left']
 const sideRow = (name: string, value: number) => ({
   entity: name,
   family: 'length.river' as const,
-  isWellKnown: true,
+  homeCountry: null,
+  liesIn: [],
   names: { en: name, fr: name },
-  value
+  value,
+  wellKnownIn: []
 })
 
 vi.mock('@/infrastructure/questions/quantity-bank', async (importOriginal) => ({

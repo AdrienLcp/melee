@@ -5,6 +5,7 @@ import {
   BLACK_SQUARE_DEFAULT_ANSWER_COUNT,
   blackSquareAnswerCountSchema
 } from './black-square'
+import { countryCodeSchema } from './country-code'
 import { difficultySchema } from './difficulty'
 import { QUANTITY_TOPICS, quantityTopicSetSchema } from './estimate'
 import { matchsticksGoalSchema } from './matchsticks'
@@ -103,9 +104,18 @@ export const shelvedGameSchema = z.enum(shelvedGames)
  * are enough to see the shape and not enough to abstract it, and
  * `docs/game-catalogue.md` holds the argument in full.
  */
+const homeCountrySchema = countryCodeSchema.nullable().default(null)
+
 export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({
     difficulty: trackDifficultySchema,
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own content is dealt beside everyone's, and `null` deals
+     * everyone's alone. Defaulted so a setup remembered before it existed
+     * still parses.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('blindtest'),
     /** A Deezer preview is 30 seconds, so this ceiling is a hard limit, not a taste call. */
     roundDurationMs: z.number().int().min(5_000).max(30_000),
@@ -253,6 +263,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({
     /** Defaulted so a setup remembered before the level existed still parses. */
     difficulty: difficultySchema.default('mixed'),
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own content is dealt beside everyone's, and `null` deals
+     * everyone's alone. Defaulted so a setup remembered before it existed
+     * still parses.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('estimate'),
     /** How long the field stays open; it closes early once every seat has sent. */
     roundDurationMs: z.number().int().min(15_000).max(60_000),
@@ -262,6 +279,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({
     /** Defaulted so a setup remembered before the level existed still parses. */
     difficulty: difficultySchema.default('mixed'),
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own content is dealt beside everyone's, and `null` deals
+     * everyone's alone. Defaulted so a setup remembered before it existed
+     * still parses.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('higherlower'),
     /** How long the pair stays open; the round closes early once every seat has picked. */
     roundDurationMs: z.number().int().min(5_000).max(30_000)
@@ -367,6 +391,7 @@ export const locksOutOnMissIn = (game: GameSettings | null): boolean =>
  */
 export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
   difficulty: 'easy',
+  homeCountry: null,
   kind: 'blindtest',
   roundDurationMs: 20_000,
   source: EVERY_STRAND
@@ -456,6 +481,7 @@ export const DEFAULT_MOST_LIKELY_SETTINGS: MostLikelySettings = {
 /** Thirty seconds: long enough to weigh a number, short enough that nobody looks it up. */
 export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
   difficulty: 'mixed',
+  homeCountry: null,
   kind: 'estimate',
   roundDurationMs: 30_000,
   topics: [...QUANTITY_TOPICS]
@@ -464,6 +490,7 @@ export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
 /** Ten seconds: enough to weigh two names, too short to look one up. */
 export const DEFAULT_HIGHER_LOWER_SETTINGS: HigherLowerSettings = {
   difficulty: 'mixed',
+  homeCountry: null,
   kind: 'higherlower',
   roundDurationMs: 10_000
 }

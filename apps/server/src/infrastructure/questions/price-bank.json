@@ -1,10 +1,11 @@
 [
   {
     "entity": "edf-kwh-base",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One kWh of electricity on EDF’s regulated base tariff (February 2025)",
-      "fr": "Un kWh d’électricité au tarif bleu EDF, option base (février 2025)"
+      "fr": "Un kWh d’électricité au tarif bleu EDF, option base (février 2025)",
+      "pt": "Um kWh de eletricidade na tarifa regulada base da EDF (fevereiro de 2025)"
     },
     "source": "Regulated tariff of 1 February 2025, reported by Hello Watt, Kelwatt and Selectra",
     "tier": "hard",
@@ -12,10 +13,11 @@
   },
   {
     "entity": "icloud-50gb-month",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of iCloud+ 50 GB storage in France (2026)",
-      "fr": "Un mois de stockage iCloud+ de 50 Go (2026)"
+      "fr": "Un mois de stockage iCloud+ de 50 Go (2026)",
+      "pt": "Um mês de armazenamento iCloud+ de 50 GB em França (2026)"
     },
     "source": "Apple France, iCloud page, 50 GB plan at 0.99 euros a month, November 2026",
     "tier": "easy",
@@ -23,10 +25,11 @@
   },
   {
     "entity": "medicine-deductible",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French deductible on a reimbursed box of medicine (2024)",
-      "fr": "La franchise sur une boîte de médicaments remboursée (2024)"
+      "fr": "La franchise sur une boîte de médicaments remboursée (2024)",
+      "pt": "A franquia francesa sobre uma caixa de medicamentos comparticipada (2024)"
     },
     "source": "Decree 2024-114, doubled to 1 euro on 31 March 2024",
     "tier": "hard",
@@ -34,10 +37,11 @@
   },
   {
     "entity": "bakery-baguette",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A classic baguette from a French bakery (average price, early 2025)",
-      "fr": "Une baguette classique en boulangerie (prix moyen, début 2025)"
+      "fr": "Une baguette classique en boulangerie (prix moyen, début 2025)",
+      "pt": "Uma baguete clássica numa padaria francesa (preço médio, início de 2025)"
     },
     "source": "UFC-Que Choisir, national survey of bakeries, 15 February to 1 March 2025",
     "tier": "easy",
@@ -45,10 +49,11 @@
   },
   {
     "entity": "stamp-green-letter",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A French green-letter stamp (2025)",
-      "fr": "Un timbre lettre verte (2025)"
+      "fr": "Un timbre lettre verte (2025)",
+      "pt": "Um selo francês de carta «lettre verte» (2025)"
     },
     "source": "La Poste rates from 1 January 2025",
     "tier": "easy",
@@ -56,10 +61,11 @@
   },
   {
     "entity": "trevi-fountain-ticket",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "The ticket a visitor pays to get close to the Trevi Fountain in Rome (2026)",
-      "fr": "Le ticket pour approcher la fontaine de Trevi à Rome (2026)"
+      "fr": "Le ticket pour approcher la fontaine de Trevi à Rome (2026)",
+      "pt": "O bilhete para chegar perto da Fontana di Trevi, em Roma (2026)"
     },
     "source": "City of Rome fee for non-residents in force from 1 February 2026, 2 euros (Reuters and NPR, 2 February 2026; Le Routard)",
     "tier": "easy",
@@ -67,10 +73,11 @@
   },
   {
     "entity": "diesel-record-2022",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A litre of diesel at the March 2022 peak (national average)",
-      "fr": "Un litre de gazole au pic de mars 2022 (moyenne nationale)"
+      "fr": "Un litre de gazole au pic de mars 2022 (moyenne nationale)",
+      "pt": "Um litro de gasóleo no pico de março de 2022 (média nacional em França)"
     },
     "source": "Ministry of Ecological Transition weekly average, 2.1407 euros on 11 March 2022, per AFP",
     "tier": "medium",
@@ -78,10 +85,11 @@
   },
   {
     "entity": "doliprane-box",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A box of 8 Doliprane 1000 mg tablets, reimbursable price (2026)",
-      "fr": "Une boîte de 8 comprimés de Doliprane 1000 mg, prix remboursable (2026)"
+      "fr": "Une boîte de 8 comprimés de Doliprane 1000 mg, prix remboursable (2026)",
+      "pt": "Uma caixa de 8 comprimidos de Doliprane 1000 mg, preço comparticipável em França (2026)"
     },
     "source": "Base de données publique des médicaments, price on prescription, cited by Selectra, October 2026",
     "tier": "easy",
@@ -89,10 +97,11 @@
   },
   {
     "entity": "loto-grid",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One French Loto grid (2024)",
-      "fr": "Une grille simple de Loto (2024)"
+      "fr": "Une grille simple de Loto (2024)",
+      "pt": "Uma aposta simples no Loto francês (2024)"
     },
     "source": "FDJ, price since the 2019 reform",
     "tier": "easy",
@@ -100,10 +109,11 @@
   },
   {
     "entity": "euromillions-grid",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One EuroMillions grid in France (2024)",
-      "fr": "Une grille d’EuroMillions en France (2024)"
+      "fr": "Une grille d’EuroMillions en France (2024)",
+      "pt": "Uma aposta no Euromilhões em França (2024)"
     },
     "source": "FDJ, French price since 2016",
     "tier": "medium",
@@ -111,10 +121,11 @@
   },
   {
     "entity": "paris-metro-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A single Paris metro ticket (2025)",
-      "fr": "Un ticket de métro parisien à l’unité (2025)"
+      "fr": "Un ticket de métro parisien à l’unité (2025)",
+      "pt": "Um bilhete simples de metro de Paris (2025)"
     },
     "source": "Île-de-France Mobilités, Metro-Train-RER ticket from 1 January 2025",
     "tier": "easy",
@@ -122,10 +133,11 @@
   },
   {
     "entity": "crous-meal-non-scholarship",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Crous university canteen meal for a student without a grant (2024-2025)",
-      "fr": "Un repas au Crous pour un étudiant non boursier (2024-2025)"
+      "fr": "Un repas au Crous pour un étudiant non boursier (2024-2025)",
+      "pt": "Uma refeição na cantina universitária do Crous para um estudante não bolseiro (2024-2025)"
     },
     "source": "service-public.gouv.fr news A16017, Crous 'social' rate of 3.30 euros, unchanged for 2025-2026",
     "tier": "easy",
@@ -133,10 +145,11 @@
   },
   {
     "entity": "pedestrian-fine",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The fine for a pedestrian crossing the road away from the zebra crossing",
-      "fr": "L’amende d’un piéton qui traverse hors du passage piéton"
+      "fr": "L’amende d’un piéton qui traverse hors du passage piéton",
+      "pt": "A multa em França para um peão que atravessa fora da passadeira"
     },
     "source": "Code de procédure pénale, article R49: 4 euros for highway-code contraventions by pedestrians",
     "tier": "hard",
@@ -144,10 +157,11 @@
   },
   {
     "entity": "fdj-cash-scratchcard",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An FDJ ’Cash’ scratch card (2026)",
-      "fr": "Un ticket à gratter Cash de la FDJ (2026)"
+      "fr": "Un ticket à gratter Cash de la FDJ (2026)",
+      "pt": "Uma raspadinha Cash da Française des Jeux (2026)"
     },
     "source": "FDJ official game page, Cash ticket at 5 euros, top prize up to 500,000 euros, November 2026",
     "tier": "easy",
@@ -155,10 +169,11 @@
   },
   {
     "entity": "amazon-prime-month",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of Amazon Prime in France (2024)",
-      "fr": "Un mois d’Amazon Prime en France (2024)"
+      "fr": "Un mois d’Amazon Prime en France (2024)",
+      "pt": "Um mês de Amazon Prime em França (2024)"
     },
     "source": "Amazon.fr, monthly price since September 2022",
     "tier": "medium",
@@ -166,10 +181,11 @@
   },
   {
     "entity": "lrar-letter",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A 20 g registered letter with proof of delivery (2026)",
-      "fr": "Une lettre recommandée de 20 g avec avis de réception (2026)"
+      "fr": "Une lettre recommandée de 20 g avec avis de réception (2026)",
+      "pt": "Uma carta registada de 20 g com aviso de receção em França (2026)"
     },
     "source": "La Poste rates from 1 January 2026: R1 20 g 6.11 euros plus 1.45 euros receipt",
     "tier": "medium",
@@ -177,10 +193,11 @@
   },
   {
     "entity": "ouigo-child-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Ouigo high-speed train ticket for a child under 12 (2026)",
-      "fr": "Un billet enfant de moins de 12 ans en TGV Ouigo (2026)"
+      "fr": "Un billet enfant de moins de 12 ans en TGV Ouigo (2026)",
+      "pt": "Um bilhete de criança com menos de 12 anos no TGV Ouigo (2026)"
     },
     "source": "OUIGO official site, families page: fixed fare of 8 euros per trip on OUIGO Grande Vitesse for ages 4 to 11, November 2026",
     "tier": "easy",
@@ -188,10 +205,11 @@
   },
   {
     "entity": "velib-vmax",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One month of the Vélib’ V-Max subscription in Paris (2025)",
-      "fr": "Un mois d’abonnement Vélib’ V-Max (2025)"
+      "fr": "Un mois d’abonnement Vélib’ V-Max (2025)",
+      "pt": "Um mês de assinatura Vélib’ V-Max em Paris (2025)"
     },
     "source": "Vélib’ Métropole price grid of 12 August 2025, reported by Cleanrider",
     "tier": "hard",
@@ -199,10 +217,11 @@
   },
   {
     "entity": "apple-tv-month",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of Apple TV (formerly Apple TV+) in France (2026)",
-      "fr": "Un mois d’abonnement à Apple TV, ex-Apple TV+, en France (2026)"
+      "fr": "Un mois d’abonnement à Apple TV, ex-Apple TV+, en France (2026)",
+      "pt": "Um mês de assinatura da Apple TV, ex-Apple TV+, em França (2026)"
     },
     "source": "Apple France, Apple TV page, 9.99 euros a month after the free trial, November 2026",
     "tier": "easy",
@@ -210,10 +229,11 @@
   },
   {
     "entity": "goncourt-cheque",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The cheque handed to the winner of the Prix Goncourt",
-      "fr": "Le chèque remis au lauréat du prix Goncourt"
+      "fr": "Le chèque remis au lauréat du prix Goncourt",
+      "pt": "O cheque entregue ao vencedor do prémio Goncourt"
     },
     "source": "Académie Goncourt, symbolic cheque since the euro, reported by Sud Radio and Sortir à Paris, 2025-2026",
     "tier": "medium",
@@ -221,10 +241,11 @@
   },
   {
     "entity": "cinema-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A standard-price cinema ticket in France (average, September 2025)",
-      "fr": "Une place de cinéma au tarif standard (prix moyen, septembre 2025)"
+      "fr": "Une place de cinéma au tarif standard (prix moyen, septembre 2025)",
+      "pt": "Um bilhete de cinema a preço normal em França (preço médio, setembro de 2025)"
     },
     "source": "UFC-Que Choisir Observatoire de la consommation, survey of 911 cinemas, 13-27 September 2025, published March 2026",
     "tier": "easy",
@@ -232,10 +253,11 @@
   },
   {
     "entity": "smic-hourly",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One hour at the French minimum wage, gross (1 January 2026)",
-      "fr": "Une heure payée au SMIC, brut (1er janvier 2026)"
+      "fr": "Une heure payée au SMIC, brut (1er janvier 2026)",
+      "pt": "Uma hora paga ao salário mínimo francês, em bruto (1 de janeiro de 2026)"
     },
     "source": "Government (info.gouv.fr), SMIC revaluation of 1 January 2026",
     "tier": "easy",
@@ -243,10 +265,11 @@
   },
   {
     "entity": "spotify-premium",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One month of Spotify Premium Individual in France (2025)",
-      "fr": "Un mois de Spotify Premium Individuel en France (2025)"
+      "fr": "Un mois de Spotify Premium Individuel en France (2025)",
+      "pt": "Um mês de Spotify Premium Individual em França (2025)"
     },
     "source": "Spotify France price rise of June-July 2025, reported by iPhoneSoft and Fnac L’Éclaireur",
     "tier": "easy",
@@ -254,10 +277,11 @@
   },
   {
     "entity": "marlboro-pack",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A pack of 20 Marlboro Red in France (January 2024)",
-      "fr": "Un paquet de 20 Marlboro Red (janvier 2024)"
+      "fr": "Un paquet de 20 Marlboro Red (janvier 2024)",
+      "pt": "Um maço de 20 Marlboro Red em França (janeiro de 2024)"
     },
     "source": "Tobacco price order of 1 January 2024, up from 11.50",
     "tier": "easy",
@@ -265,10 +289,11 @@
   },
   {
     "entity": "airport-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Paris metro or RER ticket to the airports (2025)",
-      "fr": "Un billet de métro ou de RER pour les aéroports de Paris (2025)"
+      "fr": "Un billet de métro ou de RER pour les aéroports de Paris (2025)",
+      "pt": "Um bilhete de metro ou de RER para os aeroportos de Paris (2025)"
     },
     "source": "Île-de-France Mobilités, airport ticket from 20 January 2025",
     "tier": "medium",
@@ -276,10 +301,11 @@
   },
   {
     "entity": "mont-saint-michel-abbey",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Admission to the Mont-Saint-Michel abbey, full price (2026)",
-      "fr": "Une entrée à l’abbaye du Mont-Saint-Michel, plein tarif (2026)"
+      "fr": "Une entrée à l’abbaye du Mont-Saint-Michel, plein tarif (2026)",
+      "pt": "Uma entrada na abadia do Monte Saint-Michel, tarifa normal (2026)"
     },
     "source": "Abbaye du Mont-Saint-Michel (Centre des monuments nationaux), official site, November 2026",
     "tier": "medium",
@@ -287,10 +313,11 @@
   },
   {
     "entity": "pantheon-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A ticket to the Panthéon in Paris, full price (2026)",
-      "fr": "Une entrée au Panthéon à Paris, plein tarif (2026)"
+      "fr": "Une entrée au Panthéon à Paris, plein tarif (2026)",
+      "pt": "Uma entrada no Panteão de Paris, tarifa normal (2026)"
     },
     "source": "Centre des monuments nationaux, official Panthéon site, ticket at 13 euros, November 2026",
     "tier": "medium",
@@ -298,10 +325,11 @@
   },
   {
     "entity": "netflix-standard",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of ad-free Netflix Standard in France (2024)",
-      "fr": "Un mois de Netflix Standard sans pub en France (2024)"
+      "fr": "Un mois de Netflix Standard sans pub en France (2024)",
+      "pt": "Um mês de Netflix Standard sem anúncios em França (2024)"
     },
     "source": "Netflix France price list, 2024",
     "tier": "easy",
@@ -309,10 +337,11 @@
   },
   {
     "entity": "ligue1-plus",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One month of Ligue 1+ on a one-year commitment, at launch (2025)",
-      "fr": "Un mois de Ligue 1+ avec engagement d’un an, à son lancement (2025)"
+      "fr": "Un mois de Ligue 1+ avec engagement d’un an, à son lancement (2025)",
+      "pt": "Um mês de Ligue 1+ com fidelização de um ano, no lançamento (2025)"
     },
     "source": "LFP Media, Ligue 1+ launch on 15 August 2025, reported by Selectra and Mac4Ever",
     "tier": "medium",
@@ -320,10 +349,11 @@
   },
   {
     "entity": "disney-plus-premium",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One month of Disney+ Premium in France (late 2025)",
-      "fr": "Un mois de Disney+ Premium en France (fin 2025)"
+      "fr": "Un mois de Disney+ Premium en France (fin 2025)",
+      "pt": "Um mês de Disney+ Premium em França (final de 2025)"
     },
     "source": "Disney+ France price rise of 2 October 2025, reported by KultureGeek and Fnac L’Éclaireur",
     "tier": "easy",
@@ -331,10 +361,11 @@
   },
   {
     "entity": "orsay-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Musée d’Orsay ticket bought online, full price (2026)",
-      "fr": "Une entrée au musée d’Orsay achetée en ligne, plein tarif (2026)"
+      "fr": "Une entrée au musée d’Orsay achetée en ligne, plein tarif (2026)",
+      "pt": "Uma entrada no Museu de Orsay comprada online, tarifa normal (2026)"
     },
     "source": "Musée d’Orsay official ticketing page, 2026 (14 euros at the desk)",
     "tier": "medium",
@@ -342,10 +373,11 @@
   },
   {
     "entity": "paris-suv-parking",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One hour of SUV street parking in central Paris (2024)",
-      "fr": "Une heure de stationnement d’un SUV dans le centre de Paris (2024)"
+      "fr": "Une heure de stationnement d’un SUV dans le centre de Paris (2024)",
+      "pt": "Uma hora de estacionamento de um SUV no centro de Paris (2024)"
     },
     "source": "Ville de Paris, visitor rate for heavy vehicles from 1 October 2024",
     "tier": "medium",
@@ -353,10 +385,11 @@
   },
   {
     "entity": "apple-20w-charger",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Apple’s 20 W USB-C power adapter in France (2026)",
-      "fr": "L’adaptateur secteur USB-C 20 W d’Apple (2026)"
+      "fr": "L’adaptateur secteur USB-C 20 W d’Apple (2026)",
+      "pt": "O adaptador de corrente USB-C de 20 W da Apple em França (2026)"
     },
     "source": "Apple Store France product page, 20 W USB-C power adapter at 19.00 euros, November 2026",
     "tier": "easy",
@@ -364,10 +397,11 @@
   },
   {
     "entity": "free-mobile-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of Free Mobile’s unlimited plan at its launch (2012)",
-      "fr": "Un mois du forfait illimité de Free Mobile à son lancement (2012)"
+      "fr": "Un mois du forfait illimité de Free Mobile à son lancement (2012)",
+      "pt": "Um mês do tarifário ilimitado da francesa Free Mobile no lançamento (2012)"
     },
     "source": "Free Mobile launch, 10 January 2012",
     "tier": "medium",
@@ -375,10 +409,11 @@
   },
   {
     "entity": "bateaux-mouches-cruise",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An adult Bateaux-Mouches Seine cruise in Paris, at the ticket office (2026)",
-      "fr": "Une croisière Bateaux-Mouches sur la Seine, adulte, au guichet (2026)"
+      "fr": "Une croisière Bateaux-Mouches sur la Seine, adulte, au guichet (2026)",
+      "pt": "Um cruzeiro Bateaux-Mouches no Sena, adulto, na bilheteira (2026)"
     },
     "source": "Bateaux-Mouches official booking page, adult cruise 20 euros (17 euros with the web discount), November 2026",
     "tier": "medium",
@@ -386,10 +421,11 @@
   },
   {
     "entity": "louvre-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Full-price entry to the Louvre (2024)",
-      "fr": "Une entrée au Louvre, plein tarif (2024)"
+      "fr": "Une entrée au Louvre, plein tarif (2024)",
+      "pt": "Uma entrada no Louvre, tarifa normal (2024)"
     },
     "source": "Musée du Louvre, price from 15 January 2024",
     "tier": "easy",
@@ -397,10 +433,11 @@
   },
   {
     "entity": "paris-zoo-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An adult ticket to the Paris Zoological Park, full price (2026)",
-      "fr": "Une entrée adulte au Parc zoologique de Paris, plein tarif (2026)"
+      "fr": "Une entrée adulte au Parc zoologique de Paris, plein tarif (2026)",
+      "pt": "Uma entrada de adulto no Parque Zoológico de Paris, tarifa normal (2026)"
     },
     "source": "Parc zoologique de Paris official tariffs page, full price from age 13 at 22 euros, November 2026",
     "tier": "easy",
@@ -408,10 +445,11 @@
   },
   {
     "entity": "hospital-daily-charge",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The daily hospital charge in France (March 2026)",
-      "fr": "Le forfait hospitalier pour une journée à l’hôpital (mars 2026)"
+      "fr": "Le forfait hospitalier pour une journée à l’hôpital (mars 2026)",
+      "pt": "A taxa fixa por um dia de internamento hospitalar em França (março de 2026)"
     },
     "source": "Arrêté of 27 February 2026, Journal officiel of 28 February 2026, up from 20 euros",
     "tier": "medium",
@@ -419,10 +457,11 @@
   },
   {
     "entity": "olympics-cheapest",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The cheapest ticket to the Paris 2024 Olympics",
-      "fr": "Le billet le moins cher des Jeux de Paris 2024"
+      "fr": "Le billet le moins cher des Jeux de Paris 2024",
+      "pt": "O bilhete mais barato dos Jogos Olímpicos de Paris 2024"
     },
     "source": "Paris 2024 organising committee ticketing",
     "tier": "medium",
@@ -430,10 +469,11 @@
   },
   {
     "entity": "apple-polishing-cloth",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Apple's polishing cloth at its launch (2021)",
-      "fr": "Le chiffon de nettoyage d’Apple à sa sortie (2021)"
+      "fr": "Le chiffon de nettoyage d’Apple à sa sortie (2021)",
+      "pt": "O pano de limpeza da Apple no lançamento (2021)"
     },
     "source": "Apple France online store, October 2021 (iPhoneSoft, Paris Match Belgique)",
     "tier": "easy",
@@ -441,10 +481,11 @@
   },
   {
     "entity": "id-card-loss",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The tax stamp to replace a lost French ID card",
-      "fr": "Le timbre fiscal pour refaire une carte d’identité perdue"
+      "fr": "Le timbre fiscal pour refaire une carte d’identité perdue",
+      "pt": "O selo fiscal para substituir um cartão de identidade francês perdido"
     },
     "source": "Service-public, CGI article 1628 bis: 25 euros in case of loss or theft",
     "tier": "medium",
@@ -452,10 +493,11 @@
   },
   {
     "entity": "game-pass-ultimate-hike",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "A month of Xbox Game Pass Ultimate after the October 2025 price rise",
-      "fr": "Un mois de Xbox Game Pass Ultimate après la hausse d’octobre 2025"
+      "fr": "Un mois de Xbox Game Pass Ultimate après la hausse d’octobre 2025",
+      "pt": "Um mês de Xbox Game Pass Ultimate após o aumento de outubro de 2025"
     },
     "source": "Xbox Wire France, 21 April 2026 (cut from 26.99 to 20.99 euros); KultureGeek, October 2025 (rise from 17.99 to 26.99 euros)",
     "tier": "medium",
@@ -463,10 +505,11 @@
   },
   {
     "entity": "freebox-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One month of Free’s broadband offer at launch (2002)",
-      "fr": "Un mois d’Internet chez Free à son lancement (2002)"
+      "fr": "Un mois d’Internet chez Free à son lancement (2002)",
+      "pt": "Um mês de Internet da francesa Free no lançamento (2002)"
     },
     "source": "Free, offer presented in September 2002, reported by Univers Freebox and Next INpact",
     "tier": "medium",
@@ -474,10 +517,11 @@
   },
   {
     "entity": "gp-appointment",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A GP appointment in France (end of 2024)",
-      "fr": "Une consultation chez le médecin généraliste (fin 2024)"
+      "fr": "Une consultation chez le médecin généraliste (fin 2024)",
+      "pt": "Uma consulta de clínica geral em França (final de 2024)"
     },
     "source": "Assurance Maladie, contracted rate from 22 December 2024",
     "tier": "easy",
@@ -485,10 +529,11 @@
   },
   {
     "entity": "christmas-tree",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A real Christmas tree in France (average price, 2024)",
-      "fr": "Un sapin de Noël naturel (prix moyen, 2024)"
+      "fr": "Un sapin de Noël naturel (prix moyen, 2024)",
+      "pt": "Um pinheiro de Natal natural em França (preço médio, 2024)"
     },
     "source": "Kantar for FranceAgriMer and Val’hor, cited in Val’hor press kit, December 2025",
     "tier": "easy",
@@ -496,10 +541,11 @@
   },
   {
     "entity": "catacombs-ticket",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Admission to the Paris catacombs, full price (2026)",
-      "fr": "Une entrée aux catacombes de Paris, plein tarif (2026)"
+      "fr": "Une entrée aux catacombes de Paris, plein tarif (2026)",
+      "pt": "Uma entrada nas catacumbas de Paris, tarifa normal (2026)"
     },
     "source": "Catacombes de Paris after renovation, 31 euros with audioguide, reported by Ulysse and Paris je t’aime, 2026",
     "tier": "medium",
@@ -507,10 +553,11 @@
   },
   {
     "entity": "airtag-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A single AirTag at its launch (2021)",
-      "fr": "Un AirTag à l’unité à sa sortie (2021)"
+      "fr": "Un AirTag à l’unité à sa sortie (2021)",
+      "pt": "Um AirTag à unidade no lançamento (2021)"
     },
     "source": "Apple France launch price, April 2021 (Consomac, Mac4Ever)",
     "tier": "easy",
@@ -518,10 +565,11 @@
   },
   {
     "entity": "parking-fine",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French fine for obstructive parking",
-      "fr": "L’amende pour un stationnement gênant"
+      "fr": "L’amende pour un stationnement gênant",
+      "pt": "A multa em França por estacionamento indevido"
     },
     "source": "Code de la route, second-class fixed fine",
     "tier": "medium",
@@ -529,10 +577,11 @@
   },
   {
     "entity": "eiffel-summit",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An adult lift ticket to the top of the Eiffel Tower (2026)",
-      "fr": "Un billet adulte pour le sommet de la tour Eiffel en ascenseur (2026)"
+      "fr": "Un billet adulte pour le sommet de la tour Eiffel en ascenseur (2026)",
+      "pt": "Um bilhete de adulto para o topo da Torre Eiffel de elevador (2026)"
     },
     "source": "toureiffel.paris price list, January 2026",
     "tier": "easy",
@@ -540,10 +589,11 @@
   },
   {
     "entity": "switch-online-expansion-year",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A year of Nintendo Switch Online + Expansion Pack, individual plan (2026)",
-      "fr": "Un an de Nintendo Switch Online + Pack additionnel, formule individuelle (2026)"
+      "fr": "Un an de Nintendo Switch Online + Pack additionnel, formule individuelle (2026)",
+      "pt": "Um ano de Nintendo Switch Online + Pacote de Expansão, plano individual (2026)"
     },
     "source": "Nintendo France, Nintendo Switch Online page, 12-month individual membership with Expansion Pack at 39.99 euros, November 2026",
     "tier": "medium",
@@ -551,10 +601,11 @@
   },
   {
     "entity": "sncf-carte-avantage",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A one-year SNCF Carte Avantage (2026)",
-      "fr": "La carte Avantage SNCF pour un an (2026)"
+      "fr": "La carte Avantage SNCF pour un an (2026)",
+      "pt": "O cartão Avantage da SNCF por um ano (2026)"
     },
     "source": "SNCF Connect, price in force on 1 January 2026",
     "tier": "medium",
@@ -562,10 +613,11 @@
   },
   {
     "entity": "taxi-roissy",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The flat taxi fare from Roissy-Charles-de-Gaulle to Paris right bank (2025)",
-      "fr": "Le forfait taxi entre Roissy-Charles-de-Gaulle et la rive droite (2025)"
+      "fr": "Le forfait taxi entre Roissy-Charles-de-Gaulle et la rive droite (2025)",
+      "pt": "A tarifa fixa de táxi entre Roissy-Charles-de-Gaulle e a margem direita de Paris (2025)"
     },
     "source": "Arrêté of 20 January 2025 on taxi fares, Journal officiel of 1 February 2025",
     "tier": "medium",
@@ -573,10 +625,11 @@
   },
   {
     "entity": "carte-grise-bretagne",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One fiscal horsepower on a vehicle registration in Brittany (2025)",
-      "fr": "Un cheval fiscal sur la carte grise en Bretagne (2025)"
+      "fr": "Un cheval fiscal sur la carte grise en Bretagne (2025)",
+      "pt": "Um cavalo fiscal no registo de um veículo na Bretanha (2025)"
     },
     "source": "Région Bretagne rate from 1 February 2025, up from 55 euros, reported by Weka and L’argus",
     "tier": "hard",
@@ -584,10 +637,11 @@
   },
   {
     "entity": "speeding-fine",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French fine for speeding by under 20 km/h outside a town",
-      "fr": "L’amende pour un excès de vitesse de moins de 20 km/h hors agglomération"
+      "fr": "L’amende pour un excès de vitesse de moins de 20 km/h hors agglomération",
+      "pt": "A multa em França por excesso de velocidade inferior a 20 km/h fora das localidades"
     },
     "source": "Code de la route R413-14, third-class fixed fine",
     "tier": "medium",
@@ -595,10 +649,11 @@
   },
   {
     "entity": "dualsense-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PS5 DualSense controller at launch (2020)",
-      "fr": "Une manette DualSense de PS5 à sa sortie (2020)"
+      "fr": "Une manette DualSense de PS5 à sa sortie (2020)",
+      "pt": "Um comando DualSense da PS5 no lançamento (2020)"
     },
     "source": "PlayStation Blog, 16 September 2020, DualSense wireless controller 69.99 euros RRP",
     "tier": "easy",
@@ -606,10 +661,11 @@
   },
   {
     "entity": "val-thorens-day-pass",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An adult one-day ski pass at Val Thorens (2025-2026 season)",
-      "fr": "Un forfait de ski adulte d’une journée à Val Thorens (saison 2025-2026)"
+      "fr": "Un forfait de ski adulte d’une journée à Val Thorens (saison 2025-2026)",
+      "pt": "Um passe de esqui de adulto de um dia em Val Thorens (época 2025-2026)"
     },
     "source": "Val Thorens official 2025-2026 price list",
     "tier": "hard",
@@ -617,10 +673,11 @@
   },
   {
     "entity": "passport-stamp",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The tax stamp for an adult French passport (2024)",
-      "fr": "Le timbre fiscal d’un passeport adulte (2024)"
+      "fr": "Le timbre fiscal d’un passeport adulte (2024)",
+      "pt": "O selo fiscal de um passaporte francês de adulto (2024)"
     },
     "source": "service-public.fr, adult passport",
     "tier": "medium",
@@ -628,10 +685,11 @@
   },
   {
     "entity": "navigo-month",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A month of the all-zones Paris Navigo pass (2025)",
-      "fr": "Un mois de passe Navigo toutes zones (2025)"
+      "fr": "Un mois de passe Navigo toutes zones (2025)",
+      "pt": "Um mês de passe Navigo de Paris, todas as zonas (2025)"
     },
     "source": "Île-de-France Mobilités, price from 1 January 2025",
     "tier": "medium",
@@ -639,10 +697,11 @@
   },
   {
     "entity": "mario-kart-world-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Mario Kart World, boxed edition, at its launch (2025)",
-      "fr": "Le jeu Mario Kart World en boîte à sa sortie (2025)"
+      "fr": "Le jeu Mario Kart World en boîte à sa sortie (2025)",
+      "pt": "O jogo Mario Kart World em caixa no lançamento (2025)"
     },
     "source": "Nintendo, recommended price of the physical edition, announced 2 April 2025, released 5 June 2025",
     "tier": "easy",
@@ -650,10 +709,11 @@
   },
   {
     "entity": "kindle-france-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The first Kindle sold in France (2011)",
-      "fr": "Le premier Kindle vendu en France (2011)"
+      "fr": "Le premier Kindle vendu en France (2011)",
+      "pt": "O primeiro Kindle vendido em França (2011)"
     },
     "source": "Amazon.fr press release, 7 October 2011",
     "tier": "medium",
@@ -661,10 +721,11 @@
   },
   {
     "entity": "phone-driving-fine",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French fine for holding a phone while driving",
-      "fr": "L’amende pour un téléphone tenu en main au volant"
+      "fr": "L’amende pour un téléphone tenu en main au volant",
+      "pt": "A multa em França por conduzir com o telemóvel na mão"
     },
     "source": "Code de la route R412-6-1, fourth-class fixed fine",
     "tier": "easy",
@@ -672,10 +733,11 @@
   },
   {
     "entity": "tv-licence-2021",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French TV licence fee in mainland France, the last year it was paid (2021)",
-      "fr": "La redevance télé en métropole, la dernière année où elle a été payée (2021)"
+      "fr": "La redevance télé en métropole, la dernière année où elle a été payée (2021)",
+      "pt": "A taxa de televisão na França metropolitana, no último ano em que foi paga (2021)"
     },
     "source": "Contribution à l’audiovisuel public, 138 euros in 2021; the 2022 fee was abolished by the amending finance law of 16 August 2022",
     "tier": "easy",
@@ -683,10 +745,11 @@
   },
   {
     "entity": "kinect-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Kinect sensor for Xbox 360 at its launch (2010)",
-      "fr": "Un capteur Kinect pour Xbox 360 à sa sortie (2010)"
+      "fr": "Un capteur Kinect pour Xbox 360 à sa sortie (2010)",
+      "pt": "Um sensor Kinect para Xbox 360 no lançamento (2010)"
     },
     "source": "Microsoft, European price with Kinect Adventures, launch 10 November 2010",
     "tier": "hard",
@@ -694,10 +757,11 @@
   },
   {
     "entity": "nintendo-ds-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Nintendo DS at its European launch (2005)",
-      "fr": "Une Nintendo DS à sa sortie en Europe (2005)"
+      "fr": "Une Nintendo DS à sa sortie en Europe (2005)",
+      "pt": "Uma Nintendo DS no lançamento na Europa (2005)"
     },
     "source": "Nintendo of Europe press release, January 2005, estimated retail price at launch on 11 March 2005",
     "tier": "medium",
@@ -705,10 +769,11 @@
   },
   {
     "entity": "pass-culture-18",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The pass Culture credit for an 18-year-old (since March 2025)",
-      "fr": "Le pass Culture d’un jeune de 18 ans (depuis mars 2025)"
+      "fr": "Le pass Culture d’un jeune de 18 ans (depuis mars 2025)",
+      "pt": "O pass Culture de um jovem francês de 18 anos (desde março de 2025)"
     },
     "source": "Decree of 27 February 2025 (via service-public.gouv.fr), 18-year-old share cut from 300 to 150 euros from 1 March 2025",
     "tier": "easy",
@@ -716,10 +781,11 @@
   },
   {
     "entity": "rsa-christmas-bonus",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Christmas bonus of a single person on RSA (2025)",
-      "fr": "La prime de Noël d’une personne seule au RSA (2025)"
+      "fr": "La prime de Noël d’une personne seule au RSA (2025)",
+      "pt": "O prémio de Natal de uma pessoa sozinha que recebe o RSA em França (2025)"
     },
     "source": "CNAF circular IT 2025-211 and decree 2025-1212 of 12 December 2025, 152.45 euros for a single person",
     "tier": "medium",
@@ -727,10 +793,11 @@
   },
   {
     "entity": "university-licence-fees",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "One year of university bachelor’s tuition fees in France (2025-2026)",
-      "fr": "Les frais d’inscription d’une année de licence à l’université (2025-2026)"
+      "fr": "Les frais d’inscription d’une année de licence à l’université (2025-2026)",
+      "pt": "As propinas de um ano de licenciatura numa universidade francesa (2025-2026)"
     },
     "source": "National rates for 2025-2026, Service-public and Sorbonne Université",
     "tier": "medium",
@@ -738,10 +805,11 @@
   },
   {
     "entity": "gamecube-europe-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A GameCube at its European launch (2002)",
-      "fr": "Une GameCube à sa sortie en Europe (2002)"
+      "fr": "Une GameCube à sa sortie en Europe (2002)",
+      "pt": "Uma GameCube no lançamento na Europa (2002)"
     },
     "source": "Nintendo, European recommended price cut from 249 to 199 euros before the 3 May 2002 launch (The Register, Nintendo World Report)",
     "tier": "hard",
@@ -749,10 +817,11 @@
   },
   {
     "entity": "psp-europe-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PSP at its European launch (2005)",
-      "fr": "Une PSP à sa sortie en Europe (2005)"
+      "fr": "Une PSP à sa sortie en Europe (2005)",
+      "pt": "Uma PSP no lançamento na Europa (2005)"
     },
     "source": "Sony Computer Entertainment Europe, Value Pack launch price, 1 September 2005",
     "tier": "medium",
@@ -760,10 +829,11 @@
   },
   {
     "entity": "wii-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Wii at its European launch (2006)",
-      "fr": "Une Wii à sa sortie en Europe (2006)"
+      "fr": "Une Wii à sa sortie en Europe (2006)",
+      "pt": "Uma Wii no lançamento na Europa (2006)"
     },
     "source": "Nintendo, European launch price, 8 December 2006",
     "tier": "medium",
@@ -771,10 +841,11 @@
   },
   {
     "entity": "ps-vita-wifi-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Wi-Fi PS Vita at its launch (2012)",
-      "fr": "Une PS Vita Wi-Fi à sa sortie (2012)"
+      "fr": "Une PS Vita Wi-Fi à sa sortie (2012)",
+      "pt": "Uma PS Vita Wi-Fi no lançamento (2012)"
     },
     "source": "Sony Computer Entertainment Europe press release, recommended price, launch 22 February 2012",
     "tier": "medium",
@@ -782,10 +853,11 @@
   },
   {
     "entity": "airpods-pro-2",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Second-generation AirPods Pro at their French launch (2022)",
-      "fr": "Des AirPods Pro de deuxième génération à leur sortie (2022)"
+      "fr": "Des AirPods Pro de deuxième génération à leur sortie (2022)",
+      "pt": "Uns AirPods Pro de segunda geração no lançamento em França (2022)"
     },
     "source": "Apple France, September 2022",
     "tier": "medium",
@@ -793,10 +865,11 @@
   },
   {
     "entity": "switch-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Nintendo Switch at its launch (2017)",
-      "fr": "Une Nintendo Switch à sa sortie (2017)"
+      "fr": "Une Nintendo Switch à sa sortie (2017)",
+      "pt": "Uma Nintendo Switch no lançamento (2017)"
     },
     "source": "Price charged by French retailers at launch, 3 March 2017",
     "tier": "medium",
@@ -804,10 +877,11 @@
   },
   {
     "entity": "switch-oled",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Nintendo Switch OLED at its launch (2021)",
-      "fr": "Une Nintendo Switch OLED à sa sortie (2021)"
+      "fr": "Une Nintendo Switch OLED à sa sortie (2021)",
+      "pt": "Uma Nintendo Switch OLED no lançamento (2021)"
     },
     "source": "Nintendo, European launch price, 8 October 2021",
     "tier": "medium",
@@ -815,10 +889,11 @@
   },
   {
     "entity": "apple-watch-sport-2015",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The first 38 mm Apple Watch Sport at its launch (2015)",
-      "fr": "La première Apple Watch Sport de 38 mm à sa sortie (2015)"
+      "fr": "La première Apple Watch Sport de 38 mm à sa sortie (2015)",
+      "pt": "O primeiro Apple Watch Sport de 38 mm no lançamento em França (2015)"
     },
     "source": "Apple France launch price, 24 April 2015 (iPhoneSoft, Blog Nouvelles Technologies)",
     "tier": "medium",
@@ -826,10 +901,11 @@
   },
   {
     "entity": "first-iphone-france",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The first iPhone in France, with an Orange plan (2007)",
-      "fr": "Le premier iPhone en France, avec un forfait Orange (2007)"
+      "fr": "Le premier iPhone en France, avec un forfait Orange (2007)",
+      "pt": "O primeiro iPhone em França, com um tarifário da Orange (2007)"
     },
     "source": "Apple press release of 16 October 2007, 8 GB model with an Orange plan, on sale 29 November 2007",
     "tier": "medium",
@@ -837,10 +913,11 @@
   },
   {
     "entity": "ps4-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
-      "en": "A PlayStation 4 at its French launch (2013)",
-      "fr": "Une PlayStation 4 à sa sortie en France (2013)"
+      "en": "A PlayStation 4 at its European launch (2013)",
+      "fr": "Une PlayStation 4 à sa sortie en Europe (2013)",
+      "pt": "Uma PlayStation 4 no lançamento na Europa (2013)"
     },
     "source": "Sony, European launch price, 29 November 2013",
     "tier": "medium",
@@ -848,10 +925,11 @@
   },
   {
     "entity": "xbox-360-premium-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "An Xbox 360 Premium with hard drive at its launch (2005)",
-      "fr": "Une Xbox 360 Premium avec disque dur à sa sortie (2005)"
+      "fr": "Une Xbox 360 Premium avec disque dur à sa sortie (2005)",
+      "pt": "Uma Xbox 360 Premium com disco rígido no lançamento (2005)"
     },
     "source": "Microsoft press release, European price of 17 August 2005, launch 2 December 2005",
     "tier": "medium",
@@ -859,10 +937,11 @@
   },
   {
     "entity": "steam-deck",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A 64 GB Steam Deck at its launch (2022)",
-      "fr": "Un Steam Deck 64 Go à sa sortie (2022)"
+      "fr": "Un Steam Deck 64 Go à sa sortie (2022)",
+      "pt": "Um Steam Deck de 64 GB no lançamento (2022)"
     },
     "source": "Valve, European launch price, February 2022",
     "tier": "hard",
@@ -870,10 +949,11 @@
   },
   {
     "entity": "back-to-school-allowance",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The back-to-school allowance for a child aged 6 to 10 (2025)",
-      "fr": "L’allocation de rentrée scolaire pour un enfant de 6 à 10 ans (2025)"
+      "fr": "L’allocation de rentrée scolaire pour un enfant de 6 à 10 ans (2025)",
+      "pt": "O abono francês de regresso às aulas para uma criança de 6 a 10 anos (2025)"
     },
     "source": "CAF, 2025 school-year amount after a 1.7% revaluation",
     "tier": "hard",
@@ -881,10 +961,11 @@
   },
   {
     "entity": "switch-2-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Nintendo Switch 2 at its launch (2025)",
-      "fr": "Une Nintendo Switch 2 à sa sortie (2025)"
+      "fr": "Une Nintendo Switch 2 à sa sortie (2025)",
+      "pt": "Uma Nintendo Switch 2 no lançamento (2025)"
     },
     "source": "Nintendo, European launch price, 5 June 2025",
     "tier": "easy",
@@ -892,10 +973,11 @@
   },
   {
     "entity": "first-ipad",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The first iPad at its French launch (2010, 16 GB Wi-Fi)",
-      "fr": "Le premier iPad à sa sortie en France (2010, 16 Go Wi-Fi)"
+      "fr": "Le premier iPad à sa sortie en France (2010, 16 Go Wi-Fi)",
+      "pt": "O primeiro iPad no lançamento em França (2010, 16 GB Wi-Fi)"
     },
     "source": "Apple France, 28 May 2010",
     "tier": "medium",
@@ -903,10 +985,11 @@
   },
   {
     "entity": "xbox-one-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
-      "en": "An Xbox One with Kinect at its launch in France (2013)",
-      "fr": "Une Xbox One avec Kinect à sa sortie en France (2013)"
+      "en": "An Xbox One with Kinect at its launch (2013)",
+      "fr": "Une Xbox One avec Kinect à sa sortie (2013)",
+      "pt": "Uma Xbox One com Kinect no lançamento (2013)"
     },
     "source": "Microsoft, French launch price, 22 November 2013 (Lyon Capitale, KultureGeek)",
     "tier": "easy",
@@ -914,10 +997,11 @@
   },
   {
     "entity": "ps5-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PlayStation 5 with a disc drive at its launch (2020)",
-      "fr": "Une PlayStation 5 avec lecteur à sa sortie (2020)"
+      "fr": "Une PlayStation 5 avec lecteur à sa sortie (2020)",
+      "pt": "Uma PlayStation 5 com leitor de discos no lançamento (2020)"
     },
     "source": "Sony, French launch price, 19 November 2020",
     "tier": "easy",
@@ -925,10 +1009,11 @@
   },
   {
     "entity": "xbox-series-x",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "An Xbox Series X at its launch (2020)",
-      "fr": "Une Xbox Series X à sa sortie (2020)"
+      "fr": "Une Xbox Series X à sa sortie (2020)",
+      "pt": "Uma Xbox Series X no lançamento (2020)"
     },
     "source": "Microsoft, European launch price, 10 November 2020",
     "tier": "medium",
@@ -936,10 +1021,11 @@
   },
   {
     "entity": "meta-quest-3",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A 128 GB Meta Quest 3 headset at its launch (2023)",
-      "fr": "Un casque Meta Quest 3 de 128 Go à sa sortie (2023)"
+      "fr": "Un casque Meta Quest 3 de 128 Go à sa sortie (2023)",
+      "pt": "Uns óculos Meta Quest 3 de 128 GB no lançamento (2023)"
     },
     "source": "Meta, European launch price, October 2023",
     "tier": "hard",
@@ -947,10 +1033,11 @@
   },
   {
     "entity": "ps3-europe-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PlayStation 3 at its European launch (2007)",
-      "fr": "Une PlayStation 3 à sa sortie en Europe (2007)"
+      "fr": "Une PlayStation 3 à sa sortie en Europe (2007)",
+      "pt": "Uma PlayStation 3 no lançamento na Europa (2007)"
     },
     "source": "Sony Computer Entertainment Europe, launch price for the 60 GB model, 23 March 2007",
     "tier": "easy",
@@ -958,10 +1045,11 @@
   },
   {
     "entity": "ps-vr2-launch",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PlayStation VR2 headset at launch (2023)",
-      "fr": "Un casque PlayStation VR2 à sa sortie (2023)"
+      "fr": "Un casque PlayStation VR2 à sa sortie (2023)",
+      "pt": "Uns óculos PlayStation VR2 no lançamento (2023)"
     },
     "source": "PlayStation Blog, 2 November 2022, 599.99 euros recommended retail price for the 22 February 2023 launch",
     "tier": "medium",
@@ -969,10 +1057,11 @@
   },
   {
     "entity": "airpods-max-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "AirPods Max headphones at their launch (2020)",
-      "fr": "Un casque AirPods Max à sa sortie (2020)"
+      "fr": "Un casque AirPods Max à sa sortie (2020)",
+      "pt": "Uns auscultadores AirPods Max no lançamento (2020)"
     },
     "source": "Apple France launch price, announced 8 December 2020",
     "tier": "medium",
@@ -980,10 +1069,11 @@
   },
   {
     "entity": "lego-eiffel-tower",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The 10,001-piece Lego Eiffel Tower (2022)",
-      "fr": "La tour Eiffel en Lego, 10 001 pièces (2022)"
+      "fr": "La tour Eiffel en Lego, 10 001 pièces (2022)",
+      "pt": "A Torre Eiffel em Lego, com 10 001 peças (2022)"
     },
     "source": "Lego, set 10307, launch price, November 2022",
     "tier": "medium",
@@ -991,10 +1081,11 @@
   },
   {
     "entity": "rsa-single",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The monthly RSA benefit for a single person without children (2026)",
-      "fr": "Le RSA d’une personne seule sans enfant, par mois (2026)"
+      "fr": "Le RSA d’une personne seule sans enfant, par mois (2026)",
+      "pt": "O rendimento mínimo francês (RSA) de uma pessoa só sem filhos, por mês (2026)"
     },
     "source": "Service-public, RSA page verified 1 April 2026",
     "tier": "medium",
@@ -1002,10 +1093,11 @@
   },
   {
     "entity": "lego-millennium-falcon",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The Ultimate Collector Lego Millennium Falcon (2017)",
-      "fr": "Le Faucon Millenium en Lego, édition Ultimate Collector (2017)"
+      "fr": "Le Faucon Millenium en Lego, édition Ultimate Collector (2017)",
+      "pt": "O Millennium Falcon em Lego, edição Ultimate Collector (2017)"
     },
     "source": "Lego, set 75192, launch price, October 2017",
     "tier": "medium",
@@ -1013,10 +1105,11 @@
   },
   {
     "entity": "ps5-pro",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A PlayStation 5 Pro at its launch (2024)",
-      "fr": "Une PlayStation 5 Pro à sa sortie (2024)"
+      "fr": "Une PlayStation 5 Pro à sa sortie (2024)",
+      "pt": "Uma PlayStation 5 Pro no lançamento (2024)"
     },
     "source": "Sony, European launch price, 7 November 2024",
     "tier": "medium",
@@ -1024,10 +1117,11 @@
   },
   {
     "entity": "mac-pro-wheels-kit",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Mac Pro wheels kit, sold separately by Apple (2020)",
-      "fr": "Le kit de roulettes du Mac Pro, vendu à part par Apple (2020)"
+      "fr": "Le kit de roulettes du Mac Pro, vendu à part par Apple (2020)",
+      "pt": "O kit de rodas do Mac Pro, vendido à parte pela Apple (2020)"
     },
     "source": "Apple France, separate sale of the wheels kit, April 2020 (iPhoneSoft)",
     "tier": "hard",
@@ -1035,10 +1129,11 @@
   },
   {
     "entity": "iphone-16",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A 128 GB iPhone 16 at its launch (2024)",
-      "fr": "Un iPhone 16 de 128 Go à sa sortie (2024)"
+      "fr": "Un iPhone 16 de 128 Go à sa sortie (2024)",
+      "pt": "Um iPhone 16 de 128 GB no lançamento em França (2024)"
     },
     "source": "Apple France, September 2024",
     "tier": "easy",
@@ -1046,10 +1141,11 @@
   },
   {
     "entity": "apple-watch-ultra",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An Apple Watch Ultra at its launch (2022)",
-      "fr": "Une Apple Watch Ultra à sa sortie (2022)"
+      "fr": "Une Apple Watch Ultra à sa sortie (2022)",
+      "pt": "Um Apple Watch Ultra no lançamento em França (2022)"
     },
     "source": "Apple France, September 2022",
     "tier": "medium",
@@ -1057,10 +1153,11 @@
   },
   {
     "entity": "aspa-single",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French old-age minimum (ASPA) for a single person, per month (2026)",
-      "fr": "Le minimum vieillesse (ASPA) d’une personne seule, par mois (2026)"
+      "fr": "Le minimum vieillesse (ASPA) d’une personne seule, par mois (2026)",
+      "pt": "A pensão mínima de velhice francesa (ASPA) de uma pessoa só, por mês (2026)"
     },
     "source": "service-public.gouv.fr F16871, maximum 1,043.59 euros a month since 1 January 2026",
     "tier": "medium",
@@ -1068,10 +1165,11 @@
   },
   {
     "entity": "caf-birth-bonus",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Caf birth bonus for one child (April 2026)",
-      "fr": "La prime à la naissance de la Caf pour un enfant (avril 2026)"
+      "fr": "La prime à la naissance de la Caf pour un enfant (avril 2026)",
+      "pt": "O prémio de nascimento da Caf francesa por um filho (abril de 2026)"
     },
     "source": "service-public.gouv.fr F2550, net amount 1,093.11 euros after the 1 April 2026 revaluation",
     "tier": "hard",
@@ -1079,10 +1177,11 @@
   },
   {
     "entity": "macbook-air-m1-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An M1 MacBook Air at its launch (2020)",
-      "fr": "Un MacBook Air M1 à sa sortie (2020)"
+      "fr": "Un MacBook Air M1 à sa sortie (2020)",
+      "pt": "Um MacBook Air M1 no lançamento em França (2020)"
     },
     "source": "Apple France launch price, 8 GB / 256 GB model, November 2020",
     "tier": "easy",
@@ -1090,10 +1189,11 @@
   },
   {
     "entity": "iphone-16-pro",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A 128 GB iPhone 16 Pro at its launch (2024)",
-      "fr": "Un iPhone 16 Pro de 128 Go à sa sortie (2024)"
+      "fr": "Un iPhone 16 Pro de 128 Go à sa sortie (2024)",
+      "pt": "Um iPhone 16 Pro de 128 GB no lançamento em França (2024)"
     },
     "source": "Apple France, September 2024",
     "tier": "easy",
@@ -1101,10 +1201,11 @@
   },
   {
     "entity": "thermomix-tm6",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Thermomix TM6 at its launch (2019)",
-      "fr": "Un Thermomix TM6 à sa sortie (2019)"
+      "fr": "Un Thermomix TM6 à sa sortie (2019)",
+      "pt": "Uma Bimby (Thermomix) TM6 no lançamento em França (2019)"
     },
     "source": "Vorwerk France, launch price, 2019",
     "tier": "medium",
@@ -1112,10 +1213,11 @@
   },
   {
     "entity": "galaxy-s24-ultra",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A 256 GB Samsung Galaxy S24 Ultra at its launch (2024)",
-      "fr": "Un Samsung Galaxy S24 Ultra de 256 Go à sa sortie (2024)"
+      "fr": "Un Samsung Galaxy S24 Ultra de 256 Go à sa sortie (2024)",
+      "pt": "Um Samsung Galaxy S24 Ultra de 256 GB no lançamento em França (2024)"
     },
     "source": "Samsung France, January 2024",
     "tier": "hard",
@@ -1123,10 +1225,11 @@
   },
   {
     "entity": "galaxy-fold-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The first Samsung Galaxy Fold at its launch in France (2019)",
-      "fr": "Le premier Samsung Galaxy Fold à sa sortie en France (2019)"
+      "fr": "Le premier Samsung Galaxy Fold à sa sortie en France (2019)",
+      "pt": "O primeiro Samsung Galaxy Fold no lançamento em França (2019)"
     },
     "source": "Samsung France, launch price on 18 September 2019",
     "tier": "medium",
@@ -1134,10 +1237,11 @@
   },
   {
     "entity": "e-bike-average",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new electric bike in France (average price, 2024)",
-      "fr": "Un vélo à assistance électrique neuf (prix moyen, 2024)"
+      "fr": "Un vélo à assistance électrique neuf (prix moyen, 2024)",
+      "pt": "Uma bicicleta elétrica nova em França (preço médio, 2024)"
     },
     "source": "Union Sport & Cycle, Observatoire du cycle 2024, reported by Cleanrider",
     "tier": "medium",
@@ -1145,10 +1249,11 @@
   },
   {
     "entity": "iphone-17-pro-max-2tb",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A 2 TB iPhone 17 Pro Max at its launch (2025)",
-      "fr": "Un iPhone 17 Pro Max de 2 To à sa sortie (2025)"
+      "fr": "Un iPhone 17 Pro Max de 2 To à sa sortie (2025)",
+      "pt": "Um iPhone 17 Pro Max de 2 TB no lançamento em França (2025)"
     },
     "source": "Apple France launch price, September 2025 (iPhoneSoft, TechRadar France)",
     "tier": "easy",
@@ -1156,10 +1261,11 @@
   },
   {
     "entity": "olympics-opening-top-ticket",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The most expensive ticket to the Paris 2024 Olympic opening ceremony",
-      "fr": "Le billet le plus cher de la cérémonie d’ouverture des JO de Paris 2024"
+      "fr": "Le billet le plus cher de la cérémonie d’ouverture des JO de Paris 2024",
+      "pt": "O bilhete mais caro da cerimónia de abertura dos Jogos de Paris 2024"
     },
     "source": "Paris 2024 ticketing, top category price, reported by Paris Match and L’Avenir, 2023",
     "tier": "medium",
@@ -1167,10 +1273,11 @@
   },
   {
     "entity": "private-sector-salary",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The average monthly net full-time salary in the French private sector (2023)",
-      "fr": "Le salaire net mensuel moyen dans le privé, à temps plein (2023)"
+      "fr": "Le salaire net mensuel moyen dans le privé, à temps plein (2023)",
+      "pt": "O salário líquido mensal médio no setor privado em França, a tempo inteiro (2023)"
     },
     "source": "INSEE Première, private-sector salaries in 2023",
     "tier": "medium",
@@ -1178,10 +1285,11 @@
   },
   {
     "entity": "vision-pro",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An Apple Vision Pro headset at its French launch (2024)",
-      "fr": "Un casque Apple Vision Pro à sa sortie en France (2024)"
+      "fr": "Un casque Apple Vision Pro à sa sortie en France (2024)",
+      "pt": "Uns óculos Apple Vision Pro no lançamento em França (2024)"
     },
     "source": "Apple France, 12 July 2024",
     "tier": "medium",
@@ -1189,10 +1297,11 @@
   },
   {
     "entity": "citroen-ami-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Citroën Ami at its launch, before the bonus (2020)",
-      "fr": "Une Citroën Ami à sa sortie, bonus non déduit (2020)"
+      "fr": "Une Citroën Ami à sa sortie, bonus non déduit (2020)",
+      "pt": "Um Citroën Ami no lançamento em França, sem dedução do bónus (2020)"
     },
     "source": "Citroën France list price before the 900-euro bonus, 2020 (L'argus)",
     "tier": "easy",
@@ -1200,10 +1309,11 @@
   },
   {
     "entity": "deputy-indemnity",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A French MP’s gross monthly allowance (since 2024)",
-      "fr": "L’indemnité mensuelle brute d’un député (depuis 2024)"
+      "fr": "L’indemnité mensuelle brute d’un député (depuis 2024)",
+      "pt": "O subsídio mensal bruto de um deputado francês (desde 2024)"
     },
     "source": "Assemblée nationale, fiche 7 on the deputy’s material situation, updated January 2026",
     "tier": "medium",
@@ -1211,10 +1321,11 @@
   },
   {
     "entity": "paris-square-metre",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A square metre of an old Paris flat (average price, November 2024)",
-      "fr": "Un mètre carré d’appartement ancien à Paris (prix moyen, novembre 2024)"
+      "fr": "Un mètre carré d’appartement ancien à Paris (prix moyen, novembre 2024)",
+      "pt": "Um metro quadrado de apartamento antigo em Paris (preço médio, novembro de 2024)"
     },
     "source": "Notaires du Grand Paris, November 2024",
     "tier": "easy",
@@ -1222,10 +1333,11 @@
   },
   {
     "entity": "mep-salary",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "The gross monthly salary of a Member of the European Parliament (2026)",
-      "fr": "Le salaire brut mensuel d’un député européen (2026)"
+      "fr": "Le salaire brut mensuel d’un député européen (2026)",
+      "pt": "O salário mensal bruto de um deputado ao Parlamento Europeu (2026)"
     },
     "source": "European Parliament, About MEPs page, monthly pre-tax salary of 11,255.26 euros, November 2026",
     "tier": "hard",
@@ -1233,10 +1345,11 @@
   },
   {
     "entity": "dacia-sandero-2025",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Dacia Sandero, entry version (late 2025)",
-      "fr": "Une Dacia Sandero neuve, version de base (fin 2025)"
+      "fr": "Une Dacia Sandero neuve, version de base (fin 2025)",
+      "pt": "Um Dacia Sandero novo em França, versão de base (final de 2025)"
     },
     "source": "Dacia France, Essential SCe 65 after the November 2025 facelift (L'argus price list, Caroom)",
     "tier": "easy",
@@ -1244,10 +1357,11 @@
   },
   {
     "entity": "dacia-spring",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Dacia Spring, entry version (2025)",
-      "fr": "Une Dacia Spring neuve, version de base (2025)"
+      "fr": "Une Dacia Spring neuve, version de base (2025)",
+      "pt": "Um Dacia Spring novo em França, versão de base (2025)"
     },
     "source": "Dacia France, Spring Electric 45 Essential",
     "tier": "medium",
@@ -1255,10 +1369,11 @@
   },
   {
     "entity": "renault-twingo-etech",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new electric Renault Twingo, entry version (2026)",
-      "fr": "Une Renault Twingo électrique neuve, version de base (2026)"
+      "fr": "Une Renault Twingo électrique neuve, version de base (2026)",
+      "pt": "Um Renault Twingo elétrico novo em França, versão de base (2026)"
     },
     "source": "Renault France, Twingo E-Tech Évolution before any bonus (L'argus, 2 June 2026)",
     "tier": "medium",
@@ -1266,10 +1381,11 @@
   },
   {
     "entity": "renault-clio-6",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Renault Clio 6, entry version (2026)",
-      "fr": "Une Renault Clio 6 neuve, version de base (2026)"
+      "fr": "Une Renault Clio 6 neuve, version de base (2026)",
+      "pt": "Um Renault Clio 6 novo em França, versão de base (2026)"
     },
     "source": "Renault France, Évolution TCe 115 manual, 2026 (L'argus)",
     "tier": "easy",
@@ -1277,10 +1393,11 @@
   },
   {
     "entity": "citroen-e-c3",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Citroën ë-C3, entry version (2024)",
-      "fr": "Une Citroën ë-C3 neuve, version de base (2024)"
+      "fr": "Une Citroën ë-C3 neuve, version de base (2024)",
+      "pt": "Um Citroën ë-C3 novo em França, versão de base (2024)"
     },
     "source": "Citroën France, launch price, 2024",
     "tier": "hard",
@@ -1288,10 +1405,11 @@
   },
   {
     "entity": "toyota-yaris-2026",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Toyota Yaris hybrid, entry version (January 2026)",
-      "fr": "Une Toyota Yaris hybride neuve, version de base (janvier 2026)"
+      "fr": "Une Toyota Yaris hybride neuve, version de base (janvier 2026)",
+      "pt": "Um Toyota Yaris híbrido novo em França, versão de base (janeiro de 2026)"
     },
     "source": "Toyota France price list of 6 January 2026, Yaris Hybride 116h Dynamic",
     "tier": "medium",
@@ -1299,10 +1417,11 @@
   },
   {
     "entity": "renault-5-five",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new electric Renault 5, Five trim (2025)",
-      "fr": "Une Renault 5 électrique neuve, finition Five (2025)"
+      "fr": "Une Renault 5 électrique neuve, finition Five (2025)",
+      "pt": "Um Renault 5 elétrico novo em França, versão Five (2025)"
     },
     "source": "Renault France, R5 E-Tech Five before the bonus (L'argus, 5 June 2025)",
     "tier": "easy",
@@ -1310,10 +1429,11 @@
   },
   {
     "entity": "renault-4-etech-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An electric Renault 4 at its launch, entry version (2025)",
-      "fr": "Une Renault 4 électrique à son lancement, version de base (2025)"
+      "fr": "Une Renault 4 électrique à son lancement, version de base (2025)",
+      "pt": "Um Renault 4 elétrico no lançamento em França, versão de base (2025)"
     },
     "source": "Renault France, R4 E-Tech Évolution 120 hp before the bonus, March 2025 (Actu-Automobile, Phonandroid)",
     "tier": "medium",
@@ -1321,10 +1441,11 @@
   },
   {
     "entity": "alpine-a290-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An electric Alpine A290 at its launch, entry version (2024)",
-      "fr": "Une Alpine A290 électrique à son lancement, version de base (2024)"
+      "fr": "Une Alpine A290 électrique à son lancement, version de base (2024)",
+      "pt": "Um Alpine A290 elétrico no lançamento em França, versão de base (2024)"
     },
     "source": "Alpine, A290 GT 180 hp before the bonus, orders opened summer 2024 (Actu-Automobile, Caroom)",
     "tier": "hard",
@@ -1332,10 +1453,11 @@
   },
   {
     "entity": "tesla-model-3",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new rear-wheel-drive Tesla Model 3 in France (October 2024)",
-      "fr": "Une Tesla Model 3 Propulsion neuve en France (octobre 2024)"
+      "fr": "Une Tesla Model 3 Propulsion neuve en France (octobre 2024)",
+      "pt": "Um Tesla Model 3 de tração traseira novo em França (outubro de 2024)"
     },
     "source": "L'argus, Tesla price list, October 2024",
     "tier": "easy",
@@ -1343,10 +1465,11 @@
   },
   {
     "entity": "peugeot-e-3008-launch",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An electric Peugeot e-3008 at its launch, entry price (2024)",
-      "fr": "Un Peugeot e-3008 électrique à son lancement, prix d’entrée (2024)"
+      "fr": "Un Peugeot e-3008 électrique à son lancement, prix d’entrée (2024)",
+      "pt": "Um Peugeot e-3008 elétrico no lançamento em França, preço de entrada (2024)"
     },
     "source": "Peugeot France, prices announced 11 January 2024 (Automobile Propre)",
     "tier": "medium",
@@ -1354,10 +1477,11 @@
   },
   {
     "entity": "alpine-a110-premiere-edition",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "An Alpine A110 Première Édition (2017)",
-      "fr": "Une Alpine A110 Première Édition (2017)"
+      "fr": "Une Alpine A110 Première Édition (2017)",
+      "pt": "Um Alpine A110 Première Édition em França (2017)"
     },
     "source": "Alpine, list price of the 1,955-unit launch series (L'argus)",
     "tier": "hard",
@@ -1365,10 +1489,11 @@
   },
   {
     "entity": "car-malus-cap-2026",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The cap on the French emissions penalty for a new car (2026)",
-      "fr": "Le plafond du malus écologique sur une voiture neuve (2026)"
+      "fr": "Le plafond du malus écologique sur une voiture neuve (2026)",
+      "pt": "O teto da penalização ecológica francesa sobre um carro novo (2026)"
     },
     "source": "French Ministry of Economy (economie.gouv.fr), 2026 scale, up from 70,000 in 2025",
     "tier": "hard",
@@ -1376,10 +1501,11 @@
   },
   {
     "entity": "olympic-gold-bonus",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The French state’s bonus for a gold medal at Paris 2024",
-      "fr": "La prime de l’État pour une médaille d’or aux JO de Paris 2024"
+      "fr": "La prime de l’État pour une médaille d’or aux JO de Paris 2024",
+      "pt": "O prémio do Estado francês por uma medalha de ouro nos Jogos de Paris 2024"
     },
     "source": "French Ministry of Sports, medal bonus schedule, order of 30 January 2024",
     "tier": "easy",
@@ -1387,10 +1513,11 @@
   },
   {
     "entity": "porsche-911-carrera-2026",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Porsche 911 Carrera, no options (2026)",
-      "fr": "Une Porsche 911 Carrera neuve, sans option (2026)"
+      "fr": "Une Porsche 911 Carrera neuve, sans option (2026)",
+      "pt": "Um Porsche 911 Carrera novo em França, sem opções (2026)"
     },
     "source": "Porsche France configurator, 911 Carrera model year 2027, November 2026, incl. VAT",
     "tier": "medium",
@@ -1398,10 +1525,11 @@
   },
   {
     "entity": "mercedes-g-class-2024",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A new Mercedes G-Class, entry price (2024)",
-      "fr": "Un Mercedes Classe G neuf, prix d’entrée (2024)"
+      "fr": "Un Mercedes Classe G neuf, prix d’entrée (2024)",
+      "pt": "Um Mercedes Classe G novo em França, preço de entrada (2024)"
     },
     "source": "Mercedes-Benz France press release, March 2024, on-the-road price incl. VAT",
     "tier": "medium",
@@ -1409,10 +1537,11 @@
   },
   {
     "entity": "ferrari-12cilindri",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A new Ferrari 12Cilindri, no options (2024)",
-      "fr": "Une Ferrari 12Cilindri neuve, sans option (2024)"
+      "fr": "Une Ferrari 12Cilindri neuve, sans option (2024)",
+      "pt": "Um Ferrari 12Cilindri novo, sem opções (2024)"
     },
     "source": "Ferrari European list price, May 2024",
     "tier": "medium",
@@ -1420,10 +1549,11 @@
   },
   {
     "entity": "eiffel-tower-staircase",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A section of the Eiffel Tower’s original staircase sold at auction (2026)",
-      "fr": "Un tronçon de l’escalier d’origine de la tour Eiffel vendu aux enchères (2026)"
+      "fr": "Un tronçon de l’escalier d’origine de la tour Eiffel vendu aux enchères (2026)",
+      "pt": "Um troço da escada original da Torre Eiffel vendido em leilão (2026)"
     },
     "source": "Artcurial, Paris, 21 May 2026, 14 steps, as reported by Euronews and Sud Radio",
     "tier": "medium",
@@ -1431,10 +1561,11 @@
   },
   {
     "entity": "romanee-conti-1945",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "A bottle of Romanée-Conti 1945, auction record (2018)",
-      "fr": "Une bouteille de Romanée-Conti 1945, record aux enchères (2018)"
+      "fr": "Une bouteille de Romanée-Conti 1945, record aux enchères (2018)",
+      "pt": "Uma garrafa de Romanée-Conti 1945, recorde em leilão (2018)"
     },
     "source": "Sotheby's New York, 13 October 2018, 558,000 USD fees included, 481,976 euros per Guinness World Records",
     "tier": "easy",
@@ -1442,10 +1573,11 @@
   },
   {
     "entity": "lamborghini-revuelto",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "A Lamborghini Revuelto at its launch (2023, base price)",
-      "fr": "Une Lamborghini Revuelto à son lancement (2023, prix de base)"
+      "fr": "Une Lamborghini Revuelto à son lancement (2023, prix de base)",
+      "pt": "Um Lamborghini Revuelto no lançamento (2023, preço de base)"
     },
     "source": "Lamborghini, launch price announced by its CEO; French price from 500,000 euros incl. VAT (Automobile Propre)",
     "tier": "medium",
@@ -1453,10 +1585,11 @@
   },
   {
     "entity": "mothe-chandeniers-castle",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Château de la Mothe-Chandeniers bought by crowdfunding (2017)",
-      "fr": "Le château de la Mothe-Chandeniers racheté par financement participatif (2017)"
+      "fr": "Le château de la Mothe-Chandeniers racheté par financement participatif (2017)",
+      "pt": "O castelo de La Mothe-Chandeniers comprado por financiamento coletivo (2017)"
     },
     "source": "Dartagnans and Adopte un château, purchase price raised by crowdfunding, December 2017 (AFP)",
     "tier": "medium",
@@ -1464,10 +1597,11 @@
   },
   {
     "entity": "tour-de-france-winner-prize",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The prize for winning the Tour de France (2025)",
-      "fr": "La prime du vainqueur du Tour de France (2025)"
+      "fr": "La prime du vainqueur du Tour de France (2025)",
+      "pt": "O prémio do vencedor da Volta a França (2025)"
     },
     "source": "ASO prize list for the 2025 Tour de France, unchanged since 2016",
     "tier": "easy",
@@ -1475,10 +1609,11 @@
   },
   {
     "entity": "bugatti-veyron",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Bugatti Veyron at its launch (2005, before tax)",
-      "fr": "Une Bugatti Veyron à sa sortie (2005, hors taxes)"
+      "fr": "Une Bugatti Veyron à sa sortie (2005, hors taxes)",
+      "pt": "Um Bugatti Veyron no lançamento (2005, sem impostos)"
     },
     "source": "Bugatti, launch price before tax",
     "tier": "medium",
@@ -1486,10 +1621,11 @@
   },
   {
     "entity": "asterix-britain-cover",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Uderzo’s original cover for Asterix in Britain sold at auction (2026)",
-      "fr": "La couverture originale d’« Astérix chez les Bretons » vendue aux enchères (2026)"
+      "fr": "La couverture originale d’« Astérix chez les Bretons » vendue aux enchères (2026)",
+      "pt": "A capa original de Uderzo para «Astérix entre os Bretões» vendida em leilão (2026)"
     },
     "source": "BD Enchères, Liège, 13 September 2026, 1.2M euros hammer, about 1.474M euros fees included per RTBF and ORF",
     "tier": "medium",
@@ -1497,10 +1633,11 @@
   },
   {
     "entity": "new-kim-pigeon",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "New Kim, a Belgian racing pigeon sold at auction (2020)",
-      "fr": "New Kim, pigeon voyageur belge vendu aux enchères (2020)"
+      "fr": "New Kim, pigeon voyageur belge vendu aux enchères (2020)",
+      "pt": "New Kim, pombo-correio belga vendido em leilão (2020)"
     },
     "source": "PIPA online auction, 15 November 2020, world record per AFP and Guinness World Records",
     "tier": "medium",
@@ -1508,10 +1645,11 @@
   },
   {
     "entity": "napoleon-bicorne",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Napoleon bicorne hat sold at auction (2023)",
-      "fr": "Un bicorne de Napoléon vendu aux enchères (2023)"
+      "fr": "Un bicorne de Napoléon vendu aux enchères (2023)",
+      "pt": "Um bicórnio de Napoleão vendido em leilão (2023)"
     },
     "source": "Osenat, Fontainebleau, 19 November 2023, fees included",
     "tier": "medium",
@@ -1519,10 +1657,11 @@
   },
   {
     "entity": "bugatti-chiron",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Bugatti Chiron at its launch (2016, before tax)",
-      "fr": "Une Bugatti Chiron à sa sortie (2016, hors taxes)"
+      "fr": "Une Bugatti Chiron à sa sortie (2016, hors taxes)",
+      "pt": "Um Bugatti Chiron no lançamento (2016, sem impostos)"
     },
     "source": "Bugatti, launch price before tax, Geneva 2016",
     "tier": "medium",
@@ -1530,10 +1669,11 @@
   },
   {
     "entity": "macallan-1926",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "A bottle of Macallan 1926 whisky, auction record (2023)",
-      "fr": "Une bouteille de whisky Macallan 1926, record aux enchères (2023)"
+      "fr": "Une bouteille de whisky Macallan 1926, record aux enchères (2023)",
+      "pt": "Uma garrafa de whisky Macallan 1926, recorde em leilão (2023)"
     },
     "source": "Sotheby's London, 18 November 2023, 2,187,500 GBP fees included, about 2.5M euros per AFP (La Libre)",
     "tier": "easy",
@@ -1541,10 +1681,11 @@
   },
   {
     "entity": "roland-garros-winner-prize",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The prize for winning a Roland-Garros singles title (2025)",
-      "fr": "La prime du vainqueur d’un simple à Roland-Garros (2025)"
+      "fr": "La prime du vainqueur d’un simple à Roland-Garros (2025)",
+      "pt": "O prémio do vencedor de um torneio de singulares em Roland-Garros (2025)"
     },
     "source": "FFT prize money grid for the 2025 tournament, reported by La finance pour tous, May 2025",
     "tier": "medium",
@@ -1552,10 +1693,11 @@
   },
   {
     "entity": "tintin-lotus-bleu-cover",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Hergé’s cover drawing for The Blue Lotus sold at auction (2021)",
-      "fr": "Le dessin de couverture du « Lotus bleu » d’Hergé vendu aux enchères (2021)"
+      "fr": "Le dessin de couverture du « Lotus bleu » d’Hergé vendu aux enchères (2021)",
+      "pt": "O desenho da capa de «O Lótus Azul» de Hergé vendido em leilão (2021)"
     },
     "source": "Artcurial, Paris, 14 January 2021, fees included",
     "tier": "easy",
@@ -1563,10 +1705,11 @@
   },
   {
     "entity": "ferrari-f80",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "A Ferrari F80 at its unveiling (2024, base price)",
-      "fr": "Une Ferrari F80 à sa présentation (2024, prix de base)"
+      "fr": "Une Ferrari F80 à sa présentation (2024, prix de base)",
+      "pt": "Um Ferrari F80 na apresentação (2024, preço de base)"
     },
     "source": "Ferrari, Italian base price at the 17 October 2024 unveiling (Bloomberg, Tuttotech)",
     "tier": "medium",
@@ -1574,10 +1717,11 @@
   },
   {
     "entity": "bugatti-tourbillon",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "A Bugatti Tourbillon at its unveiling (2024, before tax)",
-      "fr": "Une Bugatti Tourbillon à sa présentation (2024, hors taxes)"
+      "fr": "Une Bugatti Tourbillon à sa présentation (2024, hors taxes)",
+      "pt": "Um Bugatti Tourbillon na apresentação (2024, sem impostos)"
     },
     "source": "Bugatti, base price before tax at the 20 June 2024 unveiling (Hagerty, La Libre Belgique)",
     "tier": "medium",
@@ -1585,10 +1729,11 @@
   },
   {
     "entity": "napoleon-marengo-sabre",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The sabre Bonaparte carried at Marengo, sold at auction (2007)",
-      "fr": "Le sabre de Bonaparte à Marengo vendu aux enchères (2007)"
+      "fr": "Le sabre de Bonaparte à Marengo vendu aux enchères (2007)",
+      "pt": "O sabre de Bonaparte em Marengo vendido em leilão (2007)"
     },
     "source": "Osenat, Fontainebleau, 10 June 2007, per Guinness World Records and contemporary reports",
     "tier": "medium",
@@ -1596,10 +1741,11 @@
   },
   {
     "entity": "big-john",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Big John, a triceratops skeleton sold at auction in Paris (2021)",
-      "fr": "Big John, squelette de tricératops vendu aux enchères à Paris (2021)"
+      "fr": "Big John, squelette de tricératops vendu aux enchères à Paris (2021)",
+      "pt": "Big John, esqueleto de tricerátopo vendido em leilão em Paris (2021)"
     },
     "source": "Giquello at Drouot, 21 October 2021, fees included",
     "tier": "hard",
@@ -1607,10 +1753,11 @@
   },
   {
     "entity": "birkin-original",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The very first Birkin bag, sold at auction in Paris (2025)",
-      "fr": "Le tout premier sac Birkin, vendu aux enchères à Paris (2025)"
+      "fr": "Le tout premier sac Birkin, vendu aux enchères à Paris (2025)",
+      "pt": "A primeiríssima mala Birkin, vendida em leilão em Paris (2025)"
     },
     "source": "Sotheby's Paris, 10 July 2025, fees included",
     "tier": "hard",
@@ -1618,10 +1765,11 @@
   },
   {
     "entity": "bugatti-voiture-noire",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The one-off Bugatti La Voiture Noire (2019, before tax)",
-      "fr": "La Bugatti « La Voiture Noire », exemplaire unique (2019, hors taxes)"
+      "fr": "La Bugatti « La Voiture Noire », exemplaire unique (2019, hors taxes)",
+      "pt": "O Bugatti «La Voiture Noire», exemplar único (2019, sem impostos)"
     },
     "source": "Bugatti, Geneva 2019, price before tax",
     "tier": "hard",
@@ -1629,10 +1777,11 @@
   },
   {
     "entity": "hall-of-mirrors-restoration",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Restoring the Hall of Mirrors at Versailles (2004-2007)",
-      "fr": "La restauration de la galerie des Glaces de Versailles (2004-2007)"
+      "fr": "La restauration de la galerie des Glaces de Versailles (2004-2007)",
+      "pt": "O restauro da Galeria dos Espelhos de Versalhes (2004-2007)"
     },
     "source": "VINCI press release, sponsorship financing the works, June 2007",
     "tier": "medium",
@@ -1640,10 +1789,11 @@
   },
   {
     "entity": "christo-arc-wrapped",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The cost of Christo’s wrapped Arc de Triomphe (2021)",
-      "fr": "Le coût de l’Arc de Triomphe empaqueté par Christo (2021)"
+      "fr": "Le coût de l’Arc de Triomphe empaqueté par Christo (2021)",
+      "pt": "O custo do Arco do Triunfo embrulhado por Christo (2021)"
     },
     "source": "Reuters, 16 September 2021, and Ville de Paris: about 14 million euros, paid by the artist’s estate",
     "tier": "medium",
@@ -1651,10 +1801,11 @@
   },
   {
     "entity": "paul-newman-daytona",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Paul Newman’s Rolex Daytona sold at auction (2017)",
-      "fr": "La Rolex Daytona de Paul Newman vendue aux enchères (2017)"
+      "fr": "La Rolex Daytona de Paul Newman vendue aux enchères (2017)",
+      "pt": "O Rolex Daytona de Paul Newman vendido em leilão (2017)"
     },
     "source": "Phillips New York, 26 October 2017, 17,752,500 USD, 15,228,095 euros per the Phillips press release",
     "tier": "medium",
@@ -1662,10 +1813,11 @@
   },
   {
     "entity": "banksy-love-is-in-the-bin",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Love is in the Bin, Banksy’s shredded painting, resold at auction (2021)",
-      "fr": "« Love is in the Bin », la toile déchiquetée de Banksy, revendue (2021)"
+      "fr": "« Love is in the Bin », la toile déchiquetée de Banksy, revendue (2021)",
+      "pt": "«Love is in the Bin», a tela triturada de Banksy, revendida em leilão (2021)"
     },
     "source": "Sotheby's London, 14 October 2021, 18,582,000 GBP fees included, about 21.8M euros per Euronews",
     "tier": "easy",
@@ -1673,10 +1825,11 @@
   },
   {
     "entity": "cimabue-christ-mocked",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Cimabue’s Christ Mocked, found in a kitchen, sold at auction (2019)",
-      "fr": "Le Christ moqué de Cimabue, trouvé dans une cuisine, vendu aux enchères (2019)"
+      "fr": "Le Christ moqué de Cimabue, trouvé dans une cuisine, vendu aux enchères (2019)",
+      "pt": "O Cristo Escarnecido de Cimabue, achado numa cozinha, vendido em leilão (2019)"
     },
     "source": "Actéon, Senlis, 27 October 2019, fees included",
     "tier": "medium",
@@ -1684,10 +1837,11 @@
   },
   {
     "entity": "chardin-strawberries",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Chardin’s Basket of Wild Strawberries sold at auction in Paris (2022)",
-      "fr": "Le Panier de fraises des bois de Chardin vendu aux enchères à Paris (2022)"
+      "fr": "Le Panier de fraises des bois de Chardin vendu aux enchères à Paris (2022)",
+      "pt": "O Cesto de Morangos Silvestres de Chardin vendido em leilão em Paris (2022)"
     },
     "source": "Artcurial, Paris, 23 March 2022, fees included (Artcurial results release)",
     "tier": "hard",
@@ -1695,10 +1849,11 @@
   },
   {
     "entity": "loto-record-jackpot",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The biggest jackpot in the history of the French Loto (2021)",
-      "fr": "Le plus gros jackpot de l’histoire du Loto (2021)"
+      "fr": "Le plus gros jackpot de l’histoire du Loto (2021)",
+      "pt": "O maior jackpot da história do Loto francês (2021)"
     },
     "source": "FDJ United press kit for Loto's 50th anniversary, April 2026: record 30 million euros won in Brittany on 4 December 2021",
     "tier": "medium",
@@ -1706,10 +1861,11 @@
   },
   {
     "entity": "apex-stegosaurus",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Apex, a stegosaurus skeleton sold at auction (2024)",
-      "fr": "Apex, squelette de stégosaure vendu aux enchères (2024)"
+      "fr": "Apex, squelette de stégosaure vendu aux enchères (2024)",
+      "pt": "Apex, esqueleto de estegossauro vendido em leilão (2024)"
     },
     "source": "Sotheby's New York, 17 July 2024, 44.6M USD fees included, 40.78M euros per The Art Newspaper France",
     "tier": "medium",
@@ -1717,10 +1873,11 @@
   },
   {
     "entity": "caillebotte-boating-party",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Caillebotte’s Boating Party, bought by LVMH for the Musée d’Orsay (2023)",
-      "fr": "« La Partie de bateau » de Caillebotte, offerte au musée d’Orsay par LVMH (2023)"
+      "fr": "« La Partie de bateau » de Caillebotte, offerte au musée d’Orsay par LVMH (2023)",
+      "pt": "«O Passeio de Barco» de Caillebotte, oferecido ao Museu de Orsay pela LVMH (2023)"
     },
     "source": "The Art Newspaper and Euronews, LVMH patronage, unveiled at the Musée d'Orsay on 30 January 2023",
     "tier": "medium",
@@ -1728,10 +1885,11 @@
   },
   {
     "entity": "beeple-everydays",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Beeple’s NFT artwork sold at Christie’s (2021)",
-      "fr": "L’œuvre NFT de Beeple vendue chez Christie’s (2021)"
+      "fr": "L’œuvre NFT de Beeple vendue chez Christie’s (2021)",
+      "pt": "A obra NFT de Beeple vendida na Christie’s (2021)"
     },
     "source": "Christie's online sale, 11 March 2021, 69.3M USD fees included, 57.8M euros per Paris Match",
     "tier": "medium",
@@ -1739,10 +1897,11 @@
   },
   {
     "entity": "lucas-hernandez-transfer",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Lucas Hernandez’s release clause paid by Bayern Munich (2019)",
-      "fr": "La clause libératoire de Lucas Hernandez payée par le Bayern Munich (2019)"
+      "fr": "La clause libératoire de Lucas Hernandez payée par le Bayern Munich (2019)",
+      "pt": "A cláusula de rescisão de Lucas Hernandez paga pelo Bayern de Munique (2019)"
     },
     "source": "FC Bayern Munich and Atlético Madrid statements, buyout clause of 80M euros, 27 March 2019",
     "tier": "medium",
@@ -1750,10 +1909,11 @@
   },
   {
     "entity": "louvre-jewel-heist",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The estimated loss from the Louvre jewel heist (2025)",
-      "fr": "Le préjudice estimé du vol des bijoux du Louvre (2025)"
+      "fr": "Le préjudice estimé du vol des bijoux du Louvre (2025)",
+      "pt": "O prejuízo estimado do roubo das joias do Louvre (2025)"
     },
     "source": "Paris prosecutor Laure Beccuau, estimate by the museum’s curator, 21 October 2025",
     "tier": "easy",
@@ -1761,10 +1921,11 @@
   },
   {
     "entity": "ronaldo-transfer",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Cristiano Ronaldo’s transfer to Real Madrid (2009)",
-      "fr": "Le transfert de Cristiano Ronaldo au Real Madrid (2009)"
+      "fr": "Le transfert de Cristiano Ronaldo au Real Madrid (2009)",
+      "pt": "A transferência de Cristiano Ronaldo para o Real Madrid (2009)"
     },
     "source": "Real Madrid and Manchester United, July 2009",
     "tier": "medium",
@@ -1772,10 +1933,11 @@
   },
   {
     "entity": "klimt-lady-with-a-fan",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Klimt’s Lady with a Fan sold at auction in London (2023)",
-      "fr": "La Dame à l’éventail de Klimt vendue aux enchères à Londres (2023)"
+      "fr": "La Dame à l’éventail de Klimt vendue aux enchères à Londres (2023)",
+      "pt": "A Dama com Leque de Klimt vendida em leilão em Londres (2023)"
     },
     "source": "Sotheby's London, 27 June 2023, 85.3M GBP fees included, 99M euros per The Art Newspaper France",
     "tier": "medium",
@@ -1783,10 +1945,11 @@
   },
   {
     "entity": "bellingham-transfer",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Jude Bellingham’s transfer to Real Madrid, fixed fee (2023)",
-      "fr": "Le transfert de Jude Bellingham au Real Madrid, part fixe (2023)"
+      "fr": "Le transfert de Jude Bellingham au Real Madrid, part fixe (2023)",
+      "pt": "A transferência de Jude Bellingham para o Real Madrid, parte fixa (2023)"
     },
     "source": "Borussia Dortmund statement, fixed fee of 103M euros before add-ons, June 2023 (Reuters)",
     "tier": "medium",
@@ -1794,10 +1957,11 @@
   },
   {
     "entity": "dembele-barcelona-transfer",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Ousmane Dembélé’s transfer to FC Barcelona, fixed fee (2017)",
-      "fr": "Le transfert d’Ousmane Dembélé au FC Barcelone, part fixe (2017)"
+      "fr": "Le transfert d’Ousmane Dembélé au FC Barcelone, part fixe (2017)",
+      "pt": "A transferência de Ousmane Dembélé para o FC Barcelona, parte fixa (2017)"
     },
     "source": "FC Barcelona and Borussia Dortmund statements, fixed fee of 105M euros before add-ons, August 2017",
     "tier": "easy",
@@ -1805,10 +1969,11 @@
   },
   {
     "entity": "pogba-transfer",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Paul Pogba’s transfer to Manchester United (2016)",
-      "fr": "Le transfert de Paul Pogba à Manchester United (2016)"
+      "fr": "Le transfert de Paul Pogba à Manchester United (2016)",
+      "pt": "A transferência de Paul Pogba para o Manchester United (2016)"
     },
     "source": "Juventus statement, August 2016",
     "tier": "medium",
@@ -1816,10 +1981,11 @@
   },
   {
     "entity": "griezmann-release-clause",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Antoine Griezmann’s release clause paid by FC Barcelona (2019)",
-      "fr": "La clause libératoire d’Antoine Griezmann payée par le FC Barcelone (2019)"
+      "fr": "La clause libératoire d’Antoine Griezmann payée par le FC Barcelone (2019)",
+      "pt": "A cláusula de rescisão de Antoine Griezmann paga pelo FC Barcelona (2019)"
     },
     "source": "FC Barcelona statement, release clause paid at La Liga headquarters, 12 July 2019",
     "tier": "easy",
@@ -1827,10 +1993,11 @@
   },
   {
     "entity": "enzo-fernandez-transfer",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Enzo Fernández’s transfer from Benfica to Chelsea (2023)",
-      "fr": "Le transfert d’Enzo Fernández de Benfica à Chelsea (2023)"
+      "fr": "Le transfert d’Enzo Fernández de Benfica à Chelsea (2023)",
+      "pt": "A transferência de Enzo Fernández do Benfica para o Chelsea (2023)"
     },
     "source": "Benfica filing to the Portuguese market regulator CMVM, 1 February 2023",
     "tier": "hard",
@@ -1838,10 +2005,11 @@
   },
   {
     "entity": "uhlenhaut-coupe",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The Mercedes 300 SLR Uhlenhaut, the dearest car ever sold at auction (2022)",
-      "fr": "La Mercedes 300 SLR Uhlenhaut, voiture la plus chère jamais vendue aux enchères (2022)"
+      "fr": "La Mercedes 300 SLR Uhlenhaut, voiture la plus chère jamais vendue aux enchères (2022)",
+      "pt": "O Mercedes 300 SLR Uhlenhaut, o carro mais caro alguma vez vendido em leilão (2022)"
     },
     "source": "RM Sotheby's, Stuttgart, 5 May 2022",
     "tier": "hard",
@@ -1849,10 +2017,11 @@
   },
   {
     "entity": "rembrandt-portraits",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The two Rembrandt portraits bought by France and the Netherlands (2016)",
-      "fr": "Les deux portraits de Rembrandt achetés par la France et les Pays-Bas (2016)"
+      "fr": "Les deux portraits de Rembrandt achetés par la France et les Pays-Bas (2016)",
+      "pt": "Os dois retratos de Rembrandt comprados pela França e pelos Países Baixos (2016)"
     },
     "source": "Louvre and Rijksmuseum, Maerten Soolmans and Oopjen Coppit, 2016",
     "tier": "hard",
@@ -1860,10 +2029,11 @@
   },
   {
     "entity": "mbappe-transfer",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Kylian Mbappé’s transfer from Monaco to PSG (2018)",
-      "fr": "Le transfert de Kylian Mbappé de Monaco au PSG (2018)"
+      "fr": "Le transfert de Kylian Mbappé de Monaco au PSG (2018)",
+      "pt": "A transferência de Kylian Mbappé do Mónaco para o PSG (2018)"
     },
     "source": "AS Monaco and PSG, bonuses included",
     "tier": "easy",
@@ -1871,10 +2041,11 @@
   },
   {
     "entity": "warhol-marilyn",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Warhol’s portrait of Marilyn Monroe sold at auction (2022)",
-      "fr": "Le portrait de Marilyn Monroe par Warhol vendu aux enchères (2022)"
+      "fr": "Le portrait de Marilyn Monroe par Warhol vendu aux enchères (2022)",
+      "pt": "O retrato de Marilyn Monroe por Warhol vendido em leilão (2022)"
     },
     "source": "Christie's New York, 9 May 2022, 195.04M USD fees included, 184M euros per Guinness World Records and Numéro",
     "tier": "medium",
@@ -1882,10 +2053,11 @@
   },
   {
     "entity": "villers-cotterets-cite",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Cité internationale de la langue française at Villers-Cotterêts (2023)",
-      "fr": "La Cité internationale de la langue française à Villers-Cotterêts (2023)"
+      "fr": "La Cité internationale de la langue française à Villers-Cotterêts (2023)",
+      "pt": "A Cidade Internacional da Língua Francesa em Villers-Cotterêts (2023)"
     },
     "source": "French Ministry of Culture, restoration and fit-out of the château by the Centre des monuments nationaux",
     "tier": "hard",
@@ -1893,10 +2065,11 @@
   },
   {
     "entity": "valerian-budget",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The budget of Luc Besson’s Valerian, the most expensive French film (2017)",
-      "fr": "Le budget de « Valérian » de Luc Besson, film français le plus cher (2017)"
+      "fr": "Le budget de « Valérian » de Luc Besson, film français le plus cher (2017)",
+      "pt": "O orçamento de «Valerian» de Luc Besson, o filme francês mais caro (2017)"
     },
     "source": "CNC report on 2016 French film production, via Cineuropa",
     "tier": "medium",
@@ -1904,10 +2077,11 @@
   },
   {
     "entity": "neymar-transfer",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "Neymar’s transfer to PSG (2017)",
-      "fr": "Le transfert de Neymar au PSG (2017)"
+      "fr": "Le transfert de Neymar au PSG (2017)",
+      "pt": "A transferência de Neymar para o PSG (2017)"
     },
     "source": "Release clause paid to FC Barcelona, August 2017",
     "tier": "easy",
@@ -1915,10 +2089,11 @@
   },
   {
     "entity": "euromillions-france-record",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The biggest EuroMillions win in France, ticket bought in Paris (2025)",
-      "fr": "Le plus gros gain de l’EuroMillions en France, joué à Paris (2025)"
+      "fr": "Le plus gros gain de l’EuroMillions en France, joué à Paris (2025)",
+      "pt": "O maior prémio do Euromilhões em França, jogado em Paris (2025)"
     },
     "source": "FDJ United press release, 6 October 2025: 250 million euros won on 19 August 2025, top of its table of the five biggest French wins",
     "tier": "easy",
@@ -1926,10 +2101,11 @@
   },
   {
     "entity": "ysl-berge-collection",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The sale of the Yves Saint Laurent and Pierre Bergé collection (2009)",
-      "fr": "La vente de la collection Yves Saint Laurent et Pierre Bergé (2009)"
+      "fr": "La vente de la collection Yves Saint Laurent et Pierre Bergé (2009)",
+      "pt": "A venda da coleção de Yves Saint Laurent e Pierre Bergé (2009)"
     },
     "source": "Christie's Paris, 23-25 February 2009, total of the three-day sale per AFP and Artprice",
     "tier": "hard",
@@ -1937,10 +2113,11 @@
   },
   {
     "entity": "salvator-mundi",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Leonardo da Vinci’s Salvator Mundi sold at auction (2017)",
-      "fr": "Le Salvator Mundi de Léonard de Vinci vendu aux enchères (2017)"
+      "fr": "Le Salvator Mundi de Léonard de Vinci vendu aux enchères (2017)",
+      "pt": "O Salvator Mundi de Leonardo da Vinci vendido em leilão (2017)"
     },
     "source": "Christie's New York, 15 November 2017, 450.3M USD fees included, 381.8M euros per Numéro and Hérodote",
     "tier": "easy",
@@ -1948,10 +2125,11 @@
   },
   {
     "entity": "philharmonie-de-paris",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Building the Philharmonie de Paris (opened in 2015)",
-      "fr": "La construction de la Philharmonie de Paris (ouverte en 2015)"
+      "fr": "La construction de la Philharmonie de Paris (ouverte en 2015)",
+      "pt": "A construção da Philharmonie de Paris (inaugurada em 2015)"
     },
     "source": "Ministry of Culture answer to a written question at the Assemblée nationale, total project cost",
     "tier": "hard",
@@ -1959,10 +2137,11 @@
   },
   {
     "entity": "millau-viaduct",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Building the Millau Viaduct (2004)",
-      "fr": "La construction du viaduc de Millau (2004)"
+      "fr": "La construction du viaduc de Millau (2004)",
+      "pt": "A construção do viaduto de Millau (2004)"
     },
     "source": "Eiffage, construction cost",
     "tier": "medium",
@@ -1970,10 +2149,11 @@
   },
   {
     "entity": "grand-palais-restoration",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Restoring the Grand Palais in Paris (reopened 2024-2025)",
-      "fr": "La restauration du Grand Palais à Paris (rouvert en 2024-2025)"
+      "fr": "La restauration du Grand Palais à Paris (rouvert en 2024-2025)",
+      "pt": "O restauro do Grand Palais de Paris (reaberto em 2024-2025)"
     },
     "source": "French Ministry of Culture, total cost of the operation including financing costs",
     "tier": "medium",
@@ -1981,10 +2161,11 @@
   },
   {
     "entity": "notre-dame-restoration",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Restoring Notre-Dame de Paris up to its reopening (2019-2024)",
-      "fr": "La restauration de Notre-Dame de Paris jusqu’à sa réouverture (2019-2024)"
+      "fr": "La restauration de Notre-Dame de Paris jusqu’à sa réouverture (2019-2024)",
+      "pt": "O restauro de Notre-Dame de Paris até à reabertura (2019-2024)"
     },
     "source": "Rebâtir Notre-Dame de Paris, cost of the two phases to December 2024",
     "tier": "medium",
@@ -1992,10 +2173,11 @@
   },
   {
     "entity": "ligue-1-tv-rights-2018",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "Ligue 1 TV rights per season, auctioned in 2018 for 2020-2024",
-      "fr": "Les droits TV de la Ligue 1 par saison, vendus en 2018 pour 2020-2024"
+      "fr": "Les droits TV de la Ligue 1 par saison, vendus en 2018 pour 2020-2024",
+      "pt": "Os direitos televisivos da Ligue 1 por época, vendidos em 2018 para 2020-2024"
     },
     "source": "LFP tender result (Mediapro, beIN Sports, Free), 29 May 2018",
     "tier": "hard",
@@ -2003,10 +2185,11 @@
   },
   {
     "entity": "seine-bathing-plan",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The plan to make the Seine swimmable (Paris 2024)",
-      "fr": "Le plan pour rendre la Seine baignable (JO de Paris 2024)"
+      "fr": "Le plan pour rendre la Seine baignable (JO de Paris 2024)",
+      "pt": "O plano para tornar o Sena próprio para banhos (Jogos de Paris 2024)"
     },
     "source": "Préfecture de la région Île-de-France, Plan Baignade, total cost estimated at 1.4bn euros",
     "tier": "easy",
@@ -2014,10 +2197,11 @@
   },
   {
     "entity": "juice-probe",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "The total cost of the European Juice probe, launched to Jupiter (2023)",
-      "fr": "Le coût total de la sonde européenne Juice, partie vers Jupiter (2023)"
+      "fr": "Le coût total de la sonde européenne Juice, partie vers Jupiter (2023)",
+      "pt": "O custo total da sonda europeia Juice, lançada rumo a Júpiter (2023)"
     },
     "source": "ESA estimate of the total mission cost, reported at launch in April 2023 (deutschland.de, Planetary Society, Paperjam)",
     "tier": "hard",
@@ -2025,10 +2209,11 @@
   },
   {
     "entity": "tgv-m-order",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "SNCF’s order of 100 TGV M trains from Alstom (2018)",
-      "fr": "La commande de 100 TGV M passée par la SNCF à Alstom (2018)"
+      "fr": "La commande de 100 TGV M passée par la SNCF à Alstom (2018)",
+      "pt": "A encomenda de 100 TGV M feita pela SNCF à Alstom (2018)"
     },
     "source": "Alstom press release, July 2018, contract worth 2.7bn euros",
     "tier": "hard",
@@ -2036,10 +2221,11 @@
   },
   {
     "entity": "lucasfilm-disney",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "Disney’s purchase of Lucasfilm, the Star Wars studio (2012)",
-      "fr": "Le rachat de Lucasfilm (Star Wars) par Disney (2012)"
+      "fr": "Le rachat de Lucasfilm (Star Wars) par Disney (2012)",
+      "pt": "A compra da Lucasfilm (Star Wars) pela Disney (2012)"
     },
     "source": "Disney announcement, 30 October 2012, 4.05bn USD, 3.12bn euros per Journal du Net (3.1bn per Slate)",
     "tier": "easy",
@@ -2047,10 +2233,11 @@
   },
   {
     "entity": "google-android-fine",
-    "isInFrance": false,
+    "homeCountry": null,
     "names": {
       "en": "The EU fine on Google over Android (2018)",
-      "fr": "L’amende infligée à Google par Bruxelles pour Android (2018)"
+      "fr": "L’amende infligée à Google par Bruxelles pour Android (2018)",
+      "pt": "A multa aplicada à Google por Bruxelas por causa do Android (2018)"
     },
     "source": "European Commission press release, 18 July 2018, 4.34 billion euros (cut to 4.125 billion by the General Court in 2022)",
     "tier": "hard",
@@ -2058,10 +2245,11 @@
   },
   {
     "entity": "paris-2024-budget",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The budget of the Paris 2024 organising committee",
-      "fr": "Le budget du comité d’organisation des Jeux de Paris 2024"
+      "fr": "Le budget du comité d’organisation des Jeux de Paris 2024",
+      "pt": "O orçamento do comité organizador dos Jogos de Paris 2024"
     },
     "source": "Paris 2024 organising committee, final budget",
     "tier": "medium",
@@ -2069,10 +2257,11 @@
   },
   {
     "entity": "dior-couture-lvmh",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "LVMH’s purchase of Christian Dior Couture, debt included (2017)",
-      "fr": "Le rachat de Christian Dior Couture par LVMH, dette comprise (2017)"
+      "fr": "Le rachat de Christian Dior Couture par LVMH, dette comprise (2017)",
+      "pt": "A compra da Christian Dior Couture pela LVMH, dívida incluída (2017)"
     },
     "source": "LVMH and Christian Dior joint release, 25 April 2017, enterprise value",
     "tier": "hard",
@@ -2080,10 +2269,11 @@
   },
   {
     "entity": "canal-seine-nord-cost",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The Seine-Nord Europe canal, cost per the Cour des comptes (2026)",
-      "fr": "Le canal Seine-Nord Europe, coût estimé par la Cour des comptes (2026)"
+      "fr": "Le canal Seine-Nord Europe, coût estimé par la Cour des comptes (2026)",
+      "pt": "O canal Seine-Nord Europe, custo estimado pelo Tribunal de Contas francês (2026)"
     },
     "source": "Cour des comptes, cost to completion of 7.3bn euros before tax, current euros, April 2026 (Banque des Territoires)",
     "tier": "hard",
@@ -2091,10 +2281,11 @@
   },
   {
     "entity": "rafale-india-contract",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "India’s contract for 36 Rafale jets (2016)",
-      "fr": "Le contrat de 36 Rafale vendus à l’Inde (2016)"
+      "fr": "Le contrat de 36 Rafale vendus à l’Inde (2016)",
+      "pt": "O contrato de 36 Rafale vendidos à Índia (2016)"
     },
     "source": "India-France intergovernmental agreement signed 23 September 2016, 7.87bn euros (The Hindu, The Indian Express)",
     "tier": "hard",
@@ -2102,10 +2293,11 @@
   },
   {
     "entity": "lyon-turin-tunnel",
-    "isInFrance": true,
+    "homeCountry": null,
     "names": {
       "en": "The Lyon-Turin base tunnel, revised cost (2024)",
-      "fr": "Le tunnel de base Lyon-Turin, coût réévalué (2024)"
+      "fr": "Le tunnel de base Lyon-Turin, coût réévalué (2024)",
+      "pt": "O túnel de base Lyon-Turim, custo revisto (2024)"
     },
     "source": "TELT board, July 2024, up from 8.6bn euros in 2015 (Économie Matin, 31 July 2024)",
     "tier": "medium",
@@ -2113,10 +2305,11 @@
   },
   {
     "entity": "flamanville-epr-cost",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The cost of the Flamanville EPR according to the Cour des comptes (2025)",
-      "fr": "Le coût de l’EPR de Flamanville selon la Cour des comptes (2025)"
+      "fr": "Le coût de l’EPR de Flamanville selon la Cour des comptes (2025)",
+      "pt": "O custo do EPR de Flamanville segundo o Tribunal de Contas francês (2025)"
     },
     "source": "Cour des comptes, report on the EPR programme, 14 January 2025, 23.7bn euros (2023 euros, financing costs included)",
     "tier": "medium",
@@ -2124,13 +2317,710 @@
   },
   {
     "entity": "grand-paris-express-cost",
-    "isInFrance": true,
+    "homeCountry": "FRA",
     "names": {
       "en": "The planned cost of the Grand Paris Express (target set in 2022)",
-      "fr": "Le coût prévu du Grand Paris Express (objectif fixé en 2022)"
+      "fr": "Le coût prévu du Grand Paris Express (objectif fixé en 2022)",
+      "pt": "O custo previsto do Grand Paris Express (objetivo fixado em 2022)"
     },
     "source": "Société des grands projets, cost target of 36.1bn euros including risk provisions, in 2012 economic conditions, set in 2022",
     "tier": "medium",
     "value": 36100000000
+  },
+  {
+    "entity": "navegante-ocasional-card",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A blank Navegante Ocasional card for Lisbon transport (2026)",
+      "fr": "La carte vierge Navegante Ocasional des transports lisboètes (2026)",
+      "pt": "O cartão navegante ocasional de Lisboa, ainda vazio (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, navegante ocasional card at 0.50 euros",
+    "tier": "easy",
+    "value": 0.5
+  },
+  {
+    "entity": "ctt-domestic-stamp",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A CTT stamp for a domestic letter up to 20 g (2026)",
+      "fr": "Un timbre CTT pour une lettre nationale jusqu’à 20 g (2026)",
+      "pt": "Um selo dos CTT para uma carta nacional até 20 g (2026)"
+    },
+    "source": "CTT prices from 2 February 2026, normal domestic mail up to 20 g up four cents (RTP, 28 November 2025; Executive Digest, 2 February 2026); 0.73 euros per The Portugal Post, “Stamp price now €0.73 for a 20-gram domestic letter”",
+    "tier": "easy",
+    "value": 0.73
+  },
+  {
+    "entity": "totoloto-bet",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A simple Totoloto bet (2026)",
+      "fr": "Une grille simple de Totoloto (2026)",
+      "pt": "Uma aposta simples no Totoloto (2026)"
+    },
+    "source": "Santa Casa communiqué, the bet at 1.00 euro from draw 85/2021 of 23 October 2021, still 1 euro for five numbers and a lucky number per Magazine HD, October 2026",
+    "tier": "easy",
+    "value": 1
+  },
+  {
+    "entity": "manteigaria-pastel-de-nata",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A pastel de nata at a Manteigaria shop in Portugal (2025)",
+      "fr": "Un pastel de nata dans une boutique Manteigaria au Portugal (2025)",
+      "pt": "Um pastel de nata numa loja Manteigaria em Portugal (2025)"
+    },
+    "source": "Postal and Time Out Madrid, January 2025, 1.30 euros in the brand’s Portuguese shops against 2 euros in its new Madrid shop",
+    "tier": "easy",
+    "value": 1.3
+  },
+  {
+    "entity": "andante-z2-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A single Andante Z2 ticket on the Porto metro (2026)",
+      "fr": "Un ticket Andante Z2 dans le métro de Porto (2026)",
+      "pt": "Um bilhete ocasional Andante Z2 no Metro do Porto (2026)"
+    },
+    "source": "Transportes Metropolitanos do Porto fares for 2026, Z2 kept at 1.40 euros while Z3 and above rise (RTP, December 2025)",
+    "tier": "easy",
+    "value": 1.4
+  },
+  {
+    "entity": "lisbon-metro-single-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A single Carris/Metro ticket in Lisbon (2026)",
+      "fr": "Un ticket simple Carris/Metro à Lisbonne (2026)",
+      "pt": "Um bilhete simples Carris/Metro em Lisboa (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, Carris/Metro ticket valid one hour at 1.90 euros",
+    "tier": "easy",
+    "value": 1.9
+  },
+  {
+    "entity": "petrol-95-portugal-2026",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A litre of unleaded 95 in Portugal, national average (8 November 2026)",
+      "fr": "Un litre de sans-plomb 95 au Portugal, moyenne nationale (8 novembre 2026)",
+      "pt": "Um litro de gasolina simples 95, média nacional (8 de novembro de 2026)"
+    },
+    "source": "DGEG average across 1,775 stations, 1.996 euros a litre on 8 November 2026, reported by Simula",
+    "tier": "easy",
+    "value": 1.996
+  },
+  {
+    "entity": "diesel-portugal-2026",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A litre of diesel in Portugal, national average (8 November 2026)",
+      "fr": "Un litre de gazole au Portugal, moyenne nationale (8 novembre 2026)",
+      "pt": "Um litro de gasóleo simples, média nacional (8 de novembro de 2026)"
+    },
+    "source": "DGEG average across 1,657 stations, 2.202 euros a litre on 8 November 2026, reported by Simula",
+    "tier": "easy",
+    "value": 2.202
+  },
+  {
+    "entity": "euromilhoes-bet-portugal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A simple Euromilhões bet in Portugal, M1lhão included (2026)",
+      "fr": "Une grille simple d’EuroMillions au Portugal, M1lhão compris (2026)",
+      "pt": "Uma aposta simples no Euromilhões, com o M1lhão incluído (2026)"
+    },
+    "source": "Santa Casa press release, April 2026: the simple bet stays at 2.50 euros, 2.20 for Euromilhões and 0.30 for the compulsory M1lhão (DECO Proteste, Postal)",
+    "tier": "easy",
+    "value": 2.5
+  },
+  {
+    "entity": "sardinha-no-pao-santo-antonio",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The top price of a sardine on bread in Lisbon’s arraiais on Santo António night (2026)",
+      "fr": "Le prix maximum d’une sardine sur pain dans les arraiais de Lisbonne le soir de la Saint-Antoine (2026)",
+      "pt": "O preço máximo de uma sardinha no pão nos arraiais de Lisboa, na noite de Santo António (2026)"
+    },
+    "source": "Postal, 8 June 2026: the maximum of 3 euros a sardine on bread expected again in Lisbon’s arraiais on the night of 12 June and in Porto on 23 June",
+    "tier": "easy",
+    "value": 3
+  },
+  {
+    "entity": "lisbon-tourist-tax",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Lisbon’s tourist tax, per person per night (2026)",
+      "fr": "La taxe de séjour de Lisbonne, par personne et par nuit (2026)",
+      "pt": "A taxa turística de Lisboa, por pessoa e por noite (2026)"
+    },
+    "source": "Lisbon city council, 4 euros a night since September 2024, capped at seven nights (Renascença, 1 January 2025)",
+    "tier": "easy",
+    "value": 4
+  },
+  {
+    "entity": "ground-coffee-pack-portugal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A 250 g pack of ground roasted coffee in Portugal, average price (2025)",
+      "fr": "Un paquet de 250 g de café moulu au Portugal, prix moyen (2025)",
+      "pt": "Um pacote de 250 g de café torrado moído, preço médio (2025)"
+    },
+    "source": "DECO Proteste price tracker, 2025 annual average of 4.31 euros, up 26.35% on 2024",
+    "tier": "easy",
+    "value": 4.31
+  },
+  {
+    "entity": "guimaraes-castle-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-price ticket to Guimarães Castle (2025)",
+      "fr": "Un billet plein tarif pour le château de Guimarães (2025)",
+      "pt": "Um bilhete normal para o Castelo de Guimarães (2025)"
+    },
+    "source": "Despacho 13793/2024, Diário da República, 21 November 2024, prices in force from 1 January 2025: Castelo de Guimarães at 5 euros (Museus e Monumentos de Portugal table)",
+    "tier": "medium",
+    "value": 5
+  },
+  {
+    "entity": "cinema-ticket-portugal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A cinema ticket in Portugal, average price (2025)",
+      "fr": "Une place de cinéma au Portugal, prix moyen (2025)",
+      "pt": "Um bilhete de cinema em Portugal, preço médio (2025)"
+    },
+    "source": "Instituto do Cinema e do Audiovisual figures reported by Lusa, February 2026, 6.47 euros against 4.19 in 2004",
+    "tier": "easy",
+    "value": 6.47
+  },
+  {
+    "entity": "cartao-cidadao-renewal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Renewing a Portuguese Citizen Card for an adult over 25 (2026)",
+      "fr": "Le renouvellement de la carte d’identité portugaise d’un adulte de plus de 25 ans (2026)",
+      "pt": "A renovação do Cartão de Cidadão para maiores de 25 anos (2026)"
+    },
+    "source": "Montepio guide updated 13 August 2026, 18 euros for a ten-year card renewed at the end of its validity and collected in Portugal",
+    "tier": "easy",
+    "value": 18
+  },
+  {
+    "entity": "a1-toll-lisbon-porto",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The A1 motorway toll from Lisbon to Porto for a car (2026)",
+      "fr": "Le péage de l’autoroute A1 de Lisbonne à Porto en voiture (2026)",
+      "pt": "A portagem da A1 entre Lisboa e Porto, classe 1 (2026)"
+    },
+    "source": "Brisa tolls from 1 January 2026, up 45 cents to 25.05 euros for class 1 (RTP and DN)",
+    "tier": "easy",
+    "value": 25.05
+  },
+  {
+    "entity": "navegante-municipal-month",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A month of the Navegante Municipal pass for one municipality such as Lisbon (2026)",
+      "fr": "Un mois de passe Navegante Municipal, valable dans une seule commune comme Lisbonne (2026)",
+      "pt": "Um mês de passe Navegante Municipal, válido num só concelho como Lisboa (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, navegante municipal at 30 euros a month",
+    "tier": "easy",
+    "value": 30
+  },
+  {
+    "entity": "alfa-pendular-lisbon-porto-tourist",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-fare Alfa Pendular ticket from Lisbon to Porto, tourist class (2026)",
+      "fr": "Un billet Alfa Pendular plein tarif de Lisbonne à Porto, classe touriste (2026)",
+      "pt": "Um bilhete Alfa Pendular de Lisboa ao Porto, classe Turística, sem desconto (2026)"
+    },
+    "source": "CP fares up 2.26% from 1 January 2026, Lisbon–Porto one way at 35.70 euros in Turística (DN, 23 December 2025; The Portugal News)",
+    "tier": "medium",
+    "value": 35.7
+  },
+  {
+    "entity": "navegante-metropolitano-month",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A month of the Navegante Metropolitano pass, valid across greater Lisbon (2026)",
+      "fr": "Un mois de passe Navegante Metropolitano, valable dans toute l’agglomération de Lisbonne (2026)",
+      "pt": "Um mês de passe Navegante Metropolitano, válido em toda a Área Metropolitana de Lisboa (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, 40 euros a month, unchanged for a seventh year (ECO, 18 December 2025)",
+    "tier": "easy",
+    "value": 40
+  },
+  {
+    "entity": "portugal-minimum-wage",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The Portuguese national minimum wage, gross per month (2026)",
+      "fr": "Le salaire minimum portugais, brut par mois (2026)",
+      "pt": "O salário mínimo nacional, bruto por mês (2026)"
+    },
+    "source": "Decree-law published in the Diário da República on 29 December 2025, 920 euros gross a month from 1 January 2026 (Renascença, Sábado)",
+    "tier": "easy",
+    "value": 920
+  },
+  {
+    "entity": "emel-red-zone-hour",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "An hour of street parking in a Lisbon EMEL red zone, rate approved in July 2026",
+      "fr": "Une heure de stationnement en zone rouge EMEL à Lisbonne, tarif voté en juillet 2026",
+      "pt": "Uma hora de estacionamento numa zona vermelha da EMEL, tarifa aprovada em julho de 2026"
+    },
+    "source": "Lisbon city council vote of 22 July 2026, red zones from 1.60 to 1.70 euros an hour, the first rise in 15 years (Renascença, 22 July 2026; Observador, RTP, Postal)",
+    "tier": "medium",
+    "value": 1.7
+  },
+  {
+    "entity": "audiovisual-contribution",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The monthly audiovisual contribution funding RTP on an electricity bill, before VAT (2026)",
+      "fr": "La contribution audiovisuelle mensuelle qui finance la RTP sur la facture d’électricité, hors TVA (2026)",
+      "pt": "A contribuição audiovisual mensal cobrada na fatura da luz, sem IVA (2026)"
+    },
+    "source": "2026 State Budget leaves the monthly amounts unchanged (PwC, Jornal Económico); 2.85 euros plus 6% VAT per Loja Luz",
+    "tier": "medium",
+    "value": 2.85
+  },
+  {
+    "entity": "porto-tourist-tax",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Porto’s tourist tax, per person per night (2026)",
+      "fr": "La taxe de séjour de Porto, par personne et par nuit (2026)",
+      "pt": "A taxa turística do Porto, por pessoa e por noite (2026)"
+    },
+    "source": "Porto city council, raised to 3 euros a night on 1 December 2024 (Renascença), still 3 euros when its review began in September 2026",
+    "tier": "medium",
+    "value": 3
+  },
+  {
+    "entity": "lisbon-tram-onboard-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A ticket bought on board a Lisbon tram such as the 28 (2026)",
+      "fr": "Un ticket acheté à bord d’un tramway de Lisbonne comme le 28 (2026)",
+      "pt": "Um bilhete comprado a bordo de um elétrico de Lisboa, como o 28 (2026)"
+    },
+    "source": "Carris on-board tram fare from 1 January 2026, 3.30 euros (4gnews and Echo Boomer)",
+    "tier": "medium",
+    "value": 3.3
+  },
+  {
+    "entity": "meal-allowance-cash-cap",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The daily tax-free cap on a meal allowance paid in cash in Portugal (2026)",
+      "fr": "Le plafond journalier exonéré de l’indemnité repas versée en espèces au Portugal (2026)",
+      "pt": "O limite diário isento do subsídio de refeição pago em dinheiro (2026)"
+    },
+    "source": "Portaria 51-B/2026/1, from 6.00 to 6.15 euros a day from 1 January 2026 (Abanca, Comparaja)",
+    "tier": "medium",
+    "value": 6.15
+  },
+  {
+    "entity": "santa-justa-lift-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A ticket bought on board the Santa Justa Lift in Lisbon, two trips (2026)",
+      "fr": "Un billet acheté à bord de l’ascenseur de Santa Justa à Lisbonne, deux trajets (2026)",
+      "pt": "Um bilhete de bordo no Elevador de Santa Justa, até duas viagens (2026)"
+    },
+    "source": "Carris on-board fare from 1 January 2026, 6.20 euros for up to two trips (Echo Boomer and 4gnews)",
+    "tier": "medium",
+    "value": 6.2
+  },
+  {
+    "entity": "navegante-personalised-card",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A personalised Navegante card for Lisbon transport, normal request (2026)",
+      "fr": "Une carte Navegante personnalisée des transports lisboètes, demande normale (2026)",
+      "pt": "Um cartão navegante personalizado, pedido normal (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, navegante personalizado at 7.00 euros (12 euros urgent)",
+    "tier": "medium",
+    "value": 7
+  },
+  {
+    "entity": "lisbon-24h-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A 24-hour Carris/Metro ticket in Lisbon (2026)",
+      "fr": "Un billet 24 heures Carris/Metro à Lisbonne (2026)",
+      "pt": "Um bilhete de 24 horas Carris/Metro em Lisboa (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, 24-hour Carris/Metro ticket at 7.25 euros",
+    "tier": "medium",
+    "value": 7.25
+  },
+  {
+    "entity": "azulejo-museum-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-price ticket to the National Tile Museum in Lisbon (2025)",
+      "fr": "Un billet plein tarif pour le musée national de l’Azulejo à Lisbonne (2025)",
+      "pt": "Um bilhete normal para o Museu Nacional do Azulejo (2025)"
+    },
+    "source": "Despacho 13793/2024, Diário da República, 21 November 2024, prices in force from 1 January 2025: 10 euros",
+    "tier": "medium",
+    "value": 10
+  },
+  {
+    "entity": "belem-tower-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-price ticket to the Belém Tower (2025)",
+      "fr": "Un billet plein tarif pour la tour de Belém (2025)",
+      "pt": "Um bilhete normal para a Torre de Belém (2025)"
+    },
+    "source": "Despacho 13793/2024, Diário da República, 21 November 2024, prices in force from 1 January 2025: 15 euros, up seven",
+    "tier": "medium",
+    "value": 15
+  },
+  {
+    "entity": "jeronimos-monastery-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-price ticket to the Jerónimos Monastery in Lisbon (2025)",
+      "fr": "Un billet plein tarif pour le monastère des Hiéronymites à Lisbonne (2025)",
+      "pt": "Um bilhete normal para o Mosteiro dos Jerónimos (2025)"
+    },
+    "source": "Despacho 13793/2024, Diário da República, 21 November 2024, prices in force from 1 January 2025: 18 euros",
+    "tier": "medium",
+    "value": 18
+  },
+  {
+    "entity": "lisbon-zoo-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "An adult ticket at the Lisbon Zoo, bought at the ticket office (2026)",
+      "fr": "Un billet adulte au zoo de Lisbonne, acheté au guichet (2026)",
+      "pt": "Um bilhete de adulto no Jardim Zoológico de Lisboa, na bilheteira (2026)"
+    },
+    "source": "Jardim Zoológico price page, prices from 1 January 2026: 31 euros for ages 13 to 64 at the ticket office, 5% less online (also e-konomista)",
+    "tier": "medium",
+    "value": 31
+  },
+  {
+    "entity": "alfa-pendular-lisbon-porto-first",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A full-fare Alfa Pendular ticket from Lisbon to Porto, first class (2026)",
+      "fr": "Un billet Alfa Pendular plein tarif de Lisbonne à Porto, en première classe (2026)",
+      "pt": "Um bilhete Alfa Pendular de Lisboa ao Porto, classe Conforto, sem desconto (2026)"
+    },
+    "source": "CP fares up 2.26% from 1 January 2026, Lisbon–Porto one way at 49.90 euros in Conforto (DN, 23 December 2025)",
+    "tier": "medium",
+    "value": 49.9
+  },
+  {
+    "entity": "portuguese-passport",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A Portuguese electronic passport, normal service (2026)",
+      "fr": "Un passeport électronique portugais, procédure normale (2026)",
+      "pt": "Um passaporte eletrónico português, pedido normal (2026)"
+    },
+    "source": "Idealista and Comparaja passport guides, 2026: 65 euros normal, 85 express, 95 urgent",
+    "tier": "medium",
+    "value": 65
+  },
+  {
+    "entity": "navegante-family-month",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A month of the Navegante Família Metropolitano pass for a whole household (2026)",
+      "fr": "Un mois de passe Navegante Família Metropolitano pour tout un foyer (2026)",
+      "pt": "Um mês de passe Navegante Família Metropolitano para todo o agregado familiar (2026)"
+    },
+    "source": "Metro de Lisboa, fare table in force from 1 January 2026, navegante família metropolitano at 80 euros a month",
+    "tier": "medium",
+    "value": 80
+  },
+  {
+    "entity": "nos-alive-day-ticket",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A one-day ticket to NOS Alive in Algés (2026)",
+      "fr": "Un billet d’un jour pour le festival NOS Alive à Algés (2026)",
+      "pt": "Um bilhete diário para o NOS Alive, em Algés (2026)"
+    },
+    "source": "NOS Alive 2026 base prices, 84 euros a day and 199 for three days before fees (Echo Boomer, NiT, See Tickets)",
+    "tier": "medium",
+    "value": 84
+  },
+  {
+    "entity": "university-tuition-cap-portugal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The maximum yearly tuition for a bachelor’s degree at a Portuguese public university (2025-2026)",
+      "fr": "Les frais de scolarité annuels maximaux d’une licence dans une université publique portugaise (2025-2026)",
+      "pt": "A propina máxima anual de uma licenciatura no ensino superior público (2025/2026)"
+    },
+    "source": "DGES, cap held at 697 euros for 2025-2026, frozen since 2020-2021 (Observador, 2 September 2025; ULisboa deliberation)",
+    "tier": "medium",
+    "value": 697
+  },
+  {
+    "entity": "average-salary-portugal",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The average gross monthly pay of a worker in Portugal (2025)",
+      "fr": "Le salaire brut mensuel moyen d’un salarié au Portugal (2025)",
+      "pt": "A remuneração bruta mensal média por trabalhador em Portugal (2025)"
+    },
+    "source": "INE, 2025 annual average of 1,694 euros gross, up 5.6% (ECO, 13 February 2026)",
+    "tier": "medium",
+    "value": 1694
+  },
+  {
+    "entity": "portugal-median-square-metre",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The median price of a square metre of housing sold in Portugal (Q2 2026)",
+      "fr": "Le prix médian du mètre carré de logement vendu au Portugal (2e trimestre 2026)",
+      "pt": "O preço mediano do metro quadrado de habitação vendida em Portugal (2.º trimestre de 2026)"
+    },
+    "source": "INE, local housing price statistics of 23 October 2026, 2,445 euros per square metre, up 18.4% in a year (Sábado)",
+    "tier": "medium",
+    "value": 2445
+  },
+  {
+    "entity": "ruben-amorim-release-clause",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The release clause Manchester United paid Sporting for Rúben Amorim (2024)",
+      "fr": "La clause libératoire payée par Manchester United au Sporting pour Rúben Amorim (2024)",
+      "pt": "A cláusula de rescisão que o Manchester United pagou ao Sporting por Rúben Amorim (2024)"
+    },
+    "source": "Sporting SAD filing to the CMVM, 29 October 2024, a 10 million euro clause (Jornal de Negócios, Record)",
+    "tier": "medium",
+    "value": 10000000
+  },
+  {
+    "entity": "joao-felix-transfer",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "What Atlético Madrid paid Benfica for João Félix (2019)",
+      "fr": "Ce que l’Atlético de Madrid a payé à Benfica pour João Félix (2019)",
+      "pt": "O que o Atlético de Madrid pagou ao Benfica por João Félix (2019)"
+    },
+    "source": "Benfica SAD filing to the CMVM, 3 July 2019, 126 million euros, 6 million of it financing costs over the 120 million clause (Renascença, ECO)",
+    "tier": "medium",
+    "value": 126000000
+  },
+  {
+    "entity": "euromilhoes-ramalde-jackpot",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The Euromilhões jackpot won in Ramalde, Porto (June 2024)",
+      "fr": "Le jackpot d’EuroMillions remporté à Ramalde, à Porto (juin 2024)",
+      "pt": "O jackpot do Euromilhões que saiu em Ramalde, no Porto (junho de 2024)"
+    },
+    "source": "Draw of 25 June 2024, 213,887,390 euros, the largest prize ever won in Portugal (Renascença, Forbes Portugal)",
+    "tier": "medium",
+    "value": 213887390
+  },
+  {
+    "entity": "lisbon-new-lease-rent-square-metre",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The median monthly rent per square metre on new leases in Lisbon (Q1 2026)",
+      "fr": "Le loyer mensuel médian au mètre carré des nouveaux baux à Lisbonne (1er trimestre 2026)",
+      "pt": "A renda mediana mensal por metro quadrado dos novos contratos em Lisboa (1.º trimestre de 2026)"
+    },
+    "source": "INE rent statistics, 26 June 2026, Lisbon municipality at 17.42 euros per square metre (ECO, Montepio)",
+    "tier": "hard",
+    "value": 17.42
+  },
+  {
+    "entity": "portugal-new-lease-rent-square-metre",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The median monthly rent per square metre on new leases across Portugal (Q2 2026)",
+      "fr": "Le loyer mensuel médian au mètre carré des nouveaux baux dans tout le Portugal (2e trimestre 2026)",
+      "pt": "A renda mediana mensal por metro quadrado dos novos contratos no país (2.º trimestre de 2026)"
+    },
+    "source": "INE rent statistics, 29 September 2026, 10.17 euros per square metre over 35,407 new leases (ECO, Idealista)",
+    "tier": "hard",
+    "value": 10.17
+  },
+  {
+    "entity": "regulated-electricity-family-bill",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The monthly electricity bill of a couple with two children on Portugal’s regulated tariff (January 2026)",
+      "fr": "La facture mensuelle d’électricité d’un couple avec deux enfants au tarif réglementé portugais (janvier 2026)",
+      "pt": "A fatura mensal de eletricidade de um casal com dois filhos no mercado regulado (janeiro de 2026)"
+    },
+    "source": "ERSE communiqué on the 2026 tariffs, 6.9 kVA and 5,000 kWh a year, 95.03 euros a month",
+    "tier": "hard",
+    "value": 95.03
+  },
+  {
+    "entity": "ias-portugal-2026",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Portugal’s social support index, the IAS, per month (2026)",
+      "fr": "L’indice des aides sociales portugais (IAS), par mois (2026)",
+      "pt": "O Indexante dos Apoios Sociais (IAS), por mês (2026)"
+    },
+    "source": "Portaria 480-A/2025/1 of 30 December 2025, 537.13 euros, up 2.8% (RTP, Executive Digest)",
+    "tier": "hard",
+    "value": 537.13
+  },
+  {
+    "entity": "barca-velha-2015",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "A bottle of Barca Velha 2015 from Casa Ferreirinha at its release (2024)",
+      "fr": "Une bouteille de Barca Velha 2015 de la Casa Ferreirinha à sa sortie (2024)",
+      "pt": "Uma garrafa de Barca Velha 2015 da Casa Ferreirinha no lançamento (2024)"
+    },
+    "source": "Sábado on the 2024 release of the 21st Barca Velha vintage, 900 euros asked for each bottle",
+    "tier": "hard",
+    "value": 900
+  },
+  {
+    "entity": "porto-area-median-square-metre",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The median price of a square metre of housing in the Porto metropolitan area (Q2 2026)",
+      "fr": "Le prix médian du mètre carré de logement dans l’aire métropolitaine de Porto (2e trimestre 2026)",
+      "pt": "O preço mediano do metro quadrado de habitação na Área Metropolitana do Porto (2.º trimestre de 2026)"
+    },
+    "source": "INE, local housing price statistics of 23 October 2026, 2,500 euros per square metre (Sábado)",
+    "tier": "hard",
+    "value": 2500
+  },
+  {
+    "entity": "lisbon-median-square-metre",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The median price of a square metre of housing sold in Lisbon (Q2 2026)",
+      "fr": "Le prix médian du mètre carré de logement vendu à Lisbonne (2e trimestre 2026)",
+      "pt": "O preço mediano do metro quadrado de habitação vendida em Lisboa (2.º trimestre de 2026)"
+    },
+    "source": "INE, local housing price statistics of 23 October 2026, Lisbon municipality at 5,299 euros per square metre, the highest in the country (Sábado)",
+    "tier": "hard",
+    "value": 5299
+  },
+  {
+    "entity": "portuguese-president-pay",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The Portuguese President’s gross monthly pay, representation allowance included (2026)",
+      "fr": "La rémunération brute mensuelle du président portugais, frais de représentation compris (2026)",
+      "pt": "O vencimento bruto mensal do Presidente da República, com despesas de representação (2026)"
+    },
+    "source": "Simula politicians’ pay table for 2026: 8,550.10 euros base plus a 40% representation allowance of 3,420.04, 11,970.14 euros gross after the 2.15% update (Postal); 11,718 was the 2025 figure",
+    "tier": "hard",
+    "value": 11970.14
+  },
+  {
+    "entity": "gyokeres-transfer",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The fixed fee Arsenal paid Sporting for Viktor Gyökeres (2025)",
+      "fr": "La part fixe payée par Arsenal au Sporting pour Viktor Gyökeres (2025)",
+      "pt": "A parcela fixa que o Arsenal pagou ao Sporting por Viktor Gyökeres (2025)"
+    },
+    "source": "Sporting SAD filing to the CMVM, July 2025, fixed part of 65,764,103 euros plus up to 10.26 million in add-ons (A Bola, 26 July 2025)",
+    "tier": "hard",
+    "value": 65764103
+  },
+  {
+    "entity": "darwin-nunez-transfer",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The fixed fee Liverpool paid Benfica for Darwin Núñez (2022)",
+      "fr": "La part fixe payée par Liverpool à Benfica pour Darwin Núñez (2022)",
+      "pt": "A parcela fixa que o Liverpool pagou ao Benfica por Darwin Núñez (2022)"
+    },
+    "source": "Benfica SAD filing to the CMVM, 13 June 2022, 75 million euros fixed, up to 100 million with add-ons (Record, DN)",
+    "tier": "hard",
+    "value": 75000000
+  },
+  {
+    "entity": "euromilhoes-superdraw-feb-2026",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The guaranteed jackpot of the Euromilhões Superdraw of 20 February 2026",
+      "fr": "Le jackpot garanti du Superdraw d’EuroMillions du 20 février 2026",
+      "pt": "O jackpot garantido do Superdraw do Euromilhões de 20 de fevereiro de 2026"
+    },
+    "source": "A Bola, 18 February 2026, and Euro-Millions.com: 130 million euros guaranteed, paid from the reserve fund",
+    "tier": "hard",
+    "value": 130000000
+  },
+  {
+    "entity": "vasco-da-gama-bridge-cost",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "What the Vasco da Gama Bridge cost, expropriations and studies included (1998)",
+      "fr": "Le coût du pont Vasco de Gama, expropriations et études comprises (1998)",
+      "pt": "O custo da Ponte Vasco da Gama, com expropriações e estudos (1998)"
+    },
+    "source": "Infopédia, about 180 million contos, 897,836,214.70 euros; 897.8 million per Dinheiro Vivo",
+    "tier": "hard",
+    "value": 897836215
+  },
+  {
+    "entity": "tap-restructuring-state-aid",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "The restructuring aid Brussels approved for TAP (December 2021)",
+      "fr": "L’aide à la restructuration de TAP approuvée par Bruxelles (décembre 2021)",
+      "pt": "O auxílio à reestruturação da TAP aprovado por Bruxelas (dezembro de 2021)"
+    },
+    "source": "European Commission decision of 21 December 2021, 2.55 billion euros of restructuring aid, the 1.2 billion rescue loan converted into equity included (Reuters, Bloomberg, Agence Europe); the 3.2 billion often quoted adds the 2020 aid",
+    "tier": "hard",
+    "value": 2550000000
+  },
+  {
+    "entity": "novo-banco-sale-agreed",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Novo Banco as a whole, as valued in BPCE’s purchase agreement (June 2025)",
+      "fr": "Novo Banco dans sa totalité, selon l’accord de rachat de BPCE (juin 2025)",
+      "pt": "O Novo Banco na totalidade, segundo o acordo de compra do BPCE (junho de 2025)"
+    },
+    "source": "Lone Star announcement of 13 June 2025, a cash payment valuing 100% of the share capital at an estimated 6.4 billion euros (Jornal de Negócios, Euronews); the price closed at 6.7 billion on 30 April 2026 after a capital increase",
+    "tier": "hard",
+    "value": 6400000000
+  },
+  {
+    "entity": "lisbon-new-airport-first-estimate",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "ANA’s first cost estimate for Lisbon’s new Luís de Camões airport, at 2023 prices",
+      "fr": "La première estimation d’ANA pour le nouvel aéroport Luís de Camões de Lisbonne, aux prix de 2023",
+      "pt": "A primeira estimativa da ANA para o novo Aeroporto Luís de Camões, a preços de 2023"
+    },
+    "source": "ANA’s initial report to the government, 8.5 billion euros at 2023 prices, revised in July 2026 to 7.9–8.9 billion at 2024 prices (Sábado, Renascença)",
+    "tier": "hard",
+    "value": 8500000000
+  },
+  {
+    "entity": "portugal-recovery-plan",
+    "homeCountry": "PRT",
+    "names": {
+      "en": "Portugal’s Recovery and Resilience Plan, total envelope after the 2023 revision",
+      "fr": "Le plan de relance portugais (PRR), enveloppe totale après la révision de 2023",
+      "pt": "O Plano de Recuperação e Resiliência, dotação total após a reprogramação de 2023"
+    },
+    "source": "Portuguese government, reprogramming of February 2025 keeping the 22.2 billion euros set in May 2023, up from 16.6 billion (Renascença, ECO)",
+    "tier": "hard",
+    "value": 22200000000
   }
 ]

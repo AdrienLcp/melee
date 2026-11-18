@@ -4,6 +4,7 @@ import type { RoomSettings } from '@melee/protocol/room'
 import { EVERY_STRAND } from '@melee/protocol/track'
 
 import { questionLanguageFor } from '../quiz/question-language'
+import { homeCountryFor } from './home-country'
 import { followedByLineUp, lineUpHolds } from './line-up'
 import type { GameSetup } from './room-settings'
 
@@ -37,7 +38,8 @@ export type HostPreferences = {
 
 /**
  * The same preferences, with the quiz asking and the mystery word spelling in
- * the language this host reads today. A remembered language is most often the
+ * the language this host reads today, and the games that deal a country's own
+ * content sat in this host's country. A remembered language is most often the
  * one a door read off another interface rather than anybody's choice, and a
  * room opened in French that draws English questions or words is the wrong
  * game. A host who wants the other bank picks it in the room, and keeps it
@@ -51,8 +53,32 @@ export const askedIn = ({
   preferences: HostPreferences
 }): HostPreferences => {
   const language = questionLanguageFor(locale)
-  const { longestword, mysteryword, quiz, thinkalike } = preferences.games
+  const homeCountry = homeCountryFor(locale)
+  const {
+    blindtest,
+    estimate,
+    higherlower,
+    longestword,
+    mysteryword,
+    quiz,
+    thinkalike
+  } = preferences.games
   const games = { ...preferences.games }
+
+  if (blindtest?.game.kind === 'blindtest') {
+    games.blindtest = { ...blindtest, game: { ...blindtest.game, homeCountry } }
+  }
+
+  if (estimate?.game.kind === 'estimate') {
+    games.estimate = { ...estimate, game: { ...estimate.game, homeCountry } }
+  }
+
+  if (higherlower?.game.kind === 'higherlower') {
+    games.higherlower = {
+      ...higherlower,
+      game: { ...higherlower.game, homeCountry }
+    }
+  }
 
   if (quiz?.game.kind === 'quiz') {
     games.quiz = { ...quiz, game: { ...quiz.game, language } }

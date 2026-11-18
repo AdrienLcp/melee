@@ -1,6 +1,8 @@
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { WikidataQuantityFamily } from '@melee/protocol/estimate'
 
 import { BANKED_CITIES } from './city-bank'
+import { FAMOUS_IN_PORTUGAL } from './famous-in-portugal'
 
 const FAMOUS_COUNTRIES = [
   'France',
@@ -239,7 +241,7 @@ export const FAMOUS_QUANTITY_NAMES: Record<
   'population.region': METROPOLITAN_REGIONS
 }
 
-export const isFamousQuantity = ({
+const isFamousInFrance = ({
   family,
   names
 }: {
@@ -248,3 +250,31 @@ export const isFamousQuantity = ({
 }): boolean =>
   FAMOUS_QUANTITY_NAMES[family].includes(names.fr) ||
   (FAMILIES_OF_TOWNS.has(family) && FRENCH_TOWNS_EVERYONE_KNOWS.has(names.fr))
+
+/**
+ * Whether the table of `country` knows the row by heart, read off the lists
+ * picked by hand for that country's table — a country with none has no
+ * famous row, and every row is then tiered by its traffic alone.
+ */
+export const isFamousQuantity = ({
+  country,
+  entity,
+  family,
+  names
+}: {
+  country: CountryCode
+  entity: string
+  family: WikidataQuantityFamily
+  names: { fr: string }
+}): boolean => {
+  switch (country) {
+    case 'FRA':
+      return isFamousInFrance({ family, names })
+    case 'PRT':
+      return Object.hasOwn(FAMOUS_IN_PORTUGAL, entity)
+    default:
+      return false
+  }
+}
+
+// cspell:words portugal

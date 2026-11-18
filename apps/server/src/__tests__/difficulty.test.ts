@@ -106,7 +106,9 @@ describe('a room set to easy by frame', () => {
           family === question?.family && names.fr === question.names.fr
       )
 
-      expect(row === undefined ? null : tierOfQuantity(row)).toBe('easy')
+      expect(
+        row === undefined ? null : tierOfQuantity({ homeCountry: null, row })
+      ).toBe('easy')
     }
   })
 
@@ -131,7 +133,12 @@ describe('a room set to easy by frame', () => {
           const { family } = ask
 
           return [left, right].every((names) =>
-            isFamousQuantity({ family, names: { fr: names.fr } })
+            isFamousQuantity({
+              country: 'FRA',
+              entity: '',
+              family,
+              names: { fr: names.fr }
+            })
           )
         })
       ).toBe(true)

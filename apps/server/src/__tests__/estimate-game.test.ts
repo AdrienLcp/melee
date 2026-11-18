@@ -57,9 +57,11 @@ vi.mock('@/infrastructure/questions/quantity-bank', async (importOriginal) => ({
   drawQuantity: () => ({
     entity: 'Q0',
     family: 'population.country',
-    isWellKnown: true,
+    homeCountry: null,
+    liesIn: [],
     names: NAMES,
-    value: TRUTH
+    value: TRUTH,
+    wellKnownIn: []
   })
 }))
 

@@ -186,6 +186,24 @@ describe('askedIn', () => {
       ).toBe('fr')
     }
   )
+
+  it.each(['blindtest', 'estimate', 'higherlower'] as const)(
+    '[host-preferences] sits the remembered %s at the table of the host’s country',
+    (game) => {
+      const inFrench = rememberSettings({
+        preferences: null,
+        settings: roomSettingsFor({ games: [game], locale: 'fr' })
+      })
+      const asked = askedIn({ locale: 'en', preferences: inFrench })
+      const remembered = rememberedSetupFor({ game, preferences: asked })?.game
+
+      expect(
+        remembered && 'homeCountry' in remembered
+          ? remembered.homeCountry
+          : undefined
+      ).toBeNull()
+    }
+  )
 })
 
 describe('rememberedSetupFor', () => {

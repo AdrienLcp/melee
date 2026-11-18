@@ -954,6 +954,15 @@ one part.
   _Sacanas Sem Lei_). The schemas drop the key until the language joins
   them.
 
+- `[Server]` **Estimate and higher or lower speak European Portuguese**, not
+  yet offered: every quantity and price named in Portuguese, 273 rows a
+  Portuguese table knows (its towns, rivers, summits, the Padrão dos
+  Descobrimentos) and 58 Portuguese prices (a _pastel de nata_, the Alfa
+  Pendular to Porto, the A1 toll). A table now sits in a country, read off
+  the host's language: it is dealt everyone's rows and its own country's,
+  so an English table no longer meets EDF tariffs, and its famous and
+  well-known tiers are its own country's.
+
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
   included, not only the front door's, and catches two more ways of writing

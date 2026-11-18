@@ -14,8 +14,8 @@ import {
 } from './wikimedia-client'
 
 /**
- * How well known a Wikidata entity is to a French-speaking room, measured as the
- * traffic its French Wikipedia article took over the last sixty days.
+ * How well known a Wikidata entity is to a room, measured as the traffic its
+ * article on the room's own Wikipedia took over the last sixty days.
  *
  * The obvious measure — how many Wikipedias hold an article about it — was tried
  * and thrown away. Sitelink counts on places are dominated by bot-created stubs:
@@ -24,7 +24,15 @@ import {
  * clears. Traffic is not bot-inflated, and it is what "the room has heard of it"
  * actually means.
  */
-export const FRENCH_WIKIPEDIA_API = 'https://fr.wikipedia.org/w/api.php'
+export type WikipediaLanguage = 'fr' | 'pt'
+
+const wikipediaOf = (language: WikipediaLanguage): string =>
+  `https://${language}.wikipedia.org/`
+
+const actionApiOf = (language: WikipediaLanguage): string =>
+  `${wikipediaOf(language)}w/api.php`
+
+export const FRENCH_WIKIPEDIA_API = actionApiOf('fr')
 
 /** Their documented ceiling on `prop=pageviews`, and the widest window it serves. */
 const PAGEVIEW_DAYS = 60
@@ -60,9 +68,12 @@ const ENTITIES_PER_QUERY = 600
 /** How often what has been resolved is written back, in batches. */
 const SAVE_EVERY = 20
 
-/** Where a French article's title is remembered, `null` meaning there is none. */
-const TITLES_CACHE = 'frwiki-titles.json'
-const VIEWS_CACHE = 'frwiki-views.json'
+/** Where an article's title is remembered, `null` meaning there is none. */
+const titlesCacheOf = (language: WikipediaLanguage): string =>
+  `${language}wiki-titles.json`
+
+const viewsCacheOf = (language: WikipediaLanguage): string =>
+  `${language}wiki-views.json`
 
 const titlesBindingsSchema = sparqlBindingsSchema({
   item: bindingValue,
@@ -93,19 +104,23 @@ const pageviewsPageSchema = z.object({
 })
 
 /**
- * The French article title of every entity that has one. Asked for through
- * `schema:isPartOf` rather than by guessing at the label, because the sitelink is
- * the only thing that knows an entity's French title is not its French name.
+ * The article title of every entity that has one on that Wikipedia. Asked for
+ * through `schema:isPartOf` rather than by guessing at the label, because the
+ * sitelink is the only thing that knows an entity's title is not its name.
  */
-const titlesOf = async (
+const titlesOf = async ({
+  entityIds,
+  language
+}: {
   entityIds: readonly string[]
-): Promise<Map<string, string>> => {
+  language: WikipediaLanguage
+}): Promise<Map<string, string>> => {
   const values = entityIds.map((entityId) => `wd:${entityId}`).join(' ')
   const query = [
     'SELECT ?item ?title WHERE {',
     `  VALUES ?item { ${values} }`,
     '  ?article schema:about ?item ;',
-    '    schema:isPartOf <https://fr.wikipedia.org/> ;',
+    `    schema:isPartOf <${wikipediaOf(language)}> ;`,
     '    schema:name ?title .',
     '}'
   ].join('\n')
@@ -144,9 +159,13 @@ const totalOf = (
  * article nobody opens — so the continuation is followed to exhaustion, and only
  * what is still missing after that is a real zero. This cost a full refetch once.
  */
-const viewsOf = async (
+const viewsOf = async ({
+  language,
+  titles
+}: {
+  language: WikipediaLanguage
   titles: readonly string[]
-): Promise<Map<string, number>> => {
+}): Promise<Map<string, number>> => {
   const totals = new Map(titles.map((title) => [title, 0]))
 
   let continuation: Continuation = {}
@@ -163,7 +182,7 @@ const viewsOf = async (
     })
 
     const page = await withRetries(pageviewsPageSchema, async () =>
-      fetch(`${FRENCH_WIKIPEDIA_API}?${parameters}`, {
+      fetch(`${actionApiOf(language)}?${parameters}`, {
         headers: { 'user-agent': USER_AGENT }
       })
     )
@@ -206,8 +225,20 @@ export const frenchViewsOfTitles = async ({
 }: {
   label: string
   titles: readonly string[]
+}): Promise<Map<string, number>> =>
+  wikipediaViewsOfTitles({ label, language: 'fr', titles })
+
+const wikipediaViewsOfTitles = async ({
+  label,
+  language,
+  titles
+}: {
+  label: string
+  language: WikipediaLanguage
+  titles: readonly string[]
 }): Promise<Map<string, number>> => {
-  const views = await readCachedEntries(VIEWS_CACHE, z.number())
+  const viewsCache = viewsCacheOf(language)
+  const views = await readCachedEntries(viewsCache, z.number())
 
   const asked = [...new Set(titles)]
   const wanted = asked.filter((title) => !(title in views))
@@ -216,12 +247,12 @@ export const frenchViewsOfTitles = async ({
   console.info(`  ${label}: ${wanted.length} articles left to measure`)
 
   for (const [index, batch] of batches.entries()) {
-    for (const [title, total] of await viewsOf(batch)) {
+    for (const [title, total] of await viewsOf({ language, titles: batch })) {
       views[title] = total
     }
 
     if (index % SAVE_EVERY === SAVE_EVERY - 1 || index === batches.length - 1) {
-      await writeCachedEntries({ entries: views, name: VIEWS_CACHE })
+      await writeCachedEntries({ entries: views, name: viewsCache })
       console.info(`    views ${index + 1}/${batches.length} batches`)
     }
   }
@@ -242,8 +273,22 @@ export const frenchTitlesOf = async ({
 }: {
   entityIds: readonly string[]
   label: string
+}): Promise<Map<string, string | null>> =>
+  wikipediaTitlesOf({ entityIds, label, language: 'fr' })
+
+const wikipediaTitlesOf = async ({
+  entityIds,
+  label,
+  language
+}: {
+  entityIds: readonly string[]
+  label: string
+  language: WikipediaLanguage
 }): Promise<Map<string, string | null>> => {
-  const titles = await readCachedEntries(TITLES_CACHE, z.string().nullable())
+  const titles = await readCachedEntries(
+    titlesCacheOf(language),
+    z.string().nullable()
+  )
 
   const asked = [...new Set(entityIds)]
   const unresolved = asked.filter((entityId) => !(entityId in titles))
@@ -252,7 +297,7 @@ export const frenchTitlesOf = async ({
     `  ${label}: ${asked.length} entities, ${unresolved.length} without a known article`
   )
 
-  await resolveTitlesInto({ entityIds: unresolved, titles })
+  await resolveTitlesInto({ entityIds: unresolved, language, titles })
 
   return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
 }
@@ -266,32 +311,40 @@ export const frenchTitlesOf = async ({
 export const refreshedFrenchTitlesOf = async (
   entityIds: readonly string[]
 ): Promise<Map<string, string | null>> => {
-  const titles = await readCachedEntries(TITLES_CACHE, z.string().nullable())
+  const titles = await readCachedEntries(
+    titlesCacheOf('fr'),
+    z.string().nullable()
+  )
   const asked = [...new Set(entityIds)]
 
-  await resolveTitlesInto({ entityIds: asked, titles })
+  await resolveTitlesInto({ entityIds: asked, language: 'fr', titles })
 
   return new Map(asked.map((entityId) => [entityId, titles[entityId] ?? null]))
 }
 
 const resolveTitlesInto = async ({
   entityIds,
+  language,
   titles
 }: {
   entityIds: readonly string[]
+  language: WikipediaLanguage
   titles: Record<string, string | null>
 }): Promise<void> => {
   const queries = chunked({ items: entityIds, size: ENTITIES_PER_QUERY })
 
   for (const [index, query] of queries.entries()) {
-    const found = await titlesOf(query)
+    const found = await titlesOf({ entityIds: query, language })
 
     for (const entityId of query) {
       titles[entityId] = found.get(entityId) ?? null
     }
 
     if (index % SAVE_EVERY === SAVE_EVERY - 1 || index === queries.length - 1) {
-      await writeCachedEntries({ entries: titles, name: TITLES_CACHE })
+      await writeCachedEntries({
+        entries: titles,
+        name: titlesCacheOf(language)
+      })
       console.info(`    titles ${index + 1}/${queries.length} queries`)
     }
   }
@@ -312,11 +365,28 @@ export const frenchViewsOf = async ({
 }: {
   entityIds: readonly string[]
   label: string
-}): Promise<Map<string, number>> => {
-  const titles = await frenchTitlesOf({ entityIds, label })
+}): Promise<Map<string, number>> =>
+  wikipediaViewsOf({ entityIds, label, language: 'fr' })
 
-  const views = await frenchViewsOfTitles({
+/**
+ * `frenchViewsOf` read off that language's Wikipedia, for a bank built for a
+ * room that speaks it. Each language keeps caches of its own, the French ones
+ * under the names they always had.
+ */
+export const wikipediaViewsOf = async ({
+  entityIds,
+  label,
+  language
+}: {
+  entityIds: readonly string[]
+  label: string
+  language: WikipediaLanguage
+}): Promise<Map<string, number>> => {
+  const titles = await wikipediaTitlesOf({ entityIds, label, language })
+
+  const views = await wikipediaViewsOfTitles({
     label,
+    language,
     titles: [...titles.values()].filter((title) => title !== null)
   })
 
