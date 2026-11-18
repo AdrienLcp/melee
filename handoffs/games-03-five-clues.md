@@ -1,4 +1,4 @@
-# New game — Cinq indices, step 3: the screens
+# New game — Cinq indices, step 3: the buzzer mode, then the screens
 
 Asked by Adrien on 2026-11-12, the third of three new games. Every choice is
 weighed by what is more fun at the table, never by what it costs to build.
@@ -44,6 +44,38 @@ and nothing more, seated or not, so it climbs blind:
   (a second guess on a clue, or after finding), `player_locked_out` (a pick
   after a wrong one), `joined_mid_round`.
 
+## Adrien's word on 18/11/2026: three modes, as every other game
+
+**Direction B, _La montée_, is picked.** And the game plays in the three
+modes every game that serves its own content offers: `choice` (four names),
+`typed` (one field) and `buzzer` (said aloud, judged by the host). `choice`
+and `typed` are served; **`buzzer` is owed, server first, before any
+screen**, so the screens are drawn once for all three:
+
+- **Narrow `buzzer` in** `game-capabilities.ts` beside `typed` and
+  `choice`, and judge the round by host (`isJudgedByHost`): the judge is a
+  host who does not play, so a seated host **sits that round out** — seat
+  and score kept, the answer sent to it — as the shell already does for
+  every host-judged round (CLAUDE.md, _Host_). Nothing new to build there;
+  check it holds.
+- **The rules, as decided**: a buzz takes the floor and **stops the clue
+  clock** (`nextClueAt` `null` while the floor is held, the window's
+  remainder given back after), no new clue opens under a buzz. The host's
+  verdict is `single`. Right pays by the clue open when the buzz arrived,
+  `pointsForClue` with the clock's tenth measured to the buzz's server
+  stamp. Wrong, or the floor run out, **locks the seat until the next clue
+  opens** — the typed rule, one try a clue, so the buzz stays worth risking
+  on a vague clue. **A right buzz ends the round**: the answer was said
+  aloud, the whole table heard it, so nobody else can still race — the
+  quiz's buzzer rule. One winner a round in `buzzer`.
+- **The answer reaches the judging console only**: the console's
+  `currentContent` carries the country in a `buzzer` round (it judges),
+  still `{ kind: 'fiveclues' }` in `typed` and `choice`. The anti-leak test
+  extends to `buzzer`: no seat and no wall frame carries it before the
+  reveal, seen red with the guard removed.
+- Then the plan's step 2, `docs/realtime-protocol.md`, the MCP game notes
+  and the changelog say three modes.
+
 ## This session: step 3 of the plan
 
 Start with the `impeccable` skill. Each direction becomes a **complete
@@ -61,8 +93,11 @@ cards worth 100 to 20, one turned a clue), _B · La montée_ (a ladder the
 crowd's pawns climb a rung a clue, a finder staying on the rung it dared, the
 country at the top — recommended: the bet shows at the table and the stake
 falling is the ladder itself) and _C · La fiche_ (an identity card of five
-fixed boxes stamped one by one). Build the one Adrien picked; B's rung
-opening was never filmed, and the box colour (fir green) is still to measure.
+fixed boxes stamped one by one). **Adrien picked B.** Its rung opening was
+never filmed, and the box colour (fir green) is still to measure. Draw the
+`buzzer` seat (one big press, held while the floor is taken, locked until
+the next clue) and the judging console in B's language — the pages only
+show `typed` and `choice`.
 
 1. **A seat**: the climb — the open clues stacked, the new one arriving with
    a motion, the window's bar to `nextClueAt`; four names or one field; a
