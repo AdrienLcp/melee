@@ -1,7 +1,9 @@
 # 71 — A picture with every estimate question
 
-**Not started.** Asked 15/11/2026 with the prices of stage 58: _the object for
-a price, the monument for a height, the country's map for a population_.
+**Step 1 done 18/11/2026** — the countries' outline on every screen. Steps
+2–4 (the photographs, their screens, Plus ou moins) are not started. Asked
+15/11/2026 with the prices of stage 58: _the object for a price, the
+monument for a height, the country's map for a population_.
 
 A number asked about something the table cannot see is a number asked about a
 word. _Combien ça coûte ? Le tout premier sac Birkin_ is a better question with
@@ -89,9 +91,30 @@ Prices are kept out of its pairs today (`drawPairs` deals Wikidata rows
 alone): a price's name is a sentence, too long for a tile, and a pair of
 pictures is what would let it in with a short name beside it.
 
+## What step 1 settled
+
+- **`countryCode` sits on every bank row**, `null` off the two country
+  families and on Tuvalu, which the map cannot name; the question carries
+  `silhouette` (`bankQuestionOf`), the file the silhouettes rubric already
+  serves, `null` for the 22 microstates. A required field: a deck only ever
+  deals `own` questions, so no stored question lacks it.
+- **The bank was patched, not rebuilt.** `quantities:build` now asks P298 in
+  a query of its own (`countryCodesOf`), but a full run from the cache
+  rewrote 1 766 rows — the Portuguese names stage 72 corrected among them —
+  and added and dropped a few. Until the build reproduces the committed bank,
+  a new column is written into the JSON in place.
+- **The outline stands above the name on the card**, as on the quiz's
+  silhouette question, rather than beside it: one shape on every screen. The
+  wall draws it at 30cqh, the console beside a wall at 10cqh, a seated
+  console and a player smaller, and every answering screen drops it under
+  `shown-height-below(36)` — a keyboard up. The console's reveal drops it
+  under 45rem tall, and its sentence under 30rem.
+- `e2e/choice-fits.spec.ts` holds the outlined question on the wall, the
+  player, the seated console, under a keyboard and on the reveal.
+
 ## Steps
 
-1. **Countries**: `P298` in the bank build, `countryCode` on the row and the
+1. **Done.** **Countries**: `P298` in the bank build, `countryCode` on the row and the
    question, the outline on the question card for both country families, on
    every screen. Protocol bump only if an old peer could mis-read the frame
    (a new optional field does not).

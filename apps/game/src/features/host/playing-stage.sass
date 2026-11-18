@@ -608,6 +608,15 @@
         flex: none
         margin-block: 0
 
+        // The field is this screen's own; the outline gives way before it,
+        // and goes under a keyboard.
+        .estimate-question
+          --prompt-picture-height: clamp(2rem, 11cqh, 6rem)
+
+          .country-silhouette
+            @include layout.shown-height-below(36)
+              display: none
+
       > .answer-form.estimate-answer
         align-self: center
         inline-size: min(100%, 32rem)
@@ -877,6 +886,7 @@
       .estimate-question
         --estimate-asks-size: clamp(var(--text-m), min(3cqi, 7cqh), 2.4rem)
         --estimate-name-size: clamp(var(--text-xl), min(8cqi, 20cqh), 8rem)
+        --prompt-picture-height: clamp(4rem, 30cqh, 20rem)
 
       .higher-lower-prompt .asks
         font-size: clamp(var(--text-xl), min(6cqi, 14cqh), 5rem)

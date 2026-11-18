@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { playerIdSchema } from './identifiers'
 import { localizedSchema } from './locale'
+import { silhouetteFileSchema } from './question'
 
 /**
  * What a quantity measures and of what, each one SPARQL query in the bank's
@@ -148,7 +149,13 @@ export const bankQuantityAskSchema = z.object({
  */
 export const estimateQuestionSchema = z.discriminatedUnion('kind', [
   bankQuantityAskSchema.extend({
-    names: localizedSchema(z.string().min(1))
+    names: localizedSchema(z.string().min(1)),
+    /**
+     * The country's outline under a country's population or area, public
+     * from the first frame as it is in the map's name round; `null` on every
+     * other family and on a country the atlas cannot draw.
+     */
+    silhouette: silhouetteFileSchema.nullable()
   }),
   ownQuantityAskSchema
 ])

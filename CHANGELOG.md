@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **Le juste chiffre shows the country it asks about.** A
+  country's population or area comes with its outline on the question card,
+  the one the silhouettes rubric draws: large on the wall, a reminder on the
+  console beside one, above the field on a player's screen until a keyboard
+  needs the room. The microstates the atlas cannot draw, and every other
+  family, show none yet.
+
 - `[Shared]` **Mêlée speaks European Portuguese.** _Português_ joins English
   and French in the menu, and every page is served under `/pt` with its own
   title, description and share image. A table opened in Portuguese plays in
@@ -565,6 +572,15 @@ one part.
   answers, the fastest still takes up to ten points more.
 
 ### Fixes
+
+- `[Game]` **Le juste chiffre's reveal keeps the round on the first screen of
+  a short console.** A phone lying down as the table's only screen drew the
+  round's podium under the edge; the question's sentence now gives way there,
+  the unit being printed after the figure.
+
+- `[Game]` **A population typed beside its send press keeps room for the
+  digits.** At 320 wide under a keyboard, _habitants_ left the field 60px; a
+  unit the question already says now gives the slot to the number.
 
 - `[Game]` **The console's games tab says what a round pays again.** With one
   game planned, its scoring sentence sits above the planned games, as it did

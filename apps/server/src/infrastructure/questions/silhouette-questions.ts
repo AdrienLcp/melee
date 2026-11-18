@@ -1,9 +1,13 @@
 import { z } from 'zod'
 
-import { countryCodeSchema } from '@melee/protocol/country-code'
+import {
+  type CountryCode,
+  countryCodeSchema
+} from '@melee/protocol/country-code'
 import {
   type QuestionLanguage,
   questionLanguages,
+  type SilhouetteFile,
   silhouetteFileSchema
 } from '@melee/protocol/question'
 
@@ -82,4 +86,17 @@ export const bankedSilhouetteQuestions = (): BankedQuestion[] => {
     )
 
   return silhouetteQuestions
+}
+
+let silhouetteFiles: ReadonlyMap<CountryCode, SilhouetteFile> | undefined
+
+/** The country's outline, or `null` for one of the microstates the atlas cannot draw. */
+export const silhouetteFileOf = (code: CountryCode): SilhouetteFile | null => {
+  silhouetteFiles ??= new Map(
+    silhouetteBankSchema
+      .parse(silhouetteBank)
+      .map(({ code, file }) => [code, file])
+  )
+
+  return silhouetteFiles.get(code) ?? null
 }

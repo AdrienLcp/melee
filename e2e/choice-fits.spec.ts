@@ -723,7 +723,10 @@ const said = [
   'Portugal'
 ]
 
-const revealedView = (content: object) => {
+const revealedView = (
+  content: object,
+  { round = {}, settings = {} }: { round?: object; settings?: object } = {}
+) => {
   const view = consoleView(LONGEST_PROMPT)
   const revealedAnswers = table.map(({ id }, seat) => ({
     atServerTime: SERVER_TIME - 1_000,
@@ -750,9 +753,10 @@ const revealedView = (content: object) => {
       content,
       isFinal: false,
       isReadyHold: false,
-      revealedAnswers
+      revealedAnswers,
+      ...round
     },
-    settings: { ...view.settings, autoAdvanceMs: 25_000 }
+    settings: { ...view.settings, autoAdvanceMs: 25_000, ...settings }
   }
 }
 
@@ -773,10 +777,54 @@ const QUIZ_WITH_A_NOTE = {
   }
 }
 
+/** A country's population under its outline, the country's name among the bank's longest. */
+const OUTLINED_QUANTITY = {
+  family: 'population.country',
+  kind: 'bank',
+  names: {
+    en: 'Democratic Republic of the Congo',
+    fr: 'République démocratique du Congo',
+    pt: 'República Democrática do Congo'
+  },
+  silhouette: '0ca305eca97b.svg'
+}
+
 const REVEALS = [
   {
     content: QUIZ_WITH_A_NOTE,
     name: 'quiz with a note'
+  },
+  {
+    content: {
+      kind: 'estimate',
+      question: OUTLINED_QUANTITY,
+      revealedGuesses: table.map(({ id }, seat) => ({
+        guess: 40_000_000 + seat * 7_000_000,
+        playerId: id
+      })),
+      value: 109_000_000,
+      yourGuess: null
+    },
+    name: "le juste chiffre with a country's outline",
+    overrides: {
+      round: {
+        awards: table.map(({ id }, seat) => ({
+          isUnsent: false,
+          playerId: id,
+          points: (60 + seat * 5) * 1_000,
+          speedBonus: 0,
+          verdict: {
+            kind: 'number',
+            ratio: (40_000_000 + seat * 7_000_000) / 109_000_000
+          }
+        })),
+        revealedAnswers: []
+      },
+      settings: {
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        mode: { kind: 'number' }
+      }
+    }
   },
   {
     content: {
@@ -854,7 +902,13 @@ for (const reveal of REVEALS) {
   test(`[layout] room, ${reveal.name}: the reveal and the standings never scroll`, async ({
     page
   }) => {
-    await serveRoom({ page, view: revealedView(reveal.content) })
+    await serveRoom({
+      page,
+      view: revealedView(
+        reveal.content,
+        'overrides' in reveal ? reveal.overrides : {}
+      )
+    })
     // French runs longer, on the footer's controls most of all.
     await page.addInitScript(() => {
       localStorage.setItem('melee:locale', 'fr')
@@ -1663,6 +1717,30 @@ const WALL_SCREENS = [
     view: { ...eveningRound, phase: 'lobby', round: null }
   },
   { name: 'round', ready: '.answer-tile', view: eveningRound },
+  {
+    name: "le juste chiffre, a country's outline",
+    ready: '.estimate-question .country-silhouette',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        content: {
+          kind: 'estimate',
+          question: OUTLINED_QUANTITY,
+          revealedGuesses: null,
+          value: null,
+          yourGuess: null
+        }
+      },
+      settings: {
+        ...eveningRound.settings,
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        lineUp: [{ kind: 'estimate', roundDurationMs: 30_000 }],
+        lineUpAt: 0,
+        mode: { kind: 'number' }
+      }
+    }
+  },
   {
     name: 'duel',
     ready: '.duel-badge',
@@ -3302,8 +3380,22 @@ const estimateScreen = () =>
         names: inEveryLocale(
           'tour centrale de radio-télédiffusion de Pékin',
           'Central Radio & TV Tower'
-        )
+        ),
+        silhouette: null
       },
+      revealedGuesses: null,
+      value: null,
+      yourGuess: null
+    },
+    game: { kind: 'estimate', roundDurationMs: 30_000 },
+    mode: { kind: 'number' }
+  })
+
+const picturedEstimateScreen = () =>
+  answeringView({
+    content: {
+      kind: 'estimate',
+      question: OUTLINED_QUANTITY,
       revealedGuesses: null,
       value: null,
       yourGuess: null
@@ -3657,6 +3749,15 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
       ready: '.estimate-answer'
     },
     view: estimateScreen()
+  },
+  {
+    name: "le juste chiffre, a country's outline",
+    ready: '.estimate-answer',
+    seated: {
+      currentContent: { kind: 'estimate', value: null },
+      ready: '.estimate-answer'
+    },
+    view: picturedEstimateScreen()
   },
   {
     name: 'le juste chiffre, a number of our own',
@@ -4184,6 +4285,15 @@ const KEYBOARD_SCREENS = [
       '.estimate-answer button[type=submit]'
     ],
     name: 'le juste chiffre number'
+  },
+  {
+    field: '.estimate-answer input',
+    inView: [
+      '.round-card .estimate-question',
+      '.estimate-answer input',
+      '.estimate-answer button[type=submit]'
+    ],
+    name: "le juste chiffre, a country's outline"
   }
 ]
 

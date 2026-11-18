@@ -76,6 +76,30 @@
       .estimate-line
         --pin-size: clamp(1.6rem, calc(var(--stage-unit) * 4), 3rem)
 
+      .estimate-question
+        --estimate-asks-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
+        --prompt-picture-height: clamp(3rem, calc(var(--stage-unit) * 10), 8rem)
+
+      // Short, the outline goes first, then the question's sentence — the
+      // unit is printed after the figure — and the card tightens round the
+      // figure and the ruler, so the round's podium stays on the first screen.
+      @media (height < 45rem)
+        .country-silhouette
+          display: none
+
+      @media (height < 30rem)
+        gap: var(--space-2xs)
+        padding-block: var(--space-xs)
+
+        .estimate-question .asks
+          display: none
+
+        .estimate-truth
+          font-size: var(--text-l)
+
+        .estimate-line
+          --pin-size: 1.25rem
+
     .estimate-truth
       @include typography.billboard
       @include typography.numeric

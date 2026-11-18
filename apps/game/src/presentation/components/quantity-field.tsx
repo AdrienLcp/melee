@@ -15,6 +15,11 @@ type QuantityFieldProps = Omit<ReactAriaNumberFieldProps, 'children'> & {
   label: string
   /** What the number is counted in, printed at the end of the slot and read as the field's description; `null` for a bare count. */
   unit: string | null
+  /**
+   * The question already says what the number is counted in, so a slot too
+   * narrow for the digits and the unit lets the unit go. Defaults to `false`.
+   */
+  isUnitAsked?: boolean
 }
 
 /**
@@ -25,6 +30,7 @@ type QuantityFieldProps = Omit<ReactAriaNumberFieldProps, 'children'> & {
  */
 export const QuantityField: React.FC<QuantityFieldProps> = ({
   className,
+  isUnitAsked = false,
   label,
   unit,
   ...props
@@ -34,7 +40,7 @@ export const QuantityField: React.FC<QuantityFieldProps> = ({
     className={composeClassName(className, 'quantity-field')}
   >
     <Label>{label}</Label>
-    <Group className='slot'>
+    <Group className='slot' data-unit-asked={isUnitAsked || undefined}>
       <Input enterKeyHint='send' inputMode='decimal' />
       {unit !== null && (
         <Text className='unit' slot='description'>

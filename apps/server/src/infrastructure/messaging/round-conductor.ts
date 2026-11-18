@@ -100,6 +100,7 @@ import {
   playedMostLikelyLineId
 } from '@/infrastructure/questions/most-likely-bank'
 import {
+  bankQuestionOf,
   drawPairs,
   drawQuantity,
   playedPairedQuantityId,
@@ -750,10 +751,7 @@ export const beginRound = async (
 
     openRound({
       content: estimateContent({
-        question:
-          'question' in row
-            ? row.question
-            : { family: row.family, kind: 'bank', names: row.names },
+        question: 'question' in row ? row.question : bankQuestionOf(row),
         value: row.value
       }),
       id: newRoundId(),

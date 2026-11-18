@@ -88,6 +88,7 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
           // when the round does and never over a countdown.
           autoFocus
           formatOptions={GUESS_FORMAT}
+          isUnitAsked={question.kind === 'bank'}
           label={translate('estimate.answer.label')}
           maxValue={MAX_ESTIMATE}
           minValue={0}

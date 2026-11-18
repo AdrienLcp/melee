@@ -3,6 +3,7 @@ import type React from 'react'
 import type { EstimateQuestion as Question } from '@melee/protocol/estimate'
 
 import { scaleForLength } from '@/helpers/length-scale'
+import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import './estimate-question.sass'
@@ -21,7 +22,9 @@ type EstimateQuestionProps = {
  * What is measured, small, over the name of what it is measured on, large: the
  * name is what the table reads from across the room, and the dictionary words
  * the measure so French never needs the article Wikidata's label lacks. A
- * question the evening wrote is its own sentence, drawn alone and large.
+ * country's outline stands above its name, sized by the screen through
+ * `--prompt-picture-height`. A question the evening wrote is its own
+ * sentence, drawn alone and large.
  */
 export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
   question
@@ -47,9 +50,12 @@ export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
   }
 
   const name = question.names[locale]
-
-  return (
-    <hgroup className='estimate-question'>
+  const heading = (
+    <hgroup
+      className={
+        question.silhouette === null ? 'estimate-question' : 'estimate-heading'
+      }
+    >
       <p className='asks'>{translate(`estimate.asks.${question.family}`)}</p>
       <h2
         className='name'
@@ -63,5 +69,16 @@ export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
         {name}
       </h2>
     </hgroup>
+  )
+
+  if (question.silhouette === null) {
+    return heading
+  }
+
+  return (
+    <div className='estimate-question'>
+      <CountrySilhouette file={question.silhouette} isNamedBeside />
+      {heading}
+    </div>
   )
 }

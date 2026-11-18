@@ -6,6 +6,7 @@ import {
 } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import {
+  type EstimateQuestion,
   type QuantityTopic,
   quantityFamilySchema,
   TOPIC_OF_FAMILY,
@@ -30,8 +31,11 @@ import {
 import { isFamousQuantity } from './famous-quantities'
 import priceBank from './price-bank.json' with { type: 'json' }
 import bank from './quantity-bank.json' with { type: 'json' }
+import { silhouetteFileOf } from './silhouette-questions'
 
 export const quantityRowSchema = z.object({
+  /** The country a country's population or area measures, which names its outline; `null` on every other family. */
+  countryCode: countryCodeSchema.nullable(),
   /** Its Wikidata id, which one place carries into two families — a country's population and its area. */
   entity: z.string(),
   family: quantityFamilySchema,
@@ -115,6 +119,7 @@ const priceBankOf = (): PriceBank => {
     parsedPrices = {
       rows: priced.map(({ source: _, tier: __, ...row }) => ({
         ...row,
+        countryCode: null,
         family: 'price.item',
         liesIn: row.homeCountry === null ? [] : [row.homeCountry],
         wellKnownIn: []
@@ -125,6 +130,17 @@ const priceBankOf = (): PriceBank => {
 
   return parsedPrices
 }
+
+/** The question every screen draws for a row of the bank, its outline under a country. */
+export const bankQuestionOf = (
+  row: QuantityRow
+): EstimateQuestion & { kind: 'bank' } => ({
+  family: row.family,
+  kind: 'bank',
+  names: row.names,
+  silhouette:
+    row.countryCode === null ? null : silhouetteFileOf(row.countryCode)
+})
 
 /** Every price of the hand-written bank, as a quantity counted in euros. */
 export const bankedPrices = (): readonly QuantityRow[] => priceBankOf().rows

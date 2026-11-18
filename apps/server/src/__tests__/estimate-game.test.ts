@@ -50,11 +50,15 @@ const paidForMiss = (verdict: Verdict | undefined) =>
 
 const NAMES = { en: 'Atlantis', fr: 'Atlantis', pt: 'Atlântida' }
 
+/** France's outline in `public/silhouettes/`, which the mocked row borrows. */
+const FRANCE_OUTLINE = '0b5911a2c922.svg'
+
 vi.mock('@/infrastructure/questions/quantity-bank', async (importOriginal) => ({
   ...(await importOriginal<
     typeof import('@/infrastructure/questions/quantity-bank')
   >()),
   drawQuantity: () => ({
+    countryCode: 'FRA',
     entity: 'Q0',
     family: 'population.country',
     homeCountry: null,
@@ -170,7 +174,8 @@ describe('an estimate round through the seam', () => {
     expect(round?.question).toEqual({
       family: 'population.country',
       kind: 'bank',
-      names: NAMES
+      names: NAMES,
+      silhouette: FRANCE_OUTLINE
     })
     expect(round?.value).toBeNull()
     expect(round?.revealedGuesses).toBeNull()
@@ -333,7 +338,8 @@ describe('an estimate deck', () => {
     expect(estimateRound(playerView(zoe))?.question).toEqual({
       family: 'population.country',
       kind: 'bank',
-      names: NAMES
+      names: NAMES,
+      silhouette: FRANCE_OUTLINE
     })
     expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 1 }])
   })

@@ -41,6 +41,7 @@ const VALUES = [111_111_111]
 const RIGHT: HigherLowerPicks = ['left']
 
 const sideRow = (name: string, value: number) => ({
+  countryCode: null,
   entity: name,
   family: 'length.river' as const,
   homeCountry: null,

@@ -308,6 +308,13 @@
   // them (`estimate-answer.sass`). Lying down, the card beside them.
   .player-round.estimate-round
     --estimate-name-size: clamp(var(--text-l), min(8cqi, 12cqh), 3rem)
+    --prompt-picture-height: clamp(3rem, 16cqh, 7rem)
+
+    // A keyboard up leaves the question, the field and the press; the
+    // outline is the first thing to go.
+    .estimate-question .country-silhouette
+      @include layout.shown-height-below(36)
+        display: none
 
     container-type: size
     display: grid
@@ -746,6 +753,7 @@
       .estimate-question
         --estimate-asks-size: var(--text-s)
         --estimate-name-size: clamp(var(--text-m), calc(var(--stage-unit) * 4), var(--text-l))
+        --prompt-picture-height: clamp(2.5rem, 10dvh, 4.5rem)
 
       .truth
         @include typography.billboard

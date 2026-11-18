@@ -15,6 +15,7 @@ import priceBank from './price-bank.json' with { type: 'json' }
 import {
   bankedPrices,
   bankedQuantities,
+  bankQuestionOf,
   drawPairs,
   drawQuantity,
   playedPairedQuantityId,
@@ -376,5 +377,34 @@ describe('the quantity bank', () => {
         playedIds.add(playedPairedQuantityId(right))
       }
     }
+  })
+})
+
+describe('the picture under a quantity', () => {
+  it('[estimate] names the country under every population and area the map can name', () => {
+    const unnamed = bankedQuantities().filter(
+      ({ countryCode, family }) =>
+        (family === 'population.country' || family === 'area.country') &&
+        countryCode === null
+    )
+
+    expect(unnamed.map(({ names }) => names.en)).toEqual(['Tuvalu', 'Tuvalu'])
+  })
+
+  it('[estimate] draws the outline of a country and nothing under a city', () => {
+    const questionOf = (english: string, family: QuantityRow['family']) => {
+      const row = bankedQuantities().find(
+        (candidate) =>
+          candidate.names.en === english && candidate.family === family
+      )
+
+      return row === undefined ? undefined : bankQuestionOf(row)
+    }
+
+    expect(questionOf('France', 'area.country')?.silhouette).toBe(
+      '0b5911a2c922.svg'
+    )
+    expect(questionOf('Monaco', 'area.country')?.silhouette).toBeNull()
+    expect(questionOf('Lyon', 'population.city')?.silhouette).toBeNull()
   })
 })

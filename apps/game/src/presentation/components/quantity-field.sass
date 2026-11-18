@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../styles/typography'
 
 @layer components
@@ -20,6 +21,7 @@
       box-shadow: var(--shadow-field), inset 0 0 0 var(--stroke-thin) var(--rule-strong)
       display: flex
       gap: var(--space-xs)
+      container: quantity-slot / inline-size
       min-height: var(--control-height)
       padding-inline: var(--space-s)
 
@@ -54,3 +56,9 @@
       hyphens: auto
       min-width: 0
       text-align: end
+
+      // _Habitants_ beside the send press at 320 wide left the digits 60px:
+      // a unit the question already says gives the slot to the digits.
+      @container quantity-slot (width < 13rem)
+        &:is([data-unit-asked] > *)
+          @include accessibility.visually-hidden

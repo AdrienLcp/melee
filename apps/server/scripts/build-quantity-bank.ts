@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import type { CountryCode } from '@melee/protocol/country-code'
+import { COUNTRY_CODES, type CountryCode } from '@melee/protocol/country-code'
 import {
   WIKIDATA_QUANTITY_FAMILIES,
   type WikidataQuantityFamily
@@ -502,6 +502,68 @@ const oneRowPerName = (
   return [...byName.values()]
 }
 
+/** Wikidata files Kosovo under the user-assigned `XKS`; the atlas calls it `XKX`. */
+const COUNTRY_CODE_OF_ISO: Readonly<Record<string, CountryCode>> = {
+  XKS: 'XKX'
+}
+
+/** The Netherlands, which Wikidata gives its `P298` under the kingdom's entity. */
+const COUNTRY_CODE_OF_ENTITY: Readonly<Record<string, CountryCode>> = {
+  Q55: 'NLD'
+}
+
+const isCountryCode = (code: string): code is CountryCode =>
+  COUNTRY_CODES.some((known) => known === code)
+
+/**
+ * The ISO alpha-3 code of each country row, which names its outline in the
+ * silhouettes rubric: asked apart from the measures so adding it reruns one
+ * query and not every family's.
+ */
+const countryCodesOf = async (
+  entityIds: readonly string[]
+): Promise<Map<string, CountryCode>> => {
+  const query = `SELECT ?item ?iso WHERE {
+    VALUES ?item { ${entityIds.map((entity) => `wd:${entity}`).join(' ')} }
+    ?item wdt:P298 ?iso.
+  }`
+  const schema = sparqlBindingsSchema({ iso: bindingValue, item: bindingValue })
+  const hash = createHash('sha1').update(query).digest('hex').slice(0, 16)
+  const text = await cached(`quantity-countries-${hash}.json`, async () =>
+    JSON.stringify(
+      await withRetries(schema, async () =>
+        fetch(SPARQL_URL, {
+          body: new URLSearchParams({ query }),
+          headers: {
+            accept: 'application/sparql-results+json',
+            'user-agent': USER_AGENT
+          },
+          method: 'POST'
+        })
+      )
+    )
+  )
+  const codes = new Map<string, CountryCode>(
+    Object.entries(COUNTRY_CODE_OF_ENTITY)
+  )
+
+  for (const { iso, item } of orStop(parseJson(text, schema), hash).results
+    .bindings) {
+    const code = COUNTRY_CODE_OF_ISO[iso.value] ?? iso.value
+
+    if (isCountryCode(code)) {
+      codes.set(entityIdOf(item.value), code)
+    }
+  }
+
+  return codes
+}
+
+const COUNTRY_FAMILIES: ReadonlySet<WikidataQuantityFamily> = new Set([
+  'area.country',
+  'population.country'
+])
+
 const main = async () => {
   const rows: (QuantityRow & { sitelinks: number })[] = []
 
@@ -520,6 +582,9 @@ const main = async () => {
 
     const entityIds = [...found.keys()]
     const names = await namesOf({ cache: 'quantity-labels.json', entityIds })
+    const countryCodes = COUNTRY_FAMILIES.has(family)
+      ? await countryCodesOf(entityIds)
+      : new Map<string, CountryCode>()
     const viewsByCountry = new Map<CountryCode, Map<string, number>>()
 
     for (const { code, wiki } of HOME_COUNTRIES) {
@@ -540,6 +605,7 @@ const main = async () => {
 
       if (entityNames !== undefined) {
         rows.push({
+          countryCode: countryCodes.get(entity) ?? null,
           entity,
           family,
           homeCountry,

@@ -1508,7 +1508,9 @@ centred on the answer, a tenth to ten times it on a log scale, solid inside
 that range and dashed beyond it; a guess past either end stacks at the edge
 rather than stretching the scale. Pins sit on lanes 5 % apart so close guesses
 do not cover each other, a spot-on guess on the saffron piece (`--tile-2`),
-and the nearest-first list under it carries each seat's figure. The display
+and the nearest-first list under it carries each seat's figure. A country's
+population or area mounts its outline above the name, as the quiz mounts a
+silhouette, and it is the first piece any screen gives up for room. The display
 face draws U+202F almost zero wide, so grouping uses U+00A0 instead.
 
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
