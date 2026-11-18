@@ -255,14 +255,6 @@ one part.
 
 ### Improvements
 
-- `[Server]` **Estimate and higher or lower know Madrid.** The world's cities
-  now take in twenty-two Wikidata filed outside the classes the bank read —
-  Madrid, Seville, Valencia, Buenos Aires, Brussels, Los Angeles, Budapest,
-  Kyiv, Tehran, Riyadh, Kinshasa among them — and Lisbon is dealt to
-  every table rather than to a Portuguese one alone. Brussels is counted as
-  its region, the million a table means, and every row already banked keeps
-  its figure.
-
 - `[Game]` **A shared link shows every game.** The image a link to Mêlée
   unfurls into is now the logo beside a tile for each of the twenty games, in
   its colour with its icon — _Mystery word_, _Longest word_, _Make the number_
