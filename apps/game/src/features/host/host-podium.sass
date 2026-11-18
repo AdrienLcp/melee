@@ -120,7 +120,8 @@
           height: max(var(--podium-round-height), 46rem)
 
         // The wall draws the outline for the room; the host's copy is a reminder.
-        .stage.playing .round-card .estimate-question
+        .stage.playing .round-card .estimate-question,
+        .stage.playing .round-card .estimate-question:has(> .estimate-photo)
           --prompt-picture-height: clamp(2.5rem, 10cqh, 4.5rem)
 
         > header .round-index

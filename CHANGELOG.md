@@ -15,6 +15,14 @@ one part.
   needs the room. The microstates the atlas cannot draw, and every other
   family, show none yet.
 
+- `[Shared]` **Le juste chiffre shows the summit, the tower, the river or
+  the object it asks about.** 322 questions come with their photograph: on
+  the wall beside the name lying down and above it standing up, a reminder
+  on the console beside a wall, small over the ruler at the reveal. A phone
+  answering upright shows none, the field and the keyboard needing the room;
+  lying down it sits above the name. The card keeps the photograph's shape
+  while the file arrives, and the picture fades in, so nothing moves.
+
 - `[Shared]` **Mêlée speaks European Portuguese.** _Português_ joins English
   and French in the menu, and every page is served under `/pt` with its own
   title, description and share image. A table opened in Portuguese plays in

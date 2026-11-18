@@ -407,4 +407,28 @@ describe('the picture under a quantity', () => {
     expect(questionOf('Monaco', 'area.country')?.silhouette).toBeNull()
     expect(questionOf('Lyon', 'population.city')?.silhouette).toBeNull()
   })
+
+  it('[estimate] shows the photograph of a tower, a price and nothing over a country', () => {
+    const questionOf = (english: string) => {
+      const row = [...bankedQuantities(), ...bankedPrices()].find(
+        (candidate) => candidate.names.en === english
+      )
+
+      return row === undefined ? undefined : bankQuestionOf(row)
+    }
+
+    expect(questionOf('Eiffel Tower')?.photo).toEqual({
+      file: 'b9fa639ce03e.webp',
+      height: 640,
+      width: 346
+    })
+    expect(questionOf('Mount Everest')?.photo?.file).toBe('5516384923db.webp')
+    expect(questionOf('Rubicon')?.photo).toBeNull()
+    expect(questionOf('France')?.photo).toBeNull()
+    expect(
+      questionOf(
+        'A classic baguette from a French bakery (average price, early 2025)'
+      )?.photo?.file
+    ).toBe('0445ca3fea6e.webp')
+  })
 })

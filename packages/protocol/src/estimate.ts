@@ -141,6 +141,25 @@ export const bankQuantityAskSchema = z.object({
 })
 
 /**
+ * A photograph the app serves under `/pictures/`, named after its own content
+ * like a flag, so a frame can never point a screen at another address.
+ */
+export const pictureFileSchema = z.string().regex(/^[0-9a-f]{12}\.webp$/)
+
+/** The longest side a bundled photograph is resized to. */
+export const PICTURE_LONG_SIDE = 640
+
+/**
+ * A photograph of what a question measures, with the size it is stored at so
+ * a screen lays its frame out before the file arrives.
+ */
+export const estimatePhotoSchema = z.object({
+  file: pictureFileSchema,
+  height: z.number().int().positive().max(PICTURE_LONG_SIDE),
+  width: z.number().int().positive().max(PICTURE_LONG_SIDE)
+})
+
+/**
  * The question as every screen draws it: a family of the bank with the name
  * of what it is measured on in every language the app ships, so a phone set to
  * English at a French table reads its own — or a question an evening brought,
@@ -150,6 +169,12 @@ export const bankQuantityAskSchema = z.object({
 export const estimateQuestionSchema = z.discriminatedUnion('kind', [
   bankQuantityAskSchema.extend({
     names: localizedSchema(z.string().min(1)),
+    /**
+     * The mountain, the building, the river or the object, public from the
+     * first frame because nothing in it states the value; `null` on a row the
+     * picture bank has no free photograph for.
+     */
+    photo: estimatePhotoSchema.nullable(),
     /**
      * The country's outline under a country's population or area, public
      * from the first frame as it is in the map's name round; `null` on every
@@ -189,6 +214,7 @@ export type WikidataQuantityFamily = z.infer<
 >
 export type QuantityTopic = z.infer<typeof quantityTopicSchema>
 export type QuantityUnit = z.infer<typeof quantityUnitSchema>
+export type EstimatePhoto = z.infer<typeof estimatePhotoSchema>
 export type EstimateQuestion = z.infer<typeof estimateQuestionSchema>
 export type OwnQuantityAsk = z.infer<typeof ownQuantityAskSchema>
 /** What a number is asked as and counted in, whichever game asks it. */

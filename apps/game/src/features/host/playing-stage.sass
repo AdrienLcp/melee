@@ -613,7 +613,7 @@
         .estimate-question
           --prompt-picture-height: clamp(2rem, 11cqh, 6rem)
 
-          .country-silhouette
+          :is(.country-silhouette, .estimate-photo)
             @include layout.shown-height-below(36)
               display: none
 
@@ -887,6 +887,28 @@
         --estimate-asks-size: clamp(var(--text-m), min(3cqi, 7cqh), 2.4rem)
         --estimate-name-size: clamp(var(--text-xl), min(8cqi, 20cqh), 8rem)
         --prompt-picture-height: clamp(4rem, 30cqh, 20rem)
+
+      // The photograph is what the room looks at while it thinks: above the
+      // name standing up, and lying down on one side of the card with the name
+      // on the other. Its file is 640 pixels long, the most it is drawn.
+      .estimate-question:has(> .estimate-photo):not([data-estimate='answering'] *)
+        --prompt-picture-height: clamp(4rem, 36cqh, 32rem)
+
+        @container playing (aspect-ratio >= 13 / 10)
+          --prompt-picture-height: clamp(6rem, 62cqh, 26rem)
+          --estimate-name-size: clamp(var(--text-xl), min(5cqi, 16cqh), 6rem)
+
+          align-items: center
+          column-gap: clamp(var(--space-m), 4cqi, var(--space-2xl))
+          grid-template-columns: auto minmax(0, 1fr)
+
+          > .estimate-heading
+            text-align: start
+
+          // Sized off its own height alone: a share of an `auto` column is
+          // the file's width, and a tower stood centred in it.
+          > .estimate-photo
+            width: min(calc(var(--photo-height) * var(--photo-ratio)), calc(var(--photo-height) * 1.6))
 
       .higher-lower-prompt .asks
         font-size: clamp(var(--text-xl), min(6cqi, 14cqh), 5rem)

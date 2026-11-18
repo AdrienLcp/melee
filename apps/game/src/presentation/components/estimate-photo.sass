@@ -1,0 +1,23 @@
+@layer components
+  .estimate-photo
+    --photo-height: var(--prompt-picture-height, clamp(5rem, 32cqmin, 16rem))
+
+    aspect-ratio: var(--photo-ratio)
+    background: var(--card-well)
+    border-radius: var(--radius-xs)
+    box-shadow: 0 0 0 1px var(--card-rule), var(--shadow-print)
+    display: block
+    flex: none
+    overflow: hidden
+    width: min(100%, calc(var(--photo-height) * var(--photo-ratio)), calc(var(--photo-height) * 1.6))
+
+    img
+      display: block
+      height: 100%
+      object-fit: cover
+      opacity: 0
+      transition: opacity var(--transition-slow, 0s) var(--ease-out)
+      width: 100%
+
+    &[data-loaded] img
+      opacity: 1

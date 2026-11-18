@@ -9,10 +9,10 @@
     margin: 0
     text-align: center
 
-    &:has(> .country-silhouette)
+    &:has(> :is(.country-silhouette, .estimate-photo))
       gap: var(--space-s)
 
-    .country-silhouette
+    :is(.country-silhouette, .estimate-photo)
       justify-self: center
 
     .asks

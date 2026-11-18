@@ -29,6 +29,7 @@ import {
 } from '@melee/core/round/difficulty-draw'
 
 import { isFamousQuantity } from './famous-quantities'
+import { photoOf } from './picture-bank'
 import priceBank from './price-bank.json' with { type: 'json' }
 import bank from './quantity-bank.json' with { type: 'json' }
 import { silhouetteFileOf } from './silhouette-questions'
@@ -131,13 +132,17 @@ const priceBankOf = (): PriceBank => {
   return parsedPrices
 }
 
-/** The question every screen draws for a row of the bank, its outline under a country. */
+/**
+ * The question every screen draws for a row of the bank: its outline under a
+ * country, its photograph under a mountain, a building, a river or a price.
+ */
 export const bankQuestionOf = (
   row: QuantityRow
 ): EstimateQuestion & { kind: 'bank' } => ({
   family: row.family,
   kind: 'bank',
   names: row.names,
+  photo: photoOf(row.entity),
   silhouette:
     row.countryCode === null ? null : silhouetteFileOf(row.countryCode)
 })

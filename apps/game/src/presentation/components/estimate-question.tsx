@@ -4,6 +4,7 @@ import type { EstimateQuestion as Question } from '@melee/protocol/estimate'
 
 import { scaleForLength } from '@/helpers/length-scale'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
+import { EstimatePhoto } from '@/presentation/components/estimate-photo'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import './estimate-question.sass'
@@ -22,9 +23,10 @@ type EstimateQuestionProps = {
  * What is measured, small, over the name of what it is measured on, large: the
  * name is what the table reads from across the room, and the dictionary words
  * the measure so French never needs the article Wikidata's label lacks. A
- * country's outline stands above its name, sized by the screen through
- * `--prompt-picture-height`. A question the evening wrote is its own
- * sentence, drawn alone and large.
+ * country's outline or a photograph of what is measured stands above its
+ * name, sized by the screen through `--prompt-picture-height`; a screen with
+ * the width lays the photograph beside it. A question the evening wrote is
+ * its own sentence, drawn alone and large.
  */
 export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
   question
@@ -50,11 +52,15 @@ export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
   }
 
   const name = question.names[locale]
+  const picture =
+    question.photo !== null ? (
+      <EstimatePhoto photo={question.photo} />
+    ) : question.silhouette !== null ? (
+      <CountrySilhouette file={question.silhouette} isNamedBeside />
+    ) : null
   const heading = (
     <hgroup
-      className={
-        question.silhouette === null ? 'estimate-question' : 'estimate-heading'
-      }
+      className={picture === null ? 'estimate-question' : 'estimate-heading'}
     >
       <p className='asks'>{translate(`estimate.asks.${question.family}`)}</p>
       <h2
@@ -71,13 +77,13 @@ export const EstimateQuestion: React.FC<EstimateQuestionProps> = ({
     </hgroup>
   )
 
-  if (question.silhouette === null) {
+  if (picture === null) {
     return heading
   }
 
   return (
     <div className='estimate-question'>
-      <CountrySilhouette file={question.silhouette} isNamedBeside />
+      {picture}
       {heading}
     </div>
   )

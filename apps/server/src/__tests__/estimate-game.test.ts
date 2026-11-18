@@ -175,6 +175,7 @@ describe('an estimate round through the seam', () => {
       family: 'population.country',
       kind: 'bank',
       names: NAMES,
+      photo: null,
       silhouette: FRANCE_OUTLINE
     })
     expect(round?.value).toBeNull()
@@ -339,6 +340,7 @@ describe('an estimate deck', () => {
       family: 'population.country',
       kind: 'bank',
       names: NAMES,
+      photo: null,
       silhouette: FRANCE_OUTLINE
     })
     expect(hostView(host)?.deckSummaries).toEqual([{ played: 1, size: 1 }])

@@ -786,7 +786,34 @@ const OUTLINED_QUANTITY = {
     fr: 'République démocratique du Congo',
     pt: 'República Democrática do Congo'
   },
+  photo: null,
   silhouette: '0ca305eca97b.svg'
+}
+
+/** The bank's longest building name under its tallest photograph, 208 by 640. */
+const TALL_PHOTOGRAPHED_QUANTITY = {
+  family: 'height.building',
+  kind: 'bank',
+  names: {
+    en: 'Central Radio & TV Tower',
+    fr: 'tour centrale de radio-télédiffusion de Pékin',
+    pt: 'Torre Central de Rádio e TV de Pequim'
+  },
+  photo: { file: '8be689dd2d2c.webp', height: 640, width: 208 },
+  silhouette: null
+}
+
+/** A price's sentence under the bank's widest photograph, 640 by 287. */
+const WIDE_PHOTOGRAPHED_QUANTITY = {
+  family: 'price.item',
+  kind: 'bank',
+  names: {
+    en: 'A PlayStation 3 at its European launch, with its disc drive',
+    fr: 'Une PlayStation 3 à sa sortie européenne, avec son lecteur de disques',
+    pt: 'Uma PlayStation 3 no lançamento europeu, com leitor de discos'
+  },
+  photo: { file: 'b72f1e42d7b6.webp', height: 287, width: 640 },
+  silhouette: null
 }
 
 const REVEALS = [
@@ -806,6 +833,70 @@ const REVEALS = [
       yourGuess: null
     },
     name: "le juste chiffre with a country's outline",
+    overrides: {
+      round: {
+        awards: table.map(({ id }, seat) => ({
+          isUnsent: false,
+          playerId: id,
+          points: (60 + seat * 5) * 1_000,
+          speedBonus: 0,
+          verdict: {
+            kind: 'number',
+            ratio: (40_000_000 + seat * 7_000_000) / 109_000_000
+          }
+        })),
+        revealedAnswers: []
+      },
+      settings: {
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        mode: { kind: 'number' }
+      }
+    }
+  },
+  {
+    content: {
+      kind: 'estimate',
+      question: TALL_PHOTOGRAPHED_QUANTITY,
+      revealedGuesses: table.map(({ id }, seat) => ({
+        guess: 40_000_000 + seat * 7_000_000,
+        playerId: id
+      })),
+      value: 109_000_000,
+      yourGuess: null
+    },
+    name: "le juste chiffre with a tower's photograph",
+    overrides: {
+      round: {
+        awards: table.map(({ id }, seat) => ({
+          isUnsent: false,
+          playerId: id,
+          points: (60 + seat * 5) * 1_000,
+          speedBonus: 0,
+          verdict: {
+            kind: 'number',
+            ratio: (40_000_000 + seat * 7_000_000) / 109_000_000
+          }
+        })),
+        revealedAnswers: []
+      },
+      settings: {
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        mode: { kind: 'number' }
+      }
+    }
+  },
+  {
+    content: {
+      kind: 'estimate',
+      question: WIDE_PHOTOGRAPHED_QUANTITY,
+      revealedGuesses: table.map(({ id }, seat) => ({
+        guess: 40_000_000 + seat * 7_000_000,
+        playerId: id
+      })),
+      value: 109_000_000,
+      yourGuess: null
+    },
+    name: 'le juste chiffre with a panorama',
     overrides: {
       round: {
         awards: table.map(({ id }, seat) => ({
@@ -1727,6 +1818,54 @@ const WALL_SCREENS = [
         content: {
           kind: 'estimate',
           question: OUTLINED_QUANTITY,
+          revealedGuesses: null,
+          value: null,
+          yourGuess: null
+        }
+      },
+      settings: {
+        ...eveningRound.settings,
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        lineUp: [{ kind: 'estimate', roundDurationMs: 30_000 }],
+        lineUpAt: 0,
+        mode: { kind: 'number' }
+      }
+    }
+  },
+  {
+    name: "le juste chiffre, a tower's photograph",
+    ready: '.estimate-question .estimate-photo',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        content: {
+          kind: 'estimate',
+          question: TALL_PHOTOGRAPHED_QUANTITY,
+          revealedGuesses: null,
+          value: null,
+          yourGuess: null
+        }
+      },
+      settings: {
+        ...eveningRound.settings,
+        game: { kind: 'estimate', roundDurationMs: 30_000 },
+        lineUp: [{ kind: 'estimate', roundDurationMs: 30_000 }],
+        lineUpAt: 0,
+        mode: { kind: 'number' }
+      }
+    }
+  },
+  {
+    name: 'le juste chiffre, a panorama',
+    ready: '.estimate-question .estimate-photo',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        content: {
+          kind: 'estimate',
+          question: WIDE_PHOTOGRAPHED_QUANTITY,
           revealedGuesses: null,
           value: null,
           yourGuess: null
@@ -3381,6 +3520,7 @@ const estimateScreen = () =>
           'tour centrale de radio-télédiffusion de Pékin',
           'Central Radio & TV Tower'
         ),
+        photo: null,
         silhouette: null
       },
       revealedGuesses: null,
@@ -3396,6 +3536,19 @@ const picturedEstimateScreen = () =>
     content: {
       kind: 'estimate',
       question: OUTLINED_QUANTITY,
+      revealedGuesses: null,
+      value: null,
+      yourGuess: null
+    },
+    game: { kind: 'estimate', roundDurationMs: 30_000 },
+    mode: { kind: 'number' }
+  })
+
+const photographedEstimateScreen = () =>
+  answeringView({
+    content: {
+      kind: 'estimate',
+      question: TALL_PHOTOGRAPHED_QUANTITY,
       revealedGuesses: null,
       value: null,
       yourGuess: null
@@ -3758,6 +3911,15 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
       ready: '.estimate-answer'
     },
     view: picturedEstimateScreen()
+  },
+  {
+    name: "le juste chiffre, a tower's photograph",
+    ready: '.estimate-answer',
+    seated: {
+      currentContent: { kind: 'estimate', value: null },
+      ready: '.estimate-answer'
+    },
+    view: photographedEstimateScreen()
   },
   {
     name: 'le juste chiffre, a number of our own',
@@ -4294,6 +4456,15 @@ const KEYBOARD_SCREENS = [
       '.estimate-answer button[type=submit]'
     ],
     name: "le juste chiffre, a country's outline"
+  },
+  {
+    field: '.estimate-answer input',
+    inView: [
+      '.round-card .estimate-question',
+      '.estimate-answer input',
+      '.estimate-answer button[type=submit]'
+    ],
+    name: "le juste chiffre, a tower's photograph"
   }
 ]
 

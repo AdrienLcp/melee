@@ -1,8 +1,8 @@
 # 71 — A picture with every estimate question
 
-**Steps 1 and 2 done 18/11/2026** — the countries' outline on every screen,
-and the photographs built and credited. Steps 3–4 (the photographs' screens,
-Plus ou moins) are not started. Asked
+**Steps 1 to 3 done 18/11/2026** — the countries' outline on every screen,
+the photographs built and credited, then drawn on every screen. Step 4
+(Plus ou moins) is not started. Asked
 15/11/2026 with the prices of stage 58: _the object for a price, the
 monument for a height, the country's map for a population_.
 
@@ -147,6 +147,40 @@ pictures is what would let it in with a short name beside it.
 - `picture-bank.test.ts` holds the bank to the served folder, both ways,
   and to the rows the banks deal.
 
+## What step 3 settled
+
+- **`photo` sits beside `silhouette` on the bank question** — file, width
+  and height, the file held to `[0-9a-f]{12}.webp` like a flag's.
+  `bankQuestionOf` reads it from `picture-bank.json` by `entity`
+  (`picture-bank.ts`), a price row's included; `null` on the five rows no
+  free file showed and on every other family.
+- **One component, `EstimatePhoto`, inside `EstimateQuestion`**, so every
+  screen that drew the outline draws the photograph in its place, sized by
+  the same `--prompt-picture-height`. Its frame takes the file's ratio
+  (`--photo-ratio`) on a `--card-well` ground, printed on the card like a
+  flag, and the image fades in on `load` on `--transition-slow`: filmed with
+  the file held back 900ms, the frame stands at its final size and nothing
+  around it moves. A panorama stops at 1.6 times the height wide. The image
+  is `alt=''` — the name beside it says what it shows.
+- **Wall and console with no wall**: lying down (`aspect-ratio >= 13/10` on
+  the `playing` container) the card is two columns, the photograph up to
+  26rem tall and the name left-aligned beside it; standing up it stands
+  above the name, up to 32rem. Both stay under the file's 640 pixels.
+- **Console beside a wall**: the 10cqh thumbnail the outline had, beside
+  the name since the podium's card lies down.
+- **Player**: none upright; lying down above the name (`28cqh`, at most
+  9rem), gone once a keyboard leaves under 20rem — a phone lying down is
+  never 36rem tall, so the outline's threshold would have hidden it always.
+  The seated console answering keeps the outline's rule.
+- **The reveal keeps it above the name, not beside the ruler** as planned:
+  the ruler is a log scale whose pins need the card's whole width. It goes
+  under 45rem tall, with the outline.
+- `e2e/choice-fits.spec.ts` holds the tallest photograph (208×640) on the
+  wall, the room's reveal, a player and a seated console with and without a
+  keyboard, and the widest (640×287) on the wall and the reveal. The
+  leaving was not filmed apart: the photograph leaves inside the question
+  card, which the stage swap already carries.
+
 ## Steps
 
 1. **Done.** **Countries**: `P298` in the bank build, `countryCode` on the row and the
@@ -157,7 +191,7 @@ pictures is what would let it in with a short name beside it.
    price files, checking licences, resizing to WebP and writing the hashed
    files plus a `pictures.json` of name, size, author and licence; the credits
    section read from it.
-3. **The screens**: wall, console and player layouts above, filmed in and
+3. **Done.** **The screens**: wall, console and player layouts above, filmed in and
    out (`docs/browser-driving.md`, _Filming a motion_), full room at phone
    width.
 4. **Plus ou moins**: the pictures on its tiles, and the decision whether
