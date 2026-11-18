@@ -31,4 +31,4 @@ The cities above are in the bank for every table, `quantity-bank.test.ts`
 holds one of them, `pnpm validate` is green, this file is deleted and its
 row struck from `handoffs/README.md`.
 
-<!-- cspell:words Bruxelas Sevilha -->
+<!-- cspell:words Bruxelas Sevilha portuguese -->
