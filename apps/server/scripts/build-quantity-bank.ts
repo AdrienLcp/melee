@@ -86,6 +86,24 @@ const CITIES = `?item wdt:P31 ?kind.
     FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }`
 
 /**
+ * The cities filed in none of those: a national capital, a country's largest
+ * city, a municipality of Spain, a city of Argentina — Buenos Aires, Madrid,
+ * Seville, Lisbon. Asked apart, because one query of all ten classes outruns
+ * the service's minute, and the classes come first: inside a union, the
+ * planner left off walks every `P31` before it reads the list. *Megacity*
+ * and *port settlement* stay out: they file
+ * Metro Manila and the state of Veracruz. Los Angeles is filed as a
+ * California charter city alone, and is asked by name; so is Brussels, as its
+ * region — the commune Wikidata calls Brussels counts 200 000 of the million
+ * a table means.
+ */
+const OTHER_CITIES = `{
+      VALUES ?kind { wd:Q108178728 wd:Q51929311 wd:Q2074737 wd:Q5770918 }
+      ?item wdt:P31 ?kind.
+      FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }
+    } UNION { VALUES ?item { wd:Q65 wd:Q240 } }`
+
+/**
  * The French towns a table has a picture of: every commune of a hundred
  * thousand people, and every prefecture however small — Guéret beside
  * Limoges is a comparison a French table can make, and Shenyang is not. A
@@ -120,8 +138,8 @@ const RIVERS = '?item wdt:P31 wd:Q4022.'
 /**
  * The Portuguese towns a table in Lisbon has a picture of: every municipality
  * of twenty thousand people, which takes in every district's seat. Lisbon
- * is asked by name: Wikidata files it as a capital rather than a
- * municipality, and the world's cities miss it too.
+ * is asked by name: Wikidata files it as a national capital rather than a
+ * municipality, which the world's cities count and the towns' area does not.
  */
 const PORTUGUESE_TOWNS = `{
       ?item wdt:P31 wd:Q13217644; wdt:P1082 ?people.
@@ -317,14 +335,14 @@ const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
     lengthOf({ entities: `${RIVERS}\n    ${IN_PORTUGAL}`, scope: PORTUGUESE })
   ],
   'population.city': [
-    {
+    ...[CITIES, OTHER_CITIES].map((entities) => ({
       ...WORLD,
-      entities: CITIES,
+      entities,
       inUnit: asIs,
       isCount: true,
       minimum: MIN_CITY_POPULATION,
       property: 'P1082'
-    },
+    })),
     populationOf({ entities: FRENCH_TOWNS, scope: FRENCH }),
     populationOf({ entities: PORTUGUESE_TOWNS, scope: PORTUGUESE })
   ],
@@ -337,9 +355,16 @@ const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
   ]
 }
 
-/** Where Wikidata's label is the official form, the name a table says. */
+// cspell:words Bruxelas Espagne Valência
+/**
+ * Where Wikidata's label is the official form, the name a table says — and
+ * where a French name is a prefecture's too, the one that tells them apart.
+ */
 const NAMES_SAID: Readonly<Record<string, Names>> = {
-  Q148: { en: 'China', fr: 'Chine', pt: 'China' }
+  Q148: { en: 'China', fr: 'Chine', pt: 'China' },
+  Q240: { en: 'Brussels', fr: 'Bruxelles', pt: 'Bruxelas' },
+  Q8818: { en: 'Valencia', fr: 'Valence (Espagne)', pt: 'Valência' },
+  Q44210: { en: 'Córdoba', fr: 'Córdoba', pt: 'Córdoba' }
 }
 
 const entityIdOf = (uri: string): string => uri.split('/').at(-1) ?? uri

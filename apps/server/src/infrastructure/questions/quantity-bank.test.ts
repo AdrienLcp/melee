@@ -1,3 +1,4 @@
+// cspell:words Lisbonne Séville
 import { describe, expect, it } from 'vitest'
 
 import {
@@ -78,6 +79,19 @@ describe('the quantity bank', () => {
       ['area.country', 'France']
     ] as const) {
       expect(bankedRow({ family, fr })?.homeCountry).toBeNull()
+    }
+
+    for (const fr of [
+      'Madrid',
+      'Séville',
+      'Buenos Aires',
+      'Bruxelles',
+      'Los Angeles',
+      'Lisbonne'
+    ]) {
+      expect(
+        bankedRow({ family: 'population.city', fr })?.homeCountry
+      ).toBeNull()
     }
 
     for (const [family, fr] of [

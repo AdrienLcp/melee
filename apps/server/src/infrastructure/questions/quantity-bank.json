@@ -52725,6 +52725,22 @@
     "wellKnownIn": []
   },
   {
+    "entity": "Q10305",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Zaragoza",
+      "fr": "Saragosse",
+      "pt": "Saragoça"
+    },
+    "value": 693000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
     "entity": "Q105037",
     "family": "population.city",
     "homeCountry": null,
@@ -53769,6 +53785,21 @@
     ]
   },
   {
+    "entity": "Q1352",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Chennai",
+      "fr": "Madras",
+      "pt": "Chennai"
+    },
+    "value": 6600000,
+    "wellKnownIn": [
+      "FRA"
+    ]
+  },
+  {
     "entity": "Q1353",
     "family": "population.city",
     "homeCountry": null,
@@ -53824,6 +53855,19 @@
       "pt": "Gongyi"
     },
     "value": 785000,
+    "wellKnownIn": []
+  },
+  {
+    "entity": "Q1361",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Hyderabad",
+      "fr": "Hyderabad",
+      "pt": "Hyderabad"
+    },
+    "value": 9190000,
     "wellKnownIn": []
   },
   {
@@ -53984,6 +54028,19 @@
     "wellKnownIn": []
   },
   {
+    "entity": "Q1475",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Quezon City",
+      "fr": "Quezon City",
+      "pt": "Cidade Quezon"
+    },
+    "value": 3080000,
+    "wellKnownIn": []
+  },
+  {
     "entity": "Q1476",
     "family": "population.city",
     "homeCountry": "FRA",
@@ -54046,6 +54103,22 @@
     },
     "value": 766000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q1486",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Buenos Aires",
+      "fr": "Buenos Aires",
+      "pt": "Buenos Aires"
+    },
+    "value": 3120000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q1489",
@@ -55785,6 +55858,22 @@
     ]
   },
   {
+    "entity": "Q1781",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Budapest",
+      "fr": "Budapest",
+      "pt": "Budapeste"
+    },
+    "value": 1680000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
     "entity": "Q178373",
     "family": "population.city",
     "homeCountry": null,
@@ -56774,6 +56863,22 @@
     },
     "value": 2870000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q1899",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Kyiv",
+      "fr": "Kiev",
+      "pt": "Kiev"
+    },
+    "value": 2950000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q190118",
@@ -58891,6 +58996,22 @@
     "wellKnownIn": []
   },
   {
+    "entity": "Q240",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Brussels",
+      "fr": "Bruxelles",
+      "pt": "Bruxelas"
+    },
+    "value": 1260000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
     "entity": "Q242144",
     "family": "population.city",
     "homeCountry": null,
@@ -59631,6 +59752,22 @@
     },
     "value": 637000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q2807",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Madrid",
+      "fr": "Madrid",
+      "pt": "Madrid"
+    },
+    "value": 3510000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q2841",
@@ -60884,6 +61021,21 @@
     "wellKnownIn": []
   },
   {
+    "entity": "Q36036",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Lviv",
+      "fr": "Lviv",
+      "pt": "Lviv"
+    },
+    "value": 717000,
+    "wellKnownIn": [
+      "FRA"
+    ]
+  },
+  {
     "entity": "Q360374",
     "family": "population.city",
     "homeCountry": null,
@@ -60936,6 +61088,22 @@
     },
     "value": 4390000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q3616",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Tehran",
+      "fr": "Téhéran",
+      "pt": "Teerão"
+    },
+    "value": 8690000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q3624",
@@ -60994,6 +61162,19 @@
       "FRA",
       "PRT"
     ]
+  },
+  {
+    "entity": "Q36307",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Salta",
+      "fr": "Salta",
+      "pt": "Salta"
+    },
+    "value": 595000,
+    "wellKnownIn": []
   },
   {
     "entity": "Q363076",
@@ -61202,6 +61383,22 @@
     "value": 1450000,
     "wellKnownIn": [
       "FRA"
+    ]
+  },
+  {
+    "entity": "Q3692",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Riyadh",
+      "fr": "Riyad",
+      "pt": "Riade"
+    },
+    "value": 7010000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
     ]
   },
   {
@@ -61751,6 +61948,22 @@
     ]
   },
   {
+    "entity": "Q3838",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Kinshasa",
+      "fr": "Kinshasa",
+      "pt": "Quinxassa"
+    },
+    "value": 14600000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
     "entity": "Q38380",
     "family": "population.city",
     "homeCountry": "FRA",
@@ -61823,6 +62036,21 @@
       "pt": "Quigali"
     },
     "value": 1750000,
+    "wellKnownIn": [
+      "FRA"
+    ]
+  },
+  {
+    "entity": "Q3861",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Doha",
+      "fr": "Doha",
+      "pt": "Doha"
+    },
+    "value": 1190000,
     "wellKnownIn": [
       "FRA"
     ]
@@ -62438,6 +62666,21 @@
     "wellKnownIn": [
       "FRA",
       "PRT"
+    ]
+  },
+  {
+    "entity": "Q41087",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Raleigh",
+      "fr": "Raleigh",
+      "pt": "Raleigh"
+    },
+    "value": 506000,
+    "wellKnownIn": [
+      "FRA"
     ]
   },
   {
@@ -63302,6 +63545,35 @@
       "pt": "Brampton"
     },
     "value": 656000,
+    "wellKnownIn": []
+  },
+  {
+    "entity": "Q44210",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Córdoba",
+      "fr": "Córdoba",
+      "pt": "Córdoba"
+    },
+    "value": 1510000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
+    "entity": "Q44255",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "San Miguel de Tucumán",
+      "fr": "San Miguel de Tucumán",
+      "pt": "São Miguel de Tucumã"
+    },
+    "value": 602000,
     "wellKnownIn": []
   },
   {
@@ -64410,6 +64682,22 @@
     },
     "value": 1420000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q52535",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Rosario",
+      "fr": "Rosario",
+      "pt": "Rosário"
+    },
+    "value": 1040000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q52607",
@@ -65707,7 +65995,7 @@
   {
     "entity": "Q597",
     "family": "population.city",
-    "homeCountry": "PRT",
+    "homeCountry": null,
     "liesIn": [
       "PRT"
     ],
@@ -66226,6 +66514,22 @@
       "pt": "Moscovo"
     },
     "value": 13300000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
+    "entity": "Q65",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Los Angeles",
+      "fr": "Los Angeles",
+      "pt": "Los Angeles"
+    },
+    "value": 3900000,
     "wellKnownIn": [
       "FRA",
       "PRT"
@@ -68074,6 +68378,22 @@
     ]
   },
   {
+    "entity": "Q8717",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Seville",
+      "fr": "Séville",
+      "pt": "Sevilha"
+    },
+    "value": 689000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
+  },
+  {
     "entity": "Q876876",
     "family": "population.city",
     "homeCountry": null,
@@ -68085,6 +68405,22 @@
     },
     "value": 708000,
     "wellKnownIn": []
+  },
+  {
+    "entity": "Q8818",
+    "family": "population.city",
+    "homeCountry": null,
+    "liesIn": [],
+    "names": {
+      "en": "Valencia",
+      "fr": "Valence (Espagne)",
+      "pt": "Valência"
+    },
+    "value": 841000,
+    "wellKnownIn": [
+      "FRA",
+      "PRT"
+    ]
   },
   {
     "entity": "Q883",
