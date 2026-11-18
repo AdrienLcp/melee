@@ -1,7 +1,7 @@
 import { LONGEST_WORD_LETTER_COUNT } from '@melee/protocol/longest-word'
-import type { QuestionLanguage } from '@melee/protocol/question'
 
 import { randomUnit, shuffled } from '../helpers/random'
+import type { WordLanguage } from '../words/word-language'
 
 /**
  * The letters a draw counts as vowels. `Y` is one, in both languages: it
@@ -22,10 +22,11 @@ type LetterWeights = Readonly<Record<string, number>>
 /**
  * How often each letter appears in running text, in tenths of a percent,
  * accents folded into their letter. Read off the usual published counts of
- * French and English prose — never a Scrabble bag, whose counts are tuned
+ * French and English prose, and Portuguese off the subtitle counts its
+ * hidden words are ranked by — never a Scrabble bag, whose counts are tuned
  * for a board.
  */
-const LETTER_FREQUENCIES: Record<QuestionLanguage, LetterWeights> = {
+const LETTER_FREQUENCIES: Record<WordLanguage, LetterWeights> = {
   en: {
     A: 82,
     B: 15,
@@ -81,6 +82,34 @@ const LETTER_FREQUENCIES: Record<QuestionLanguage, LetterWeights> = {
     X: 4,
     Y: 3,
     Z: 1
+  },
+  pt: {
+    A: 141,
+    B: 11,
+    C: 35,
+    D: 40,
+    E: 133,
+    F: 10,
+    G: 12,
+    H: 13,
+    I: 59,
+    J: 3,
+    K: 1,
+    L: 26,
+    M: 50,
+    N: 48,
+    O: 108,
+    P: 26,
+    Q: 16,
+    R: 64,
+    S: 82,
+    T: 48,
+    U: 48,
+    V: 16,
+    W: 1,
+    X: 2,
+    Y: 1,
+    Z: 5
   }
 }
 
@@ -131,7 +160,7 @@ const drawnFrom = ({
  * shuffled so the vowels do not sit together. Whether the dictionary holds a
  * long word from them is `drawPlayableLetters`'s question.
  */
-export const drawLetters = (language: QuestionLanguage): string[] => {
+export const drawLetters = (language: WordLanguage): string[] => {
   const weights = Object.entries(LETTER_FREQUENCIES[language])
   const vowelCount = randomUnit() < 0.5 ? FEWEST_VOWELS : MOST_VOWELS
 

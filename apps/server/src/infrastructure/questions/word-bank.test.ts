@@ -1,16 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  type QuestionLanguage,
-  questionLanguages
-} from '@melee/protocol/question'
+import { questionLanguages } from '@melee/protocol/question'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
+import type { WordLanguage } from '@melee/core/words/word-language'
 
 import blocklist from '../../../scripts/word-answer-blocklist.json' with {
   type: 'json'
 }
 import {
+  drawLongestWord,
   drawMysteryWord,
   isFamiliarWord,
   isValidWord,
@@ -21,12 +20,17 @@ import {
 
 const ANSWER_LENGTHS = [5, 6, 7, 8] as const
 
+const WORD_LANGUAGES = [
+  ...questionLanguages,
+  'pt'
+] as const satisfies readonly WordLanguage[]
+
 /** Four evenings of twenty rounds at one length, which a level dealt from one tier alone must last. */
 const TIER_FLOOR = 80
 
 describe('the word bank', () => {
-  it('[word-bank] deals every tier at every length in both languages', () => {
-    const thin = questionLanguages.flatMap((language) =>
+  it('[word-bank] deals every tier at every length in every language', () => {
+    const thin = WORD_LANGUAGES.flatMap((language) =>
       ANSWER_LENGTHS.flatMap((length) =>
         contentTiers
           .filter(
@@ -43,7 +47,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides only words a seat may try, of the length asked', () => {
-    for (const language of questionLanguages) {
+    for (const language of WORD_LANGUAGES) {
       for (const length of ANSWER_LENGTHS) {
         const unfit = mysteryWordAnswers({ language, length }).filter(
           ({ word }) =>
@@ -56,7 +60,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides no word the blocklist strips', () => {
-    for (const language of questionLanguages) {
+    for (const language of WORD_LANGUAGES) {
       const blocked = new Set(blocklist[language])
       const hidden = ANSWER_LENGTHS.flatMap((length) =>
         mysteryWordAnswers({ language, length })
@@ -80,7 +84,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides lemmas, never an inflected form', () => {
-    const hidden = (language: QuestionLanguage, word: string) =>
+    const hidden = (language: WordLanguage, word: string) =>
       mysteryWordAnswers({ language, length: word.length }).some(
         (answer) => answer.word === word
       )
@@ -91,6 +95,51 @@ describe('the word bank', () => {
     expect(hidden('en', 'HOUSE')).toBe(true)
     expect(hidden('en', 'HOUSES')).toBe(false)
     expect(hidden('en', 'WROTE')).toBe(false)
+    expect(hidden('pt', 'CORACAO')).toBe(true)
+    expect(hidden('pt', 'CORACOES')).toBe(false)
+    expect(hidden('pt', 'FALAMOS')).toBe(false)
+    expect(hidden('pt', 'DESCOBRE')).toBe(false)
+  })
+
+  it('[word-bank] spells Portuguese after the 1990 agreement, every form folded', () => {
+    for (const word of ['CORACAO', 'CORACOES', 'FALAVAM', 'ACAO', 'OTIMO']) {
+      expect(isValidWord({ language: 'pt', word })).toBe(true)
+    }
+
+    for (const word of ['ACCAO', 'OPTIMO', 'LISBOA']) {
+      expect(isValidWord({ language: 'pt', word })).toBe(false)
+    }
+
+    expect(isFamiliarWord({ language: 'pt', word: 'OBRIGADO' })).toBe(true)
+  })
+
+  it('[word-bank] deals a Portuguese hidden word and a Portuguese longest-word draw', () => {
+    const hiddenWord = drawMysteryWord({
+      difficulty: 'mixed',
+      language: 'pt',
+      length: 6,
+      playedIds: new Set()
+    })
+    const draw = drawLongestWord({ language: 'pt' })
+
+    expect(hiddenWord?.word).toHaveLength(6)
+    expect(isValidWord({ language: 'pt', word: hiddenWord?.word ?? '' })).toBe(
+      true
+    )
+    expect(draw?.bestLength).toBeGreaterThanOrEqual(7)
+
+    for (const word of draw?.bestWords ?? []) {
+      const left = [...(draw?.letters ?? [])]
+
+      expect(isValidWord({ language: 'pt', word })).toBe(true)
+      expect(
+        [...word].every((letter) => {
+          const at = left.indexOf(letter)
+
+          return at !== -1 && left.splice(at, 1).length === 1
+        })
+      ).toBe(true)
+    }
   })
 
   it('[word-bank] lists the forms of two to nine letters, and names the familiar long ones', () => {

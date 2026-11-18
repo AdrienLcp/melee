@@ -1,10 +1,7 @@
 import { z } from 'zod'
 
 import type { Difficulty } from '@melee/protocol/difficulty'
-import {
-  type QuestionLanguage,
-  questionLanguageSchema
-} from '@melee/protocol/question'
+import { questionLanguageSchema } from '@melee/protocol/question'
 
 import {
   type FormIndex,
@@ -17,6 +14,7 @@ import {
   type ContentTier,
   drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
+import type { WordLanguage } from '@melee/core/words/word-language'
 import {
   CODED_WORD_LIST,
   decodeWordList
@@ -24,6 +22,12 @@ import {
 
 import englishBank from './word-bank-en.json' with { type: 'json' }
 import frenchBank from './word-bank-fr.json' with { type: 'json' }
+import portugueseBank from './word-bank-pt.json' with { type: 'json' }
+
+const wordLanguageSchema = z.union([
+  questionLanguageSchema,
+  z.literal('pt')
+]) satisfies z.ZodType<WordLanguage>
 
 export const wordBankSchema = z.object({
   attributions: z.array(
@@ -31,7 +35,7 @@ export const wordBankSchema = z.object({
       author: z.string(),
       /** What the build did to the list, which CC BY-SA asks to be said. */
       changes: z.string(),
-      language: questionLanguageSchema,
+      language: wordLanguageSchema,
       licence: z.string(),
       /** A notice the licence asks to travel with every copy, verbatim. */
       notice: z.string().optional(),
@@ -43,8 +47,9 @@ export const wordBankSchema = z.object({
    * Every form a try may be, conjugated and plural included, two to nine
    * letters, as `encodeWordList` writes them. A word a mystery word may hide
    * is marked with its tier, and a form of seven letters or more a table
-   * would know on the reveal — read often enough in French, in one of SCOWL's
-   * three smallest sizes in English — is marked `familiar`, so the
+   * would know on the reveal — read often enough in French or said often
+   * enough in Portuguese films, in one of SCOWL's three smallest sizes in
+   * English — is marked `familiar`, so the
    * longest-word reveal names it before the rest. Every answer counts as
    * familiar too.
    */
@@ -65,9 +70,10 @@ type ReadBank = {
   formsByLength: ReadonlyMap<number, readonly string[]>
 }
 
-const BANKS: Record<QuestionLanguage, unknown> = {
+const BANKS: Record<WordLanguage, unknown> = {
   en: englishBank,
-  fr: frenchBank
+  fr: frenchBank,
+  pt: portugueseBank
 }
 
 const pushed = <TItem>({
@@ -113,9 +119,9 @@ const readBank = (bank: WordBank): ReadBank => {
 }
 
 /** Parsed on the first read of each language, like the other banks, rather than on every cold start. */
-const read = new Map<QuestionLanguage, ReadBank>()
+const read = new Map<WordLanguage, ReadBank>()
 
-const bankOf = (language: QuestionLanguage): ReadBank => {
+const bankOf = (language: WordLanguage): ReadBank => {
   const held = read.get(language)
 
   if (held !== undefined) {
@@ -162,7 +168,7 @@ export const isValidWord = ({
   language,
   word
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
   word: string
 }): boolean =>
   isInSorted({
@@ -172,7 +178,7 @@ export const isValidWord = ({
 
 /** Every form of the language by its length, two to nine letters, each list in code-unit order. */
 export const wordFormsByLength = (
-  language: QuestionLanguage
+  language: WordLanguage
 ): ReadonlyMap<number, readonly string[]> => bankOf(language).formsByLength
 
 /** Whether a form of seven letters or more is one a table would know on the reveal. */
@@ -180,14 +186,14 @@ export const isFamiliarWord = ({
   language,
   word
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
   word: string
 }): boolean => bankOf(language).familiar.has(word)
 
 /** Built on the first longest-word draw of each language, so a draw reads one mask per form rather than its letters. */
-const formIndexes = new Map<QuestionLanguage, FormIndex>()
+const formIndexes = new Map<WordLanguage, FormIndex>()
 
-const formIndexOf = (language: QuestionLanguage): FormIndex => {
+const formIndexOf = (language: WordLanguage): FormIndex => {
   const held = formIndexes.get(language)
 
   if (held !== undefined) {
@@ -213,7 +219,7 @@ export const solvedLongestWordDraw = ({
   language,
   letters
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
   letters: string[]
 }): LongestWordDraw | null => {
   const best = longestWordsIn({ index: formIndexOf(language), letters })
@@ -234,7 +240,7 @@ export const solvedLongestWordDraw = ({
 export const drawLongestWord = ({
   language
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
 }): LongestWordDraw | null => {
   const drawn = drawPlayableLetters({ index: formIndexOf(language), language })
 
@@ -255,7 +261,7 @@ export const mysteryWordAnswers = ({
   language,
   length
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
   length: number
 }): readonly MysteryWordAnswer[] =>
   bankOf(language).answersByLength.get(length) ?? []
@@ -264,7 +270,7 @@ export const playedMysteryWordId = ({
   language,
   word
 }: {
-  language: QuestionLanguage
+  language: WordLanguage
   word: string
 }): string => `mysteryword:${language}:${word}`
 
@@ -279,7 +285,7 @@ export const drawMysteryWord = ({
   playedIds
 }: {
   difficulty: Difficulty
-  language: QuestionLanguage
+  language: WordLanguage
   length: number
   playedIds: ReadonlySet<string>
 }): MysteryWordAnswer | null =>

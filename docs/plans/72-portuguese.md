@@ -99,7 +99,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | to do               |
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | to do               |
-| 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | to do               |
+| 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
 | 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | to do               |
 | 09  | `portuguese-09-portugal.md`     | Portugal's cities on the map, decades, ready-made evenings                    | to do               |
 
@@ -163,4 +163,35 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
   tests from its file; `PORTUGUESE_ASK_BY_KIND` waits beside `ASK_BY_KIND`,
   and `AUTHORED_REBUSES` takes the file at the flip.
 
-<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo -->
+### 07 — what landed
+
+- `word-bank-pt.json`: **143 310 forms**, 5 154 hidden words (easy / medium /
+  hard: 1 141 / 1 447 / 2 566, at least 206 per tier and length) and 7 319
+  more familiar long forms. Built from LibreOffice's pt_PT Hunspell
+  dictionary (Projecto Natura, GPL / LGPL / MPL, post-1990 spelling: _ação_,
+  _ótimo_), unfolded by `hunspell-forms.ts`, and ranked by FrequencyWords'
+  OpenSubtitles counts for Portugal (CC BY-SA 4.0) on the French floors
+  (20 / 5 / 1 per million). A hidden word is a common noun, adjective or
+  infinitive whose `.dic` line names no lemma of its own — the irregular
+  forms do (`[$descobrir$…]`), which kept _descobre_ out. 48 words blocked
+  after a full read of the list. `words:build -- <folder> pt` builds one
+  language, the sources being gone for the other two.
+- **`WordLanguage`** (`QuestionLanguage | 'pt'`) keys the word bank and the
+  letter draw now, so the Worker holds the Portuguese dictionary and the
+  tests deal from it; no room can ask for it until 08 collapses the union.
+- **Folding**: 45 pairs of lemmas meet once folded (_força / forca_,
+  _manhã / manha_). None is unfair — the grid judges folded letters, either
+  spelling typed is the same try — and French lives with _pêcher / pécher_.
+- Letter draw: Portuguese counts taken from the same subtitles (A 14.1 %,
+  E 13.3, O 10.8, S 8.2).
+- **Matching**: `o`, `os`, `as`, `um`, `uma`, `uns`, `umas` join the leading
+  articles — on every answer, measured on the 12 956 banked questions: 75
+  answers change, no decoy collides. `e` as _and_ was measured to break
+  _R.E.M._ typed `rem` and _É.-U. A._ typed `eua`, so it drops only between
+  two words one of which is longer than a letter.
+- Collation stays on `'fr'`: it orders Portuguese names as Portugal does,
+  and a test holds it.
+- Keyboard: `KEY_ROWS` is held to `QuestionLanguage`, so `pt` takes QWERTY
+  at the flip (noted in 08's handoff).
+
+<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo -->

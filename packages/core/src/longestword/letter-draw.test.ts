@@ -13,7 +13,7 @@ import {
 const DRAWS = 2_000
 
 describe('drawLetters', () => {
-  it.each(['fr', 'en'] as const)(
+  it.each(['fr', 'en', 'pt'] as const)(
     '[longestword] draws nine letters in %s, three or four of them vowels, none more than twice',
     (language) => {
       const vowelCounts = new Set<number>()
@@ -43,6 +43,15 @@ describe('drawLetters', () => {
       ).length
 
     expect(tally('E')).toBeGreaterThan(tally('W') * 5)
+  })
+
+  it('[longestword] draws Portuguese by its own frequencies, where O is twice as common as in French', () => {
+    const tally = (language: 'fr' | 'pt') =>
+      Array.from({ length: DRAWS }, () => drawLetters(language)).filter(
+        (letters) => letters.includes('O')
+      ).length
+
+    expect(tally('pt')).toBeGreaterThan(tally('fr') * 1.3)
   })
 
   it('[longestword] counts Y as a vowel', () => {

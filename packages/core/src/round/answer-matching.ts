@@ -23,9 +23,12 @@ const NOT_A_LETTER_OR_DIGIT = /[^\p{L}\p{N}]/gu
  * characters over a seven-character answer is past every tolerance below.
  *
  * Only at the front, and only followed by a boundary — `Latin` and `Un` are
- * answers, and neither is an article with something after it.
+ * answers, and neither is an article with something after it, and a title
+ * that is _O_ alone keeps it. Every language's articles apply to every
+ * answer: _As de pique_ and _Uma Thurman_ lose a word, on both sides alike.
  */
-const LEADING_ARTICLE = /^(?:the|an?|le|la|les|une?|des|du)\s+|^l'/u
+const LEADING_ARTICLE =
+  /^(?:the|an?|le|la|les|une?|des|du|os?|as|uma?s?|uns)\s+|^l'/u
 
 /**
  * A phone types `’` where a bank holds `'`, and a keyboard set to another
@@ -49,6 +52,26 @@ const LIGATURE = /[æœ]/gu
  * both sides, in either language.
  */
 const CONJUNCTIONS: ReadonlySet<string> = new Set(['and', 'et'])
+
+/**
+ * Portuguese _e_ is also a letter, and initials are answers: _R.E.M._ typed
+ * `rem` and _É.-U. A._ typed `eua` must keep it. Dropped only between two
+ * words, one of them longer than a letter, where it cannot be one of a run of
+ * initials — _Rui Veloso e a Banda Sonora_ loses it.
+ */
+const LETTER_CONJUNCTION = 'e'
+
+const isConjunctionAt = (words: readonly string[], at: number): boolean => {
+  const word = words[at] ?? ''
+
+  return (
+    CONJUNCTIONS.has(word) ||
+    (word === LETTER_CONJUNCTION &&
+      at > 0 &&
+      at < words.length - 1 &&
+      ((words[at - 1]?.length ?? 0) > 1 || (words[at + 1]?.length ?? 0) > 1))
+  )
+}
 
 /**
  * A line is graded against every rival of every cell, so one bank name is
@@ -115,7 +138,7 @@ const wordsOf = (folded: string): string[] => {
   const words = folded
     .split(NOT_A_LETTER_OR_DIGIT)
     .filter((word) => word.length > 0)
-  const meaningful = words.filter((word) => !CONJUNCTIONS.has(word))
+  const meaningful = words.filter((_, at) => !isConjunctionAt(words, at))
 
   return meaningful.length > 0 ? meaningful : words
 }

@@ -29,6 +29,11 @@ Series: `handoffs/README.md`. Needs 02-07 landed. Read
    into `ASK_BY_KIND` and `rebus-pt.json` into `AUTHORED_REBUSES`
    (`rebus-questions.ts`, whose test then reads it through the bank), and
    `inQuestionLanguagesOnly` in `think-alike-bank.ts` can go.
+   Written in 07 and waiting: `WordLanguage` (`core/words/word-language.ts`)
+   becomes `QuestionLanguage` and goes, with `wordLanguageSchema` in
+   `word-bank.ts` and `WORD_LANGUAGES` in `build-word-bank.ts` and
+   `word-bank.test.ts`; `KEY_ROWS` (`word-keyboard.tsx`) takes `pt` on the
+   QWERTY rows, which Portugal types on.
 4. **cspell**: `@cspell/dict-pt-pt` is in since 02, with a `pt-PT`
    override for the dictionary and the country names; add the new files.
 5. **Plurals**: `pt` is the Brazilian CLDR rule (0 is `one`), so every

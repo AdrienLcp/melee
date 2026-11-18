@@ -30,6 +30,10 @@ const LICENCES = {
     name: 'CC BY-SA 4.0',
     url: 'https://creativecommons.org/licenses/by-sa/4.0/'
   },
+  gplLgplMpl: {
+    name: 'GPL 2.0 / LGPL 2.1 / MPL 1.1',
+    url: 'https://www.mozilla.org/MPL/1.1/'
+  },
   mit: {
     name: 'MIT',
     url: 'https://opensource.org/license/mit'
@@ -77,7 +81,7 @@ type QuestionCredit = {
  * whatever the room is playing: the credit is for the data that shipped, not
  * for the rows a given evening happened to draw.
  *
- * It mirrors the `attributions` header of `question-bank.json` and of the two
+ * It mirrors the `attributions` header of `question-bank.json` and of the three
  * `word-bank-*.json`, which are the machine-readable copies that travel with
  * the data itself. They are separate because those files are the server's and
  * this is the app's; keep them in step.
@@ -152,6 +156,21 @@ const QUESTION_CREDITS: QuestionCredit[] = [
     licence: LICENCES.scowl,
     source: 'SCOWL 2020.12.07',
     sourceUrl: 'http://wordlist.aspell.net'
+  },
+  {
+    author:
+      'José João de Almeida, Rui Vilela and Alberto Simões (Projecto Natura, Universidade do Minho)',
+    changes: 'credits.natura',
+    licence: LICENCES.gplLgplMpl,
+    source: 'Hunspell pt_PT (LibreOffice)',
+    sourceUrl: 'https://natura.di.uminho.pt'
+  },
+  {
+    author: 'Hermit Dave, counting OpenSubtitles 2018',
+    changes: 'credits.frequencyWords',
+    licence: LICENCES.ccBySa4,
+    source: 'FrequencyWords',
+    sourceUrl: 'https://github.com/hermitdave/FrequencyWords'
   }
 ]
 

@@ -931,6 +931,14 @@ one part.
   `rebus-pt.json`: films as released there, Portuguese songs and sayings.
   The schemas drop the key until the language joins them.
 
+- `[Shared]` **The word games hold a Portuguese dictionary**, not yet
+  offered: 143 310 forms from LibreOffice's European Portuguese dictionary
+  in the 1990 spelling, 5 154 words to find ranked by how often Portuguese
+  films say them, and a letter draw weighted the Portuguese way. Typed
+  answers forgive the Portuguese articles a room leaves out (_Os Lusíadas_
+  typed `lusiadas`) and the _e_ said for an ampersand, never an _E_ among
+  initials (_R.E.M._ typed `rem`).
+
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
   included, not only the front door's, and catches two more ways of writing

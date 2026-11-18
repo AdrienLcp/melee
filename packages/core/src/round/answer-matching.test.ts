@@ -33,7 +33,14 @@ const ACCEPTED: [expected: string, given: string, why: string][] = [
   ['Oedipe', 'Œdipe', 'and the other way round'],
   ['Simon & Garfunkel', 'simon and garfunkel', 'an ampersand said in English'],
   ['Mumford & Sons', 'mumford et sons', 'an ampersand said in French'],
-  ['Et', 'et', 'an answer that is nothing but a conjunction']
+  ['Et', 'et', 'an answer that is nothing but a conjunction'],
+  ['Os Lusíadas', 'lusiadas', 'a Portuguese article the room did not say'],
+  ['A Casa de Papel', 'casa de papel', 'a one-letter Portuguese article'],
+  ['Uma Casa Portuguesa', 'casa portuguesa', 'an indefinite one'],
+  ['O', 'o', 'an answer that is nothing but an article'],
+  ['Xutos & Pontapés', 'xutos e pontapes', 'an ampersand said in Portuguese'],
+  ['R.E.M.', 'rem', 'initials holding an E'],
+  ['É.-U. A.', 'eua', 'initials starting on an E']
 ]
 
 /**
@@ -60,7 +67,8 @@ const REFUSED: [expected: string, given: string, why: string][] = [
     'a phonetic respelling — four corrections is a rewrite, not a typo'
   ],
   ['Sexy Boy', '', 'nothing at all'],
-  ['Sexy Boy', '   ', 'whitespace pretending to be an answer']
+  ['Sexy Boy', '   ', 'whitespace pretending to be an answer'],
+  ['O', 'a', 'one article for another, alone']
 ]
 
 describe('normalizeAnswer', () => {
@@ -76,6 +84,17 @@ describe('normalizeAnswer', () => {
     expect(normalizeAnswer('Le Cervin')).toBe('cervin')
     expect(normalizeAnswer('L’Été meurtrier')).toBe('etemeurtrier')
     expect(normalizeAnswer('The Beatles')).toBe('beatles')
+    expect(normalizeAnswer('O Ano da Morte de Ricardo Reis')).toBe(
+      'anodamortedericardoreis'
+    )
+  })
+
+  it('[matching] drops a Portuguese e between words, never one of a run of initials', () => {
+    expect(normalizeAnswer('Rui Veloso e a Banda Sonora')).toBe(
+      'ruivelosoabandasonora'
+    )
+    expect(normalizeAnswer('R.E.M.')).toBe('rem')
+    expect(normalizeAnswer('Vitamina E')).toBe('vitaminae')
   })
 
   /**
@@ -166,7 +185,17 @@ const FOUND_IN: [expected: string, given: string, why: string][] = [
     'queen bohemian rapsody',
     'a slipped finger inside a line'
   ],
-  ['Sexy Boy', 'sexy boy', 'the whole line, as before']
+  ['Sexy Boy', 'sexy boy', 'the whole line, as before'],
+  [
+    'A Minha Maneira',
+    'xutos e pontapés à minha maneira',
+    'a Portuguese title after its artist, its article accented'
+  ],
+  [
+    'Xutos & Pontapés',
+    'xutos e pontapés à minha maneira',
+    'a Portuguese artist whose ampersand was said'
+  ]
 ]
 
 const NOT_FOUND_IN: [expected: string, given: string, why: string][] = [

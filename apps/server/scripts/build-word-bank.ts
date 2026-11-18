@@ -5,17 +5,14 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import {
-  type QuestionLanguage,
-  questionLanguageSchema,
-  questionLanguages
-} from '@melee/protocol/question'
+import { questionLanguages } from '@melee/protocol/question'
 
 import {
   type ContentTier,
   contentTiers
 } from '@melee/core/round/difficulty-draw'
 import { foldWord } from '@melee/core/words/fold'
+import type { WordLanguage } from '@melee/core/words/word-language'
 import {
   decodeWordList,
   encodeWordList,
@@ -23,18 +20,27 @@ import {
 } from '@melee/core/words/word-list-coding'
 
 import type { WordBank } from '../src/infrastructure/questions/word-bank'
+import { hunspellEntriesOf, hunspellFormsOf } from './hunspell-forms'
 import { orStop, readJsonFile } from './json-file'
 
 /**
- * Builds `word-bank-fr.json` and `word-bank-en.json` from three word lists
- * downloaded by hand and never committed: Lexique 3.83 (`lexique/Lexique383.tsv`),
- * ENABLE (`enable/enable1.txt`) and SCOWL 2020.12.07 (`scowl/scowl-2020.12.07/final/`). Run it
- * with `pnpm --filter @melee/server words:build -- <download folder>`; the
- * folder defaults to `scripts/.cache/words`.
+ * Builds `word-bank-fr.json`, `word-bank-en.json` and `word-bank-pt.json` from
+ * word lists downloaded by hand and never committed: Lexique 3.83
+ * (`lexique/Lexique383.tsv`), ENABLE (`enable/enable1.txt`), SCOWL 2020.12.07
+ * (`scowl/scowl-2020.12.07/final/`), LibreOffice's European Portuguese
+ * Hunspell dictionary (`pt/pt_PT.dic`, `pt/pt_PT.aff`) and FrequencyWords'
+ * Portuguese subtitle counts (`pt/pt_full.txt`). Run it with
+ * `pnpm --filter @melee/server words:build -- <download folder> [languages…]`;
+ * the folder defaults to `scripts/.cache/words`, the languages to all three.
  */
 const HERE = dirname(fileURLToPath(import.meta.url))
 const QUESTIONS = join(HERE, '../src/infrastructure/questions')
 const SOURCES = process.argv[2] ?? join(HERE, '.cache/words')
+
+const WORD_LANGUAGES = [
+  ...questionLanguages,
+  'pt'
+] as const satisfies readonly WordLanguage[]
 
 const SHORTEST_FORM = 2
 const LONGEST_FORM = 9
@@ -68,7 +74,24 @@ const SCOWL_NOTICE = `Copyright 2000-2018 by Kevin Atkinson
 
 Permission to use, copy, modify, distribute and sell these word lists, the associated scripts, the output created from the scripts, and its documentation for any purpose is hereby granted without fee, provided that the above copyright notice appears in all copies and that both that copyright notice and this permission notice appear in supporting documentation. Kevin Atkinson makes no representations about the suitability of this array for any purpose. It is provided "as is" without express or implied warranty.`
 
-const ATTRIBUTIONS: Record<QuestionLanguage, WordBank['attributions']> = {
+/**
+ * Portuguese lemma frequency per million words of film subtitles, the floor of
+ * each tier — read off the lemma's own spelling, which for a noun is its
+ * singular and for a verb its infinitive.
+ */
+const PORTUGUESE_TIER_FLOORS = [
+  ['easy', 20],
+  ['medium', 5],
+  ['hard', 1]
+] as const satisfies readonly (readonly [ContentTier, number])[]
+
+/** A form said this often per million words of subtitles is one a Portuguese table would know on the reveal. */
+const PORTUGUESE_FAMILIAR_FLOOR = 1
+
+/** The dictionary's categories a hidden word is drawn from: common nouns, adjectives, both at once, and verbs in the infinitive. */
+const PORTUGUESE_ANSWER_CATEGORIES = new Set(['a_nc', 'adj', 'nc', 'v'])
+
+const ATTRIBUTIONS: Record<WordLanguage, WordBank['attributions']> = {
   en: [
     {
       author: 'Alan Beale, M. Cooper and the ENABLE contributors',
@@ -101,13 +124,37 @@ const ATTRIBUTIONS: Record<QuestionLanguage, WordBank['attributions']> = {
       source: 'Lexique 3.83',
       url: 'http://www.lexique.org'
     }
+  ],
+  pt: [
+    {
+      author:
+        'José João de Almeida, Rui Vilela and Alberto Simões (Projecto Natura, Universidade do Minho)',
+      changes:
+        'Every stem was unfolded through its affix rules into the forms it accepts, in the spelling of the 1990 agreement, and each form written in the capitals A to Z — accents and the cedilla dropped. Proper names, abbreviations and forms holding a hyphen were left out, as were the ones shorter than two letters or longer than nine. The words a hidden word is drawn from are its common nouns, adjectives and infinitives of five to eight letters, ranked by how often films say them, minus crude words and a few a reading judged unfit.',
+      language: 'pt',
+      licence: 'GPL 2.0 / LGPL 2.1 / MPL 1.1',
+      source: 'Hunspell pt_PT (LibreOffice)',
+      url: 'https://natura.di.uminho.pt'
+    },
+    {
+      author: 'Hermit Dave, counting OpenSubtitles 2018',
+      changes:
+        'Its Portuguese word counts rank the hidden words into three tiers and mark the long forms a table would know on the reveal; no word is taken from it.',
+      language: 'pt',
+      licence: 'CC BY-SA 4.0',
+      source: 'FrequencyWords',
+      url: 'https://github.com/hermitdave/FrequencyWords'
+    }
   ]
 }
 
-const blocklistSchema = z.record(
-  questionLanguageSchema,
-  z.array(z.string().regex(/^[A-Z]+$/))
-)
+const blockedWordsSchema = z.array(z.string().regex(/^[A-Z]+$/))
+
+const blocklistSchema = z.object({
+  en: blockedWordsSchema,
+  fr: blockedWordsSchema,
+  pt: blockedWordsSchema
+} satisfies Record<WordLanguage, typeof blockedWordsSchema>)
 
 type Answer = { tier: ContentTier; word: string }
 
@@ -353,6 +400,105 @@ const englishWords = (): LanguageWords => {
   }
 }
 
+const subtitleFrequencies = (): Map<string, number> => {
+  const counts = new Map<string, number>()
+  let total = 0
+
+  for (const line of linesOf(join(SOURCES, 'pt/pt_full.txt'), 'utf8')) {
+    const [spelling = '', count = '0'] = line.split(' ')
+    const times = Number(count)
+
+    counts.set(spelling, (counts.get(spelling) ?? 0) + times)
+    total += times
+  }
+
+  const perMillion = new Map<string, number>()
+
+  for (const [spelling, times] of counts) {
+    perMillion.set(spelling, (times * 1_000_000) / total)
+  }
+
+  return perMillion
+}
+
+const CATEGORY = /CAT=([a-z_]+)/u
+/** An irregular form names its lemma first, `[$descobrir$CAT=v,T=inf…$P=3…]`: a form, never a lemma. */
+const NAMES_ITS_LEMMA = /^\[\$/u
+const INFINITIVE = /\bT=inf\b/u
+const LOWERCASE_WORD = /^\p{Ll}+$/u
+
+const portugueseWords = (): LanguageWords => {
+  const entries = hunspellEntriesOf(join(SOURCES, 'pt/pt_PT.dic')).filter(
+    ({ morphology, stem }) =>
+      LOWERCASE_WORD.test(stem) && CATEGORY.exec(morphology)?.[1] !== 'np'
+  )
+  const frequencies = subtitleFrequencies()
+  const foldedFrequency = new Map<string, number>()
+
+  for (const [spelling, frequency] of frequencies) {
+    const word = foldWord(spelling)
+
+    if (word !== null) {
+      foldedFrequency.set(word, (foldedFrequency.get(word) ?? 0) + frequency)
+    }
+  }
+
+  const forms = new Set<string>()
+
+  for (const form of hunspellFormsOf({
+    affPath: join(SOURCES, 'pt/pt_PT.aff'),
+    entries
+  })) {
+    const word = foldWord(form)
+
+    if (word !== null && isFormLength(word)) {
+      forms.add(word)
+    }
+  }
+
+  const lemmaFrequency = new Map<string, number>()
+
+  for (const { morphology, stem } of entries) {
+    const category = CATEGORY.exec(morphology)?.[1] ?? ''
+    const word = foldWord(stem)
+
+    if (
+      word === null ||
+      NAMES_ITS_LEMMA.test(morphology) ||
+      !isAnswerLength(word) ||
+      !PORTUGUESE_ANSWER_CATEGORIES.has(category) ||
+      (category === 'v' && !INFINITIVE.test(morphology))
+    ) {
+      continue
+    }
+
+    lemmaFrequency.set(
+      word,
+      Math.max(lemmaFrequency.get(word) ?? 0, frequencies.get(stem) ?? 0)
+    )
+  }
+
+  const answers: Answer[] = []
+
+  for (const [word, frequency] of lemmaFrequency) {
+    const tier = PORTUGUESE_TIER_FLOORS.find(([, floor]) => frequency >= floor)
+
+    if (tier !== undefined) {
+      answers.push({ tier: tier[0], word })
+    }
+  }
+
+  return {
+    answers,
+    familiar: new Set(
+      [...forms].filter(
+        (word) => (foldedFrequency.get(word) ?? 0) >= PORTUGUESE_FAMILIAR_FLOOR
+      )
+    ),
+    forms
+  }
+}
+
 const markOf = ({
   answerTiers,
   familiar,
@@ -371,7 +517,7 @@ const bankOf = ({
   words
 }: {
   blocked: ReadonlySet<string>
-  language: QuestionLanguage
+  language: WordLanguage
   words: LanguageWords
 }): WordBank => {
   const answerTiers = new Map(
@@ -391,7 +537,7 @@ const bankOf = ({
   }
 }
 
-const report = (language: QuestionLanguage, bank: WordBank): void => {
+const report = (language: WordLanguage, bank: WordBank): void => {
   const words = decodeWordList(bank.words)
   const tiers = contentTiers.map((tier) => {
     const lengths = []
@@ -411,29 +557,42 @@ const report = (language: QuestionLanguage, bank: WordBank): void => {
   )
 }
 
+const isWordLanguage = (text: string): text is WordLanguage =>
+  WORD_LANGUAGES.some((language) => language === text)
+
 const main = async () => {
   const blocklist = orStop(
     readJsonFile(join(HERE, 'word-answer-blocklist.json'), blocklistSchema),
     'word-answer-blocklist.json'
   )
-  const banks: Record<QuestionLanguage, WordBank> = {
-    en: bankOf({
-      blocked: new Set([...blocklist.en, ...scowlTaboo()]),
-      language: 'en',
-      words: englishWords()
-    }),
-    fr: bankOf({
-      blocked: new Set(blocklist.fr),
-      language: 'fr',
-      words: frenchWords()
-    })
+  const asked = process.argv.slice(3).filter(isWordLanguage)
+  const builders: Record<WordLanguage, () => WordBank> = {
+    en: () =>
+      bankOf({
+        blocked: new Set([...blocklist.en, ...scowlTaboo()]),
+        language: 'en',
+        words: englishWords()
+      }),
+    fr: () =>
+      bankOf({
+        blocked: new Set(blocklist.fr),
+        language: 'fr',
+        words: frenchWords()
+      }),
+    pt: () =>
+      bankOf({
+        blocked: new Set(blocklist.pt),
+        language: 'pt',
+        words: portugueseWords()
+      })
   }
 
-  for (const language of questionLanguages) {
+  for (const language of asked.length > 0 ? asked : WORD_LANGUAGES) {
+    const bank = builders[language]()
     const path = join(QUESTIONS, `word-bank-${language}.json`)
 
-    await writeFile(path, `${JSON.stringify(banks[language], null, 2)}\n`)
-    report(language, banks[language])
+    await writeFile(path, `${JSON.stringify(bank, null, 2)}\n`)
+    report(language, bank)
   }
 }
 
