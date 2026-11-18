@@ -145,9 +145,12 @@ landed, and React 19 holds the content back `FALLBACK_THROTTLE_MS` — 300ms —
 behind the fallback it committed. The menu fetched at idle still opened that
 late on its first press, and a fetch that never seemed to stick was the only
 symptom. `lazyModule` (`infrastructure/lazy-module.ts`) read with `use(load())`
-draws a landed chunk in the frame it is asked for. A press whose chunk is not
-in hand yet waits for `load()` before it changes state, rather than
-suspending into the same 300ms (`app-menu.tsx`).
+draws a landed chunk in the frame it is asked for. A chunk a press opens is
+fetched as the page mounts, never on a gesture: the press is often the
+page's first, and the menu gated that way made it wait 1.4s. A press whose
+chunk is still on its way shows the trigger pending (`isPending`) and waits
+for `load()` before it changes state, rather than suspending into the same
+300ms (`app-menu.tsx`).
 `e2e/menu-opens.spec.ts` holds the menu to it.
 
 ## Nothing is read from layout while a panel mounts

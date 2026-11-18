@@ -140,32 +140,58 @@
     // Turned a beat late, as the reconnecting pill rises: a socket that
     // answers at once — every seat's first connection — flashed it saffron.
     &[data-connection]:not([data-connection='open']) .trigger
+      --trigger-ink: var(--on-spine)
+
       background: var(--spine-reflex)
       box-shadow: 0 var(--edge) 0 var(--chipboard-dark)
-      color: var(--on-spine)
       transition-delay: 0s, 0s, calc(var(--transition-slow, 0s) * 1.5), calc(var(--transition-slow, 0s) * 1.5)
 
     .trigger
       @include typography.label
 
       --edge: 0.125rem
+      --on-control: var(--trigger-ink)
+      --trigger-ink: var(--board-ink)
 
       align-items: center
       background: var(--track-a)
       border: 0
       border-radius: var(--radius-m)
       box-shadow: 0 var(--edge) 0 var(--chipboard)
-      color: var(--board-ink)
+      color: var(--trigger-ink)
       cursor: pointer
       display: flex
       gap: var(--space-xs)
       min-height: var(--control-height)
       padding: 0 var(--space-s)
+      position: relative
       transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out)
 
       &[data-pressed]
         box-shadow: 0 0 0 var(--chipboard)
         transform: translateY(var(--edge))
+
+      // A press that lands before the menu's chunk, the way a `Button`
+      // waits: the label and glyph keep their box, so the corner does not
+      // change width under the spinner.
+      // Always mounted and paused while hidden, so it fades out as the menu
+      // lands rather than vanishing.
+      > .spinner
+        animation-play-state: paused
+        inset: 0
+        margin: auto
+        opacity: 0
+        position: absolute
+        transition: opacity var(--transition-fast, 0s) var(--ease-in)
+
+      &[data-pending]
+        color: transparent
+        cursor: progress
+
+        > .spinner
+          animation-play-state: running
+          opacity: 1
+          transition-timing-function: var(--ease-out)
 
       // On the screen of four tiles the trigger is the icon alone, the label
       // kept for whoever cannot see it: every pixel of that line is the

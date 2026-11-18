@@ -111,13 +111,16 @@ on rerun.
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.
 
-`menu-opens.spec.ts` plays nothing either: on the home page, after one key
-press, the menu's first open fetches no script or stylesheet and draws its
-panel within two frames of the press. A claim about the network and the
-frame, which no socket test can make. It guards two ways the first open went
-slow while the build stayed green: a front door that fetched the menu's chunk
-on the press itself, and `React.lazy`, whose suspension React holds 300ms
-behind its fallback even with the chunk already in hand.
+`menu-opens.spec.ts` plays nothing either: on the home page, with no
+gesture before it, the menu's first open fetches no script or stylesheet and
+draws its panel within two frames of the press. A claim about the network and
+the frame, which no socket test can make. It guards two ways the first open
+went slow while the build stayed green: a front door that fetched the menu's
+chunk on the press itself, and `React.lazy`, whose suspension React holds
+300ms behind its fallback even with the chunk already in hand. **No key or
+press before the measured one**: a version that pressed a key first passed
+for weeks while a real first press waited 1.4s for a fetch gated on that
+very gesture.
 
 `countdown-stays.spec.ts` probes the countdown's top on every frame from
 the press that opens it to its second tick: it moves less than a pixel. Once

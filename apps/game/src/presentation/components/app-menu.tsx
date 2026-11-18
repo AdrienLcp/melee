@@ -3,7 +3,6 @@ import { Suspense, use, useEffect, useRef, useState } from 'react'
 import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
-import { onceIdle, onFirstGesture } from '@/infrastructure/browser'
 import { lazyModule } from '@/infrastructure/lazy-module'
 import { usePathname } from '@/infrastructure/router/navigation'
 import { useConnection } from '@/presentation/connection/connection-provider'
@@ -13,6 +12,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import type { AppMenuLeaflet, DeployedBuild } from './app-menu-leaflet'
 import { ConnectionDot, connectionStatusKey } from './connection-status'
 import { MenuIcon } from './shell-icons'
+import { Spinner } from './spinner'
 import { useMenuWidth } from './use-menu-width'
 
 import './app-menu.sass'
@@ -79,6 +79,7 @@ export const AppMenu: React.FC = () => {
   const connection = useConnection()
   const [build, setBuild] = useState<DeployedBuild | null>(null)
   const [hasOpened, setHasOpened] = useState(false)
+  const [isWaitingForMenu, setIsWaitingForMenu] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
   const { invitation, pawnRoom, rename } = useRoomActions()
   const hasSeatRows =
@@ -90,30 +91,12 @@ export const AppMenu: React.FC = () => {
 
   useMenuWidth(trigger)
 
-  // A touch screen has no hover. In a room the menu is fetched once the page
-  // is quiet; a front door waits for the first press, key or scroll anywhere,
-  // because fetching it unasked put every front door past its script budget.
+  // Fetched as the page arrives: the press on the menu is often the first
+  // thing a hand does on a page, so waiting for a gesture or a quiet moment
+  // left that press paying the download — 1.4s on a front door.
   useEffect(() => {
-    const preloadOnceIdle = () => onceIdle(() => preloadMenu({ hasSeatRows }))
-
-    if (hasSeatRows) {
-      return preloadOnceIdle()
-    }
-
-    let cancelIdle: () => void = () => undefined
-    const cancelGesture = onFirstGesture(() => {
-      cancelIdle = preloadOnceIdle()
-    })
-
-    return () => {
-      cancelGesture()
-      cancelIdle()
-    }
-  }, [hasSeatRows])
-
-  const preload = (): void => {
     preloadMenu({ hasSeatRows })
-  }
+  }, [hasSeatRows])
 
   const alert =
     connection === null || connection.status === 'open'
@@ -163,17 +146,21 @@ export const AppMenu: React.FC = () => {
           // render: React holds what a fallback stood in for 300ms past it.
           if (isMenuLoaded({ hasSeatRows })) {
             open()
-          } else {
-            void loadMenu({ hasSeatRows })
-              .catch(() => undefined)
-              .then(open)
+            return
           }
+
+          setIsWaitingForMenu(true)
+          void loadMenu({ hasSeatRows })
+            .catch(() => undefined)
+            .then(() => {
+              setIsWaitingForMenu(false)
+              open()
+            })
         }}
       >
         <ReactAriaButton
           className='trigger'
-          onHoverStart={preload}
-          onPressStart={preload}
+          isPending={isWaitingForMenu}
           ref={trigger}
         >
           {connection !== null && <ConnectionDot status={connection.status} />}
@@ -181,6 +168,7 @@ export const AppMenu: React.FC = () => {
           <span className='trigger-label'>
             <span>{translate('menu.label')}</span>
           </span>
+          <Spinner />
         </ReactAriaButton>
 
         {/* Mounted from the first open on, so a close still plays out. */}

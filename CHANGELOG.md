@@ -587,6 +587,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The menu opens on its first press.** It was downloaded only
+  after a first press, key or scroll somewhere on the page, so a press on the
+  menu that was the page's first waited for it: 1.4s on a computer, 1.8s on a
+  phone. It now downloads as the page arrives, and a press landing before that
+  shows a spinner on the button and opens as soon as it is in hand.
+
 - `[Game]` **Le juste chiffre's reveal keeps the round on the first screen of
   a short console.** A phone lying down as the table's only screen drew the
   round's podium under the edge; the question's sentence now gives way there,

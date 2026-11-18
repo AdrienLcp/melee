@@ -7,11 +7,14 @@ import { expect, test } from '@playwright/test'
 const GAME_ROOT = fileURLToPath(new URL('../apps/game', import.meta.url))
 
 /**
- * Not a journey. A phone has no hover, so the menu's chunk has to be in hand
- * before the press that opens it: fetched once a hand has touched the page,
- * and read without suspending once it has landed. `React.lazy` suspends even
- * on a landed chunk, and React then holds the panel 300ms behind an empty
+ * Not a journey. A phone has no hover, and the press on the menu is often the
+ * first thing a hand does on the page, so the menu's chunk has to be in hand
+ * before anybody touches anything: fetched as the page arrives, and read
+ * without suspending once it has landed. `React.lazy` suspends even on a
+ * landed chunk, and React then holds the panel 300ms behind an empty
  * fallback — the first open a player read as "it loads on the first press".
+ * Waiting for a first gesture instead left the press that was that gesture
+ * paying 1.4s of downloads, and a test that pressed a key first never saw it.
  */
 
 /** The press lands in a click handler, and its render commits before the next frame paints. */
@@ -21,17 +24,6 @@ test('[e2e] the menu opens on the frame after its first press, fetching nothing'
   page
 }) => {
   await page.goto('/en')
-
-  let isMenuFetched = false
-  page.on('response', (response) => {
-    isMenuFetched ||= /app-menu-leaflet/.test(response.url())
-  })
-  // Pressed again until it lands: a key before the app has mounted reaches
-  // no listener, and the served page is drawn before it is live.
-  await expect(async () => {
-    await page.keyboard.press('Shift')
-    expect(isMenuFetched).toBe(true)
-  }).toPass({ intervals: [500] })
   await page.waitForLoadState('networkidle')
 
   const fetchedOnOpen: string[] = []
