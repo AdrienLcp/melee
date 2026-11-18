@@ -146,6 +146,7 @@ export const FR_DICTIONARY = defineDictionary({
       places: {
         countries: 'un pays',
         frenchCities: 'une ville de France',
+        portugueseCities: 'une ville du Portugal',
         worldCapitals: 'une capitale'
       }
     },
@@ -157,16 +158,18 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Un pays, une capitale ou une ville de France s’affiche, et chacun pose son pion sur la carte, zoomée du bout des doigts : dessus, c’est le plein de points ; à côté, ça se paie au kilomètre. Au dévoilement, chaque pion tire son trait jusqu’au lieu. Ou dans l’autre sens : la carte allume un lieu, et la table le nomme.'
+        'Un pays, une capitale ou une ville de France ou du Portugal s’affiche, et chacun pose son pion sur la carte, zoomée du bout des doigts : dessus, c’est le plein de points ; à côté, ça se paie au kilomètre. Au dévoilement, chaque pion tire son trait jusqu’au lieu. Ou dans l’autre sens : la carte allume un lieu, et la table le nomme.'
     },
     map: {
       hint: 'Zoome, puis pose ton pion dessus',
       label: 'Carte du monde',
       labelFrance: 'Carte de France',
+      labelPortugal: 'Carte du Portugal',
       loading: 'On déplie la carte…',
       moveHint: 'Touche ailleurs pour le déplacer',
       whole: 'Le monde entier',
       wholeFrance: 'Toute la France',
+      wholePortugal: 'Tout le Portugal',
       zoomIn: 'Zoomer',
       zoomOut: 'Dézoomer'
     },
@@ -180,6 +183,7 @@ export const FR_DICTIONARY = defineDictionary({
       countries: 'Pays du monde',
       frenchCities: 'Villes de France',
       label: { name: 'À nommer', place: 'À placer' },
+      portugueseCities: 'Villes du Portugal',
       worldCapitals: 'Capitales du monde'
     },
     play: 'Jouer à Atlas',
@@ -202,13 +206,15 @@ export const FR_DICTIONARY = defineDictionary({
     scoringCities:
       'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 100 points, puis de moins en moins jusqu’à rien à 150 km.',
     scoringMixed:
-      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 100 points.',
+      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 100 points.',
     scoringName: {
       choice:
         'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte 100 points.',
       typed:
         'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 100 points.'
     },
+    scoringPortugueseCities:
+      'Tout le monde pose son pion en même temps, sur la carte du Portugal. À moins de 12 km de la ville, ça rapporte 100 points, puis de moins en moins jusqu’à rien à 75 km.',
     tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
   },
   blacksquare: {

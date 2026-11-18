@@ -1,4 +1,4 @@
-import type { GeoPoint } from '@melee/protocol/atlas'
+import type { AtlasCityPlaces, GeoPoint } from '@melee/protocol/atlas'
 import type { Difficulty } from '@melee/protocol/difficulty'
 
 import {
@@ -6,8 +6,16 @@ import {
   drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
 
-/** A city a map round may ask a table to place on the map of France. */
-export type BankedCity = { name: string; point: GeoPoint; tier: ContentTier }
+import { PORTUGUESE_CITY_ROWS } from './portuguese-city-bank'
+
+/** A city a map round may ask a table to place on the map of its country. */
+export type BankedCity = {
+  /** Other names a table types for it in a `name` round: _Lisbonne_ for _Lisboa_. */
+  aliases: readonly string[]
+  name: string
+  point: GeoPoint
+  tier: ContentTier
+}
 
 /**
  * Every prefecture of metropolitan France, and the towns a table knows without
@@ -165,28 +173,47 @@ const CITIES: readonly (readonly [
   ['Fontainebleau', 48.405, 2.701, 'medium']
 ]
 
+/** The cities of France's map. */
 export const BANKED_CITIES: readonly BankedCity[] = CITIES.map(
   ([name, latitude, longitude, tier]) => ({
+    aliases: [],
     name,
     point: { latitude, longitude },
     tier
   })
 )
 
+/** The cities of Portugal's map. */
+export const BANKED_PORTUGUESE_CITIES: readonly BankedCity[] =
+  PORTUGUESE_CITY_ROWS.map(
+    ([name, latitude, longitude, tier, aliases = []]) => ({
+      aliases,
+      name,
+      point: { latitude, longitude },
+      tier
+    })
+  )
+
+/** Every city of one place set's map. */
+export const citiesOf = (places: AtlasCityPlaces): readonly BankedCity[] =>
+  places === 'portugueseCities' ? BANKED_PORTUGUESE_CITIES : BANKED_CITIES
+
 /** The id a played city takes in the room's no-repeat set, beside the countries. */
 export const playedCityId = (name: string): string => `atlas:city:${name}`
 
-/** A city the room has not been asked yet, or `null` once it has placed them all. */
+/** A city of `places` the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCity = ({
   difficulty,
+  places,
   playedIds
 }: {
   difficulty: Difficulty
+  places: AtlasCityPlaces
   playedIds: ReadonlySet<string>
 }): BankedCity | null =>
   drawByDifficulty({
     difficulty,
-    pool: BANKED_CITIES.filter(
+    pool: citiesOf(places).filter(
       (city) => !playedIds.has(playedCityId(city.name))
     ),
     tierOf: ({ tier }) => tier

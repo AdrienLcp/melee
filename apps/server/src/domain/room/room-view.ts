@@ -1,4 +1,4 @@
-import type { AtlasTarget } from '@melee/protocol/atlas'
+import { type AtlasTarget, placesOfTarget } from '@melee/protocol/atlas'
 import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PetitBacProgress } from '@melee/protocol/petit-bac'
@@ -548,6 +548,7 @@ const atlasTargetView = ({
       return {
         kind: 'city',
         name: target.name,
+        places: target.places,
         point: isRevealed ? { ...target.point } : null
       }
     case 'capital':
@@ -760,6 +761,7 @@ const toContentView = ({
           ? null
           : {
               kind: target.kind,
+              places: placesOfTarget(target),
               point: {
                 latitude: naming.shown.latitude,
                 longitude: naming.shown.longitude

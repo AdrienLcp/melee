@@ -162,12 +162,12 @@ const drawTargetOf = ({
   places: AtlasPlaces
   playedIds: ReadonlySet<string>
 }): AtlasRoundTarget | null => {
-  if (places === 'frenchCities') {
-    const city = drawCity({ difficulty, playedIds })
+  if (places === 'frenchCities' || places === 'portugueseCities') {
+    const city = drawCity({ difficulty, places, playedIds })
 
     return city === null
       ? null
-      : { kind: 'city', name: city.name, point: city.point }
+      : { kind: 'city', name: city.name, places, point: city.point }
   }
 
   if (places === 'worldCapitals') {

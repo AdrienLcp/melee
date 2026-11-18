@@ -6,13 +6,16 @@ import { clockedPay } from '../scoring/speed-bonus'
 import { isBullseye, pointsForDistance } from './distance-pay'
 
 const country = (distanceKm: number) =>
-  pointsForDistance({ distanceKm, target: 'country' })
+  pointsForDistance({ distanceKm, places: 'countries' })
 
 const city = (distanceKm: number) =>
-  pointsForDistance({ distanceKm, target: 'city' })
+  pointsForDistance({ distanceKm, places: 'frenchCities' })
+
+const portugueseCity = (distanceKm: number) =>
+  pointsForDistance({ distanceKm, places: 'portugueseCities' })
 
 const capital = (distanceKm: number) =>
-  pointsForDistance({ distanceKm, target: 'capital' })
+  pointsForDistance({ distanceKm, places: 'worldCapitals' })
 
 describe('what a marker earns by how far it fell from a country', () => {
   it('[atlas] pays the whole round inside the country', () => {
@@ -83,10 +86,19 @@ describe('what a marker earns by how far it fell from a city', () => {
   })
 
   it('[atlas] calls a bullseye whatever earns the whole round', () => {
-    expect(isBullseye({ distanceKm: 25, target: 'city' })).toBe(true)
-    expect(isBullseye({ distanceKm: 26, target: 'city' })).toBe(false)
-    expect(isBullseye({ distanceKm: 0, target: 'country' })).toBe(true)
-    expect(isBullseye({ distanceKm: 1, target: 'country' })).toBe(false)
+    expect(isBullseye({ distanceKm: 25, places: 'frenchCities' })).toBe(true)
+    expect(isBullseye({ distanceKm: 26, places: 'frenchCities' })).toBe(false)
+    expect(isBullseye({ distanceKm: 0, places: 'countries' })).toBe(true)
+    expect(isBullseye({ distanceKm: 1, places: 'countries' })).toBe(false)
+  })
+})
+
+describe('what a marker earns by how far it fell from a city of Portugal', () => {
+  it('[atlas] pays on half the reach of a city of France, its map drawn twice as close', () => {
+    expect(portugueseCity(12)).toBe(MOST_A_ROUND_PAYS)
+    expect(portugueseCity(43.5)).toBe(50 * POINT)
+    expect(portugueseCity(75)).toBe(0)
+    expect(city(43.5)).toBeGreaterThan(portugueseCity(43.5))
   })
 })
 

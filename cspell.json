@@ -26,6 +26,7 @@
     "apps/server/scripts/black-square-themes.ts",
     "apps/server/src/infrastructure/questions/rebus-*.json",
     "apps/server/src/infrastructure/questions/city-bank.ts",
+    "apps/server/src/infrastructure/questions/portuguese-city-bank.ts",
     "apps/server/src/infrastructure/questions/word-bank-*.json"
   ],
   "import": [

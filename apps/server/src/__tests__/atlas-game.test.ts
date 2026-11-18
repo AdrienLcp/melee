@@ -30,19 +30,40 @@ vi.mock('@/infrastructure/questions/country-bank', () => ({
   playedCountryId: (code: string) => `atlas:${code}`
 }))
 
-vi.mock('@/infrastructure/questions/city-bank', () => ({
-  BANKED_CITIES: [
-    { name: 'Rennes', point: { latitude: 48.117, longitude: -1.678 } },
-    { name: 'Brest', point: { latitude: 48.39, longitude: -4.486 } },
-    { name: 'Vannes', point: { latitude: 47.658, longitude: -2.76 } },
-    { name: 'Laval', point: { latitude: 48.073, longitude: -0.77 } }
-  ],
-  drawCity: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
-    playedIds.has('atlas:city:Rennes')
-      ? null
-      : { name: 'Rennes', point: { latitude: 48.117, longitude: -1.678 } },
-  playedCityId: (name: string) => `atlas:city:${name}`
-}))
+vi.mock('@/infrastructure/questions/city-bank', () => {
+  const brittany = [
+    {
+      aliases: [],
+      name: 'Rennes',
+      point: { latitude: 48.117, longitude: -1.678 }
+    },
+    {
+      aliases: [],
+      name: 'Brest',
+      point: { latitude: 48.39, longitude: -4.486 }
+    },
+    {
+      aliases: [],
+      name: 'Vannes',
+      point: { latitude: 47.658, longitude: -2.76 }
+    },
+    {
+      aliases: [],
+      name: 'Laval',
+      point: { latitude: 48.073, longitude: -0.77 }
+    }
+  ]
+
+  return {
+    BANKED_CITIES: brittany,
+    citiesOf: () => brittany,
+    drawCity: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
+      playedIds.has('atlas:city:Rennes')
+        ? null
+        : { name: 'Rennes', point: { latitude: 48.117, longitude: -1.678 } },
+    playedCityId: (name: string) => `atlas:city:${name}`
+  }
+})
 
 const CANBERRA = {
   countryCode: 'AUS',
@@ -169,7 +190,7 @@ describe('a world map round through the seam', () => {
     expect(awardOf(zoeId)?.verdict).toEqual({
       distanceKm: 0,
       kind: 'distance',
-      target: 'country'
+      places: 'countries'
     })
     expect(basePointsFor({ playerId: zoeId ?? null, view })).toBe(WHOLE_MARKER)
 
@@ -373,6 +394,7 @@ describe('a French city round through the seam', () => {
     expect(atlasRound(playerView(zoe))?.target).toEqual({
       kind: 'city',
       name: 'Rennes',
+      places: 'frenchCities',
       point: null
     })
     expect(transcriptOf(zoe)).not.toContain('48.117')
@@ -390,6 +412,7 @@ describe('a French city round through the seam', () => {
     expect(atlasRound(playerView(zoe))?.target).toEqual({
       kind: 'city',
       name: 'Rennes',
+      places: 'frenchCities',
       point: { latitude: 48.117, longitude: -1.678 }
     })
   })
@@ -415,14 +438,17 @@ describe('a French city round through the seam', () => {
 
     expect(
       view?.round?.awards.find((award) => award.playerId === zoeId)?.verdict
-    ).toEqual({ distanceKm: 9, kind: 'distance', target: 'city' })
+    ).toEqual({ distanceKm: 9, kind: 'distance', places: 'frenchCities' })
     expect(basePointsFor({ playerId: zoeId, view })).toBe(WHOLE_MARKER)
 
     const maxVerdict = view?.round?.awards.find(
       (award) => award.playerId === maxId
     )?.verdict
 
-    expect(maxVerdict).toMatchObject({ kind: 'distance', target: 'city' })
+    expect(maxVerdict).toMatchObject({
+      kind: 'distance',
+      places: 'frenchCities'
+    })
     expect(basePointsFor({ playerId: maxId, view })).toBe(
       paidForDistance(maxVerdict)
     )
@@ -507,7 +533,10 @@ describe('a world capital round through the seam', () => {
     expect(
       basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
     ).toBe(WHOLE_MARKER)
-    expect(maxVerdict).toMatchObject({ kind: 'distance', target: 'capital' })
+    expect(maxVerdict).toMatchObject({
+      kind: 'distance',
+      places: 'worldCapitals'
+    })
     expect(basePointsFor({ playerId: maxId, view })).toBe(
       paidForDistance(maxVerdict)
     )
@@ -633,6 +662,7 @@ describe('a map round that shows a place for the table to name', () => {
 
     expect(atlasRound(playerView(zoe))?.shown).toEqual({
       kind: 'city',
+      places: 'frenchCities',
       point: { latitude: 48.117, longitude: -1.678 }
     })
     expect(atlasRound(playerView(zoe))?.choices).toEqual([])

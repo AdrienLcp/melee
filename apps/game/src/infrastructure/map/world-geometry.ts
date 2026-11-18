@@ -8,7 +8,8 @@ import {
   geoGraticule10,
   geoInterpolate,
   geoPath,
-  geoTransform
+  geoTransform,
+  geoTransverseMercator
 } from 'd3-geo'
 import { merge } from 'topojson-client'
 import atlas from 'world-atlas/countries-50m.json' with { type: 'json' }
@@ -27,8 +28,9 @@ import type { Ring } from '@melee/core/atlas/distance'
  * The one module that reads the world's outlines in the browser and projects
  * them: Natural Earth's 1:50m TopoJSON — the file the server judges a marker
  * against, so a coastline on screen is the coastline that scores. The world is
- * drawn in Equal Earth, which keeps every country its true size; France in the
- * conic conformal its own maps use, which keeps a city's surroundings their
+ * drawn in Equal Earth, which keeps every country its true size; France and
+ * Portugal each in the conformal projection its own maps use — Lambert's conic
+ * and PT-TM06's transverse Mercator — which keeps a city's surroundings their
  * true shape. Imported only by the map's lazy chunk, so a join page never
  * downloads the world.
  */
@@ -149,8 +151,8 @@ const countryOutlines = (): ReadonlyMap<CountryCode, Outline> => {
   return outlinesByCode
 }
 
-/** Which map a round is played on: the world for a country, France for one of its cities. */
-export type MapRegion = 'france' | 'world'
+/** Which map a round is played on: the world for a country, a country's own for one of its cities. */
+export type MapRegion = 'france' | 'portugal' | 'world'
 
 /** One map's projection and everything drawn or measured through it. */
 export type MapGeometry = {
@@ -197,18 +199,44 @@ const FRANCE_MERIDIAN = 3
 /** The countries worth drawing around France: any whose box reaches this one. */
 const FRANCE_SURROUNDINGS = { east: 16, north: 55, south: 38, west: -12 }
 
-const reachesFranceSurroundings = (outline: Outline): boolean => {
-  const [[west, south], [east, north]] = geoBounds(outline)
-  // A box whose west edge is east of its east edge crosses the antimeridian, and spans every longitude.
-  const spansEveryLongitude = west > east
+/**
+ * Mainland Portugal with a margin of sea and Spain, widened to nearly square
+ * so a wall frames it as well as a phone: Madeira and the Azores fall outside,
+ * as France's overseas territories do.
+ */
+const PORTUGAL_FRAME = {
+  coordinates: [
+    [-11.6, 36.5],
+    [-7.8, 36.5],
+    [-4, 36.5],
+    [-11.6, 42.6],
+    [-7.8, 42.6],
+    [-4, 42.6]
+  ],
+  type: 'MultiPoint'
+} satisfies GeoJSON.MultiPoint
 
-  return (
-    south <= FRANCE_SURROUNDINGS.north &&
-    north >= FRANCE_SURROUNDINGS.south &&
-    (spansEveryLongitude ||
-      (west <= FRANCE_SURROUNDINGS.east && east >= FRANCE_SURROUNDINGS.west))
-  )
-}
+/** PT-TM06's central meridian, the one Portugal's own maps are drawn on. */
+const PORTUGAL_MERIDIAN = -8.1331
+
+const PORTUGAL_SURROUNDINGS = { east: 0, north: 46, south: 33, west: -15 }
+
+type Surroundings = typeof FRANCE_SURROUNDINGS
+
+const reaches =
+  (surroundings: Surroundings) =>
+  (outline: Outline): boolean => {
+    const [[west, south], [east, north]] = geoBounds(outline)
+    // A box whose west edge is east of its east edge crosses the antimeridian, and spans every longitude.
+    const spansEveryLongitude = west > east
+
+    return (
+      south <= surroundings.north &&
+      north >= surroundings.south &&
+      (spansEveryLongitude ||
+        (west <= surroundings.east && east >= surroundings.west))
+    )
+  }
 
 const geometryOver = ({
   graticule,
@@ -354,16 +382,24 @@ const worldGeometry = (centralMeridian: number): MapGeometry => {
 }
 
 /**
- * France framed edge to edge: the frame is a rectangle of the projection
+ * A country framed edge to edge: the frame is a rectangle of the projection
  * rather than the globe's rim, so every country is cut to it and only the
  * ones reaching it are drawn at all.
  */
-const franceGeometry = (): MapGeometry => {
-  const projection = geoConicConformal()
-    .parallels(FRANCE_PARALLELS)
-    .rotate([-FRANCE_MERIDIAN, 0])
-    .fitWidth(MAP_WIDTH, FRANCE_FRAME)
-  const [, [, frameBottom]] = geoPath(projection).bounds(FRANCE_FRAME)
+const framedGeometry = ({
+  frame,
+  graticuleStepDegrees,
+  projection,
+  surroundings
+}: {
+  frame: GeoJSON.MultiPoint
+  graticuleStepDegrees: number
+  projection: GeoProjection
+  surroundings: Surroundings
+}): MapGeometry => {
+  projection.fitWidth(MAP_WIDTH, frame)
+
+  const [, [, frameBottom]] = geoPath(projection).bounds(frame)
   const height = Math.ceil(frameBottom)
 
   projection.clipExtent([
@@ -372,18 +408,44 @@ const franceGeometry = (): MapGeometry => {
   ])
 
   return geometryOver({
-    graticule: geoGraticule().step([2, 2])(),
+    graticule: geoGraticule().step([
+      graticuleStepDegrees,
+      graticuleStepDegrees
+    ])(),
     height,
     isOnTheMap: ([x, y]) => x >= 0 && x <= MAP_WIDTH && y >= 0 && y <= height,
     outline: `M0,0H${MAP_WIDTH}V${height}H0Z`,
     outlines: new Map(
       [...countryOutlines()].filter(([, countryOutline]) =>
-        reachesFranceSurroundings(countryOutline)
+        reaches(surroundings)(countryOutline)
       )
     ),
     projection
   })
 }
+
+const franceGeometry = (): MapGeometry =>
+  framedGeometry({
+    frame: FRANCE_FRAME,
+    graticuleStepDegrees: 2,
+    projection: geoConicConformal()
+      .parallels(FRANCE_PARALLELS)
+      .rotate([-FRANCE_MERIDIAN, 0]),
+    surroundings: FRANCE_SURROUNDINGS
+  })
+
+const portugalGeometry = (): MapGeometry =>
+  framedGeometry({
+    frame: PORTUGAL_FRAME,
+    graticuleStepDegrees: 1,
+    projection: geoTransverseMercator().rotate([-PORTUGAL_MERIDIAN, 0]),
+    surroundings: PORTUGAL_SURROUNDINGS
+  })
+
+const FRAMED_GEOMETRY_OF = {
+  france: franceGeometry,
+  portugal: portugalGeometry
+} as const satisfies Record<Exclude<MapRegion, 'world'>, () => MapGeometry>
 
 const geometries = new Map<MapRegion, MapGeometry>()
 /** One world turned off Greenwich at a time: a reveal across the date line turns it, and most evenings never do. */
@@ -393,7 +455,7 @@ let turnedWorld: { centralMeridian: number; geometry: MapGeometry } | null =
 /**
  * Projected on the first call for each map, and kept: a round never redraws a
  * coastline. The world is centred on `centralMeridian`, Greenwich by default;
- * France is always centred on itself.
+ * a country is always centred on itself.
  */
 export const mapGeometryOf = (
   region: MapRegion,
@@ -416,7 +478,8 @@ export const mapGeometryOf = (
     return known
   }
 
-  const geometry = region === 'world' ? worldGeometry(0) : franceGeometry()
+  const geometry =
+    region === 'world' ? worldGeometry(0) : FRAMED_GEOMETRY_OF[region]()
 
   geometries.set(region, geometry)
 

@@ -151,6 +151,7 @@ export const EN_DICTIONARY = defineDictionary({
       places: {
         countries: 'a country',
         frenchCities: 'a city in France',
+        portugueseCities: 'a city in Portugal',
         worldCapitals: 'a capital'
       }
     },
@@ -162,16 +163,18 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A country, a capital or a French city comes up, and everyone puts a pawn down on a map they zoom with their fingers: on it scores in full, off it is paid by the kilometre. At the reveal, every pawn draws its line to the place. Or the other way round: the map lights a place up, and the table names it.'
+        'A country, a capital or a city of France or Portugal comes up, and everyone puts a pawn down on a map they zoom with their fingers: on it scores in full, off it is paid by the kilometre. At the reveal, every pawn draws its line to the place. Or the other way round: the map lights a place up, and the table names it.'
     },
     map: {
       hint: 'Zoom in, then put your pawn down on it',
       label: 'World map',
       labelFrance: 'Map of France',
+      labelPortugal: 'Map of Portugal',
       loading: 'Unfolding the map…',
       moveHint: 'Tap somewhere else to move it',
       whole: 'Whole world',
       wholeFrance: 'Whole of France',
+      wholePortugal: 'Whole of Portugal',
       zoomIn: 'Zoom in',
       zoomOut: 'Zoom out'
     },
@@ -185,6 +188,7 @@ export const EN_DICTIONARY = defineDictionary({
       countries: 'Countries of the world',
       frenchCities: 'Cities of France',
       label: { name: 'What to name', place: 'What to place' },
+      portugueseCities: 'Cities of Portugal',
       worldCapitals: 'World capitals'
     },
     play: 'Play Atlas',
@@ -207,13 +211,15 @@ export const EN_DICTIONARY = defineDictionary({
     scoringCities:
       'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 100 points, falling to nothing at 150 km.',
     scoringMixed:
-      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 100 points.',
+      'Everyone puts a pawn down at once — a country, a capital or a city, round by round. The nearer your pawn, the more it scores, up to 100 points.',
     scoringName: {
       choice:
         'The map shows a place and offers four names, everyone at once. The right one scores 100 points.',
       typed:
         'The map shows a place and everyone types its name at once. The right one scores 100 points.'
     },
+    scoringPortugueseCities:
+      'Everyone puts a pawn down at once on a map of Portugal. Within 12 km of the city it scores 100 points, falling to nothing at 75 km.',
     tagline: 'One place. Put your pawn on it, or name it.'
   },
   blacksquare: {

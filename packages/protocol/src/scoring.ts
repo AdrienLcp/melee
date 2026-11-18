@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { atlasTargetKindSchema } from './atlas'
+import { atlasPlacesSchema } from './atlas'
 import {
   BLACK_SQUARE_CELL_COUNT,
   blackSquareCellSchema,
@@ -100,13 +100,14 @@ export const singleVerdictSchema = z.object({
  * a point in the sea off Brittany is not *wrong* the way a wrong pick is, and
  * the curve in `@melee/core/atlas/distance-pay` pays it for being close.
  * Nought means inside a country, or on the city to the kilometre. The server
- * measures it; no screen ever sends one. `target` says which reach prices it,
- * since 50 km is a near miss of a country and a far one of a city.
+ * measures it; no screen ever sends one. `places` says which reach prices it,
+ * since 50 km is a near miss of a country and a far one of a city — and a
+ * city of Portugal, on a map drawn twice as close, is missed sooner.
  */
 export const distanceVerdictSchema = z.object({
   distanceKm: z.number().nonnegative(),
   kind: z.literal('distance'),
-  target: atlasTargetKindSchema
+  places: atlasPlacesSchema
 })
 
 /**

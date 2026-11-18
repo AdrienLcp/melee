@@ -27,13 +27,21 @@ export const placementSchema = z.object({
 
 /**
  * What a map round asks a table to place: a country or a capital on the whole
- * world, or a city on a map of metropolitan France. The game's own setting, chosen like a
- * blind test's source, and it decides the map, the bank and the price at once.
+ * world, or a city on a map of mainland France or of mainland Portugal. The
+ * game's own setting, chosen like a blind test's source, and it decides the
+ * map, the bank and the price at once.
  */
 export const atlasPlacesSchema = z.enum([
   'countries',
   'frenchCities',
+  'portugueseCities',
   'worldCapitals'
+])
+
+/** The place sets of cities, each a country's own map. */
+export const atlasCityPlacesSchema = atlasPlacesSchema.extract([
+  'frenchCities',
+  'portugueseCities'
 ])
 
 /**
@@ -77,8 +85,10 @@ export const atlasTargetSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     kind: z.literal(atlasTargetKindSchema.enum.city),
-    /** Its own name, the same in every language the room speaks: *Rennes*. */
+    /** Its own name, the same in every language the room speaks: *Rennes*, *Porto*. */
     name: z.string().min(1),
+    /** Which country's map it stands on, which is public: the map is drawn from the first frame. */
+    places: atlasCityPlacesSchema,
     point: geoPointSchema.nullable()
   }),
   z.object({
@@ -98,12 +108,15 @@ export const atlasTargetSchema = z.discriminatedUnion('kind', [
  */
 export const atlasShownSchema = z.object({
   kind: atlasTargetKindSchema,
+  /** The set it was drawn from, which says the map it is shown on. */
+  places: atlasPlacesSchema,
   point: geoPointSchema
 })
 
 export type GeoPoint = z.infer<typeof geoPointSchema>
 export type Placement = z.infer<typeof placementSchema>
 export type AtlasPlaces = z.infer<typeof atlasPlacesSchema>
+export type AtlasCityPlaces = z.infer<typeof atlasCityPlacesSchema>
 export type AtlasDirection = z.infer<typeof atlasDirectionSchema>
 export type LocalizedName = z.infer<typeof localizedNameSchema>
 
@@ -123,3 +136,23 @@ export const atlasPickIndexOf = (said: string): number | null =>
 export type AtlasShown = z.infer<typeof atlasShownSchema>
 export type AtlasTargetKind = z.infer<typeof atlasTargetKindSchema>
 export type AtlasTarget = z.infer<typeof atlasTargetSchema>
+
+/**
+ * The place set a target was drawn from, which prices a marker and picks the
+ * map: a country and a capital each have one set, a city names its own.
+ */
+export const placesOfTarget = (
+  target:
+    | { kind: 'capital' }
+    | { kind: 'city'; places: AtlasCityPlaces }
+    | { kind: 'country' }
+): AtlasPlaces => {
+  switch (target.kind) {
+    case 'capital':
+      return 'worldCapitals'
+    case 'city':
+      return target.places
+    case 'country':
+      return 'countries'
+  }
+}

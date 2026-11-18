@@ -54,7 +54,7 @@ export const GAME_NOTES = {
  */
 export const SETTING_NOTES = {
   atlas:
-    '`places` lists the sets a round may be drawn from — "countries", "frenchCities", "worldCapitals" — one drawn per round. `direction` is "place" (the room names a place, every player pins it) or "name" (the map shows a place, the players name it).',
+    '`places` lists the sets a round may be drawn from — "countries", "frenchCities", "portugueseCities", "worldCapitals" — one drawn per round; a city set is placed on that country’s own map. `direction` is "place" (the room names a place, every player pins it) or "name" (the map shows a place, the players name it).',
   blacksquare:
     '`answerCount` is how many of the theme’s answers a round hides, 3 to 9. `doublesLoneFinds` pays double a cell one player alone found, in a typed round only — a spoken round has one team guessing.',
   blindtest:

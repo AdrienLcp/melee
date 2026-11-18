@@ -70,10 +70,22 @@ const SHOWN_LEAST_SPAN = 0.08
  * The least the world map's reveal spans along the frame's longer side, as a
  * share of the map's width — Europe, so a table that all landed near the
  * answer sees which part of the globe that was, and three pawns round one city
- * stand far enough apart to label. The map of France is never framed tighter
+ * stand far enough apart to label. A country's own map is never framed tighter
  * than itself.
  */
 const REVEAL_LEAST_SPAN = 0.12
+
+const MAP_LABEL_OF_REGION = {
+  france: 'atlas.map.labelFrance',
+  portugal: 'atlas.map.labelPortugal',
+  world: 'atlas.map.label'
+} as const satisfies Record<MapRegion, string>
+
+const WHOLE_MAP_OF_REGION = {
+  france: 'atlas.map.wholeFrance',
+  portugal: 'atlas.map.wholePortugal',
+  world: 'atlas.map.whole'
+} as const satisfies Record<MapRegion, string>
 /**
  * The least the reveal of a place nobody pinned spans, as a share of the
  * map's width — a continent, so a table that named a coloured country sees
@@ -105,7 +117,7 @@ export type WorldMapProps = {
   markerActions?: React.ReactNode
   /** The answer and every pawn, once the round is revealed: the view opens framed on them. */
   revealed?: { markers: readonly RevealedMarker[]; target: RevealedTarget }
-  /** The world for a country, France for one of its cities. */
+  /** The world for a country, a country's own map for one of its cities. */
   region: MapRegion
   /** What a `name` round shows while it is open: the country filled around its point, or a dot. */
   shown?: AtlasShown | null
@@ -178,7 +190,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       : targetOutlineOf(geometry, revealed.target)
   const markers = revealed?.markers ?? []
   const { easeView, setView, view } = useEasedMapView(() =>
-    target === null || region === 'france'
+    target === null || region !== 'world'
       ? fittedView({ frame, map })
       : clampedView({
           frame,
@@ -245,9 +257,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
     <>
       <svg
         aria-describedby={onPlace === undefined ? undefined : hintId}
-        aria-label={translate(
-          region === 'france' ? 'atlas.map.labelFrance' : 'atlas.map.label'
-        )}
+        aria-label={translate(MAP_LABEL_OF_REGION[region])}
         className='surface'
         data-placing={onPlace !== undefined || undefined}
         height={frame.height}
@@ -317,9 +327,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           <MinusIcon />
         </Button>
         <Button
-          aria-label={translate(
-            region === 'france' ? 'atlas.map.wholeFrance' : 'atlas.map.whole'
-          )}
+          aria-label={translate(WHOLE_MAP_OF_REGION[region])}
           onPress={() =>
             easeView(() =>
               clampedView({ frame, map, view: fittedView({ frame, map }) })
@@ -450,7 +458,7 @@ const targetOutlineOf = (
 /**
  * Greenwich, unless the answer and every pawn sit closest across the date
  * line: then the world turns so they stand together. Placing never turns the
- * map, and France is centred on itself.
+ * map, and a country's own map is centred on itself.
  */
 const centralMeridianOfReveal = ({
   region,

@@ -619,7 +619,11 @@ const asNameRound = (view: object): object => {
         direction: 'name',
         kind: 'atlas',
         revealedPlacements: null,
-        shown: { kind: 'country', point: { latitude: -2.9, longitude: 23.6 } },
+        shown: {
+          kind: 'country',
+          places: 'countries',
+          point: { latitude: -2.9, longitude: 23.6 }
+        },
         target: null
       }
     },

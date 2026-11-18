@@ -20,6 +20,16 @@ one part.
   a Portuguese table reads the cards in French. Counts read _0 pontos_, as
   Portugal says it.
 
+- `[Shared]` **Atlas plays Portugal's cities on a map of Portugal.** _Cities
+  of Portugal_ joins the places to find or to name: the eighteen district
+  capitals and the towns a table knows — Sintra, Óbidos, Guimarães, Nazaré,
+  Lagos — on a map of mainland Portugal drawn as Portugal's own maps are, a
+  pawn paid in full within 12 km and nothing from 75. _Lisboa_ answers to
+  _Lisbon_ and _Lisbonne_ typed. A Portuguese table's blind test decades play
+  Portugal's hits beside the world's — Xutos, GNR, Rui Veloso — and
+  its ready-made evenings place Portugal's cities and open the music special
+  on its own eighties and nineties.
+
 - `[Shared]` **Report a problem from any screen.** The menu, on every screen
   at every phase, gains _Report a problem_: an optional line and _Send_, then
   a thanks that holds for the thirty seconds before the device may send

@@ -78,6 +78,7 @@ type ServedMode = Exclude<
 const ATLAS_SCORING_KEYS = {
   countries: 'atlas.scoring',
   frenchCities: 'atlas.scoringCities',
+  portugueseCities: 'atlas.scoringPortugueseCities',
   worldCapitals: 'atlas.scoringCapitals'
 } as const satisfies Record<AtlasPlaces, string>
 
@@ -105,6 +106,7 @@ type ScoringKey = BuiltKey<
   | 'atlas.scoring'
   | 'atlas.scoringCapitals'
   | 'atlas.scoringCities'
+  | 'atlas.scoringPortugueseCities'
   | 'atlas.scoringMixed'
   | `atlas.scoringName.${Exclude<ServedMode, 'buzzer'>}`
   | `blindtest.scoring.${ServedMode}`
@@ -124,6 +126,7 @@ const CLOCK_PAID_SCORING: ReadonlySet<ScoringKey> = new Set<ScoringKey>([
   'atlas.scoring',
   'atlas.scoringCapitals',
   'atlas.scoringCities',
+  'atlas.scoringPortugueseCities',
   'atlas.scoringMixed',
   'atlas.scoringName.choice',
   'atlas.scoringName.typed',

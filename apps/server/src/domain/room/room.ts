@@ -1,4 +1,9 @@
-import type { GeoPoint, LocalizedName, Placement } from '@melee/protocol/atlas'
+import type {
+  AtlasCityPlaces,
+  GeoPoint,
+  LocalizedName,
+  Placement
+} from '@melee/protocol/atlas'
 import type {
   BlackSquareSentLine,
   BlackSquareTheme
@@ -71,7 +76,7 @@ import type { CrowdAnswer, CrowdMerge } from '@melee/core/thinkalike/crowd-key'
  */
 export type AtlasRoundTarget =
   | { countryCode: CountryCode; kind: 'country' }
-  | { kind: 'city'; name: string; point: GeoPoint }
+  | { kind: 'city'; name: string; places: AtlasCityPlaces; point: GeoPoint }
   | {
       countryCode: CountryCode
       kind: 'capital'

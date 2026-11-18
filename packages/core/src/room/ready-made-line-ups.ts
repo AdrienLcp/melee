@@ -1,3 +1,4 @@
+import type { AtlasCityPlaces } from '@melee/protocol/atlas'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   type AtlasSettings,
@@ -32,6 +33,7 @@ import {
 
 import { questionLanguageFor } from '../quiz/question-language'
 import { isJudgedInEveryMode } from './game-modes'
+import { homeCountryFor } from './home-country'
 import { type HostPreferences, rememberedSetupFor } from './host-preferences'
 import { type GameSetup, openedSetup } from './room-settings'
 import type { SavedEntry, SavedEvening } from './saved-evening'
@@ -72,10 +74,47 @@ const quizOn = ({
   language: questionLanguageFor(locale)
 })
 
-const blindtestOn = (source: BlindtestSettings['source']): SavedEntry => ({
+const blindtestOn = ({
+  locale,
+  source
+}: {
+  locale: Locale
+  source: BlindtestSettings['source']
+}): SavedEntry => ({
   ...DEFAULT_BLINDTEST_SETTINGS,
+  homeCountry: homeCountryFor(locale),
   source
 })
+
+/** The cities a table places in the grand mix: its own country's, France's for a table with none. */
+const CITIES_OF_LOCALE = {
+  en: 'frenchCities',
+  fr: 'frenchCities',
+  pt: 'portugueseCities'
+} as const satisfies Record<Locale, AtlasCityPlaces>
+
+/**
+ * The music special's three blind tests. A French table opens on its chanson
+ * chart; Deezer has no Portuguese one, so a Portuguese table hears its own
+ * eighties and nineties, which its decades deal beside the world's.
+ */
+const MUSIC_SPECIAL_OF_LOCALE = {
+  en: [
+    catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] }),
+    catalogueOf({ decades: ['1980s'] }),
+    catalogueOf({ hasFilmScores: true })
+  ],
+  fr: [
+    catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] }),
+    catalogueOf({ decades: ['1980s'] }),
+    catalogueOf({ hasFilmScores: true })
+  ],
+  pt: [
+    catalogueOf({ decades: ['1980s'] }),
+    catalogueOf({ decades: ['1990s'] }),
+    catalogueOf({ hasFilmScores: true })
+  ]
+} as const satisfies Record<Locale, readonly BlindtestSettings['source'][]>
 
 const atlasOn = ({
   direction,
@@ -135,8 +174,8 @@ const grandMixVarietiesOf = (
   locale: Locale
 ): Partial<Record<ShelvedGame, readonly SavedEntry[]>> => ({
   atlas: (['place', 'name'] as const).flatMap((direction) =>
-    (['countries', 'frenchCities', 'worldCapitals'] as const).map((place) =>
-      atlasOn({ direction, places: [place] })
+    (['countries', CITIES_OF_LOCALE[locale], 'worldCapitals'] as const).map(
+      (place) => atlasOn({ direction, places: [place] })
     )
   ),
   blacksquare: [3, 6, 9].map((answerCount) => ({
@@ -145,10 +184,12 @@ const grandMixVarietiesOf = (
   })),
   blindtest: [
     ...trackDecades.map((decade) =>
-      blindtestOn(catalogueOf({ decades: [decade] }))
+      blindtestOn({ locale, source: catalogueOf({ decades: [decade] }) })
     ),
-    blindtestOn(catalogueOf({ hasFilmScores: true })),
-    ...GENRE_IDS.map((genre) => blindtestOn(catalogueOf({ charts: [genre] })))
+    blindtestOn({ locale, source: catalogueOf({ hasFilmScores: true }) }),
+    ...GENRE_IDS.map((genre) =>
+      blindtestOn({ locale, source: catalogueOf({ charts: [genre] }) })
+    )
   ],
   longestword: [
     { ...DEFAULT_LONGEST_WORD_SETTINGS, language: questionLanguageFor(locale) }
@@ -228,20 +269,9 @@ export const readyMadeLineUpsFor = (
   },
   {
     id: 'music',
-    lineUp: [
-      {
-        ...DEFAULT_BLINDTEST_SETTINGS,
-        source: catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] })
-      },
-      {
-        ...DEFAULT_BLINDTEST_SETTINGS,
-        source: catalogueOf({ decades: ['1980s'] })
-      },
-      {
-        ...DEFAULT_BLINDTEST_SETTINGS,
-        source: catalogueOf({ hasFilmScores: true })
-      }
-    ],
+    lineUp: MUSIC_SPECIAL_OF_LOCALE[locale].map((source) =>
+      blindtestOn({ locale, source })
+    ),
     lineUpDeals: [],
     roundCount: 20,
     runningOrder: []

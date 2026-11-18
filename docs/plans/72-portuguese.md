@@ -101,7 +101,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | **done** 18/11/2026 |
 | 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
 | 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | **done** 18/11/2026 |
-| 09  | `portuguese-09-portugal.md`     | Portugal's cities on the map, decades, ready-made evenings                    | to do               |
+| 09  | `portuguese-09-portugal.md`     | Portugal's cities on the map, decades, ready-made evenings                    | **done** 18/11/2026 |
 
 ### 01 — what landed
 
@@ -338,4 +338,43 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
   or lower and black square, a Stop sheet at 375px, and a French screen
   reading a Portuguese table's timeline cards in French. No overflow found.
 
-<!-- cspell:words Português Chéquia EUA Holanda lugares pontos Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa Danúbio Tejo Torre Clérigos Moscou Teerã Padrão Descobrimentos -->
+### 09 — what landed
+
+- **`portugueseCities`**, a fourth place set beside `frenchCities`: the
+  eighteen district capitals and 39 towns a table knows
+  (`portuguese-city-bank.ts`, 14 easy, 25 medium, 18 hard), Funchal and Ponta
+  Delgada left out with their islands, and a town on top of a bigger one at
+  the map's scale (Almada, Gaia, Olhão) left out as Nanterre is. A name is
+  Portugal's own, _Lisboa_; a `name` round takes _Lisbon_, _Lisbonne_ and
+  _Oporto_ typed (`BankedCity.aliases`).
+- **A city says its map on the wire**: `places` on the city target and on a
+  `name` round's `shown`, and the distance verdict is priced by `places`
+  rather than by target kind (`placesOfTarget`, `PROTOCOL_VERSION` 77).
+  `DISTANCE_REACH` is keyed by place set: Portugal's reach is France's
+  halved — full within 12 km, nothing from 75 — because its map is drawn
+  twice as close, and 150 km there is Lisbon to Coimbra.
+- **The map**: `MapRegion` gains `portugal`, drawn in PT-TM06's transverse
+  Mercator on a frame widened to nearly square (−11.6° to −4°, 36.5° to
+  42.6°), so a wall frames it as well as a phone and the islands fall
+  outside; France and Portugal share one `framedGeometry`. Seen muted in a
+  Portuguese room: the option in the setup panel, a `place` round and its
+  reveal, and a `name` round with four neighbouring towns, at 375 px and on
+  the console. No motion changed — same component, same entrance.
+- **Decades**: Deezer's editors keep no Portuguese series (searched 18/11),
+  so a Portuguese table's decades pair the international editorial playlist
+  with two listeners' playlists a decade, each read for what it holds (Xutos,
+  GNR, Rui Veloso, Madredeus, Mariza, Calema) and checked available in
+  Portugal track by track. Portuguese hits rank low on Deezer —
+  _Contentores_ near 200k where every _Bleu blanc hits_ track clears 500k —
+  so they are measured at a fifth of the rank floor (`rankShare`), which
+  keeps about two in three at `easy`. A table with no country keeps France's.
+- **Ready-made evenings**: the grand mix places the table's own cities
+  (`CITIES_OF_LOCALE`: Portugal's for `pt`, France's otherwise), every
+  ready-made blind test carries `homeCountryFor(locale)`, and the Portuguese
+  music special plays its eighties, nineties and film scores — Deezer has no
+  Portuguese genre chart to stand in for _chanson française_.
+- **Left as it was**: a listeners' playlist can be withdrawn; the decade
+  thins rather than empties (`fetchTracksFor` keeps what answered), and the
+  international list always answers.
+
+<!-- cspell:words Nanterre Bleu française Almada Gaia Olhão Ponta Delgada Oporto Calema Madredeus Mariza Xutos Contentores Veloso Lisbonne Coimbra Português Chéquia EUA Holanda lugares pontos Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa Danúbio Tejo Torre Clérigos Moscou Teerã Padrão Descobrimentos -->

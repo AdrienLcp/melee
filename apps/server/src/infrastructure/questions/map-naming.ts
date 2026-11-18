@@ -12,13 +12,18 @@ import { shuffled } from '@melee/core/helpers/random'
 import type { AtlasNaming, AtlasRoundTarget } from '@/domain/room/room'
 import { pointInsideCountry } from '@/infrastructure/map/world-atlas'
 
-import { BANKED_CITIES } from './city-bank'
+import { citiesOf } from './city-bank'
 import { BANKED_COUNTRIES } from './country-bank'
 import { worldCapitals } from './world-capitals'
 
 const DECOY_COUNT = 3
 
-type NamedPlace = { names: LocalizedName; point: GeoPoint }
+type NamedPlace = {
+  /** Spellings a table may type beside its names. */
+  aliases?: readonly string[]
+  names: LocalizedName
+  point: GeoPoint
+}
 
 const COUNTRY_NAMES = {
   en: COUNTRY_NAMES_EN,
@@ -50,17 +55,22 @@ const placeAndRivalsOf = (
   switch (target.kind) {
     case 'capital':
       return { place: target, rivals: worldCapitals() }
-    case 'city':
+    case 'city': {
+      const cities = citiesOf(target.places)
+
       return {
         place: {
+          aliases:
+            cities.find(({ name }) => name === target.name)?.aliases ?? [],
           names: byLocale(() => target.name),
           point: target.point
         },
-        rivals: BANKED_CITIES.map(({ name, point }) => ({
+        rivals: cities.map(({ name, point }) => ({
           names: byLocale(() => name),
           point
         }))
       }
+    }
     case 'country': {
       const point = pointInsideCountry(target.countryCode)
 
@@ -113,7 +123,12 @@ export const namingOf = ({
   const choices = isChoice ? shuffled([answer, ...decoys]) : []
 
   return {
-    accepted: spellingsOfNames(answer),
+    accepted: [
+      ...new Set([
+        ...spellingsOfNames(answer),
+        ...(found.place.aliases ?? []).flatMap((alias) => spellingsOf(alias))
+      ])
+    ],
     answer,
     choices,
     correctChoiceIndex: isChoice ? choices.indexOf(answer) : null,

@@ -1,3 +1,4 @@
+import { type AtlasPlaces, placesOfTarget } from '@melee/protocol/atlas'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type {
   HostRoomView,
@@ -13,6 +14,8 @@ import {
 } from '@melee/protocol/timeline'
 
 import { gapOf } from '@melee/core/estimate/estimate-pay'
+
+import type { MapRegion } from '@/infrastructure/map/world-geometry'
 
 /**
  * A round's content is a union, and a screen only ever renders one arm of it.
@@ -109,11 +112,27 @@ export const atlasContent = (
 ): Extract<RoundContent, { kind: 'atlas' }> | null =>
   round?.content.kind === 'atlas' ? round.content : null
 
-/** The map a round is played on: France for one of its cities, the world for a country or a capital. */
+const MAP_REGION_OF_PLACES = {
+  countries: 'world',
+  frenchCities: 'france',
+  portugueseCities: 'portugal',
+  worldCapitals: 'world'
+} as const satisfies Record<AtlasPlaces, MapRegion>
+
+/** The map a place set is played on: its country's own for a city, the world for a country or a capital. */
+export const mapRegionOfPlaces = (places: AtlasPlaces): MapRegion =>
+  MAP_REGION_OF_PLACES[places]
+
+/** The map a round is played on, which its target or what it shows names. */
 export const mapRegionOf = (
   content: Extract<RoundContent, { kind: 'atlas' }>
-): 'france' | 'world' =>
-  (content.target ?? content.shown)?.kind === 'city' ? 'france' : 'world'
+): MapRegion => {
+  const places =
+    content.shown?.places ??
+    (content.target === null ? null : placesOfTarget(content.target))
+
+  return places === null ? 'world' : mapRegionOfPlaces(places)
+}
 
 /** The same over the half only the host is sent. */
 export const blindtestHostContent = (

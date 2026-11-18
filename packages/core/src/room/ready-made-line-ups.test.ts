@@ -96,7 +96,7 @@ const playedEntries = ({
   )
 }
 
-describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
+describe.each(LOCALES)('ready-made line-ups in %s', (locale) => {
   const lineUps = readyMadeLineUpsFor(locale)
 
   it('[ready-made] ships one of each id, in the order they are listed', () => {
@@ -181,7 +181,7 @@ describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
   })
 })
 
-describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
+describe.each(LOCALES)('the grand mix in %s', (locale) => {
   const grandMix = readyMadeLineUpsFor(locale).find(
     ({ id }) => id === 'grandMix'
   )
@@ -264,6 +264,41 @@ it.each(['quiz', 'mysteryword', 'longestword', 'thinkalike'] as const)(
     }
   }
 )
+
+describe('a Portuguese table', () => {
+  const lineUps = readyMadeLineUpsFor('pt')
+  const entriesOf = (game: string) =>
+    lineUps
+      .flatMap(({ lineUp }) => lineUp)
+      .flatMap((entry) =>
+        typeof entry !== 'string' && entry.kind === game ? [entry] : []
+      )
+
+  it('[ready-made] places the cities of Portugal, never those of France', () => {
+    const places = entriesOf('atlas').flatMap((entry) =>
+      entry.kind === 'atlas' ? entry.places : []
+    )
+
+    expect(places).toContain('portugueseCities')
+    expect(places).not.toContain('frenchCities')
+  })
+
+  it('[ready-made] deals every blind test from Portugal, and the music special its own decades', () => {
+    const blindTests = entriesOf('blindtest')
+    const music = lineUps.find(({ id }) => id === 'music')
+
+    expect(
+      blindTests.every(
+        (entry) => entry.kind === 'blindtest' && entry.homeCountry === 'PRT'
+      )
+    ).toBe(true)
+    expect(music?.lineUp).toEqual([
+      expect.objectContaining({ source: catalogueOf({ decades: ['1980s'] }) }),
+      expect.objectContaining({ source: catalogueOf({ decades: ['1990s'] }) }),
+      expect.objectContaining({ source: catalogueOf({ hasFilmScores: true }) })
+    ])
+  })
+})
 
 describe('a ready-made line-up once loaded', () => {
   const music = readyMadeLineUpsFor('fr').find(({ id }) => id === 'music')

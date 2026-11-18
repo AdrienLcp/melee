@@ -17,7 +17,8 @@
     //   answer mode 536 · subjects 1 249 in French on one
     //   row of twelve, which is also where six by two takes over
     //   rounds 276 · auto-advance and answer window 296
-    //   what the map places 572, in English
+    //   what the map places 572 for three, in English; four since Portugal's
+    //   cities, so a row, two by two or a column, swept by `strip-rows`
     //   the estimate's topics 560, in French — five of them, so a row of five
     //   or a column, since no other column count fills every row
     //
@@ -37,7 +38,9 @@
       @include strip.tiles-below(22rem, 1)
 
     .atlas-places
-      @include strip.stacks-below(36rem)
+      @include strip.stacks-below(52rem)
+      @include strip.tiles-below(52rem, 2)
+      @include strip.tiles-below(34rem, 1)
 
     .estimate-topics
       @include strip.stacks-below(36rem)

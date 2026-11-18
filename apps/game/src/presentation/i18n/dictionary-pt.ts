@@ -156,6 +156,7 @@ const PORTUGUESE = defineDictionary({
       places: {
         countries: 'um país',
         frenchCities: 'uma cidade francesa',
+        portugueseCities: 'uma cidade portuguesa',
         worldCapitals: 'uma capital'
       }
     },
@@ -167,16 +168,18 @@ const PORTUGUESE = defineDictionary({
     },
     home: {
       description:
-        'Aparece um país, uma capital ou uma cidade francesa, e toda a gente pousa um peão num mapa que se amplia com os dedos: em cima, conta por inteiro; fora, paga-se ao quilómetro. Na revelação, cada peão traça a sua linha até ao local. Ou ao contrário: o mapa assinala um local, e a mesa diz o nome.'
+        'Aparece um país, uma capital ou uma cidade de Portugal ou de França, e toda a gente pousa um peão num mapa que se amplia com os dedos: em cima, conta por inteiro; fora, paga-se ao quilómetro. Na revelação, cada peão traça a sua linha até ao local. Ou ao contrário: o mapa assinala um local, e a mesa diz o nome.'
     },
     map: {
       hint: 'Amplia e pousa o teu peão em cima',
       label: 'Mapa do mundo',
       labelFrance: 'Mapa de França',
+      labelPortugal: 'Mapa de Portugal',
       loading: 'A desdobrar o mapa…',
       moveHint: 'Toca noutro sítio para o mudar',
       whole: 'O mundo inteiro',
       wholeFrance: 'Toda a França',
+      wholePortugal: 'Todo o Portugal',
       zoomIn: 'Ampliar',
       zoomOut: 'Reduzir'
     },
@@ -190,6 +193,7 @@ const PORTUGUESE = defineDictionary({
       countries: 'Países do mundo',
       frenchCities: 'Cidades de França',
       label: { name: 'Para nomear', place: 'Para situar' },
+      portugueseCities: 'Cidades de Portugal',
       worldCapitals: 'Capitais do mundo'
     },
     play: 'Jogar Atlas',
@@ -212,13 +216,15 @@ const PORTUGUESE = defineDictionary({
     scoringCities:
       'Toda a gente pousa o peão ao mesmo tempo, num mapa de França. A menos de 25 km da cidade vale 100 pontos, e cada vez menos até nada a 150 km.',
     scoringMixed:
-      'Toda a gente pousa o peão ao mesmo tempo — um país, uma capital ou uma cidade francesa, conforme a ronda. Quanto mais perto o teu peão, mais vale, até 100 pontos.',
+      'Toda a gente pousa o peão ao mesmo tempo — um país, uma capital ou uma cidade, conforme a ronda. Quanto mais perto o teu peão, mais vale, até 100 pontos.',
     scoringName: {
       choice:
         'O mapa mostra um local e propõe quatro nomes, a toda a gente ao mesmo tempo. O certo vale 100 pontos.',
       typed:
         'O mapa mostra um local e toda a gente escreve o nome ao mesmo tempo. O nome certo vale 100 pontos.'
     },
+    scoringPortugueseCities:
+      'Toda a gente pousa o peão ao mesmo tempo, num mapa de Portugal. A menos de 12 km da cidade vale 100 pontos, e cada vez menos até nada a 75 km.',
     tagline: 'Um local. Pousa o teu peão em cima, ou diz o nome.'
   },
   blacksquare: {
@@ -2467,7 +2473,7 @@ const PORTUGUESE = defineDictionary({
       },
       music: {
         caption:
-          'Três versões de Adivinha a música: êxitos franceses, anos 80 e bandas sonoras.',
+          'Três versões de Adivinha a música: anos 80, anos 90 e bandas sonoras.',
         name: 'Especial música'
       },
       quick: {

@@ -1,6 +1,7 @@
 import { type FailureResult, Result } from '@adrienlcp/result'
 import { z } from 'zod'
 
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import type { CatalogueTrack } from '@melee/protocol/http'
 import {
@@ -100,10 +101,13 @@ type DeezerTrack = z.infer<typeof deezerTrackSchema>
  */
 export const fetchTracksFor = async ({
   difficulty,
+  homeCountry = null,
   signal,
   source
 }: {
   difficulty: Difficulty
+  /** The table's own country, whose hits a decade deals beside the world's: `null` for none. */
+  homeCountry?: CountryCode | null
   /**
    * The browser's own request, so a preview the host has already moved past
    * stops spending the Deezer quota on every path of its fan-out.
@@ -112,14 +116,19 @@ export const fetchTracksFor = async ({
   source: TrackSource
 }): Promise<Result<CataloguePool, MusicSourceFailure>> => {
   const fetched = await Promise.all(
-    sharesOf(source).map(async (share) => ({
+    sharesOf({ homeCountry, source }).map(async (share) => ({
       ...share,
       lists: await Promise.all(
-        share.paths.map((path) => requestList(path, signal))
+        share.paths.map(async ({ path, rankShare }) => ({
+          rankShare,
+          tracks: await requestList(path, signal)
+        }))
       )
     }))
   )
-  const lists = fetched.flatMap((strand) => strand.lists)
+  const lists = fetched.flatMap((strand) =>
+    strand.lists.map(({ tracks }) => tracks)
+  )
   const reached = lists.filter((list) => list.status === 'success')
   const failures = lists.flatMap((list) =>
     list.status === 'failure' ? [list.error] : []
@@ -152,10 +161,12 @@ export const fetchTracksFor = async ({
             withoutRepeats(
               catalogued({
                 difficulty,
-                strand: share.strand,
-                tracks: share.lists.flatMap((list) =>
-                  list.status === 'success' ? list.data : []
-                )
+                lists: share.lists.flatMap(({ rankShare, tracks }) =>
+                  tracks.status === 'success'
+                    ? [{ rankShare, tracks: tracks.data }]
+                    : []
+                ),
+                strand: share.strand
               })
             )
           ),
@@ -257,20 +268,23 @@ export const fetchHostTrack = async (
  */
 const catalogued = ({
   difficulty,
-  strand,
-  tracks
+  lists,
+  strand
 }: {
   difficulty: Difficulty
+  lists: { rankShare: number; tracks: DeezerTrack[] }[]
   strand: Strand
-  tracks: DeezerTrack[]
 }): CatalogueTrack[] => {
   if (strand.kind !== 'film') {
-    return tracks
-      .filter((track) => isWorthGuessing(track, difficulty))
-      .map((track) => toCatalogueTrack(track))
+    return lists.flatMap(({ rankShare, tracks }) =>
+      tracks
+        .filter((track) => isWorthGuessing({ difficulty, rankShare, track }))
+        .map((track) => toCatalogueTrack(track))
+    )
   }
 
   const composers = Object.keys(FILM_COMPOSER_IDS)
+  const tracks = lists.flatMap((list) => list.tracks)
 
   // Every release is read for a game's name, those under the floor too: a
   // game is refused by its name, and its sequel only shares the name.
@@ -290,9 +304,17 @@ const catalogued = ({
   )
 }
 
-const isWorthGuessing = (track: DeezerTrack, difficulty: Difficulty): boolean =>
+const isWorthGuessing = ({
+  difficulty,
+  rankShare,
+  track
+}: {
+  difficulty: Difficulty
+  rankShare: number
+  track: DeezerTrack
+}): boolean =>
   track.preview.length > 0 &&
-  (track.rank ?? 0) >= MINIMUM_RANK_BY_DIFFICULTY[difficulty]
+  (track.rank ?? 0) >= MINIMUM_RANK_BY_DIFFICULTY[difficulty] * rankShare
 
 /** `0` is Deezer's all-genres chart, which is what an empty selection means. */
 const EVERY_GENRE = 0
@@ -309,18 +331,63 @@ const EVERY_GENRE = 0
  * thin for two, and a playlist that disappears thins the pool instead of ending
  * the round — `fetchTracksFor` keeps whatever answered.
  *
- * One of each pair is international and the other is French, because a table
- * here sings along to both and a decade that held only one half would be a
- * different game.
+ * One of each pair is international and the other the table's own country's,
+ * because a table sings along to both and a decade that held only one half
+ * would be a different game.
  */
-const DECADE_PLAYLIST_IDS: Record<TrackDecade, readonly string[]> = {
-  '1970s': ['1470022445', '821019291'],
-  '1980s': ['867825522', '791349661'],
-  '1990s': ['878989033', '1051470831'],
-  '2000s': ['248297032', '713806955'],
-  '2010s': ['14917741483', '1162725851'],
-  '2020s': ['13650084141', '1139670951']
+const INTERNATIONAL_DECADE_PLAYLIST_IDS: Record<TrackDecade, string> = {
+  '1970s': '1470022445',
+  '1980s': '867825522',
+  '1990s': '878989033',
+  '2000s': '248297032',
+  '2010s': '14917741483',
+  '2020s': '13650084141'
 }
+
+/**
+ * A country's own hits per decade, and the share of the rank floor they are
+ * measured against. Deezer's editors keep a French series and no Portuguese
+ * one, measured 18 November 2026, so Portugal's are listeners' playlists, two
+ * a decade so one withdrawn thins the pool rather than emptying it, each
+ * chosen for what it holds — Xutos, GNR, Rui Veloso, Mariza — and checked
+ * playable in Portugal. Deezer has few listeners there: _Contentores_ ranks
+ * near 200k where every _Bleu blanc hits_ track clears 500k, so Portugal's are
+ * measured at a fifth of the floor, which keeps two in three at `easy`.
+ */
+const HOME_DECADE_PLAYLISTS = {
+  FRA: {
+    playlistIds: {
+      '1970s': ['821019291'],
+      '1980s': ['791349661'],
+      '1990s': ['1051470831'],
+      '2000s': ['713806955'],
+      '2010s': ['1162725851'],
+      '2020s': ['1139670951']
+    },
+    rankShare: 1
+  },
+  PRT: {
+    playlistIds: {
+      '1970s': ['15439872621', '10235941022'],
+      '1980s': ['12896990123', '10001442402'],
+      '1990s': ['10844022862', '8406992342'],
+      '2000s': ['11110106824', '8377776142'],
+      '2010s': ['10446485802', '11383452624'],
+      '2020s': ['13661474521', '11555475044']
+    },
+    rankShare: 0.2
+  }
+} as const satisfies Record<
+  string,
+  {
+    playlistIds: Record<TrackDecade, readonly string[]>
+    rankShare: number
+  }
+>
+
+/** The decade playlists a table of `homeCountry` is dealt: France's for every table with none of its own. */
+const homeDecadePlaylistsOf = (homeCountry: CountryCode | null) =>
+  homeCountry === 'PRT' ? HOME_DECADE_PLAYLISTS.PRT : HOME_DECADE_PLAYLISTS.FRA
 
 /**
  * Where a film's music comes from, and the reason this arm exists at all.
@@ -445,7 +512,12 @@ const FILM_WEIGHT = 0.4
  * weighed against the others before any mix: a strand of the catalogue — a
  * decade apiece — or the whole of a playlist or a search.
  */
-type Share = { paths: string[]; strand: Strand; weight: number }
+type Share = { paths: SharePath[]; strand: Strand; weight: number }
+
+/** One list a share asks for, and the share of the rank floor its tracks must clear. */
+type SharePath = { path: string; rankShare: number }
+
+const atFullFloor = (path: string): SharePath => ({ path, rankShare: 1 })
 
 /**
  * The shares a source is drawn from. They stay apart until each has been
@@ -454,9 +526,17 @@ type Share = { paths: string[]; strand: Strand; weight: number }
  * would never either. Each decade is a share of its own, so the decades weigh
  * one between them whichever playlists a fill happened to sample.
  */
-const sharesOf = (source: TrackSource): Share[] => {
+const sharesOf = ({
+  homeCountry,
+  source
+}: {
+  homeCountry: CountryCode | null
+  source: TrackSource
+}): Share[] => {
   if (source.kind !== 'catalogue') {
-    return [{ paths: pathsFor(source), strand: source, weight: 1 }]
+    return [
+      { paths: pathsFor(source).map(atFullFloor), strand: source, weight: 1 }
+    ]
   }
 
   const { charts, decades, hasFilmScores } = source
@@ -469,19 +549,22 @@ const sharesOf = (source: TrackSource): Share[] => {
       ? []
       : [
           {
-            paths: pathsFor({ genreIds: charts, kind: 'chart' }),
+            paths: pathsFor({ genreIds: charts, kind: 'chart' }).map(
+              atFullFloor
+            ),
             strand: { genreIds: charts, kind: 'chart' as const },
             weight: 1
           }
         ]),
-    ...(decades === null ? [] : decadeShares({ decades, isMixed })),
+    ...(decades === null
+      ? []
+      : decadeShares({ decades, homeCountry, isMixed })),
     ...(hasFilmScores
       ? [
           {
-            paths: pathsFor({ kind: 'film' }).slice(
-              0,
-              isMixed ? COMPOSERS_PER_MIXED_POOL : COMPOSERS_PER_POOL
-            ),
+            paths: pathsFor({ kind: 'film' })
+              .slice(0, isMixed ? COMPOSERS_PER_MIXED_POOL : COMPOSERS_PER_POOL)
+              .map(atFullFloor),
             strand: { kind: 'film' as const },
             weight: FILM_WEIGHT
           }
@@ -492,9 +575,11 @@ const sharesOf = (source: TrackSource): Share[] => {
 
 const decadeShares = ({
   decades,
+  homeCountry,
   isMixed
 }: {
   decades: readonly TrackDecade[]
+  homeCountry: CountryCode | null
   isMixed: boolean
 }): Share[] => {
   const chosen = decades.length === 0 ? trackDecades : decades
@@ -503,7 +588,7 @@ const decadeShares = ({
     : chosen
 
   return drawn.map((decade) => {
-    const paths = pathsFor({ decades: [decade], kind: 'decade' })
+    const paths = decadePathsFor({ decade, homeCountry })
 
     return {
       paths: isMixed ? shuffled(paths).slice(0, 1) : paths,
@@ -513,7 +598,7 @@ const decadeShares = ({
   })
 }
 
-const pathsFor = (strand: Strand): string[] => {
+const pathsFor = (strand: Exclude<Strand, { kind: 'decade' }>): string[] => {
   switch (strand.kind) {
     case 'chart': {
       const genreIds =
@@ -521,16 +606,6 @@ const pathsFor = (strand: Strand): string[] => {
 
       return genreIds.map(
         (genreId) => `/chart/${genreId}/tracks?limit=${POOL_SIZE}`
-      )
-    }
-    case 'decade': {
-      const decades =
-        strand.decades.length === 0 ? trackDecades : strand.decades
-
-      return decades.flatMap((decade) =>
-        DECADE_PLAYLIST_IDS[decade].map(
-          (playlistId) => `/playlist/${playlistId}/tracks?limit=${POOL_SIZE}`
-        )
       )
     }
     case 'film':
@@ -546,6 +621,28 @@ const pathsFor = (strand: Strand): string[] => {
         `/search?q=${encodeURIComponent(strand.query)}&limit=${POOL_SIZE}`
       ]
   }
+}
+
+const playlistPath = (playlistId: string): string =>
+  `/playlist/${playlistId}/tracks?limit=${POOL_SIZE}`
+
+/** A decade's lists for a table: the world's at the full floor, its country's at that country's share. */
+const decadePathsFor = ({
+  decade,
+  homeCountry
+}: {
+  decade: TrackDecade
+  homeCountry: CountryCode | null
+}): SharePath[] => {
+  const home = homeDecadePlaylistsOf(homeCountry)
+
+  return [
+    atFullFloor(playlistPath(INTERNATIONAL_DECADE_PLAYLIST_IDS[decade])),
+    ...home.playlistIds[decade].map((playlistId) => ({
+      path: playlistPath(playlistId),
+      rankShare: home.rankShare
+    }))
+  ]
 }
 
 const toCatalogueTrack = (
@@ -629,3 +726,5 @@ const requestJson = async (
     })
   }
 }
+
+// cspell:words Xutos Mariza Contentores

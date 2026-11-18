@@ -237,6 +237,7 @@ const refillWhenEmpty = async ({
   for (let attempt = 0; attempt < MAX_REFILL_ATTEMPTS; attempt++) {
     const fetched = await fetchTracksFor({
       difficulty: settings.difficulty,
+      homeCountry: settings.homeCountry,
       source: settings.source
     })
 

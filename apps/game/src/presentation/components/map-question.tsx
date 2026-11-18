@@ -2,6 +2,7 @@ import type React from 'react'
 
 import type { AtlasShown } from '@melee/protocol/atlas'
 
+import { mapRegionOfPlaces } from '@/helpers/round-content'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { LazyWorldMap } from './lazy-world-map'
@@ -31,7 +32,7 @@ export const MapQuestion: React.FC<MapQuestionProps> = ({ shown }) => {
       <p className='prompt'>{prompt}</p>
       <LazyWorldMap
         marker={null}
-        region={shown.kind === 'city' ? 'france' : 'world'}
+        region={mapRegionOfPlaces(shown.places)}
         shown={shown}
       />
     </div>

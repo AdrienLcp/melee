@@ -43,11 +43,13 @@ export const useWorldMapAhead = (lineUp: readonly GameSettings[]): void => {
   const places = placesAhead(lineUp)
   const isWorldAhead = places.has('countries') || places.has('worldCapitals')
   const isFranceAhead = places.has('frenchCities')
+  const isPortugalAhead = places.has('portugueseCities')
 
   useEffect(() => {
     const regions: readonly MapRegion[] = [
       ...(isWorldAhead ? (['world'] as const) : []),
-      ...(isFranceAhead ? (['france'] as const) : [])
+      ...(isFranceAhead ? (['france'] as const) : []),
+      ...(isPortugalAhead ? (['portugal'] as const) : [])
     ]
 
     if (regions.length === 0) {
@@ -79,7 +81,7 @@ export const useWorldMapAhead = (lineUp: readonly GameSettings[]): void => {
       controller.abort()
       cancelIdle()
     }
-  }, [isFranceAhead, isWorldAhead])
+  }, [isFranceAhead, isPortugalAhead, isWorldAhead])
 }
 
 type LoadedWorldMapProps = WorldMapProps & {

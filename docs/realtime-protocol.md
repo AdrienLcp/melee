@@ -868,10 +868,12 @@ draw that line as a blank.
 **The world map hides the markers, not the country.** Its question is _place
 this country_, so `round.content.target` (`{ kind: 'country', countryCode }`)
 is public from the first frame — naming it _is_ the question, and every screen
-already draws the map that answers it. A French city (`settings.game.places:
-'frenchCities'`) is the one target with something to hide: its `{ kind: 'city',
-name, point }` carries the name from the first frame and the point `null` until
-the reveal, since where it stands is the answer and no screen draws it. A
+already draws the map that answers it. A city (`settings.game.places:
+'frenchCities'` or `'portugueseCities'`) is the one target with something to
+hide: its `{ kind: 'city', name, places, point }` carries the name and the set
+— which says the country's map every screen draws — from the first frame, and
+the point `null` until the reveal, since where it stands is the answer and no
+screen draws it. A `name` round's `shown` carries `places` for the same reason. A
 world capital (`'worldCapitals'`) hides one thing more: `{ kind: 'capital',
 names, point, countryCode }` carries its name in both languages from the first
 frame, and both the point and the country `null` until the reveal, because a
@@ -882,12 +884,13 @@ Natural Earth's 1:50m outlines read once as the round opens, and no screen ever
 sends a country or a distance. `revealedPlacements` (`{ playerId, point }` per
 seat) is `null` until the reveal, because a marker seen on another screen is an
 answer to copy. The grade is a third shape of verdict, `{ kind: 'distance',
-distanceKm, target }` — to a country nought inside, otherwise the way to the
+distanceKm, places }` — to a country nought inside, otherwise the way to the
 nearest border; to a city or a capital the way to the place itself — priced on a
-straight line between the `target`'s own two edges in
+straight line between the place set's own two edges in
 `@melee/core/atlas/distance-pay` (`DISTANCE_REACH`) — a country full inside and
 nothing from 1 500 km, a capital full within 100 km and nothing from 1 000, a
-French city full within 25 km and nothing from 150 — the clock cutting its
+French city full within 25 km and nothing from 150, a Portuguese one, on a map
+drawn twice as close, full within 12 km and nothing from 75 — the clock cutting its
 tenth as everywhere else, so a marker 400 km off placed at once no longer
 beats one inside the country placed late. It is answered in a mode of its own, `point`: one
 shot a seat, like a pick, and offered by no other game.

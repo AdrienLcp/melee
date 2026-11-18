@@ -3,7 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { distanceToCountryKm } from '@melee/core/atlas/distance'
 
 import { bankedCapitals } from '@/infrastructure/questions/capital-bank'
-import { BANKED_CITIES } from '@/infrastructure/questions/city-bank'
+import {
+  BANKED_CITIES,
+  BANKED_PORTUGUESE_CITIES
+} from '@/infrastructure/questions/city-bank'
 import { BANKED_COUNTRIES } from '@/infrastructure/questions/country-bank'
 
 import { countryShapeOf } from './world-atlas'
@@ -84,6 +87,36 @@ describe('the French cities the bank asks for', () => {
   })
 })
 
+describe('the Portuguese cities the bank asks for', () => {
+  it('[atlas] stands every one of them in Portugal, so a typo in a coordinate cannot ask for the sea or Spain', () => {
+    const portugal = shapeOf('PRT')
+    const astray = BANKED_PORTUGUESE_CITIES.filter(
+      ({ point }) =>
+        distanceToCountryKm({ point, shape: portugal }) > COASTLINE_SLACK_KM
+    ).map(({ name }) => name)
+
+    expect(astray).toEqual([])
+  })
+
+  it('[atlas] names every city once, and none a French city already holds', () => {
+    const names = [...BANKED_CITIES, ...BANKED_PORTUGUESE_CITIES].map(
+      ({ name }) => name
+    )
+
+    expect(new Set(names).size).toBe(names.length)
+  })
+
+  it('[atlas] keeps the islands off a map that does not reach them', () => {
+    const names = BANKED_PORTUGUESE_CITIES.map(({ name }) => name)
+
+    expect(names).not.toContain('Funchal')
+    expect(names).not.toContain('Ponta Delgada')
+    expect(
+      BANKED_PORTUGUESE_CITIES.every(({ point }) => point.longitude > -10)
+    ).toBe(true)
+  })
+})
+
 /**
  * An atoll capital stands on a reef the 1:50m outline smooths away: South
  * Tarawa sits 5.1 km off its shape. A swapped coordinate lands thousands off.
@@ -103,3 +136,5 @@ describe('the capitals the bank holds', () => {
     expect(astray).toEqual([])
   })
 })
+
+// cspell:words Ponta Delgada

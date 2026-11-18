@@ -1,6 +1,10 @@
 import { Result } from '@adrienlcp/result'
 
-import { atlasPickSaid, type GeoPoint } from '@melee/protocol/atlas'
+import {
+  atlasPickSaid,
+  type GeoPoint,
+  placesOfTarget
+} from '@melee/protocol/atlas'
 import type { ClipAction, LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
@@ -1466,7 +1470,7 @@ const grade = ({
           verdict: {
             distanceKm: Math.round(distanceKm),
             kind: 'distance',
-            target: content.target.kind
+            places: placesOfTarget(content.target)
           }
         }
   }

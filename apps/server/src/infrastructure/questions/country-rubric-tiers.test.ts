@@ -130,13 +130,32 @@ describe('the map at easy', () => {
     for (let draw = 0; draw < DRAWS; draw++) {
       const country = drawCountry({ difficulty: 'easy', playedIds: played })
       const capital = drawCapital({ difficulty: 'easy', playedIds: played })
-      const city = drawCity({ difficulty: 'easy', playedIds: played })
+      const city = drawCity({
+        difficulty: 'easy',
+        places: 'frenchCities',
+        playedIds: played
+      })
 
       expect(country === null ? null : countryTierOf(country)).toBe('easy')
       expect(capital?.tier).toBe('easy')
       expect(city?.tier).toBe('easy')
       played.add(`atlas:${country}`)
       played.add(`atlas:capital:${capital?.countryCode}`)
+      played.add(`atlas:city:${city?.name}`)
+    }
+  })
+
+  it('[difficulty] asks only easy cities of Portugal on its map', () => {
+    const played = new Set<string>()
+
+    for (let draw = 0; draw < 10; draw++) {
+      const city = drawCity({
+        difficulty: 'easy',
+        places: 'portugueseCities',
+        playedIds: played
+      })
+
+      expect(city?.tier).toBe('easy')
       played.add(`atlas:city:${city?.name}`)
     }
   })

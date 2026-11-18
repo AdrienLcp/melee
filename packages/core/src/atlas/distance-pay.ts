@@ -1,4 +1,4 @@
-import type { AtlasTargetKind } from '@melee/protocol/atlas'
+import type { AtlasPlaces } from '@melee/protocol/atlas'
 
 import { paidShare } from '../scoring/round-share'
 
@@ -10,27 +10,30 @@ type DistanceReach = {
 }
 
 /**
- * How near a marker must fall to be paid, by what it was aimed at: 50 km is a
- * near miss of a country and a far one of a city. Between the two edges the
+ * How near a marker must fall to be paid, by the set it was aimed at: 50 km is
+ * a near miss of a country and a far one of a city. Between the two edges the
  * pay falls in a straight line, so 1 km and 499 km never pay the same and no
  * edge makes a cliff — the steps it replaced paid a pin 400 km off placed in
  * two seconds more than one inside the country placed at twenty-five.
+ * Portugal's reach is France's halved, as its map is drawn twice as close:
+ * 150 km there is Lisbon to Coimbra, another region of the country.
  */
 export const DISTANCE_REACH = {
-  capital: { fullPayKm: 100, zeroPayKm: 1_000 },
-  city: { fullPayKm: 25, zeroPayKm: 150 },
-  country: { fullPayKm: 0, zeroPayKm: 1_500 }
-} as const satisfies Record<AtlasTargetKind, DistanceReach>
+  countries: { fullPayKm: 0, zeroPayKm: 1_500 },
+  frenchCities: { fullPayKm: 25, zeroPayKm: 150 },
+  portugueseCities: { fullPayKm: 12, zeroPayKm: 75 },
+  worldCapitals: { fullPayKm: 100, zeroPayKm: 1_000 }
+} as const satisfies Record<AtlasPlaces, DistanceReach>
 
 /** What a marker this far from its target earns, before the clock takes its share. */
 export const pointsForDistance = ({
   distanceKm,
-  target
+  places
 }: {
   distanceKm: number
-  target: AtlasTargetKind
+  places: AtlasPlaces
 }): number => {
-  const { fullPayKm, zeroPayKm } = DISTANCE_REACH[target]
+  const { fullPayKm, zeroPayKm } = DISTANCE_REACH[places]
 
   return paidShare(1 - (distanceKm - fullPayKm) / (zeroPayKm - fullPayKm))
 }
@@ -38,8 +41,8 @@ export const pointsForDistance = ({
 /** Whether a marker earned the whole of what the map pays, which is what closes typed mode for it. */
 export const isBullseye = ({
   distanceKm,
-  target
+  places
 }: {
   distanceKm: number
-  target: AtlasTargetKind
-}): boolean => distanceKm <= DISTANCE_REACH[target].fullPayKm
+  places: AtlasPlaces
+}): boolean => distanceKm <= DISTANCE_REACH[places].fullPayKm

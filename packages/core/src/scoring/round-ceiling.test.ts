@@ -33,7 +33,7 @@ const NINE_CELLS = [0, 1, 2, 3, 4, 5, 6, 7, 8]
  * round is worth.
  */
 const BEST_ROUND = {
-  atlas: () => pointsForDistance({ distanceKm: 0, target: 'country' }),
+  atlas: () => pointsForDistance({ distanceKm: 0, places: 'countries' }),
   blacksquare: () =>
     pointsForCells({
       cellTiers: [1, 1, 1, 2, 2, 2, 3, 3, 3],
