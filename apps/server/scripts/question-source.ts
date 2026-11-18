@@ -17,6 +17,13 @@ import { orStop, parseJson } from './json-file'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CACHE_DIRECTORY = join(HERE, '.cache')
 
+/**
+ * A language the bank holds rows in, one ahead of the languages a room may
+ * play: Portuguese rows are banked before `pt` joins `QuestionLanguage`, and
+ * the server leaves them out until it does (`docs/plans/72-portuguese.md`).
+ */
+export type BankLanguage = QuestionLanguage | 'pt'
+
 export type BankedQuestion = {
   accepted: string[]
   answer: string
@@ -39,7 +46,7 @@ export type BankedQuestion = {
    * its subject's Wikipedia article takes. See `docs/plans/21-…`.
    */
   isWellKnown: boolean
-  language: QuestionLanguage
+  language: BankLanguage
   /** What the host reads out once the answer is public, where the source writes one. */
   note: string | null
   prompt: string
@@ -54,7 +61,7 @@ export type BankedQuestion = {
  */
 export type Attribution = {
   author: string
-  language: QuestionLanguage
+  language: BankLanguage
   licence: string
   source: string
   url: string

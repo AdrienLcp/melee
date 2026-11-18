@@ -939,6 +939,13 @@ one part.
   typed `lusiadas`) and the _e_ said for an ampersand, never an _E_ among
   initials (_R.E.M._ typed `rem`).
 
+- `[Server]` **The quiz holds a Portuguese bank**, not yet offered: 3 531
+  questions in European Portuguese across the nine subjects — the
+  international rows of the French and English banks translated, what only
+  one country knows left behind, and 385 questions about Portugal itself
+  (the 25th of April, Eusébio and the Euro 2016, fado, Pessoa, the pastel de
+  nata). The credits name the four sources the translation drew on.
+
 - `[Server]` **Black square speaks European Portuguese**, not yet offered:
   all 259 themes, every answer and every black word with its reason, the
   names a Portuguese table says beside each (_napolitana_ for a pain au

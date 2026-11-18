@@ -75,9 +75,10 @@ type QuestionCredit = {
  * language — and CC BY-SA 4.0 §3(a)(2) names the link as a reasonable way to
  * satisfy it.
  *
- * One entry per source rather than per language, because nothing here is
- * translated from anything — each bank is written in its own language, and the
- * French half is now written by two people who never met. All of them are named
+ * One entry per source rather than per language, because the French and
+ * English halves are each written in their own language by people who never
+ * met, and the Portuguese rows translated from them carry the credit of the
+ * source they were translated from — said in its `changes`. All of them are named
  * whatever the room is playing: the credit is for the data that shipped, not
  * for the rows a given evening happened to draw.
  *

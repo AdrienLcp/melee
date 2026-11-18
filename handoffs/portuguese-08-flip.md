@@ -8,6 +8,9 @@ Series: `handoffs/README.md`. Needs 02-07 landed. Read
 1. **The unions**: `pt` in `LOCALES` (`packages/protocol/src/locale.ts`) and
    in `QuestionLanguage` (`protocol/question.ts`). The compiler then points at
    every record session 01 derived — fill each.
+   `HOME_COUNTRY_OF_LOCALE` (`core/room/home-country.ts`, session 05) is
+   one: `pt: 'PRT'`, and a test that a Portuguese host opens a Portuguese
+   table.
 2. **The registries**: `PT_DICTIONARY` (`dictionary-pt.ts`, already held to the
    English shape) as a lazy chunk in `i18n.ts` like French,
    `pt-PT` in `REACT_ARIA_LOCALES` (`i18n-provider.tsx`) **and** in
@@ -29,6 +32,13 @@ Series: `handoffs/README.md`. Needs 02-07 landed. Read
    into `ASK_BY_KIND` and `rebus-pt.json` into `AUTHORED_REBUSES`
    (`rebus-questions.ts`, whose test then reads it through the bank), and
    `inQuestionLanguagesOnly` in `think-alike-bank.ts` can go.
+   Written in 06 and waiting: the quiz's `pt` rows are in
+   `question-bank.json` already; `inQuestionLanguagesOnly` in
+   `question-bank.ts`, the Portuguese block at the end of
+   `question-bank.test.ts` and `BankLanguage` in
+   `scripts/question-source.ts` go, and the sweep's own tests then read
+   them — check its `[difficulty]` draws at `hard`, where Portuguese has
+   577 rows.
    Written in 07 and waiting: `WordLanguage` (`core/words/word-language.ts`)
    becomes `QuestionLanguage` and goes, with `wordLanguageSchema` in
    `word-bank.ts` and `WORD_LANGUAGES` in `build-word-bank.ts` and

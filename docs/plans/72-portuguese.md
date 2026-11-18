@@ -98,7 +98,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | **done** 17/11/2026 |
 | 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | **done** 18/11/2026 |
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
-| 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | to do               |
+| 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | **done** 18/11/2026 |
 | 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
 | 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | to do               |
 | 09  | `portuguese-09-portugal.md`     | Portugal's cities on the map, decades, ready-made evenings                    | to do               |
@@ -200,6 +200,40 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - **Black words that lean on French**: _Galette des rois_ keeps its entity
   (the row is shared) and never answers to _bolo-rei_, Portugal's Christmas
   cake; _Guiane_ is _Guiana Francesa_ because both Guianas are _Guiana_.
+
+### 06 — what landed
+
+- **3 531 Portuguese rows** in `question-bank.json`, written in
+  `scripts/questions-pt.json` and read by `portuguese-source.ts`: 3 146
+  translated from the French and English banks and 385 about Portugal
+  (history, geography, sport, music, letters, food). Every subject holds
+  more than 200 (quotes 215, sport 342, history 498), 2 954 are well known,
+  1 966 pay a second spelling, 252 are choice-only, carried from the source.
+- **No open pt-PT trivia set exists.** Mintaka's Portuguese is Brazil's and
+  its rows are already here through their French half; OpenQuizzDB and Open
+  Trivia DB have none. So the translation drew on four sources the bank
+  already trusts — Open Trivia DB 1 487, Mintaka 551, OpenQuizzDB 520,
+  Vikidia 262 — plus Melee's own quotes (215) and video games (111). PolyFact
+  and MMMLU were left out: none of their rows is rated well known. Each
+  translated row keeps the source id in `from`, and the build credits each
+  source once more, `language: 'pt'`, _translated into European Portuguese
+  by Melee_; the credits page says so in four `changes` strings.
+- **3 957 rows offered, 751 dropped** by twenty-two translators (French TV
+  and regional trivia, US college sport and NFL, questions about a French or
+  English word, outdated facts), and about 60 more as the same question asked by
+  both banks — the build drops exact repeats, the assembly the near ones
+  (same answer, same content words). Each batch was re-read by a second
+  agent (about 5 % of rows fixed: Brazilian titles and words, accents, a
+  decoy that was also right), the Portugal rows fact-checked one by one.
+- **The server leaves them out until 08**: `bankedQuestions()` parses
+  `inQuestionLanguagesOnly(bank.questions)`, and the build scripts spell
+  the extra language `BankLanguage` (`QuestionLanguage | 'pt'`). A block in
+  `question-bank.test.ts` holds the `pt` rows to the sweep's claims and
+  floors from the file; 08 deletes all three.
+- **The hard tier is thin**: 577 rows are not well known, 10 of them quotes
+  and 45 science. 08 should check `[difficulty]` at `hard` once `pt` deals.
+- The bank goes from 6.7 to 8.5 MB uncompressed, under the budget measured
+  above.
 
 ### 07 — what landed
 

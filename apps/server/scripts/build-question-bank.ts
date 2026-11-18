@@ -7,12 +7,14 @@ import { z } from 'zod'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
+import { meleeAttribution } from './authored-questions'
 import { orStop, readJsonFile } from './json-file'
 import { ingestMintaka } from './mintaka-source'
 import { ingestMmmlu } from './mmmlu-source'
 import { ingestOpenQuizzDb } from './openquizzdb-source'
 import { ingestOpenTdb } from './opentdb-source'
 import { ingestPolyFact } from './polyfact-source'
+import { ingestPortuguese } from './portuguese-source'
 import type { BankedQuestion, IngestedQuestions } from './question-source'
 import { ingestQuotes } from './quotes-source'
 import { ingestVideoGames } from './videogames-source'
@@ -255,6 +257,12 @@ const run = async (): Promise<void> => {
   const frenchQuotes = ingestQuotes('fr')
   const englishQuotes = ingestQuotes('en')
   const frenchVideoGames = ingestVideoGames()
+  const portuguese = ingestPortuguese({
+    mintaka: mintaka.attribution,
+    oqdb: french.attribution,
+    otdb: english.attribution,
+    vikidia: vikidia.attribution
+  })
 
   const sourced = [
     ...french.questions,
@@ -265,7 +273,8 @@ const run = async (): Promise<void> => {
     ...english.questions,
     ...frenchQuotes.questions,
     ...englishQuotes.questions,
-    ...frenchVideoGames.questions
+    ...frenchVideoGames.questions,
+    ...portuguese.questions
   ]
   const offered = sourced
     .filter((question) => repairs[question.id]?.drop !== true)
@@ -280,7 +289,8 @@ const run = async (): Promise<void> => {
       mintaka.attribution,
       vikidia.attribution,
       mmmlu.attribution,
-      english.attribution
+      english.attribution,
+      ...portuguese.attributions
     ],
     questions: questions.map(banked)
   }
@@ -296,6 +306,11 @@ const run = async (): Promise<void> => {
   report(frenchQuotes)
   report(englishQuotes)
   report(frenchVideoGames)
+  report({
+    attribution: meleeAttribution('pt'),
+    questions: portuguese.questions,
+    rejections: []
+  })
 
   console.info(`\n${bank.questions.length} questions → ${BANK_PATH}`)
 

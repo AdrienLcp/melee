@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
+import { z } from 'zod'
 
 import { DEFAULT_QUIZ_SETTINGS, type QuizSettings } from '@melee/protocol/game'
 import {
   type QuestionCategory,
   type QuestionLanguage,
   questionCategories,
+  questionCategorySchema,
   questionLanguages
 } from '@melee/protocol/question'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
@@ -21,6 +23,7 @@ import {
   bankedQuestions,
   drawQuestion
 } from './question-bank'
+import bank from './question-bank.json' with { type: 'json' }
 
 const BANKED_QUESTIONS = bankedQuestions()
 
@@ -650,5 +653,85 @@ describe('drawQuestion', () => {
     const heardOf = drawn.filter((question) => question.isWellKnown).length
 
     expect(heardOf / drawn.length).toBeCloseTo(1 / 2, 1)
+  })
+})
+
+/**
+ * The Portuguese rows are banked before `pt` is a language a room may play,
+ * so `bankedQuestions()` leaves them out and the sweep above never reads them.
+ * This reads them off the shipped file and holds them to the same claims, and
+ * to the floors the sweep will hold them to once session 08 adds `pt` to
+ * `questionLanguages` — at which point this block goes.
+ */
+describe('the Portuguese rows, before Portuguese is played', () => {
+  const portugueseRowSchema = z.object({
+    accepted: z.array(z.string()),
+    answer: z.string(),
+    category: questionCategorySchema,
+    decoys: z.tuple([z.string(), z.string(), z.string()]),
+    id: z.string(),
+    isAdult: z.boolean(),
+    isWellKnown: z.boolean(),
+    language: z.literal('pt'),
+    prompt: z.string()
+  })
+  const PORTUGUESE_ROWS = z
+    .array(portugueseRowSchema)
+    .parse(bank.questions.filter(({ language }) => language === 'pt'))
+  const SUBJECTS = questionCategories.filter(
+    (category) => !TIERED_RUBRICS.has(category)
+  )
+
+  it('[bank] gives every subject an evening of its own in Portuguese', () => {
+    const ENOUGH_FOR_A_SUBJECT = 150
+    const ENOUGH_FOR_AN_EVENING = 40
+
+    const thin = SUBJECTS.flatMap((category) => {
+      const rows = PORTUGUESE_ROWS.filter((row) => row.category === category)
+      const heardOf = rows.filter((row) => row.isWellKnown).length
+
+      return rows.length < ENOUGH_FOR_A_SUBJECT ||
+        heardOf < ENOUGH_FOR_AN_EVENING
+        ? [`pt/${category}: ${rows.length}, ${heardOf} well known`]
+        : []
+    })
+
+    expect(thin).toEqual([])
+    expect(PORTUGUESE_ROWS.some((row) => !row.isWellKnown)).toBe(true)
+  })
+
+  it('[bank] holds no Portuguese row whose own decoy would be graded right', () => {
+    expect(
+      PORTUGUESE_ROWS.filter((row) => decoysGradedRight(row).length > 0).map(
+        ({ id }) => id
+      )
+    ).toEqual([])
+  })
+
+  it('[bank] never accepts a Portuguese spelling one of the row’s own decoys answers to', () => {
+    expect(
+      PORTUGUESE_ROWS.flatMap((row) =>
+        spellingsNamingADecoy(row).map(
+          ({ decoy, spelling }) =>
+            `${row.id}: “${spelling}” also names ${decoy}`
+        )
+      )
+    ).toEqual([])
+  })
+
+  it('[bank] asks no Portuguese question twice', () => {
+    const prompts = PORTUGUESE_ROWS.map(({ prompt }) => normalizeAnswer(prompt))
+
+    expect(prompts.length - new Set(prompts).size).toBe(0)
+  })
+
+  it('[bank] pays for a second spelling in Portuguese', () => {
+    expect(
+      PORTUGUESE_ROWS.filter(({ accepted }) => accepted.length > 0).length
+    ).toBeGreaterThan(500)
+  })
+
+  it('[bank] rates no Portuguese row adult, which nothing here can say', () => {
+    expect(PORTUGUESE_ROWS.filter(({ isAdult }) => isAdult)).toEqual([])
   })
 })
