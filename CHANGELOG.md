@@ -19,6 +19,14 @@ one part.
   and the wall included, holds a clue before it opens nor the country before
   the reveal. Screens owed.
 
+- `[Server]` **Cinq indices plays on the buzzer too.** Its third mode, as
+  every game that serves its own questions: a buzz takes the floor and stops
+  the clue's clock, the host judges the country said aloud, and a right
+  answer ends the round, paid by the clue open when the buzz arrived. A wrong
+  one, or a floor run out, holds the seat until the next clue opens. The
+  console sees the country to judge it, a seated host sitting the round out;
+  no seat and no wall does before the reveal. Screens owed.
+
 - `[Shared]` **Le juste chiffre shows the country it asks about.** A
   country's population or area comes with its outline on the question card,
   the one the silhouettes rubric draws: large on the wall, a reminder on the

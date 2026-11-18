@@ -19,7 +19,7 @@ export const GAME_NOTES = {
   estimate:
     'Asks for a number — a population, a height, a length, a price — that every screen estimates, each paid by how close it lands.',
   fiveclues:
-    'Hides a country behind five clues that open one after another, vague to obvious — its size, its region, its outline, its largest cities, its flag and capital; every player answers when they dare, paid more the earlier the clue.',
+    'Hides a country behind five clues that open one after another, vague to obvious — its size, its region, its outline, its largest cities, its flag and capital; every player answers when they dare, paid more the earlier the clue. On the buzzer, the host judges the country said aloud and the first right answer ends the round.',
   higherlower:
     'Deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:

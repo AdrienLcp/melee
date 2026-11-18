@@ -189,7 +189,35 @@ _Five clues_ in English, _Cinco pistas_ in Portuguese.
   seat paid as clue 1, `nextClueAt` running through a pause, a latecomer
   let in.
 
-— cut here: served by a settings frame, tests green, screens owed —
+**`buzzer`, added 18/11/2026**, Adrien's word: three modes, as every game
+that serves its own content (`SERVED_MODES`). What it settled beyond his
+rules:
+
+- **The shell's floor, nothing parallel**: `player.buzz`, `host.judge` with a
+  `single` verdict, `answerWindowMs`, `activeBuzz`. The buzz stops the round's
+  clock, which is the clue clock, so `nextClueAt` is `null` under the floor and
+  the window's remainder comes back by itself; no deadline runs in `buzzed`, so
+  no clue opens there.
+- **The hold is the shell's lockout, cleared as a clue opens**: a miss or a
+  floor run out writes the seat's `guessedOnClue` and puts it in
+  `lockedOutPlayerIds`, which every screen already reads and the buzz refuses
+  as `player_locked_out`; `openNextClue` empties it. Every seat still racing
+  held on a clue opens the next one early, as in `typed`, and on the last
+  closes the round. `host.clearLockouts` lets the held seats buzz again on the
+  same clue.
+- **A right buzz closes the round** through `closeRound`, so `payFiveClues`
+  pays it by `pointsForClue` with every miss on the board at 0, the clock's
+  tenth read off the round's clock stopped at the buzz's stamp.
+- **The console's `currentContent.answer`** is `{ code, name }` in a `buzzer`
+  round, seated or not — a seated console sits the round out
+  (`isJudgedByHost`, held without new code) — and `null` in `typed` and
+  `choice`. The wall's arm stays `{ kind }`.
+- **`five-clues-game.test.ts`**, five more cases, each seen red under a
+  mutation: the clock not stopped by the buzz, the hold never cleared or never
+  set, the bonus measured to the verdict, a right buzz resuming the race, the
+  console seated in the round, the country on a seat's round view.
+
+— cut here: served by a settings frame, three modes, tests green, screens owed —
 
 ## Step 3 — the screens
 

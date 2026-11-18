@@ -1,4 +1,4 @@
-# New game — Cinq indices, step 3: the buzzer mode, then the screens
+# New game — Cinq indices, step 3: the screens
 
 Asked by Adrien on 2026-11-12, the third of three new games. Every choice is
 weighed by what is more fun at the table, never by what it costs to build.
@@ -7,8 +7,8 @@ weighed by what is more fun at the table, never by what it costs to build.
 [`docs/plans/73-five-clues.md`](../docs/plans/73-five-clues.md) holds every
 rule as settled and what step 2 decided beyond it — read it first. The server
 deals the game end to end, reachable by a settings frame and not on the shelf:
-`apps/server/src/domain/round/five-clues-round.ts`, the quiz's `typed` and
-`choice` modes (`choice` the default), and `five-clues-game.test.ts`. The app
+`apps/server/src/domain/round/five-clues-round.ts`, the quiz's three modes
+(`choice` the default), and `five-clues-game.test.ts`. The app
 only compiles: the name and scoring keys in fr/en/pt, a `Telescope` icon, the
 `switch` arms (`candidatesIn` reads `choices` as the quiz's), no screen.
 `docs/realtime-protocol.md` has the view in full, under _A five-clues rung
@@ -49,8 +49,9 @@ and nothing more, seated or not, so it climbs blind:
 **Direction B, _La montée_, is picked.** And the game plays in the three
 modes every game that serves its own content offers: `choice` (four names),
 `typed` (one field) and `buzzer` (said aloud, judged by the host). `choice`
-and `typed` are served; **`buzzer` is owed, server first, before any
-screen**, so the screens are drawn once for all three:
+and `typed` are served, and **`buzzer` is served too (18/11/2026)** —
+what it settled is in plan 73, under step 2 — so the screens are drawn once
+for all three. The rules it was built to:
 
 - **Narrow `buzzer` in** `game-capabilities.ts` beside `typed` and
   `choice`, and judge the round by host (`isJudgedByHost`): the judge is a

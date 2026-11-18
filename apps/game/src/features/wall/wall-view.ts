@@ -86,6 +86,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, solution: null }
     }
 
+    case 'fiveclues': {
+      return { ...content, answer: null }
+    }
+
     default: {
       return content
     }

@@ -142,6 +142,19 @@ describe('the five-clues race', () => {
     expect(mayGuess({ openClueIndex: 3, seat: out })).toBe(false)
   })
 
+  it('[fiveclues] locks a buzz judged wrong to its clue, the typed rule, and lets it buzz again on the next', () => {
+    const held = seatAfterGuess({
+      elapsedInClueMs: 1_200,
+      isCorrect: false,
+      mode: 'buzzer',
+      openClueIndex: 1
+    })
+
+    expect(held).toEqual(lockedOn(1))
+    expect(mayGuess({ openClueIndex: 1, seat: held })).toBe(false)
+    expect(mayGuess({ openClueIndex: 2, seat: held })).toBe(true)
+  })
+
   it('[fiveclues] records the clue and the moment a right answer landed on', () => {
     const seat = seatAfterGuess({
       elapsedInClueMs: 2_345,

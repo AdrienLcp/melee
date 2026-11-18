@@ -99,15 +99,19 @@ const seatsInRace = ({
     )
     .map((participant) => content.seats.get(participant.id) ?? RACING_SEAT)
 
+/** A buzzing seat held on the clue it missed is let back on the floor as the next one opens. */
 const openNextClue = ({
   content,
-  openedAtElapsedMs
+  openedAtElapsedMs,
+  round
 }: {
   content: FiveCluesContent
   openedAtElapsedMs: number
+  round: Round
 }): void => {
   content.openClueIndex += 1
   content.clueOpenedAtElapsedMs = openedAtElapsedMs
+  round.lockedOutPlayerIds.clear()
 }
 
 /**
@@ -129,7 +133,11 @@ export const climbWhenEveryoneGuessed = (room: Room, now: number): void => {
       seats: seatsInRace({ content, now, room, round })
     })
   ) {
-    openNextClue({ content, openedAtElapsedMs: elapsedRoundMs(round, now) })
+    openNextClue({
+      content,
+      openedAtElapsedMs: elapsedRoundMs(round, now),
+      round
+    })
     touch(room, now)
   }
 }
@@ -139,15 +147,21 @@ export const climbWhenEveryoneGuessed = (room: Room, now: number): void => {
  * window ended, and `false` on the last one, which the caller closes.
  */
 export const climbOnTime = (room: Room, now: number): boolean => {
+  const round = room.round
   const content = fiveCluesOf(room)
 
-  if (content === null || content.openClueIndex >= LAST_CLUE_INDEX) {
+  if (
+    round === null ||
+    content === null ||
+    content.openClueIndex >= LAST_CLUE_INDEX
+  ) {
     return false
   }
 
   openNextClue({
     content,
-    openedAtElapsedMs: content.clueOpenedAtElapsedMs + content.clueDurationMs
+    openedAtElapsedMs: content.clueOpenedAtElapsedMs + content.clueDurationMs,
+    round
   })
   touch(room, now)
 
@@ -228,7 +242,7 @@ export const registerFiveCluesGuess = ({
 
   const mode = round.mode.kind
 
-  if (!isFiveCluesMode(mode) || guess.kind !== mode) {
+  if (!isAnsweredOnScreen(mode) || guess.kind !== mode) {
     return Result.failure('invalid_message')
   }
 
@@ -264,10 +278,69 @@ export const registerFiveCluesGuess = ({
   return Result.success()
 }
 
-const isFiveCluesMode = (mode: AnswerMode): mode is FiveCluesMode =>
+const isAnsweredOnScreen = (
+  mode: AnswerMode
+): mode is Exclude<FiveCluesMode, 'buzzer'> =>
   mode === 'choice' || mode === 'typed'
 
-/** What the shared round view and the reveal read of a seat: who answered, when, and what it said. */
+/**
+ * The host's verdict on the seat that took the floor, priced by the clue open
+ * as its buzz arrived: the round's clock stopped on the buzz's stamp, so the
+ * clock's tenth is measured to it however long the floor was held. A miss holds
+ * the seat on the shell's lockout until the next clue opens — one try a clue.
+ * The caller ends the round on a right one: it was said aloud, and the whole
+ * table heard it.
+ */
+export const judgeFiveCluesBuzz = ({
+  buzzedAt,
+  isCorrect,
+  now,
+  playerId,
+  round
+}: {
+  /** When the server heard the buzz, the attempt's stamp on the reveal. */
+  buzzedAt: number
+  isCorrect: boolean
+  now: number
+  playerId: PlayerId
+  round: Round
+}): void => {
+  const content = round.content
+
+  if (content.kind !== 'fiveclues') {
+    return
+  }
+
+  const elapsedMs = elapsedRoundMs(round, now)
+
+  content.seats.set(
+    playerId,
+    seatAfterGuess({
+      elapsedInClueMs: elapsedMs - content.clueOpenedAtElapsedMs,
+      isCorrect,
+      mode: 'buzzer',
+      openClueIndex: content.openClueIndex
+    })
+  )
+
+  if (!isCorrect) {
+    round.lockedOutPlayerIds.add(playerId)
+  }
+
+  keepAttempt({
+    elapsedMs,
+    graded: { isCorrect, said: isCorrect ? content.answer.answer : null },
+    now: buzzedAt,
+    playerId,
+    round
+  })
+}
+
+/**
+ * What the shared round view and the reveal read of a seat: who answered,
+ * when, and what it said — nothing for a buzz judged wrong, which was said
+ * aloud.
+ */
 const keepAttempt = ({
   elapsedMs,
   graded,
@@ -276,7 +349,7 @@ const keepAttempt = ({
   round
 }: {
   elapsedMs: number
-  graded: { isCorrect: boolean; said: string }
+  graded: { isCorrect: boolean; said: string | null }
   now: number
   playerId: PlayerId
   round: Round
@@ -293,10 +366,10 @@ const keepAttempt = ({
   }
 
   if (graded.isCorrect) {
-    entry.landed = [graded.said]
+    entry.landed = graded.said === null ? [] : [graded.said]
     entry.scoredAfterMs = elapsedMs
     entry.verdict = { isCorrect: true, kind: 'single' }
-  } else {
+  } else if (graded.said !== null) {
     entry.lastMiss = graded.said
   }
 

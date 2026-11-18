@@ -283,10 +283,19 @@ const toHostContent = ({
     content.kind === 'reflex' ||
     content.kind === 'swatch' ||
     content.kind === 'mostlikely' ||
-    content.kind === 'thinkalike' ||
-    content.kind === 'fiveclues'
+    content.kind === 'thinkalike'
   ) {
     return { kind: content.kind }
+  }
+
+  if (content.kind === 'fiveclues') {
+    return {
+      answer:
+        round.mode.kind === 'buzzer' && seatId === null
+          ? { code: content.country, name: content.answer.answer }
+          : null,
+      kind: 'fiveclues'
+    }
   }
 
   if (content.kind === 'slate') {

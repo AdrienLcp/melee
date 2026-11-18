@@ -1,14 +1,17 @@
 import { FIVE_CLUES_CLUE_COUNT } from '@melee/protocol/five-clues'
 import type { AnswerMode } from '@melee/protocol/room'
 
-/** The two ways a five-clues round is answered: a typed line, or a pick among four countries. */
-export type FiveCluesMode = Extract<AnswerMode, 'choice' | 'typed'>
+/**
+ * The three ways a five-clues round is answered: a typed line, a pick among
+ * four countries, or a buzz said aloud and judged by the host.
+ */
+export type FiveCluesMode = Extract<AnswerMode, 'buzzer' | 'choice' | 'typed'>
 
 /**
  * Where one seat stands in the round:
  *
  * - `racing` — still looking, `guessedOnClue` the last clue it guessed on,
- *   which locks a typed seat until the next clue opens;
+ *   which locks a typed or a buzzing seat until the next clue opens;
  * - `found` — named the country on `clueIndex`, `elapsedInClueMs` into it;
  * - `out` — picked a wrong country, which ends a `choice` round for it.
  */
@@ -35,8 +38,9 @@ export const mayGuess = ({
 
 /**
  * A seat after a guess `mayGuess` let through: a right one found, a wrong
- * typed one locked until the next clue, a wrong pick out — four candidates
- * with retries would be the answer with extra steps.
+ * typed line or a buzz judged wrong locked until the next clue — one try a
+ * clue, so a vague clue is still worth the risk — and a wrong pick out: four
+ * candidates with retries would be the answer with extra steps.
  */
 export const seatAfterGuess = ({
   elapsedInClueMs,

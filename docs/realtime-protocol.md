@@ -1124,7 +1124,9 @@ the console's and the wall's included, for another seat's line.
 **A five-clues rung travels only once it is open, and the country only at
 the reveal** — to every screen, a seated or a seatless console and the wall
 included: the server judges, and a console at the table is somebody's eyes,
-so `currentContent` is `{ kind: 'fiveclues' }` and nothing more. The round
+so `currentContent.answer` is `null` — save in a `buzzer` round, where the
+console judges what is said aloud and holds the country's `code` and `name`,
+seated or not, a seated console sitting the round out. The round
 view's `clues` holds the open rungs, vaguest first, and none while the
 countdown runs; a rung still to come — its numbers, its region, its outline
 or flag file, its cities, its capital — is in no frame. `openClueIndex` says
@@ -1136,14 +1138,22 @@ clue opens early once every seat still racing has answered on the open one.
 shuffled; `answer`, the country's `code` and `name`, and the whole ladder
 come with the reveal. `standings` says who found on which clue and who is
 out, never what anyone guessed; `yourStanding` adds the reader's
-`guessedOnClue`, which holds a typed seat until the next clue. Answers are
-`player.answer` of kind `typed` or `choice`: one typed guess a clue, a second
-`already_buzzed`; one pick a round, a pick after a wrong one
-`player_locked_out`. The round closes once every stamped seat has found, is
-out or has guessed on the last clue, and pays each by the clue it found on
-(`pointsForClue`), the clock ordering one clue's ties.
+`guessedOnClue`, which holds a typed or buzzing seat until the next clue.
+Answers are `player.answer` of kind `typed` or `choice`: one typed guess a
+clue, a second `already_buzzed`; one pick a round, a pick after a wrong one
+`player_locked_out`. In `buzzer` they are the shell's floor: `player.buzz`
+takes it and stops the round's clock — `nextClueAt` `null`, no clue opening
+under it, the window's remainder given back after — and `host.judge` grants a
+`single` verdict. A miss or a floor run out holds the seat on
+`lockedOutPlayerIds` until the next clue opens, one try a clue, a buzz there
+refused `player_locked_out`; a right one closes the round, one winner, paid by
+the clue open as the buzz arrived and the clock measured to its stamp. The
+round closes once every stamped seat has found, is out or has guessed on the
+last clue, and pays each by the clue it found on (`pointsForClue`), the clock
+ordering one clue's ties.
 `five-clues-game.test.ts` searches every frame of a whole round, per peer,
-for a rung before it opened and for the country before the reveal.
+for a rung before it opened and for the country before the reveal — in
+`buzzer` too, where the console alone carries it.
 
 ## Errors
 

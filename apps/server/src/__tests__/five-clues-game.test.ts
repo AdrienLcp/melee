@@ -87,11 +87,27 @@ const COUNTRY_MARKS = [ANSWER.answer, ...ANSWER.accepted, `"${PERU_CODE}"`]
 /** One wrong country a clue, none of them a neighbour a typed slip could be forgiven into. */
 const WRONG_GUESSES = ['Chili', 'Cuba', 'Mali', 'Canada', 'Laos'] as const
 
-const roomOf = (mode: 'choice' | 'typed'): RoomSettings => ({
+type CluesMode = 'buzzer' | 'choice' | 'typed'
+
+/** How a buzzer room is played, the defaults unless a test needs a shorter clue or a floor that runs out. */
+type BuzzerPace = {
+  /** `null` holds the floor until the host judges. */
+  answerWindowMs?: number | null
+  clueDurationMs?: number
+}
+
+const roomOf = ({
+  answerWindowMs = null,
+  clueDurationMs = DEFAULT_FIVE_CLUES_SETTINGS.clueDurationMs,
+  mode
+}: BuzzerPace & { mode: CluesMode }): RoomSettings => ({
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
-  game: DEFAULT_FIVE_CLUES_SETTINGS,
-  mode: DEFAULT_MODE_SETTINGS[mode],
+  game: { ...DEFAULT_FIVE_CLUES_SETTINGS, clueDurationMs },
+  mode:
+    mode === 'buzzer'
+      ? { answerWindowMs, kind: 'buzzer' }
+      : DEFAULT_MODE_SETTINGS[mode],
   roundCount: 3
 })
 
@@ -150,14 +166,15 @@ const pairedWall = async ({
 
 const roundInPlay = async ({
   consoleName,
-  mode
-}: {
-  /** A name seats the console, which then climbs with the room. */
+  mode,
+  ...pace
+}: BuzzerPace & {
+  /** A name seats the console, which then climbs with the room — or sits a buzzer round out to judge it. */
   consoleName?: string
-  mode: 'choice' | 'typed'
+  mode: CluesMode
 }) => {
   const { code, host, hostToken } = await harness.openRoom(
-    roomOf(mode),
+    roomOf({ mode, ...pace }),
     consoleName
   )
   const wall = await pairedWall({ code, hostToken })
@@ -288,7 +305,10 @@ describe('a five-clues round through the seam', () => {
       status: 'racing'
     })
     expect(cluesRound(wallView(wall))?.clues).toEqual([LADDER[0]])
-    expect(hostView(host)?.currentContent).toEqual({ kind: 'fiveclues' })
+    expect(hostView(host)?.currentContent).toEqual({
+      answer: null,
+      kind: 'fiveclues'
+    })
   })
 
   it.each([
@@ -450,4 +470,222 @@ describe('a five-clues round through the seam', () => {
 
     expect(cluesRound(playerView(zoe))?.clues).toEqual([LADDER[0], LADDER[1]])
   }, 15_000)
+})
+
+const buzz = ({ roundId, seat }: { roundId: string; seat: Seat }) =>
+  seat.send({ roundId, type: 'player.buzz' })
+
+const judge = ({
+  host,
+  isCorrect,
+  roundId,
+  seat
+}: {
+  host: Peer<HostServerMessage>
+  isCorrect: boolean
+  roundId: string
+  seat: Seat
+}) =>
+  host.send({
+    playerId: idOf(seat) ?? '',
+    roundId,
+    type: 'host.judge',
+    verdict: { isCorrect, kind: 'single' }
+  })
+
+const floorOf = (seat: Seat) => playerView(seat)?.round?.activeBuzz ?? null
+
+const takeFloor = async ({
+  roundId,
+  seat
+}: {
+  roundId: string
+  seat: Seat
+}) => {
+  buzz({ roundId, seat })
+  await waitFor(
+    () => floorOf(seat)?.playerId === idOf(seat),
+    'the floor to be taken'
+  )
+}
+
+/** One seat taking the floor and the host saying no, then the round back in play — or revealed, past the last clue. */
+const missOnFloor = async ({
+  host,
+  roundId,
+  seat
+}: {
+  host: Peer<HostServerMessage>
+  roundId: string
+  seat: Seat
+}) => {
+  await takeFloor({ roundId, seat })
+  judge({ host, isCorrect: false, roundId, seat })
+  await waitFor(
+    () => floorOf(seat) === null && playerView(seat)?.phase !== 'buzzed',
+    'the floor to be given back'
+  )
+}
+
+describe('a five-clues round on the buzzer', () => {
+  it('[fiveclues] stops the clue clock under a buzz, opens no clue under the floor, and gives the window’s remainder back', async () => {
+    const clueDurationMs = 5_000
+    const { host, roundId, wall, zoe } = await roundInPlay({
+      clueDurationMs,
+      mode: 'buzzer'
+    })
+    const firstWindowEndsAt = cluesRound(playerView(zoe))?.nextClueAt ?? 0
+
+    await sleep(3_500)
+    await takeFloor({ roundId, seat: zoe })
+
+    expect(cluesRound(playerView(zoe))?.nextClueAt).toBeNull()
+    expect(cluesRound(wallView(wall))?.nextClueAt).toBeNull()
+
+    const heldForMs = 2_500
+
+    await sleep(heldForMs)
+
+    expect(openClueOf(zoe)).toBe(0)
+    expect(cluesRound(playerView(zoe))?.clues).toEqual([LADDER[0]])
+
+    judge({ host, isCorrect: false, roundId, seat: zoe })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the climb back')
+
+    const shiftMs =
+      (cluesRound(playerView(zoe))?.nextClueAt ?? 0) - firstWindowEndsAt
+
+    expect(openClueOf(zoe)).toBe(0)
+    expect(shiftMs).toBeGreaterThanOrEqual(heldForMs)
+    expect(shiftMs).toBeLessThan(heldForMs + 2_000)
+
+    await waitFor(
+      () => openClueOf(zoe) === 1,
+      'the second clue to open once the remainder runs out',
+      3_000
+    )
+  }, 20_000)
+
+  it('[fiveclues] holds a seat judged wrong or whose floor ran out on its clue, then lets it buzz again on the next', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay({
+      answerWindowMs: 3_000,
+      clueDurationMs: 30_000,
+      mode: 'buzzer'
+    })
+
+    await missOnFloor({ host, roundId, seat: zoe })
+
+    expect(playerView(zoe)?.round?.lockedOutPlayerIds).toEqual([idOf(zoe)])
+    expect(cluesRound(playerView(zoe))?.yourStanding).toEqual({
+      guessedOnClue: 0,
+      status: 'racing'
+    })
+
+    buzz({ roundId, seat: zoe })
+    await waitFor(() => errorsIn(zoe).length === 1, 'the second buzz refused')
+
+    expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['player_locked_out'])
+
+    await takeFloor({ roundId, seat: max })
+    await waitFor(
+      () => openClueOf(zoe) === 1,
+      'the floor to run out and the next clue to open, every seat held',
+      5_000
+    )
+
+    expect(playerView(zoe)?.round?.lockedOutPlayerIds).toEqual([])
+
+    await takeFloor({ roundId, seat: zoe })
+
+    expect(errorsIn(zoe)).toHaveLength(1)
+  }, 15_000)
+
+  it('[fiveclues] pays a right buzz by the clue open as it arrived, its clock measured to the buzz, and ends the round', async () => {
+    const clueDurationMs = 5_000
+    const { host, max, roundId, zoe } = await roundInPlay({
+      clueDurationMs,
+      mode: 'buzzer'
+    })
+
+    await missOnFloor({ host, roundId, seat: zoe })
+    await missOnFloor({ host, roundId, seat: max })
+    await waitFor(() => openClueOf(zoe) === 1, 'the second clue to open early')
+    await takeFloor({ roundId, seat: zoe })
+    await sleep(3_000)
+    judge({ host, isCorrect: true, roundId, seat: zoe })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const awards = hostView(host)?.round?.awards ?? []
+    const won = awards.find(({ playerId }) => playerId === idOf(zoe))
+    const clockShare = worthOfClue(1) / 10
+
+    expect(cluesRound(hostView(host))?.standings).toContainEqual({
+      clueIndex: 1,
+      playerId: idOf(zoe),
+      status: 'found'
+    })
+    expect(won?.points).toBeLessThanOrEqual(worthOfClue(1))
+    expect(won?.speedBonus).toBeGreaterThan(clockShare * 0.9)
+    expect(awards.find(({ playerId }) => playerId === idOf(max))?.points).toBe(
+      0
+    )
+    expect(
+      hostView(host)?.players.find(({ id }) => id === idOf(zoe))?.score
+    ).toBe(won?.points)
+  }, 15_000)
+
+  it('[fiveclues] sits a seated console out of a buzzer round and hands it the country to judge', async () => {
+    const { host, zoe } = await roundInPlay({
+      consoleName: 'Marina',
+      mode: 'buzzer'
+    })
+    const consoleSeat = hostView(host)?.youId
+
+    expect(consoleSeat).not.toBeNull()
+    expect(playerView(zoe)?.round?.openedWithPlayerIds).not.toContain(
+      consoleSeat
+    )
+    expect(hostView(host)?.currentContent).toEqual({
+      answer: { code: PERU_CODE, name: ANSWER.answer },
+      kind: 'fiveclues'
+    })
+    expect(cluesRound(hostView(host))?.yourStanding).toBeNull()
+  })
+
+  it.each([
+    { consoleName: undefined, label: 'a console' },
+    { consoleName: 'Marina', label: 'a seated console' }
+  ])(
+    '[fiveclues] sends no seat or wall the country before the reveal, $label alone holding it to judge',
+    async ({ consoleName }) => {
+      const { host, max, roundId, wall, zoe } = await roundInPlay({
+        consoleName,
+        mode: 'buzzer'
+      })
+
+      for (const clueIndex of LADDER.keys()) {
+        await missOnFloor({ host, roundId, seat: zoe })
+        await missOnFloor({ host, roundId, seat: max })
+        await waitFor(
+          () =>
+            clueIndex === LADDER.length - 1
+              ? playerView(zoe)?.phase === 'revealed'
+              : openClueOf(zoe) === clueIndex + 1,
+          `everyone to have missed on clue ${clueIndex + 1}`
+        )
+      }
+
+      for (const peer of [zoe, max, wall]) {
+        expect(leaksIn(peer.frames)).toEqual([])
+      }
+
+      const consoleLeaks = leaksIn(host.frames)
+
+      expect(consoleLeaks).toContain(`"${PERU_CODE}"`)
+      expect(
+        consoleLeaks.filter((mark) => !COUNTRY_MARKS.includes(mark))
+      ).toEqual([])
+    },
+    20_000
+  )
 })

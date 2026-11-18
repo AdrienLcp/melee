@@ -94,8 +94,10 @@ import {
 import { takeDuel } from '@/domain/round/duels'
 import { payEstimates } from '@/domain/round/estimate-round'
 import {
+  climbWhenEveryoneGuessed,
   clueWindowEndsAtElapsedMs,
   isFiveCluesSettled,
+  judgeFiveCluesBuzz,
   payFiveClues,
   registerFiveCluesGuess
 } from '@/domain/round/five-clues-round'
@@ -1793,6 +1795,28 @@ export const applyVerdict = ({
     return Result.failure('invalid_message')
   }
 
+  // Paid by the clue open as the buzz arrived rather than a flat point, at the
+  // close with every other seat, and one winner a round: a right answer said
+  // aloud is one the whole table heard.
+  if (round.content.kind === 'fiveclues') {
+    judgeFiveCluesBuzz({
+      buzzedAt: round.activeBuzz.atServerTime,
+      isCorrect: !isMiss(verdict),
+      now,
+      playerId,
+      round
+    })
+    round.activeBuzz = null
+
+    if (isMiss(verdict)) {
+      return Result.success(resumeOrReveal(room, now))
+    }
+
+    closeRound(room, now)
+
+    return Result.success('revealed')
+  }
+
   const points = pointsFor(verdict)
   const participant = room.players.get(playerId)
 
@@ -2340,6 +2364,10 @@ const resumeOrReveal = (room: Room, now: number): VerdictOutcome => {
     return 'revealed'
   }
 
+  if (round.content.kind === 'fiveclues') {
+    return resumeFiveCluesClimb(room, now)
+  }
+
   const remaining = remainingRoundMs(room, now)
 
   const canResume =
@@ -2363,6 +2391,35 @@ const resumeOrReveal = (room: Room, now: number): VerdictOutcome => {
 
   room.phase = 'playing'
   round.runningSince = now
+  touch(room, now)
+
+  return 'resumed'
+}
+
+/**
+ * The clue clock picks up where the buzz stopped it, the window's remainder
+ * given back, unless the room is paused under the floor. Unlike the shell's
+ * resume, every seat held is no reason to reveal: the next clue lets them back,
+ * and opens at once when every seat still racing has missed on this one. Only
+ * the last clue closes the round that way.
+ */
+const resumeFiveCluesClimb = (room: Room, now: number): VerdictOutcome => {
+  const round = room.round
+
+  if (round === null) {
+    return 'revealed'
+  }
+
+  room.phase = 'playing'
+  round.runningSince = round.isPaused ? null : now
+  climbWhenEveryoneGuessed(room, now)
+
+  if (isFiveCluesSettled(room, now)) {
+    closeRound(room, now)
+
+    return 'revealed'
+  }
+
   touch(room, now)
 
   return 'resumed'

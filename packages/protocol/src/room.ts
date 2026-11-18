@@ -1269,11 +1269,16 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   /** Nothing withheld, and nothing more: no answer exists before the room writes one. */
   z.object({ kind: z.literal('thinkalike') }),
   /**
-   * Nothing, and a withholding this time: the server judges every answer, and
-   * a console at the table is somebody's eyes, so it climbs blind with the
-   * rest of the room.
+   * The country, its code and its name in the room's language, in a `buzzer`
+   * round alone, where the console judges what is said aloud and sits the
+   * round out if seated. `null` in `typed` and `choice`: the server judges
+   * every answer, and a console at the table is somebody's eyes, so it climbs
+   * blind with the rest of the room.
    */
-  z.object({ kind: z.literal('fiveclues') })
+  z.object({
+    answer: fiveCluesAnswerSchema.nullable(),
+    kind: z.literal('fiveclues')
+  })
 ])
 
 /**
