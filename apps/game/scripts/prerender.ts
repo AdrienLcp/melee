@@ -26,7 +26,7 @@ type EntryServer = {
   openGraphLocales: Record<Locale, string>
   prerenderedPages: PrerenderedPage[]
   renderPage: (page: PrerenderedPage) => Promise<RenderedPage>
-  shareImagePaths: Record<Locale, string>
+  shareImagePath: string
   headScripts: readonly string[]
   landingSequenceScript: (entry: string) => string
 }
@@ -57,7 +57,7 @@ const {
   renderPage,
   headScripts,
   landingSequenceScript,
-  shareImagePaths
+  shareImagePath
 }: EntryServer = await import(pathToFileURL(SERVER_ENTRY).href)
 
 /**
@@ -126,7 +126,7 @@ const documentFor = async (page: PrerenderedPage): Promise<string> => {
       'name="description"': description,
       'property="og:description"': description,
       'property="og:image:alt"': imageAlts[page.locale],
-      'property="og:image"': `${origin}${shareImagePaths[page.locale]}`,
+      'property="og:image"': `${origin}${shareImagePath}`,
       'property="og:title"': title,
       'property="og:url"': url
     }

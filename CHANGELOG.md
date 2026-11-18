@@ -255,6 +255,21 @@ one part.
 
 ### Improvements
 
+- `[Server]` **Estimate and higher or lower know Madrid.** The world's cities
+  now take in twenty-two Wikidata filed outside the classes the bank read —
+  Madrid, Seville, Valencia, Buenos Aires, Brussels, Los Angeles, Budapest,
+  Kyiv, Tehran, Riyadh, Kinshasa among them — and Lisbon is dealt to
+  every table rather than to a Portuguese one alone. Brussels is counted as
+  its region, the million a table means, and every row already banked keeps
+  its figure.
+
+- `[Game]` **A shared link shows every game.** The image a link to Mêlée
+  unfurls into is now the logo beside a tile for each of the twenty games, in
+  its colour with its icon — _Mystery word_, _Longest word_, _Make the number_
+  and _Great minds_ included. It carries no sentence and no game name, so one
+  image serves every language: the preview already prints the title and
+  description in the page's own.
+
 - `[Game]` **A name inside a sentence is set in the read face.** Somebody
   arriving, _playing as_, Petit Bac's stop, the duel, black square's fall, its
   keeper and team, the track's leader, the slate's blanks, a team to move to

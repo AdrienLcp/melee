@@ -3,18 +3,15 @@ import { crc32 } from 'node:zlib'
 
 import { describe, expect, it } from 'vitest'
 
-import { SHARE_IMAGE_PATHS } from '@/presentation/head/document-head'
+import { SHARE_IMAGE_PATH } from '@/presentation/head/document-head'
 
 const INDEX_HTML = readFileSync(
   new URL('../../../index.html', import.meta.url),
   'utf8'
 )
 
-const SHARE_IMAGES = Object.entries(SHARE_IMAGE_PATHS).map(
-  ([locale, path]) => ({
-    image: readFileSync(new URL(`../../../public${path}`, import.meta.url)),
-    locale
-  })
+const image = readFileSync(
+  new URL(`../../../public${SHARE_IMAGE_PATH}`, import.meta.url)
 )
 
 const PNG_SIGNATURE = Buffer.from([
@@ -52,7 +49,7 @@ const readMetaNumber = (property: string): number => {
   return Number(match?.[1])
 }
 
-describe.each(SHARE_IMAGES)('$locale share image', ({ image }) => {
+describe('share image', () => {
   it('[share-image] opens with the PNG signature, its line-ending bytes intact', () => {
     expect(image.subarray(0, PNG_SIGNATURE.length)).toEqual(PNG_SIGNATURE)
   })

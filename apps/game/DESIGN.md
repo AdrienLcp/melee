@@ -923,11 +923,14 @@ beside the word, or its control carries the name.
 order — `--tile-1..4` faces with their `--tile-mark-1..4` shapes — on a
 rounded square of the dark `--board`, in hex since a favicon reads no token.
 `public/apple-touch-icon.png` is the same mark inset at 75% on a full-bleed
-board at 180×180, since iOS rounds it itself. `og.png` (English, also the root's),
-`og-fr.png` and `og-pt.png` are drawn from the front door in that language, dark palette: the
-wordmark and a two-line promise on the left, every game's spine on the right in
-two columns, ticked, taglines dropped, names fitted to the widest. Redraw all
-three when a game joins the shelf.
+board at 180×180, since iOS rounds it itself. `og.png`, the share image, is
+one for every language and holds no words beyond the wordmark, since the link
+preview prints the page's title and description beside it: on the dark
+`--board`, the mark over the wordmark on the left, and on the right every
+game's glyph in the shelf's order on a tile of its `--spine` ground with a
+ledge of the spine at 62% over black — rounded squares, never the spine's
+lit edge, which reads as a button nobody can press. Twenty tiles are five
+columns of 104px with 18px between; redraw it when a game joins the shelf.
 
 ## Components
 

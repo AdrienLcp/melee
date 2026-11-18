@@ -403,20 +403,16 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
 }
 
 /**
- * The share image is drawn once per language, from the front door in that
- * language: its game names are the dictionary's, and an English shelf under a
- * French description reads as two products.
+ * One share image serves every language: it carries the mark and each game's
+ * glyph and no words, because the link preview already prints the page's
+ * title and description beside it in the page's language.
  */
-export const SHARE_IMAGE_PATHS: Record<Locale, string> = {
-  en: '/og.png',
-  fr: '/og-fr.png',
-  pt: '/og-pt.png'
-}
+export const SHARE_IMAGE_PATH = '/og.png'
 
 export const IMAGE_ALTS: Record<Locale, string> = {
-  en: 'The Mêlée wordmark beside the shelf of every game it plays, each in its own colour.',
-  fr: 'Le nom Mêlée à côté de l’étagère de tous ses jeux, chacun dans sa couleur.',
-  pt: 'O nome Mêlée ao lado da prateleira de todos os seus jogos, cada um na sua cor.'
+  en: 'The Mêlée logo beside the icon of every game it plays, each in its own colour.',
+  fr: 'Le logo Mêlée à côté de l’icône de chacun de ses jeux, chacun dans sa couleur.',
+  pt: 'O logótipo Mêlée ao lado do ícone de cada um dos seus jogos, cada um na sua cor.'
 }
 
 /**

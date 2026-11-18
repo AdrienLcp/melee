@@ -27,7 +27,7 @@ import {
   OPEN_GRAPH_LOCALES,
   PAGE_HEADS,
   type PageHead,
-  SHARE_IMAGE_PATHS
+  SHARE_IMAGE_PATH
 } from '@/presentation/head/document-head'
 import { i18n } from '@/presentation/i18n/i18n'
 import { ROUTE_FALLBACK_CLASS } from '@/presentation/route-fallback'
@@ -54,7 +54,7 @@ export type RenderedPage = Pick<PageHead, 'description'> & {
 export {
   IMAGE_ALTS as imageAlts,
   OPEN_GRAPH_LOCALES as openGraphLocales,
-  SHARE_IMAGE_PATHS as shareImagePaths
+  SHARE_IMAGE_PATH as shareImagePath
 }
 
 /** Inlined in each prerendered document's head, run before its first paint. */
