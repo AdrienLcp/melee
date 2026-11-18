@@ -1,6 +1,7 @@
 import type { QuantityFamily } from '@melee/protocol/estimate'
 import type {
   HigherLowerPicks,
+  PairPicture,
   ValuedHigherLowerPair
 } from '@melee/protocol/higher-lower'
 import type { PairsVerdict } from '@melee/protocol/scoring'
@@ -14,10 +15,14 @@ type HigherLowerContent = Extract<Round['content'], { kind: 'higherlower' }>
 type BankedQuantity = {
   family: QuantityFamily
   names: ValuedHigherLowerPair['left']
+  picture: PairPicture | null
   value: number
 }
 
-/** A pair the bank dealt, asked in its family's words, each side where the deal put it. */
+/**
+ * A pair the bank dealt, asked in its family's words, each side where the
+ * deal put it, pictured only when both sides are.
+ */
 export const bankedPairOf = ({
   left,
   right
@@ -28,6 +33,10 @@ export const bankedPairOf = ({
   ask: { family: left.family, kind: 'bank' },
   left: left.names,
   leftValue: left.value,
+  pictures:
+    left.picture === null || right.picture === null
+      ? null
+      : { left: left.picture, right: right.picture },
   right: right.names,
   rightValue: right.value
 })

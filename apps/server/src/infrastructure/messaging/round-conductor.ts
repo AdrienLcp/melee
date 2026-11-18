@@ -103,6 +103,7 @@ import {
   bankQuestionOf,
   drawPairs,
   drawQuantity,
+  pairPictureOf,
   playedPairedQuantityId,
   playedQuantityId
 } from '@/infrastructure/questions/quantity-bank'
@@ -779,7 +780,14 @@ export const beginRound = async (
           })
         : null
     const pairs =
-      fromDeck === null ? (banked?.map(bankedPairOf) ?? null) : [fromDeck.pair]
+      fromDeck === null
+        ? (banked?.map(({ left, right }) =>
+            bankedPairOf({
+              left: { ...left, picture: pairPictureOf(left) },
+              right: { ...right, picture: pairPictureOf(right) }
+            })
+          ) ?? null)
+        : [fromDeck.pair]
 
     if (pairs === null) {
       tellHost(engine, {

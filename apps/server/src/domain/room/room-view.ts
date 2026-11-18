@@ -523,12 +523,14 @@ const valuedPairOf = ({
   ask,
   left,
   leftValue,
+  pictures,
   right,
   rightValue
 }: ValuedHigherLowerPair): ValuedHigherLowerPair => ({
   ask: { ...ask },
   left: { ...left },
   leftValue,
+  pictures,
   right: { ...right },
   rightValue
 })
@@ -680,9 +682,10 @@ const toContentView = ({
   if (content.kind === 'higherlower') {
     return {
       kind: 'higherlower',
-      pairs: content.pairs.map(({ ask, left, right }) => ({
+      pairs: content.pairs.map(({ ask, left, pictures, right }) => ({
         ask: { ...ask },
         left: { ...left },
+        pictures,
         right: { ...right }
       })),
       revealedPairs: round.revealed ? content.pairs.map(valuedPairOf) : null,

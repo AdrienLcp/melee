@@ -18,6 +18,7 @@ import {
   bankQuestionOf,
   drawPairs,
   drawQuantity,
+  pairPictureOf,
   playedPairedQuantityId,
   playedQuantityId,
   type QuantityRow,
@@ -430,5 +431,28 @@ describe('the picture under a quantity', () => {
         'A classic baguette from a French bakery (average price, early 2025)'
       )?.photo?.file
     ).toBe('0445ca3fea6e.webp')
+  })
+
+  it('[higherlower] prints a tower by its photograph, a country by its outline and a city by nothing', () => {
+    const pictureOf = (english: string, family: QuantityRow['family']) => {
+      const row = bankedQuantities().find(
+        (candidate) =>
+          candidate.names.en === english && candidate.family === family
+      )
+
+      return row === undefined ? undefined : pairPictureOf(row)
+    }
+
+    expect(pictureOf('Eiffel Tower', 'height.building')).toEqual({
+      file: 'b9fa639ce03e.webp',
+      height: 640,
+      kind: 'photo',
+      width: 346
+    })
+    expect(pictureOf('France', 'area.country')).toEqual({
+      file: '0b5911a2c922.svg',
+      kind: 'silhouette'
+    })
+    expect(pictureOf('Lyon', 'population.city')).toBeNull()
   })
 })

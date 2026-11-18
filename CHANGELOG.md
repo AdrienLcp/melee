@@ -23,6 +23,12 @@ one part.
   lying down it sits above the name. The card keeps the photograph's shape
   while the file arrives, and the picture fades in, so nothing moves.
 
+- `[Shared]` **Plus ou moins shows the two things it compares.** A pair of
+  summits, towers, rivers or countries comes with a photograph or an outline
+  on each tile — large on the wall, filling what the name leaves on a
+  player's tile — and the lower one goes grey at the reveal. A pair shows
+  pictures on both sides or on neither.
+
 - `[Shared]` **Mêlée speaks European Portuguese.** _Português_ joins English
   and French in the menu, and every page is served under `/pt` with its own
   title, description and share image. A table opened in Portuguese plays in

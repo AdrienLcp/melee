@@ -68,6 +68,10 @@
         justify-items: center
         row-gap: 0.3em
 
+        &:has(> .picture)
+          grid-template: 'picture' minmax(0, 1fr) 'mark' auto 'title' auto / minmax(0, 1fr)
+          row-gap: 0
+
     // Lying down the two side by side whatever the width, each sized off its
     // own column and the height the page leaves it: stacked, a phone held
     // sideways put the second name under the fold.

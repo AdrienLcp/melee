@@ -15,6 +15,7 @@ import { higherSideOf } from '@melee/core/higherlower/pair-deal'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { CheckIcon, CrossIcon } from './icons'
+import { PairPicture } from './pair-picture'
 import { Pawn } from './pawn'
 import { usePairAsks } from './use-pair-asks'
 import { useShortQuantityWords } from './use-quantity-words'
@@ -44,7 +45,9 @@ const isValued = (
 /**
  * The five pairs one under the other, each asked in its family's words: the
  * names alone while the sheets are out, which is what the table argues over,
- * and both values with the higher side inked once they are in.
+ * and both values with the higher side inked once they are in. A pictured
+ * pair prints each side's picture over its name, sized by the screen through
+ * `--pairs-picture-height`.
  */
 export const HigherLowerPairs: React.FC<HigherLowerPairsProps> = ({
   pairs,
@@ -96,6 +99,11 @@ export const HigherLowerPairs: React.FC<HigherLowerPairsProps> = ({
                     data-yours={isYours || undefined}
                     key={side}
                   >
+                    {pair.pictures !== null && (
+                      <span className='picture'>
+                        <PairPicture picture={pair.pictures[side]} />
+                      </span>
+                    )}
                     <span className='name'>{pair[side][locale]}</span>
                     {isValued(pair) && (
                       <span className='value'>

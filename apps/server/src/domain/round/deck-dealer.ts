@@ -174,6 +174,7 @@ export const nextDeckPair = ({
           ask: { kind: 'own', prompt, unit },
           left: labelsOf(left.name),
           leftValue: left.value,
+          pictures: null,
           right: labelsOf(right.name),
           rightValue: right.value
         },

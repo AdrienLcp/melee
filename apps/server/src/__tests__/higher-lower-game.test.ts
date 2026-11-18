@@ -175,6 +175,7 @@ describe('a higher-or-lower round through the seam', () => {
     expect(round?.pairs[0]).toEqual({
       ask: { family: 'length.river', kind: 'bank' },
       left: { en: 'High0', fr: 'High0', pt: 'High0' },
+      pictures: null,
       right: { en: 'Low0', fr: 'Low0', pt: 'Low0' }
     })
     expect(round?.revealedPairs).toBeNull()
@@ -188,6 +189,7 @@ describe('a higher-or-lower round through the seam', () => {
         ask: { family: 'length.river', kind: 'bank' },
         left: { en: 'High0', fr: 'High0', pt: 'High0' },
         leftValue: VALUES[0],
+        pictures: null,
         right: { en: 'Low0', fr: 'Low0', pt: 'Low0' },
         rightValue: (VALUES[0] ?? 0) / 2 + 7
       }

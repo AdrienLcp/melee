@@ -1,8 +1,13 @@
 import { z } from 'zod'
 
-import { bankQuantityAskSchema, ownQuantityAskSchema } from './estimate'
+import {
+  bankQuantityAskSchema,
+  estimatePhotoSchema,
+  ownQuantityAskSchema
+} from './estimate'
 import { playerIdSchema } from './identifiers'
 import { localizedSchema } from './locale'
+import { silhouetteFileSchema } from './question'
 
 /**
  * One, because only a few hundred things are famous enough to rank: five a
@@ -24,6 +29,12 @@ export const higherLowerPicksSchema = z
 
 const quantityNamesSchema = localizedSchema(z.string().min(1))
 
+/** What one side of a pair is printed with: a photograph, or a country's outline. */
+export const pairPictureSchema = z.discriminatedUnion('kind', [
+  estimatePhotoSchema.extend({ kind: z.literal('photo') }),
+  z.object({ file: silhouetteFileSchema, kind: z.literal('silhouette') })
+])
+
 /** The longest name an evening may give one side of its own pair. */
 export const HIGHER_LOWER_NAME_MAX_LENGTH = 60
 
@@ -40,6 +51,13 @@ export const higherLowerPairSchema = z.object({
     ownQuantityAskSchema
   ]),
   left: quantityNamesSchema,
+  /**
+   * A picture on each side, or on neither: one bare tile beside a photograph
+   * reads as the famous one. `null` on an evening's own pair.
+   */
+  pictures: z
+    .object({ left: pairPictureSchema, right: pairPictureSchema })
+    .nullable(),
   right: quantityNamesSchema
 })
 
@@ -55,6 +73,7 @@ export const sentHigherLowerSheetSchema = z.object({
   playerId: playerIdSchema
 })
 
+export type PairPicture = z.infer<typeof pairPictureSchema>
 export type HigherLowerSide = z.infer<typeof higherLowerSideSchema>
 export type HigherLowerPicks = z.infer<typeof higherLowerPicksSchema>
 export type HigherLowerPair = z.infer<typeof higherLowerPairSchema>

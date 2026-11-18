@@ -12,6 +12,7 @@ import { fadeOffACopyOfTheForm } from '@/features/player/form-leaving-copy'
 import { higherLowerContent } from '@/helpers/round-content'
 import { AnswerTile } from '@/presentation/components/answer-tile'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
+import { PairPicture } from '@/presentation/components/pair-picture'
 import { usePairAsks } from '@/presentation/components/use-pair-asks'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -136,6 +137,11 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
                 onPress={(event) => {
                   pick({ from: event.target, side })
                 }}
+                picture={
+                  pair.pictures === null ? null : (
+                    <PairPicture picture={pair.pictures[side]} />
+                  )
+                }
                 subtitle={null}
                 title={pair[side][locale]}
               />

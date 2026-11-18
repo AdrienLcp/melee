@@ -816,10 +816,42 @@ const WIDE_PHOTOGRAPHED_QUANTITY = {
   silhouette: null
 }
 
+/** Two buildings photographed, the bank's longest name on its tallest file beside a file lying down. */
+const PHOTOGRAPHED_PAIR = {
+  ask: { family: 'height.building', kind: 'bank' },
+  left: TALL_PHOTOGRAPHED_QUANTITY.names,
+  pictures: {
+    left: { ...TALL_PHOTOGRAPHED_QUANTITY.photo, kind: 'photo' },
+    right: { file: '51bb898a63d5.webp', height: 485, kind: 'photo', width: 640 }
+  },
+  right: { en: 'Burj Khalifa', fr: 'Burj Khalifa', pt: 'Burj Khalifa' }
+}
+
 const REVEALS = [
   {
     content: QUIZ_WITH_A_NOTE,
     name: 'quiz with a note'
+  },
+  {
+    content: {
+      kind: 'higherlower',
+      pairs: [PHOTOGRAPHED_PAIR],
+      revealedPairs: [
+        { ...PHOTOGRAPHED_PAIR, leftValue: 405, rightValue: 828 }
+      ],
+      revealedSheets: table.map(({ id }, seat) => ({
+        picks: [seat % 3 === 0 ? 'left' : 'right'],
+        playerId: id
+      })),
+      yourPicks: null
+    },
+    name: 'plus ou moins with two photographs',
+    overrides: {
+      settings: {
+        game: { kind: 'higherlower', roundDurationMs: 10_000 },
+        mode: { kind: 'pairs' }
+      }
+    }
   },
   {
     content: {
@@ -1808,6 +1840,30 @@ const WALL_SCREENS = [
     view: { ...eveningRound, phase: 'lobby', round: null }
   },
   { name: 'round', ready: '.answer-tile', view: eveningRound },
+  {
+    name: 'plus ou moins, two photographs',
+    ready: '.higher-lower-pairs .estimate-photo',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        content: {
+          kind: 'higherlower',
+          pairs: [PHOTOGRAPHED_PAIR],
+          revealedPairs: null,
+          revealedSheets: null,
+          yourPicks: null
+        }
+      },
+      settings: {
+        ...eveningRound.settings,
+        game: { kind: 'higherlower', roundDurationMs: 10_000 },
+        lineUp: [{ kind: 'higherlower', roundDurationMs: 10_000 }],
+        lineUpAt: 0,
+        mode: { kind: 'pairs' }
+      }
+    }
+  },
   {
     name: "le juste chiffre, a country's outline",
     ready: '.estimate-question .country-silhouette',
@@ -3588,9 +3644,23 @@ const higherLowerScreen = () =>
             'Saryozen (rivière du bassin Volga-Oural)',
             'Maly Uzen'
           ),
+          pictures: null,
           right: inEveryLocale('Vichera (oblast de Novgorod)', 'Vishera')
         }
       ],
+      revealedPairs: null,
+      revealedSheets: null,
+      yourPicks: null
+    },
+    game: { kind: 'higherlower', roundDurationMs: 10_000 },
+    mode: { kind: 'pairs' }
+  })
+
+const photographedHigherLowerScreen = () =>
+  answeringView({
+    content: {
+      kind: 'higherlower',
+      pairs: [PHOTOGRAPHED_PAIR],
       revealedPairs: null,
       revealedSheets: null,
       yourPicks: null
@@ -3938,6 +4008,16 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
       ready: '.higher-lower-answer'
     },
     view: higherLowerScreen()
+  },
+  {
+    name: 'plus ou moins, two photographs',
+    ready: '.higher-lower-answer .estimate-photo[data-loaded]',
+    // The seated console's tiles are too short for a face, and drop it.
+    seated: {
+      currentContent: { kind: 'higherlower', valuedPairs: null },
+      ready: '.higher-lower-answer .answer-tile'
+    },
+    view: photographedHigherLowerScreen()
   }
 ]
 

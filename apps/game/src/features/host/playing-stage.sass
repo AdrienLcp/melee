@@ -349,12 +349,16 @@
 
         --pairs-gap: clamp(var(--space-xs), 1.6cqmin, var(--space-m))
         --pairs-name-size: clamp(var(--text-m), 3.4cqmin, 2.5rem)
+        --pairs-picture-height: clamp(4rem, 44cqh, 26rem)
 
         align-self: center
         inline-size: min(100%, 64rem)
         margin-block: auto
         overflow-y: auto
         padding: clamp(var(--space-s), 2.4cqmin, var(--space-l))
+
+        .side:has(> .picture) .name
+          text-align: center
 
         // A lone pair's question is already the headline.
         > li:only-child

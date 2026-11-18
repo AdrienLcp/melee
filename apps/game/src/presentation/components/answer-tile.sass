@@ -33,6 +33,36 @@
       grid-template: 'mark title' auto 'mark subtitle' auto / auto minmax(0, 1fr)
       width: 100%
 
+    // The picture takes whatever height the words leave, and gives it all
+    // back once that is too little to read a face from.
+    .face:has(> .picture)
+      align-self: stretch
+      grid-template: 'picture picture' minmax(0, 1fr) 'mark title' auto 'mark subtitle' auto / auto minmax(0, 1fr)
+      height: 100%
+
+    .picture
+      --prompt-picture-height: 100cqh
+
+      container-type: size
+      display: grid
+      grid-area: picture
+      grid-template: minmax(0, 1fr) / minmax(0, 1fr)
+      min-height: 0
+      // The gap under it lives inside its track, so a slot too short to
+      // show the picture takes no room at all.
+      padding-block-end: 0.4em
+      place-items: center
+      // A size container has no size of its own: centred like the words, it
+      // shrank to nothing.
+      place-self: stretch
+
+      .country-silhouette
+        background: currentColor
+
+      @container (height < 3.5rem)
+        > *
+          visibility: hidden
+
     .tile-mark
       color: var(--tile-mark)
       grid-area: mark

@@ -12,6 +12,7 @@ import {
   TOPIC_OF_FAMILY,
   wikidataQuantityFamilySchema
 } from '@melee/protocol/estimate'
+import type { PairPicture } from '@melee/protocol/higher-lower'
 import { localizedSchema } from '@melee/protocol/locale'
 
 import { shuffled } from '@melee/core/helpers/random'
@@ -146,6 +147,17 @@ export const bankQuestionOf = (
   silhouette:
     row.countryCode === null ? null : silhouetteFileOf(row.countryCode)
 })
+
+/** What a row's tile in a pair is printed with: the question's photograph, else its outline. */
+export const pairPictureOf = (row: QuantityRow): PairPicture | null => {
+  const { photo, silhouette } = bankQuestionOf(row)
+
+  if (photo !== null) {
+    return { ...photo, kind: 'photo' }
+  }
+
+  return silhouette === null ? null : { file: silhouette, kind: 'silhouette' }
+}
 
 /** Every price of the hand-written bank, as a quantity counted in euros. */
 export const bankedPrices = (): readonly QuantityRow[] => priceBankOf().rows

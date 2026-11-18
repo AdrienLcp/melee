@@ -13,20 +13,27 @@ type AnswerTileProps = Omit<ReactAriaButtonProps, 'children' | 'className'> & {
   index: number
   /** Whether this is the tile the player took, which stays inked once spent. */
   isChosen?: boolean
+  /** Printed above the candidate, filling the tile's room the words leave; `null` for none. */
+  picture?: React.ReactNode
   /** The blind test's second line — the artist — or `null` for one line. */
   subtitle: string | null
   title: string
 }
 
-type AnswerTileFaceProps = Pick<AnswerTileProps, 'index' | 'subtitle' | 'title'>
+type AnswerTileFaceProps = Pick<
+  AnswerTileProps,
+  'index' | 'picture' | 'subtitle' | 'title'
+>
 
 /** What is printed on a tile, pressable or not: its shape and its candidate. */
 export const AnswerTileFace: React.FC<AnswerTileFaceProps> = ({
   index,
+  picture = null,
   subtitle,
   title
 }) => (
   <span className='face'>
+    {picture !== null && <span className='picture'>{picture}</span>}
     <TileMark index={index} />
     <span className='title'>{title}</span>
     {subtitle !== null && <span className='subtitle'>{subtitle}</span>}
@@ -47,6 +54,7 @@ export const tileInks = (index: number) => ({
 export const AnswerTile: React.FC<AnswerTileProps> = ({
   index,
   isChosen = false,
+  picture = null,
   subtitle,
   title,
   ...props
@@ -57,6 +65,11 @@ export const AnswerTile: React.FC<AnswerTileProps> = ({
     data-chosen={isChosen || undefined}
     style={tileInks(index)}
   >
-    <AnswerTileFace index={index} subtitle={subtitle} title={title} />
+    <AnswerTileFace
+      index={index}
+      picture={picture}
+      subtitle={subtitle}
+      title={title}
+    />
   </ReactAriaButton>
 )

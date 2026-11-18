@@ -122,6 +122,13 @@
       .higher-lower-pairs
         --pairs-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.4), var(--space-m))
         --pairs-name-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), 1.75rem)
+        --pairs-picture-height: clamp(3rem, calc(var(--stage-unit) * 12), 9rem)
+
+        // The names and the values are the reveal; the head is too short
+        // for both and a picture above them.
+        @media (height < 50rem)
+          .picture
+            display: none
         --pairs-side-padding: var(--space-2xs) var(--space-xs)
         --pairs-value-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), 1.5rem)
 

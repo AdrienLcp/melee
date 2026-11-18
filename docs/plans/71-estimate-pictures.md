@@ -1,8 +1,8 @@
 # 71 — A picture with every estimate question
 
-**Steps 1 to 3 done 18/11/2026** — the countries' outline on every screen,
-the photographs built and credited, then drawn on every screen. Step 4
-(Plus ou moins) is not started. Asked
+**Done 18/11/2026** — the countries' outline on every screen, the
+photographs built and credited, drawn on every screen, then on Plus ou
+moins' tiles; prices stay out of its pairs. Asked
 15/11/2026 with the prices of stage 58: _the object for a price, the
 monument for a height, the country's map for a population_.
 
@@ -181,6 +181,44 @@ pictures is what would let it in with a short name beside it.
   leaving was not filmed apart: the photograph leaves inside the question
   card, which the stage swap already carries.
 
+## What step 4 settled
+
+- **A pair carries `pictures`, both sides or `null`** (`pairPictureSchema`:
+  a photograph with its size, or an outline's file). One bare tile beside a
+  photograph reads as the famous one, so `bankedPairOf` pictures a pair only
+  when both rows are, and an evening's own pair is never pictured.
+  `pairPictureOf` reads the row's photograph, else its outline, from the
+  same lookup the estimate question does. Pairs come from one tier, so a
+  well-known pair is usually pictured whole: 238 summits, towers and rivers
+  and 172 countries have a picture, no city, region or department yet.
+- **Prices stay out of the pairs.** A price's name is its qualifier — _au
+  tarif bleu EDF, option base (février 2025)_, 59 characters at the median,
+  78 at the ninth decile — and the qualifier is what the value depends on:
+  cut to fit a tile, _a kWh_ against _a stamp_ is no longer a question with
+  one answer, kept whole it is two paragraphs on two tiles. Only 84 of the
+  252 are pictured, so most price pairs would be two bare sentences anyway.
+  What would let them in is a short name written by hand per price and a
+  pair dealt within one year; nothing short of that.
+- **On a tile the picture takes what the words leave**: `AnswerTile` takes
+  an optional `picture`, printed in a size-container slot above the mark
+  and the name (`--prompt-picture-height: 100cqh`), the gap under it inside
+  its own track, and hidden once that slot is under 3.5rem. A phone upright
+  shows both photographs on its two stacked tiles (204 and 236px at
+  390×844); the seated console's shorter tiles drop them. An outline prints
+  in the tile's ink.
+- **The listed pairs** (the wall, the console, the reveals) print the
+  picture over each side's name, sized by `--pairs-picture-height`: the wall
+  `clamp(4rem, 44cqh, 26rem)` with the names centred under it, the console's
+  reveal `clamp(3rem, 12 stage units, 9rem)` and none under 50rem tall —
+  the names and the values are the reveal, and the head is too short for
+  both above them. Once the values are in, the lower side's photograph goes
+  grey with its name.
+- **Filmed** with the files held back 900ms on a phone upright: the names
+  and both frames stand at their final place from the first frame, and only
+  the image's opacity changes as each lands. `e2e/choice-fits.spec.ts`
+  holds the tallest photograph beside a wide one on the player, the seated
+  console, the wall from 720p to 4K and the room's reveal.
+
 ## Steps
 
 1. **Done.** **Countries**: `P298` in the bank build, `countryCode` on the row and the
@@ -194,7 +232,7 @@ pictures is what would let it in with a short name beside it.
 3. **Done.** **The screens**: wall, console and player layouts above, filmed in and
    out (`docs/browser-driving.md`, _Filming a motion_), full room at phone
    width.
-4. **Plus ou moins**: the pictures on its tiles, and the decision whether
+4. **Done.** **Plus ou moins**: the pictures on its tiles, and the decision whether
    prices join its pairs.
 
 ## How to tell it is done
