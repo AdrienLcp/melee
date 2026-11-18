@@ -1,0 +1,195 @@
+// Side-effect module: styles `.five-clues-ladder`, five rungs laid bottom up on a chipboard rail — shut, open on paper, or climbed — and the rung opening as the next clue goes up.
+@use '../styles/piece'
+@use '../styles/typography'
+@use '../styles/text-box'
+
+/// The open rung's clue laid on from a little below, once the rung has grown to take it.
+@keyframes five-clues-clue-lands
+  from
+    opacity: 0
+    translate: 0 1.25rem
+
+@layer components
+  .five-clues-ladder
+    --rung-gap: var(--space-xs)
+    --rung-pad-block: var(--space-2xs)
+    --rung-pad-start: var(--space-xs)
+    --rung-pad-end: var(--space-s)
+    --rung-columns-gap: var(--space-s)
+    --lane-width: 0rem
+    --worth-size: 2.5rem
+    --open-grow: 2.4
+    --past-grow: 1
+    --closed-grow: 0.55
+    --open-clue: var(--text-l)
+    --past-clue: var(--text-s)
+    --rail-x: calc(var(--rung-pad-start) + var(--worth-size) / 2)
+
+    display: flex
+    flex-direction: column-reverse
+    gap: var(--rung-gap)
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    padding: 0
+    position: relative
+
+    // The rail the rungs are fixed across, under the worth of each.
+    &::before
+      background: var(--chipboard)
+      border-radius: var(--radius-full)
+      content: ''
+      inline-size: 0.5rem
+      inset-block: 0
+      inset-inline-start: var(--rail-x)
+      position: absolute
+      translate: -50% 0
+
+    > .rung
+      align-items: center
+      border-radius: var(--radius-m)
+      column-gap: var(--rung-columns-gap)
+      display: grid
+      flex: var(--past-grow) 1 0rem
+      grid-template-columns: var(--rung-columns, var(--worth-size) minmax(0, 1fr))
+      min-block-size: 0
+      padding: var(--rung-pad-block) var(--rung-pad-end) var(--rung-pad-block) var(--rung-pad-start)
+      position: relative
+      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+
+      &[data-state='past']
+        background: var(--track-a)
+        box-shadow: 0 var(--edge) 0 var(--chipboard)
+
+      &[data-state='closed']
+        background: var(--socket)
+        box-shadow: var(--shadow-recess-shallow)
+        color: var(--socket-ink)
+        flex-grow: var(--closed-grow)
+        outline: var(--stroke-thin) dashed var(--socket-line)
+        outline-offset: calc(-1 * var(--stroke-thin))
+
+      &[data-state='open']
+        @include piece.paper-inks
+
+        background: var(--card)
+        box-shadow: 0 0 0 var(--stroke-bold) var(--phase-ink), 0 calc(var(--edge) * 1.6) 0 var(--chipboard), var(--shadow-pulled)
+        color: var(--card-ink)
+        flex-grow: var(--open-grow)
+        outline: var(--stroke-thin) dashed transparent
+
+    .lane
+      align-self: stretch
+      display: grid
+      place-items: center
+
+    .worth
+      @include typography.numeric
+      @include text-box.trimmed-figure
+
+      aspect-ratio: 1
+      background: var(--track-five)
+      border-radius: var(--radius-full)
+      box-shadow: 0 var(--edge) 0 var(--chipboard)
+      color: var(--track-ink)
+      display: grid
+      font-size: calc(var(--worth-size) * 0.42)
+      inline-size: var(--worth-size)
+      place-items: center
+      position: relative
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), scale var(--transition-slow, 0s) var(--ease-out)
+
+    .rung[data-state='closed'] .worth
+      background: var(--socket)
+      box-shadow: none
+      color: var(--socket-ink)
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(-1 * var(--stroke-thin))
+      scale: 0.82
+
+    .rung[data-state='open'] .worth
+      background: var(--phase-ink)
+      box-shadow: 0 var(--edge) 0 color-mix(in oklab, var(--phase-ink) 62%, black)
+      color: var(--phase-on-ink, var(--on-spine))
+
+    .face
+      align-self: stretch
+      display: grid
+      min-block-size: 0
+      min-inline-size: 0
+
+      > *
+        grid-area: 1 / 1
+        min-block-size: 0
+
+    .shut
+      align-items: center
+      color: var(--socket-ink)
+      display: flex
+      font-size: var(--past-clue)
+      opacity: 0
+      transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+    .rung[data-state='closed'] .shut
+      opacity: 1
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+    .clue
+      --clue-size: var(--past-clue)
+
+      align-content: center
+      animation: five-clues-clue-lands var(--transition-slow, 0s) var(--ease-out) var(--transition-base, 0s) backwards
+      display: grid
+      gap: var(--space-2xs)
+      min-block-size: 0
+
+      > .five-clues-clue
+        min-block-size: 0
+
+    .rung[data-state='open'] .clue
+      --clue-size: var(--open-clue)
+
+    &[data-size='seat']
+      --lane-width: 1.6rem
+      --rung-columns: var(--lane-width) var(--worth-size) minmax(0, 1fr)
+      --rung-columns-gap: var(--space-xs)
+      --rung-pad-start: var(--space-2xs)
+      --worth-size: clamp(2rem, calc(var(--stage-unit) * 6), 2.75rem)
+      --open-grow: 1
+      --past-grow: 0
+      --closed-grow: 0
+      --open-clue: clamp(var(--text-m), calc(var(--stage-unit) * 6), var(--text-2xl))
+      --past-clue: var(--text-s)
+      --rail-x: calc(var(--rung-pad-start) + var(--lane-width) + var(--rung-columns-gap) + var(--worth-size) / 2)
+
+      > .rung
+        min-block-size: calc(var(--worth-size) + var(--rung-pad-block) * 2)
+
+      > .rung[data-state='open']
+        --clue-justify: center
+        --clue-align: center
+
+        padding-block: var(--space-xs)
+
+    &[data-size='wall'],
+    &[data-size='reveal']
+      --rung-columns: var(--worth-size) minmax(0, 1fr) minmax(0, 1.1fr)
+      --rung-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.2), var(--space-s))
+      --rung-columns-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+      --rung-pad-start: clamp(var(--space-xs), calc(var(--stage-unit) * 1), var(--space-m))
+      --rung-pad-end: clamp(var(--space-s), calc(var(--stage-unit) * 1.5), var(--space-m))
+      --worth-size: clamp(2.75rem, calc(var(--stage-unit) * 8), 6rem)
+      --open-clue: clamp(var(--text-l), calc(var(--stage-unit) * 4.6), var(--text-4xl))
+      --past-clue: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), var(--text-2xl))
+
+    &[data-size='reveal']
+      --rung-columns: var(--worth-size) minmax(0, 0.8fr) minmax(0, 1.5fr)
+      --worth-size: clamp(2.25rem, calc(var(--stage-unit) * 6), 4.5rem)
+      --past-clue: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
+
+    .clue > .round-progress
+      inline-size: 100%
+
+      &[data-stopped] .groove::after
+        animation: none
+        transform: scaleX(var(--drain-from, 1))

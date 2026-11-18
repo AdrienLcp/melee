@@ -7,6 +7,7 @@ import {
   Bookmark,
   Brain,
   Bug,
+  Building2,
   Calculator,
   CaseSensitive,
   Check,
@@ -33,6 +34,7 @@ import {
   Layers,
   Lock,
   type LucideIcon,
+  Map as MapGlyph,
   Maximize,
   Megaphone,
   Merge,
@@ -94,6 +96,9 @@ export const CrossIcon = inFamily(X)
 export const FaultIcon = inFamily(TriangleAlert)
 export const CrownIcon = inFamily(Crown, { fill: 'currentColor' })
 export const LockIcon = inFamily(Lock)
+export const CitiesIcon = inFamily(Building2)
+export const FlagIcon = inFamily(Flag)
+export const OutlineIcon = inFamily(MapGlyph)
 // Its pips are near-zero-length strokes, which a butt cap draws as nothing.
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)

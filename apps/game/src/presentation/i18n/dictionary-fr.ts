@@ -773,9 +773,64 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   fiveclues: {
+    answer: {
+      label: 'Un pays'
+    },
+    climbing: 'Encore en course : {count:number}',
+    clue: {
+      area: 'km²',
+      capital: 'Capitale',
+      inhabitants: 'habitants'
+    },
+    kind: {
+      cities: 'Villes',
+      flag: 'Drapeau et capitale',
+      outline: 'Silhouette',
+      region: 'Région',
+      size: 'Taille'
+    },
     name: 'Cinq indices',
+    outCount: 'Éliminés : {count:number}',
+    region: {
+      '002': 'Afrique',
+      '005': 'Amérique du Sud',
+      '009': 'Océanie',
+      '011': 'Afrique de l’Ouest',
+      '013': 'Amérique centrale',
+      '014': 'Afrique de l’Est',
+      '015': 'Afrique du Nord',
+      '017': 'Afrique centrale',
+      '018': 'Afrique australe',
+      '019': 'Amériques',
+      '021': 'Amérique du Nord',
+      '029': 'Caraïbes',
+      '030': 'Asie de l’Est',
+      '034': 'Asie du Sud',
+      '035': 'Asie du Sud-Est',
+      '039': 'Europe du Sud',
+      '053': 'Australie et Nouvelle-Zélande',
+      '054': 'Mélanésie',
+      '057': 'Micronésie',
+      '061': 'Polynésie',
+      '142': 'Asie',
+      '143': 'Asie centrale',
+      '145': 'Asie de l’Ouest',
+      '150': 'Europe',
+      '151': 'Europe de l’Est',
+      '154': 'Europe du Nord',
+      '155': 'Europe de l’Ouest'
+    },
+    rung: 'Indice {index:number}, {worth:number} points',
     scoring:
-      'Plus tôt tu trouves le pays, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.'
+      'Plus tôt tu trouves le pays, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.',
+    you: {
+      found: 'Trouvé à l’indice {index:number}',
+      held: 'Une réponse par indice. Prochain essai à l’indice {index:number}',
+      heldLast: 'Une réponse par indice, et c’était le dernier',
+      lockedLast: 'Raté, et il ne reste plus d’indice',
+      lockedUntil: 'Raté. Tu rebuzzes à l’indice {index:number}',
+      out: 'Éliminé : mauvais choix'
+    }
   },
   higherlower: {
     answer: {

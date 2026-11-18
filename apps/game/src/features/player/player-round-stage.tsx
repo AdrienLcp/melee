@@ -6,6 +6,7 @@ import { Button as ReactAriaButton } from 'react-aria-components'
 import type { BlackSquareLabels } from '@melee/protocol/black-square'
 import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { SentEstimate } from '@melee/protocol/estimate'
+import { FIVE_CLUES_CLUE_COUNT } from '@melee/protocol/five-clues'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SentMove } from '@melee/protocol/matchsticks'
@@ -46,6 +47,10 @@ import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
+import {
+  FiveCluesSeat,
+  FiveCluesSeatLadder
+} from '@/features/player/five-clues-seat'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
@@ -86,6 +91,7 @@ import {
   blindtestContent,
   estimateContent,
   estimateRatioOf,
+  fiveCluesContent,
   higherLowerContent,
   innerclockContent,
   longestWordContent,
@@ -115,6 +121,7 @@ import { CountedBoard } from '@/presentation/components/counted-board'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { EstimateLine } from '@/presentation/components/estimate-line'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
+import { FiveCluesReveal } from '@/presentation/components/five-clues-reveal'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
@@ -886,6 +893,18 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    if (fiveCluesContent(round) !== null && round.answerMode !== 'buzzer') {
+      return (
+        <FiveCluesSeat
+          clock={clock}
+          onAnswer={answerWithRound}
+          players={view.players}
+          round={round}
+          youId={view.youId}
+        />
+      )
+    }
+
     if (round.answerMode === 'choice') {
       return (
         <ChoosingRound
@@ -1180,10 +1199,19 @@ const Buzzer: React.FC<{
   const floorBuzz = view.phase === 'buzzed' ? buzz : null
   const shownFloor = useFloorStillLeaving(floorBuzz)
   const matchsticks = matchsticksContent(view.round)
+  const fiveClues = fiveCluesContent(view.round)
 
   return (
     <section className='player-round buzzer-area'>
       <AskedQuestion prompt={quizContent(view.round)?.prompt ?? null} />
+      {fiveClues !== null && (
+        <FiveCluesSeatLadder
+          clock={clock}
+          content={fiveClues}
+          players={view.players}
+          youId={view.youId}
+        />
+      )}
       {matchsticks !== null && view.round !== null && (
         <MatchsticksPrompt
           answerMode={view.round.answerMode}
@@ -1383,6 +1411,17 @@ const Revealed: React.FC<{
 
   if (makeNumberContent(round)?.solution != null) {
     return <MakeNumberRevealed round={round} youId={view.youId} />
+  }
+
+  if (fiveCluesContent(round)?.answer != null) {
+    return (
+      <FiveCluesReveal
+        players={view.players}
+        round={round}
+        size='seat'
+        youId={view.youId}
+      />
+    )
   }
 
   if (thinkAlikeContent(round)?.groups != null) {
@@ -1786,6 +1825,20 @@ const statusLine = ({
           })}
         />
       )
+    }
+  }
+
+  const fiveClues = fiveCluesContent(view.round)
+
+  if (blocker === 'you_already_missed' && fiveClues !== null) {
+    return {
+      isFloor: false,
+      text:
+        fiveClues.openClueIndex === FIVE_CLUES_CLUE_COUNT - 1
+          ? translate('fiveclues.you.lockedLast')
+          : translate('fiveclues.you.lockedUntil', {
+              index: fiveClues.openClueIndex + 2
+            })
     }
   }
 

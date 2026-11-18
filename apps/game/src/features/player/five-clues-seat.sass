@@ -1,0 +1,129 @@
+// Side-effect module: styles `.five-clues-seat`, a seat's climb down to its answer — the ladder with its own pawn, its standing said plainly, then four names or one field.
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/framed'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .player-round.five-clues-seat
+    display: grid
+    gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
+    grid-template: 'ladder' minmax(0, 1fr) 'ground' auto / minmax(0, 1fr)
+    min-block-size: 0
+
+    > .five-clues-ladder
+      grid-area: ladder
+
+    > .ground
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      grid-area: ground
+      min-block-size: 0
+
+      > .fold
+        @include fold.opens-in-column(var(--space-xs))
+
+    .standing
+      @include typography.label
+      @include text-box.trimmed-block(var(--space-xs))
+
+      align-items: center
+      background: var(--track-a)
+      border-radius: var(--radius-m)
+      box-shadow: 0 var(--edge) 0 var(--chipboard)
+      display: flex
+      gap: var(--space-xs)
+      margin: 0 0 var(--edge)
+      padding-inline: var(--space-s)
+      text-wrap: balance
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+
+      &[data-standing='found']
+        background: var(--good)
+        box-shadow: 0 var(--edge) 0 var(--good-edge)
+        color: var(--on-spine)
+
+      &[data-standing='out']
+        background: var(--socket)
+        box-shadow: var(--shadow-recess-shallow)
+        color: var(--socket-ink)
+        outline: var(--stroke-thin) dashed var(--socket-line)
+        outline-offset: calc(-1 * var(--stroke-thin))
+
+    .answer-form.choices
+      gap: 0rem
+
+      ul
+        display: grid
+        gap: var(--space-xs)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+        list-style: none
+        margin: 0
+        padding: 0
+
+      .answer-tile
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 4.4), var(--text-l))
+        min-block-size: max(var(--target), 3.25rem)
+
+    .five-clues-guess
+      align-items: end
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: minmax(0, 1fr) auto
+
+      .react-aria-Label
+        @include accessibility.visually-hidden
+
+    @include framed.lying-down
+      column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+      grid-template: 'ladder ground' minmax(0, 1fr) / minmax(0, 1.2fr) minmax(0, 1fr)
+
+      > .ground
+        justify-content: center
+
+  // The buzzer under the climb: the ladder takes the card's place, and the
+  // press keeps what it leaves.
+  .player-round.buzzer-area:has(> .five-clues-ladder)
+    grid-template-rows: minmax(0, 1.5fr) minmax(0, 1fr)
+
+    > .five-clues-ladder
+      grid-area: card
+
+  .five-clues-ladder .climber
+    display: grid
+    place-items: center
+    position: relative
+
+    > .pawn
+      opacity: 0
+      transition: opacity var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in)
+      translate: 0 60%
+
+    &[data-here] > .pawn
+      opacity: 1
+      transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-base, 0s), translate var(--transition-slow, 0s) var(--ease-out) var(--transition-base, 0s)
+      translate: 0 0
+
+    > .found-mark
+      align-items: center
+      background: var(--good)
+      border-radius: var(--radius-full)
+      color: var(--on-spine)
+      display: grid
+      font-size: var(--text-3xs)
+      inline-size: 1.1rem
+      inset-block-start: calc(-1 * var(--space-2xs))
+      inset-inline-end: calc(-1 * var(--space-xs))
+      justify-items: center
+      opacity: 0
+      position: absolute
+      scale: 0.6
+      transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in)
+      aspect-ratio: 1
+
+    &[data-found] > .found-mark
+      opacity: 1
+      scale: 1
+      transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-slow, 0s), scale var(--transition-base, 0s) var(--ease-out) var(--transition-slow, 0s)

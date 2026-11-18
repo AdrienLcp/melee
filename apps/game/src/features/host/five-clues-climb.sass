@@ -1,0 +1,194 @@
+// Side-effect module: styles `.five-clues-climb`, the climb on the room's screen — finders standing on their rungs, the crowd on the open one, the four names and the seats out under it.
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+/// A pawn carried up onto the rung that just opened, a little past it and back.
+@keyframes five-clues-climber-hops
+  from
+    opacity: 0
+    translate: 0 160%
+  60%
+    opacity: 1
+    translate: 0 -18%
+
+@layer components
+  .five-clues-climb
+    --people-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), var(--text-l))
+    --crowd-pawn: clamp(1.25rem, calc(var(--stage-unit) * 3.4), 2.75rem)
+
+    display: grid
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+    grid-template: 'ladder' minmax(0, 1fr) 'foot' auto / minmax(0, 1fr)
+    min-block-size: 0
+
+    > .five-clues-ladder
+      grid-area: ladder
+
+    .rung-people
+      align-self: stretch
+      display: flex
+      flex-direction: column
+      font-size: var(--people-size)
+      justify-content: center
+      min-block-size: 0
+      min-inline-size: 0
+      overflow: clip
+
+      > .fold
+        @include fold.opens-in-column(var(--space-xs))
+
+    .finders
+      display: grid
+      gap: var(--space-2xs) var(--space-xs)
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5em), 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+    .finder
+      align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      background: var(--good-soft)
+      border-radius: var(--radius-m)
+      box-shadow: 0 var(--edge) 0 var(--good-edge)
+      color: var(--tile-ink)
+      display: flex
+      gap: 0.4em
+      min-inline-size: 0
+      padding: 0.25em 0.55em 0.25em 0.4em
+      --travel-offset: 0 -0.9rem
+
+      > .name
+        @include typography.card-name
+        @include typography.typed
+
+        flex: 1
+        min-inline-size: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+    [data-crowded] .finders
+      display: flex
+      flex-wrap: wrap
+
+      .finder
+        padding: 0.2em
+
+        > .name
+          @include accessibility.visually-hidden
+
+    .crowd p
+      align-items: end
+      display: flex
+      gap: var(--space-xs)
+      margin: 0
+
+    .pawns
+      align-items: end
+      display: flex
+      flex-wrap: wrap
+      gap: 0.15em 0.25em
+      min-inline-size: 0
+
+    .climbing
+      display: grid
+      font-size: var(--crowd-pawn)
+      margin-inline-end: 0rem
+      position: relative
+      transition: opacity var(--transition-base, 0s) var(--ease-out), scale var(--transition-base, 0s) var(--ease-out), margin-inline-end var(--transition-base, 0s) var(--ease-out)
+
+      > *
+        grid-area: 1 / 1
+
+      &[data-left]
+        margin-inline-end: -1.25em
+        opacity: 0
+        scale: 0.6
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s)
+
+      > .lock
+        align-self: end
+        background: var(--socket)
+        border-radius: var(--radius-full)
+        color: var(--socket-ink)
+        display: grid
+        font-size: var(--text-em-xs)
+        justify-self: end
+        opacity: 0
+        padding: 0.15em
+        transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+      &[data-locked]
+        > .pawn
+          opacity: 0.45
+
+        > .lock
+          opacity: 1
+          transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+    .crowd[data-open] .climbing:not([data-left]) > .pawn
+      animation: five-clues-climber-hops calc(var(--transition-base, 0s) * 1.6) var(--ease-out) backwards
+      animation-delay: calc(var(--transition-slow, 0s) * 0.5 + var(--transition-fast, 0s) * 0.2 * var(--climber-at, 0))
+
+    .count
+      @include typography.numeric
+      @include text-box.trimmed-figure
+
+      align-self: center
+      font-size: calc(var(--crowd-pawn) * 0.9)
+
+    > .foot
+      align-items: center
+      display: grid
+      gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+      grid-area: foot
+      grid-template-columns: minmax(0, 1fr) auto
+
+      > .printed-choices
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+        grid-template-rows: auto
+
+        .answer-tile
+          font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), var(--text-2xl))
+
+    .out
+      align-items: center
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-recess-shallow)
+      display: flex
+      font-size: var(--crowd-pawn)
+      gap: var(--space-xs)
+      grid-column: -2 / -1
+      margin: 0
+      min-inline-size: 0
+      overflow: clip
+      opacity: 0
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(-1 * var(--stroke-thin))
+      padding: var(--space-xs) var(--space-s)
+      transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+      &[data-open]
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+      .pawns
+        flex-wrap: nowrap
+
+      .gone
+        display: grid
+        transition: opacity var(--transition-base, 0s) var(--ease-out), margin-inline-end var(--transition-base, 0s) var(--ease-out)
+
+        .pawn
+          fill: var(--socket-line)
+
+        &[data-left]
+          margin-inline-end: -1.25em
+          opacity: 0
+
+      .count
+        color: var(--socket-ink)

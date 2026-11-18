@@ -812,9 +812,64 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   fiveclues: {
+    answer: {
+      label: 'A country'
+    },
+    climbing: 'Still climbing: {count:number}',
+    clue: {
+      area: 'km²',
+      capital: 'Capital',
+      inhabitants: 'inhabitants'
+    },
+    kind: {
+      cities: 'Cities',
+      flag: 'Flag and capital',
+      outline: 'Outline',
+      region: 'Region',
+      size: 'Size'
+    },
     name: 'Five clues',
+    outCount: 'Out: {count:number}',
+    region: {
+      '002': 'Africa',
+      '005': 'South America',
+      '009': 'Oceania',
+      '011': 'Western Africa',
+      '013': 'Central America',
+      '014': 'Eastern Africa',
+      '015': 'Northern Africa',
+      '017': 'Middle Africa',
+      '018': 'Southern Africa',
+      '019': 'The Americas',
+      '021': 'Northern America',
+      '029': 'The Caribbean',
+      '030': 'Eastern Asia',
+      '034': 'Southern Asia',
+      '035': 'South-eastern Asia',
+      '039': 'Southern Europe',
+      '053': 'Australia and New Zealand',
+      '054': 'Melanesia',
+      '057': 'Micronesia',
+      '061': 'Polynesia',
+      '142': 'Asia',
+      '143': 'Central Asia',
+      '145': 'Western Asia',
+      '150': 'Europe',
+      '151': 'Eastern Europe',
+      '154': 'Northern Europe',
+      '155': 'Western Europe'
+    },
+    rung: 'Clue {index:number}, worth {worth:number}',
     scoring:
-      'The earlier the clue you find the country on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.'
+      'The earlier the clue you find the country on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.',
+    you: {
+      found: 'Found on clue {index:number}',
+      held: 'One guess a clue. Next try on clue {index:number}',
+      heldLast: 'One guess a clue, and that was the last',
+      lockedLast: 'Wrong, and no clue is left',
+      lockedUntil: 'Wrong. You buzz again on clue {index:number}',
+      out: 'Out: wrong pick'
+    }
   },
   higherlower: {
     answer: {

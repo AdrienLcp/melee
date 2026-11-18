@@ -17,6 +17,7 @@ import {
 } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
+import { FiveCluesSeat } from '@/features/player/five-clues-seat'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
 import { MakeNumberAnswer } from '@/features/player/make-number-answer'
@@ -33,6 +34,7 @@ import {
   atlasContent,
   blackSquareContent,
   estimateContent,
+  fiveCluesContent,
   higherLowerContent,
   longestWordContent,
   makeNumberContent,
@@ -63,6 +65,7 @@ import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
+import { FiveCluesClimb } from './five-clues-climb'
 import { LongestWordTowers } from './longest-word-towers'
 import { MakeNumberLadder } from './make-number-ladder'
 import { MysteryWordTowers } from './mystery-word-towers'
@@ -134,6 +137,30 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const shownColour = useShownColour({ clock, round })
   const closesInMs = currentDeadline({ clock, view })?.remainingMs ?? null
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
+
+  // The climb takes the whole stage: the ladder is the question, the clock
+  // and the field, so none of the shared card, tiles or pawns is drawn.
+  if (fiveCluesContent(round) !== null) {
+    return (
+      <div
+        className='stage playing'
+        data-five-clues={onAnswer === null ? 'watching' : 'answering'}
+      >
+        {onAnswer === null ? (
+          <FiveCluesClimb clock={clock} players={view.players} round={round} />
+        ) : (
+          <FiveCluesSeat
+            clock={clock}
+            onAnswer={onAnswer}
+            players={view.players}
+            round={round}
+            youId={answersAs}
+          />
+        )}
+        {children}
+      </div>
+    )
+  }
 
   const roundCard = (sticks: React.ReactNode): React.ReactNode => (
     <section className='round-card'>

@@ -48,8 +48,10 @@ export const RoundClock: React.FC<RoundClockProps> = ({ clock, view }) => {
 
   const durationMs = view.round?.durationMs ?? null
 
+  // Five clues draws its clock on the open rung, a clue's window at a time.
   if (
     durationMs === null ||
+    view.round?.content.kind === 'fiveclues' ||
     view.phase !== 'playing' ||
     !view.isHostConnected ||
     view.isPaused

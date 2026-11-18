@@ -244,7 +244,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   the dark board, and every other free hue sits within twenty degrees of a
   neighbour's; `--spine-petitbac` violet — a school ink, the colour of the pen
   the paper game was played with, twenty degrees short of the plum and as far
-  again past the quiz's indigo): each
+  again past the quiz's indigo; `--spine-fiveclues` fir — a deep green ten
+  points darker than atlas and estimate, which it would otherwise read as,
+  on-spine ink 4.5:1 and over, held in `tokens-contrast.test.ts`): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   _up next_ lid, the start of the next-round press. Names print in
   `--on-spine-<game>`: pale `--on-spine` everywhere but reflex, which takes

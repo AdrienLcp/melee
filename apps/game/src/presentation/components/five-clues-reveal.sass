@@ -1,0 +1,195 @@
+// Side-effect module: styles `.five-clues-reveal`, the country at the summit over the whole ladder, every finder ranked on its rung with its pay, and the seats that missed.
+@use '@adrienlcp/styles/accessibility'
+@use '../styles/text-box'
+@use '../styles/typography'
+
+@layer components
+  .five-clues-summit
+    --travel-offset: 0 -1.5rem
+
+    align-items: center
+    animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
+    background: var(--good)
+    border-radius: var(--radius-l)
+    box-shadow: 0 var(--edge) 0 var(--good-edge), var(--shadow-card)
+    color: var(--on-spine)
+    column-gap: clamp(var(--space-s), 4cqi, var(--space-l))
+    container-type: inline-size
+    display: grid
+    inline-size: 100%
+    grid-template: 'flag country' auto 'flag capital' auto / auto minmax(0, 1fr)
+    padding: clamp(var(--space-xs), calc(var(--stage-unit) * 1.4), var(--space-m)) clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+
+    > .flag-picture
+      box-shadow: 0 0 0 var(--stroke-bold) var(--on-spine)
+      grid-area: flag
+      inline-size: clamp(3rem, 16cqi, 7.5rem)
+
+    .country
+      @include typography.billboard-wrapping
+
+      font-size: clamp(var(--text-xl), 11cqi, 5rem)
+      grid-area: country
+      hyphens: auto
+      margin: 0
+
+    .capital
+      @include typography.title
+
+      display: flex
+      flex-wrap: wrap
+      font-size: clamp(var(--text-s), 4.5cqi, var(--text-2xl))
+      gap: 0 0.4em
+      grid-area: capital
+      margin: 0
+
+      > small
+        @include typography.caption-strong
+
+        align-self: center
+        font-size: max(var(--text-xs), 0.6em)
+
+  .five-clues-reveal
+    display: flex
+    flex-direction: column
+    gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-m))
+    min-block-size: 0
+
+    > .five-clues-ladder
+      flex: 1 1 0
+      min-block-size: 0
+
+    .five-clues-ladder > .rung
+      flex: 1 1 auto
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      --travel-offset: 0 1rem
+
+    @for $rung from 1 through 5
+      .five-clues-ladder > .rung:nth-child(#{$rung})
+        animation-delay: calc(var(--transition-fast, 0s) * #{$rung})
+
+    .ranked
+      --finder-min: 9.5em
+
+      align-content: center
+      display: grid
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.5), var(--text-m))
+      gap: var(--space-2xs) var(--space-xs)
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--finder-min)), 1fr))
+      list-style: none
+      margin: 0
+      min-block-size: 0
+      overflow: clip
+      padding: 0
+
+    .ranked[data-crowded]
+      --finder-min: 6.5em
+
+      .finder > .name
+        @include accessibility.visually-hidden
+
+      .finder
+        grid-template-columns: auto auto auto
+
+    .finder
+      align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+      animation-delay: calc(var(--transition-slow, 0s) + var(--transition-fast, 0s) * 0.3 * var(--finder-at, 0))
+      background: var(--good-soft)
+      border-radius: var(--radius-m)
+      box-shadow: 0 var(--edge) 0 var(--good-edge)
+      color: var(--tile-ink)
+      display: grid
+      gap: 0.4em
+      grid-template-columns: auto auto minmax(0, 1fr) auto
+      min-inline-size: 0
+      padding: 0.25em 0.55em 0.25em 0.45em
+      --travel-offset: 0 -0.9rem
+
+      &[data-you]
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--tile-ink), 0 var(--edge) 0 var(--good-edge)
+
+      > .rank,
+      > .pay
+        @include typography.numeric
+
+      > .name
+        @include typography.card-name
+        @include typography.typed
+
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+    .misses
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)
+      list-style: none
+      margin: 0
+      max-block-size: calc(var(--stage-unit) * 12)
+      overflow: clip
+      padding: 0
+
+    .miss
+      align-items: center
+      border-radius: var(--radius-m)
+      color: var(--ink-muted)
+      display: flex
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.6), var(--text-s))
+      gap: 0.4em
+      max-inline-size: 20em
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(-1 * var(--stroke-thin))
+      padding: 0.25em 0.6em 0.25em 0.45em
+
+      > .name
+        @include typography.card-name
+        @include typography.typed
+
+        min-inline-size: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      > .said
+        @include typography.typed
+
+        white-space: nowrap
+
+    // A seat's screen: the climb in short rungs, every finder a pawn — its own
+    // ringed — so the round's block and Ready keep the first viewport.
+    &[data-size='seat']
+      > .five-clues-ladder
+        flex: none
+
+      .five-clues-ladder
+        --worth-size: 2rem
+        --past-clue: var(--text-xs)
+        --rung-columns: var(--worth-size) minmax(0, 1fr) minmax(0, 0.8fr)
+
+        > .rung
+          min-block-size: 2.75rem
+
+
+      .five-clues-clue
+        --clue-picture: 2.25rem
+
+      .ranked
+        display: flex
+        flex-wrap: wrap
+        gap: var(--space-2xs)
+
+      .finder
+        background: none
+        box-shadow: none
+        display: inline-grid
+        font-size: var(--text-m)
+        padding: 0.1em
+
+        &[data-you]
+          background: var(--good-soft)
+          box-shadow: 0 var(--edge) 0 var(--good-edge)
+
+        > :not(.pawn)
+          @include accessibility.visually-hidden

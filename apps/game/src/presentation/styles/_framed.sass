@@ -26,7 +26,7 @@
 /// portrait screen it was never on.
 ///
 /// Three children: `.round-chrome`, `.card-clock` and the round — a
-/// `.choosing-round` or a `.buzzer-area`.
+/// `.choosing-round`, a `.buzzer-area` or a `.five-clues-seat`.
 @mixin page
   container: choosing / size
   // Not `flex: 1`: Chromium resolves a size container's queries against its
@@ -51,7 +51,8 @@
     gap: var(--space-framed)
 
   > .choosing-round,
-  > .buzzer-area
+  > .buzzer-area,
+  > .five-clues-seat
     grid-area: round
 
   // The strip below is laid over a question card, and the blind test asks

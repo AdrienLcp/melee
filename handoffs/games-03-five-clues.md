@@ -100,13 +100,35 @@ never filmed, and the box colour (fir green) is still to measure. Draw the
 the next clue) and the judging console in B's language — the pages only
 show `typed` and `choice`.
 
-1. **A seat**: the climb — the open clues stacked, the new one arriving with
+**Steps 1 to 3 below landed 19/11/2026** — the seat, the wall and the
+reveal, in the three modes; the console and the setup (step 4) are next.
+What they left the next session:
+
+- Reuse for the console: `FiveCluesLadder` (rungs, `peopleOf`/`laneOf`
+  slots, `size` `seat`/`wall`/`reveal`), `FiveCluesWindow` (the clue's bar
+  off `nextClueAt`, standing still while it is `null`), `FiveCluesClue`, and
+  `FiveCluesClimb` (`features/host/`), which the unseated console already
+  draws through `PlayingStage`; a seated console draws `FiveCluesSeat`.
+- **The wall under the floor** (`phase === 'buzzed'`) still shows the
+  shared `VerdictPanel` alone, so who holds the floor is said there and the
+  ladder is not: `room-stage.tsx` hands `VerdictPanel` a `stimulus` for
+  matchsticks, and the same slot could carry `FiveCluesClimb` for the wall
+  and the judging console — left to the console's session, which owns that
+  panel. Locked seats show on the climb (a lock on the pawn) once the floor
+  is handed back, and the seat says _Raté. Tu rebuzzes à l'indice N_.
+- `RoundClock` draws nothing for five clues: the round's own `durationMs`
+  is the whole ladder, and the clock is the open rung's.
+- Seen with `.playwright-mcp/fc-run.mjs` (git-ignored): 22 raw seats and two
+  phones beside a paired wall, muted, all three modes, the clue opening and
+  the reveal filmed.
+
+1. ✅ **A seat**: the climb — the open clues stacked, the new one arriving with
    a motion, the window's bar to `nextClueAt`; four names or one field; a
    held seat said plainly until the next clue, found or out after.
-2. **The wall**: the five rungs, the unopened ones closed, every seat's
+2. ✅ **The wall**: the five rungs, the unopened ones closed, every seat's
    standing as marks (found on which clue), never a guess; the wall never
    scrolls.
-3. **The reveal**: the country, the whole ladder, the seats ranked by the
+3. ✅ **The reveal**: the country, the whole ladder, the seats ranked by the
    clue they found on, then the millisecond, each with what it paid.
 4. **The console and the setup**: the clue window (5–30 s), the level, the
    language; then the shelf (`shelvedGames`), the game's front door, the

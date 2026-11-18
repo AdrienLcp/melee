@@ -499,6 +499,15 @@
         inline-size: min(100%, 36rem)
         min-block-size: 0
 
+    // The climb down to the stage's foot, or a seated console's own climb.
+    &[data-five-clues]
+      --spine: var(--spine-fiveclues)
+
+      > :is(.five-clues-climb, .five-clues-seat)
+        align-self: stretch
+        flex: 1 1 0
+        min-block-size: 0
+
     // The prompt on the card and the table the cards land on under it, the
     // names still writing beside — or, for a seated console, its own card.
     &[data-think-alike]

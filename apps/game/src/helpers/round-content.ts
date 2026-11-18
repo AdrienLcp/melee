@@ -102,6 +102,11 @@ export const thinkAlikeContent = (
 ): Extract<RoundContent, { kind: 'thinkalike' }> | null =>
   round?.content.kind === 'thinkalike' ? round.content : null
 
+export const fiveCluesContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'fiveclues' }> | null =>
+  round?.content.kind === 'fiveclues' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>

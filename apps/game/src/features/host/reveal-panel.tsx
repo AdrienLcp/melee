@@ -14,6 +14,7 @@ import {
   blackSquareContent,
   blindtestContent,
   estimateContent,
+  fiveCluesContent,
   higherLowerContent,
   innerclockContent,
   longestWordContent,
@@ -35,6 +36,10 @@ import { CountedBoard } from '@/presentation/components/counted-board'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { EstimateLine } from '@/presentation/components/estimate-line'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
+import {
+  FiveCluesReveal,
+  FiveCluesSummit
+} from '@/presentation/components/five-clues-reveal'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { CheckIcon } from '@/presentation/components/icons'
@@ -316,6 +321,31 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           youId={youId}
         />
         <MakeNumberRanking players={players} round={round} youId={youId} />
+      </section>
+    )
+  }
+
+  // The country at the summit over the whole ladder, every finder on its
+  // rung: the ladder is the round's podium, ranked whole.
+  if (fiveCluesContent(round)?.answer != null) {
+    return (
+      <section className='reveal-panel' data-game='fiveclues'>
+        <div className='head'>
+          <FiveCluesSummit round={round} />
+        </div>
+
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
+        <FiveCluesReveal
+          players={players}
+          round={round}
+          size='reveal'
+          youId={youId}
+        />
       </section>
     )
   }

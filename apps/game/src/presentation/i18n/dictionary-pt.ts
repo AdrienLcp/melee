@@ -857,9 +857,64 @@ const PORTUGUESE = defineDictionary({
     }
   },
   fiveclues: {
+    answer: {
+      label: 'Um país'
+    },
+    climbing: 'Ainda em jogo: {count:number}',
+    clue: {
+      area: 'km²',
+      capital: 'Capital',
+      inhabitants: 'habitantes'
+    },
+    kind: {
+      cities: 'Cidades',
+      flag: 'Bandeira e capital',
+      outline: 'Silhueta',
+      region: 'Região',
+      size: 'Tamanho'
+    },
     name: 'Cinco pistas',
+    outCount: 'Eliminados: {count:number}',
+    region: {
+      '002': 'África',
+      '005': 'América do Sul',
+      '009': 'Oceânia',
+      '011': 'África Ocidental',
+      '013': 'América Central',
+      '014': 'África Oriental',
+      '015': 'Norte de África',
+      '017': 'África Central',
+      '018': 'África Austral',
+      '019': 'Américas',
+      '021': 'América do Norte',
+      '029': 'Caraíbas',
+      '030': 'Ásia Oriental',
+      '034': 'Ásia do Sul',
+      '035': 'Sudeste Asiático',
+      '039': 'Europa do Sul',
+      '053': 'Austrália e Nova Zelândia',
+      '054': 'Melanésia',
+      '057': 'Micronésia',
+      '061': 'Polinésia',
+      '142': 'Ásia',
+      '143': 'Ásia Central',
+      '145': 'Ásia Ocidental',
+      '150': 'Europa',
+      '151': 'Europa de Leste',
+      '154': 'Europa do Norte',
+      '155': 'Europa Ocidental'
+    },
+    rung: 'Pista {index:number}, {worth:number} pontos',
     scoring:
-      'Quanto mais cedo encontrares o país, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.'
+      'Quanto mais cedo encontrares o país, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.',
+    you: {
+      found: 'Encontrado na pista {index:number}',
+      held: 'Uma resposta por pista. Próxima tentativa na pista {index:number}',
+      heldLast: 'Uma resposta por pista, e esta era a última',
+      lockedLast: 'Erraste, e já não há pistas',
+      lockedUntil: 'Erraste. Voltas a carregar na pista {index:number}',
+      out: 'Eliminado: escolha errada'
+    }
   },
   higherlower: {
     answer: {

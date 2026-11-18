@@ -1,0 +1,77 @@
+// Side-effect module: styles `.five-clues-clue`, one rung's clue — two figures, a region, an outline, cities, or a flag and its capital — sized by the rung it lies on.
+@use '../styles/typography'
+
+@layer components
+  .five-clues-clue
+    --clue-picture: calc(var(--clue-size, 1.5rem) * 3.2)
+
+    @include typography.title
+
+    align-items: center
+    color: var(--ink)
+    display: flex
+    flex-wrap: wrap
+    font-size: var(--clue-size, 1.5rem)
+    gap: 0.1em 0.9em
+    justify-content: var(--clue-justify, start)
+    list-style: none
+    margin: 0
+    min-inline-size: 0
+    padding: 0
+    text-align: var(--clue-align, start)
+    text-wrap: balance
+    transition: font-size var(--transition-slow, 0s) var(--ease-out)
+
+    .figure
+      @include typography.numeric
+
+      align-items: baseline
+      display: inline-flex
+      flex-wrap: wrap
+      gap: 0 0.3em
+      white-space: nowrap
+
+      > small
+        @include typography.caption-strong
+        @include typography.typed
+
+        color: var(--ink-muted)
+        font-size: max(var(--text-xs), 0.5em)
+
+    &[data-kind='cities'] > li
+      overflow-wrap: anywhere
+
+      &:not(:last-child)::after
+        color: var(--ink-muted)
+        content: ' ·'
+
+    &[data-kind='outline'],
+    &[data-kind='flag']
+      flex-wrap: nowrap
+      min-block-size: 0
+
+    // Sized here rather than through `--prompt-picture-height`, which the
+    // reveal panel sets on every picture it holds.
+    &[data-kind='outline'] > .country-silhouette
+      inline-size: var(--clue-picture)
+
+    &[data-kind='flag'] > .flag-picture
+      inline-size: calc(var(--clue-picture) * 0.62 * 4 / 3)
+
+    .country-silhouette
+      background: var(--ink)
+      transition: width var(--transition-slow, 0s) var(--ease-out)
+
+    .flag-picture
+      transition: width var(--transition-slow, 0s) var(--ease-out)
+
+    .capital
+      display: grid
+      margin: 0
+
+      > small
+        @include typography.caption-strong
+        @include typography.typed
+
+        color: var(--ink-muted)
+        font-size: max(var(--text-xs), 0.45em)
