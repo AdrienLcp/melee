@@ -1,40 +1,36 @@
-# New game — Indices progressifs
+# New game — Cinq indices, step 2: the server
 
-Asked by Adrien on 2026-11-12, one of three new games he picked
-(`games-01-countdown.md`, `games-02-think-alike.md`). Every choice in it is
+Asked by Adrien on 2026-11-12, the third of three new games. Every choice is
 weighed by what is more fun at the table, never by what it costs to build.
 
-## The game
+**Step 1 landed 18/11/2026**: the plan
+[`docs/plans/73-five-clues.md`](../docs/plans/73-five-clues.md) holds every
+rule as settled — read it first: the ladder, the clue window, one guess a
+clue in `typed` and one pick a round in `choice`, the pay by clue. On `main`:
+`packages/protocol/src/five-clues.ts` (the clue union, the ladder tuple, the
+M49 ids, the window bounds), `packages/core/src/fiveclues/` (`worthOfClue`,
+`pointsForClue`, `mayGuess`, `seatAfterGuess`, `opensNextClueEarly`,
+`isRaceSettled`) and
+`apps/server/src/infrastructure/questions/five-clues-bank.ts` (147
+countries, `drawFiveCluesCountry`, `fiveCluesLadderOf`, `fiveCluesAnswerOf`).
 
-A country is hidden behind five clues that go up one after the other, from
-the vaguest (_three time zones_, _a population of 34 million_) to the obvious
-(_its capital is Lima_). Each seat answers whenever it thinks it knows, and
-the earlier the clue it answered on, the more it is paid.
+## This session: step 2 of the plan
 
-## Where to start
+Serve the game end to end, reachable by a settings frame, not on the shelf.
+The template is Think alike's serve commit — `git show --stat 9d39e61a`
+lists every file a new kind touches.
 
-1. Read `docs/game-catalogue.md` and the quiz rubrics' plans (flags,
-   `48-capitals.md`, `57-silhouettes.md`) and `58-estimate.md`. The clues can
-   be built from data the app already holds about every country: its name and
-   aliases (`packages/core/src/countries/`), capital, flag, outline,
-   population and area, continent and neighbours (the atlas map). That gives
-   clues with no writing by hand, generated per country.
-2. Write the stage's plan in `docs/plans/` (the next free number) and add its
-   row to `docs/plans/README.md` and to the catalogue table.
-3. Build it: the clue ladder in core with tests, the server, the screens
-   (`impeccable` first) and the translation prefix.
-
-## Open for the session
-
-- Ordering the clues from hard to easy for each country: a rank per kind of
-  clue (a population before a capital, the flag or the outline near the end),
-  checked against a handful of countries so the first clue is never a
-  giveaway.
-- What a wrong answer costs: a lockout until the next clue, or out for the
-  round. One guess per clue keeps people from spamming every country they
-  know.
-- Answer modes: typed, matched against the country names the flags rubric
-  already accepts, and choice (four countries, as in the quiz).
-- How pay by clue fits `MOST_A_ROUND_PAYS` and `clockedPay`: answering on the
-  clue is the answer's worth, and the clock still settles ties between seats
-  who answered on the same clue.
+1. `fiveclues` in `gameKinds` (not `shelvedGames`), its settings arm
+   (`clueDurationMs` 5–30 s, 10 s default, the level), ten rounds, `typed`
+   and `choice` narrowed in `game-capabilities.ts` with their existing
+   attempts and the `single` verdict — `tsc` on the three packages lists
+   every `Record` left to fill.
+2. `apps/server/src/domain/round/five-clues-round.ts`: the ladder held on the
+   round, the open clue and its stamp on the round's own clock, the next clue
+   by timer or early, the close once settled, each seat priced by
+   `pointsForClue` — never the shared settle's `clockedPay`.
+3. The views send only the open clues; `five-clues-game.test.ts` as the plan
+   lists it, the anti-leak case over the whole transcript.
+4. Update the plan's step 2 with what it settled, the realtime protocol doc,
+   the changelog; then write the handoff for step 3 (the screens, which start
+   with the `impeccable` skill).

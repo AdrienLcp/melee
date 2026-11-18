@@ -989,6 +989,12 @@ one part.
 
 ### Internal
 
+- `[Shared]` **Five clues' rules and countries, ahead of its server.** A
+  right answer pays by the clue it landed on — 100, 80, 60, 40, 20 — the clock
+  ordering the seats on one clue; a typed seat guesses once a clue and a pick
+  is the round's only one; and 147 countries climb a ladder composed from the
+  capital, quantity, flag and silhouette banks, none whose size or cities
+  give it away. Plan 73.
 - `[Shared]` **A photograph for 322 estimate rows, not yet shown.**
   `pnpm --filter @melee/server pictures:build` reads the Wikidata image of
   every well-known mountain, building and river, and the Commons file 84

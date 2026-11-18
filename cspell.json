@@ -132,7 +132,9 @@
         "packages/core/src/longestword/*.test.ts",
         "apps/server/src/__tests__/longest-word-game.test.ts",
         "packages/core/src/thinkalike/*.ts",
-        "docs/plans/70-think-alike.md"
+        "docs/plans/70-think-alike.md",
+        "apps/server/src/infrastructure/questions/five-clues-bank.test.ts",
+        "docs/plans/73-five-clues.md"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -848,6 +850,9 @@
     "longestword",
     "makenumber",
     "thinkalike",
+    "fiveclues",
+    "unclocked",
+    "Cinco",
     "Lexique",
     "Brysbaert",
     "Ferrand",

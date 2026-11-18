@@ -5,6 +5,7 @@ import {
   countryCodeSchema
 } from '@melee/protocol/country-code'
 import {
+  type FlagFile,
   flagFileSchema,
   type QuestionLanguage,
   questionLanguages
@@ -66,6 +67,15 @@ export const countryTierOf = (code: CountryCode): ContentTier => {
   tierByCountry ??= new Map(flagRows().map(({ code, tier }) => [code, tier]))
 
   return tierByCountry.get(code) ?? 'hard'
+}
+
+let flagFiles: ReadonlyMap<CountryCode, FlagFile> | undefined
+
+/** The country's flag as `scripts/build-flag-bank.ts` drew it, or `null` for one the bank has none of. */
+export const flagFileOf = (code: CountryCode): FlagFile | null => {
+  flagFiles ??= new Map(flagRows().map(({ code, file }) => [code, file]))
+
+  return flagFiles.get(code) ?? null
 }
 
 let flagQuestions: BankedQuestion[] | undefined
