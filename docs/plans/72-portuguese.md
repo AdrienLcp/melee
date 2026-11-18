@@ -96,7 +96,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 01  | `portuguese-01-seams.md`        | The seams, the measurements and this plan                                     | **done** 17/11/2026 |
 | 02  | `portuguese-02-interface.md`    | The interface dictionary in Portuguese                                        | **done** 17/11/2026 |
 | 03  | `portuguese-03-small-banks.md`  | `pt` on challenge, most likely, timeline, think alike, capitals; a rebus bank | **done** 17/11/2026 |
-| 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | to do               |
+| 04  | `portuguese-04-black-square.md` | Black square's themes in Portuguese                                           | **done** 18/11/2026 |
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | to do               |
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | to do               |
 | 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
@@ -163,6 +163,44 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
   tests from its file; `PORTUGUESE_ASK_BY_KIND` waits beside `ASK_BY_KIND`,
   and `AUTHORED_REBUSES` takes the file at the flip.
 
+### 04 — what landed
+
+- **`pt` on all 259 themes**: label, every answer's label and aliases, the
+  black word's label, aliases and `why`. The 202 hand-written themes (3 557
+  answers) by nine writers, one per file, each re-read by a second; aliases
+  are what a Portuguese table says (_napolitana_, _bebidas brancas_,
+  _Tinta Roriz_), the Brazilian word dropped (_suco_, _apontador_,
+  _bambolê_). The bank test parses every file with `pt` required and grades
+  every name of every language, as a round will once 08 ships it.
+- **Every language's names are one pool at grading**, so a Portuguese name
+  can collide with another cell's French or English one: _Rouge_ (blusher in
+  Portuguese, lipstick in French) and _Viola_ (a guitar in Portugal, the
+  viola elsewhere) were dropped for that. A Portuguese word covering two
+  cells gives each its precise name: _ratinho / ratazana_, _rola_ for the
+  dove, _vespa-asiática_ for the hornet.
+- **The Wikidata build reads Portuguese without re-asking its queries**:
+  names through `namesOf` (`black-square-labels.json`), aliases through
+  `aliasesOf('pt')`, so the queries keep their hash and the en/fr halves
+  rebuild byte for byte. Wikidata's `pt` titles are Brazil's more often than
+  not: 257 entities take Portugal's name from `PORTUGUESE_LABELS` (_Regresso
+  ao Futuro_, _Sacanas Sem Lei_, _Inter de Milão_), the Brazilian or original
+  title kept in `PORTUGUESE_SPOKEN_ALIASES`. Templates word a theme in
+  Portuguese; 31 themes are worded by hand.
+- **Order and tiers untouched, flagged instead** (166 flags on the
+  hand-written themes, about twenty on Wikidata's). The strongest: Portugal's
+  own answers ranked hard — _Eusébio_, _Benfica_ and _FC Porto_, _bacalhau_,
+  _tremoço_, _choco_, _bodyboard_, _futsal_, _hóquei em patins_, _saudade_'s
+  _nostalgia_ — and French ones ranked easy — _tartiflette_, _Orangina_,
+  _Jean Dujardin_, _Demain dès l'aube_. Themes that are French through and
+  through (French dishes, kings and presidents of France, French champions,
+  the films of Oury and Veber, the regions) are worded in Portuguese and dealt
+  to every table: session 01's `homeCountry` does not cover black square,
+  whose rows go out in every language. A per-country tier is the lever if a
+  Portuguese table finds them flat.
+- **Black words that lean on French**: _Galette des rois_ keeps its entity
+  (the row is shared) and never answers to _bolo-rei_, Portugal's Christmas
+  cake; _Guiane_ is _Guiana Francesa_ because both Guianas are _Guiana_.
+
 ### 07 — what landed
 
 - `word-bank-pt.json`: **143 310 forms**, 5 154 hidden words (easy / medium /
@@ -194,4 +232,4 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - Keyboard: `KEY_ROWS` is held to `QuestionLanguage`, so `pt` takes QWERTY
   at the flip (noted in 08's handoff).
 
-<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo -->
+<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa -->

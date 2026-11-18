@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { z } from 'zod'
 
 import { LOCALES } from '@melee/protocol/locale'
 
@@ -15,7 +16,6 @@ import { contentTiers } from '@melee/core/round/difficulty-draw'
 import {
   authoredBlackSquareSources,
   authoredBlackSquareThemes,
-  type BlackSquareAnswer,
   bankedBlackSquareThemes,
   blackSquareThemePool,
   drawBlackSquareTheme,
@@ -23,6 +23,7 @@ import {
   parseAuthoredBlackSquareThemes,
   playedBlackSquareThemeId
 } from './black-square-bank'
+import bank from './black-square-bank.json' with { type: 'json' }
 
 /**
  * The templates whose answers are works. Elsewhere two answers sharing their
@@ -37,20 +38,50 @@ const WORK_TEMPLATES: ReadonlySet<string> = new Set([
   'films-of-studio'
 ])
 
-const namesOf = ({
-  aliases,
-  labels
-}: Pick<BlackSquareAnswer, 'aliases' | 'labels'>): string[] => [
-  labels.en,
-  labels.fr,
-  ...aliases.en,
-  ...aliases.fr
+type Named = {
+  aliases: Readonly<Record<string, readonly string[]>>
+  labels: Readonly<Record<string, string>>
+}
+
+/** Every name in every language a row holds, as a round grades them once its locales ship. */
+const namesOf = ({ aliases, labels }: Named): string[] => [
+  ...Object.values(labels),
+  ...Object.values(aliases).flat()
 ]
+
+const inEveryLanguage = <Value extends z.ZodType>(value: Value) =>
+  z.object({ en: value, fr: value, pt: value })
+
+const namedInEveryLanguageSchema = z.object({
+  aliases: inEveryLanguage(z.array(z.string().min(1))),
+  labels: inEveryLanguage(z.string().trim().min(1))
+})
+
+/**
+ * A theme as its file holds it, Portuguese included: the bank's schema strips
+ * a language until it ships, and a row missing one would fail only then.
+ */
+const themesInEveryLanguageSchema = z.array(
+  z.object({
+    answers: z.array(namedInEveryLanguageSchema),
+    blackWord: namedInEveryLanguageSchema.extend({
+      why: inEveryLanguage(z.string().trim().min(1))
+    }),
+    id: z.string(),
+    labels: inEveryLanguage(z.string().trim().min(1))
+  })
+)
+
+const unwrittenPathsOf = (source: unknown): string[] =>
+  themesInEveryLanguageSchema
+    .safeParse(source)
+    .error?.issues.map(({ path }) => path.join('.')) ?? []
+
+const themesInEveryLanguage = (source: unknown) =>
+  themesInEveryLanguageSchema.parse(source)
 
 /** Every name of a theme against every other answer dealt alone: thousands of gradings a theme. */
 const EVERY_NAME_GRADED = { timeout: 60_000 }
-
-type Named = Pick<BlackSquareAnswer, 'aliases' | 'labels'>
 
 type GradedTheme = {
   answers: readonly Named[]
@@ -140,6 +171,10 @@ describe('the black-square bank', () => {
     expect(clusters).toEqual([])
   })
 
+  it('[blacksquare] words every theme, answer and black word in Portuguese ahead of the locale', () => {
+    expect(unwrittenPathsOf(bank)).toEqual([])
+  })
+
   it('[blacksquare] holds one black word per theme, none of them an answer', () => {
     for (const { answers, blackWord, id } of bankedBlackSquareThemes()) {
       expect(blackWord.why.en.length, id).toBeGreaterThan(0)
@@ -152,7 +187,7 @@ describe('the black-square bank', () => {
   })
 
   it('[blacksquare] never grades a name of the black word as one of the answers', () => {
-    const collisions = bankedBlackSquareThemes().flatMap(
+    const collisions = themesInEveryLanguage(bank).flatMap(
       ({ answers, blackWord, id }) =>
         blackWordCollisionsOf({
           answers: answers.map(namesOf),
@@ -169,7 +204,7 @@ describe('the black-square bank', () => {
     '[blacksquare] grades every name as a round would: its own cell, the black word, or nothing once left out',
     EVERY_NAME_GRADED,
     () => {
-      expect(bankedBlackSquareThemes().flatMap(misgradedNamesOf)).toEqual([])
+      expect(themesInEveryLanguage(bank).flatMap(misgradedNamesOf)).toEqual([])
     }
   )
 
@@ -278,6 +313,10 @@ describe.each(Object.entries(authoredBlackSquareSources))(
       expect(themes().length).toBeGreaterThan(0)
     })
 
+    it('[blacksquare] words every theme, answer and black word in Portuguese ahead of the locale', () => {
+      expect(unwrittenPathsOf(source)).toEqual([])
+    })
+
     it('[blacksquare] pools twelve to twenty answers a theme, every tier at least three', () => {
       expect(
         themes().flatMap(({ answers, id }) =>
@@ -290,7 +329,9 @@ describe.each(Object.entries(authoredBlackSquareSources))(
       '[blacksquare] grades every name as a round would: its own cell, the black word, or nothing once left out',
       EVERY_NAME_GRADED,
       () => {
-        expect(themes().flatMap(misgradedNamesOf)).toEqual([])
+        expect(themesInEveryLanguage(source).flatMap(misgradedNamesOf)).toEqual(
+          []
+        )
       }
     )
   }

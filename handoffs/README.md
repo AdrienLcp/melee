@@ -6,7 +6,6 @@ delete this README with the last one.
 | Series     | Wave | File                            | Depends on |
 | ---------- | ---- | ------------------------------- | ---------- |
 | Games      | 3    | `games-03-five-clues.md`        | none       |
-| Portuguese | 2    | `portuguese-04-black-square.md` | 01         |
 | Portuguese | 2    | `portuguese-05-quantities.md`   | 01         |
 | Portuguese | 2    | `portuguese-06-quiz-bank.md`    | 01         |
 | Portuguese | 3    | `portuguese-08-flip.md`         | 02-07      |

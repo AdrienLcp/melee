@@ -9,187 +9,221 @@
             "Synchronised swimming",
             "Synchronized swimming"
           ],
-          "fr": ["Nage", "Natation artistique", "Natation synchronisée"]
+          "fr": ["Nage", "Natation artistique", "Natation synchronisée"],
+          "pt": ["Natação sincronizada", "Natação artística"]
         },
         "labels": {
           "en": "Swimming",
-          "fr": "Natation"
+          "fr": "Natation",
+          "pt": "Natação"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Surfe"]
         },
         "labels": {
           "en": "Surfing",
-          "fr": "Surf"
+          "fr": "Surf",
+          "pt": "Surf"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Yachting"],
-          "fr": ["Navigation à voile"]
+          "fr": ["Navigation à voile"],
+          "pt": []
         },
         "labels": {
           "en": "Sailing",
-          "fr": "Voile"
+          "fr": "Voile",
+          "pt": "Vela"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Ski aquático"]
         },
         "labels": {
           "en": "Water skiing",
-          "fr": "Ski nautique"
+          "fr": "Ski nautique",
+          "pt": "Esqui aquático"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Canoë-kayak"]
+          "fr": ["Canoë-kayak"],
+          "pt": ["Canoa"]
         },
         "labels": {
           "en": "Canoeing",
-          "fr": "Canoë"
+          "fr": "Canoë",
+          "pt": "Canoagem"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Kayak"]
         },
         "labels": {
           "en": "Kayaking",
-          "fr": "Kayak"
+          "fr": "Kayak",
+          "pt": "Caiaque"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Rowing",
-          "fr": "Aviron"
+          "fr": "Aviron",
+          "pt": "Remo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Springboard diving", "High diving"],
-          "fr": []
+          "fr": [],
+          "pt": ["Saltos ornamentais", "Saltos"]
         },
         "labels": {
           "en": "Diving",
-          "fr": "Plongeon"
+          "fr": "Plongeon",
+          "pt": "Saltos para a água"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Scuba"],
-          "fr": ["Plongée"]
+          "fr": ["Plongée"],
+          "pt": ["Mergulho", "Mergulho com garrafa"]
         },
         "labels": {
           "en": "Scuba diving",
-          "fr": "Plongée sous-marine"
+          "fr": "Plongée sous-marine",
+          "pt": "Mergulho subaquático"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Water polo"]
         },
         "labels": {
           "en": "Water polo",
-          "fr": "Water-polo"
+          "fr": "Water-polo",
+          "pt": "Polo aquático"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Windsurf", "Boardsailing"],
-          "fr": []
+          "fr": [],
+          "pt": ["Prancha à vela"]
         },
         "labels": {
           "en": "Windsurfing",
-          "fr": "Planche à voile"
+          "fr": "Planche à voile",
+          "pt": "Windsurf"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Kiteboarding"],
-          "fr": ["Kite"]
+          "fr": ["Kite"],
+          "pt": ["Kite"]
         },
         "labels": {
           "en": "Kitesurfing",
-          "fr": "Kitesurf"
+          "fr": "Kitesurf",
+          "pt": "Kitesurf"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["White-water rafting"],
-          "fr": ["Raft"]
+          "fr": ["Raft"],
+          "pt": ["Raft"]
         },
         "labels": {
           "en": "Rafting",
-          "fr": "Rafting"
+          "fr": "Rafting",
+          "pt": "Rafting"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["SUP", "Paddle", "Stand-up paddleboarding"],
-          "fr": []
+          "fr": [],
+          "pt": ["Paddle", "SUP", "Paddle surf"]
         },
         "labels": {
           "en": "Paddleboarding",
-          "fr": "Stand-up paddle"
+          "fr": "Stand-up paddle",
+          "pt": "Stand-up paddle"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Wakeboarding",
-          "fr": "Wakeboard"
+          "fr": "Wakeboard",
+          "pt": "Wakeboard"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bodyboarding",
-          "fr": "Bodyboard"
+          "fr": "Bodyboard",
+          "pt": "Bodyboard"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Scooter des mers"]
+          "fr": ["Scooter des mers"],
+          "pt": ["Moto de água", "Jet ski"]
         },
         "labels": {
           "en": "Jet skiing",
-          "fr": "Jet-ski"
+          "fr": "Jet-ski",
+          "pt": "Mota de água"
         },
         "tier": "hard"
       }
@@ -197,21 +231,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": ["Volley de plage"]
+        "fr": ["Volley de plage"],
+        "pt": ["Vólei de praia", "Beach volley"]
       },
       "labels": {
         "en": "Beach volleyball",
-        "fr": "Beach-volley"
+        "fr": "Beach-volley",
+        "pt": "Voleibol de praia"
       },
       "why": {
         "en": "Played on the beach, but on sand, never in the water.",
-        "fr": "Ça se joue à la plage, mais sur le sable, jamais dans l'eau."
+        "fr": "Ça se joue à la plage, mais sur le sable, jamais dans l'eau.",
+        "pt": "Joga-se na praia, mas na areia, nunca dentro de água."
       }
     },
     "id": "water-sports",
     "labels": {
       "en": "Water sports",
-      "fr": "Sports nautiques"
+      "fr": "Sports nautiques",
+      "pt": "Desportos náuticos"
     },
     "tier": "easy"
   },
@@ -241,22 +279,36 @@
             "Ski freestyle",
             "Ski-alpinisme",
             "Ski de randonnée"
+          ],
+          "pt": [
+            "Ski",
+            "Esqui alpino",
+            "Esqui de fundo",
+            "Esqui nórdico",
+            "Salto de esqui",
+            "Saltos de esqui",
+            "Esqui acrobático",
+            "Esqui freestyle",
+            "Esqui de montanha"
           ]
         },
         "labels": {
           "en": "Skiing",
-          "fr": "Ski"
+          "fr": "Ski",
+          "pt": "Esqui"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Surf des neiges"]
+          "fr": ["Surf des neiges"],
+          "pt": []
         },
         "labels": {
           "en": "Snowboarding",
-          "fr": "Snowboard"
+          "fr": "Snowboard",
+          "pt": "Snowboard"
         },
         "tier": "easy"
       },
@@ -274,132 +326,163 @@
             "Patinage de vitesse",
             "Patins à glace",
             "Short-track"
+          ],
+          "pt": [
+            "Patinação",
+            "Patinagem artística",
+            "Patinagem no gelo",
+            "Patinagem de velocidade",
+            "Patins",
+            "Short track"
           ]
         },
         "labels": {
           "en": "Skating",
-          "fr": "Patinage"
+          "fr": "Patinage",
+          "pt": "Patinagem"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Hockey"],
-          "fr": []
+          "fr": [],
+          "pt": ["Hóquei"]
         },
         "labels": {
           "en": "Ice hockey",
-          "fr": "Hockey sur glace"
+          "fr": "Hockey sur glace",
+          "pt": "Hóquei no gelo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bobsled", "Bob"],
-          "fr": []
+          "fr": [],
+          "pt": ["Bob", "Bobsled"]
         },
         "labels": {
           "en": "Bobsleigh",
-          "fr": "Bobsleigh"
+          "fr": "Bobsleigh",
+          "pt": "Bobsleigh"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Curling",
-          "fr": "Curling"
+          "fr": "Curling",
+          "pt": "Curling"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Luge",
-          "fr": "Luge"
+          "fr": "Luge",
+          "pt": "Luge"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Biathlon"]
         },
         "labels": {
           "en": "Biathlon",
-          "fr": "Biathlon"
+          "fr": "Biathlon",
+          "pt": "Biatlo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Skeleton",
-          "fr": "Skeleton"
+          "fr": "Skeleton",
+          "pt": "Skeleton"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Nordic combined",
-          "fr": "Combiné nordique"
+          "fr": "Combiné nordique",
+          "pt": "Combinado nórdico"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Snowshoe", "Snowshoes"],
-          "fr": ["Raquette", "Randonnée en raquettes"]
+          "fr": ["Raquette", "Randonnée en raquettes"],
+          "pt": ["Raquetes", "Caminhada com raquetes"]
         },
         "labels": {
           "en": "Snowshoeing",
-          "fr": "Raquettes"
+          "fr": "Raquettes",
+          "pt": "Raquetes de neve"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Sled dog racing", "Mushing"],
-          "fr": ["Traîneau à chiens"]
+          "fr": ["Traîneau à chiens"],
+          "pt": ["Trenó de cães", "Corrida de trenós", "Mushing"]
         },
         "labels": {
           "en": "Dog sledding",
-          "fr": "Chiens de traîneau"
+          "fr": "Chiens de traîneau",
+          "pt": "Trenó puxado por cães"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Snowmobile"],
-          "fr": []
+          "fr": [],
+          "pt": ["Moto de neve", "Motoneve", "Snowmobile"]
         },
         "labels": {
           "en": "Snowmobiling",
-          "fr": "Motoneige"
+          "fr": "Motoneige",
+          "pt": "Mota de neve"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Cascade de glace"]
+          "fr": ["Cascade de glace"],
+          "pt": ["Escalada em gelo", "Cascata de gelo"]
         },
         "labels": {
           "en": "Ice climbing",
-          "fr": "Escalade glaciaire"
+          "fr": "Escalade glaciaire",
+          "pt": "Escalada no gelo"
         },
         "tier": "hard"
       }
@@ -407,21 +490,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": ["Hockey sur herbe"]
+        "fr": ["Hockey sur herbe"],
+        "pt": ["Hóquei de campo", "Hóquei em relva"]
       },
       "labels": {
         "en": "Field hockey",
-        "fr": "Hockey sur gazon"
+        "fr": "Hockey sur gazon",
+        "pt": "Hóquei em campo"
       },
       "why": {
         "en": "Hockey, but on grass — a summer Olympic sport.",
-        "fr": "Du hockey, mais sur l'herbe — un sport des Jeux d'été."
+        "fr": "Du hockey, mais sur l'herbe — un sport des Jeux d'été.",
+        "pt": "É hóquei, mas na relva — um desporto dos Jogos de verão."
       }
     },
     "id": "winter-sports",
     "labels": {
       "en": "Winter sports",
-      "fr": "Sports d'hiver"
+      "fr": "Sports d'hiver",
+      "pt": "Desportos de inverno"
     },
     "tier": "easy"
   },
@@ -430,165 +517,201 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Judo",
-          "fr": "Judo"
+          "fr": "Judo",
+          "pt": "Judo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Caraté"]
         },
         "labels": {
           "en": "Karate",
-          "fr": "Karaté"
+          "fr": "Karaté",
+          "pt": "Karaté"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Muay Thai", "Thai boxing", "Savate", "French boxing"],
-          "fr": ["Boxe anglaise", "Boxe thaï", "Boxe française"]
+          "fr": ["Boxe anglaise", "Boxe thaï", "Boxe française"],
+          "pt": [
+            "Boxe inglês",
+            "Boxe tailandês",
+            "Muay thai",
+            "Boxe francês",
+            "Savate"
+          ]
         },
         "labels": {
           "en": "Boxing",
-          "fr": "Boxe"
+          "fr": "Boxe",
+          "pt": "Boxe"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kung fu",
-          "fr": "Kung-fu"
+          "fr": "Kung-fu",
+          "pt": "Kung fu"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Taekwondo",
-          "fr": "Taekwondo"
+          "fr": "Taekwondo",
+          "pt": "Taekwondo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Greco-Roman wrestling", "Freestyle wrestling"],
-          "fr": ["Lutte gréco-romaine", "Lutte libre"]
+          "fr": ["Lutte gréco-romaine", "Lutte libre"],
+          "pt": ["Luta greco-romana", "Luta livre"]
         },
         "labels": {
           "en": "Wrestling",
-          "fr": "Lutte"
+          "fr": "Lutte",
+          "pt": "Luta"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Aikido",
-          "fr": "Aïkido"
+          "fr": "Aïkido",
+          "pt": "Aikido"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kickboxing",
-          "fr": "Kick-boxing"
+          "fr": "Kick-boxing",
+          "pt": "Kickboxing"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sumo",
-          "fr": "Sumo"
+          "fr": "Sumo",
+          "pt": "Sumo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Fencing",
-          "fr": "Escrime"
+          "fr": "Escrime",
+          "pt": "Esgrima"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Arts martiaux mixtes"]
+          "fr": ["Arts martiaux mixtes"],
+          "pt": ["Artes marciais mistas"]
         },
         "labels": {
           "en": "Mixed martial arts",
-          "fr": "MMA"
+          "fr": "MMA",
+          "pt": "MMA"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Brazilian jiu-jitsu", "Jujitsu", "BJJ"],
-          "fr": ["Jiu-jitsu brésilien"]
+          "fr": ["Jiu-jitsu brésilien"],
+          "pt": ["Jiu-jitsu brasileiro", "BJJ", "Jujutsu"]
         },
         "labels": {
           "en": "Jiu-jitsu",
-          "fr": "Jiu-jitsu"
+          "fr": "Jiu-jitsu",
+          "pt": "Jiu-jitsu"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kendo",
-          "fr": "Kendo"
+          "fr": "Kendo",
+          "pt": "Kendo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Capoeira",
-          "fr": "Capoeira"
+          "fr": "Capoeira",
+          "pt": "Capoeira"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Krav Maga",
-          "fr": "Krav-maga"
+          "fr": "Krav-maga",
+          "pt": "Krav Maga"
         },
         "tier": "hard"
       }
@@ -596,21 +719,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": ["Yoga"]
       },
       "labels": {
         "en": "Yoga",
-        "fr": "Yoga"
+        "fr": "Yoga",
+        "pt": "Ioga"
       },
       "why": {
         "en": "From Asia and full of poses, but nobody fights.",
-        "fr": "Venu d'Asie et plein de postures, mais personne ne se bat."
+        "fr": "Venu d'Asie et plein de postures, mais personne ne se bat.",
+        "pt": "Vem da Ásia e está cheio de posturas, mas ninguém luta."
       }
     },
     "id": "martial-arts",
     "labels": {
       "en": "Martial arts and combat sports",
-      "fr": "Arts martiaux et sports de combat"
+      "fr": "Arts martiaux et sports de combat",
+      "pt": "Artes marciais e desportos de combate"
     },
     "tier": "easy"
   },
@@ -619,209 +746,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Monopoly"]
         },
         "labels": {
           "en": "Monopoly",
-          "fr": "Monopoly"
+          "fr": "Monopoly",
+          "pt": "Monopólio"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Jeu d'échecs"]
+          "fr": ["Jeu d'échecs"],
+          "pt": ["Jogo de xadrez"]
         },
         "labels": {
           "en": "Chess",
-          "fr": "Échecs"
+          "fr": "Échecs",
+          "pt": "Xadrez"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Scrabble",
-          "fr": "Scrabble"
+          "fr": "Scrabble",
+          "pt": "Scrabble"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Clue"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cluedo",
-          "fr": "Cluedo"
+          "fr": "Cluedo",
+          "pt": "Cluedo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Draughts"],
-          "fr": ["Jeu de dames"]
+          "fr": ["Jeu de dames"],
+          "pt": ["Jogo das damas"]
         },
         "labels": {
           "en": "Checkers",
-          "fr": "Dames"
+          "fr": "Dames",
+          "pt": "Damas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Trivial"],
-          "fr": []
+          "fr": [],
+          "pt": ["Trivial"]
         },
         "labels": {
           "en": "Trivial Pursuit",
-          "fr": "Trivial Pursuit"
+          "fr": "Trivial Pursuit",
+          "pt": "Trivial Pursuit"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Risk"]
         },
         "labels": {
           "en": "Risk",
-          "fr": "Risk"
+          "fr": "Risk",
+          "pt": "Risco"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Backgammon"]
         },
         "labels": {
           "en": "Backgammon",
-          "fr": "Backgammon"
+          "fr": "Backgammon",
+          "pt": "Gamão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Parcheesi"],
-          "fr": ["Jeu des petits chevaux"]
+          "fr": ["Jeu des petits chevaux"],
+          "pt": []
         },
         "labels": {
           "en": "Ludo",
-          "fr": "Petits chevaux"
+          "fr": "Petits chevaux",
+          "pt": "Ludo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Chutes and ladders"],
-          "fr": ["Échelles et serpents"]
+          "fr": ["Échelles et serpents"],
+          "pt": ["Cobras e escadas", "Escadas e serpentes"]
         },
         "labels": {
           "en": "Snakes and ladders",
-          "fr": "Serpents et échelles"
+          "fr": "Serpents et échelles",
+          "pt": "Serpentes e escadas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Settlers of Catan"],
-          "fr": ["Les Colons de Catane"]
+          "fr": ["Les Colons de Catane"],
+          "pt": ["Colonos de Catan"]
         },
         "labels": {
           "en": "Catan",
-          "fr": "Catan"
+          "fr": "Catan",
+          "pt": "Catan"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pictionary",
-          "fr": "Pictionary"
+          "fr": "Pictionary",
+          "pt": "Pictionary"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Weiqi", "Baduk"],
-          "fr": ["Jeu de go"]
+          "fr": ["Jeu de go"],
+          "pt": ["Jogo do go"]
         },
         "labels": {
           "en": "Go",
-          "fr": "Go"
+          "fr": "Go",
+          "pt": "Go"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Stratego",
-          "fr": "Stratego"
+          "fr": "Stratego",
+          "pt": "Stratego"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Carcassonne",
-          "fr": "Carcassonne"
+          "fr": "Carcassonne",
+          "pt": "Carcassonne"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mastermind",
-          "fr": "Mastermind"
+          "fr": "Mastermind",
+          "pt": "Mastermind"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Aventuriers du rail"]
+          "fr": ["Aventuriers du rail"],
+          "pt": []
         },
         "labels": {
           "en": "Ticket to Ride",
-          "fr": "Les Aventuriers du rail"
+          "fr": "Les Aventuriers du rail",
+          "pt": "Ticket to Ride"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Reversi"],
-          "fr": []
+          "fr": [],
+          "pt": ["Reversi"]
         },
         "labels": {
           "en": "Othello",
-          "fr": "Othello"
+          "fr": "Othello",
+          "pt": "Othello"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dixit",
-          "fr": "Dixit"
+          "fr": "Dixit",
+          "pt": "Dixit"
         },
         "tier": "hard"
       }
@@ -829,21 +994,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Uno",
-        "fr": "Uno"
+        "fr": "Uno",
+        "pt": "Uno"
       },
       "why": {
         "en": "A card game: no board anywhere.",
-        "fr": "Un jeu de cartes : aucun plateau."
+        "fr": "Un jeu de cartes : aucun plateau.",
+        "pt": "Um jogo de cartas: nem sombra de tabuleiro."
       }
     },
     "id": "board-games",
     "labels": {
       "en": "Board games",
-      "fr": "Jeux de société"
+      "fr": "Jeux de société",
+      "pt": "Jogos de tabuleiro"
     },
     "tier": "easy"
   },
@@ -852,176 +1021,208 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Poker"]
         },
         "labels": {
           "en": "Poker",
-          "fr": "Poker"
+          "fr": "Poker",
+          "pt": "Póquer"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Patience", "Klondike"],
-          "fr": ["Réussite"]
+          "fr": ["Réussite"],
+          "pt": ["Paciência", "Paciências"]
         },
         "labels": {
           "en": "Solitaire",
-          "fr": "Solitaire"
+          "fr": "Solitaire",
+          "pt": "Solitário"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Crazy Eights"],
-          "fr": ["Huit américain", "8 américain"]
+          "fr": ["Huit américain", "8 américain"],
+          "pt": []
         },
         "labels": {
           "en": "Uno",
-          "fr": "Uno"
+          "fr": "Uno",
+          "pt": "Uno"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bridge",
-          "fr": "Bridge"
+          "fr": "Bridge",
+          "pt": "Bridge"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Twenty-one", "21"],
-          "fr": ["Vingt-et-un"]
+          "fr": ["Vingt-et-un"],
+          "pt": ["Vinte e um", "21"]
         },
         "labels": {
           "en": "Blackjack",
-          "fr": "Blackjack"
+          "fr": "Blackjack",
+          "pt": "Blackjack"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Belote",
-          "fr": "Belote"
+          "fr": "Belote",
+          "pt": "Belote"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Gin rummy"],
-          "fr": []
+          "fr": [],
+          "pt": ["Gin rummy"]
         },
         "labels": {
           "en": "Rummy",
-          "fr": "Rami"
+          "fr": "Rami",
+          "pt": "Rummy"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Batalha"]
         },
         "labels": {
           "en": "War",
-          "fr": "Bataille"
+          "fr": "Bataille",
+          "pt": "Guerra"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Mistigri"]
+          "fr": ["Mistigri"],
+          "pt": []
         },
         "labels": {
           "en": "Old Maid",
-          "fr": "Pouilleux"
+          "fr": "Pouilleux",
+          "pt": "Mico"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Baccarat"]
         },
         "labels": {
           "en": "Baccarat",
-          "fr": "Baccara"
+          "fr": "Baccara",
+          "pt": "Bacará"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Canasta",
-          "fr": "Canasta"
+          "fr": "Canasta",
+          "pt": "Canasta"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "President",
-          "fr": "Président"
+          "fr": "Président",
+          "pt": "Presidente"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hearts",
-          "fr": "Dame de pique"
+          "fr": "Dame de pique",
+          "pt": "Copas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Whist",
-          "fr": "Whist"
+          "fr": "Whist",
+          "pt": "Whist"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["1000 bornes"]
+          "fr": ["1000 bornes"],
+          "pt": ["1000 Bornes"]
         },
         "labels": {
           "en": "Mille Bornes",
-          "fr": "Mille Bornes"
+          "fr": "Mille Bornes",
+          "pt": "Mille Bornes"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Sept familles", "7 familles", "Jeu des sept familles"]
+          "fr": ["Sept familles", "7 familles", "Jeu des sept familles"],
+          "pt": ["Famílias", "Sete famílias", "Jogo das 7 famílias"]
         },
         "labels": {
           "en": "Happy Families",
-          "fr": "Jeu des 7 familles"
+          "fr": "Jeu des 7 familles",
+          "pt": "Jogo das famílias"
         },
         "tier": "hard"
       }
@@ -1029,21 +1230,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Domino"],
-        "fr": []
+        "fr": [],
+        "pt": ["Dominós"]
       },
       "labels": {
         "en": "Dominoes",
-        "fr": "Dominos"
+        "fr": "Dominos",
+        "pt": "Dominó"
       },
       "why": {
         "en": "Played with tiles, not cards.",
-        "fr": "Ça se joue avec des tuiles, pas des cartes."
+        "fr": "Ça se joue avec des tuiles, pas des cartes.",
+        "pt": "Joga-se com peças, não com cartas."
       }
     },
     "id": "card-games",
     "labels": {
       "en": "Card games",
-      "fr": "Jeux de cartes"
+      "fr": "Jeux de cartes",
+      "pt": "Jogos de cartas"
     },
     "tier": "medium"
   },
@@ -1052,176 +1257,208 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jogo das escondidas", "Esconde-esconde"]
         },
         "labels": {
           "en": "Hide and seek",
-          "fr": "Cache-cache"
+          "fr": "Cache-cache",
+          "pt": "Escondidas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Tig", "It"],
-          "fr": ["Loup", "Jeu du loup"]
+          "fr": ["Loup", "Jeu du loup"],
+          "pt": ["Apanhadas", "Jogo da apanhada"]
         },
         "labels": {
           "en": "Tag",
-          "fr": "Chat"
+          "fr": "Chat",
+          "pt": "Apanhada"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jogo da macaca"]
         },
         "labels": {
           "en": "Hopscotch",
-          "fr": "Marelle"
+          "fr": "Marelle",
+          "pt": "Macaca"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Jump rope", "Skipping"],
-          "fr": []
+          "fr": [],
+          "pt": ["Saltar à corda", "Corda"]
         },
         "labels": {
           "en": "Skipping rope",
-          "fr": "Corde à sauter"
+          "fr": "Corde à sauter",
+          "pt": "Corda de saltar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Jeu de billes"]
+          "fr": ["Jeu de billes"],
+          "pt": ["Berlinde", "Jogo do berlinde"]
         },
         "labels": {
           "en": "Marbles",
-          "fr": "Billes"
+          "fr": "Billes",
+          "pt": "Berlindes"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jogo do eixo", "Salto ao eixo"]
         },
         "labels": {
           "en": "Leapfrog",
-          "fr": "Saute-mouton"
+          "fr": "Saute-mouton",
+          "pt": "Eixo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Puxar a corda"]
         },
         "labels": {
           "en": "Tug of war",
-          "fr": "Tir à la corde"
+          "fr": "Tir à la corde",
+          "pt": "Jogo da corda"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Grandmother's footsteps", "Statues"],
-          "fr": ["Un deux trois soleil"]
+          "fr": ["Un deux trois soleil"],
+          "pt": ["Um, dois, três, macaquinho do chinês"]
         },
         "labels": {
           "en": "Red light, green light",
-          "fr": "1, 2, 3, soleil"
+          "fr": "1, 2, 3, soleil",
+          "pt": "Macaquinho do chinês"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Chinese jump rope", "Elastics", "Elastic"],
-          "fr": []
+          "fr": [],
+          "pt": ["Jogo do elástico"]
         },
         "labels": {
           "en": "French skipping",
-          "fr": "Élastique"
+          "fr": "Élastique",
+          "pt": "Elástico"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Simon says",
-          "fr": "Jacques a dit"
+          "fr": "Jacques a dit",
+          "pt": "O rei manda"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Ballon prisonnier"]
+          "fr": ["Ballon prisonnier"],
+          "pt": ["Jogo do mata", "Bola ao mata"]
         },
         "labels": {
           "en": "Dodgeball",
-          "fr": "Balle aux prisonniers"
+          "fr": "Balle aux prisonniers",
+          "pt": "Mata"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Chifoumi"]
+          "fr": ["Chifoumi"],
+          "pt": []
         },
         "labels": {
           "en": "Rock paper scissors",
-          "fr": "Pierre-feuille-ciseaux"
+          "fr": "Pierre-feuille-ciseaux",
+          "pt": "Pedra, papel, tesoura"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Blind man's bluff"],
-          "fr": []
+          "fr": [],
+          "pt": ["Jogo da cabra-cega"]
         },
         "labels": {
           "en": "Blind man's buff",
-          "fr": "Colin-maillard"
+          "fr": "Colin-maillard",
+          "pt": "Cabra-cega"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Knucklebones"],
-          "fr": ["Osselet"]
+          "fr": ["Osselet"],
+          "pt": ["Jogo das pedrinhas", "Cinco pedrinhas"]
         },
         "labels": {
           "en": "Jacks",
-          "fr": "Osselets"
+          "fr": "Osselets",
+          "pt": "Pedrinhas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["L'épervier"]
+          "fr": ["L'épervier"],
+          "pt": ["Jogo do gavião", "Tubarão", "Jogo do tubarão", "Bulldog"]
         },
         "labels": {
           "en": "British bulldog",
-          "fr": "Épervier"
+          "fr": "Épervier",
+          "pt": "Gavião"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Telephone", "Broken telephone"],
-          "fr": ["Téléphone sans fil"]
+          "fr": ["Téléphone sans fil"],
+          "pt": ["Telefone avariado"]
         },
         "labels": {
           "en": "Chinese whispers",
-          "fr": "Téléphone arabe"
+          "fr": "Téléphone arabe",
+          "pt": "Telefone estragado"
         },
         "tier": "hard"
       }
@@ -1229,21 +1466,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": ["Jeu des chaises musicales"]
+        "fr": ["Jeu des chaises musicales"],
+        "pt": ["Dança das cadeiras", "Cadeiras musicais"]
       },
       "labels": {
         "en": "Musical chairs",
-        "fr": "Chaises musicales"
+        "fr": "Chaises musicales",
+        "pt": "Jogo das cadeiras"
       },
       "why": {
         "en": "A party game: it needs chairs and music, which a playground has neither of.",
-        "fr": "Un jeu de fête : il faut des chaises et de la musique, qu'une cour n'a pas."
+        "fr": "Un jeu de fête : il faut des chaises et de la musique, qu'une cour n'a pas.",
+        "pt": "Um jogo de festa: precisa de cadeiras e de música, que o recreio não tem."
       }
     },
     "id": "playground-games",
     "labels": {
       "en": "Playground games",
-      "fr": "Jeux de récré"
+      "fr": "Jeux de récré",
+      "pt": "Jogos de recreio"
     },
     "tier": "easy"
   },
@@ -1252,165 +1493,195 @@
       {
         "aliases": {
           "en": ["Transverse flute", "Recorder", "Pan flute", "Pan pipes"],
-          "fr": ["Flûte traversière", "Flûte à bec", "Flûte de Pan"]
+          "fr": ["Flûte traversière", "Flûte à bec", "Flûte de Pan"],
+          "pt": ["Flauta transversal", "Flauta de bisel", "Flauta de Pã"]
         },
         "labels": {
           "en": "Flute",
-          "fr": "Flûte"
+          "fr": "Flûte",
+          "pt": "Flauta"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Trumpet",
-          "fr": "Trompette"
+          "fr": "Trompette",
+          "pt": "Trompete"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Sax"],
-          "fr": ["Saxo"]
+          "fr": ["Saxo"],
+          "pt": ["Sax"]
         },
         "labels": {
           "en": "Saxophone",
-          "fr": "Saxophone"
+          "fr": "Saxophone",
+          "pt": "Saxofone"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Clarinet",
-          "fr": "Clarinette"
+          "fr": "Clarinette",
+          "pt": "Clarinete"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Mouth organ"],
-          "fr": []
+          "fr": [],
+          "pt": ["Gaita de beiços"]
         },
         "labels": {
           "en": "Harmonica",
-          "fr": "Harmonica"
+          "fr": "Harmonica",
+          "pt": "Harmónica"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Trombone",
-          "fr": "Trombone"
+          "fr": "Trombone",
+          "pt": "Trombone"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Oboe",
-          "fr": "Hautbois"
+          "fr": "Hautbois",
+          "pt": "Oboé"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tuba",
-          "fr": "Tuba"
+          "fr": "Tuba",
+          "pt": "Tuba"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bassoon",
-          "fr": "Basson"
+          "fr": "Basson",
+          "pt": "Fagote"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Horn"],
-          "fr": ["Cor d'harmonie"]
+          "fr": ["Cor d'harmonie"],
+          "pt": ["Trompa de harmonia"]
         },
         "labels": {
           "en": "French horn",
-          "fr": "Cor"
+          "fr": "Cor",
+          "pt": "Trompa"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Bagpipe"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bagpipes",
-          "fr": "Cornemuse"
+          "fr": "Cornemuse",
+          "pt": "Gaita de foles"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Didjeridu"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Didgeridoo",
-          "fr": "Didgeridoo"
+          "fr": "Didgeridoo",
+          "pt": "Didgeridoo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Petite flûte"]
+          "fr": ["Petite flûte"],
+          "pt": ["Piccolo"]
         },
         "labels": {
           "en": "Piccolo",
-          "fr": "Piccolo"
+          "fr": "Piccolo",
+          "pt": "Flautim"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Corneta de pistões"]
         },
         "labels": {
           "en": "Cornet",
-          "fr": "Cornet à pistons"
+          "fr": "Cornet à pistons",
+          "pt": "Cornetim"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ocarina",
-          "fr": "Ocarina"
+          "fr": "Ocarina",
+          "pt": "Ocarina"
         },
         "tier": "hard"
       }
@@ -1418,21 +1689,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Xylophone",
-        "fr": "Xylophone"
+        "fr": "Xylophone",
+        "pt": "Xilofone"
       },
       "why": {
         "en": "Ends like saxophone, but you strike it: percussion.",
-        "fr": "Finit comme saxophone, mais on le frappe : une percussion."
+        "fr": "Finit comme saxophone, mais on le frappe : une percussion.",
+        "pt": "Acaba como saxofone, mas toca-se a bater: é percussão."
       }
     },
     "id": "wind-instruments",
     "labels": {
       "en": "Wind instruments",
-      "fr": "Instruments à vent"
+      "fr": "Instruments à vent",
+      "pt": "Instrumentos de sopro"
     },
     "tier": "easy"
   },
@@ -1441,187 +1716,221 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Guitarra clássica"]
         },
         "labels": {
           "en": "Guitar",
-          "fr": "Guitare"
+          "fr": "Guitare",
+          "pt": "Guitarra"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Fiddle"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Violin",
-          "fr": "Violon"
+          "fr": "Violon",
+          "pt": "Violino"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Violoncello"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cello",
-          "fr": "Violoncelle"
+          "fr": "Violoncelle",
+          "pt": "Violoncelo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Harp",
-          "fr": "Harpe"
+          "fr": "Harpe",
+          "pt": "Harpa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Contrabass", "Upright bass"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Double bass",
-          "fr": "Contrebasse"
+          "fr": "Contrebasse",
+          "pt": "Contrabaixo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bass"],
-          "fr": ["Guitare basse"]
+          "fr": ["Guitare basse"],
+          "pt": ["Guitarra baixo", "Baixo elétrico"]
         },
         "labels": {
           "en": "Bass guitar",
-          "fr": "Basse"
+          "fr": "Basse",
+          "pt": "Baixo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Viola d'arco"]
         },
         "labels": {
           "en": "Viola",
-          "fr": "Alto"
+          "fr": "Alto",
+          "pt": "Violeta"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Banjo",
-          "fr": "Banjo"
+          "fr": "Banjo",
+          "pt": "Banjo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ukulele",
-          "fr": "Ukulélé"
+          "fr": "Ukulélé",
+          "pt": "Ukulele"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mandolin",
-          "fr": "Mandoline"
+          "fr": "Mandoline",
+          "pt": "Bandolim"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Lute",
-          "fr": "Luth"
+          "fr": "Luth",
+          "pt": "Alaúde"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sitar",
-          "fr": "Sitar"
+          "fr": "Sitar",
+          "pt": "Sitar"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Balalaika",
-          "fr": "Balalaïka"
+          "fr": "Balalaïka",
+          "pt": "Balalaica"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Lyre",
-          "fr": "Lyre"
+          "fr": "Lyre",
+          "pt": "Lira"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Zither",
-          "fr": "Cithare"
+          "fr": "Cithare",
+          "pt": "Cítara"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Koto",
-          "fr": "Koto"
+          "fr": "Koto",
+          "pt": "Koto"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Viela de roda"]
         },
         "labels": {
           "en": "Hurdy-gurdy",
-          "fr": "Vielle à roue"
+          "fr": "Vielle à roue",
+          "pt": "Sanfona"
         },
         "tier": "hard"
       }
@@ -1629,21 +1938,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Bow",
-        "fr": "Archet"
+        "fr": "Archet",
+        "pt": "Arco"
       },
       "why": {
         "en": "It plays the violin, but it is not an instrument.",
-        "fr": "Il joue du violon, mais ce n'est pas un instrument."
+        "fr": "Il joue du violon, mais ce n'est pas un instrument.",
+        "pt": "Toca violino, mas não é um instrumento."
       }
     },
     "id": "string-instruments",
     "labels": {
       "en": "String instruments",
-      "fr": "Instruments à cordes"
+      "fr": "Instruments à cordes",
+      "pt": "Instrumentos de corda"
     },
     "tier": "easy"
   },
@@ -1652,209 +1965,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Rock",
-          "fr": "Rock"
+          "fr": "Rock",
+          "pt": "Rock"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["K-pop"],
-          "fr": ["K-pop"]
+          "fr": ["K-pop"],
+          "pt": ["K-pop"]
         },
         "labels": {
           "en": "Pop",
-          "fr": "Pop"
+          "fr": "Pop",
+          "pt": "Pop"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Jazz",
-          "fr": "Jazz"
+          "fr": "Jazz",
+          "pt": "Jazz"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Hip-hop"],
-          "fr": []
+          "fr": [],
+          "pt": ["Hip-hop"]
         },
         "labels": {
           "en": "Rap",
-          "fr": "Rap"
+          "fr": "Rap",
+          "pt": "Rap"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Reggae",
-          "fr": "Reggae"
+          "fr": "Reggae",
+          "pt": "Reggae"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Classical"],
-          "fr": ["Classique"]
+          "fr": ["Classique"],
+          "pt": ["Clássica"]
         },
         "labels": {
           "en": "Classical music",
-          "fr": "Musique classique"
+          "fr": "Musique classique",
+          "pt": "Música clássica"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Electronic", "EDM"],
-          "fr": ["Musique électronique"]
+          "fr": ["Musique électronique"],
+          "pt": ["Música eletrónica", "Electro", "EDM"]
         },
         "labels": {
           "en": "Electronic music",
-          "fr": "Électro"
+          "fr": "Électro",
+          "pt": "Eletrónica"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Blues",
-          "fr": "Blues"
+          "fr": "Blues",
+          "pt": "Blues"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Heavy metal"],
-          "fr": []
+          "fr": [],
+          "pt": ["Heavy metal"]
         },
         "labels": {
           "en": "Metal",
-          "fr": "Métal"
+          "fr": "Métal",
+          "pt": "Metal"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Funk",
-          "fr": "Funk"
+          "fr": "Funk",
+          "pt": "Funk"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Disco",
-          "fr": "Disco"
+          "fr": "Disco",
+          "pt": "Disco"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Soul",
-          "fr": "Soul"
+          "fr": "Soul",
+          "pt": "Soul"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Punk rock"],
-          "fr": []
+          "fr": [],
+          "pt": ["Punk rock"]
         },
         "labels": {
           "en": "Punk",
-          "fr": "Punk"
+          "fr": "Punk",
+          "pt": "Punk"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Country music"],
-          "fr": ["Musique country"]
+          "fr": ["Musique country"],
+          "pt": ["Música country"]
         },
         "labels": {
           "en": "Country",
-          "fr": "Country"
+          "fr": "Country",
+          "pt": "Country"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Gospel",
-          "fr": "Gospel"
+          "fr": "Gospel",
+          "pt": "Gospel"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Rhythm and blues"],
-          "fr": []
+          "fr": [],
+          "pt": ["Rhythm and blues", "R'n'B"]
         },
         "labels": {
           "en": "R&B",
-          "fr": "R'n'B"
+          "fr": "R'n'B",
+          "pt": "R&B"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ska",
-          "fr": "Ska"
+          "fr": "Ska",
+          "pt": "Ska"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bossa nova",
-          "fr": "Bossa nova"
+          "fr": "Bossa nova",
+          "pt": "Bossa nova"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Grunge",
-          "fr": "Grunge"
+          "fr": "Grunge",
+          "pt": "Grunge"
         },
         "tier": "hard"
       }
@@ -1862,21 +2213,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Karaoke",
-        "fr": "Karaoké"
+        "fr": "Karaoké",
+        "pt": "Karaoke"
       },
       "why": {
         "en": "Sung over any genre: a pastime, not a genre.",
-        "fr": "Ça se chante sur tous les genres : un passe-temps, pas un genre."
+        "fr": "Ça se chante sur tous les genres : un passe-temps, pas un genre.",
+        "pt": "Canta-se em qualquer género: é um passatempo, não um género."
       }
     },
     "id": "music-genres",
     "labels": {
       "en": "Music genres",
-      "fr": "Genres musicaux"
+      "fr": "Genres musicaux",
+      "pt": "Géneros musicais"
     },
     "tier": "easy"
   },
@@ -1885,220 +2240,260 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Lion King",
-          "fr": "Le Roi lion"
+          "fr": "Le Roi lion",
+          "pt": "O Rei Leão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Frozen", "Reino do Gelo"]
         },
         "labels": {
           "en": "Frozen",
-          "fr": "La Reine des neiges"
+          "fr": "La Reine des neiges",
+          "pt": "Frozen: O Reino do Gelo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Snow White and the Seven Dwarfs"],
-          "fr": ["Blanche-Neige et les Sept Nains"]
+          "fr": ["Blanche-Neige et les Sept Nains"],
+          "pt": ["Branca de Neve e os Sete Anões"]
         },
         "labels": {
           "en": "Snow White",
-          "fr": "Blanche-Neige"
+          "fr": "Blanche-Neige",
+          "pt": "Branca de Neve"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cinderella",
-          "fr": "Cendrillon"
+          "fr": "Cendrillon",
+          "pt": "Cinderela"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Aladin"]
+          "fr": ["Aladin"],
+          "pt": ["Aladino"]
         },
         "labels": {
           "en": "Aladdin",
-          "fr": "Aladdin"
+          "fr": "Aladdin",
+          "pt": "Aladdin"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Little Mermaid",
-          "fr": "La Petite Sirène"
+          "fr": "La Petite Sirène",
+          "pt": "A Pequena Sereia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Beauty and the Beast",
-          "fr": "La Belle et la Bête"
+          "fr": "La Belle et la Bête",
+          "pt": "A Bela e o Monstro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Jungle Book",
-          "fr": "Le Livre de la jungle"
+          "fr": "Le Livre de la jungle",
+          "pt": "O Livro da Selva"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bambi",
-          "fr": "Bambi"
+          "fr": "Bambi",
+          "pt": "Bambi"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pinocchio",
-          "fr": "Pinocchio"
+          "fr": "Pinocchio",
+          "pt": "Pinóquio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dumbo",
-          "fr": "Dumbo"
+          "fr": "Dumbo",
+          "pt": "Dumbo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mulan",
-          "fr": "Mulan"
+          "fr": "Mulan",
+          "pt": "Mulan"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Rapunzel"],
-          "fr": []
+          "fr": [],
+          "pt": ["Rapunzel"]
         },
         "labels": {
           "en": "Tangled",
-          "fr": "Raiponce"
+          "fr": "Raiponce",
+          "pt": "Entrelaçados"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Zootropolis"],
-          "fr": []
+          "fr": [],
+          "pt": ["Zootopia"]
         },
         "labels": {
           "en": "Zootopia",
-          "fr": "Zootopie"
+          "fr": "Zootopie",
+          "pt": "Zootrópolis"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Moana"]
         },
         "labels": {
           "en": "Moana",
-          "fr": "Vaiana"
+          "fr": "Vaiana",
+          "pt": "Vaiana"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Encanto",
-          "fr": "Encanto"
+          "fr": "Encanto",
+          "pt": "Encanto"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hercules",
-          "fr": "Hercule"
+          "fr": "Hercule",
+          "pt": "Hércules"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Lilo and Stitch"],
-          "fr": []
+          "fr": [],
+          "pt": ["Lilo e Stitch"]
         },
         "labels": {
           "en": "Lilo & Stitch",
-          "fr": "Lilo et Stitch"
+          "fr": "Lilo et Stitch",
+          "pt": "Lilo & Stitch"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Ralph"]
         },
         "labels": {
           "en": "Wreck-It Ralph",
-          "fr": "Les Mondes de Ralph"
+          "fr": "Les Mondes de Ralph",
+          "pt": "Força Ralph"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Big Hero 6", "Os Novos Heróis"]
         },
         "labels": {
           "en": "Big Hero 6",
-          "fr": "Les Nouveaux Héros"
+          "fr": "Les Nouveaux Héros",
+          "pt": "Big Hero 6: Os Novos Heróis"
         },
         "tier": "hard"
       }
@@ -2106,21 +2501,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Shrek",
-        "fr": "Shrek"
+        "fr": "Shrek",
+        "pt": "Shrek"
       },
       "why": {
         "en": "A DreamWorks film, made to mock Disney's fairy tales.",
-        "fr": "Un film DreamWorks, fait pour se moquer des contes de Disney."
+        "fr": "Un film DreamWorks, fait pour se moquer des contes de Disney.",
+        "pt": "Um filme da DreamWorks, feito para gozar com os contos da Disney."
       }
     },
     "id": "disney-films",
     "labels": {
       "en": "Disney animated films",
-      "fr": "Films d'animation Disney"
+      "fr": "Films d'animation Disney",
+      "pt": "Filmes de animação Disney"
     },
     "tier": "easy"
   },
@@ -2129,209 +2528,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Super-Homem"]
         },
         "labels": {
           "en": "Superman",
-          "fr": "Superman"
+          "fr": "Superman",
+          "pt": "Superman"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Batman",
-          "fr": "Batman"
+          "fr": "Batman",
+          "pt": "Batman"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["L'Homme-araignée"]
+          "fr": ["L'Homme-araignée"],
+          "pt": ["Spider-Man"]
         },
         "labels": {
           "en": "Spider-Man",
-          "fr": "Spider-Man"
+          "fr": "Spider-Man",
+          "pt": "Homem-Aranha"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Mulher-Maravilha"]
         },
         "labels": {
           "en": "Wonder Woman",
-          "fr": "Wonder Woman"
+          "fr": "Wonder Woman",
+          "pt": "Wonder Woman"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Iron Man"]
         },
         "labels": {
           "en": "Iron Man",
-          "fr": "Iron Man"
+          "fr": "Iron Man",
+          "pt": "Homem de Ferro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Captain America"]
         },
         "labels": {
           "en": "Captain America",
-          "fr": "Captain America"
+          "fr": "Captain America",
+          "pt": "Capitão América"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Incredible Hulk"],
-          "fr": []
+          "fr": [],
+          "pt": ["Incrível Hulk"]
         },
         "labels": {
           "en": "Hulk",
-          "fr": "Hulk"
+          "fr": "Hulk",
+          "pt": "Hulk"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Thor",
-          "fr": "Thor"
+          "fr": "Thor",
+          "pt": "Thor"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Wolverine",
-          "fr": "Wolverine"
+          "fr": "Wolverine",
+          "pt": "Wolverine"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Pantera Negra"]
         },
         "labels": {
           "en": "Black Panther",
-          "fr": "Black Panther"
+          "fr": "Black Panther",
+          "pt": "Black Panther"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Flash",
-          "fr": "Flash"
+          "fr": "Flash",
+          "pt": "Flash"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Aquaman",
-          "fr": "Aquaman"
+          "fr": "Aquaman",
+          "pt": "Aquaman"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["La Veuve noire"]
+          "fr": ["La Veuve noire"],
+          "pt": ["Black Widow"]
         },
         "labels": {
           "en": "Black Widow",
-          "fr": "Black Widow"
+          "fr": "Black Widow",
+          "pt": "Viúva Negra"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Lanterne verte"]
+          "fr": ["Lanterne verte"],
+          "pt": ["Green Lantern"]
         },
         "labels": {
           "en": "Green Lantern",
-          "fr": "Green Lantern"
+          "fr": "Green Lantern",
+          "pt": "Lanterna Verde"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Demolidor"]
         },
         "labels": {
           "en": "Daredevil",
-          "fr": "Daredevil"
+          "fr": "Daredevil",
+          "pt": "Daredevil"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Dr Strange"],
-          "fr": []
+          "fr": [],
+          "pt": ["Doctor Strange", "Dr. Estranho"]
         },
         "labels": {
           "en": "Doctor Strange",
-          "fr": "Docteur Strange"
+          "fr": "Docteur Strange",
+          "pt": "Doutor Estranho"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Deadpool",
-          "fr": "Deadpool"
+          "fr": "Deadpool",
+          "pt": "Deadpool"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Ant-Man"]
         },
         "labels": {
           "en": "Ant-Man",
-          "fr": "Ant-Man"
+          "fr": "Ant-Man",
+          "pt": "Homem-Formiga"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Silver Surfer"]
         },
         "labels": {
           "en": "Silver Surfer",
-          "fr": "Surfer d'argent"
+          "fr": "Surfer d'argent",
+          "pt": "Surfista Prateado"
         },
         "tier": "hard"
       }
@@ -2339,21 +2776,25 @@
     "blackWord": {
       "aliases": {
         "en": ["The Joker"],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Joker",
-        "fr": "Joker"
+        "fr": "Joker",
+        "pt": "Joker"
       },
       "why": {
         "en": "Batman's archenemy: a villain, not a hero.",
-        "fr": "L'ennemi juré de Batman : un méchant, pas un héros."
+        "fr": "L'ennemi juré de Batman : un méchant, pas un héros.",
+        "pt": "O arqui-inimigo do Batman: um vilão, não um herói."
       }
     },
     "id": "superheroes",
     "labels": {
       "en": "Superheroes",
-      "fr": "Super-héros"
+      "fr": "Super-héros",
+      "pt": "Super-heróis"
     },
     "tier": "easy"
   },
@@ -2362,209 +2803,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Gata Borralheira"]
         },
         "labels": {
           "en": "Cinderella",
-          "fr": "Cendrillon"
+          "fr": "Cendrillon",
+          "pt": "Cinderela"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Snow White and the Seven Dwarfs"],
-          "fr": ["Blanche-Neige et les Sept Nains"]
+          "fr": ["Blanche-Neige et les Sept Nains"],
+          "pt": ["Branca de Neve e os Sete Anões"]
         },
         "labels": {
           "en": "Snow White",
-          "fr": "Blanche-Neige"
+          "fr": "Blanche-Neige",
+          "pt": "Branca de Neve"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Red Riding Hood"],
-          "fr": ["Chaperon rouge"]
+          "fr": ["Chaperon rouge"],
+          "pt": ["Capuchinho"]
         },
         "labels": {
           "en": "Little Red Riding Hood",
-          "fr": "Le Petit Chaperon rouge"
+          "fr": "Le Petit Chaperon rouge",
+          "pt": "O Capuchinho Vermelho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sleeping Beauty",
-          "fr": "La Belle au bois dormant"
+          "fr": "La Belle au bois dormant",
+          "pt": "A Bela Adormecida"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["João e Maria"]
         },
         "labels": {
           "en": "Hansel and Gretel",
-          "fr": "Hansel et Gretel"
+          "fr": "Hansel et Gretel",
+          "pt": "Hansel e Gretel"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Puss in Boots",
-          "fr": "Le Chat botté"
+          "fr": "Le Chat botté",
+          "pt": "O Gato das Botas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Tom Thumb", "Hop-o'-My-Thumb"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Little Thumb",
-          "fr": "Le Petit Poucet"
+          "fr": "Le Petit Poucet",
+          "pt": "O Pequeno Polegar"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Beauty and the Beast",
-          "fr": "La Belle et la Bête"
+          "fr": "La Belle et la Bête",
+          "pt": "A Bela e o Monstro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Rapunzel",
-          "fr": "Raiponce"
+          "fr": "Raiponce",
+          "pt": "Rapunzel"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Little Mermaid",
-          "fr": "La Petite Sirène"
+          "fr": "La Petite Sirène",
+          "pt": "A Pequena Sereia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bluebeard",
-          "fr": "Barbe bleue"
+          "fr": "Barbe bleue",
+          "pt": "Barba Azul"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Ugly Duckling",
-          "fr": "Le Vilain Petit Canard"
+          "fr": "Le Vilain Petit Canard",
+          "pt": "O Patinho Feio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Goldilocks and the Three Bears"],
-          "fr": ["Boucle d'or et les trois ours"]
+          "fr": ["Boucle d'or et les trois ours"],
+          "pt": ["Caracóis de Ouro e os Três Ursos"]
         },
         "labels": {
           "en": "Goldilocks",
-          "fr": "Boucle d'or"
+          "fr": "Boucle d'or",
+          "pt": "Caracóis de Ouro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Jack and the Beanstalk",
-          "fr": "Jack et le haricot magique"
+          "fr": "Jack et le haricot magique",
+          "pt": "João e o Pé de Feijão"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Snow Queen",
-          "fr": "La Reine des neiges"
+          "fr": "La Reine des neiges",
+          "pt": "A Rainha da Neve"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Tracassin", "Outroupistache"]
+          "fr": ["Tracassin", "Outroupistache"],
+          "pt": []
         },
         "labels": {
           "en": "Rumpelstiltskin",
-          "fr": "Le Nain Tracassin"
+          "fr": "Le Nain Tracassin",
+          "pt": "Rumpelstiltskin"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "The Princess and the Pea",
-          "fr": "La Princesse au petit pois"
+          "fr": "La Princesse au petit pois",
+          "pt": "A Princesa e a Ervilha"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Poucette"]
+          "fr": ["Poucette"],
+          "pt": []
         },
         "labels": {
           "en": "Thumbelina",
-          "fr": "La Petite Poucette"
+          "fr": "La Petite Poucette",
+          "pt": "A Polegarzinha"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Le Prince grenouille"]
+          "fr": ["Le Prince grenouille"],
+          "pt": ["O Príncipe Sapo"]
         },
         "labels": {
           "en": "The Frog Prince",
-          "fr": "Le Roi grenouille"
+          "fr": "Le Roi grenouille",
+          "pt": "O Rei Sapo"
         },
         "tier": "hard"
       }
@@ -2572,21 +3051,25 @@
     "blackWord": {
       "aliases": {
         "en": ["The Hare and the Tortoise"],
-        "fr": ["La Tortue et le Lièvre"]
+        "fr": ["La Tortue et le Lièvre"],
+        "pt": ["A Tartaruga e a Lebre"]
       },
       "labels": {
         "en": "The Tortoise and the Hare",
-        "fr": "Le Lièvre et la Tortue"
+        "fr": "Le Lièvre et la Tortue",
+        "pt": "A Lebre e a Tartaruga"
       },
       "why": {
         "en": "A fable, by Aesop and La Fontaine: a moral, no fairy.",
-        "fr": "Une fable, d'Ésope et de La Fontaine : une morale, pas de fée."
+        "fr": "Une fable, d'Ésope et de La Fontaine : une morale, pas de fée.",
+        "pt": "Uma fábula, de Esopo e La Fontaine: uma moral, nenhuma fada."
       }
     },
     "id": "fairy-tales",
     "labels": {
       "en": "Fairy tales",
-      "fr": "Contes de fées"
+      "fr": "Contes de fées",
+      "pt": "Contos de fadas"
     },
     "tier": "easy"
   },
@@ -2595,209 +3078,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Zeus",
-          "fr": "Zeus"
+          "fr": "Zeus",
+          "pt": "Zeus"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Posídon"]
         },
         "labels": {
           "en": "Poseidon",
-          "fr": "Poséidon"
+          "fr": "Poséidon",
+          "pt": "Poseidon"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hades",
-          "fr": "Hadès"
+          "fr": "Hadès",
+          "pt": "Hades"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Aphrodite",
-          "fr": "Aphrodite"
+          "fr": "Aphrodite",
+          "pt": "Afrodite"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Athene", "Pallas Athena"],
-          "fr": ["Athéna Pallas"]
+          "fr": ["Athéna Pallas"],
+          "pt": ["Palas Atena", "Athena"]
         },
         "labels": {
           "en": "Athena",
-          "fr": "Athéna"
+          "fr": "Athéna",
+          "pt": "Atena"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Apollo",
-          "fr": "Apollon"
+          "fr": "Apollon",
+          "pt": "Apolo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ares",
-          "fr": "Arès"
+          "fr": "Arès",
+          "pt": "Ares"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hermes",
-          "fr": "Hermès"
+          "fr": "Hermès",
+          "pt": "Hermes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hera",
-          "fr": "Héra"
+          "fr": "Héra",
+          "pt": "Hera"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Artemis",
-          "fr": "Artémis"
+          "fr": "Artémis",
+          "pt": "Ártemis"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Dionísio", "Dionisos"]
         },
         "labels": {
           "en": "Dionysus",
-          "fr": "Dionysos"
+          "fr": "Dionysos",
+          "pt": "Dioniso"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hephaestus",
-          "fr": "Héphaïstos"
+          "fr": "Héphaïstos",
+          "pt": "Hefesto"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Demeter",
-          "fr": "Déméter"
+          "fr": "Déméter",
+          "pt": "Deméter"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hestia",
-          "fr": "Hestia"
+          "fr": "Hestia",
+          "pt": "Héstia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Eros",
-          "fr": "Éros"
+          "fr": "Éros",
+          "pt": "Eros"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Persephone",
-          "fr": "Perséphone"
+          "fr": "Perséphone",
+          "pt": "Perséfone"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Gaea"],
-          "fr": []
+          "fr": [],
+          "pt": ["Geia"]
         },
         "labels": {
           "en": "Gaia",
-          "fr": "Gaïa"
+          "fr": "Gaïa",
+          "pt": "Gaia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Nike"]
         },
         "labels": {
           "en": "Nike",
-          "fr": "Niké"
+          "fr": "Niké",
+          "pt": "Nice"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Hélios"]
         },
         "labels": {
           "en": "Helios",
-          "fr": "Hélios"
+          "fr": "Hélios",
+          "pt": "Hélio"
         },
         "tier": "hard"
       }
@@ -2805,21 +3326,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Achilles",
-        "fr": "Achille"
+        "fr": "Achille",
+        "pt": "Aquiles"
       },
       "why": {
         "en": "A mortal hero of the Trojan War, not a god.",
-        "fr": "Un héros mortel de la guerre de Troie, pas un dieu."
+        "fr": "Un héros mortel de la guerre de Troie, pas un dieu.",
+        "pt": "Um herói mortal da guerra de Troia, não um deus."
       }
     },
     "id": "greek-gods",
     "labels": {
       "en": "Greek gods",
-      "fr": "Dieux grecs"
+      "fr": "Dieux grecs",
+      "pt": "Deuses gregos"
     },
     "tier": "medium"
   },
@@ -2828,220 +3353,260 @@
       {
         "aliases": {
           "en": ["Da Vinci", "Leonardo"],
-          "fr": ["Vinci", "De Vinci"]
+          "fr": ["Vinci", "De Vinci"],
+          "pt": ["Da Vinci", "Leonardo"]
         },
         "labels": {
           "en": "Leonardo da Vinci",
-          "fr": "Léonard de Vinci"
+          "fr": "Léonard de Vinci",
+          "pt": "Leonardo da Vinci"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Pablo Picasso"],
-          "fr": []
+          "fr": [],
+          "pt": ["Pablo Picasso"]
         },
         "labels": {
           "en": "Picasso",
-          "fr": "Picasso"
+          "fr": "Picasso",
+          "pt": "Picasso"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Vincent van Gogh"],
-          "fr": []
+          "fr": [],
+          "pt": ["Vincent van Gogh"]
         },
         "labels": {
           "en": "Van Gogh",
-          "fr": "Van Gogh"
+          "fr": "Van Gogh",
+          "pt": "Van Gogh"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Claude Monet"],
-          "fr": []
+          "fr": [],
+          "pt": ["Claude Monet"]
         },
         "labels": {
           "en": "Monet",
-          "fr": "Monet"
+          "fr": "Monet",
+          "pt": "Monet"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Michelangelo"]
         },
         "labels": {
           "en": "Michelangelo",
-          "fr": "Michel-Ange"
+          "fr": "Michel-Ange",
+          "pt": "Miguel Ângelo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Salvador Dalí"],
-          "fr": []
+          "fr": [],
+          "pt": ["Salvador Dalí"]
         },
         "labels": {
           "en": "Dalí",
-          "fr": "Dalí"
+          "fr": "Dalí",
+          "pt": "Dalí"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Rembrandt",
-          "fr": "Rembrandt"
+          "fr": "Rembrandt",
+          "pt": "Rembrandt"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Auguste Renoir"],
-          "fr": []
+          "fr": [],
+          "pt": ["Auguste Renoir"]
         },
         "labels": {
           "en": "Renoir",
-          "fr": "Renoir"
+          "fr": "Renoir",
+          "pt": "Renoir"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Paul Cézanne"],
-          "fr": []
+          "fr": [],
+          "pt": ["Paul Cézanne"]
         },
         "labels": {
           "en": "Cézanne",
-          "fr": "Cézanne"
+          "fr": "Cézanne",
+          "pt": "Cézanne"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Henri Matisse"],
-          "fr": []
+          "fr": [],
+          "pt": ["Henri Matisse"]
         },
         "labels": {
           "en": "Matisse",
-          "fr": "Matisse"
+          "fr": "Matisse",
+          "pt": "Matisse"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Kahlo", "Frida"],
-          "fr": []
+          "fr": [],
+          "pt": ["Frida", "Kahlo"]
         },
         "labels": {
           "en": "Frida Kahlo",
-          "fr": "Frida Kahlo"
+          "fr": "Frida Kahlo",
+          "pt": "Frida Kahlo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Rafael Sanzio"]
         },
         "labels": {
           "en": "Raphael",
-          "fr": "Raphaël"
+          "fr": "Raphaël",
+          "pt": "Rafael"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Warhol"],
-          "fr": []
+          "fr": [],
+          "pt": ["Warhol"]
         },
         "labels": {
           "en": "Andy Warhol",
-          "fr": "Andy Warhol"
+          "fr": "Andy Warhol",
+          "pt": "Andy Warhol"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Johannes Vermeer"],
-          "fr": []
+          "fr": [],
+          "pt": ["Johannes Vermeer"]
         },
         "labels": {
           "en": "Vermeer",
-          "fr": "Vermeer"
+          "fr": "Vermeer",
+          "pt": "Vermeer"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Paul Gauguin"],
-          "fr": []
+          "fr": [],
+          "pt": ["Paul Gauguin"]
         },
         "labels": {
           "en": "Gauguin",
-          "fr": "Gauguin"
+          "fr": "Gauguin",
+          "pt": "Gauguin"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Gustav Klimt"],
-          "fr": []
+          "fr": [],
+          "pt": ["Gustav Klimt"]
         },
         "labels": {
           "en": "Klimt",
-          "fr": "Klimt"
+          "fr": "Klimt",
+          "pt": "Klimt"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Botticelli",
-          "fr": "Botticelli"
+          "fr": "Botticelli",
+          "pt": "Botticelli"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["René Magritte"],
-          "fr": []
+          "fr": [],
+          "pt": ["René Magritte"]
         },
         "labels": {
           "en": "Magritte",
-          "fr": "Magritte"
+          "fr": "Magritte",
+          "pt": "Magritte"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Edgar Degas"],
-          "fr": []
+          "fr": [],
+          "pt": ["Edgar Degas"]
         },
         "labels": {
           "en": "Degas",
-          "fr": "Degas"
+          "fr": "Degas",
+          "pt": "Degas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Caravage"]
+          "fr": ["Caravage"],
+          "pt": []
         },
         "labels": {
           "en": "Caravaggio",
-          "fr": "Le Caravage"
+          "fr": "Le Caravage",
+          "pt": "Caravaggio"
         },
         "tier": "hard"
       }
@@ -3049,21 +3614,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Auguste Rodin"],
-        "fr": []
+        "fr": [],
+        "pt": ["Auguste Rodin"]
       },
       "labels": {
         "en": "Rodin",
-        "fr": "Rodin"
+        "fr": "Rodin",
+        "pt": "Rodin"
       },
       "why": {
         "en": "A sculptor: The Thinker is bronze, not canvas.",
-        "fr": "Un sculpteur : Le Penseur est en bronze, pas sur toile."
+        "fr": "Un sculpteur : Le Penseur est en bronze, pas sur toile.",
+        "pt": "Um escultor: O Pensador é de bronze, não de tela."
       }
     },
     "id": "famous-painters",
     "labels": {
       "en": "Famous painters",
-      "fr": "Peintres célèbres"
+      "fr": "Peintres célèbres",
+      "pt": "Pintores famosos"
     },
     "tier": "medium"
   },
@@ -3072,198 +3641,234 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Waltz",
-          "fr": "Valse"
+          "fr": "Valse",
+          "pt": "Valsa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tango",
-          "fr": "Tango"
+          "fr": "Tango",
+          "pt": "Tango"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Salsa",
-          "fr": "Salsa"
+          "fr": "Salsa",
+          "pt": "Salsa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Classical ballet"],
-          "fr": ["Danse classique"]
+          "fr": ["Danse classique"],
+          "pt": ["Bailado", "Dança clássica"]
         },
         "labels": {
           "en": "Ballet",
-          "fr": "Ballet"
+          "fr": "Ballet",
+          "pt": "Ballet"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Breakdance", "Breaking", "Break dancing"],
-          "fr": ["Breakdance", "Break"]
+          "fr": ["Breakdance", "Break"],
+          "pt": ["Breakdance", "Break"]
         },
         "labels": {
           "en": "Hip-hop",
-          "fr": "Hip-hop"
+          "fr": "Hip-hop",
+          "pt": "Hip-hop"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Rock 'n' roll"],
-          "fr": []
+          "fr": [],
+          "pt": ["Rock and roll"]
         },
         "labels": {
           "en": "Rock and roll",
-          "fr": "Rock"
+          "fr": "Rock",
+          "pt": "Rock"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Cha-cha"]
         },
         "labels": {
           "en": "Cha-cha",
-          "fr": "Cha-cha-cha"
+          "fr": "Cha-cha-cha",
+          "pt": "Chá-chá-chá"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Flamenco",
-          "fr": "Flamenco"
+          "fr": "Flamenco",
+          "pt": "Flamenco"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Samba",
-          "fr": "Samba"
+          "fr": "Samba",
+          "pt": "Samba"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Twist",
-          "fr": "Twist"
+          "fr": "Twist",
+          "pt": "Twist"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Tap", "Tap dancing"],
-          "fr": []
+          "fr": [],
+          "pt": ["Tap dance"]
         },
         "labels": {
           "en": "Tap dance",
-          "fr": "Claquettes"
+          "fr": "Claquettes",
+          "pt": "Sapateado"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Paso doble",
-          "fr": "Paso doble"
+          "fr": "Paso doble",
+          "pt": "Paso doble"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Lambada",
-          "fr": "Lambada"
+          "fr": "Lambada",
+          "pt": "Lambada"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Charleston",
-          "fr": "Charleston"
+          "fr": "Charleston",
+          "pt": "Charleston"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Polka"]
         },
         "labels": {
           "en": "Polka",
-          "fr": "Polka"
+          "fr": "Polka",
+          "pt": "Polca"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bachata",
-          "fr": "Bachata"
+          "fr": "Bachata",
+          "pt": "Bachata"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Foxtrot",
-          "fr": "Fox-trot"
+          "fr": "Fox-trot",
+          "pt": "Foxtrot"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Cancan", "French cancan"]
         },
         "labels": {
           "en": "Cancan",
-          "fr": "French cancan"
+          "fr": "French cancan",
+          "pt": "Cancã"
         },
         "tier": "hard"
       }
@@ -3271,21 +3876,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Moonwalk",
-        "fr": "Moonwalk"
+        "fr": "Moonwalk",
+        "pt": "Moonwalk"
       },
       "why": {
         "en": "A move of Michael Jackson's, not a dance of its own.",
-        "fr": "Un pas de Michael Jackson, pas une danse à part entière."
+        "fr": "Un pas de Michael Jackson, pas une danse à part entière.",
+        "pt": "Um passo do Michael Jackson, não uma dança em si."
       }
     },
     "id": "dances",
     "labels": {
       "en": "Dances",
-      "fr": "Danses"
+      "fr": "Danses",
+      "pt": "Danças"
     },
     "tier": "easy"
   },
@@ -3294,187 +3903,221 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Tintin"]
         },
         "labels": {
           "en": "Tintin",
-          "fr": "Tintin"
+          "fr": "Tintin",
+          "pt": "Tintim"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Asterix",
-          "fr": "Astérix"
+          "fr": "Astérix",
+          "pt": "Astérix"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Obelix",
-          "fr": "Obélix"
+          "fr": "Obélix",
+          "pt": "Obélix"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Garfield",
-          "fr": "Garfield"
+          "fr": "Garfield",
+          "pt": "Garfield"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Snoopy",
-          "fr": "Snoopy"
+          "fr": "Snoopy",
+          "pt": "Snoopy"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Lucky Luke",
-          "fr": "Lucky Luke"
+          "fr": "Lucky Luke",
+          "pt": "Lucky Luke"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Charlie Brown",
-          "fr": "Charlie Brown"
+          "fr": "Charlie Brown",
+          "pt": "Charlie Brown"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Smurfs", "Smurf"],
-          "fr": ["Schtroumpf"]
+          "fr": ["Schtroumpf"],
+          "pt": ["Estrumpfe", "Smurfs", "Smurf"]
         },
         "labels": {
           "en": "The Smurfs",
-          "fr": "Les Schtroumpfs"
+          "fr": "Les Schtroumpfs",
+          "pt": "Os Estrumpfes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Calvin", "Hobbes"],
-          "fr": []
+          "fr": [],
+          "pt": ["Calvin", "Hobbes"]
         },
         "labels": {
           "en": "Calvin and Hobbes",
-          "fr": "Calvin et Hobbes"
+          "fr": "Calvin et Hobbes",
+          "pt": "Calvin e Hobbes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Popeye",
-          "fr": "Popeye"
+          "fr": "Popeye",
+          "pt": "Popeye"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Milou"]
         },
         "labels": {
           "en": "Snowy",
-          "fr": "Milou"
+          "fr": "Milou",
+          "pt": "Milu"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Haddock"],
-          "fr": []
+          "fr": [],
+          "pt": ["Haddock"]
         },
         "labels": {
           "en": "Captain Haddock",
-          "fr": "Capitaine Haddock"
+          "fr": "Capitaine Haddock",
+          "pt": "Capitão Haddock"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dogmatix",
-          "fr": "Idéfix"
+          "fr": "Idéfix",
+          "pt": "Ideiafix"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Marsupilami",
-          "fr": "Marsupilami"
+          "fr": "Marsupilami",
+          "pt": "Marsupilami"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Hagar"],
-          "fr": []
+          "fr": [],
+          "pt": ["Hagar"]
         },
         "labels": {
           "en": "Hägar the Horrible",
-          "fr": "Hägar Dünor"
+          "fr": "Hägar Dünor",
+          "pt": "Hagar, o Horrível"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Iznogoud",
-          "fr": "Iznogoud"
+          "fr": "Iznogoud",
+          "pt": "Iznogoud"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Corto"],
-          "fr": []
+          "fr": [],
+          "pt": ["Corto"]
         },
         "labels": {
           "en": "Corto Maltese",
-          "fr": "Corto Maltese"
+          "fr": "Corto Maltese",
+          "pt": "Corto Maltese"
         },
         "tier": "hard"
       }
@@ -3482,21 +4125,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Babar",
-        "fr": "Babar"
+        "fr": "Babar",
+        "pt": "Babar"
       },
       "why": {
         "en": "He comes from illustrated children's books, not comics.",
-        "fr": "Il vient des albums illustrés pour enfants, pas de la BD."
+        "fr": "Il vient des albums illustrés pour enfants, pas de la BD.",
+        "pt": "Vem dos livros ilustrados para crianças, não da banda desenhada."
       }
     },
     "id": "comic-strip-heroes",
     "labels": {
       "en": "Comic strip heroes",
-      "fr": "Héros de BD"
+      "fr": "Héros de BD",
+      "pt": "Heróis de BD"
     },
     "tier": "medium"
   },
@@ -3505,209 +4152,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Rato Mickey", "Mickey Mouse"]
         },
         "labels": {
           "en": "Mickey Mouse",
-          "fr": "Mickey"
+          "fr": "Mickey",
+          "pt": "Mickey"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bugs Bunny",
-          "fr": "Bugs Bunny"
+          "fr": "Bugs Bunny",
+          "pt": "Bugs Bunny"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["SpongeBob SquarePants"],
-          "fr": []
+          "fr": [],
+          "pt": ["Bob Esponja", "SpongeBob SquarePants"]
         },
         "labels": {
           "en": "SpongeBob",
-          "fr": "Bob l'éponge"
+          "fr": "Bob l'éponge",
+          "pt": "SpongeBob"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Homer"],
-          "fr": []
+          "fr": [],
+          "pt": ["Homer"]
         },
         "labels": {
           "en": "Homer Simpson",
-          "fr": "Homer Simpson"
+          "fr": "Homer Simpson",
+          "pt": "Homer Simpson"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Pato Donald"]
         },
         "labels": {
           "en": "Donald Duck",
-          "fr": "Donald"
+          "fr": "Donald",
+          "pt": "Donald"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Scooby"],
-          "fr": []
+          "fr": [],
+          "pt": ["Scooby"]
         },
         "labels": {
           "en": "Scooby-Doo",
-          "fr": "Scooby-Doo"
+          "fr": "Scooby-Doo",
+          "pt": "Scooby-Doo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Tweety Bird"],
-          "fr": []
+          "fr": [],
+          "pt": ["Tweety"]
         },
         "labels": {
           "en": "Tweety",
-          "fr": "Titi"
+          "fr": "Titi",
+          "pt": "Piu-Piu"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pink Panther",
-          "fr": "La Panthère rose"
+          "fr": "La Panthère rose",
+          "pt": "A Pantera Cor-de-Rosa"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Woody Woodpecker"]
         },
         "labels": {
           "en": "Woody Woodpecker",
-          "fr": "Woody Woodpecker"
+          "fr": "Woody Woodpecker",
+          "pt": "Pica-Pau"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Goofy"]
         },
         "labels": {
           "en": "Goofy",
-          "fr": "Dingo"
+          "fr": "Dingo",
+          "pt": "Pateta"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Patolino"]
         },
         "labels": {
           "en": "Daffy Duck",
-          "fr": "Daffy Duck"
+          "fr": "Daffy Duck",
+          "pt": "Daffy Duck"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Bart"],
-          "fr": []
+          "fr": [],
+          "pt": ["Bart"]
         },
         "labels": {
           "en": "Bart Simpson",
-          "fr": "Bart Simpson"
+          "fr": "Bart Simpson",
+          "pt": "Bart Simpson"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pikachu",
-          "fr": "Pikachu"
+          "fr": "Pikachu",
+          "pt": "Pikachu"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Road Runner", "Papa-Léguas"]
         },
         "labels": {
           "en": "Road Runner",
-          "fr": "Bip Bip"
+          "fr": "Bip Bip",
+          "pt": "Bip-Bip"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Coyote"],
-          "fr": []
+          "fr": [],
+          "pt": ["Wile E. Coyote", "Coyote"]
         },
         "labels": {
           "en": "Wile E. Coyote",
-          "fr": "Vil Coyote"
+          "fr": "Vil Coyote",
+          "pt": "Coiote"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Fred"]
         },
         "labels": {
           "en": "Fred Flintstone",
-          "fr": "Fred Pierrafeu"
+          "fr": "Fred Pierrafeu",
+          "pt": "Fred Flintstone"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Yogi"],
-          "fr": []
+          "fr": [],
+          "pt": ["Yogi", "Zé Colmeia"]
         },
         "labels": {
           "en": "Yogi Bear",
-          "fr": "Yogi l'ours"
+          "fr": "Yogi l'ours",
+          "pt": "Urso Yogi"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Betty Boop",
-          "fr": "Betty Boop"
+          "fr": "Betty Boop",
+          "pt": "Betty Boop"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Speedy"],
-          "fr": []
+          "fr": [],
+          "pt": ["Speedy"]
         },
         "labels": {
           "en": "Speedy Gonzales",
-          "fr": "Speedy Gonzales"
+          "fr": "Speedy Gonzales",
+          "pt": "Speedy Gonzales"
         },
         "tier": "hard"
       }
@@ -3715,21 +4400,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Kermit"],
-        "fr": []
+        "fr": [],
+        "pt": ["Sapo Cocas", "Kermit", "Cocas, o Sapo"]
       },
       "labels": {
         "en": "Kermit the Frog",
-        "fr": "Kermit la grenouille"
+        "fr": "Kermit la grenouille",
+        "pt": "Cocas"
       },
       "why": {
         "en": "A Muppet: a puppet, never drawn.",
-        "fr": "Un Muppet : une marionnette, jamais dessinée."
+        "fr": "Un Muppet : une marionnette, jamais dessinée.",
+        "pt": "Um Marreta: um fantoche de pano, não uma personagem de desenhos animados."
       }
     },
     "id": "cartoon-characters",
     "labels": {
       "en": "Cartoon characters",
-      "fr": "Personnages de dessins animés"
+      "fr": "Personnages de dessins animés",
+      "pt": "Personagens de desenhos animados"
     },
     "tier": "easy"
   },
@@ -3738,187 +4427,221 @@
       {
         "aliases": {
           "en": ["100m", "100 meters"],
-          "fr": []
+          "fr": [],
+          "pt": ["100 m"]
         },
         "labels": {
           "en": "100 metres",
-          "fr": "100 mètres"
+          "fr": "100 mètres",
+          "pt": "100 metros"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Half marathon"],
-          "fr": ["Semi-marathon"]
+          "fr": ["Semi-marathon"],
+          "pt": ["Meia-maratona"]
         },
         "labels": {
           "en": "Marathon",
-          "fr": "Marathon"
+          "fr": "Marathon",
+          "pt": "Maratona"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "High jump",
-          "fr": "Saut en hauteur"
+          "fr": "Saut en hauteur",
+          "pt": "Salto em altura"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Long jump",
-          "fr": "Saut en longueur"
+          "fr": "Saut en longueur",
+          "pt": "Salto em comprimento"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Javelin throw"],
-          "fr": ["Javelot"]
+          "fr": ["Javelot"],
+          "pt": ["Dardo"]
         },
         "labels": {
           "en": "Javelin",
-          "fr": "Lancer du javelot"
+          "fr": "Lancer du javelot",
+          "pt": "Lançamento do dardo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Perche"]
+          "fr": ["Perche"],
+          "pt": ["Vara"]
         },
         "labels": {
           "en": "Pole vault",
-          "fr": "Saut à la perche"
+          "fr": "Saut à la perche",
+          "pt": "Salto com vara"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Poids"]
+          "fr": ["Poids"],
+          "pt": ["Peso"]
         },
         "labels": {
           "en": "Shot put",
-          "fr": "Lancer du poids"
+          "fr": "Lancer du poids",
+          "pt": "Lançamento do peso"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Discus throw"],
-          "fr": ["Disque"]
+          "fr": ["Disque"],
+          "pt": ["Disco"]
         },
         "labels": {
           "en": "Discus",
-          "fr": "Lancer du disque"
+          "fr": "Lancer du disque",
+          "pt": "Lançamento do disco"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Hammer"],
-          "fr": ["Marteau"]
+          "fr": ["Marteau"],
+          "pt": ["Martelo"]
         },
         "labels": {
           "en": "Hammer throw",
-          "fr": "Lancer du marteau"
+          "fr": "Lancer du marteau",
+          "pt": "Lançamento do martelo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Triple jump",
-          "fr": "Triple saut"
+          "fr": "Triple saut",
+          "pt": "Triplo salto"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["110m hurdles", "400m hurdles"],
-          "fr": ["Course de haies", "110 m haies"]
+          "fr": ["Course de haies", "110 m haies"],
+          "pt": ["Corrida de barreiras", "110 m barreiras", "400 m barreiras"]
         },
         "labels": {
           "en": "Hurdles",
-          "fr": "Haies"
+          "fr": "Haies",
+          "pt": "Barreiras"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["4x100m", "Relay race"],
-          "fr": ["Course de relais"]
+          "fr": ["Course de relais"],
+          "pt": ["Estafeta", "4x100 m"]
         },
         "labels": {
           "en": "Relay",
-          "fr": "Relais"
+          "fr": "Relais",
+          "pt": "Estafetas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Decathlon"]
         },
         "labels": {
           "en": "Decathlon",
-          "fr": "Décathlon"
+          "fr": "Décathlon",
+          "pt": "Decatlo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Heptathlon"]
         },
         "labels": {
           "en": "Heptathlon",
-          "fr": "Heptathlon"
+          "fr": "Heptathlon",
+          "pt": "Heptatlo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["3000m steeplechase"],
-          "fr": ["3000 m steeple"]
+          "fr": ["3000 m steeple"],
+          "pt": ["3000 m obstáculos", "Steeplechase"]
         },
         "labels": {
           "en": "Steeplechase",
-          "fr": "Steeple"
+          "fr": "Steeple",
+          "pt": "Obstáculos"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Marche"]
+          "fr": ["Marche"],
+          "pt": ["Marcha"]
         },
         "labels": {
           "en": "Race walking",
-          "fr": "Marche athlétique"
+          "fr": "Marche athlétique",
+          "pt": "Marcha atlética"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cross country running"],
-          "fr": ["Cross"]
+          "fr": ["Cross"],
+          "pt": ["Cross", "Cross-country"]
         },
         "labels": {
           "en": "Cross-country",
-          "fr": "Cross-country"
+          "fr": "Cross-country",
+          "pt": "Corta-mato"
         },
         "tier": "hard"
       }
@@ -3926,21 +4649,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": ["Triathlon"]
       },
       "labels": {
         "en": "Triathlon",
-        "fr": "Triathlon"
+        "fr": "Triathlon",
+        "pt": "Triatlo"
       },
       "why": {
         "en": "Swimming, cycling and running: a sport of its own, not an athletics event.",
-        "fr": "Natation, vélo et course : un sport à part, pas une épreuve d'athlétisme."
+        "fr": "Natation, vélo et course : un sport à part, pas une épreuve d'athlétisme.",
+        "pt": "Natação, ciclismo e corrida: um desporto à parte, não uma prova de atletismo."
       }
     },
     "id": "athletics-events",
     "labels": {
       "en": "Athletics events",
-      "fr": "Épreuves d'athlétisme"
+      "fr": "Épreuves d'athlétisme",
+      "pt": "Provas de atletismo"
     },
     "tier": "medium"
   },
@@ -3960,198 +4687,240 @@
             "PlayStation 5",
             "PSX"
           ],
-          "fr": ["Play"]
+          "fr": ["Play"],
+          "pt": [
+            "Play",
+            "PlayStation 2",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5"
+          ]
         },
         "labels": {
           "en": "PlayStation",
-          "fr": "PlayStation"
+          "fr": "PlayStation",
+          "pt": "PlayStation"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Switch 2", "Nintendo Switch 2"],
-          "fr": []
+          "fr": [],
+          "pt": ["Switch", "Switch 2", "Nintendo Switch 2"]
         },
         "labels": {
           "en": "Nintendo Switch",
-          "fr": "Switch"
+          "fr": "Switch",
+          "pt": "Nintendo Switch"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Xbox 360", "Xbox One", "Xbox Series X", "Xbox Series S"],
-          "fr": []
+          "fr": [],
+          "pt": ["Xbox 360", "Xbox One", "Xbox Series X", "Xbox Series S"]
         },
         "labels": {
           "en": "Xbox",
-          "fr": "Xbox"
+          "fr": "Xbox",
+          "pt": "Xbox"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Game Boy Color", "Game Boy Advance", "GBA"],
-          "fr": []
+          "fr": [],
+          "pt": ["Game Boy Color", "Game Boy Advance", "GBA"]
         },
         "labels": {
           "en": "Game Boy",
-          "fr": "Game Boy"
+          "fr": "Game Boy",
+          "pt": "Game Boy"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Nintendo Wii", "Wii U"],
-          "fr": []
+          "fr": [],
+          "pt": ["Nintendo Wii", "Wii U"]
         },
         "labels": {
           "en": "Wii",
-          "fr": "Wii"
+          "fr": "Wii",
+          "pt": "Wii"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["DS", "3DS", "Nintendo 3DS", "DSi"],
-          "fr": []
+          "fr": [],
+          "pt": ["DS", "3DS", "Nintendo 3DS", "DSi"]
         },
         "labels": {
           "en": "Nintendo DS",
-          "fr": "Nintendo DS"
+          "fr": "Nintendo DS",
+          "pt": "Nintendo DS"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["N64"],
-          "fr": []
+          "fr": [],
+          "pt": ["N64"]
         },
         "labels": {
           "en": "Nintendo 64",
-          "fr": "Nintendo 64"
+          "fr": "Nintendo 64",
+          "pt": "Nintendo 64"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["SNES", "Super NES", "Super Famicom"],
-          "fr": []
+          "fr": [],
+          "pt": ["Super NES"]
         },
         "labels": {
           "en": "Super Nintendo",
-          "fr": "Super Nintendo"
+          "fr": "Super Nintendo",
+          "pt": "Super Nintendo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Nintendo Entertainment System", "Famicom"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "NES",
-          "fr": "NES"
+          "fr": "NES",
+          "pt": "NES"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Sega Genesis", "Genesis"],
-          "fr": []
+          "fr": [],
+          "pt": ["Sega Mega Drive"]
         },
         "labels": {
           "en": "Mega Drive",
-          "fr": "Mega Drive"
+          "fr": "Mega Drive",
+          "pt": "Mega Drive"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Nintendo GameCube"],
-          "fr": []
+          "fr": [],
+          "pt": ["Nintendo GameCube"]
         },
         "labels": {
           "en": "GameCube",
-          "fr": "GameCube"
+          "fr": "GameCube",
+          "pt": "GameCube"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["PlayStation Portable"],
-          "fr": []
+          "fr": [],
+          "pt": ["PlayStation Portable"]
         },
         "labels": {
           "en": "PSP",
-          "fr": "PSP"
+          "fr": "PSP",
+          "pt": "PSP"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Sega Dreamcast"],
-          "fr": []
+          "fr": [],
+          "pt": ["Sega Dreamcast"]
         },
         "labels": {
           "en": "Dreamcast",
-          "fr": "Dreamcast"
+          "fr": "Dreamcast",
+          "pt": "Dreamcast"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Sega Master System"],
-          "fr": []
+          "fr": [],
+          "pt": ["Sega Master System"]
         },
         "labels": {
           "en": "Master System",
-          "fr": "Master System"
+          "fr": "Master System",
+          "pt": "Master System"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Atari", "Atari VCS"],
-          "fr": []
+          "fr": [],
+          "pt": ["Atari"]
         },
         "labels": {
           "en": "Atari 2600",
-          "fr": "Atari 2600"
+          "fr": "Atari 2600",
+          "pt": "Atari 2600"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Sega Game Gear"],
-          "fr": []
+          "fr": [],
+          "pt": ["Sega Game Gear"]
         },
         "labels": {
           "en": "Game Gear",
-          "fr": "Game Gear"
+          "fr": "Game Gear",
+          "pt": "Game Gear"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Steam Deck",
-          "fr": "Steam Deck"
+          "fr": "Steam Deck",
+          "pt": "Steam Deck"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["PlayStation Vita", "Vita"],
-          "fr": []
+          "fr": [],
+          "pt": ["PlayStation Vita", "Vita"]
         },
         "labels": {
           "en": "PS Vita",
-          "fr": "PS Vita"
+          "fr": "PS Vita",
+          "pt": "PS Vita"
         },
         "tier": "hard"
       }
@@ -4159,21 +4928,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Tamagotchi",
-        "fr": "Tamagotchi"
+        "fr": "Tamagotchi",
+        "pt": "Tamagotchi"
       },
       "why": {
         "en": "A virtual pet on a keyring: no cartridge, no games.",
-        "fr": "Un animal virtuel en porte-clés : ni cartouche, ni jeux."
+        "fr": "Un animal virtuel en porte-clés : ni cartouche, ni jeux.",
+        "pt": "Um animal virtual num porta-chaves: nem cartucho, nem jogos."
       }
     },
     "id": "video-game-consoles",
     "labels": {
       "en": "Video game consoles",
-      "fr": "Consoles de jeux vidéo"
+      "fr": "Consoles de jeux vidéo",
+      "pt": "Consolas de videojogos"
     },
     "tier": "medium"
   },
@@ -4182,220 +4955,260 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Renault",
-          "fr": "Renault"
+          "fr": "Renault",
+          "pt": "Renault"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Peugeot",
-          "fr": "Peugeot"
+          "fr": "Peugeot",
+          "pt": "Peugeot"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ferrari",
-          "fr": "Ferrari"
+          "fr": "Ferrari",
+          "pt": "Ferrari"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "BMW",
-          "fr": "BMW"
+          "fr": "BMW",
+          "pt": "BMW"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Mercedes-Benz", "Benz"],
-          "fr": []
+          "fr": [],
+          "pt": ["Mercedes-Benz", "Benz"]
         },
         "labels": {
           "en": "Mercedes",
-          "fr": "Mercedes"
+          "fr": "Mercedes",
+          "pt": "Mercedes"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Toyota",
-          "fr": "Toyota"
+          "fr": "Toyota",
+          "pt": "Toyota"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["VW"],
-          "fr": []
+          "fr": [],
+          "pt": ["VW"]
         },
         "labels": {
           "en": "Volkswagen",
-          "fr": "Volkswagen"
+          "fr": "Volkswagen",
+          "pt": "Volkswagen"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Citroën",
-          "fr": "Citroën"
+          "fr": "Citroën",
+          "pt": "Citroën"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Audi",
-          "fr": "Audi"
+          "fr": "Audi",
+          "pt": "Audi"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Fiat",
-          "fr": "Fiat"
+          "fr": "Fiat",
+          "pt": "Fiat"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ford",
-          "fr": "Ford"
+          "fr": "Ford",
+          "pt": "Ford"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Porsche",
-          "fr": "Porsche"
+          "fr": "Porsche",
+          "pt": "Porsche"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tesla",
-          "fr": "Tesla"
+          "fr": "Tesla",
+          "pt": "Tesla"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bugatti",
-          "fr": "Bugatti"
+          "fr": "Bugatti",
+          "pt": "Bugatti"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Maserati",
-          "fr": "Maserati"
+          "fr": "Maserati",
+          "pt": "Maserati"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Subaru",
-          "fr": "Subaru"
+          "fr": "Subaru",
+          "pt": "Subaru"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Škoda",
-          "fr": "Škoda"
+          "fr": "Škoda",
+          "pt": "Škoda"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Alfa"],
-          "fr": []
+          "fr": [],
+          "pt": ["Alfa"]
         },
         "labels": {
           "en": "Alfa Romeo",
-          "fr": "Alfa Romeo"
+          "fr": "Alfa Romeo",
+          "pt": "Alfa Romeo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dacia",
-          "fr": "Dacia"
+          "fr": "Dacia",
+          "pt": "Dacia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hyundai",
-          "fr": "Hyundai"
+          "fr": "Hyundai",
+          "pt": "Hyundai"
         },
         "tier": "hard"
       }
@@ -4403,21 +5216,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Ducati",
-        "fr": "Ducati"
+        "fr": "Ducati",
+        "pt": "Ducati"
       },
       "why": {
         "en": "Italian and fast, but it makes motorcycles.",
-        "fr": "Italienne et rapide, mais elle fait des motos."
+        "fr": "Italienne et rapide, mais elle fait des motos.",
+        "pt": "Italiana e rápida, mas faz motas."
       }
     },
     "id": "car-brands",
     "labels": {
       "en": "Car brands",
-      "fr": "Marques de voitures"
+      "fr": "Marques de voitures",
+      "pt": "Marcas de carros"
     },
     "tier": "easy"
   },
@@ -4426,209 +5243,257 @@
       {
         "aliases": {
           "en": ["Father Christmas", "Santa"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Santa Claus",
-          "fr": "Père Noël"
+          "fr": "Père Noël",
+          "pt": "Pai Natal"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Tree", "Fir tree"],
-          "fr": ["Sapin"]
+          "fr": ["Sapin"],
+          "pt": ["Pinheiro de Natal", "Pinheirinho"]
         },
         "labels": {
           "en": "Christmas tree",
-          "fr": "Sapin de Noël"
+          "fr": "Sapin de Noël",
+          "pt": "Árvore de Natal"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Present", "Gifts", "Gift"],
-          "fr": ["Cadeau"]
+          "fr": ["Cadeau"],
+          "pt": ["Prenda", "Presentes", "Presente"]
         },
         "labels": {
           "en": "Presents",
-          "fr": "Cadeaux"
+          "fr": "Cadeaux",
+          "pt": "Prendas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Reindeers"],
-          "fr": ["Renne"]
+          "fr": ["Renne"],
+          "pt": ["Rena"]
         },
         "labels": {
           "en": "Reindeer",
-          "fr": "Rennes"
+          "fr": "Rennes",
+          "pt": "Renas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Bûche"]
+          "fr": ["Bûche"],
+          "pt": ["Tronco"]
         },
         "labels": {
           "en": "Yule log",
-          "fr": "Bûche de Noël"
+          "fr": "Bûche de Noël",
+          "pt": "Tronco de Natal"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Snow",
-          "fr": "Neige"
+          "fr": "Neige",
+          "pt": "Neve"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Turkey",
-          "fr": "Dinde"
+          "fr": "Dinde",
+          "pt": "Peru"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Garland", "Fairy lights", "Christmas lights"],
-          "fr": ["Guirlandes", "Guirlande lumineuse"]
+          "fr": ["Guirlandes", "Guirlande lumineuse"],
+          "pt": [
+            "Fita",
+            "Fitas de Natal",
+            "Luzes de Natal",
+            "Luzinhas",
+            "Pisca-pisca"
+          ]
         },
         "labels": {
           "en": "Tinsel",
-          "fr": "Guirlande"
+          "fr": "Guirlande",
+          "pt": "Fitas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Baubles", "Ornament", "Ornaments"],
-          "fr": ["Boules", "Boules de Noël"]
+          "fr": ["Boules", "Boules de Noël"],
+          "pt": ["Bolas de Natal", "Bolas", "Bola"]
         },
         "labels": {
           "en": "Bauble",
-          "fr": "Boule de Noël"
+          "fr": "Boule de Noël",
+          "pt": "Bola de Natal"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Nativity", "Crib", "Manger"],
-          "fr": ["Crèche de Noël"]
+          "fr": ["Crèche de Noël"],
+          "pt": []
         },
         "labels": {
           "en": "Nativity scene",
-          "fr": "Crèche"
+          "fr": "Crèche",
+          "pt": "Presépio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Christmas stocking", "Stockings"],
-          "fr": ["Chaussette", "Chaussettes"]
+          "fr": ["Chaussette", "Chaussettes"],
+          "pt": ["Meias de Natal", "Meia", "Meias"]
         },
         "labels": {
           "en": "Stocking",
-          "fr": "Chaussette de Noël"
+          "fr": "Chaussette de Noël",
+          "pt": "Meia de Natal"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Elf"],
-          "fr": ["Lutin"]
+          "fr": ["Lutin"],
+          "pt": ["Duende", "Elfos", "Elfo"]
         },
         "labels": {
           "en": "Elves",
-          "fr": "Lutins"
+          "fr": "Lutins",
+          "pt": "Duendes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sleigh",
-          "fr": "Traîneau"
+          "fr": "Traîneau",
+          "pt": "Trenó"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mistletoe",
-          "fr": "Gui"
+          "fr": "Gui",
+          "pt": "Visco"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Holly",
-          "fr": "Houx"
+          "fr": "Houx",
+          "pt": "Azevinho"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Advent calendar",
-          "fr": "Calendrier de l'Avent"
+          "fr": "Calendrier de l'Avent",
+          "pt": "Calendário do Advento"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Gingerbread man"],
-          "fr": ["Bonhomme en pain d'épices"]
+          "fr": ["Bonhomme en pain d'épices"],
+          "pt": [
+            "Bolachas de gengibre",
+            "Boneco de gengibre",
+            "Homem de gengibre"
+          ]
         },
         "labels": {
           "en": "Gingerbread",
-          "fr": "Pain d'épices"
+          "fr": "Pain d'épices",
+          "pt": "Pão de gengibre"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Missa da meia-noite"]
         },
         "labels": {
           "en": "Midnight Mass",
-          "fr": "Messe de minuit"
+          "fr": "Messe de minuit",
+          "pt": "Missa do Galo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Christmas carols", "Carol"],
-          "fr": ["Chant de Noël"]
+          "fr": ["Chant de Noël"],
+          "pt": ["Cântico de Natal", "Canções de Natal", "Canção de Natal"]
         },
         "labels": {
           "en": "Carols",
-          "fr": "Chants de Noël"
+          "fr": "Chants de Noël",
+          "pt": "Cânticos de Natal"
         },
         "tier": "hard"
       }
@@ -4636,21 +5501,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": ["Galette"]
       },
       "labels": {
         "en": "King cake",
-        "fr": "Galette des rois"
+        "fr": "Galette des rois",
+        "pt": "Galette des rois"
       },
       "why": {
         "en": "Eaten at Epiphany, in January — once Christmas is over.",
-        "fr": "Elle se mange à l'Épiphanie, en janvier — Noël passé."
+        "fr": "Elle se mange à l'Épiphanie, en janvier — Noël passé.",
+        "pt": "Um bolo francês do Dia de Reis, a 6 de janeiro: não vai à mesa de Natal."
       }
     },
     "id": "christmas",
     "labels": {
       "en": "Christmas",
-      "fr": "Noël"
+      "fr": "Noël",
+      "pt": "Natal"
     },
     "tier": "easy"
   },
@@ -4659,198 +5528,234 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dragon",
-          "fr": "Dragon"
+          "fr": "Dragon",
+          "pt": "Dragão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Vampire",
-          "fr": "Vampire"
+          "fr": "Vampire",
+          "pt": "Vampiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Werewolf",
-          "fr": "Loup-garou"
+          "fr": "Loup-garou",
+          "pt": "Lobisomem"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Zombi"]
+          "fr": ["Zombi"],
+          "pt": ["Zombi", "Zumbi"]
         },
         "labels": {
           "en": "Zombie",
-          "fr": "Zombie"
+          "fr": "Zombie",
+          "pt": "Zombie"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Spectre", "Spirit"],
-          "fr": ["Revenant"]
+          "fr": ["Revenant"],
+          "pt": ["Espectro", "Espírito", "Alma penada"]
         },
         "labels": {
           "en": "Ghost",
-          "fr": "Fantôme"
+          "fr": "Fantôme",
+          "pt": "Fantasma"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mummy",
-          "fr": "Momie"
+          "fr": "Momie",
+          "pt": "Múmia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Troll",
-          "fr": "Troll"
+          "fr": "Troll",
+          "pt": "Troll"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Ogro"]
         },
         "labels": {
           "en": "Ogre",
-          "fr": "Ogre"
+          "fr": "Ogre",
+          "pt": "Ogre"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cyclops",
-          "fr": "Cyclope"
+          "fr": "Cyclope",
+          "pt": "Ciclope"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Abominable Snowman", "Bigfoot", "Sasquatch"],
-          "fr": ["Abominable homme des neiges", "Bigfoot"]
+          "fr": ["Abominable homme des neiges", "Bigfoot"],
+          "pt": ["Ieti", "Abominável Homem das Neves", "Pé-Grande", "Bigfoot"]
         },
         "labels": {
           "en": "Yeti",
-          "fr": "Yéti"
+          "fr": "Yéti",
+          "pt": "Yeti"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kraken",
-          "fr": "Kraken"
+          "fr": "Kraken",
+          "pt": "Kraken"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Minotaur",
-          "fr": "Minotaure"
+          "fr": "Minotaure",
+          "pt": "Minotauro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Goblin",
-          "fr": "Gobelin"
+          "fr": "Gobelin",
+          "pt": "Goblin"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Gorgon"],
-          "fr": ["Gorgone"]
+          "fr": ["Gorgone"],
+          "pt": ["Górgona"]
         },
         "labels": {
           "en": "Medusa",
-          "fr": "Méduse"
+          "fr": "Méduse",
+          "pt": "Medusa"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Chimera",
-          "fr": "Chimère"
+          "fr": "Chimère",
+          "pt": "Quimera"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Hydra of Lerna"],
-          "fr": ["Hydre de Lerne"]
+          "fr": ["Hydre de Lerne"],
+          "pt": ["Hidra de Lerna"]
         },
         "labels": {
           "en": "Hydra",
-          "fr": "Hydre"
+          "fr": "Hydre",
+          "pt": "Hidra"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Basilisk",
-          "fr": "Basilic"
+          "fr": "Basilic",
+          "pt": "Basilisco"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Nessie"],
-          "fr": []
+          "fr": [],
+          "pt": ["Monstro do Lago Ness", "Nessie"]
         },
         "labels": {
           "en": "Loch Ness Monster",
-          "fr": "Monstre du Loch Ness"
+          "fr": "Monstre du Loch Ness",
+          "pt": "Monstro de Loch Ness"
         },
         "tier": "hard"
       }
@@ -4858,21 +5763,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Victor Frankenstein"],
-        "fr": []
+        "fr": [],
+        "pt": ["Victor Frankenstein"]
       },
       "labels": {
         "en": "Frankenstein",
-        "fr": "Frankenstein"
+        "fr": "Frankenstein",
+        "pt": "Frankenstein"
       },
       "why": {
         "en": "The scientist who built the monster — the creature itself has no name.",
-        "fr": "Le savant qui a fabriqué le monstre — la créature, elle, n'a pas de nom."
+        "fr": "Le savant qui a fabriqué le monstre — la créature, elle, n'a pas de nom.",
+        "pt": "O cientista que criou o monstro — a criatura, essa, não tem nome."
       }
     },
     "id": "monsters",
     "labels": {
       "en": "Monsters",
-      "fr": "Monstres et créatures"
+      "fr": "Monstres et créatures",
+      "pt": "Monstros e criaturas"
     },
     "tier": "easy"
   },
@@ -4881,132 +5790,156 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Leo",
-          "fr": "Lion"
+          "fr": "Lion",
+          "pt": "Leão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Scorpio",
-          "fr": "Scorpion"
+          "fr": "Scorpion",
+          "pt": "Escorpião"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Câncer"]
         },
         "labels": {
           "en": "Cancer",
-          "fr": "Cancer"
+          "fr": "Cancer",
+          "pt": "Caranguejo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Taurus",
-          "fr": "Taureau"
+          "fr": "Taureau",
+          "pt": "Touro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Gémeau"]
+          "fr": ["Gémeau"],
+          "pt": ["Gémeo"]
         },
         "labels": {
           "en": "Gemini",
-          "fr": "Gémeaux"
+          "fr": "Gémeaux",
+          "pt": "Gémeos"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Virgo",
-          "fr": "Vierge"
+          "fr": "Vierge",
+          "pt": "Virgem"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Áries"]
         },
         "labels": {
           "en": "Aries",
-          "fr": "Bélier"
+          "fr": "Bélier",
+          "pt": "Carneiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Poisson"]
+          "fr": ["Poisson"],
+          "pt": ["Peixe"]
         },
         "labels": {
           "en": "Pisces",
-          "fr": "Poissons"
+          "fr": "Poissons",
+          "pt": "Peixes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Libra"]
         },
         "labels": {
           "en": "Libra",
-          "fr": "Balance"
+          "fr": "Balance",
+          "pt": "Balança"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sagittarius",
-          "fr": "Sagittaire"
+          "fr": "Sagittaire",
+          "pt": "Sagitário"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Capricorn",
-          "fr": "Capricorne"
+          "fr": "Capricorne",
+          "pt": "Capricórnio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Aquarius",
-          "fr": "Verseau"
+          "fr": "Verseau",
+          "pt": "Aquário"
         },
         "tier": "hard"
       }
@@ -5014,21 +5947,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Serpent-bearer"],
-        "fr": []
+        "fr": [],
+        "pt": ["Ofiúco"]
       },
       "labels": {
         "en": "Ophiuchus",
-        "fr": "Serpentaire"
+        "fr": "Serpentaire",
+        "pt": "Serpentário"
       },
       "why": {
         "en": "A thirteenth constellation the Sun crosses, but no sign of the zodiac.",
-        "fr": "Une treizième constellation que traverse le Soleil, mais pas un signe du zodiaque."
+        "fr": "Une treizième constellation que traverse le Soleil, mais pas un signe du zodiaque.",
+        "pt": "Uma 13.ª constelação que o Sol atravessa, mas não é um signo do zodíaco."
       }
     },
     "id": "zodiac-signs",
     "labels": {
       "en": "Zodiac signs",
-      "fr": "Signes du zodiaque"
+      "fr": "Signes du zodiaque",
+      "pt": "Signos do zodíaco"
     },
     "tier": "easy"
   },
@@ -5037,198 +5974,234 @@
       {
         "aliases": {
           "en": ["FB"],
-          "fr": []
+          "fr": [],
+          "pt": ["FB"]
         },
         "labels": {
           "en": "Facebook",
-          "fr": "Facebook"
+          "fr": "Facebook",
+          "pt": "Facebook"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Insta"],
-          "fr": []
+          "fr": [],
+          "pt": ["Insta"]
         },
         "labels": {
           "en": "Instagram",
-          "fr": "Instagram"
+          "fr": "Instagram",
+          "pt": "Instagram"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "TikTok",
-          "fr": "TikTok"
+          "fr": "TikTok",
+          "pt": "TikTok"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["X", "Twitter"],
-          "fr": []
+          "fr": [],
+          "pt": ["X", "Twitter"]
         },
         "labels": {
           "en": "X (Twitter)",
-          "fr": "X (Twitter)"
+          "fr": "X (Twitter)",
+          "pt": "X (Twitter)"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Snap"],
-          "fr": []
+          "fr": [],
+          "pt": ["Snap"]
         },
         "labels": {
           "en": "Snapchat",
-          "fr": "Snapchat"
+          "fr": "Snapchat",
+          "pt": "Snapchat"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "YouTube",
-          "fr": "YouTube"
+          "fr": "YouTube",
+          "pt": "YouTube"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "LinkedIn",
-          "fr": "LinkedIn"
+          "fr": "LinkedIn",
+          "pt": "LinkedIn"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pinterest",
-          "fr": "Pinterest"
+          "fr": "Pinterest",
+          "pt": "Pinterest"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Reddit",
-          "fr": "Reddit"
+          "fr": "Reddit",
+          "pt": "Reddit"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Twitch",
-          "fr": "Twitch"
+          "fr": "Twitch",
+          "pt": "Twitch"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Threads",
-          "fr": "Threads"
+          "fr": "Threads",
+          "pt": "Threads"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Discord",
-          "fr": "Discord"
+          "fr": "Discord",
+          "pt": "Discord"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tumblr",
-          "fr": "Tumblr"
+          "fr": "Tumblr",
+          "pt": "Tumblr"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bluesky",
-          "fr": "Bluesky"
+          "fr": "Bluesky",
+          "pt": "Bluesky"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "BeReal",
-          "fr": "BeReal"
+          "fr": "BeReal",
+          "pt": "BeReal"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Myspace",
-          "fr": "Myspace"
+          "fr": "Myspace",
+          "pt": "Myspace"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mastodon",
-          "fr": "Mastodon"
+          "fr": "Mastodon",
+          "pt": "Mastodon"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Vine",
-          "fr": "Vine"
+          "fr": "Vine",
+          "pt": "Vine"
         },
         "tier": "hard"
       }
@@ -5236,21 +6209,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Netflix",
-        "fr": "Netflix"
+        "fr": "Netflix",
+        "pt": "Netflix"
       },
       "why": {
         "en": "A streaming service: everyone watches, nobody posts.",
-        "fr": "Un service de streaming : tout le monde regarde, personne ne publie."
+        "fr": "Un service de streaming : tout le monde regarde, personne ne publie.",
+        "pt": "Um serviço de streaming: toda a gente vê, ninguém publica."
       }
     },
     "id": "social-networks",
     "labels": {
       "en": "Social networks",
-      "fr": "Réseaux sociaux"
+      "fr": "Réseaux sociaux",
+      "pt": "Redes sociais"
     },
     "tier": "easy"
   }

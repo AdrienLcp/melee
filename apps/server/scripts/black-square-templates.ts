@@ -17,7 +17,7 @@ import type { CountryCode } from '@melee/protocol/country-code'
 import { bankedCapitals } from '../src/infrastructure/questions/capital-bank'
 
 /** The labels a template words a theme with. */
-export type Wording = { en: string; fr: string }
+export type Wording = { en: string; fr: string; pt: string }
 
 export type TemplateQuery = {
   /** The states a template lists rather than asks Wikidata for, where it reads some. */
@@ -134,9 +134,10 @@ export const TEMPLATES = {
         '?member wdt:P31 wd:Q5 .',
         `?item wdt:P175 ?member . ${ALBUM}`
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Albums by ${en}`,
-      fr: `Les albums de ${fr}`
+      fr: `Les albums de ${fr}`,
+      pt: `Os álbuns de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P175 wd:${subject} . ${ALBUM}`
@@ -147,18 +148,20 @@ export const TEMPLATES = {
         `{ ?item wdt:P1411 wd:${subject} }`,
         neighbour === null ? '' : `UNION { ?item wdt:P166 wd:${neighbour} }`
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Winners of the ${en}`,
-      fr: `Les lauréats du ${fr}`
+      fr: `Les lauréats du ${fr}`,
+      pt: `Os vencedores de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P166 wd:${subject} .`
   },
   'award-winning-films': {
     candidates: ({ subject }) => `?item wdt:P1411 wd:${subject} . ${FILM}`,
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Winners of the ${en}`,
-      fr: `Les lauréats du ${fr}`
+      fr: `Les lauréats du ${fr}`,
+      pt: `Os vencedores de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P166 wd:${subject} . ${FILM}`
@@ -170,9 +173,10 @@ export const TEMPLATES = {
         neighbour === null ? '' : `UNION { ?item wdt:P166 wd:${neighbour} }`,
         PERSON
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Winners of the ${en}`,
-      fr: `Les lauréats du ${fr}`
+      fr: `Les lauréats du ${fr}`,
+      pt: `Os vencedores de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P166 wd:${subject} . ${PERSON}`
@@ -184,9 +188,10 @@ export const TEMPLATES = {
         `?author wdt:P135 ?movement ; wdt:P27 ?country . FILTER(?author != wd:${subject})`,
         `?item wdt:P50 ?author . ${BOOK}`
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Books by ${en}`,
-      fr: `Les livres de ${fr}`
+      fr: `Les livres de ${fr}`,
+      pt: `Os livros de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P50 wd:${subject} . ${BOOK}`
@@ -198,9 +203,10 @@ export const TEMPLATES = {
           largestCities.map(({ id }) => id)
         )
       ),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Capitals of ${en}`,
-      fr: `Les capitales de ${fr}`
+      fr: `Les capitales de ${fr}`,
+      pt: `As capitais de ${pt}`
     }),
     needsNeighbour: false,
     truths: (query) =>
@@ -215,9 +221,10 @@ export const TEMPLATES = {
             '?item wdt:P1441 ?work .'
           ].join('\n')
         : `?item wdt:P1441 wd:${neighbour} .`,
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Characters of ${en}`,
-      fr: `Les personnages de ${fr}`
+      fr: `Les personnages de ${fr}`,
+      pt: `As personagens de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) =>
@@ -226,9 +233,10 @@ export const TEMPLATES = {
   'competition-winners': {
     candidates: (query) =>
       `?season wdt:P3450|wdt:P179|wdt:P361 wd:${neighbourOf(query)} ; wdt:P1346 ?item .`,
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Winners of the ${en}`,
-      fr: `Les vainqueurs de ${fr}`
+      fr: `Les vainqueurs de ${fr}`,
+      pt: `Os vencedores de ${pt}`
     }),
     needsNeighbour: true,
     truths: ({ subject }) =>
@@ -236,9 +244,10 @@ export const TEMPLATES = {
   },
   'countries-bordering': {
     candidates: ({ subject }) => nextCountryOver(subject),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Countries bordering ${en}`,
-      fr: `Les pays frontaliers de ${fr}`
+      fr: `Les pays frontaliers de ${fr}`,
+      pt: `Os países que fazem fronteira com ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) =>
@@ -250,7 +259,7 @@ export const TEMPLATES = {
   },
   'countries-listed': {
     candidates: () => COUNTRY,
-    label: ({ en, fr }) => ({ en, fr }),
+    label: ({ en, fr, pt }) => ({ en, fr, pt }),
     needsNeighbour: false,
     truths: (query) =>
       [
@@ -267,9 +276,10 @@ export const TEMPLATES = {
         `UNION { ?speaking wdt:P37 wd:${subject} ; wdt:P47 ?item }`,
         COUNTRY
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Countries where ${en} is an official language`,
-      fr: `Les pays où ${/^(a|e|é|è|i|o|u)/i.test(fr) ? `l’${fr}` : `le ${fr}`} est langue officielle`
+      fr: `Les pays où ${/^(a|e|é|è|i|o|u)/i.test(fr) ? `l’${fr}` : `le ${fr}`} est langue officielle`,
+      pt: `Os países onde o ${pt} é língua oficial`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P37 wd:${subject} . ${COUNTRY}`
@@ -277,9 +287,10 @@ export const TEMPLATES = {
   'films-directed-by': {
     candidates: ({ subject }) =>
       `?item wdt:P58|wdt:P162|wdt:P1431|wdt:P161 wd:${subject} . ${FILM}`,
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Films directed by ${en}`,
-      fr: `Les films réalisés par ${fr}`
+      fr: `Les films réalisés par ${fr}`,
+      pt: `Os filmes realizados por ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P57 wd:${subject} . ${FILM}`
@@ -293,7 +304,11 @@ export const TEMPLATES = {
           : `UNION { ?item wdt:P272|wdt:P750 wd:${neighbour} . ?item wdt:P31 wd:Q202866 . }`,
         FILM
       ].join('\n'),
-    label: ({ en, fr }) => ({ en: `${en} films`, fr: `Les films ${fr}` }),
+    label: ({ en, fr, pt }) => ({
+      en: `${en} films`,
+      fr: `Les films ${fr}`,
+      pt: `Os filmes da ${pt}`
+    }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P272 wd:${subject} . ${FILM}`
   },
@@ -304,9 +319,10 @@ export const TEMPLATES = {
         `UNION { ?member wdt:P463 wd:${subject} ; wdt:P47 ?item . }`,
         COUNTRY
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Member states of ${en}`,
-      fr: `Les États membres de ${fr}`
+      fr: `Les États membres de ${fr}`,
+      pt: `Os Estados-membros de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) =>
@@ -319,9 +335,10 @@ export const TEMPLATES = {
         `?painter wdt:P135 ?movement . FILTER(?painter != wd:${subject})`,
         `?item wdt:P170 ?painter . ${PAINTING}`
       ].join('\n'),
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Paintings by ${en}`,
-      fr: `Les tableaux de ${fr}`
+      fr: `Les tableaux de ${fr}`,
+      pt: `Os quadros de ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P170 wd:${subject} . ${PAINTED_WORK}`
@@ -329,16 +346,17 @@ export const TEMPLATES = {
   'position-holders': {
     candidates: (query) =>
       `?item wdt:P39 wd:${neighbourOf(query)} ; wdt:P31 wd:Q5 .`,
-    label: ({ en, fr }) => ({ en, fr }),
+    label: ({ en, fr, pt }) => ({ en, fr, pt }),
     needsNeighbour: true,
     truths: ({ subject }) => `?item wdt:P39 wd:${subject} ; wdt:P31 wd:Q5 .`
   },
   'songs-by': {
     candidates: ({ subject }) =>
       `?item wdt:P86|wdt:P676|wdt:P870 wd:${subject} . ${SONG}`,
-    label: ({ en, fr }) => ({
+    label: ({ en, fr, pt }) => ({
       en: `Songs sung by ${en}`,
-      fr: `Les chansons interprétées par ${fr}`
+      fr: `Les chansons interprétées par ${fr}`,
+      pt: `As canções interpretadas por ${pt}`
     }),
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P175 wd:${subject} . ${SONG}`
@@ -349,7 +367,7 @@ export const TEMPLATES = {
         `{ wd:${query.subject} wdt:P150 ?item . FILTER NOT EXISTS { ?item wdt:P31 wd:${neighbourOf(query)} } }`,
         `UNION { ?item wdt:P31 wd:${neighbourOf(query)} ; wdt:P576 [] . }`
       ].join('\n'),
-    label: ({ en, fr }) => ({ en, fr }),
+    label: ({ en, fr, pt }) => ({ en, fr, pt }),
     needsNeighbour: true,
     truths: (query) =>
       [

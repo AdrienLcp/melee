@@ -939,6 +939,14 @@ one part.
   typed `lusiadas`) and the _e_ said for an ampersand, never an _E_ among
   initials (_R.E.M._ typed `rem`).
 
+- `[Server]` **Black square speaks European Portuguese**, not yet offered:
+  all 259 themes, every answer and every black word with its reason, the
+  names a Portuguese table says beside each (_napolitana_ for a pain au
+  chocolat), and films, books and paintings under the titles Portugal knows
+  them by rather than Wikidata's Brazilian ones (_Regresso ao Futuro_,
+  _Sacanas Sem Lei_). The schemas drop the key until the language joins
+  them.
+
 - `[Game]` **The guard against root `:has()` rules that restyle the whole
   page reads every stylesheet**, the console's, the player's and the wall's
   included, not only the front door's, and catches two more ways of writing

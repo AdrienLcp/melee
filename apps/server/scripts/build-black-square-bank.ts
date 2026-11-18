@@ -22,6 +22,8 @@ import {
 } from './black-square-templates'
 import {
   BLACK_SQUARE_THEMES,
+  PORTUGUESE_LABELS,
+  PORTUGUESE_SPOKEN_ALIASES,
   SHOWN_LABELS,
   SPOKEN_ALIASES,
   type ThemeSpec,
@@ -32,6 +34,7 @@ import { frenchYearlyViewsOf } from './frwiki-yearly-views'
 import { jsonOf, orStop, parseJson } from './json-file'
 import { cached } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
+import { type Names, namesOf as wikidataNamesOf } from './wikidata-names'
 import { type SeriesFacts, seriesFactsOf } from './wikidata-series'
 import {
   bindingValue,
@@ -53,6 +56,13 @@ const BANK_PATH = join(
  * The cut also keeps a movement's thousand paintings out of the traffic lookup.
  */
 const LEAST_SITELINKS = 5
+
+/** An entity as a query names it: in the two languages the bank was first written in. */
+type QueriedEntity = {
+  id: string
+  labels: Omit<Wording, 'pt'>
+  sitelinks: number
+}
 
 type Entity = { id: string; labels: Wording; sitelinks: number }
 
@@ -230,8 +240,8 @@ const entityIdOf = (uri: string): string => uri.split('/').at(-1) ?? uri
 
 const labelledEntitiesOf = (
   body: z.infer<typeof labelledBindingsSchema>
-): Entity[] => {
-  const entities = new Map<string, Entity>()
+): QueriedEntity[] => {
+  const entities = new Map<string, QueriedEntity>()
 
   for (const { en, fr, item, links } of body.results.bindings) {
     const id = entityIdOf(item.value)
@@ -254,7 +264,7 @@ const labelledEntitiesOf = (
  * Cached under the query's own hash, so a template edited is a query asked
  * again and nothing else is.
  */
-const entitiesMatching = async (pattern: string): Promise<Entity[]> => {
+const entitiesMatching = async (pattern: string): Promise<QueriedEntity[]> => {
   const query = [
     'SELECT DISTINCT ?item ?en ?fr ?links WHERE {',
     `  { ${pattern} }`,
@@ -288,7 +298,9 @@ const entitiesMatching = async (pattern: string): Promise<Entity[]> => {
   )
 }
 
-const subjectLabelsOf = async (subject: string): Promise<Wording> => {
+const subjectLabelsOf = async (
+  subject: string
+): Promise<QueriedEntity['labels']> => {
   const [entity] = await entitiesMatching(`VALUES ?item { wd:${subject} }`)
 
   if (entity === undefined) {
@@ -296,6 +308,14 @@ const subjectLabelsOf = async (subject: string): Promise<Wording> => {
   }
 
   return entity.labels
+}
+
+type QueriedTheme = {
+  candidates: QueriedEntity[]
+  spec: ThemeSpec
+  /** The subject's own names, `null` where the theme is worded by hand. */
+  subjectLabels: QueriedEntity['labels'] | null
+  truths: QueriedEntity[]
 }
 
 type ThemeEntities = {
@@ -308,7 +328,7 @@ type ThemeEntities = {
 const themeIdOf = ({ neighbour, subject, template }: ThemeSpec): string =>
   [template, subject, neighbour].filter((part) => part !== undefined).join(':')
 
-const entitiesOf = async (spec: ThemeSpec): Promise<ThemeEntities> => {
+const entitiesOf = async (spec: ThemeSpec): Promise<QueriedTheme> => {
   const template = TEMPLATES[spec.template]
   const query = {
     countries: spec.countries ?? null,
@@ -336,22 +356,87 @@ const entitiesOf = async (spec: ThemeSpec): Promise<ThemeEntities> => {
   return {
     candidates,
     spec,
-    truths,
-    wording: spec.labels ?? template.label(await subjectLabelsOf(spec.subject))
+    subjectLabels:
+      spec.labels === undefined ? await subjectLabelsOf(spec.subject) : null,
+    truths
+  }
+}
+
+/**
+ * The queries name an entity in English and French; its Portuguese name is
+ * read apart, so they keep their hash and the cache that answered them. A name
+ * written by hand wins, then Wikidata's, then the English one, which is what a
+ * Portuguese table calls a work nobody has translated.
+ */
+const inPortuguese = ({
+  entity,
+  names
+}: {
+  entity: QueriedEntity
+  names: ReadonlyMap<string, Names>
+}): Entity => ({
+  ...entity,
+  labels: {
+    ...entity.labels,
+    pt:
+      PORTUGUESE_LABELS[entity.id] ??
+      names.get(entity.id)?.pt ??
+      entity.labels.en
+  }
+})
+
+const themeInPortuguese = ({
+  names,
+  theme: { candidates, spec, subjectLabels, truths }
+}: {
+  names: ReadonlyMap<string, Names>
+  theme: QueriedTheme
+}): ThemeEntities => {
+  const named = (entity: QueriedEntity) => inPortuguese({ entity, names })
+  const wording =
+    spec.labels ??
+    (subjectLabels === null
+      ? undefined
+      : TEMPLATES[spec.template].label({
+          ...subjectLabels,
+          pt:
+            PORTUGUESE_LABELS[spec.subject] ??
+            names.get(spec.subject)?.pt ??
+            subjectLabels.en
+        }))
+
+  if (wording === undefined) {
+    throw new Error(`${themeIdOf(spec)} has no wording`)
+  }
+
+  return {
+    candidates: candidates.map(named),
+    spec,
+    truths: truths.map(named),
+    wording
   }
 }
 
 /** A name a typed line can match: Greece's 🇬🇷 alias normalises to nothing. */
 const isTypeable = (name: string): boolean => normalizeAnswer(name) !== ''
 
+type Aliases = { en: string[]; fr: string[]; pt: string[] }
+
 const namesOf = ({
   aliases,
   labels
 }: {
-  aliases: { en: string[]; fr: string[] }
+  aliases: Aliases
   labels: Wording
 }): string[] =>
-  [labels.en, labels.fr, ...aliases.en, ...aliases.fr].map(normalizeAnswer)
+  [
+    labels.en,
+    labels.fr,
+    labels.pt,
+    ...aliases.en,
+    ...aliases.fr,
+    ...aliases.pt
+  ].map(normalizeAnswer)
 
 /**
  * A nickname two answers share names neither, and a round dealing one would
@@ -365,47 +450,70 @@ const aliasesOutside = ({
   aliases,
   names
 }: {
-  aliases: { en: string[]; fr: string[] }
+  aliases: Aliases
   names: ReadonlySet<string>
-}) => ({
+}): Aliases => ({
   en: aliases.en.filter((alias) => !names.has(normalizeAnswer(alias))),
-  fr: aliases.fr.filter((alias) => !names.has(normalizeAnswer(alias)))
+  fr: aliases.fr.filter((alias) => !names.has(normalizeAnswer(alias))),
+  pt: aliases.pt.filter((alias) => !names.has(normalizeAnswer(alias)))
+})
+
+const wordingSchema = z.object({
+  en: z.string(),
+  fr: z.string(),
+  pt: z.string()
+})
+
+const aliasesSchema = z.object({
+  en: z.array(z.string()),
+  fr: z.array(z.string()),
+  pt: z.array(z.string())
 })
 
 const bankedRowSchema = z.object({
   answers: z.array(
     z.object({
-      aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
+      aliases: aliasesSchema,
       id: z.string(),
-      labels: z.object({ en: z.string(), fr: z.string() }),
+      labels: wordingSchema,
       series: z.string().nullable(),
       tier: z.enum(contentTiers),
       views: z.number()
     })
   ),
   blackWord: z.object({
-    aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
+    aliases: aliasesSchema,
     id: z.string(),
-    labels: z.object({ en: z.string(), fr: z.string() }),
-    why: z.object({ en: z.string(), fr: z.string() })
+    labels: wordingSchema,
+    why: wordingSchema
   }),
   id: z.string(),
-  labels: z.object({ en: z.string(), fr: z.string() })
+  labels: wordingSchema
 })
 
 type BankedRow = z.infer<typeof bankedRowSchema>
 
 const build = async (): Promise<void> => {
-  const themes: ThemeEntities[] = []
+  const queried: QueriedTheme[] = []
 
   for (const [index, spec] of BLACK_SQUARE_THEMES.entries()) {
-    themes.push(await entitiesOf(spec))
+    queried.push(await entitiesOf(spec))
     console.info(`  queried ${index + 1}/${BLACK_SQUARE_THEMES.length}`)
   }
 
-  const entityIds = themes.flatMap(({ candidates, truths }) =>
+  const entityIds = queried.flatMap(({ candidates, truths }) =>
     [...truths, ...candidates].map(({ id }) => id)
   )
+  const names = await wikidataNamesOf({
+    cache: 'black-square-labels.json',
+    entityIds: [
+      ...entityIds,
+      ...queried.flatMap(({ spec, subjectLabels }) =>
+        subjectLabels === null ? [] : [spec.subject]
+      )
+    ]
+  })
+  const themes = queried.map((theme) => themeInPortuguese({ names, theme }))
   const everyTruthId = themes.flatMap(({ truths }) =>
     truths.map(({ id }) => id)
   )
@@ -428,13 +536,18 @@ const build = async (): Promise<void> => {
 
   const aliases = {
     en: await aliasesOf({ entityIds, language: 'en' }),
-    fr: await aliasesOf({ entityIds, language: 'fr' })
+    fr: await aliasesOf({ entityIds, language: 'fr' }),
+    pt: await aliasesOf({ entityIds, language: 'pt' })
   }
-  const aliasesOfEntity = ({ id }: Entity) => ({
+  const aliasesOfEntity = ({ id }: Entity): Aliases => ({
     en: (aliases.en.get(id) ?? []).filter(isTypeable),
     fr: [...(aliases.fr.get(id) ?? []), ...(SPOKEN_ALIASES[id] ?? [])].filter(
       isTypeable
-    )
+    ),
+    pt: [
+      ...(aliases.pt.get(id) ?? []),
+      ...(PORTUGUESE_SPOKEN_ALIASES[id] ?? [])
+    ].filter(isTypeable)
   })
 
   const facts = await seriesFactsOf({ entityIds: everyTruthId })

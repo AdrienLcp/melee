@@ -4,176 +4,213 @@
       {
         "aliases": {
           "en": ["Bedside table", "Nightstand", "Night table", "Coffee table"],
-          "fr": ["Table de chevet", "Chevet", "Table basse", "Table de nuit"]
+          "fr": ["Table de chevet", "Chevet", "Table basse", "Table de nuit"],
+          "pt": [
+            "Mesa de cabeceira",
+            "Mesinha de cabeceira",
+            "Mesa de centro",
+            "Mesinha"
+          ]
         },
         "labels": {
           "en": "Table",
-          "fr": "Table"
+          "fr": "Table",
+          "pt": "Mesa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Chair",
-          "fr": "Chaise"
+          "fr": "Chaise",
+          "pt": "Cadeira"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bunk bed", "Bunk beds"],
-          "fr": ["Lits superposés", "Lit superposé"]
+          "fr": ["Lits superposés", "Lit superposé"],
+          "pt": ["Beliche", "Beliches"]
         },
         "labels": {
           "en": "Bed",
-          "fr": "Lit"
+          "fr": "Lit",
+          "pt": "Cama"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Couch", "Settee"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sofa",
-          "fr": "Canapé"
+          "fr": "Canapé",
+          "pt": "Sofá"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Penderie"]
+          "fr": ["Penderie"],
+          "pt": ["Guarda-roupa", "Armário"]
         },
         "labels": {
           "en": "Wardrobe",
-          "fr": "Armoire"
+          "fr": "Armoire",
+          "pt": "Roupeiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Escrivaninha"]
         },
         "labels": {
           "en": "Desk",
-          "fr": "Bureau"
+          "fr": "Bureau",
+          "pt": "Secretária"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Rocking chair"],
-          "fr": ["Fauteuil à bascule", "Rocking-chair"]
+          "fr": ["Fauteuil à bascule", "Rocking-chair"],
+          "pt": ["Cadeira de baloiço"]
         },
         "labels": {
           "en": "Armchair",
-          "fr": "Fauteuil"
+          "fr": "Fauteuil",
+          "pt": "Poltrona"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Bookshelf", "Bookshelves", "Shelves"],
-          "fr": ["Étagère"]
+          "fr": ["Étagère"],
+          "pt": ["Estante de livros", "Prateleira", "Prateleiras"]
         },
         "labels": {
           "en": "Bookcase",
-          "fr": "Bibliothèque"
+          "fr": "Bibliothèque",
+          "pt": "Estante"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Dresser"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Chest of drawers",
-          "fr": "Commode"
+          "fr": "Commode",
+          "pt": "Cómoda"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Mocho", "Banco alto"]
         },
         "labels": {
           "en": "Stool",
-          "fr": "Tabouret"
+          "fr": "Tabouret",
+          "pt": "Banquinho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sideboard",
-          "fr": "Buffet"
+          "fr": "Buffet",
+          "pt": "Aparador"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Banco corrido"]
         },
         "labels": {
           "en": "Bench",
-          "fr": "Banc"
+          "fr": "Banc",
+          "pt": "Banco"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Pouffe", "Footstool"],
-          "fr": []
+          "fr": [],
+          "pt": ["Puff"]
         },
         "labels": {
           "en": "Ottoman",
-          "fr": "Pouf"
+          "fr": "Pouf",
+          "pt": "Pufe"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Vanity"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dressing table",
-          "fr": "Coiffeuse"
+          "fr": "Coiffeuse",
+          "pt": "Toucador"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Guarda-louça", "Louceiro", "Cristaleira"]
         },
         "labels": {
           "en": "Welsh dresser",
-          "fr": "Vaisselier"
+          "fr": "Vaisselier",
+          "pt": "Guarda-loiça"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Room divider"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Folding screen",
-          "fr": "Paravent"
+          "fr": "Paravent",
+          "pt": "Biombo"
         },
         "tier": "hard"
       }
@@ -181,21 +218,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Refrigerator"],
-        "fr": ["Réfrigérateur", "Frigidaire"]
+        "fr": ["Réfrigérateur", "Frigidaire"],
+        "pt": ["Frigo"]
       },
       "labels": {
         "en": "Fridge",
-        "fr": "Frigo"
+        "fr": "Frigo",
+        "pt": "Frigorífico"
       },
       "why": {
         "en": "An appliance that keeps food cold, not a piece of furniture.",
-        "fr": "Un appareil électroménager qui garde au frais, pas un meuble."
+        "fr": "Un appareil électroménager qui garde au frais, pas un meuble.",
+        "pt": "Um eletrodoméstico que conserva a comida, não um móvel."
       }
     },
     "id": "furniture",
     "labels": {
       "en": "Furniture",
-      "fr": "Meubles"
+      "fr": "Meubles",
+      "pt": "Móveis"
     },
     "tier": "easy"
   },
@@ -204,187 +245,221 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kitchen",
-          "fr": "Cuisine"
+          "fr": "Cuisine",
+          "pt": "Cozinha"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Guest room", "Spare room", "Spare bedroom"],
-          "fr": ["Chambre d'amis"]
+          "fr": ["Chambre d'amis"],
+          "pt": ["Quarto de hóspedes", "Quarto de dormir"]
         },
         "labels": {
           "en": "Bedroom",
-          "fr": "Chambre"
+          "fr": "Chambre",
+          "pt": "Quarto"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Salle de bains"]
+          "fr": ["Salle de bains"],
+          "pt": ["Quarto de banho"]
         },
         "labels": {
           "en": "Bathroom",
-          "fr": "Salle de bain"
+          "fr": "Salle de bain",
+          "pt": "Casa de banho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Lounge", "Sitting room"],
-          "fr": []
+          "fr": [],
+          "pt": ["Sala"]
         },
         "labels": {
           "en": "Living room",
-          "fr": "Salon"
+          "fr": "Salon",
+          "pt": "Sala de estar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Toilets", "Loo"],
-          "fr": ["WC", "Cabinets"]
+          "fr": ["WC", "Cabinets"],
+          "pt": ["Retrete", "Lavabos", "Sanitários"]
         },
         "labels": {
           "en": "Toilet",
-          "fr": "Toilettes"
+          "fr": "Toilettes",
+          "pt": "WC"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dining room",
-          "fr": "Salle à manger"
+          "fr": "Salle à manger",
+          "pt": "Sala de jantar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Garage",
-          "fr": "Garage"
+          "fr": "Garage",
+          "pt": "Garagem"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Basement"],
-          "fr": ["Sous-sol"]
+          "fr": ["Sous-sol"],
+          "pt": ["Adega"]
         },
         "labels": {
           "en": "Cellar",
-          "fr": "Cave"
+          "fr": "Cave",
+          "pt": "Cave"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Loft"],
-          "fr": ["Combles"]
+          "fr": ["Combles"],
+          "pt": ["Águas-furtadas"]
         },
         "labels": {
           "en": "Attic",
-          "fr": "Grenier"
+          "fr": "Grenier",
+          "pt": "Sótão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Study"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Office",
-          "fr": "Bureau"
+          "fr": "Bureau",
+          "pt": "Escritório"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Corridor", "Hall"],
-          "fr": []
+          "fr": [],
+          "pt": ["Hall", "Hall de entrada", "Átrio"]
         },
         "labels": {
           "en": "Hallway",
-          "fr": "Couloir"
+          "fr": "Couloir",
+          "pt": "Corredor"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Utility room", "Laundry"],
-          "fr": []
+          "fr": [],
+          "pt": ["Lavanderia"]
         },
         "labels": {
           "en": "Laundry room",
-          "fr": "Buanderie"
+          "fr": "Buanderie",
+          "pt": "Lavandaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Conservatory", "Sunroom"],
-          "fr": []
+          "fr": [],
+          "pt": ["Varanda", "Jardim de inverno"]
         },
         "labels": {
           "en": "Veranda",
-          "fr": "Véranda"
+          "fr": "Véranda",
+          "pt": "Marquise"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Larder"],
-          "fr": ["Garde-manger"]
+          "fr": ["Garde-manger"],
+          "pt": []
         },
         "labels": {
           "en": "Pantry",
-          "fr": "Cellier"
+          "fr": "Cellier",
+          "pt": "Despensa"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Walk-in closet", "Walk-in wardrobe"],
-          "fr": []
+          "fr": [],
+          "pt": ["Quarto de vestir"]
         },
         "labels": {
           "en": "Dressing room",
-          "fr": "Dressing"
+          "fr": "Dressing",
+          "pt": "Closet"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Sala de brincar"]
         },
         "labels": {
           "en": "Playroom",
-          "fr": "Salle de jeux"
+          "fr": "Salle de jeux",
+          "pt": "Sala de jogos"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mezzanine",
-          "fr": "Mezzanine"
+          "fr": "Mezzanine",
+          "pt": "Mezanino"
         },
         "tier": "hard"
       }
@@ -392,21 +467,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Yard", "Backyard"],
-        "fr": []
+        "fr": [],
+        "pt": ["Quintal"]
       },
       "labels": {
         "en": "Garden",
-        "fr": "Jardin"
+        "fr": "Jardin",
+        "pt": "Jardim"
       },
       "why": {
         "en": "It lies outside the walls: a garden is not a room of the house.",
-        "fr": "Il est hors des murs : un jardin n'est pas une pièce de la maison."
+        "fr": "Il est hors des murs : un jardin n'est pas une pièce de la maison.",
+        "pt": "Fica fora das paredes: um jardim não é uma divisão da casa."
       }
     },
     "id": "rooms-of-a-house",
     "labels": {
       "en": "Rooms of a house",
-      "fr": "Pièces de la maison"
+      "fr": "Pièces de la maison",
+      "pt": "Divisões da casa"
     },
     "tier": "easy"
   },
@@ -415,176 +494,208 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hammer",
-          "fr": "Marteau"
+          "fr": "Marteau",
+          "pt": "Martelo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Chave de parafusos", "Chave Phillips"]
         },
         "labels": {
           "en": "Screwdriver",
-          "fr": "Tournevis"
+          "fr": "Tournevis",
+          "pt": "Chave de fendas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Handsaw", "Jigsaw"],
-          "fr": ["Scie sauteuse"]
+          "fr": ["Scie sauteuse"],
+          "pt": ["Serrote", "Serra de recortes"]
         },
         "labels": {
           "en": "Saw",
-          "fr": "Scie"
+          "fr": "Scie",
+          "pt": "Serra"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Power drill", "Electric drill"],
-          "fr": []
+          "fr": [],
+          "pt": ["Berbequim elétrico"]
         },
         "labels": {
           "en": "Drill",
-          "fr": "Perceuse"
+          "fr": "Perceuse",
+          "pt": "Berbequim"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Pinces"]
+          "fr": ["Pinces"],
+          "pt": ["Alicates"]
         },
         "labels": {
           "en": "Pliers",
-          "fr": "Pince"
+          "fr": "Pince",
+          "pt": "Alicate"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Wrench", "Allen key", "Hex key"],
-          "fr": ["Clef", "Clé plate", "Clé Allen", "Clé six pans"]
+          "fr": ["Clef", "Clé plate", "Clé Allen", "Clé six pans"],
+          "pt": ["Chave", "Chave de bocas", "Chave Allen", "Chave sextavada"]
         },
         "labels": {
           "en": "Spanner",
-          "fr": "Clé"
+          "fr": "Clé",
+          "pt": "Chave inglesa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Measuring tape"],
-          "fr": ["Mètre ruban", "Mètre-ruban"]
+          "fr": ["Mètre ruban", "Mètre-ruban"],
+          "pt": ["Metro"]
         },
         "labels": {
           "en": "Tape measure",
-          "fr": "Mètre"
+          "fr": "Mètre",
+          "pt": "Fita métrica"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Level", "Bubble level"],
-          "fr": ["Niveau à bulle"]
+          "fr": ["Niveau à bulle"],
+          "pt": ["Nível de bolha"]
         },
         "labels": {
           "en": "Spirit level",
-          "fr": "Niveau"
+          "fr": "Niveau",
+          "pt": "Nível"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sander",
-          "fr": "Ponceuse"
+          "fr": "Ponceuse",
+          "pt": "Lixadeira"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Ciseau"]
+          "fr": ["Ciseau"],
+          "pt": ["Escopro"]
         },
         "labels": {
           "en": "Chisel",
-          "fr": "Ciseau à bois"
+          "fr": "Ciseau à bois",
+          "pt": "Formão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Box cutter", "Stanley knife"],
-          "fr": []
+          "fr": [],
+          "pt": ["X-acto", "Cutter"]
         },
         "labels": {
           "en": "Utility knife",
-          "fr": "Cutter"
+          "fr": "Cutter",
+          "pt": "X-ato"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Macete", "Martelo de borracha"]
         },
         "labels": {
           "en": "Mallet",
-          "fr": "Maillet"
+          "fr": "Maillet",
+          "pt": "Maço"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Plane",
-          "fr": "Rabot"
+          "fr": "Rabot",
+          "pt": "Plaina"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["G-clamp"],
-          "fr": ["Serre-joints"]
+          "fr": ["Serre-joints"],
+          "pt": ["Grampos", "Sargento"]
         },
         "labels": {
           "en": "Clamp",
-          "fr": "Serre-joint"
+          "fr": "Serre-joint",
+          "pt": "Grampo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Soldador"]
         },
         "labels": {
           "en": "Soldering iron",
-          "fr": "Fer à souder"
+          "fr": "Fer à souder",
+          "pt": "Ferro de soldar"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Pied de biche"]
+          "fr": ["Pied de biche"],
+          "pt": []
         },
         "labels": {
           "en": "Crowbar",
-          "fr": "Pied-de-biche"
+          "fr": "Pied-de-biche",
+          "pt": "Pé de cabra"
         },
         "tier": "hard"
       }
@@ -592,21 +703,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Nails"],
-        "fr": ["Clous"]
+        "fr": ["Clous"],
+        "pt": ["Pregos"]
       },
       "labels": {
         "en": "Nail",
-        "fr": "Clou"
+        "fr": "Clou",
+        "pt": "Prego"
       },
       "why": {
         "en": "What the hammer drives in: a fastener, not a tool.",
-        "fr": "Ce que le marteau enfonce : une fixation, pas un outil."
+        "fr": "Ce que le marteau enfonce : une fixation, pas un outil.",
+        "pt": "O que o martelo crava: uma fixação, não uma ferramenta."
       }
     },
     "id": "diy-tools",
     "labels": {
       "en": "DIY tools",
-      "fr": "Outils de bricolage"
+      "fr": "Outils de bricolage",
+      "pt": "Ferramentas de bricolage"
     },
     "tier": "easy"
   },
@@ -615,198 +730,234 @@
       {
         "aliases": {
           "en": ["Refrigerator"],
-          "fr": ["Frigo", "Frigidaire"]
+          "fr": ["Frigo", "Frigidaire"],
+          "pt": ["Frigo"]
         },
         "labels": {
           "en": "Fridge",
-          "fr": "Réfrigérateur"
+          "fr": "Réfrigérateur",
+          "pt": "Frigorífico"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Washer"],
-          "fr": ["Machine à laver"]
+          "fr": ["Machine à laver"],
+          "pt": ["Máquina de lavar", "Máquina da roupa"]
         },
         "labels": {
           "en": "Washing machine",
-          "fr": "Lave-linge"
+          "fr": "Lave-linge",
+          "pt": "Máquina de lavar roupa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Máquina de lavar louça", "Máquina da loiça"]
         },
         "labels": {
           "en": "Dishwasher",
-          "fr": "Lave-vaisselle"
+          "fr": "Lave-vaisselle",
+          "pt": "Máquina de lavar loiça"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Oven",
-          "fr": "Four"
+          "fr": "Four",
+          "pt": "Forno"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Microwave oven"],
-          "fr": ["Micro-onde", "Four à micro-ondes"]
+          "fr": ["Micro-onde", "Four à micro-ondes"],
+          "pt": ["Micro-onda", "Forno micro-ondas"]
         },
         "labels": {
           "en": "Microwave",
-          "fr": "Micro-ondes"
+          "fr": "Micro-ondes",
+          "pt": "Micro-ondas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Vacuum", "Hoover"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Vacuum cleaner",
-          "fr": "Aspirateur"
+          "fr": "Aspirateur",
+          "pt": "Aspirador"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Congélo"]
+          "fr": ["Congélo"],
+          "pt": ["Arca congeladora", "Arca", "Arca frigorífica"]
         },
         "labels": {
           "en": "Freezer",
-          "fr": "Congélateur"
+          "fr": "Congélateur",
+          "pt": "Congelador"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Dryer", "Clothes dryer"],
-          "fr": []
+          "fr": [],
+          "pt": ["Máquina de secar", "Secador de roupa"]
         },
         "labels": {
           "en": "Tumble dryer",
-          "fr": "Sèche-linge"
+          "fr": "Sèche-linge",
+          "pt": "Máquina de secar roupa"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jarro elétrico", "Chaleira elétrica"]
         },
         "labels": {
           "en": "Kettle",
-          "fr": "Bouilloire"
+          "fr": "Bouilloire",
+          "pt": "Chaleira"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Toaster",
-          "fr": "Grille-pain"
+          "fr": "Grille-pain",
+          "pt": "Torradeira"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Coffee maker"],
-          "fr": ["Machine à café"]
+          "fr": ["Machine à café"],
+          "pt": ["Máquina do café", "Cafeteira"]
         },
         "labels": {
           "en": "Coffee machine",
-          "fr": "Cafetière"
+          "fr": "Cafetière",
+          "pt": "Máquina de café"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Fer"]
+          "fr": ["Fer"],
+          "pt": ["Ferro", "Ferro de passar"]
         },
         "labels": {
           "en": "Iron",
-          "fr": "Fer à repasser"
+          "fr": "Fer à repasser",
+          "pt": "Ferro de engomar"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Cooktop"],
-          "fr": ["Plaques", "Table de cuisson"]
+          "fr": ["Plaques", "Table de cuisson"],
+          "pt": ["Placas", "Placa de indução", "Vitrocerâmica", "Fogão"]
         },
         "labels": {
           "en": "Hob",
-          "fr": "Plaque de cuisson"
+          "fr": "Plaque de cuisson",
+          "pt": "Placa"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Range hood", "Cooker hood"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Extractor hood",
-          "fr": "Hotte"
+          "fr": "Hotte",
+          "pt": "Exaustor"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Liquidiser"],
-          "fr": ["Mixer"]
+          "fr": ["Mixer"],
+          "pt": ["Liquidificador", "Varinha mágica", "Blender"]
         },
         "labels": {
           "en": "Blender",
-          "fr": "Mixeur"
+          "fr": "Mixeur",
+          "pt": "Liquidificadora"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Robot", "Robot de cuisine"]
+          "fr": ["Robot", "Robot de cuisine"],
+          "pt": ["Robô de cozinha", "Bimby", "Processador de alimentos"]
         },
         "labels": {
           "en": "Food processor",
-          "fr": "Robot culinaire"
+          "fr": "Robot culinaire",
+          "pt": "Robot de cozinha"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Juice extractor"],
-          "fr": []
+          "fr": [],
+          "pt": ["Espremedor", "Máquina de sumos"]
         },
         "labels": {
           "en": "Juicer",
-          "fr": "Centrifugeuse"
+          "fr": "Centrifugeuse",
+          "pt": "Centrifugadora"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Chip pan"],
-          "fr": []
+          "fr": [],
+          "pt": ["Fritadeira elétrica"]
         },
         "labels": {
           "en": "Deep fryer",
-          "fr": "Friteuse"
+          "fr": "Friteuse",
+          "pt": "Fritadeira"
         },
         "tier": "hard"
       }
@@ -814,21 +965,25 @@
     "blackWord": {
       "aliases": {
         "en": ["TV", "Telly"],
-        "fr": ["Télé"]
+        "fr": ["Télé"],
+        "pt": ["TV", "Televisor"]
       },
       "labels": {
         "en": "Television",
-        "fr": "Télévision"
+        "fr": "Télévision",
+        "pt": "Televisão"
       },
       "why": {
         "en": "Sold as consumer electronics: a TV does none of the housework an appliance does.",
-        "fr": "Rayon image et son : une télé ne fait aucun des travaux ménagers de l'électroménager."
+        "fr": "Rayon image et son : une télé ne fait aucun des travaux ménagers de l'électroménager.",
+        "pt": "Vende-se na secção de imagem e som: não faz nenhuma tarefa doméstica."
       }
     },
     "id": "household-appliances",
     "labels": {
       "en": "Household appliances",
-      "fr": "Électroménager"
+      "fr": "Électroménager",
+      "pt": "Eletrodomésticos"
     },
     "tier": "easy"
   },
@@ -837,209 +992,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Toothbrush",
-          "fr": "Brosse à dents"
+          "fr": "Brosse à dents",
+          "pt": "Escova de dentes"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Dentífrico"]
         },
         "labels": {
           "en": "Toothpaste",
-          "fr": "Dentifrice"
+          "fr": "Dentifrice",
+          "pt": "Pasta de dentes"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Sabão"]
         },
         "labels": {
           "en": "Soap",
-          "fr": "Savon"
+          "fr": "Savon",
+          "pt": "Sabonete"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bath towel"],
-          "fr": ["Serviette de bain"]
+          "fr": ["Serviette de bain"],
+          "pt": ["Toalha de banho"]
         },
         "labels": {
           "en": "Towel",
-          "fr": "Serviette"
+          "fr": "Serviette",
+          "pt": "Toalha"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Chuveiro"]
         },
         "labels": {
           "en": "Shower",
-          "fr": "Douche"
+          "fr": "Douche",
+          "pt": "Duche"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bath", "Tub"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bathtub",
-          "fr": "Baignoire"
+          "fr": "Baignoire",
+          "pt": "Banheira"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Shampoing"]
+          "fr": ["Shampoing"],
+          "pt": ["Shampoo"]
         },
         "labels": {
           "en": "Shampoo",
-          "fr": "Shampooing"
+          "fr": "Shampooing",
+          "pt": "Champô"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Glace"]
+          "fr": ["Glace"],
+          "pt": []
         },
         "labels": {
           "en": "Mirror",
-          "fr": "Miroir"
+          "fr": "Miroir",
+          "pt": "Espelho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Sink", "Basin"],
-          "fr": []
+          "fr": [],
+          "pt": ["Pia"]
         },
         "labels": {
           "en": "Washbasin",
-          "fr": "Lavabo"
+          "fr": "Lavabo",
+          "pt": "Lavatório"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Hair dryer"],
-          "fr": []
+          "fr": [],
+          "pt": ["Secador"]
         },
         "labels": {
           "en": "Hairdryer",
-          "fr": "Sèche-cheveux"
+          "fr": "Sèche-cheveux",
+          "pt": "Secador de cabelo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Gel de duche", "Gel duche"]
         },
         "labels": {
           "en": "Shower gel",
-          "fr": "Gel douche"
+          "fr": "Gel douche",
+          "pt": "Gel de banho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Lâmina", "Gilete", "Máquina de barbear", "Navalha"]
         },
         "labels": {
           "en": "Razor",
-          "fr": "Rasoir"
+          "fr": "Rasoir",
+          "pt": "Lâmina de barbear"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Tapete"]
         },
         "labels": {
           "en": "Bath mat",
-          "fr": "Tapis de bain"
+          "fr": "Tapis de bain",
+          "pt": "Tapete de banho"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Comb",
-          "fr": "Peigne"
+          "fr": "Peigne",
+          "pt": "Pente"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cotton swabs", "Q-tips"],
-          "fr": ["Coton-tige"]
+          "fr": ["Coton-tige"],
+          "pt": ["Cotonete"]
         },
         "labels": {
           "en": "Cotton buds",
-          "fr": "Cotons-tiges"
+          "fr": "Cotons-tiges",
+          "pt": "Cotonetes"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Deo"],
-          "fr": ["Déo"]
+          "fr": ["Déo"],
+          "pt": ["Desodorante", "Deo"]
         },
         "labels": {
           "en": "Deodorant",
-          "fr": "Déodorant"
+          "fr": "Déodorant",
+          "pt": "Desodorizante"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Dressing gown"],
-          "fr": []
+          "fr": [],
+          "pt": ["Roupão de banho"]
         },
         "labels": {
           "en": "Bathrobe",
-          "fr": "Peignoir"
+          "fr": "Peignoir",
+          "pt": "Roupão"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Alicate das unhas"]
         },
         "labels": {
           "en": "Nail clippers",
-          "fr": "Coupe-ongles"
+          "fr": "Coupe-ongles",
+          "pt": "Corta-unhas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hairbrush",
-          "fr": "Brosse à cheveux"
+          "fr": "Brosse à cheveux",
+          "pt": "Escova de cabelo"
         },
         "tier": "hard"
       }
@@ -1047,21 +1240,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Dish towel"],
-        "fr": []
+        "fr": [],
+        "pt": ["Pano de cozinha", "Pano da louça", "Pano"]
       },
       "labels": {
         "en": "Tea towel",
-        "fr": "Torchon"
+        "fr": "Torchon",
+        "pt": "Pano da loiça"
       },
       "why": {
         "en": "It dries the dishes and lives in the kitchen, not the bathroom.",
-        "fr": "Il essuie la vaisselle et vit dans la cuisine, pas dans la salle de bain."
+        "fr": "Il essuie la vaisselle et vit dans la cuisine, pas dans la salle de bain.",
+        "pt": "Seca a loiça e vive na cozinha, não na casa de banho."
       }
     },
     "id": "bathroom-items",
     "labels": {
       "en": "In the bathroom",
-      "fr": "Dans la salle de bain"
+      "fr": "Dans la salle de bain",
+      "pt": "Na casa de banho"
     },
     "tier": "easy"
   },
@@ -1070,11 +1267,13 @@
       {
         "aliases": {
           "en": ["Ballpoint", "Biro"],
-          "fr": ["Stylo bille"]
+          "fr": ["Stylo bille"],
+          "pt": ["Esferográfica", "Bic"]
         },
         "labels": {
           "en": "Pen",
-          "fr": "Stylo"
+          "fr": "Stylo",
+          "pt": "Caneta"
         },
         "tier": "easy"
       },
@@ -1087,198 +1286,234 @@
             "Crayon gris",
             "Crayons de couleur",
             "Crayon de couleur"
-          ]
+          ],
+          "pt": ["Lápis de cor", "Lápis de carvão", "Lápis de grafite"]
         },
         "labels": {
           "en": "Pencil",
-          "fr": "Crayon"
+          "fr": "Crayon",
+          "pt": "Lápis"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Rubber"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Eraser",
-          "fr": "Gomme"
+          "fr": "Gomme",
+          "pt": "Borracha"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ruler",
-          "fr": "Règle"
+          "fr": "Règle",
+          "pt": "Régua"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Exercise book"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Notebook",
-          "fr": "Cahier"
+          "fr": "Cahier",
+          "pt": "Caderno"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Pair of scissors"],
-          "fr": ["Paire de ciseaux"]
+          "fr": ["Paire de ciseaux"],
+          "pt": []
         },
         "labels": {
           "en": "Scissors",
-          "fr": "Ciseaux"
+          "fr": "Ciseaux",
+          "pt": "Tesoura"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Glue"],
-          "fr": ["Colle", "Tube de colle"]
+          "fr": ["Colle", "Tube de colle"],
+          "pt": ["Cola", "Cola em stick", "Stick de cola", "Tubo de cola"]
         },
         "labels": {
           "en": "Glue stick",
-          "fr": "Bâton de colle"
+          "fr": "Bâton de colle",
+          "pt": "Cola em bastão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pencil case",
-          "fr": "Trousse"
+          "fr": "Trousse",
+          "pt": "Estojo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Pencil sharpener"],
-          "fr": []
+          "fr": [],
+          "pt": ["Afia-lápis", "Apara-lápis", "Afiadeira"]
         },
         "labels": {
           "en": "Sharpener",
-          "fr": "Taille-crayon"
+          "fr": "Taille-crayon",
+          "pt": "Afia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["School bag", "Satchel", "Backpack"],
-          "fr": ["Sac à dos", "Sac d'école"]
+          "fr": ["Sac à dos", "Sac d'école"],
+          "pt": ["Pasta", "Pasta da escola", "Mala"]
         },
         "labels": {
           "en": "Schoolbag",
-          "fr": "Cartable"
+          "fr": "Cartable",
+          "pt": "Mochila"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Felt tips", "Felt-tip pen", "Markers"],
-          "fr": ["Feutre"]
+          "fr": ["Feutre"],
+          "pt": ["Marcador", "Canetas de feltro", "Feltros"]
         },
         "labels": {
           "en": "Felt-tip pens",
-          "fr": "Feutres"
+          "fr": "Feutres",
+          "pt": "Marcadores"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Calculette"]
+          "fr": ["Calculette"],
+          "pt": ["Máquina de calcular"]
         },
         "labels": {
           "en": "Calculator",
-          "fr": "Calculatrice"
+          "fr": "Calculatrice",
+          "pt": "Calculadora"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Compasses", "Pair of compasses"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Compass",
-          "fr": "Compas"
+          "fr": "Compas",
+          "pt": "Compasso"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Protractor",
-          "fr": "Rapporteur"
+          "fr": "Rapporteur",
+          "pt": "Transferidor"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Triangle"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Set square",
-          "fr": "Équerre"
+          "fr": "Équerre",
+          "pt": "Esquadro"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Stabilo"]
+          "fr": ["Stabilo"],
+          "pt": ["Marca-texto", "Fluorescente", "Stabilo"]
         },
         "labels": {
           "en": "Highlighter",
-          "fr": "Surligneur"
+          "fr": "Surligneur",
+          "pt": "Marcador fluorescente"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Tipp-Ex", "Whiteout"],
-          "fr": ["Blanco", "Effaceur"]
+          "fr": ["Blanco", "Effaceur"],
+          "pt": ["Tipex", "Tipp-Ex", "Fita corretora"]
         },
         "labels": {
           "en": "Correction fluid",
-          "fr": "Correcteur"
+          "fr": "Correcteur",
+          "pt": "Corretor"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Planner", "Homework diary"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Diary",
-          "fr": "Agenda"
+          "fr": "Agenda",
+          "pt": "Agenda"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Ring binder"],
-          "fr": []
+          "fr": [],
+          "pt": ["Dossiê", "Capa de argolas", "Arquivador"]
         },
         "labels": {
           "en": "Binder",
-          "fr": "Classeur"
+          "fr": "Classeur",
+          "pt": "Dossier"
         },
         "tier": "hard"
       }
@@ -1286,21 +1521,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Board", "Whiteboard", "Chalkboard"],
-        "fr": ["Tableau noir", "Tableau blanc"]
+        "fr": ["Tableau noir", "Tableau blanc"],
+        "pt": ["Quadro negro", "Quadro branco", "Ardósia"]
       },
       "labels": {
         "en": "Blackboard",
-        "fr": "Tableau"
+        "fr": "Tableau",
+        "pt": "Quadro"
       },
       "why": {
         "en": "The classroom's own, on the wall: no pupil buys one off the list.",
-        "fr": "Il est à la classe, au mur : aucun élève ne l'achète sur la liste."
+        "fr": "Il est à la classe, au mur : aucun élève ne l'achète sur la liste.",
+        "pt": "É da sala, está na parede: nenhum aluno o compra pela lista."
       }
     },
     "id": "school-supplies",
     "labels": {
       "en": "School supplies",
-      "fr": "Fournitures scolaires"
+      "fr": "Fournitures scolaires",
+      "pt": "Material escolar"
     },
     "tier": "easy"
   },
@@ -1309,187 +1548,221 @@
       {
         "aliases": {
           "en": ["Taxi", "Cab"],
-          "fr": ["Taxi"]
+          "fr": ["Taxi"],
+          "pt": ["Automóvel", "Táxi"]
         },
         "labels": {
           "en": "Car",
-          "fr": "Voiture"
+          "fr": "Voiture",
+          "pt": "Carro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Autobus"]
+          "fr": ["Autobus"],
+          "pt": []
         },
         "labels": {
           "en": "Bus",
-          "fr": "Bus"
+          "fr": "Bus",
+          "pt": "Autocarro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Train",
-          "fr": "Train"
+          "fr": "Train",
+          "pt": "Comboio"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Aeroplane", "Airplane", "Aircraft"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Plane",
-          "fr": "Avion"
+          "fr": "Avion",
+          "pt": "Avião"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bike"],
-          "fr": ["Bicyclette"]
+          "fr": ["Bicyclette"],
+          "pt": ["Bicla"]
         },
         "labels": {
           "en": "Bicycle",
-          "fr": "Vélo"
+          "fr": "Vélo",
+          "pt": "Bicicleta"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Ferry"],
-          "fr": ["Ferry", "Bac"]
+          "fr": ["Ferry", "Bac"],
+          "pt": ["Navio", "Ferry", "Cacilheiro"]
         },
         "labels": {
           "en": "Boat",
-          "fr": "Bateau"
+          "fr": "Bateau",
+          "pt": "Barco"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Underground", "Subway", "Tube"],
-          "fr": []
+          "fr": [],
+          "pt": ["Metropolitano"]
         },
         "labels": {
           "en": "Metro",
-          "fr": "Métro"
+          "fr": "Métro",
+          "pt": "Metro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Streetcar"],
-          "fr": []
+          "fr": [],
+          "pt": ["Tram"]
         },
         "labels": {
           "en": "Tram",
-          "fr": "Tramway"
+          "fr": "Tramway",
+          "pt": "Elétrico"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Motorcycle"],
-          "fr": ["Motocyclette"]
+          "fr": ["Motocyclette"],
+          "pt": ["Moto", "Motociclo"]
         },
         "labels": {
           "en": "Motorbike",
-          "fr": "Moto"
+          "fr": "Moto",
+          "pt": "Mota"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Lambreta", "Vespa"]
         },
         "labels": {
           "en": "Scooter",
-          "fr": "Scooter"
+          "fr": "Scooter",
+          "pt": "Scooter"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Truck"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Lorry",
-          "fr": "Camion"
+          "fr": "Camion",
+          "pt": "Camião"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Hélico"]
+          "fr": ["Hélico"],
+          "pt": ["Heli"]
         },
         "labels": {
           "en": "Helicopter",
-          "fr": "Hélicoptère"
+          "fr": "Hélicoptère",
+          "pt": "Helicóptero"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Push scooter", "Electric scooter"],
-          "fr": ["Trottinette électrique"]
+          "fr": ["Trottinette électrique"],
+          "pt": ["Trotinete elétrica", "Trotineta"]
         },
         "labels": {
           "en": "Kick scooter",
-          "fr": "Trottinette"
+          "fr": "Trottinette",
+          "pt": "Trotinete"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cable car",
-          "fr": "Téléphérique"
+          "fr": "Téléphérique",
+          "pt": "Teleférico"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Balloon"],
-          "fr": []
+          "fr": [],
+          "pt": ["Balão"]
         },
         "labels": {
           "en": "Hot-air balloon",
-          "fr": "Montgolfière"
+          "fr": "Montgolfière",
+          "pt": "Balão de ar quente"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Submarine",
-          "fr": "Sous-marin"
+          "fr": "Sous-marin",
+          "pt": "Submarino"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Foguete"]
         },
         "labels": {
           "en": "Rocket",
-          "fr": "Fusée"
+          "fr": "Fusée",
+          "pt": "Foguetão"
         },
         "tier": "hard"
       }
@@ -1497,21 +1770,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Dozer"],
-        "fr": []
+        "fr": [],
+        "pt": ["Buldózer"]
       },
       "labels": {
         "en": "Bulldozer",
-        "fr": "Bulldozer"
+        "fr": "Bulldozer",
+        "pt": "Bulldozer"
       },
       "why": {
         "en": "A construction machine: it pushes earth around and carries no one anywhere.",
-        "fr": "Un engin de chantier : il pousse la terre et ne transporte personne."
+        "fr": "Un engin de chantier : il pousse la terre et ne transporte personne.",
+        "pt": "Uma máquina de obras: empurra terra e não transporta ninguém."
       }
     },
     "id": "means-of-transport",
     "labels": {
       "en": "Means of transport",
-      "fr": "Moyens de transport"
+      "fr": "Moyens de transport",
+      "pt": "Meios de transporte"
     },
     "tier": "easy"
   },
@@ -1520,220 +1797,260 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Head",
-          "fr": "Tête"
+          "fr": "Tête",
+          "pt": "Cabeça"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Arms"],
-          "fr": []
+          "fr": [],
+          "pt": ["Braços"]
         },
         "labels": {
           "en": "Arm",
-          "fr": "Bras"
+          "fr": "Bras",
+          "pt": "Braço"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Legs"],
-          "fr": ["Jambes"]
+          "fr": ["Jambes"],
+          "pt": ["Pernas"]
         },
         "labels": {
           "en": "Leg",
-          "fr": "Jambe"
+          "fr": "Jambe",
+          "pt": "Perna"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Hands"],
-          "fr": ["Mains"]
+          "fr": ["Mains"],
+          "pt": ["Mãos"]
         },
         "labels": {
           "en": "Hand",
-          "fr": "Main"
+          "fr": "Main",
+          "pt": "Mão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Feet"],
-          "fr": ["Pieds"]
+          "fr": ["Pieds"],
+          "pt": ["Pés"]
         },
         "labels": {
           "en": "Foot",
-          "fr": "Pied"
+          "fr": "Pied",
+          "pt": "Pé"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Eyes"],
-          "fr": ["Yeux", "Oeil"]
+          "fr": ["Yeux", "Oeil"],
+          "pt": ["Olhos"]
         },
         "labels": {
           "en": "Eye",
-          "fr": "Œil"
+          "fr": "Œil",
+          "pt": "Olho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Nose",
-          "fr": "Nez"
+          "fr": "Nez",
+          "pt": "Nariz"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Mouth",
-          "fr": "Bouche"
+          "fr": "Bouche",
+          "pt": "Boca"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Knees"],
-          "fr": ["Genoux"]
+          "fr": ["Genoux"],
+          "pt": ["Joelhos"]
         },
         "labels": {
           "en": "Knee",
-          "fr": "Genou"
+          "fr": "Genou",
+          "pt": "Joelho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Elbow",
-          "fr": "Coude"
+          "fr": "Coude",
+          "pt": "Cotovelo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Ombros"]
         },
         "labels": {
           "en": "Shoulder",
-          "fr": "Épaule"
+          "fr": "Épaule",
+          "pt": "Ombro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Neck",
-          "fr": "Cou"
+          "fr": "Cou",
+          "pt": "Pescoço"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Fingers"],
-          "fr": ["Doigts"]
+          "fr": ["Doigts"],
+          "pt": ["Dedos"]
         },
         "labels": {
           "en": "Finger",
-          "fr": "Doigt"
+          "fr": "Doigt",
+          "pt": "Dedo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Ears"],
-          "fr": ["Oreilles"]
+          "fr": ["Oreilles"],
+          "pt": ["Orelhas", "Ouvido"]
         },
         "labels": {
           "en": "Ear",
-          "fr": "Oreille"
+          "fr": "Oreille",
+          "pt": "Orelha"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Ankle",
-          "fr": "Cheville"
+          "fr": "Cheville",
+          "pt": "Tornozelo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Wrist",
-          "fr": "Poignet"
+          "fr": "Poignet",
+          "pt": "Pulso"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Eyebrows"],
-          "fr": ["Sourcils"]
+          "fr": ["Sourcils"],
+          "pt": ["Sobrancelhas"]
         },
         "labels": {
           "en": "Eyebrow",
-          "fr": "Sourcil"
+          "fr": "Sourcil",
+          "pt": "Sobrancelha"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Chin",
-          "fr": "Menton"
+          "fr": "Menton",
+          "pt": "Queixo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Heel",
-          "fr": "Talon"
+          "fr": "Talon",
+          "pt": "Calcanhar"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Belly button"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Navel",
-          "fr": "Nombril"
+          "fr": "Nombril",
+          "pt": "Umbigo"
         },
         "tier": "hard"
       }
@@ -1741,21 +2058,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Scar",
-        "fr": "Cicatrice"
+        "fr": "Cicatrice",
+        "pt": "Cicatriz"
       },
       "why": {
         "en": "The mark a healed wound leaves on the skin, not a part of the body.",
-        "fr": "La marque qu'une blessure guérie laisse sur la peau, pas une partie du corps."
+        "fr": "La marque qu'une blessure guérie laisse sur la peau, pas une partie du corps.",
+        "pt": "A marca que uma ferida sarada deixa na pele, não uma parte do corpo."
       }
     },
     "id": "body-parts",
     "labels": {
       "en": "Body parts",
-      "fr": "Parties du corps"
+      "fr": "Parties du corps",
+      "pt": "Partes do corpo"
     },
     "tier": "easy"
   },
@@ -1764,198 +2085,234 @@
       {
         "aliases": {
           "en": [],
-          "fr": ["Coeur"]
+          "fr": ["Coeur"],
+          "pt": []
         },
         "labels": {
           "en": "Heart",
-          "fr": "Cœur"
+          "fr": "Cœur",
+          "pt": "Coração"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Brain",
-          "fr": "Cerveau"
+          "fr": "Cerveau",
+          "pt": "Cérebro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Lung"],
-          "fr": ["Poumon"]
+          "fr": ["Poumon"],
+          "pt": ["Pulmão"]
         },
         "labels": {
           "en": "Lungs",
-          "fr": "Poumons"
+          "fr": "Poumons",
+          "pt": "Pulmões"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Liver",
-          "fr": "Foie"
+          "fr": "Foie",
+          "pt": "Fígado"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Stomach",
-          "fr": "Estomac"
+          "fr": "Estomac",
+          "pt": "Estômago"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Kidney"],
-          "fr": ["Rein"]
+          "fr": ["Rein"],
+          "pt": ["Rim"]
         },
         "labels": {
           "en": "Kidneys",
-          "fr": "Reins"
+          "fr": "Reins",
+          "pt": "Rins"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bowel", "Gut", "Guts"],
-          "fr": ["Intestin"]
+          "fr": ["Intestin"],
+          "pt": ["Intestino", "Tripas"]
         },
         "labels": {
           "en": "Intestines",
-          "fr": "Intestins"
+          "fr": "Intestins",
+          "pt": "Intestinos"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Skin",
-          "fr": "Peau"
+          "fr": "Peau",
+          "pt": "Pele"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bladder",
-          "fr": "Vessie"
+          "fr": "Vessie",
+          "pt": "Bexiga"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pancreas",
-          "fr": "Pancréas"
+          "fr": "Pancréas",
+          "pt": "Pâncreas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Spleen",
-          "fr": "Rate"
+          "fr": "Rate",
+          "pt": "Baço"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tongue",
-          "fr": "Langue"
+          "fr": "Langue",
+          "pt": "Língua"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Vésicule"]
+          "fr": ["Vésicule"],
+          "pt": ["Vesícula"]
         },
         "labels": {
           "en": "Gallbladder",
-          "fr": "Vésicule biliaire"
+          "fr": "Vésicule biliaire",
+          "pt": "Vesícula biliar"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Appendix",
-          "fr": "Appendice"
+          "fr": "Appendice",
+          "pt": "Apêndice"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Thyroid gland"],
-          "fr": ["Glande thyroïde"]
+          "fr": ["Glande thyroïde"],
+          "pt": ["Glândula tiroide"]
         },
         "labels": {
           "en": "Thyroid",
-          "fr": "Thyroïde"
+          "fr": "Thyroïde",
+          "pt": "Tiroide"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Esophagus", "Gullet"],
-          "fr": ["Oesophage"]
+          "fr": ["Oesophage"],
+          "pt": []
         },
         "labels": {
           "en": "Oesophagus",
-          "fr": "Œsophage"
+          "fr": "Œsophage",
+          "pt": "Esófago"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Womb"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Uterus",
-          "fr": "Utérus"
+          "fr": "Utérus",
+          "pt": "Útero"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Voice box"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Larynx",
-          "fr": "Larynx"
+          "fr": "Larynx",
+          "pt": "Laringe"
         },
         "tier": "hard"
       }
@@ -1963,21 +2320,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Blood",
-        "fr": "Sang"
+        "fr": "Sang",
+        "pt": "Sangue"
       },
       "why": {
         "en": "A fluid tissue that runs through the organs, not an organ itself.",
-        "fr": "Un tissu liquide qui irrigue les organes, pas un organe."
+        "fr": "Un tissu liquide qui irrigue les organes, pas un organe.",
+        "pt": "Um tecido líquido que irriga os órgãos, não um órgão."
       }
     },
     "id": "organs",
     "labels": {
       "en": "Organs of the body",
-      "fr": "Organes du corps humain"
+      "fr": "Organes du corps humain",
+      "pt": "Órgãos do corpo humano"
     },
     "tier": "easy"
   },
@@ -2010,176 +2371,224 @@
             "Neurologue",
             "Gynécologue",
             "Gynéco"
+          ],
+          "pt": [
+            "Médica",
+            "Doutor",
+            "Doutora",
+            "Clínico geral",
+            "Pediatra",
+            "Anestesista",
+            "Radiologista",
+            "Psiquiatra",
+            "Oncologista",
+            "Neurologista",
+            "Ginecologista"
           ]
         },
         "labels": {
           "en": "Doctor",
-          "fr": "Médecin"
+          "fr": "Médecin",
+          "pt": "Médico"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Infirmière"]
+          "fr": ["Infirmière"],
+          "pt": ["Enfermeira"]
         },
         "labels": {
           "en": "Nurse",
-          "fr": "Infirmier"
+          "fr": "Infirmier",
+          "pt": "Enfermeiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Chirurgienne"]
+          "fr": ["Chirurgienne"],
+          "pt": ["Cirurgiã"]
         },
         "labels": {
           "en": "Surgeon",
-          "fr": "Chirurgien"
+          "fr": "Chirurgien",
+          "pt": "Cirurgião"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Parteiro"]
         },
         "labels": {
           "en": "Midwife",
-          "fr": "Sage-femme"
+          "fr": "Sage-femme",
+          "pt": "Parteira"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Healthcare assistant", "Care assistant"],
-          "fr": ["Aide-soignante"]
+          "fr": ["Aide-soignante"],
+          "pt": ["Auxiliar", "Assistente operacional", "Auxiliar de enfermagem"]
         },
         "labels": {
           "en": "Nursing assistant",
-          "fr": "Aide-soignant"
+          "fr": "Aide-soignant",
+          "pt": "Auxiliar de ação médica"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Hospital porter", "Orderly"],
-          "fr": []
+          "fr": [],
+          "pt": ["Maqueira"]
         },
         "labels": {
           "en": "Porter",
-          "fr": "Brancardier"
+          "fr": "Brancardier",
+          "pt": "Maqueiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Hospital secretary"],
-          "fr": ["Secrétaire médical"]
+          "fr": ["Secrétaire médical"],
+          "pt": ["Secretário clínico", "Secretária"]
         },
         "labels": {
           "en": "Medical secretary",
-          "fr": "Secrétaire médicale"
+          "fr": "Secrétaire médicale",
+          "pt": "Secretária clínica"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Physio", "Physical therapist"],
-          "fr": ["Kiné"]
+          "fr": ["Kiné"],
+          "pt": ["Fisio"]
         },
         "labels": {
           "en": "Physiotherapist",
-          "fr": "Kinésithérapeute"
+          "fr": "Kinésithérapeute",
+          "pt": "Fisioterapeuta"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Pharmacienne"]
+          "fr": ["Pharmacienne"],
+          "pt": ["Farmacêutica"]
         },
         "labels": {
           "en": "Pharmacist",
-          "fr": "Pharmacien"
+          "fr": "Pharmacien",
+          "pt": "Farmacêutico"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Ambulance driver"],
-          "fr": ["Ambulancière"]
+          "fr": ["Ambulancière"],
+          "pt": [
+            "Técnico de emergência",
+            "Tripulante de ambulância",
+            "Condutor de ambulância"
+          ]
         },
         "labels": {
           "en": "Paramedic",
-          "fr": "Ambulancier"
+          "fr": "Ambulancier",
+          "pt": "Socorrista"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Junior doctor", "Resident"],
-          "fr": []
+          "fr": [],
+          "pt": ["Interna", "Médico interno"]
         },
         "labels": {
           "en": "Intern",
-          "fr": "Interne"
+          "fr": "Interne",
+          "pt": "Interno"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Lab tech", "Laboratory technician"],
-          "fr": ["Technicien de laboratoire"]
+          "fr": ["Technicien de laboratoire"],
+          "pt": ["Técnica de laboratório", "Técnico de análises"]
         },
         "labels": {
           "en": "Lab technician",
-          "fr": "Laborantin"
+          "fr": "Laborantin",
+          "pt": "Técnico de laboratório"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Dietician"],
-          "fr": ["Diététicienne"]
+          "fr": ["Diététicienne"],
+          "pt": ["Dietista"]
         },
         "labels": {
           "en": "Dietitian",
-          "fr": "Diététicien"
+          "fr": "Diététicien",
+          "pt": "Nutricionista"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Psicóloga"]
         },
         "labels": {
           "en": "Psychologist",
-          "fr": "Psychologue"
+          "fr": "Psychologue",
+          "pt": "Psicólogo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Manipulatrice radio"]
+          "fr": ["Manipulatrice radio"],
+          "pt": ["Técnica de radiologia"]
         },
         "labels": {
           "en": "Radiographer",
-          "fr": "Manipulateur radio"
+          "fr": "Manipulateur radio",
+          "pt": "Técnico de radiologia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Occupational therapist",
-          "fr": "Ergothérapeute"
+          "fr": "Ergothérapeute",
+          "pt": "Terapeuta ocupacional"
         },
         "tier": "hard"
       }
@@ -2187,21 +2596,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Veterinarian", "Veterinary surgeon"],
-        "fr": ["Véto"]
+        "fr": ["Véto"],
+        "pt": ["Veterinária", "Vet"]
       },
       "labels": {
         "en": "Vet",
-        "fr": "Vétérinaire"
+        "fr": "Vétérinaire",
+        "pt": "Veterinário"
       },
       "why": {
         "en": "A vet treats animals, in a clinic of their own, never in a hospital ward.",
-        "fr": "Le vétérinaire soigne les animaux, dans sa clinique, jamais à l'hôpital."
+        "fr": "Le vétérinaire soigne les animaux, dans sa clinique, jamais à l'hôpital.",
+        "pt": "O veterinário trata animais, na sua clínica, nunca no hospital."
       }
     },
     "id": "hospital-jobs",
     "labels": {
       "en": "Hospital jobs",
-      "fr": "Métiers de l'hôpital"
+      "fr": "Métiers de l'hôpital",
+      "pt": "Profissões do hospital"
     },
     "tier": "medium"
   },
@@ -2210,209 +2623,247 @@
       {
         "aliases": {
           "en": ["Baker's"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bakery",
-          "fr": "Boulangerie"
+          "fr": "Boulangerie",
+          "pt": "Padaria"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Butcher", "Butcher shop"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Butcher's",
-          "fr": "Boucherie"
+          "fr": "Boucherie",
+          "pt": "Talho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Hipermercado"]
         },
         "labels": {
           "en": "Supermarket",
-          "fr": "Supermarché"
+          "fr": "Supermarché",
+          "pt": "Supermercado"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Chemist's", "Chemist", "Drugstore"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pharmacy",
-          "fr": "Pharmacie"
+          "fr": "Pharmacie",
+          "pt": "Farmácia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bookstore"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bookshop",
-          "fr": "Librairie"
+          "fr": "Librairie",
+          "pt": "Livraria"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Flower shop", "Florist's"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Florist",
-          "fr": "Fleuriste"
+          "fr": "Fleuriste",
+          "pt": "Florista"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Patisserie", "Pastry shop"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cake shop",
-          "fr": "Pâtisserie"
+          "fr": "Pâtisserie",
+          "pt": "Pastelaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Greengrocer's"],
-          "fr": ["Marchand de fruits et légumes"]
+          "fr": ["Marchand de fruits et légumes"],
+          "pt": ["Lugar"]
         },
         "labels": {
           "en": "Greengrocer",
-          "fr": "Primeur"
+          "fr": "Primeur",
+          "pt": "Frutaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Fishmonger's", "Fish shop"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Fishmonger",
-          "fr": "Poissonnerie"
+          "fr": "Poissonnerie",
+          "pt": "Peixaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Hairdresser's", "Hair salon"],
-          "fr": ["Salon de coiffure"]
+          "fr": ["Salon de coiffure"],
+          "pt": ["Salão de cabeleireiro", "Barbeiro"]
         },
         "labels": {
           "en": "Hairdresser",
-          "fr": "Coiffeur"
+          "fr": "Coiffeur",
+          "pt": "Cabeleireiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Tobacconist's"],
-          "fr": ["Tabac", "Tabac-presse"]
+          "fr": ["Tabac", "Tabac-presse"],
+          "pt": ["Quiosque"]
         },
         "labels": {
           "en": "Tobacconist",
-          "fr": "Bureau de tabac"
+          "fr": "Bureau de tabac",
+          "pt": "Tabacaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Cheesemonger"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cheese shop",
-          "fr": "Fromagerie"
+          "fr": "Fromagerie",
+          "pt": "Queijaria"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Grocer's", "Grocery store", "Corner shop"],
-          "fr": []
+          "fr": [],
+          "pt": ["Minimercado", "Loja de conveniência"]
         },
         "labels": {
           "en": "Grocer",
-          "fr": "Épicerie"
+          "fr": "Épicerie",
+          "pt": "Mercearia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Hardware shop", "Ironmonger"],
-          "fr": []
+          "fr": [],
+          "pt": ["Loja de ferragens", "Ferragens"]
         },
         "labels": {
           "en": "Hardware store",
-          "fr": "Quincaillerie"
+          "fr": "Quincaillerie",
+          "pt": "Drogaria"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Optician's"],
-          "fr": []
+          "fr": [],
+          "pt": ["Óptica", "Oculista"]
         },
         "labels": {
           "en": "Optician",
-          "fr": "Opticien"
+          "fr": "Opticien",
+          "pt": "Ótica"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Jeweller's", "Jeweler", "Jewelry store"],
-          "fr": ["Bijoutier", "Joaillerie"]
+          "fr": ["Bijoutier", "Joaillerie"],
+          "pt": ["Joalharia", "Joalheiro", "Ourives"]
         },
         "labels": {
           "en": "Jeweller",
-          "fr": "Bijouterie"
+          "fr": "Bijouterie",
+          "pt": "Ourivesaria"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Deli", "Caterer"],
-          "fr": []
+          "fr": [],
+          "pt": ["Delicatessen", "Salsicharia"]
         },
         "labels": {
           "en": "Delicatessen",
-          "fr": "Traiteur"
+          "fr": "Traiteur",
+          "pt": "Charcutaria"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Stationer's", "Stationery shop"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Stationer",
-          "fr": "Papeterie"
+          "fr": "Papeterie",
+          "pt": "Papelaria"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Toy store"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Toy shop",
-          "fr": "Magasin de jouets"
+          "fr": "Magasin de jouets",
+          "pt": "Loja de brinquedos"
         },
         "tier": "hard"
       }
@@ -2420,21 +2871,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": ["Médiathèque"]
+        "fr": ["Médiathèque"],
+        "pt": ["Mediateca"]
       },
       "labels": {
         "en": "Library",
-        "fr": "Bibliothèque"
+        "fr": "Bibliothèque",
+        "pt": "Biblioteca"
       },
       "why": {
         "en": "A library lends its books for free and sells nothing: the shop is the bookshop.",
-        "fr": "La bibliothèque prête ses livres et ne vend rien : le commerce, c'est la librairie."
+        "fr": "La bibliothèque prête ses livres et ne vend rien : le commerce, c'est la librairie.",
+        "pt": "A biblioteca empresta os livros e não vende nada: a loja é a livraria."
       }
     },
     "id": "shops",
     "labels": {
       "en": "Shops",
-      "fr": "Commerces"
+      "fr": "Commerces",
+      "pt": "Lojas"
     },
     "tier": "easy"
   },
@@ -2443,209 +2898,247 @@
       {
         "aliases": {
           "en": ["City hall"],
-          "fr": ["Hôtel de ville"]
+          "fr": ["Hôtel de ville"],
+          "pt": ["Câmara", "Paços do concelho", "Junta de freguesia", "Junta"]
         },
         "labels": {
           "en": "Town hall",
-          "fr": "Mairie"
+          "fr": "Mairie",
+          "pt": "Câmara municipal"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "School",
-          "fr": "École"
+          "fr": "École",
+          "pt": "Escola"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Church",
-          "fr": "Église"
+          "fr": "Église",
+          "pt": "Igreja"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jardim"]
         },
         "labels": {
           "en": "Park",
-          "fr": "Parc"
+          "fr": "Parc",
+          "pt": "Parque"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Bureau de poste"]
+          "fr": ["Bureau de poste"],
+          "pt": ["Estação dos correios", "CTT"]
         },
         "labels": {
           "en": "Post office",
-          "fr": "Poste"
+          "fr": "Poste",
+          "pt": "Correios"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Train station", "Railway station"],
-          "fr": []
+          "fr": [],
+          "pt": ["Estação de comboios", "Estação ferroviária"]
         },
         "labels": {
           "en": "Station",
-          "fr": "Gare"
+          "fr": "Gare",
+          "pt": "Estação"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hospital",
-          "fr": "Hôpital"
+          "fr": "Hôpital",
+          "pt": "Hospital"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Médiathèque"]
+          "fr": ["Médiathèque"],
+          "pt": ["Mediateca"]
         },
         "labels": {
           "en": "Library",
-          "fr": "Bibliothèque"
+          "fr": "Bibliothèque",
+          "pt": "Biblioteca"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Museum",
-          "fr": "Musée"
+          "fr": "Musée",
+          "pt": "Museu"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Movie theater", "Movies"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cinema",
-          "fr": "Cinéma"
+          "fr": "Cinéma",
+          "pt": "Cinema"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Pool"],
-          "fr": []
+          "fr": [],
+          "pt": ["Piscina municipal"]
         },
         "labels": {
           "en": "Swimming pool",
-          "fr": "Piscine"
+          "fr": "Piscine",
+          "pt": "Piscina"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Mercado municipal", "Feira"]
         },
         "labels": {
           "en": "Market",
-          "fr": "Marché"
+          "fr": "Marché",
+          "pt": "Mercado"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Poste de police"]
+          "fr": ["Poste de police"],
+          "pt": ["Esquadra da polícia", "Posto da GNR"]
         },
         "labels": {
           "en": "Police station",
-          "fr": "Commissariat"
+          "fr": "Commissariat",
+          "pt": "Esquadra"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Firehouse"],
-          "fr": ["Caserne"]
+          "fr": ["Caserne"],
+          "pt": ["Bombeiros", "Quartel"]
         },
         "labels": {
           "en": "Fire station",
-          "fr": "Caserne de pompiers"
+          "fr": "Caserne de pompiers",
+          "pt": "Quartel dos bombeiros"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Stadium",
-          "fr": "Stade"
+          "fr": "Stade",
+          "pt": "Estádio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Theater"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Theatre",
-          "fr": "Théâtre"
+          "fr": "Théâtre",
+          "pt": "Teatro"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Town square"],
-          "fr": []
+          "fr": [],
+          "pt": ["Largo"]
         },
         "labels": {
           "en": "Square",
-          "fr": "Place"
+          "fr": "Place",
+          "pt": "Praça"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Graveyard"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cemetery",
-          "fr": "Cimetière"
+          "fr": "Cimetière",
+          "pt": "Cemitério"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Parking lot"],
-          "fr": []
+          "fr": [],
+          "pt": ["Estacionamento", "Parking"]
         },
         "labels": {
           "en": "Car park",
-          "fr": "Parking"
+          "fr": "Parking",
+          "pt": "Parque de estacionamento"
         },
         "tier": "hard"
       }
@@ -2653,21 +3146,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": ["Herdade"]
       },
       "labels": {
         "en": "Farm",
-        "fr": "Ferme"
+        "fr": "Ferme",
+        "pt": "Quinta"
       },
       "why": {
         "en": "A farm needs fields around it: it lies in the countryside, outside the town.",
-        "fr": "Une ferme vit de ses champs : elle est à la campagne, hors de la ville."
+        "fr": "Une ferme vit de ses champs : elle est à la campagne, hors de la ville.",
+        "pt": "Uma quinta vive das suas terras: fica no campo, fora da cidade."
       }
     },
     "id": "places-in-town",
     "labels": {
       "en": "Places in town",
-      "fr": "Lieux de la ville"
+      "fr": "Lieux de la ville",
+      "pt": "Lugares da cidade"
     },
     "tier": "easy"
   },
@@ -2676,209 +3173,247 @@
       {
         "aliases": {
           "en": ["Happiness"],
-          "fr": ["Bonheur"]
+          "fr": ["Bonheur"],
+          "pt": ["Felicidade"]
         },
         "labels": {
           "en": "Joy",
-          "fr": "Joie"
+          "fr": "Joie",
+          "pt": "Alegria"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sadness",
-          "fr": "Tristesse"
+          "fr": "Tristesse",
+          "pt": "Tristeza"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Rage", "Fury"],
-          "fr": ["Fureur"]
+          "fr": ["Fureur"],
+          "pt": ["Cólera", "Fúria", "Ira", "Zanga"]
         },
         "labels": {
           "en": "Anger",
-          "fr": "Colère"
+          "fr": "Colère",
+          "pt": "Raiva"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Fright"],
-          "fr": ["Frayeur"]
+          "fr": ["Frayeur"],
+          "pt": ["Susto", "Pavor"]
         },
         "labels": {
           "en": "Fear",
-          "fr": "Peur"
+          "fr": "Peur",
+          "pt": "Medo"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Love",
-          "fr": "Amour"
+          "fr": "Amour",
+          "pt": "Amor"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Espanto"]
         },
         "labels": {
           "en": "Surprise",
-          "fr": "Surprise"
+          "fr": "Surprise",
+          "pt": "Surpresa"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Repugnância", "Repulsa"]
         },
         "labels": {
           "en": "Disgust",
-          "fr": "Dégoût"
+          "fr": "Dégoût",
+          "pt": "Nojo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Envy"],
-          "fr": []
+          "fr": [],
+          "pt": ["Ciúmes", "Inveja"]
         },
         "labels": {
           "en": "Jealousy",
-          "fr": "Jalousie"
+          "fr": "Jalousie",
+          "pt": "Ciúme"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Shame",
-          "fr": "Honte"
+          "fr": "Honte",
+          "pt": "Vergonha"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pride",
-          "fr": "Fierté"
+          "fr": "Fierté",
+          "pt": "Orgulho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Worry"],
-          "fr": ["Angoisse", "Inquiétude"]
+          "fr": ["Angoisse", "Inquiétude"],
+          "pt": ["Angústia", "Preocupação", "Inquietação"]
         },
         "labels": {
           "en": "Anxiety",
-          "fr": "Anxiété"
+          "fr": "Anxiété",
+          "pt": "Ansiedade"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Aborrecimento", "Seca"]
         },
         "labels": {
           "en": "Boredom",
-          "fr": "Ennui"
+          "fr": "Ennui",
+          "pt": "Tédio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Saudade", "Saudades"]
         },
         "labels": {
           "en": "Nostalgia",
-          "fr": "Nostalgie"
+          "fr": "Nostalgie",
+          "pt": "Nostalgia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Culpabilidade", "Remorso"]
         },
         "labels": {
           "en": "Guilt",
-          "fr": "Culpabilité"
+          "fr": "Culpabilité",
+          "pt": "Culpa"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Relief",
-          "fr": "Soulagement"
+          "fr": "Soulagement",
+          "pt": "Alívio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Reconnaissance"]
+          "fr": ["Reconnaissance"],
+          "pt": ["Reconhecimento"]
         },
         "labels": {
           "en": "Gratitude",
-          "fr": "Gratitude"
+          "fr": "Gratitude",
+          "pt": "Gratidão"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Embarras"]
+          "fr": ["Embarras"],
+          "pt": ["Constrangimento", "Acanhamento"]
         },
         "labels": {
           "en": "Embarrassment",
-          "fr": "Gêne"
+          "fr": "Gêne",
+          "pt": "Embaraço"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Hope",
-          "fr": "Espoir"
+          "fr": "Espoir",
+          "pt": "Esperança"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Contempt",
-          "fr": "Mépris"
+          "fr": "Mépris",
+          "pt": "Desprezo"
         },
         "tier": "hard"
       }
@@ -2886,21 +3421,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Hunger",
-        "fr": "Faim"
+        "fr": "Faim",
+        "pt": "Fome"
       },
       "why": {
         "en": "A bodily need signalled by the stomach, not an emotion.",
-        "fr": "Un besoin du corps signalé par l'estomac, pas une émotion."
+        "fr": "Un besoin du corps signalé par l'estomac, pas une émotion.",
+        "pt": "Uma necessidade do corpo que o estômago assinala, não uma emoção."
       }
     },
     "id": "emotions",
     "labels": {
       "en": "Emotions",
-      "fr": "Émotions"
+      "fr": "Émotions",
+      "pt": "Emoções"
     },
     "tier": "easy"
   },
@@ -2909,44 +3448,52 @@
       {
         "aliases": {
           "en": ["Mum", "Mom", "Mummy", "Mommy"],
-          "fr": ["Maman"]
+          "fr": ["Maman"],
+          "pt": ["Mamã"]
         },
         "labels": {
           "en": "Mother",
-          "fr": "Mère"
+          "fr": "Mère",
+          "pt": "Mãe"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Dad", "Daddy"],
-          "fr": ["Papa"]
+          "fr": ["Papa"],
+          "pt": ["Papá"]
         },
         "labels": {
           "en": "Father",
-          "fr": "Père"
+          "fr": "Père",
+          "pt": "Pai"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Half-brother", "Stepbrother"],
-          "fr": ["Demi-frère"]
+          "fr": ["Demi-frère"],
+          "pt": ["Meio-irmão"]
         },
         "labels": {
           "en": "Brother",
-          "fr": "Frère"
+          "fr": "Frère",
+          "pt": "Irmão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Soeur"]
+          "fr": ["Soeur"],
+          "pt": []
         },
         "labels": {
           "en": "Sister",
-          "fr": "Sœur"
+          "fr": "Sœur",
+          "pt": "Irmã"
         },
         "tier": "easy"
       },
@@ -2970,165 +3517,195 @@
             "Papy",
             "Pépé",
             "Grand-parent"
-          ]
+          ],
+          "pt": ["Avó", "Avozinha", "Avozinho"]
         },
         "labels": {
           "en": "Grandparents",
-          "fr": "Grands-parents"
+          "fr": "Grands-parents",
+          "pt": "Avós"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Épouse"]
+          "fr": ["Épouse"],
+          "pt": ["Esposa"]
         },
         "labels": {
           "en": "Wife",
-          "fr": "Femme"
+          "fr": "Femme",
+          "pt": "Mulher"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Époux"]
+          "fr": ["Époux"],
+          "pt": ["Esposo"]
         },
         "labels": {
           "en": "Husband",
-          "fr": "Mari"
+          "fr": "Mari",
+          "pt": "Marido"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Tonton"]
+          "fr": ["Tonton"],
+          "pt": []
         },
         "labels": {
           "en": "Uncle",
-          "fr": "Oncle"
+          "fr": "Oncle",
+          "pt": "Tio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Auntie"],
-          "fr": ["Tata", "Tatie"]
+          "fr": ["Tata", "Tatie"],
+          "pt": ["Titi"]
         },
         "labels": {
           "en": "Aunt",
-          "fr": "Tante"
+          "fr": "Tante",
+          "pt": "Tia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Cousine"]
+          "fr": ["Cousine"],
+          "pt": ["Prima"]
         },
         "labels": {
           "en": "Cousin",
-          "fr": "Cousin"
+          "fr": "Cousin",
+          "pt": "Primo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Son",
-          "fr": "Fils"
+          "fr": "Fils",
+          "pt": "Filho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Daughter",
-          "fr": "Fille"
+          "fr": "Fille",
+          "pt": "Filha"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Nephew",
-          "fr": "Neveu"
+          "fr": "Neveu",
+          "pt": "Sobrinho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Niece",
-          "fr": "Nièce"
+          "fr": "Nièce",
+          "pt": "Sobrinha"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Stepmother"],
-          "fr": []
+          "fr": [],
+          "pt": ["Madrasta"]
         },
         "labels": {
           "en": "Mother-in-law",
-          "fr": "Belle-mère"
+          "fr": "Belle-mère",
+          "pt": "Sogra"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Stepfather"],
-          "fr": []
+          "fr": [],
+          "pt": ["Padrasto"]
         },
         "labels": {
           "en": "Father-in-law",
-          "fr": "Beau-père"
+          "fr": "Beau-père",
+          "pt": "Sogro"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Twins", "Twin brother", "Twin sister"],
-          "fr": ["Jumelle", "Jumeaux"]
+          "fr": ["Jumelle", "Jumeaux"],
+          "pt": ["Gémea", "Gémeos"]
         },
         "labels": {
           "en": "Twin",
-          "fr": "Jumeau"
+          "fr": "Jumeau",
+          "pt": "Gémeo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Grandson",
-          "fr": "Petit-fils"
+          "fr": "Petit-fils",
+          "pt": "Neto"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Granddaughter",
-          "fr": "Petite-fille"
+          "fr": "Petite-fille",
+          "pt": "Neta"
         },
         "tier": "hard"
       }
@@ -3136,21 +3713,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Godmother", "Godparent"],
-        "fr": ["Marraine"]
+        "fr": ["Marraine"],
+        "pt": ["Madrinha"]
       },
       "labels": {
         "en": "Godfather",
-        "fr": "Parrain"
+        "fr": "Parrain",
+        "pt": "Padrinho"
       },
       "why": {
         "en": "Chosen at a christening, a godparent is kin by neither blood nor marriage.",
-        "fr": "Choisi au baptême, un parrain n'est parent ni par le sang ni par alliance."
+        "fr": "Choisi au baptême, un parrain n'est parent ni par le sang ni par alliance.",
+        "pt": "Escolhido no batismo, o padrinho não é parente de sangue nem por casamento."
       }
     },
     "id": "family-members",
     "labels": {
       "en": "Family members",
-      "fr": "Membres de la famille"
+      "fr": "Membres de la famille",
+      "pt": "Membros da família"
     },
     "tier": "easy"
   },
@@ -3159,220 +3740,264 @@
       {
         "aliases": {
           "en": ["Math", "Mathematics"],
-          "fr": ["Maths"]
+          "fr": ["Maths"],
+          "pt": []
         },
         "labels": {
           "en": "Maths",
-          "fr": "Mathématiques"
+          "fr": "Mathématiques",
+          "pt": "Matemática"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "French",
-          "fr": "Français"
+          "fr": "Français",
+          "pt": "Francês"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "English",
-          "fr": "Anglais"
+          "fr": "Anglais",
+          "pt": "Inglês"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "History",
-          "fr": "Histoire"
+          "fr": "Histoire",
+          "pt": "História"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Géo"]
+          "fr": ["Géo"],
+          "pt": ["Geo"]
         },
         "labels": {
           "en": "Geography",
-          "fr": "Géographie"
+          "fr": "Géographie",
+          "pt": "Geografia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Physical education", "Gym", "Sport"],
-          "fr": ["Éducation physique"]
+          "fr": ["Éducation physique"],
+          "pt": ["Ginástica"]
         },
         "labels": {
           "en": "PE",
-          "fr": "EPS"
+          "fr": "EPS",
+          "pt": "Educação Física"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Físico-Química"]
         },
         "labels": {
           "en": "Physics",
-          "fr": "Physique"
+          "fr": "Physique",
+          "pt": "Física"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Chemistry",
-          "fr": "Chimie"
+          "fr": "Chimie",
+          "pt": "Química"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Life sciences"],
-          "fr": ["SVT", "Sciences naturelles"]
+          "fr": ["SVT", "Sciences naturelles"],
+          "pt": ["Ciências Naturais", "Ciências", "Biologia e Geologia"]
         },
         "labels": {
           "en": "Biology",
-          "fr": "Biologie"
+          "fr": "Biologie",
+          "pt": "Biologia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Educação Musical"]
         },
         "labels": {
           "en": "Music",
-          "fr": "Musique"
+          "fr": "Musique",
+          "pt": "Música"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Drawing"],
-          "fr": ["Dessin"]
+          "fr": ["Dessin"],
+          "pt": ["Desenho", "Artes Visuais", "Artes"]
         },
         "labels": {
           "en": "Art",
-          "fr": "Arts plastiques"
+          "fr": "Arts plastiques",
+          "pt": "Educação Visual"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Spanish",
-          "fr": "Espagnol"
+          "fr": "Espagnol",
+          "pt": "Espanhol"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "German",
-          "fr": "Allemand"
+          "fr": "Allemand",
+          "pt": "Alemão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Philo"]
+          "fr": ["Philo"],
+          "pt": []
         },
         "labels": {
           "en": "Philosophy",
-          "fr": "Philosophie"
+          "fr": "Philosophie",
+          "pt": "Filosofia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["SES", "Sciences économiques"]
+          "fr": ["SES", "Sciences économiques"],
+          "pt": []
         },
         "labels": {
           "en": "Economics",
-          "fr": "Économie"
+          "fr": "Économie",
+          "pt": "Economia"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Latin",
-          "fr": "Latin"
+          "fr": "Latin",
+          "pt": "Latim"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Design and technology"],
-          "fr": ["Techno"]
+          "fr": ["Techno"],
+          "pt": ["Tecnologia"]
         },
         "labels": {
           "en": "Technology",
-          "fr": "Technologie"
+          "fr": "Technologie",
+          "pt": "Educação Tecnológica"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Computing", "IT", "ICT"],
-          "fr": []
+          "fr": [],
+          "pt": ["TIC", "Computação"]
         },
         "labels": {
           "en": "Computer science",
-          "fr": "Informatique"
+          "fr": "Informatique",
+          "pt": "Informática"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Citizenship"],
-          "fr": ["EMC", "Instruction civique"]
+          "fr": ["EMC", "Instruction civique"],
+          "pt": [
+            "Cidadania e Desenvolvimento",
+            "Educação para a Cidadania",
+            "Educação Cívica"
+          ]
         },
         "labels": {
           "en": "Civics",
-          "fr": "Éducation civique"
+          "fr": "Éducation civique",
+          "pt": "Cidadania"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Greek"],
-          "fr": ["Grec"]
+          "fr": ["Grec"],
+          "pt": ["Grego"]
         },
         "labels": {
           "en": "Ancient Greek",
-          "fr": "Grec ancien"
+          "fr": "Grec ancien",
+          "pt": "Grego antigo"
         },
         "tier": "hard"
       }
@@ -3380,21 +4005,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Recess", "Playtime"],
-        "fr": ["Récré"]
+        "fr": ["Récré"],
+        "pt": ["Recreio"]
       },
       "labels": {
         "en": "Break",
-        "fr": "Récréation"
+        "fr": "Récréation",
+        "pt": "Intervalo"
       },
       "why": {
         "en": "The time between lessons, spent in the playground: nobody is taught it.",
-        "fr": "Le temps entre deux cours, passé dans la cour : personne ne l'enseigne."
+        "fr": "Le temps entre deux cours, passé dans la cour : personne ne l'enseigne.",
+        "pt": "O tempo entre duas aulas, passado no recreio: ninguém o ensina."
       }
     },
     "id": "school-subjects",
     "labels": {
       "en": "School subjects",
-      "fr": "Matières scolaires"
+      "fr": "Matières scolaires",
+      "pt": "Disciplinas escolares"
     },
     "tier": "easy"
   },
@@ -3403,198 +4032,234 @@
       {
         "aliases": {
           "en": ["Tee"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "T-shirt",
-          "fr": "Tee-shirt"
+          "fr": "Tee-shirt",
+          "pt": "T-shirt"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Pants", "Slacks", "Jeans"],
-          "fr": ["Jean"]
+          "fr": ["Jean"],
+          "pt": ["Calças de ganga", "Ganga", "Jeans"]
         },
         "labels": {
           "en": "Trousers",
-          "fr": "Pantalon"
+          "fr": "Pantalon",
+          "pt": "Calças"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Dress",
-          "fr": "Robe"
+          "fr": "Robe",
+          "pt": "Vestido"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Skirt",
-          "fr": "Jupe"
+          "fr": "Jupe",
+          "pt": "Saia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Sweater", "Pullover"],
-          "fr": ["Pull-over"]
+          "fr": ["Pull-over"],
+          "pt": ["Camisola de lã", "Pulôver"]
         },
         "labels": {
           "en": "Jumper",
-          "fr": "Pull"
+          "fr": "Pull",
+          "pt": "Camisola"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Sobretudo", "Casacão"]
         },
         "labels": {
           "en": "Coat",
-          "fr": "Manteau"
+          "fr": "Manteau",
+          "pt": "Casaco"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Shorts"]
         },
         "labels": {
           "en": "Shorts",
-          "fr": "Short"
+          "fr": "Short",
+          "pt": "Calções"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Blouson"]
+          "fr": ["Blouson"],
+          "pt": ["Blazer", "Casaco curto"]
         },
         "labels": {
           "en": "Jacket",
-          "fr": "Veste"
+          "fr": "Veste",
+          "pt": "Blusão"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Sock"],
-          "fr": ["Chaussette"]
+          "fr": ["Chaussette"],
+          "pt": ["Meia", "Peúgas", "Peúga"]
         },
         "labels": {
           "en": "Socks",
-          "fr": "Chaussettes"
+          "fr": "Chaussettes",
+          "pt": "Meias"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Pajamas", "PJs"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Pyjamas",
-          "fr": "Pyjama"
+          "fr": "Pyjama",
+          "pt": "Pijama"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Blouse"],
-          "fr": ["Chemisier"]
+          "fr": ["Chemisier"],
+          "pt": []
         },
         "labels": {
           "en": "Shirt",
-          "fr": "Chemise"
+          "fr": "Chemise",
+          "pt": "Camisa"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Sweat"]
+          "fr": ["Sweat"],
+          "pt": ["Sweat", "Sweatshirt", "Hoodie", "Camisola com capuz"]
         },
         "labels": {
           "en": "Hoodie",
-          "fr": "Sweat à capuche"
+          "fr": "Sweat à capuche",
+          "pt": "Sweat com capuz"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Cardigã", "Cardigan"]
         },
         "labels": {
           "en": "Cardigan",
-          "fr": "Gilet"
+          "fr": "Gilet",
+          "pt": "Casaco de malha"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tie",
-          "fr": "Cravate"
+          "fr": "Cravate",
+          "pt": "Gravata"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Scarf",
-          "fr": "Écharpe"
+          "fr": "Écharpe",
+          "pt": "Cachecol"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Singlet"],
-          "fr": []
+          "fr": [],
+          "pt": ["Top", "Top de alças"]
         },
         "labels": {
           "en": "Tank top",
-          "fr": "Débardeur"
+          "fr": "Débardeur",
+          "pt": "Camisola de alças"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Mac", "Mackintosh"],
-          "fr": ["Imper", "K-way", "Ciré"]
+          "fr": ["Imper", "K-way", "Ciré"],
+          "pt": ["Gabardina", "Kispo", "Corta-vento"]
         },
         "labels": {
           "en": "Raincoat",
-          "fr": "Imperméable"
+          "fr": "Imperméable",
+          "pt": "Impermeável"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Swimming costume", "Bathing suit"],
-          "fr": ["Maillot"]
+          "fr": ["Maillot"],
+          "pt": ["Biquíni", "Calções de banho"]
         },
         "labels": {
           "en": "Swimsuit",
-          "fr": "Maillot de bain"
+          "fr": "Maillot de bain",
+          "pt": "Fato de banho"
         },
         "tier": "hard"
       }
@@ -3602,21 +4267,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Purse", "Bag"],
-        "fr": ["Sac"]
+        "fr": ["Sac"],
+        "pt": ["Mala de mão", "Carteira", "Bolsa"]
       },
       "labels": {
         "en": "Handbag",
-        "fr": "Sac à main"
+        "fr": "Sac à main",
+        "pt": "Mala"
       },
       "why": {
         "en": "Carried, not worn: a handbag is an accessory, not a garment.",
-        "fr": "On le porte à la main, pas sur soi : un sac est un accessoire, pas un vêtement."
+        "fr": "On le porte à la main, pas sur soi : un sac est un accessoire, pas un vêtement.",
+        "pt": "Leva-se na mão, não se veste: uma mala é um acessório, não roupa."
       }
     },
     "id": "clothes",
     "labels": {
       "en": "Clothes",
-      "fr": "Vêtements"
+      "fr": "Vêtements",
+      "pt": "Roupa"
     },
     "tier": "easy"
   },
@@ -3625,11 +4294,13 @@
       {
         "aliases": {
           "en": ["Sneakers", "Running shoes", "Tennis shoes"],
-          "fr": ["Basket", "Tennis"]
+          "fr": ["Basket", "Tennis"],
+          "pt": ["Sapatilhas", "Sapatilha"]
         },
         "labels": {
           "en": "Trainers",
-          "fr": "Baskets"
+          "fr": "Baskets",
+          "pt": "Ténis"
         },
         "tier": "easy"
       },
@@ -3650,44 +4321,52 @@
             "Bottes en caoutchouc",
             "Bottines",
             "Bottine"
-          ]
+          ],
+          "pt": ["Bota", "Galochas", "Botas de chuva", "Botins", "Botim"]
         },
         "labels": {
           "en": "Boots",
-          "fr": "Bottes"
+          "fr": "Bottes",
+          "pt": "Botas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Sandal"],
-          "fr": ["Sandale"]
+          "fr": ["Sandale"],
+          "pt": ["Sandália"]
         },
         "labels": {
           "en": "Sandals",
-          "fr": "Sandales"
+          "fr": "Sandales",
+          "pt": "Sandálias"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Slipper"],
-          "fr": ["Chausson", "Pantoufles", "Pantoufle"]
+          "fr": ["Chausson", "Pantoufles", "Pantoufle"],
+          "pt": ["Pantufa", "Chinelos de quarto"]
         },
         "labels": {
           "en": "Slippers",
-          "fr": "Chaussons"
+          "fr": "Chaussons",
+          "pt": "Pantufas"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Flip-flop"],
-          "fr": ["Tong"]
+          "fr": ["Tong"],
+          "pt": ["Chinelo", "Havaianas", "Chinelos de dedo"]
         },
         "labels": {
           "en": "Flip-flops",
-          "fr": "Tongs"
+          "fr": "Tongs",
+          "pt": "Chinelos"
         },
         "tier": "easy"
       },
@@ -3707,99 +4386,123 @@
             "Talon aiguille",
             "Escarpins",
             "Escarpin"
+          ],
+          "pt": [
+            "Saltos",
+            "Sapatos de salto",
+            "Sapatos de salto alto",
+            "Salto agulha",
+            "Stilettos"
           ]
         },
         "labels": {
           "en": "High heels",
-          "fr": "Talons"
+          "fr": "Talons",
+          "pt": "Saltos altos"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Ballerinas", "Flats"],
-          "fr": ["Ballerine"]
+          "fr": ["Ballerine"],
+          "pt": ["Sabrina", "Bailarinas"]
         },
         "labels": {
           "en": "Ballet flats",
-          "fr": "Ballerines"
+          "fr": "Ballerines",
+          "pt": "Sabrinas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Loafers"],
-          "fr": ["Mocassin"]
+          "fr": ["Mocassin"],
+          "pt": ["Mocassim"]
         },
         "labels": {
           "en": "Moccasins",
-          "fr": "Mocassins"
+          "fr": "Mocassins",
+          "pt": "Mocassins"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Clog"],
-          "fr": ["Sabot"]
+          "fr": ["Sabot"],
+          "pt": ["Soca", "Tamancos", "Tamanco"]
         },
         "labels": {
           "en": "Clogs",
-          "fr": "Sabots"
+          "fr": "Sabots",
+          "pt": "Socas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Alpargatas", "Espadrilhas", "Espadrilles"]
         },
         "labels": {
           "en": "Espadrilles",
-          "fr": "Espadrilles"
+          "fr": "Espadrilles",
+          "pt": "Alpercatas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Oxford shoes", "Brogues"],
-          "fr": ["Richelieu"]
+          "fr": ["Richelieu"],
+          "pt": ["Sapatos Oxford", "Sapatos de atacadores", "Brogues"]
         },
         "labels": {
           "en": "Oxfords",
-          "fr": "Richelieus"
+          "fr": "Richelieus",
+          "pt": "Oxford"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Mule"]
         },
         "labels": {
           "en": "Mules",
-          "fr": "Mules"
+          "fr": "Mules",
+          "pt": "Mules"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Walking boots"],
-          "fr": ["Chaussures de rando"]
+          "fr": ["Chaussures de rando"],
+          "pt": ["Botas de montanha", "Botas de trekking"]
         },
         "labels": {
           "en": "Hiking boots",
-          "fr": "Chaussures de randonnée"
+          "fr": "Chaussures de randonnée",
+          "pt": "Botas de caminhada"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cleats", "Soccer cleats"],
-          "fr": ["Chaussures de foot"]
+          "fr": ["Chaussures de foot"],
+          "pt": ["Chuteira", "Pitons"]
         },
         "labels": {
           "en": "Football boots",
-          "fr": "Crampons"
+          "fr": "Crampons",
+          "pt": "Chuteiras"
         },
         "tier": "hard"
       }
@@ -3807,21 +4510,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Sock"],
-        "fr": ["Chaussette"]
+        "fr": ["Chaussette"],
+        "pt": ["Meia", "Peúgas"]
       },
       "labels": {
         "en": "Socks",
-        "fr": "Chaussettes"
+        "fr": "Chaussettes",
+        "pt": "Meias"
       },
       "why": {
         "en": "Worn inside the shoe: a sock is clothing, not footwear.",
-        "fr": "On la porte dans la chaussure : la chaussette est un vêtement, pas une chaussure."
+        "fr": "On la porte dans la chaussure : la chaussette est un vêtement, pas une chaussure.",
+        "pt": "Usa-se dentro do sapato: a meia é roupa, não calçado."
       }
     },
     "id": "shoes",
     "labels": {
       "en": "Kinds of shoes",
-      "fr": "Types de chaussures"
+      "fr": "Types de chaussures",
+      "pt": "Tipos de calçado"
     },
     "tier": "easy"
   },
@@ -3830,198 +4537,234 @@
       {
         "aliases": {
           "en": ["Baseball cap"],
-          "fr": []
+          "fr": [],
+          "pt": ["Boné de basebol"]
         },
         "labels": {
           "en": "Cap",
-          "fr": "Casquette"
+          "fr": "Casquette",
+          "pt": "Boné"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Woolly hat", "Bobble hat"],
-          "fr": []
+          "fr": [],
+          "pt": ["Barrete"]
         },
         "labels": {
           "en": "Beanie",
-          "fr": "Bonnet"
+          "fr": "Bonnet",
+          "pt": "Gorro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Beret",
-          "fr": "Béret"
+          "fr": "Béret",
+          "pt": "Boina"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Topper"],
-          "fr": ["Chapeau haut-de-forme"]
+          "fr": ["Chapeau haut-de-forme"],
+          "pt": []
         },
         "labels": {
           "en": "Top hat",
-          "fr": "Haut-de-forme"
+          "fr": "Haut-de-forme",
+          "pt": "Cartola"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Stetson"],
-          "fr": ["Chapeau de cowboy"]
+          "fr": ["Chapeau de cowboy"],
+          "pt": ["Stetson", "Chapéu de vaqueiro"]
         },
         "labels": {
           "en": "Cowboy hat",
-          "fr": "Chapeau de cow-boy"
+          "fr": "Chapeau de cow-boy",
+          "pt": "Chapéu de cowboy"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Straw hat",
-          "fr": "Chapeau de paille"
+          "fr": "Chapeau de paille",
+          "pt": "Chapéu de palha"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Bowler", "Derby"],
-          "fr": ["Melon"]
+          "fr": ["Melon"],
+          "pt": ["Coco"]
         },
         "labels": {
           "en": "Bowler hat",
-          "fr": "Chapeau melon"
+          "fr": "Chapeau melon",
+          "pt": "Chapéu de coco"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Panama hat"],
-          "fr": []
+          "fr": [],
+          "pt": ["Chapéu panamá"]
         },
         "labels": {
           "en": "Panama",
-          "fr": "Panama"
+          "fr": "Panama",
+          "pt": "Panamá"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Chapéu mexicano"]
         },
         "labels": {
           "en": "Sombrero",
-          "fr": "Sombrero"
+          "fr": "Sombrero",
+          "pt": "Sombrero"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Fédora"]
+          "fr": ["Fédora"],
+          "pt": ["Fedora", "Chapéu de feltro"]
         },
         "labels": {
           "en": "Fedora",
-          "fr": "Borsalino"
+          "fr": "Borsalino",
+          "pt": "Borsalino"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Bucket hat"]
         },
         "labels": {
           "en": "Bucket hat",
-          "fr": "Bob"
+          "fr": "Bob",
+          "pt": "Chapéu de pescador"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Chef hat"],
-          "fr": ["Toque de chef"]
+          "fr": ["Toque de chef"],
+          "pt": ["Chapéu de chef", "Touca de cozinheiro"]
         },
         "labels": {
           "en": "Chef's hat",
-          "fr": "Toque"
+          "fr": "Toque",
+          "pt": "Chapéu de cozinheiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Chéchia"]
+          "fr": ["Chéchia"],
+          "pt": []
         },
         "labels": {
           "en": "Fez",
-          "fr": "Fez"
+          "fr": "Fez",
+          "pt": "Fez"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Turban",
-          "fr": "Turban"
+          "fr": "Turban",
+          "pt": "Turbante"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Bicorn"],
-          "fr": []
+          "fr": [],
+          "pt": ["Chapéu de dois bicos"]
         },
         "labels": {
           "en": "Bicorne",
-          "fr": "Bicorne"
+          "fr": "Bicorne",
+          "pt": "Bicórnio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cocked hat"],
-          "fr": []
+          "fr": [],
+          "pt": ["Chapéu de três bicos"]
         },
         "labels": {
           "en": "Tricorn",
-          "fr": "Tricorne"
+          "fr": "Tricorne",
+          "pt": "Tricórnio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Képi"]
         },
         "labels": {
           "en": "Kepi",
-          "fr": "Képi"
+          "fr": "Képi",
+          "pt": "Quépi"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cloche hat"],
-          "fr": []
+          "fr": [],
+          "pt": ["Cloche"]
         },
         "labels": {
           "en": "Cloche",
-          "fr": "Cloche"
+          "fr": "Cloche",
+          "pt": "Chapéu cloche"
         },
         "tier": "hard"
       }
@@ -4029,21 +4772,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Wig",
-        "fr": "Perruque"
+        "fr": "Perruque",
+        "pt": "Peruca"
       },
       "why": {
         "en": "Worn on the head, but it is false hair, not a hat.",
-        "fr": "Elle se porte sur la tête, mais ce sont de faux cheveux, pas un couvre-chef."
+        "fr": "Elle se porte sur la tête, mais ce sont de faux cheveux, pas un couvre-chef.",
+        "pt": "Usa-se na cabeça, mas é cabelo falso, não um chapéu."
       }
     },
     "id": "hats",
     "labels": {
       "en": "Hats",
-      "fr": "Couvre-chefs"
+      "fr": "Couvre-chefs",
+      "pt": "Chapéus"
     },
     "tier": "medium"
   },
@@ -4052,154 +4799,182 @@
       {
         "aliases": {
           "en": ["Wedding ring", "Wedding band", "Signet ring"],
-          "fr": ["Anneau", "Alliance", "Chevalière"]
+          "fr": ["Anneau", "Alliance", "Chevalière"],
+          "pt": ["Aliança", "Anel de curso", "Anel de sinete"]
         },
         "labels": {
           "en": "Ring",
-          "fr": "Bague"
+          "fr": "Bague",
+          "pt": "Anel"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Choker"],
-          "fr": ["Ras-de-cou", "Ras du cou"]
+          "fr": ["Ras-de-cou", "Ras du cou"],
+          "pt": ["Gargantilha"]
         },
         "labels": {
           "en": "Necklace",
-          "fr": "Collier"
+          "fr": "Collier",
+          "pt": "Colar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["ID bracelet", "Identity bracelet"],
-          "fr": ["Gourmette"]
+          "fr": ["Gourmette"],
+          "pt": ["Bracelete", "Escrava"]
         },
         "labels": {
           "en": "Bracelet",
-          "fr": "Bracelet"
+          "fr": "Bracelet",
+          "pt": "Pulseira"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Earring", "Hoop earrings", "Hoops"],
-          "fr": ["Boucle d'oreille", "Créoles", "Créole"]
+          "fr": ["Boucle d'oreille", "Créoles", "Créole"],
+          "pt": ["Brinco", "Argolas", "Arrecadas"]
         },
         "labels": {
           "en": "Earrings",
-          "fr": "Boucles d'oreilles"
+          "fr": "Boucles d'oreilles",
+          "pt": "Brincos"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Neck chain", "Anklet", "Ankle bracelet"],
-          "fr": ["Chaîne de cheville", "Bracelet de cheville"]
+          "fr": ["Chaîne de cheville", "Bracelet de cheville"],
+          "pt": ["Fio de ouro", "Corrente", "Tornozeleira"]
         },
         "labels": {
           "en": "Chain",
-          "fr": "Chaîne"
+          "fr": "Chaîne",
+          "pt": "Fio"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Locket"],
-          "fr": ["Médaillon"]
+          "fr": ["Médaillon"],
+          "pt": ["Medalhão", "Medalha"]
         },
         "labels": {
           "en": "Pendant",
-          "fr": "Pendentif"
+          "fr": "Pendentif",
+          "pt": "Pendente"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Pregadeira", "Alfinete de peito"]
         },
         "labels": {
           "en": "Brooch",
-          "fr": "Broche"
+          "fr": "Broche",
+          "pt": "Broche"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Diadem"],
-          "fr": []
+          "fr": [],
+          "pt": ["Tiara"]
         },
         "labels": {
           "en": "Tiara",
-          "fr": "Diadème"
+          "fr": "Diadème",
+          "pt": "Diadema"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Cuff links"],
-          "fr": ["Bouton de manchette"]
+          "fr": ["Bouton de manchette"],
+          "pt": ["Botão de punho"]
         },
         "labels": {
           "en": "Cufflinks",
-          "fr": "Boutons de manchette"
+          "fr": "Boutons de manchette",
+          "pt": "Botões de punho"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Piercings"],
-          "fr": ["Piercings"]
+          "fr": ["Piercings"],
+          "pt": ["Piercings"]
         },
         "labels": {
           "en": "Piercing",
-          "fr": "Piercing"
+          "fr": "Piercing",
+          "pt": "Piercing"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Wristwatch"],
-          "fr": ["Montre-bracelet"]
+          "fr": ["Montre-bracelet"],
+          "pt": ["Relógio de pulso"]
         },
         "labels": {
           "en": "Watch",
-          "fr": "Montre"
+          "fr": "Montre",
+          "pt": "Relógio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Cameo",
-          "fr": "Camée"
+          "fr": "Camée",
+          "pt": "Camafeu"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Tie clip"],
-          "fr": ["Pince à cravate"]
+          "fr": ["Pince à cravate"],
+          "pt": ["Mola de gravata", "Prendedor de gravata"]
         },
         "labels": {
           "en": "Tie pin",
-          "fr": "Épingle à cravate"
+          "fr": "Épingle à cravate",
+          "pt": "Alfinete de gravata"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Charms"],
-          "fr": ["Breloques"]
+          "fr": ["Breloques"],
+          "pt": ["Berloques", "Charm", "Charms"]
         },
         "labels": {
           "en": "Charm",
-          "fr": "Breloque"
+          "fr": "Breloque",
+          "pt": "Berloque"
         },
         "tier": "hard"
       }
@@ -4207,21 +4982,25 @@
     "blackWord": {
       "aliases": {
         "en": [],
-        "fr": []
+        "fr": [],
+        "pt": ["Brilhante"]
       },
       "labels": {
         "en": "Diamond",
-        "fr": "Diamant"
+        "fr": "Diamant",
+        "pt": "Diamante"
       },
       "why": {
         "en": "A gemstone set into jewellery, not a piece of jewellery itself.",
-        "fr": "Une pierre qu'on sertit dans un bijou, pas un bijou en soi."
+        "fr": "Une pierre qu'on sertit dans un bijou, pas un bijou en soi.",
+        "pt": "Uma pedra que se engasta numa joia, não uma joia em si."
       }
     },
     "id": "jewellery",
     "labels": {
       "en": "Jewellery",
-      "fr": "Bijoux"
+      "fr": "Bijoux",
+      "pt": "Joias"
     },
     "tier": "easy"
   },
@@ -4230,209 +5009,247 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Barbie", "Nenuco"]
         },
         "labels": {
           "en": "Doll",
-          "fr": "Poupée"
+          "fr": "Poupée",
+          "pt": "Boneca"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Balle"]
+          "fr": ["Balle"],
+          "pt": []
         },
         "labels": {
           "en": "Ball",
-          "fr": "Ballon"
+          "fr": "Ballon",
+          "pt": "Bola"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Teddy", "Soft toy"],
-          "fr": ["Nounours", "Peluche", "Doudou"]
+          "fr": ["Nounours", "Peluche", "Doudou"],
+          "pt": ["Peluche", "Ursinho", "Boneco de peluche"]
         },
         "labels": {
           "en": "Teddy bear",
-          "fr": "Ours en peluche"
+          "fr": "Ours en peluche",
+          "pt": "Urso de peluche"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Lego bricks"],
-          "fr": []
+          "fr": [],
+          "pt": ["Legos"]
         },
         "labels": {
           "en": "Lego",
-          "fr": "Lego"
+          "fr": "Lego",
+          "pt": "Lego"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Voiture miniature", "Voiturette"]
+          "fr": ["Voiture miniature", "Voiturette"],
+          "pt": ["Carrinhos", "Carrinho de brincar"]
         },
         "labels": {
           "en": "Toy car",
-          "fr": "Petite voiture"
+          "fr": "Petite voiture",
+          "pt": "Carrinho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Papagaio"]
         },
         "labels": {
           "en": "Kite",
-          "fr": "Cerf-volant"
+          "fr": "Cerf-volant",
+          "pt": "Papagaio de papel"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Jigsaw puzzle", "Jigsaw"],
-          "fr": []
+          "fr": [],
+          "pt": ["Quebra-cabeças"]
         },
         "labels": {
           "en": "Puzzle",
-          "fr": "Puzzle"
+          "fr": "Puzzle",
+          "pt": "Puzzle"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Top"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Spinning top",
-          "fr": "Toupie"
+          "fr": "Toupie",
+          "pt": "Pião"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Yo-yo"]
         },
         "labels": {
           "en": "Yo-yo",
-          "fr": "Yo-yo"
+          "fr": "Yo-yo",
+          "pt": "Ioiô"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Cubo mágico", "Rubik"]
         },
         "labels": {
           "en": "Rubik's Cube",
-          "fr": "Rubik's Cube"
+          "fr": "Rubik's Cube",
+          "pt": "Cubo de Rubik"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Marble"],
-          "fr": ["Bille"]
+          "fr": ["Bille"],
+          "pt": ["Berlinde"]
         },
         "labels": {
           "en": "Marbles",
-          "fr": "Billes"
+          "fr": "Billes",
+          "pt": "Berlindes"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Jump rope"],
-          "fr": []
+          "fr": [],
+          "pt": ["Corda"]
         },
         "labels": {
           "en": "Skipping rope",
-          "fr": "Corde à sauter"
+          "fr": "Corde à sauter",
+          "pt": "Corda de saltar"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Toy train"],
-          "fr": ["Train électrique"]
+          "fr": ["Train électrique"],
+          "pt": ["Comboio", "Comboio de brincar"]
         },
         "labels": {
           "en": "Train set",
-          "fr": "Petit train"
+          "fr": "Petit train",
+          "pt": "Comboio elétrico"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Cavalinho de baloiço"]
         },
         "labels": {
           "en": "Rocking horse",
-          "fr": "Cheval à bascule"
+          "fr": "Cheval à bascule",
+          "pt": "Cavalo de baloiço"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Kaleidoscope",
-          "fr": "Kaléidoscope"
+          "fr": "Kaléidoscope",
+          "pt": "Caleidoscópio"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Diable à ressort"]
+          "fr": ["Diable à ressort"],
+          "pt": ["Caixinha de surpresas", "Boneco de mola"]
         },
         "labels": {
           "en": "Jack-in-the-box",
-          "fr": "Diable en boîte"
+          "fr": "Diable en boîte",
+          "pt": "Caixa de surpresas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Hoop"],
-          "fr": ["Hula-hoop"]
+          "fr": ["Hula-hoop"],
+          "pt": ["Hula-hoop"]
         },
         "labels": {
           "en": "Hula hoop",
-          "fr": "Cerceau"
+          "fr": "Cerceau",
+          "pt": "Arco"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Dollhouse", "Dolls' house"],
-          "fr": []
+          "fr": [],
+          "pt": ["Casinha de bonecas"]
         },
         "labels": {
           "en": "Doll's house",
-          "fr": "Maison de poupée"
+          "fr": "Maison de poupée",
+          "pt": "Casa de bonecas"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Chocalho", "Guizo"]
         },
         "labels": {
           "en": "Rattle",
-          "fr": "Hochet"
+          "fr": "Hochet",
+          "pt": "Roca"
         },
         "tier": "hard"
       }
@@ -4440,21 +5257,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Pacifier", "Soother"],
-        "fr": ["Sucette"]
+        "fr": ["Sucette"],
+        "pt": ["Chucha"]
       },
       "labels": {
         "en": "Dummy",
-        "fr": "Tétine"
+        "fr": "Tétine",
+        "pt": "Chupeta"
       },
       "why": {
         "en": "It soothes a baby: nobody plays with a dummy.",
-        "fr": "Elle calme le bébé : personne ne joue avec une tétine."
+        "fr": "Elle calme le bébé : personne ne joue avec une tétine.",
+        "pt": "Acalma o bebé: ninguém brinca com uma chupeta."
       }
     },
     "id": "toys",
     "labels": {
       "en": "Toys",
-      "fr": "Jouets"
+      "fr": "Jouets",
+      "pt": "Brinquedos"
     },
     "tier": "easy"
   },
@@ -4463,198 +5284,234 @@
       {
         "aliases": {
           "en": ["Mobile phone", "Phone", "Cell phone", "Mobile"],
-          "fr": ["Téléphone", "Portable", "Téléphone portable"]
+          "fr": ["Téléphone", "Portable", "Téléphone portable"],
+          "pt": ["Telemóvel", "Telefone"]
         },
         "labels": {
           "en": "Smartphone",
-          "fr": "Smartphone"
+          "fr": "Smartphone",
+          "pt": "Smartphone"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["PC", "Desktop", "Laptop", "Notebook"],
-          "fr": ["Ordi", "Ordinateur portable", "PC portable", "Ordi portable"]
+          "fr": ["Ordi", "Ordinateur portable", "PC portable", "Ordi portable"],
+          "pt": ["Computador portátil", "Portátil", "PC"]
         },
         "labels": {
           "en": "Computer",
-          "fr": "Ordinateur"
+          "fr": "Ordinateur",
+          "pt": "Computador"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tablet",
-          "fr": "Tablette"
+          "fr": "Tablette",
+          "pt": "Tablet"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["TV", "Telly"],
-          "fr": ["Télé"]
+          "fr": ["Télé"],
+          "pt": ["TV", "Televisor"]
         },
         "labels": {
           "en": "Television",
-          "fr": "Télévision"
+          "fr": "Télévision",
+          "pt": "Televisão"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Console", "Game console", "Video game console"],
-          "fr": []
+          "fr": [],
+          "pt": ["Consola", "PlayStation"]
         },
         "labels": {
           "en": "Games console",
-          "fr": "Console de jeux"
+          "fr": "Console de jeux",
+          "pt": "Consola de jogos"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Digital camera"],
-          "fr": []
+          "fr": [],
+          "pt": ["Câmara fotográfica", "Câmara"]
         },
         "labels": {
           "en": "Camera",
-          "fr": "Appareil photo"
+          "fr": "Appareil photo",
+          "pt": "Máquina fotográfica"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Headset"],
-          "fr": ["Casque"]
+          "fr": ["Casque"],
+          "pt": ["Headphones", "Phones"]
         },
         "labels": {
           "en": "Headphones",
-          "fr": "Casque audio"
+          "fr": "Casque audio",
+          "pt": "Auscultadores"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Printer",
-          "fr": "Imprimante"
+          "fr": "Imprimante",
+          "pt": "Impressora"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Relógio inteligente"]
         },
         "labels": {
           "en": "Smartwatch",
-          "fr": "Montre connectée"
+          "fr": "Montre connectée",
+          "pt": "Smartwatch"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Loudspeaker", "Bluetooth speaker"],
-          "fr": ["Haut-parleur", "Enceinte connectée"]
+          "fr": ["Haut-parleur", "Enceinte connectée"],
+          "pt": ["Coluna bluetooth", "Altifalante"]
         },
         "labels": {
           "en": "Speaker",
-          "fr": "Enceinte"
+          "fr": "Enceinte",
+          "pt": "Coluna"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Radio",
-          "fr": "Radio"
+          "fr": "Radio",
+          "pt": "Rádio"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Ebook reader"],
-          "fr": []
+          "fr": [],
+          "pt": ["E-reader", "Kindle"]
         },
         "labels": {
           "en": "E-reader",
-          "fr": "Liseuse"
+          "fr": "Liseuse",
+          "pt": "Leitor de e-books"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Modem"],
-          "fr": ["Box", "Routeur"]
+          "fr": ["Box", "Routeur"],
+          "pt": ["Modem", "Box", "Box da internet"]
         },
         "labels": {
           "en": "Router",
-          "fr": "Box internet"
+          "fr": "Box internet",
+          "pt": "Router"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Drone",
-          "fr": "Drone"
+          "fr": "Drone",
+          "pt": "Drone"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Satnav"],
-          "fr": []
+          "fr": [],
+          "pt": ["Navegador"]
         },
         "labels": {
           "en": "GPS",
-          "fr": "GPS"
+          "fr": "GPS",
+          "pt": "GPS"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Projecteur"]
+          "fr": ["Projecteur"],
+          "pt": ["Videoprojetor"]
         },
         "labels": {
           "en": "Projector",
-          "fr": "Vidéoprojecteur"
+          "fr": "Vidéoprojecteur",
+          "pt": "Projetor"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Webcam",
-          "fr": "Webcam"
+          "fr": "Webcam",
+          "pt": "Webcam"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Calculette"]
+          "fr": ["Calculette"],
+          "pt": ["Máquina de calcular"]
         },
         "labels": {
           "en": "Calculator",
-          "fr": "Calculatrice"
+          "fr": "Calculatrice",
+          "pt": "Calculadora"
         },
         "tier": "hard"
       }
@@ -4662,21 +5519,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Wifi"],
-        "fr": []
+        "fr": [],
+        "pt": ["Wireless", "Rede sem fios"]
       },
       "labels": {
         "en": "Wi-Fi",
-        "fr": "Wi-Fi"
+        "fr": "Wi-Fi",
+        "pt": "Wi-Fi"
       },
       "why": {
         "en": "A wireless network standard the devices talk over, not a device.",
-        "fr": "Une norme de réseau sans fil par laquelle les appareils se parlent, pas un appareil."
+        "fr": "Une norme de réseau sans fil par laquelle les appareils se parlent, pas un appareil.",
+        "pt": "Uma norma de rede sem fios pela qual os aparelhos comunicam, não um aparelho."
       }
     },
     "id": "electronic-devices",
     "labels": {
       "en": "Electronic devices",
-      "fr": "Appareils électroniques"
+      "fr": "Appareils électroniques",
+      "pt": "Aparelhos eletrónicos"
     },
     "tier": "easy"
   },
@@ -4685,220 +5546,260 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sand",
-          "fr": "Sable"
+          "fr": "Sable",
+          "pt": "Areia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Ocean"],
-          "fr": ["Océan"]
+          "fr": ["Océan"],
+          "pt": ["Oceano"]
         },
         "labels": {
           "en": "Sea",
-          "fr": "Mer"
+          "fr": "Mer",
+          "pt": "Mar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Sunshade"],
-          "fr": []
+          "fr": [],
+          "pt": ["Guarda-sol", "Chapéu de praia"]
         },
         "labels": {
           "en": "Beach umbrella",
-          "fr": "Parasol"
+          "fr": "Parasol",
+          "pt": "Chapéu de sol"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Beach towel"],
-          "fr": ["Serviette"]
+          "fr": ["Serviette"],
+          "pt": ["Toalha"]
         },
         "labels": {
           "en": "Towel",
-          "fr": "Serviette de plage"
+          "fr": "Serviette de plage",
+          "pt": "Toalha de praia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Sun cream", "Suncream", "Sunblock"],
-          "fr": ["Écran solaire"]
+          "fr": ["Écran solaire"],
+          "pt": ["Creme solar", "Protetor", "Bronzeador"]
         },
         "labels": {
           "en": "Sunscreen",
-          "fr": "Crème solaire"
+          "fr": "Crème solaire",
+          "pt": "Protetor solar"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Swimming costume", "Bathing suit"],
-          "fr": ["Maillot"]
+          "fr": ["Maillot"],
+          "pt": ["Biquíni", "Calções de banho"]
         },
         "labels": {
           "en": "Swimsuit",
-          "fr": "Maillot de bain"
+          "fr": "Maillot de bain",
+          "pt": "Fato de banho"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Wave"],
-          "fr": ["Vague"]
+          "fr": ["Vague"],
+          "pt": ["Onda"]
         },
         "labels": {
           "en": "Waves",
-          "fr": "Vagues"
+          "fr": "Vagues",
+          "pt": "Ondas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Sandcastle",
-          "fr": "Château de sable"
+          "fr": "Château de sable",
+          "pt": "Castelo de areia"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Seashells", "Shell", "Seashell"],
-          "fr": ["Coquillage"]
+          "fr": ["Coquillage"],
+          "pt": ["Concha", "Búzios", "Búzio"]
         },
         "labels": {
           "en": "Shells",
-          "fr": "Coquillages"
+          "fr": "Coquillages",
+          "pt": "Conchas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Shades"],
-          "fr": ["Lunettes"]
+          "fr": ["Lunettes"],
+          "pt": ["Óculos escuros", "Óculos"]
         },
         "labels": {
           "en": "Sunglasses",
-          "fr": "Lunettes de soleil"
+          "fr": "Lunettes de soleil",
+          "pt": "Óculos de sol"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Lifesaver"],
-          "fr": ["Sauveteur"]
+          "fr": ["Sauveteur"],
+          "pt": ["Salva-vidas", "Banheiro"]
         },
         "labels": {
           "en": "Lifeguard",
-          "fr": "Maître-nageur"
+          "fr": "Maître-nageur",
+          "pt": "Nadador-salvador"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Gull"],
-          "fr": ["Goéland"]
+          "fr": ["Goéland"],
+          "pt": []
         },
         "labels": {
           "en": "Seagull",
-          "fr": "Mouette"
+          "fr": "Mouette",
+          "pt": "Gaivota"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Pail"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Bucket",
-          "fr": "Seau"
+          "fr": "Seau",
+          "pt": "Balde"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Shovel"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Spade",
-          "fr": "Pelle"
+          "fr": "Pelle",
+          "pt": "Pá"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Crab",
-          "fr": "Crabe"
+          "fr": "Crabe",
+          "pt": "Caranguejo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Flip-flop"],
-          "fr": ["Tong"]
+          "fr": ["Tong"],
+          "pt": ["Chinelo", "Havaianas"]
         },
         "labels": {
           "en": "Flip-flops",
-          "fr": "Tongs"
+          "fr": "Tongs",
+          "pt": "Chinelos"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Sand dune"],
-          "fr": []
+          "fr": [],
+          "pt": ["Dunas"]
         },
         "labels": {
           "en": "Dune",
-          "fr": "Dune"
+          "fr": "Dune",
+          "pt": "Duna"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Deck chair", "Sun lounger"],
-          "fr": ["Chaise longue"]
+          "fr": ["Chaise longue"],
+          "pt": ["Cadeira de praia"]
         },
         "labels": {
           "en": "Deckchair",
-          "fr": "Transat"
+          "fr": "Transat",
+          "pt": "Espreguiçadeira"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Alforrecas", "Medusa", "Água-viva"]
         },
         "labels": {
           "en": "Jellyfish",
-          "fr": "Méduse"
+          "fr": "Méduse",
+          "pt": "Alforreca"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Air mattress", "Li-lo", "Inflatable mattress"],
-          "fr": []
+          "fr": [],
+          "pt": ["Colchão de ar", "Colchão"]
         },
         "labels": {
           "en": "Lilo",
-          "fr": "Matelas gonflable"
+          "fr": "Matelas gonflable",
+          "pt": "Colchão insuflável"
         },
         "tier": "hard"
       }
@@ -4906,21 +5807,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Pool"],
-        "fr": []
+        "fr": [],
+        "pt": []
       },
       "labels": {
         "en": "Swimming pool",
-        "fr": "Piscine"
+        "fr": "Piscine",
+        "pt": "Piscina"
       },
       "why": {
         "en": "A pool is a tank built on land: the beach has the sea.",
-        "fr": "Une piscine est un bassin construit : la plage, elle, a la mer."
+        "fr": "Une piscine est un bassin construit : la plage, elle, a la mer.",
+        "pt": "Uma piscina é um tanque construído: a praia tem o mar."
       }
     },
     "id": "at-the-beach",
     "labels": {
       "en": "At the beach",
-      "fr": "À la plage"
+      "fr": "À la plage",
+      "pt": "Na praia"
     },
     "tier": "easy"
   },
@@ -4929,198 +5834,234 @@
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Tent",
-          "fr": "Tente"
+          "fr": "Tente",
+          "pt": "Tenda"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Duvet"]
+          "fr": ["Duvet"],
+          "pt": ["Saco de dormir"]
         },
         "labels": {
           "en": "Sleeping bag",
-          "fr": "Sac de couchage"
+          "fr": "Sac de couchage",
+          "pt": "Saco-cama"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Flashlight", "Headlamp", "Head torch"],
-          "fr": ["Lampe de poche", "Lampe frontale", "Frontale"]
+          "fr": ["Lampe de poche", "Lampe frontale", "Frontale"],
+          "pt": ["Lanterna frontal", "Frontal", "Lanterna de bolso"]
         },
         "labels": {
           "en": "Torch",
-          "fr": "Lampe torche"
+          "fr": "Lampe torche",
+          "pt": "Lanterna"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Stove", "Gas stove"],
-          "fr": ["Réchaud à gaz"]
+          "fr": ["Réchaud à gaz"],
+          "pt": ["Campingaz", "Fogão de campismo"]
         },
         "labels": {
           "en": "Camping stove",
-          "fr": "Réchaud"
+          "fr": "Réchaud",
+          "pt": "Fogareiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Airbed", "Blow-up mattress"],
-          "fr": ["Matelas pneumatique"]
+          "fr": ["Matelas pneumatique"],
+          "pt": ["Colchão de ar"]
         },
         "labels": {
           "en": "Air mattress",
-          "fr": "Matelas gonflable"
+          "fr": "Matelas gonflable",
+          "pt": "Colchão insuflável"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Rucksack"],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Backpack",
-          "fr": "Sac à dos"
+          "fr": "Sac à dos",
+          "pt": "Mochila"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Pegs", "Tent stakes", "Tent peg"],
-          "fr": ["Sardine", "Piquets"]
+          "fr": ["Sardine", "Piquets"],
+          "pt": ["Estaca"]
         },
         "labels": {
           "en": "Tent pegs",
-          "fr": "Sardines"
+          "fr": "Sardines",
+          "pt": "Estacas"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Cooler", "Cool bag"],
-          "fr": []
+          "fr": [],
+          "pt": ["Mala térmica", "Saco térmico", "Caixa térmica"]
         },
         "labels": {
           "en": "Cool box",
-          "fr": "Glacière"
+          "fr": "Glacière",
+          "pt": "Geleira"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Camping chair"],
-          "fr": []
+          "fr": [],
+          "pt": ["Cadeira de campismo"]
         },
         "labels": {
           "en": "Folding chair",
-          "fr": "Chaise pliante"
+          "fr": "Chaise pliante",
+          "pt": "Cadeira dobrável"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Rede de dormir"]
         },
         "labels": {
           "en": "Hammock",
-          "fr": "Hamac"
+          "fr": "Hamac",
+          "pt": "Rede"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Swiss army knife", "Penknife"],
-          "fr": ["Canif", "Couteau de poche"]
+          "fr": ["Canif", "Couteau de poche"],
+          "pt": ["Canivete suíço", "Navalha"]
         },
         "labels": {
           "en": "Pocket knife",
-          "fr": "Couteau suisse"
+          "fr": "Couteau suisse",
+          "pt": "Canivete"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Macete", "Martelo"]
         },
         "labels": {
           "en": "Mallet",
-          "fr": "Maillet"
+          "fr": "Maillet",
+          "pt": "Maço"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Roll mat", "Camping mat", "Foam mat"],
-          "fr": []
+          "fr": [],
+          "pt": ["Esteira", "Isolante", "Tapete"]
         },
         "labels": {
           "en": "Sleeping mat",
-          "fr": "Tapis de sol"
+          "fr": "Tapis de sol",
+          "pt": "Tapete de campismo"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": []
         },
         "labels": {
           "en": "Compass",
-          "fr": "Boussole"
+          "fr": "Boussole",
+          "pt": "Bússola"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Canteen"],
-          "fr": []
+          "fr": [],
+          "pt": ["Garrafa de água", "Garrafa"]
         },
         "labels": {
           "en": "Water bottle",
-          "fr": "Gourde"
+          "fr": "Gourde",
+          "pt": "Cantil"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Mess kit", "Billy can"],
-          "fr": []
+          "fr": [],
+          "pt": ["Gamela"]
         },
         "labels": {
           "en": "Mess tin",
-          "fr": "Gamelle"
+          "fr": "Gamelle",
+          "pt": "Marmita"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Lampião", "Lamparina", "Candeeiro a gás"]
         },
         "labels": {
           "en": "Lantern",
-          "fr": "Lanterne"
+          "fr": "Lanterne",
+          "pt": "Candeeiro"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Tarpaulin", "Groundsheet"],
-          "fr": []
+          "fr": [],
+          "pt": ["Oleado", "Toldo"]
         },
         "labels": {
           "en": "Tarp",
-          "fr": "Bâche"
+          "fr": "Bâche",
+          "pt": "Lona"
         },
         "tier": "hard"
       }
@@ -5128,21 +6069,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Marshmallow"],
-        "fr": ["Chamallow", "Guimauve"]
+        "fr": ["Chamallow", "Guimauve"],
+        "pt": ["Marshmallow"]
       },
       "labels": {
         "en": "Marshmallows",
-        "fr": "Chamallows"
+        "fr": "Chamallows",
+        "pt": "Marshmallows"
       },
       "why": {
         "en": "Food roasted over the fire, not a piece of equipment.",
-        "fr": "De quoi manger, grillé au feu de camp, pas du matériel."
+        "fr": "De quoi manger, grillé au feu de camp, pas du matériel.",
+        "pt": "Comida para tostar na fogueira, não material de campismo."
       }
     },
     "id": "camping-gear",
     "labels": {
       "en": "Camping gear",
-      "fr": "Matériel de camping"
+      "fr": "Matériel de camping",
+      "pt": "Material de campismo"
     },
     "tier": "easy"
   },
@@ -5151,187 +6096,226 @@
       {
         "aliases": {
           "en": ["Policeman", "Policewoman", "Cop", "Police"],
-          "fr": ["Policière", "Gendarme"]
+          "fr": ["Policière", "Gendarme"],
+          "pt": ["Agente", "Guarda", "GNR", "PSP", "Bófia"]
         },
         "labels": {
           "en": "Police officer",
-          "fr": "Policier"
+          "fr": "Policier",
+          "pt": "Polícia"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Fireman"],
-          "fr": ["Sapeur-pompier"]
+          "fr": ["Sapeur-pompier"],
+          "pt": ["Bombeira", "Sapador"]
         },
         "labels": {
           "en": "Firefighter",
-          "fr": "Pompier"
+          "fr": "Pompier",
+          "pt": "Bombeiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Militaire"]
+          "fr": ["Militaire"],
+          "pt": ["Militar"]
         },
         "labels": {
           "en": "Soldier",
-          "fr": "Soldat"
+          "fr": "Soldat",
+          "pt": "Soldado"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Infirmière"]
+          "fr": ["Infirmière"],
+          "pt": ["Enfermeira"]
         },
         "labels": {
           "en": "Nurse",
-          "fr": "Infirmier"
+          "fr": "Infirmier",
+          "pt": "Enfermeiro"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Airline pilot"],
-          "fr": []
+          "fr": [],
+          "pt": ["Piloto de avião", "Comandante"]
         },
         "labels": {
           "en": "Pilot",
-          "fr": "Pilote"
+          "fr": "Pilote",
+          "pt": "Piloto"
         },
         "tier": "easy"
       },
       {
         "aliases": {
           "en": ["Air hostess", "Stewardess", "Steward", "Cabin crew"],
-          "fr": []
+          "fr": [],
+          "pt": [
+            "Hospedeira",
+            "Assistente de bordo",
+            "Comissário de bordo",
+            "Tripulante de cabine"
+          ]
         },
         "labels": {
           "en": "Flight attendant",
-          "fr": "Hôtesse de l'air"
+          "fr": "Hôtesse de l'air",
+          "pt": "Hospedeira de bordo"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Postwoman", "Mail carrier", "Mailman"],
-          "fr": ["Factrice"]
+          "fr": ["Factrice"],
+          "pt": ["Carteira"]
         },
         "labels": {
           "en": "Postman",
-          "fr": "Facteur"
+          "fr": "Facteur",
+          "pt": "Carteiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Cook"],
-          "fr": ["Chef cuisinier"]
+          "fr": ["Chef cuisinier"],
+          "pt": ["Cozinheira", "Chef", "Chefe de cozinha"]
         },
         "labels": {
           "en": "Chef",
-          "fr": "Cuisinier"
+          "fr": "Cuisinier",
+          "pt": "Cozinheiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Guard"],
-          "fr": ["Vigile"]
+          "fr": ["Vigile"],
+          "pt": ["Vigilante"]
         },
         "labels": {
           "en": "Security guard",
-          "fr": "Agent de sécurité"
+          "fr": "Agent de sécurité",
+          "pt": "Segurança"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Matelot"]
+          "fr": ["Matelot"],
+          "pt": ["Marujo"]
         },
         "labels": {
           "en": "Sailor",
-          "fr": "Marin"
+          "fr": "Marin",
+          "pt": "Marinheiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Douanière"]
+          "fr": ["Douanière"],
+          "pt": ["Funcionário da alfândega", "Alfandegário", "Guarda-fiscal"]
         },
         "labels": {
           "en": "Customs officer",
-          "fr": "Douanier"
+          "fr": "Douanier",
+          "pt": "Agente aduaneiro"
         },
         "tier": "medium"
       },
       {
         "aliases": {
           "en": ["Prison guard", "Warder"],
-          "fr": ["Surveillant pénitentiaire", "Maton"]
+          "fr": ["Surveillant pénitentiaire", "Maton"],
+          "pt": ["Guarda da prisão", "Carcereiro"]
         },
         "labels": {
           "en": "Prison officer",
-          "fr": "Gardien de prison"
+          "fr": "Gardien de prison",
+          "pt": "Guarda prisional"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Umpire"],
-          "fr": []
+          "fr": [],
+          "pt": ["Árbitra"]
         },
         "labels": {
           "en": "Referee",
-          "fr": "Arbitre"
+          "fr": "Arbitre",
+          "pt": "Árbitro"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Ticket collector"],
-          "fr": ["Contrôleuse"]
+          "fr": ["Contrôleuse"],
+          "pt": ["Revisora", "Fiscal", "Pica"]
         },
         "labels": {
           "en": "Ticket inspector",
-          "fr": "Contrôleur"
+          "fr": "Contrôleur",
+          "pt": "Revisor"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": ["Cosmonaut"],
-          "fr": ["Spationaute", "Cosmonaute"]
+          "fr": ["Spationaute", "Cosmonaute"],
+          "pt": ["Cosmonauta"]
         },
         "labels": {
           "en": "Astronaut",
-          "fr": "Astronaute"
+          "fr": "Astronaute",
+          "pt": "Astronauta"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": []
+          "fr": [],
+          "pt": ["Jockey"]
         },
         "labels": {
           "en": "Jockey",
-          "fr": "Jockey"
+          "fr": "Jockey",
+          "pt": "Jóquei"
         },
         "tier": "hard"
       },
       {
         "aliases": {
           "en": [],
-          "fr": ["Conducteur de bus"]
+          "fr": ["Conducteur de bus"],
+          "pt": ["Motorista", "Condutor de autocarro"]
         },
         "labels": {
           "en": "Bus driver",
-          "fr": "Chauffeur de bus"
+          "fr": "Chauffeur de bus",
+          "pt": "Motorista de autocarro"
         },
         "tier": "hard"
       }
@@ -5339,21 +6323,25 @@
     "blackWord": {
       "aliases": {
         "en": ["Schoolteacher"],
-        "fr": ["Prof", "Enseignant", "Instituteur", "Maîtresse"]
+        "fr": ["Prof", "Enseignant", "Instituteur", "Maîtresse"],
+        "pt": ["Professora", "Prof", "Stôr", "Stora", "Docente"]
       },
       "labels": {
         "en": "Teacher",
-        "fr": "Professeur"
+        "fr": "Professeur",
+        "pt": "Professor"
       },
       "why": {
         "en": "Teachers wear their own clothes: no uniform comes with the job.",
-        "fr": "Les enseignants s'habillent comme ils veulent : le métier n'impose aucun uniforme."
+        "fr": "Les enseignants s'habillent comme ils veulent : le métier n'impose aucun uniforme.",
+        "pt": "Os professores vestem o que querem: a profissão não impõe farda."
       }
     },
     "id": "uniformed-jobs",
     "labels": {
       "en": "Jobs in uniform",
-      "fr": "Métiers en uniforme"
+      "fr": "Métiers en uniforme",
+      "pt": "Profissões com farda"
     },
     "tier": "easy"
   }
