@@ -84,6 +84,13 @@
       .author
         color: var(--ink-muted)
 
+      // Caption type draws a link 19px tall, under the 24px a press needs
+      // (WCAG 2.5.8): three hundred rows of them, one under the other.
+      .text-link
+        align-items: center
+        display: inline-flex
+        min-block-size: 1.5rem
+
     .share-alike
       border-top: var(--stroke-hair) solid var(--rule)
       padding-block-start: var(--space-m)
