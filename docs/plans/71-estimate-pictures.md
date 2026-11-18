@@ -139,7 +139,7 @@ pictures is what would let it in with a short name beside it.
 - **Every Wikidata picture was looked at** on contact sheets, and every
   price picture by the agent that chose it: nothing on any of them states
   the value. Three rows stay bare: the Rubicon (_Attribution_ only),
-  Vulcano (a panorama, then a map) and Tour Majunga (French freedom of
+  an Aeolian island (a panorama, then a map) and Tour Majunga (French freedom of
   panorama keeps it off Commons).
 - **French architecture under copyright** — the Louvre pyramid, Millau, La
   Défense's towers — ships as Commons keeps it. Commons may delete one; the
