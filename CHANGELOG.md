@@ -8,6 +8,18 @@ one part.
 
 ### Features
 
+- `[Shared]` **Mêlée speaks European Portuguese.** _Português_ joins English
+  and French in the menu, and every page is served under `/pt` with its own
+  title, description and share image. A table opened in Portuguese plays in
+  Portuguese: the quiz deals from its 3 531 Portuguese questions and asks
+  flags, capitals, outlines and rebuses in Portuguese, mystery word, longest
+  word and think alike deal from the Portuguese dictionary and prompts (on a
+  QWERTY keyboard, as Portugal types), and estimate and higher or lower seat
+  the table in Portugal. Timeline, most likely, challenge and black square
+  carry all three languages, so each screen reads its own: a French guest at
+  a Portuguese table reads the cards in French. Counts read _0 pontos_, as
+  Portugal says it.
+
 - `[Shared]` **Report a problem from any screen.** The menu, on every screen
   at every phase, gains _Report a problem_: an optional line and _Send_, then
   a thanks that holds for the thirty seconds before the device may send

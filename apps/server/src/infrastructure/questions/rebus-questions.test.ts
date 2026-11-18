@@ -1,13 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { z } from 'zod'
 
 import emojiTwelve from './rebus-emoji.json' with { type: 'json' }
-import rebusPt from './rebus-pt.json' with { type: 'json' }
-import {
-  authoredRebusSchema,
-  bankedRebusQuestions,
-  PORTUGUESE_ASK_BY_KIND
-} from './rebus-questions'
+import { bankedRebusQuestions } from './rebus-questions'
 
 /**
  * Every fully-qualified emoji of Unicode Emoji 12.0 (2019), yellow, with no
@@ -24,22 +18,27 @@ const emojisOf = (rebus: string): string[] =>
     .map(({ segment }) => segment)
     .filter((segment) => segment !== ' ')
 
-/** Portugal's list is written ahead of the language, so it is checked from its file. */
-const PORTUGUESE_REBUSES = z
-  .array(authoredRebusSchema)
-  .parse(rebusPt)
-  .map((row) => ({ ...row, language: 'pt' }))
+const REBUSES = bankedRebusQuestions()
 
-const REBUSES = [...bankedRebusQuestions(), ...PORTUGUESE_REBUSES]
+const PORTUGUESE_ASKS = new Set([
+  'Que filme?',
+  'Que expressão?',
+  'Que série?',
+  'Que canção?'
+])
 
 describe('the rebus rubric', () => {
   it('[rebus] writes Portugal a list of its own, every kind asked in Portuguese', () => {
-    expect(PORTUGUESE_REBUSES.length).toBeGreaterThanOrEqual(180)
+    const portuguese = REBUSES.filter(({ language }) => language === 'pt')
+
+    expect(portuguese.length).toBeGreaterThanOrEqual(180)
     expect(
-      PORTUGUESE_REBUSES.filter(
-        ({ id, kind }) =>
-          !id.startsWith('rebus-pt-') || !(kind in PORTUGUESE_ASK_BY_KIND)
-      ).map(({ id }) => id)
+      portuguese
+        .filter(
+          ({ id, prompt }) =>
+            !id.startsWith('rebus-pt-') || !PORTUGUESE_ASKS.has(prompt)
+        )
+        .map(({ id }) => id)
     ).toEqual([])
   })
 

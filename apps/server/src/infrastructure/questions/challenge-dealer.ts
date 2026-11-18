@@ -2,6 +2,7 @@ import {
   CHALLENGE_HAND_SIZE,
   type ChallengeLabels
 } from '@melee/protocol/challenge'
+import { byLocale } from '@melee/protocol/locale'
 
 import {
   isDeckItemId,
@@ -42,7 +43,7 @@ const eveningLinesFirst = (
 
 const dealtOf = ({ id, text }: EveningLine): DealtChallengeLine => ({
   id,
-  labels: { en: text, fr: text }
+  labels: byLocale(() => text)
 })
 
 const unplayedChallengeLines = (room: Room): EveningLine[] =>

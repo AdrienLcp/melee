@@ -1,4 +1,5 @@
-import type { WordLanguage } from '../words/word-language'
+import type { QuestionLanguage } from '@melee/protocol/question'
+
 import { drawLetters } from './letter-draw'
 import { type FormIndex, longestWordsIn } from './longest-words'
 
@@ -27,9 +28,9 @@ export const drawPlayableLetters = ({
   language
 }: {
   /** Where each draw comes from: the language's letter frequencies unless a test says otherwise. */
-  draw?: (language: WordLanguage) => string[]
+  draw?: (language: QuestionLanguage) => string[]
   index: FormIndex
-  language: WordLanguage
+  language: QuestionLanguage
 }): PlayableDraw | null => {
   for (let attempt = 0; attempt < MOST_DRAW_ATTEMPTS; attempt++) {
     const letters = draw(language)

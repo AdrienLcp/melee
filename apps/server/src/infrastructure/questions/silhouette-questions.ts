@@ -37,7 +37,8 @@ const silhouetteBankSchema = z.array(
 
 const PROMPT_BY_LANGUAGE = {
   en: 'Which country has this shape?',
-  fr: 'Quel pays a cette forme ?'
+  fr: 'Quel pays a cette forme ?',
+  pt: 'Que país tem esta forma?'
 } as const satisfies Record<QuestionLanguage, string>
 
 let silhouetteQuestions: BankedQuestion[] | undefined

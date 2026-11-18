@@ -64,8 +64,9 @@ jobs:
           - { specs: journeys-and-layouts, shard: 2/4 }
           - { specs: journeys-and-layouts, shard: 3/4 }
           - { specs: journeys-and-layouts, shard: 4/4 }
-          - { specs: strip-rows, shard: 1/2 }
-          - { specs: strip-rows, shard: 2/2 }
+          - { specs: strip-rows, shard: 1/3 }
+          - { specs: strip-rows, shard: 2/3 }
+          - { specs: strip-rows, shard: 3/3 }
     steps:
       - uses: actions/checkout@v7
 

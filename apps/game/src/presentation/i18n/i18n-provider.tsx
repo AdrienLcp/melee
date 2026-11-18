@@ -15,12 +15,13 @@ import type { Translate } from './translation'
 /**
  * react-aria carries its own strings — press announcements, `FieldError`, the
  * live regions — and keys them by BCP-47 tag. `optimizeLocales` in
- * `vite.config.ts` bundles exactly these two, so adding a locale means editing
+ * `vite.config.ts` bundles exactly these, so adding a locale means editing
  * both lists.
  */
 const REACT_ARIA_LOCALES: Record<Locale, string> = {
   en: 'en-US',
-  fr: 'fr-FR'
+  fr: 'fr-FR',
+  pt: 'pt-PT'
 }
 
 type I18nContextValue = {

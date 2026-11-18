@@ -10,7 +10,8 @@ import type { Locale } from '@melee/protocol/locale'
  */
 const HOME_COUNTRY_OF_LOCALE = {
   en: null,
-  fr: 'FRA'
+  fr: 'FRA',
+  pt: 'PRT'
 } as const satisfies Record<Locale, CountryCode | null>
 
 export const homeCountryFor = (locale: Locale): CountryCode | null =>

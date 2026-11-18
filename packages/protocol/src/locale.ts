@@ -11,7 +11,7 @@ import { z } from 'zod'
  * that one is a bank somebody wrote — so the map between them is a rule with a
  * fallback, in `@melee/core/quiz/question-language`.
  */
-export const LOCALES = ['en', 'fr'] as const
+export const LOCALES = ['en', 'fr', 'pt'] as const
 
 export const localeSchema = z.enum(LOCALES)
 
@@ -51,4 +51,8 @@ export const localizedSchema = <Value extends z.ZodType>(value: Value) =>
  */
 export const byLocale = <Value>(
   valueIn: (locale: Locale) => Value
-): Record<Locale, Value> => ({ en: valueIn('en'), fr: valueIn('fr') })
+): Record<Locale, Value> => ({
+  en: valueIn('en'),
+  fr: valueIn('fr'),
+  pt: valueIn('pt')
+})

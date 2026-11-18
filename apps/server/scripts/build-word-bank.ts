@@ -5,14 +5,16 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import { questionLanguages } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import {
   type ContentTier,
   contentTiers
 } from '@melee/core/round/difficulty-draw'
 import { foldWord } from '@melee/core/words/fold'
-import type { WordLanguage } from '@melee/core/words/word-language'
 import {
   decodeWordList,
   encodeWordList,
@@ -36,11 +38,6 @@ import { orStop, readJsonFile } from './json-file'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const QUESTIONS = join(HERE, '../src/infrastructure/questions')
 const SOURCES = process.argv[2] ?? join(HERE, '.cache/words')
-
-const WORD_LANGUAGES = [
-  ...questionLanguages,
-  'pt'
-] as const satisfies readonly WordLanguage[]
 
 const SHORTEST_FORM = 2
 const LONGEST_FORM = 9
@@ -91,7 +88,7 @@ const PORTUGUESE_FAMILIAR_FLOOR = 1
 /** The dictionary's categories a hidden word is drawn from: common nouns, adjectives, both at once, and verbs in the infinitive. */
 const PORTUGUESE_ANSWER_CATEGORIES = new Set(['a_nc', 'adj', 'nc', 'v'])
 
-const ATTRIBUTIONS: Record<WordLanguage, WordBank['attributions']> = {
+const ATTRIBUTIONS: Record<QuestionLanguage, WordBank['attributions']> = {
   en: [
     {
       author: 'Alan Beale, M. Cooper and the ENABLE contributors',
@@ -154,7 +151,7 @@ const blocklistSchema = z.object({
   en: blockedWordsSchema,
   fr: blockedWordsSchema,
   pt: blockedWordsSchema
-} satisfies Record<WordLanguage, typeof blockedWordsSchema>)
+} satisfies Record<QuestionLanguage, typeof blockedWordsSchema>)
 
 type Answer = { tier: ContentTier; word: string }
 
@@ -517,7 +514,7 @@ const bankOf = ({
   words
 }: {
   blocked: ReadonlySet<string>
-  language: WordLanguage
+  language: QuestionLanguage
   words: LanguageWords
 }): WordBank => {
   const answerTiers = new Map(
@@ -537,7 +534,7 @@ const bankOf = ({
   }
 }
 
-const report = (language: WordLanguage, bank: WordBank): void => {
+const report = (language: QuestionLanguage, bank: WordBank): void => {
   const words = decodeWordList(bank.words)
   const tiers = contentTiers.map((tier) => {
     const lengths = []
@@ -557,16 +554,16 @@ const report = (language: WordLanguage, bank: WordBank): void => {
   )
 }
 
-const isWordLanguage = (text: string): text is WordLanguage =>
-  WORD_LANGUAGES.some((language) => language === text)
+const isQuestionLanguage = (text: string): text is QuestionLanguage =>
+  questionLanguages.some((language) => language === text)
 
 const main = async () => {
   const blocklist = orStop(
     readJsonFile(join(HERE, 'word-answer-blocklist.json'), blocklistSchema),
     'word-answer-blocklist.json'
   )
-  const asked = process.argv.slice(3).filter(isWordLanguage)
-  const builders: Record<WordLanguage, () => WordBank> = {
+  const asked = process.argv.slice(3).filter(isQuestionLanguage)
+  const builders: Record<QuestionLanguage, () => WordBank> = {
     en: () =>
       bankOf({
         blocked: new Set([...blocklist.en, ...scowlTaboo()]),
@@ -587,7 +584,7 @@ const main = async () => {
       })
   }
 
-  for (const language of asked.length > 0 ? asked : WORD_LANGUAGES) {
+  for (const language of asked.length > 0 ? asked : questionLanguages) {
     const bank = builders[language]()
     const path = join(QUESTIONS, `word-bank-${language}.json`)
 

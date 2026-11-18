@@ -7,6 +7,10 @@ describe('homeCountryFor', () => {
     expect(homeCountryFor('fr')).toBe('FRA')
   })
 
+  it('[home-country] seats a Portuguese host at a Portuguese table', () => {
+    expect(homeCountryFor('pt')).toBe('PRT')
+  })
+
   it('[home-country] seats an English host at a table with no country of its own', () => {
     expect(homeCountryFor('en')).toBeNull()
   })

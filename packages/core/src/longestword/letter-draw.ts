@@ -1,7 +1,7 @@
 import { LONGEST_WORD_LETTER_COUNT } from '@melee/protocol/longest-word'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
 import { randomUnit, shuffled } from '../helpers/random'
-import type { WordLanguage } from '../words/word-language'
 
 /**
  * The letters a draw counts as vowels. `Y` is one, in both languages: it
@@ -26,7 +26,7 @@ type LetterWeights = Readonly<Record<string, number>>
  * hidden words are ranked by — never a Scrabble bag, whose counts are tuned
  * for a board.
  */
-const LETTER_FREQUENCIES: Record<WordLanguage, LetterWeights> = {
+const LETTER_FREQUENCIES: Record<QuestionLanguage, LetterWeights> = {
   en: {
     A: 82,
     B: 15,
@@ -160,7 +160,7 @@ const drawnFrom = ({
  * shuffled so the vowels do not sit together. Whether the dictionary holds a
  * long word from them is `drawPlayableLetters`'s question.
  */
-export const drawLetters = (language: WordLanguage): string[] => {
+export const drawLetters = (language: QuestionLanguage): string[] => {
   const weights = Object.entries(LETTER_FREQUENCIES[language])
   const vowelCount = randomUnit() < 0.5 ? FEWEST_VOWELS : MOST_VOWELS
 

@@ -30,6 +30,9 @@ type QuoteKind = z.infer<typeof authoredQuoteSchema>['kind']
  * brands and people, so the answer changes nature from row to row, and a typed
  * answer has to know which it owes before the four candidates are there to say.
  */
+/** Portugal's quotes are written in `questions-pt.json` with the rest of its rows. */
+type QuoteListLanguage = Exclude<QuestionLanguage, 'pt'>
+
 const ASK_BY_KIND = {
   en: {
     brand: 'Which brand?',
@@ -45,14 +48,16 @@ const ASK_BY_KIND = {
     person: 'Qui l’a dit ?',
     series: 'Quelle série ?'
   }
-} as const satisfies Record<QuestionLanguage, Record<QuoteKind, string>>
+} as const satisfies Record<QuoteListLanguage, Record<QuoteKind, string>>
 
 const THEME_BY_LANGUAGE = {
   en: 'Quotes',
   fr: 'Citations'
-} as const satisfies Record<QuestionLanguage, string>
+} as const satisfies Record<QuoteListLanguage, string>
 
-export const ingestQuotes = (language: QuestionLanguage): IngestedQuestions => {
+export const ingestQuotes = (
+  language: QuoteListLanguage
+): IngestedQuestions => {
   const quotes = readAuthoredList({
     fileName: `quotes-${language}.json`,
     schema: authoredQuoteSchema

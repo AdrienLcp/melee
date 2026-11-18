@@ -7,19 +7,18 @@ import {
 
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
+import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { bankedCapitals } from './capital-bank'
-import {
-  bankedCapitalQuestions,
-  PORTUGUESE_CAPITAL_PROMPT
-} from './capital-questions'
+import { bankedCapitalQuestions } from './capital-questions'
 import { bankedQuestions } from './question-bank'
 
 const COUNTRY_NAMES = {
   en: COUNTRY_NAMES_EN,
-  fr: COUNTRY_NAMES_FR
+  fr: COUNTRY_NAMES_FR,
+  pt: COUNTRY_NAMES_PT
 } satisfies Record<QuestionLanguage, unknown>
 
 const QUESTIONS = bankedCapitalQuestions()
@@ -52,8 +51,8 @@ describe('the capitals rubric', () => {
 
   it('[capitals] contracts the Portuguese article into the question', () => {
     expect(
-      (['FRA', 'JPN', 'USA', 'SYC', 'PRT'] as const).map(
-        PORTUGUESE_CAPITAL_PROMPT
+      ['FRA', 'JPN', 'USA', 'SYC', 'PRT'].map(
+        (code) => questionOf(`capital-pt-${code}`).prompt
       )
     ).toEqual([
       'Qual é a capital da França?',

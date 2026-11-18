@@ -187,10 +187,7 @@ export type DeckBlackSquareTheme = {
   theme: Pick<PooledBlackSquareTheme, 'answers' | 'blackWord' | 'labels'>
 }
 
-const aliasesOf = (aliases: readonly string[]) => ({
-  en: [...aliases],
-  fr: [...aliases]
-})
+const aliasesOf = (aliases: readonly string[]) => byLocale(() => [...aliases])
 
 const pooledThemeOf = ({
   answers,

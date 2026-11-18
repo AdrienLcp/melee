@@ -25,7 +25,6 @@ import {
 } from '@melee/protocol/mystery-word'
 import {
   type QuestionCategory,
-  type QuestionLanguage,
   questionCategories,
   questionLanguages
 } from '@melee/protocol/question'
@@ -49,12 +48,12 @@ import {
 } from '@melee/core/room/game-capabilities'
 import { isJudgedByHost, modeOfferedBy } from '@melee/core/room/game-modes'
 
+import { LanguageChoice } from '@/presentation/components/language-choice'
 import { NumberField } from '@/presentation/components/number-field'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
 import {
   answerModeLabelKey,
   type PlainTranslationKey,
@@ -148,18 +147,13 @@ const QuestionBankSettings: React.FC<{
         whatever the host was reading and moves independently after that — a
         room can play in French on an English console.
       */}
-      <SegmentedControl
+      <LanguageChoice
         isDisabled={isDisabled}
         label={translate('quiz.language')}
-        onChange={(next) => {
-          if (isQuestionLanguage(next)) {
-            onChange({ ...game, language: next })
-          }
+        languages={questionLanguages}
+        onChange={(language) => {
+          onChange({ ...game, language })
         }}
-        options={questionLanguages.map((language) => ({
-          label: LANGUAGE_NAMES[language],
-          value: language
-        }))}
         value={game.language}
       />
       <ToggleGroup
@@ -206,9 +200,6 @@ const isAnswerMode = (value: string): value is AnswerMode =>
 
 const asCategory = (value: string | number): QuestionCategory | undefined =>
   questionCategories.find((category) => category === value)
-
-const isQuestionLanguage = (value: string): value is QuestionLanguage =>
-  questionLanguages.some((language) => language === value)
 
 type SettingsPanelProps = {
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
@@ -713,18 +704,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {game?.kind === 'mysteryword' && (
         <>
-          <SegmentedControl
+          <LanguageChoice
             isDisabled={isDisabled}
             label={translate('mysteryword.language')}
-            onChange={(next) => {
-              if (isQuestionLanguage(next)) {
-                onChange({ ...settings, game: { ...game, language: next } })
-              }
+            languages={questionLanguages}
+            onChange={(language) => {
+              onChange({ ...settings, game: { ...game, language } })
             }}
-            options={questionLanguages.map((language) => ({
-              label: LANGUAGE_NAMES[language],
-              value: language
-            }))}
             value={game.language}
           />
           <NumberChoice
@@ -759,18 +745,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {game?.kind === 'longestword' && (
         <>
-          <SegmentedControl
+          <LanguageChoice
             isDisabled={isDisabled}
             label={translate('longestword.language')}
-            onChange={(next) => {
-              if (isQuestionLanguage(next)) {
-                onChange({ ...settings, game: { ...game, language: next } })
-              }
+            languages={questionLanguages}
+            onChange={(language) => {
+              onChange({ ...settings, game: { ...game, language } })
             }}
-            options={questionLanguages.map((language) => ({
-              label: LANGUAGE_NAMES[language],
-              value: language
-            }))}
             value={game.language}
           />
           <NumberChoice
@@ -801,18 +782,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {game?.kind === 'thinkalike' && (
         <>
-          <SegmentedControl
+          <LanguageChoice
             isDisabled={isDisabled}
             label={translate('thinkalike.language')}
-            onChange={(next) => {
-              if (isQuestionLanguage(next)) {
-                onChange({ ...settings, game: { ...game, language: next } })
-              }
+            languages={questionLanguages}
+            onChange={(language) => {
+              onChange({ ...settings, game: { ...game, language } })
             }}
-            options={questionLanguages.map((language) => ({
-              label: LANGUAGE_NAMES[language],
-              value: language
-            }))}
             value={game.language}
           />
           <NumberChoice

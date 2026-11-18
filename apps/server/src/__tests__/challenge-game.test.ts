@@ -134,11 +134,13 @@ describe('a challenge played at the table', () => {
 
     expect(challengeRound(playerView(anna))?.labels).toEqual({
       en: POTATOES,
-      fr: POTATOES
+      fr: POTATOES,
+      pt: POTATOES
     })
     expect(challengeRound(hostView(host))?.labels).toEqual({
       en: POTATOES,
-      fr: POTATOES
+      fr: POTATOES,
+      pt: POTATOES
     })
     expect(hostView(host)?.currentContent).toEqual({ kind: 'challenge' })
   })
@@ -570,7 +572,7 @@ describe('a challenge deck of the evening’s own lines', () => {
     'Hum the song from the wedding',
     'Draw the house from memory'
   ]
-  const lineOf = (text: string) => ({ en: text, fr: text })
+  const lineOf = (text: string) => ({ en: text, fr: text, pt: text })
   const transcriptOf = (peer: { frames: { raw: string }[] }) =>
     peer.frames.map(({ raw }) => raw).join('')
 
@@ -685,7 +687,7 @@ describe('the challenge lines a host wrote ahead', () => {
     'Whistle the anthem',
     'Tell the story of the first kiss'
   ]
-  const lineOf = (text: string) => ({ en: text, fr: text })
+  const lineOf = (text: string) => ({ en: text, fr: text, pt: text })
   const transcriptOf = (peer: { frames: { raw: string }[] }) =>
     peer.frames.map(({ raw }) => raw).join('')
   const writeLines = (host: Peer<HostServerMessage>, challenge: string[]) => {

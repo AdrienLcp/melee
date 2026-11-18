@@ -12,5 +12,6 @@ import type { QuestionLanguage } from '@melee/protocol/question'
  */
 export const LANGUAGE_NAMES: Record<Locale | QuestionLanguage, string> = {
   en: 'English',
-  fr: 'Français'
+  fr: 'Français',
+  pt: 'Português'
 }

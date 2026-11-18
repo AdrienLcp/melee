@@ -44,7 +44,8 @@ const flagBankSchema = z.array(
 
 const PROMPT_BY_LANGUAGE = {
   en: 'Whose flag is this?',
-  fr: 'À qui est ce drapeau ?'
+  fr: 'À qui est ce drapeau ?',
+  pt: 'De quem é esta bandeira?'
 } as const satisfies Record<QuestionLanguage, string>
 
 let parsedFlags: z.infer<typeof flagBankSchema> | undefined

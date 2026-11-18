@@ -70,7 +70,7 @@ export default defineConfig({
   plugins: [
     react({ compiler: { reportDiagnostics: true } }),
     {
-      ...optimizeLocales.vite({ locales: ['en-US', 'fr-FR'] }),
+      ...optimizeLocales.vite({ locales: ['en-US', 'fr-FR', 'pt-PT'] }),
       enforce: 'pre'
     },
     shellHead({

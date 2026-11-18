@@ -1,12 +1,6 @@
-import {
-  defineDictionary,
-  defineTranslation,
-  type MatchingDictionary
-} from '@adrienlcp/i18n'
+import { defineDictionary, defineTranslation } from '@adrienlcp/i18n'
 
 import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
-
-import type { EN_DICTIONARY } from './dictionary-en'
 
 /**
  * European Portuguese, addressed as _tu_.
@@ -3063,9 +3057,4 @@ const PORTUGUESE = defineDictionary({
   }
 })
 
-/**
- * Held to the English shape now, though `pt` joins `LOCALES` — and the
- * registry that would check it — only once every bank speaks Portuguese.
- */
-export const PT_DICTIONARY: typeof PORTUGUESE &
-  MatchingDictionary<typeof EN_DICTIONARY, typeof PORTUGUESE> = PORTUGUESE
+export const PT_DICTIONARY = PORTUGUESE

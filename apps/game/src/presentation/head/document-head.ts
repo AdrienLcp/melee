@@ -30,8 +30,8 @@ export type PageHead = {
  * Read twice. Each page renders its title as `<title>`, which the build-time
  * prerender lifts into the head of every document beside the description it
  * writes itself, and React keeps in the tab after an in-app navigation. Typed over
- * `ShelvedGame`, so putting a game on the shelf stops compiling here until both
- * languages can introduce it to a stranger.
+ * `ShelvedGame`, so putting a game on the shelf stops compiling here until every
+ * language can introduce it to a stranger.
  */
 export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
   en: {
@@ -277,138 +277,130 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Cinq événements tombent d’un coup — les premiers pas sur la Lune, la chute du mur de Berlin, le premier iPhone — et toute la salle les remet dans l’ordre depuis son écran, du plus ancien au plus récent. Les années tombent au dévoilement. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Frise chronologique — Mêlée'
     }
+  },
+  pt: {
+    assistant: {
+      description:
+        'Liga o Claude ou outro assistente de IA ao Mêlée em três passos, descreve a mesa por palavras tuas e abre a partida que ele monta, cada jogo escolhido e pronto a jogar.',
+      title: 'Preparar com um assistente — Mêlée'
+    },
+    atlas: {
+      description:
+        'Aparece um lugar e cada um põe o seu peão no mapa, no próprio ecrã — ou o mapa acende um lugar e cada um diz qual é. Em cheio leva os pontos todos; ao lado, paga-se ao quilómetro, e a revelação traça a linha de cada peão. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Atlas — Mêlée'
+    },
+    blacksquare: {
+      description:
+        'Sai um tema e até nove respostas escondem-se atrás dele, as menos óbvias a valer mais. Cada um dispara respostas do seu ecrã, quantas quiser — e uma resposta que parece certa é a palavra negra que custa a ronda. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Casa negra — Mêlée'
+    },
+    blindtest: {
+      description:
+        'Um ecrã põe a música a tocar e toda a gente carrega na campainha no ecrã que tiver à mão. O primeiro a dizer o título e o artista leva os pontos. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Adivinha a música — Mêlée'
+    },
+    buzzer: {
+      description:
+        'Uma campainha para a sala inteira e mais nada: tu trazes a charada, o quiz em papel ou a lição, e o ecrã decide quem foi primeiro. A hora de cada toque é marcada pelo servidor, por isso a corrida não se discute.',
+      title: 'Campainha — Mêlée'
+    },
+    challenge: {
+      description:
+        'Um desafio jogado à mesa, longe dos ecrãs: o ecrã da sala mostra o que é, o anfitrião diz quem ficou em primeiro, segundo e terceiro, e os pontos entram na classificação com todas as outras rondas da partida.',
+      title: 'Desafio — Mêlée'
+    },
+    credits: {
+      description:
+        'De onde vêm os bancos de perguntas do Mêlée, o que foi alterado para os incluir e a licença sob a qual o banco reunido é partilhado.',
+      title: 'Créditos — Mêlée'
+    },
+    estimate: {
+      description:
+        'Uma pergunta cuja resposta é um número — quantas pessoas vivem no Japão, que altura tem o Monte Branco, quanto mede o Loire — e a sala inteira escreve uma estimativa no seu ecrã. Ninguém precisa de saber: os três mais próximos pontuam, e a revelação alinha cada palpite com o valor real. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'O número certo — Mêlée'
+    },
+    higherlower: {
+      description:
+        'Duas cidades, dois rios, duas montanhas: qual tem mais gente, qual é mais comprido, qual é mais alta? Cinco pares no ecrã de cada um, uma escolha por par, e a revelação mostra os dez números de uma vez. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Mais ou menos — Mêlée'
+    },
+    home: {
+      description:
+        'Um ecrã conduz o jogo e toda a gente entra pelo código QR ou pelo código da mesa — sem instalar nada, sem conta. Uma noite inteira de jogos na mesma sala: adivinha a música, quiz, Stop, um mapa onde pôr o peão, uma linha do tempo para ordenar, um número para estimar e muito mais.',
+      title: 'Mêlée — jogos de grupo para um ecrã e a sala inteira'
+    },
+    innerclock: {
+      description:
+        'O ecrã da sala dá um número de segundos e depois todos os ecrãs ficam parados: nenhum relógio, nada que mexa. Cada um conta de cabeça e carrega uma vez, e quem ficar mais perto leva mais pontos.',
+      title: 'Relógio interno — Mêlée'
+    },
+    legal: {
+      description:
+        'Quem publica o Mêlée, o que guarda sobre quem joga e durante quanto tempo, que serviços recebem o quê e como recusar a medição de audiência.',
+      title: 'Aviso legal e privacidade — Mêlée'
+    },
+    longestword: {
+      description:
+        'Nove letras aparecem em todos os ecrãs, e cada um tem o tempo do relógio para formar a palavra mais longa que conseguir, cada letra uma vez. A sala vê o tamanho da palavra de cada um, nunca a palavra, até a revelação mostrar a mais longa que o sorteio escondia. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Palavra mais longa — Mêlée'
+    },
+    makenumber: {
+      description:
+        'Seis números e um alvo aparecem em todos os ecrãs, e cada um tem o tempo do relógio para juntar os números dois a dois — somar, subtrair, multiplicar, dividir — o mais perto possível do alvo. A sala vê o número de cada um, nunca como lá chegou, até a revelação mostrar o caminho mais curto que os números permitiam. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Conta certa — Mêlée'
+    },
+    matchsticks: {
+      description:
+        'Uma igualdade falsa desenhada com fósforos, ou um número a tornar o maior ou o menor possível: mexe-se um só fósforo. Cada um mexe-o no seu ecrã e a melhor jogada vale mais, ou o primeiro a tocar a campainha diz qual e o anfitrião decide. Cada enigma é sorteado de novo e todos têm resposta.',
+      title: 'Fósforos — Mêlée'
+    },
+    mostlikely: {
+      description:
+        'Aparece uma frase — quem é mais capaz de falar com as plantas? — e a sala inteira vota numa das pessoas à mesa, cada um no seu ecrã. A revelação conta os votos sem dizer quem votou em quem. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Quem de nós? — Mêlée'
+    },
+    mysteryword: {
+      description:
+        'Uma palavra está escondida, com a primeira letra e o tamanho em todos os ecrãs, e cada um tem seis tentativas para a descobrir no seu. Cada tentativa volta letra a letra: no sítio, noutro sítio da palavra, ou fora dela. A sala vê cada grelha encher-se de cores, nunca as letras, até a revelação as soletrar. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Palavra mistério — Mêlée'
+    },
+    petitbac: {
+      description:
+        'Sai uma letra e cada um preenche a mesma folha no seu ecrã — um país, um animal, um nome próprio, todos a começar por ela. O primeiro a acabar grita stop, a sala vota no que conta, e uma palavra que mais ninguém escreveu vale o dobro. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Stop — Mêlée'
+    },
+    quiz: {
+      description:
+        'Milhares de perguntas sobre nove temas, em francês e em inglês, respondidas pela sala inteira ao mesmo tempo, cada um no seu ecrã. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Quiz — Mêlée'
+    },
+    reflex: {
+      description:
+        'O ecrã muda de cor e o primeiro a carregar ganha. Cada aparelho marca a mudança no seu próprio relógio, por isso a corrida mede um reflexo e não o Wi-Fi da sala. Uma partida em falso custa a ronda.',
+      title: 'Reflexo — Mêlée'
+    },
+    slate: {
+      description:
+        'Coisas numeradas para adivinhar e uma folha de respostas privada em cada ecrã. Ninguém copia a voz mais alta; o anfitrião corrige as folhas número a número no ecrã grande.',
+      title: 'A Ardósia — Mêlée'
+    },
+    swatch: {
+      description:
+        'Uma cor aparece em todos os ecrãs durante uns segundos, depois esconde-se, e a sala inteira refá-la de memória, cada um no seu ecrã. A revelação põe cada tentativa ao lado da verdadeira, a mais próxima primeiro. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Tons — Mêlée'
+    },
+    thinkalike: {
+      description:
+        'Aparece um tema em todos os ecrãs — uma fruta vermelha, algo que se encontra num frigorífico — e cada um escreve a primeira coisa que lhe vem à cabeça antes de o tempo acabar. Ninguém vê uma palavra até a revelação virar as respostas, e cada uma vale conforme quantos outros a escreveram também. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Pensa como a mesa — Mêlée'
+    },
+    timeline: {
+      description:
+        'Cinco acontecimentos aparecem de uma vez — a chegada à Lua, a queda do Muro de Berlim, o primeiro iPhone — e a sala inteira põe-nos por ordem, cada um no seu ecrã, do mais antigo ao mais recente. Os anos só saem na revelação. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Linha do tempo — Mêlée'
+    }
   }
 }
-
-/**
- * Portugal's heads, written before `pt` joins `LOCALES`: the language turns
- * on in one commit, which moves these under `PAGE_HEADS` and `IMAGE_ALTS`.
- */
-export const PT_PAGE_HEADS: Record<IndexedPage, PageHead> = {
-  assistant: {
-    description:
-      'Liga o Claude ou outro assistente de IA ao Mêlée em três passos, descreve a mesa por palavras tuas e abre a partida que ele monta, cada jogo escolhido e pronto a jogar.',
-    title: 'Preparar com um assistente — Mêlée'
-  },
-  atlas: {
-    description:
-      'Aparece um lugar e cada um põe o seu peão no mapa, no próprio ecrã — ou o mapa acende um lugar e cada um diz qual é. Em cheio leva os pontos todos; ao lado, paga-se ao quilómetro, e a revelação traça a linha de cada peão. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Atlas — Mêlée'
-  },
-  blacksquare: {
-    description:
-      'Sai um tema e até nove respostas escondem-se atrás dele, as menos óbvias a valer mais. Cada um dispara respostas do seu ecrã, quantas quiser — e uma resposta que parece certa é a palavra negra que custa a ronda. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Casa negra — Mêlée'
-  },
-  blindtest: {
-    description:
-      'Um ecrã põe a música a tocar e toda a gente carrega na campainha no ecrã que tiver à mão. O primeiro a dizer o título e o artista leva os pontos. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Adivinha a música — Mêlée'
-  },
-  buzzer: {
-    description:
-      'Uma campainha para a sala inteira e mais nada: tu trazes a charada, o quiz em papel ou a lição, e o ecrã decide quem foi primeiro. A hora de cada toque é marcada pelo servidor, por isso a corrida não se discute.',
-    title: 'Campainha — Mêlée'
-  },
-  challenge: {
-    description:
-      'Um desafio jogado à mesa, longe dos ecrãs: o ecrã da sala mostra o que é, o anfitrião diz quem ficou em primeiro, segundo e terceiro, e os pontos entram na classificação com todas as outras rondas da partida.',
-    title: 'Desafio — Mêlée'
-  },
-  credits: {
-    description:
-      'De onde vêm os bancos de perguntas do Mêlée, o que foi alterado para os incluir e a licença sob a qual o banco reunido é partilhado.',
-    title: 'Créditos — Mêlée'
-  },
-  estimate: {
-    description:
-      'Uma pergunta cuja resposta é um número — quantas pessoas vivem no Japão, que altura tem o Monte Branco, quanto mede o Loire — e a sala inteira escreve uma estimativa no seu ecrã. Ninguém precisa de saber: os três mais próximos pontuam, e a revelação alinha cada palpite com o valor real. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'O número certo — Mêlée'
-  },
-  higherlower: {
-    description:
-      'Duas cidades, dois rios, duas montanhas: qual tem mais gente, qual é mais comprido, qual é mais alta? Cinco pares no ecrã de cada um, uma escolha por par, e a revelação mostra os dez números de uma vez. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Mais ou menos — Mêlée'
-  },
-  home: {
-    description:
-      'Um ecrã conduz o jogo e toda a gente entra pelo código QR ou pelo código da mesa — sem instalar nada, sem conta. Uma noite inteira de jogos na mesma sala: adivinha a música, quiz, Stop, um mapa onde pôr o peão, uma linha do tempo para ordenar, um número para estimar e muito mais.',
-    title: 'Mêlée — jogos de grupo para um ecrã e a sala inteira'
-  },
-  innerclock: {
-    description:
-      'O ecrã da sala dá um número de segundos e depois todos os ecrãs ficam parados: nenhum relógio, nada que mexa. Cada um conta de cabeça e carrega uma vez, e quem ficar mais perto leva mais pontos.',
-    title: 'Relógio interno — Mêlée'
-  },
-  legal: {
-    description:
-      'Quem publica o Mêlée, o que guarda sobre quem joga e durante quanto tempo, que serviços recebem o quê e como recusar a medição de audiência.',
-    title: 'Aviso legal e privacidade — Mêlée'
-  },
-  longestword: {
-    description:
-      'Nove letras aparecem em todos os ecrãs, e cada um tem o tempo do relógio para formar a palavra mais longa que conseguir, cada letra uma vez. A sala vê o tamanho da palavra de cada um, nunca a palavra, até a revelação mostrar a mais longa que o sorteio escondia. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Palavra mais longa — Mêlée'
-  },
-  makenumber: {
-    description:
-      'Seis números e um alvo aparecem em todos os ecrãs, e cada um tem o tempo do relógio para juntar os números dois a dois — somar, subtrair, multiplicar, dividir — o mais perto possível do alvo. A sala vê o número de cada um, nunca como lá chegou, até a revelação mostrar o caminho mais curto que os números permitiam. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Conta certa — Mêlée'
-  },
-  matchsticks: {
-    description:
-      'Uma igualdade falsa desenhada com fósforos, ou um número a tornar o maior ou o menor possível: mexe-se um só fósforo. Cada um mexe-o no seu ecrã e a melhor jogada vale mais, ou o primeiro a tocar a campainha diz qual e o anfitrião decide. Cada enigma é sorteado de novo e todos têm resposta.',
-    title: 'Fósforos — Mêlée'
-  },
-  mostlikely: {
-    description:
-      'Aparece uma frase — quem é mais capaz de falar com as plantas? — e a sala inteira vota numa das pessoas à mesa, cada um no seu ecrã. A revelação conta os votos sem dizer quem votou em quem. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Quem de nós? — Mêlée'
-  },
-  mysteryword: {
-    description:
-      'Uma palavra está escondida, com a primeira letra e o tamanho em todos os ecrãs, e cada um tem seis tentativas para a descobrir no seu. Cada tentativa volta letra a letra: no sítio, noutro sítio da palavra, ou fora dela. A sala vê cada grelha encher-se de cores, nunca as letras, até a revelação as soletrar. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Palavra mistério — Mêlée'
-  },
-  petitbac: {
-    description:
-      'Sai uma letra e cada um preenche a mesma folha no seu ecrã — um país, um animal, um nome próprio, todos a começar por ela. O primeiro a acabar grita stop, a sala vota no que conta, e uma palavra que mais ninguém escreveu vale o dobro. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Stop — Mêlée'
-  },
-  quiz: {
-    description:
-      'Milhares de perguntas sobre nove temas, em francês e em inglês, respondidas pela sala inteira ao mesmo tempo, cada um no seu ecrã. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Quiz — Mêlée'
-  },
-  reflex: {
-    description:
-      'O ecrã muda de cor e o primeiro a carregar ganha. Cada aparelho marca a mudança no seu próprio relógio, por isso a corrida mede um reflexo e não o Wi-Fi da sala. Uma partida em falso custa a ronda.',
-    title: 'Reflexo — Mêlée'
-  },
-  slate: {
-    description:
-      'Coisas numeradas para adivinhar e uma folha de respostas privada em cada ecrã. Ninguém copia a voz mais alta; o anfitrião corrige as folhas número a número no ecrã grande.',
-    title: 'A Ardósia — Mêlée'
-  },
-  swatch: {
-    description:
-      'Uma cor aparece em todos os ecrãs durante uns segundos, depois esconde-se, e a sala inteira refá-la de memória, cada um no seu ecrã. A revelação põe cada tentativa ao lado da verdadeira, a mais próxima primeiro. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Tons — Mêlée'
-  },
-  thinkalike: {
-    description:
-      'Aparece um tema em todos os ecrãs — uma fruta vermelha, algo que se encontra num frigorífico — e cada um escreve a primeira coisa que lhe vem à cabeça antes de o tempo acabar. Ninguém vê uma palavra até a revelação virar as respostas, e cada uma vale conforme quantos outros a escreveram também. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Pensa como a mesa — Mêlée'
-  },
-  timeline: {
-    description:
-      'Cinco acontecimentos aparecem de uma vez — a chegada à Lua, a queda do Muro de Berlim, o primeiro iPhone — e a sala inteira põe-nos por ordem, cada um no seu ecrã, do mais antigo ao mais recente. Os anos só saem na revelação. Lê o código QR e joga — sem instalar nada, sem conta.',
-    title: 'Linha do tempo — Mêlée'
-  }
-}
-
-export const PT_IMAGE_ALT =
-  'O nome Mêlée ao lado da prateleira de todos os seus jogos, cada um na sua cor.'
 
 /**
  * The share image is drawn once per language, from the front door in that
@@ -417,12 +409,14 @@ export const PT_IMAGE_ALT =
  */
 export const SHARE_IMAGE_PATHS: Record<Locale, string> = {
   en: '/og.png',
-  fr: '/og-fr.png'
+  fr: '/og-fr.png',
+  pt: '/og-pt.png'
 }
 
 export const IMAGE_ALTS: Record<Locale, string> = {
   en: 'The Mêlée wordmark beside the shelf of every game it plays, each in its own colour.',
-  fr: 'Le nom Mêlée à côté de l’étagère de tous ses jeux, chacun dans sa couleur.'
+  fr: 'Le nom Mêlée à côté de l’étagère de tous ses jeux, chacun dans sa couleur.',
+  pt: 'O nome Mêlée ao lado da prateleira de todos os seus jogos, cada um na sua cor.'
 }
 
 /**
@@ -432,5 +426,6 @@ export const IMAGE_ALTS: Record<Locale, string> = {
  */
 export const OPEN_GRAPH_LOCALES: Record<Locale, string> = {
   en: 'en_US',
-  fr: 'fr_FR'
+  fr: 'fr_FR',
+  pt: 'pt_PT'
 }

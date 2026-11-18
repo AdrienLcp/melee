@@ -100,7 +100,7 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 | 05  | `portuguese-05-quantities.md`   | Estimate and higher or lower, `homeCountry` on arms and rows                  | **done** 18/11/2026 |
 | 06  | `portuguese-06-quiz-bank.md`    | A Portuguese quiz bank                                                        | **done** 18/11/2026 |
 | 07  | `portuguese-07-words.md`        | A Portuguese lexicon and answer matching                                      | **done** 18/11/2026 |
-| 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | to do               |
+| 08  | `portuguese-08-flip.md`         | `pt` joins `LOCALES` and `questionLanguages` together                         | **done** 18/11/2026 |
 | 09  | `portuguese-09-portugal.md`     | Portugal's cities on the map, decades, ready-made evenings                    | to do               |
 
 ### 01 — what landed
@@ -300,4 +300,42 @@ table with no country of its own — in `openedGameSettings`, and re-synced by
 - Keyboard: `KEY_ROWS` is held to `QuestionLanguage`, so `pt` takes QWERTY
   at the flip (noted in 08's handoff).
 
-<!-- cspell:words Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa Danúbio Tejo Torre Clérigos Moscou Teerã Padrão Descobrimentos -->
+### 08 — what landed
+
+- **`pt` in `LOCALES` and `questionLanguages` in one commit.** The compiler
+  pointed at 30-odd records, each filled: the dictionary as a lazy chunk,
+  `pt-PT` for react-aria and `optimizeLocales`, _Português_, `/pt/…` pages
+  with reciprocal `hreflang`, `PAGE_HEADS.pt`, `pt_PT`, flags, outlines,
+  capitals and rebuses asked in Portuguese, the countries' Portuguese names
+  and aliases (_Holanda_, _EUA_, _Chéquia_), `homeCountryFor('pt')` →
+  `PRT`, and the keyboard on QWERTY.
+- **Every stopgap of 01–07 deleted**: `inQuestionLanguagesOnly` (quiz,
+  think alike), `BankLanguage`, `WordLanguage`, the `PORTUGUESE_*` constants
+  and the quiz test's Portuguese block, whose rows the sweep now reads — its
+  `[difficulty]` draws pass at `hard`. `PT_DICTIONARY` dropped its
+  `MatchingDictionary` annotation: the registry checks it now, and the
+  annotation's intersection made it refuse every `zero` form.
+- **A bank row the capitals rubric already asks is matched on its accepted
+  spellings too**: the Portuguese _Qual é a capital dos Estados Unidos?_
+  answers _Washington_ and accepts _Washington D.C._, the rubric's name.
+- **A third language broke the language strips 2+1** below 312px, which
+  `strip-rows` caught in all three locales: the menu's and the four games'
+  strips are one `LanguageChoice` now, stacking below 20rem.
+- **Portuguese plurals tested at 0**: `portuguese-plurals.test.ts` renders
+  `0 lugares` and holds every count with a `one` to a `zero` of its own.
+- **`og-pt.png`** drawn from the Portuguese front door to `og-fr.png`'s
+  layout, with the same sixteen games. All three share images predate
+  mystery word, longest word, make the number and think alike: redrawing
+  them is a design change of its own.
+- **Tests**: `dead-socket.spec.ts` runs in Portuguese, the one journey that
+  reads a stored locale; `strip-rows` sweeps `pt` too, on a third CI shard.
+  The author's site has no Portuguese page, so the legal and credit links
+  take its English one.
+- **Seen in a browser, muted**: the menu switch and front door in
+  Portuguese, a Portuguese quiz room full at 24 long names (lobby, round,
+  reveal, every panel tab and the quiz's settings at 375px), Portuguese
+  content opening mystery word, longest word, think alike, estimate, higher
+  or lower and black square, a Stop sheet at 375px, and a French screen
+  reading a Portuguese table's timeline cards in French. No overflow found.
+
+<!-- cspell:words Português Chéquia EUA Holanda lugares pontos Categoria Carnaval Cidade Euromilhões Futuro Lisboa México Moscovo Padrinho Psico Regresso Traz estreia hipóteses CLDR portuguese portugal outdir Eusébio Haïti Adivinha Ardósia Campainha Casa Conta Desafio Estados França Fósforos Japão Linha Mais Palavra Pensa Quem Reflexo Relógio Tons Unidos anfitrião certa certo ecrã interno longa menos mesa mistério música negra número partida ronda sala tempo Natura Projecto ação descobre descobrir forca força manha manhã pécher pêcher umas ótimo Benfica Demain Dujardin Francesa Guianas Guiane Milão Orangina Oury Roriz Sacanas Tinta Veber apontador asiática bacalhau bambolê bebidas brancas choco futsal hóquei napolitana patins ratazana ratinho rola suco tartiflette tremoço vespa Danúbio Tejo Torre Clérigos Moscou Teerã Padrão Descobrimentos -->

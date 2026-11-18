@@ -5,12 +5,14 @@ import { AUTHOR } from '@/presentation/site-credits'
 /**
  * Who publishes Melee and how to reach him. A non-professional publisher
  * gives a name and a contact, never a postal address or a phone number (LCEN,
- * article 6-III-2).
+ * article 6-III-2). The site has no Portuguese page, so Portuguese links to
+ * the English one.
  */
 export const PUBLISHER = {
   contactHrefFor: {
     en: 'https://adrienlcp.com/en/contact',
-    fr: 'https://adrienlcp.com/fr/contact'
+    fr: 'https://adrienlcp.com/fr/contact',
+    pt: 'https://adrienlcp.com/en/contact'
   } satisfies Record<Locale, string>,
   name: AUTHOR.name
 } as const

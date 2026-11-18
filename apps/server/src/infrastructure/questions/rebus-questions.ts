@@ -10,6 +10,7 @@ import { contentTiers } from '@melee/core/round/difficulty-draw'
 import type { BankedQuestion } from './question-bank'
 import rebusEn from './rebus-en.json' with { type: 'json' }
 import rebusFr from './rebus-fr.json' with { type: 'json' }
+import rebusPt from './rebus-pt.json' with { type: 'json' }
 
 /**
  * The rebus rubric: a title written in emojis, the room names it. Written here
@@ -47,20 +48,19 @@ const ASK_BY_KIND = {
     saying: 'Quelle expression ?',
     series: 'Quelle série ?',
     song: 'Quelle chanson ?'
+  },
+  pt: {
+    film: 'Que filme?',
+    saying: 'Que expressão?',
+    series: 'Que série?',
+    song: 'Que canção?'
   }
 } as const satisfies Record<QuestionLanguage, Record<RebusKind, string>>
 
-/** Joins `ASK_BY_KIND` the day Portuguese joins the question languages. */
-export const PORTUGUESE_ASK_BY_KIND = {
-  film: 'Que filme?',
-  saying: 'Que expressão?',
-  series: 'Que série?',
-  song: 'Que canção?'
-} as const satisfies Record<RebusKind, string>
-
 export const AUTHORED_REBUSES = {
   en: rebusEn,
-  fr: rebusFr
+  fr: rebusFr,
+  pt: rebusPt
 } as const satisfies Record<QuestionLanguage, unknown>
 
 let rebusQuestions: BankedQuestion[] | undefined

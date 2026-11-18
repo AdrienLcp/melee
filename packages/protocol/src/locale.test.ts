@@ -7,6 +7,7 @@ describe('isLocale', () => {
   it('[locale] accepts a language this product ships a dictionary for', () => {
     expect(isLocale('en')).toBe(true)
     expect(isLocale('fr')).toBe(true)
+    expect(isLocale('pt')).toBe(true)
   })
 
   // A region tag is not a dictionary key. Turning `fr-CA` into `fr` is
@@ -24,8 +25,13 @@ describe('localizedSchema', () => {
 
   it('[locale] drops a language not shipped yet', () => {
     expect(
-      namesSchema.parse({ en: 'London', fr: 'London', pt: 'London' })
-    ).toEqual({ en: 'London', fr: 'London' })
+      namesSchema.parse({
+        de: 'London',
+        en: 'London',
+        fr: 'Londres',
+        pt: 'Londres'
+      })
+    ).toEqual({ en: 'London', fr: 'Londres', pt: 'Londres' })
   })
 
   it('[locale] refuses a value missing a shipped language', () => {

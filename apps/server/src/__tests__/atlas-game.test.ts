@@ -46,7 +46,7 @@ vi.mock('@/infrastructure/questions/city-bank', () => ({
 
 const CANBERRA = {
   countryCode: 'AUS',
-  names: { en: 'Canberra', fr: 'Canberra' },
+  names: { en: 'Canberra', fr: 'Canberra', pt: 'Canberra' },
   point: { latitude: -35.293, longitude: 149.127 }
 } as const
 
@@ -551,7 +551,11 @@ describe('a map round that shows a place for the table to name', () => {
     expect(shown?.longitude).toBeGreaterThan(-5)
     expect(shown?.longitude).toBeLessThan(8)
     expect(round?.choices).toHaveLength(4)
-    expect(round?.choices).toContainEqual({ en: 'France', fr: 'France' })
+    expect(round?.choices).toContainEqual({
+      en: 'France',
+      fr: 'France',
+      pt: 'França'
+    })
     expect(transcriptOf(zoe)).not.toContain('"FRA"')
     expect(hostView(host)?.currentContent).toEqual({
       answer: { countryCode: 'FRA', kind: 'country' },
@@ -725,3 +729,5 @@ describe('a map evening of several kinds of place', () => {
     )
   })
 })
+
+// cspell:words França

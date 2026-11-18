@@ -64,15 +64,13 @@ const ofCountryPt = (withArticle: string): string => {
   return `de ${withArticle}`
 }
 
-/** Joins `PROMPT_BY_LANGUAGE` the day Portuguese joins the question languages. */
-export const PORTUGUESE_CAPITAL_PROMPT = (code: CountryCode): string =>
-  `Qual é a capital ${ofCountryPt(COUNTRY_NAMES_PT[code].withArticle)}?`
-
 const PROMPT_BY_LANGUAGE = {
   en: (code: CountryCode) =>
     `What is the capital of ${COUNTRY_NAMES_EN[code].withArticle}?`,
   fr: (code: CountryCode) =>
-    `Quelle est la capitale ${ofCountryFr(COUNTRY_NAMES_FR[code].withArticle)} ?`
+    `Quelle est la capitale ${ofCountryFr(COUNTRY_NAMES_FR[code].withArticle)} ?`,
+  pt: (code: CountryCode) =>
+    `Qual é a capital ${ofCountryPt(COUNTRY_NAMES_PT[code].withArticle)}?`
 } as const satisfies Record<QuestionLanguage, (code: CountryCode) => string>
 
 /**
@@ -227,7 +225,8 @@ export const bankedCapitalQuestions = (): BankedQuestion[] => {
 
 const COUNTRY_NAMES_BY_LANGUAGE = {
   en: COUNTRY_NAMES_EN,
-  fr: COUNTRY_NAMES_FR
+  fr: COUNTRY_NAMES_FR,
+  pt: COUNTRY_NAMES_PT
 } as const satisfies Record<
   QuestionLanguage,
   Record<CountryCode, { name: string }>
@@ -277,11 +276,13 @@ export const asksACapitalTheRubricAsks = (
     return false
   }
 
-  const countries =
-    capitalsAsked().get(
-      `${question.language}::${normalizeAnswer(question.answer)}`
-    ) ?? []
   const prompt = normalizeAnswer(question.prompt)
 
-  return countries.some((country) => prompt.includes(country))
+  return [question.answer, ...question.accepted].some((spelling) =>
+    (
+      capitalsAsked().get(
+        `${question.language}::${normalizeAnswer(spelling)}`
+      ) ?? []
+    ).some((country) => prompt.includes(country))
+  )
 }

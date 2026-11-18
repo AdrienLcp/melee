@@ -7,7 +7,7 @@ import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
 import { useState, useSyncExternalStore } from 'react'
 
-import { isLocale, LOCALES } from '@melee/protocol/locale'
+import { LOCALES } from '@melee/protocol/locale'
 
 import {
   canGoFullscreen,
@@ -30,7 +30,6 @@ import {
 } from '@/infrastructure/router/navigation'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
-import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
 import { RichText } from '@/presentation/i18n/rich-text'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import {
@@ -52,6 +51,7 @@ import {
   SoundIcon,
   StopIcon
 } from './icons'
+import { LanguageChoice } from './language-choice'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { ProjectWithCode } from './project-with-code'
@@ -431,17 +431,14 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
 
           {seatRows}
 
-          <SegmentedControl
+          <LanguageChoice
             label={translate('preferences.language')}
+            languages={LOCALES}
             onChange={(next) => {
-              if (isLocale(next) && !navigateToLocale(next)) {
+              if (!navigateToLocale(next)) {
                 setLocale(next)
               }
             }}
-            options={LOCALES.map((value) => ({
-              label: LANGUAGE_NAMES[value],
-              value
-            }))}
             value={locale}
           />
 

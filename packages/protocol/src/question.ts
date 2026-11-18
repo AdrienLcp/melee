@@ -120,7 +120,7 @@ export const hostQuestionSchema = questionPromptSchema.extend(
  * room can hold different ones, and dealing each of them a question from their
  * own would not be one game.
  */
-export const questionLanguages = ['en', 'fr'] as const
+export const questionLanguages = ['en', 'fr', 'pt'] as const
 
 export const questionLanguageSchema = z.enum(questionLanguages)
 

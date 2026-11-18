@@ -4,7 +4,7 @@ import { homePage } from './support/locators'
 
 /**
  * Not a journey, and the only spec here that is not. It plays nothing: it opens
- * one room, walks every game and both locales, and measures the shape of every
+ * one room, walks every game and every locale, and measures the shape of every
  * choice strip on the console.
  *
  * A socket test cannot stand in for it — the defect is a row of segments that
@@ -18,7 +18,7 @@ import { homePage } from './support/locators'
  * A geometry check reads the boxes, so it reaches for classes where the rest of
  * the suite reaches for roles. `ToggleGroup` is a toolbar and `SegmentedControl`
  * a radiogroup, so no single role finds both, and no accessible name survives
- * being asked in two locales. The two of them together are every strip there
+ * being asked in several locales. The two of them together are every strip there
  * is, which is why the selector below is spelled out inside each browser
  * function rather than shared — nothing in this file's scope reaches in there.
  * Both read the host's panel alone: below the split the stage is hidden behind
@@ -340,7 +340,7 @@ const openTheTable = (page: Page): Promise<void> => openTab(page, 'table')
 /** The room's strips — the hold and the countdown. */
 const openTheRoom = (page: Page): Promise<void> => openTab(page, 'room')
 
-for (const locale of ['en', 'fr']) {
+for (const locale of ['en', 'fr', 'pt']) {
   test(`[layout] ${locale}: no strip on the console ever holds rows of two different lengths`, async ({
     page
   }) => {

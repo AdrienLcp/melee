@@ -4,14 +4,16 @@ import { fillLetterSlot, SLOT_LETTERS } from './letter-slot'
 
 const LINE = {
   en: 'Bring back something that starts with {letter}',
-  fr: 'Rapportez quelque chose qui commence par {letter}'
+  fr: 'Rapportez quelque chose qui commence par {letter}',
+  pt: 'Traz algo que comece pela letra {letter}'
 }
 
 describe('the letter a line is dealt with', () => {
   it('[challenge] fills one letter in every locale', () => {
     expect(fillLetterSlot({ labels: LINE, unit: 0 })).toEqual({
       en: 'Bring back something that starts with A',
-      fr: 'Rapportez quelque chose qui commence par A'
+      fr: 'Rapportez quelque chose qui commence par A',
+      pt: 'Traz algo que comece pela letra A'
     })
   })
 
@@ -22,7 +24,11 @@ describe('the letter a line is dealt with', () => {
   })
 
   it('[challenge] leaves a line without a slot as it is', () => {
-    const labels = { en: 'Bring back a key', fr: 'Rapportez une clé' }
+    const labels = {
+      en: 'Bring back a key',
+      fr: 'Rapportez une clé',
+      pt: 'Traz uma chave'
+    }
 
     expect(fillLetterSlot({ labels, unit: 0.5 })).toEqual(labels)
   })

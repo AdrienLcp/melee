@@ -3,11 +3,13 @@ import type { QuestionLanguage } from '@melee/protocol/question'
 
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
+import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
 
 /** A country's name as every rubric naming one answers it. */
 export const COUNTRY_NAMES_BY_LANGUAGE = {
   en: COUNTRY_NAMES_EN,
-  fr: COUNTRY_NAMES_FR
+  fr: COUNTRY_NAMES_FR,
+  pt: COUNTRY_NAMES_PT
 } as const satisfies Record<
   QuestionLanguage,
   Record<CountryCode, { name: string }>
@@ -47,6 +49,21 @@ const ACCEPTED_BY_LANGUAGE = {
     TLS: ['Timor-Leste'],
     USA: ['USA', 'États-Unis d’Amérique'],
     VAT: ['Saint-Siège']
+  },
+  pt: {
+    ARE: ['Emirados', 'EAU'],
+    BIH: ['Bósnia'],
+    COD: ['RDC', 'Congo-Kinshasa'],
+    COG: ['Congo-Brazzaville', 'República do Congo'],
+    CZE: ['Chéquia'],
+    GBR: ['Grã-Bretanha'],
+    MKD: ['Macedónia'],
+    MMR: ['Myanmar'],
+    NLD: ['Holanda'],
+    SWZ: ['Suazilândia'],
+    TLS: ['Timor'],
+    USA: ['EUA', 'América', 'Estados Unidos da América'],
+    VAT: ['Santa Sé']
   }
 } as const satisfies Record<
   QuestionLanguage,

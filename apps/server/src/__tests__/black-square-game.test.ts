@@ -40,8 +40,8 @@ const ANSWER_NAMES = [
 ]
 
 const named = (name: string) => ({
-  aliases: { en: [`${name} planet`], fr: [`La ${name}`] },
-  labels: { en: name, fr: `${name} fr` }
+  aliases: { en: [`${name} planet`], fr: [`La ${name}`], pt: [`O ${name}`] },
+  labels: { en: name, fr: `${name} fr`, pt: `${name} pt` }
 })
 
 /** Nine answers dealt nine at a time: two obvious, five between, two rare. */
@@ -64,10 +64,18 @@ const THEME = {
   })),
   blackWord: {
     ...named('Pluto'),
-    why: { en: 'A dwarf planet since 2006', fr: 'Dwarf planet, in French' }
+    why: {
+      en: 'A dwarf planet since 2006',
+      fr: 'Dwarf planet, in French',
+      pt: 'Dwarf planet, in Portuguese'
+    }
   },
   id: 'planets',
-  labels: { en: 'The planets', fr: 'The planets, in French' },
+  labels: {
+    en: 'The planets',
+    fr: 'The planets, in French',
+    pt: 'The planets, in Portuguese'
+  },
   tier: 'easy'
 }
 
@@ -543,7 +551,8 @@ describe('a black square deck', () => {
 
     expect(blackSquareRound(playerView(zoe))?.theme).toEqual({
       en: 'Fruits',
-      fr: 'Fruits'
+      fr: 'Fruits',
+      pt: 'Fruits'
     })
     expect(blackSquareRound(playerView(zoe))?.cellTiers).toEqual([
       1, 1, 1, 2, 2, 2, 2, 3, 3
@@ -581,7 +590,8 @@ describe('a black square deck', () => {
     ])
     expect(grid?.blackWord.why).toEqual({
       en: 'A stalk, only cooked like a fruit',
-      fr: 'A stalk, only cooked like a fruit'
+      fr: 'A stalk, only cooked like a fruit',
+      pt: 'A stalk, only cooked like a fruit'
     })
 
     host.send({ roundId, type: 'host.reveal' })

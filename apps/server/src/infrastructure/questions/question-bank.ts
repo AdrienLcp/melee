@@ -104,22 +104,11 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
  */
 let parsedBank: BankedQuestion[] | undefined
 
-/**
- * The bank holds Portuguese rows before `pt` is a language a room may play,
- * and a row in a language the schema does not know would refuse the whole
- * parse. They are left out until session 08 adds `pt` to
- * `questionLanguages` and deletes this (`docs/plans/72-portuguese.md`).
- */
-const inQuestionLanguagesOnly = (rows: readonly { language: string }[]) =>
-  rows.filter(
-    ({ language }) => questionLanguageSchema.safeParse(language).success
-  )
-
 export const bankedQuestions = (): BankedQuestion[] => {
   parsedBank ??= [
     ...z
       .array(bankedQuestionSchema)
-      .parse(inQuestionLanguagesOnly(bank.questions))
+      .parse(bank.questions)
       .filter((question) => !asksACapitalTheRubricAsks(question)),
     ...bankedFlagQuestions(),
     ...bankedCapitalQuestions(),

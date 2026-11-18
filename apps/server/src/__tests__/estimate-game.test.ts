@@ -48,7 +48,7 @@ const paidForMiss = (verdict: Verdict | undefined) =>
       )
     : null
 
-const NAMES = { en: 'Atlantis', fr: 'Atlantis' }
+const NAMES = { en: 'Atlantis', fr: 'Atlantis', pt: 'Atlântida' }
 
 vi.mock('@/infrastructure/questions/quantity-bank', async (importOriginal) => ({
   ...(await importOriginal<

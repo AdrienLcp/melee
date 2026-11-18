@@ -1,0 +1,10 @@
+// Side-effect module: the language strip's own shape, wherever it is mounted.
+@use '../styles/strip'
+
+@layer components
+  // English · Français · Português run 312px on one row at the labels'
+  // ceiling, in the menu and in the console alike, and in every locale: a
+  // language is named in its own words. A row holds in a 360px screen's
+  // panel and stacks at 320.
+  .language-choice
+    @include strip.stacks-below(20rem)

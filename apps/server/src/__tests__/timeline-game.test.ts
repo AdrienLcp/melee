@@ -39,7 +39,11 @@ const EVENTS = [
   { id: 'fifth', year: 1555 }
 ].map(({ id, year }) => ({
   id,
-  labels: { en: `The ${id} event`, fr: `Le fait ${id}` },
+  labels: {
+    en: `The ${id} event`,
+    fr: `Le fait ${id}`,
+    pt: `O acontecimento ${id}`
+  },
   year
 }))
 

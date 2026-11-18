@@ -601,11 +601,20 @@ const asNameRound = (view: object): object => {
         choices: [
           {
             en: 'Democratic Republic of the Congo',
-            fr: 'République démocratique du Congo'
+            fr: 'République démocratique du Congo',
+            pt: 'República Democrática do Congo'
           },
-          { en: 'Central African Republic', fr: 'République centrafricaine' },
-          { en: 'Republic of the Congo', fr: 'République du Congo' },
-          { en: 'South Sudan', fr: 'Soudan du Sud' }
+          {
+            en: 'Central African Republic',
+            fr: 'République centrafricaine',
+            pt: 'República Centro-Africana'
+          },
+          {
+            en: 'Republic of the Congo',
+            fr: 'République du Congo',
+            pt: 'República do Congo'
+          },
+          { en: 'South Sudan', fr: 'Soudan du Sud', pt: 'Sudão do Sul' }
         ],
         direction: 'name',
         kind: 'atlas',
@@ -2695,7 +2704,7 @@ const PHONE_VIEWPORTS = VIEWPORTS.filter(
 
 const fullSeats = fullTable.map((player) => ({ ...player, isReady: false }))
 
-const inBothLocales = (fr: string, en: string = fr) => ({ en, fr })
+const inEveryLocale = (fr: string, en: string = fr) => ({ en, fr, pt: fr })
 
 /** A round of any game on the first seat's screen, the table full and the round two seconds in. */
 const answeringView = ({
@@ -2959,7 +2968,7 @@ const atlasPlaceScreen = () =>
   })
 
 /** The host's own line at its longest, the same text in every locale. */
-const LONGEST_CHALLENGE = inBothLocales(
+const LONGEST_CHALLENGE = inEveryLocale(
   'Le premier qui rapporte à la table un objet rouge, une cuillère et une chaussette dépareillée, sans courir dans l’escalier, gagne la manche'
 )
 
@@ -3036,7 +3045,7 @@ const LONG_TIMELINE_EVENTS = [
     'Création de la Neuvième Symphonie de Beethoven',
     'Premiere of Beethoven’s Ninth Symphony'
   ]
-].map(([id = '', fr = '', en = '']) => ({ id, labels: inBothLocales(fr, en) }))
+].map(([id = '', fr = '', en = '']) => ({ id, labels: inEveryLocale(fr, en) }))
 
 const timelineScreen = () =>
   answeringView({
@@ -3050,7 +3059,7 @@ const timelineScreen = () =>
   })
 
 /** The black square bank's longest theme. */
-const LONGEST_THEME = inBothLocales(
+const LONGEST_THEME = inEveryLocale(
   'Les films lauréats du Golden Globe du meilleur film dramatique',
   'Winners of the Golden Globe for Best Drama Film'
 )
@@ -3067,10 +3076,10 @@ const TURNER_LIST = {
     'Pêcheurs en mer',
     'L’Incendie de la Chambre des Lords et des Communes, le 16 octobre 1834',
     'La Bataille de Trafalgar'
-  ].map((fr, at) => ({ labels: inBothLocales(fr), tier: (at % 3) + 1 })),
+  ].map((fr, at) => ({ labels: inEveryLocale(fr), tier: (at % 3) + 1 })),
   blackWord: {
-    labels: inBothLocales('Impression, Soleil levant', 'Impression, Sunrise'),
-    why: inBothLocales(
+    labels: inEveryLocale('Impression, Soleil levant', 'Impression, Sunrise'),
+    why: inEveryLocale(
       'Un tableau de Claude Monet',
       'A painting by Claude Monet'
     )
@@ -3267,7 +3276,7 @@ const mostLikelyScreen = () =>
     content: {
       kind: 'mostlikely',
       // The bank's longest line.
-      labels: inBothLocales(
+      labels: inEveryLocale(
         'Qui a le plus de chances de finir de monter un meuble avec des vis en trop ?',
         'Who is most likely to finish building furniture with screws left over?'
       ),
@@ -3286,7 +3295,7 @@ const estimateScreen = () =>
       question: {
         family: 'height.building',
         kind: 'bank',
-        names: inBothLocales(
+        names: inEveryLocale(
           'tour centrale de radio-télédiffusion de Pékin',
           'Central Radio & TV Tower'
         )
@@ -3326,11 +3335,11 @@ const higherLowerScreen = () =>
       pairs: [
         {
           ask: { family: 'length.river', kind: 'bank' },
-          left: inBothLocales(
+          left: inEveryLocale(
             'Saryozen (rivière du bassin Volga-Oural)',
             'Maly Uzen'
           ),
-          right: inBothLocales('Vichera (oblast de Novgorod)', 'Vishera')
+          right: inEveryLocale('Vichera (oblast de Novgorod)', 'Vishera')
         }
       ],
       revealedPairs: null,

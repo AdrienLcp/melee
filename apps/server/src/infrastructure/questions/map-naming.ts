@@ -6,6 +6,7 @@ import { byLocale, type Locale } from '@melee/protocol/locale'
 import { nearbyDecoys, spellingsOf } from '@melee/core/atlas/place-naming'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
+import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
 import { shuffled } from '@melee/core/helpers/random'
 
 import type { AtlasNaming, AtlasRoundTarget } from '@/domain/room/room'
@@ -21,7 +22,8 @@ type NamedPlace = { names: LocalizedName; point: GeoPoint }
 
 const COUNTRY_NAMES = {
   en: COUNTRY_NAMES_EN,
-  fr: COUNTRY_NAMES_FR
+  fr: COUNTRY_NAMES_FR,
+  pt: COUNTRY_NAMES_PT
 } satisfies Record<Locale, unknown>
 
 const countryNamesOf = (code: CountryCode): LocalizedName =>

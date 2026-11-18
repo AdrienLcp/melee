@@ -11,10 +11,11 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './word-keyboard.sass'
 
-/** The rows a French or an English table already types on, so no letter has to be looked for. */
+/** The rows each table already types on — Portugal's are QWERTY — so no letter has to be looked for. */
 const KEY_ROWS = {
   en: ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'],
-  fr: ['AZERTYUIOP', 'QSDFGHJKLM', 'WXCVBN']
+  fr: ['AZERTYUIOP', 'QSDFGHJKLM', 'WXCVBN'],
+  pt: ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 } as const satisfies Record<QuestionLanguage, readonly string[]>
 
 /**

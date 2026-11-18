@@ -16,15 +16,15 @@ it plays the audio and shows the score.
   or a search.
 - **Buzzer** — the race with no content at all. The host brings the charade, the
   quiz on paper or the lesson; the screen only settles who was first.
-- **Quiz** — question banks bundled with the server, in French and English, by
-  subject.
+- **Quiz** — question banks bundled with the server, in French, English and
+  European Portuguese, by subject.
 - **Reflex** — the screen changes colour and the first in wins. Going before
   it changes costs the round.
 
 ## Pages
 
-Every page below is served in English under `/en` and in French under `/fr`,
-as its own document with its own `lang`, title and description. `/` carries no
+Every page below is served in English under `/en`, in French under `/fr` and
+in European Portuguese under `/pt`, as its own document with its own `lang`, title and description. `/` carries no
 language: it negotiates from the browser's and redirects, which is what
 `hreflang="x-default"` points at.
 

@@ -13,10 +13,10 @@ import { EN_DICTIONARY } from './dictionary-en'
  * while leaving the keys as literals, which is what `createI18n` reads to decide
  * what `translator` and `negotiate` accept.
  *
- * French is a chunk of its own, so a reader in English never downloads it.
- * Whatever renders in French awaits `i18n.load` first — the entry, the
- * prerender and a switch of language — because `translator` answers in English
- * until it lands.
+ * French and Portuguese are chunks of their own, so a reader in English never
+ * downloads them. Whatever renders in either awaits `i18n.load` first — the
+ * entry, the prerender and a switch of language — because `translator` answers
+ * in English until it lands.
  */
 export const i18n = createI18n({
   defaultLocale: DEFAULT_LOCALE,
@@ -25,6 +25,10 @@ export const i18n = createI18n({
     fr: () =>
       import('./dictionary-fr').then(({ FR_DICTIONARY }) => ({
         default: FR_DICTIONARY
+      })),
+    pt: () =>
+      import('./dictionary-pt').then(({ PT_DICTIONARY }) => ({
+        default: PT_DICTIONARY
       }))
   } satisfies Record<Locale, unknown>
 })

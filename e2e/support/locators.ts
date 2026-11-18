@@ -57,9 +57,6 @@ export const hostConsole = (page: Page) => ({
   pickBlindTest: page
     .getByRole('list', { name: 'What we’re playing' })
     .getByRole('button', { name: /^Blind test/ }),
-  refusal: page.getByRole('heading', {
-    name: 'No table under that code.'
-  }),
   /** Ends a simultaneous round the room is not going to finish on its own. */
   reveal: page.getByRole('button', { name: 'Give it away' }),
   /** What a player wrote, published on the reveal and not before. */
@@ -83,8 +80,7 @@ export const hostConsole = (page: Page) => ({
     page.getByRole('heading', { name: `${nickname} buzzed` }),
   /** The typed journey's pick, found the same way as `buzzerMode`. */
   typedMode: page.getByText('Type it', { exact: true }),
-  verdictBoth: page.getByRole('button', { name: 'Title + artist' }),
-  wayOut: page.getByRole('link', { name: 'Back to the games' })
+  verdictBoth: page.getByRole('button', { name: 'Title + artist' })
 })
 
 export const playerScreen = (page: Page) => ({

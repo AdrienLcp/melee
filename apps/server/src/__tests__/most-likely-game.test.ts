@@ -26,7 +26,8 @@ import {
 
 const LINE = {
   en: 'Who is most likely to sing?',
-  fr: 'Qui a le plus de chances de chanter ?'
+  fr: 'Qui a le plus de chances de chanter ?',
+  pt: 'Quem tem mais hipóteses de cantar?'
 }
 
 vi.mock(
@@ -273,7 +274,7 @@ describe('a most-likely deck of the evening’s own lines', () => {
 
     host.send({ type: 'host.startRound' })
     await waitFor(() => playerView(zoe)?.phase === 'playing', 'the first line')
-    expect(lineOn(zoe)).toEqual({ en: FIRST, fr: FIRST })
+    expect(lineOn(zoe)).toEqual({ en: FIRST, fr: FIRST, pt: FIRST })
     expect(zoe.frames.map(({ raw }) => raw).join('')).not.toContain(SECOND)
 
     voteEveryone(seats)

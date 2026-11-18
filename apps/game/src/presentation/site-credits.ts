@@ -1,11 +1,12 @@
 import type { Locale } from '@melee/protocol/locale'
 
-/** The author the menu credits beside the legal link, linked to his site in the reader's language. */
+/** The author the menu credits beside the legal link, linked to his site in the reader's language, English where it has none. */
 export const AUTHOR = {
   name: 'Adrien Lacourpaille',
   siteHref: {
     en: 'https://adrienlcp.com/en',
-    fr: 'https://adrienlcp.com/fr'
+    fr: 'https://adrienlcp.com/fr',
+    pt: 'https://adrienlcp.com/en'
   }
 } as const satisfies { name: string; siteHref: Record<Locale, string> }
 

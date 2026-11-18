@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
-import { questionLanguages } from '@melee/protocol/question'
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
-import type { WordLanguage } from '@melee/core/words/word-language'
 
 import blocklist from '../../../scripts/word-answer-blocklist.json' with {
   type: 'json'
@@ -20,17 +22,12 @@ import {
 
 const ANSWER_LENGTHS = [5, 6, 7, 8] as const
 
-const WORD_LANGUAGES = [
-  ...questionLanguages,
-  'pt'
-] as const satisfies readonly WordLanguage[]
-
 /** Four evenings of twenty rounds at one length, which a level dealt from one tier alone must last. */
 const TIER_FLOOR = 80
 
 describe('the word bank', () => {
   it('[word-bank] deals every tier at every length in every language', () => {
-    const thin = WORD_LANGUAGES.flatMap((language) =>
+    const thin = questionLanguages.flatMap((language) =>
       ANSWER_LENGTHS.flatMap((length) =>
         contentTiers
           .filter(
@@ -47,7 +44,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides only words a seat may try, of the length asked', () => {
-    for (const language of WORD_LANGUAGES) {
+    for (const language of questionLanguages) {
       for (const length of ANSWER_LENGTHS) {
         const unfit = mysteryWordAnswers({ language, length }).filter(
           ({ word }) =>
@@ -60,7 +57,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides no word the blocklist strips', () => {
-    for (const language of WORD_LANGUAGES) {
+    for (const language of questionLanguages) {
       const blocked = new Set(blocklist[language])
       const hidden = ANSWER_LENGTHS.flatMap((length) =>
         mysteryWordAnswers({ language, length })
@@ -84,7 +81,7 @@ describe('the word bank', () => {
   })
 
   it('[word-bank] hides lemmas, never an inflected form', () => {
-    const hidden = (language: WordLanguage, word: string) =>
+    const hidden = (language: QuestionLanguage, word: string) =>
       mysteryWordAnswers({ language, length: word.length }).some(
         (answer) => answer.word === word
       )
