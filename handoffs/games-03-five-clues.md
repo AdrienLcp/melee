@@ -55,6 +55,15 @@ opened for him in the built-in browser (`preview_start` with the
 alike's screens (`7361edfb`, `a7731848`, then `3897257b` for the shelf); the
 quiz's flags and silhouettes already draw the outline and the flag files.
 
+**The directions are drawn** (18/11/2026), in the git-ignored
+`.handoff/five-clues-directions/index.html`: _A · Cinq cartes_ (five face-down
+cards worth 100 to 20, one turned a clue), _B · La montée_ (a ladder the
+crowd's pawns climb a rung a clue, a finder staying on the rung it dared, the
+country at the top — recommended: the bet shows at the table and the stake
+falling is the ladder itself) and _C · La fiche_ (an identity card of five
+fixed boxes stamped one by one). Build the one Adrien picked; B's rung
+opening was never filmed, and the box colour (fir green) is still to measure.
+
 1. **A seat**: the climb — the open clues stacked, the new one arriving with
    a motion, the window's bar to `nextClueAt`; four names or one field; a
    held seat said plainly until the next clue, found or out after.
