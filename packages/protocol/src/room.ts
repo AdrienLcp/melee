@@ -30,6 +30,13 @@ import {
   estimateQuestionSchema,
   sentEstimateSchema
 } from './estimate'
+import {
+  clueIndexSchema,
+  cluesStandingSchema,
+  fiveCluesAnswerSchema,
+  fiveCluesClueSchema,
+  yourCluesStandingSchema
+} from './five-clues'
 import { gameSettingsSchema } from './game'
 import {
   higherLowerPairSchema,
@@ -918,6 +925,34 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     prompt: thinkAlikePromptSchema,
     /** The reader's own answer once sent, and `null` before or without a seat. What a reload comes back to. */
     yourAnswer: thinkAlikeAnswerSchema.nullable()
+  }),
+  z.object({
+    /** The country, its code and its name, and `null` until the reveal — to the console and the wall too. */
+    answer: fiveCluesAnswerSchema.nullable(),
+    /** Four names in the room's language in a `choice` round, shuffled, from the first frame; empty in a `typed` one. */
+    choices: z.array(z.string()),
+    /** How long each clue stays open, stamped as the round opened. */
+    clueDurationMs: z.number().int().positive(),
+    /**
+     * The clues open so far, vaguest first, and none before the round's clock
+     * starts: a clue still to come — its numbers, its outline or flag file —
+     * is on no screen. The whole ladder once the round is revealed.
+     */
+    clues: z.array(fiveCluesClueSchema),
+    kind: z.literal('fiveclues'),
+    /**
+     * When the open clue's window ends, in server time: the next clue opens
+     * then, or the round closes on the last. `null` while the clock is
+     * stopped — the countdown, a pause, the console away, the reveal. It
+     * comes early when every seat still racing has answered on the open clue.
+     */
+    nextClueAt: serverTimeSchema.nullable(),
+    /** The clue open now, or the one the race ended on once revealed. */
+    openClueIndex: clueIndexSchema,
+    /** Every seat the round opened on, found on which clue or out; empty before the clock starts. */
+    standings: z.array(cluesStandingSchema),
+    /** The reader's own standing, and `null` without a seat in the race. */
+    yourStanding: yourCluesStandingSchema.nullable()
   })
 ])
 
@@ -1232,7 +1267,13 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     solution: calculationSchema.nullable()
   }),
   /** Nothing withheld, and nothing more: no answer exists before the room writes one. */
-  z.object({ kind: z.literal('thinkalike') })
+  z.object({ kind: z.literal('thinkalike') }),
+  /**
+   * Nothing, and a withholding this time: the server judges every answer, and
+   * a console at the table is somebody's eyes, so it climbs blind with the
+   * rest of the room.
+   */
+  z.object({ kind: z.literal('fiveclues') })
 ])
 
 /**
@@ -1353,7 +1394,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('mysteryword') }),
   z.object({ kind: z.literal('longestword') }),
   z.object({ kind: z.literal('makenumber') }),
-  z.object({ kind: z.literal('thinkalike') })
+  z.object({ kind: z.literal('thinkalike') }),
+  z.object({ kind: z.literal('fiveclues') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

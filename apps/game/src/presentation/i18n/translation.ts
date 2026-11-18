@@ -89,6 +89,7 @@ type ScoringKey = BuiltKey<
   | 'blacksquare.scoringLoneFinds'
   | 'blacksquare.scoringSpoken'
   | 'estimate.scoring'
+  | 'fiveclues.scoring'
   | 'higherlower.scoring'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
@@ -227,6 +228,8 @@ export const scoringKey = ({
       return 'mostlikely.scoring'
     case 'estimate':
       return 'estimate.scoring'
+    case 'fiveclues':
+      return 'fiveclues.scoring'
     case 'higherlower':
       return 'higherlower.scoring'
     case 'mysteryword':

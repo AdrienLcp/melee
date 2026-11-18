@@ -772,6 +772,11 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Cette partie ne s’ouvre pas'
     }
   },
+  fiveclues: {
+    name: 'Cinq indices',
+    scoring:
+      'Plus tôt tu trouves le pays, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.'
+  },
   higherlower: {
     answer: {
       counter: 'Paire {index:number} sur {count:number}',

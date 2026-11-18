@@ -196,6 +196,8 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
       return content.bestWords !== null
     case 'makenumber':
       return content.solution !== null
+    case 'fiveclues':
+      return false
   }
 }
 

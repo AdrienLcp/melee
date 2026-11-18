@@ -155,6 +155,42 @@ _Five clues_ in English, _Cinco pistas_ in Portuguese.
   next clue opening early; the pay by clue; a latecomer refused
   `joined_mid_round`.
 
+**Done 18/11/2026.** What it settled beyond the plan:
+
+- **The settings arm carries `language` beside `clueDurationMs` and the
+  level**: the cities, the capital, the four names and every typed answer
+  are worded in one language for the table, like the quiz's.
+- **The duel is allowed** (`playsDuels`): the shell's duel stamps two seats
+  and the race waits on them alone, asking nothing of the game.
+- **The console climbs blind**: `currentContent` is `{ kind: 'fiveclues' }`
+  seated or not, since the server judges every answer and a console at the
+  table is somebody's eyes. The wall reads the same round view as a seat.
+- **No clue before the clock starts**: the countdown frames carry the four
+  names and no clue, so nobody reads the size for three seconds the clock
+  does not count.
+- **The clue clock is the round's own**: `clueOpenedAtElapsedMs` on the
+  round's elapsed clock, the open window being the round's open phase
+  (`openPhaseDurationMs`), so a pause or the console away stops it with every
+  other clock. The window running out opens the next clue on the instant it
+  ended (`climbOnTime`); early, on the instant the last racing seat guessed.
+- **The last clue settles early too**: `isRaceSettled` takes the open clue,
+  and a typed seat that guessed on the last one is done — held until a next
+  clue that never comes, it is out in all but name.
+- **Paid at the close**, as every simultaneous round, by `pointsForClue`;
+  `round.awards` ranks the found seats by clue then millisecond. A seat's
+  verdict is the quiz's `single`.
+- **Refusals**: a second guess on one clue, or a guess once found, is
+  `already_buzzed`; a pick after a wrong one `player_locked_out`; a typed
+  guess in a `choice` round `invalid_message`.
+- **`five-clues-game.test.ts`**, eight cases, each seen red under a mutation:
+  the whole ladder sent, the country sent before the reveal (both over every
+  frame of a whole round's transcript, seat, wall and console, seated or
+  not), `mayGuess` skipped, no early climb, a wrong pick kept racing, every
+  seat paid as clue 1, `nextClueAt` running through a pause, a latecomer
+  let in.
+
+— cut here: served by a settings frame, tests green, screens owed —
+
 ## Step 3 — the screens
 
 Starts with the `impeccable` skill: direction pages for Adrien to pick, each

@@ -306,6 +306,18 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsDuels: false,
         servesItsOwnContent: true
       }
+    // A country named on four candidates or typed, as the flags rubric asks
+    // one. The clock orders the seats who found on one clue, so it pays; a
+    // duel is two seats climbing the same ladder, which the shell plays as is.
+    case 'fiveclues':
+      return {
+        answerModes: NAMED,
+        makesSound: false,
+        paysTheClock: true,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
   }
 }
 

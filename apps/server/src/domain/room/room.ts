@@ -13,6 +13,7 @@ import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { Deck, OwnLines } from '@melee/protocol/deck'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
+import type { FiveCluesLadder } from '@melee/protocol/five-clues'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
   SentHigherLowerSheet,
@@ -59,6 +60,8 @@ import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import type { TrackHistory } from '@melee/core/blindtest/track-variety'
+import type { CluesSeat } from '@melee/core/fiveclues/clue-race'
+import type { QuestionAnswer } from '@melee/core/quiz/question-answer'
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
 import type { CrowdAnswer, CrowdMerge } from '@melee/core/thinkalike/crowd-key'
@@ -595,6 +598,25 @@ export type Round = {
         merges: CrowdMerge[]
         /** The line to complete, in the room's language: on every screen. */
         prompt: string
+      }
+    | {
+        /** The country's name, what a table says instead and the decoys, in the room's language: what a typed line is graded against. */
+        answer: QuestionAnswer
+        /** Four names in a `choice` round, shuffled once as it opens; empty in a `typed` one. */
+        choices: string[]
+        /** Stamped as the round opens, so a host moving the setting mid-round decides the next one. */
+        clueDurationMs: number
+        /** When the open clue opened, on the round's own clock, so a pause or the console away stops its window too. */
+        clueOpenedAtElapsedMs: number
+        /** Like the quiz's, the one field of this arm that must never be projected. */
+        correctChoiceIndex: number | null
+        country: CountryCode
+        kind: 'fiveclues'
+        /** All five clues; a screen is sent only the ones already open. */
+        ladder: FiveCluesLadder
+        openClueIndex: number
+        /** Each seat that has guessed; a seat absent here is still racing, having guessed on no clue. */
+        seats: Map<PlayerId, CluesSeat>
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

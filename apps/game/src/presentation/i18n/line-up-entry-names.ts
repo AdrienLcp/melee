@@ -420,6 +420,12 @@ const settingsOf = ({
         LANGUAGE_NAMES[entry.language],
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
+    case 'fiveclues':
+      return [
+        LANGUAGE_NAMES[entry.language],
+        levelOf({ difficulty: entry.difficulty, translate }),
+        secondsOf({ ms: entry.clueDurationMs, translate })
+      ]
   }
 }
 

@@ -190,7 +190,29 @@ describe('the five-clues race', () => {
   })
 
   it('[fiveclues] settles the round once every seat has found or is out', () => {
-    expect(isRaceSettled([found, { status: 'out' }])).toBe(true)
-    expect(isRaceSettled([found, lockedOn(4)])).toBe(false)
+    expect(
+      isRaceSettled({ openClueIndex: 2, seats: [found, { status: 'out' }] })
+    ).toBe(true)
+    expect(
+      isRaceSettled({ openClueIndex: 3, seats: [found, lockedOn(3)] })
+    ).toBe(false)
+  })
+
+  it('[fiveclues] settles the last clue once every seat still racing has guessed on it', () => {
+    expect(
+      isRaceSettled({
+        openClueIndex: LAST_CLUE_INDEX,
+        seats: [found, lockedOn(4)]
+      })
+    ).toBe(true)
+    expect(
+      isRaceSettled({
+        openClueIndex: LAST_CLUE_INDEX,
+        seats: [found, lockedOn(3)]
+      })
+    ).toBe(false)
+    expect(
+      isRaceSettled({ openClueIndex: LAST_CLUE_INDEX, seats: [RACING_SEAT] })
+    ).toBe(false)
   })
 })

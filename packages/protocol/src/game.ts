@@ -8,6 +8,12 @@ import {
 import { countryCodeSchema } from './country-code'
 import { difficultySchema } from './difficulty'
 import { QUANTITY_TOPICS, quantityTopicSetSchema } from './estimate'
+import {
+  DEFAULT_CLUE_DURATION_MS,
+  FIVE_CLUES_CLUE_COUNT,
+  MAX_CLUE_DURATION_MS,
+  MIN_CLUE_DURATION_MS
+} from './five-clues'
 import { matchsticksGoalSchema } from './matchsticks'
 import { mysteryWordLengthSchema } from './mystery-word'
 import {
@@ -49,7 +55,8 @@ export const gameKinds = [
   'mysteryword',
   'longestword',
   'makenumber',
-  'thinkalike'
+  'thinkalike',
+  'fiveclues'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -321,6 +328,19 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
       .int()
       .min(MIN_THINK_ALIKE_ROUND_MS)
       .max(MAX_THINK_ALIKE_ROUND_MS)
+  }),
+  z.object({
+    /** How long each clue stays open before the next goes up, unless every seat still racing has answered on it first. */
+    clueDurationMs: z
+      .number()
+      .int()
+      .min(MIN_CLUE_DURATION_MS)
+      .max(MAX_CLUE_DURATION_MS),
+    /** The tiers of countries dealt, as the flags rubric deals them. */
+    difficulty: difficultySchema,
+    kind: z.literal('fiveclues'),
+    /** The wording of the cities, the capital, the four names and every typed answer: one language for the table, like the quiz's. */
+    language: questionLanguageSchema
   })
 ])
 
@@ -347,6 +367,7 @@ export type MysteryWordSettings = Extract<GameSettings, { kind: 'mysteryword' }>
 export type LongestWordSettings = Extract<GameSettings, { kind: 'longestword' }>
 export type MakeNumberSettings = Extract<GameSettings, { kind: 'makenumber' }>
 export type ThinkAlikeSettings = Extract<GameSettings, { kind: 'thinkalike' }>
+export type FiveCluesSettings = Extract<GameSettings, { kind: 'fiveclues' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -373,7 +394,9 @@ export const roundDurationMsOf = (game: GameSettings | null): number | null =>
     ? null
     : game.kind === 'swatch'
       ? game.showMs + game.roundDurationMs
-      : game.roundDurationMs
+      : game.kind === 'fiveclues'
+        ? FIVE_CLUES_CLUE_COUNT * game.clueDurationMs
+        : game.roundDurationMs
 
 /**
  * Whether a wrong answer sits the player out for the rest of the round. Only the
@@ -524,6 +547,14 @@ export const DEFAULT_THINK_ALIKE_SETTINGS: ThinkAlikeSettings = {
   roundDurationMs: 20_000
 }
 
+/** Ten seconds a clue: long enough to weigh a number, short enough that daring on it is a gamble. */
+export const DEFAULT_FIVE_CLUES_SETTINGS: FiveCluesSettings = {
+  clueDurationMs: DEFAULT_CLUE_DURATION_MS,
+  difficulty: 'mixed',
+  kind: 'fiveclues',
+  language: 'fr'
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -532,6 +563,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
   estimate: DEFAULT_ESTIMATE_SETTINGS,
+  fiveclues: DEFAULT_FIVE_CLUES_SETTINGS,
   higherlower: DEFAULT_HIGHER_LOWER_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   longestword: DEFAULT_LONGEST_WORD_SETTINGS,

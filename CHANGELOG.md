@@ -8,6 +8,17 @@ one part.
 
 ### Features
 
+- `[Server]` **Cinq indices is served, reachable by a settings frame.**
+  `fiveclues` joins the games the server deals, not the shelf: a country
+  climbed to through five clues in the room's language, each open 5 to 30
+  seconds (10 by default), the next opening early once every seat still
+  racing has answered on it, and the round closing once everyone has found or
+  is out. Four names to pick once, or one typed guess a clue, a wrong one
+  holding the seat until the next clue. A right answer pays 100, 80, 60, 40
+  or 20 by its clue, the clock ordering a clue's ties. No screen, the console
+  and the wall included, holds a clue before it opens nor the country before
+  the reveal. Screens owed.
+
 - `[Shared]` **Le juste chiffre shows the country it asks about.** A
   country's population or area comes with its outline on the question card,
   the one the silhouettes rubric draws: large on the wall, a reminder on the

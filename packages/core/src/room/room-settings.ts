@@ -36,6 +36,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   challenge: null,
   /** A number is half a minute of weighing it, so ten of them are a short game. */
   estimate: 10,
+  /** A country is under a minute of five clues and a reveal, so ten of them are a short game. */
+  fiveclues: 10,
   /** A pair is ten seconds and its reveal, so twelve of them are a short game. */
   higherlower: 12,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
@@ -84,6 +86,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   buzzer: 'buzzer',
   challenge: 'buzzer',
   estimate: 'number',
+  fiveclues: 'choice',
   higherlower: 'pairs',
   innerclock: 'buzzer',
   longestword: 'letters',
@@ -217,6 +220,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   buzzer: null,
   challenge: null,
   estimate: null,
+  fiveclues: null,
   higherlower: null,
   innerclock: null,
   longestword: null,

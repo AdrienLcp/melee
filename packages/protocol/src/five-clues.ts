@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { countryCodeSchema } from './country-code'
+import { playerIdSchema } from './identifiers'
 import { flagFileSchema, silhouetteFileSchema } from './question'
 
 /** Every round climbs the same five rungs, vaguest first. */
@@ -115,3 +117,49 @@ export const fiveCluesLadderSchema = z.tuple([
 ])
 
 export type FiveCluesLadder = z.infer<typeof fiveCluesLadderSchema>
+
+/** Which rung, the first clue 0 and the flag 4. */
+export const clueIndexSchema = z
+  .number()
+  .int()
+  .min(0)
+  .max(FIVE_CLUES_CLUE_COUNT - 1)
+
+/**
+ * Where one seat stands, as every screen reads it during the climb: who found
+ * and on which clue, who is out — never what anyone guessed, which waits for
+ * the reveal.
+ */
+export const cluesStandingSchema = z.discriminatedUnion('status', [
+  z.object({ playerId: playerIdSchema, status: z.literal('racing') }),
+  z.object({
+    clueIndex: clueIndexSchema,
+    playerId: playerIdSchema,
+    status: z.literal('found')
+  }),
+  z.object({ playerId: playerIdSchema, status: z.literal('out') })
+])
+
+/**
+ * The reader's own standing, which says one thing more than the public one:
+ * the last clue a racing seat guessed on. A typed seat whose `guessedOnClue`
+ * is the open clue is held until the next one opens.
+ */
+export const yourCluesStandingSchema = z.discriminatedUnion('status', [
+  z.object({
+    guessedOnClue: clueIndexSchema.nullable(),
+    status: z.literal('racing')
+  }),
+  z.object({ clueIndex: clueIndexSchema, status: z.literal('found') }),
+  z.object({ status: z.literal('out') })
+])
+
+/** The country climbed to, sent at the reveal: its code for a screen to name it in its own locale, and its name in the room's language as the four choices print it. */
+export const fiveCluesAnswerSchema = z.object({
+  code: countryCodeSchema,
+  name: z.string().min(1)
+})
+
+export type CluesStanding = z.infer<typeof cluesStandingSchema>
+export type YourCluesStanding = z.infer<typeof yourCluesStandingSchema>
+export type FiveCluesAnswer = z.infer<typeof fiveCluesAnswerSchema>

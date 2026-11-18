@@ -856,6 +856,11 @@ const PORTUGUESE = defineDictionary({
       title: 'Esta partida não abre'
     }
   },
+  fiveclues: {
+    name: 'Cinco pistas',
+    scoring:
+      'Quanto mais cedo encontrares o país, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.'
+  },
   higherlower: {
     answer: {
       counter: 'Par {index:number} de {count:number}',

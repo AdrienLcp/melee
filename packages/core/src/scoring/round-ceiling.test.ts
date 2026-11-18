@@ -8,6 +8,7 @@ import { pointsForDistance } from '../atlas/distance-pay'
 import { pointsForCells } from '../blacksquare/sheet-pay'
 import { pointsForPlace } from '../challenge/place-pay'
 import { pointsForEstimate } from '../estimate/estimate-pay'
+import { pointsForClue } from '../fiveclues/clue-pay'
 import { pointsForPairs } from '../higherlower/pairs-pay'
 import { pointsForGap } from '../innerclock/gap-pay'
 import { pointsForLetters } from '../longestword/letters-pay'
@@ -46,6 +47,13 @@ const BEST_ROUND = {
   buzzer: () => pointsFor({ isCorrect: true, kind: 'single' }),
   challenge: () => pointsForPlace(1),
   estimate: () => pointsForEstimate({ ratio: 1 }),
+  fiveclues: () =>
+    pointsForClue({
+      clueDurationMs: 10_000,
+      clueIndex: 0,
+      elapsedInClueMs: 0,
+      paysForSpeed: true
+    }).points,
   higherlower: () => pointsForPairs({ rightPairs: 5 }),
   innerclock: () => pointsForGap({ countedMs: 30_000, targetMs: 30_000 }),
   longestword: () => pointsForLetters({ bestLength: 9, length: 9 }),

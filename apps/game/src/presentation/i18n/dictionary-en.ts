@@ -811,6 +811,11 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'This line-up won’t open'
     }
   },
+  fiveclues: {
+    name: 'Five clues',
+    scoring:
+      'The earlier the clue you find the country on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.'
+  },
   higherlower: {
     answer: {
       counter: 'Pair {index:number} of {count:number}',

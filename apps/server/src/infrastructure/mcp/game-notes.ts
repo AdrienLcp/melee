@@ -18,6 +18,8 @@ export const GAME_NOTES = {
     'Played at the table, off every screen: the wall shows a line — dealt, or the host’s own — and the host places the first three.',
   estimate:
     'Asks for a number — a population, a height, a length, a price — that every screen estimates, each paid by how close it lands.',
+  fiveclues:
+    'Hides a country behind five clues that open one after another, vague to obvious — its size, its region, its outline, its largest cities, its flag and capital; every player answers when they dare, paid more the earlier the clue.',
   higherlower:
     'Deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:
@@ -63,6 +65,8 @@ export const SETTING_NOTES = {
     '`locksOutOnMiss` sits a player out for the rest of the round after a wrong answer: one go each keeps a loud room honest, an open field suits "name five…".',
   challenge: null,
   estimate: null,
+  fiveclues:
+    '`clueDurationMs` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. `language` is the wording of the cities, the capital, the four names and every typed answer.',
   higherlower: null,
   innerclock:
     'Nothing to set: the target is drawn between 20 and 60 seconds each round.',

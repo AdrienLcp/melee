@@ -93,6 +93,12 @@ import {
 } from '@/domain/round/black-square-round'
 import { takeDuel } from '@/domain/round/duels'
 import { payEstimates } from '@/domain/round/estimate-round'
+import {
+  clueWindowEndsAtElapsedMs,
+  isFiveCluesSettled,
+  payFiveClues,
+  registerFiveCluesGuess
+} from '@/domain/round/five-clues-round'
 import { gradePicks } from '@/domain/round/higher-lower-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import {
@@ -498,6 +504,7 @@ export type AnswerRejection = Extract<
   | 'not_in_dictionary'
   | 'not_one_word'
   | 'not_your_turn'
+  | 'player_locked_out'
   | 'stale_round'
   | 'wrong_first_letter'
   | 'wrong_length'
@@ -896,6 +903,14 @@ export const registerAnswer = ({
 
   const round = open.data
 
+  // One guess a clue, graded as it lands and paid at the close by the clue it
+  // found on, so none of the shared retries and banking below applies.
+  if (round.content.kind === 'fiveclues') {
+    return sent.kind === 'choice' || sent.kind === 'typed'
+      ? registerFiveCluesGuess({ guess: sent, now, playerId, room, round })
+      : Result.failure('invalid_message')
+  }
+
   if (
     sent.kind === 'seat' &&
     !isOnTheBallot({ round, seatId: sent.playerId })
@@ -1110,6 +1125,10 @@ export const everyoneIsDone = (room: Room, now: number): boolean => {
 
   if (round === null) {
     return false
+  }
+
+  if (round.content.kind === 'fiveclues') {
+    return isFiveCluesSettled(room, now)
   }
 
   const expected = [...room.players.values()].filter((participant) =>
@@ -2153,6 +2172,13 @@ export const closeRound = (room: Room, now: number): void => {
     return
   }
 
+  if (round.content.kind === 'fiveclues') {
+    payFiveClues(room)
+    revealRound(room, now)
+
+    return
+  }
+
   const mode = round.mode.kind
 
   if (mode === 'buzzer') {
@@ -2267,6 +2293,10 @@ const openPhaseDurationMs = (room: Room): number | null => {
       return innerclockRoundDurationMs(round.content.targetSeconds * 1_000)
     case 'reflex':
       return reflexRoundDurationMs(round.content.flipDelayMs)
+    // The open clue's window: its end opens the next clue rather than closing
+    // the round, save on the last.
+    case 'fiveclues':
+      return clueWindowEndsAtElapsedMs(round.content)
     // Once the sheets close the vote runs on the room's word, and until then a
     // stop's grace may come before the clock. Either way they close on screen
     // first, and here once the lines that sent are in.

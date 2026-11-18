@@ -58,9 +58,25 @@ export const seatAfterGuess = ({
     : { guessedOnClue: openClueIndex, status: 'racing' }
 }
 
-/** Whether every seat has found or is out — the round closes without waiting for the clock. */
-export const isRaceSettled = (seats: Iterable<CluesSeat>): boolean =>
-  [...seats].every((seat) => seat.status !== 'racing')
+/**
+ * Whether the round has nobody left to wait for, and closes without waiting
+ * for the clock: every seat has found or is out — or, on the last clue, has
+ * guessed on it, since a typed seat held until a next clue that never comes
+ * is out in all but name, and the table would only watch the clock.
+ */
+export const isRaceSettled = ({
+  openClueIndex,
+  seats
+}: {
+  openClueIndex: number
+  seats: Iterable<CluesSeat>
+}): boolean =>
+  [...seats].every(
+    (seat) =>
+      seat.status !== 'racing' ||
+      (openClueIndex === LAST_CLUE_INDEX &&
+        seat.guessedOnClue === LAST_CLUE_INDEX)
+  )
 
 /**
  * The next clue opens before its time once every seat still racing has

@@ -1121,6 +1121,30 @@ each with its `key`, its most-written `text`, its `authors` and the
 the difference. `think-alike-game.test.ts` searches every frame of a round,
 the console's and the wall's included, for another seat's line.
 
+**A five-clues rung travels only once it is open, and the country only at
+the reveal** — to every screen, a seated or a seatless console and the wall
+included: the server judges, and a console at the table is somebody's eyes,
+so `currentContent` is `{ kind: 'fiveclues' }` and nothing more. The round
+view's `clues` holds the open rungs, vaguest first, and none while the
+countdown runs; a rung still to come — its numbers, its region, its outline
+or flag file, its cities, its capital — is in no frame. `openClueIndex` says
+which is open, and `nextClueAt` when its window ends in server time, `null`
+while the clock is stopped (the countdown, a pause, the console away, the
+reveal). A window is `clueDurationMs` on the round's own clock, and the next
+clue opens early once every seat still racing has answered on the open one.
+`choices` holds four names in a `choice` round from the first frame,
+shuffled; `answer`, the country's `code` and `name`, and the whole ladder
+come with the reveal. `standings` says who found on which clue and who is
+out, never what anyone guessed; `yourStanding` adds the reader's
+`guessedOnClue`, which holds a typed seat until the next clue. Answers are
+`player.answer` of kind `typed` or `choice`: one typed guess a clue, a second
+`already_buzzed`; one pick a round, a pick after a wrong one
+`player_locked_out`. The round closes once every stamped seat has found, is
+out or has guessed on the last clue, and pays each by the clue it found on
+(`pointsForClue`), the clock ordering one clue's ties.
+`five-clues-game.test.ts` searches every frame of a whole round, per peer,
+for a rung before it opened and for the country before the reveal.
+
 ## Errors
 
 ```jsonc

@@ -103,6 +103,7 @@ export const candidatesIn = ({
     case 'timeline':
       return []
     case 'quiz':
+    case 'fiveclues':
       return content.choices.map((choice) => ({
         key: choice,
         subtitle: null,

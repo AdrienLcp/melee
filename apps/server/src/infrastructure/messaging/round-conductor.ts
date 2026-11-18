@@ -32,6 +32,11 @@ import {
 } from '@/domain/round/deck-dealer'
 import { estimateContent } from '@/domain/round/estimate-round'
 import {
+  climbOnTime,
+  climbWhenEveryoneGuessed,
+  fiveCluesContent
+} from '@/domain/round/five-clues-round'
+import {
   bankedPairOf,
   higherLowerContent
 } from '@/domain/round/higher-lower-round'
@@ -94,6 +99,11 @@ import {
   drawCountry,
   playedCountryId
 } from '@/infrastructure/questions/country-bank'
+import {
+  drawFiveCluesCountry,
+  fiveCluesAnswerOf,
+  fiveCluesLadderOf
+} from '@/infrastructure/questions/five-clues-bank'
 import { namingOf } from '@/infrastructure/questions/map-naming'
 import {
   drawMostLikelyLine,
@@ -683,6 +693,49 @@ export const beginRound = async (
     return
   }
 
+  if (game.kind === 'fiveclues') {
+    const drawn = drawFiveCluesCountry({
+      difficulty: game.difficulty,
+      playedIds: room.playedContentIds
+    })
+
+    if (drawn === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'No country is left to climb to'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(drawn.playedId)
+
+    openRound({
+      content: fiveCluesContent({
+        answer: fiveCluesAnswerOf({
+          country: drawn.country,
+          language: game.language
+        }),
+        clueDurationMs: game.clueDurationMs,
+        country: drawn.country.code,
+        ladder: fiveCluesLadderOf({
+          country: drawn.country,
+          language: game.language
+        }),
+        mode: room.settings.mode.kind
+      }),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
   if (game.kind === 'thinkalike') {
     const fromEvening = unplayedEveningLines({
       game: 'thinkalike',
@@ -1193,8 +1246,15 @@ const runDeadline = (
     // The round running out ends it the same way the last answer does, scoring
     // included: whoever did not answer simply did not.
     // A Petit Bac clock running out closes the sheets and opens the vote,
-    // which is the round's middle rather than its end.
+    // which is the round's middle rather than its end, and a five-clues
+    // window running out opens the next clue, save on the last.
     case 'round': {
+      if (climbOnTime(room, now)) {
+        publishRoom(engine)
+
+        return
+      }
+
       if (!isPetitBacWriting(room) || closePetitBacSheets(room)) {
         closeRound(room, now)
       }
@@ -1227,6 +1287,7 @@ const runDeadline = (
 
     case 'presence': {
       room.presenceAnnouncedUntil = now
+      climbWhenEveryoneGuessed(room, now)
 
       if (isWaitingOnlyOnAnswers(room) && everyoneIsDone(room, now)) {
         closeRound(room, now)
