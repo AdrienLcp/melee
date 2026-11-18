@@ -8,6 +8,7 @@ delete this README with the last one.
 | Games      | 3    | `games-03-five-clues.md`    | none       |
 | Quantities | 1    | `world-cities.md`           | none       |
 | Portuguese | 4    | `portuguese-09-portugal.md` | 08         |
+| Design     | 1    | `share-images.md`           | none       |
 
 Each game adds arms to the same protocol unions (game kinds, round
 content, answer modes), so they run one after another, never side by side.
