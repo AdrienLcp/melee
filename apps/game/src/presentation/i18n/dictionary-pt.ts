@@ -678,6 +678,9 @@ const PORTUGUESE = defineDictionary({
       'As suas rubricas foram associadas aos temas usados aqui, as suas curiosidades mantidas como a linha mostrada quando a resposta é pública, e as suas perguntas para adultos marcadas para que o anfitrião as possa deixar de fora. As perguntas que não tinham exatamente três respostas erradas foram deixadas de fora, tal como aquelas cujas respostas erradas não se distinguem da certa depois de escritas. Uma resposta escrita de forma diferente da sua própria curiosidade foi corrigida. Parte das suas perguntas foi traduzida para português europeu, sem as que só um país conhece.',
     opentdb:
       'O seu texto chega codificado em HTML e foi descodificado, as suas categorias foram associadas aos temas usados aqui, e as perguntas que não tinham exatamente três respostas erradas foram deixadas de fora, tal como aquelas cujas respostas erradas não se distinguem da certa depois de escritas. Parte das suas perguntas foi traduzida para português europeu, sem as que só um país conhece.',
+    photographs: 'Fotografias',
+    photographsChanges:
+      'Cada fotografia é reduzida a 640 píxeis no lado maior e guardada em WebP; nada mais é alterado.',
     polyfact:
       'É construído a partir do Wikidata em catorze formas de pergunta, e sete delas foram mantidas e associadas aos temas usados aqui — as outras perguntam sobre aldeias de que ninguém ouviu falar, ou revelam a resposta na pergunta. Do que restou, só entraram no banco as perguntas cujo tema e cujas quatro opções têm todos um artigo da Wikipédia em francês que as pessoas realmente leem. Uma resposta errada a que a fonte recorria demasiadas vezes foi trocada por outra que quase não usava, e as perguntas cujas respostas erradas não se distinguem da certa depois de escritas foram deixadas de fora.',
     scowl:

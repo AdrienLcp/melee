@@ -10,6 +10,8 @@ import { SOURCE_REPOSITORY_HREF } from '@/presentation/site-credits'
 import './credits-page.sass'
 import { Main } from '@/presentation/components/main'
 
+import pictureCredits from './picture-credits.json' with { type: 'json' }
+
 /**
  * The licences the bundled banks are published under, which are not all the
  * same one — Mintaka asks for attribution and nothing more, and Vikidia is a
@@ -175,6 +177,9 @@ const QUESTION_CREDITS: QuestionCredit[] = [
   }
 ]
 
+/** Commons' own name for a file with no licence, which the reader's language says its own way. */
+const COMMONS_PUBLIC_DOMAIN = 'Public domain'
+
 export const CreditsPage: React.FC = () => {
   const { locale } = useI18n()
   const translate = useTranslate()
@@ -208,6 +213,27 @@ export const CreditsPage: React.FC = () => {
           </li>
         ))}
       </ul>
+
+      <section className='photographs'>
+        <h2>{translate('credits.photographs')}</h2>
+        <p className='changes'>{translate('credits.photographsChanges')}</p>
+
+        <ul>
+          {pictureCredits.map((credit) => (
+            <li key={credit.page}>
+              <TextLink href={credit.page} target='_blank'>
+                {credit.title}
+              </TextLink>
+              <span className='author'>{credit.author}</span>
+              <TextLink href={credit.licenceUrl} target='_blank'>
+                {credit.licence === COMMONS_PUBLIC_DOMAIN
+                  ? translate(LICENCES.publicDomain.nameKey)
+                  : credit.licence}
+              </TextLink>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <p className='share-alike'>
         {translate('credits.shareAlike')}{' '}

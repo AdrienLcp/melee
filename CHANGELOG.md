@@ -969,6 +969,15 @@ one part.
 
 ### Internal
 
+- `[Shared]` **A photograph for 322 estimate rows, not yet shown.**
+  `pnpm --filter @melee/server pictures:build` reads the Wikidata image of
+  every well-known mountain, building and river, and the Commons file 84
+  prices name by hand, keeps only public-domain, CC0, CC BY and CC BY-SA
+  photographs, and writes each as a 640px WebP under
+  `apps/game/public/pictures/` (12 MiB), with `picture-bank.json` saying
+  which row shows which. The credits page lists every file with its author
+  and licence. The question screens draw them next (stage 71).
+
 - `[Game]` **The interface is written in European Portuguese**, not yet
   offered: `dictionary-pt.ts` is held to the English shape by the compiler,
   the map's country names and the page heads have their Portuguese, and the

@@ -1,7 +1,8 @@
 # 71 — A picture with every estimate question
 
-**Step 1 done 18/11/2026** — the countries' outline on every screen. Steps
-2–4 (the photographs, their screens, Plus ou moins) are not started. Asked
+**Steps 1 and 2 done 18/11/2026** — the countries' outline on every screen,
+and the photographs built and credited. Steps 3–4 (the photographs' screens,
+Plus ou moins) are not started. Asked
 15/11/2026 with the prices of stage 58: _the object for a price, the
 monument for a height, the country's map for a population_.
 
@@ -112,13 +113,47 @@ pictures is what would let it in with a short name beside it.
 - `e2e/choice-fits.spec.ts` holds the outlined question on the wall, the
   player, the seated console, under a keyboard and on the reveal.
 
+## What step 2 settled
+
+- **`pnpm --filter @melee/server pictures:build`** (`build-picture-bank.ts`,
+  `sharp` its only importer) pictures 322 of 327 candidate rows in 12.1 MiB:
+  238 well-known mountains, buildings and rivers (`wellKnownIn` not empty —
+  the quantity bank's stand-in for a tier) and 84 prices. 243 of those rows,
+  not 223, and 252 prices, not 194: the counts above were estimates.
+- **Two outputs, one per app**, not one `pictures.json`: the server's
+  `picture-bank.json` (entity, file, width, height — what a question will
+  carry) beside the quantity bank, and the game's
+  `features/credits/picture-credits.json` (title, page, author, licence),
+  which the lazy credits chunk imports. Neither app reads the other's files.
+- **Candidates, in order**: every `P18` (sorted), then the French then the
+  English article's lead image when every `P18` was refused — that is how
+  Mont Blanc and the Rhine, whose `P18` are 3:1 panoramas, got a picture.
+  A price's `image` in `price-bank.json` is its only candidate.
+- **Refused**: a licence other than `pd`, `cc0`, `cc-by-*`, `cc-by-sa-*`
+  (FAL, GFDL, _Attribution_ and _Copyrighted free use_ among them); a shape
+  wider than 2.3:1 or taller than 1:3.2 (a tower is allowed its height); a
+  Wikidata row's PNG, because every one was a map, and a river's map draws
+  its length; an `Artist` field over 160 characters, a licence notice pasted
+  in; two files by eye (`REFUSED_BY_EYE`). A file with no author is
+  credited to its uploader, as Commons' own attribution does.
+- **Every Wikidata picture was looked at** on contact sheets, and every
+  price picture by the agent that chose it: nothing on any of them states
+  the value. Three rows stay bare: the Rubicon (_Attribution_ only),
+  Vulcano (a panorama, then a map) and Tour Majunga (French freedom of
+  panorama keeps it off Commons).
+- **French architecture under copyright** — the Louvre pyramid, Millau, La
+  Défense's towers — ships as Commons keeps it. Commons may delete one; the
+  next build then drops the row.
+- `picture-bank.test.ts` holds the bank to the served folder, both ways,
+  and to the rows the banks deal.
+
 ## Steps
 
 1. **Done.** **Countries**: `P298` in the bank build, `countryCode` on the row and the
    question, the outline on the question card for both country families, on
    every screen. Protocol bump only if an old peer could mis-read the frame
    (a new optional field does not).
-2. **The picture pipeline**: a build script reading `P18` and the hand-named
+2. **Done.** **The picture pipeline**: a build script reading `P18` and the hand-named
    price files, checking licences, resizing to WebP and writing the hashed
    files plus a `pictures.json` of name, size, author and licence; the credits
    section read from it.

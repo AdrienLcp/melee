@@ -599,6 +599,9 @@ export const FR_DICTIONARY = defineDictionary({
       'Ses rubriques ont été rattachées aux sujets utilisés ici, ses anecdotes conservées comme la ligne affichée une fois la réponse dévoilée, et ses questions classées adulte signalées pour que l’hôte puisse les laisser de côté. Les questions qui ne portaient pas exactement trois mauvaises réponses ont été écartées, comme celles dont une mauvaise réponse ne se distingue plus de la bonne une fois écrite. Une réponse mal orthographiée par rapport à sa propre anecdote a été corrigée. Une partie de ses questions a été traduite en portugais européen, sans celles que seul un pays connaît.',
     opentdb:
       'Son texte arrive encodé en HTML et a été décodé, ses catégories ont été rattachées aux sujets utilisés ici, et les questions qui ne portaient pas exactement trois mauvaises réponses ont été écartées, comme celles dont une mauvaise réponse ne se distingue plus de la bonne une fois écrite. Une partie de ses questions a été traduite en portugais européen, sans celles que seul un pays connaît.',
+    photographs: 'Photographies',
+    photographsChanges:
+      'Chaque photographie est réduite à 640 pixels sur son plus grand côté et enregistrée en WebP ; rien d’autre n’est modifié.',
     polyfact:
       'Elle est bâtie sur Wikidata en quatorze formes de question, dont sept ont été retenues et rattachées aux sujets utilisés ici — les autres portent sur des hameaux dont personne n’a entendu parler, ou donnent la réponse dans l’énoncé. Parmi ce qui restait, seules les questions dont le sujet et les quatre propositions ont tous un article de Wikipédia en français réellement lu ont été gardées. Une mauvaise réponse sur laquelle la source revenait bien trop souvent a été remplacée par une qu’elle n’utilisait presque pas, et les questions dont une mauvaise réponse ne se distingue plus de la bonne une fois écrite ont été écartées.',
     scowl:

@@ -51,6 +51,39 @@
       max-width: var(--measure)
       text-wrap: pretty
 
+    // One line a file, title then author then licence, wrapping as a unit:
+    // three hundred of them are looked up, never read through, so they set
+    // in caption type and stand in two columns once the page is wide enough.
+    .photographs
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+      width: 100%
+
+      h2
+        @include typography.title
+
+      ul
+        @include typography.caption
+
+        column-gap: var(--space-xl)
+        list-style: none
+        padding-block-start: var(--space-xs)
+
+        @media (min-width: 64rem)
+          columns: 2
+
+      li
+        break-inside: avoid
+        display: flex
+        flex-wrap: wrap
+        gap: 0 var(--space-xs)
+        overflow-wrap: anywhere
+        padding-block: calc(var(--space-2xs) / 2)
+
+      .author
+        color: var(--ink-muted)
+
     .share-alike
       border-top: var(--stroke-hair) solid var(--rule)
       padding-block-start: var(--space-m)
