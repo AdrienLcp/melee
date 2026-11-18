@@ -31,6 +31,7 @@
   "files": {
     "includes": [
       "!.claude/skills",
+      "!apps/server/scripts/questions-pt.json",
       "!apps/server/src/infrastructure/questions/question-bank.json"
     ]
   },
