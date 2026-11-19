@@ -12,6 +12,7 @@ import { LazyNoticeRegion } from '@/presentation/components/lazy-notice-region'
 import { SkipLink } from '@/presentation/components/skip-link'
 import { ConnectionProvider } from '@/presentation/connection/connection-provider'
 import { ReconnectingNotice } from '@/presentation/connection/reconnecting-notice'
+import { CrashRehearsal } from '@/presentation/crash-rehearsal'
 import { useResumeLandingArrival } from '@/presentation/landing-arrival'
 import { RoomActionsProvider } from '@/presentation/room-actions/room-actions-provider'
 import { useFocusMainOnNavigation } from '@/presentation/use-focus-main-on-navigation'
@@ -41,6 +42,7 @@ export const AppShell: React.FC = () => {
       <ConnectionProvider>
         <RoomActionsProvider>
           <div className='app-shell'>
+            <CrashRehearsal />
             <SkipLink />
             <AppMenu />
             <ViewTransition

@@ -181,6 +181,26 @@ export const eveningUrlFor = async ({
 }): Promise<string> =>
   `${location.origin}${pathFor(paths.evening, { locale })}#${await eveningFragmentOf(evening)}`
 
+const CRASH_REHEARSAL_PARAM = 'crash'
+
+/**
+ * Whether the address asks to rehearse the error screen with `?crash`, which
+ * every origin but production honours: there each crash files a report, and
+ * the reports table is where real ones are read.
+ */
+export const useIsCrashRehearsalAsked = (): boolean => {
+  const isProduction = useSyncExternalStore(
+    originNeverChanges,
+    () => location.origin === CANONICAL_ORIGIN,
+    () => true
+  )
+
+  return (
+    !isProduction &&
+    new URLSearchParams(useLocation().search).has(CRASH_REHEARSAL_PARAM)
+  )
+}
+
 /** What the address holds from its `#` on, or nothing. */
 export const useLocationHash = (): string => useLocation().hash
 

@@ -1077,6 +1077,11 @@ one part.
 
 ### Internal
 
+- `[Game]` **`?crash` shows the error screen anywhere but production.** Any
+  page with it in the address throws, so the screen can be looked at on
+  staging or locally without waiting for a real bug; production ignores it,
+  because every crash there files a report.
+
 - `[Shared]` **Lights' rules, ahead of its server.** A 3 × 3 board lights
   one cell at a time from a run every screen builds from the round's seed —
   never the same cell twice running, a trap beside about one light in four,
