@@ -8,6 +8,7 @@ import {
 
 import {
   isFinal,
+  isFoundOrMissed,
   isFullyBanked,
   isMiss,
   nothingScored,
@@ -60,6 +61,19 @@ describe('isMiss', () => {
     expect(isMiss(nothingScored('buzzer'))).toBe(true)
     expect(isMiss(nothingScored('blindtest'))).toBe(true)
     expect(isMiss({ isCorrect: true, kind: 'single' })).toBe(false)
+  })
+})
+
+describe('isFoundOrMissed', () => {
+  it('[verdict] counts finds where an answer is right or wrong, never where it is paid by how close it came', () => {
+    expect(isFoundOrMissed(nothingScored('quiz'))).toBe(true)
+    expect(isFoundOrMissed(nothingScored('blindtest'))).toBe(true)
+    expect(isFoundOrMissed({ bestHits: 24, hits: 18, kind: 'count' })).toBe(
+      false
+    )
+    expect(isFoundOrMissed({ kind: 'match', matched: 3, others: 7 })).toBe(
+      false
+    )
   })
 })
 

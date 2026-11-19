@@ -652,6 +652,8 @@ export const useRowsTravel = ({
       return
     }
 
+    let isObserving = true
+
     const observer = new ResizeObserver(() => {
       const previous = lastDrawn.current
       const width = frameOf(element).clientWidth
@@ -660,12 +662,16 @@ export const useRowsTravel = ({
         return
       }
 
+      const rows = keyedRowsOf(element)
       const now = measureLaidOut(element)
       const kept = new Map(now)
       const before = new Map<string, Box>()
       const isSameWidth = Math.abs(previous.width - width) < MIN_TRAVEL_PX
+      // A row a grid stretches to the one beside it gliding in height
+      // follows it: gliding too, the two set each other off, back and forth.
+      const isFollowing = rows.some(isTravellingInHeight)
 
-      for (const row of keyedRowsOf(element)) {
+      for (const row of rows) {
         const key = row.dataset.key ?? ''
         const drawn = previous.boxes.get(key)
         const is = now.get(key)
@@ -683,6 +689,7 @@ export const useRowsTravel = ({
         }
 
         if (
+          isFollowing ||
           !isSameWidth ||
           Math.abs(drawn.height - is.height) < MIN_TRAVEL_PX ||
           isMovedOtherwise(row)
@@ -702,8 +709,23 @@ export const useRowsTravel = ({
 
       lastDrawn.current = { boxes: kept, width }
 
-      if (before.size > 0) {
-        play({ before, list: element, now, pace })
+      if (before.size === 0) {
+        return
+      }
+
+      play({ before, list: element, now, pace })
+
+      // Its glide sets it back to the height it was drawn at within this
+      // frame, which the browser reports as a loop of undelivered sizes.
+      for (const row of rows.filter(isTravellingInHeight)) {
+        observer.unobserve(row)
+        void Promise.allSettled(
+          runningTravelsOf(row).map(({ animation }) => animation.finished)
+        ).then(() => {
+          if (isObserving) {
+            observer.observe(row)
+          }
+        })
       }
     })
 
@@ -717,6 +739,7 @@ export const useRowsTravel = ({
     resizes.current = observer
 
     return () => {
+      isObserving = false
       observer.disconnect()
       resizes.current = null
     }

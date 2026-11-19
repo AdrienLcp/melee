@@ -164,6 +164,17 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
 }
 
 /**
+ * Whether scoring on this verdict means the answer was found: an answer is
+ * right or wrong, or a word is guessed. Everywhere else a seat is paid by how
+ * close it came, almost every seat scores, and counting them says nothing.
+ */
+export const isFoundOrMissed = (verdict: Verdict): boolean =>
+  verdict.kind === 'halves' ||
+  verdict.kind === 'single' ||
+  verdict.kind === 'move' ||
+  verdict.kind === 'word'
+
+/**
  * Whether a seat holding this verdict has nothing left to send: it banked
  * everything, or its mystery-word grid spent the last try without the word.
  * What closes a seat's retries, and what lets the round end before its clock.

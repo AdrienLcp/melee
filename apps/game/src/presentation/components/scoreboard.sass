@@ -28,6 +28,8 @@
     // whom instead of re-reading a board that arrived re-ranked. A climber
     // passes over the rows it overtakes.
     li[data-moved]
+      --moved-travel: var(--moved-from)
+
       animation: standing-moves calc(var(--transition-slow, 0s) * 1.5) var(--ease-out) calc(var(--transition-slow, 0s) * 3) backwards
       position: relative
 
@@ -166,4 +168,4 @@
 
 @keyframes standing-moves
   from
-    translate: 0 var(--moved-from)
+    translate: 0 var(--moved-travel)

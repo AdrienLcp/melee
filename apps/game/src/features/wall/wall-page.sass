@@ -6,7 +6,9 @@
 
 /// A ranking past twelve seats in two columns, filled top to bottom, each
 /// row dividing the box by half the table. A row no longer travels: its old
-/// place may be in the other column.
+/// place may be in the other column. Its move is stilled rather than taken
+/// off: added back as the wall turns upright, it starts over, and sent the
+/// rows back to where they stood before the round.
 @mixin two-ranked-columns
   --row-width-cap: 2.6cqi
   --rows-per-column: round(up, var(--standings-rows, 8) / 2, 1)
@@ -21,7 +23,7 @@
     break-inside: avoid
 
     &[data-moved]
-      animation: none
+      --moved-travel: 0%
 
 @layer components
   // Nobody scrolls the room's screen, and the gutter `html` keeps for a

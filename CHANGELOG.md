@@ -638,6 +638,17 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A wall turned upright mid-reveal keeps the standings in order.**
+  Lying down, a table past twelve seats takes two columns, where the rows
+  did not travel; turned upright, their move started over, and the board
+  stood in the order before the round for a second before re-ranking.
+- `[Game]` **The seats' table on a player's screen no longer breathes.** Two
+  rows side by side set each other gliding in height, back and forth, so the
+  lobby's table swelled and shrank by a few pixels twice a second, and the
+  console logged a resize loop each time.
+- `[Game]` **A round paid by how close you came no longer says how many
+  _found_ it.** _Trouvé : 18 sur 24_ under a Lumières race counted the seats
+  that scored at all; the line stays for answers that are right or wrong.
 - `[Game]` **The menu opens on its first press.** It was downloaded only
   after a first press, key or scroll somewhere on the page, so a press on the
   menu that was the page's first waited for it: 1.4s on a computer, 1.8s on a

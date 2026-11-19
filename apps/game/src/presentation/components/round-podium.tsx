@@ -5,6 +5,7 @@ import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 import type { Award } from '@melee/protocol/scoring'
 
 import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
+import { isFoundOrMissed } from '@melee/core/scoring/verdict'
 
 import {
   matchsticksContent,
@@ -165,12 +166,14 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
             {translate('round.othersScored', { count: scorers.length - 1 })}
           </span>
         )}
-        <span>
-          {translate('round.found', {
-            found: scorers.length,
-            total: stampedCount
-          })}
-        </span>
+        {scorers.some((award) => isFoundOrMissed(award.verdict)) && (
+          <span>
+            {translate('round.found', {
+              found: scorers.length,
+              total: stampedCount
+            })}
+          </span>
+        )}
         {unsentScorers.length > 0 && (
           <span className='unsent'>
             <RichText
