@@ -196,9 +196,7 @@ export const useIsCrashRehearsalAsked = (): boolean => {
   )
   const { search } = useLocation()
 
-  return (
-    !isProduction && new URLSearchParams(search).has(CRASH_REHEARSAL_PARAM)
-  )
+  return !isProduction && new URLSearchParams(search).has(CRASH_REHEARSAL_PARAM)
 }
 
 /** What the address holds from its `#` on, or nothing. */
