@@ -194,10 +194,10 @@ export const useIsCrashRehearsalAsked = (): boolean => {
     () => location.origin === CANONICAL_ORIGIN,
     () => true
   )
+  const { search } = useLocation()
 
   return (
-    !isProduction &&
-    new URLSearchParams(useLocation().search).has(CRASH_REHEARSAL_PARAM)
+    !isProduction && new URLSearchParams(search).has(CRASH_REHEARSAL_PARAM)
   )
 }
 
