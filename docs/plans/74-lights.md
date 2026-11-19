@@ -262,6 +262,45 @@ the wall with 24 bars, the reveal — linked from one index page. Then:
 - every state filmed: the countdown into the first light, a hit, a trap's
   freeze, the window closing.
 
+### The direction, as chosen (19/11/2026)
+
+Three directions were drawn (`.impeccable/directions/lights/`, local and
+uncommitted): _tokens_ in a chipboard tray, _columns_ rising with a pawn on
+top, and _a pawn race_ on printed tracks. Adrien took **the tokens**, with two
+changes:
+
+- **The board takes every pixel the seat's screen leaves**, width and height,
+  so its cells are taller than wide on a phone held upright: a large finger on
+  a small device is the case it is sized for. No square board with 400px
+  empty above it. Nine cells still, the grid fixed, only their aspect follows
+  the space.
+- **A trap lays the seat's pawn down on its wall bar for the second it
+  freezes**, borrowed from the pawn race, so the room sees who fell in.
+
+The rest, from the tokens page:
+
+- **The tray**: the board is a chipboard tray of nine recessed sockets
+  (`--socket`, a dashed die-line). The lit cell is a coral token (`--primary`,
+  edge `--primary-edge`, a printed dot and a keyline) set in its socket **on
+  the frame it lights, with no entrance** — a reaction game measures that
+  frame. The trap is a paper token (`--card`), hatched, with a bold printed
+  cross: shape, never colour alone. A press sinks the token by its edge.
+- **The freezes**: the whole tray hatched and its tokens gone; a trap's second
+  drains a rule under the tray and stamps the trap's mark beside it, a miss's
+  300ms only hatches.
+- **The seat's head**: the hit count large (`monument`-scale, tabular), the
+  window's groove draining beside it in the phase ink. Keyboard labels sit in
+  a cell's corner on a paper key cap, on a device with keys only.
+- **The wall**: one lane a seat in two columns of twelve (one column on a
+  standing wall): pawn, name on one line ending on an ellipsis, then the bar
+  notched every five hits and the count at its tip. Lanes keep seat order
+  during the race, so nobody's bar jumps rows four times a second; the bar's
+  width eases over the 250ms between two publishes. A trap hatches the bar
+  and lays the pawn down for a second.
+- **The reveal**: the lanes ranked — place, pawn, name, bar, hits, traps with
+  the cross mark, the payout token — under the winner's name.
+- **A duel**: the two lanes alone across the wall, at billboard size.
+
 ## How to tell it is done
 
 Muted, with `MAX_PLAYERS_PER_ROOM` seats with long names at phone width and a
