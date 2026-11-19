@@ -643,6 +643,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A browser listing `en;q=0.9` among its languages opens the
+  site.** One Chrome on macOS handed that header weight in
+  `navigator.languages`, every number formatted over it threw, and the home
+  page fell to its error screen. The weight is dropped and any tag `Intl`
+  refuses is skipped.
+
 - `[Game]` **No blank screen between the count and the round.** The token
   lifted off a quarter-second before zero while the round lands just after
   it, so every screen sat empty in between — 300 ms on a phone on staging,

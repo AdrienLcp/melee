@@ -1,5 +1,7 @@
 import { Result } from '@adrienlcp/result'
 
+import { usableLocaleTags } from '@/helpers/usable-locale-tags'
+
 /**
  * The socket shares the page's origin: in dev the Vite proxy forwards `/ws` to
  * the server, in production the same host serves both. That is what lets the
@@ -9,7 +11,8 @@ export const socketOrigin = (): string =>
   `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}`
 
 /** Most-preferred first, as BCP-47 tags — `['fr-FR', 'fr', 'en-US']`. */
-export const preferredLocales = (): readonly string[] => navigator.languages
+export const preferredLocales = (): readonly string[] =>
+  usableLocaleTags(navigator.languages)
 
 /**
  * The path the document was served at, which is where the language it is
