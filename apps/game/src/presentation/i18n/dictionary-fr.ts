@@ -945,6 +945,7 @@ export const FR_DICTIONARY = defineDictionary({
       pairs: 'On choisit le plus grand',
       point: 'On pointe sur la carte',
       spoken: 'Équipe par équipe',
+      tap: 'Toucher les lumières',
       typed: 'On tape',
       vote: 'On vote pour quelqu’un',
       word: 'On trouve le mot'
@@ -1601,6 +1602,11 @@ export const FR_DICTIONARY = defineDictionary({
         'Aucun autre service n’est appelé. Les polices sont servies par Mêlée elle-même, et le QR code est dessiné dans ton navigateur.'
     },
     title: 'Mentions légales et confidentialité'
+  },
+  lights: {
+    name: 'Lumières',
+    scoring:
+      'Chaque lumière touchée compte : le plus de touches de la manche marque 100 points, moitié moins en marque 50.'
   },
   loading: 'Chargement…',
   longestword: {

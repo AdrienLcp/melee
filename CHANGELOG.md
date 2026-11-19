@@ -20,6 +20,16 @@ one part.
   rung is ringed in the phase's colour and every rung, worth and finder sits
   on its chipboard edge, which no screen drew at first.
 
+- `[Server]` **Lumières is served, reachable by a settings frame.** `lights`
+  joins the games the server deals, not the shelf: a 15 to 30 second window
+  (20 by default) on a 3 × 3 board, traps on by default, five rounds, the
+  `tap` mode alone, duels allowed. The round draws a seed, every tap is
+  counted on arrival inside the window — 400 ms of grace past it, a floor
+  under every hit — a trap is recorded and moves nothing, and a pause holds
+  the window and gives back what it had left. The counts reach every screen
+  four times a second rather than on every tap, and each seat is paid its hits
+  over the round's best. No screen draws it yet.
+
 - `[Server]` **Cinq indices is served, reachable by a settings frame.**
   `fiveclues` joins the games the server deals, not the shelf: a country
   climbed to through five clues in the room's language, each open 5 to 30

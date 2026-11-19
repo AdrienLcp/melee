@@ -14,6 +14,11 @@ import {
   MAX_CLUE_DURATION_MS,
   MIN_CLUE_DURATION_MS
 } from './five-clues'
+import {
+  DEFAULT_LIGHTS_HAS_TRAPS,
+  DEFAULT_LIGHTS_WINDOW_MS,
+  lightsWindowMsSchema
+} from './lights'
 import { matchsticksGoalSchema } from './matchsticks'
 import { mysteryWordLengthSchema } from './mystery-word'
 import {
@@ -56,7 +61,8 @@ export const gameKinds = [
   'longestword',
   'makenumber',
   'thinkalike',
-  'fiveclues'
+  'fiveclues',
+  'lights'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -342,6 +348,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('fiveclues'),
     /** The wording of the cities, the capital, the four names and every typed answer: one language for the table, like the quiz's. */
     language: questionLanguageSchema
+  }),
+  z.object({
+    /** Whether about one light in four comes up beside a trap that darkens the board for a second. */
+    hasTraps: z.boolean(),
+    kind: z.literal('lights'),
+    /** How long the board stays lit, every seat chasing the same run. */
+    windowMs: lightsWindowMsSchema
   })
 ])
 
@@ -369,6 +382,7 @@ export type LongestWordSettings = Extract<GameSettings, { kind: 'longestword' }>
 export type MakeNumberSettings = Extract<GameSettings, { kind: 'makenumber' }>
 export type ThinkAlikeSettings = Extract<GameSettings, { kind: 'thinkalike' }>
 export type FiveCluesSettings = Extract<GameSettings, { kind: 'fiveclues' }>
+export type LightsSettings = Extract<GameSettings, { kind: 'lights' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -397,7 +411,9 @@ export const roundDurationMsOf = (game: GameSettings | null): number | null =>
       ? game.showMs + game.roundDurationMs
       : game.kind === 'fiveclues'
         ? FIVE_CLUES_CLUE_COUNT * game.clueDurationMs
-        : game.roundDurationMs
+        : game.kind === 'lights'
+          ? game.windowMs
+          : game.roundDurationMs
 
 /**
  * Whether a wrong answer sits the player out for the rest of the round. Only the
@@ -556,6 +572,12 @@ export const DEFAULT_FIVE_CLUES_SETTINGS: FiveCluesSettings = {
   language: 'fr'
 }
 
+export const DEFAULT_LIGHTS_SETTINGS: LightsSettings = {
+  hasTraps: DEFAULT_LIGHTS_HAS_TRAPS,
+  kind: 'lights',
+  windowMs: DEFAULT_LIGHTS_WINDOW_MS
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -567,6 +589,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   fiveclues: DEFAULT_FIVE_CLUES_SETTINGS,
   higherlower: DEFAULT_HIGHER_LOWER_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
+  lights: DEFAULT_LIGHTS_SETTINGS,
   longestword: DEFAULT_LONGEST_WORD_SETTINGS,
   makenumber: DEFAULT_MAKE_NUMBER_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,

@@ -73,6 +73,7 @@ type ServedMode = Exclude<
   | 'letters'
   | 'calculation'
   | 'match'
+  | 'tap'
 >
 
 const ATLAS_SCORING_KEYS = {
@@ -92,6 +93,7 @@ type ScoringKey = BuiltKey<
   | 'fiveclues.scoring'
   | 'higherlower.scoring'
   | 'innerclock.scoring'
+  | 'lights.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
   | 'longestword.scoring'
@@ -176,7 +178,7 @@ export const scoringKey = ({
   } | null
 }): ScoringKey => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's, a word's tries the mystery word's, words from a draw the longest word's, calculations make the number's, a line matched against the room think alike's and a spoken round black square's, so the two games that serve
+  // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's, a word's tries the mystery word's, words from a draw the longest word's, calculations make the number's, a line matched against the room think alike's, taps on a board of lights lights' and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
@@ -191,7 +193,8 @@ export const scoringKey = ({
     answerMode === 'word' ||
     answerMode === 'letters' ||
     answerMode === 'calculation' ||
-    answerMode === 'match'
+    answerMode === 'match' ||
+    answerMode === 'tap'
       ? 'choice'
       : answerMode
 
@@ -220,6 +223,8 @@ export const scoringKey = ({
         : 'blacksquare.scoring'
     case 'innerclock':
       return 'innerclock.scoring'
+    case 'lights':
+      return 'lights.scoring'
     case 'matchsticks':
       return answerMode === 'move'
         ? 'matchsticks.scoringMove'

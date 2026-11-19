@@ -61,6 +61,7 @@ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import type { TrackHistory } from '@melee/core/blindtest/track-variety'
 import type { CluesSeat } from '@melee/core/fiveclues/clue-race'
+import type { LightsStep } from '@melee/core/lights/lights-run'
 import type { QuestionAnswer } from '@melee/core/quiz/question-answer'
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
@@ -617,6 +618,20 @@ export type Round = {
         openClueIndex: number
         /** Each seat that has guessed; a seat absent here is still racing, having guessed on no clue. */
         seats: Map<PlayerId, CluesSeat>
+      }
+    | {
+        hasTraps: boolean
+        kind: 'lights'
+        /** When the counts that moved since the last snapshot are due on every screen, `null` with nothing new: a tap never publishes on its own. */
+        publishDueAt: number | null
+        /** Built from the seed as the round opens, so a tap is checked without drawing the run again. On no screen: each builds its own. */
+        run: LightsStep[]
+        /** Each seat that has hit or trapped; a seat absent here has neither. */
+        seats: Map<PlayerId, { hits: number; traps: number }>
+        /** Drawn as the round opens, on every screen from the countdown. */
+        seed: number
+        /** Stamped as the round opens, so a host moving the setting mid-round decides the next one. */
+        windowMs: number
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

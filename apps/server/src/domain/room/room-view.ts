@@ -38,6 +38,7 @@ import {
 } from '@/domain/round/black-square-round'
 import { deckSummariesOf } from '@/domain/round/deck-dealer'
 import { fiveCluesContentView } from '@/domain/round/five-clues-round'
+import { lightsContentView } from '@/domain/round/lights-round'
 import { longestWordContentView } from '@/domain/round/longest-word-round'
 import { makeNumberContentView } from '@/domain/round/make-number-round'
 import { mysteryWordContentView } from '@/domain/round/mystery-word-round'
@@ -283,7 +284,8 @@ const toHostContent = ({
     content.kind === 'reflex' ||
     content.kind === 'swatch' ||
     content.kind === 'mostlikely' ||
-    content.kind === 'thinkalike'
+    content.kind === 'thinkalike' ||
+    content.kind === 'lights'
   ) {
     return { kind: content.kind }
   }
@@ -729,6 +731,10 @@ const toContentView = ({
 
   if (content.kind === 'fiveclues') {
     return fiveCluesContentView({ content, now, room, round, youId })
+  }
+
+  if (content.kind === 'lights') {
+    return lightsContentView({ content, now, room, round })
   }
 
   if (content.kind === 'thinkalike') {

@@ -1047,6 +1047,7 @@ const PORTUGUESE = defineDictionary({
       pairs: 'Escolher o maior',
       point: 'Marcar no mapa',
       spoken: 'Equipa a equipa',
+      tap: 'Tocar nas luzes',
       typed: 'Escrever',
       vote: 'Votar em alguém',
       word: 'Encontrar a palavra'
@@ -1794,6 +1795,11 @@ const PORTUGUESE = defineDictionary({
         'Nenhum outro serviço é chamado. Os tipos de letra são servidos pelo próprio Mêlée, e o código QR é desenhado no teu navegador.'
     },
     title: 'Aviso legal e privacidade'
+  },
+  lights: {
+    name: 'Luzes',
+    scoring:
+      'Cada luz acertada conta: quem acertar mais na ronda marca 100 pontos, metade disso marca 50.'
   },
   loading: 'A carregar…',
   longestword: {

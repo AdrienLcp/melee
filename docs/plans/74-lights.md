@@ -196,6 +196,54 @@ Where it diverges from the above, and what step 2 picks up:
 
 — cut here: served by a settings frame, tests green, screens owed —
 
+### Step 2, as built (19/11/2026)
+
+Where it diverges from the above, and what step 3 picks up:
+
+- **The window is read off the round's own clock**, never stored:
+  `lightsWindowOf` gives `opensAt = runningSince − elapsedMs` while the clock
+  runs, the countdown's end before it starts, and `now − elapsedMs` while it
+  stands still. A pause or the console away therefore moves both ends on by
+  however long it lasted, and `closesAt − opensAt` is always `windowMs` — the
+  view sends it, and a screen builds its run from
+  `lightsRunLengthOf(closesAt − opensAt)`, `windowMs` being on no view. While
+  paused the published window drifts with the clock: the board is dark there
+  on `isPaused`, which step 3 draws. The round closes on the shell's `round`
+  deadline at `windowMs + LATE_TAP_GRACE_MS` of round clock
+  (`lightsOpenPhaseMs`), never early.
+- **Timing is core's alone.** The server refuses a tap only for what could
+  never have been the seat's — unseated (`invalid_message`), another round
+  (`stale_round`), another game (`wrong_phase`), a seat the round did not open
+  on (`joined_mid_round`) — and answers nothing to a tap that counts nothing:
+  one sent in the countdown or after the reveal is outside the window, and an
+  honest thumb sends those at every edge. A pause or the console away refuses
+  it before dispatch (`room_paused`, `FLOOR_MESSAGE_TYPES`).
+- **The tick is `publishDueAt` on the round**, set to
+  `now + LIGHTS_PUBLISH_TICK_MS` (250) by the first count that moves after a
+  snapshot, and a `publish` deadline in `room-deadlines.ts`. The tap that arms
+  it commits, so the wake is set; every other tap only moves memory. 24 seats
+  tapping five times a second publish at most 8 snapshots against 122 per tap.
+- **The run is kept on the server's round**, built once from the seed, so a
+  tap is checked without drawing 204 steps again. It is on no view.
+- **Every seat the round opened on is paid**, a seat that hit nothing
+  included at 0, so the reveal lists the whole race.
+- **Lights joins `clockRaces`** in `spaced-cycle.ts`, with Reflex and Inner
+  clock: three races against a screen read as one round twice.
+- **`ready-made-line-ups.ts` is untouched**: Free-for-all reads the shelf, so
+  it takes Lights on its own the day step 3 shelves it, and _Quick_ (Reflex,
+  Shades, Inner clock, Matchsticks) is step 3's to decide.
+- **The app compiles with the game and draws nothing of it**: `lights.name`
+  and `lights.scoring` in three dictionaries, `host.answerMode.tap`, the
+  `Lightbulb` glyph, and a case in `answer-forms.tsx`, `round-content.ts`,
+  `line-up-entry-names.ts` (the window) and `translation.ts`. Step 3 rewrites
+  any of them it needs.
+- **`lights-game.test.ts` pins the window at 1.2 s and the seed** to the first
+  whose opening light carries a trap, through a mock of `lightsContent`; the
+  floor and the grace are the real ones. Ten cases, nine guards each seen red
+  under a mutation: the window's opening (a trap tapped in the countdown), the
+  floor, the step, a trap moving the count, the grace, the share of the best,
+  the latecomer, the tick, the pause.
+
 ## Step 3 — the screens
 
 Starts with the `impeccable` skill: direction pages for Adrien to pick, each

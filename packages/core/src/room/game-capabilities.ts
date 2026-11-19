@@ -63,6 +63,9 @@ const WORD_ONLY = ['word'] as const satisfies readonly AnswerMode[]
 /** A longest word is answered by typing words from the draw, which the server checks and keeps the longest of. */
 const LETTERS_ONLY = ['letters'] as const satisfies readonly AnswerMode[]
 
+/** Lights is answered by tapping the lit cells, which the server counts. */
+const TAP_ONLY = ['tap'] as const satisfies readonly AnswerMode[]
+
 /** Make the number is answered by calculations over the tiles, which the server checks and keeps the nearest of. */
 const CALCULATION_ONLY = [
   'calculation'
@@ -315,6 +318,17 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         answerModes: SERVED_MODES,
         makesSound: false,
         paysTheClock: true,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // Hits are a count, not a race to one moment, so the clock settles no tie;
+    // a duel is two bars climbing side by side, the game at its best.
+    case 'lights':
+      return {
+        answerModes: TAP_ONLY,
+        makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true

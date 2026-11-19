@@ -103,6 +103,7 @@ import {
 } from '@/domain/round/five-clues-round'
 import { gradePicks } from '@/domain/round/higher-lower-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
+import { lightsOpenPhaseMs, payLights } from '@/domain/round/lights-round'
 import {
   checkLongestWord,
   gradeLongestWord
@@ -1133,6 +1134,11 @@ export const everyoneIsDone = (room: Room, now: number): boolean => {
     return isFiveCluesSettled(room, now)
   }
 
+  // Nobody is ever done chasing lights: the window is the round.
+  if (round.content.kind === 'lights') {
+    return false
+  }
+
   const expected = [...room.players.values()].filter((participant) =>
     isExpectedInRound({
       now,
@@ -2160,6 +2166,13 @@ export const closeRound = (room: Room, now: number): void => {
     return
   }
 
+  if (round.content.kind === 'lights') {
+    payLights(room)
+    revealRound(room, now)
+
+    return
+  }
+
   if (round.content.kind === 'slate') {
     markEveryItem(room)
     revealRound(room, now)
@@ -2321,6 +2334,8 @@ const openPhaseDurationMs = (room: Room): number | null => {
     // the round, save on the last.
     case 'fiveclues':
       return clueWindowEndsAtElapsedMs(round.content)
+    case 'lights':
+      return lightsOpenPhaseMs(round.content)
     // Once the sheets close the vote runs on the room's word, and until then a
     // stop's grace may come before the clock. Either way they close on screen
     // first, and here once the lines that sent are in.

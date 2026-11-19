@@ -11,6 +11,7 @@ import { pointsForEstimate } from '../estimate/estimate-pay'
 import { pointsForClue } from '../fiveclues/clue-pay'
 import { pointsForPairs } from '../higherlower/pairs-pay'
 import { pointsForGap } from '../innerclock/gap-pay'
+import { pointsForCount } from '../lights/hits-pay'
 import { pointsForLetters } from '../longestword/letters-pay'
 import { pointsForCalculation } from '../makenumber/calculation-pay'
 import { pointsForMove } from '../matchsticks/move-pay'
@@ -56,6 +57,7 @@ const BEST_ROUND = {
     }).points,
   higherlower: () => pointsForPairs({ rightPairs: 5 }),
   innerclock: () => pointsForGap({ countedMs: 30_000, targetMs: 30_000 }),
+  lights: () => pointsForCount({ bestHits: 40, hits: 40 }),
   longestword: () => pointsForLetters({ bestLength: 9, length: 9 }),
   makenumber: () => pointsForCalculation({ distance: 0 }),
   matchsticks: () => pointsForMove({ placesFromBest: 0 }),

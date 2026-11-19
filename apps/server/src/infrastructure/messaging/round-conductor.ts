@@ -41,6 +41,7 @@ import {
   higherLowerContent
 } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
+import { lightsContent, settleLightsPublish } from '@/domain/round/lights-round'
 import { longestWordContent } from '@/domain/round/longest-word-round'
 import { makeNumberContent } from '@/domain/round/make-number-round'
 import {
@@ -269,6 +270,7 @@ const servedContent = ({
         | 'buzzer'
         | 'challenge'
         | 'innerclock'
+        | 'lights'
         | 'petitbac'
         | 'reflex'
         | 'slate'
@@ -285,6 +287,8 @@ const servedContent = ({
       return challengeContent(pickChallengeLabels(room, challenge))
     case 'innerclock':
       return innerclockContent(innerclockTargetSeconds)
+    case 'lights':
+      return lightsContent(game)
     case 'petitbac':
       return petitBacContent({ room, settings: game })
     case 'reflex':
@@ -413,6 +417,7 @@ export const beginRound = async (
     game.kind === 'buzzer' ||
     game.kind === 'challenge' ||
     game.kind === 'innerclock' ||
+    game.kind === 'lights' ||
     game.kind === 'petitbac' ||
     game.kind === 'reflex' ||
     game.kind === 'slate'
@@ -1259,6 +1264,15 @@ const runDeadline = (
         closeRound(room, now)
       }
 
+      publishRoom(engine)
+
+      return
+    }
+
+    // The counts lights taps moved since the last snapshot, sent on a tick
+    // rather than on every tap.
+    case 'publish': {
+      settleLightsPublish(room)
       publishRoom(engine)
 
       return

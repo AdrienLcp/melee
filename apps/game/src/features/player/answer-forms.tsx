@@ -90,6 +90,7 @@ export const candidatesIn = ({
     case 'estimate':
     case 'higherlower':
     case 'innerclock':
+    case 'lights':
     case 'matchsticks':
     case 'mostlikely':
     case 'longestword':

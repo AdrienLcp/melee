@@ -62,6 +62,7 @@ import {
   everyoneHasCounted,
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
+import { registerLightsTap } from '@/domain/round/lights-round'
 import { seatValueOf } from '@/domain/round/make-number-round'
 import {
   callPetitBacStopForRoom,
@@ -577,6 +578,10 @@ const dispatch = ({
     }
     case 'player.buzz': {
       buzz(message.roundId, active, outbound, engine)
+      break
+    }
+    case 'lights.tap': {
+      tapLight(message, active, outbound, engine)
       break
     }
     case 'player.answer': {
@@ -1458,6 +1463,51 @@ const tick = (
   }
 
   publishRoom(engine)
+}
+
+/**
+ * The one frame that never publishes: a tap moves its seat's count, and the
+ * round sends every screen the counts on a tick (`LIGHTS_PUBLISH_TICK_MS`).
+ * Only the tap that arms that tick commits, so the room's wake is set for it.
+ */
+const tapLight = (
+  message: Extract<ClientMessage, { type: 'lights.tap' }>,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  if (active.playerId === null) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player chases the lights'
+    })
+
+    return
+  }
+
+  const tapped = registerLightsTap({
+    cell: message.cell,
+    now: engine.now(),
+    playerId: active.playerId,
+    room: engine.room,
+    roundId: message.roundId,
+    step: message.step
+  })
+
+  if (tapped.status === 'failure') {
+    sendError(outbound, {
+      code: tapped.error,
+      fatal: false,
+      message: 'That tap was not counted'
+    })
+
+    return
+  }
+
+  if (tapped.data.armsPublish) {
+    commitRoom(engine)
+  }
 }
 
 const buzz = (

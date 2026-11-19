@@ -52,6 +52,7 @@ import {
   serverTimeSchema
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
+import { lightsRoundContentSchema } from './lights'
 import {
   drawnLettersSchema,
   drawnWordSchema,
@@ -158,7 +159,8 @@ export const answerModes = [
   'word',
   'letters',
   'calculation',
-  'match'
+  'match',
+  'tap'
 ] as const
 
 /**
@@ -221,7 +223,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('word') }),
   z.object({ kind: z.literal('letters') }),
   z.object({ kind: z.literal('calculation') }),
-  z.object({ kind: z.literal('match') })
+  z.object({ kind: z.literal('match') }),
+  z.object({ kind: z.literal('tap') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -432,6 +435,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   pairs: { kind: 'pairs' },
   point: { kind: 'point' },
   spoken: { kind: 'spoken' },
+  tap: { kind: 'tap' },
   typed: { kind: 'typed' },
   vote: { kind: 'vote' },
   word: { kind: 'word' }
@@ -953,7 +957,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     standings: z.array(cluesStandingSchema),
     /** The reader's own standing, and `null` without a seat in the race. */
     yourStanding: yourCluesStandingSchema.nullable()
-  })
+  }),
+  lightsRoundContentSchema
 ])
 
 /**
@@ -1278,7 +1283,9 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     answer: fiveCluesAnswerSchema.nullable(),
     kind: z.literal('fiveclues')
-  })
+  }),
+  /** Nothing withheld, and nothing more: the run is public and every count is on every screen. */
+  z.object({ kind: z.literal('lights') })
 ])
 
 /**
@@ -1400,7 +1407,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('longestword') }),
   z.object({ kind: z.literal('makenumber') }),
   z.object({ kind: z.literal('thinkalike') }),
-  z.object({ kind: z.literal('fiveclues') })
+  z.object({ kind: z.literal('fiveclues') }),
+  z.object({ kind: z.literal('lights') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

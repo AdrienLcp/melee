@@ -62,7 +62,8 @@ describe('answerModesFor', () => {
       'word',
       'letters',
       'calculation',
-      'match'
+      'match',
+      'tap'
     ])
   })
 })

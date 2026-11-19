@@ -426,6 +426,8 @@ const settingsOf = ({
         levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.clueDurationMs, translate })
       ]
+    case 'lights':
+      return [secondsOf({ ms: entry.windowMs, translate })]
   }
 }
 

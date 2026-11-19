@@ -990,6 +990,7 @@ export const EN_DICTIONARY = defineDictionary({
       pairs: 'Pick the bigger one',
       point: 'Pin it on the map',
       spoken: 'Team by team',
+      tap: 'Hit the lights',
       typed: 'Type it',
       vote: 'Vote for someone',
       word: 'Find the word'
@@ -1673,6 +1674,11 @@ export const EN_DICTIONARY = defineDictionary({
         'No other service is called. The typefaces are served by Mêlée itself, and the QR code is drawn in your browser.'
     },
     title: 'Legal notice and privacy'
+  },
+  lights: {
+    name: 'Lights',
+    scoring:
+      'Every light you hit counts: the most hits of the round score 100 points, half as many score 50.'
   },
   /**
    * The app itself arriving, which is the one wait with nothing more specific

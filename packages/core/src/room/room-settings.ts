@@ -3,6 +3,7 @@ import {
   type GameKind,
   type GameSettings
 } from '@melee/protocol/game'
+import { DEFAULT_LIGHTS_ROUND_COUNT } from '@melee/protocol/lights'
 import type { Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
@@ -42,6 +43,7 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   higherlower: 12,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
+  lights: DEFAULT_LIGHTS_ROUND_COUNT,
   /** A draw is under a minute of typing and a reveal to argue over, so eight of them are a short game. */
   longestword: 8,
   /** A draw is a minute of building and a reveal to argue over, so eight of them are a short game. */
@@ -89,6 +91,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   fiveclues: 'choice',
   higherlower: 'pairs',
   innerclock: 'buzzer',
+  lights: 'tap',
   longestword: 'letters',
   makenumber: 'calculation',
   matchsticks: 'move',
@@ -223,6 +226,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   fiveclues: null,
   higherlower: null,
   innerclock: null,
+  lights: null,
   longestword: null,
   makenumber: null,
   matchsticks: null,

@@ -1012,7 +1012,17 @@ Each `lights.tap` is stamped on arrival and counted only inside the window —
 above `HIT_FLOOR_MS`, `FALSE_START_FLOOR_MS`'s twin: hit _n_ arriving before
 `opensAt + n × HIT_FLOOR_MS` is not counted. Cumulative rather than between
 two arrivals, because Wi-Fi bunches frames and a gap floor would refuse honest
-hits. `packages/core/src/lights/counted-tap.ts` holds the rule.
+hits. `packages/core/src/lights/counted-tap.ts` holds the rule. The window
+is read off the round's own clock rather than stored, so a pause moves both
+ends on by its length and the seat resumes with what it had left.
+
+**Lights is also the one game whose frames do not publish.** A tap moves its
+seat's count and nothing else; the round sends the whole snapshot on a tick
+(`LIGHTS_PUBLISH_TICK_MS`, 250 ms) while a count moved since the last, through
+a `publish` deadline. The snapshot rule holds — only its rate is chosen — and
+24 seats tapping five times a second cost four snapshots a second instead of
+120. The tap that arms the tick commits the room so its wake is set; the rest
+touch memory alone.
 
 **Shades borrows the scheduling and not the floor.** Its colour hides at
 `round.content.hidesAt`, a server timestamp every screen schedules the same

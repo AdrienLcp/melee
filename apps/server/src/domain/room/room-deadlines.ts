@@ -3,6 +3,7 @@ import {
   RECONNECT_GRACE_MS
 } from '@melee/core/room/seat-presence'
 
+import { lightsPublishDueAt } from '@/domain/round/lights-round'
 import { advanceDueAt, remainingRoundMs } from '@/domain/round/round-service'
 
 import type { Room } from './room'
@@ -26,6 +27,7 @@ export type RoomDeadlineKind =
   | 'countdown'
   | 'expiry'
   | 'presence'
+  | 'publish'
   | 'round'
   | 'seats'
 
@@ -60,9 +62,13 @@ export const roomDeadlines = ({
       : null
   const seats = seatDeadline(room)
   const presence = presenceDeadline(room)
+  const publishAt = lightsPublishDueAt(room)
 
   return [
     ...(round === null ? [] : [round]),
+    ...(publishAt === null
+      ? []
+      : [{ at: publishAt, kind: 'publish' as const }]),
     ...(seats === null ? [] : [seats]),
     ...(presence === null ? [] : [presence]),
     ...(hasConnections
