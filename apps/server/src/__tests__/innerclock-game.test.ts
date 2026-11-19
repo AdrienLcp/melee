@@ -33,10 +33,11 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 
 /**
  * A count of ten seconds is the shortest the wire takes, and eight suites of
- * them is minutes of waiting. Each one is played twenty times faster: the
- * pay and the cap read the count as if every real millisecond were twenty.
+ * them is minutes of waiting. Each one is played ten times faster: the pay
+ * and the cap read the count as if every real millisecond were ten. Twenty
+ * left a pay window of 125ms, and a loaded run's stall swapped two presses.
  */
-const TIME_WARP = 20
+const TIME_WARP = 10
 
 vi.mock('@melee/core/innerclock/gap-pay', async (importOriginal) => {
   const actual =

@@ -650,7 +650,9 @@ one part.
   as the window closed — raised a seat's hits after the round had paid.
 - `[Server]` **The quiz difficulty test no longer times out under load.** It
   parsed the whole question bank inside its five seconds; the bank is read
-  as the file loads, and the test takes the time its four rooms need.
+  as the file loads, and the test takes the time its four rooms need. The
+  inner clock's suite plays its counts ten times fast rather than twenty: a
+  pay window of 125 ms let a stalled run swap two presses.
 - `[Game]` **A wall turned upright mid-reveal keeps the standings in order.**
   Lying down, a table past twelve seats takes two columns, where the rows
   did not travel; turned upright, their move started over, and the board
