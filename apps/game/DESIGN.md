@@ -1439,6 +1439,17 @@ lets the menu stand on the top rung's end: the pawn's lane goes, and the last
 rung, once open, runs its sand on the menu's line and starts its clue under
 it. A seated console's choice round keeps the console's stage, since the
 framed tiles screen has no ladder.
+**On the wall** every rung climbed or open stands at least at its clue's
+height and the worths and clues follow the ladder's own height (`11cqh`,
+`8cqh`, `3.4cqh`), measured at 900×900 under the floor, where the floor's pawn
+stands beside its name as on an upright console and the cities keep to two
+lines. A rung's finders print as pawns alone wherever their named chips would
+take more rows than the rung's height holds (a chip `10.5em` across, `2em`
+down). **On the judging console with no wall** the same ladder sits beside the
+summit and the presses; lying down under 26rem tall the seats go first — the
+finders, the crowd, the seats out — and under 22rem the ladder, as it does
+upright under 44rem and on a screen near square under 60rem (900×900), where
+the summit and the name take the height.
 
 ### Challenge hand (`ChallengeLinePicker`, `ChoiceList`)
 

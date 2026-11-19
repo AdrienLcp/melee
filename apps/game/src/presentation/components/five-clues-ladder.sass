@@ -59,7 +59,7 @@
       min-block-size: 0
       padding: var(--rung-pad-block) var(--rung-pad-end) var(--rung-pad-block) var(--rung-pad-start)
       position: relative
-      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), padding var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), flex-basis var(--transition-slow, 0s) var(--ease-out), padding var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
 
       &[data-state='past']
         background: var(--track-a)
@@ -208,6 +208,22 @@
       --worth-size: clamp(2.75rem, calc(var(--stage-unit) * 8), 6rem)
       --open-clue: clamp(var(--text-l), calc(var(--stage-unit) * 4.6), var(--text-4xl))
       --past-clue: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), var(--text-2xl))
+
+    // The room's ladder stands every climbed rung at its clue's height and
+    // sizes the worths and the clues by the height it is handed, so a wall
+    // sharing it with the floor's pawn cuts no clue.
+    &[data-size='wall']
+      --worth-size: clamp(2rem, min(calc(var(--stage-unit) * 8), 11cqh), 6rem)
+      --open-clue: clamp(var(--text-s), min(calc(var(--stage-unit) * 4.6), 8cqh), var(--text-4xl))
+      --past-clue: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.6), 3.4cqh), var(--text-2xl))
+
+      container-type: size
+      // A rung opening goes from a share of the height to its clue's own.
+      interpolate-size: allow-keywords
+
+      > .rung:not([data-state='closed'])
+        flex-basis: auto
+        flex-shrink: 0
 
     &[data-size='reveal']
       --rung-columns: var(--worth-size) minmax(0, 0.8fr) minmax(0, 1.5fr)

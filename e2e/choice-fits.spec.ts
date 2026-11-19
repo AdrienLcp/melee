@@ -4687,7 +4687,7 @@ const fiveCluesRevealView = () => {
   }
 }
 
-/** Every rung, finder and crowd drawn past the viewport, and every clue its rung cuts. */
+/** Every rung, finder and crowd drawn past the viewport, every rung of the climb drawn past its ladder, and every clue its rung cuts. */
 const fiveCluesStrays = (): string[] => {
   const pieces = [
     ...document.querySelectorAll<HTMLElement>(
@@ -4711,6 +4711,23 @@ const fiveCluesStrays = (): string[] => {
         )
       })
       .map((element) => `${nameOf(element)} past the viewport`),
+    ...[
+      ...document.querySelectorAll<HTMLElement>(
+        '.five-clues-ladder[data-size="wall"]'
+      )
+    ]
+      .filter((ladder) => ladder.checkVisibility({ visibilityProperty: true }))
+      .flatMap((ladder) => {
+        const bounds = ladder.getBoundingClientRect()
+
+        return [...ladder.querySelectorAll<HTMLElement>(':scope > .rung')]
+          .map((rung) => rung.getBoundingClientRect())
+          .filter(
+            (box) =>
+              box.top < bounds.top - 0.5 || box.bottom > bounds.bottom + 0.5
+          )
+          .map((box) => `li.rung at ${Math.round(box.top)} past its ladder`)
+      }),
     ...[...document.querySelectorAll<HTMLElement>('.five-clues-ladder .clue')]
       .filter((clue) => clue.scrollHeight > clue.clientHeight + 2)
       .map((clue) => `${nameOf(clue)} "${clue.textContent?.slice(0, 24)}" cut`)

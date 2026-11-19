@@ -1,8 +1,16 @@
 // Side-effect module: styles `.five-clues-climb`, the climb on the room's screen — finders standing on their rungs, the crowd on the open one, the four names and the seats out under it.
+@use 'sass:math'
 @use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/fold'
 @use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
+
+/// A finder's named chip across, beside the gap after it, and down, beside the row gap under it.
+$named-finder-width: 10.5em
+$named-finder-pitch: 11em
+$named-finder-row: 2em
+/// `MOST_NAMED_ON_A_RUNG`: past it a rung never names its finders.
+$most-named-on-a-rung: 6
 
 /// A pawn carried up onto the rung that just opened, a little past it and back.
 @keyframes five-clues-climber-hops
@@ -26,8 +34,11 @@
     > .five-clues-ladder
       grid-area: ladder
 
+    // Sized by its rung, never sizing it: the finders and the crowd fit the
+    // height the clue leaves them.
     .rung-people
       align-self: stretch
+      container: rung-people / size
       display: flex
       flex-direction: column
       font-size: var(--people-size)
@@ -42,7 +53,7 @@
     .finders
       display: grid
       gap: var(--space-2xs) var(--space-xs)
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5em), 1fr))
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, $named-finder-width), 1fr))
       list-style: none
       margin: 0
       padding: 0
@@ -82,6 +93,27 @@
 
         > .name
           @include accessibility.visually-hidden
+
+    // A rung too short for its finders' named chips prints their pawns
+    // alone, as a crowded one does: the named list needs a row for every
+    // chip its width cannot hold beside the others.
+    @for $columns from 1 through $most-named-on-a-rung
+      $narrowest: 0em
+
+      @if $columns > 1
+        $narrowest: $columns * $named-finder-pitch - 0.5em
+
+      @for $rows-held from 0 through math.ceil(math.div($most-named-on-a-rung, $columns)) - 1
+        @container rung-people (width >= #{$narrowest}) and (width < #{($columns + 1) * $named-finder-pitch - 0.5em}) and (height < #{($rows-held + 1) * $named-finder-row})
+          .finders:has(> .finder:nth-child(#{$columns * $rows-held + 1}))
+            display: flex
+            flex-wrap: wrap
+
+            .finder
+              padding: 0.2em
+
+              > .name
+                @include accessibility.visually-hidden
 
     .crowd p
       align-items: end

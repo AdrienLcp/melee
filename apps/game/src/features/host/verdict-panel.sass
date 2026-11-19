@@ -56,10 +56,10 @@
       place-items: center
       width: 2em
 
-  // Upright, the answer and the presses need the height, so the pawn stands
-  // beside the name rather than over it.
+  // Upright, the answer and the presses — or Five clues' ladder — need the
+  // height, so the pawn stands beside the name rather than over it.
   @media ((aspect-ratio <= 13 / 10) or (width < #{layout.$phone-upright-width}))
-    .verdict-panel:has(> .judging) .holder
+    .verdict-panel:is(:has(> .judging), :has(> .five-clues-climb)) .holder
       column-gap: var(--space-m)
       display: grid
       grid-template: 'pawn name' auto 'pawn clock' auto / auto minmax(0, auto)
@@ -224,12 +224,12 @@
     // Beside the summit and the presses the ladder keeps every rung legible
     // on less height than the wall gives it, down to a console held upright.
     .five-clues-ladder
-      --worth-size: clamp(1.75rem, calc(var(--stage-unit) * 7), 6rem)
+      --worth-size: clamp(1.75rem, min(calc(var(--stage-unit) * 7), 11cqh), 6rem)
       --rung-gap: var(--space-2xs)
       --rung-pad-block: 0rem
-      --open-clue: clamp(var(--text-s), calc(var(--stage-unit) * 4.6), var(--text-4xl))
-      --past-clue: clamp(var(--text-xs), calc(var(--stage-unit) * 2.6), var(--text-2xl))
-      --rung-columns: var(--worth-size) minmax(0, 1fr) auto
+      --open-clue: clamp(var(--text-s), min(calc(var(--stage-unit) * 4.6), 8cqh), var(--text-4xl))
+      --past-clue: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.6), 3.4cqh), var(--text-2xl))
+      --rung-columns: var(--worth-size) minmax(0, 1fr) minmax(0, 0.8fr)
 
       > .rung
         min-block-size: calc(var(--worth-size) + var(--space-2xs))
@@ -260,17 +260,48 @@
       > .holder
         align-self: center
 
-    // A console held upright has no height for five rungs beside the name,
-    // the country and the presses: the ladder is the wall's, and goes first.
-    @media ((aspect-ratio <= 13 / 10) or (width < #{layout.$phone-upright-width}))
-      @container floor-stage (height < 36rem)
+      // The console's header has gone, and its corner menu stands over the
+      // top of the summit's column.
+      @media (height < 36rem)
+        > .judging > .five-clues-summit
+          inline-size: auto
+          margin-inline-end: var(--menu-inset)
+
+      // Short of height the seats go first — the finders, the crowd and the
+      // seats out — which hands the clues the rungs' whole width; then the
+      // ladder, as upright.
+      @media (height < 26rem)
+        > .five-clues-climb
+          row-gap: 0rem
+
+          > .foot,
+          .rung-people
+            position: absolute
+            visibility: hidden
+
+        .five-clues-ladder
+          --rung-columns: var(--worth-size) minmax(0, 1fr)
+
+      @media (height < 22rem)
         align-content: center
-        grid-template: 'holder' auto 'summit' auto 'choices' auto / minmax(0, 1fr)
+        grid-template: 'holder summit' auto 'choices summit' auto / minmax(0, 0.75fr) minmax(0, 1.25fr)
+
+        > .judging > .five-clues-summit
+          align-self: center
 
         > .five-clues-climb
           position: absolute
           visibility: hidden
 
-  // The judge's floor measures the stage it stands in, which the page sizes.
-  .stage.solo:has(> .verdict-panel > .judging):has(> .verdict-panel > .five-clues-climb)
-    container: floor-stage / size
+    // A console held upright has no height for five rungs beside the name,
+    // the country and the presses — a phone, or a screen near square, whose
+    // width sets the name and the summit large: the ladder is the wall's, and
+    // goes first. Read off the screen: the stage the console's tabs hold
+    // measured 0px tall to a container query.
+    @media ((aspect-ratio <= 13 / 10) or (width < #{layout.$phone-upright-width})) and ((height < 44rem) or ((aspect-ratio > 3 / 4) and (height < 60rem)))
+      align-content: center
+      grid-template: 'holder' auto 'summit' auto 'choices' auto / minmax(0, 1fr)
+
+      > .five-clues-climb
+        position: absolute
+        visibility: hidden
