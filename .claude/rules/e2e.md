@@ -97,7 +97,10 @@ and a read taken there once measured the groups page instead, so the quiz's
 duration strip "broke" at a width no screen reaches. The same goes for a strip
 a press reveals: the answer window renders off the server's echo of the mode,
 so the spec waits for the pressed segment's `data-selected` before reading
-floors, or a slow runner sweeps a strip it read no floor for. And a resize
+floors, or a slow runner sweeps a strip it read no floor for. The first
+game picked opens its round's page before the server echoes it, so the
+spec waits for the page's `.answer-mode` — mounted for every game — before
+reading anything there. And a resize
 returns before React swaps the panel's column for its tab bar: `resizeTo`
 waits for the bar's _Partie_ tab to exist below the split and nowhere above
 it, or the floors are read off a face about to unmount.

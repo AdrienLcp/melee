@@ -284,6 +284,11 @@ const openTheRound = async (page: Page): Promise<void> => {
     await round.first().click()
     await expect(roundPage).toBeVisible()
   }
+
+  // The first pick opens the page before the server echoes the game, and its
+  // settings draw on the echo: a CI read there found no strip at 320px, and the
+  // decade and answer-window guards below counted nothing and skipped.
+  await expect(roundPage.locator('.answer-mode')).toBeAttached()
 }
 
 /**
