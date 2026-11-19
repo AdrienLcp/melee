@@ -993,9 +993,11 @@ export const FR_DICTIONARY = defineDictionary({
       challengeLine:
         'Son défi se choisit quand sa manche arrive, parmi trois : tes défis d’abord, puis la banque.',
       chance: {
-        among: 'parmi {games}',
+        among: defineTranslation('parmi {count:plural}', {
+          plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
+        }),
         drawn: '{count:number} au hasard',
-        endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
+        endless: 'Puis au hasard',
         over: 'de trop pour {total:number} manches',
         overHint:
           'Chaque jeu prévu se joue une fois : la partie doit s’allonger.',

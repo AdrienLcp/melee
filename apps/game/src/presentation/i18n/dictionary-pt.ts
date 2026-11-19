@@ -1099,9 +1099,13 @@ const PORTUGUESE = defineDictionary({
       challengeLine:
         'O desafio escolhe-se quando chega a sua ronda, entre três: primeiro os teus, depois os do banco.',
       chance: {
-        among: 'entre {games}',
+        among: defineTranslation('entre {count:plural}', {
+          plural: {
+            count: { one: '{?} jogo', other: '{?} jogos', zero: '{?} jogos' }
+          }
+        }),
         drawn: '{count:number} ao acaso',
-        endless: 'Depois ao acaso, até parares',
+        endless: 'Depois ao acaso',
         over: 'a mais para {total:number} rondas',
         overHint:
           'Cada jogo previsto joga-se uma vez: a partida precisa de mais rondas.',

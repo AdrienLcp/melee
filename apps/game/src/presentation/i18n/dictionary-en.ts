@@ -1042,9 +1042,11 @@ export const EN_DICTIONARY = defineDictionary({
       challengeLine:
         'Its line is picked when its round comes up, from three: your own lines first, then the bank.',
       chance: {
-        among: 'among {games}',
+        among: defineTranslation('among {count:plural}', {
+          plural: { count: { one: '{?} game', other: '{?} games' } }
+        }),
         drawn: '{count:number} by chance',
-        endless: 'Then by chance, until you stop',
+        endless: 'Then by chance',
         over: 'too many for {total:number} rounds',
         overHint: 'Every planned game is played once, so it needs more rounds.',
         race: 'Then by chance, until someone gets home',

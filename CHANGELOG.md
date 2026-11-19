@@ -14,6 +14,8 @@ one part.
   apportes les questions_ — that neither _Tout cocher_ nor a first visit
   ticks. A tool ticked alone still opens a table on it, and beside games it
   joins the line-up. The spines are slimmer, so the shelf reads at a glance.
+- `[Game]` **The rounds drawn past the plan say less.** _Puis au hasard_,
+  and how many games the draw picks among, rather than every game's name.
 
 ### Features
 

@@ -61,7 +61,6 @@ import { usePointerReorder } from '@/presentation/components/use-pointer-reorder
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntrySummaries } from '@/presentation/i18n/line-up-entry-names'
-import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { DifficultyChoice } from './difficulty-choice'
 import { arrangedEvening, eveningOrderOf } from './evening-order'
@@ -864,9 +863,7 @@ const DrawnRounds: React.FC<{
   const translate = useTranslate()
   const { roundCount } = settings
   const among = translate('host.evening.chance.among', {
-    games: fillersOf(settings)
-      .map((game) => translate(gameNameKey(game)))
-      .join(', ')
+    count: fillersOf(settings).length
   })
 
   return (
