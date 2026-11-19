@@ -821,6 +821,11 @@ export const EN_DICTIONARY = defineDictionary({
       capital: 'Capital',
       inhabitants: 'inhabitants'
     },
+    clueDuration: 'Time per clue',
+    home: {
+      description:
+        'A country hides behind five clues, from the vaguest to the most obvious: its size, its region, its outline, three of its cities, then its flag and its capital. The whole table climbs the ladder a clue at a time, one answer a clue. Find it on the first and it pays the most; wait for the flag and it pays the least.'
+    },
     kind: {
       cities: 'Cities',
       flag: 'Flag and capital',
@@ -828,8 +833,10 @@ export const EN_DICTIONARY = defineDictionary({
       region: 'Region',
       size: 'Size'
     },
+    language: 'Clues in',
     name: 'Five clues',
     outCount: 'Out: {count:number}',
+    play: 'Play Five clues',
     region: {
       '002': 'Africa',
       '005': 'South America',
@@ -862,6 +869,7 @@ export const EN_DICTIONARY = defineDictionary({
     rung: 'Clue {index:number}, worth {worth:number}',
     scoring:
       'The earlier the clue you find the country on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.',
+    tagline: 'Name the country before anyone else.',
     you: {
       found: 'Found on clue {index:number}',
       held: 'One guess a clue. Next try on clue {index:number}',

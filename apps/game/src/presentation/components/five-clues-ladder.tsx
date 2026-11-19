@@ -53,6 +53,8 @@ type FiveCluesLadderProps = {
   laneOf?: (clueIndex: number) => React.ReactNode
   /** What stands at a rung's end: who found on it, the crowd still climbing. */
   peopleOf?: (clueIndex: number, state: RungState) => React.ReactNode
+  /** The last rung already standing when the ladder was drawn again — under a floor and after it — whose clue does not land a second time; `-1`, the default, lands every one. */
+  stillThrough?: number
 }
 
 /**
@@ -69,6 +71,7 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
   openClueIndex,
   peopleOf,
   size,
+  stillThrough = -1,
   window
 }) => {
   const translate = useTranslate()
@@ -87,7 +90,12 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
         const worth = shownPoints(worthOfClue(clueIndex))
 
         return (
-          <li className='rung' data-state={state} key={kind}>
+          <li
+            className='rung'
+            data-state={state}
+            data-still={clueIndex <= stillThrough || undefined}
+            key={kind}
+          >
             {laneOf !== undefined && (
               <span className='lane'>{laneOf(clueIndex)}</span>
             )}

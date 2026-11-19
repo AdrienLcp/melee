@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import type { FiveCluesClue } from '@melee/protocol/five-clues'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
@@ -12,8 +13,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './five-clues-reveal.sass'
 
-/** Past this many finders a rung of the room's reveal prints each one's rank, pawn and pay, the names left to the standings beside it. */
-const MOST_NAMED_ON_A_RUNG = 8
+/** Past this many finders in all, the room's reveal prints each one as rank, pawn and whole pay, the names left to the standings beside it (`DESIGN.md`, _Five clues_). */
+const MOST_NAMED_IN_THE_REVEAL = 6
 
 type FiveCluesRevealProps = {
   players: readonly PublicPlayer[]
@@ -55,21 +56,18 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
   const out = content.standings.filter((standing) => standing.status === 'out')
 
   return (
-    <div className='five-clues-reveal' data-size={size}>
-      {size === 'seat' && <FiveCluesSummit round={round} />}
+    <div
+      className='five-clues-reveal'
+      data-crowded={ranked.length > MOST_NAMED_IN_THE_REVEAL || undefined}
+      data-size={size}
+    >
+      {size === 'seat' && <FiveCluesRoundSummit round={round} />}
       <FiveCluesLadder
         clues={content.clues}
         isRevealed
         openClueIndex={content.openClueIndex}
         peopleOf={(clueIndex) => (
-          <ol
-            className='ranked'
-            data-crowded={
-              ranked.filter(
-                (award) => foundOn.get(award.playerId) === clueIndex
-              ).length > MOST_NAMED_ON_A_RUNG || undefined
-            }
-          >
+          <ol className='ranked'>
             {ranked.map((award, rank) => {
               const seat = players.findIndex(
                 (player) => player.id === award.playerId
@@ -90,6 +88,11 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
                   <span className='rank'>{rank + 1}</span>
                   <Pawn seat={seat} />
                   <span className='name'>{player.nickname}</span>
+                  <span aria-hidden className='paid'>
+                    {translate('round.scored', {
+                      points: shownPoints(award.points)
+                    })}
+                  </span>
                   <span className='pay'>
                     {award.speedBonus > 0
                       ? translate('round.awardWithSpeed', {
@@ -132,8 +135,43 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
   )
 }
 
-/** The country climbed to, on a green summit beside its flag and its capital. */
-export const FiveCluesSummit: React.FC<{ round: RoundView }> = ({ round }) => {
+type FlagClue = Extract<FiveCluesClue, { kind: 'flag' }>
+
+type FiveCluesSummitProps = {
+  /** The country's name, as the reader is to say it. */
+  country: string
+  /** The last rung once it is open, which prints the flag and the capital beside the name; `null` before. */
+  flag: FlagClue | null
+}
+
+/** The country climbed to, on a green summit beside its flag and its capital once the ladder has shown them. */
+export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
+  country,
+  flag
+}) => {
+  const translate = useTranslate()
+
+  return (
+    <div
+      className='five-clues-summit'
+      data-flagged={flag !== null || undefined}
+    >
+      {flag !== null && <FlagPicture file={flag.flag} isNamedBeside />}
+      <p className='country'>{country}</p>
+      {flag !== null && (
+        <p className='capital'>
+          <small>{translate('fiveclues.clue.capital')}</small>
+          {flag.capital}
+        </p>
+      )}
+    </div>
+  )
+}
+
+/** The summit of a revealed round, named in the reader's locale. */
+export const FiveCluesRoundSummit: React.FC<{ round: RoundView }> = ({
+  round
+}) => {
   const translate = useTranslate()
   const content = fiveCluesContent(round)
   const answer = content?.answer ?? null
@@ -142,20 +180,10 @@ export const FiveCluesSummit: React.FC<{ round: RoundView }> = ({ round }) => {
     return null
   }
 
-  const flag = content.clues.find((clue) => clue.kind === 'flag')
-
   return (
-    <div className='five-clues-summit'>
-      {flag !== undefined && <FlagPicture file={flag.flag} isNamedBeside />}
-      <p className='country'>
-        {translate(`atlas.country.${answer.code}.name`)}
-      </p>
-      {flag !== undefined && (
-        <p className='capital'>
-          <small>{translate('fiveclues.clue.capital')}</small>
-          {flag.capital}
-        </p>
-      )}
-    </div>
+    <FiveCluesSummit
+      country={translate(`atlas.country.${answer.code}.name`)}
+      flag={content.clues.find((clue) => clue.kind === 'flag') ?? null}
+    />
   )
 }

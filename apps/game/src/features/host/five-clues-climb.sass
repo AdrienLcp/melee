@@ -60,6 +60,9 @@
       padding: 0.25em 0.55em 0.25em 0.4em
       --travel-offset: 0 -0.9rem
 
+      &[data-still]
+        animation: none
+
       > .name
         @include typography.card-name
         @include typography.typed
@@ -129,7 +132,7 @@
           opacity: 1
           transition: opacity var(--transition-base, 0s) var(--ease-out)
 
-    .crowd[data-open] .climbing:not([data-left]) > .pawn
+    .crowd[data-open]:not([data-still]) .climbing:not([data-left]) > .pawn
       animation: five-clues-climber-hops calc(var(--transition-base, 0s) * 1.6) var(--ease-out) backwards
       animation-delay: calc(var(--transition-slow, 0s) * 0.5 + var(--transition-fast, 0s) * 0.2 * var(--climber-at, 0))
 

@@ -1410,6 +1410,24 @@ shown the **turn badge** (`BlackSquareTurn`): the duel badge's material, the
 guessing team's band and pawn, the keeper's pawn and name beside it, also in
 the console's and the wall's header.
 
+### Five clues (`FiveCluesLadder`, `FiveCluesClimb`, `FiveCluesReveal`)
+
+Direction B, _La montée_, chosen 2026-11-18: five rungs laid bottom up on a
+chipboard rail, each printed with what finding on it pays. **Under a floor**
+the wall keeps the ladder beside the buzzer's pawn (lying down the pawn takes
+0.6 of the width, upright it stands over the rungs), the open rung's window
+standing still; the judging console reads the country on the reveal's green
+summit over the rungs, the two presses under it, and the ladder drawn again
+there stays put (`isResumed`) — neither the clue nor the crowd lands a second
+time, under the floor or once it is handed back. The judge's crowd shows five
+pawns and the count; a console stage under 36rem tall, upright, drops the
+ladder altogether (the wall has it). **The reveal on the room's screen** names
+every finder while six or fewer found; past that every finder is a chip of
+rank, pawn and whole pay, the names left to the standings beside — measured on
+a 1280×720 wall, where 24 chips on one rung over four empty rungs fill four
+columns of six rows at `--text-xs`, and six named rows are the most that fit.
+A rung holding finders never shrinks below its rows; an empty one gives way.
+
 ### Challenge hand (`ChallengeLinePicker`, `ChoiceList`)
 
 Direction B, _choose then launch_, chosen 2026-10-24

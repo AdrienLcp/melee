@@ -12,6 +12,11 @@ import {
 } from '@melee/protocol/black-square'
 import { QUANTITY_TOPICS } from '@melee/protocol/estimate'
 import {
+  MAX_CLUE_DURATION_MS,
+  MIN_CLUE_DURATION_MS
+} from '@melee/protocol/five-clues'
+import {
+  DEFAULT_FIVE_CLUES_SETTINGS,
   DEFAULT_THINK_ALIKE_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
@@ -96,6 +101,14 @@ const LONGEST_WORD_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
 /** Three quarters of a minute is a race to the nearest, a minute and a half lets a table hunt for the exact count. */
 const MAKE_NUMBER_DURATIONS_MS = [45_000, 60_000, 90_000] as const
+
+/** Five seconds a clue is a dare on every rung, thirty lets the table argue each one out. */
+const CLUE_DURATIONS_MS = [
+  MIN_CLUE_DURATION_MS,
+  DEFAULT_FIVE_CLUES_SETTINGS.clueDurationMs,
+  20_000,
+  MAX_CLUE_DURATION_MS
+] as const
 
 /** Ten seconds is the first word that comes, a minute lets a slower hand write it out. */
 const THINK_ALIKE_DURATIONS_MS = [
@@ -800,6 +813,37 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             optionLabel={secondsLabel}
             options={THINK_ALIKE_DURATIONS_MS}
             value={game.roundDurationMs}
+          />
+        </>
+      )}
+
+      {game?.kind === 'fiveclues' && (
+        <>
+          <LanguageChoice
+            isDisabled={isDisabled}
+            label={translate('fiveclues.language')}
+            languages={questionLanguages}
+            onChange={(language) => {
+              onChange({ ...settings, game: { ...game, language } })
+            }}
+            value={game.language}
+          />
+          <DifficultyChoice
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...settings, game: { ...game, difficulty } })
+            }}
+            value={game.difficulty}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('fiveclues.clueDuration')}
+            onChange={(clueDurationMs) => {
+              onChange({ ...settings, game: { ...game, clueDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={CLUE_DURATIONS_MS}
+            value={game.clueDurationMs}
           />
         </>
       )}

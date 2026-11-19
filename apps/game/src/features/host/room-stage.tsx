@@ -38,6 +38,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { ChallengePlacing } from './challenge-placing'
 import { FinalBoard } from './final-board'
+import { FiveCluesClimb } from './five-clues-climb'
 import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
 import { MakeNumberShortest } from './make-number-shortest'
@@ -420,12 +421,19 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           }
           seat={Math.max(buzzerSeat, 0)}
           stimulus={
-            matchsticks === null ? null : (
+            matchsticks !== null ? (
               <MatchsticksPrompt
                 answerMode={round.answerMode}
                 puzzle={matchsticks.puzzle}
               />
-            )
+            ) : round.content.kind === 'fiveclues' ? (
+              <FiveCluesClimb
+                clock={clock}
+                isResumed
+                players={view.players}
+                round={round}
+              />
+            ) : null
           }
         />
       </div>

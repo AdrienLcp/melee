@@ -866,6 +866,11 @@ const PORTUGUESE = defineDictionary({
       capital: 'Capital',
       inhabitants: 'habitantes'
     },
+    clueDuration: 'Tempo por pista',
+    home: {
+      description:
+        'Um país esconde-se atrás de cinco pistas, da mais vaga à mais óbvia: o tamanho, a região, a silhueta, três das suas cidades, depois a bandeira e a capital. A mesa inteira sobe a escada uma pista de cada vez, uma resposta por pista. Descobri-lo logo na primeira vale mais, esperar pela bandeira vale menos.'
+    },
     kind: {
       cities: 'Cidades',
       flag: 'Bandeira e capital',
@@ -873,8 +878,10 @@ const PORTUGUESE = defineDictionary({
       region: 'Região',
       size: 'Tamanho'
     },
+    language: 'Pistas em',
     name: 'Cinco pistas',
     outCount: 'Eliminados: {count:number}',
+    play: 'Jogar Cinco pistas',
     region: {
       '002': 'África',
       '005': 'América do Sul',
@@ -907,6 +914,7 @@ const PORTUGUESE = defineDictionary({
     rung: 'Pista {index:number}, {worth:number} pontos',
     scoring:
       'Quanto mais cedo encontrares o país, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.',
+    tagline: 'Descobre o país antes dos outros.',
     you: {
       found: 'Encontrado na pista {index:number}',
       held: 'Uma resposta por pista. Próxima tentativa na pista {index:number}',

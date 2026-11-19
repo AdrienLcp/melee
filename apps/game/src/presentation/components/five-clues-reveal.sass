@@ -20,6 +20,10 @@
     grid-template: 'flag country' auto 'flag capital' auto / auto minmax(0, 1fr)
     padding: clamp(var(--space-xs), calc(var(--stage-unit) * 1.4), var(--space-m)) clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
 
+    // Before the last rung opens there is no flag to print: the name alone.
+    &:not([data-flagged])
+      grid-template: 'country' auto / minmax(0, 1fr)
+
     > .flag-picture
       box-shadow: 0 0 0 var(--stroke-bold) var(--on-spine)
       grid-area: flag
@@ -64,12 +68,16 @@
       animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
       --travel-offset: 0 1rem
 
+    // A rung of finders holds its rows; an empty rung gives the height up.
+    .five-clues-ladder > .rung:has(.finder)
+      flex-shrink: 0
+
     @for $rung from 1 through 5
       .five-clues-ladder > .rung:nth-child(#{$rung})
         animation-delay: calc(var(--transition-fast, 0s) * #{$rung})
 
     .ranked
-      --finder-min: 9.5em
+      --finder-min: 17.5em
 
       align-content: center
       display: grid
@@ -79,17 +87,7 @@
       list-style: none
       margin: 0
       min-block-size: 0
-      overflow: clip
       padding: 0
-
-    .ranked[data-crowded]
-      --finder-min: 6.5em
-
-      .finder > .name
-        @include accessibility.visually-hidden
-
-      .finder
-        grid-template-columns: auto auto auto
 
     .finder
       align-items: center
@@ -110,16 +108,40 @@
         box-shadow: inset 0 0 0 var(--stroke-bold) var(--tile-ink), 0 var(--edge) 0 var(--good-edge)
 
       > .rank,
-      > .pay
+      > .pay,
+      > .paid
         @include typography.numeric
 
+      > .paid
+        display: none
+
+      // A name is printed whole or not at all: it wraps at its hyphen or its
+      // space rather than ending on an ellipsis nobody at the table can read.
       > .name
         @include typography.card-name
         @include typography.typed
 
-        overflow: hidden
-        text-overflow: ellipsis
-        white-space: nowrap
+        hyphens: auto
+        overflow-wrap: anywhere
+        text-wrap: balance
+
+    // The whole table in chips: rank, pawn and the whole pay, the names left
+    // to the standings beside and the clock's share folded into the figure.
+    &[data-crowded] .ranked
+      --finder-min: 4.75em
+
+    &[data-crowded] .finder
+      gap: 0.3em
+      grid-template-columns: auto auto auto
+      justify-content: start
+      padding-inline: 0.4em
+
+      > .name,
+      > .pay
+        @include accessibility.visually-hidden
+
+      > .paid
+        display: block
 
     .misses
       display: flex

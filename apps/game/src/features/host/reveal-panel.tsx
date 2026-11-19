@@ -38,7 +38,7 @@ import { EstimateLine } from '@/presentation/components/estimate-line'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import {
   FiveCluesReveal,
-  FiveCluesSummit
+  FiveCluesRoundSummit
 } from '@/presentation/components/five-clues-reveal'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
@@ -331,7 +331,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     return (
       <section className='reveal-panel' data-game='fiveclues'>
         <div className='head'>
-          <FiveCluesSummit round={round} />
+          <FiveCluesRoundSummit round={round} />
         </div>
 
         <ThisRoundHead

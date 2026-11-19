@@ -149,6 +149,9 @@
     .rung[data-state='open'] .clue
       --clue-size: var(--open-clue)
 
+    .rung[data-still] .clue
+      animation: none
+
     &[data-size='seat']
       --lane-width: 1.6rem
       --rung-columns: var(--lane-width) var(--worth-size) minmax(0, 1fr)

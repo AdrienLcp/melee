@@ -782,6 +782,11 @@ export const FR_DICTIONARY = defineDictionary({
       capital: 'Capitale',
       inhabitants: 'habitants'
     },
+    clueDuration: 'Temps par indice',
+    home: {
+      description:
+        'Un pays se cache derrière cinq indices, du plus vague au plus évident : sa taille, sa région, sa silhouette, trois de ses villes, puis son drapeau et sa capitale. Toute la table grimpe l’échelle un indice à la fois, une réponse par indice. Le trouver dès le premier rapporte le plus, attendre le drapeau le moins.'
+    },
     kind: {
       cities: 'Villes',
       flag: 'Drapeau et capitale',
@@ -789,8 +794,10 @@ export const FR_DICTIONARY = defineDictionary({
       region: 'Région',
       size: 'Taille'
     },
+    language: 'Indices en',
     name: 'Cinq indices',
     outCount: 'Éliminés : {count:number}',
+    play: 'Jouer à Cinq indices',
     region: {
       '002': 'Afrique',
       '005': 'Amérique du Sud',
@@ -823,6 +830,7 @@ export const FR_DICTIONARY = defineDictionary({
     rung: 'Indice {index:number}, {worth:number} points',
     scoring:
       'Plus tôt tu trouves le pays, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.',
+    tagline: 'Trouve le pays avant les autres.',
     you: {
       found: 'Trouvé à l’indice {index:number}',
       held: 'Une réponse par indice. Prochain essai à l’indice {index:number}',

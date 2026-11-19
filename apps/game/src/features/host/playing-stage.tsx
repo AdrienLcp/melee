@@ -147,7 +147,12 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         data-five-clues={onAnswer === null ? 'watching' : 'answering'}
       >
         {onAnswer === null ? (
-          <FiveCluesClimb clock={clock} players={view.players} round={round} />
+          <FiveCluesClimb
+            clock={clock}
+            isResumed={round.lockedOutPlayerIds.length > 0}
+            players={view.players}
+            round={round}
+          />
         ) : (
           <FiveCluesSeat
             clock={clock}

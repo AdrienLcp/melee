@@ -10,6 +10,7 @@ import { verdictKindFor } from '@melee/core/scoring/verdict'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { Button } from '@/presentation/components/button'
+import { FiveCluesSummit } from '@/presentation/components/five-clues-reveal'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { Pawn } from '@/presentation/components/pawn'
@@ -101,7 +102,7 @@ type VerdictPanelProps = {
   onJudge: ((verdict: Verdict) => void) | null
   /** The buzzer's place in the roster, which picks their pawn's colour. */
   seat: number
-  /** What the room is answering, kept up while the floor is taken where the answer is pointed at — the matchsticks. */
+  /** What the room is answering, kept up while the floor is taken where the answer is pointed at or climbed to — the matchsticks, five clues' ladder. */
   stimulus?: React.ReactNode
 }
 
@@ -223,6 +224,10 @@ const Answer: React.FC<{
             </li>
           ))}
         </ul>
+      )
+    case 'fiveclues':
+      return content.answer === null ? null : (
+        <FiveCluesSummit country={content.answer.name} flag={null} />
       )
     case 'quiz':
       return content.question === null ? null : (

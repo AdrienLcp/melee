@@ -181,3 +181,96 @@
 
       > .judging
         grid-area: judging
+
+  // Five clues' ladder stays up under the floor: the room watches a buzz
+  // taken on a rung, the rung's window standing still until the verdict. The
+  // ladder needs the height, so the panel takes the stage's whole box and the
+  // pawn gives way to it.
+  .verdict-panel:has(> .five-clues-climb)
+    align-items: stretch
+    align-self: stretch
+    flex: 1 1 0
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+    grid-template: 'holder' auto 'climb' minmax(0, 1fr) / minmax(0, 1fr)
+    justify-items: stretch
+    min-block-size: 0
+    width: min(90rem, 100%)
+
+    > .holder
+      align-self: center
+      grid-area: holder
+      justify-self: center
+
+      .pawn
+        font-size: clamp(3rem, calc(var(--stage-unit) * 12), 9rem)
+
+    > .five-clues-climb
+      grid-area: climb
+
+      // A buzz puts nobody out, so the box of seats out holds no one under
+      // the floor and gives its row to the rungs.
+      > .foot:not(:has(> .out[data-open], > .printed-choices))
+        display: none
+
+    @media #{layout.$lying-down}
+      grid-template: 'holder climb' minmax(0, 1fr) / minmax(0, 0.6fr) minmax(0, 1.4fr)
+
+  // The judge reads the country as the ladder's summit, over the rungs the
+  // room is climbing, and the two presses under the name it is shouting.
+  .verdict-panel:has(> .judging):has(> .five-clues-climb)
+    gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+    grid-template: 'holder' auto 'summit' auto 'climb' minmax(0, 1fr) 'choices' auto / minmax(0, 1fr)
+
+    // Beside the summit and the presses the ladder keeps every rung legible
+    // on less height than the wall gives it, down to a console held upright.
+    .five-clues-ladder
+      --worth-size: clamp(1.75rem, calc(var(--stage-unit) * 7), 6rem)
+      --rung-gap: var(--space-2xs)
+      --rung-pad-block: 0rem
+      --open-clue: clamp(var(--text-s), calc(var(--stage-unit) * 4.6), var(--text-4xl))
+      --past-clue: clamp(var(--text-xs), calc(var(--stage-unit) * 2.6), var(--text-2xl))
+      --rung-columns: var(--worth-size) minmax(0, 1fr) auto
+
+      > .rung
+        min-block-size: calc(var(--worth-size) + var(--space-2xs))
+
+      > .rung:not([data-state='closed'])
+        flex-basis: auto
+        flex-shrink: 0
+
+      // Five pawns and the count say the crowd: the rest is the wall's.
+      .crowd .climbing:nth-child(n + 6)
+        display: none
+
+    > .judging
+      display: contents
+
+      > :is(.five-clues-summit, .show-answer)
+        grid-area: summit
+
+      > .show-answer
+        justify-self: center
+
+      > .choices
+        grid-area: choices
+
+    @media #{layout.$lying-down}
+      grid-template: 'holder summit' auto 'holder climb' minmax(0, 1fr) 'choices climb' auto / minmax(0, 0.75fr) minmax(0, 1.25fr)
+
+      > .holder
+        align-self: center
+
+    // A console held upright has no height for five rungs beside the name,
+    // the country and the presses: the ladder is the wall's, and goes first.
+    @media ((aspect-ratio <= 13 / 10) or (width < #{layout.$phone-upright-width}))
+      @container floor-stage (height < 36rem)
+        align-content: center
+        grid-template: 'holder' auto 'summit' auto 'choices' auto / minmax(0, 1fr)
+
+        > .five-clues-climb
+          position: absolute
+          visibility: hidden
+
+  // The judge's floor measures the stage it stands in, which the page sizes.
+  .stage.solo:has(> .verdict-panel > .judging):has(> .verdict-panel > .five-clues-climb)
+    container: floor-stage / size

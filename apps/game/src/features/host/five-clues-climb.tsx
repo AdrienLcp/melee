@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import type { CluesStanding } from '@melee/protocol/five-clues'
 import type { PlayerId } from '@melee/protocol/identifiers'
@@ -25,6 +26,13 @@ const MOST_NAMED_ON_A_RUNG = 6
 
 type FiveCluesClimbProps = {
   clock: ClockEstimate | null
+  /**
+   * The climb drawn again over one the room was already watching — under a
+   * floor, and once it is handed back: what stood on the ladder stays put
+   * rather than landing and hopping on a second time, and only what changes
+   * after moves.
+   */
+  isResumed: boolean
   players: readonly PublicPlayer[]
   round: RoundView
 }
@@ -39,11 +47,25 @@ type Climber = { player: PublicPlayer; seat: number }
  */
 export const FiveCluesClimb: React.FC<FiveCluesClimbProps> = ({
   clock,
+  isResumed,
   players,
   round
 }) => {
   const translate = useTranslate()
   const content = fiveCluesContent(round)
+  const [stillThrough] = useState(() =>
+    isResumed ? (content?.openClueIndex ?? -1) : -1
+  )
+  const [stillFinders] = useState(
+    () =>
+      new Set(
+        isResumed
+          ? (content?.standings ?? [])
+              .filter((standing) => standing.status === 'found')
+              .map((standing) => standing.playerId)
+          : []
+      )
+  )
 
   if (content === null) {
     return null
@@ -82,7 +104,11 @@ export const FiveCluesClimb: React.FC<FiveCluesClimbProps> = ({
         {finders.length > 0 && (
           <ul className='finders'>
             {finders.map(({ player, seat }) => (
-              <li className='finder' key={player.id}>
+              <li
+                className='finder'
+                data-still={stillFinders.has(player.id) || undefined}
+                key={player.id}
+              >
                 <Pawn seat={seat} />
                 <span className='name'>{player.nickname}</span>
               </li>
@@ -92,6 +118,7 @@ export const FiveCluesClimb: React.FC<FiveCluesClimbProps> = ({
         <div
           className='crowd fold'
           data-open={state === 'open' || undefined}
+          data-still={clueIndex <= stillThrough || undefined}
           inert={state !== 'open'}
         >
           <p>
@@ -130,6 +157,7 @@ export const FiveCluesClimb: React.FC<FiveCluesClimbProps> = ({
         openClueIndex={content.openClueIndex}
         peopleOf={peopleOf}
         size='wall'
+        stillThrough={stillThrough}
         window={<FiveCluesWindow clock={clock} content={content} />}
       />
       <div className='foot'>
