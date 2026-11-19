@@ -2569,8 +2569,7 @@ const PORTUGUESE = defineDictionary({
         name: 'Cultura geral'
       },
       grandMix: {
-        caption:
-          'Cada variante de cada jogo, sem juiz, sem fim, nunca duas iguais seguidas.',
+        caption: 'Um pouco de tudo, sem juiz e sem fim.',
         name: 'Vale tudo'
       },
       music: {

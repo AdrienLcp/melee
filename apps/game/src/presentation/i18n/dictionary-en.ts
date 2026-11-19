@@ -2402,8 +2402,7 @@ export const EN_DICTIONARY = defineDictionary({
         name: 'General knowledge'
       },
       grandMix: {
-        caption:
-          'Every setting of every game with no judge, no last round, never two alike in a row.',
+        caption: 'A bit of everything, no judge, no last round.',
         name: 'Free-for-all'
       },
       music: {

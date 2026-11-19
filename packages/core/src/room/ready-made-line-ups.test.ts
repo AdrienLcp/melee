@@ -213,7 +213,7 @@ describe.each(LOCALES)('the grand mix in %s', (locale) => {
       preferences: leftEveryGameOn({ locale, mode: 'typed' })
     }).filter(({ game }) => game?.kind === 'blindtest' || game?.kind === 'quiz')
 
-    expect(played).toHaveLength(32)
+    expect(played).toHaveLength(locale === 'pt' ? 22 : 23)
     expect(new Set(played.map(({ mode }) => mode.kind))).toEqual(
       new Set(['choice'])
     )
@@ -235,11 +235,11 @@ describe.each(LOCALES)('the grand mix in %s', (locale) => {
     expect(new Set(settings).size).toBe(settings.length)
   })
 
-  it('[ready-made] plays every decade, chart, subject and map on an entry of its own', () => {
+  it('[ready-made] plays every decade, subject and map on an entry of its own, and only the charts a table names', () => {
     const countOf = (game: string) =>
       grandMix.lineUp.filter((entry) => gameOfEntry(entry) === game).length
 
-    expect(countOf('blindtest')).toBe(19)
+    expect(countOf('blindtest')).toBe(locale === 'pt' ? 9 : 10)
     expect(countOf('quiz')).toBe(13)
     expect(countOf('atlas')).toBe(6)
   })
