@@ -142,13 +142,48 @@ Read `docs/game-catalogue.md` first and add the game's entry there.
 
 — cut here: plan, protocol file and core rules committed, tests green —
 
+### Step 1, as built (19/11/2026)
+
+Where it diverges from the above, and what step 2 picks up:
+
+- **The verdict is `count`, `{ hits, bestHits }`** (`scoring.ts`), not
+  `single`: a share of the round's best needs the best on the verdict, as
+  `letters` carries `bestLength`. `hits-pay.ts` prices it, `verdict.ts` routes
+  it, `isPaidForSpeed` leaves it out, and `isFullyBanked` is matching the best
+  with at least one hit. `bestHitsOf` is the best of a list, nought when empty.
+- **`tapOutcomeOf` instead of `isCountedHit`**: one rule answering `hit`,
+  `trap` or `uncounted`, because the server must tell a trap from nothing as
+  well. It takes the seat's `hits` (its next step), the run, the tap and the
+  window.
+- **The run is `(windowMs + LATE_TAP_GRACE_MS) / HIT_FLOOR_MS` long** — 204
+  steps for 20 s, not 200: the floor reaches into the grace, so the last hits a
+  seat can be counted need a light of their own (`lightsRunLengthOf`).
+- **A trap is never the target nor the cell just hit** — the seven others, the
+  eight others on the first step — so a finger tapping twice never lands on
+  one. The trap is drawn on every step even with traps off, so a seed lights
+  the same targets either way.
+- **The seed is mulberry32** (`seededUnits`, `helpers/random.ts`), a 32-bit
+  unsigned integer up to `MAX_LIGHTS_SEED`; the server draws it with
+  `randomIntBetween(0, MAX_LIGHTS_SEED)`.
+- **`lights.ts` holds the whole content arm**, `lightsRoundContentSchema` with
+  its `kind`, for `room.ts`'s union to take as it is. The settings arm and
+  `DEFAULT_LIGHTS_SETTINGS` stay `game.ts`'s, beside the others; their bounds
+  and defaults — `DEFAULT_LIGHTS_WINDOW_MS`, `DEFAULT_LIGHTS_HAS_TRAPS`,
+  `DEFAULT_LIGHTS_ROUND_COUNT` — are exported from `lights.ts`.
+- **`lights.tap` is in the player unions and in `FLOOR_MESSAGE_TYPES`**, so a
+  room frozen by its console's absence refuses taps. `step` has no upper bound
+  on the wire: a step past the run is `uncounted` by core. **Until step 2 the
+  server drops the frame without a word** — `socket-handler.ts`'s dispatch has
+  no case for it yet.
+
 ## Step 2 — the server (one session)
 
 - `lights` in `gameKinds`, **not** in `shelvedGames`; the settings arm,
   `tap` as its only mode, `playsDuels`, and `room-settings.ts`,
   `spaced-cycle.ts`, `ready-made-line-ups.ts` beside the others.
 - `domain/round/lights-round.ts`: the seed and the window stamped as the
-  round opens, a tap counted or recorded on arrival, the round closed at
+  round opens, a tap counted or recorded on arrival through `tapOutcomeOf`
+  (its `case` in `socket-handler.ts`'s dispatch), the round closed at
   `closesAt + LATE_TAP_GRACE_MS`, each seat paid at the close. The window
   stopped by a pause: the board darkens on every screen, and the window
   resumes with what it had left.

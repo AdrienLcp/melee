@@ -19,6 +19,7 @@ import {
   sessionIdSchema
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
+import { lightsCellSchema, lightsStepSchema } from './lights'
 import { longestWordGuessSchema } from './longest-word'
 import { calculationSchema } from './make-number'
 import { stickMoveSchema } from './matchsticks'
@@ -399,6 +400,24 @@ export const finishPetitBacVoteMessageSchema = z.object({
   categoryIndex: petitBacCategoryIndexSchema,
   roundId: roundIdSchema,
   type: z.literal('petitbac.doneVoting')
+})
+
+/**
+ * A lit cell or a trap hit on a lights board, never a miss: a miss costs the
+ * screen its own freeze and tells the server nothing. No timestamp — the
+ * server stamps arrival and counts the hit only inside the round's window and
+ * above the floor (`@melee/core/lights/counted-tap`). `step` names which light
+ * the screen was chasing, so a frame repeated by a reconnect cannot count
+ * twice.
+ *
+ * In the game's namespace, like `slate.write`: nothing else on the shelf
+ * streams several presses a second.
+ */
+export const tapLightsMessageSchema = z.object({
+  cell: lightsCellSchema,
+  roundId: roundIdSchema,
+  step: lightsStepSchema,
+  type: z.literal('lights.tap')
 })
 
 export const updateSettingsMessageSchema = z.object({
@@ -902,7 +921,8 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   writePetitBacLineMessageSchema,
   stopPetitBacMessageSchema,
   votePetitBacMessageSchema,
-  finishPetitBacVoteMessageSchema
+  finishPetitBacVoteMessageSchema,
+  tapLightsMessageSchema
 ])
 
 /**
@@ -935,6 +955,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   stopPetitBacMessageSchema,
   votePetitBacMessageSchema,
   finishPetitBacVoteMessageSchema,
+  tapLightsMessageSchema,
   updateSettingsMessageSchema,
   setDecksMessageSchema,
   setOwnLinesMessageSchema,
@@ -1060,5 +1081,6 @@ export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'blacksquare.tick',
   'petitbac.stop',
   'petitbac.vote',
-  'petitbac.doneVoting'
+  'petitbac.doneVoting',
+  'lights.tap'
 ])

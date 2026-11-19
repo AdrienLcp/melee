@@ -66,6 +66,31 @@ describe('buzz', () => {
   })
 })
 
+describe('a lights tap', () => {
+  it('[lights] carries no client timestamp', () => {
+    const tapSchema = clientMessageSchema.options.find(
+      (option) => option.shape.type.value === 'lights.tap'
+    )
+
+    expect(tapSchema).toBeDefined()
+    expect(Object.keys(tapSchema?.shape ?? {}).toSorted()).toEqual([
+      'cell',
+      'roundId',
+      'step',
+      'type'
+    ])
+  })
+
+  it('[lights] refuses a cell off the board', () => {
+    const tap = { cell: 9, roundId: 'r1', step: 0, type: 'lights.tap' }
+
+    expect(playerClientMessageSchema.safeParse(tap).success).toBe(false)
+    expect(
+      playerClientMessageSchema.safeParse({ ...tap, cell: 8 }).success
+    ).toBe(true)
+  })
+})
+
 describe('a seat repaint', () => {
   it('[protocol] reads a repaint sent before heads as the round head', () => {
     const repaint = clientMessageSchema.parse({

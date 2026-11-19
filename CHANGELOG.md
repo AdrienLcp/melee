@@ -1020,6 +1020,14 @@ one part.
 
 ### Internal
 
+- `[Shared]` **Lights' rules, ahead of its server.** A 3 × 3 board lights
+  one cell at a time from a run every screen builds from the round's seed —
+  never the same cell twice running, a trap beside about one light in four,
+  never on its target nor on the cell just hit. The server counts a hit only
+  inside the round's window, 400 ms of grace after it, and from
+  `opensAt + n × 100 ms` for hit _n_; a seat is paid its hits as a share of
+  the round's best, with no clock. A `lights.tap` frame and a `count` verdict
+  join the contract. Plan 74.
 - `[Shared]` **Five clues' rules and countries, ahead of its server.** A
   right answer pays by the clue it landed on — 100, 80, 60, 40, 20 — the clock
   ordering the seats on one clue; a typed seat guesses once a clue and a pick

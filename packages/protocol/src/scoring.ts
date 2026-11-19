@@ -242,6 +242,17 @@ export const matchVerdictSchema = z.object({
   others: z.number().int().nonnegative()
 })
 
+/**
+ * A lights seat's race: its hits counted inside the window, beside the most
+ * any seat of the round was counted. Measured at the close, with every hit
+ * in. `@melee/core/lights/hits-pay` prices it.
+ */
+export const countVerdictSchema = z.object({
+  bestHits: z.number().int().nonnegative(),
+  hits: z.number().int().nonnegative(),
+  kind: z.literal('count')
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -256,7 +267,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   wordVerdictSchema,
   lettersVerdictSchema,
   calculationVerdictSchema,
-  matchVerdictSchema
+  matchVerdictSchema,
+  countVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -282,6 +294,7 @@ export const awardSchema = z.object({
 
 export type Verdict = z.infer<typeof verdictSchema>
 export type HalvesVerdict = z.infer<typeof halvesVerdictSchema>
+export type CountVerdict = z.infer<typeof countVerdictSchema>
 export type SingleVerdict = z.infer<typeof singleVerdictSchema>
 export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
 export type OrderVerdict = z.infer<typeof orderVerdictSchema>

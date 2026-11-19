@@ -1003,6 +1003,17 @@ measures negative and a negative is under the floor. `packages/core/src/reflex/`
 holds it, with no I/O and a test of its own; the next reflex-shaped game
 inherits it rather than re-deciding it.
 
+**Lights borrows both, over a window instead of an instant.** Its round
+carries `opensAt` and `closesAt`, server times every screen lights and darkens
+its board against, so every seat plays a window of the same length whatever
+its link, and the run of lights is built on every screen from a public `seed`.
+Each `lights.tap` is stamped on arrival and counted only inside the window —
+`LATE_TAP_GRACE_MS` past `closesAt` for the taps still in the air — and only
+above `HIT_FLOOR_MS`, `FALSE_START_FLOOR_MS`'s twin: hit _n_ arriving before
+`opensAt + n × HIT_FLOOR_MS` is not counted. Cumulative rather than between
+two arrivals, because Wi-Fi bunches frames and a gap floor would refuse honest
+hits. `packages/core/src/lights/counted-tap.ts` holds the rule.
+
 **Shades borrows the scheduling and not the floor.** Its colour hides at
 `round.content.hidesAt`, a server timestamp every screen schedules the same
 way, so the room loses the colour at once rather than as each frame lands. The

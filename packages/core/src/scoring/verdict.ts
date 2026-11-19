@@ -13,6 +13,7 @@ import { isBullseye, pointsForDistance } from '../atlas/distance-pay'
 import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
 import { isWholeSheetRight, pointsForPairs } from '../higherlower/pairs-pay'
+import { isBestCount, pointsForCount } from '../lights/hits-pay'
 import { isLongestInDraw, pointsForLetters } from '../longestword/letters-pay'
 import { isExactHit, pointsForCalculation } from '../makenumber/calculation-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
@@ -112,6 +113,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForMatch(verdict)
   }
 
+  if (verdict.kind === 'count') {
+    return pointsForCount(verdict)
+  }
+
   return pointsForHalves(verdict)
 }
 
@@ -153,6 +158,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isExactHit(verdict)
     case 'match':
       return isWholeTable(verdict)
+    case 'count':
+      return isBestCount(verdict)
   }
 }
 
@@ -173,9 +180,12 @@ export const isFinal = (verdict: Verdict): boolean =>
  * An estimate is not a reflex either: rushing one is guessing. A reflex place
  * is the speed already, paid by its podium. A crowd's answer is no quicker
  * than a lone one, so a bonus on a match would pay the quickest typist.
+ * A lights count is a race against the window already, and two seats on the
+ * same count did the same thing.
  */
 export const isPaidForSpeed = (verdict: Verdict): boolean =>
   verdict.kind !== 'cells' &&
+  verdict.kind !== 'count' &&
   verdict.kind !== 'colour' &&
   verdict.kind !== 'match' &&
   verdict.kind !== 'number' &&

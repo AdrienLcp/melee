@@ -29,3 +29,20 @@ export const randomIntBetween = (min: number, max: number): number =>
 
 /** In `[0, 1)`, for a rule that takes its randomness as an argument. */
 export const randomUnit = (): number => Math.random()
+
+/**
+ * A stream of units in `[0, 1)` drawn from a 32-bit seed (mulberry32), the
+ * same on every device for the same seed: what lets a server send a seed and
+ * every screen build the same draw from it.
+ */
+export const seededUnits = (seed: number): (() => number) => {
+  let state = seed >>> 0
+
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0
+    let mixed = Math.imul(state ^ (state >>> 15), state | 1)
+    mixed ^= mixed + Math.imul(mixed ^ (mixed >>> 7), mixed | 61)
+
+    return ((mixed ^ (mixed >>> 14)) >>> 0) / 2 ** 32
+  }
+}
