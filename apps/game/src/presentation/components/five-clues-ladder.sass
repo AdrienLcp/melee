@@ -11,6 +11,10 @@
 
 @layer components
   .five-clues-ladder
+    // Every rung, worth and finder is cut from chipboard and reads its depth
+    // here: no piece mixin sits above them, and a shadow naming an unset
+    // `--edge` is dropped whole, the open rung's ring with it.
+    --edge: 0.1875rem
     --rung-gap: var(--space-xs)
     --rung-pad-block: var(--space-2xs)
     --rung-pad-start: var(--space-xs)
