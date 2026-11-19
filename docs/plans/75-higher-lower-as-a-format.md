@@ -13,10 +13,10 @@ moins_ — in the game's settings, like Atlas' direction.
   quantity bank and nothing else: the round, the answer mode (`number`,
   `pairs`), the pay, the deck, the clock range and the remembered setup all
   differ. Folding them into one kind would have put a mode switch inside every
-  one of those, so the format *is* the kind, and the shelf hides it:
+  one of those, so the format _is_ the kind, and the shelf hides it:
   `@melee/core/room/shelf-cards` maps a format to its card (`cardOf`) and
   lists `shelfCards` — `shelvedGames` minus formats. `shelvedGames` keeps
-  `higherlower`: it still means *served with screens*, which the lobby's
+  `higherlower`: it still means _served with screens_, which the lobby's
   pitch and the player's _up next_ guard on.
 - **What reads the shelf reads `shelfCards`**: the home shelf and its ticks,
   the lobby's _add a game_ list (an entry of either format counts under the
