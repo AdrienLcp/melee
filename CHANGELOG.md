@@ -340,7 +340,8 @@ one part.
 - `[Shared]` **Free-for-all is a bit of everything.** It plays the decades,
   film scores and three charts — rap, rock and, outside Portugal, French
   chanson — instead of all twelve, so ten blind tests rather than nineteen
-  share the evening with every other game, and its caption says so.
+  share the evening with every other game, and its caption reads _a bit of
+  everything, no judge, for as long as you like_.
 
 - `[Server]` **Estimate and higher or lower know Madrid.** The world's cities
   now take in twenty-two Wikidata filed outside the classes the bank read —

@@ -2569,7 +2569,7 @@ const PORTUGUESE = defineDictionary({
         name: 'Cultura geral'
       },
       grandMix: {
-        caption: 'Um pouco de tudo, sem juiz e sem fim.',
+        caption: 'Um pouco de tudo, sem juiz, enquanto quiserem.',
         name: 'Vale tudo'
       },
       music: {

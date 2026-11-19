@@ -2283,7 +2283,7 @@ export const FR_DICTIONARY = defineDictionary({
         name: 'Culture générale'
       },
       grandMix: {
-        caption: 'Un peu de tout, sans juge et sans fin.',
+        caption: 'Un peu de tout, sans juge, aussi longtemps que vous voulez.',
         name: 'Mêlée générale'
       },
       music: {

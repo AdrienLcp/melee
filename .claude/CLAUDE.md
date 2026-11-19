@@ -95,6 +95,11 @@ coverage and e2e, in turn; CI spreads the same steps over parallel jobs and
 e2e shards (`.github/workflows/ci.yaml`) — run it before saying something works. Ports are offset from 3000/5173 so this repo runs beside the
 other dev servers on the machine.
 
+**Quality and the player's experience decide, never what a change costs.** A
+game, a merge, a redesign or a rewrite is weighed by whether the app comes out
+smoother, more logical, more intuitive and more fun; the sessions it takes are
+never an argument.
+
 ## The five rules that matter most here
 
 0. **Nothing appears or leaves at once, and a change keeps what already

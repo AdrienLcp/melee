@@ -2402,7 +2402,7 @@ export const EN_DICTIONARY = defineDictionary({
         name: 'General knowledge'
       },
       grandMix: {
-        caption: 'A bit of everything, no judge, no last round.',
+        caption: 'A bit of everything, no judge, for as long as you like.',
         name: 'Free-for-all'
       },
       music: {
