@@ -75,6 +75,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, how long is the Loire — and the whole room types an estimate on their own screens. Nobody has to know: the closest three score, and the reveal lines every guess up against the truth. Scan the QR code and play — no install, no account.',
       title: 'Close enough — Mêlée'
     },
+    fiveclues: {
+      description:
+        'A country is hidden behind five clues, from the vaguest to the most obvious — its size, its region, its outline, three of its cities, then its flag and capital — and the whole room climbs the ladder a clue at a time on their own screens. Find it on the first clue for the most points, wait for the flag and it pays the least. Scan the QR code and play — no install, no account.',
+      title: 'Five clues — Mêlée'
+    },
     higherlower: {
       description:
         'Two cities, two rivers, two mountains: which one has more people, which is longer, which is higher? Five pairs on everyone’s own screen, one pick each, and the reveal puts all ten numbers up at once. Scan the QR code and play — no install, no account.',
@@ -197,6 +202,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, quelle longueur pour la Loire — et toute la salle tape son estimation depuis son écran. Personne n’a besoin de savoir : les trois plus proches marquent, et le dévoilement aligne chaque essai face à la vraie valeur. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Le juste chiffre — Mêlée'
     },
+    fiveclues: {
+      description:
+        'Un pays se cache derrière cinq indices, du plus vague au plus évident — sa taille, sa région, sa silhouette, trois de ses villes, puis son drapeau et sa capitale — et toute la salle grimpe l’échelle un indice à la fois depuis son écran. Le trouver dès le premier rapporte le plus, attendre le drapeau le moins. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Cinq indices — Mêlée'
+    },
     higherlower: {
       description:
         'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Cinq paires sur l’écran de chacun, un choix par paire, et le dévoilement affiche les dix chiffres d’un coup. Scannez le QR code et jouez — sans installation, sans compte.',
@@ -318,6 +328,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Uma pergunta cuja resposta é um número — quantas pessoas vivem no Japão, que altura tem o Monte Branco, quanto mede o Loire — e a sala inteira escreve uma estimativa no seu ecrã. Ninguém precisa de saber: os três mais próximos pontuam, e a revelação alinha cada palpite com o valor real. Lê o código QR e joga — sem instalar nada, sem conta.',
       title: 'O número certo — Mêlée'
+    },
+    fiveclues: {
+      description:
+        'Um país esconde-se atrás de cinco pistas, da mais vaga à mais óbvia — o tamanho, a região, a silhueta, três das suas cidades, depois a bandeira e a capital — e a sala inteira sobe a escada uma pista de cada vez no seu ecrã. Descobri-lo logo na primeira vale mais, esperar pela bandeira vale menos. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Cinco pistas — Mêlée'
     },
     higherlower: {
       description:

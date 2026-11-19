@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Game]` **Cinq indices is on the shelf.** A country hidden behind five
+  clues — its size, its region, its outline, three of its cities, then its
+  flag and capital — climbed as a ladder a clue at a time: every screen sees
+  the rungs open, each seat stays on the rung it found on, and the reveal
+  sets the country on a green summit over every finder, ranked. Its front
+  door opens a table, and the game's settings choose the time each clue
+  stays open (5 to 30 seconds), the level and the language. On the buzzer
+  the ladder stays up under a buzz, and the host judging reads the country
+  at its top. Free-for-all deals it, and General knowledge plays it.
+
 - `[Server]` **Cinq indices is served, reachable by a settings frame.**
   `fiveclues` joins the games the server deals, not the shelf: a country
   climbed to through five clues in the room's language, each open 5 to 30

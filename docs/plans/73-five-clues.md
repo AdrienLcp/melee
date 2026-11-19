@@ -219,14 +219,37 @@ rules:
 
 — cut here: served by a settings frame, three modes, tests green, screens owed —
 
-## Step 3 — the screens
+## Step 3 — the screens ✅ 19/11/2026
 
-Starts with the `impeccable` skill: direction pages for Adrien to pick, each
-a whole example page with real content — the climb on a seat, the five rungs
-on the wall, the reveal — linked from one index page. Then the seat, the
-wall, the console and the setup (the clue window, the level), the shelf and
-its front door, the dictionary in three languages (the M49 names among it),
-filmed as each clue opens.
+Direction B, _La montée_, picked by Adrien on 18/11/2026 from three drawn
+pages: a ladder climbed a clue at a time. Two sessions built it.
+
+- **The seat, the wall and the reveal** (`a9caa20a`): five rungs bottom up,
+  a shut rung a socket, the open one paper ringed in the phase's ink with
+  its window draining to `nextClueAt`, the climbed ones blue; a seat climbing
+  with its own pawn and told where it stands; the wall's finders on their
+  rungs and the crowd on the open one; the country on a green summit over
+  the whole ladder at the reveal.
+- **The floor** (`phase === 'buzzed'`): `VerdictPanel` keeps the ladder as its
+  `stimulus` on the wall and the judging console, the window standing still.
+  The judge reads the country (`currentContent.answer`) as the summit over
+  the rungs, beside the two presses; in `typed` and `choice` the console
+  climbs blind. The ladder drawn again under the floor, and once it is handed
+  back after a lockout, keeps still (`isResumed`) — the clue does not land and
+  the crowd does not hop a second time. Upright under 36rem of stage, the
+  judge's console drops the ladder: the wall has it.
+- **The setup**: the clue window (5, 10, 20 or 30 s), the level and the
+  language, in the game's settings as the quiz's and think alike's.
+- **The shelf**: `fiveclues` last in `shelvedGames`, its fir spine, its front
+  door at `/fr/fiveclues` with a head in three languages, the host's language
+  on a room opened there; Free-for-all deals it once in the table's language,
+  and General knowledge plays it beside the flags quiz and the map.
+- **The wall's reveal at 24 seats**: names while six or fewer found; past
+  that, every finder a chip of rank, pawn and whole pay, the names left to
+  the standings beside. A rung of finders never shrinks below its rows. Seen
+  at 1280×720, 1920×1080 and 1080×1920 with 24 long names on one rung, spread
+  over every rung, and a few: nothing outside its rung, no name cut, no
+  scroll.
 
 ## How to tell it is done
 

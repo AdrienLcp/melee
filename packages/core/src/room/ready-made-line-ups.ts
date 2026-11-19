@@ -6,6 +6,7 @@ import {
   DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLACK_SQUARE_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_FIVE_CLUES_SETTINGS,
   DEFAULT_LONGEST_WORD_SETTINGS,
   DEFAULT_MATCHSTICKS_SETTINGS,
   DEFAULT_MYSTERY_WORD_SETTINGS,
@@ -123,6 +124,11 @@ const atlasOn = ({
   ...DEFAULT_ATLAS_SETTINGS,
   direction,
   places
+})
+
+const fiveCluesIn = (locale: Locale): SavedEntry => ({
+  ...DEFAULT_FIVE_CLUES_SETTINGS,
+  language: questionLanguageFor(locale)
 })
 
 const GENERAL_QUIZ_CATEGORIES = [
@@ -285,6 +291,7 @@ export const readyMadeLineUpsFor = (
       }),
       quizOn({ categories: ['flags'], locale }),
       'atlas',
+      fiveCluesIn(locale),
       'timeline',
       'estimate'
     ],
