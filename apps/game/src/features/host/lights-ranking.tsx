@@ -53,11 +53,14 @@ export const LightsRanking: React.FC<LightsRankingProps> = ({
     round.awards.find((award) => award.playerId === playerId)?.points ?? 0
 
   return (
-    <div className='lights-race' data-ranked=''>
+    <div
+      className='lights-race'
+      data-ranked=''
+      style={{ '--lanes': ranked.length }}
+    >
       <ol
         className='lanes'
         data-two-columns={ranked.length > MOST_LANES_IN_ONE_COLUMN || undefined}
-        style={{ '--lanes': ranked.length }}
       >
         {ranked.map(({ count, player, seat }) => (
           <li

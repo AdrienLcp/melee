@@ -626,8 +626,9 @@
 
   // The reflex race the same way: its card, its signal and the pawns landing
   // under it are sized against the box the header and the footer leave. So
-  // is the inner clock's count, whose stop a seated console presses.
-  .host-console-page:has(> .stage.solo > :is(.reflex-stage, .innerclock-stage))
+  // is the inner clock's count, whose stop a seated console presses, and the
+  // lights race, whose lanes share the height left and have none of their own.
+  .host-console-page:has(> .stage.solo > :is(.reflex-stage, .innerclock-stage), > .stage.solo.lights-stage)
     @include layout.arrived
     display: grid
     grid-template-rows: auto minmax(0, 1fr) auto

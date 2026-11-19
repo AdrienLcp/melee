@@ -2,7 +2,7 @@
 
 @layer components
   // The wall never scrolls: the lanes share the height left, two columns of
-  // twelve lying down past twelve seats, one column on a standing wall.
+  // twelve lying down past twelve seats, one column otherwise.
   .lights-race
     container-type: size
     display: grid
@@ -30,8 +30,10 @@
       min-height: 0
       padding: 0
 
+      // Only lying well down: a squarer box — the upright reveal, the console
+      // beside a wall — halved into columns too narrow for a name and a bar.
       &[data-two-columns]
-        @container (aspect-ratio >= 1)
+        @container (aspect-ratio >= 1.6)
           --rows: round(up, calc(var(--lanes) / 2), 1)
 
           grid-template-columns: repeat(2, minmax(0, 1fr))
@@ -44,7 +46,7 @@
       display: grid
       font-size: var(--lane-size)
       gap: 0.5em
-      grid-template-columns: 1.3em minmax(0, 9em) minmax(0, 1fr)
+      grid-template-columns: 1.3em minmax(0, 9em) minmax(3.5em, 1fr)
       min-height: 0
 
     .lane-pawn
@@ -131,7 +133,7 @@
       grid-template-rows: minmax(0, 1fr)
 
       .lane
-        grid-template-columns: 1.6em 1.3em minmax(0, 9em) minmax(0, 1fr) auto auto
+        grid-template-columns: 1.6em 1.3em minmax(0, 9em) minmax(2.5em, 1fr) auto auto
 
       .bar
         transition: none
@@ -164,3 +166,10 @@
         font-size: var(--text-em-s)
         padding: 0.15em 0.6em
         white-space: nowrap
+
+  // Upright the wall hands the reveal an `auto` row, where a size container
+  // has no height: the ranking claims its lanes' share, up to half the stage.
+  .reveal-panel > .lights-race[data-ranked]
+    contain-intrinsic-block-size: min(calc(var(--lanes) * 2.75rem), 50cqh)
+    flex: 1 1 0
+    min-height: 0
