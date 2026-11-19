@@ -1,5 +1,13 @@
 @use '../../presentation/styles/typography'
 
+// Registered so the bar's share eases on its own: easing the width it is laid
+// out at slid a bar out of its track for a quarter second whenever the screen
+// resized and the lanes moved to two columns.
+@property --bar-share
+  syntax: '<number>'
+  inherits: false
+  initial-value: 0
+
 @layer components
   // The wall never scrolls: the lanes share the height left, two columns of
   // twelve lying down past twelve seats, one column otherwise.
@@ -78,6 +86,7 @@
     // Eased over the quarter second between two counts, linear because the
     // bar keeps climbing through it.
     .bar
+      --bar-share: var(--share, 0)
       --notch: calc(100% / max(var(--hits), 1) * 5)
 
       background: repeating-linear-gradient(90deg, var(--phase-ink) 0 calc(var(--notch) - 2px), color-mix(in oklab, var(--phase-ink) 70%, var(--board)) calc(var(--notch) - 2px) var(--notch))
@@ -85,8 +94,8 @@
       box-shadow: 0 2px 0 color-mix(in oklab, var(--phase-ink) 60%, black)
       flex: none
       height: 100%
-      inline-size: calc((100% - 4em) * var(--share, 0))
-      transition: inline-size var(--tick-duration, 0s) linear, background-color var(--transition-fast, 0s)
+      inline-size: calc((100% - 4em) * var(--bar-share))
+      transition: --bar-share var(--tick-duration, 0s) linear, background-color var(--transition-fast, 0s)
 
     .count
       @include typography.numeric

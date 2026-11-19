@@ -4707,9 +4707,17 @@ const LIGHTS_ROOM_SCREENS = [
  * The race's lanes past the box they are laid in. The console's standings
  * beside its ranking scroll inside their own box past fourteen seats, which
  * `measureReveal` reads as a spill, so the console is held to the lanes alone.
+ * A resize that sets a transition running is read at its first frame, where a
+ * bar easing from the wider layout it left spills the most.
  */
-const lightsLanesSpilling = (): string[] =>
-  [...document.querySelectorAll<HTMLElement>('.lights-race .lane')]
+const lightsLanesSpilling = (): string[] => {
+  for (const animation of document.getAnimations()) {
+    if (animation instanceof CSSTransition) {
+      animation.currentTime = 0
+    }
+  }
+
+  return [...document.querySelectorAll<HTMLElement>('.lights-race .lane')]
     .filter((lane) => {
       const race = lane.closest('.lights-race')?.getBoundingClientRect()
 
@@ -4720,6 +4728,7 @@ const lightsLanesSpilling = (): string[] =>
       )
     })
     .map((lane) => lane.textContent?.slice(0, 24) ?? '')
+}
 
 const LIGHTS_ROOM_ROLES = [
   { path: `/wall/${ROOM_CODE}`, role: 'wall', viewports: WALL_VIEWPORTS },
