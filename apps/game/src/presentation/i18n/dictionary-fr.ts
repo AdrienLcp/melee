@@ -894,7 +894,14 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
-    judgedGames: 'Jugés par l’hôte',
+    allOfFamily: 'Tout',
+    families: {
+      culture: 'Culture',
+      letters: 'Lettres et chiffres',
+      reflexes: 'Réflexes',
+      table: 'Entre vous'
+    },
+    hostTools: 'Tu apportes les questions',
     opening: 'Ouverture de la table…',
     openWith: defineTranslation('Ouvrir une table · {count:plural}', {
       plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
@@ -913,9 +920,8 @@ export const FR_DICTIONARY = defineDictionary({
     resume: 'Reprendre la table',
     saveLineUp: 'Enregistrer « {name} »',
     shelf: 'Ou tes jeux à toi',
-    shelfHint:
-      'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
-    tickUnjudged: 'Tout cocher sauf ceux que l’hôte juge',
+    tickAll: 'Tout cocher',
+    tickFamily: 'Tout cocher : {family}',
     title: 'Mêlée',
     untickAll: 'Tout décocher',
     yourLineUps: {
@@ -2314,10 +2320,15 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Parti avant que l’écran change.'
     },
     flip: 'VAS-Y',
+    format: {
+      label: 'Formule',
+      lights: 'Lumières',
+      reflex: 'Top départ'
+    },
     hold: 'Appuie avant qu’il change et tu passes la manche.',
     home: {
       description:
-        'Rien à savoir, rien à dire. L’écran reste immobile, puis il change — et les trois plus rapides marquent, le premier le plus. Pars avant qu’il change et celle-là, tu la regardes depuis le banc.'
+        'Rien à savoir, rien à dire. L’écran reste immobile, puis il change — et les trois plus rapides marquent, le premier le plus. Pars avant qu’il change et celle-là, tu la regardes depuis le banc. Ou bien neuf lumières, une seule allumée à la fois : vingt secondes pour en toucher autant que tes mains le peuvent.'
     },
     landed: defineTranslation('{count:plural}', {
       plural: {

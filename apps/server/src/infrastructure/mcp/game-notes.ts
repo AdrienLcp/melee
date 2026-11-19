@@ -25,7 +25,7 @@ export const GAME_NOTES = {
   innerclock:
     'Everyone counts a number of seconds in their head, on screens where nothing moves, and presses once; paid by the gap to the target.',
   lights:
-    'A board of nine lights, three by three, on every screen: one lights up, and every player chases the same run of lights for twenty seconds, hitting as many as they can; now and then a trap lights beside it and darkens the board for a second. Paid by hits against the round’s best.',
+    'The reflex race played the other way, picked under its card: a board of nine lights, three by three, on every screen: one lights up, and every player chases the same run of lights for twenty seconds, hitting as many as they can; now and then a trap lights beside it and darkens the board for a second. Paid by hits against the round’s best.',
   longestword:
     'Draws nine letters on every screen; every player types the longest word they can make from them, each letter used once, and is paid by its length against the longest the draw held.',
   makenumber:

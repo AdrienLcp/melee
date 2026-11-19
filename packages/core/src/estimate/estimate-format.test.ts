@@ -15,7 +15,7 @@ describe('the estimate played the other way', () => {
         game: {
           ...DEFAULT_ESTIMATE_SETTINGS,
           difficulty: 'hard',
-          homeCountry: 'PT',
+          homeCountry: 'PRT',
           roundDurationMs: 60_000,
           topics: ['price']
         }
@@ -23,7 +23,7 @@ describe('the estimate played the other way', () => {
     ).toEqual({
       ...DEFAULT_HIGHER_LOWER_SETTINGS,
       difficulty: 'hard',
-      homeCountry: 'PT'
+      homeCountry: 'PRT'
     })
   })
 

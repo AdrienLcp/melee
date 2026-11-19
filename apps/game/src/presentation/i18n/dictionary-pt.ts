@@ -982,8 +982,17 @@ const PORTUGUESE = defineDictionary({
     tagline: 'Dois nomes. Qual deles é maior?'
   },
   home: {
-    /** Over the games the host judges however they are answered, shelved after the rest. */
-    judgedGames: 'Decididos pelo anfitrião',
+    /** The press that ticks every game of one family, or unticks them once all are. */
+    allOfFamily: 'Tudo',
+    /** The rows the shelf groups its games into. */
+    families: {
+      culture: 'Cultura',
+      letters: 'Letras e números',
+      reflexes: 'Reflexos',
+      table: 'Entre vocês'
+    },
+    /** Over the games with no content of their own, shelved under the families. */
+    hostTools: 'Tu trazes as perguntas',
     opening: 'A abrir a mesa…',
     openWith: defineTranslation('Abrir uma mesa · {count:plural}', {
       plural: {
@@ -1006,9 +1015,9 @@ const PORTUGUESE = defineDictionary({
     /** A ticket's star, pressed when the line-up is saved, which leads the row. */
     saveLineUp: 'Guardar «{name}»',
     shelf: 'Ou os teus próprios jogos',
-    shelfHint:
-      'Marca o que «Abrir uma mesa» abre. As tuas escolhas ficam guardadas para a próxima vez.',
-    tickUnjudged: 'Marcar todos menos os que o anfitrião decide',
+    tickAll: 'Marcar todos',
+    /** What a family’s press is heard as. */
+    tickFamily: 'Marcar tudo: {family}',
     title: 'Mêlée',
     untickAll: 'Desmarcar todos',
     /** The row of line-ups the host starred or played on this machine. */
@@ -2602,10 +2611,15 @@ const PORTUGUESE = defineDictionary({
       title: 'Partiste antes de o ecrã mudar.'
     },
     flip: 'JÁ',
+    format: {
+      label: 'Formato',
+      lights: 'Luzes',
+      reflex: 'Sinal'
+    },
     hold: 'Carrega antes de mudar e ficas fora da ronda.',
     home: {
       description:
-        'Nada para saber, nada para dizer. O ecrã fica parado, depois muda — e os três mais rápidos pontuam, o primeiro mais do que todos. Carrega antes de mudar e essa vês do banco.'
+        'Nada para saber, nada para dizer. O ecrã fica parado, depois muda — e os três mais rápidos pontuam, o primeiro mais do que todos. Carrega antes de mudar e essa vês do banco. Ou nove luzes, só uma acesa de cada vez: vinte segundos para acertar em tantas quantas as tuas mãos conseguirem.'
     },
     landed: defineTranslation('{count:plural}', {
       plural: {

@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Game]` **Lumières is now a way of playing Réflexe.** One card on the
+  shelf for both: open _Réflexe_ and pick _Top départ_ or _Lumières_ in its
+  settings, between any two rounds. The chase keeps its window and its traps,
+  both wear Réflexe's colour, and a link, a tick or a saved evening naming
+  Lumières still works.
+
 - `[Game]` **Plus ou moins is now a way of playing Le juste chiffre.** One
   card on the shelf for both: open _Le juste chiffre_ and pick _Estimer_ or
   _Plus ou moins_ in its settings, between any two rounds. The level and the

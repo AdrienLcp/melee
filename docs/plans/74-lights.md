@@ -11,12 +11,14 @@ The twenty-second game, **everyone at once** and counted by the server. Kind
 `lights`, translation prefix `lights.*`. _Lumières_ in French, _Lights_ in
 English, _Luzes_ in Portuguese.
 
-Not a mode of Reflex. Reflex is one press timed against one flip, a false
-start costing the round; this is a count over a window, no flip and no race
-to a single moment. Its round, its score and its screens share nothing with
-Reflex's but the guarantee below, and a game owns its arm of `settings.game`
-and `round.content` — a `format` switch on Reflex's would weld two games
-shut. They sit beside each other on the shelf.
+**A format of Reflex, since stage [76](76-lights-as-a-format.md)** — what Adrien asked for from the
+start. A table picking a game reaches for _Réflexe_ and then decides how its
+hands will race: one press against one flip, or a chase across nine lights.
+Two cards for that choice made the shelf longer and the decision harder. The
+code still holds two kinds, because the round, the answer mode, the verdict
+and the screens are each their own and the guarantee below is the only thing
+shared; the shelf shows one card, and `lights` is picked from Reflex's
+settings (`shelf-cards.ts`).
 
 ## Rules, as settled
 

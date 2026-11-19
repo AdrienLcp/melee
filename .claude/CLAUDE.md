@@ -48,7 +48,8 @@ others wrote the same, the host folding _frigo_ into _réfrigérateur_ at the
 reveal, and **Cinq indices** hides a country behind five clues — its size,
 its region, its outline, its cities, its flag and capital — that open one
 after another on every screen, the earlier the clue a seat names it on the
-more it pays, and **Lumières** lights one cell at a time on a board of nine
+more it pays, and **Lumières** — a format of Reflex with a kind of its own —
+lights one cell at a time on a board of nine
 that every screen chases for twenty seconds, a trap beside it freezing the
 board for a second, the wall racing one bar a seat.
 
@@ -386,7 +387,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Twenty-two games — twenty-one cards, a format being a game without one — share the room, the QR code and every screen, and the rule that got
+Twenty-two games — twenty cards, a format being a game without one — share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

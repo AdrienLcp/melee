@@ -58,6 +58,11 @@ import {
   isEstimateFormat
 } from '@melee/core/estimate/estimate-format'
 import {
+  inReflexFormat,
+  isReflexFormat,
+  REFLEX_FORMATS
+} from '@melee/core/reflex/reflex-format'
+import {
   answerModesFor,
   isPlayableWithTeams
 } from '@melee/core/room/game-capabilities'
@@ -882,26 +887,71 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         </>
       )}
 
-      {game?.kind === 'lights' && (
+      {(game?.kind === 'reflex' || game?.kind === 'lights') && (
         <>
-          <NumberChoice
+          <SegmentedControl
+            className='reflex-format'
             isDisabled={isDisabled}
-            label={translate('lights.window')}
-            onChange={(windowMs) => {
-              onChange({ ...settings, game: { ...game, windowMs } })
+            label={translate('reflex.format.label')}
+            onChange={(next) => {
+              if (isReflexFormat(next)) {
+                const moved = inReflexFormat({ format: next, game })
+
+                onChange({
+                  ...settings,
+                  game: moved,
+                  lineUp:
+                    settings.lineUpAt === null
+                      ? settings.lineUp
+                      : settings.lineUp.with(settings.lineUpAt, moved),
+                  mode: modeOfferedBy({ game: moved, preferred: settings.mode })
+                })
+              }
             }}
-            optionLabel={secondsLabel}
-            options={LIGHTS_WINDOWS_MS}
-            value={game.windowMs}
+            options={REFLEX_FORMATS.map((format) => ({
+              label: translate(`reflex.format.${format}`),
+              value: format
+            }))}
+            value={game.kind}
           />
-          <Switch
-            isDisabled={isDisabled}
-            isSelected={game.hasTraps}
-            label={translate('lights.hasTraps')}
-            onChange={(hasTraps) => {
-              onChange({ ...settings, game: { ...game, hasTraps } })
-            }}
-          />
+          <div
+            className='fold'
+            data-open={game.kind === 'lights' || undefined}
+            inert={game.kind !== 'lights'}
+          >
+            <NumberChoice
+              isDisabled={isDisabled}
+              label={translate('lights.window')}
+              onChange={(windowMs) => {
+                if (game.kind === 'lights') {
+                  onChange({ ...settings, game: { ...game, windowMs } })
+                }
+              }}
+              optionLabel={secondsLabel}
+              options={LIGHTS_WINDOWS_MS}
+              value={
+                game.kind === 'lights'
+                  ? game.windowMs
+                  : DEFAULT_LIGHTS_WINDOW_MS
+              }
+            />
+          </div>
+          <div
+            className='fold'
+            data-open={game.kind === 'lights' || undefined}
+            inert={game.kind !== 'lights'}
+          >
+            <Switch
+              isDisabled={isDisabled}
+              isSelected={game.kind === 'lights' && game.hasTraps}
+              label={translate('lights.hasTraps')}
+              onChange={(hasTraps) => {
+                if (game.kind === 'lights') {
+                  onChange({ ...settings, game: { ...game, hasTraps } })
+                }
+              }}
+            />
+          </div>
         </>
       )}
 

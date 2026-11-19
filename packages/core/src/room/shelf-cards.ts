@@ -7,10 +7,12 @@ import {
 /**
  * A game played as a way of playing another, with no card of its own: it is
  * served, it has screens and a line-up may hold it, but a host reaches it from
- * its card's settings. _Plus ou moins_ is the estimate dealt as pairs.
+ * its card's settings. _Plus ou moins_ is the estimate dealt as pairs, and
+ * _Lumières_ the reflex race run as a chase across nine lights.
  */
 const CARD_OF_FORMAT: Readonly<Record<string, ShelvedGame>> = {
-  higherlower: 'estimate'
+  higherlower: 'estimate',
+  lights: 'reflex'
 }
 
 /** The card a format id is picked under, or `null` when it is not a format. */
