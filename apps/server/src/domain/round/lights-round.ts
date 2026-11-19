@@ -17,6 +17,7 @@ import {
 } from '@melee/core/lights/counted-tap'
 import { bestHitsOf } from '@melee/core/lights/hits-pay'
 import { lightsRunOf } from '@melee/core/lights/lights-run'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { pointsFor } from '@melee/core/scoring/verdict'
 
@@ -124,6 +125,12 @@ export const registerLightsTap = ({
     })
   ) {
     return Result.failure('joined_mid_round')
+  }
+
+  // A closed round's clock stands still, so its window, read off `now`, would
+  // slide along with every tap after the reveal.
+  if (!isRoundInPlay(room.phase)) {
+    return Result.success({ armsPublish: false, outcome: 'uncounted' })
   }
 
   const content = round.content

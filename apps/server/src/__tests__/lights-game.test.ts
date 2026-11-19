@@ -289,7 +289,7 @@ describe('a race of lights counted by the server', () => {
     const { alice, aliceId, host, roundId, run } = await openPlayingRound()
     const { closesAt } = windowOf(host)
 
-    await sleep(Math.max(0, closesAt + LATE_TAP_GRACE_MS / 2 - nowMs()))
+    await sleep(Math.max(0, closesAt + LATE_TAP_GRACE_MS / 4 - nowMs()))
     hitOn({ peer: alice, roundId, run, step: 0 })
     await untilRevealed(host)
 
@@ -357,6 +357,22 @@ describe('a race of lights counted by the server', () => {
     await untilFloorOf(host, 0)
     hitOn({ peer: alice, roundId, run, step: 0 })
     await waitFor(() => countOf(host, aliceId)?.hits === 1, "Alice's hit")
+  })
+
+  it('[lights] counts no tap once the round is revealed, however early it stopped', async () => {
+    const { alice, aliceId, host, roundId, run } = await openPlayingRound()
+
+    await untilFloorOf(host, 0)
+    host.send({ roundId, type: 'host.reveal' })
+    await untilRevealed(host)
+    hitOn({ peer: alice, roundId, run, step: 0 })
+    alice.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.players.some((seat) => seat.isReady) === true,
+      "Alice's ready, sent after her tap"
+    )
+
+    expect(countOf(host, aliceId)?.hits).toBe(0)
   })
 })
 
