@@ -669,6 +669,12 @@ one part.
 
 ### Fixes
 
+- `[Server]` **The assistant composing an evening is told the whole of
+  each game.** The quiz answers in Portuguese too, a blind test draws from
+  genre charts, decades and film scores by default — with the genre ids
+  spelled out — a table’s home country deals its own songs and numbers, and
+  the estimate’s topics and the quiz’s subjects are explained.
+
 - `[Game]` **A browser listing `en;q=0.9` among its languages opens the
   site.** One Chrome on macOS handed that header weight in
   `navigator.languages`, every number formatted over it threw, and the home

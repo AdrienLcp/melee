@@ -1,4 +1,27 @@
 import type { GameKind } from '@melee/protocol/game'
+import type { GenreId } from '@melee/protocol/track'
+
+const GENRE_NAMES = {
+  52: 'French songs',
+  106: 'Electro',
+  113: 'Dance',
+  116: 'Rap and hip hop',
+  129: 'Jazz',
+  132: 'Pop',
+  144: 'Reggae',
+  152: 'Rock',
+  165: 'R&B',
+  169: 'Soul and funk',
+  197: 'Latin',
+  464: 'Metal'
+} as const satisfies Record<GenreId, string>
+
+const GENRE_LIST = Object.entries(GENRE_NAMES)
+  .map(([id, name]) => `${id} ${name}`)
+  .join(', ')
+
+const HOME_COUNTRY_NOTE =
+  '`homeCountry` is the table’s country as a three-letter ISO code — "FRA", "PRT" — whose own content is dealt beside everyone’s; null deals everyone’s alone.'
 
 /**
  * Each game in a sentence or two, for an assistant composing an evening: what
@@ -11,7 +34,7 @@ export const GAME_NOTES = {
   blacksquare:
     'Hides three to nine answers of a broad theme behind a grid, beside one black word that costs whoever lands on it the round; the less obvious answers pay more.',
   blindtest:
-    'A clip plays on the room’s speaker and the players name the title and the artist — or the film, on a film-score source. Each entry picks its source: charts, a decade, a genre, a playlist.',
+    'A clip plays on the room’s speaker and the players name the title and the artist — or the film, on a film score. Each entry picks its source: genre charts, decades and film scores side by side, a free search or a Deezer playlist.',
   buzzer:
     'A bare race for the floor with no content of its own: the host brings the question — a charade, a quiz on paper — and judges the answer.',
   challenge:
@@ -38,7 +61,7 @@ export const GAME_NOTES = {
     'Hides a word of five to eight letters, its first letter shown; every player has six tries on their own screen, each coloured letter by letter, and a word found in fewer tries pays more.',
   petitbac:
     'Deals a letter and a sheet of categories everyone fills on their own screen, then the room votes on what counts; a word nobody else wrote pays double.',
-  quiz: 'Questions from banks bundled in French and English, by subject and difficulty, plus rubrics: flags, emoji rebuses, capitals and country outlines.',
+  quiz: 'Questions from banks bundled in French, English and European Portuguese, by subject and difficulty, plus rubrics: flags, emoji rebuses, capitals and country outlines.',
   reflex:
     'A race against a screen about to change colour; a press before it changes is a false start and costs the round.',
   slate:
@@ -61,15 +84,14 @@ export const SETTING_NOTES = {
     '`places` lists the sets a round may be drawn from — "countries", "frenchCities", "portugueseCities", "worldCapitals" — one drawn per round; a city set is placed on that country’s own map. `direction` is "place" (the room names a place, every player pins it) or "name" (the map shows a place, the players name it).',
   blacksquare:
     '`answerCount` is how many of the theme’s answers a round hides, 3 to 9. `doublesLoneFinds` pays double a cell one player alone found, in a typed round only — a spoken round has one team guessing.',
-  blindtest:
-    '`source` is what the clips are drawn from. `{ "kind": "search", "query": "…" }` takes any free query of up to 120 characters — an artist, a film, "french rap 2000s" — and `{ "kind": "playlist", "playlistId": "…" }` a Deezer playlist id: those two make a blind test about anything. A list of tracks is not offered — it would need ids an assistant cannot know.',
+  blindtest: `\`source\` is what the clips are drawn from. The default, \`{ "kind": "catalogue", "charts": [], "decades": [], "hasFilmScores": true }\`, mixes three strands: \`charts\` are Deezer genre ids (${GENRE_LIST}), \`decades\` the decades' hits, \`hasFilmScores\` film and series scores; for \`charts\` and \`decades\` an empty list is every one and null leaves the strand out, and at least one strand stays in. \`{ "kind": "search", "query": "…" }\` takes any free query of up to 120 characters — an artist, a film, "french rap 2000s" — and \`{ "kind": "playlist", "playlistId": "…" }\` a Deezer playlist id: those two make a blind test about anything. A list of tracks is not offered — it would need ids an assistant cannot know. ${HOME_COUNTRY_NOTE}`,
   buzzer:
     '`locksOutOnMiss` sits a player out for the rest of the round after a wrong answer: one go each keeps a loud room honest, an open field suits "name five…".',
   challenge: null,
-  estimate: null,
+  estimate: `\`topics\` lists what a round may ask, one drawn per round: "population", "area", "height" (summits and buildings), "length" (rivers) and "price". ${HOME_COUNTRY_NOTE}`,
   fiveclues:
     '`clueDurationMs` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. `language` is the wording of the cities, the capital, the four names and every typed answer.',
-  higherlower: null,
+  higherlower: HOME_COUNTRY_NOTE,
   innerclock:
     'Nothing to set: the target is drawn between 20 and 60 seconds each round.',
   lights:
@@ -82,7 +104,7 @@ export const SETTING_NOTES = {
   mysteryword: null,
   petitbac:
     '`categories` is null to draw `categoryCount` categories every round, or a fixed list of 3 to 10 played every round, each `{ "kind": "own", "label": "…" }` (40 characters at most) or `{ "kind": "bank", "key": "…" }` (one of the bank’s keys, in the defaults). `categoryCount` is ignored for a fixed list, and `difficulty` applies to drawn categories only. `excludedLetters` are never dealt; `stopsWhenFull` lets a player whose every line is filled close everyone’s sheet.',
-  quiz: null,
+  quiz: '`categories` lists the subjects a round may be drawn from, the rubrics among them — "flags", "capitals", "silhouettes" (a country’s outline), "rebus" (a title in emojis); empty is every subject. `language` is the bank the questions are dealt from, "fr", "en" or "pt".',
   reflex: null,
   slate:
     '`labels` names the sheet’s items, by index — public on every screen, 12 characters at most, unique, null for a plain number. `itemCount` is how many items a sheet opens with, not a cap: the host adds more during the round.',
