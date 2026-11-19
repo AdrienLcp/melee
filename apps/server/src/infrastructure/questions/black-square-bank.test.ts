@@ -80,7 +80,7 @@ const unwrittenPathsOf = (source: unknown): string[] =>
 const themesInEveryLanguage = (source: unknown) =>
   themesInEveryLanguageSchema.parse(source)
 
-/** Every name of a theme against every other answer dealt alone: thousands of gradings a theme. */
+/** Every name of a theme, the black word's included, against every other answer: thousands of gradings a theme. */
 const EVERY_NAME_GRADED = { timeout: 60_000 }
 
 type GradedTheme = {
@@ -186,20 +186,24 @@ describe('the black-square bank', () => {
     }
   })
 
-  it('[blacksquare] never grades a name of the black word as one of the answers', () => {
-    const collisions = themesInEveryLanguage(bank).flatMap(
-      ({ answers, blackWord, id }) =>
-        blackWordCollisionsOf({
-          answers: answers.map(namesOf),
-          blackWord: namesOf(blackWord)
-        }).map(
-          ({ answer, guess }) =>
-            `${id}: ${guess} → ${answers[answer]?.labels.fr ?? ''}`
-        )
-    )
+  it(
+    '[blacksquare] never grades a name of the black word as one of the answers',
+    EVERY_NAME_GRADED,
+    () => {
+      const collisions = themesInEveryLanguage(bank).flatMap(
+        ({ answers, blackWord, id }) =>
+          blackWordCollisionsOf({
+            answers: answers.map(namesOf),
+            blackWord: namesOf(blackWord)
+          }).map(
+            ({ answer, guess }) =>
+              `${id}: ${guess} → ${answers[answer]?.labels.fr ?? ''}`
+          )
+      )
 
-    expect(collisions).toEqual([])
-  })
+      expect(collisions).toEqual([])
+    }
+  )
   it(
     '[blacksquare] grades every name as a round would: its own cell, the black word, or nothing once left out',
     EVERY_NAME_GRADED,
