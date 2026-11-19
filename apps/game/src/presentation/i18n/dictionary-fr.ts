@@ -897,8 +897,8 @@ export const FR_DICTIONARY = defineDictionary({
     allOfFamily: 'Tout',
     families: {
       culture: 'Culture',
+      instinct: 'Instinct',
       letters: 'Lettres et chiffres',
-      reflexes: 'Réflexes',
       table: 'Entre vous'
     },
     hostTools: 'Tu apportes les questions',

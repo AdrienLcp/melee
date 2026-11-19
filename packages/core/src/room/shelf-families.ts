@@ -4,7 +4,7 @@ import type { ShelvedGame } from '@melee/protocol/game'
 export const shelfFamilies = [
   'culture',
   'letters',
-  'reflexes',
+  'instinct',
   'table'
 ] as const
 
@@ -19,6 +19,7 @@ export const gamesOfFamily: Readonly<
   Record<ShelfFamily, readonly ShelvedGame[]>
 > = {
   culture: ['quiz', 'blindtest', 'atlas', 'fiveclues', 'timeline', 'estimate'],
+  instinct: ['reflex', 'innerclock', 'swatch'],
   letters: [
     'mysteryword',
     'longestword',
@@ -27,7 +28,6 @@ export const gamesOfFamily: Readonly<
     'makenumber',
     'matchsticks'
   ],
-  reflexes: ['reflex', 'innerclock', 'swatch'],
   table: ['mostlikely', 'thinkalike']
 }
 

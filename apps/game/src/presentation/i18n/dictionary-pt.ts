@@ -987,8 +987,8 @@ const PORTUGUESE = defineDictionary({
     /** The rows the shelf groups its games into. */
     families: {
       culture: 'Cultura',
+      instinct: 'Instinto',
       letters: 'Letras e números',
-      reflexes: 'Reflexos',
       table: 'Entre vocês'
     },
     /** Over the games with no content of their own, shelved under the families. */

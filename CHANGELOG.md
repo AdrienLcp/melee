@@ -9,7 +9,7 @@ one part.
 ### Improvements
 
 - `[Game]` **The home shelf stands in families.** _Culture_, _Lettres et
-  chiffres_, _Réflexes_ and _Entre vous_, each with a _Tout_ that ticks the
+  chiffres_, _Instinct_ and _Entre vous_, each with a _Tout_ that ticks the
   whole row, then Buzzer, L’Ardoise and Défi on a row of their own — _Tu
   apportes les questions_ — that neither _Tout cocher_ nor a first visit
   ticks. A tool ticked alone still opens a table on it, and beside games it

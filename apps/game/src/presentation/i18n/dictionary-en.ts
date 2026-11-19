@@ -938,8 +938,8 @@ export const EN_DICTIONARY = defineDictionary({
     /** The rows the shelf groups its games into. */
     families: {
       culture: 'Culture',
+      instinct: 'Instinct',
       letters: 'Letters and numbers',
-      reflexes: 'Reflexes',
       table: 'About you'
     },
     /** Over the games with no content of their own, shelved under the families. */
