@@ -894,14 +894,7 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
-    allOfFamily: 'Tout',
-    families: {
-      culture: 'Culture',
-      letters: 'Lettres et chiffres',
-      reflexes: 'Réflexes',
-      table: 'Entre vous'
-    },
-    hostTools: 'Tu apportes les questions',
+    judgedGames: 'Jugés par l’hôte',
     opening: 'Ouverture de la table…',
     openWith: defineTranslation('Ouvrir une table · {count:plural}', {
       plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
@@ -920,8 +913,9 @@ export const FR_DICTIONARY = defineDictionary({
     resume: 'Reprendre la table',
     saveLineUp: 'Enregistrer « {name} »',
     shelf: 'Ou tes jeux à toi',
-    tickAll: 'Tout cocher',
-    tickFamily: 'Tout cocher : {family}',
+    shelfHint:
+      'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
+    tickUnjudged: 'Tout cocher sauf ceux que l’hôte juge',
     title: 'Mêlée',
     untickAll: 'Tout décocher',
     yourLineUps: {

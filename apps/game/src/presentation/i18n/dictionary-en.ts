@@ -933,17 +933,8 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
-    /** The press that ticks every game of one family, or unticks them once all are. */
-    allOfFamily: 'All',
-    /** The rows the shelf groups its games into. */
-    families: {
-      culture: 'Culture',
-      letters: 'Letters and numbers',
-      reflexes: 'Reflexes',
-      table: 'About you'
-    },
-    /** Over the games with no content of their own, shelved under the families. */
-    hostTools: 'You bring the questions',
+    /** Over the games the host judges however they are answered, shelved after the rest. */
+    judgedGames: 'Judged by the host',
     opening: 'Opening the table…',
     openWith: defineTranslation('Open a table · {count:plural}', {
       plural: { count: { one: '{?} game', other: '{?} games' } }
@@ -964,9 +955,9 @@ export const EN_DICTIONARY = defineDictionary({
     /** A ticket's star, pressed when the line-up is saved, which leads the row. */
     saveLineUp: 'Save “{name}”',
     shelf: 'Or your own games',
-    tickAll: 'Tick all',
-    /** What a family’s press is heard as. */
-    tickFamily: 'Tick all of {family}',
+    shelfHint:
+      'Tick what “Open a table” opens. Your ticks are kept for next time.',
+    tickUnjudged: 'Tick all but those the host judges',
     title: 'Mêlée',
     untickAll: 'Untick all',
     /** The row of line-ups the host starred or played on this machine. */
