@@ -701,7 +701,7 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'The game hit something it could not carry on from. Reloading almost always fixes it — and if the site updated while this tab was open, it always does.',
       reload: 'Reload the page',
-      report: 'If it happens again, this line tells us what broke:',
+      report: "We've already got the report:",
       title: 'Something broke'
     },
     sheet_not_full:

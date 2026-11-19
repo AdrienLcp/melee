@@ -337,6 +337,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The error screen says the report already reached us.** Its
+  technical line used to ask the reader to pass it on, when the screen has
+  sent it on its own since it first appeared.
+
 - `[Shared]` **Free-for-all is a bit of everything.** It plays the decades,
   film scores and three charts — rap, rock and, outside Portugal, French
   chanson — instead of all twelve, so ten blind tests rather than nineteen

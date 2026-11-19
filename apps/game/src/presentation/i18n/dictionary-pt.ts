@@ -742,7 +742,7 @@ const PORTUGUESE = defineDictionary({
       description:
         'O jogo deparou-se com algo de que não conseguiu recuperar. Recarregar resolve quase sempre — e se o site foi atualizado enquanto este separador estava aberto, resolve sempre.',
       reload: 'Recarregar a página',
-      report: 'Se voltar a acontecer, esta linha diz-nos o que falhou:',
+      report: 'Já recebemos o relatório:',
       title: 'Algo falhou'
     },
     sheet_not_full:

@@ -666,7 +666,7 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Le jeu est tombé sur quelque chose dont il ne sait pas repartir. Recharger suffit presque toujours — et si le site a été mis à jour pendant que cet onglet était ouvert, toujours.',
       reload: 'Recharger la page',
-      report: 'Si ça recommence, cette ligne nous dit ce qui a cassé :',
+      report: 'On a déjà reçu le rapport :',
       title: 'Quelque chose a cassé'
     },
     sheet_not_full:
