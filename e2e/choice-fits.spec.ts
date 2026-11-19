@@ -3802,6 +3802,66 @@ const fiveCluesLockedScreen = () => {
   return { ...view, round: { ...view.round, lockedOutPlayerIds: ['p1'] } }
 }
 
+const LIGHTS_GAME = { hasTraps: true, kind: 'lights', windowMs: 30_000 }
+const TAP_MODE = { kind: 'tap' }
+
+/** Every seat in, the longest bar first and a trap on every fifth. */
+const lightsContent = () => ({
+  closesAt: SERVER_TIME + 25_000,
+  hasTraps: true,
+  kind: 'lights',
+  opensAt: SERVER_TIME - 5_000,
+  seats: fullSeats.map(({ id }, seat) => ({
+    hits: 60 - seat * 2,
+    playerId: id,
+    traps: seat % 5
+  })),
+  seed: 1_234_567
+})
+
+const lightsScreen = () =>
+  answeringView({ content: lightsContent(), game: LIGHTS_GAME, mode: TAP_MODE })
+
+/** The race on the screen the room reads, a full table, then its ranking with every seat paid. */
+const lightsRoomView = (phase: 'playing' | 'revealed') => {
+  const view = consoleView(LONGEST_PROMPT)
+
+  return {
+    ...view,
+    currentContent: { kind: 'lights' },
+    phase,
+    players: fullSeats,
+    round: {
+      ...view.round,
+      advancesAt: phase === 'revealed' ? SERVER_TIME + 20_000 : null,
+      answers: [],
+      awards:
+        phase === 'revealed'
+          ? fullSeats.map(({ id }, seat) => ({
+              isUnsent: false,
+              playerId: id,
+              points: (100 - seat * 4) * 1_000,
+              speedBonus: 0,
+              verdict: { isCorrect: true, kind: 'single' }
+            }))
+          : [],
+      content: lightsContent(),
+      isFinal: false,
+      isReadyHold: false,
+      lockedOutPlayerIds: [],
+      openedWithPlayerIds: fullSeats.map(({ id }) => id)
+    },
+    settings: {
+      ...view.settings,
+      autoAdvanceMs: phase === 'revealed' ? 25_000 : null,
+      game: LIGHTS_GAME,
+      lineUp: [LIGHTS_GAME],
+      lineUpAt: 0,
+      mode: TAP_MODE
+    }
+  }
+}
+
 const SEATED_FIVE_CLUES = { answer: null, kind: 'fiveclues' }
 
 type AnsweringScreen = {
@@ -3818,6 +3878,12 @@ type AnsweringScreen = {
 }
 
 const ANSWERING_SCREENS: AnsweringScreen[] = [
+  {
+    name: 'lights tap, every seat racing',
+    ready: '.lights-tray',
+    seated: { currentContent: { kind: 'lights' }, ready: '.lights-tray' },
+    view: lightsScreen()
+  },
   {
     name: 'blind test, the countdown',
     ready: '.countdown',
@@ -4624,6 +4690,88 @@ for (const screen of ANSWERING_SCREENS) {
  * console's `currentContent` carries the country in a buzzer round alone,
  * and the wall's schema strips it.
  */
+const LIGHTS_ROOM_SCREENS = [
+  {
+    name: 'the race',
+    ready: '.lights-race .lane',
+    view: lightsRoomView('playing')
+  },
+  {
+    name: 'the ranking',
+    ready: '.lights-race[data-ranked] .lane',
+    view: lightsRoomView('revealed')
+  }
+]
+
+/**
+ * The race's lanes past the box they are laid in. The console's standings
+ * beside its ranking scroll inside their own box past fourteen seats, which
+ * `measureReveal` reads as a spill, so the console is held to the lanes alone.
+ */
+const lightsLanesSpilling = (): string[] =>
+  [...document.querySelectorAll<HTMLElement>('.lights-race .lane')]
+    .filter((lane) => {
+      const race = lane.closest('.lights-race')?.getBoundingClientRect()
+
+      return (
+        race === undefined ||
+        lane.getBoundingClientRect().bottom > race.bottom + 0.5 ||
+        lane.scrollWidth > lane.clientWidth + 1
+      )
+    })
+    .map((lane) => lane.textContent?.slice(0, 24) ?? '')
+
+const LIGHTS_ROOM_ROLES = [
+  { path: `/wall/${ROOM_CODE}`, role: 'wall', viewports: WALL_VIEWPORTS },
+  { path: `/host/${ROOM_CODE}`, role: 'room', viewports: ROOM_VIEWPORTS }
+] as const
+
+for (const role of LIGHTS_ROOM_ROLES) {
+  for (const screen of LIGHTS_ROOM_SCREENS) {
+    test(`[layout] ${role.role}, lights, ${screen.name} of a full table: nothing scrolls, from 720p to 4K`, async ({
+      page
+    }) => {
+      await serveRoom({
+        page,
+        view:
+          role.role === 'wall'
+            ? { ...screen.view, wallCount: 1, wallNumber: 1 }
+            : screen.view
+      })
+      await page.addInitScript(() => {
+        localStorage.setItem('melee:locale', 'fr')
+        localStorage.setItem('melee:volume', '0')
+      })
+      await page.setViewportSize({ height: 1080, width: 1920 })
+      await page.goto(role.path)
+      await expect(page.locator(screen.ready).first()).toBeVisible()
+
+      const faults: string[] = []
+
+      for (const [width, height] of role.viewports) {
+        await resizeTo({ height, page, width })
+
+        const overflow = await page.evaluate(measureReveal)
+        const lanes = await page.evaluate(lightsLanesSpilling)
+        const isFaulty =
+          role.role === 'wall'
+            ? overflow.furthest !== null ||
+              overflow.page > 0 ||
+              overflow.spills.length > 0
+            : overflow.page > 0 || lanes.length > 0
+
+        if (isFaulty) {
+          faults.push(
+            `${width}×${height} ${JSON.stringify({ ...overflow, lanes })}`
+          )
+        }
+      }
+
+      expect(faults).toEqual([])
+    })
+  }
+}
+
 const fiveCluesRoomView = ({
   activeBuzz = null,
   content,

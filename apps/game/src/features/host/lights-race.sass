@@ -128,6 +128,18 @@
         border: 0
         height: 2.4em
 
+    &[data-duel]:not([data-ranked]) .lane
+      grid-template-columns: 1.3em fit-content(45%) minmax(3.5em, 1fr)
+
+      @container (aspect-ratio < 1)
+        grid-template-columns: 1.3em minmax(0, 1fr)
+        height: auto
+        row-gap: 0.3em
+
+        .track
+          grid-column: 1 / -1
+          height: 1.6em
+
     // The reveal: the same lanes ranked, the bars stopped.
     &[data-ranked]
       grid-template-rows: minmax(0, 1fr)

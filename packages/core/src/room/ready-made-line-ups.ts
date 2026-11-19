@@ -301,7 +301,7 @@ export const readyMadeLineUpsFor = (
   },
   {
     id: 'quick',
-    lineUp: ['reflex', 'swatch', 'innerclock', 'matchsticks'],
+    lineUp: ['reflex', 'lights', 'swatch', 'innerclock', 'matchsticks'],
     lineUpDeals: [],
     roundCount: 10,
     runningOrder: []

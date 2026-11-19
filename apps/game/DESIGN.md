@@ -934,8 +934,9 @@ preview prints the page's title and description beside it: on the dark
 `--board`, the mark over the wordmark on the left, and on the right every
 game's glyph in the shelf's order on a tile of its `--spine` ground with a
 ledge of the spine at 62% over black — rounded squares, never the spine's
-lit edge, which reads as a button nobody can press. Twenty tiles are five
-columns of 104px with 18px between; redraw it when a game joins the shelf.
+lit edge, which reads as a button nobody can press. Twenty-two tiles are six
+columns of 96px with 16px between, four rows; redraw it when a game joins the
+shelf.
 
 ## Components
 

@@ -47,7 +47,9 @@ others wrote the same, the host folding _frigo_ into _réfrigérateur_ at the
 reveal, and **Cinq indices** hides a country behind five clues — its size,
 its region, its outline, its cities, its flag and capital — that open one
 after another on every screen, the earlier the clue a seat names it on the
-more it pays.
+more it pays, and **Lumières** lights one cell at a time on a board of nine
+that every screen chases for twenty seconds, a trap beside it freezing the
+board for a second, the wall racing one bar a seat.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -56,7 +58,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*`, `higherlower.*`, `mysteryword.*`, `longestword.*`, `makenumber.*`, `thinkalike.*`, `fiveclues.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*`, `higherlower.*`, `mysteryword.*`, `longestword.*`, `makenumber.*`, `thinkalike.*`, `fiveclues.*`, `lights.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -378,7 +380,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Twenty-one games share the room, the QR code and every screen, and the rule that got
+Twenty-two games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

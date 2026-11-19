@@ -43,7 +43,8 @@
   // So is every round with a field or a pair to press: nothing pressed against
   // the clock may scroll.
   .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round, .petit-bac-round, .typed-round, .estimate-round, .higher-lower-round, .matchsticks-round, .mystery-word-round, .longest-word-round, .make-number-round, .swatch-round, .timeline-round, .five-clues-seat)),
-  .player-page.playing:has(> .player-round > .slate-sheet)
+  .player-page.playing:has(> .player-round > .slate-sheet),
+  .player-page.playing:has(> .lights-race)
     @include layout.arrived
 
     display: grid

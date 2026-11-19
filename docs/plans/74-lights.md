@@ -301,6 +301,42 @@ The rest, from the tokens page:
   the cross mark, the payout token — under the winner's name.
 - **A duel**: the two lanes alone across the wall, at billboard size.
 
+### Step 3, as built (19/11/2026)
+
+- **The seat** is `features/player/lights-board.tsx`: the tray fills the box
+  the framed page leaves, the lit cell set on `onPressStart`, the keys of
+  _The keyboard_ on a paper cap under `(hover: hover) and (pointer: fine)`,
+  read through `keyLabelsOf` so an AZERTY board prints its own letters. The
+  trap's stamp and drain lie over the tray's foot rather than under it: they
+  speak only while the board is frozen, when no cell they cover can be
+  pressed, and a short console lying down had its bottom row under them.
+- **A seated console** plays on the same board, held to the solo stage's
+  whole box (`.stage.solo.lights-stage > .lights-board`); left to its
+  content it was 117 px wide on a 1440 console.
+- **The race** is `features/host/lights-race.tsx`, on the wall and on a
+  console with no wall: one lane a seat, two columns past twelve only from
+  `aspect-ratio >= 1.6`. The console beside a wall keeps one column of 24.
+  **The reveal** is `lights-ranking.tsx`, the same lanes ranked.
+- **A duel** is its two lanes alone; the name takes `fit-content(45%)` so a
+  wall prints it whole and a phone keeps the bar, and a box taller than wide
+  puts the name over a bar the whole width. **A seat outside the duel reads
+  the race** (`WatchedDuel`): its round is stamped on the two duellists, so
+  its page is not framed and the race takes the height the chrome leaves
+  (`.player-page.playing:has(> .lights-race)`). It was an empty screen.
+- **Quick plays it**, fifth: the line-up of rounds with almost nothing to
+  read, ten rounds being two of each.
+- `e2e/choice-fits.spec.ts` holds the seat and the seated console at every
+  phone shape, and the race and the ranking of 24 seats on the wall and the
+  console from 720p to 4K. On the console it reads the lanes alone: the
+  standings beside the ranking scroll inside their own box past fourteen
+  seats, which the reveal's measure reads as a spill.
+- Checked muted in Chromium (`.playwright-mcp/lights-run.mjs`,
+  `lights-extra.mjs`): 24 seats of long names at 390×844 and 360×640, the
+  wall at 16:9, 9:16 and 720p, both palettes, a desktop seat on keys, a
+  seated host, a duel on every role; filmed the countdown into the first
+  light, a trap's freeze, the window closing and a duel opening on a
+  watching seat.
+
 ## How to tell it is done
 
 Muted, with `MAX_PLAYERS_PER_ROOM` seats with long names at phone width and a

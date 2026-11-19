@@ -43,6 +43,7 @@ import {
   millisecondsUntil
 } from '@melee/core/time/clock-sync'
 
+import { LightsRace } from '@/features/host/lights-race'
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
@@ -95,6 +96,7 @@ import {
   fiveCluesContent,
   higherLowerContent,
   innerclockContent,
+  lightsContent,
   longestWordContent,
   makeNumberContent,
   matchsticksContent,
@@ -978,6 +980,17 @@ const WatchedDuel: React.FC<{
   const atlas = atlasContent(round)
   const timeline = timelineContent(round)
   const blackSquare = blackSquareContent(round)
+
+  if (lightsContent(round) !== null) {
+    return (
+      <LightsRace
+        clock={clock}
+        players={view.players}
+        round={round}
+        youId={view.youId}
+      />
+    )
+  }
 
   if (round.answerMode === 'choice') {
     return <ChoosingRound onAnswer={null} round={round} youId={view.youId} />

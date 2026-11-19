@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Game]` **Lumières is on the shelf.** One cell lights at a time on a tray
+  of nine, the same run on every screen: hit as many as you can in the
+  window, and a trap beside the light freezes your board for a second. The
+  wall races one bar a seat — a trap lays its pawn down — and the reveal
+  ranks the lanes with each seat's hits, traps and pay. A desktop plays it
+  from the keys, whatever the keyboard's layout; a duel shows its two lanes
+  alone, to the wall and to every seat watching it. Its front door opens a
+  table, its settings choose the window and the traps, Free-for-all deals it
+  and _Partie éclair_ plays it.
+
 - `[Game]` **Cinq indices is on the shelf.** A country hidden behind five
   clues — its size, its region, its outline, three of its cities, then its
   flag and capital — climbed as a ladder a clue at a time: every screen sees
@@ -28,7 +38,7 @@ one part.
   under every hit — a trap is recorded and moves nothing, and a pause holds
   the window and gives back what it had left. The counts reach every screen
   four times a second rather than on every tap, and each seat is paid its hits
-  over the round's best. No screen draws it yet.
+  over the round's best.
 
 - `[Server]` **Cinq indices is served, reachable by a settings frame.**
   `fiveclues` joins the games the server deals, not the shelf: a country
