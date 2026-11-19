@@ -110,6 +110,7 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
               }
               onPetitBac={(message) => send(message)}
               onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+              onTap={(tap) => send({ ...tap, type: 'lights.tap' })}
               onTeam={(message) => send(message)}
               onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
               onWriteLine={(itemIndex, answer, roundId) =>
@@ -162,6 +163,7 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
                 }
                 onPetitBac={(message) => send(message)}
                 onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+                onTap={(tap) => send({ ...tap, type: 'lights.tap' })}
                 onTeam={(message) => send(message)}
                 onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
                 onWriteLine={(itemIndex, answer, roundId) =>
@@ -188,6 +190,7 @@ const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
-  ((view.phase === 'playing' && view.round.answerMode === 'choice') ||
+  ((view.phase === 'playing' &&
+    (view.round.answerMode === 'choice' || view.round.answerMode === 'tap')) ||
     ((view.phase === 'playing' || view.phase === 'buzzed') &&
       view.round.answerMode === 'buzzer'))

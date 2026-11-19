@@ -20,6 +20,14 @@ export const TRAP_FREEZE_MS = 1_000
 /** How long a miss darkens the board: without it, sweeping a hand over all nine cells is the best play. */
 export const MISS_FREEZE_MS = 300
 
+/**
+ * How often a round whose counts moved is sent to every screen: about what a
+ * bar climbing needs, and what the wall eases each bar over. A tap publishing
+ * on arrival would be 120 whole snapshots a second at 24 seats tapping five
+ * times each, fanned out to every socket.
+ */
+export const LIGHTS_PUBLISH_TICK_MS = 250
+
 /** The round's window, in server time, published with the countdown. */
 export type LightsWindow = {
   closesAt: number

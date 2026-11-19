@@ -246,7 +246,10 @@ A cool printed board under warm, saturated die-cut inks, every value one
   the paper game was played with, twenty degrees short of the plum and as far
   again past the quiz's indigo; `--spine-fiveclues` fir — a deep green ten
   points darker than atlas and estimate, which it would otherwise read as,
-  on-spine ink 4.5:1 and over, held in `tokens-contrast.test.ts`): each
+  on-spine ink 4.5:1 and over, held in `tokens-contrast.test.ts`;
+  `--spine-lights` electric violet — measured the farthest in OKLab from
+  every other spine (0.116, where two neighbours already stand 0.10 apart),
+  where no warm hue clears 0.08 with pale ink on it): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   _up next_ lid, the start of the next-round press. Names print in
   `--on-spine-<game>`: pale `--on-spine` everywhere but reflex, which takes

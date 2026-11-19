@@ -577,3 +577,77 @@ export const onScreenChanges = (
     })
   })
 }
+
+type KeyboardLayoutSource = {
+  getLayoutMap: () => Promise<ReadonlyMap<string, string>>
+}
+
+const isKeyboardLayoutSource = (
+  value: unknown
+): value is KeyboardLayoutSource =>
+  typeof value === 'object' &&
+  value !== null &&
+  'getLayoutMap' in value &&
+  typeof value.getLayoutMap === 'function'
+
+/**
+ * What each physical key prints on this device's own layout, by
+ * `KeyboardEvent.code` — `KeyQ` reads `a` on a French keyboard. Empty where
+ * the browser cannot say (only Chromium can), and the caller falls back on
+ * the code's own letter.
+ */
+export const keyLabelsOf = async (
+  codes: readonly string[]
+): Promise<ReadonlyMap<string, string>> => {
+  const source: unknown = Reflect.get(navigator, 'keyboard')
+
+  if (!isKeyboardLayoutSource(source)) {
+    return new Map()
+  }
+
+  const layout = await source
+    .getLayoutMap()
+    .catch((): ReadonlyMap<string, string> => new Map())
+
+  return new Map(
+    codes.flatMap((code) => {
+      const label = layout.get(code)
+
+      return label === undefined ? [] : [[code, label] as const]
+    })
+  )
+}
+
+/**
+ * A key going down anywhere on the page, by its physical place and its
+ * printed character, held keys repeating left out. Ignored while a field has
+ * the focus, so a seat typing elsewhere never plays by accident.
+ */
+export const onPhysicalKeyDown = (
+  listener: (press: { code: string; key: string }) => void
+): (() => void) => {
+  const handle = (event: KeyboardEvent): void => {
+    const target = event.target
+
+    if (
+      event.repeat ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey ||
+      (target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement))
+    ) {
+      return
+    }
+
+    listener({ code: event.code, key: event.key })
+  }
+
+  window.addEventListener('keydown', handle)
+
+  return () => {
+    window.removeEventListener('keydown', handle)
+  }
+}

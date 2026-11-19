@@ -21,6 +21,11 @@ import {
   type QuizSettings
 } from '@melee/protocol/game'
 import {
+  DEFAULT_LIGHTS_WINDOW_MS,
+  MAX_LIGHTS_WINDOW_MS,
+  MIN_LIGHTS_WINDOW_MS
+} from '@melee/protocol/lights'
+import {
   type MatchsticksGoal,
   matchsticksGoals
 } from '@melee/protocol/matchsticks'
@@ -108,6 +113,14 @@ const CLUE_DURATIONS_MS = [
   DEFAULT_FIVE_CLUES_SETTINGS.clueDurationMs,
   20_000,
   MAX_CLUE_DURATION_MS
+] as const
+
+/** Fifteen seconds is a sprint, thirty a race the hands feel by the end. */
+const LIGHTS_WINDOWS_MS = [
+  MIN_LIGHTS_WINDOW_MS,
+  DEFAULT_LIGHTS_WINDOW_MS,
+  25_000,
+  MAX_LIGHTS_WINDOW_MS
 ] as const
 
 /** Ten seconds is the first word that comes, a minute lets a slower hand write it out. */
@@ -844,6 +857,29 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             optionLabel={secondsLabel}
             options={CLUE_DURATIONS_MS}
             value={game.clueDurationMs}
+          />
+        </>
+      )}
+
+      {game?.kind === 'lights' && (
+        <>
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('lights.window')}
+            onChange={(windowMs) => {
+              onChange({ ...settings, game: { ...game, windowMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={LIGHTS_WINDOWS_MS}
+            value={game.windowMs}
+          />
+          <Switch
+            isDisabled={isDisabled}
+            isSelected={game.hasTraps}
+            label={translate('lights.hasTraps')}
+            onChange={(hasTraps) => {
+              onChange({ ...settings, game: { ...game, hasTraps } })
+            }}
           />
         </>
       )}

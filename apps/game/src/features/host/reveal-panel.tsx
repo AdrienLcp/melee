@@ -8,6 +8,7 @@ import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
 
+import { LightsRanking } from '@/features/host/lights-ranking'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   atlasContent,
@@ -17,6 +18,7 @@ import {
   fiveCluesContent,
   higherLowerContent,
   innerclockContent,
+  lightsContent,
   longestWordContent,
   makeNumberContent,
   matchsticksContent,
@@ -598,6 +600,21 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           youId={youId}
         />
         <ReactionBoard players={players} round={round} />
+      </section>
+    )
+  }
+
+  // A race nothing was withheld from: the lanes ranked are the reveal.
+  if (lightsContent(round) !== null) {
+    return (
+      <section className='reveal-panel bare'>
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
+        <LightsRanking players={players} round={round} />
       </section>
     )
   }

@@ -53,6 +53,7 @@ import {
 } from '@/features/player/five-clues-seat'
 import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
+import { LightsBoard } from '@/features/player/lights-board'
 import { LongestWordAnswer } from '@/features/player/longest-word-answer'
 import { LongestWordRevealed } from '@/features/player/longest-word-revealed'
 import { MakeNumberAnswer } from '@/features/player/make-number-answer'
@@ -475,6 +476,7 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
   onLean,
   onPetitBac,
   onReady,
+  onTap,
   onTick,
   onWriteLine,
   refusal,
@@ -639,6 +641,17 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
 
     if (round.content.kind === 'innerclock') {
       return <InnerclockPress onPress={onBuzz} round={round} />
+    }
+
+    if (round.content.kind === 'lights') {
+      return (
+        <LightsBoard
+          clock={clock}
+          onTap={onTap}
+          round={round}
+          youId={view.youId}
+        />
+      )
     }
 
     if (round.content.kind === 'reflex') {

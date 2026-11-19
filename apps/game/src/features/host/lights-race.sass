@@ -1,0 +1,166 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The wall never scrolls: the lanes share the height left, two columns of
+  // twelve lying down past twelve seats, one column on a standing wall.
+  .lights-race
+    container-type: size
+    display: grid
+    gap: clamp(var(--space-s), 2cqmin, var(--space-l))
+    grid-template-rows: auto minmax(0, 1fr)
+    height: 100%
+    min-height: 0
+    width: 100%
+
+    > .round-progress
+      --clock-height: clamp(0.5rem, 1.2cqmin, 0.9rem)
+
+      width: 100%
+
+    .lanes
+      --rows: var(--lanes)
+
+      column-gap: clamp(var(--space-m), 4cqmin, var(--space-xl))
+      display: grid
+      grid-auto-flow: column
+      grid-template-columns: minmax(0, 1fr)
+      grid-template-rows: repeat(var(--rows), minmax(0, 1fr))
+      list-style: none
+      margin: 0
+      min-height: 0
+      padding: 0
+
+      &[data-two-columns]
+        @container (aspect-ratio >= 1)
+          --rows: round(up, calc(var(--lanes) / 2), 1)
+
+          grid-template-columns: repeat(2, minmax(0, 1fr))
+
+    .lane
+      --lane-size: clamp(var(--text-xs), min(calc(100cqh / var(--rows) * 0.55), 3.2cqi), var(--text-xl))
+
+      align-items: center
+      border-block-end: var(--stroke-thin) solid var(--rule)
+      display: grid
+      font-size: var(--lane-size)
+      gap: 0.5em
+      grid-template-columns: 1.3em minmax(0, 9em) minmax(0, 1fr)
+      min-height: 0
+
+    .lane-pawn
+      display: grid
+      height: 1.25em
+      place-items: center
+      transition: rotate var(--transition-base, 0s) var(--ease-out)
+
+      svg
+        height: 100%
+        width: auto
+
+    .name
+      @include typography.typed
+      @include typography.strong
+
+      font-size: 1em
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .track
+      align-items: center
+      display: flex
+      gap: 0.5em
+      height: 70%
+      min-width: 0
+
+    // Eased over the quarter second between two counts, linear because the
+    // bar keeps climbing through it.
+    .bar
+      --notch: calc(100% / max(var(--hits), 1) * 5)
+
+      background: repeating-linear-gradient(90deg, var(--phase-ink) 0 calc(var(--notch) - 2px), color-mix(in oklab, var(--phase-ink) 70%, var(--board)) calc(var(--notch) - 2px) var(--notch))
+      border-radius: var(--radius-xs)
+      box-shadow: 0 2px 0 color-mix(in oklab, var(--phase-ink) 60%, black)
+      flex: none
+      height: 100%
+      inline-size: calc((100% - 4em) * var(--share, 0))
+      transition: inline-size var(--tick-duration, 0s) linear, background-color var(--transition-fast, 0s)
+
+    .count
+      @include typography.numeric
+
+      min-width: 1.2em
+
+    .trap-mark
+      flex: none
+      height: 0.9em
+      opacity: 0
+      transition: opacity var(--transition-fast, 0s) var(--ease-in)
+      width: 0.9em
+
+    .lane[data-trapped]
+      .lane-pawn
+        rotate: -90deg
+
+      .bar
+        background: repeating-linear-gradient(-45deg, var(--board-ink) 0 4px, transparent 4px 8px)
+        box-shadow: none
+
+      .trap-mark
+        opacity: 1
+        transition-timing-function: var(--ease-out)
+
+    .lane[data-you] .name
+      text-decoration: underline 3px
+      text-underline-offset: 0.2em
+
+    // A duel: the two lanes alone across the stage, at billboard size.
+    &[data-duel] .lanes
+      align-content: center
+      grid-template-rows: repeat(2, auto)
+      row-gap: clamp(var(--space-l), 8cqh, var(--space-2xl))
+
+      .lane
+        --lane-size: clamp(var(--text-l), 6cqmin, 3.5rem)
+
+        border: 0
+        height: 2.4em
+
+    // The reveal: the same lanes ranked, the bars stopped.
+    &[data-ranked]
+      grid-template-rows: minmax(0, 1fr)
+
+      .lane
+        grid-template-columns: 1.6em 1.3em minmax(0, 9em) minmax(0, 1fr) auto auto
+
+      .bar
+        transition: none
+
+      .place
+        @include typography.numeric
+
+        color: var(--board-muted)
+
+      .traps
+        @include typography.numeric
+
+        align-items: center
+        color: var(--board-muted)
+        display: inline-flex
+        gap: 0.2em
+        min-width: 2.4em
+
+        svg
+          height: 0.9em
+          width: 0.9em
+
+      .paid
+        @include typography.numeric
+
+        background: var(--good)
+        border-radius: var(--radius-full)
+        box-shadow: 0 2px 0 var(--good-edge)
+        color: var(--on-primary)
+        font-size: var(--text-em-s)
+        padding: 0.15em 0.6em
+        white-space: nowrap

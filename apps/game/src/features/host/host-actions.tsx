@@ -118,9 +118,12 @@ const PhaseActions: React.FC<HostActionsProps> = (props) => {
       // console and tells the room nothing about the time.
       // A challenge is placed, or given to nobody, from the stage, beside the
       // teams it is placing.
+      // Lights runs a window of a few seconds every seat plays to its end, and
+      // cutting it short would end a race some hands are still in.
       // Nothing is on the stage yet during the countdown, so nothing to give away.
       return props.view.phase === 'countdown' ||
         props.view.round?.content.kind === 'reflex' ||
+        props.view.round?.content.kind === 'lights' ||
         props.view.round?.content.kind === 'challenge' ? null : (
         <RoundActions {...props} />
       )

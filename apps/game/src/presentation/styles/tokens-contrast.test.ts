@@ -226,6 +226,16 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.nonText
         },
         {
+          background: '--spine-lights',
+          foreground: '--on-spine-lights',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--on-spine',
+          foreground: '--spine-mark-lights',
+          minimum: WCAG_AA.nonText
+        },
+        {
           background: '--spine-thinkalike',
           foreground: '--on-spine-thinkalike',
           minimum: WCAG_AA.text

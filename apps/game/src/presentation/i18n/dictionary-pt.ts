@@ -1797,9 +1797,34 @@ const PORTUGUESE = defineDictionary({
     title: 'Aviso legal e privacidade'
   },
   lights: {
+    board: 'As luzes',
+    cell: {
+      dark: 'Apagada',
+      lit: 'Acesa',
+      trap: 'Armadilha'
+    },
+    hasTraps: 'Armadilhas',
+    home: {
+      description:
+        'Nove luzes no ecrã de cada um, só uma acesa de cada vez: toca-lhe e a seguinte acende-se noutro sítio. Vinte segundos para acertar em tantas quantas as tuas mãos conseguirem, e de vez em quando acende-se uma armadilha ao lado da certa — toca-lhe e o teu tabuleiro apaga-se por um segundo. O ecrã grande mostra a corrida, uma barra por jogador, a subir a cada acerto.'
+    },
     name: 'Luzes',
+    play: 'Jogar Luzes',
+    race: 'A corrida',
     scoring:
-      'Cada luz acertada conta: quem acertar mais na ronda marca 100 pontos, metade disso marca 50.'
+      'Cada luz acertada conta: quem acertar mais na ronda marca 100 pontos, metade disso marca 50.',
+    tagline: 'Acerta na luz. Depois na seguinte.',
+    trapped: 'Armadilha · 1 s',
+    traps: defineTranslation('{count:plural}', {
+      plural: {
+        count: {
+          one: '{?} armadilha',
+          other: '{?} armadilhas',
+          zero: '{?} armadilhas'
+        }
+      }
+    }),
+    window: 'Duração'
   },
   loading: 'A carregar…',
   longestword: {

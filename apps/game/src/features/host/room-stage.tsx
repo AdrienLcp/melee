@@ -20,6 +20,7 @@ import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import { buildTeamBoard } from '@melee/core/team/team-board'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
+import { LightsBoard } from '@/features/player/lights-board'
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import { revealHoldOf } from '@/helpers/reveal-hold'
 import {
@@ -40,6 +41,7 @@ import { ChallengePlacing } from './challenge-placing'
 import { FinalBoard } from './final-board'
 import { FiveCluesClimb } from './five-clues-climb'
 import { InnerclockStage } from './innerclock-stage'
+import { LightsRace } from './lights-race'
 import { LobbyStage } from './lobby-stage'
 import { MakeNumberShortest } from './make-number-shortest'
 import { PetitBacStage } from './petit-bac-stage'
@@ -220,6 +222,32 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           round={round}
           youId={youId}
         />
+      </div>
+    )
+  }
+
+  // A seated console plays on its own board; the room watches the race on
+  // the wall, or on this screen when it is the only one.
+  if (view.phase === 'playing' && round?.content.kind === 'lights') {
+    return (
+      <div className='stage solo lights-stage'>
+        {youId !== null && playsThisRound ? (
+          <LightsBoard
+            clock={clock}
+            onTap={(tap) =>
+              controls?.send({ ...tap, type: 'lights.tap' }) ?? false
+            }
+            round={round}
+            youId={youId}
+          />
+        ) : (
+          <LightsRace
+            clock={clock}
+            players={view.players}
+            round={round}
+            youId={youId}
+          />
+        )}
       </div>
     )
   }

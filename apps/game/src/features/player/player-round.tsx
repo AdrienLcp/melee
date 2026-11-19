@@ -6,6 +6,7 @@ import type {
   LeanAnswer,
   PlayerClientMessage
 } from '@melee/protocol/client-message'
+import type { LightsCell } from '@melee/protocol/lights'
 import type { PlayerRoomView, RoomPhase } from '@melee/protocol/room'
 import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 
@@ -88,6 +89,8 @@ export type PlayerRoundProps = {
     isTicked: boolean
     roundId: string
   }) => boolean
+  /** A light or a trap hit on a Lights board; `false` from the socket means the frame was never written. */
+  onTap: (tap: { cell: LightsCell; roundId: string; step: number }) => boolean
   /** A Petit Bac line, stop, vote or done; `false` from the socket means the frame was never written. */
   onPetitBac: (message: PetitBacSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */

@@ -100,6 +100,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Who publishes Mêlée, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
       title: 'Legal notice and privacy — Mêlée'
     },
+    lights: {
+      description:
+        'Nine lights on everyone’s own screen, one lit at a time: hit it and the next one lights somewhere else. Twenty seconds to hit as many as your hands can, a trap now and then that darkens your board for a second, and the big screen shows the race as bars climbing side by side. Scan the QR code and play — no install, no account.',
+      title: 'Lights — Mêlée'
+    },
     longestword: {
       description:
         'Nine letters go up on every screen, and everyone has the clock to make the longest word they can from them, each letter once. The room sees how long everyone’s word is, never the word, until the reveal names the longest the draw held. Scan the QR code and play — no install, no account.',
@@ -227,6 +232,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Qui publie Mêlée, ce qui est gardé sur les joueurs et pour combien de temps, quels services reçoivent quoi, et comment refuser la mesure d’audience.',
       title: 'Mentions légales et confidentialité — Mêlée'
     },
+    lights: {
+      description:
+        'Neuf lumières sur l’écran de chacun, une seule allumée à la fois : touchez-la et la suivante s’allume ailleurs. Vingt secondes pour en toucher autant que vos mains le peuvent, un piège de temps en temps qui éteint votre plateau une seconde, et le grand écran montre la course en barres qui montent côte à côte. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Lumières — Mêlée'
+    },
     longestword: {
       description:
         'Neuf lettres s’affichent sur tous les écrans, et chacun a le temps du sablier pour en tirer le mot le plus long, chaque lettre une fois. La salle voit la longueur du mot de chacun, jamais le mot, jusqu’au dévoilement qui donne le plus long que cachait le tirage. Scannez le QR code et jouez — sans installation, sans compte.',
@@ -353,6 +363,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Quem publica o Mêlée, o que guarda sobre quem joga e durante quanto tempo, que serviços recebem o quê e como recusar a medição de audiência.',
       title: 'Aviso legal e privacidade — Mêlée'
+    },
+    lights: {
+      description:
+        'Nove luzes no ecrã de cada um, só uma acesa de cada vez: toca-lhe e a seguinte acende-se noutro sítio. Vinte segundos para tocar em tantas quantas as tuas mãos conseguirem, de vez em quando uma armadilha que apaga o teu tabuleiro por um segundo, e o ecrã grande mostra a corrida em barras que sobem lado a lado. Lê o código QR e joga — sem instalar nada, sem conta.',
+      title: 'Luzes — Mêlée'
     },
     longestword: {
       description:

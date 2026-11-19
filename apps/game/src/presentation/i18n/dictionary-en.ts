@@ -1676,9 +1676,28 @@ export const EN_DICTIONARY = defineDictionary({
     title: 'Legal notice and privacy'
   },
   lights: {
+    board: 'The lights',
+    cell: {
+      dark: 'Dark',
+      lit: 'Lit',
+      trap: 'Trap'
+    },
+    hasTraps: 'Traps',
+    home: {
+      description:
+        'Nine lights on everyone’s screen, one lit at a time: hit it and the next one lights somewhere else. Twenty seconds to hit as many as your hands can, and now and then a trap lights beside the right one — hit it and your board goes dark for a second. The big screen shows the race, one bar a player, climbing with every hit.'
+    },
     name: 'Lights',
+    play: 'Play Lights',
+    race: 'The race',
     scoring:
-      'Every light you hit counts: the most hits of the round score 100 points, half as many score 50.'
+      'Every light you hit counts: the most hits of the round score 100 points, half as many score 50.',
+    tagline: 'Hit the light. Then the next one.',
+    trapped: 'Trap · 1 s',
+    traps: defineTranslation('{count:plural}', {
+      plural: { count: { one: '{?} trap', other: '{?} traps' } }
+    }),
+    window: 'Duration'
   },
   /**
    * The app itself arriving, which is the one wait with nothing more specific

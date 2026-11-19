@@ -9,6 +9,7 @@ import { MAX_LIGHTS_SEED } from '@melee/protocol/lights'
 import { randomIntBetween } from '@melee/core/helpers/random'
 import {
   LATE_TAP_GRACE_MS,
+  LIGHTS_PUBLISH_TICK_MS,
   type LightsWindow,
   lightsRunLengthOf,
   type TapOutcome,
@@ -23,13 +24,6 @@ import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
 
 type LightsContent = Extract<Round['content'], { kind: 'lights' }>
-
-/**
- * How often a round whose counts moved is sent to every screen: about what a
- * bar climbing needs. A tap publishing on arrival would be 120 whole snapshots
- * a second at 24 seats tapping five times each, fanned out to every socket.
- */
-export const LIGHTS_PUBLISH_TICK_MS = 250
 
 export type LightsTapRejection = Extract<
   ProtocolErrorCode,
