@@ -1427,6 +1427,13 @@ rank, pawn and whole pay, the names left to the standings beside — measured on
 a 1280×720 wall, where 24 chips on one rung over four empty rungs fill four
 columns of six rows at `--text-xs`, and six named rows are the most that fit.
 A rung holding finders never shrinks below its rows; an empty one gives way.
+Its worths and clues follow the ladder's height (`11cqh`, `3.4cqh`) and the
+country the screen's (`6.4` stage units under `11cqi`), so a short wall sets it
+on one line where its width allows; past twelve seats lying down the panel
+takes 1.35 of the width, five chips abreast on a 1280×720 wall, and an upright
+tablet's panel 0.6 of the height — measured on the Dominican Republic's ladder
+at 1024×768, the tightest, where two rows of chips on every rung still clear the
+round's heading.
 **On a seat** every rung but the open one stands at its clue's height, the
 open one growing into what they leave, and the open clue follows the ladder's
 own height (`5cqh`, floored at `--text-s`) — measured at 320×568 on the

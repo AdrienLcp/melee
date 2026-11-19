@@ -335,6 +335,12 @@
       &.host-console-page > .stage.revealed:has(> .reveal-panel[data-game='thinkalike']):has(> .standings > .scoreboard > li:nth-child(13))
         grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr)
 
+      // Five clues' ladder is the podium, five finders abreast on a rung:
+      // on half a 720p wall the fifth took a second row on every rung, and
+      // the top rung climbed over the round's heading.
+      &.host-console-page > .stage.revealed:has(> .reveal-panel[data-game='fiveclues']):has(> .standings > .scoreboard > li:nth-child(13))
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
+
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a
     // ledger beside the answer.
@@ -596,6 +602,12 @@
             > .reveal-panel:is([data-game='swatch'], [data-game='makenumber'], [data-game='thinkalike'], [data-game='fiveclues'])
               flex-grow: 3
               max-height: 52dvh
+
+            // Five rungs under the summit need more than half a tablet hung
+            // upright, and the standings divide whatever they are handed.
+            > .reveal-panel[data-game='fiveclues']
+              flex-grow: 4.5
+              max-height: 60dvh
 
 
     // A seat's name gives up its width before a category does: unwrapped, a

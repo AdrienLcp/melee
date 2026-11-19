@@ -1,3 +1,7 @@
+/// An answer letter's advance in the tile's face, past the widest of its mean, and the mark and its gap beside the title.
+$word-letter-width: 0.62
+$mark-width: 1.7
+
 @layer components
   .printed-choices
     display: grid
@@ -7,5 +11,13 @@
     list-style: none
     min-height: 0
 
+    // Read from across the room, a name wraps between its words and never
+    // inside one: hyphenation split a French name across a line that held the
+    // word, so the type gives way to the longest word instead.
     .answer-tile
+      container-type: inline-size
       cursor: default
+      hyphens: manual
+
+    .face
+      font-size: clamp(var(--text-xs), calc(100cqi / (var(--longest-word-width, 8) * #{$word-letter-width} + #{$mark-width})), 1em)

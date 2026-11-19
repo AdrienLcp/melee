@@ -21,6 +21,10 @@ const widthOf = (run: string): number =>
     0
   )
 
+/** How wide the longest run of `text` is that no line may break: a hyphen and a space are break opportunities. */
+export const longestRunWidth = (text: string): number =>
+  Math.max(1, ...text.split(/[\s-]+/u).map(widthOf))
+
 /**
  * The two measurements a stylesheet cannot take of a string it never sees, and
  * both decide whether the answer fits the column it is set in: how much there
@@ -46,5 +50,5 @@ const widthOf = (run: string): number =>
  */
 export const answerFitting = (answer: string): React.CSSProperties => ({
   '--answer-length': answer.length,
-  '--longest-word-width': Math.max(1, ...answer.split(/[\s-]+/u).map(widthOf))
+  '--longest-word-width': longestRunWidth(answer)
 })

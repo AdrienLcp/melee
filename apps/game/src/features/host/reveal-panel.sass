@@ -328,6 +328,12 @@
         flex: 1 1 0
         min-height: 0
 
+    // The country follows the screen's height as well as the summit's width:
+    // set at the summit's width alone it took two lines on a short wall, and
+    // the ladder's top rung climbed over the round's heading.
+    &[data-game='fiveclues'] .five-clues-summit .country
+      font-size: clamp(var(--text-xl), min(11cqi, calc(var(--stage-unit) * 6.4)), 5rem)
+
     &[data-game='thinkalike'] .head > .think-alike-prompt
       @include typography.question-prompt
 

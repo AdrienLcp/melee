@@ -1997,6 +1997,46 @@ const WALL_SCREENS = [
   }
 ]
 
+/**
+ * Every word of a printed choice that runs onto a second line: the wall is
+ * read from across the room, where a name wraps between its words and never
+ * inside one. A compound breaks at its own hyphen, which it already prints.
+ */
+const brokenWords = (): string[] =>
+  [
+    ...document.querySelectorAll<HTMLElement>(
+      '.answer-tile :is(.title, .subtitle)'
+    )
+  ]
+    .filter((line) => line.checkVisibility({ visibilityProperty: true }))
+    .flatMap((line) => {
+      const texts = document.createTreeWalker(line, NodeFilter.SHOW_TEXT)
+      const broken: string[] = []
+
+      while (texts.nextNode()) {
+        const text = texts.currentNode
+
+        for (const word of (text.textContent ?? '').matchAll(/[^\s\-‐‑]+/g)) {
+          const range = document.createRange()
+
+          range.setStart(text, word.index)
+          range.setEnd(text, word.index + word[0].length)
+
+          const lineTops = new Set(
+            [...range.getClientRects()]
+              .filter((box) => box.width > 0)
+              .map((box) => Math.round(box.top))
+          )
+
+          if (lineTops.size > 1) {
+            broken.push(word[0])
+          }
+        }
+      }
+
+      return broken
+    })
+
 /** The largest type on the stage, which is what is read from across a room. */
 const largestType = (): number =>
   Math.max(
@@ -2024,9 +2064,16 @@ for (const screen of WALL_SCREENS) {
       await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
+      const broken = await page.evaluate(brokenWords)
 
-      if (overflow.furthest !== null || overflow.page > 0) {
-        faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+      if (
+        overflow.furthest !== null ||
+        overflow.page > 0 ||
+        broken.length > 0
+      ) {
+        faults.push(
+          `${width}×${height} ${JSON.stringify({ ...overflow, broken })}`
+        )
       }
     }
 
@@ -4687,7 +4734,7 @@ const fiveCluesRevealView = () => {
   }
 }
 
-/** Every rung, finder and crowd drawn past the viewport, every rung of the climb drawn past its ladder, and every clue its rung cuts. */
+/** Every rung, finder and crowd drawn past the viewport, every rung of the climb or the reveal drawn past its ladder, and every clue its rung cuts. */
 const fiveCluesStrays = (): string[] => {
   const pieces = [
     ...document.querySelectorAll<HTMLElement>(
@@ -4713,7 +4760,7 @@ const fiveCluesStrays = (): string[] => {
       .map((element) => `${nameOf(element)} past the viewport`),
     ...[
       ...document.querySelectorAll<HTMLElement>(
-        '.five-clues-ladder[data-size="wall"]'
+        '.five-clues-ladder:is([data-size="wall"], [data-size="reveal"])'
       )
     ]
       .filter((ladder) => ladder.checkVisibility({ visibilityProperty: true }))
@@ -4778,16 +4825,18 @@ for (const screen of FIVE_CLUES_WALL_SCREENS) {
       const overflow = await page.evaluate(measureReveal)
       const scrolling = await page.evaluate(scrollingBoxes)
       const strays = await page.evaluate(fiveCluesStrays)
+      const broken = await page.evaluate(brokenWords)
 
       if (
         overflow.furthest !== null ||
         overflow.page > 0 ||
         overflow.spills.length > 0 ||
         scrolling.length > 0 ||
-        strays.length > 0
+        strays.length > 0 ||
+        broken.length > 0
       ) {
         faults.push(
-          `${width}×${height} ${JSON.stringify({ ...overflow, scrolling, strays })}`
+          `${width}×${height} ${JSON.stringify({ ...overflow, broken, scrolling, strays })}`
         )
       }
     }

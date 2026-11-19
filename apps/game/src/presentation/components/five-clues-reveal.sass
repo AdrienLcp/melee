@@ -64,6 +64,15 @@
       flex: 1 1 0
       min-block-size: 0
 
+    // The room's ladder sizes its worths and its clues by the height it is
+    // handed, as the climb's does: by the screen's size alone, its five
+    // rungs climbed over the round's heading on a 768×1024 wall.
+    &[data-size='reveal'] > .five-clues-ladder
+      --worth-size: clamp(2.25rem, min(calc(var(--stage-unit) * 6), 11cqh), 4.5rem)
+      --past-clue: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.2), 3.4cqh), var(--text-l))
+
+      container-type: size
+
     .five-clues-ladder > .rung
       flex: 1 1 auto
       animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards

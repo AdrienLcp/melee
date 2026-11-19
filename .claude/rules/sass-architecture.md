@@ -343,7 +343,11 @@ size scaled to the text's length where it must show whole (black square's
 `--name-scale`). Containment skips table cells, so a cell that must not size
 its column contains what it holds, not itself. A timeline event is the
 exception: its sentence is proper nouns (_Zi-dane_), so it wraps at spaces
-and never hyphenates.
+and never hyphenates. So are the printed choices (`PrintedChoices`), read from
+across the room: `hyphens: auto` split _populaire_ across a line that held the
+word, so they never hyphenate and their type gives way to the longest word
+(`--longest-word-width` over the tile's own `cqi`); `choice-fits` fails a word
+of a printed choice drawn across two lines on the wall.
 
 ## State comes from react-aria's data attributes
 
