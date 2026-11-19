@@ -52,6 +52,7 @@ import type { PlayedLineUp, RecentTable } from '@melee/core/room/recent-tables'
 import { withCurrentGameKinds } from '@melee/core/room/renamed-game-kinds'
 import { withQuizSwitchAsLevel } from '@melee/core/room/retired-quiz-switch'
 import type { SavedEntry, SavedEvening } from '@melee/core/room/saved-evening'
+import { cardOfFormat } from '@melee/core/room/shelf-cards'
 
 import {
   parseStoredWithSchema,
@@ -375,14 +376,16 @@ export const writeStoredHostPreferences = (
 
 /**
  * Game by game, so one this build no longer shelves costs its own tick and not
- * the evening's.
+ * the evening's, and a format that lost its card ticks the card instead.
  */
 const lineUpGamesSchema = z.preprocess(
   withCurrentGameKinds,
   z.array(z.unknown()).transform((stored) => [
     ...new Set(
       stored.flatMap((game) => {
-        const shelved = shelvedGameSchema.safeParse(game)
+        const shelved = shelvedGameSchema.safeParse(
+          typeof game === 'string' ? (cardOfFormat(game) ?? game) : game
+        )
 
         return shelved.success ? [shelved.data] : []
       })

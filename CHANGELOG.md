@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Game]` **Plus ou moins is now a way of playing Le juste chiffre.** One
+  card on the shelf for both: open _Le juste chiffre_ and pick _Estimer_ or
+  _Plus ou moins_ in its settings, between any two rounds. The level and the
+  table's country carry over, each format keeps its own clock, and a link,
+  a tick or a saved evening naming Plus ou moins still works.
+
 - `[Game]` **Lumières is on the shelf.** One cell lights at a time on a tray
   of nine, the same run on every screen: hit as many as you can in the
   window, and a trap beside the light freezes your board for a second. The

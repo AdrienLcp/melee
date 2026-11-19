@@ -5,8 +5,9 @@ import {
   StaticRouterProvider
 } from 'react-router'
 
-import { shelvedGames } from '@melee/protocol/game'
 import { LOCALES, type Locale } from '@melee/protocol/locale'
+
+import { shelfCards } from '@melee/core/room/shelf-cards'
 
 import { EARLY_INSTALL_PROMPT_SCRIPT } from '@/infrastructure/install-prompt'
 import { landingSequenceScript } from '@/infrastructure/landing-sequence'
@@ -90,7 +91,7 @@ const pagesFor = (locale: Locale): PrerenderedPage[] => [
     page: 'assistant',
     path: assistantPathFor(locale)
   },
-  ...shelvedGames.map(
+  ...shelfCards.map(
     (game): PrerenderedPage => ({
       locale,
       module: pageModuleFor(paths.game),
@@ -102,7 +103,7 @@ const pagesFor = (locale: Locale): PrerenderedPage[] => [
 
 /**
  * Every document the build writes: each indexable page, in each language. Read
- * off `shelvedGames` and `LOCALES` rather than listed, because a game that
+ * off `shelfCards` and `LOCALES` rather than listed, because a game that
  * reaches the shelf without a document of its own is a front door no crawler
  * ever finds, and a hardcoded count is what would let that ship in silence — the
  * plan for this stage said twelve documents and was already wrong by two.

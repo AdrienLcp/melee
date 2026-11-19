@@ -795,9 +795,14 @@ const PORTUGUESE = defineDictionary({
       }),
       spent: 'Números da casa esgotados'
     },
+    format: {
+      estimate: 'Estimar',
+      higherlower: 'Mais ou menos',
+      label: 'Formato'
+    },
     home: {
       description:
-        'Uma pergunta cuja resposta é um número — quantas pessoas vivem no Japão, qual a altitude do Monte Branco, quanto custava uma PlayStation 5 no lançamento — e toda a gente escreve a sua estimativa. Ninguém precisa de saber: quanto mais perto, mais pontos, e a revelação põe cada palpite lado a lado com o valor real.'
+        'Uma pergunta cuja resposta é um número — quantas pessoas vivem no Japão, qual a altitude do Monte Branco, quanto custava uma PlayStation 5 no lançamento — e toda a gente escreve a sua estimativa. Ninguém precisa de saber: quanto mais perto, mais pontos, e a revelação põe cada palpite lado a lado com o valor real. Ou dois de uma vez — duas cidades, dois rios — e basta dizer qual é o maior.'
     },
     line: {
       divided: '÷{factor}',

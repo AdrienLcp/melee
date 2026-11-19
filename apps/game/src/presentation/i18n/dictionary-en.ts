@@ -750,9 +750,14 @@ export const EN_DICTIONARY = defineDictionary({
       }),
       spent: 'Home-made numbers used up'
     },
+    format: {
+      estimate: 'Estimate',
+      higherlower: 'Higher or lower',
+      label: 'Format'
+    },
     home: {
       description:
-        'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, what a PlayStation 5 cost at launch — and everyone types an estimate. Nobody has to know: the closer, the more it pays, and the reveal lines every guess up against the truth.'
+        'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, what a PlayStation 5 cost at launch — and everyone types an estimate. Nobody has to know: the closer, the more it pays, and the reveal lines every guess up against the truth. Or two at once — two cities, two rivers — and all it takes is saying which one is bigger.'
     },
     line: {
       divided: '÷{factor}',

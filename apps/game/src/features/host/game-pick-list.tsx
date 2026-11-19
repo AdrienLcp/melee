@@ -1,7 +1,7 @@
 import type React from 'react'
 import { Button } from 'react-aria-components'
 
-import { type GameKind, shelvedGames } from '@melee/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
 import {
@@ -9,6 +9,7 @@ import {
   isPlayableAloud
 } from '@melee/core/room/game-capabilities'
 import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
+import { cardOf, shelfCards } from '@melee/core/room/shelf-cards'
 
 import { GameIcon, PlusIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -44,15 +45,15 @@ export const GamePickList: React.FC<GamePickListProps> = ({
 }) => {
   const translate = useTranslate()
   const games = isDrawnOnly
-    ? shelvedGames.filter((game) => capabilitiesOf(game).servesItsOwnContent)
-    : shelvedGames
+    ? shelfCards.filter((game) => capabilitiesOf(game).servesItsOwnContent)
+    : shelfCards
 
   return (
     <ul aria-label={label} className='game-pick-list'>
       {games.map((game) => {
         const playsAloud = isPlayableAloud({ game, teams: settings.teams })
         const planned = settings.lineUp.filter(
-          (entry) => entry.kind === game
+          (entry) => cardOf(entry.kind) === game
         ).length
 
         return (

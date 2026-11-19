@@ -4,17 +4,21 @@ import { type ShelvedGame, shelvedGameSchema } from '@melee/protocol/game'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { kindsInLineUp } from '@melee/core/room/line-up'
+import { cardOfFormat } from '@melee/core/room/shelf-cards'
 
 import { writeStoredLineUpGames } from '@/infrastructure/storage/preferences-storage'
 
 const SEPARATOR = ' '
 
-const shelvedOf = (games: readonly string[]): ShelvedGame[] =>
-  games.flatMap((game) => {
-    const shelved = shelvedGameSchema.safeParse(game)
+const shelvedOf = (games: readonly string[]): ShelvedGame[] => [
+  ...new Set(
+    games.flatMap((game) => {
+      const shelved = shelvedGameSchema.safeParse(cardOfFormat(game) ?? game)
 
-    return shelved.success ? [shelved.data] : []
-  })
+      return shelved.success ? [shelved.data] : []
+    })
+  )
+]
 
 /**
  * Keeps the games of this evening, in the order they were ticked, for the home

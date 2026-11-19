@@ -1,9 +1,10 @@
 import type React from 'react'
 import { ToggleButton } from 'react-aria-components'
 
-import { type ShelvedGame, shelvedGames } from '@melee/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 
 import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
+import { shelfCards } from '@melee/core/room/shelf-cards'
 
 import { Button } from '@/presentation/components/button'
 import { CheckIcon, GameIcon } from '@/presentation/components/icons'
@@ -15,7 +16,7 @@ import { type ShelfTicks, UNJUDGED_GAMES } from './use-shelf-ticks'
 import './game-shelf.sass'
 
 /** Every shelved game the host judges however it is answered, in shelf order. */
-const JUDGED_GAMES: readonly ShelvedGame[] = shelvedGames.filter((game) =>
+const JUDGED_GAMES: readonly ShelvedGame[] = shelfCards.filter((game) =>
   isJudgedInEveryMode(game)
 )
 
@@ -37,7 +38,7 @@ type GameShelfProps = {
  * The games the host judges however they are answered are shelved last, under
  * a heading of their own: a first visit ticks every other game, and three
  * unticked spines in the run of ticked ones read as boxes somebody forgot.
- * Each group keeps `shelvedGames` order, and nothing moves when a tick does —
+ * Each group keeps `shelfCards` order, and nothing moves when a tick does —
  * a spine that jumped would leave the next press landing on another game.
  *
  * A spine is a toggle and not a link to the game's own page: that page is for

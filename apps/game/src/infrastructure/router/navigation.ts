@@ -39,6 +39,7 @@ import {
 import { renamedGameKindOf } from '@melee/core/room/renamed-game-kinds'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 import type { SavedEvening } from '@melee/core/room/saved-evening'
+import { cardOfFormat } from '@melee/core/room/shelf-cards'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
 import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage'
@@ -505,12 +506,14 @@ export const usePairingCodeParam = (): WallPairingCode | null => {
 
 /**
  * The game the URL names, and a link shared under a game's old id is sent on to
- * its current one, so the address bar stops spreading the old name.
+ * its current one, so the address bar stops spreading the old name — a format
+ * that lost its card included, sent on to the card it is played under.
  */
 export const useGameParam = (): ShelvedGame | null => {
   const { game, locale } = useParams<RouteParamOf<typeof paths.game>>()
   const navigate = useNavigate()
-  const renamed = game === undefined ? null : renamedGameKindOf(game)
+  const renamed =
+    game === undefined ? null : (renamedGameKindOf(game) ?? cardOfFormat(game))
   const current = renamed ?? game
 
   useEffect(() => {

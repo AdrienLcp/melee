@@ -715,9 +715,14 @@ export const FR_DICTIONARY = defineDictionary({
       }),
       spent: 'Chiffres maison épuisés'
     },
+    format: {
+      estimate: 'Estimer',
+      higherlower: 'Plus ou moins',
+      label: 'Formule'
+    },
     home: {
       description:
-        'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, combien coûtait une PlayStation 5 à sa sortie — et chacun tape son estimation. Personne n’a besoin de savoir : plus on tombe près, plus ça paie, et le dévoilement aligne chaque essai face à la vraie valeur.'
+        'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, combien coûtait une PlayStation 5 à sa sortie — et chacun tape son estimation. Personne n’a besoin de savoir : plus on tombe près, plus ça paie, et le dévoilement aligne chaque essai face à la vraie valeur. Ou bien deux à la fois — deux villes, deux fleuves — et il suffit de dire lequel l’emporte.'
     },
     line: {
       divided: '÷{factor}',

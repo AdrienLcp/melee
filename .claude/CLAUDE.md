@@ -30,8 +30,9 @@ far off it lands, and **Most likely** puts up a line about one of the people
 at the table — never about the moment — that everyone votes on with a seat,
 the ballots that went with the room paid, and **Le juste chiffre** asks for a
 number — a population, a height, a length, a price — that every screen estimates, each
-paid by how close it lands, and **Plus ou moins** deals one pair a round of
-those numbers — two rivers, two cities — and pays every right pick, and
+paid by how close it lands — or, played as **Plus ou moins**, a format of
+the same card with a kind of its own (`cardOf`, `shelfCards`), deals one pair
+a round of those numbers — two rivers, two cities — and pays every right pick, and
 **Mot mystère** hides a word whose first letter and length are on every
 screen, six tries each to find it, the wall showing every grid in colours
 and never a letter, **Mot le plus long** deals nine letters to every
@@ -385,7 +386,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Twenty-two games share the room, the QR code and every screen, and the rule that got
+Twenty-two games — twenty-one cards, a format being a game without one — share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

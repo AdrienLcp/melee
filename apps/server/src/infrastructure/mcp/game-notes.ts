@@ -21,7 +21,7 @@ export const GAME_NOTES = {
   fiveclues:
     'Hides a country behind five clues that open one after another, vague to obvious — its size, its region, its outline, its largest cities, its flag and capital; every player answers when they dare, paid more the earlier the clue. On the buzzer, the host judges the country said aloud and the first right answer ends the round.',
   higherlower:
-    'Deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
+    'The estimate played the other way, picked under its card: deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:
     'Everyone counts a number of seconds in their head, on screens where nothing moves, and presses once; paid by the gap to the target.',
   lights:

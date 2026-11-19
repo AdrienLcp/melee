@@ -12,6 +12,7 @@ import { withEntrySource } from '@melee/core/room/line-up'
 import { isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
+import { cardOf } from '@melee/core/room/shelf-cards'
 
 import { DeckNote } from '@/presentation/components/deck-note'
 import { GameIcon } from '@/presentation/components/icons'
@@ -109,6 +110,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
           }
     )
   }
+  const card = cardOf(entry.kind)
   const deck = view.deckSummaries[at] ?? null
   const awaitsSlateKey = entry.kind === 'slate' && !isNext
 
@@ -116,10 +118,10 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
     <EveningPage onBack={onBack}>
       <header
         className='entry-lid'
-        style={{ '--spine': `var(--spine-${entry.kind})` }}
+        style={{ '--spine': `var(--spine-${card})` }}
       >
-        <GameIcon game={entry.kind} />
-        <h2>{translate(gameNameKey(entry.kind))}</h2>
+        <GameIcon game={card} />
+        <h2>{translate(gameNameKey(card))}</h2>
         <p>
           {translate(
             capabilitiesOf(entry.kind).servesItsOwnContent

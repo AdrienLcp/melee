@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
-import { type ShelvedGame, shelvedGames } from '@melee/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 
 import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
+import { shelfCards } from '@melee/core/room/shelf-cards'
 
 import {
   readStoredLineUpGames,
@@ -10,7 +11,7 @@ import {
 } from '@/infrastructure/storage/preferences-storage'
 
 /** Every shelved game no answer mode leaves to the server. */
-export const UNJUDGED_GAMES: readonly ShelvedGame[] = shelvedGames.filter(
+export const UNJUDGED_GAMES: readonly ShelvedGame[] = shelfCards.filter(
   (game) => !isJudgedInEveryMode(game)
 )
 

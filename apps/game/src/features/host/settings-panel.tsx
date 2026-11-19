@@ -53,6 +53,11 @@ import {
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import {
+  ESTIMATE_FORMATS,
+  inEstimateFormat,
+  isEstimateFormat
+} from '@melee/core/estimate/estimate-format'
+import {
   answerModesFor,
   isPlayableWithTeams
 } from '@melee/core/room/game-capabilities'
@@ -660,72 +665,88 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         </>
       )}
 
-      {game?.kind === 'estimate' && (
-        <ToggleGroup
-          className='estimate-topics'
-          isDisabled={isDisabled}
-          label={translate('estimate.topics.label')}
-          onSelectionChange={(keys) => {
-            const ticked = QUANTITY_TOPICS.filter((topic) => keys.has(topic))
+      {(game?.kind === 'estimate' || game?.kind === 'higherlower') && (
+        <>
+          <SegmentedControl
+            className='estimate-format'
+            isDisabled={isDisabled}
+            label={translate('estimate.format.label')}
+            onChange={(next) => {
+              if (isEstimateFormat(next)) {
+                const moved = inEstimateFormat({ format: next, game })
 
-            // The server refuses a game with nothing to ask, so the last
-            // topic stays ticked rather than being sent and bounced.
-            if (ticked.length > 0) {
-              onChange({ ...settings, game: { ...game, topics: ticked } })
+                onChange({
+                  ...settings,
+                  game: moved,
+                  lineUp:
+                    settings.lineUpAt === null
+                      ? settings.lineUp
+                      : settings.lineUp.with(settings.lineUpAt, moved),
+                  mode: modeOfferedBy({ game: moved, preferred: settings.mode })
+                })
+              }
+            }}
+            options={ESTIMATE_FORMATS.map((format) => ({
+              label: translate(`estimate.format.${format}`),
+              value: format
+            }))}
+            value={game.kind}
+          />
+          <div
+            className='fold'
+            data-open={game.kind === 'estimate' || undefined}
+            inert={game.kind !== 'estimate'}
+          >
+            <ToggleGroup
+              className='estimate-topics'
+              isDisabled={isDisabled}
+              label={translate('estimate.topics.label')}
+              onSelectionChange={(keys) => {
+                const ticked = QUANTITY_TOPICS.filter((topic) =>
+                  keys.has(topic)
+                )
+
+                // The server refuses a game with nothing to ask, so the last
+                // topic stays ticked rather than being sent and bounced.
+                if (game.kind === 'estimate' && ticked.length > 0) {
+                  onChange({ ...settings, game: { ...game, topics: ticked } })
+                }
+              }}
+              options={QUANTITY_TOPICS.map((topic) => ({
+                label: translate(`estimate.topics.${topic}`),
+                value: topic
+              }))}
+              selectedKeys={
+                game.kind === 'estimate' ? game.topics : QUANTITY_TOPICS
+              }
+            />
+          </div>
+          <DifficultyChoice
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...settings, game: { ...game, difficulty } })
+            }}
+            value={game.difficulty}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate(
+              game.kind === 'estimate'
+                ? 'estimate.roundDuration'
+                : 'higherlower.roundDuration'
+            )}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={
+              game.kind === 'estimate'
+                ? ESTIMATE_DURATIONS_MS
+                : HIGHER_LOWER_DURATIONS_MS
             }
-          }}
-          options={QUANTITY_TOPICS.map((topic) => ({
-            label: translate(`estimate.topics.${topic}`),
-            value: topic
-          }))}
-          selectedKeys={game.topics}
-        />
-      )}
-
-      {game?.kind === 'estimate' && (
-        <DifficultyChoice
-          isDisabled={isDisabled}
-          onChange={(difficulty) => {
-            onChange({ ...settings, game: { ...game, difficulty } })
-          }}
-          value={game.difficulty}
-        />
-      )}
-
-      {game?.kind === 'estimate' && (
-        <NumberChoice
-          isDisabled={isDisabled}
-          label={translate('estimate.roundDuration')}
-          onChange={(roundDurationMs) => {
-            onChange({ ...settings, game: { ...game, roundDurationMs } })
-          }}
-          optionLabel={secondsLabel}
-          options={ESTIMATE_DURATIONS_MS}
-          value={game.roundDurationMs}
-        />
-      )}
-
-      {game?.kind === 'higherlower' && (
-        <DifficultyChoice
-          isDisabled={isDisabled}
-          onChange={(difficulty) => {
-            onChange({ ...settings, game: { ...game, difficulty } })
-          }}
-          value={game.difficulty}
-        />
-      )}
-
-      {game?.kind === 'higherlower' && (
-        <NumberChoice
-          isDisabled={isDisabled}
-          label={translate('higherlower.roundDuration')}
-          onChange={(roundDurationMs) => {
-            onChange({ ...settings, game: { ...game, roundDurationMs } })
-          }}
-          optionLabel={secondsLabel}
-          options={HIGHER_LOWER_DURATIONS_MS}
-          value={game.roundDurationMs}
-        />
+            value={game.roundDurationMs}
+          />
+        </>
       )}
 
       {game?.kind === 'mysteryword' && (
