@@ -38,7 +38,14 @@
       margin: 0 0 var(--edge)
       padding-inline: var(--space-s)
       text-wrap: balance
-      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), padding-block var(--transition-base, 0s) var(--ease-out), margin-block-end var(--transition-base, 0s) var(--ease-out)
+
+    // No box is shorter than its padding: folded with its row, or the closed
+    // line held a strip of the ground open over the answer.
+    .fold:not([data-open]) > .standing
+      margin-block-end: 0rem
+      padding-block: 0rem
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), padding-block var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
       &[data-standing='found']
         background: var(--good)
@@ -82,6 +89,34 @@
 
       > .ground
         justify-content: center
+
+  // Lying down, the chrome over the climb left five rungs the height of a
+  // phone held sideways less a row: the ladder takes the whole height of the
+  // start, and the chrome and the answer — the names, the field or the
+  // buzzer — stand at the end under the menu, in every mode alike.
+  .player-page.playing:is(:has(> .five-clues-seat), :has(> .buzzer-area > .five-clues-ladder))
+    @include framed.lying-down
+      column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+      grid-template: 'ladder chrome' auto 'ladder ground' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+
+      > .round-chrome
+        grid-area: chrome
+        padding-inline: 0 calc(var(--menu-width, 3.5rem) + var(--space-xs))
+
+      > .card-clock
+        grid-area: ground
+
+      > :is(.five-clues-seat, .buzzer-area)
+        display: contents
+
+      > .buzzer-area > .five-clues-ladder
+        grid-area: ladder
+
+      > .buzzer-area > .press
+        grid-area: ground
+
+      .five-clues-guess .button.large
+        min-block-size: var(--control-height)
 
   // The buzzer under the climb: the ladder takes the card's place, and the
   // press keeps what it leaves.

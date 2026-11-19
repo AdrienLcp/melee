@@ -463,6 +463,37 @@
         > .stage.playing > .round-card:first-child
           margin-block-start: calc(var(--control-height) + var(--space-xs))
 
+        // A seat's own climb keeps the rows a margin would take: the menu
+        // stands on the end of its top rung, whose glyph and worth keep the
+        // start. Once that rung is the one open, its sand runs on the menu's
+        // line and stops short of it, and the clue starts under the menu.
+        // The pawn's lane goes first, as decoration does: its width is what
+        // keeps a city list to two lines.
+        > .stage.playing > .five-clues-seat > .five-clues-ladder
+          --lane-width: 0rem
+          --rung-columns: var(--worth-size) minmax(0, 1fr)
+          --rail-x: calc(var(--rung-pad-start) + var(--worth-size) / 2)
+
+          .lane
+            display: none
+
+        > .stage.playing > .five-clues-seat > .five-clues-ladder > .rung[data-state='open']:last-child
+          padding-block-start: 0rem
+
+          > :is(.lane, .worth)
+            margin-block-start: var(--control-height)
+
+          .clue
+            align-content: stretch
+            grid-template-rows: var(--control-height) minmax(0, 1fr)
+
+            > .round-progress
+              inline-size: auto
+              margin-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs) - var(--rung-pad-end))
+
+            > .five-clues-clue
+              align-self: center
+
         // A place to name keeps the sand off the card, on a strip of paper on
         // the menu's line, as tall as the menu and stopping short of it: the
         // map is the question and its zoom column needs the card's height,
@@ -499,6 +530,25 @@
 
         > .stage.playing > .answer-form.estimate-answer
           align-content: end
+
+        // A seat's own climb keeps the whole height of the start, and the
+        // press giving the answer away goes under its field at the end, both
+        // under the menu: under the footer's row, five rungs were cut short.
+        &:has(> .stage.playing > .five-clues-seat)
+          grid-template: 'ladder ground' minmax(0, 1fr) 'ladder footer' auto / minmax(0, 1.25fr) minmax(0, 1fr)
+
+          > .stage.playing,
+          > .stage.playing > .five-clues-seat
+            display: contents
+
+          > footer
+            grid-area: footer
+
+          > .stage.playing > .five-clues-seat > .ground
+            padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+            .five-clues-guess .button.large
+              min-block-size: var(--control-height)
 
     // A keyboard up under the seat's own field, on a console standing
     // upright: the press that gives the answer away waits with the tab bar

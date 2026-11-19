@@ -59,7 +59,7 @@
       min-block-size: 0
       padding: var(--rung-pad-block) var(--rung-pad-end) var(--rung-pad-block) var(--rung-pad-start)
       position: relative
-      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), padding var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
 
       &[data-state='past']
         background: var(--track-a)
@@ -86,6 +86,7 @@
       align-self: stretch
       display: grid
       place-items: center
+      transition: margin-block-start var(--transition-slow, 0s) var(--ease-out)
 
     .worth
       @include typography.numeric
@@ -97,11 +98,11 @@
       box-shadow: 0 var(--edge) 0 var(--chipboard)
       color: var(--track-ink)
       display: grid
-      font-size: calc(var(--worth-size) * 0.42)
+      font-size: max(var(--text-xs), calc(var(--worth-size) * 0.42))
       inline-size: var(--worth-size)
       place-items: center
       position: relative
-      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), scale var(--transition-slow, 0s) var(--ease-out)
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), scale var(--transition-slow, 0s) var(--ease-out), margin-block-start var(--transition-slow, 0s) var(--ease-out)
 
     .rung[data-state='closed'] .worth
       background: var(--socket)
@@ -156,20 +157,27 @@
     .rung[data-still] .clue
       animation: none
 
+    // A seat's rungs below and above the open one stand at their clue's own
+    // height, never under it: the open rung grows into what they leave.
     &[data-size='seat']
       --lane-width: 1.6rem
       --rung-columns: var(--lane-width) var(--worth-size) minmax(0, 1fr)
       --rung-columns-gap: var(--space-xs)
+      --rung-gap: clamp(var(--space-2xs), calc(var(--stage-unit) * 1.4), var(--space-xs))
       --rung-pad-start: var(--space-2xs)
       --worth-size: clamp(2rem, calc(var(--stage-unit) * 6), 2.75rem)
       --open-grow: 1
       --past-grow: 0
       --closed-grow: 0
-      --open-clue: clamp(var(--text-m), calc(var(--stage-unit) * 6), var(--text-2xl))
-      --past-clue: var(--text-s)
+      --open-clue: clamp(var(--text-s), min(calc(var(--stage-unit) * 6), 5cqh), var(--text-2xl))
+      --past-clue: clamp(var(--text-xs), calc(var(--stage-unit) * 4.2), var(--text-s))
       --rail-x: calc(var(--rung-pad-start) + var(--lane-width) + var(--rung-columns-gap) + var(--worth-size) / 2)
 
+      container-type: size
+
       > .rung
+        flex-basis: auto
+        flex-shrink: 0
         min-block-size: calc(var(--worth-size) + var(--rung-pad-block) * 2)
 
       > .rung[data-state='open']
@@ -177,6 +185,18 @@
         --clue-align: center
 
         padding-block: var(--space-xs)
+
+      // A city list wraps whole names: at the past clue's size, the default
+      // gap after each name's dot pushed the bank's longest list to a third
+      // line on a 320px screen.
+      .five-clues-clue[data-kind='cities']
+        column-gap: 0.5em
+
+      // A climbed outline stands in its rung at the worth's height, as the
+      // figures and the names do: drawn at the past clue's picture size it
+      // was the one rung taller than its worth.
+      > .rung[data-state='past'] .five-clues-clue[data-kind='outline'] > .country-silhouette
+        inline-size: min(var(--clue-picture), var(--worth-size))
 
     &[data-size='wall'],
     &[data-size='reveal']

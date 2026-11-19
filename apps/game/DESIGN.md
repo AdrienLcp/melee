@@ -1427,6 +1427,18 @@ rank, pawn and whole pay, the names left to the standings beside — measured on
 a 1280×720 wall, where 24 chips on one rung over four empty rungs fill four
 columns of six rows at `--text-xs`, and six named rows are the most that fit.
 A rung holding finders never shrinks below its rows; an empty one gives way.
+**On a seat** every rung but the open one stands at its clue's height, the
+open one growing into what they leave, and the open clue follows the ladder's
+own height (`5cqh`, floored at `--text-s`) — measured at 320×568 on the
+Dominican Republic's ladder, the bank's longest cities, where the climbed clues
+sit at `--text-xs` and a city list keeps to two lines with its names `0.5em`
+apart. Lying down the ladder takes the whole height of the start, and the
+chrome and the answer stand at the end under the menu in every mode, the
+seated console's footer press included. A seated console upright under 36rem
+lets the menu stand on the top rung's end: the pawn's lane goes, and the last
+rung, once open, runs its sand on the menu's line and starts its clue under
+it. A seated console's choice round keeps the console's stage, since the
+framed tiles screen has no ladder.
 
 ### Challenge hand (`ChallengeLinePicker`, `ChoiceList`)
 

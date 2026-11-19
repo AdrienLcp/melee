@@ -3669,6 +3669,94 @@ const photographedHigherLowerScreen = () =>
     mode: { kind: 'pairs' }
   })
 
+const FIVE_CLUES_GAME = {
+  clueDurationMs: 10_000,
+  difficulty: 'mixed',
+  kind: 'fiveclues',
+  language: 'fr'
+}
+
+/**
+ * The Dominican Republic's ladder, verbatim: the bank's longest cities under
+ * the longest name the four choices print.
+ */
+const FIVE_CLUES_LADDER = [
+  { areaSquareKilometres: 48_700, kind: 'size', population: 10_800_000 },
+  { kind: 'region', region: '029' },
+  { kind: 'outline', silhouette: 'd6d7418b2b37.svg' },
+  {
+    cities: ['Santiago de los Caballeros', 'La Romana', 'San Pedro de Macorís'],
+    kind: 'cities'
+  },
+  { capital: 'Saint-Domingue', flag: '18f7b6562cee.svg', kind: 'flag' }
+]
+
+const FIVE_CLUES_ANSWER = { code: 'DOM', name: 'République dominicaine' }
+
+/**
+ * Where each of the full table stands on the last clue: some found on every
+ * rung below it, a few out, the rest still climbing.
+ */
+const fiveCluesStandings = (players: readonly { id: string }[]) =>
+  players.map(({ id }, seat) =>
+    seat % 6 === 5
+      ? { playerId: id, status: 'out' }
+      : seat < 12
+        ? { clueIndex: seat % 4, playerId: id, status: 'found' }
+        : { playerId: id, status: 'racing' }
+  )
+
+/** The climb on its last rung, every clue open — the tallest the ladder stands. */
+const fiveCluesContent = ({
+  mode,
+  players
+}: {
+  mode: 'buzzer' | 'choice' | 'typed'
+  players: readonly { id: string }[]
+}) => ({
+  answer: null,
+  choices:
+    mode === 'choice'
+      ? ['Haïti', 'République dominicaine', 'Jamaïque', 'Cuba']
+      : [],
+  clueDurationMs: FIVE_CLUES_GAME.clueDurationMs,
+  clues: FIVE_CLUES_LADDER,
+  kind: 'fiveclues',
+  nextClueAt: SERVER_TIME + 6_000,
+  openClueIndex: FIVE_CLUES_LADDER.length - 1,
+  standings: fiveCluesStandings(players),
+  yourStanding: { guessedOnClue: null, status: 'racing' }
+})
+
+const fiveCluesScreen = ({
+  mode,
+  yourStanding
+}: {
+  mode: 'choice' | 'typed'
+  yourStanding?: object
+}) => {
+  const content = fiveCluesContent({ mode, players: fullSeats })
+
+  return answeringView({
+    content: { ...content, yourStanding: yourStanding ?? content.yourStanding },
+    game: FIVE_CLUES_GAME,
+    mode: { kind: mode }
+  })
+}
+
+/** A seat that answered wrong on the buzzer, locked out for the last clue. */
+const fiveCluesLockedScreen = () => {
+  const view = answeringView({
+    content: fiveCluesContent({ mode: 'buzzer', players: fullSeats }),
+    game: FIVE_CLUES_GAME,
+    mode: BUZZER_MODE
+  })
+
+  return { ...view, round: { ...view.round, lockedOutPlayerIds: ['p1'] } }
+}
+
+const SEATED_FIVE_CLUES = { answer: null, kind: 'fiveclues' }
+
 type AnsweringScreen = {
   /** `<game> <mode>`, then the moment when the game draws more than one. */
   name: string
@@ -4018,6 +4106,39 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
       ready: '.higher-lower-answer .answer-tile'
     },
     view: photographedHigherLowerScreen()
+  },
+  {
+    name: 'five clues choice, the last clue',
+    ready: '.five-clues-seat .answer-tile',
+    seated: { currentContent: SEATED_FIVE_CLUES, ready: '.answer-tile' },
+    view: fiveCluesScreen({ mode: 'choice' })
+  },
+  {
+    name: 'five clues typed, the last clue',
+    ready: '.five-clues-guess',
+    seated: { currentContent: SEATED_FIVE_CLUES, ready: '.five-clues-guess' },
+    view: fiveCluesScreen({ mode: 'typed' })
+  },
+  {
+    name: 'five clues typed, held after a guess on the last clue',
+    ready: '.five-clues-seat .fold[data-open] .standing',
+    seated: {
+      currentContent: SEATED_FIVE_CLUES,
+      ready: '.five-clues-seat .fold[data-open] .standing'
+    },
+    view: fiveCluesScreen({
+      mode: 'typed',
+      yourStanding: {
+        guessedOnClue: FIVE_CLUES_LADDER.length - 1,
+        status: 'racing'
+      }
+    })
+  },
+  {
+    name: 'five clues buzzer, locked out on the last clue',
+    ready: '.buzzer-area .five-clues-ladder',
+    seated: null,
+    view: fiveCluesLockedScreen()
   }
 ]
 
@@ -4400,6 +4521,7 @@ for (const screen of ANSWERING_SCREENS) {
       })
       await page.addInitScript(() => {
         localStorage.setItem('melee:locale', 'fr')
+        localStorage.setItem('melee:volume', '0')
       })
       await page.setViewportSize({ height: 844, width: 390 })
       await page.goto(path)
@@ -4449,6 +4571,248 @@ for (const screen of ANSWERING_SCREENS) {
     })
   }
 }
+
+/**
+ * A Five clues round of the full table on the screens the room reads: the
+ * console's `currentContent` carries the country in a buzzer round alone,
+ * and the wall's schema strips it.
+ */
+const fiveCluesRoomView = ({
+  activeBuzz = null,
+  content,
+  mode,
+  phase
+}: {
+  activeBuzz?: object | null
+  content: object
+  mode: object
+  phase: 'buzzed' | 'playing' | 'revealed'
+}) => {
+  const view = consoleView(LONGEST_PROMPT)
+
+  return {
+    ...view,
+    currentContent: {
+      answer: phase === 'buzzed' ? FIVE_CLUES_ANSWER : null,
+      kind: 'fiveclues'
+    },
+    phase,
+    players: fullTable,
+    round: {
+      ...view.round,
+      activeBuzz,
+      answers: [],
+      content,
+      lockedOutPlayerIds: phase === 'buzzed' ? ['p6', 'p12'] : [],
+      openedWithPlayerIds: fullTable.map(({ id }) => id)
+    },
+    settings: {
+      ...view.settings,
+      game: FIVE_CLUES_GAME,
+      lineUp: [FIVE_CLUES_GAME],
+      lineUpAt: 0,
+      mode
+    },
+    wallCount: 1,
+    wallNumber: 1
+  }
+}
+
+const fiveCluesClimbingView = () =>
+  fiveCluesRoomView({
+    content: {
+      ...fiveCluesContent({ mode: 'choice', players: fullTable }),
+      yourStanding: null
+    },
+    mode: { kind: 'choice' },
+    phase: 'playing'
+  })
+
+const fiveCluesFloorView = () =>
+  fiveCluesRoomView({
+    activeBuzz: floorOf('p7'),
+    content: {
+      ...fiveCluesContent({ mode: 'buzzer', players: fullTable }),
+      nextClueAt: null,
+      yourStanding: null
+    },
+    mode: BUZZER_MODE,
+    phase: 'buzzed'
+  })
+
+/** Every seat found, spread over the five rungs, each paid its rung's share and a clock. */
+const fiveCluesRevealView = () => {
+  const rungOf = (seat: number) => seat % FIVE_CLUES_LADDER.length
+  const finders = fullTable
+    .map((player, seat) => ({ player, rung: rungOf(seat) }))
+    .toSorted((one, other) => one.rung - other.rung)
+  const view = fiveCluesRoomView({
+    content: {
+      ...fiveCluesContent({ mode: 'choice', players: fullTable }),
+      answer: FIVE_CLUES_ANSWER,
+      nextClueAt: null,
+      standings: fullTable.map(({ id }, seat) => ({
+        clueIndex: rungOf(seat),
+        playerId: id,
+        status: 'found'
+      })),
+      yourStanding: null
+    },
+    mode: { kind: 'choice' },
+    phase: 'revealed'
+  })
+
+  return {
+    ...view,
+    round: {
+      ...view.round,
+      advancesAt: SERVER_TIME + 20_000,
+      awards: finders.map(({ player, rung }, order) => ({
+        isUnsent: false,
+        playerId: player.id,
+        points: (90 - rung * 18) * 1_000,
+        speedBonus: (24 - order) * 400,
+        verdict: { isCorrect: true, kind: 'single' }
+      })),
+      isFinal: false,
+      isReadyHold: false,
+      revealedAnswers: fullTable.map(({ id }) => ({
+        atServerTime: SERVER_TIME - 1_000,
+        isCorrect: true,
+        playerId: id,
+        said: FIVE_CLUES_ANSWER.name
+      }))
+    },
+    settings: { ...view.settings, autoAdvanceMs: 25_000 }
+  }
+}
+
+/** Every rung, finder and crowd drawn past the viewport, and every clue its rung cuts. */
+const fiveCluesStrays = (): string[] => {
+  const pieces = [
+    ...document.querySelectorAll<HTMLElement>(
+      '.five-clues-ladder .rung, .five-clues-ladder .finder, .five-clues-ladder .crowd, .five-clues-summit'
+    )
+  ].filter((element) => element.checkVisibility({ visibilityProperty: true }))
+  const nameOf = (element: Element) =>
+    `${element.tagName.toLowerCase()}.${String(element.className).trim().split(/\s+/).join('.')}`
+
+  return [
+    ...pieces
+      .filter((element) => {
+        const box = element.getBoundingClientRect()
+
+        return (
+          box.width > 0 &&
+          (box.bottom > innerHeight + 0.5 ||
+            box.right > innerWidth + 0.5 ||
+            box.top < -0.5 ||
+            box.left < -0.5)
+        )
+      })
+      .map((element) => `${nameOf(element)} past the viewport`),
+    ...[...document.querySelectorAll<HTMLElement>('.five-clues-ladder .clue')]
+      .filter((clue) => clue.scrollHeight > clue.clientHeight + 2)
+      .map((clue) => `${nameOf(clue)} "${clue.textContent?.slice(0, 24)}" cut`)
+  ]
+}
+
+const FIVE_CLUES_WALL_SCREENS = [
+  {
+    name: 'the climb on its last clue',
+    ready: '.five-clues-climb',
+    view: fiveCluesClimbingView
+  },
+  {
+    name: 'the climb under the floor',
+    ready: '.verdict-panel .five-clues-climb',
+    view: fiveCluesFloorView
+  },
+  {
+    name: 'the reveal with every seat found',
+    ready: '.reveal-panel .five-clues-reveal',
+    view: fiveCluesRevealView
+  }
+]
+
+for (const screen of FIVE_CLUES_WALL_SCREENS) {
+  test(`[layout] wall, five clues, ${screen.name} of a full table: nothing scrolls, from 720p to 4K`, async ({
+    page
+  }) => {
+    const { currentContent: _, ...view } = screen.view()
+
+    await serveRoom({
+      page,
+      view: { ...view, currentContent: { kind: 'fiveclues' } }
+    })
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+      localStorage.setItem('melee:volume', '0')
+    })
+    await page.setViewportSize({ height: 1080, width: 1920 })
+    await page.goto(`/wall/${ROOM_CODE}`)
+    await expect(page.locator(screen.ready).first()).toBeVisible()
+
+    const faults: string[] = []
+
+    for (const [width, height] of WALL_VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const overflow = await page.evaluate(measureReveal)
+      const scrolling = await page.evaluate(scrollingBoxes)
+      const strays = await page.evaluate(fiveCluesStrays)
+
+      if (
+        overflow.furthest !== null ||
+        overflow.page > 0 ||
+        overflow.spills.length > 0 ||
+        scrolling.length > 0 ||
+        strays.length > 0
+      ) {
+        faults.push(
+          `${width}×${height} ${JSON.stringify({ ...overflow, scrolling, strays })}`
+        )
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
+test('[layout] room, five clues, the floor judged with no wall: the stage never scrolls', async ({
+  page
+}) => {
+  const { wallNumber: _, ...view } = fiveCluesFloorView()
+
+  await serveRoom({
+    page,
+    view: { ...view, isWallConnected: false, wallCount: 0 }
+  })
+  await page.addInitScript(() => {
+    localStorage.setItem('melee:locale', 'fr')
+    localStorage.setItem('melee:volume', '0')
+  })
+  await page.setViewportSize({ height: 720, width: 1280 })
+  await page.goto(`/host/${ROOM_CODE}`)
+  await expect(page.locator('.verdict-panel .choice').first()).toBeVisible()
+
+  const faults: string[] = []
+
+  for (const [width, height] of ROOM_VIEWPORTS) {
+    await resizeTo({ height, page, width })
+
+    const overflow = await page.evaluate(measureReveal)
+    const strays = await page.evaluate(fiveCluesStrays)
+
+    if (overflow.furthest !== null || overflow.page > 0 || strays.length > 0) {
+      faults.push(
+        `${width}×${height} ${JSON.stringify({ ...overflow, strays })}`
+      )
+    }
+  }
+
+  expect(faults).toEqual([])
+})
 
 /**
  * A phone with its keyboard up: the shape the screen keeps above it. At

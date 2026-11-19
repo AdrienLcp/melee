@@ -60,8 +60,10 @@
       --app-menu-animation: swap-in var(--transition-base, 0s) var(--ease-out)
 
     // Not in the podium, whose four tiles are in its middle column: the menu
-    // keeps the bar's corner. Matched as deep as the rule above.
-    :root:has(.host-podium .podium-round)
+    // keeps the bar's corner. Matched as deep as the rule above. Nor over a
+    // climb, whose ladder takes the start of the screen whole.
+    :root:has(.host-podium .podium-round),
+    :root:has(.player-page.framed > .five-clues-seat, .player-page.framed > .buzzer-area > .five-clues-ladder)
       --app-menu-align-items: flex-end
       --app-menu-inset-inline-start: auto
       --app-menu-inset-inline-end: max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
