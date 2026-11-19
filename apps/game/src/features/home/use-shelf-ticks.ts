@@ -2,26 +2,19 @@ import { useState } from 'react'
 
 import type { ShelvedGame } from '@melee/protocol/game'
 
-import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
-import { shelfCards } from '@melee/core/room/shelf-cards'
+import { familyGames } from '@melee/core/room/shelf-families'
 
 import {
   readStoredLineUpGames,
   writeStoredLineUpGames
 } from '@/infrastructure/storage/preferences-storage'
 
-/** Every shelved game no answer mode leaves to the server. */
-export const UNJUDGED_GAMES: readonly ShelvedGame[] = shelfCards.filter(
-  (game) => !isJudgedInEveryMode(game)
-)
-
 /**
  * The games ticked on the home shelf, which the host's door opens a table on.
- * A device that never ticked one opens on every game nobody has to judge —
- * the whole upper shelf, what *Tick all but the host's* ticks — so a first
- * visit reads as a rule rather than a handful picked for it. Every change is
- * written at once, an empty shelf included: unticking everything is a choice
- * the next visit keeps.
+ * A device that never ticked one opens on every family's games — what _Tick
+ * all_ ticks, the host's tools left out — so a first visit reads as a rule
+ * rather than a handful picked for it. Every change is written at once, an
+ * empty shelf included: unticking everything is a choice the next visit keeps.
  */
 export const useShelfTicks = () => {
   const [ticked, setTicked] = useState<readonly ShelvedGame[]>(() => {
@@ -29,7 +22,7 @@ export const useShelfTicks = () => {
 
     return stored.status === 'success' && stored.data !== null
       ? stored.data
-      : UNJUDGED_GAMES
+      : familyGames
   })
 
   const tickOnly = (games: readonly ShelvedGame[]): void => {
@@ -38,15 +31,25 @@ export const useShelfTicks = () => {
   }
 
   return {
-    ticked,
-    /** Ticks `games` and nothing else, in the order the table will meet them. */
-    tickOnly,
-    toggle: ({ game, isTicked }: { game: ShelvedGame; isTicked: boolean }) =>
+    /**
+     * Ticks or unticks `games` and leaves every other tick as it was; a game
+     * ticked joins the end, in the order the table will meet them.
+     */
+    tick: ({
+      games,
+      isTicked
+    }: {
+      games: readonly ShelvedGame[]
+      isTicked: boolean
+    }) =>
       tickOnly(
         isTicked
-          ? [...ticked, game]
-          : ticked.filter((tickedGame) => tickedGame !== game)
-      )
+          ? [...ticked, ...games.filter((game) => !ticked.includes(game))]
+          : ticked.filter((tickedGame) => !games.includes(tickedGame))
+      ),
+    ticked,
+    /** Ticks `games` and nothing else. */
+    tickOnly
   }
 }
 

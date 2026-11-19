@@ -20,41 +20,60 @@
       > .button
         min-height: var(--target)
 
-    .stack
+    .families
       display: grid
-      gap: var(--space-s) var(--space-s)
-      list-style: none
-      margin: 0
-      padding: 0
-
-      > li
-        @include piece.shelved(var(--shelf-index))
-
-      @container (width >= 52rem)
-        grid-template-columns: repeat(2, minmax(0, 1fr))
-
-    .judged-shelf
-      display: grid
-      gap: var(--space-s)
+      gap: var(--space-l)
       margin-block-start: var(--space-s)
 
-    // The board between two shelves: the group's name ruled off to the far
-    // edge, in the reveal's block-heading step so it divides rather than leads.
-    .judged-title
-      @include typography.title
+      @container (width >= 64rem)
+        column-gap: var(--space-xl)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
 
+    .shelf-row
+      align-content: start
+      display: grid
+      gap: var(--space-s)
+
+    // The section's own gap already stands between them.
+    .families + .shelf-row
+      margin-block-start: calc(var(--space-l) - var(--space-s))
+
+    // The board between two rows: the row's name ruled off towards the
+    // press that ticks it whole, in the reveal's block-heading step so it
+    // divides rather than leads.
+    .row-heading
       align-items: center
-      color: var(--ink)
       display: flex
-      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
       gap: var(--space-xs)
-      margin: 0
 
       &::after
         border-top: var(--hairline)
         content: ''
         flex: 1 1 0
         min-width: var(--space-m)
+        order: 1
+
+      > .row-all
+        flex: none
+        order: 2
+
+    .row-title
+      @include typography.title
+
+      color: var(--ink)
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
+      margin: 0
+
+    .stack
+      display: grid
+      gap: var(--space-s)
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        @include piece.shelved(var(--shelf-index))
 
   .spine
     @include piece.piece(var(--radius-s))
@@ -69,12 +88,12 @@
     cursor: pointer
     display: grid
     font: inherit
-    gap: var(--space-2xs) var(--space-m)
+    gap: 0.125rem var(--space-s)
     grid-template-columns: auto minmax(0, 1fr)
     height: 100%
-    min-height: 4.5rem
+    min-height: 3.75rem
     min-width: 0
-    padding: var(--space-s) var(--space-m)
+    padding: var(--space-xs) var(--space-s)
     text-align: start
     transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out)
     width: 100%
@@ -86,23 +105,23 @@
       border-radius: var(--radius-xs)
       display: grid
       grid-row: 1 / span 2
-      height: 2rem
+      height: 1.75rem
       justify-items: center
       transition: background-color var(--transition-fast, 0s) var(--ease-out)
-      width: 2rem
+      width: 1.75rem
 
       > svg
-        height: 1.3rem
+        height: 1.15rem
         opacity: 0
         transition: opacity var(--transition-fast, 0s) var(--ease-out)
-        width: 1.3rem
+        width: 1.15rem
 
     .name
       @include typography.spine-name
 
       align-items: center
       display: flex
-      font-size: clamp(var(--text-xl), 7cqi, 2.1rem)
+      font-size: var(--text-l)
       gap: var(--space-xs)
       grid-column: 2
       hyphens: auto
@@ -118,7 +137,7 @@
     .tagline
       @include typography.tagline
 
-      font-size: var(--text-s)
+      font-size: var(--text-xs)
       grid-column: 2
       text-wrap: balance
 

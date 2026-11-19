@@ -6,6 +6,15 @@ one part.
 
 ## Unreleased
 
+### Improvements
+
+- `[Game]` **The home shelf stands in families.** _Culture_, _Lettres et
+  chiffres_, _Réflexes_ and _Entre vous_, each with a _Tout_ that ticks the
+  whole row, then Buzzer, L’Ardoise and Défi on a row of their own — _Tu
+  apportes les questions_ — that neither _Tout cocher_ nor a first visit
+  ticks. A tool ticked alone still opens a table on it, and beside games it
+  joins the line-up. The spines are slimmer, so the shelf reads at a glance.
+
 ### Features
 
 - `[Game]` **Lumières is now a way of playing Réflexe.** One card on the

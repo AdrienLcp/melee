@@ -1117,22 +1117,32 @@ under every answer mode a verdict is owed in.
     knowledge, a bolt for the quick one — which tilts a little on hover.
 - **`GameShelf`** (`features/home`): the games as spines, each a toggle
   ticking it for the host's door — its spine colour, its name in the display
-  face, its tagline; two columns from a 52rem container. The games judged
-  however they are answered are shelved last, each group in `shelvedGames`
-  order, under _Judged by the host_: the reveal's block-heading step in full
-  ink, ruled off to the far edge, a `--space-m` above it and a `--space-s`
-  under. Mixed into the run, the three spines a ticked shelf leaves bare read
-  as forgotten boxes; and nothing re-sorts on a tick, so no spine moves under
-  the finger. The lobby's picker keeps the constant's order: nothing there is
-  ticked, and each judged row carries its stamp. A ticked spine is pulled
+  face at `--text-l`, its tagline at `--text-xs`, a 1.75rem tick box, at
+  least 3.75rem tall. The spines stand in **four families** —
+  _Culture_, _Letters and numbers_, _Reflexes_, _About you_ — in the order and
+  membership `gamesOfFamily` (`@melee/core/room/shelf-families`) gives,
+  then the **host's tools** — Buzzer, Slate, Challenge, the games the host
+  brings the questions to — on a row of their own under _You bring the
+  questions_. Each row's heading is the reveal's block-heading step in full
+  ink, ruled off by a hairline to a small design-system `ToggleButton`,
+  _All_, that ticks the family whole and unticks it once it is; the tools'
+  row has none. A row's spines fill `auto-fill` columns of 16rem at least:
+  one on a phone, two from about 40rem; from a 64rem container the families
+  stand two across, `--space-xl` apart, each with its own two columns. Rows
+  are `--space-l` apart. A flat run of seventeen spines was too long to
+  scan; four families of two to six are read at a glance. Nothing re-sorts
+  on a tick, so no spine moves under the finger. A ticked spine is pulled
   forward — twice the chipboard, `--shadow-pulled`, an inset ring of
-  `--board-ink` and its tick box printed solid in `--spine-ink`; once anything is
-  ticked the rest sit back on `--socket`. Two underlined presses over it tick
-  every game no mode leaves to the host, or none. Ticks live in
-  `melee:line-up-games`, written on every change, an empty list included; a
-  device with nothing stored opens on every game nobody judges, the upper
-  shelf whole, so a first visit reads as a rule. A spine is no longer
-  a link to its game's page: the sitemap hands those pages to a crawler.
+  `--board-ink` and its tick box printed solid in `--spine-ink`; once
+  anything is ticked the rest sit back on `--socket`. Two underlined presses
+  over it, _Tick all_ and _Untick all_: the first ticks every family's games
+  and leaves the tools as they were. Ticks live in `melee:line-up-games`,
+  written on every change, an empty list included; a device with nothing
+  stored opens on every family's game, so a first visit reads as a rule and
+  a tool is only ever the host's choice. A tool ticked alone opens a table on
+  it like any one game; beside games, it joins the line-up. A spine is no
+  longer a link to its game's page: the sitemap hands those pages to a
+  crawler.
 - **The masthead** (`features/home`): the wordmark and, under it while the
   last table this device opened is still open, _Back to table K7PX_ — an
   underlined link a `--target` tall, the code in the title face, its line
@@ -1167,8 +1177,8 @@ under every answer mode a verdict is owed in.
   its label while pending, the spinner in its end padding. A refusal shows
   beside the press that met it: under the door, or under the rows.
 - **The headings** — _Your line-ups_ and _Ready-made line-ups_ over the
-  rows, _Or your own games_ over the shelf — each say in their hint what a
-  press does, because nothing else on the page does. While a table opens the
+  rows, each with a hint saying what a press does, and _Or your own games_
+  over the shelf with none: its ticks and its door say it. While a table opens the
   rows are `aria-busy`, the spines and both presets are disabled, and a
   visually hidden status says _Opening the table…_.
 
