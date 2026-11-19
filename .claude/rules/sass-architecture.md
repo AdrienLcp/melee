@@ -61,7 +61,7 @@ sites is a custom property it substitutes whole:
   sideways, a popover or a landing pawn from above, a seat set down, the
   reveal struck from a little large.
 - `page-leave` — leaving with a fade, on the spot unless the same two
-  properties say where to: a notice taken down upward, the countdown lifted.
+  properties say where to: a notice taken down upward.
 - `row-closes` — a row leaving a list handing its room and the gap after it
   back once `page-leave` has faded it, and ending the exit
   (`useLeavingRows`' `exitAnimation`): taken out at full height, a list

@@ -638,6 +638,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **No blank screen between the count and the round.** The token
+  lifted off a quarter-second before zero while the round lands just after
+  it, so every screen sat empty in between — 300 ms on a phone on staging,
+  where the exit then faded a copy of that empty screen over the board. The
+  last second now stays on the token until the round arrives, and the
+  screen's own exit carries it off over the round.
+- `[Server]` **The quiz difficulty test no longer times out under load.** It
+  parsed the whole question bank inside its five seconds; the bank is read
+  as the file loads, and the test takes the time its four rooms need.
 - `[Game]` **A wall turned upright mid-reveal keeps the standings in order.**
   Lying down, a table past twelve seats takes two columns, where the rows
   did not travel; turned upright, their move started over, and the board

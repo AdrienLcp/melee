@@ -31,6 +31,16 @@ import {
 /** Enough rooms that a level read off the room rather than the frame would show. */
 const ROOMS_A_GAME = 4
 
+/**
+ * Built while vitest collects the file: parsing the bank takes over a second,
+ * and paid inside the test it ran past the test's timeout under a full run.
+ */
+const HEARD_OF_IDS = new Set(
+  bankedQuestions()
+    .filter((question) => question.isWellKnown)
+    .map((question) => question.id)
+)
+
 let harness: RoomHarness
 
 beforeEach(async () => {
@@ -69,12 +79,6 @@ const firstRoundOf = async (settings: RoomSettings) => {
 
 describe('a room set to easy by frame', () => {
   it('[difficulty] deals the quiz only questions a room has heard of', async () => {
-    const heardOf = new Set(
-      bankedQuestions()
-        .filter((question) => question.isWellKnown)
-        .map((question) => question.id)
-    )
-
     for (let room = 0; room < ROOMS_A_GAME; room++) {
       const host = await firstRoundOf(
         roomAt({
@@ -83,9 +87,9 @@ describe('a room set to easy by frame', () => {
         })
       )
 
-      expect(heardOf.has(hostQuestion(host)?.id ?? '')).toBe(true)
+      expect(HEARD_OF_IDS.has(hostQuestion(host)?.id ?? '')).toBe(true)
     }
-  })
+  }, 15_000)
 
   it('[difficulty] asks the estimate only for famous quantities', async () => {
     for (let room = 0; room < ROOMS_A_GAME; room++) {

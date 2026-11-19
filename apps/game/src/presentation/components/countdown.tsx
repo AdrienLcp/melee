@@ -29,15 +29,11 @@ export const Countdown: React.FC<CountdownProps> = ({
   className,
   target
 }) => {
-  const { isLifting, seconds } = useCount(clock, target)
+  const seconds = useSecondsLeft(clock, target)
   const { leaving, onLeft } = useLeavingSecond(seconds)
 
   return (
-    <p
-      aria-live='polite'
-      className={classNames('countdown', className)}
-      data-lifting={isLifting || undefined}
-    >
+    <p aria-live='polite' className={classNames('countdown', className)}>
       {leaving !== null && (
         <span
           aria-hidden='true'
@@ -82,38 +78,27 @@ const useLeavingSecond = (
 }
 
 /**
- * The token's lift-off, `--transition-base` in `countdown.sass`, played out in
- * the count's last moment: the round's snapshot lands a few frames after zero,
- * too soon for an exit started at zero to be seen before the round replaces it.
+ * The second still to strike, held at 1 past zero: the token stays on until
+ * the round's snapshot lands, and the screen's own exit carries it off over
+ * the round (`useRoomView`). A token lifted before zero left that exit an
+ * empty screen to carry, blank for as long as the snapshot took to arrive.
  */
-const LIFT_OFF_MS = 260
+const secondsAt = (remainingMs: number): number =>
+  Math.max(1, Math.ceil(remainingMs / 1000))
 
-type Count = { isLifting: boolean; seconds: number }
-
-const countAt = (remainingMs: number): Count => ({
-  isLifting: remainingMs <= LIFT_OFF_MS,
-  // The last second struck stays on the token as it lifts: a zero struck from
-  // nothing inside a token already fading was never seen, and a round frame
-  // running late would count on into `-1`.
-  seconds: Math.max(1, Math.ceil(remainingMs / 1000))
-})
-
-const useCount = (clock: ClockEstimate | null, target: number): Count => {
-  const [seconds, setSeconds] = useState(
-    () => countAt(millisecondsUntil(clock, target, nowMs())).seconds
-  )
-  const [isLifting, setLifting] = useState(
-    () => countAt(millisecondsUntil(clock, target, nowMs())).isLifting
+const useSecondsLeft = (
+  clock: ClockEstimate | null,
+  target: number
+): number => {
+  const [seconds, setSeconds] = useState(() =>
+    secondsAt(millisecondsUntil(clock, target, nowMs()))
   )
 
   useEffect(() => {
     let frame = 0
 
     const tick = (): void => {
-      const count = countAt(millisecondsUntil(clock, target, nowMs()))
-
-      setSeconds(count.seconds)
-      setLifting(count.isLifting)
+      setSeconds(secondsAt(millisecondsUntil(clock, target, nowMs())))
       frame = requestAnimationFrame(tick)
     }
 
@@ -124,5 +109,5 @@ const useCount = (clock: ClockEstimate | null, target: number): Count => {
     }
   }, [clock, target])
 
-  return { isLifting, seconds }
+  return seconds
 }

@@ -37,14 +37,6 @@
 
         animation: page-leave var(--transition-fast, 0s) linear forwards
 
-    // The count's last quarter-second lifts the token off, so it is gone as
-    // the round's snapshot lands rather than cut out from under it.
-    // `LIFT_OFF_MS` in `countdown.tsx` starts it this long before zero.
-    &[data-lifting]
-      --travel-scale: 0.94
-
-      animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards
-
 @keyframes countdown-strike
   from
     opacity: 0
