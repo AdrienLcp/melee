@@ -286,11 +286,15 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
                       filled
                     })}
               </Button>
-              {isFull && !isStoppable && (
+              <div
+                className='stop-fold'
+                data-open={(isFull && !isStoppable) || undefined}
+                inert={!isFull || isStoppable}
+              >
                 <p className='stop-note'>
                   {translate('petitbac.stop.offLetter', { letter })}
                 </p>
-              )}
+              </div>
             </div>
             <p className='stop-note barred' inert={!isBarred}>
               {translate('petitbac.stop.barred')}

@@ -1628,6 +1628,7 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Neuf lumières sur l’écran de chacun, une seule allumée à la fois : touche-la et la suivante s’allume ailleurs. Vingt secondes pour en toucher autant que tes mains le peuvent, et de temps en temps un piège s’allume à côté de la bonne — touche-le et ton plateau s’éteint une seconde. Le grand écran montre la course, une barre par joueur, qui monte à chaque touche.'
     },
+    instruction: 'Touche la lumière allumée',
     name: 'Lumières',
     play: 'Jouer à Lumières',
     race: 'La course',

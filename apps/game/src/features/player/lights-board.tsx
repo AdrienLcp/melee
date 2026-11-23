@@ -88,8 +88,10 @@ type LightsBoardProps = {
 }
 
 /**
- * A seat's board: nine sockets in a chipboard tray taking every pixel the
- * screen leaves, so a large finger on a small phone still lands. The lit cell
+ * A seat's board: nine sockets in a chipboard tray of one size on every
+ * screen, set at its foot where the thumb is, so a big phone does not make
+ * the thumb travel further than a small one, under the line saying what to
+ * press. The lit cell
  * is a coral token set in its socket on the frame it lights, with no
  * entrance — a reaction game measures that frame. A trap is a paper token
  * crossed and hatched, told apart by shape rather than colour.
@@ -256,6 +258,7 @@ export const LightsBoard: React.FC<LightsBoardProps> = ({
         )}
       </header>
       <div className='lights-tray-wrap'>
+        <p className='lights-instruction'>{translate('lights.instruction')}</p>
         <div
           className='lights-tray'
           data-frozen={freeze?.kind}
@@ -283,22 +286,22 @@ export const LightsBoard: React.FC<LightsBoardProps> = ({
             )
           })}
         </div>
+        <p className='lights-foot' role='status'>
+          <i
+            aria-hidden='true'
+            className='drain'
+            data-shown={freeze?.kind === 'trap' || undefined}
+            key={freeze?.serial}
+            style={{ '--freeze-duration': `${TRAP_FREEZE_MS}ms` }}
+          />
+          <span
+            className='stamp'
+            data-shown={freeze?.kind === 'trap' || undefined}
+          >
+            {translate('lights.trapped')}
+          </span>
+        </p>
       </div>
-      <p className='lights-foot' role='status'>
-        <i
-          aria-hidden='true'
-          className='drain'
-          data-shown={freeze?.kind === 'trap' || undefined}
-          key={freeze?.serial}
-          style={{ '--freeze-duration': `${TRAP_FREEZE_MS}ms` }}
-        />
-        <span
-          className='stamp'
-          data-shown={freeze?.kind === 'trap' || undefined}
-        >
-          {translate('lights.trapped')}
-        </span>
-      </p>
     </section>
   )
 }

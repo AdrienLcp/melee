@@ -267,6 +267,9 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = (props) => {
     return (
       <section className='player-round notice'>
         <CountingInGame view={view} />
+        {round.content.kind === 'lights' && (
+          <p className='round-instruction'>{translate('lights.instruction')}</p>
+        )}
         <Countdown clock={clock} target={round.startsAt} />
       </section>
     )

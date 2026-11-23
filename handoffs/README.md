@@ -9,7 +9,6 @@ file in the commit that finishes it, and delete this README with the last one.
 | ---- | ------------------------------- | -------------------- |
 | 1    | `01-replay-and-ready.md`        | none                 |
 | 1    | `02-board-and-reveals.md`       | none                 |
-| 1    | `03-small-fixes.md`             | none                 |
 | 1    | `04-make-the-number.md`         | none                 |
 | 1    | `05-content-fixes.md`           | none                 |
 | 2    | `06-hands-free-table.md`        | 01 landed            |

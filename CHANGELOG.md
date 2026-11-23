@@ -8,6 +8,21 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The keyboard stays up between two guesses.** Black square, the
+  typed quiz and blind test, Cinq indices and L’Ardoise hand the focus back
+  to the field after a send or a Previous/Next press, so the next guess is
+  typed straight away; the black word still closes the sheet. A seat held
+  until Cinq indices' next clue keeps its field and can type ahead.
+- `[Game]` **Le juste chiffre groups the number while it is typed** —
+  _100 000_, not _100000_ — in each language's own way, a numeric keyboard's
+  dot read as the French comma.
+- `[Game]` **Lumières says what to do, on a board the same size for
+  everyone.** _Touche la lumière allumée_ over the countdown and over the
+  board, and the board one square at the foot of the screen, where the thumb
+  is, so a big phone no longer makes the thumb travel further.
+- `[Game]` **The home page's wordmark starts on the menu's line** on a
+  phone, rather than under an empty band the menu's height.
+
 - `[Game]` **The home shelf stands in families.** _Culture_, _Lettres et
   chiffres_, _Instinct_ and _Entre vous_, each with a _Tout_ that ticks the
   whole row, then Buzzer, L’Ardoise and Défi on a row of their own — _Tu
@@ -670,6 +685,10 @@ one part.
   answers, the fastest still takes up to ten points more.
 
 ### Fixes
+
+- `[Game]` **Petit Bac's sheet no longer collapses on the last line's first
+  letter.** The note saying why a full sheet cannot stop yet took the list's
+  height; it now folds open under the press.
 
 - `[Server]` **The assistant composing an evening is told the whole of
   each game.** The quiz answers in Portuguese too, a blind test draws from

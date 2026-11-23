@@ -20,8 +20,6 @@ import type { PlayerAnswer } from './answer-forms'
 
 import './estimate-answer.sass'
 
-const GUESS_FORMAT = { maximumFractionDigits: 2 } as const
-
 type EstimateAnswerProps = {
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
@@ -87,17 +85,13 @@ export const EstimateAnswer: React.FC<EstimateAnswerProps> = ({
           // The form only ever mounts on `playing`, so this opens the keyboard
           // when the round does and never over a countdown.
           autoFocus
-          formatOptions={GUESS_FORMAT}
           isUnitAsked={question.kind === 'bank'}
           label={translate('estimate.answer.label')}
+          maximumFractionDigits={2}
           maxValue={MAX_ESTIMATE}
-          minValue={0}
           onChange={setGuess}
           unit={unitName(question)}
-          value={guess}
         />
-        {/* Never disabled: the field commits its number on blur, so a button
-          waiting for it is still disabled under the very press that blurs. */}
         <Button size='large' type='submit'>
           {translate('estimate.answer.send')}
         </Button>

@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import { atlasPickSaid, type GeoPoint } from '@melee/protocol/atlas'
@@ -217,6 +217,7 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
 }) => {
   const translate = useTranslate()
   const [guess, setGuess] = useState('')
+  const field = useRef<HTMLElement>(null)
 
   if (round === null) {
     return null
@@ -231,6 +232,7 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
       <Form
         onSubmit={(event) => {
           event.preventDefault()
+          field.current?.focus()
 
           // Cleared on send rather than on the snapshot coming back: the round
           // trip is 20–80ms, and a field that holds a spent guess that long is
@@ -255,6 +257,7 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
               : 'round.answer.retry'
           )}
           enterKeyHint='send'
+          inputRef={field}
           isDisabled={isDone}
           label={translate('round.answer.label')}
           onChange={setGuess}
@@ -262,7 +265,7 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
           placeholder={translate('round.answer.label')}
           value={guess}
         />
-        <Button isDisabled={isDone || isEmpty} size='large' type='submit'>
+        <Button isDisabled={isDone} size='large' type='submit'>
           {translate('round.answer.submit')}
         </Button>
       </Form>

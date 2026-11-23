@@ -1703,6 +1703,7 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'Nine lights on everyone’s screen, one lit at a time: hit it and the next one lights somewhere else. Twenty seconds to hit as many as your hands can, and now and then a trap lights beside the right one — hit it and your board goes dark for a second. The big screen shows the race, one bar a player, climbing with every hit.'
     },
+    instruction: 'Tap the light that is on',
     name: 'Lights',
     play: 'Play Lights',
     race: 'The race',

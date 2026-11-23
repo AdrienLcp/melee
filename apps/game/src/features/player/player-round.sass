@@ -86,8 +86,17 @@
 
     // The game the count opens and the target it sets come up with its first
     // tick rather than cut in under it.
-    > :is(.up-next, .count-prompt)
+    > :is(.up-next, .count-prompt, .round-instruction)
       animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
+  // What to press, said over the count into a game nobody has to be told the
+  // rules of aloud: the same line stands over the board once it opens.
+  .round-instruction
+    @include typography.title
+
+    max-inline-size: var(--measure-hint)
+    text-align: center
+    text-wrap: balance
 
   // What this player is about to play, on the game's own lid: the spine's
   // colour banded across the top, its name under it, and what a round of it

@@ -1826,6 +1826,7 @@ const PORTUGUESE = defineDictionary({
       description:
         'Nove luzes no ecrã de cada um, só uma acesa de cada vez: toca-lhe e a seguinte acende-se noutro sítio. Vinte segundos para acertar em tantas quantas as tuas mãos conseguirem, e de vez em quando acende-se uma armadilha ao lado da certa — toca-lhe e o teu tabuleiro apaga-se por um segundo. O ecrã grande mostra a corrida, uma barra por jogador, a subir a cada acerto.'
     },
+    instruction: 'Toca na luz acesa',
     name: 'Luzes',
     play: 'Jogar Luzes',
     race: 'A corrida',

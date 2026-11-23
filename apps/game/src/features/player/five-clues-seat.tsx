@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import { FIVE_CLUES_CLUE_COUNT } from '@melee/protocol/five-clues'
@@ -203,17 +203,22 @@ export const FiveCluesSeat: React.FC<FiveCluesSeatProps> = ({
   )
 }
 
-/** One field and one guess a clue, closed while the seat is held, once it found and once it is out. */
+/**
+ * One field and one guess a clue. While the seat is held until the next clue
+ * the field stays open and only the send waits, so the keyboard stays up and
+ * the next guess can be typed ahead; it closes once the seat found or is out.
+ */
 const FiveCluesGuess: React.FC<{
   content: FiveCluesContent
   onAnswer: (answer: PlayerAnswer) => boolean
 }> = ({ content, onAnswer }) => {
   const translate = useTranslate()
   const [guess, setGuess] = useState('')
+  const field = useRef<HTMLElement>(null)
   const standing = content.yourStanding
-  const isClosed =
-    standing === null ||
-    standing.status !== 'racing' ||
+  const isClosed = standing === null || standing.status !== 'racing'
+  const isHeld =
+    standing?.status === 'racing' &&
     standing.guessedOnClue === content.openClueIndex
   const isEmpty = guess.trim() === ''
 
@@ -222,8 +227,13 @@ const FiveCluesGuess: React.FC<{
       className='five-clues-guess'
       onSubmit={(event) => {
         event.preventDefault()
+        field.current?.focus()
 
-        if (!isEmpty && onAnswer({ guess: guess.trim(), kind: 'typed' })) {
+        if (
+          !isEmpty &&
+          !isHeld &&
+          onAnswer({ guess: guess.trim(), kind: 'typed' })
+        ) {
           setGuess('')
         }
       }}
@@ -232,13 +242,14 @@ const FiveCluesGuess: React.FC<{
         autoComplete='off'
         autoFocus
         enterKeyHint='send'
+        inputRef={field}
         isDisabled={isClosed}
         label={translate('fiveclues.answer.label')}
         onChange={setGuess}
         placeholder={translate('fiveclues.answer.label')}
         value={guess}
       />
-      <Button isDisabled={isClosed || isEmpty} size='large' type='submit'>
+      <Button isDisabled={isClosed || isHeld} size='large' type='submit'>
         {translate('round.answer.submit')}
       </Button>
     </Form>

@@ -1,4 +1,5 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/focus'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
@@ -115,6 +116,11 @@
 
       .button
         inline-size: 100%
+
+    // Why a full sheet cannot stop yet opens under the press rather than
+    // cutting in: the column's own gap closes with it.
+    .stop-fold
+      @include fold.opens-in-column(var(--space-xs))
 
     // The stop taken back leaves its press's socket, the reason printed in
     // it: a caption at the top of a press-high cell read as a stray line.
@@ -280,8 +286,13 @@
     @include typography.caption
 
     color: var(--ink-muted)
-    flex: 1 1 12rem
     text-wrap: pretty
+
+  // A share of the vote footer's wrapping row. In the stop's column the same
+  // basis was a height, and the sheet's list gave it up on the last line's
+  // first letter.
+  .petit-bac-vote .vote-note
+    flex: 1 1 12rem
 
   // A keyboard up leaves an upright screen a strip: the press keeps its
   // place under the card at a control's height rather than a stop's.

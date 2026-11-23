@@ -29,6 +29,11 @@ type TextFieldProps = ReactAriaTextFieldProps & {
   enterKeyHint?: 'done' | 'go' | 'next' | 'send'
   errorMessage?: string
   /**
+   * The input itself, for a form that hands the keyboard back to it after a
+   * press on its button took the focus.
+   */
+  inputRef?: React.RefObject<HTMLElement | null>
+  /**
    * Wraps a long line onto as many rows as it takes rather than scrolling it
    * out of sight, for a line meant to be read whole before it is sent. Enter
    * still inserts nothing: the value stays one line.
@@ -44,6 +49,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   description,
   enterKeyHint,
   errorMessage,
+  inputRef,
   isInvalid = false,
   isMultiline = false,
   label,
@@ -51,6 +57,11 @@ export const TextField: React.FC<TextFieldProps> = ({
   ...props
 }) => {
   const leavingError = useLastShown(isInvalid ? (errorMessage ?? null) : null)
+  const holdInput = (node: HTMLElement | null): void => {
+    if (inputRef !== undefined) {
+      inputRef.current = node
+    }
+  }
 
   return (
     <ReactAriaTextField
@@ -65,6 +76,7 @@ export const TextField: React.FC<TextFieldProps> = ({
           enterKeyHint={enterKeyHint}
           onKeyDown={refuseLineBreak}
           placeholder={placeholder}
+          ref={holdInput}
           rows={2}
           spellCheck={false}
         />
@@ -73,6 +85,7 @@ export const TextField: React.FC<TextFieldProps> = ({
           autoCapitalize={autoCapitalize}
           enterKeyHint={enterKeyHint}
           placeholder={placeholder}
+          ref={holdInput}
           spellCheck={false}
         />
       )}

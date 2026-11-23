@@ -276,6 +276,11 @@ changes:
   a small device is the case it is sized for. No square board with 400px
   empty above it. Nine cells still, the grid fixed, only their aspect follows
   the space.
+  _Reversed 23/11/2026, after a weekend of play_: a board filling the frame
+  made a big phone's thumb travel further, an edge in a race of reaches. The
+  board is one square of at most 17rem on every screen, anchored at the
+  foot where the thumb is, under a one-line instruction also shown over the
+  countdown, since nobody knew what to press.
 - **A trap lays the seat's pawn down on its wall bar for the second it
   freezes**, borrowed from the pawn race, so the room sees who fell in.
 

@@ -1,7 +1,7 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
-import { useEffect, useEffectEvent, useState } from 'react'
-import { ListBox, ListBoxItem } from 'react-aria-components'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
+import { ListBox, ListBoxItem, type PressEvent } from 'react-aria-components'
 
 import type { RoundView } from '@melee/protocol/room'
 import {
@@ -70,6 +70,7 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
   const content = slateContent(round)
   const sheet = content?.yourSheet ?? []
   const itemStates = content?.itemStates ?? []
+  const field = useRef<HTMLElement>(null)
   const [current, setCurrent] = useState(() =>
     firstEmptyOpenIndex({ itemStates, sheet })
   )
@@ -125,6 +126,16 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
     setCurrent(index)
   }
 
+  // A touch on Previous or Next takes the focus from the field and folds the
+  // keyboard the next answer is typed on; a key press keeps its place.
+  const stepTo = (index: number | undefined, event: PressEvent) => {
+    goTo(index)
+
+    if (event.pointerType !== 'keyboard') {
+      field.current?.focus()
+    }
+  }
+
   const previousOpen = open.findLast((index) => index < shown)
   const nextOpen = open.find((index) => index > shown)
   const shownName = slateItemName({ itemIndex: shown, labels })
@@ -144,6 +155,7 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
           autoComplete='off'
           className='answer'
           enterKeyHint={nextOpen === undefined ? 'done' : 'next'}
+          inputRef={field}
           label={translate('slate.sheet.field', { item: spokenName(shown) })}
           maxLength={SLATE_ANSWER_MAX_LENGTH}
           onBlur={() => save(shown)}
@@ -160,7 +172,7 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
         <div className='stepper'>
           <Button
             isDisabled={previousOpen === undefined}
-            onPress={() => goTo(previousOpen)}
+            onPress={(event) => stepTo(previousOpen, event)}
             size='small'
             variant='outlined'
           >
@@ -168,7 +180,7 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
           </Button>
           <Button
             isDisabled={nextOpen === undefined}
-            onPress={() => goTo(nextOpen)}
+            onPress={(event) => stepTo(nextOpen, event)}
             size='small'
             variant='outlined'
           >

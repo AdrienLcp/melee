@@ -32,7 +32,6 @@ $front-door-menu-width: 4rem
     container-type: inline-size
     gap: var(--space-xl)
     max-width: none
-    padding-block-start: var(--menu-block-inset)
     padding-inline: 0
 
     > *
@@ -41,11 +40,6 @@ $front-door-menu-width: 4rem
       --gutter-right: calc(max(var(--gutter), var(--safe-area-right)) + var(--stage-overhang))
 
       margin-inline: var(--gutter-left) var(--gutter-right)
-
-    // Beside the wordmark, the code box takes the menu's row rather than the
-    // band under it: the masthead starts where the menu does.
-    @media (width >= $masthead-side-by-side)
-      padding-block-start: var(--layout-padding-block-start)
 
     // The wordmark and the player's door on one row, their tops on the menu's
     // line, so the resume link arriving under the wordmark moves neither. On a
@@ -75,8 +69,14 @@ $front-door-menu-width: 4rem
       grid-area: title
       justify-items: start
 
+    // On the menu's line, beside it: a band the menu's height above the
+    // wordmark read as an empty top on a phone. Wider, the masthead clears
+    // the menu for the code box beside it.
     .wordmark
       @include typography.wordmark
+
+      @media (width < $masthead-side-by-side)
+        padding-inline-end: calc(var(--layout-padding) + var(--menu-width, $front-door-menu-width))
 
       font-size: clamp(var(--text-4xl), calc(var(--stage-unit) * 16), 9.25rem)
 

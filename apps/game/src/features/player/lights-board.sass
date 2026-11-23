@@ -2,9 +2,9 @@
 @use '../../presentation/styles/typography'
 
 @layer components
-  // The tray takes every pixel the seat's screen leaves, width and height:
-  // a large finger on a small phone is the case it is sized for, so its
-  // cells are taller than wide on a phone held upright.
+  // The tray is one square of one size on every screen, at the foot of the
+  // room the seat's screen leaves: filling it made a big phone's thumb travel
+  // further than a small one's, which is a handicap in a race of reaches.
   .lights-board
     display: grid
     gap: clamp(var(--space-xs), 2cqmin, var(--space-s))
@@ -30,13 +30,44 @@
     min-width: 1.2em
     transform-origin: 0 100%
 
+  // The instruction stands on the tray's top edge, both at the foot of the
+  // room. `--tray-size` is read inside, against this box: a phone held
+  // sideways shrinks the square to the height left under the instruction.
   .lights-tray-wrap
+    --instruction-line: 1.3
+    --instruction-block: calc(var(--text-m) * var(--instruction-line))
+    --wrap-gap: var(--space-s)
+    --tray-size: min(100cqi, 17rem, 100cqb - var(--instruction-block) - var(--wrap-gap))
+
+    align-content: end
+    container-type: size
     display: grid
+    gap: var(--wrap-gap)
     grid-area: tray
+    grid-template: 'instruction' auto 'tray' auto / minmax(0, 1fr)
+    justify-items: center
     min-height: 0
+
+  .lights-instruction
+    @include typography.strong
+
+    color: var(--ink-muted)
+    font-size: var(--text-m)
+    grid-area: instruction
+    line-height: var(--instruction-line)
+    margin: 0
+    max-inline-size: 100%
+    overflow: hidden
+    text-align: center
+    text-overflow: ellipsis
+    white-space: nowrap
 
   .lights-tray
     --tray-gap: clamp(0.4rem, 2.4cqmin, 0.9rem)
+
+    aspect-ratio: 1
+    grid-area: tray
+    inline-size: var(--tray-size)
 
     background: var(--chipboard)
     border-radius: var(--radius-l)
@@ -178,6 +209,7 @@
     align-self: end
     display: grid
     grid-area: tray
+    inline-size: var(--tray-size)
     justify-items: center
     margin: 0
     min-height: 2.75rem

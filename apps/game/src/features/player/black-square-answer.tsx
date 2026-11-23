@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { RoundView } from '@melee/protocol/room'
@@ -39,6 +39,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
 }) => {
   const translate = useTranslate()
   const [guess, setGuess] = useState('')
+  const field = useRef<HTMLElement>(null)
   const content = blackSquareContent(round)
   const cellTiers = content?.cellTiers ?? []
   const lines = content?.yourLines ?? []
@@ -67,6 +68,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
         <Form
           onSubmit={(event) => {
             event.preventDefault()
+            field.current?.focus()
 
             if (!isEmpty && onAnswer({ guess: guess.trim(), kind: 'typed' })) {
               setGuess('')
@@ -77,13 +79,12 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
             autoComplete='off'
             autoFocus
             enterKeyHint='send'
+            inputRef={field}
             label={translate('blacksquare.answer.label')}
             onChange={setGuess}
             value={guess}
           />
-          <Button isDisabled={isEmpty} type='submit'>
-            {translate('round.answer.submit')}
-          </Button>
+          <Button type='submit'>{translate('round.answer.submit')}</Button>
         </Form>
       )}
     </section>
