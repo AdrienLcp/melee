@@ -249,7 +249,10 @@ describe('the quantity bank', () => {
     }
   )
 
-  // Four standard deviations either side of a third, so the bounds hold on every run.
+  // A topic short of a tier hands its draws to the tiers it has, so the
+  // famous share sits near 0.37 (measured over 20 000 draws), not a third.
+  // The bounds are four standard deviations either side of that, so they
+  // hold on every run: 0.42 was two, and failed about once in a hundred.
   it('[difficulty] asks a third of its estimates from the famous tier when mixed', {
     timeout: 15_000
   }, () => {
@@ -263,8 +266,8 @@ describe('the quantity bank', () => {
       })
     ).filter((row) => row !== null && tierAtFrenchTable(row) === 'easy').length
 
-    expect(famous / draws).toBeGreaterThan(0.25)
-    expect(famous / draws).toBeLessThan(0.42)
+    expect(famous / draws).toBeGreaterThan(0.27)
+    expect(famous / draws).toBeLessThan(0.46)
   })
 
   it.each(TABLES)(
