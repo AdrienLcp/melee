@@ -5,11 +5,12 @@ Adrien's feedback after a weekend of play (23/11/2026), almost all of it on the
 the host console and phones as seats. One file per fresh session. Delete a
 file in the commit that finishes it, and delete this README with the last one.
 
-| Wave | File                            | Depends on           |
-| ---- | ------------------------------- | -------------------- |
-| 2    | `08-blindtest-flash.md`         | 01 landed            |
-| 3    | `11-international-evening.md`   | 05, 08 and 09 landed |
-| 3    | `12-ambient-music.md`           | 08 landed            |
+| Wave | File                          | Depends on           |
+| ---- | ----------------------------- | -------------------- |
+| 2    | `08-blindtest-flash.md`       | 01 landed            |
+| 3    | `11-international-evening.md` | 05, 08 and 09 landed |
+| 3    | `12-ambient-music.md`         | 08 landed            |
+| 3    | `13-five-clues-photo-rung.md` | 10 landed            |
 
 ## How every session here works
 

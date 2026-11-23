@@ -448,9 +448,7 @@ const settingsOf = ({
       ]
     case 'fiveclues':
       return [
-        allPicks(
-          fiveCluesSubjectsOf({ subjects: entry.subjects, translate })
-        ),
+        allPicks(fiveCluesSubjectsOf({ subjects: entry.subjects, translate })),
         LANGUAGE_NAMES[entry.language],
         levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.clueDurationMs, translate })

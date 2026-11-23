@@ -138,11 +138,16 @@
         "packages/core/src/thinkalike/*.ts",
         "docs/plans/70-think-alike.md",
         "apps/server/src/infrastructure/questions/five-clues-bank.test.ts",
-        "docs/plans/73-five-clues.md"
+        "docs/plans/73-five-clues.md",
+        "CHANGELOG.md"
       ],
       "language": "en,en-GB,fr",
       "words": [
         "aequo",
+        "Amália",
+        "Cantigas",
+        "Hallyday",
+        "Pátio",
         "rebuzzes",
         "Bilbon",
         "Frodon",
