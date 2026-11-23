@@ -31,22 +31,25 @@
     transform-origin: 0 100%
 
   // The instruction stands on the tray's top edge, both at the foot of the
-  // room. `--tray-size` is read inside, against this box: a phone held
-  // sideways shrinks the square to the height left under the instruction.
+  // room. The tray is a square of at most 17rem; a room too short for it, a
+  // phone held sideways, keeps its width and gives up height, and a room too
+  // short for nine cells and the line gives up the line.
   .lights-tray-wrap
-    --instruction-line: 1.3
-    --instruction-block: calc(var(--text-m) * var(--instruction-line))
-    --wrap-gap: var(--space-s)
-    --tray-size: min(100cqi, 17rem, 100cqb - var(--instruction-block) - var(--wrap-gap))
-
     align-content: end
     container-type: size
     display: grid
-    gap: var(--wrap-gap)
-    grid-area: tray
+    gap: var(--space-s)
     grid-template: 'instruction' auto 'tray' auto / minmax(0, 1fr)
     justify-items: center
     min-height: 0
+
+  .lights-tray,
+  .lights-foot
+    --instruction-room: calc(var(--text-m) * 1.3 + var(--space-s))
+    --tray-inline: min(100cqi, 17rem)
+
+    @container (height < 13rem)
+      --instruction-room: 0rem
 
   .lights-instruction
     @include typography.strong
@@ -54,7 +57,7 @@
     color: var(--ink-muted)
     font-size: var(--text-m)
     grid-area: instruction
-    line-height: var(--instruction-line)
+    line-height: 1.3
     margin: 0
     max-inline-size: 100%
     overflow: hidden
@@ -62,12 +65,15 @@
     text-overflow: ellipsis
     white-space: nowrap
 
+    @container (height < 13rem)
+      display: none
+
   .lights-tray
     --tray-gap: clamp(0.4rem, 2.4cqmin, 0.9rem)
 
-    aspect-ratio: 1
+    block-size: min(var(--tray-inline), 100cqb - var(--instruction-room))
     grid-area: tray
-    inline-size: var(--tray-size)
+    inline-size: var(--tray-inline)
 
     background: var(--chipboard)
     border-radius: var(--radius-l)
@@ -209,7 +215,7 @@
     align-self: end
     display: grid
     grid-area: tray
-    inline-size: var(--tray-size)
+    inline-size: var(--tray-inline)
     justify-items: center
     margin: 0
     min-height: 2.75rem
