@@ -3756,7 +3756,8 @@ const FIVE_CLUES_GAME = {
   clueDurationMs: 10_000,
   difficulty: 'mixed',
   kind: 'fiveclues',
-  language: 'fr'
+  language: 'fr',
+  subjects: ['country']
 }
 
 /**

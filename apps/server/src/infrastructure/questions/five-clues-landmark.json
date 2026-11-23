@@ -1,0 +1,4432 @@
+[
+  {
+    "accepted": {
+      "en": ["Eiffel"],
+      "fr": ["Eiffel"],
+      "pt": ["Eiffel"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A tower that rises more than 300 metres above the ground.",
+          "fr": "Une tour qui s’élève à plus de 300 mètres du sol.",
+          "pt": "Uma torre que se ergue a mais de 300 metros do chão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A lattice of metal girders: the wind blows right through it.",
+          "fr": "Un treillis de poutrelles de métal : le vent passe au travers.",
+          "pt": "Uma treliça de vigas de metal: o vento passa-lhe através."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Opened in Paris in 1889, for the World’s Fair.",
+          "fr": "Inaugurée à Paris en 1889, pour l’Exposition universelle.",
+          "pt": "Inaugurada em Paris em 1889, para a Exposição Universal."
+        }
+      },
+      {
+        "text": {
+          "en": "Meant to stand for twenty years, it was saved by the radio antennas on its top.",
+          "fr": "Prévue pour durer vingt ans, elle a été sauvée par les antennes radio de son sommet.",
+          "pt": "Era para durar vinte anos; salvaram-na as antenas de rádio no topo."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Iron Lady of the Champ-de-Mars, symbol of Paris.",
+          "fr": "La Dame de fer du Champ-de-Mars, symbole de Paris.",
+          "pt": "A Dama de Ferro do Campo de Marte, símbolo de Paris."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Leaning Tower of Pisa",
+        "fr": "Tour de Pise",
+        "pt": "Torre de Pisa"
+      },
+      {
+        "en": "CN Tower",
+        "fr": "Tour CN",
+        "pt": "Torre CN"
+      },
+      {
+        "en": "Tokyo Tower",
+        "fr": "Tour de Tokyo",
+        "pt": "Torre de Tóquio"
+      }
+    ],
+    "homeCountry": null,
+    "id": "eiffel-tower",
+    "name": {
+      "en": "Eiffel Tower",
+      "fr": "Tour Eiffel",
+      "pt": "Torre Eiffel"
+    },
+    "tier": "easy",
+    "wikidata": "Q243"
+  },
+  {
+    "accepted": {
+      "en": ["Lady Liberty"],
+      "fr": ["La Liberté éclairant le monde"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A colossal statue, more than 25 metres from head to foot.",
+          "fr": "Une statue colossale, plus de 25 mètres de la tête aux pieds.",
+          "pt": "Uma estátua colossal, com mais de 25 metros da cabeça aos pés."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A woman, one arm raised high above her head.",
+          "fr": "Une femme, un bras levé bien haut au-dessus de la tête.",
+          "pt": "Uma mulher, com um braço erguido bem acima da cabeça."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A gift from France to the United States, unveiled in 1886.",
+          "fr": "Un cadeau de la France aux États-Unis, inauguré en 1886.",
+          "pt": "Uma oferta da França aos Estados Unidos, inaugurada em 1886."
+        }
+      },
+      {
+        "text": {
+          "en": "Eiffel designed her iron skeleton; her copper skin has turned green.",
+          "fr": "Eiffel a conçu son squelette de fer ; sa peau de cuivre a verdi.",
+          "pt": "Eiffel desenhou-lhe o esqueleto de ferro; a pele de cobre ficou verde."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Torch held high, she greets the ships entering New York Harbor.",
+          "fr": "Flambeau levé, elle accueille les navires à l’entrée du port de New York.",
+          "pt": "De tocha erguida, recebe os navios à entrada do porto de Nova Iorque."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Michelangelo’s David",
+        "fr": "David de Michel-Ange",
+        "pt": "David de Miguel Ângelo"
+      },
+      {
+        "en": "Christ the Redeemer",
+        "fr": "Christ Rédempteur",
+        "pt": "Cristo Redentor"
+      },
+      {
+        "en": "The Motherland Calls",
+        "fr": "La Mère-Patrie",
+        "pt": "A Mãe-Pátria Chama"
+      }
+    ],
+    "homeCountry": null,
+    "id": "statue-of-liberty",
+    "name": {
+      "en": "Statue of Liberty",
+      "fr": "Statue de la Liberté",
+      "pt": "Estátua da Liberdade"
+    },
+    "tier": "easy",
+    "wikidata": "Q9202"
+  },
+  {
+    "accepted": {
+      "en": ["Coliseum", "Flavian Amphitheatre"],
+      "fr": ["Amphithéâtre flavien", "Colosseum"],
+      "pt": ["Coliseu de Roma", "Anfiteatro Flaviano"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Gladiators fought here in front of tens of thousands of spectators.",
+          "fr": "Des gladiateurs s’y battaient devant des dizaines de milliers de spectateurs.",
+          "pt": "Aqui lutavam gladiadores diante de dezenas de milhares de espetadores."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Earthquakes brought down part of its outer ring of arches.",
+          "fr": "Des séismes ont abattu une partie de son anneau extérieur d’arcades.",
+          "pt": "Sismos derrubaram parte do seu anel exterior de arcos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Opened in Rome in AD 80 with a hundred days of games.",
+          "fr": "Inauguré à Rome en 80 apr. J.-C. par cent jours de jeux.",
+          "pt": "Inaugurado em Roma no ano 80 com cem dias de jogos."
+        }
+      },
+      {
+        "text": {
+          "en": "Sailors worked the huge awning that shaded its 50,000 spectators.",
+          "fr": "Des marins manœuvraient l’immense toile qui abritait ses 50 000 spectateurs.",
+          "pt": "Marinheiros manobravam o enorme toldo que abrigava os seus 50 000 espetadores."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Vespasian began it, Titus finished it: Rome’s great arena beside the Forum.",
+          "fr": "Commencé par Vespasien, achevé par Titus : la grande arène de Rome, près du Forum.",
+          "pt": "Começado por Vespasiano, acabado por Tito: a grande arena de Roma, junto ao Fórum."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Theatre of Epidaurus",
+        "fr": "Théâtre d’Épidaure",
+        "pt": "Teatro de Epidauro"
+      },
+      {
+        "en": "Arena of Nîmes",
+        "fr": "Arènes de Nîmes",
+        "pt": "Arena de Nîmes"
+      },
+      {
+        "en": "Verona Arena",
+        "fr": "Arènes de Vérone",
+        "pt": "Arena de Verona"
+      }
+    ],
+    "homeCountry": null,
+    "id": "colosseum",
+    "name": {
+      "en": "Colosseum",
+      "fr": "Colisée",
+      "pt": "Coliseu"
+    },
+    "tier": "easy",
+    "wikidata": "Q10285"
+  },
+  {
+    "accepted": {
+      "en": ["Taj"],
+      "fr": ["Taj"],
+      "pt": ["Taj"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great central dome, flanked by slender minarets.",
+          "fr": "Un grand dôme central, flanqué de minarets élancés.",
+          "pt": "Uma grande cúpula central, ladeada por minaretes esguios."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Clad all over in gleaming white marble.",
+          "fr": "Entièrement revêtu de marbre blanc éclatant.",
+          "pt": "Todo revestido de mármore branco reluzente."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Built in 17th-century India by an emperor mourning his wife.",
+          "fr": "Bâti dans l’Inde du XVIIe siècle par un empereur qui pleurait son épouse.",
+          "pt": "Construído na Índia do século XVII por um imperador de luto pela mulher."
+        }
+      },
+      {
+        "text": {
+          "en": "Shah Jahan had 20,000 workers build it over some twenty years.",
+          "fr": "Shah Jahan y a fait travailler 20 000 ouvriers pendant une vingtaine d’années.",
+          "pt": "Shah Jahan pôs 20 000 operários a construí-lo durante cerca de vinte anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Agra’s white mausoleum, mirrored in its long garden pool.",
+          "fr": "Le mausolée blanc d’Agra, reflété dans son long bassin.",
+          "pt": "O mausoléu branco de Agra, espelhado no seu longo lago."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Great Pyramid of Giza",
+        "fr": "Grande Pyramide de Gizeh",
+        "pt": "Grande Pirâmide de Gizé"
+      },
+      {
+        "en": "Blue Mosque",
+        "fr": "Mosquée bleue",
+        "pt": "Mesquita Azul"
+      },
+      {
+        "en": "Sheikh Zayed Grand Mosque",
+        "fr": "Grande Mosquée Cheikh Zayed",
+        "pt": "Grande Mesquita Sheikh Zayed"
+      }
+    ],
+    "homeCountry": null,
+    "id": "taj-mahal",
+    "name": {
+      "en": "Taj Mahal",
+      "fr": "Taj Mahal",
+      "pt": "Taj Mahal"
+    },
+    "tier": "easy",
+    "wikidata": "Q9141"
+  },
+  {
+    "accepted": {
+      "en": ["Great Wall"],
+      "fr": ["Grande Muraille", "Muraille de Chine"],
+      "pt": ["Grande Muralha", "Muralha da China"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A wall a state raised to control its frontier.",
+          "fr": "Un mur élevé par un État pour contrôler sa frontière.",
+          "pt": "Um muro erguido por um Estado para controlar a sua fronteira."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its oldest stretches date back to Antiquity.",
+          "fr": "Ses plus anciens tronçons remontent à l’Antiquité.",
+          "pt": "Os seus troços mais antigos remontam à Antiguidade."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Mostly rebuilt in brick and stone under China’s Ming dynasty.",
+          "fr": "Surtout rebâtie en brique et en pierre sous la dynastie chinoise des Ming.",
+          "pt": "Reconstruída sobretudo em tijolo e pedra pela dinastia Ming, na China."
+        }
+      },
+      {
+        "text": {
+          "en": "Legend says you can see it from the Moon. You can’t: it is far too narrow.",
+          "fr": "On dit qu’on la voit depuis la Lune. C’est faux : elle est bien trop étroite.",
+          "pt": "Diz-se que se vê da Lua. Não é verdade: é demasiado estreita."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "It snakes for over 20,000 km across northern China, from the Gobi to the sea.",
+          "fr": "Elle serpente sur plus de 20 000 km à travers le nord de la Chine.",
+          "pt": "Serpenteia por mais de 20 000 km pelo norte da China."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Western Wall",
+        "fr": "Mur des Lamentations",
+        "pt": "Muro das Lamentações"
+      },
+      {
+        "en": "Berlin Wall",
+        "fr": "Mur de Berlin",
+        "pt": "Muro de Berlim"
+      },
+      {
+        "en": "Hadrian’s Wall",
+        "fr": "Mur d’Hadrien",
+        "pt": "Muralha de Adriano"
+      }
+    ],
+    "homeCountry": null,
+    "id": "great-wall-of-china",
+    "name": {
+      "en": "Great Wall of China",
+      "fr": "Grande Muraille de Chine",
+      "pt": "Grande Muralha da China"
+    },
+    "tier": "easy",
+    "wikidata": "Q12501"
+  },
+  {
+    "accepted": {
+      "en": ["Tower of Pisa", "Pisa Tower", "Pisa"],
+      "fr": ["Pise", "Tour penchée de Pise", "Tour penchée"],
+      "pt": ["Pisa", "Torre inclinada de Pisa", "Torre inclinada"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bell tower built in the Middle Ages.",
+          "fr": "Un clocher construit au Moyen Âge.",
+          "pt": "Uma torre sineira construída na Idade Média."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Clad in pale marble, not brick.",
+          "fr": "Revêtu de marbre clair, et non de brique.",
+          "pt": "Revestida de mármore claro, e não de tijolo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It leans about 4 degrees, beside a cathedral in Tuscany.",
+          "fr": "Il penche d’environ 4 degrés, à côté d’une cathédrale toscane.",
+          "pt": "Inclina cerca de 4 graus, ao lado de uma catedral da Toscana."
+        }
+      },
+      {
+        "text": {
+          "en": "Begun in 1173, it was already tilting by its third floor, on soft clay.",
+          "fr": "Commencé en 1173, il penchait dès le troisième étage, sur une argile molle.",
+          "pt": "Começada em 1173, já inclinava no terceiro piso, sobre argila mole."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Tourists pose “holding it up” on the Piazza dei Miracoli.",
+          "fr": "Les touristes font mine de le retenir, sur la piazza dei Miracoli.",
+          "pt": "Os turistas fingem segurá-la na Piazza dei Miracoli."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Big Ben",
+        "fr": "Big Ben",
+        "pt": "Big Ben"
+      },
+      {
+        "en": "Giralda",
+        "fr": "Giralda",
+        "pt": "Giralda"
+      },
+      {
+        "en": "Giotto’s Campanile",
+        "fr": "Campanile de Giotto",
+        "pt": "Campanário de Giotto"
+      }
+    ],
+    "homeCountry": null,
+    "id": "leaning-tower-of-pisa",
+    "name": {
+      "en": "Leaning Tower of Pisa",
+      "fr": "Tour de Pise",
+      "pt": "Torre de Pisa"
+    },
+    "tier": "easy",
+    "wikidata": "Q39054"
+  },
+  {
+    "accepted": {
+      "en": ["Opera House"],
+      "fr": ["Opera House", "Sydney Opera House"],
+      "pt": ["Sydney Opera House", "Opera House"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A performance hall opened after 1950.",
+          "fr": "Une salle de spectacle inaugurée après 1950.",
+          "pt": "Uma sala de espetáculos inaugurada depois de 1950."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It juts out into the water, with waves on three sides.",
+          "fr": "Elle s’avance sur l’eau, cernée par les flots sur trois côtés.",
+          "pt": "Avança sobre a água, rodeada por ela em três lados."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Opened by Queen Elizabeth II in 1973, in Australia.",
+          "fr": "Inaugurée par Élisabeth II en 1973, en Australie.",
+          "pt": "Inaugurada por Isabel II em 1973, na Austrália."
+        }
+      },
+      {
+        "text": {
+          "en": "Danish architect Jørn Utzon quit mid-build and never saw it finished.",
+          "fr": "Le Danois Jørn Utzon a quitté le chantier et ne l’a jamais vue achevée.",
+          "pt": "O dinamarquês Jørn Utzon abandonou a obra e nunca a viu acabada."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Its white roof shells face the Harbour Bridge across the water.",
+          "fr": "Ses coques blanches font face au Harbour Bridge, de l’autre côté de la baie.",
+          "pt": "As suas conchas brancas olham para a Harbour Bridge, do outro lado da baía."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Palais Garnier",
+        "fr": "Palais Garnier",
+        "pt": "Palácio Garnier"
+      },
+      {
+        "en": "Walt Disney Concert Hall",
+        "fr": "Walt Disney Concert Hall",
+        "pt": "Walt Disney Concert Hall"
+      },
+      {
+        "en": "Elbphilharmonie",
+        "fr": "Elbphilharmonie",
+        "pt": "Elbphilharmonie"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sydney-opera-house",
+    "name": {
+      "en": "Sydney Opera House",
+      "fr": "Opéra de Sydney",
+      "pt": "Ópera de Sydney"
+    },
+    "tier": "easy",
+    "wikidata": "Q45178"
+  },
+  {
+    "accepted": {
+      "en": ["Golden Gate"],
+      "fr": ["Golden Gate", "Golden Gate Bridge"],
+      "pt": ["Golden Gate", "Golden Gate Bridge"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A suspension bridge, its deck hung from cables between two towers.",
+          "fr": "Un pont suspendu, son tablier accroché à des câbles entre deux pylônes.",
+          "pt": "Uma ponte suspensa, com o tabuleiro preso a cabos entre duas torres."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Painted from top to bottom in bright red-orange.",
+          "fr": "Peint de haut en bas d’un rouge orangé vif.",
+          "pt": "Pintada de alto a baixo num vermelho-alaranjado vivo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Opened in 1937 on the Pacific coast of the United States.",
+          "fr": "Ouvert en 1937 sur la côte pacifique des États-Unis.",
+          "pt": "Inaugurada em 1937 na costa do Pacífico dos Estados Unidos."
+        }
+      },
+      {
+        "text": {
+          "en": "Its paint is called International Orange; fog often swallows its towers.",
+          "fr": "Sa teinte s’appelle International Orange ; le brouillard avale souvent ses pylônes.",
+          "pt": "A cor chama-se International Orange; o nevoeiro engole-lhe muitas vezes as torres."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "It spans the strait into San Francisco Bay, toward Marin County.",
+          "fr": "Il franchit le détroit qui ouvre la baie de San Francisco.",
+          "pt": "Atravessa o estreito à entrada da baía de São Francisco."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ponte Vecchio",
+        "fr": "Ponte Vecchio",
+        "pt": "Ponte Vecchio"
+      },
+      {
+        "en": "Brooklyn Bridge",
+        "fr": "Pont de Brooklyn",
+        "pt": "Ponte de Brooklyn"
+      },
+      {
+        "en": "25 de Abril Bridge",
+        "fr": "Pont du 25-Avril",
+        "pt": "Ponte 25 de Abril"
+      }
+    ],
+    "homeCountry": null,
+    "id": "golden-gate-bridge",
+    "name": {
+      "en": "Golden Gate Bridge",
+      "fr": "Pont du Golden Gate",
+      "pt": "Ponte Golden Gate"
+    },
+    "tier": "easy",
+    "wikidata": "Q44440"
+  },
+  {
+    "accepted": {
+      "en": ["Cristo Redentor", "Christ of Corcovado"],
+      "fr": ["Cristo Redentor", "Christ du Corcovado"],
+      "pt": ["Cristo do Corcovado"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A colossal statue of Jesus.",
+          "fr": "Une statue colossale de Jésus.",
+          "pt": "Uma estátua colossal de Jesus."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Perched on a peak more than 700 metres above sea level.",
+          "fr": "Perchée sur un pic à plus de 700 mètres d’altitude.",
+          "pt": "Empoleirada num pico a mais de 700 metros de altitude."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Unveiled in Brazil in 1931, its arms spread 28 metres wide.",
+          "fr": "Inaugurée au Brésil en 1931, les bras ouverts sur 28 mètres.",
+          "pt": "Inaugurada no Brasil em 1931, de braços abertos com 28 metros."
+        }
+      },
+      {
+        "text": {
+          "en": "Concrete under a skin of soapstone tiles; lightning strikes it several times a year.",
+          "fr": "Du béton sous une mosaïque de stéatite ; la foudre la frappe plusieurs fois par an.",
+          "pt": "Betão sob um mosaico de pedra-sabão; os raios atingem-na várias vezes por ano."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Arms open atop Corcovado, it watches over Rio de Janeiro.",
+          "fr": "Bras ouverts au sommet du Corcovado, elle veille sur Rio de Janeiro.",
+          "pt": "De braços abertos no alto do Corcovado, vela pelo Rio de Janeiro."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Statue of Liberty",
+        "fr": "Statue de la Liberté",
+        "pt": "Estátua da Liberdade"
+      },
+      {
+        "en": "Cristo Rei",
+        "fr": "Cristo Rei",
+        "pt": "Cristo Rei"
+      },
+      {
+        "en": "Cristo de la Concordia",
+        "fr": "Christ de la Concorde",
+        "pt": "Cristo da Concórdia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "christ-the-redeemer",
+    "name": {
+      "en": "Christ the Redeemer",
+      "fr": "Christ Rédempteur",
+      "pt": "Cristo Redentor"
+    },
+    "tier": "easy",
+    "wikidata": "Q79961"
+  },
+  {
+    "accepted": {
+      "en": ["Elizabeth Tower"],
+      "fr": ["Elizabeth Tower", "Tour Elizabeth"],
+      "pt": ["Torre Elizabeth", "Elizabeth Tower"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A tower with a clock face on each of its four sides.",
+          "fr": "Une tour avec un cadran d’horloge sur chacune de ses quatre faces.",
+          "pt": "Uma torre com um mostrador de relógio em cada uma das quatro faces."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built in the neo-Gothic style, all pinnacles and pointed arches.",
+          "fr": "De style néogothique, tout en pinacles et en arcs brisés.",
+          "pt": "De estilo neogótico, cheia de pináculos e arcos quebrados."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It rises in London, at one end of the Houses of Parliament.",
+          "fr": "Elle se dresse à Londres, au bout du palais du Parlement.",
+          "pt": "Ergue-se em Londres, numa ponta do Palácio do Parlamento."
+        }
+      },
+      {
+        "text": {
+          "en": "Strictly speaking, its famous name belongs to the 13.7-tonne bell inside.",
+          "fr": "À strictement parler, son nom célèbre est celui de la cloche de 13,7 tonnes qu’elle abrite.",
+          "pt": "Em rigor, o nome famoso é o do sino de 13,7 toneladas lá dentro."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Its bongs ring in the New Year on British TV, by Westminster Bridge.",
+          "fr": "Ses coups sonnent le Nouvel An à la télé britannique, près du pont de Westminster.",
+          "pt": "As suas badaladas marcam o Ano Novo na TV britânica, junto à ponte de Westminster."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Leaning Tower of Pisa",
+        "fr": "Tour de Pise",
+        "pt": "Torre de Pisa"
+      },
+      {
+        "en": "Makkah Royal Clock Tower",
+        "fr": "Tour de l’Horloge de La Mecque",
+        "pt": "Torre do Relógio de Meca"
+      },
+      {
+        "en": "Peace Tower",
+        "fr": "Tour de la Paix",
+        "pt": "Torre da Paz"
+      }
+    ],
+    "homeCountry": null,
+    "id": "big-ben",
+    "name": {
+      "en": "Big Ben",
+      "fr": "Big Ben",
+      "pt": "Big Ben"
+    },
+    "tier": "easy",
+    "wikidata": "Q41225"
+  },
+  {
+    "accepted": {
+      "en": [
+        "Great Pyramid",
+        "Pyramid of Khufu",
+        "Pyramid of Cheops",
+        "Khufu",
+        "Cheops"
+      ],
+      "fr": ["Grande Pyramide", "Pyramide de Khéops", "Khéops"],
+      "pt": ["Grande Pirâmide", "Pirâmide de Quéops", "Quéops"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An ancient pyramid of stone blocks.",
+          "fr": "Une pyramide antique en blocs de pierre.",
+          "pt": "Uma pirâmide antiga de blocos de pedra."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built more than 4,000 years ago.",
+          "fr": "Bâtie il y a plus de 4 000 ans.",
+          "pt": "Construída há mais de 4000 anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Once smooth-sided, 146 m tall: the highest of Egypt’s pyramids.",
+          "fr": "Jadis lisse, haute de 146 m : la plus haute des pyramides d’Égypte.",
+          "pt": "Outrora lisa, com 146 m: a mais alta das pirâmides do Egito."
+        }
+      },
+      {
+        "text": {
+          "en": "For 3,800 years the tallest building on Earth; the last ancient Wonder still standing.",
+          "fr": "Plus haut édifice du monde pendant 3 800 ans, dernière Merveille antique encore debout.",
+          "pt": "O edifício mais alto do mundo durante 3800 anos; a última Maravilha antiga de pé."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Biggest of the three pyramids beside the Sphinx, outside Cairo.",
+          "fr": "La plus grosse des trois pyramides voisines du Sphinx, près du Caire.",
+          "pt": "A maior das três pirâmides junto à Esfinge, perto do Cairo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Louvre Pyramid",
+        "fr": "Pyramide du Louvre",
+        "pt": "Pirâmide do Louvre"
+      },
+      {
+        "en": "Pyramid of the Sun",
+        "fr": "Pyramide du Soleil",
+        "pt": "Pirâmide do Sol"
+      },
+      {
+        "en": "Pyramid of Djoser",
+        "fr": "Pyramide de Djéser",
+        "pt": "Pirâmide de Djoser"
+      }
+    ],
+    "homeCountry": null,
+    "id": "great-pyramid-of-giza",
+    "name": {
+      "en": "Great Pyramid of Giza",
+      "fr": "Grande Pyramide de Gizeh",
+      "pt": "Grande Pirâmide de Gizé"
+    },
+    "tier": "easy",
+    "wikidata": "Q37200"
+  },
+  {
+    "accepted": {
+      "en": ["Burj Dubai"],
+      "fr": ["Burj Dubaï", "Burj Dubai"],
+      "pt": ["Burj Dubai"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A skyscraper finished in the 21st century.",
+          "fr": "Un gratte-ciel achevé au XXIe siècle.",
+          "pt": "Um arranha-céus concluído no século XXI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its tip stands more than 600 metres above the street.",
+          "fr": "Sa pointe culmine à plus de 600 mètres au-dessus de la rue.",
+          "pt": "A ponta eleva-se a mais de 600 metros acima da rua."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It rises 828 metres high, in the United Arab Emirates.",
+          "fr": "Il culmine à 828 mètres, aux Émirats arabes unis.",
+          "pt": "Ergue-se a 828 metros, nos Emirados Árabes Unidos."
+        }
+      },
+      {
+        "text": {
+          "en": "Tom Cruise climbed its glass walls for Mission: Impossible.",
+          "fr": "Tom Cruise a escaladé ses vitres pour Mission impossible.",
+          "pt": "Tom Cruise escalou-lhe as paredes de vidro em Missão Impossível."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Dubai’s silver needle, the world’s tallest building since 2010.",
+          "fr": "L’aiguille d’argent de Dubaï, plus haut gratte-ciel du monde depuis 2010.",
+          "pt": "A agulha prateada do Dubai, o edifício mais alto do mundo desde 2010."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Empire State Building",
+        "fr": "Empire State Building",
+        "pt": "Empire State Building"
+      },
+      {
+        "en": "Taipei 101",
+        "fr": "Taipei 101",
+        "pt": "Taipei 101"
+      },
+      {
+        "en": "Shanghai Tower",
+        "fr": "Tour de Shanghai",
+        "pt": "Torre de Xangai"
+      }
+    ],
+    "homeCountry": null,
+    "id": "burj-khalifa",
+    "name": {
+      "en": "Burj Khalifa",
+      "fr": "Burj Khalifa",
+      "pt": "Burj Khalifa"
+    },
+    "tier": "easy",
+    "wikidata": "Q12495"
+  },
+  {
+    "accepted": {
+      "en": ["Machu Pichu"],
+      "fr": ["Machu Pichu"],
+      "pt": ["Machu Pichu"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Stone ruins hidden among steep mountains.",
+          "fr": "Des ruines de pierre cachées dans des montagnes escarpées.",
+          "pt": "Ruínas de pedra escondidas entre montanhas íngremes."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built by the Incas in the 15th century.",
+          "fr": "Bâties par les Incas au XVe siècle.",
+          "pt": "Construídas pelos incas no século XV."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Unknown to the outside world until Hiram Bingham reached them in 1911.",
+          "fr": "Inconnues du monde extérieur jusqu’à ce que Hiram Bingham les atteigne en 1911.",
+          "pt": "Desconhecidas do mundo até Hiram Bingham lá chegar em 1911."
+        }
+      },
+      {
+        "text": {
+          "en": "In Peru, reached by train to Aguas Calientes, then a bus up the switchbacks.",
+          "fr": "Au Pérou, on y monte en train jusqu’à Aguas Calientes, puis en bus par les lacets.",
+          "pt": "No Peru, chega-se de comboio a Aguas Calientes e depois de autocarro pelas curvas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Inca citadel on its ridge above the Urubamba, emblem of Peru.",
+          "fr": "La citadelle inca perchée au-dessus de l’Urubamba, emblème du Pérou.",
+          "pt": "A cidadela inca sobre o rio Urubamba, emblema do Peru."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Carthage",
+        "fr": "Carthage",
+        "pt": "Cartago"
+      },
+      {
+        "en": "Petra",
+        "fr": "Pétra",
+        "pt": "Petra"
+      },
+      {
+        "en": "Sacsayhuamán",
+        "fr": "Sacsayhuamán",
+        "pt": "Sacsayhuamán"
+      }
+    ],
+    "homeCountry": null,
+    "id": "machu-picchu",
+    "name": {
+      "en": "Machu Picchu",
+      "fr": "Machu Picchu",
+      "pt": "Machu Picchu"
+    },
+    "tier": "easy",
+    "wikidata": "Q676203"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Raised more than 4,000 years ago by people with no writing.",
+          "fr": "Élevé il y a plus de 4 000 ans par un peuple sans écriture.",
+          "pt": "Erguido há mais de 4000 anos por um povo sem escrita."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its standing stones form a ring.",
+          "fr": "Ses pierres dressées forment un cercle.",
+          "pt": "As suas pedras erguidas formam um círculo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On Salisbury Plain in England; some of its uprights are capped with lintels.",
+          "fr": "Dans la plaine de Salisbury, en Angleterre ; certains blocs portent des linteaux.",
+          "pt": "Na planície de Salisbury, em Inglaterra; algumas pedras sustentam lintéis."
+        }
+      },
+      {
+        "text": {
+          "en": "Some of its bluestones were hauled about 240 km from the hills of Wales.",
+          "fr": "Certaines de ses pierres bleues ont été traînées sur quelque 240 km depuis le pays de Galles.",
+          "pt": "Algumas pedras azuis foram arrastadas cerca de 240 km desde o País de Gales."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Druids greet the summer solstice sunrise over its Heel Stone, in Wiltshire.",
+          "fr": "Les druides y saluent le lever du soleil du solstice d’été, dans le Wiltshire.",
+          "pt": "Os druidas saúdam lá o nascer do sol no solstício de verão, no Wiltshire."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Moai of Easter Island",
+        "fr": "Moaïs de l’île de Pâques",
+        "pt": "Moais da Ilha de Páscoa"
+      },
+      {
+        "en": "Carnac stones",
+        "fr": "Alignements de Carnac",
+        "pt": "Alinhamentos de Carnac"
+      },
+      {
+        "en": "Avebury",
+        "fr": "Avebury",
+        "pt": "Avebury"
+      }
+    ],
+    "homeCountry": null,
+    "id": "stonehenge",
+    "name": {
+      "en": "Stonehenge",
+      "fr": "Stonehenge",
+      "pt": "Stonehenge"
+    },
+    "tier": "easy",
+    "wikidata": "Q39671"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A church whose first stone was laid in the 19th century.",
+          "fr": "Une église dont la première pierre a été posée au XIXe siècle.",
+          "pt": "Uma igreja cuja primeira pedra foi lançada no século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "More than a century later, it still isn’t finished.",
+          "fr": "Plus d’un siècle après, elle n’est toujours pas terminée.",
+          "pt": "Mais de um século depois, continua por acabar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its architect gave it 43 years of his life, in Barcelona.",
+          "fr": "Son architecte lui a consacré 43 ans de sa vie, à Barcelone.",
+          "pt": "O seu arquiteto dedicou-lhe 43 anos da vida, em Barcelona."
+        }
+      },
+      {
+        "text": {
+          "en": "Gaudí lies in its crypt; he died after being hit by a tram in 1926.",
+          "fr": "Gaudí repose dans sa crypte ; il est mort renversé par un tramway en 1926.",
+          "pt": "Gaudí jaz na cripta; morreu atropelado por um elétrico em 1926."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Barcelona’s basilica of tree-like columns, consecrated by Benedict XVI in 2010.",
+          "fr": "La basilique aux colonnes-arbres de Barcelone, consacrée par Benoît XVI en 2010.",
+          "pt": "A basílica das colunas-árvore de Barcelona, consagrada por Bento XVI em 2010."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Notre-Dame de Paris",
+        "fr": "Notre-Dame de Paris",
+        "pt": "Notre-Dame de Paris"
+      },
+      {
+        "en": "Sacré-Cœur Basilica",
+        "fr": "Basilique du Sacré-Cœur",
+        "pt": "Basílica do Sacré-Cœur"
+      },
+      {
+        "en": "Cathedral of St. John the Divine",
+        "fr": "Cathédrale Saint-Jean-le-Théologien",
+        "pt": "Catedral de São João, o Divino"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sagrada-familia",
+    "name": {
+      "en": "Sagrada Família",
+      "fr": "Sagrada Família",
+      "pt": "Sagrada Família"
+    },
+    "tier": "easy",
+    "wikidata": "Q48435"
+  },
+  {
+    "accepted": {
+      "en": ["Arch of Triumph", "Arc de Triomphe de l’Étoile"],
+      "fr": ["Arc de l’Étoile", "Arc de Triomphe de l’Étoile"],
+      "pt": ["Arc de Triomphe"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A monumental arch raised to celebrate military victories.",
+          "fr": "Un arc monumental élevé pour célébrer des victoires militaires.",
+          "pt": "Um arco monumental erguido para celebrar vitórias militares."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built in the 19th century.",
+          "fr": "Construit au XIXe siècle.",
+          "pt": "Construído no século XIX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Napoleon ordered it in 1806 for Paris, after Austerlitz.",
+          "fr": "Napoléon l’a commandé en 1806 pour Paris, après Austerlitz.",
+          "pt": "Napoleão encomendou-o em 1806 para Paris, depois de Austerlitz."
+        }
+      },
+      {
+        "text": {
+          "en": "The Unknown Soldier lies beneath it; his flame is rekindled every evening.",
+          "fr": "Le Soldat inconnu repose dessous ; sa flamme est ravivée chaque soir.",
+          "pt": "O Soldado Desconhecido repousa por baixo; a chama é reavivada todas as noites."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "It crowns the Champs-Élysées, in the middle of a twelve-avenue roundabout.",
+          "fr": "Il couronne les Champs-Élysées, au centre d’un rond-point à douze avenues.",
+          "pt": "Coroa os Campos Elísios, no centro de uma rotunda de doze avenidas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gateway Arch",
+        "fr": "Gateway Arch",
+        "pt": "Gateway Arch"
+      },
+      {
+        "en": "Arch of Constantine",
+        "fr": "Arc de Constantin",
+        "pt": "Arco de Constantino"
+      },
+      {
+        "en": "Wellington Arch",
+        "fr": "Wellington Arch",
+        "pt": "Arco de Wellington"
+      }
+    ],
+    "homeCountry": null,
+    "id": "arc-de-triomphe",
+    "name": {
+      "en": "Arc de Triomphe",
+      "fr": "Arc de Triomphe",
+      "pt": "Arco do Triunfo"
+    },
+    "tier": "easy",
+    "wikidata": "Q64436"
+  },
+  {
+    "accepted": {
+      "en": ["Notre-Dame", "Notre Dame", "Notre Dame Cathedral"],
+      "fr": ["Notre-Dame", "Notre Dame"],
+      "pt": ["Notre-Dame", "Notre Dame"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Gothic church built in the Middle Ages.",
+          "fr": "Une église gothique bâtie au Moyen Âge.",
+          "pt": "Uma igreja gótica construída na Idade Média."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its west front rises in two square towers, with no spires on top.",
+          "fr": "Sa façade ouest s’élève en deux tours carrées, sans flèches au sommet.",
+          "pt": "A fachada ocidental ergue-se em duas torres quadradas, sem flechas no topo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It stands on an island in the Seine, in the heart of Paris.",
+          "fr": "Elle se dresse sur une île de la Seine, au cœur de Paris.",
+          "pt": "Ergue-se numa ilha do Sena, no coração de Paris."
+        }
+      },
+      {
+        "text": {
+          "en": "Fire brought down its spire in April 2019; it reopened in December 2024.",
+          "fr": "Un incendie a abattu sa flèche en avril 2019 ; elle a rouvert en décembre 2024.",
+          "pt": "Um incêndio derrubou-lhe a flecha em abril de 2019; reabriu em dezembro de 2024."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Quasimodo rang its bells in Victor Hugo’s novel.",
+          "fr": "Quasimodo en sonnait les cloches dans le roman de Victor Hugo.",
+          "pt": "Quasímodo tocava-lhe os sinos no romance de Victor Hugo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sagrada Família",
+        "fr": "Sagrada Família",
+        "pt": "Sagrada Família"
+      },
+      {
+        "en": "Cologne Cathedral",
+        "fr": "Cathédrale de Cologne",
+        "pt": "Catedral de Colónia"
+      },
+      {
+        "en": "Westminster Abbey",
+        "fr": "Abbaye de Westminster",
+        "pt": "Abadia de Westminster"
+      }
+    ],
+    "homeCountry": null,
+    "id": "notre-dame-de-paris",
+    "name": {
+      "en": "Notre-Dame de Paris",
+      "fr": "Notre-Dame de Paris",
+      "pt": "Notre-Dame de Paris"
+    },
+    "tier": "easy",
+    "wikidata": "Q2981"
+  },
+  {
+    "accepted": {
+      "en": ["Everest", "Sagarmatha", "Chomolungma", "Qomolangma"],
+      "fr": ["Everest", "Sagarmatha", "Chomolungma"],
+      "pt": ["Everest", "Evereste", "Sagarmatha", "Chomolungma"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A peak more than 8,000 metres high.",
+          "fr": "Un sommet de plus de 8 000 mètres.",
+          "pt": "Um pico com mais de 8000 metros."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "From the south, climbers approach it through the Khumbu Icefall.",
+          "fr": "Par le sud, les alpinistes l’abordent par la cascade de glace du Khumbu.",
+          "pt": "Pelo sul, os alpinistas chegam lá pela cascata de gelo do Khumbu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Earth’s highest point, 8,849 m, on the border of Nepal and China.",
+          "fr": "Le point culminant de la Terre, 8 849 m, entre le Népal et la Chine.",
+          "pt": "O ponto mais alto da Terra, 8849 m, entre o Nepal e a China."
+        }
+      },
+      {
+        "text": {
+          "en": "Hillary and Tenzing Norgay first stood on top on 29 May 1953.",
+          "fr": "Hillary et Tenzing Norgay en ont atteint le sommet le 29 mai 1953.",
+          "pt": "Hillary e Tenzing Norgay chegaram ao cume a 29 de maio de 1953."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The roof of the world, named after a British surveyor of India.",
+          "fr": "Le toit du monde, baptisé du nom d’un géographe britannique en poste en Inde.",
+          "pt": "O teto do mundo, batizado com o nome de um geógrafo britânico na Índia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mont Blanc",
+        "fr": "Mont Blanc",
+        "pt": "Monte Branco"
+      },
+      {
+        "en": "K2",
+        "fr": "K2",
+        "pt": "K2"
+      },
+      {
+        "en": "Lhotse",
+        "fr": "Lhotse",
+        "pt": "Lhotse"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mount-everest",
+    "name": {
+      "en": "Mount Everest",
+      "fr": "Mont Everest",
+      "pt": "Monte Evereste"
+    },
+    "tier": "easy",
+    "wikidata": "Q513"
+  },
+  {
+    "accepted": {
+      "en": ["Empire State"],
+      "fr": ["Empire State"],
+      "pt": ["Empire State"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Art Deco skyscraper of the early 1930s.",
+          "fr": "Un gratte-ciel Art déco du début des années 1930.",
+          "pt": "Um arranha-céus art déco do início dos anos 1930."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It once held the title of tallest building in the world.",
+          "fr": "Il a détenu le titre de plus haut immeuble du monde.",
+          "pt": "Já foi o edifício mais alto do mundo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its 102 floors went up in just 410 days, opening in 1931.",
+          "fr": "Ses 102 étages ont poussé en 410 jours seulement, pour ouvrir en 1931.",
+          "pt": "Os seus 102 andares ergueram-se em apenas 410 dias; abriu em 1931."
+        }
+      },
+      {
+        "text": {
+          "en": "King Kong clung to its spire, swatting at planes, in 1933.",
+          "fr": "King Kong s’accrochait à sa flèche en chassant les avions, en 1933.",
+          "pt": "King Kong agarrou-se ao seu pináculo, a enxotar aviões, em 1933."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Midtown Manhattan’s tower on Fifth Avenue, lit in new colours every night.",
+          "fr": "La tour de Midtown, sur la Cinquième Avenue, éclairée de couleurs chaque nuit.",
+          "pt": "A torre de Midtown, na Quinta Avenida, iluminada de cores todas as noites."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Burj Khalifa",
+        "fr": "Burj Khalifa",
+        "pt": "Burj Khalifa"
+      },
+      {
+        "en": "Rockefeller Center",
+        "fr": "Rockefeller Center",
+        "pt": "Rockefeller Center"
+      },
+      {
+        "en": "Chrysler Building",
+        "fr": "Chrysler Building",
+        "pt": "Chrysler Building"
+      }
+    ],
+    "homeCountry": null,
+    "id": "empire-state-building",
+    "name": {
+      "en": "Empire State Building",
+      "fr": "Empire State Building",
+      "pt": "Empire State Building"
+    },
+    "tier": "easy",
+    "wikidata": "Q9188"
+  },
+  {
+    "accepted": {
+      "en": ["Fuji", "Fujiyama", "Fuji-san", "Fujisan"],
+      "fr": ["Fuji", "Fujiyama", "Fuji-san"],
+      "pt": ["Fuji", "Fujiyama", "Fuji-san"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A volcano that could still wake up.",
+          "fr": "Un volcan qui pourrait encore se réveiller.",
+          "pt": "Um vulcão que ainda pode despertar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its summit stands more than 3,500 metres high.",
+          "fr": "Son sommet dépasse les 3 500 mètres.",
+          "pt": "O cume ultrapassa os 3500 metros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Japan’s highest peak; it last erupted in 1707.",
+          "fr": "Le plus haut sommet du Japon ; sa dernière éruption date de 1707.",
+          "pt": "O pico mais alto do Japão; a última erupção foi em 1707."
+        }
+      },
+      {
+        "text": {
+          "en": "Hokusai painted thirty-six views of it; climbers go up in July and August.",
+          "fr": "Hokusai en a peint trente-six vues ; on en fait l’ascension en juillet et août.",
+          "pt": "Hokusai pintou-lhe trinta e seis vistas; sobe-se em julho e agosto."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The snow-capped sacred cone seen from Tokyo on clear days.",
+          "fr": "Le cône sacré enneigé qu’on aperçoit de Tokyo par temps clair.",
+          "pt": "O cone sagrado nevado que se avista de Tóquio em dias limpos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Matterhorn",
+        "fr": "Cervin",
+        "pt": "Matterhorn"
+      },
+      {
+        "en": "Mount Vesuvius",
+        "fr": "Vésuve",
+        "pt": "Vesúvio"
+      },
+      {
+        "en": "Mount Kilimanjaro",
+        "fr": "Kilimandjaro",
+        "pt": "Quilimanjaro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mount-fuji",
+    "name": {
+      "en": "Mount Fuji",
+      "fr": "Mont Fuji",
+      "pt": "Monte Fuji"
+    },
+    "tier": "easy",
+    "wikidata": "Q39231"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A gorge carved by a river.",
+          "fr": "Une gorge creusée par une rivière.",
+          "pt": "Um desfiladeiro escavado por um rio."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "In places more than 1,500 metres deep.",
+          "fr": "Profonde de plus de 1 500 mètres par endroits.",
+          "pt": "Com mais de 1500 metros de profundidade em certos pontos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Carved by the Colorado River, in the United States.",
+          "fr": "Creusée par le fleuve Colorado, aux États-Unis.",
+          "pt": "Escavado pelo rio Colorado, nos Estados Unidos."
+        }
+      },
+      {
+        "text": {
+          "en": "Its walls show nearly two billion years of rock; a glass skywalk juts out over it.",
+          "fr": "Ses parois montrent près de deux milliards d’années de roche ; une passerelle de verre la surplombe.",
+          "pt": "As paredes mostram quase dois mil milhões de anos de rocha; uma passarela de vidro sobrevoa-o."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Arizona’s mile-deep chasm, 446 km long, a national park since 1919.",
+          "fr": "Le gouffre de l’Arizona, long de 446 km, parc national depuis 1919.",
+          "pt": "O abismo do Arizona, com 446 km, parque nacional desde 1919."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Uluru",
+        "fr": "Uluru",
+        "pt": "Uluru"
+      },
+      {
+        "en": "Verdon Gorge",
+        "fr": "Gorges du Verdon",
+        "pt": "Garganta do Verdon"
+      },
+      {
+        "en": "Colca Canyon",
+        "fr": "Canyon de Colca",
+        "pt": "Desfiladeiro do Colca"
+      }
+    ],
+    "homeCountry": null,
+    "id": "grand-canyon",
+    "name": {
+      "en": "Grand Canyon",
+      "fr": "Grand Canyon",
+      "pt": "Grand Canyon"
+    },
+    "tier": "easy",
+    "wikidata": "Q118841"
+  },
+  {
+    "accepted": {
+      "en": ["Niagara", "Horseshoe Falls"],
+      "fr": ["Niagara", "Chutes Horseshoe"],
+      "pt": ["Niágara", "Niagara"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Waterfalls that straddle the border between two countries.",
+          "fr": "Des chutes à cheval sur la frontière entre deux pays.",
+          "pt": "Quedas de água a cavalo na fronteira entre dois países."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Their main fall curves round in a great horseshoe.",
+          "fr": "Leur chute principale dessine un grand fer à cheval.",
+          "pt": "A queda principal desenha uma grande ferradura."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On the border between Canada and the United States.",
+          "fr": "À la frontière entre le Canada et les États-Unis.",
+          "pt": "Na fronteira entre o Canadá e os Estados Unidos."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1901 a 63-year-old teacher went over them in a barrel, and lived.",
+          "fr": "En 1901, une institutrice de 63 ans les a franchies dans un tonneau, et a survécu.",
+          "pt": "Em 1901, uma professora de 63 anos desceu-as dentro de um barril, e sobreviveu."
+        }
+      },
+      {
+        "text": {
+          "en": "The Maid of the Mist boats sail into their spray, between Lakes Erie and Ontario.",
+          "fr": "Les bateaux Maid of the Mist foncent dans leurs embruns, entre les lacs Érié et Ontario.",
+          "pt": "Os barcos Maid of the Mist entram na sua espuma, entre os lagos Erie e Ontário."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Angel Falls",
+        "fr": "Salto Ángel",
+        "pt": "Salto Ángel"
+      },
+      {
+        "en": "Victoria Falls",
+        "fr": "Chutes Victoria",
+        "pt": "Cataratas Vitória"
+      },
+      {
+        "en": "Iguazu Falls",
+        "fr": "Chutes d’Iguazú",
+        "pt": "Cataratas do Iguaçu"
+      }
+    ],
+    "homeCountry": null,
+    "id": "niagara-falls",
+    "name": {
+      "en": "Niagara Falls",
+      "fr": "Chutes du Niagara",
+      "pt": "Cataratas do Niágara"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bridge built in the late 1800s.",
+          "fr": "Un pont construit à la fin du XIXe siècle.",
+          "pt": "Uma ponte construída no final do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It crosses a river in the heart of a capital city.",
+          "fr": "Il franchit un fleuve au cœur d’une capitale.",
+          "pt": "Atravessa um rio no coração de uma capital."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Over the Thames in London, its two road decks lift to let ships pass.",
+          "fr": "Sur la Tamise, à Londres, ses deux tabliers se lèvent pour laisser passer les navires.",
+          "pt": "Sobre o Tamisa, em Londres, os dois tabuleiros levantam-se para deixar passar os navios."
+        }
+      },
+      {
+        "text": {
+          "en": "Opened in 1894; its high walkways closed in 1910 for lack of walkers.",
+          "fr": "Ouvert en 1894 ; ses passerelles hautes ont fermé en 1910, faute de piétons.",
+          "pt": "Abriu em 1894; os passadiços altos fecharam em 1910 por falta de peões."
+        }
+      },
+      {
+        "text": {
+          "en": "London’s twin-towered drawbridge, often mistaken for London Bridge.",
+          "fr": "Le pont-levis à deux tours de Londres, souvent pris pour le London Bridge.",
+          "pt": "A ponte levadiça de duas torres de Londres, muitas vezes confundida com a London Bridge."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Golden Gate Bridge",
+        "fr": "Pont du Golden Gate",
+        "pt": "Ponte Golden Gate"
+      },
+      {
+        "en": "Brooklyn Bridge",
+        "fr": "Pont de Brooklyn",
+        "pt": "Ponte de Brooklyn"
+      },
+      {
+        "en": "Pont Alexandre III",
+        "fr": "Pont Alexandre-III",
+        "pt": "Ponte Alexandre III"
+      }
+    ],
+    "homeCountry": null,
+    "id": "tower-bridge",
+    "name": {
+      "en": "Tower Bridge",
+      "fr": "Tower Bridge",
+      "pt": "Tower Bridge"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Mont Saint Michel"],
+      "fr": ["Mont Saint Michel"],
+      "pt": ["Mont Saint-Michel", "Mont-Saint-Michel"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A rocky island crowned by an abbey or a chapel.",
+          "fr": "Une île rocheuse couronnée par une abbaye ou une chapelle.",
+          "pt": "Uma ilha rochosa coroada por uma abadia ou uma capela."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "At low tide you can walk out to it.",
+          "fr": "À marée basse, on peut y aller à pied.",
+          "pt": "Na maré baixa, pode-se lá chegar a pé."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In France, where Normandy meets Brittany.",
+          "fr": "En France, à la limite de la Normandie et de la Bretagne.",
+          "pt": "Em França, no limite entre a Normandia e a Bretanha."
+        }
+      },
+      {
+        "text": {
+          "en": "Its tides are among Europe’s strongest; a golden archangel tops the abbey spire.",
+          "fr": "Ses marées comptent parmi les plus fortes d’Europe ; un archange doré coiffe la flèche.",
+          "pt": "As suas marés estão entre as mais fortes da Europa; um arcanjo dourado coroa a flecha."
+        }
+      },
+      {
+        "text": {
+          "en": "Normandy’s walled abbey rock, reached by a footbridge since 2014.",
+          "fr": "Le rocher-abbaye fortifié de Normandie, relié par une passerelle depuis 2014.",
+          "pt": "O rochedo-abadia muralhado da Normandia, ligado por uma passarela desde 2014."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Meteora",
+        "fr": "Météores",
+        "pt": "Meteora"
+      },
+      {
+        "en": "Skellig Michael",
+        "fr": "Skellig Michael",
+        "pt": "Skellig Michael"
+      },
+      {
+        "en": "St Michael’s Mount",
+        "fr": "St Michael’s Mount",
+        "pt": "St Michael’s Mount"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mont-saint-michel",
+    "name": {
+      "en": "Mont-Saint-Michel",
+      "fr": "Mont-Saint-Michel",
+      "pt": "Monte Saint-Michel"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Monuments carved straight into a cliff face.",
+          "fr": "Des monuments taillés à même la falaise.",
+          "pt": "Monumentos esculpidos diretamente na falésia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Carved by the Nabataeans, caravan traders of the desert.",
+          "fr": "Taillés par les Nabatéens, marchands caravaniers du désert.",
+          "pt": "Esculpidos pelos nabateus, mercadores caravaneiros do deserto."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In Jordan, entered through a narrow gorge called the Siq.",
+          "fr": "En Jordanie, on y entre par une gorge étroite, le Siq.",
+          "pt": "Na Jordânia, entra-se por um desfiladeiro estreito, o Siq."
+        }
+      },
+      {
+        "text": {
+          "en": "Indiana Jones rides up to its Treasury in The Last Crusade.",
+          "fr": "Indiana Jones arrive à cheval devant son Trésor dans La Dernière Croisade.",
+          "pt": "Indiana Jones chega a cavalo ao seu Tesouro, no terceiro filme da saga."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Jordan’s rose-red city, its Treasury carved from sandstone.",
+          "fr": "La cité rose de Jordanie, son Trésor sculpté dans le grès.",
+          "pt": "A cidade rosa da Jordânia, com o Tesouro esculpido no arenito."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Machu Picchu",
+        "fr": "Machu Picchu",
+        "pt": "Machu Picchu"
+      },
+      {
+        "en": "Abu Simbel",
+        "fr": "Abou Simbel",
+        "pt": "Abu Simbel"
+      },
+      {
+        "en": "Hegra",
+        "fr": "Hégra",
+        "pt": "Hegra"
+      }
+    ],
+    "homeCountry": null,
+    "id": "petra",
+    "name": {
+      "en": "Petra",
+      "fr": "Pétra",
+      "pt": "Petra"
+    },
+    "tier": "medium",
+    "wikidata": "Q5788"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A stepped stone pyramid rises at its heart.",
+          "fr": "Une pyramide de pierre à degrés se dresse en son centre.",
+          "pt": "Uma pirâmide de pedra em degraus ergue-se no seu centro."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built by the Maya.",
+          "fr": "Bâtie par les Mayas.",
+          "pt": "Construída pelos maias."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On the Yucatán Peninsula, in Mexico.",
+          "fr": "Sur la péninsule du Yucatán, au Mexique.",
+          "pt": "Na península do Iucatão, no México."
+        }
+      },
+      {
+        "text": {
+          "en": "At the equinoxes, light draws a serpent sliding down its pyramid’s steps.",
+          "fr": "Aux équinoxes, la lumière dessine un serpent qui descend les marches de sa pyramide.",
+          "pt": "Nos equinócios, a luz desenha uma serpente a descer os degraus da pirâmide."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Maya city of the Kukulcán pyramid, a day trip from Cancún.",
+          "fr": "La cité maya de la pyramide de Kukulcán, à une excursion de Cancún.",
+          "pt": "A cidade maia da pirâmide de Kukulcán, a um passeio de Cancún."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Machu Picchu",
+        "fr": "Machu Picchu",
+        "pt": "Machu Picchu"
+      },
+      {
+        "en": "Teotihuacan",
+        "fr": "Teotihuacan",
+        "pt": "Teotihuacan"
+      },
+      {
+        "en": "Tikal",
+        "fr": "Tikal",
+        "pt": "Tikal"
+      }
+    ],
+    "homeCountry": null,
+    "id": "chichen-itza",
+    "name": {
+      "en": "Chichén Itzá",
+      "fr": "Chichén Itzá",
+      "pt": "Chichén Itzá"
+    },
+    "tier": "medium",
+    "wikidata": "Q5859"
+  },
+  {
+    "accepted": {
+      "en": ["Angkor"],
+      "fr": ["Angkor", "Angkor Wat"],
+      "pt": ["Angkor", "Angkor Vat"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A vast temple of carved stone.",
+          "fr": "Un immense temple de pierre sculptée.",
+          "pt": "Um imenso templo de pedra esculpida."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built as a Hindu temple.",
+          "fr": "Bâti à l’origine comme un temple hindou.",
+          "pt": "Construído de início como templo hindu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In Cambodia; the largest religious monument on Earth.",
+          "fr": "Au Cambodge ; le plus grand monument religieux du monde.",
+          "pt": "No Camboja; o maior monumento religioso do mundo."
+        }
+      },
+      {
+        "text": {
+          "en": "Its five towers stand for Mount Meru; built under Suryavarman II in the 12th century.",
+          "fr": "Ses cinq tours figurent le mont Meru ; bâti sous Suryavarman II au XIIe siècle.",
+          "pt": "As cinco torres representam o monte Meru; erguido sob Suryavarman II no século XII."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The temple on Cambodia’s flag, near Siem Reap.",
+          "fr": "Le temple du drapeau cambodgien, près de Siem Reap.",
+          "pt": "O templo da bandeira do Camboja, perto de Siem Reap."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Taj Mahal",
+        "fr": "Taj Mahal",
+        "pt": "Taj Mahal"
+      },
+      {
+        "en": "Borobudur",
+        "fr": "Borobudur",
+        "pt": "Borobudur"
+      },
+      {
+        "en": "Prambanan",
+        "fr": "Prambanan",
+        "pt": "Prambanan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "angkor-wat",
+    "name": {
+      "en": "Angkor Wat",
+      "fr": "Angkor Vat",
+      "pt": "Angkor Wat"
+    },
+    "tier": "medium",
+    "wikidata": "Q43473"
+  },
+  {
+    "accepted": {
+      "en": ["Versailles", "Chateau de Versailles"],
+      "fr": ["Versailles"],
+      "pt": ["Versalhes", "Versailles"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A royal residence built between 1600 and 1750.",
+          "fr": "Une résidence royale bâtie entre 1600 et 1750.",
+          "pt": "Uma residência real construída entre 1600 e 1750."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its formal gardens are famous for their great fountain displays.",
+          "fr": "Ses jardins à la française sont célèbres pour leurs grands jeux d’eau.",
+          "pt": "Os jardins formais são famosos pelos seus grandes jogos de água."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Louis XIV moved his court and government there, outside Paris.",
+          "fr": "Louis XIV y a installé sa cour et son gouvernement, hors de Paris.",
+          "pt": "Luís XIV instalou lá a corte e o governo, fora de Paris."
+        }
+      },
+      {
+        "text": {
+          "en": "In its Hall of Mirrors, the treaty ending the First World War was signed.",
+          "fr": "Dans sa galerie des Glaces fut signé le traité qui clôt la Première Guerre mondiale.",
+          "pt": "Na Galeria dos Espelhos assinou-se o tratado que pôs fim à Primeira Guerra Mundial."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Sun King’s palace, home of Marie Antoinette, west of Paris.",
+          "fr": "Le palais du Roi-Soleil et de Marie-Antoinette, à l’ouest de Paris.",
+          "pt": "O palácio do Rei Sol e de Maria Antonieta, a oeste de Paris."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Alhambra",
+        "fr": "Alhambra",
+        "pt": "Alhambra"
+      },
+      {
+        "en": "Buckingham Palace",
+        "fr": "Palais de Buckingham",
+        "pt": "Palácio de Buckingham"
+      },
+      {
+        "en": "Peterhof Palace",
+        "fr": "Peterhof",
+        "pt": "Palácio de Peterhof"
+      }
+    ],
+    "homeCountry": null,
+    "id": "palace-of-versailles",
+    "name": {
+      "en": "Palace of Versailles",
+      "fr": "Château de Versailles",
+      "pt": "Palácio de Versalhes"
+    },
+    "tier": "medium",
+    "wikidata": "Q2946"
+  },
+  {
+    "accepted": {
+      "en": ["Neuschwanstein"],
+      "fr": ["Neuschwanstein"],
+      "pt": ["Neuschwanstein"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A castle built in the 19th century, in a medieval style.",
+          "fr": "Un château bâti au XIXe siècle dans un style médiéval.",
+          "pt": "Um castelo construído no século XIX, em estilo medieval."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It stands in the foothills of the Alps.",
+          "fr": "Il se dresse au pied des Alpes.",
+          "pt": "Ergue-se no sopé dos Alpes."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Ludwig II of Bavaria, the “fairy-tale king”, ordered it in 1868.",
+          "fr": "Louis II de Bavière, le « roi de conte de fées », l’a commandé en 1868.",
+          "pt": "Luís II da Baviera, o «rei dos contos de fadas», encomendou-o em 1868."
+        }
+      },
+      {
+        "text": {
+          "en": "Its king died before it was finished; it opened to visitors seven weeks later.",
+          "fr": "Son roi est mort avant la fin des travaux ; le public y entrait sept semaines plus tard.",
+          "pt": "O rei morreu antes de o ver acabado; abriu ao público sete semanas depois."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The white castle that inspired Sleeping Beauty’s at Disneyland.",
+          "fr": "Le château blanc qui a inspiré celui de la Belle au bois dormant à Disneyland.",
+          "pt": "O castelo branco que inspirou o da Bela Adormecida na Disneylândia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Edinburgh Castle",
+        "fr": "Château d’Édimbourg",
+        "pt": "Castelo de Edimburgo"
+      },
+      {
+        "en": "Pena Palace",
+        "fr": "Palais de Pena",
+        "pt": "Palácio da Pena"
+      },
+      {
+        "en": "Hohenschwangau Castle",
+        "fr": "Château de Hohenschwangau",
+        "pt": "Castelo de Hohenschwangau"
+      }
+    ],
+    "homeCountry": null,
+    "id": "neuschwanstein",
+    "name": {
+      "en": "Neuschwanstein Castle",
+      "fr": "Château de Neuschwanstein",
+      "pt": "Castelo de Neuschwanstein"
+    },
+    "tier": "medium",
+    "wikidata": "Q4152"
+  },
+  {
+    "accepted": {
+      "en": ["Brandenburger Tor"],
+      "fr": ["Brandenburger Tor"],
+      "pt": ["Brandenburger Tor"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Neoclassical monumental gateway.",
+          "fr": "Une porte monumentale néoclassique.",
+          "pt": "Uma porta monumental neoclássica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Topped by a chariot drawn by four horses.",
+          "fr": "Surmontée d’un char tiré par quatre chevaux.",
+          "pt": "Encimada por um carro puxado por quatro cavalos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In Berlin; the Wall ran right beside it until 1989.",
+          "fr": "À Berlin ; le Mur passait juste à côté jusqu’en 1989.",
+          "pt": "Em Berlim; o Muro passava mesmo ao lado até 1989."
+        }
+      },
+      {
+        "text": {
+          "en": "Napoleon carried its chariot off to Paris in 1806; Prussia took it back in 1814.",
+          "fr": "Napoléon emporta son quadrige à Paris en 1806 ; la Prusse le reprit en 1814.",
+          "pt": "Napoleão levou a quadriga para Paris em 1806; a Prússia recuperou-a em 1814."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Berlin’s sandstone gate on Pariser Platz, the city’s symbol of reunification.",
+          "fr": "La porte de grès de la Pariser Platz, symbole de Berlin réunifié.",
+          "pt": "A porta de arenito da Pariser Platz, símbolo de Berlim reunificada."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ishtar Gate",
+        "fr": "Porte d’Ishtar",
+        "pt": "Porta de Ishtar"
+      },
+      {
+        "en": "Arc de Triomphe",
+        "fr": "Arc de Triomphe",
+        "pt": "Arco do Triunfo"
+      },
+      {
+        "en": "Wellington Arch",
+        "fr": "Wellington Arch",
+        "pt": "Arco de Wellington"
+      }
+    ],
+    "homeCountry": null,
+    "id": "brandenburg-gate",
+    "name": {
+      "en": "Brandenburg Gate",
+      "fr": "Porte de Brandebourg",
+      "pt": "Porta de Brandemburgo"
+    },
+    "tier": "medium",
+    "wikidata": "Q82425"
+  },
+  {
+    "accepted": {
+      "en": ["Palace Museum"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Halls of wood on stone terraces, under curved tiled roofs.",
+          "fr": "Des salles en bois sur des terrasses de pierre, sous des toits de tuiles recourbés.",
+          "pt": "Salões de madeira sobre terraços de pedra, sob telhados curvos de telha."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its roofs glow imperial yellow, a colour once kept for the emperor.",
+          "fr": "Ses toits brillent du jaune impérial, couleur jadis réservée à l’empereur.",
+          "pt": "Os telhados brilham em amarelo imperial, cor outrora reservada ao imperador."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Behind Tiananmen Square in Beijing, home to 24 emperors.",
+          "fr": "Derrière la place Tian’anmen, à Pékin, demeure de 24 empereurs.",
+          "pt": "Atrás da Praça Tiananmen, em Pequim, casa de 24 imperadores."
+        }
+      },
+      {
+        "text": {
+          "en": "Legend gives it 9,999 rooms; ordinary people were barred for five centuries.",
+          "fr": "La légende lui prête 9 999 pièces ; le peuple n’y entra pas pendant cinq siècles.",
+          "pt": "Diz a lenda que tem 9999 salas; o povo não lá entrou durante cinco séculos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Ming and Qing emperors’ walled palace at the heart of Beijing.",
+          "fr": "Le palais fortifié des empereurs Ming et Qing, au cœur de Pékin.",
+          "pt": "O palácio muralhado dos imperadores Ming e Qing, no coração de Pequim."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Palace of Versailles",
+        "fr": "Château de Versailles",
+        "pt": "Palácio de Versalhes"
+      },
+      {
+        "en": "Gyeongbokgung Palace",
+        "fr": "Palais Gyeongbokgung",
+        "pt": "Palácio Gyeongbokgung"
+      },
+      {
+        "en": "Summer Palace",
+        "fr": "Palais d’Été",
+        "pt": "Palácio de Verão"
+      }
+    ],
+    "homeCountry": null,
+    "id": "forbidden-city",
+    "name": {
+      "en": "Forbidden City",
+      "fr": "Cité interdite",
+      "pt": "Cidade Proibida"
+    },
+    "tier": "medium",
+    "wikidata": "Q80290"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Greek temple ringed with columns.",
+          "fr": "Un temple grec entouré de colonnes.",
+          "pt": "Um templo grego rodeado de colunas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built of white marble from Mount Pentelicus.",
+          "fr": "Bâti en marbre blanc du mont Pentélique.",
+          "pt": "Construído em mármore branco do monte Pentélico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It crowns the Acropolis of Athens, high above the city.",
+          "fr": "Il couronne l’Acropole d’Athènes, bien au-dessus de la ville.",
+          "pt": "Coroa a Acrópole de Atenas, bem acima da cidade."
+        }
+      },
+      {
+        "text": {
+          "en": "Lord Elgin carried off half its sculptures; they are still in the British Museum.",
+          "fr": "Lord Elgin a emporté la moitié de ses sculptures, toujours au British Museum.",
+          "pt": "Lord Elgin levou metade das suas esculturas, ainda no Museu Britânico."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Athena’s great temple, built under Pericles in the 5th century BC.",
+          "fr": "Le grand temple d’Athéna, bâti sous Périclès au Ve siècle av. J.-C.",
+          "pt": "O grande templo de Atena, erguido no tempo de Péricles, no século V a.C."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pantheon",
+        "fr": "Panthéon de Rome",
+        "pt": "Panteão de Roma"
+      },
+      {
+        "en": "Temple of Concordia",
+        "fr": "Temple de la Concorde",
+        "pt": "Templo da Concórdia"
+      },
+      {
+        "en": "Temple of Hephaestus",
+        "fr": "Temple d’Héphaïstos",
+        "pt": "Templo de Hefesto"
+      }
+    ],
+    "homeCountry": null,
+    "id": "parthenon",
+    "name": {
+      "en": "Parthenon",
+      "fr": "Parthénon",
+      "pt": "Pártenon"
+    },
+    "tier": "medium",
+    "wikidata": "Q10288"
+  },
+  {
+    "accepted": {
+      "en": ["Sphinx", "Great Sphinx"],
+      "fr": ["Sphinx", "Grand Sphinx"],
+      "pt": ["Esfinge", "Grande Esfinge", "Esfinge de Gizé"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A colossal figure carved where it stands, out of the bedrock.",
+          "fr": "Une figure colossale taillée sur place, dans la roche même.",
+          "pt": "Uma figura colossal esculpida no próprio local, na rocha."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Carved for a pharaoh.",
+          "fr": "Taillée pour un pharaon.",
+          "pt": "Esculpida para um faraó."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A lion with a man’s head, 73 metres long, in Egypt.",
+          "fr": "Un lion à tête d’homme, long de 73 mètres, en Égypte.",
+          "pt": "Um leão com cabeça de homem, com 73 metros, no Egito."
+        }
+      },
+      {
+        "text": {
+          "en": "Its missing nose was not shot off by Napoleon’s cannons, whatever they say.",
+          "fr": "Son nez manquant n’a pas été arraché par les canons de Napoléon, quoi qu’on dise.",
+          "pt": "O nariz que lhe falta não foi arrancado pelos canhões de Napoleão, diga-se o que se disser."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The lion-bodied guardian lying before the pyramids, outside Cairo.",
+          "fr": "Le gardien au corps de lion couché devant les pyramides, près du Caire.",
+          "pt": "O guardião de corpo de leão deitado diante das pirâmides, perto do Cairo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Moai of Easter Island",
+        "fr": "Moaïs de l’île de Pâques",
+        "pt": "Moais da Ilha de Páscoa"
+      },
+      {
+        "en": "Leshan Giant Buddha",
+        "fr": "Bouddha géant de Leshan",
+        "pt": "Buda Gigante de Leshan"
+      },
+      {
+        "en": "Abu Simbel",
+        "fr": "Abou Simbel",
+        "pt": "Abu Simbel"
+      }
+    ],
+    "homeCountry": null,
+    "id": "great-sphinx-of-giza",
+    "name": {
+      "en": "Great Sphinx of Giza",
+      "fr": "Grand Sphinx de Gizeh",
+      "pt": "Grande Esfinge de Gizé"
+    },
+    "tier": "medium",
+    "wikidata": "Q130958"
+  },
+  {
+    "accepted": {
+      "en": ["Moai", "Moais", "Easter Island statues", "Easter Island"],
+      "fr": ["Moaï", "Moai", "Moaïs", "Île de Pâques"],
+      "pt": ["Moai", "Moais", "Ilha de Páscoa"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Giant human faces carved in stone.",
+          "fr": "Des visages humains géants taillés dans la pierre.",
+          "pt": "Rostos humanos gigantes esculpidos em pedra."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Carved less than a thousand years ago.",
+          "fr": "Sculptés il y a moins de mille ans.",
+          "pt": "Esculpidos há menos de mil anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Nearly 900 of them stand on a remote Chilean island in the Pacific.",
+          "fr": "Près de 900 se dressent sur une île chilienne isolée du Pacifique.",
+          "pt": "Quase 900 erguem-se numa ilha chilena isolada no Pacífico."
+        }
+      },
+      {
+        "text": {
+          "en": "Islanders say they “walked” to their platforms; most turn their backs to the sea.",
+          "fr": "Les insulaires disent qu’ils ont « marché » jusqu’à leurs plateformes ; la plupart tournent le dos à la mer.",
+          "pt": "Os ilhéus dizem que «caminharam» até às plataformas; a maioria dá as costas ao mar."
+        }
+      },
+      {
+        "text": {
+          "en": "Rapa Nui’s stone giants, 3,500 km off the coast of Chile.",
+          "fr": "Les géants de pierre de Rapa Nui, à 3 500 km des côtes chiliennes.",
+          "pt": "Os gigantes de pedra de Rapa Nui, a 3500 km da costa do Chile."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Terracotta Army",
+        "fr": "Armée de terre cuite",
+        "pt": "Exército de Terracota"
+      },
+      {
+        "en": "Mount Nemrut statues",
+        "fr": "Statues du mont Nemrut",
+        "pt": "Estátuas do monte Nemrut"
+      },
+      {
+        "en": "Mount Rushmore",
+        "fr": "Mont Rushmore",
+        "pt": "Monte Rushmore"
+      }
+    ],
+    "homeCountry": null,
+    "id": "moai-of-easter-island",
+    "name": {
+      "en": "Moai of Easter Island",
+      "fr": "Moaïs de l’île de Pâques",
+      "pt": "Moais da Ilha de Páscoa"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Ayers Rock"],
+      "fr": ["Ayers Rock"],
+      "pt": ["Ayers Rock"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A rock rising alone from a flat plain.",
+          "fr": "Un rocher qui surgit seul d’une plaine toute plate.",
+          "pt": "Uma rocha que se ergue sozinha de uma planície plana."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Rust-red rock that glows at sunset.",
+          "fr": "Une roche rouge rouille qui s’embrase au coucher du soleil.",
+          "pt": "Uma rocha vermelho-ferrugem que se incendeia ao pôr do sol."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A single monolith, 348 m high, in the heart of Australia.",
+          "fr": "Un monolithe unique, haut de 348 m, au cœur de l’Australie.",
+          "pt": "Um monólito único, com 348 m de altura, no coração da Austrália."
+        }
+      },
+      {
+        "text": {
+          "en": "Sacred to the Anangu people; climbing it has been banned since 2019.",
+          "fr": "Sacré pour le peuple anangu ; son ascension est interdite depuis 2019.",
+          "pt": "Sagrado para o povo anangu; a subida está proibida desde 2019."
+        }
+      },
+      {
+        "text": {
+          "en": "The Northern Territory’s great red rock, icon of the Australian outback.",
+          "fr": "Le grand rocher rouge du Territoire du Nord, icône de l’outback australien.",
+          "pt": "O grande rochedo vermelho do Território do Norte, ícone do outback australiano."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Matterhorn",
+        "fr": "Cervin",
+        "pt": "Matterhorn"
+      },
+      {
+        "en": "Devils Tower",
+        "fr": "Devils Tower",
+        "pt": "Devils Tower"
+      },
+      {
+        "en": "Kata Tjuta",
+        "fr": "Kata Tjuta",
+        "pt": "Kata Tjuta"
+      }
+    ],
+    "homeCountry": null,
+    "id": "uluru",
+    "name": {
+      "en": "Uluru",
+      "fr": "Uluru",
+      "pt": "Uluru"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Rushmore"],
+      "fr": ["Rushmore"],
+      "pt": ["Rushmore"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Giant figures carved straight into a mountainside.",
+          "fr": "Des figures géantes taillées à même une montagne.",
+          "pt": "Figuras gigantes esculpidas diretamente numa montanha."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Carved in the 20th century.",
+          "fr": "Sculptées au XXe siècle.",
+          "pt": "Esculpidas no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It shows the faces of four US presidents.",
+          "fr": "On y voit les visages de quatre présidents américains.",
+          "pt": "Mostra os rostos de quatro presidentes dos EUA."
+        }
+      },
+      {
+        "text": {
+          "en": "Each face is 18 metres tall; the sculptor’s son finished it in 1941.",
+          "fr": "Chaque visage mesure 18 mètres ; le fils du sculpteur l’a achevé en 1941.",
+          "pt": "Cada rosto mede 18 metros; o filho do escultor acabou-o em 1941."
+        }
+      },
+      {
+        "text": {
+          "en": "Washington, Jefferson, Roosevelt and Lincoln, in South Dakota’s granite.",
+          "fr": "Washington, Jefferson, Roosevelt et Lincoln dans le granit du Dakota du Sud.",
+          "pt": "Washington, Jefferson, Roosevelt e Lincoln no granito do Dakota do Sul."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Christ the Redeemer",
+        "fr": "Christ Rédempteur",
+        "pt": "Cristo Redentor"
+      },
+      {
+        "en": "Leshan Giant Buddha",
+        "fr": "Bouddha géant de Leshan",
+        "pt": "Buda Gigante de Leshan"
+      },
+      {
+        "en": "Crazy Horse Memorial",
+        "fr": "Crazy Horse Memorial",
+        "pt": "Memorial Crazy Horse"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mount-rushmore",
+    "name": {
+      "en": "Mount Rushmore",
+      "fr": "Mont Rushmore",
+      "pt": "Monte Rushmore"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Trevi", "Fontana di Trevi"],
+      "fr": ["Trevi", "Fontana di Trevi"],
+      "pt": ["Trevi", "Fontana di Trevi"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fountain more than 250 years old.",
+          "fr": "Une fontaine vieille de plus de 250 ans.",
+          "pt": "Uma fonte com mais de 250 anos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A marble sea god towers at its centre, among sea horses.",
+          "fr": "Un dieu marin de marbre trône en son centre, parmi des chevaux marins.",
+          "pt": "Um deus marinho de mármore domina o centro, entre cavalos-marinhos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Rome’s largest Baroque fountain, set against the back of a palace.",
+          "fr": "La plus grande fontaine baroque de Rome, adossée à un palais.",
+          "pt": "A maior fonte barroca de Roma, encostada a um palácio."
+        }
+      },
+      {
+        "text": {
+          "en": "Throw a coin over your shoulder to come back; about €3,000 is fished out daily.",
+          "fr": "Une pièce jetée par-dessus l’épaule promet le retour ; environ 3 000 € en sont repêchés chaque jour.",
+          "pt": "Uma moeda atirada por cima do ombro garante o regresso; tiram-se de lá cerca de 3000 € por dia."
+        }
+      },
+      {
+        "text": {
+          "en": "Anita Ekberg waded into it in Fellini’s La Dolce Vita.",
+          "fr": "Anita Ekberg s’y baigne dans La Dolce Vita de Fellini.",
+          "pt": "Anita Ekberg banha-se nela em A Doce Vida, de Fellini."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Fountains of Bellagio",
+        "fr": "Fontaines du Bellagio",
+        "pt": "Fontes do Bellagio"
+      },
+      {
+        "en": "Fountain of the Four Rivers",
+        "fr": "Fontaine des Quatre-Fleuves",
+        "pt": "Fonte dos Quatro Rios"
+      },
+      {
+        "en": "Fountain of Neptune, Florence",
+        "fr": "Fontaine de Neptune de Florence",
+        "pt": "Fonte de Neptuno de Florença"
+      }
+    ],
+    "homeCountry": null,
+    "id": "trevi-fountain",
+    "name": {
+      "en": "Trevi Fountain",
+      "fr": "Fontaine de Trevi",
+      "pt": "Fontana de Trevi"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Kilimanjaro", "Kibo"],
+      "fr": ["Kilimanjaro", "Kibo"],
+      "pt": ["Kilimanjaro", "Kibo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mountain built by a volcano.",
+          "fr": "Une montagne née d’un volcan.",
+          "pt": "Uma montanha nascida de um vulcão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Glaciers cling to its summit, almost on the equator.",
+          "fr": "Des glaciers s’accrochent à son sommet, presque sur l’équateur.",
+          "pt": "Há glaciares agarrados ao cume, quase em cima do equador."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Africa’s highest peak, 5,895 metres, in Tanzania.",
+          "fr": "Le toit de l’Afrique, 5 895 mètres, en Tanzanie.",
+          "pt": "O pico mais alto de África, 5895 metros, na Tanzânia."
+        }
+      },
+      {
+        "text": {
+          "en": "Hikers reach Uhuru Peak in five to eight days, no ropes needed.",
+          "fr": "On atteint le pic Uhuru en cinq à huit jours de marche, sans cordes.",
+          "pt": "Chega-se ao pico Uhuru em cinco a oito dias de caminhada, sem cordas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Tanzania’s lone giant, snow-capped above the savanna near Moshi.",
+          "fr": "Le géant isolé de Tanzanie, enneigé au-dessus de la savane, près de Moshi.",
+          "pt": "O gigante isolado da Tanzânia, nevado sobre a savana, perto de Moshi."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mount Everest",
+        "fr": "Mont Everest",
+        "pt": "Monte Evereste"
+      },
+      {
+        "en": "Mount Fuji",
+        "fr": "Mont Fuji",
+        "pt": "Monte Fuji"
+      },
+      {
+        "en": "Mount Kenya",
+        "fr": "Mont Kenya",
+        "pt": "Monte Quénia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mount-kilimanjaro",
+    "name": {
+      "en": "Mount Kilimanjaro",
+      "fr": "Kilimandjaro",
+      "pt": "Quilimanjaro"
+    },
+    "tier": "medium",
+    "wikidata": "Q7296"
+  },
+  {
+    "accepted": {
+      "en": ["Pilat", "Dune du Pilat", "Dune du Pyla", "Pyla"],
+      "fr": ["Pilat", "Pyla", "Dune du Pyla"],
+      "pt": ["Pilat", "Pyla", "Dune du Pilat"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great hill made entirely of sand.",
+          "fr": "Une grande colline faite tout entière de sable.",
+          "pt": "Uma grande colina feita inteiramente de areia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It stands right beside the ocean.",
+          "fr": "Elle se dresse au bord même de l’océan.",
+          "pt": "Ergue-se mesmo à beira do oceano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Europe’s highest dune, over 100 metres, on France’s Atlantic coast.",
+          "fr": "La plus haute dune d’Europe, plus de 100 mètres, sur la côte atlantique française.",
+          "pt": "A duna mais alta da Europa, com mais de 100 metros, na costa atlântica francesa."
+        }
+      },
+      {
+        "text": {
+          "en": "It creeps inland a few metres a year, swallowing pines and old wartime bunkers.",
+          "fr": "Elle avance de quelques mètres par an, engloutissant pins et vieux blockhaus.",
+          "pt": "Avança alguns metros por ano para o interior, engolindo pinheiros e velhos bunkers."
+        }
+      },
+      {
+        "text": {
+          "en": "The Gironde’s giant dune, facing the Banc d’Arguin at the mouth of the Arcachon basin.",
+          "fr": "La dune géante de Gironde, face au banc d’Arguin, à l’entrée du bassin d’Arcachon.",
+          "pt": "A duna gigante da Gironda, frente ao banco de Arguin, à entrada da bacia de Arcachon."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Uluru",
+        "fr": "Uluru",
+        "pt": "Uluru"
+      },
+      {
+        "en": "Erg Chebbi",
+        "fr": "Erg Chebbi",
+        "pt": "Erg Chebbi"
+      },
+      {
+        "en": "Maspalomas Dunes",
+        "fr": "Dunes de Maspalomas",
+        "pt": "Dunas de Maspalomas"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "dune-du-pilat",
+    "name": {
+      "en": "Dune of Pilat",
+      "fr": "Dune du Pilat",
+      "pt": "Duna do Pilat"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A stone structure built by the Romans.",
+          "fr": "Un ouvrage de pierre bâti par les Romains.",
+          "pt": "Uma obra de pedra construída pelos romanos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It spans a river.",
+          "fr": "Il enjambe une rivière.",
+          "pt": "Atravessa um rio."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "An aqueduct three tiers high that carried water to Nîmes, in France.",
+          "fr": "Un aqueduc à trois étages qui portait l’eau jusqu’à Nîmes.",
+          "pt": "Um aqueduto de três andares que levava água até Nîmes, em França."
+        }
+      },
+      {
+        "text": {
+          "en": "At 48 metres, the highest of all Roman aqueduct bridges.",
+          "fr": "Avec ses 48 mètres, le plus haut de tous les ponts-aqueducs romains.",
+          "pt": "Com 48 metros, a mais alta de todas as pontes-aqueduto romanas."
+        }
+      },
+      {
+        "text": {
+          "en": "The Roman bridge over the Gardon, near Uzès and Remoulins.",
+          "fr": "Le pont romain sur le Gardon, près d’Uzès et de Remoulins.",
+          "pt": "A ponte romana sobre o Gardon, perto de Uzès e Remoulins."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Millau Viaduct",
+        "fr": "Viaduc de Millau",
+        "pt": "Viaduto de Millau"
+      },
+      {
+        "en": "Aqueduct of Segovia",
+        "fr": "Aqueduc de Ségovie",
+        "pt": "Aqueduto de Segóvia"
+      },
+      {
+        "en": "Ponte Sant’Angelo",
+        "fr": "Pont Saint-Ange",
+        "pt": "Ponte de Santo Ângelo"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "pont-du-gard",
+    "name": {
+      "en": "Pont du Gard",
+      "fr": "Pont du Gard",
+      "pt": "Ponte do Gard"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Millau"],
+      "fr": ["Millau"],
+      "pt": ["Millau"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A cable-stayed bridge, its deck hung from masts by fans of cables.",
+          "fr": "Un pont à haubans, son tablier suspendu à des pylônes par des faisceaux de câbles.",
+          "pt": "Uma ponte de tirantes, com o tabuleiro preso a mastros por leques de cabos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Opened in the 21st century.",
+          "fr": "Ouvert au XXIe siècle.",
+          "pt": "Inaugurada no século XXI."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It has crossed the Tarn valley, in Aveyron, since 2004.",
+          "fr": "Il franchit la vallée du Tarn, en Aveyron, depuis 2004.",
+          "pt": "Atravessa o vale do Tarn, no Aveyron, desde 2004."
+        }
+      },
+      {
+        "text": {
+          "en": "Its tallest mast, 343 m, beats the Eiffel Tower; its deck often floats above the clouds.",
+          "fr": "Son plus haut pylône, 343 m, dépasse la tour Eiffel ; son tablier flotte souvent sur les nuages.",
+          "pt": "O mastro mais alto, 343 m, supera a Torre Eiffel; o tabuleiro flutua muitas vezes sobre as nuvens."
+        }
+      },
+      {
+        "text": {
+          "en": "Norman Foster’s A75 bridge, which ended the summer jams in the town below.",
+          "fr": "Le pont de l’A75 signé Norman Foster, qui a mis fin aux bouchons estivaux de la ville.",
+          "pt": "A ponte da A75 de Norman Foster, que acabou com os engarrafamentos de verão na cidade."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pont du Gard",
+        "fr": "Pont du Gard",
+        "pt": "Ponte do Gard"
+      },
+      {
+        "en": "Normandy Bridge",
+        "fr": "Pont de Normandie",
+        "pt": "Ponte da Normandia"
+      },
+      {
+        "en": "Queensferry Crossing",
+        "fr": "Queensferry Crossing",
+        "pt": "Queensferry Crossing"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "millau-viaduct",
+    "name": {
+      "en": "Millau Viaduct",
+      "fr": "Viaduc de Millau",
+      "pt": "Viaduto de Millau"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Carcassonne"],
+      "fr": ["Carcassonne"],
+      "pt": ["Carcassonne"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fortress perched on a hilltop.",
+          "fr": "Une forteresse perchée sur une colline.",
+          "pt": "Uma fortaleza empoleirada numa colina."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Besieged in the crusade against the Cathars.",
+          "fr": "Assiégée pendant la croisade contre les cathares.",
+          "pt": "Cercada durante a cruzada contra os cátaros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A double ring of ramparts with 52 towers, above the Aude in southern France.",
+          "fr": "Une double enceinte de remparts et 52 tours, au-dessus de l’Aude.",
+          "pt": "Uma dupla cintura de muralhas com 52 torres, sobre o rio Aude, no sul de França."
+        }
+      },
+      {
+        "text": {
+          "en": "Viollet-le-Duc restored it in the 19th century, adding slate roofs critics hated.",
+          "fr": "Viollet-le-Duc l’a restaurée au XIXe siècle, avec des toits d’ardoise très critiqués.",
+          "pt": "Viollet-le-Duc restaurou-a no século XIX, com telhados de ardósia muito criticados."
+        }
+      },
+      {
+        "text": {
+          "en": "The walled medieval town that gave its name to a famous tile-laying board game.",
+          "fr": "La ville médiévale fortifiée qui a donné son nom à un célèbre jeu de tuiles.",
+          "pt": "A cidade medieval muralhada que deu nome a um famoso jogo de tabuleiro."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Aigues-Mortes",
+        "fr": "Aigues-Mortes",
+        "pt": "Aigues-Mortes"
+      },
+      {
+        "en": "Walls of Ávila",
+        "fr": "Remparts d’Ávila",
+        "pt": "Muralhas de Ávila"
+      },
+      {
+        "en": "Montségur Castle",
+        "fr": "Château de Montségur",
+        "pt": "Castelo de Montségur"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "cite-de-carcassonne",
+    "name": {
+      "en": "Cité de Carcassonne",
+      "fr": "Cité de Carcassonne",
+      "pt": "Cidadela de Carcassonne"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Chambord"],
+      "fr": ["Chambord"],
+      "pt": ["Chambord"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Renaissance château of the 16th century.",
+          "fr": "Un château Renaissance du XVIe siècle.",
+          "pt": "Um castelo renascentista do século XVI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It stands back from the river, not built over the water.",
+          "fr": "Il se tient à l’écart de la rivière, et non à cheval sur l’eau.",
+          "pt": "Fica afastado do rio, e não construído sobre a água."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "François I built it from scratch as a hunting lodge, in the Loire Valley.",
+          "fr": "François Ier l’a fait sortir de terre comme pavillon de chasse, en Sologne.",
+          "pt": "Francisco I mandou-o erguer de raiz como pavilhão de caça, no vale do Loire."
+        }
+      },
+      {
+        "text": {
+          "en": "Its double-helix staircase lets two people climb without meeting: Leonardo’s idea?",
+          "fr": "Son escalier à double révolution permet de monter sans se croiser : une idée de Léonard ?",
+          "pt": "A escadaria em dupla hélice deixa duas pessoas subir sem se cruzarem: ideia de Leonardo?"
+        }
+      },
+      {
+        "text": {
+          "en": "The Loire’s largest château: 440 rooms in a walled park the size of Paris.",
+          "fr": "Le plus grand des châteaux de la Loire : 440 pièces dans un parc clos grand comme Paris.",
+          "pt": "O maior dos castelos do Loire: 440 salas num parque murado do tamanho de Paris."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Palace of Versailles",
+        "fr": "Château de Versailles",
+        "pt": "Palácio de Versalhes"
+      },
+      {
+        "en": "Château de Chenonceau",
+        "fr": "Château de Chenonceau",
+        "pt": "Castelo de Chenonceau"
+      },
+      {
+        "en": "Château d’Amboise",
+        "fr": "Château d’Amboise",
+        "pt": "Castelo de Amboise"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "chateau-de-chambord",
+    "name": {
+      "en": "Château de Chambord",
+      "fr": "Château de Chambord",
+      "pt": "Castelo de Chambord"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Lascaux"],
+      "fr": ["Lascaux"],
+      "pt": ["Lascaux"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A cave decorated with prehistoric paintings.",
+          "fr": "Une grotte ornée de peintures préhistoriques.",
+          "pt": "Uma gruta decorada com pinturas pré-históricas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Young people, not scientists, first spotted its paintings.",
+          "fr": "Ce sont des jeunes, pas des savants, qui ont repéré ses peintures.",
+          "pt": "Foram jovens, e não cientistas, os primeiros a ver as suas pinturas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Four teenagers found it in the Dordogne in 1940.",
+          "fr": "Quatre adolescents l’ont découverte en Dordogne en 1940.",
+          "pt": "Quatro adolescentes descobriram-na na Dordonha em 1940."
+        }
+      },
+      {
+        "text": {
+          "en": "Closed in 1963 as visitors’ breath bred mould; you now visit a faithful copy.",
+          "fr": "Fermée en 1963 car le souffle des visiteurs y faisait pousser des moisissures ; on visite une copie.",
+          "pt": "Fechada em 1963 porque o bafo dos visitantes criava bolor; hoje visita-se uma réplica."
+        }
+      },
+      {
+        "text": {
+          "en": "Montignac’s cave of bulls and horses, the “Sistine Chapel of prehistory”.",
+          "fr": "La grotte aux taureaux de Montignac, « chapelle Sixtine de la préhistoire ».",
+          "pt": "A gruta dos touros de Montignac, a «Capela Sistina da pré-história»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Padirac Cave",
+        "fr": "Gouffre de Padirac",
+        "pt": "Abismo de Padirac"
+      },
+      {
+        "en": "Chauvet Cave",
+        "fr": "Grotte Chauvet",
+        "pt": "Gruta Chauvet"
+      },
+      {
+        "en": "Cave of Altamira",
+        "fr": "Grotte d’Altamira",
+        "pt": "Gruta de Altamira"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "lascaux-cave",
+    "name": {
+      "en": "Lascaux Cave",
+      "fr": "Grotte de Lascaux",
+      "pt": "Gruta de Lascaux"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Belem Tower", "Torre de Belem"],
+      "fr": ["Torre de Belém"],
+      "pt": ["Torre de São Vicente"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It stands on the bank of the Tagus, facing the river.",
+          "fr": "Au bord du Tage, face au fleuve.",
+          "pt": "Fica à beira do Tejo, virada para o rio."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built in the 16th century, in the age of the Discoveries.",
+          "fr": "Bâtie au XVIe siècle, au temps des Grandes Découvertes.",
+          "pt": "Construída no século XVI, na época dos Descobrimentos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A small fortress that once rose from the middle of the river.",
+          "fr": "Un petit fort qui se dressait jadis au milieu du fleuve.",
+          "pt": "Um pequeno forte que outrora se erguia no meio do rio."
+        }
+      },
+      {
+        "text": {
+          "en": "A stone rhinoceros recalls the one sent from India in 1515; it was finished in 1519.",
+          "fr": "Un rhinocéros de pierre rappelle celui venu d’Inde en 1515 ; elle fut achevée en 1519.",
+          "pt": "Um rinoceronte de pedra lembra o que veio da Índia em 1515; ficou pronta em 1519."
+        }
+      },
+      {
+        "text": {
+          "en": "Lisbon’s lace-like Manueline tower, gateway of the caravels.",
+          "fr": "La tour manuéline en dentelle de pierre de Lisbonne, porte des caravelles.",
+          "pt": "A torre manuelina rendilhada de Lisboa, porta de saída das caravelas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Águas Livres Aqueduct",
+        "fr": "Aqueduc des Eaux-Libres",
+        "pt": "Aqueduto das Águas Livres"
+      },
+      {
+        "en": "Monument to the Discoveries",
+        "fr": "Monument aux Découvertes",
+        "pt": "Padrão dos Descobrimentos"
+      },
+      {
+        "en": "Jerónimos Monastery",
+        "fr": "Monastère des Hiéronymites",
+        "pt": "Mosteiro dos Jerónimos"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "belem-tower",
+    "name": {
+      "en": "Belém Tower",
+      "fr": "Tour de Belém",
+      "pt": "Torre de Belém"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Ponte 25 de Abril", "Salazar Bridge", "April 25th Bridge"],
+      "fr": ["Ponte 25 de Abril", "Pont Salazar"],
+      "pt": ["Ponte Salazar"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A suspension bridge, its deck hung from two great cables.",
+          "fr": "Un pont suspendu, son tablier pendu à deux grands câbles.",
+          "pt": "Uma ponte suspensa, com o tabuleiro pendurado em dois grandes cabos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Opened in the 1960s.",
+          "fr": "Inauguré dans les années 1960.",
+          "pt": "Inaugurada nos anos 1960."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It spans the Tagus between Lisbon and Almada.",
+          "fr": "Il franchit le Tage entre Lisbonne et Almada.",
+          "pt": "Atravessa o Tejo entre Lisboa e Almada."
+        }
+      },
+      {
+        "text": {
+          "en": "It bore the dictator’s name until the 1974 revolution; trains have crossed it since 1999.",
+          "fr": "Il portait le nom du dictateur jusqu’à la révolution de 1974 ; le train y passe depuis 1999.",
+          "pt": "Teve o nome do ditador até à revolução de 1974; o comboio passa lá desde 1999."
+        }
+      },
+      {
+        "text": {
+          "en": "The red bridge below Cristo Rei, often compared to San Francisco’s.",
+          "fr": "Le pont rouge au pied du Cristo Rei, souvent comparé à celui de San Francisco.",
+          "pt": "A ponte vermelha aos pés do Cristo Rei, muitas vezes comparada à de São Francisco."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Vasco da Gama Bridge",
+        "fr": "Pont Vasco-de-Gama",
+        "pt": "Ponte Vasco da Gama"
+      },
+      {
+        "en": "Golden Gate Bridge",
+        "fr": "Pont du Golden Gate",
+        "pt": "Ponte Golden Gate"
+      },
+      {
+        "en": "Verrazzano-Narrows Bridge",
+        "fr": "Pont Verrazzano-Narrows",
+        "pt": "Ponte Verrazzano-Narrows"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "ponte-25-de-abril",
+    "name": {
+      "en": "25 de Abril Bridge",
+      "fr": "Pont du 25-Avril",
+      "pt": "Ponte 25 de Abril"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Jeronimos", "Hieronymites Monastery"],
+      "fr": ["Jerónimos", "Mosteiro dos Jerónimos", "Hiéronymites"],
+      "pt": ["Jerónimos", "Mosteiro de Santa Maria de Belém"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A masterpiece of the Manueline style.",
+          "fr": "Un chef-d’œuvre du style manuélin.",
+          "pt": "Uma obra-prima do estilo manuelino."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Founded by King Manuel I, with spice-trade money.",
+          "fr": "Fondé par le roi Manuel Ier, avec l’argent des épices.",
+          "pt": "Fundado pelo rei D. Manuel I, com o dinheiro das especiarias."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A vast monastery in Lisbon, by the Tagus.",
+          "fr": "Un vaste monastère de Lisbonne, au bord du Tage.",
+          "pt": "Um vasto mosteiro de Lisboa, junto ao Tejo."
+        }
+      },
+      {
+        "text": {
+          "en": "The Treaty of Lisbon was signed in its cloister in 2007.",
+          "fr": "Le traité de Lisbonne a été signé dans son cloître en 2007.",
+          "pt": "O Tratado de Lisboa foi assinado no seu claustro em 2007."
+        }
+      },
+      {
+        "text": {
+          "en": "Belém’s great monastery, tomb of Vasco da Gama and Camões.",
+          "fr": "Le grand monastère de Belém, tombeau de Vasco de Gama et de Camões.",
+          "pt": "O grande mosteiro de Belém, túmulo de Vasco da Gama e de Camões."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mafra National Palace",
+        "fr": "Palais national de Mafra",
+        "pt": "Palácio Nacional de Mafra"
+      },
+      {
+        "en": "Convent of Christ",
+        "fr": "Couvent du Christ",
+        "pt": "Convento de Cristo"
+      },
+      {
+        "en": "Belém Tower",
+        "fr": "Tour de Belém",
+        "pt": "Torre de Belém"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "jeronimos-monastery",
+    "name": {
+      "en": "Jerónimos Monastery",
+      "fr": "Monastère des Hiéronymites",
+      "pt": "Mosteiro dos Jerónimos"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Palacio da Pena", "Pena"],
+      "fr": ["Pena", "Palácio da Pena"],
+      "pt": ["Pena", "Palácio Nacional da Pena"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Romantic palace of the 19th century.",
+          "fr": "Un palais romantique du XIXe siècle.",
+          "pt": "Um palácio romântico do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It crowns a hilltop, high above a forest.",
+          "fr": "Il couronne le sommet d’une colline, bien au-dessus d’une forêt.",
+          "pt": "Coroa o topo de uma colina, bem acima de uma floresta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Built for King Ferdinand II on a ruined monastery, in Portugal.",
+          "fr": "Bâti pour le roi Ferdinand II sur un monastère en ruine, au Portugal.",
+          "pt": "Erguido para o rei D. Fernando II sobre um mosteiro em ruínas, em Portugal."
+        }
+      },
+      {
+        "text": {
+          "en": "Its walls are painted red, yellow and blue; the Atlantic shows on clear days.",
+          "fr": "Ses murs sont peints en rouge, jaune et bleu ; l’Atlantique apparaît par temps clair.",
+          "pt": "As paredes são pintadas de vermelho, amarelo e azul; avista-se o Atlântico em dias limpos."
+        }
+      },
+      {
+        "text": {
+          "en": "Sintra’s colourful hilltop palace, a jewel of Portuguese Romanticism.",
+          "fr": "Le palais multicolore perché au-dessus de Sintra, joyau du romantisme portugais.",
+          "pt": "O palácio colorido no alto de Sintra, joia do romantismo português."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mafra National Palace",
+        "fr": "Palais national de Mafra",
+        "pt": "Palácio Nacional de Mafra"
+      },
+      {
+        "en": "Monserrate Palace",
+        "fr": "Palais de Monserrate",
+        "pt": "Palácio de Monserrate"
+      },
+      {
+        "en": "Neuschwanstein Castle",
+        "fr": "Château de Neuschwanstein",
+        "pt": "Castelo de Neuschwanstein"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "pena-palace",
+    "name": {
+      "en": "Pena Palace",
+      "fr": "Palais de Pena",
+      "pt": "Palácio da Pena"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Dom Luis I Bridge", "Ponte Luis I", "Ponte Dom Luis I"],
+      "fr": ["Ponte Luís I", "Pont Dom-Luís-Ier", "Pont Luís-Ier"],
+      "pt": [
+        "Ponte D. Luís",
+        "Ponte D. Luís I",
+        "Ponte Dom Luís I",
+        "Ponte Dom Luís"
+      ]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An arch bridge, its deck borne by one great arch.",
+          "fr": "Un pont en arc, porté par une seule grande arche.",
+          "pt": "Uma ponte em arco, sustentada por um único grande arco."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built of wrought iron in the 1880s.",
+          "fr": "Construit en fer puddlé dans les années 1880.",
+          "pt": "Construída em ferro forjado nos anos 1880."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It crosses the Douro in Porto on two decks, one high, one low.",
+          "fr": "Il franchit le Douro à Porto sur deux tabliers, l’un en haut, l’autre en bas.",
+          "pt": "Atravessa o Douro no Porto com dois tabuleiros, um em cima e outro em baixo."
+        }
+      },
+      {
+        "text": {
+          "en": "Designed by Théophile Seyrig, Gustave Eiffel’s former partner.",
+          "fr": "Conçu par Théophile Seyrig, ancien associé de Gustave Eiffel.",
+          "pt": "Projetada por Théophile Seyrig, antigo sócio de Gustave Eiffel."
+        }
+      },
+      {
+        "text": {
+          "en": "Porto’s iron bridge to Gaia’s port-wine cellars, the metro on its top deck.",
+          "fr": "Le pont de fer de Porto vers les caves de Gaia, le métro sur son tablier haut.",
+          "pt": "A ponte de ferro do Porto para as caves de Gaia, com o metro no tabuleiro de cima."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "25 de Abril Bridge",
+        "fr": "Pont du 25-Avril",
+        "pt": "Ponte 25 de Abril"
+      },
+      {
+        "en": "Arrábida Bridge",
+        "fr": "Pont de l’Arrábida",
+        "pt": "Ponte da Arrábida"
+      },
+      {
+        "en": "Garabit Viaduct",
+        "fr": "Viaduc de Garabit",
+        "pt": "Viaduto de Garabit"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "luis-i-bridge",
+    "name": {
+      "en": "Luís I Bridge",
+      "fr": "Pont Louis-Ier",
+      "pt": "Ponte Luís I"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Temple of Diana", "Evora Temple"],
+      "fr": ["Temple de Diane"],
+      "pt": ["Templo de Diana"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A temple raised by the Romans.",
+          "fr": "Un temple élevé par les Romains.",
+          "pt": "Um templo erguido pelos romanos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Only its columns still stand; the roof and walls are gone.",
+          "fr": "Seules ses colonnes tiennent encore ; toit et murs ont disparu.",
+          "pt": "Só restam as colunas; o telhado e as paredes desapareceram."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It stands at the top of a walled town in Alentejo, Portugal.",
+          "fr": "Il se dresse au sommet d’une ville fortifiée de l’Alentejo, au Portugal.",
+          "pt": "Ergue-se no alto de uma cidade muralhada do Alentejo."
+        }
+      },
+      {
+        "text": {
+          "en": "Walled into a medieval tower, it served as a slaughterhouse until 1836.",
+          "fr": "Muré dans une tour médiévale, il a servi d’abattoir jusqu’en 1836.",
+          "pt": "Emparedado numa torre medieval, serviu de matadouro até 1836."
+        }
+      },
+      {
+        "text": {
+          "en": "Its 14 Corinthian columns crown Alentejo’s capital, beside the cathedral.",
+          "fr": "Ses 14 colonnes corinthiennes couronnent la capitale de l’Alentejo, près de la cathédrale.",
+          "pt": "As suas 14 colunas coríntias coroam a capital do Alentejo, junto à Sé."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Parthenon",
+        "fr": "Parthénon",
+        "pt": "Pártenon"
+      },
+      {
+        "en": "Maison Carrée",
+        "fr": "Maison Carrée",
+        "pt": "Maison Carrée"
+      },
+      {
+        "en": "Temple of Saturn",
+        "fr": "Temple de Saturne",
+        "pt": "Templo de Saturno"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "roman-temple-of-evora",
+    "name": {
+      "en": "Roman Temple of Évora",
+      "fr": "Temple romain d’Évora",
+      "pt": "Templo Romano de Évora"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Ayasofya", "Aya Sofya", "Saint Sophia"],
+      "fr": ["Hagia Sophia", "Ayasofya"],
+      "pt": ["Hagia Sophia", "Ayasofya"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Built as a church.",
+          "fr": "Bâtie pour être une église.",
+          "pt": "Construída para ser uma igreja."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "More than 1,400 years old.",
+          "fr": "Vieille de plus de 1 400 ans.",
+          "pt": "Tem mais de 1400 anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In Istanbul, it was the world’s largest cathedral for nearly a thousand years.",
+          "fr": "À Istanbul, elle fut près de mille ans la plus grande cathédrale du monde.",
+          "pt": "Em Istambul, foi durante quase mil anos a maior catedral do mundo."
+        }
+      },
+      {
+        "text": {
+          "en": "Justinian had it built in under six years; it was finished in 537.",
+          "fr": "Justinien l’a fait bâtir en moins de six ans ; elle fut achevée en 537.",
+          "pt": "Justiniano mandou-a erguer em menos de seis anos; ficou pronta em 537."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Istanbul’s great dome: a church, then a mosque, a museum, and a mosque again since 2020.",
+          "fr": "Le grand dôme d’Istanbul : église, puis mosquée, musée, et de nouveau mosquée depuis 2020.",
+          "pt": "A grande cúpula de Istambul: igreja, mesquita, museu e de novo mesquita desde 2020."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Blue Mosque",
+        "fr": "Mosquée bleue",
+        "pt": "Mesquita Azul"
+      },
+      {
+        "en": "St. Peter’s Basilica",
+        "fr": "Basilique Saint-Pierre",
+        "pt": "Basílica de São Pedro"
+      },
+      {
+        "en": "Basilica of San Vitale",
+        "fr": "Basilique Saint-Vital de Ravenne",
+        "pt": "Basílica de San Vitale"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hagia-sophia",
+    "name": {
+      "en": "Hagia Sophia",
+      "fr": "Sainte-Sophie",
+      "pt": "Santa Sofia"
+    },
+    "tier": "hard",
+    "wikidata": "Q12506"
+  },
+  {
+    "accepted": {
+      "en": ["Petronas"],
+      "fr": ["Petronas"],
+      "pt": ["Petronas"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Twin towers, identical and side by side.",
+          "fr": "Des tours jumelles, identiques, côte à côte.",
+          "pt": "Torres gémeas, idênticas, lado a lado."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Both are still standing today.",
+          "fr": "Toutes deux sont encore debout aujourd’hui.",
+          "pt": "Ambas continuam de pé hoje."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "At 452 m, the world’s tallest twin towers, in Kuala Lumpur.",
+          "fr": "Avec 452 m, les plus hautes tours jumelles du monde, à Kuala Lumpur.",
+          "pt": "Com 452 m, as torres gémeas mais altas do mundo, em Kuala Lumpur."
+        }
+      },
+      {
+        "text": {
+          "en": "A skybridge joins them at the 41st and 42nd floors; their plan is an eight-pointed star.",
+          "fr": "Une passerelle les relie aux 41e et 42e étages ; leur plan dessine une étoile à huit branches.",
+          "pt": "Uma ponte une-as nos pisos 41 e 42; a planta desenha uma estrela de oito pontas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Malaysia’s twin steel towers, named after its state oil company.",
+          "fr": "Les tours jumelles d’acier de Malaisie, au nom de sa compagnie pétrolière nationale.",
+          "pt": "As torres gémeas de aço da Malásia, com o nome da petrolífera nacional."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Empire State Building",
+        "fr": "Empire State Building",
+        "pt": "Empire State Building"
+      },
+      {
+        "en": "World Trade Center",
+        "fr": "World Trade Center",
+        "pt": "World Trade Center"
+      },
+      {
+        "en": "KIO Towers",
+        "fr": "Tours KIO",
+        "pt": "Torres KIO"
+      }
+    ],
+    "homeCountry": null,
+    "id": "petronas-towers",
+    "name": {
+      "en": "Petronas Towers",
+      "fr": "Tours Petronas",
+      "pt": "Torres Petronas"
+    },
+    "tier": "hard",
+    "wikidata": "Q83063"
+  },
+  {
+    "accepted": {
+      "en": ["Cervin", "Cervino", "Mont Cervin"],
+      "fr": ["Matterhorn", "Cervino", "Mont Cervin"],
+      "pt": ["Cervino", "Monte Cervino", "Cervin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A rocky peak of the Alps.",
+          "fr": "Un sommet rocheux des Alpes.",
+          "pt": "Um pico rochoso dos Alpes."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It stays below 4,500 metres.",
+          "fr": "Il culmine sous les 4 500 mètres.",
+          "pt": "Fica abaixo dos 4500 metros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A four-faced pyramid on the Swiss–Italian border, above Zermatt.",
+          "fr": "Une pyramide à quatre faces entre la Suisse et l’Italie, au-dessus de Zermatt.",
+          "pt": "Uma pirâmide de quatro faces entre a Suíça e a Itália, sobre Zermatt."
+        }
+      },
+      {
+        "text": {
+          "en": "First climbed in 1865; four of the seven climbers died on the way down.",
+          "fr": "Gravi pour la première fois en 1865 ; quatre des sept alpinistes sont morts à la descente.",
+          "pt": "Escalado pela primeira vez em 1865; quatro dos sete alpinistas morreram na descida."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The peak drawn on Toblerone boxes until 2023, towering over Zermatt.",
+          "fr": "Le sommet dessiné sur les boîtes de Toblerone jusqu’en 2023, au-dessus de Zermatt.",
+          "pt": "O pico desenhado nas caixas de Toblerone até 2023, sobre Zermatt."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mount Kilimanjaro",
+        "fr": "Kilimandjaro",
+        "pt": "Quilimanjaro"
+      },
+      {
+        "en": "Mont Blanc",
+        "fr": "Mont Blanc",
+        "pt": "Monte Branco"
+      },
+      {
+        "en": "Eiger",
+        "fr": "Eiger",
+        "pt": "Eiger"
+      }
+    ],
+    "homeCountry": null,
+    "id": "matterhorn",
+    "name": {
+      "en": "Matterhorn",
+      "fr": "Cervin",
+      "pt": "Matterhorn"
+    },
+    "tier": "hard",
+    "wikidata": "Q1374"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A palace-fortress built before 1500.",
+          "fr": "Un palais fortifié bâti avant 1500.",
+          "pt": "Um palácio fortificado construído antes de 1500."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built by Muslim rulers.",
+          "fr": "Bâti par des souverains musulmans.",
+          "pt": "Construído por soberanos muçulmanos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The last stronghold of the Nasrid sultans, above Granada in Spain.",
+          "fr": "Dernier bastion des sultans nasrides, au-dessus de Grenade, en Espagne.",
+          "pt": "Último reduto dos sultões nacéridas, sobre Granada, em Espanha."
+        }
+      },
+      {
+        "text": {
+          "en": "In its Court of the Lions, twelve marble lions carry a fountain.",
+          "fr": "Dans sa cour des Lions, douze lions de marbre portent une fontaine.",
+          "pt": "No Pátio dos Leões, doze leões de mármore sustentam uma fonte."
+        }
+      },
+      {
+        "text": {
+          "en": "Granada’s red citadel, handed over to Ferdinand and Isabella in 1492.",
+          "fr": "La citadelle rouge de Grenade, remise à Ferdinand et Isabelle en 1492.",
+          "pt": "A cidadela vermelha de Granada, entregue a Fernando e Isabel em 1492."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Palace of Versailles",
+        "fr": "Château de Versailles",
+        "pt": "Palácio de Versalhes"
+      },
+      {
+        "en": "Palace of the Popes",
+        "fr": "Palais des Papes",
+        "pt": "Palácio dos Papas"
+      },
+      {
+        "en": "Topkapı Palace",
+        "fr": "Palais de Topkapı",
+        "pt": "Palácio de Topkapi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "alhambra",
+    "name": {
+      "en": "Alhambra",
+      "fr": "Alhambra",
+      "pt": "Alhambra"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [
+        "St Basil’s",
+        "Saint Basil’s",
+        "St Basil’s Cathedral",
+        "Saint Basil"
+      ],
+      "fr": ["Saint-Basile", "Basile-le-Bienheureux"],
+      "pt": ["São Basílio"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A church crowned with onion domes.",
+          "fr": "Une église coiffée de bulbes.",
+          "pt": "Uma igreja coroada de cúpulas em forma de cebola."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "More than 400 years old.",
+          "fr": "Vieille de plus de 400 ans.",
+          "pt": "Tem mais de 400 anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On Red Square in Moscow, its domes swirl in candy colours.",
+          "fr": "Sur la place Rouge, à Moscou, ses bulbes tourbillonnent de couleurs acidulées.",
+          "pt": "Na Praça Vermelha, em Moscovo, as cúpulas rodopiam em cores de rebuçado."
+        }
+      },
+      {
+        "text": {
+          "en": "Ivan the Terrible built it for the fall of Kazan; legend says he blinded its architects.",
+          "fr": "Ivan le Terrible l’a bâtie pour la prise de Kazan ; on dit qu’il fit aveugler ses architectes.",
+          "pt": "Ivã, o Terrível, ergueu-a pela tomada de Kazan; diz a lenda que cegou os arquitetos."
+        }
+      },
+      {
+        "text": {
+          "en": "Moscow’s riot of coloured domes, beside the Kremlin.",
+          "fr": "Le bouquet de bulbes colorés de Moscou, au pied du Kremlin.",
+          "pt": "O ramalhete de cúpulas coloridas de Moscovo, junto ao Kremlin."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sagrada Família",
+        "fr": "Sagrada Família",
+        "pt": "Sagrada Família"
+      },
+      {
+        "en": "Church of the Savior on Spilled Blood",
+        "fr": "Église du Sauveur-sur-le-Sang-Versé",
+        "pt": "Igreja do Salvador sobre o Sangue Derramado"
+      },
+      {
+        "en": "Cathedral of the Annunciation",
+        "fr": "Cathédrale de l’Annonciation",
+        "pt": "Catedral da Anunciação"
+      }
+    ],
+    "homeCountry": null,
+    "id": "saint-basils-cathedral",
+    "name": {
+      "en": "Saint Basil’s Cathedral",
+      "fr": "Cathédrale Saint-Basile",
+      "pt": "Catedral de São Basílio"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Victoria", "Mosi-oa-Tunya"],
+      "fr": ["Victoria", "Mosi-oa-Tunya"],
+      "pt": ["Vitória", "Victoria", "Victoria Falls", "Mosi-oa-Tunya"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Waterfalls that straddle the border between two countries.",
+          "fr": "Des chutes à cheval sur la frontière entre deux pays.",
+          "pt": "Quedas de água a cavalo na fronteira entre dois países."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "They lie in the Southern Hemisphere.",
+          "fr": "Elles se trouvent dans l’hémisphère Sud.",
+          "pt": "Ficam no hemisfério sul."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The Zambezi plunges here, between Zambia and Zimbabwe.",
+          "fr": "Le Zambèze y plonge, entre la Zambie et le Zimbabwe.",
+          "pt": "O Zambeze despenha-se aqui, entre a Zâmbia e o Zimbabué."
+        }
+      },
+      {
+        "text": {
+          "en": "Their spray rises 400 m; locals call them “the smoke that thunders”.",
+          "fr": "Leurs embruns montent à 400 m ; on les appelle « la fumée qui gronde ».",
+          "pt": "A espuma sobe a 400 m; chamam-lhes «o fumo que troveja»."
+        }
+      },
+      {
+        "text": {
+          "en": "Livingstone named them after his queen in 1855.",
+          "fr": "Livingstone leur a donné le nom de sa reine en 1855.",
+          "pt": "Livingstone deu-lhes o nome da sua rainha em 1855."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Angel Falls",
+        "fr": "Salto Ángel",
+        "pt": "Salto Ángel"
+      },
+      {
+        "en": "Niagara Falls",
+        "fr": "Chutes du Niagara",
+        "pt": "Cataratas do Niágara"
+      },
+      {
+        "en": "Iguazu Falls",
+        "fr": "Chutes d’Iguazú",
+        "pt": "Cataratas do Iguaçu"
+      }
+    ],
+    "homeCountry": null,
+    "id": "victoria-falls",
+    "name": {
+      "en": "Victoria Falls",
+      "fr": "Chutes Victoria",
+      "pt": "Cataratas Vitória"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Built for a world’s fair.",
+          "fr": "Construit pour une Exposition universelle.",
+          "pt": "Construído para uma Exposição Universal."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Opened after the Second World War.",
+          "fr": "Inauguré après la Seconde Guerre mondiale.",
+          "pt": "Inaugurado depois da Segunda Guerra Mundial."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Built for Expo 58, in Brussels, Belgium.",
+          "fr": "Bâti pour l’Expo 58, à Bruxelles.",
+          "pt": "Construído para a Expo 58, em Bruxelas, na Bélgica."
+        }
+      },
+      {
+        "text": {
+          "en": "Nine steel spheres joined by tubes: an iron crystal magnified 165 billion times.",
+          "fr": "Neuf sphères d’acier reliées par des tubes : un cristal de fer grossi 165 milliards de fois.",
+          "pt": "Nove esferas de aço unidas por tubos: um cristal de ferro ampliado 165 mil milhões de vezes."
+        }
+      },
+      {
+        "text": {
+          "en": "Brussels’ giant model of an iron crystal, on the Heysel plateau.",
+          "fr": "Le cristal de fer géant de Bruxelles, sur le plateau du Heysel.",
+          "pt": "O cristal de ferro gigante de Bruxelas, no planalto de Heysel."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "CN Tower",
+        "fr": "Tour CN",
+        "pt": "Torre CN"
+      },
+      {
+        "en": "Eiffel Tower",
+        "fr": "Tour Eiffel",
+        "pt": "Torre Eiffel"
+      },
+      {
+        "en": "Space Needle",
+        "fr": "Space Needle",
+        "pt": "Space Needle"
+      }
+    ],
+    "homeCountry": null,
+    "id": "atomium",
+    "name": {
+      "en": "Atomium",
+      "fr": "Atomium",
+      "pt": "Atomium"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great Buddhist monument.",
+          "fr": "Un grand monument bouddhique.",
+          "pt": "Um grande monumento budista."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Built of bare grey stone, without a trace of gold.",
+          "fr": "Bâti en pierre nue, sans la moindre dorure.",
+          "pt": "Construído em pedra nua, sem qualquer dourado."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On Java, Indonesia: the largest Buddhist temple in the world.",
+          "fr": "À Java, en Indonésie : le plus grand temple bouddhique du monde.",
+          "pt": "Em Java, na Indonésia: o maior templo budista do mundo."
+        }
+      },
+      {
+        "text": {
+          "en": "Nine stacked terraces, 2,672 relief panels and 504 Buddha statues.",
+          "fr": "Neuf terrasses empilées, 2 672 bas-reliefs et 504 statues du Bouddha.",
+          "pt": "Nove terraços sobrepostos, 2672 painéis em relevo e 504 estátuas de Buda."
+        }
+      },
+      {
+        "text": {
+          "en": "Java’s 9th-century stupa-mountain near Yogyakarta, long buried under ash.",
+          "fr": "La montagne-stupa du IXe siècle près de Yogyakarta, longtemps enfouie sous la cendre.",
+          "pt": "A montanha-estupa do século IX perto de Yogyakarta, muito tempo enterrada em cinza."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Prambanan",
+        "fr": "Prambanan",
+        "pt": "Prambanan"
+      },
+      {
+        "en": "Shwedagon Pagoda",
+        "fr": "Pagode Shwedagon",
+        "pt": "Pagode de Shwedagon"
+      },
+      {
+        "en": "Great Stupa of Sanchi",
+        "fr": "Grand Stupa de Sanchi",
+        "pt": "Grande Estupa de Sanchi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "borobudur",
+    "name": {
+      "en": "Borobudur",
+      "fr": "Borobudur",
+      "pt": "Borobudur"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Abou Simbel"],
+      "fr": ["Abu Simbel"],
+      "pt": ["Abou Simbel"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A temple built for a pharaoh.",
+          "fr": "Un temple bâti pour un pharaon.",
+          "pt": "Um templo construído para um faraó."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Carved straight into a cliff.",
+          "fr": "Taillé directement dans la falaise.",
+          "pt": "Escavado diretamente na falésia."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "In southern Egypt, moved 65 m uphill in the 1960s to escape Lake Nasser.",
+          "fr": "Dans le sud de l’Égypte, remonté de 65 m dans les années 1960 pour échapper au lac Nasser.",
+          "pt": "No sul do Egito, deslocado 65 m para cima nos anos 1960 para fugir ao lago Nasser."
+        }
+      },
+      {
+        "text": {
+          "en": "Four seated statues of Ramesses II, 20 metres tall, guard its door.",
+          "fr": "Quatre colosses assis de Ramsès II, hauts de 20 mètres, gardent son entrée.",
+          "pt": "Quatro colossos sentados de Ramsés II, com 20 metros, guardam a entrada."
+        }
+      },
+      {
+        "text": {
+          "en": "Twice a year the rising sun lights its inner sanctuary, near the Sudan border.",
+          "fr": "Deux fois par an, le soleil levant éclaire son sanctuaire, près de la frontière soudanaise.",
+          "pt": "Duas vezes por ano, o sol nascente ilumina o santuário, perto da fronteira com o Sudão."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Petra",
+        "fr": "Pétra",
+        "pt": "Petra"
+      },
+      {
+        "en": "Karnak Temple",
+        "fr": "Temple de Karnak",
+        "pt": "Templo de Karnak"
+      },
+      {
+        "en": "Temple of Hatshepsut",
+        "fr": "Temple d’Hatchepsout",
+        "pt": "Templo de Hatshepsut"
+      }
+    ],
+    "homeCountry": null,
+    "id": "abu-simbel",
+    "name": {
+      "en": "Abu Simbel",
+      "fr": "Abou Simbel",
+      "pt": "Abu Simbel"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Iguazu", "Iguaçu", "Iguassu"],
+      "fr": ["Iguazú", "Iguaçu"],
+      "pt": ["Iguaçu", "Iguazu", "Iguassu"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Waterfalls that straddle the border between two countries.",
+          "fr": "Des chutes à cheval sur la frontière entre deux pays.",
+          "pt": "Quedas de água a cavalo na fronteira entre dois países."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "They lie in the Southern Hemisphere.",
+          "fr": "Elles se trouvent dans l’hémisphère Sud.",
+          "pt": "Ficam no hemisfério sul."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Some 275 drops in the rainforest, between Argentina and Brazil.",
+          "fr": "Quelque 275 chutes dans la forêt tropicale, entre l’Argentine et le Brésil.",
+          "pt": "Cerca de 275 quedas na floresta tropical, entre a Argentina e o Brasil."
+        }
+      },
+      {
+        "text": {
+          "en": "Its U-shaped chasm is the Devil’s Throat; Eleanor Roosevelt reportedly sighed “Poor Niagara!”",
+          "fr": "Son gouffre en U est la Gorge du Diable ; Eleanor Roosevelt aurait soupiré « Pauvre Niagara ! »",
+          "pt": "O abismo em U é a Garganta do Diabo; Eleanor Roosevelt terá suspirado «Pobre Niágara!»"
+        }
+      },
+      {
+        "text": {
+          "en": "South America’s great falls, near where Argentina, Brazil and Paraguay meet.",
+          "fr": "Les grandes chutes d’Amérique du Sud, près du point où se touchent Argentine, Brésil et Paraguay.",
+          "pt": "As grandes cataratas da América do Sul, perto do ponto onde se tocam Argentina, Brasil e Paraguai."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Angel Falls",
+        "fr": "Salto Ángel",
+        "pt": "Salto Ángel"
+      },
+      {
+        "en": "Niagara Falls",
+        "fr": "Chutes du Niagara",
+        "pt": "Cataratas do Niágara"
+      },
+      {
+        "en": "Victoria Falls",
+        "fr": "Chutes Victoria",
+        "pt": "Cataratas Vitória"
+      }
+    ],
+    "homeCountry": null,
+    "id": "iguazu-falls",
+    "name": {
+      "en": "Iguazu Falls",
+      "fr": "Chutes d’Iguazú",
+      "pt": "Cataratas do Iguaçu"
+    },
+    "tier": "hard",
+    "wikidata": null
+  }
+]

@@ -42,7 +42,7 @@ export const GAME_NOTES = {
   estimate:
     'Asks for a number — a population, a height, a length, a price — that every screen estimates, each paid by how close it lands.',
   fiveclues:
-    'Hides a country behind five clues that open one after another, vague to obvious — its size, its region, its outline, its largest cities, its flag and capital; every player answers when they dare, paid more the earlier the clue. On the buzzer, the host judges the country said aloud and the first right answer ends the round.',
+    'Hides a country, a person, a fictional character, a film, an animal or a landmark behind five clues that open one after another, vague to obvious — a country’s size, region, outline, largest cities, flag and capital, every other subject’s written by hand, the last sometimes a photograph; every player answers when they dare, paid more the earlier the clue. On the buzzer, the host judges the country said aloud and the first right answer ends the round.',
   higherlower:
     'The estimate played the other way, picked under its card: deals a pair of those numbers a round — two rivers, two cities — and pays every player who picks the larger one.',
   innerclock:
@@ -90,7 +90,7 @@ export const SETTING_NOTES = {
   challenge: null,
   estimate: `\`topics\` lists what a round may ask, one drawn per round: "population", "area", "height" (summits and buildings), "length" (rivers) and "price". ${HOME_COUNTRY_NOTE}`,
   fiveclues:
-    '`clueDurationMs` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. `language` is the wording of the cities, the capital, the four names and every typed answer.',
+    '`clueDurationMs` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. `language` is the wording of every clue, the four names and every typed answer, and a person or a place only one culture knows is dealt to that language alone. `subjects` lists what a round may hide, one drawn evenly per round: "country", "person", "character", "film", "animal" and "landmark".',
   higherlower: HOME_COUNTRY_NOTE,
   innerclock:
     'Nothing to set: the target is drawn between 20 and 60 seconds each round.',

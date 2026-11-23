@@ -1,0 +1,4441 @@
+[
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A big cat you can meet in the wild in Africa.",
+          "fr": "Un grand félin qu’on croise à l’état sauvage en Afrique.",
+          "pt": "Um grande felino que se encontra em estado selvagem em África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Fast, but nowhere near the fastest animal on land.",
+          "fr": "Rapide, mais loin d’être l’animal le plus rapide sur terre.",
+          "pt": "É rápido, mas está longe de ser o animal mais rápido em terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The only truly social cat: it lives in groups.",
+          "fr": "Le seul félin vraiment social : il vit en groupe.",
+          "pt": "O único felino verdadeiramente social: vive em grupo."
+        }
+      },
+      {
+        "text": {
+          "en": "The females do most of the hunting, and the males can rest up to 20 hours a day.",
+          "fr": "Les femelles font l’essentiel de la chasse ; les mâles peuvent se reposer 20 heures par jour.",
+          "pt": "As fêmeas fazem quase toda a caça; os machos chegam a descansar 20 horas por dia."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Simba is one, and the male wears a great shaggy mane.",
+          "fr": "Simba en est un, et le mâle porte une grande crinière.",
+          "pt": "O Simba é um, e o macho tem uma grande juba."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jaguar",
+        "fr": "Jaguar",
+        "pt": "Jaguar"
+      },
+      {
+        "en": "Cheetah",
+        "fr": "Guépard",
+        "pt": "Chita"
+      },
+      {
+        "en": "Leopard",
+        "fr": "Léopard",
+        "pt": "Leopardo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "lion",
+    "name": {
+      "en": "Lion",
+      "fr": "Lion",
+      "pt": "Leão"
+    },
+    "tier": "easy",
+    "wikidata": "Q140"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hoofed plant-eater that lives wild in Africa.",
+          "fr": "Un herbivore à sabots qui vit à l’état sauvage en Afrique.",
+          "pt": "Um herbívoro com cascos que vive em estado selvagem em África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has short, horn-like knobs covered in skin on its head.",
+          "fr": "Il porte sur la tête de petites cornes recouvertes de peau.",
+          "pt": "Tem na cabeça pequenos cornos cobertos de pele."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It roams the open savannah, not the dense rainforest.",
+          "fr": "Il vit dans la savane ouverte, pas dans la forêt dense.",
+          "pt": "Vive na savana aberta, não na floresta densa."
+        }
+      },
+      {
+        "text": {
+          "en": "Its dark purple tongue is about 50 cm long, and its neck has seven bones, like ours.",
+          "fr": "Sa langue violet foncé mesure près de 50 cm, et son cou a sept vertèbres, comme le nôtre.",
+          "pt": "A língua, roxa-escura, mede cerca de 50 cm, e o pescoço tem sete vértebras, como o nosso."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The tallest animal on Earth, thanks to a neck up to 2 m long.",
+          "fr": "L’animal le plus grand du monde, grâce à un cou de près de 2 m.",
+          "pt": "O animal mais alto do mundo, graças a um pescoço de quase 2 m."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Llama",
+        "fr": "Lama",
+        "pt": "Lama"
+      },
+      {
+        "en": "Zebra",
+        "fr": "Zèbre",
+        "pt": "Zebra"
+      },
+      {
+        "en": "Okapi",
+        "fr": "Okapi",
+        "pt": "Ocapi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "giraffe",
+    "name": {
+      "en": "Giraffe",
+      "fr": "Girafe",
+      "pt": "Girafa"
+    },
+    "tier": "easy",
+    "wikidata": "Q862089"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A grey giant with thick skin and almost no hair.",
+          "fr": "Un géant gris à la peau épaisse, presque sans poils.",
+          "pt": "Um gigante cinzento de pele grossa, quase sem pelo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has no horn on its face.",
+          "fr": "Il n’a aucune corne sur le visage.",
+          "pt": "Não tem nenhum corno na cara."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives wild in Asia as well as in Africa.",
+          "fr": "Il vit à l’état sauvage en Asie comme en Afrique.",
+          "pt": "Vive em estado selvagem tanto na Ásia como em África."
+        }
+      },
+      {
+        "text": {
+          "en": "A pregnancy lasts nearly two years, and it can recognise itself in a mirror.",
+          "fr": "Sa gestation dure près de deux ans, et il se reconnaît dans un miroir.",
+          "pt": "A gestação dura quase dois anos, e reconhece-se ao espelho."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The largest land animal, with a trunk and ivory tusks.",
+          "fr": "Le plus grand animal terrestre, avec une trompe et des défenses en ivoire.",
+          "pt": "O maior animal terrestre, com tromba e presas de marfim."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Giraffe",
+        "fr": "Girafe",
+        "pt": "Girafa"
+      },
+      {
+        "en": "Rhinoceros",
+        "fr": "Rhinocéros",
+        "pt": "Rinoceronte"
+      },
+      {
+        "en": "Hippopotamus",
+        "fr": "Hippopotame",
+        "pt": "Hipopótamo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "elephant",
+    "name": {
+      "en": "Elephant",
+      "fr": "Éléphant",
+      "pt": "Elefante"
+    },
+    "tier": "easy",
+    "wikidata": "Q7378"
+  },
+  {
+    "accepted": {
+      "en": ["panda"],
+      "fr": ["panda"],
+      "pt": ["panda"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A true bear.",
+          "fr": "Un véritable ours.",
+          "pt": "Um verdadeiro urso."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in the forests of Asia.",
+          "fr": "Il vit dans les forêts d’Asie.",
+          "pt": "Vive nas florestas da Ásia."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It eats almost nothing but bamboo.",
+          "fr": "Il ne mange presque que du bambou.",
+          "pt": "Quase só come bambu."
+        }
+      },
+      {
+        "text": {
+          "en": "It grips stems with a ‘false thumb’, a wrist bone, and eats up to 14 hours a day.",
+          "fr": "Il tient les tiges avec un « faux pouce », un os du poignet, et mange jusqu’à 14 heures par jour.",
+          "pt": "Agarra os caules com um «falso polegar», um osso do pulso, e come até 14 horas por dia."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Black and white, it is a symbol of China and the logo of the WWF.",
+          "fr": "Noir et blanc, symbole de la Chine et logo du WWF.",
+          "pt": "Preto e branco, símbolo da China e logótipo do WWF."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Raccoon",
+        "fr": "Raton laveur",
+        "pt": "Guaxinim"
+      },
+      {
+        "en": "Polar bear",
+        "fr": "Ours polaire",
+        "pt": "Urso-polar"
+      },
+      {
+        "en": "Sun bear",
+        "fr": "Ours malais",
+        "pt": "Urso-malaio"
+      }
+    ],
+    "homeCountry": null,
+    "id": "giant-panda",
+    "name": {
+      "en": "Giant panda",
+      "fr": "Panda géant",
+      "pt": "Panda-gigante"
+    },
+    "tier": "easy",
+    "wikidata": "Q33602"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It gets around mainly by hopping on its two hind legs.",
+          "fr": "Il se déplace surtout en sautant sur ses deux pattes arrière.",
+          "pt": "Desloca-se sobretudo aos saltos, nas duas patas traseiras."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "The mother carries her young in a pouch.",
+          "fr": "La mère porte son petit dans une poche.",
+          "pt": "A mãe transporta a cria numa bolsa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The biggest males stand taller than a grown man.",
+          "fr": "Les plus grands mâles, debout, dépassent un homme adulte.",
+          "pt": "Os maiores machos, de pé, são mais altos do que um homem adulto."
+        }
+      },
+      {
+        "text": {
+          "en": "It can cover 8 m in a single bound, balancing on its thick tail.",
+          "fr": "Il peut franchir 8 m d’un seul bond, en s’équilibrant avec sa grosse queue.",
+          "pt": "Consegue percorrer 8 m num só salto, equilibrando-se na cauda grossa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Australia’s boxer, on the national coat of arms beside the emu.",
+          "fr": "Le boxeur de l’Australie, sur ses armoiries à côté de l’émeu.",
+          "pt": "O pugilista da Austrália, no brasão do país ao lado da ema."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Koala",
+        "fr": "Koala",
+        "pt": "Coala"
+      },
+      {
+        "en": "Jerboa",
+        "fr": "Gerboise",
+        "pt": "Jerboa"
+      },
+      {
+        "en": "Wallaby",
+        "fr": "Wallaby",
+        "pt": "Wallaby"
+      }
+    ],
+    "homeCountry": null,
+    "id": "kangaroo",
+    "name": {
+      "en": "Kangaroo",
+      "fr": "Kangourou",
+      "pt": "Canguru"
+    },
+    "tier": "easy",
+    "wikidata": "Q5070208"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["koala"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Australian marsupial.",
+          "fr": "Un marsupial d’Australie.",
+          "pt": "Um marsupial da Austrália."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It spends almost its whole life up in the trees.",
+          "fr": "Il passe presque toute sa vie dans les arbres.",
+          "pt": "Passa quase a vida inteira nas árvores."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It eats almost nothing but eucalyptus leaves.",
+          "fr": "Il ne mange presque que des feuilles d’eucalyptus.",
+          "pt": "Quase só come folhas de eucalipto."
+        }
+      },
+      {
+        "text": {
+          "en": "It sleeps up to 20 hours a day, and its fingerprints look almost like ours.",
+          "fr": "Il dort jusqu’à 20 heures par jour, et ses empreintes digitales ressemblent aux nôtres.",
+          "pt": "Dorme até 20 horas por dia, e as impressões digitais são quase iguais às nossas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A grey, fluffy-eared tree-hugger, often wrongly called a bear.",
+          "fr": "Une boule grise aux oreilles duveteuses, souvent appelée ours à tort.",
+          "pt": "Uma bola cinzenta de orelhas felpudas, muitas vezes chamada urso por engano."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sloth",
+        "fr": "Paresseux",
+        "pt": "Preguiça"
+      },
+      {
+        "en": "Wombat",
+        "fr": "Wombat",
+        "pt": "Vombate"
+      },
+      {
+        "en": "Sugar glider",
+        "fr": "Phalanger volant",
+        "pt": "Petauro-do-açúcar"
+      }
+    ],
+    "homeCountry": null,
+    "id": "koala",
+    "name": {
+      "en": "Koala",
+      "fr": "Koala",
+      "pt": "Coala"
+    },
+    "tier": "easy",
+    "wikidata": "Q36101"
+  },
+  {
+    "accepted": {
+      "en": ["white bear"],
+      "fr": ["ours blanc"],
+      "pt": ["urso branco"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives in the Arctic.",
+          "fr": "Il vit en Arctique.",
+          "pt": "Vive no Ártico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "An adult weighs hundreds of kilograms.",
+          "fr": "Un adulte pèse plusieurs centaines de kilos.",
+          "pt": "Um adulto pesa centenas de quilos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It is covered in thick fur, with no tusks.",
+          "fr": "Il est couvert d’une épaisse fourrure, sans défenses.",
+          "pt": "Está coberto de pelo espesso e não tem presas."
+        }
+      },
+      {
+        "text": {
+          "en": "Its fur is not really white but see-through, over black skin.",
+          "fr": "Sa fourrure n’est pas vraiment blanche mais transparente, sur une peau noire.",
+          "pt": "O pelo não é bem branco, mas transparente, sobre uma pele preta."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Arctic’s top predator, hunting seals from the sea ice.",
+          "fr": "Le grand prédateur de l’Arctique, qui chasse le phoque sur la banquise.",
+          "pt": "O grande predador do Ártico, que caça focas no gelo marinho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Penguin",
+        "fr": "Manchot",
+        "pt": "Pinguim"
+      },
+      {
+        "en": "Arctic fox",
+        "fr": "Renard polaire",
+        "pt": "Raposa-do-ártico"
+      },
+      {
+        "en": "Walrus",
+        "fr": "Morse",
+        "pt": "Morsa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "polar-bear",
+    "name": {
+      "en": "Polar bear",
+      "fr": "Ours polaire",
+      "pt": "Urso-polar"
+    },
+    "tier": "easy",
+    "wikidata": "Q33609"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A sea mammal that comes up to breathe air.",
+          "fr": "Un mammifère marin qui remonte respirer de l’air.",
+          "pt": "Um mamífero marinho que vem à superfície respirar ar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has no teeth: it filters its food through baleen plates.",
+          "fr": "Il n’a pas de dents : il filtre sa nourriture avec des fanons.",
+          "pt": "Não tem dentes: filtra o alimento com barbas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It can reach about 30 m, longer than a basketball court.",
+          "fr": "Il peut atteindre 30 m, plus long qu’un terrain de basket.",
+          "pt": "Pode chegar aos 30 m, mais comprido do que um campo de basquetebol."
+        }
+      },
+      {
+        "text": {
+          "en": "It swallows several tonnes of tiny krill a day.",
+          "fr": "Il avale plusieurs tonnes de minuscules krills par jour.",
+          "pt": "Engole várias toneladas de minúsculo krill por dia."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The largest animal that has ever lived on Earth.",
+          "fr": "Le plus grand animal ayant jamais vécu sur Terre.",
+          "pt": "O maior animal que alguma vez viveu na Terra."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Whale shark",
+        "fr": "Requin-baleine",
+        "pt": "Tubarão-baleia"
+      },
+      {
+        "en": "Sperm whale",
+        "fr": "Cachalot",
+        "pt": "Cachalote"
+      },
+      {
+        "en": "Humpback whale",
+        "fr": "Baleine à bosse",
+        "pt": "Baleia-de-bossa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "blue-whale",
+    "name": {
+      "en": "Blue whale",
+      "fr": "Baleine bleue",
+      "pt": "Baleia-azul"
+    },
+    "tier": "easy",
+    "wikidata": "Q42196"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["poulpe"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A soft-bodied sea creature with no shell to hide in.",
+          "fr": "Un animal marin au corps mou, sans carapace où se cacher.",
+          "pt": "Um animal marinho de corpo mole, sem carapaça onde se esconder."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has a brain and a pair of sharp eyes.",
+          "fr": "Il a un cerveau et deux yeux perçants.",
+          "pt": "Tem cérebro e dois olhos de vista apurada."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives alone on the sea floor, hiding in a den.",
+          "fr": "Il vit seul au fond de la mer, caché dans un abri.",
+          "pt": "Vive sozinho no fundo do mar, escondido numa toca."
+        }
+      },
+      {
+        "text": {
+          "en": "It has three hearts and blue blood.",
+          "fr": "Il a trois cœurs et le sang bleu.",
+          "pt": "Tem três corações e sangue azul."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Eight arms covered in suckers, and a cloud of ink to escape.",
+          "fr": "Huit bras couverts de ventouses, et un nuage d’encre pour fuir.",
+          "pt": "Oito braços cheios de ventosas e uma nuvem de tinta para fugir."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Crab",
+        "fr": "Crabe",
+        "pt": "Caranguejo"
+      },
+      {
+        "en": "Jellyfish",
+        "fr": "Méduse",
+        "pt": "Alforreca"
+      },
+      {
+        "en": "Squid",
+        "fr": "Calmar",
+        "pt": "Lula"
+      }
+    ],
+    "homeCountry": null,
+    "id": "octopus",
+    "name": {
+      "en": "Octopus",
+      "fr": "Pieuvre",
+      "pt": "Polvo"
+    },
+    "tier": "easy",
+    "wikidata": "Q651361"
+  },
+  {
+    "accepted": {
+      "en": ["bee", "honey bee"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An insect that lives in a big colony.",
+          "fr": "Un insecte qui vit en grande colonie.",
+          "pt": "Um inseto que vive numa grande colónia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "The workers fly from place to place.",
+          "fr": "Les ouvrières se déplacent en volant.",
+          "pt": "As obreiras deslocam-se a voar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A worker usually dies after stinging a person.",
+          "fr": "Une ouvrière meurt en général après avoir piqué un humain.",
+          "pt": "Uma obreira costuma morrer depois de picar uma pessoa."
+        }
+      },
+      {
+        "text": {
+          "en": "It shows its sisters where the flowers are by dancing a figure of eight.",
+          "fr": "Elle indique à ses sœurs où sont les fleurs en dansant en forme de huit.",
+          "pt": "Mostra às irmãs onde estão as flores dançando em forma de oito."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "It lives in a hive with a queen, and makes honey and wax.",
+          "fr": "Elle vit dans une ruche avec une reine, et fabrique le miel et la cire.",
+          "pt": "Vive numa colmeia com uma rainha e produz mel e cera."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Spider",
+        "fr": "Araignée",
+        "pt": "Aranha"
+      },
+      {
+        "en": "Ant",
+        "fr": "Fourmi",
+        "pt": "Formiga"
+      },
+      {
+        "en": "Wasp",
+        "fr": "Guêpe",
+        "pt": "Vespa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "honeybee",
+    "name": {
+      "en": "Honeybee",
+      "fr": "Abeille",
+      "pt": "Abelha"
+    },
+    "tier": "easy",
+    "wikidata": "Q30034"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["pingouin empereur"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A seabird of the Southern Hemisphere.",
+          "fr": "Un oiseau marin de l’hémisphère Sud.",
+          "pt": "Uma ave marinha do hemisfério sul."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It cannot fly.",
+          "fr": "Il ne sait pas voler.",
+          "pt": "Não consegue voar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The tallest and heaviest of its whole family, at over a metre.",
+          "fr": "Le plus grand et le plus lourd de toute sa famille, à plus d’un mètre.",
+          "pt": "O mais alto e pesado de toda a sua família, com mais de um metro."
+        }
+      },
+      {
+        "text": {
+          "en": "The father keeps the egg on his feet for two months of polar night, eating nothing.",
+          "fr": "Le père garde l’œuf sur ses pattes pendant deux mois de nuit polaire, sans manger.",
+          "pt": "O pai guarda o ovo nas patas durante dois meses de noite polar, sem comer."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Antarctica’s biggest flightless bird, huddling by the thousands through winter.",
+          "fr": "Le plus grand oiseau de l’Antarctique, serré par milliers contre l’hiver.",
+          "pt": "A maior ave do Antártico, aos milhares, encostadas contra o inverno."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Puffin",
+        "fr": "Macareux",
+        "pt": "Papagaio-do-mar"
+      },
+      {
+        "en": "Albatross",
+        "fr": "Albatros",
+        "pt": "Albatroz"
+      },
+      {
+        "en": "King penguin",
+        "fr": "Manchot royal",
+        "pt": "Pinguim-rei"
+      }
+    ],
+    "homeCountry": null,
+    "id": "emperor-penguin",
+    "name": {
+      "en": "Emperor penguin",
+      "fr": "Manchot empereur",
+      "pt": "Pinguim-imperador"
+    },
+    "tier": "easy",
+    "wikidata": "Q161829"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["flamant"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A long-legged bird that wades in shallow water.",
+          "fr": "Un oiseau aux longues pattes qui marche dans l’eau peu profonde.",
+          "pt": "Uma ave de patas compridas que caminha em águas pouco profundas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its feathers are pink.",
+          "fr": "Ses plumes sont roses.",
+          "pt": "As penas são cor-de-rosa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its bill bends sharply downwards in the middle.",
+          "fr": "Son bec se coude brusquement vers le bas en son milieu.",
+          "pt": "O bico dobra bruscamente para baixo a meio."
+        }
+      },
+      {
+        "text": {
+          "en": "Its colour comes from the algae and shrimp it eats; a group is called a flamboyance.",
+          "fr": "Sa couleur vient des algues et des crevettes qu’il mange.",
+          "pt": "A cor vem das algas e dos camarões que come."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A pink bird that often sleeps standing on one leg.",
+          "fr": "Un oiseau rose qui dort souvent sur une seule patte.",
+          "pt": "Uma ave cor-de-rosa que dorme muitas vezes apoiada numa só pata."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Swan",
+        "fr": "Cygne",
+        "pt": "Cisne"
+      },
+      {
+        "en": "Stork",
+        "fr": "Cigogne",
+        "pt": "Cegonha"
+      },
+      {
+        "en": "Roseate spoonbill",
+        "fr": "Spatule rosée",
+        "pt": "Colhereiro-rosado"
+      }
+    ],
+    "homeCountry": null,
+    "id": "flamingo",
+    "name": {
+      "en": "Flamingo",
+      "fr": "Flamant rose",
+      "pt": "Flamingo"
+    },
+    "tier": "easy",
+    "wikidata": "Q179863"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hoofed animal found wild only in Africa.",
+          "fr": "Un animal à sabots qu’on ne trouve à l’état sauvage qu’en Afrique.",
+          "pt": "Um animal com cascos que só vive em estado selvagem em África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its coat is striped black and white.",
+          "fr": "Son pelage est rayé de noir et de blanc.",
+          "pt": "A pelagem tem riscas pretas e brancas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It belongs to the horse family.",
+          "fr": "Il appartient à la famille du cheval.",
+          "pt": "Pertence à família do cavalo."
+        }
+      },
+      {
+        "text": {
+          "en": "No two share the same pattern, and its stripes seem to put off biting flies.",
+          "fr": "Il n’y en a pas deux au motif identique, et ses rayures semblent repousser les mouches.",
+          "pt": "Não há dois com o mesmo padrão, e as riscas parecem afastar as moscas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Africa’s striped wild horse, grazing in huge herds on the savannah.",
+          "fr": "Le cheval sauvage rayé d’Afrique, qui broute en grands troupeaux.",
+          "pt": "O cavalo selvagem às riscas de África, que pasta em grandes manadas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tapir",
+        "fr": "Tapir",
+        "pt": "Anta"
+      },
+      {
+        "en": "Wildebeest",
+        "fr": "Gnou",
+        "pt": "Gnu"
+      },
+      {
+        "en": "Okapi",
+        "fr": "Okapi",
+        "pt": "Ocapi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "zebra",
+    "name": {
+      "en": "Zebra",
+      "fr": "Zèbre",
+      "pt": "Zebra"
+    },
+    "tier": "easy",
+    "wikidata": "Q32789"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["guepardo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A big cat of the African savannah.",
+          "fr": "Un grand félin de la savane africaine.",
+          "pt": "Um grande felino da savana africana."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its coat is covered in black spots.",
+          "fr": "Son pelage est couvert de taches noires.",
+          "pt": "A pelagem está coberta de manchas pretas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Black ‘tear lines’ run from its eyes down to its mouth.",
+          "fr": "Des « larmes » noires coulent de ses yeux jusqu’à sa bouche.",
+          "pt": "Tem «lágrimas» pretas que descem dos olhos até à boca."
+        }
+      },
+      {
+        "text": {
+          "en": "It hunts by day, and its claws never fully retract, like a sprinter’s spikes.",
+          "fr": "Il chasse de jour, et ses griffes ne se rétractent jamais tout à fait, comme des pointes de sprinteur.",
+          "pt": "Caça de dia, e as garras nunca recolhem por completo, como os pitons de um velocista."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The fastest land animal, sprinting at over 100 km/h.",
+          "fr": "L’animal terrestre le plus rapide, à plus de 100 km/h en pointe.",
+          "pt": "O animal terrestre mais rápido, a mais de 100 km/h."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jaguar",
+        "fr": "Jaguar",
+        "pt": "Jaguar"
+      },
+      {
+        "en": "Lion",
+        "fr": "Lion",
+        "pt": "Leão"
+      },
+      {
+        "en": "Leopard",
+        "fr": "Léopard",
+        "pt": "Leopardo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "cheetah",
+    "name": {
+      "en": "Cheetah",
+      "fr": "Guépard",
+      "pt": "Chita"
+    },
+    "tier": "easy",
+    "wikidata": "Q23907"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mammal that lives in the sea.",
+          "fr": "Un mammifère qui vit dans la mer.",
+          "pt": "Um mamífero que vive no mar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It spends its whole life in the water, never hauling out onto land.",
+          "fr": "Il passe toute sa vie dans l’eau, sans jamais monter à terre.",
+          "pt": "Passa a vida inteira na água, sem nunca subir a terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It has a long, beak-like snout.",
+          "fr": "Il a un long museau en forme de bec.",
+          "pt": "Tem um focinho comprido em forma de bico."
+        }
+      },
+      {
+        "text": {
+          "en": "It sleeps with one half of its brain at a time, and each has its own signature whistle.",
+          "fr": "Il dort avec une moitié du cerveau à la fois, et chacun a son propre sifflement.",
+          "pt": "Dorme com metade do cérebro de cada vez, e cada um tem o seu próprio assobio."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Flipper was one: a grey, ever-smiling sea mammal that loves to leap.",
+          "fr": "Flipper en était un : un mammifère marin gris, souriant, qui adore sauter.",
+          "pt": "O Flipper era um: um mamífero marinho cinzento, sorridente, que adora saltar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Shark",
+        "fr": "Requin",
+        "pt": "Tubarão"
+      },
+      {
+        "en": "Seal",
+        "fr": "Phoque",
+        "pt": "Foca"
+      },
+      {
+        "en": "Porpoise",
+        "fr": "Marsouin",
+        "pt": "Boto"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dolphin",
+    "name": {
+      "en": "Dolphin",
+      "fr": "Dauphin",
+      "pt": "Golfinho"
+    },
+    "tier": "easy",
+    "wikidata": "Q7369"
+  },
+  {
+    "accepted": {
+      "en": ["hippo"],
+      "fr": ["hippo"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A huge grey plant-eater of Africa.",
+          "fr": "Un énorme herbivore gris d’Afrique.",
+          "pt": "Um enorme herbívoro cinzento de África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has no horn on its face.",
+          "fr": "Il n’a aucune corne sur le visage.",
+          "pt": "Não tem nenhum corno na cara."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It spends its days in rivers and lakes and comes out at night to graze.",
+          "fr": "Il passe ses journées dans les fleuves et les lacs, et sort la nuit pour brouter.",
+          "pt": "Passa os dias em rios e lagos e sai à noite para pastar."
+        }
+      },
+      {
+        "text": {
+          "en": "Its skin oozes a reddish fluid that acts as sunscreen, and it doesn’t really swim.",
+          "fr": "Sa peau suinte un liquide rougeâtre qui sert de crème solaire, et il ne nage pas vraiment.",
+          "pt": "A pele liberta um líquido avermelhado que serve de protetor solar, e não nada a sério."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Greeks’ ‘river horse’: a three-tonne African grazer with a gaping mouth.",
+          "fr": "Le « cheval du fleuve » des Grecs : un colosse africain à la gueule immense.",
+          "pt": "O «cavalo do rio» dos gregos: um colosso africano de boca enorme."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tapir",
+        "fr": "Tapir",
+        "pt": "Anta"
+      },
+      {
+        "en": "Rhinoceros",
+        "fr": "Rhinocéros",
+        "pt": "Rinoceronte"
+      },
+      {
+        "en": "Elephant",
+        "fr": "Éléphant",
+        "pt": "Elefante"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hippopotamus",
+    "name": {
+      "en": "Hippopotamus",
+      "fr": "Hippopotame",
+      "pt": "Hipopótamo"
+    },
+    "tier": "easy",
+    "wikidata": "Q34505"
+  },
+  {
+    "accepted": {
+      "en": ["arabian camel"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A desert animal of Africa or Asia.",
+          "fr": "Un animal du désert, en Afrique ou en Asie.",
+          "pt": "Um animal do deserto, em África ou na Ásia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "People tamed it long ago to carry loads and riders.",
+          "fr": "L’homme l’a domestiqué il y a longtemps pour porter charges et cavaliers.",
+          "pt": "O homem domesticou-o há muito para levar cargas e cavaleiros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It has just one hump.",
+          "fr": "Il n’a qu’une seule bosse.",
+          "pt": "Tem uma só bossa."
+        }
+      },
+      {
+        "text": {
+          "en": "It can drink over 100 litres in about ten minutes, and its hump stores fat, not water.",
+          "fr": "Il peut boire plus de 100 litres en dix minutes, et sa bosse stocke de la graisse, pas de l’eau.",
+          "pt": "Consegue beber mais de 100 litros em dez minutos, e a bossa guarda gordura, não água."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The ‘ship of the desert’ of the Sahara and Arabia.",
+          "fr": "Le « vaisseau du désert » du Sahara et de l’Arabie.",
+          "pt": "O «navio do deserto» do Sara e da Arábia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Llama",
+        "fr": "Lama",
+        "pt": "Lama"
+      },
+      {
+        "en": "Oryx",
+        "fr": "Oryx",
+        "pt": "Órix"
+      },
+      {
+        "en": "Bactrian camel",
+        "fr": "Chameau de Bactriane",
+        "pt": "Camelo-bactriano"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dromedary",
+    "name": {
+      "en": "Dromedary",
+      "fr": "Dromadaire",
+      "pt": "Dromedário"
+    },
+    "tier": "easy",
+    "wikidata": "Q71516"
+  },
+  {
+    "accepted": {
+      "en": ["great white", "white shark"],
+      "fr": ["requin blanc"],
+      "pt": ["grande tubarão-branco"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fish whose skeleton is made of cartilage, not bone.",
+          "fr": "Un poisson dont le squelette est en cartilage, pas en os.",
+          "pt": "Um peixe cujo esqueleto é de cartilagem, não de osso."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A hunter with rows of big, sharp teeth.",
+          "fr": "Un chasseur aux rangées de grandes dents acérées.",
+          "pt": "Um caçador com filas de dentes grandes e afiados."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its snout is a pointed cone.",
+          "fr": "Son museau forme un cône pointu.",
+          "pt": "O focinho é um cone pontiagudo."
+        }
+      },
+      {
+        "text": {
+          "en": "It must keep swimming to breathe, and grows new teeth all its life.",
+          "fr": "Il doit nager sans cesse pour respirer, et ses dents repoussent toute sa vie.",
+          "pt": "Tem de nadar sempre para respirar, e os dentes crescem-lhe a vida toda."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The villain of Jaws, the largest predatory fish on Earth.",
+          "fr": "Le monstre des Dents de la mer, le plus grand poisson prédateur.",
+          "pt": "O vilão do filme de Spielberg de 1975, o maior peixe predador do mundo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Orca",
+        "fr": "Orque",
+        "pt": "Orca"
+      },
+      {
+        "en": "Whale shark",
+        "fr": "Requin-baleine",
+        "pt": "Tubarão-baleia"
+      },
+      {
+        "en": "Hammerhead shark",
+        "fr": "Requin-marteau",
+        "pt": "Tubarão-martelo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "great-white-shark",
+    "name": {
+      "en": "Great white shark",
+      "fr": "Grand requin blanc",
+      "pt": "Tubarão-branco"
+    },
+    "tier": "easy",
+    "wikidata": "Q129026"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A reptile that lives in trees.",
+          "fr": "Un reptile qui vit dans les arbres.",
+          "pt": "Um réptil que vive nas árvores."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its eyes swivel independently, each looking its own way.",
+          "fr": "Ses yeux pivotent chacun de leur côté, indépendamment.",
+          "pt": "Os olhos rodam de forma independente, cada um para o seu lado."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It catches insects by firing out a tongue longer than its body.",
+          "fr": "Il attrape les insectes en projetant une langue plus longue que son corps.",
+          "pt": "Apanha insetos disparando uma língua mais comprida do que o corpo."
+        }
+      },
+      {
+        "text": {
+          "en": "It changes colour mostly to show its mood or warm up, not to hide.",
+          "fr": "Il change de couleur surtout pour montrer son humeur ou se réchauffer, pas pour se cacher.",
+          "pt": "Muda de cor sobretudo para mostrar o humor ou aquecer, não para se esconder."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The colour-changing lizard, many of them from Madagascar.",
+          "fr": "Le lézard qui change de couleur, souvent originaire de Madagascar.",
+          "pt": "O lagarto que muda de cor, muitos deles de Madagáscar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Frog",
+        "fr": "Grenouille",
+        "pt": "Rã"
+      },
+      {
+        "en": "Gecko",
+        "fr": "Gecko",
+        "pt": "Osga"
+      },
+      {
+        "en": "Iguana",
+        "fr": "Iguane",
+        "pt": "Iguana"
+      }
+    ],
+    "homeCountry": null,
+    "id": "chameleon",
+    "name": {
+      "en": "Chameleon",
+      "fr": "Caméléon",
+      "pt": "Camaleão"
+    },
+    "tier": "easy",
+    "wikidata": "Q37686"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["ouriço"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mammal found wild in Europe.",
+          "fr": "Un mammifère qui vit à l’état sauvage en Europe.",
+          "pt": "Um mamífero que vive em estado selvagem na Europa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its back is covered in spines.",
+          "fr": "Son dos est couvert de piquants.",
+          "pt": "Tem o dorso coberto de espinhos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It rolls into a tight ball when threatened.",
+          "fr": "Il se roule en boule serrée quand il se sent menacé.",
+          "pt": "Enrola-se numa bola apertada quando se sente ameaçado."
+        }
+      },
+      {
+        "text": {
+          "en": "It carries 5,000 to 7,000 spines and sleeps through the winter.",
+          "fr": "Il porte de 5 000 à 7 000 piquants et hiberne tout l’hiver.",
+          "pt": "Tem entre 5000 e 7000 espinhos e hiberna durante o inverno."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Sonic is one: a little spiny ball snuffling through gardens at night.",
+          "fr": "Sonic en est un : une petite boule piquante qui fouine dans les jardins la nuit.",
+          "pt": "O Sonic é um: uma bolinha de espinhos que fuça nos jardins à noite."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Armadillo",
+        "fr": "Tatou",
+        "pt": "Tatu"
+      },
+      {
+        "en": "Mole",
+        "fr": "Taupe",
+        "pt": "Toupeira"
+      },
+      {
+        "en": "Porcupine",
+        "fr": "Porc-épic",
+        "pt": "Porco-espinho"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hedgehog",
+    "name": {
+      "en": "Hedgehog",
+      "fr": "Hérisson",
+      "pt": "Ouriço-cacheiro"
+    },
+    "tier": "easy",
+    "wikidata": "Q6145"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An ape: a primate with no tail.",
+          "fr": "Un grand singe : un primate sans queue.",
+          "pt": "Um grande símio: um primata sem cauda."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in Africa.",
+          "fr": "Il vit en Afrique.",
+          "pt": "Vive em África."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Adult males can weigh over 150 kg.",
+          "fr": "Les mâles adultes peuvent dépasser 150 kg.",
+          "pt": "Os machos adultos podem passar dos 150 kg."
+        }
+      },
+      {
+        "text": {
+          "en": "Older males grow a saddle of silver hair, and it walks on its knuckles.",
+          "fr": "Les vieux mâles ont le dos argenté, et il marche en appui sur les phalanges.",
+          "pt": "Os machos mais velhos ganham o dorso prateado, e anda apoiado nos nós dos dedos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "King Kong’s kind: the biggest ape, drumming on its chest.",
+          "fr": "L’espèce de King Kong : le plus grand des singes, qui se frappe la poitrine.",
+          "pt": "A espécie do King Kong: o maior dos símios, que bate no peito."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Baboon",
+        "fr": "Babouin",
+        "pt": "Babuíno"
+      },
+      {
+        "en": "Orangutan",
+        "fr": "Orang-outan",
+        "pt": "Orangotango"
+      },
+      {
+        "en": "Chimpanzee",
+        "fr": "Chimpanzé",
+        "pt": "Chimpanzé"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gorilla",
+    "name": {
+      "en": "Gorilla",
+      "fr": "Gorille",
+      "pt": "Gorila"
+    },
+    "tier": "easy",
+    "wikidata": "Q36611"
+  },
+  {
+    "accepted": {
+      "en": ["grey wolf", "gray wolf"],
+      "fr": ["loup gris"],
+      "pt": ["lobo-cinzento"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A wild member of the dog family from the Northern Hemisphere.",
+          "fr": "Un canidé sauvage de l’hémisphère Nord.",
+          "pt": "Um canídeo selvagem do hemisfério norte."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It hunts in packs.",
+          "fr": "Il chasse en meute.",
+          "pt": "Caça em grupo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It roams Europe and Asia as well as North America.",
+          "fr": "Il vit en Europe et en Asie comme en Amérique du Nord.",
+          "pt": "Vive na Europa e na Ásia, tal como na América do Norte."
+        }
+      },
+      {
+        "text": {
+          "en": "Every dog on Earth descends from it, and it howls to rally its pack.",
+          "fr": "Tous les chiens descendent de lui, et il hurle pour rassembler sa meute.",
+          "pt": "Todos os cães descendem dele, e uiva para reunir o grupo."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The big bad villain of Little Red Riding Hood.",
+          "fr": "Le grand méchant du Petit Chaperon rouge.",
+          "pt": "O mau da história do Capuchinho Vermelho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Hyena",
+        "fr": "Hyène",
+        "pt": "Hiena"
+      },
+      {
+        "en": "Red fox",
+        "fr": "Renard roux",
+        "pt": "Raposa-vermelha"
+      },
+      {
+        "en": "Coyote",
+        "fr": "Coyote",
+        "pt": "Coiote"
+      }
+    ],
+    "homeCountry": null,
+    "id": "wolf",
+    "name": {
+      "en": "Wolf",
+      "fr": "Loup",
+      "pt": "Lobo"
+    },
+    "tier": "easy",
+    "wikidata": "Q18498"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bird that cannot fly.",
+          "fr": "Un oiseau qui ne sait pas voler.",
+          "pt": "Uma ave que não consegue voar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives on dry land and never goes to sea.",
+          "fr": "Il vit sur la terre ferme et ne va jamais en mer.",
+          "pt": "Vive em terra firme e nunca vai ao mar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives wild in Africa.",
+          "fr": "Il vit à l’état sauvage en Afrique.",
+          "pt": "Vive em estado selvagem em África."
+        }
+      },
+      {
+        "text": {
+          "en": "It lays the biggest egg of any living bird, and has just two toes on each foot.",
+          "fr": "Il pond le plus gros œuf de tous les oiseaux vivants, et n’a que deux doigts par patte.",
+          "pt": "Põe o maior ovo de todas as aves vivas e tem só dois dedos em cada pata."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The largest living bird, up to 2.7 m tall and running at 70 km/h.",
+          "fr": "Le plus grand oiseau vivant, jusqu’à 2,7 m, qui court à 70 km/h.",
+          "pt": "A maior ave viva, até 2,7 m de altura, a correr a 70 km/h."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Eagle",
+        "fr": "Aigle",
+        "pt": "Águia"
+      },
+      {
+        "en": "Penguin",
+        "fr": "Manchot",
+        "pt": "Pinguim"
+      },
+      {
+        "en": "Emu",
+        "fr": "Émeu",
+        "pt": "Ema"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ostrich",
+    "name": {
+      "en": "Ostrich",
+      "fr": "Autruche",
+      "pt": "Avestruz"
+    },
+    "tier": "easy",
+    "wikidata": "Q17592"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives in the rainforests of Central and South America.",
+          "fr": "Il vit dans les forêts tropicales d’Amérique centrale et du Sud.",
+          "pt": "Vive nas florestas tropicais da América Central e do Sul."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It moves very slowly.",
+          "fr": "Il se déplace très lentement.",
+          "pt": "Move-se muito devagar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It spends almost its whole life hanging upside down in trees.",
+          "fr": "Il passe presque toute sa vie suspendu la tête en bas dans les arbres.",
+          "pt": "Passa quase a vida inteira pendurado de cabeça para baixo nas árvores."
+        }
+      },
+      {
+        "text": {
+          "en": "Algae grow in its fur, and it climbs down only about once a week to relieve itself.",
+          "fr": "Des algues poussent dans sa fourrure, et il ne descend qu’une fois par semaine pour faire ses besoins.",
+          "pt": "Crescem algas no pelo, e só desce cerca de uma vez por semana para fazer as necessidades."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The slowest mammal on Earth, dangling from branches by long curved claws.",
+          "fr": "Le mammifère le plus lent du monde, accroché aux branches par de longues griffes.",
+          "pt": "O mamífero mais lento do mundo, pendurado nos ramos por garras compridas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Koala",
+        "fr": "Koala",
+        "pt": "Coala"
+      },
+      {
+        "en": "Spider monkey",
+        "fr": "Singe-araignée",
+        "pt": "Macaco-aranha"
+      },
+      {
+        "en": "Anteater",
+        "fr": "Fourmilier",
+        "pt": "Papa-formigas"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sloth",
+    "name": {
+      "en": "Sloth",
+      "fr": "Paresseux",
+      "pt": "Preguiça"
+    },
+    "tier": "easy",
+    "wikidata": "Q2274076"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Australian mammal.",
+          "fr": "Un mammifère d’Australie.",
+          "pt": "Um mamífero da Austrália."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lays eggs.",
+          "fr": "Il pond des œufs.",
+          "pt": "Põe ovos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It hunts underwater in rivers, with its eyes shut.",
+          "fr": "Il chasse sous l’eau dans les rivières, les yeux fermés.",
+          "pt": "Caça debaixo de água nos rios, de olhos fechados."
+        }
+      },
+      {
+        "text": {
+          "en": "The male has a venomous spur on each hind ankle.",
+          "fr": "Le mâle porte un éperon venimeux à chaque cheville arrière.",
+          "pt": "O macho tem um esporão venenoso em cada tornozelo traseiro."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A furry mammal with a duck’s bill and a beaver’s tail.",
+          "fr": "Un mammifère à fourrure avec un bec de canard et une queue de castor.",
+          "pt": "Um mamífero peludo com bico de pato e cauda de castor."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Beaver",
+        "fr": "Castor",
+        "pt": "Castor"
+      },
+      {
+        "en": "Wombat",
+        "fr": "Wombat",
+        "pt": "Vombate"
+      },
+      {
+        "en": "Echidna",
+        "fr": "Échidné",
+        "pt": "Equidna"
+      }
+    ],
+    "homeCountry": null,
+    "id": "platypus",
+    "name": {
+      "en": "Platypus",
+      "fr": "Ornithorynque",
+      "pt": "Ornitorrinco"
+    },
+    "tier": "medium",
+    "wikidata": "Q15343"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["axolotl"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An amphibian.",
+          "fr": "Un amphibien.",
+          "pt": "Um anfíbio."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It keeps its tail as an adult.",
+          "fr": "Il garde sa queue à l’âge adulte.",
+          "pt": "Mantém a cauda em adulto."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It never leaves the water and keeps its feathery gills all its life.",
+          "fr": "Il ne quitte jamais l’eau et garde ses branchies en plumeau toute sa vie.",
+          "pt": "Nunca sai da água e mantém as guelras em penacho a vida toda."
+        }
+      },
+      {
+        "text": {
+          "en": "It can regrow a lost leg, and even parts of its heart and brain.",
+          "fr": "Il peut faire repousser une patte perdue, et même des morceaux de cœur et de cerveau.",
+          "pt": "Consegue regenerar uma pata perdida, e até partes do coração e do cérebro."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A smiling pink salamander from the canals of Mexico City.",
+          "fr": "Une salamandre rose et souriante des canaux de Mexico.",
+          "pt": "Uma salamandra cor-de-rosa e sorridente dos canais da Cidade do México."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gecko",
+        "fr": "Gecko",
+        "pt": "Osga"
+      },
+      {
+        "en": "Frog",
+        "fr": "Grenouille",
+        "pt": "Rã"
+      },
+      {
+        "en": "Newt",
+        "fr": "Triton",
+        "pt": "Tritão"
+      }
+    ],
+    "homeCountry": null,
+    "id": "axolotl",
+    "name": {
+      "en": "Axolotl",
+      "fr": "Axolotl",
+      "pt": "Axolote"
+    },
+    "tier": "medium",
+    "wikidata": "Q22718"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives in icy Arctic waters.",
+          "fr": "Il vit dans les eaux glacées de l’Arctique.",
+          "pt": "Vive nas águas geladas do Ártico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A toothed whale that never comes out onto land.",
+          "fr": "Un cétacé à dents qui ne monte jamais à terre.",
+          "pt": "Um cetáceo com dentes que nunca sobe a terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its grey skin is mottled with dark spots.",
+          "fr": "Sa peau grise est marbrée de taches sombres.",
+          "pt": "A pele cinzenta é salpicada de manchas escuras."
+        }
+      },
+      {
+        "text": {
+          "en": "It dives deeper than 1,500 m, and its tusk is a tooth packed with nerve endings.",
+          "fr": "Il plonge à plus de 1 500 m, et sa défense est une dent bourrée de terminaisons nerveuses.",
+          "pt": "Mergulha a mais de 1500 m, e a presa é um dente cheio de terminações nervosas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The unicorn of the sea, with one long spiral tusk.",
+          "fr": "La licorne des mers, avec sa longue défense en spirale.",
+          "pt": "O unicórnio do mar, com uma longa presa em espiral."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dugong",
+        "fr": "Dugong",
+        "pt": "Dugongo"
+      },
+      {
+        "en": "Walrus",
+        "fr": "Morse",
+        "pt": "Morsa"
+      },
+      {
+        "en": "Beluga",
+        "fr": "Béluga",
+        "pt": "Beluga"
+      }
+    ],
+    "homeCountry": null,
+    "id": "narwhal",
+    "name": {
+      "en": "Narwhal",
+      "fr": "Narval",
+      "pt": "Narval"
+    },
+    "tier": "medium",
+    "wikidata": "Q159426"
+  },
+  {
+    "accepted": {
+      "en": ["komodo"],
+      "fr": ["komodo"],
+      "pt": ["komodo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A big lizard.",
+          "fr": "Un grand lézard.",
+          "pt": "Um grande lagarto."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A meat-eater.",
+          "fr": "Un carnivore.",
+          "pt": "Um carnívoro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives only on a handful of Indonesian islands.",
+          "fr": "Il ne vit que sur une poignée d’îles indonésiennes.",
+          "pt": "Só vive num punhado de ilhas da Indonésia."
+        }
+      },
+      {
+        "text": {
+          "en": "Its bite delivers venom, and a female can lay fertile eggs with no male.",
+          "fr": "Sa morsure injecte du venin, et une femelle peut pondre des œufs viables sans mâle.",
+          "pt": "A mordida injeta veneno, e uma fêmea pode pôr ovos viáveis sem macho."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The largest lizard on Earth, up to 3 m long.",
+          "fr": "Le plus grand lézard du monde, jusqu’à 3 m de long.",
+          "pt": "O maior lagarto do mundo, até 3 m de comprimento."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Crocodile",
+        "fr": "Crocodile",
+        "pt": "Crocodilo"
+      },
+      {
+        "en": "Iguana",
+        "fr": "Iguane",
+        "pt": "Iguana"
+      },
+      {
+        "en": "Nile monitor",
+        "fr": "Varan du Nil",
+        "pt": "Varano-do-nilo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "komodo-dragon",
+    "name": {
+      "en": "Komodo dragon",
+      "fr": "Dragon de Komodo",
+      "pt": "Dragão-de-komodo"
+    },
+    "tier": "medium",
+    "wikidata": "Q4504"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mammal that lives in the sea.",
+          "fr": "Un mammifère qui vit dans la mer.",
+          "pt": "Um mamífero que vive no mar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "On land, it walks on all four limbs.",
+          "fr": "À terre, il marche sur ses quatre membres.",
+          "pt": "Em terra, anda sobre os quatro membros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It floats on its back to eat.",
+          "fr": "Il flotte sur le dos pour manger.",
+          "pt": "Flutua de costas para comer."
+        }
+      },
+      {
+        "text": {
+          "en": "It has the densest fur of any animal, and holds paws with others while it sleeps.",
+          "fr": "Il a la fourrure la plus dense du monde animal, et se tient la patte avec d’autres en dormant.",
+          "pt": "Tem o pelo mais denso do reino animal, e dorme de patas dadas com outros."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A Pacific swimmer that cracks shellfish on a stone balanced on its belly.",
+          "fr": "Un nageur du Pacifique qui casse ses coquillages sur une pierre posée sur son ventre.",
+          "pt": "Um nadador do Pacífico que parte marisco numa pedra pousada na barriga."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Beaver",
+        "fr": "Castor",
+        "pt": "Castor"
+      },
+      {
+        "en": "Harbour seal",
+        "fr": "Phoque veau-marin",
+        "pt": "Foca-comum"
+      },
+      {
+        "en": "Sea lion",
+        "fr": "Otarie",
+        "pt": "Leão-marinho"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sea-otter",
+    "name": {
+      "en": "Sea otter",
+      "fr": "Loutre de mer",
+      "pt": "Lontra-marinha"
+    },
+    "tier": "medium",
+    "wikidata": "Q41407"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Australian marsupial.",
+          "fr": "Un marsupial d’Australie.",
+          "pt": "Um marsupial da Austrália."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A meat-eater.",
+          "fr": "Un carnivore.",
+          "pt": "Um carnívoro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It still lives in the wild today.",
+          "fr": "Il vit encore à l’état sauvage aujourd’hui.",
+          "pt": "Ainda hoje vive em estado selvagem."
+        }
+      },
+      {
+        "text": {
+          "en": "It has one of the strongest bites for its size, and screeches fiercely at night.",
+          "fr": "Il a l’une des morsures les plus puissantes pour sa taille, et pousse des cris terribles la nuit.",
+          "pt": "Tem uma das mordidas mais fortes para o seu tamanho, e solta guinchos terríveis à noite."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Taz, the spinning tornado of the Looney Tunes, is one.",
+          "fr": "Taz, la tornade tourbillonnante des Looney Tunes, en est un.",
+          "pt": "O Taz, o tornado rodopiante dos Looney Tunes, é um."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Wolverine",
+        "fr": "Glouton",
+        "pt": "Glutão"
+      },
+      {
+        "en": "Koala",
+        "fr": "Koala",
+        "pt": "Coala"
+      },
+      {
+        "en": "Thylacine",
+        "fr": "Thylacine",
+        "pt": "Tilacino"
+      }
+    ],
+    "homeCountry": null,
+    "id": "tasmanian-devil",
+    "name": {
+      "en": "Tasmanian devil",
+      "fr": "Diable de Tasmanie",
+      "pt": "Diabo-da-tasmânia"
+    },
+    "tier": "medium",
+    "wikidata": "Q134964"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An African mammal that shelters in burrows.",
+          "fr": "Un mammifère africain qui s’abrite dans des terriers.",
+          "pt": "Um mamífero africano que se abriga em tocas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in large family groups.",
+          "fr": "Il vit en grands groupes familiaux.",
+          "pt": "Vive em grandes grupos familiares."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "An adult weighs less than a kilo.",
+          "fr": "Un adulte pèse moins d’un kilo.",
+          "pt": "Um adulto pesa menos de um quilo."
+        }
+      },
+      {
+        "text": {
+          "en": "While the group feeds, one stands guard on its hind legs, ready to bark an alarm.",
+          "fr": "Pendant que le groupe mange, l’un d’eux monte la garde debout, prêt à donner l’alerte.",
+          "pt": "Enquanto o grupo come, um deles fica de sentinela em pé, pronto a dar o alarme."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Timon in The Lion King is one.",
+          "fr": "Timon, dans Le Roi lion, en est un.",
+          "pt": "O Timon, de O Rei Leão, é um."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Prairie dog",
+        "fr": "Chien de prairie",
+        "pt": "Cão-da-pradaria"
+      },
+      {
+        "en": "Honey badger",
+        "fr": "Ratel",
+        "pt": "Texugo-do-mel"
+      },
+      {
+        "en": "Warthog",
+        "fr": "Phacochère",
+        "pt": "Facochero"
+      }
+    ],
+    "homeCountry": null,
+    "id": "meerkat",
+    "name": {
+      "en": "Meerkat",
+      "fr": "Suricate",
+      "pt": "Suricata"
+    },
+    "tier": "medium",
+    "wikidata": "Q134015"
+  },
+  {
+    "accepted": {
+      "en": ["monarch"],
+      "fr": [],
+      "pt": ["monarca"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A butterfly.",
+          "fr": "Un papillon.",
+          "pt": "Uma borboleta."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in the Americas.",
+          "fr": "Il vit sur le continent américain.",
+          "pt": "Vive no continente americano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its wings are orange with black veins.",
+          "fr": "Ses ailes sont orange, veinées de noir.",
+          "pt": "As asas são cor de laranja com nervuras pretas."
+        }
+      },
+      {
+        "text": {
+          "en": "Each autumn it flies up to 4,500 km to winter in the mountain forests of Mexico.",
+          "fr": "Chaque automne, il parcourt jusqu’à 4 500 km pour hiverner dans les forêts de montagne du Mexique.",
+          "pt": "Todos os outonos voa até 4500 km para passar o inverno nas florestas de montanha do México."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The orange-and-black butterfly that gathers by the million in Mexico; its caterpillar eats milkweed.",
+          "fr": "Le papillon orange et noir qui se rassemble par millions au Mexique ; sa chenille mange l’asclépiade.",
+          "pt": "A borboleta laranja e preta que se junta aos milhões no México; a lagarta come asclépias."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dragonfly",
+        "fr": "Libellule",
+        "pt": "Libélula"
+      },
+      {
+        "en": "Peacock butterfly",
+        "fr": "Paon-du-jour",
+        "pt": "Borboleta-pavão"
+      },
+      {
+        "en": "Swallowtail",
+        "fr": "Machaon",
+        "pt": "Macaão"
+      }
+    ],
+    "homeCountry": null,
+    "id": "monarch-butterfly",
+    "name": {
+      "en": "Monarch butterfly",
+      "fr": "Monarque",
+      "pt": "Borboleta-monarca"
+    },
+    "tier": "medium",
+    "wikidata": "Q212398"
+  },
+  {
+    "accepted": {
+      "en": ["american eagle"],
+      "fr": ["aigle à tête blanche"],
+      "pt": ["águia-americana"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bird of prey of the United States and Canada.",
+          "fr": "Un rapace des États-Unis et du Canada.",
+          "pt": "Uma ave de rapina dos Estados Unidos e do Canadá."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Adults have a white head.",
+          "fr": "Les adultes ont la tête blanche.",
+          "pt": "Os adultos têm a cabeça branca."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "No dark stripe runs across its eyes: its head is pure white.",
+          "fr": "Aucun bandeau sombre ne lui barre les yeux : sa tête est d’un blanc pur.",
+          "pt": "Nenhuma risca escura lhe atravessa os olhos: a cabeça é branca pura."
+        }
+      },
+      {
+        "text": {
+          "en": "Its nest, reused and enlarged for years, can weigh over a tonne.",
+          "fr": "Son nid, réutilisé et agrandi d’année en année, peut dépasser une tonne.",
+          "pt": "O ninho, reutilizado e aumentado ano após ano, pode passar de uma tonelada."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The national bird of the United States.",
+          "fr": "L’oiseau national des États-Unis.",
+          "pt": "A ave nacional dos Estados Unidos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Harpy eagle",
+        "fr": "Harpie féroce",
+        "pt": "Harpia"
+      },
+      {
+        "en": "Golden eagle",
+        "fr": "Aigle royal",
+        "pt": "Águia-real"
+      },
+      {
+        "en": "Osprey",
+        "fr": "Balbuzard pêcheur",
+        "pt": "Águia-pesqueira"
+      }
+    ],
+    "homeCountry": null,
+    "id": "bald-eagle",
+    "name": {
+      "en": "Bald eagle",
+      "fr": "Pygargue à tête blanche",
+      "pt": "Águia-de-cabeça-branca"
+    },
+    "tier": "medium",
+    "wikidata": "Q127216"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["effraie", "chouette effraie"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An owl.",
+          "fr": "Une chouette.",
+          "pt": "Uma coruja."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in temperate Europe, far from the Arctic.",
+          "fr": "Elle vit dans l’Europe tempérée, loin de l’Arctique.",
+          "pt": "Vive na Europa temperada, longe do Ártico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its face is a white, heart-shaped disc.",
+          "fr": "Son visage forme un disque blanc en forme de cœur.",
+          "pt": "A cara é um disco branco em forma de coração."
+        }
+      },
+      {
+        "text": {
+          "en": "It can catch a mouse in total darkness by sound alone.",
+          "fr": "Elle peut attraper une souris dans le noir complet, rien qu’à l’oreille.",
+          "pt": "Consegue apanhar um rato na escuridão total, só pelo som."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The ghostly pale owl that screeches from church towers and barns.",
+          "fr": "La dame blanche au masque en cœur, qui niche dans les granges et les églises.",
+          "pt": "A coruja clara e fantasmagórica que guincha dos campanários e celeiros."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Kestrel",
+        "fr": "Faucon crécerelle",
+        "pt": "Peneireiro"
+      },
+      {
+        "en": "Snowy owl",
+        "fr": "Harfang des neiges",
+        "pt": "Coruja-das-neves"
+      },
+      {
+        "en": "Tawny owl",
+        "fr": "Chouette hulotte",
+        "pt": "Coruja-do-mato"
+      }
+    ],
+    "homeCountry": null,
+    "id": "barn-owl",
+    "name": {
+      "en": "Barn owl",
+      "fr": "Effraie des clochers",
+      "pt": "Coruja-das-torres"
+    },
+    "tier": "medium",
+    "wikidata": "Q25317"
+  },
+  {
+    "accepted": {
+      "en": ["peafowl", "indian peafowl", "peahen"],
+      "fr": ["paon bleu"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bird native to Asia.",
+          "fr": "Un oiseau originaire d’Asie.",
+          "pt": "Uma ave originária da Ásia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "The male trails tail feathers longer than its whole body.",
+          "fr": "Le mâle traîne des plumes de queue plus longues que tout son corps.",
+          "pt": "O macho arrasta penas da cauda mais compridas do que o corpo inteiro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The male’s train is covered in shimmering eye-spots.",
+          "fr": "La traîne du mâle est couverte d’ocelles chatoyants.",
+          "pt": "A cauda do macho está coberta de ocelos cintilantes."
+        }
+      },
+      {
+        "text": {
+          "en": "The male’s train holds up to 200 feathers, shed and regrown every year.",
+          "fr": "La traîne du mâle compte jusqu’à 200 plumes, qui tombent et repoussent chaque année.",
+          "pt": "A cauda do macho tem até 200 penas, que caem e voltam a crescer todos os anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "India’s national bird, fanning a blue-green train to court the females.",
+          "fr": "L’oiseau national de l’Inde, qui fait la roue pour séduire les femelles.",
+          "pt": "A ave nacional da Índia, que abre a cauda em leque para seduzir as fêmeas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Turkey",
+        "fr": "Dindon",
+        "pt": "Peru"
+      },
+      {
+        "en": "Red junglefowl",
+        "fr": "Coq bankiva",
+        "pt": "Galo-banquiva"
+      },
+      {
+        "en": "Golden pheasant",
+        "fr": "Faisan doré",
+        "pt": "Faisão-dourado"
+      }
+    ],
+    "homeCountry": null,
+    "id": "peacock",
+    "name": {
+      "en": "Peacock",
+      "fr": "Paon",
+      "pt": "Pavão"
+    },
+    "tier": "medium",
+    "wikidata": "Q61865"
+  },
+  {
+    "accepted": {
+      "en": ["elk"],
+      "fr": ["orignal"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A deer of the northern forests.",
+          "fr": "Un cervidé des forêts du Nord.",
+          "pt": "Um cervídeo das florestas do norte."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Only the males grow antlers.",
+          "fr": "Seuls les mâles portent des bois.",
+          "pt": "Só os machos têm hastes."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its antlers are broad and flat, like giant open hands.",
+          "fr": "Ses bois sont larges et plats, comme d’immenses mains ouvertes.",
+          "pt": "As hastes são largas e achatadas, como enormes mãos abertas."
+        }
+      },
+      {
+        "text": {
+          "en": "The largest deer of all, it wades into lakes to feed on water plants.",
+          "fr": "Le plus grand des cervidés, il entre dans les lacs pour brouter les plantes aquatiques.",
+          "pt": "O maior dos cervídeos, entra nos lagos para comer plantas aquáticas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The long-faced giant of Canada and Scandinavia, with a hanging flap of skin under its chin.",
+          "fr": "Le géant au long museau du Canada et de la Scandinavie, avec un fanon sous le menton.",
+          "pt": "O gigante de focinho comprido do Canadá e da Escandinávia, com uma barbela sob o queixo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Bison",
+        "fr": "Bison",
+        "pt": "Bisonte"
+      },
+      {
+        "en": "Reindeer",
+        "fr": "Renne",
+        "pt": "Rena"
+      },
+      {
+        "en": "Red deer",
+        "fr": "Cerf élaphe",
+        "pt": "Veado"
+      }
+    ],
+    "homeCountry": null,
+    "id": "moose",
+    "name": {
+      "en": "Moose",
+      "fr": "Élan",
+      "pt": "Alce"
+    },
+    "tier": "medium",
+    "wikidata": "Q35517"
+  },
+  {
+    "accepted": {
+      "en": ["caribou"],
+      "fr": ["caribou"],
+      "pt": ["caribu"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A deer that lives in herds.",
+          "fr": "Un cervidé qui vit en troupeaux.",
+          "pt": "Um cervídeo que vive em manadas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives on the Arctic tundra.",
+          "fr": "Il vit dans la toundra arctique.",
+          "pt": "Vive na tundra do Ártico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The females grow antlers too.",
+          "fr": "Les femelles portent aussi des bois.",
+          "pt": "As fêmeas também têm hastes."
+        }
+      },
+      {
+        "text": {
+          "en": "Its eyes turn from gold in summer to deep blue in winter.",
+          "fr": "Ses yeux passent du doré en été au bleu profond en hiver.",
+          "pt": "Os olhos passam de dourados no verão a azul-escuro no inverno."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Rudolph is one: it pulls Santa’s sleigh.",
+          "fr": "Rudolph en est un : il tire le traîneau du père Noël.",
+          "pt": "O Rudolfo é um deles: puxa o trenó do Pai Natal."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Musk ox",
+        "fr": "Bœuf musqué",
+        "pt": "Boi-almiscarado"
+      },
+      {
+        "en": "Red deer",
+        "fr": "Cerf élaphe",
+        "pt": "Veado"
+      },
+      {
+        "en": "Moose",
+        "fr": "Élan",
+        "pt": "Alce"
+      }
+    ],
+    "homeCountry": null,
+    "id": "reindeer",
+    "name": {
+      "en": "Reindeer",
+      "fr": "Renne",
+      "pt": "Rena"
+    },
+    "tier": "medium",
+    "wikidata": "Q39624"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["cabiai"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A rodent of South America.",
+          "fr": "Un rongeur d’Amérique du Sud.",
+          "pt": "Um roedor da América do Sul."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in lowland grasslands, not high in the mountains.",
+          "fr": "Il vit dans les prairies de plaine, pas en haute montagne.",
+          "pt": "Vive nas pradarias de planície, não no alto das montanhas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "An adult weighs about as much as a person.",
+          "fr": "Un adulte pèse à peu près autant qu’un humain.",
+          "pt": "Um adulto pesa mais ou menos o mesmo que uma pessoa."
+        }
+      },
+      {
+        "text": {
+          "en": "It can stay underwater for five minutes, and other animals happily perch on its back.",
+          "fr": "Il peut rester cinq minutes sous l’eau, et d’autres animaux se posent volontiers sur son dos.",
+          "pt": "Aguenta cinco minutos debaixo de água, e outros animais pousam-lhe no dorso sem problemas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The world’s largest rodent, famously calm with everyone.",
+          "fr": "Le plus grand rongeur du monde, réputé zen avec tout le monde.",
+          "pt": "O maior roedor do mundo, famoso por ser calmo com toda a gente."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Beaver",
+        "fr": "Castor",
+        "pt": "Castor"
+      },
+      {
+        "en": "Chinchilla",
+        "fr": "Chinchilla",
+        "pt": "Chinchila"
+      },
+      {
+        "en": "Guinea pig",
+        "fr": "Cochon d’Inde",
+        "pt": "Porquinho-da-índia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "capybara",
+    "name": {
+      "en": "Capybara",
+      "fr": "Capybara",
+      "pt": "Capivara"
+    },
+    "tier": "medium",
+    "wikidata": "Q131538"
+  },
+  {
+    "accepted": {
+      "en": ["lesser panda"],
+      "fr": ["petit panda"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives in the mountains of Asia.",
+          "fr": "Il vit dans les montagnes d’Asie.",
+          "pt": "Vive nas montanhas da Ásia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has a long, bushy tail.",
+          "fr": "Il a une longue queue touffue.",
+          "pt": "Tem uma cauda comprida e farfalhuda."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It is about the size of a house cat.",
+          "fr": "Il a à peu près la taille d’un chat domestique.",
+          "pt": "Tem mais ou menos o tamanho de um gato doméstico."
+        }
+      },
+      {
+        "text": {
+          "en": "It feeds mainly on bamboo, gripping it with an extra wrist ‘thumb’.",
+          "fr": "Il se nourrit surtout de bambou, qu’il tient avec un « pouce » en plus au poignet.",
+          "pt": "Alimenta-se sobretudo de bambu, que agarra com um «polegar» extra no pulso."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A rusty-red tree climber with a ringed tail; Pixar’s Mei turns into one.",
+          "fr": "Un grimpeur roux à queue annelée ; Mei, l’héroïne de Pixar, se change en l’un d’eux.",
+          "pt": "Um trepador ruivo de cauda anelada; a Mei, heroína da Pixar, transforma-se num deles."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Raccoon",
+        "fr": "Raton laveur",
+        "pt": "Guaxinim"
+      },
+      {
+        "en": "Giant panda",
+        "fr": "Panda géant",
+        "pt": "Panda-gigante"
+      },
+      {
+        "en": "Snow leopard",
+        "fr": "Panthère des neiges",
+        "pt": "Leopardo-das-neves"
+      }
+    ],
+    "homeCountry": null,
+    "id": "red-panda",
+    "name": {
+      "en": "Red panda",
+      "fr": "Panda roux",
+      "pt": "Panda-vermelho"
+    },
+    "tier": "medium",
+    "wikidata": "Q41960"
+  },
+  {
+    "accepted": {
+      "en": ["Pholidota"],
+      "fr": ["Pholidota"],
+      "pt": ["pangolin", "Pholidota"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives in Africa or Asia.",
+          "fr": "Il vit en Afrique ou en Asie.",
+          "pt": "Vive em África ou na Ásia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It feeds on ants and termites.",
+          "fr": "Il se nourrit de fourmis et de termites.",
+          "pt": "Alimenta-se de formigas e térmitas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It is covered in hard, overlapping scales.",
+          "fr": "Il est couvert d’écailles dures qui se chevauchent.",
+          "pt": "Está coberto de escamas duras e sobrepostas."
+        }
+      },
+      {
+        "text": {
+          "en": "It has no teeth, and curls into an armoured ball when threatened.",
+          "fr": "Il n’a pas de dents, et se roule en boule cuirassée quand il est menacé.",
+          "pt": "Não tem dentes e enrola-se numa bola blindada quando ameaçado."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The only mammal clad in scales, and the most trafficked in the world.",
+          "fr": "Le seul mammifère couvert d’écailles, et le plus braconné au monde.",
+          "pt": "O único mamífero coberto de escamas, e o mais traficado do mundo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Armadillo",
+        "fr": "Tatou",
+        "pt": "Tatu"
+      },
+      {
+        "en": "Porcupine",
+        "fr": "Porc-épic",
+        "pt": "Porco-espinho"
+      },
+      {
+        "en": "Aardvark",
+        "fr": "Oryctérope",
+        "pt": "Porco-formigueiro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pangolin",
+    "name": {
+      "en": "Pangolin",
+      "fr": "Pangolin",
+      "pt": "Pangolim"
+    },
+    "tier": "medium",
+    "wikidata": "Q2191516"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["oiseau-mouche"],
+      "pt": ["colibri"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A brightly coloured bird of tropical forests.",
+          "fr": "Un oiseau aux couleurs vives des forêts tropicales.",
+          "pt": "Uma ave de cores vivas das florestas tropicais."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives only in the Americas.",
+          "fr": "Il ne vit que sur le continent américain.",
+          "pt": "Só vive no continente americano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It weighs just a few grams.",
+          "fr": "Il ne pèse que quelques grammes.",
+          "pt": "Pesa apenas alguns gramas."
+        }
+      },
+      {
+        "text": {
+          "en": "Its heart can beat over 1,000 times a minute, and it can fly backwards.",
+          "fr": "Son cœur peut battre plus de 1 000 fois par minute, et il sait voler en marche arrière.",
+          "pt": "O coração pode bater mais de 1000 vezes por minuto, e consegue voar para trás."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A tiny nectar-sipper whose wings beat up to 80 times a second.",
+          "fr": "Un minuscule buveur de nectar dont les ailes battent jusqu’à 80 fois par seconde.",
+          "pt": "Um minúsculo bebedor de néctar cujas asas batem até 80 vezes por segundo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "European robin",
+        "fr": "Rouge-gorge",
+        "pt": "Pisco-de-peito-ruivo"
+      },
+      {
+        "en": "Sunbird",
+        "fr": "Souimanga",
+        "pt": "Nectarínia"
+      },
+      {
+        "en": "Macaw",
+        "fr": "Ara",
+        "pt": "Arara"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hummingbird",
+    "name": {
+      "en": "Hummingbird",
+      "fr": "Colibri",
+      "pt": "Beija-flor"
+    },
+    "tier": "medium",
+    "wikidata": "Q43624"
+  },
+  {
+    "accepted": {
+      "en": ["sea horse"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A sea fish.",
+          "fr": "Un poisson de mer.",
+          "pt": "Um peixe do mar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A slow, clumsy swimmer.",
+          "fr": "Un nageur lent et maladroit.",
+          "pt": "Um nadador lento e desajeitado."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It swims upright, pushed along by a tiny fin on its back.",
+          "fr": "Il nage à la verticale, poussé par une minuscule nageoire dorsale.",
+          "pt": "Nada na vertical, impulsionado por uma barbatana minúscula nas costas."
+        }
+      },
+      {
+        "text": {
+          "en": "Here it is the male who carries the eggs in a pouch and gives birth.",
+          "fr": "Chez lui, c’est le mâle qui porte les œufs dans une poche et met au monde les petits.",
+          "pt": "Aqui é o macho que transporta os ovos numa bolsa e dá à luz."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A little fish whose head looks like a horse’s.",
+          "fr": "Un petit poisson à tête de cheval.",
+          "pt": "Um peixinho com cabeça de cavalo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jellyfish",
+        "fr": "Méduse",
+        "pt": "Alforreca"
+      },
+      {
+        "en": "Shark",
+        "fr": "Requin",
+        "pt": "Tubarão"
+      },
+      {
+        "en": "Pufferfish",
+        "fr": "Poisson-globe",
+        "pt": "Peixe-balão"
+      }
+    ],
+    "homeCountry": null,
+    "id": "seahorse",
+    "name": {
+      "en": "Seahorse",
+      "fr": "Hippocampe",
+      "pt": "Cavalo-marinho"
+    },
+    "tier": "medium",
+    "wikidata": "Q74363"
+  },
+  {
+    "accepted": {
+      "en": ["clown fish", "anemonefish"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A small, brightly coloured fish.",
+          "fr": "Un petit poisson aux couleurs vives.",
+          "pt": "Um peixe pequeno de cores vivas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in the sea.",
+          "fr": "Il vit dans la mer.",
+          "pt": "Vive no mar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives among the stinging tentacles of an anemone, unharmed.",
+          "fr": "Il vit parmi les tentacules urticants d’une anémone, sans se faire piquer.",
+          "pt": "Vive entre os tentáculos urticantes de uma anémona, sem se magoar."
+        }
+      },
+      {
+        "text": {
+          "en": "All are born male; when a group’s female dies, the biggest male turns female.",
+          "fr": "Tous naissent mâles ; quand la femelle du groupe meurt, le plus gros mâle devient femelle.",
+          "pt": "Todos nascem machos; quando a fêmea do grupo morre, o macho maior torna-se fêmea."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Nemo is one: orange with three white stripes.",
+          "fr": "Nemo en est un : orange, avec trois bandes blanches.",
+          "pt": "O Nemo é um: cor de laranja, com três riscas brancas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Starfish",
+        "fr": "Étoile de mer",
+        "pt": "Estrela-do-mar"
+      },
+      {
+        "en": "Goldfish",
+        "fr": "Poisson rouge",
+        "pt": "Peixe-dourado"
+      },
+      {
+        "en": "Blue tang",
+        "fr": "Chirurgien bleu",
+        "pt": "Cirurgião-azul"
+      }
+    ],
+    "homeCountry": null,
+    "id": "clownfish",
+    "name": {
+      "en": "Clownfish",
+      "fr": "Poisson-clown",
+      "pt": "Peixe-palhaço"
+    },
+    "tier": "medium",
+    "wikidata": "Q472616"
+  },
+  {
+    "accepted": {
+      "en": ["killer whale"],
+      "fr": ["épaulard"],
+      "pt": ["baleia-assassina"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A sea mammal.",
+          "fr": "Un mammifère marin.",
+          "pt": "Um mamífero marinho."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has teeth.",
+          "fr": "Il a des dents.",
+          "pt": "Tem dentes."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It can grow longer than 8 m and weigh several tonnes.",
+          "fr": "Il peut dépasser 8 m de long et peser plusieurs tonnes.",
+          "pt": "Pode passar dos 8 m de comprimento e pesar várias toneladas."
+        }
+      },
+      {
+        "text": {
+          "en": "It hunts in family pods with their own dialects, and even takes on great white sharks.",
+          "fr": "Il chasse en groupes familiaux qui ont leur propre dialecte, et s’attaque même au grand requin blanc.",
+          "pt": "Caça em grupos familiares com dialeto próprio, e ataca até o tubarão-branco."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The largest member of the dolphin family, boldly black and white: Free Willy’s kind.",
+          "fr": "Le plus grand de la famille des dauphins, en noir et blanc : l’espèce de Sauvez Willy.",
+          "pt": "O maior da família dos golfinhos, preto e branco: a espécie de Libertem Willy."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Great white shark",
+        "fr": "Grand requin blanc",
+        "pt": "Tubarão-branco"
+      },
+      {
+        "en": "Humpback whale",
+        "fr": "Baleine à bosse",
+        "pt": "Baleia-de-bossa"
+      },
+      {
+        "en": "Bottlenose dolphin",
+        "fr": "Grand dauphin",
+        "pt": "Roaz-corvineiro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "orca",
+    "name": {
+      "en": "Orca",
+      "fr": "Orque",
+      "pt": "Orca"
+    },
+    "tier": "medium",
+    "wikidata": "Q26843"
+  },
+  {
+    "accepted": {
+      "en": ["galapagos"],
+      "fr": ["galapagos"],
+      "pt": ["galapagos"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A reptile that lives on land.",
+          "fr": "Un reptile qui vit sur la terre ferme.",
+          "pt": "Um réptil que vive em terra firme."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It carries a shell on its back.",
+          "fr": "Il porte une carapace sur le dos.",
+          "pt": "Tem uma carapaça às costas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives on volcanic islands off Ecuador.",
+          "fr": "Il vit sur des îles volcaniques au large de l’Équateur.",
+          "pt": "Vive em ilhas vulcânicas ao largo do Equador."
+        }
+      },
+      {
+        "text": {
+          "en": "It can live over 150 years and survive a year without eating or drinking.",
+          "fr": "Il peut vivre plus de 150 ans et tenir un an sans boire ni manger.",
+          "pt": "Pode viver mais de 150 anos e aguentar um ano sem comer nem beber."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Darwin studied it; Lonesome George was the last of his line.",
+          "fr": "Darwin l’a étudié ; George le Solitaire était le dernier de sa lignée.",
+          "pt": "Darwin estudou-a; o Solitário George foi o último da sua linhagem."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Leatherback turtle",
+        "fr": "Tortue luth",
+        "pt": "Tartaruga-de-couro"
+      },
+      {
+        "en": "Iguana",
+        "fr": "Iguane",
+        "pt": "Iguana"
+      },
+      {
+        "en": "Aldabra giant tortoise",
+        "fr": "Tortue géante d’Aldabra",
+        "pt": "Tartaruga-gigante-de-aldabra"
+      }
+    ],
+    "homeCountry": null,
+    "id": "galapagos-tortoise",
+    "name": {
+      "en": "Galápagos tortoise",
+      "fr": "Tortue des Galápagos",
+      "pt": "Tartaruga-gigante-das-galápagos"
+    },
+    "tier": "medium",
+    "wikidata": "Q20014035"
+  },
+  {
+    "accepted": {
+      "en": ["Apteryx"],
+      "fr": ["Apteryx"],
+      "pt": ["quivi", "Apteryx"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A bird that cannot fly.",
+          "fr": "Un oiseau qui ne sait pas voler.",
+          "pt": "Uma ave que não consegue voar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It never swims in the sea and finds all its food on land.",
+          "fr": "Il ne nage jamais en mer et trouve toute sa nourriture sur terre.",
+          "pt": "Nunca nada no mar e encontra toda a comida em terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives only in New Zealand.",
+          "fr": "Il ne vit qu’en Nouvelle-Zélande.",
+          "pt": "Só vive na Nova Zelândia."
+        }
+      },
+      {
+        "text": {
+          "en": "The only bird with nostrils at the tip of its beak; its egg weighs a fifth of the mother.",
+          "fr": "Le seul oiseau aux narines au bout du bec ; son œuf pèse un cinquième de la mère.",
+          "pt": "A única ave com narinas na ponta do bico; o ovo pesa um quinto da mãe."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "New Zealand’s national symbol, which lent its name to New Zealanders.",
+          "fr": "L’emblème de la Nouvelle-Zélande, qui a donné leur surnom aux Néo-Zélandais.",
+          "pt": "O emblema da Nova Zelândia, que deu a alcunha aos neozelandeses."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Puffin",
+        "fr": "Macareux",
+        "pt": "Papagaio-do-mar"
+      },
+      {
+        "en": "Penguin",
+        "fr": "Manchot",
+        "pt": "Pinguim"
+      },
+      {
+        "en": "Emu",
+        "fr": "Émeu",
+        "pt": "Ema"
+      }
+    ],
+    "homeCountry": null,
+    "id": "kiwi",
+    "name": {
+      "en": "Kiwi",
+      "fr": "Kiwi",
+      "pt": "Kiwi"
+    },
+    "tier": "medium",
+    "wikidata": "Q43642"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["scarabée bousier"],
+      "pt": ["bosteiro"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A beetle.",
+          "fr": "Un coléoptère.",
+          "pt": "Um escaravelho."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its wing cases are usually black or brown, never red with spots.",
+          "fr": "Ses élytres sont le plus souvent noirs ou bruns, jamais rouges à pois.",
+          "pt": "Os élitros são quase sempre pretos ou castanhos, nunca vermelhos às pintas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Ancient Egyptians saw the sun god Khepri in it.",
+          "fr": "Les anciens Égyptiens voyaient en lui le dieu solaire Khépri.",
+          "pt": "Os antigos egípcios viam nele o deus solar Khepri."
+        }
+      },
+      {
+        "text": {
+          "en": "It steers by the Milky Way, and some can pull over 1,000 times their own weight.",
+          "fr": "Il s’oriente grâce à la Voie lactée, et certains tirent plus de 1 000 fois leur poids.",
+          "pt": "Orienta-se pela Via Láctea, e alguns puxam mais de 1000 vezes o próprio peso."
+        }
+      },
+      {
+        "text": {
+          "en": "It rolls balls of dung across the savannah to eat or to lay its eggs in.",
+          "fr": "Il roule des boules de bouse à travers la savane pour s’en nourrir ou y pondre.",
+          "pt": "Rola bolas de estrume pela savana para comer ou pôr lá os ovos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dragonfly",
+        "fr": "Libellule",
+        "pt": "Libélula"
+      },
+      {
+        "en": "Ladybird",
+        "fr": "Coccinelle",
+        "pt": "Joaninha"
+      },
+      {
+        "en": "Stag beetle",
+        "fr": "Lucane cerf-volant",
+        "pt": "Vaca-loura"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dung-beetle",
+    "name": {
+      "en": "Dung beetle",
+      "fr": "Bousier",
+      "pt": "Escaravelho-bosteiro"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["vampire"],
+      "fr": ["vampire"],
+      "pt": ["vampiro"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A small mammal that comes out at night.",
+          "fr": "Un petit mammifère qui sort la nuit.",
+          "pt": "Um pequeno mamífero que sai à noite."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in Central and South America.",
+          "fr": "Il vit en Amérique centrale et du Sud.",
+          "pt": "Vive na América Central e do Sul."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It can fly.",
+          "fr": "Il sait voler.",
+          "pt": "Consegue voar."
+        }
+      },
+      {
+        "text": {
+          "en": "It feeds only on blood, lapping it from a tiny bite, and shares meals with hungry roostmates.",
+          "fr": "Il ne se nourrit que de sang, lapé sur une petite morsure, et partage ses repas avec ses voisins affamés.",
+          "pt": "Só se alimenta de sangue, lambido de uma pequena mordida, e partilha refeições com os vizinhos esfomeados."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Dracula’s creature of the night: a small bat that drinks blood.",
+          "fr": "L’animal de Dracula : une petite chauve-souris qui boit du sang.",
+          "pt": "O animal do Drácula: um pequeno morcego que bebe sangue."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Leech",
+        "fr": "Sangsue",
+        "pt": "Sanguessuga"
+      },
+      {
+        "en": "Flying fox",
+        "fr": "Roussette",
+        "pt": "Raposa-voadora"
+      },
+      {
+        "en": "Opossum",
+        "fr": "Opossum",
+        "pt": "Opossum"
+      }
+    ],
+    "homeCountry": null,
+    "id": "vampire-bat",
+    "name": {
+      "en": "Vampire bat",
+      "fr": "Chauve-souris vampire",
+      "pt": "Morcego-vampiro"
+    },
+    "tier": "medium",
+    "wikidata": "Q300981"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["okapi"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hoofed animal of Africa.",
+          "fr": "Un animal à sabots d’Afrique.",
+          "pt": "Um animal com cascos de África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives hidden in dense rainforest.",
+          "fr": "Il vit caché dans la forêt tropicale dense.",
+          "pt": "Vive escondido na floresta tropical densa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its closest living relative is the giraffe.",
+          "fr": "Son plus proche parent vivant est la girafe.",
+          "pt": "O parente vivo mais próximo é a girafa."
+        }
+      },
+      {
+        "text": {
+          "en": "Its tongue is long enough to clean its own ears, and it lives only in Congo.",
+          "fr": "Sa langue est assez longue pour se nettoyer les oreilles, et il ne vit qu’au Congo.",
+          "pt": "A língua é tão comprida que limpa as próprias orelhas, e só vive no Congo."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The ‘forest giraffe’, with zebra-striped legs.",
+          "fr": "La « girafe des forêts », aux pattes rayées comme un zèbre.",
+          "pt": "A «girafa da floresta», com patas às riscas de zebra."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tapir",
+        "fr": "Tapir",
+        "pt": "Anta"
+      },
+      {
+        "en": "Zebra",
+        "fr": "Zèbre",
+        "pt": "Zebra"
+      },
+      {
+        "en": "Bongo",
+        "fr": "Bongo",
+        "pt": "Bongo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "okapi",
+    "name": {
+      "en": "Okapi",
+      "fr": "Okapi",
+      "pt": "Ocapi"
+    },
+    "tier": "hard",
+    "wikidata": "Q82037"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["oryctérope du cap"],
+      "pt": ["oricteropo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An African mammal that shelters in burrows.",
+          "fr": "Un mammifère africain qui s’abrite dans des terriers.",
+          "pt": "Um mamífero africano que se abriga em tocas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its skin is almost bare, with no scales.",
+          "fr": "Sa peau est presque nue, sans écailles.",
+          "pt": "A pele é quase nua, sem escamas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It eats ants and termites.",
+          "fr": "Il mange des fourmis et des termites.",
+          "pt": "Come formigas e térmitas."
+        }
+      },
+      {
+        "text": {
+          "en": "It digs a burrow in minutes, and its old holes shelter many other animals.",
+          "fr": "Il creuse un terrier en quelques minutes, et ses anciens trous abritent bien d’autres animaux.",
+          "pt": "Cava uma toca em minutos, e os buracos antigos abrigam muitos outros animais."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Its name means ‘earth pig’ in Afrikaans: a long snout, rabbit ears and a taste for termites.",
+          "fr": "Son nom afrikaans signifie « cochon de terre » : long groin, oreilles de lapin, fou de termites.",
+          "pt": "O nome em africânder significa «porco da terra»: focinho comprido, orelhas de coelho, louco por térmitas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Giant anteater",
+        "fr": "Tamanoir",
+        "pt": "Papa-formigas-gigante"
+      },
+      {
+        "en": "Pangolin",
+        "fr": "Pangolin",
+        "pt": "Pangolim"
+      },
+      {
+        "en": "Warthog",
+        "fr": "Phacochère",
+        "pt": "Facochero"
+      }
+    ],
+    "homeCountry": null,
+    "id": "aardvark",
+    "name": {
+      "en": "Aardvark",
+      "fr": "Oryctérope",
+      "pt": "Porco-formigueiro"
+    },
+    "tier": "hard",
+    "wikidata": "Q46212"
+  },
+  {
+    "accepted": {
+      "en": ["water bear"],
+      "fr": ["ourson d’eau"],
+      "pt": ["urso-d’água"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A tiny animal you can barely see without a lens.",
+          "fr": "Un minuscule animal qu’on voit à peine sans loupe.",
+          "pt": "Um animal minúsculo que mal se vê sem lupa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in moss and water, never on another animal.",
+          "fr": "Il vit dans la mousse et l’eau, jamais sur un autre animal.",
+          "pt": "Vive no musgo e na água, nunca em cima de outro animal."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It plods along on eight stubby legs.",
+          "fr": "Il avance lentement sur huit pattes trapues.",
+          "pt": "Avança devagar sobre oito patas atarracadas."
+        }
+      },
+      {
+        "text": {
+          "en": "Dried out, it survives boiling, near absolute zero, radiation and even open space.",
+          "fr": "Desséché, il survit à l’ébullition, au quasi-zéro absolu, aux radiations et même au vide spatial.",
+          "pt": "Desidratado, sobrevive à fervura, ao quase zero absoluto, à radiação e até ao vácuo do espaço."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Nicknamed the ‘moss piglet’: the toughest animal known.",
+          "fr": "Surnommé le « porcelet des mousses » : l’animal le plus résistant connu.",
+          "pt": "Alcunhado «leitão-do-musgo»: o animal mais resistente que se conhece."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Amoeba",
+        "fr": "Amibe",
+        "pt": "Amiba"
+      },
+      {
+        "en": "Flea",
+        "fr": "Puce",
+        "pt": "Pulga"
+      },
+      {
+        "en": "Water flea",
+        "fr": "Daphnie",
+        "pt": "Dáfnia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "tardigrade",
+    "name": {
+      "en": "Tardigrade",
+      "fr": "Tardigrade",
+      "pt": "Tardígrado"
+    },
+    "tier": "hard",
+    "wikidata": "Q5194"
+  },
+  {
+    "accepted": {
+      "en": ["stomatopod"],
+      "fr": ["squille"],
+      "pt": ["camarão-louva-a-deus"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A crustacean.",
+          "fr": "Un crustacé.",
+          "pt": "Um crustáceo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It stuns its prey with a lightning-fast strike.",
+          "fr": "Il assomme ses proies d’un coup fulgurant.",
+          "pt": "Atordoa as presas com um golpe fulminante."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It strikes with a club-like limb, not a snapping claw.",
+          "fr": "Il frappe avec un membre en forme de massue, pas avec une pince qui claque.",
+          "pt": "Ataca com um membro em forma de maça, não com uma pinça que estala."
+        }
+      },
+      {
+        "text": {
+          "en": "Its punch accelerates like a bullet and can crack aquarium glass.",
+          "fr": "Son coup accélère comme une balle et peut fêler la vitre d’un aquarium.",
+          "pt": "O soco acelera como uma bala e pode rachar o vidro de um aquário."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Its eyes hold up to 16 kinds of colour receptors, against our three.",
+          "fr": "Ses yeux comptent jusqu’à 16 types de récepteurs de couleur, contre trois chez nous.",
+          "pt": "Os olhos têm até 16 tipos de recetores de cor, contra os nossos três."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Octopus",
+        "fr": "Pieuvre",
+        "pt": "Polvo"
+      },
+      {
+        "en": "Lobster",
+        "fr": "Homard",
+        "pt": "Lavagante"
+      },
+      {
+        "en": "Pistol shrimp",
+        "fr": "Crevette-pistolet",
+        "pt": "Camarão-pistola"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mantis-shrimp",
+    "name": {
+      "en": "Mantis shrimp",
+      "fr": "Crevette-mante",
+      "pt": "Tamarutaca"
+    },
+    "tier": "hard",
+    "wikidata": "Q334855"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["dodo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A flightless bird that is now extinct.",
+          "fr": "Un oiseau incapable de voler, aujourd’hui disparu.",
+          "pt": "Uma ave que não voava, hoje extinta."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lived on an island in the Indian Ocean.",
+          "fr": "Il vivait sur une île de l’océan Indien.",
+          "pt": "Vivia numa ilha do oceano Índico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It was a giant cousin of the pigeon.",
+          "fr": "C’était un cousin géant du pigeon.",
+          "pt": "Era um primo gigante do pombo."
+        }
+      },
+      {
+        "text": {
+          "en": "It lived only on Mauritius and was gone within a century of sailors arriving.",
+          "fr": "Il ne vivait qu’à l’île Maurice et a disparu moins d’un siècle après l’arrivée des marins.",
+          "pt": "Só vivia na Maurícia e desapareceu menos de um século depois da chegada dos marinheiros."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "‘As dead as a …’, says the idiom; Alice meets one in Wonderland.",
+          "fr": "Alice en croise un au Pays des merveilles : le symbole même de l’espèce éteinte par l’homme.",
+          "pt": "A Alice cruza-se com um no País das Maravilhas: o símbolo da extinção causada pelo homem."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Kiwi",
+        "fr": "Kiwi",
+        "pt": "Kiwi"
+      },
+      {
+        "en": "Great auk",
+        "fr": "Grand pingouin",
+        "pt": "Arau-gigante"
+      },
+      {
+        "en": "Elephant bird",
+        "fr": "Oiseau-éléphant",
+        "pt": "Ave-elefante"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dodo",
+    "name": {
+      "en": "Dodo",
+      "fr": "Dodo",
+      "pt": "Dodó"
+    },
+    "tier": "hard",
+    "wikidata": "Q43502"
+  },
+  {
+    "accepted": {
+      "en": ["shoebill stork", "whalehead"],
+      "fr": ["bec en sabot"],
+      "pt": ["bico de sapato"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A large wading bird of Africa.",
+          "fr": "Un grand échassier d’Afrique.",
+          "pt": "Uma grande ave pernalta de África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It hunts fish in swamps.",
+          "fr": "Il chasse le poisson dans les marais.",
+          "pt": "Caça peixe nos pântanos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its bill is about as wide as its head.",
+          "fr": "Son bec est presque aussi large que sa tête.",
+          "pt": "O bico é quase tão largo como a cabeça."
+        }
+      },
+      {
+        "text": {
+          "en": "It stands still for hours, then lunges to swallow lungfish or even baby crocodiles.",
+          "fr": "Il reste immobile des heures, puis fond sur des dipneustes, voire des bébés crocodiles.",
+          "pt": "Fica imóvel durante horas e depois lança-se sobre peixes-pulmonados, ou até crocodilos bebés."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A towering grey bird of the Nile swamps, with a bill like a giant clog.",
+          "fr": "Un grand oiseau gris des marais du Nil, au bec en forme de sabot géant.",
+          "pt": "Uma enorme ave cinzenta dos pântanos do Nilo, com um bico em forma de sapato gigante."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Toucan",
+        "fr": "Toucan",
+        "pt": "Tucano"
+      },
+      {
+        "en": "Flamingo",
+        "fr": "Flamant rose",
+        "pt": "Flamingo"
+      },
+      {
+        "en": "Grey heron",
+        "fr": "Héron cendré",
+        "pt": "Garça-real"
+      }
+    ],
+    "homeCountry": null,
+    "id": "shoebill",
+    "name": {
+      "en": "Shoebill",
+      "fr": "Bec-en-sabot",
+      "pt": "Bico-de-sapato"
+    },
+    "tier": "hard",
+    "wikidata": "Q18700"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Australian marsupial.",
+          "fr": "Un marsupial d’Australie.",
+          "pt": "Um marsupial da Austrália."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It gets around by hopping.",
+          "fr": "Il se déplace en sautant.",
+          "pt": "Desloca-se aos saltos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Most of them live on one small island off Perth.",
+          "fr": "La plupart vivent sur une petite île au large de Perth.",
+          "pt": "A maioria vive numa pequena ilha ao largo de Perth."
+        }
+      },
+      {
+        "text": {
+          "en": "Dutch sailors took it for a giant rat and named its island ‘rat’s nest’.",
+          "fr": "Des marins hollandais l’ont pris pour un gros rat et ont baptisé son île « nid de rats ».",
+          "pt": "Marinheiros holandeses julgaram-no um rato gigante e chamaram à ilha «ninho de ratos»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Its permanent grin makes it the selfie star of Rottnest Island.",
+          "fr": "Son sourire permanent en fait la star des selfies de l’île Rottnest.",
+          "pt": "O sorriso permanente faz dele a estrela das selfies da ilha de Rottnest."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Capybara",
+        "fr": "Capybara",
+        "pt": "Capivara"
+      },
+      {
+        "en": "Koala",
+        "fr": "Koala",
+        "pt": "Coala"
+      },
+      {
+        "en": "Wallaby",
+        "fr": "Wallaby",
+        "pt": "Wallaby"
+      }
+    ],
+    "homeCountry": null,
+    "id": "quokka",
+    "name": {
+      "en": "Quokka",
+      "fr": "Quokka",
+      "pt": "Quokka"
+    },
+    "tier": "hard",
+    "wikidata": "Q726151"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["condylure"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mammal of North America.",
+          "fr": "Un mammifère d’Amérique du Nord.",
+          "pt": "Um mamífero da América do Norte."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It lives in tunnels it digs underground.",
+          "fr": "Il vit dans des galeries qu’il creuse sous terre.",
+          "pt": "Vive em galerias que escava debaixo da terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It hunts worms and insects.",
+          "fr": "Il chasse les vers et les insectes.",
+          "pt": "Caça minhocas e insetos."
+        }
+      },
+      {
+        "text": {
+          "en": "It finds and swallows a worm in a quarter of a second: the fastest eater among mammals.",
+          "fr": "Il repère et avale un ver en un quart de seconde : le mangeur le plus rapide des mammifères.",
+          "pt": "Encontra e engole uma minhoca num quarto de segundo: o mamífero que come mais depressa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A digger whose snout ends in 22 pink, fleshy tentacles arranged like a star.",
+          "fr": "Un fouisseur dont le museau finit en 22 tentacules roses disposés en étoile.",
+          "pt": "Um escavador cujo focinho acaba em 22 tentáculos cor-de-rosa dispostos em estrela."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "European mole",
+        "fr": "Taupe d’Europe",
+        "pt": "Toupeira-europeia"
+      },
+      {
+        "en": "Beaver",
+        "fr": "Castor",
+        "pt": "Castor"
+      },
+      {
+        "en": "Groundhog",
+        "fr": "Marmotte commune",
+        "pt": "Marmota-americana"
+      }
+    ],
+    "homeCountry": null,
+    "id": "star-nosed-mole",
+    "name": {
+      "en": "Star-nosed mole",
+      "fr": "Condylure étoilé",
+      "pt": "Toupeira-nariz-de-estrela"
+    },
+    "tier": "hard",
+    "wikidata": "Q547663"
+  },
+  {
+    "accepted": {
+      "en": ["mole rat"],
+      "fr": ["rat-taupe"],
+      "pt": ["rato-toupeira"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A burrowing mammal of Africa.",
+          "fr": "Un mammifère fouisseur d’Afrique.",
+          "pt": "Um mamífero escavador de África."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It spends its whole life underground, almost blind.",
+          "fr": "Il passe toute sa vie sous terre, presque aveugle.",
+          "pt": "Passa a vida inteira debaixo da terra, quase cego."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A rodent with huge front teeth.",
+          "fr": "Un rongeur aux énormes incisives.",
+          "pt": "Um roedor com enormes dentes da frente."
+        }
+      },
+      {
+        "text": {
+          "en": "It can live over 30 years, hardly ever gets cancer, and each colony has a single queen.",
+          "fr": "Il vit plus de 30 ans, n’a presque jamais de cancer, et chaque colonie a une seule reine.",
+          "pt": "Vive mais de 30 anos, quase nunca tem cancro, e cada colónia tem uma única rainha."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A pink, wrinkled, hairless rodent whose teeth stick out through its closed lips.",
+          "fr": "Un rongeur rose, ridé et sans poils, dont les dents dépassent de ses lèvres fermées.",
+          "pt": "Um roedor cor-de-rosa, enrugado e sem pelo, com os dentes de fora dos lábios fechados."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Star-nosed mole",
+        "fr": "Condylure étoilé",
+        "pt": "Toupeira-nariz-de-estrela"
+      },
+      {
+        "en": "Meerkat",
+        "fr": "Suricate",
+        "pt": "Suricata"
+      },
+      {
+        "en": "Golden mole",
+        "fr": "Taupe dorée",
+        "pt": "Toupeira-dourada"
+      }
+    ],
+    "homeCountry": null,
+    "id": "naked-mole-rat",
+    "name": {
+      "en": "Naked mole-rat",
+      "fr": "Rat-taupe nu",
+      "pt": "Rato-toupeira-pelado"
+    },
+    "tier": "hard",
+    "wikidata": "Q276290"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["coelacanthe"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fish often called a living fossil.",
+          "fr": "Un poisson souvent qualifié de fossile vivant.",
+          "pt": "Um peixe muitas vezes chamado fóssil vivo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its fins are fleshy lobes, almost like little legs.",
+          "fr": "Ses nageoires sont des lobes charnus, presque de petites pattes.",
+          "pt": "As barbatanas são lobos carnudos, quase pequenas patas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It lives in deep-sea caves off East Africa and Indonesia.",
+          "fr": "Il vit dans des grottes sous-marines profondes, au large de l’Afrique de l’Est et de l’Indonésie.",
+          "pt": "Vive em grutas submarinas profundas, ao largo da África Oriental e da Indonésia."
+        }
+      },
+      {
+        "text": {
+          "en": "Its pregnancy may last five years, and it can live for about a century.",
+          "fr": "Sa gestation dure peut-être cinq ans, et il peut vivre près d’un siècle.",
+          "pt": "A gestação pode durar cinco anos, e pode viver cerca de um século."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Thought gone with the dinosaurs, it turned up alive in a South African fishing net in 1938.",
+          "fr": "Qu’on croyait éteint avec les dinosaures, il est réapparu dans un filet sud-africain en 1938.",
+          "pt": "Julgado extinto com os dinossauros, apareceu vivo numa rede de pesca sul-africana em 1938."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Horseshoe crab",
+        "fr": "Limule",
+        "pt": "Límulo"
+      },
+      {
+        "en": "Shark",
+        "fr": "Requin",
+        "pt": "Tubarão"
+      },
+      {
+        "en": "Lungfish",
+        "fr": "Dipneuste",
+        "pt": "Peixe-pulmonado"
+      }
+    ],
+    "homeCountry": null,
+    "id": "coelacanth",
+    "name": {
+      "en": "Coelacanth",
+      "fr": "Cœlacanthe",
+      "pt": "Celacanto"
+    },
+    "tier": "hard",
+    "wikidata": "Q133019"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["aiai"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "It lives only in Madagascar.",
+          "fr": "Il ne vit qu’à Madagascar.",
+          "pt": "Só vive em Madagáscar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It is mostly active at night.",
+          "fr": "Il est surtout actif la nuit.",
+          "pt": "É ativo sobretudo à noite."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It is a primate, a kind of lemur.",
+          "fr": "C’est un primate, une sorte de lémurien.",
+          "pt": "É um primata, uma espécie de lémure."
+        }
+      },
+      {
+        "text": {
+          "en": "It taps on wood with a long, bony middle finger, then hooks out the grubs inside.",
+          "fr": "Il tapote le bois avec un long majeur osseux, puis en extrait les larves.",
+          "pt": "Bate na madeira com um dedo médio comprido e ossudo, e depois tira as larvas lá de dentro."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A wide-eyed, bat-eared lemur that many villagers fear as an omen of death.",
+          "fr": "Un lémurien aux yeux ronds et aux oreilles de chauve-souris, que beaucoup de villageois croient porteur de mort.",
+          "pt": "Um lémure de olhos esbugalhados e orelhas de morcego, que muitos aldeões temem como presságio de morte."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tarsier",
+        "fr": "Tarsier",
+        "pt": "Társio"
+      },
+      {
+        "en": "Ring-tailed lemur",
+        "fr": "Maki catta",
+        "pt": "Lémure-de-cauda-anelada"
+      },
+      {
+        "en": "Fossa",
+        "fr": "Fossa",
+        "pt": "Fossa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "aye-aye",
+    "name": {
+      "en": "Aye-aye",
+      "fr": "Aye-aye",
+      "pt": "Aye-aye"
+    },
+    "tier": "hard",
+    "wikidata": "Q186778"
+  },
+  {
+    "accepted": {
+      "en": ["long-nosed monkey"],
+      "fr": ["singe nasique"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A primate of the forests of Borneo.",
+          "fr": "Un primate des forêts de Bornéo.",
+          "pt": "Um primata das florestas do Bornéu."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It has a long tail.",
+          "fr": "Il a une longue queue.",
+          "pt": "Tem uma cauda comprida."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Adult males have a huge nose that droops over the mouth.",
+          "fr": "Les mâles adultes ont un énorme nez qui pend sur la bouche.",
+          "pt": "Os machos adultos têm um nariz enorme que lhes cai sobre a boca."
+        }
+      },
+      {
+        "text": {
+          "en": "It swims well on partly webbed feet, leaping into rivers from the treetops.",
+          "fr": "Il nage bien grâce à ses pieds en partie palmés, et plonge dans les rivières depuis la cime des arbres.",
+          "pt": "Nada bem com os pés em parte palmados, e salta para os rios do cimo das árvores."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Borneo’s pot-bellied, orange-brown monkey, the males sporting a banana-shaped nose.",
+          "fr": "Le singe ventru et roux de Bornéo, dont les mâles arborent un nez en forme de banane.",
+          "pt": "O macaco barrigudo e ruivo do Bornéu, cujos machos exibem um nariz em forma de banana."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Howler monkey",
+        "fr": "Singe hurleur",
+        "pt": "Macaco-uivador"
+      },
+      {
+        "en": "Orangutan",
+        "fr": "Orang-outan",
+        "pt": "Orangotango"
+      },
+      {
+        "en": "Long-tailed macaque",
+        "fr": "Macaque crabier",
+        "pt": "Macaco-caranguejeiro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "proboscis-monkey",
+    "name": {
+      "en": "Proboscis monkey",
+      "fr": "Nasique",
+      "pt": "Macaco-narigudo"
+    },
+    "tier": "hard",
+    "wikidata": "Q192029"
+  }
+]

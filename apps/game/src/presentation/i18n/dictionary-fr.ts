@@ -779,7 +779,12 @@ export const FR_DICTIONARY = defineDictionary({
   },
   fiveclues: {
     answer: {
-      country: 'Un pays'
+      animal: 'Un animal',
+      character: 'Un personnage',
+      country: 'Un pays',
+      film: 'Un film',
+      landmark: 'Un monument',
+      person: 'Une personnalité'
     },
     climbing: 'Encore en course : {count:number}',
     clue: {
@@ -790,7 +795,7 @@ export const FR_DICTIONARY = defineDictionary({
     clueDuration: 'Temps par indice',
     home: {
       description:
-        'Un pays se cache derrière cinq indices, du plus vague au plus évident : sa taille, sa région, sa silhouette, trois de ses villes, puis son drapeau et sa capitale. Toute la table grimpe l’échelle un indice à la fois, une réponse par indice. Le trouver dès le premier rapporte le plus, attendre le drapeau le moins.'
+        'Un pays, une personnalité, un film, un personnage, un animal ou un monument se cache derrière cinq indices, du plus vague au plus évident. Toute la table grimpe l’échelle un indice à la fois, une réponse par indice. Le trouver dès le premier rapporte le plus, attendre le dernier le moins.'
     },
     kind: {
       cities: 'Villes',
@@ -836,8 +841,17 @@ export const FR_DICTIONARY = defineDictionary({
     },
     rung: 'Indice {index:number}, {worth:number} points',
     scoring:
-      'Plus tôt tu trouves le pays, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.',
-    tagline: 'Trouve le pays avant les autres.',
+      'Plus tôt tu trouves, plus tu marques : 100 points sur le premier indice, puis 80, 60, 40 et 20 sur le dernier.',
+    subjects: {
+      animal: 'Animaux',
+      character: 'Personnages',
+      country: 'Pays',
+      film: 'Films',
+      label: 'À trouver',
+      landmark: 'Monuments',
+      person: 'Personnalités'
+    },
+    tagline: 'Trouve-le avant les autres.',
     you: {
       found: 'Trouvé à l’indice {index:number}',
       held: 'Une réponse par indice. Prochain essai à l’indice {index:number}',

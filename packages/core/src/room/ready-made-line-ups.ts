@@ -1,5 +1,6 @@
 import type { AtlasCityPlaces } from '@melee/protocol/atlas'
 import type { Difficulty } from '@melee/protocol/difficulty'
+import { fiveCluesSubjects } from '@melee/protocol/five-clues'
 import {
   type AtlasSettings,
   type BlindtestSettings,
@@ -206,6 +207,11 @@ const grandMixVarietiesOf = (
       blindtestOn({ locale, source: catalogueOf({ charts: [genre] }) })
     )
   ],
+  fiveclues: fiveCluesSubjects.map((subject) => ({
+    ...DEFAULT_FIVE_CLUES_SETTINGS,
+    language: questionLanguageFor(locale),
+    subjects: [subject]
+  })),
   longestword: [
     { ...DEFAULT_LONGEST_WORD_SETTINGS, language: questionLanguageFor(locale) }
   ],

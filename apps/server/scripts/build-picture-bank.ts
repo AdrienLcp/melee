@@ -8,6 +8,7 @@ import sharp from 'sharp'
 import { z } from 'zod'
 
 import { compareText } from '@melee/core/helpers/collation'
+import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { orStop, parseJson, readJsonFile } from './json-file'
 import { cached, chunked } from './question-source'
@@ -31,7 +32,9 @@ import {
  * A mountain, a building or a river takes its Wikidata image (`P18`); a price
  * takes the Commons file its row names by hand (`image` in `price-bank.json`),
  * because no query finds _a PS5 with its disc drive_. Only rows a table can be
- * expected to know are pictured — the hard tier waits for the budget.
+ * expected to know are pictured — the hard tier waits for the budget. A Five
+ * clues person, animal or landmark whose last rung asks for a photograph takes
+ * its item's, once the item's labels are checked to name it.
  */
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CACHE_DIRECTORY = join(HERE, '.cache', 'pictures')
@@ -109,6 +112,15 @@ const REFUSED_BY_EYE: ReadonlySet<string> = new Set([
  */
 const PHOTOGRAPH_MIME = 'image/jpeg'
 
+/**
+ * A Five clues portrait may be a cropped PNG — Commons keeps many faces that
+ * way — where a summit's PNG is a map; a drawing is still refused.
+ */
+const PORTRAIT_MIMES: ReadonlySet<string> = new Set([
+  PHOTOGRAPH_MIME,
+  'image/png'
+])
+
 const DOWNLOAD_INTERVAL_MS = 400
 const DOWNLOAD_RETRIES = 4
 const RETRY_BACKOFF_MS = 5_000
@@ -127,6 +139,37 @@ const priceBankSchema = z.array(
     image: z.string().startsWith('File:').optional()
   })
 )
+
+/**
+ * The Five clues files whose last rung may be a photograph: the subjects
+ * Commons pictures freely — films and characters never are.
+ */
+const PHOTOGRAPHED_FIVE_CLUES = {
+  animal: ['five-clues-animal.json'],
+  landmark: ['five-clues-landmark.json'],
+  person: ['five-clues-person.json', 'five-clues-person-home.json']
+} as const
+
+const worded = z.object({ en: z.string(), fr: z.string(), pt: z.string() })
+
+const fiveCluesBankSchema = z.array(
+  z.object({
+    accepted: z.object({
+      en: z.array(z.string()),
+      fr: z.array(z.string()),
+      pt: z.array(z.string())
+    }),
+    clues: z.array(z.object({ photo: z.literal(true).optional() })),
+    id: z.string(),
+    name: worded,
+    wikidata: z.string().nullable()
+  })
+)
+
+type FiveCluesRow = z.infer<typeof fiveCluesBankSchema>[number]
+
+/** A row asking for a photograph, keyed as `five-clues-authored.ts` looks it up. */
+type PhotographedRow = { entity: string; item: string; row: FiveCluesRow }
 
 const metadataValue = z.object({ value: z.string() }).optional()
 
@@ -523,6 +566,98 @@ const webpOf = async (
   return { bytes: data, height: info.height, width: info.width }
 }
 
+const foldedName = (name: string): string => normalizeAnswer(name)
+
+/**
+ * Whether a Wikidata item's labels name the row: an author may get a QID
+ * wrong, and a wrong one would show somebody else's face. Either side may
+ * hold the other — _Western honey bee_ for the row's _Honeybee_ is not the
+ * same words, so a label is also matched against every name the row accepts.
+ */
+const labelsName = ({
+  labels,
+  row
+}: {
+  labels: readonly string[]
+  row: FiveCluesRow
+}): boolean => {
+  const names = [
+    row.name.en,
+    row.name.fr,
+    row.name.pt,
+    ...row.accepted.en,
+    ...row.accepted.fr
+  ]
+    .map(foldedName)
+    .filter((name) => name.length > 0)
+
+  return labels
+    .map(foldedName)
+    .some((label) =>
+      names.some((name) => label.includes(name) || name.includes(label))
+    )
+}
+
+const photographedFiveCluesRows = (): PhotographedRow[] =>
+  Object.entries(PHOTOGRAPHED_FIVE_CLUES).flatMap(([subject, files]) =>
+    files.flatMap((file) =>
+      orStop(
+        readJsonFile(join(QUESTIONS_DIRECTORY, file), fiveCluesBankSchema),
+        file
+      ).flatMap((row) =>
+        row.wikidata !== null && row.clues.some(({ photo }) => photo)
+          ? [
+              {
+                entity: `fiveclues-${subject}-${row.id}`,
+                item: row.wikidata,
+                row
+              }
+            ]
+          : []
+      )
+    )
+  )
+
+const wikidataLabelsOf = async (
+  entities: readonly string[]
+): Promise<Map<string, string[]>> => {
+  const query = `SELECT ?item ?label WHERE {
+    VALUES ?item { ${entities.map((entity) => `wd:${entity}`).join(' ')} }
+    ?item rdfs:label ?label.
+    FILTER(LANG(?label) IN ("en", "fr", "pt", "mul"))
+  }`
+  const schema = sparqlBindingsSchema({
+    item: bindingValue,
+    label: bindingValue
+  })
+  const text = await cached(
+    `picture-labels-${shortHash(query)}.json`,
+    async () =>
+      JSON.stringify(
+        await withRetries(schema, async () =>
+          fetch(SPARQL_URL, {
+            body: new URLSearchParams({ query }),
+            headers: {
+              accept: 'application/sparql-results+json',
+              'user-agent': USER_AGENT
+            },
+            method: 'POST'
+          })
+        )
+      )
+  )
+  const labels = new Map<string, string[]>()
+
+  for (const { item, label } of orStop(parseJson(text, schema), 'labels')
+    .results.bindings) {
+    const entity = entityIdOf(item.value)
+
+    labels.set(entity, [...(labels.get(entity) ?? []), label.value])
+  }
+
+  return labels
+}
+
 const main = async () => {
   const quantities = orStop(
     readJsonFile(QUANTITY_BANK_PATH, quantityBankSchema),
@@ -542,11 +677,26 @@ const main = async () => {
         .map((row) => row.entity)
     )
   ]
-  const wikidataImages = await wikidataImagesOf(photographed)
+  const fiveCluesRows = photographedFiveCluesRows()
+  const fiveCluesItems = [...new Set(fiveCluesRows.map(({ item }) => item))]
+  const fiveCluesLabels = await wikidataLabelsOf(fiveCluesItems)
+  const mislabelled = fiveCluesRows.filter(
+    ({ item, row }) =>
+      !labelsName({ labels: fiveCluesLabels.get(item) ?? [], row })
+  )
+  const namedRows = fiveCluesRows.filter((row) => !mislabelled.includes(row))
+  const wikidataImages = await wikidataImagesOf([
+    ...photographed,
+    ...fiveCluesItems
+  ])
   const candidatesOf = new Map<string, string[]>([
     ...photographed.map((entity): [string, string[]] => [
       entity,
       wikidataImages.get(entity) ?? []
+    ]),
+    ...namedRows.map(({ entity, item }): [string, string[]] => [
+      entity,
+      wikidataImages.get(item) ?? []
     ]),
     ...prices.flatMap((row): [string, string[]][] =>
       row.image === undefined ? [] : [[row.entity, [row.image]]]
@@ -554,6 +704,7 @@ const main = async () => {
   ])
   const files = await commonsFilesOf([...candidatesOf.values()].flat())
   const queried = new Set(photographed)
+  const portrayed = new Set(namedRows.map(({ entity }) => entity))
   const verdictOf = ({
     entity,
     title
@@ -569,8 +720,8 @@ const main = async () => {
 
     if (
       typeof file === 'object' &&
-      queried.has(entity) &&
-      file.mime !== PHOTOGRAPH_MIME
+      ((queried.has(entity) && file.mime !== PHOTOGRAPH_MIME) ||
+        (portrayed.has(entity) && !PORTRAIT_MIMES.has(file.mime)))
     ) {
       return `a ${file.mime}`
     }
@@ -635,7 +786,15 @@ const main = async () => {
       continue
     }
 
-    const picture = await webpOf(await downloaded(chosen))
+    const picture = await webpOf(await downloaded(chosen)).catch(
+      (error: unknown) =>
+        error instanceof Error ? error.message : 'unreadable'
+    )
+
+    if (typeof picture === 'string') {
+      refusals.push(`${entity}: ${chosen.title} (${picture})`)
+      continue
+    }
     const file = `${shortHash(picture.bytes)}.webp`
 
     if (!credits.has(file)) {
@@ -670,6 +829,12 @@ const main = async () => {
     `${JSON.stringify(creditLines, null, 2)}\n`,
     'utf8'
   )
+
+  for (const { item, row } of mislabelled) {
+    console.info(
+      `no picture for five clues ${row.id}: ${item} is labelled ${(fiveCluesLabels.get(item) ?? ['nothing']).join(' / ')}`
+    )
+  }
 
   for (const refusal of refusals) {
     console.info(`no picture for ${refusal}`)

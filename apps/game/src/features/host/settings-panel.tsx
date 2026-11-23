@@ -12,6 +12,7 @@ import {
 } from '@melee/protocol/black-square'
 import { QUANTITY_TOPICS } from '@melee/protocol/estimate'
 import {
+  fiveCluesSubjects,
   MAX_CLUE_DURATION_MS,
   MIN_CLUE_DURATION_MS
 } from '@melee/protocol/five-clues'
@@ -858,6 +859,25 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {game?.kind === 'fiveclues' && (
         <>
+          <ToggleGroup
+            className='five-clues-subjects'
+            isDisabled={isDisabled}
+            label={translate('fiveclues.subjects.label')}
+            onSelectionChange={(keys) => {
+              const ticked = fiveCluesSubjects.filter((subject) =>
+                keys.has(subject)
+              )
+
+              if (ticked.length > 0) {
+                onChange({ ...settings, game: { ...game, subjects: ticked } })
+              }
+            }}
+            options={fiveCluesSubjects.map((subject) => ({
+              label: translate(`fiveclues.subjects.${subject}`),
+              value: subject
+            }))}
+            selectedKeys={game.subjects}
+          />
           <LanguageChoice
             isDisabled={isDisabled}
             label={translate('fiveclues.language')}

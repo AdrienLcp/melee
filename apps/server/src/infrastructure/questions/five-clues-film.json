@@ -1,0 +1,4387 @@
+[
+  {
+    "accepted": {
+      "en": ["Lion King"],
+      "fr": ["Roi lion"],
+      "pt": ["Rei Leão"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Disney animated feature released in the 1990s.",
+          "fr": "Un long métrage d’animation Disney sorti dans les années 1990.",
+          "pt": "Uma longa-metragem de animação da Disney estreada nos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its story takes place in Africa.",
+          "fr": "Son histoire se déroule en Afrique.",
+          "pt": "A história passa-se em África."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Not one human being appears in it: every character is an animal.",
+          "fr": "Pas un seul humain à l’écran : tous les personnages sont des animaux.",
+          "pt": "Não aparece um único ser humano: todas as personagens são animais."
+        }
+      },
+      {
+        "text": {
+          "en": "Songs by Elton John; a young heir runs away, sure he caused his father’s death.",
+          "fr": "Chansons d’Elton John ; un jeune héritier s’enfuit, persuadé d’avoir causé la mort de son père.",
+          "pt": "Canções de Elton John; um jovem herdeiro foge, convencido de que causou a morte do pai."
+        }
+      },
+      {
+        "text": {
+          "en": "Simba, Mufasa, Scar, Timon, Pumbaa — and Hakuna Matata.",
+          "fr": "Simba, Mufasa, Scar, Timon, Pumbaa… et Hakuna Matata.",
+          "pt": "Simba, Mufasa, Scar, Timon, Pumba… e Hakuna Matata."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Jungle Book",
+        "fr": "Le Livre de la jungle",
+        "pt": "O Livro da Selva"
+      },
+      {
+        "en": "Aladdin",
+        "fr": "Aladdin",
+        "pt": "Aladdin"
+      },
+      {
+        "en": "Tarzan",
+        "fr": "Tarzan",
+        "pt": "Tarzan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-lion-king",
+    "name": {
+      "en": "The Lion King",
+      "fr": "Le Roi lion",
+      "pt": "O Rei Leão"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A sweeping romance released in the 1990s.",
+          "fr": "Une grande fresque romantique sortie dans les années 1990.",
+          "pt": "Um grande romance épico estreado nos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It won the Oscar for Best Picture.",
+          "fr": "Il a remporté l’Oscar du meilleur film.",
+          "pt": "Venceu o Óscar de Melhor Filme."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Leonardo DiCaprio plays the male lead.",
+          "fr": "Leonardo DiCaprio y tient le premier rôle masculin.",
+          "pt": "Leonardo DiCaprio é o protagonista masculino."
+        }
+      },
+      {
+        "text": {
+          "en": "James Cameron directs; Kate Winslet is Rose, engaged to a rich man she does not love.",
+          "fr": "Réalisé par James Cameron ; Kate Winslet joue Rose, fiancée à un riche qu’elle n’aime pas.",
+          "pt": "Realizado por James Cameron; Kate Winslet é Rose, noiva de um rico que não ama."
+        }
+      },
+      {
+        "text": {
+          "en": "A liner on her maiden voyage strikes an iceberg in April 1912.",
+          "fr": "Un paquebot heurte un iceberg lors de sa traversée inaugurale, en avril 1912.",
+          "pt": "Um paquete choca com um icebergue na viagem inaugural, em abril de 1912."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pearl Harbor",
+        "fr": "Pearl Harbor",
+        "pt": "Pearl Harbor"
+      },
+      {
+        "en": "Romeo + Juliet",
+        "fr": "Roméo + Juliette",
+        "pt": "Romeu + Julieta"
+      },
+      {
+        "en": "The English Patient",
+        "fr": "Le Patient anglais",
+        "pt": "O Paciente Inglês"
+      }
+    ],
+    "homeCountry": null,
+    "id": "titanic",
+    "name": {
+      "en": "Titanic",
+      "fr": "Titanic",
+      "pt": "Titanic"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["A New Hope", "Star Wars: A New Hope", "Episode IV"],
+      "fr": ["Star Wars", "Un nouvel espoir", "Épisode IV"],
+      "pt": ["Star Wars", "Uma Nova Esperança", "Episódio IV"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction film from the 1970s.",
+          "fr": "Un film de science-fiction des années 1970.",
+          "pt": "Um filme de ficção científica dos anos 1970."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A family adventure with no gore, made for children too.",
+          "fr": "Une aventure familiale, sans horreur, faite pour les enfants aussi.",
+          "pt": "Uma aventura familiar, sem horror, feita também para crianças."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Not one scene takes place on Earth.",
+          "fr": "Aucune scène ne se passe sur Terre.",
+          "pt": "Nenhuma cena se passa na Terra."
+        }
+      },
+      {
+        "text": {
+          "en": "George Lucas: a farm boy, a princess, a smuggler and his furry co-pilot against an empire.",
+          "fr": "George Lucas : un garçon de ferme, une princesse, un contrebandier et son copilote poilu contre un empire.",
+          "pt": "George Lucas: um rapaz do campo, uma princesa, um contrabandista e o copiloto peludo contra um império."
+        }
+      },
+      {
+        "text": {
+          "en": "Luke Skywalker, Princess Leia, Han Solo, Darth Vader and the Force.",
+          "fr": "Luke Skywalker, la princesse Leia, Han Solo, Dark Vador et la Force.",
+          "pt": "Luke Skywalker, a princesa Leia, Han Solo, Darth Vader e a Força."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Blade Runner",
+        "fr": "Blade Runner",
+        "pt": "Blade Runner - Perigo Iminente"
+      },
+      {
+        "en": "Alien",
+        "fr": "Alien, le huitième passager",
+        "pt": "Alien - O 8.º Passageiro"
+      },
+      {
+        "en": "Close Encounters of the Third Kind",
+        "fr": "Rencontres du troisième type",
+        "pt": "Encontros Imediatos do Terceiro Grau"
+      }
+    ],
+    "homeCountry": null,
+    "id": "star-wars",
+    "name": {
+      "en": "Star Wars",
+      "fr": "La Guerre des étoiles",
+      "pt": "A Guerra das Estrelas"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Dents de la mer", "Jaws"],
+      "pt": ["Jaws"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A suspense film from the 1970s.",
+          "fr": "Un film à suspense des années 1970.",
+          "pt": "Um filme de suspense dos anos 1970."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Steven Spielberg.",
+          "fr": "Réalisé par Steven Spielberg.",
+          "pt": "Realizado por Steven Spielberg."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The menace comes from the ocean, off a seaside town in high summer.",
+          "fr": "La menace vient de l’océan, au large d’une station balnéaire en plein été.",
+          "pt": "A ameaça vem do oceano, ao largo de uma vila balnear em pleno verão."
+        }
+      },
+      {
+        "text": {
+          "en": "Two notes of John Williams’ score are enough to empty a beach.",
+          "fr": "Deux notes de la musique de John Williams suffisent à vider une plage.",
+          "pt": "Duas notas da música de John Williams bastam para esvaziar uma praia."
+        }
+      },
+      {
+        "text": {
+          "en": "Chief Brody, Amity Island and a giant great white: he’ll need a bigger boat.",
+          "fr": "Le chef Brody, l’île d’Amity et un grand requin blanc géant.",
+          "pt": "O chefe Brody, a ilha de Amity e um gigantesco grande-branco."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jurassic Park",
+        "fr": "Jurassic Park",
+        "pt": "Parque Jurássico"
+      },
+      {
+        "en": "The Exorcist",
+        "fr": "L’Exorciste",
+        "pt": "O Exorcista"
+      },
+      {
+        "en": "Close Encounters of the Third Kind",
+        "fr": "Rencontres du troisième type",
+        "pt": "Encontros Imediatos do Terceiro Grau"
+      }
+    ],
+    "homeCountry": null,
+    "id": "jaws",
+    "name": {
+      "en": "Jaws",
+      "fr": "Les Dents de la mer",
+      "pt": "Tubarão"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["E.T."],
+      "fr": ["E.T."],
+      "pt": ["E.T."]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A family adventure from the 1980s.",
+          "fr": "Une aventure familiale des années 1980.",
+          "pt": "Uma aventura familiar dos anos 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its heroes are children, and the grown-ups mostly get in the way.",
+          "fr": "Ses héros sont des enfants ; les adultes y sont surtout des obstacles.",
+          "pt": "Os heróis são crianças; os adultos são sobretudo um obstáculo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A boy hides a creature from another planet in his bedroom closet.",
+          "fr": "Un garçon cache dans son placard une créature venue d’une autre planète.",
+          "pt": "Um rapaz esconde no armário do quarto uma criatura vinda de outro planeta."
+        }
+      },
+      {
+        "text": {
+          "en": "Spielberg, 1982: a bike flies across the moon, and sweets lure a stranded visitor.",
+          "fr": "Spielberg, 1982 : un vélo passe devant la lune, et des bonbons servent d’appât à un visiteur perdu.",
+          "pt": "Spielberg, 1982: uma bicicleta voa diante da lua, e uns rebuçados atraem um visitante perdido."
+        }
+      },
+      {
+        "text": {
+          "en": "Elliott, a glowing fingertip, and a visitor who wants to phone home.",
+          "fr": "Elliott, un doigt qui s’illumine et un visiteur qui veut « téléphone maison ».",
+          "pt": "Elliott, um dedo que se ilumina e um visitante que quer telefonar para casa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jurassic Park",
+        "fr": "Jurassic Park",
+        "pt": "Parque Jurássico"
+      },
+      {
+        "en": "Ghostbusters",
+        "fr": "SOS Fantômes",
+        "pt": "Caça-Fantasmas"
+      },
+      {
+        "en": "The Goonies",
+        "fr": "Les Goonies",
+        "pt": "Os Goonies"
+      }
+    ],
+    "homeCountry": null,
+    "id": "et-the-extra-terrestrial",
+    "name": {
+      "en": "E.T. the Extra-Terrestrial",
+      "fr": "E.T., l’extra-terrestre",
+      "pt": "E.T. - O Extra-Terrestre"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Jurassic Park"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A blockbuster from the 1990s.",
+          "fr": "Un blockbuster des années 1990.",
+          "pt": "Um êxito de bilheteira dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its monsters are animals: no aliens, no machines.",
+          "fr": "Ses monstres sont des animaux : ni extraterrestres, ni machines.",
+          "pt": "Os monstros são animais: nem extraterrestres, nem máquinas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Steven Spielberg, from a Michael Crichton novel.",
+          "fr": "Réalisé par Steven Spielberg, d’après un roman de Michael Crichton.",
+          "pt": "Realizado por Steven Spielberg, a partir de um romance de Michael Crichton."
+        }
+      },
+      {
+        "text": {
+          "en": "Scientists clone extinct creatures from blood found in mosquitoes trapped in amber.",
+          "fr": "Des savants clonent des espèces disparues grâce au sang de moustiques piégés dans l’ambre.",
+          "pt": "Cientistas clonam espécies extintas com sangue de mosquitos presos em âmbar."
+        }
+      },
+      {
+        "text": {
+          "en": "A T. rex, velociraptors and an island attraction off Costa Rica gone badly wrong.",
+          "fr": "Un T. rex, des vélociraptors et une île au large du Costa Rica où tout tourne mal.",
+          "pt": "Um T. rex, velociraptores e uma ilha ao largo da Costa Rica onde tudo corre mal."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jaws",
+        "fr": "Les Dents de la mer",
+        "pt": "Tubarão"
+      },
+      {
+        "en": "Independence Day",
+        "fr": "Independence Day",
+        "pt": "O Dia da Independência"
+      },
+      {
+        "en": "Godzilla",
+        "fr": "Godzilla",
+        "pt": "Godzilla"
+      }
+    ],
+    "homeCountry": null,
+    "id": "jurassic-park",
+    "name": {
+      "en": "Jurassic Park",
+      "fr": "Jurassic Park",
+      "pt": "Parque Jurássico"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Back to the Future"],
+      "pt": ["Back to the Future"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction comedy from the 1980s.",
+          "fr": "Une comédie de science-fiction des années 1980.",
+          "pt": "Uma comédia de ficção científica dos anos 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in a small American town, not a big city.",
+          "fr": "L’action se passe dans une petite ville américaine, pas une métropole.",
+          "pt": "A ação passa-se numa pequena cidade americana, não numa metrópole."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its teenage hero travels through time, by accident.",
+          "fr": "Son héros adolescent voyage dans le temps, par accident.",
+          "pt": "O herói adolescente viaja no tempo, por acidente."
+        }
+      },
+      {
+        "text": {
+          "en": "He must make his own parents fall in love in 1955, or he will fade away.",
+          "fr": "Il doit faire tomber ses propres parents amoureux en 1955, sinon il s’efface.",
+          "pt": "Tem de fazer os próprios pais apaixonarem-se em 1955, ou desaparece."
+        }
+      },
+      {
+        "text": {
+          "en": "Marty McFly, Doc Brown and a DeLorean that must hit 88 miles per hour.",
+          "fr": "Marty McFly, Doc Brown et une DeLorean qui doit atteindre 88 miles à l’heure.",
+          "pt": "Marty McFly, Doc Brown e um DeLorean que tem de chegar às 88 milhas por hora."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Star Wars",
+        "fr": "La Guerre des étoiles",
+        "pt": "A Guerra das Estrelas"
+      },
+      {
+        "en": "Ghostbusters",
+        "fr": "SOS Fantômes",
+        "pt": "Caça-Fantasmas"
+      },
+      {
+        "en": "Gremlins",
+        "fr": "Gremlins",
+        "pt": "Gremlins"
+      }
+    ],
+    "homeCountry": null,
+    "id": "back-to-the-future",
+    "name": {
+      "en": "Back to the Future",
+      "fr": "Retour vers le futur",
+      "pt": "Regresso ao Futuro"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Toy Story"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An animated film made on computers, not drawn by hand.",
+          "fr": "Un film d’animation fait par ordinateur, pas dessiné à la main.",
+          "pt": "Um filme de animação feito em computador, não desenhado à mão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by the Pixar studio.",
+          "fr": "Produit par le studio Pixar.",
+          "pt": "Produzido pelo estúdio Pixar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Released in 1995, the first feature film animated entirely by computer.",
+          "fr": "Sorti en 1995, c’est le premier long métrage entièrement animé par ordinateur.",
+          "pt": "Estreado em 1995, foi a primeira longa-metragem inteiramente animada por computador."
+        }
+      },
+      {
+        "text": {
+          "en": "When Andy gets a new space ranger for his birthday, his favourite cowboy turns jealous.",
+          "fr": "Quand Andy reçoit un ranger de l’espace pour son anniversaire, son cow-boy préféré devient jaloux.",
+          "pt": "Quando o Andy recebe um patrulheiro espacial nos anos, o seu cowboy preferido fica com ciúmes."
+        }
+      },
+      {
+        "text": {
+          "en": "Woody and Buzz Lightyear: to infinity and beyond!",
+          "fr": "Woody et Buzz l’Éclair : vers l’infini et au-delà !",
+          "pt": "Woody e Buzz Lightyear: até ao infinito e mais além!"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Lion King",
+        "fr": "Le Roi lion",
+        "pt": "O Rei Leão"
+      },
+      {
+        "en": "Shrek",
+        "fr": "Shrek",
+        "pt": "Shrek"
+      },
+      {
+        "en": "Monsters, Inc.",
+        "fr": "Monstres et Cie",
+        "pt": "Monstros e Companhia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "toy-story",
+    "name": {
+      "en": "Toy Story",
+      "fr": "Toy Story",
+      "pt": "Toy Story: Os Rivais"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Reine des neiges", "Frozen"],
+      "pt": ["Frozen", "Reino do Gelo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Disney animated musical from the 2010s.",
+          "fr": "Une comédie musicale animée de Disney, des années 2010.",
+          "pt": "Um musical de animação da Disney dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its heroine is a princess of a fairy-tale European kingdom.",
+          "fr": "Son héroïne est une princesse d’un royaume européen de conte de fées.",
+          "pt": "A heroína é uma princesa de um país europeu de conto de fadas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "At its heart are two royal sisters, one hiding a dangerous power.",
+          "fr": "Au cœur de l’histoire, deux sœurs princesses, dont l’une cache un pouvoir dangereux.",
+          "pt": "No centro da história, duas irmãs princesas, uma delas a esconder um poder perigoso."
+        }
+      },
+      {
+        "text": {
+          "en": "Released in 2013, it became the highest-grossing animated film yet made.",
+          "fr": "Sorti en 2013, il devient alors le film d’animation le plus rentable de l’histoire.",
+          "pt": "Estreado em 2013, tornou-se então o filme de animação mais visto de sempre."
+        }
+      },
+      {
+        "text": {
+          "en": "Elsa, Anna, Olaf the snowman and the song “Let It Go”.",
+          "fr": "Elsa, Anna, Olaf et la chanson « Libérée, délivrée ».",
+          "pt": "Elsa, Anna, Olaf e a canção “Let It Go”."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Shrek",
+        "fr": "Shrek",
+        "pt": "Shrek"
+      },
+      {
+        "en": "Moana",
+        "fr": "Vaiana, la légende du bout du monde",
+        "pt": "Vaiana"
+      },
+      {
+        "en": "Tangled",
+        "fr": "Raiponce",
+        "pt": "Entrelaçados"
+      }
+    ],
+    "homeCountry": null,
+    "id": "frozen",
+    "name": {
+      "en": "Frozen",
+      "fr": "La Reine des neiges",
+      "pt": "Frozen: O Reino do Gelo"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Nemo"],
+      "fr": ["Nemo", "Finding Nemo"],
+      "pt": ["Nemo", "Finding Nemo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A computer-animated film from the 2000s.",
+          "fr": "Un film d’animation en images de synthèse des années 2000.",
+          "pt": "Um filme de animação digital dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by the Pixar studio.",
+          "fr": "Produit par le studio Pixar.",
+          "pt": "Produzido pelo estúdio Pixar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It takes place almost entirely in the ocean.",
+          "fr": "Il se passe presque entièrement dans l’océan.",
+          "pt": "Passa-se quase inteiramente no oceano."
+        }
+      },
+      {
+        "text": {
+          "en": "An anxious father crosses the sea to Sydney to find his son, taken by a diver.",
+          "fr": "Un père anxieux traverse l’océan jusqu’à Sydney pour retrouver son fils, capturé par un plongeur.",
+          "pt": "Um pai ansioso atravessa o oceano até Sydney para encontrar o filho, apanhado por um mergulhador."
+        }
+      },
+      {
+        "text": {
+          "en": "Marlin the clownfish, and Dory, who forgets everything.",
+          "fr": "Marin le poisson-clown, et Dory, qui oublie tout.",
+          "pt": "Marlin, o peixe-palhaço, e a Dory, que se esquece de tudo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Little Mermaid",
+        "fr": "La Petite Sirène",
+        "pt": "A Pequena Sereia"
+      },
+      {
+        "en": "Ice Age",
+        "fr": "L’Âge de glace",
+        "pt": "A Idade do Gelo"
+      },
+      {
+        "en": "Monsters, Inc.",
+        "fr": "Monstres et Cie",
+        "pt": "Monstros e Companhia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "finding-nemo",
+    "name": {
+      "en": "Finding Nemo",
+      "fr": "Le Monde de Nemo",
+      "pt": "À Procura de Nemo"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A computer-animated comedy from the 2000s.",
+          "fr": "Une comédie d’animation en images de synthèse des années 2000.",
+          "pt": "Uma comédia de animação digital dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by DreamWorks, not Disney or Pixar.",
+          "fr": "Produit par DreamWorks, ni Disney ni Pixar.",
+          "pt": "Produzido pela DreamWorks, nem Disney nem Pixar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It pokes fun at fairy tales: a princess, a dragon, a tower, a castle.",
+          "fr": "Il se moque des contes de fées : une princesse, un dragon, une tour, un château.",
+          "pt": "Goza com os contos de fadas: uma princesa, um dragão, uma torre, um castelo."
+        }
+      },
+      {
+        "text": {
+          "en": "In 2002 it won the very first Oscar for Best Animated Feature.",
+          "fr": "En 2002, il remporte le tout premier Oscar du meilleur film d’animation.",
+          "pt": "Em 2002, venceu o primeiro Óscar de sempre de Melhor Filme de Animação."
+        }
+      },
+      {
+        "text": {
+          "en": "A grumpy green ogre, a chatty donkey and Princess Fiona.",
+          "fr": "Un ogre vert grognon, un âne bavard et la princesse Fiona.",
+          "pt": "Um ogre verde e rabugento, um burro falador e a princesa Fiona."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Toy Story",
+        "fr": "Toy Story",
+        "pt": "Toy Story: Os Rivais"
+      },
+      {
+        "en": "Ice Age",
+        "fr": "L’Âge de glace",
+        "pt": "A Idade do Gelo"
+      },
+      {
+        "en": "Madagascar",
+        "fr": "Madagascar",
+        "pt": "Madagáscar"
+      }
+    ],
+    "homeCountry": null,
+    "id": "shrek",
+    "name": {
+      "en": "Shrek",
+      "fr": "Shrek",
+      "pt": "Shrek"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [
+        "Harry Potter",
+        "Harry Potter and the Sorcerer's Stone",
+        "Philosopher's Stone",
+        "Sorcerer's Stone"
+      ],
+      "fr": ["Harry Potter", "École des sorciers"],
+      "pt": ["Harry Potter", "Pedra Filosofal"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fantasy film from the 2000s.",
+          "fr": "Un film de fantasy des années 2000.",
+          "pt": "Um filme de fantasia dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Adapted from a British novel written for children.",
+          "fr": "Adapté d’un roman britannique écrit pour la jeunesse.",
+          "pt": "Adaptado de um romance britânico escrito para os mais novos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "An orphan learns on his eleventh birthday that he can do magic.",
+          "fr": "Un orphelin apprend, le jour de ses onze ans, qu’il a des pouvoirs magiques.",
+          "pt": "Um órfão descobre, no dia em que faz onze anos, que tem poderes mágicos."
+        }
+      },
+      {
+        "text": {
+          "en": "Daniel Radcliffe, Emma Watson and Rupert Grint, released in 2001.",
+          "fr": "Daniel Radcliffe, Emma Watson et Rupert Grint, sorti en 2001.",
+          "pt": "Daniel Radcliffe, Emma Watson e Rupert Grint, estreado em 2001."
+        }
+      },
+      {
+        "text": {
+          "en": "Platform 9¾, Hogwarts, Quidditch and a lightning-shaped scar.",
+          "fr": "Le quai 9¾, Poudlard, le Quidditch et une cicatrice en forme d’éclair.",
+          "pt": "A plataforma 9¾, Hogwarts, o Quidditch e uma cicatriz em forma de raio."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The NeverEnding Story",
+        "fr": "L’Histoire sans fin",
+        "pt": "A História Interminável"
+      },
+      {
+        "en": "The Lord of the Rings: The Fellowship of the Ring",
+        "fr": "Le Seigneur des anneaux : La Communauté de l’anneau",
+        "pt": "O Senhor dos Anéis: A Irmandade do Anel"
+      },
+      {
+        "en": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+        "fr": "Le Monde de Narnia : Le Lion, la Sorcière blanche et l’Armoire magique",
+        "pt": "As Crónicas de Nárnia: O Leão, a Feiticeira e o Guarda-Roupa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "harry-potter-philosophers-stone",
+    "name": {
+      "en": "Harry Potter and the Philosopher's Stone",
+      "fr": "Harry Potter à l’école des sorciers",
+      "pt": "Harry Potter e a Pedra Filosofal"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Maman j’ai raté l’avion", "Home Alone"],
+      "pt": ["Home Alone"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A family comedy from the 1990s.",
+          "fr": "Une comédie familiale des années 1990.",
+          "pt": "Uma comédia familiar dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its hero is a child who outwits the adults.",
+          "fr": "Son héros est un enfant qui se joue des adultes.",
+          "pt": "O herói é uma criança que engana os adultos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It takes place over the Christmas holidays.",
+          "fr": "L’histoire se déroule pendant les fêtes de Noël.",
+          "pt": "A história passa-se durante as festas de Natal."
+        }
+      },
+      {
+        "text": {
+          "en": "Forgotten when his family flies to Paris, an eight-year-old defends the house from two burglars.",
+          "fr": "Oublié quand sa famille s’envole pour Paris, un garçon de huit ans défend la maison contre deux cambrioleurs.",
+          "pt": "Esquecido quando a família voa para Paris, um miúdo de oito anos defende a moradia de dois ladrões."
+        }
+      },
+      {
+        "text": {
+          "en": "Macaulay Culkin as Kevin, screaming as he slaps aftershave on his cheeks.",
+          "fr": "Macaulay Culkin en Kevin, qui hurle en se tapotant les joues d’après-rasage.",
+          "pt": "Macaulay Culkin é o Kevin, que grita ao pôr loção nas bochechas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ghostbusters",
+        "fr": "SOS Fantômes",
+        "pt": "Caça-Fantasmas"
+      },
+      {
+        "en": "Mrs. Doubtfire",
+        "fr": "Madame Doubtfire",
+        "pt": "Papá para Sempre"
+      },
+      {
+        "en": "Matilda",
+        "fr": "Matilda",
+        "pt": "Matilda"
+      }
+    ],
+    "homeCountry": null,
+    "id": "home-alone",
+    "name": {
+      "en": "Home Alone",
+      "fr": "Maman, j’ai raté l’avion !",
+      "pt": "Sozinho em Casa"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction blockbuster of the 21st century.",
+          "fr": "Un blockbuster de science-fiction du XXIe siècle.",
+          "pt": "Um êxito de ficção científica do século XXI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Almost all of it takes place on another world, far from Earth.",
+          "fr": "Presque tout se passe sur un autre monde, loin de la Terre.",
+          "pt": "Quase tudo se passa noutro mundo, longe da Terra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by James Cameron, twelve years after his previous feature.",
+          "fr": "Réalisé par James Cameron, douze ans après son film précédent.",
+          "pt": "Realizado por James Cameron, doze anos depois do filme anterior."
+        }
+      },
+      {
+        "text": {
+          "en": "Released in 2009, it became the highest-grossing film of all time.",
+          "fr": "Sorti en 2009, il devient le plus gros succès de l’histoire au box-office.",
+          "pt": "Estreado em 2009, tornou-se o filme com maior bilheteira de sempre."
+        }
+      },
+      {
+        "text": {
+          "en": "A paralysed marine lives among the tall blue Na’vi of Pandora.",
+          "fr": "Un marine paraplégique vit parmi les grands Na’vi bleus de Pandora.",
+          "pt": "Um fuzileiro paraplégico vive entre os altos Na’vi azuis de Pandora."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Terminator 2: Judgment Day",
+        "fr": "Terminator 2 : Le Jugement dernier",
+        "pt": "Exterminador Implacável 2: O Dia do Julgamento"
+      },
+      {
+        "en": "Interstellar",
+        "fr": "Interstellar",
+        "pt": "Interstellar"
+      },
+      {
+        "en": "Dune",
+        "fr": "Dune",
+        "pt": "Dune: Duna"
+      }
+    ],
+    "homeCountry": null,
+    "id": "avatar",
+    "name": {
+      "en": "Avatar",
+      "fr": "Avatar",
+      "pt": "Avatar"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Matrix"],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction action film of the 1990s.",
+          "fr": "Un film d’action et de science-fiction des années 1990.",
+          "pt": "Um filme de ação e ficção científica dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its hero discovers that the world he lives in is not real.",
+          "fr": "Son héros découvre que le monde où il vit n’est pas réel.",
+          "pt": "O herói descobre que o mundo em que vive não é real."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "That hero is a computer hacker who works in an office by day.",
+          "fr": "Ce héros est un pirate informatique qui travaille dans un bureau le jour.",
+          "pt": "Esse herói é um pirata informático que trabalha num escritório durante o dia."
+        }
+      },
+      {
+        "text": {
+          "en": "Bullet time: Keanu Reeves bends backwards as the bullets slow to a crawl.",
+          "fr": "Keanu Reeves se cambre en arrière tandis que les balles ralentissent : le « bullet time ».",
+          "pt": "Keanu Reeves dobra-se para trás enquanto as balas abrandam: o “bullet time”."
+        }
+      },
+      {
+        "text": {
+          "en": "Neo, Morpheus, Trinity, and a choice between the red pill and the blue.",
+          "fr": "Neo, Morpheus, Trinity et le choix entre la pilule rouge et la bleue.",
+          "pt": "Neo, Morpheus, Trinity e a escolha entre o comprimido vermelho e o azul."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Inception",
+        "fr": "Inception",
+        "pt": "A Origem"
+      },
+      {
+        "en": "The Fifth Element",
+        "fr": "Le Cinquième Élément",
+        "pt": "O Quinto Elemento"
+      },
+      {
+        "en": "Total Recall",
+        "fr": "Total Recall",
+        "pt": "Desafio Total"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-matrix",
+    "name": {
+      "en": "The Matrix",
+      "fr": "Matrix",
+      "pt": "Matrix"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Snow White"],
+      "fr": ["Blanche-Neige"],
+      "pt": ["Branca de Neve"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hand-drawn Disney feature from before 1960.",
+          "fr": "Un long métrage Disney dessiné à la main, antérieur à 1960.",
+          "pt": "Uma longa-metragem da Disney desenhada à mão, anterior a 1960."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its heroine is a young woman persecuted by her stepmother.",
+          "fr": "Son héroïne est une jeune fille persécutée par sa belle-mère.",
+          "pt": "A heroína é uma jovem perseguida pela madrasta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Released in 1937, it was Walt Disney’s very first feature film.",
+          "fr": "Sorti en 1937, c’est le tout premier long métrage de Walt Disney.",
+          "pt": "Estreado em 1937, foi a primeira longa-metragem de Walt Disney."
+        }
+      },
+      {
+        "text": {
+          "en": "A huntsman spares her in the forest; a poisoned apple sends her to sleep.",
+          "fr": "Un chasseur l’épargne dans la forêt ; une pomme empoisonnée l’endort.",
+          "pt": "Um caçador poupa-a na floresta; uma maçã envenenada adormece-a."
+        }
+      },
+      {
+        "text": {
+          "en": "Mirror, mirror on the wall… Doc, Grumpy, Happy, Sleepy, Bashful, Sneezy and Dopey.",
+          "fr": "Miroir, mon beau miroir… Prof, Grincheux, Joyeux, Dormeur, Timide, Atchoum et Simplet.",
+          "pt": "Espelho meu, espelho meu… uma rainha má e uns pequenos mineiros que cantam a caminho do trabalho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Jungle Book",
+        "fr": "Le Livre de la jungle",
+        "pt": "O Livro da Selva"
+      },
+      {
+        "en": "Pinocchio",
+        "fr": "Pinocchio",
+        "pt": "Pinóquio"
+      },
+      {
+        "en": "Cinderella",
+        "fr": "Cendrillon",
+        "pt": "A Gata Borralheira"
+      }
+    ],
+    "homeCountry": null,
+    "id": "snow-white",
+    "name": {
+      "en": "Snow White and the Seven Dwarfs",
+      "fr": "Blanche-Neige et les Sept Nains",
+      "pt": "Branca de Neve e os Sete Anões"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Pirates of the Caribbean", "The Curse of the Black Pearl"],
+      "fr": ["Pirates des Caraïbes", "La Malédiction du Black Pearl"],
+      "pt": ["Piratas das Caraíbas", "A Maldição do Pérola Negra"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An adventure blockbuster from the 2000s.",
+          "fr": "Un film d’aventure à grand spectacle des années 2000.",
+          "pt": "Um filme de aventuras de grande espetáculo dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its villains are undead creatures out of legend.",
+          "fr": "Ses méchants sont des morts-vivants sortis de la légende.",
+          "pt": "Os vilões são mortos-vivos saídos da lenda."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Most of it takes place at sea, among sailing ships and islands.",
+          "fr": "L’essentiel se passe en mer, entre voiliers et îles.",
+          "pt": "Quase tudo se passa no mar, entre veleiros e ilhas."
+        }
+      },
+      {
+        "text": {
+          "en": "Inspired by a Disneyland ride; Johnny Depp sways on deck like a rock star.",
+          "fr": "Inspiré d’une attraction de Disneyland ; Johnny Depp titube sur le pont comme une rock star.",
+          "pt": "Inspirado numa diversão da Disneyland; Johnny Depp cambaleia no convés como uma estrela de rock."
+        }
+      },
+      {
+        "text": {
+          "en": "Captain Jack Sparrow, Will Turner and Elizabeth Swann.",
+          "fr": "Le capitaine Jack Sparrow, Will Turner et Elizabeth Swann.",
+          "pt": "O capitão Jack Sparrow, Will Turner e Elizabeth Swann."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Mask of Zorro",
+        "fr": "Le Masque de Zorro",
+        "pt": "A Máscara de Zorro"
+      },
+      {
+        "en": "National Treasure",
+        "fr": "Benjamin Gates et le Trésor des Templiers",
+        "pt": "O Tesouro"
+      },
+      {
+        "en": "The Mummy Returns",
+        "fr": "Le Retour de la momie",
+        "pt": "O Regresso da Múmia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pirates-of-the-caribbean",
+    "name": {
+      "en": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "fr": "Pirates des Caraïbes : La Malédiction du Black Pearl",
+      "pt": "Piratas das Caraíbas: A Maldição do Pérola Negra"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Up"],
+      "pt": ["Up", "Altamente"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Pixar film from the 2000s.",
+          "fr": "Un film Pixar des années 2000.",
+          "pt": "Um filme da Pixar dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its hero is a human: not an animal, a toy or a robot.",
+          "fr": "Son héros est un humain : ni animal, ni jouet, ni robot.",
+          "pt": "O herói é um humano: nem animal, nem brinquedo, nem robô."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "That hero is a grumpy widower pushing eighty.",
+          "fr": "Ce héros est un veuf bougon de près de quatre-vingts ans.",
+          "pt": "Esse herói é um viúvo rabugento de quase oitenta anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Its opening, a whole married life told without a word, leaves audiences in tears.",
+          "fr": "Son ouverture, toute une vie de couple racontée sans un mot, fait pleurer les salles.",
+          "pt": "A abertura, uma vida de casal contada sem uma palavra, faz chorar as salas."
+        }
+      },
+      {
+        "text": {
+          "en": "Thousands of balloons carry Carl’s house towards Paradise Falls, a boy scout aboard.",
+          "fr": "Des milliers de ballons emportent la maison de Carl vers les chutes du Paradis, un scout à bord.",
+          "pt": "Milhares de balões levam a casa do Carl rumo às Cataratas do Paraíso, com um escuteiro a bordo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Toy Story",
+        "fr": "Toy Story",
+        "pt": "Toy Story: Os Rivais"
+      },
+      {
+        "en": "Ratatouille",
+        "fr": "Ratatouille",
+        "pt": "Ratatui"
+      },
+      {
+        "en": "The Incredibles",
+        "fr": "Les Indestructibles",
+        "pt": "Os Incríveis"
+      }
+    ],
+    "homeCountry": null,
+    "id": "up",
+    "name": {
+      "en": "Up",
+      "fr": "Là-haut",
+      "pt": "Up: Altamente"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Ghostbusters"],
+      "pt": ["Ghostbusters"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood comedy from the 1980s.",
+          "fr": "Une comédie hollywoodienne des années 1980.",
+          "pt": "Uma comédia de Hollywood dos anos 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in New York City.",
+          "fr": "L’action se passe à New York.",
+          "pt": "A ação passa-se em Nova Iorque."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroes take on the supernatural.",
+          "fr": "Ses héros s’attaquent au surnaturel.",
+          "pt": "Os heróis enfrentam o sobrenatural."
+        }
+      },
+      {
+        "text": {
+          "en": "Bill Murray, Dan Aykroyd and Harold Ramis start a business armed with proton packs.",
+          "fr": "Bill Murray, Dan Aykroyd et Harold Ramis montent une entreprise, armés de packs à protons.",
+          "pt": "Bill Murray, Dan Aykroyd e Harold Ramis montam uma empresa armados com mochilas de protões."
+        }
+      },
+      {
+        "text": {
+          "en": "A giant marshmallow man stomps through Manhattan, and a theme tune asks who you’re gonna call.",
+          "fr": "Un bonhomme en guimauve géant écrase Manhattan, et la chanson demande qui appeler.",
+          "pt": "Um gigante de marshmallow esmaga Manhattan, e a canção pergunta a quem vais ligar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Men in Black",
+        "fr": "Men in Black",
+        "pt": "Homens de Negro"
+      },
+      {
+        "en": "Gremlins",
+        "fr": "Gremlins",
+        "pt": "Gremlins"
+      },
+      {
+        "en": "Coming to America",
+        "fr": "Un prince à New York",
+        "pt": "Um Príncipe em Nova Iorque"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ghostbusters",
+    "name": {
+      "en": "Ghostbusters",
+      "fr": "SOS Fantômes",
+      "pt": "Caça-Fantasmas"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Intouchables", "Untouchable"],
+      "fr": ["The Intouchables"],
+      "pt": ["Intouchables"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French comedy of the 2010s.",
+          "fr": "Une comédie française des années 2010.",
+          "pt": "Uma comédia francesa dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Based on a true story.",
+          "fr": "Inspiré d’une histoire vraie.",
+          "pt": "Inspirado numa história verdadeira."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Omar Sy plays one of its two leads.",
+          "fr": "Omar Sy y tient l’un des deux rôles principaux.",
+          "pt": "Omar Sy é um dos dois protagonistas."
+        }
+      },
+      {
+        "text": {
+          "en": "A rich quadriplegic hires a young man from the projects as his carer.",
+          "fr": "Un riche tétraplégique engage comme aide à domicile un jeune de banlieue.",
+          "pt": "Um tetraplégico rico contrata como cuidador um jovem dos subúrbios."
+        }
+      },
+      {
+        "text": {
+          "en": "François Cluzet, Earth, Wind & Fire, and over 19 million tickets sold in France.",
+          "fr": "François Cluzet, Earth, Wind & Fire et plus de 19 millions d’entrées en France.",
+          "pt": "François Cluzet, Earth, Wind & Fire e mais de 19 milhões de espectadores em França."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Dinner Game",
+        "fr": "Le Dîner de cons",
+        "pt": "Le Dîner de cons"
+      },
+      {
+        "en": "Serial (Bad) Weddings",
+        "fr": "Qu’est-ce qu’on a fait au Bon Dieu ?",
+        "pt": "Qu’est-ce qu’on a fait au Bon Dieu ?"
+      },
+      {
+        "en": "The Specials",
+        "fr": "Hors normes",
+        "pt": "Hors normes"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "intouchables",
+    "name": {
+      "en": "The Intouchables",
+      "fr": "Intouchables",
+      "pt": "Amigos Improváveis"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Mission Cleopatra"],
+      "fr": ["Mission Cléopâtre"],
+      "pt": ["Missão Cleópatra"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French comedy from the 2000s.",
+          "fr": "Une comédie française des années 2000.",
+          "pt": "Uma comédia francesa dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in Antiquity, adapted from a comic book.",
+          "fr": "L’action se passe dans l’Antiquité, d’après une bande dessinée.",
+          "pt": "Passa-se na Antiguidade, adaptado de uma banda desenhada."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Written and directed by Alain Chabat, who also plays Julius Caesar.",
+          "fr": "Écrit et réalisé par Alain Chabat, qui joue aussi Jules César.",
+          "pt": "Escrito e realizado por Alain Chabat, que também faz de Júlio César."
+        }
+      },
+      {
+        "text": {
+          "en": "Jamel Debbouze as the architect Numerobis, who must build a palace in three months.",
+          "fr": "Jamel Debbouze en architecte Numérobis, qui doit bâtir un palais en trois mois.",
+          "pt": "Jamel Debbouze é o arquiteto Numerobis, que tem de construir um palácio em três meses."
+        }
+      },
+      {
+        "text": {
+          "en": "Christian Clavier, Gérard Depardieu, and Monica Bellucci as the queen of Egypt.",
+          "fr": "Christian Clavier, Gérard Depardieu, et Monica Bellucci en reine d’Égypte.",
+          "pt": "Christian Clavier, Gérard Depardieu, e Monica Bellucci como rainha do Egito."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Visitors",
+        "fr": "Les Visiteurs",
+        "pt": "Os Visitantes"
+      },
+      {
+        "en": "Welcome to the Sticks",
+        "fr": "Bienvenue chez les Ch’tis",
+        "pt": "Bem-vindo ao Norte"
+      },
+      {
+        "en": "Asterix at the Olympic Games",
+        "fr": "Astérix aux Jeux olympiques",
+        "pt": "Astérix nos Jogos Olímpicos"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "asterix-mission-cleopatra",
+    "name": {
+      "en": "Asterix & Obelix: Mission Cleopatra",
+      "fr": "Astérix & Obélix : Mission Cléopâtre",
+      "pt": "Astérix e Obélix: Missão Cleópatra"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Bienvenue chez les Ch’tis"],
+      "fr": ["Les Ch’tis"],
+      "pt": ["Bienvenue chez les Ch’tis"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French comedy from the 2000s.",
+          "fr": "Une comédie française des années 2000.",
+          "pt": "Uma comédia francesa dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in present-day France, far from Paris.",
+          "fr": "L’action se passe dans la France d’aujourd’hui, loin de Paris.",
+          "pt": "Passa-se na França atual, longe de Paris."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Dany Boon wrote it, directed it and stars in it.",
+          "fr": "Dany Boon l’a écrit, réalisé, et y joue.",
+          "pt": "Dany Boon escreveu-o, realizou-o e entra nele."
+        }
+      },
+      {
+        "text": {
+          "en": "A post office manager is sent, as a punishment, from Provence to the far north.",
+          "fr": "Un directeur de La Poste est muté, par sanction, de la Provence vers le Nord.",
+          "pt": "Um diretor dos correios é transferido, como castigo, da Provença para junto da fronteira belga."
+        }
+      },
+      {
+        "text": {
+          "en": "Kad Merad, the belfry of Bergues, maroilles cheese and over 20 million tickets.",
+          "fr": "Kad Merad, le beffroi de Bergues, le maroilles et plus de 20 millions d’entrées.",
+          "pt": "Kad Merad, o campanário de Bergues, queijo maroilles e mais de 20 milhões de espectadores."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Dinner Game",
+        "fr": "Le Dîner de cons",
+        "pt": "Le Dîner de cons"
+      },
+      {
+        "en": "Asterix & Obelix: Mission Cleopatra",
+        "fr": "Astérix & Obélix : Mission Cléopâtre",
+        "pt": "Astérix e Obélix: Missão Cleópatra"
+      },
+      {
+        "en": "Camping",
+        "fr": "Camping",
+        "pt": "Camping"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "welcome-to-the-sticks",
+    "name": {
+      "en": "Welcome to the Sticks",
+      "fr": "Bienvenue chez les Ch’tis",
+      "pt": "Bem-vindo ao Norte"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An animated film from the 2010s.",
+          "fr": "Un film d’animation des années 2010.",
+          "pt": "Um filme de animação dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by the Pixar studio.",
+          "fr": "Produit par le studio Pixar.",
+          "pt": "Produzido pelo estúdio Pixar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in Mexico, on the Day of the Dead.",
+          "fr": "L’histoire se déroule au Mexique, le jour des Morts.",
+          "pt": "Passa-se no México, no Dia dos Mortos."
+        }
+      },
+      {
+        "text": {
+          "en": "A boy who dreams of music, in a family that bans it, crosses into the Land of the Dead.",
+          "fr": "Un garçon qui rêve de musique, dans une famille qui l’interdit, passe au pays des morts.",
+          "pt": "Um rapaz que sonha com música, numa família que a proíbe, passa para a Terra dos Mortos."
+        }
+      },
+      {
+        "text": {
+          "en": "Miguel, a white guitar, Ernesto de la Cruz and a lullaby sung to a great-grandmother.",
+          "fr": "Miguel, une guitare blanche, Ernesto de la Cruz et une berceuse chantée à une arrière-grand-mère.",
+          "pt": "Miguel, uma guitarra branca, Ernesto de la Cruz e uma canção de embalar cantada a uma bisavó."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ratatouille",
+        "fr": "Ratatouille",
+        "pt": "Ratatui"
+      },
+      {
+        "en": "Frozen",
+        "fr": "La Reine des neiges",
+        "pt": "Frozen: O Reino do Gelo"
+      },
+      {
+        "en": "Inside Out",
+        "fr": "Vice-versa",
+        "pt": "Divertida-Mente"
+      }
+    ],
+    "homeCountry": null,
+    "id": "coco",
+    "name": {
+      "en": "Coco",
+      "fr": "Coco",
+      "pt": "Coco"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A box-office hit released in 2023.",
+          "fr": "Un succès du box-office sorti en 2023.",
+          "pt": "Um êxito de bilheteira estreado em 2023."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A comedy bathed in candy-bright colours.",
+          "fr": "Une comédie baignée de couleurs acidulées.",
+          "pt": "Uma comédia banhada em cores vivas de rebuçado."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Greta Gerwig.",
+          "fr": "Réalisé par Greta Gerwig.",
+          "pt": "Realizado por Greta Gerwig."
+        }
+      },
+      {
+        "text": {
+          "en": "Released the same day as Oppenheimer, it topped the world box office for the year.",
+          "fr": "Sorti le même jour qu’Oppenheimer, il domine le box-office mondial de l’année.",
+          "pt": "Estreado no mesmo dia que Oppenheimer, liderou a bilheteira mundial desse ano."
+        }
+      },
+      {
+        "text": {
+          "en": "Margot Robbie leaves her pink dream house for the real world, with Ryan Gosling as Ken.",
+          "fr": "Margot Robbie quitte sa maison rose de rêve pour le monde réel, avec Ryan Gosling en Ken.",
+          "pt": "Margot Robbie deixa a casa cor-de-rosa de sonho pelo mundo real, com Ryan Gosling no papel de Ken."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Legally Blonde",
+        "fr": "La Revanche d’une blonde",
+        "pt": "Legalmente Loira"
+      },
+      {
+        "en": "Oppenheimer",
+        "fr": "Oppenheimer",
+        "pt": "Oppenheimer"
+      },
+      {
+        "en": "Wonka",
+        "fr": "Wonka",
+        "pt": "Wonka"
+      }
+    ],
+    "homeCountry": null,
+    "id": "barbie",
+    "name": {
+      "en": "Barbie",
+      "fr": "Barbie",
+      "pt": "Barbie"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Godfather"],
+      "fr": ["The Godfather"],
+      "pt": ["The Godfather"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A crime film from the 1970s.",
+          "fr": "Un film criminel des années 1970.",
+          "pt": "Um filme de crime dos anos 1970."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its world is organised crime, seen from the inside.",
+          "fr": "Son univers est celui du crime organisé, vu de l’intérieur.",
+          "pt": "O seu mundo é o do crime organizado, visto por dentro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Marlon Brando plays the ageing head of a Mafia family.",
+          "fr": "Marlon Brando y joue le vieux chef d’une famille mafieuse.",
+          "pt": "Marlon Brando faz de velho chefe de uma família mafiosa."
+        }
+      },
+      {
+        "text": {
+          "en": "Francis Ford Coppola; Al Pacino as the son who never wanted the family business.",
+          "fr": "Francis Ford Coppola ; Al Pacino en fils qui ne voulait pas des affaires familiales.",
+          "pt": "Francis Ford Coppola; Al Pacino é o filho que nunca quis os negócios da família."
+        }
+      },
+      {
+        "text": {
+          "en": "Vito and Michael Corleone, a horse’s head in a bed, and an offer he can’t refuse.",
+          "fr": "Vito et Michael Corleone, une tête de cheval dans un lit, une offre qu’on ne refuse pas.",
+          "pt": "Vito e Michael Corleone, uma cabeça de cavalo na cama, uma proposta irrecusável."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Goodfellas",
+        "fr": "Les Affranchis",
+        "pt": "Tudo Bons Rapazes"
+      },
+      {
+        "en": "Taxi Driver",
+        "fr": "Taxi Driver",
+        "pt": "Taxi Driver"
+      },
+      {
+        "en": "The Sting",
+        "fr": "L’Arnaque",
+        "pt": "A Golpada"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-godfather",
+    "name": {
+      "en": "The Godfather",
+      "fr": "Le Parrain",
+      "pt": "O Padrinho"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Wizard of Oz"],
+      "fr": ["Magicien d’Oz"],
+      "pt": ["Feiticeiro de Oz"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood classic from the 1930s.",
+          "fr": "Un classique hollywoodien des années 1930.",
+          "pt": "Um clássico de Hollywood dos anos 1930."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A family musical full of magic and songs.",
+          "fr": "Un film musical familial, plein de magie et de chansons.",
+          "pt": "Um musical familiar cheio de magia e canções."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Played by real actors, not drawn — even if one is a lion and one is made of tin.",
+          "fr": "Joué par de vrais acteurs, pas dessiné — même si l’un est un lion et l’autre en fer-blanc.",
+          "pt": "Com atores de carne e osso, não desenhado — mesmo que um seja leão e outro de lata."
+        }
+      },
+      {
+        "text": {
+          "en": "Judy Garland, aged 16, sings of a land somewhere over the rainbow.",
+          "fr": "Judy Garland, 16 ans, chante un pays quelque part au-delà de l’arc-en-ciel.",
+          "pt": "Judy Garland, com 16 anos, canta um lugar algures para lá do arco-íris."
+        }
+      },
+      {
+        "text": {
+          "en": "Dorothy, Toto, ruby slippers and a yellow brick road far from Kansas.",
+          "fr": "Dorothy, Toto, des souliers de rubis et une route de briques jaunes loin du Kansas.",
+          "pt": "Dorothy, Toto, sapatos de rubi e uma estrada de tijolos amarelos longe do Kansas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mary Poppins",
+        "fr": "Mary Poppins",
+        "pt": "Mary Poppins"
+      },
+      {
+        "en": "Gone with the Wind",
+        "fr": "Autant en emporte le vent",
+        "pt": "E Tudo o Vento Levou"
+      },
+      {
+        "en": "Snow White and the Seven Dwarfs",
+        "fr": "Blanche-Neige et les Sept Nains",
+        "pt": "Branca de Neve e os Sete Anões"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-wizard-of-oz",
+    "name": {
+      "en": "The Wizard of Oz",
+      "fr": "Le Magicien d’Oz",
+      "pt": "O Feiticeiro de Oz"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Gone with the Wind"],
+      "pt": ["Gone with the Wind"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood epic from the 1930s.",
+          "fr": "Une fresque hollywoodienne des années 1930.",
+          "pt": "Um épico de Hollywood dos anos 1930."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its story unfolds during a war.",
+          "fr": "Son histoire se déroule pendant une guerre.",
+          "pt": "A história decorre durante uma guerra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroine is a headstrong Southern belle.",
+          "fr": "Son héroïne est une jeune femme du Sud, belle et obstinée.",
+          "pt": "A heroína é uma jovem do Sul, bela e obstinada."
+        }
+      },
+      {
+        "text": {
+          "en": "Eight Oscars in 1940; Hattie McDaniel becomes the first Black performer to win one.",
+          "fr": "Huit Oscars en 1940 ; Hattie McDaniel est la première actrice noire récompensée.",
+          "pt": "Oito Óscares em 1940; Hattie McDaniel é a primeira atriz negra premiada."
+        }
+      },
+      {
+        "text": {
+          "en": "Scarlett O’Hara, Rhett Butler, Tara — and tomorrow is another day.",
+          "fr": "Scarlett O’Hara, Rhett Butler, Tara — et demain est un autre jour.",
+          "pt": "Scarlett O’Hara, Rhett Butler, Tara — e amanhã é outro dia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Casablanca",
+        "fr": "Casablanca",
+        "pt": "Casablanca"
+      },
+      {
+        "en": "The Wizard of Oz",
+        "fr": "Le Magicien d’Oz",
+        "pt": "O Feiticeiro de Oz"
+      },
+      {
+        "en": "All Quiet on the Western Front",
+        "fr": "À l’Ouest, rien de nouveau",
+        "pt": "A Oeste Nada de Novo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gone-with-the-wind",
+    "name": {
+      "en": "Gone with the Wind",
+      "fr": "Autant en emporte le vent",
+      "pt": "E Tudo o Vento Levou"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Psycho"],
+      "pt": ["Psycho"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A suspense classic from before 1965.",
+          "fr": "Un classique du suspense antérieur à 1965.",
+          "pt": "Um clássico do suspense anterior a 1965."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Shot in black and white.",
+          "fr": "Tourné en noir et blanc.",
+          "pt": "Filmado a preto e branco."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Alfred Hitchcock.",
+          "fr": "Réalisé par Alfred Hitchcock.",
+          "pt": "Realizado por Alfred Hitchcock."
+        }
+      },
+      {
+        "text": {
+          "en": "Its star is killed off early on, a shock audiences had never seen before.",
+          "fr": "Sa vedette meurt dès le début du film, un choc inédit pour le public.",
+          "pt": "A estrela morre logo no início do filme, um choque inédito para o público."
+        }
+      },
+      {
+        "text": {
+          "en": "Norman Bates, his mother, a motel, and a shower scene with shrieking violins.",
+          "fr": "Norman Bates, sa mère, un motel et une scène de douche aux violons stridents.",
+          "pt": "Norman Bates, a mãe, um motel e uma cena de duche com violinos estridentes."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jaws",
+        "fr": "Les Dents de la mer",
+        "pt": "Tubarão"
+      },
+      {
+        "en": "Rear Window",
+        "fr": "Fenêtre sur cour",
+        "pt": "Janela Indiscreta"
+      },
+      {
+        "en": "Les Diaboliques",
+        "fr": "Les Diaboliques",
+        "pt": "As Diabólicas"
+      }
+    ],
+    "homeCountry": null,
+    "id": "psycho",
+    "name": {
+      "en": "Psycho",
+      "fr": "Psychose",
+      "pt": "Psico"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood classic of the 1940s.",
+          "fr": "Un classique hollywoodien des années 1940.",
+          "pt": "Um clássico de Hollywood dos anos 1940."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "At its heart is a love story that cannot end well.",
+          "fr": "Au cœur du film, une histoire d’amour impossible.",
+          "pt": "No centro do filme, uma história de amor impossível."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Humphrey Bogart plays the lead.",
+          "fr": "Humphrey Bogart y tient le rôle principal.",
+          "pt": "Humphrey Bogart é o protagonista."
+        }
+      },
+      {
+        "text": {
+          "en": "Morocco, 1941: refugees wait in an American’s nightclub for papers to reach Lisbon.",
+          "fr": "Maroc, 1941 : des réfugiés attendent, dans le club d’un Américain, de quoi rejoindre Lisbonne.",
+          "pt": "Marrocos, 1941: refugiados esperam, no bar de um americano, os papéis para chegar a Lisboa."
+        }
+      },
+      {
+        "text": {
+          "en": "Rick, Ilsa, “As Time Goes By” — and they’ll always have Paris.",
+          "fr": "Rick, Ilsa, « As Time Goes By », et ils auront toujours Paris.",
+          "pt": "Rick, Ilsa, “As Time Goes By”, e terão sempre Paris."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gone with the Wind",
+        "fr": "Autant en emporte le vent",
+        "pt": "E Tudo o Vento Levou"
+      },
+      {
+        "en": "Citizen Kane",
+        "fr": "Citizen Kane",
+        "pt": "O Mundo a Seus Pés"
+      },
+      {
+        "en": "Brief Encounter",
+        "fr": "Brève Rencontre",
+        "pt": "Breve Encontro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "casablanca",
+    "name": {
+      "en": "Casablanca",
+      "fr": "Casablanca",
+      "pt": "Casablanca"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Indiana Jones", "Raiders"],
+      "fr": ["Indiana Jones", "Aventuriers de l’arche perdue"],
+      "pt": ["Indiana Jones", "Salteadores da Arca Perdida"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An action film from the 1980s.",
+          "fr": "Un film d’action des années 1980.",
+          "pt": "Um filme de ação dos anos 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in the 1930s.",
+          "fr": "L’action se situe dans les années 1930.",
+          "pt": "A ação situa-se nos anos 1930."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Steven Spielberg, produced by George Lucas.",
+          "fr": "Réalisé par Steven Spielberg, produit par George Lucas.",
+          "pt": "Realizado por Steven Spielberg, produzido por George Lucas."
+        }
+      },
+      {
+        "text": {
+          "en": "An archaeology professor races the Nazis for a biblical relic.",
+          "fr": "Un professeur d’archéologie affronte les nazis pour une relique biblique.",
+          "pt": "Um professor de arqueologia enfrenta os nazis por uma relíquia bíblica."
+        }
+      },
+      {
+        "text": {
+          "en": "Harrison Ford, a whip, a fedora, snakes, and a giant boulder rolling after him.",
+          "fr": "Harrison Ford, un fouet, un chapeau mou, des serpents et un énorme rocher qui le poursuit.",
+          "pt": "Harrison Ford, um chicote, um chapéu de feltro, serpentes e uma enorme rocha a persegui-lo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Mummy",
+        "fr": "La Momie",
+        "pt": "A Múmia"
+      },
+      {
+        "en": "Die Hard",
+        "fr": "Piège de cristal",
+        "pt": "Assalto ao Arranha-Céus"
+      },
+      {
+        "en": "The Untouchables",
+        "fr": "Les Incorruptibles",
+        "pt": "Os Intocáveis"
+      }
+    ],
+    "homeCountry": null,
+    "id": "raiders-of-the-lost-ark",
+    "name": {
+      "en": "Raiders of the Lost Ark",
+      "fr": "Les Aventuriers de l’arche perdue",
+      "pt": "Os Salteadores da Arca Perdida"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Chihiro"],
+      "fr": ["Chihiro", "Spirited Away"],
+      "pt": ["Chihiro", "Spirited Away"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Japanese animated feature from the 21st century.",
+          "fr": "Un long métrage d’animation japonais du XXIe siècle.",
+          "pt": "Uma longa-metragem de animação japonesa do século XXI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by Studio Ghibli, directed by Hayao Miyazaki.",
+          "fr": "Produit par le studio Ghibli, réalisé par Hayao Miyazaki.",
+          "pt": "Produzido pelo Studio Ghibli, realizado por Hayao Miyazaki."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroine is a sulky ten-year-old girl.",
+          "fr": "Son héroïne est une fillette boudeuse de dix ans.",
+          "pt": "A heroína é uma menina amuada de dez anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Her parents are turned into pigs; she must work in a bathhouse for spirits to save them.",
+          "fr": "Ses parents sont changés en cochons ; elle doit travailler dans des bains pour esprits.",
+          "pt": "Os pais transformam-se em porcos; ela tem de trabalhar numas termas para espíritos."
+        }
+      },
+      {
+        "text": {
+          "en": "No-Face, the witch Yubaba, Haku the dragon, and the 2003 Oscar for animation.",
+          "fr": "Le Sans-Visage, la sorcière Yubaba, le dragon Haku et l’Oscar 2003 du film d’animation.",
+          "pt": "O Sem-Rosto, a bruxa Yubaba, o dragão Haku e o Óscar de 2003 de filme de animação."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "My Neighbor Totoro",
+        "fr": "Mon voisin Totoro",
+        "pt": "O Meu Vizinho Totoro"
+      },
+      {
+        "en": "Your Name",
+        "fr": "Your Name",
+        "pt": "Your Name"
+      },
+      {
+        "en": "Howl’s Moving Castle",
+        "fr": "Le Château ambulant",
+        "pt": "O Castelo Andante"
+      }
+    ],
+    "homeCountry": null,
+    "id": "spirited-away",
+    "name": {
+      "en": "Spirited Away",
+      "fr": "Le Voyage de Chihiro",
+      "pt": "A Viagem de Chihiro"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Inception"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mind-bending thriller from the 2010s.",
+          "fr": "Un thriller vertigineux des années 2010.",
+          "pt": "Um thriller vertiginoso dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Leonardo DiCaprio plays a man haunted by his dead wife.",
+          "fr": "Leonardo DiCaprio joue un homme hanté par sa femme disparue.",
+          "pt": "Leonardo DiCaprio é um homem assombrado pela mulher morta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Christopher Nolan.",
+          "fr": "Réalisé par Christopher Nolan.",
+          "pt": "Realizado por Christopher Nolan."
+        }
+      },
+      {
+        "text": {
+          "en": "A team of thieves enters people’s dreams to plant an idea, layer within layer.",
+          "fr": "Une équipe de voleurs entre dans les rêves pour y implanter une idée, niveau après niveau.",
+          "pt": "Uma equipa de ladrões entra nos sonhos para implantar uma ideia, nível após nível."
+        }
+      },
+      {
+        "text": {
+          "en": "A spinning top that may never fall, and Paris folding over on itself.",
+          "fr": "Une toupie qui ne tombe peut-être jamais, et Paris qui se replie sur elle-même.",
+          "pt": "Um pião que talvez nunca caia, e Paris a dobrar-se sobre si própria."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Matrix",
+        "fr": "Matrix",
+        "pt": "Matrix"
+      },
+      {
+        "en": "Gravity",
+        "fr": "Gravity",
+        "pt": "Gravidade"
+      },
+      {
+        "en": "Shutter Island",
+        "fr": "Shutter Island",
+        "pt": "Shutter Island"
+      }
+    ],
+    "homeCountry": null,
+    "id": "inception",
+    "name": {
+      "en": "Inception",
+      "fr": "Inception",
+      "pt": "A Origem"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Dark Knight", "Batman"],
+      "fr": ["The Dark Knight", "Le Chevalier noir", "Batman"],
+      "pt": ["The Dark Knight", "Cavaleiro das Trevas", "Batman"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A superhero film from the 2000s.",
+          "fr": "Un film de super-héros des années 2000.",
+          "pt": "Um filme de super-heróis dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its hero comes from DC Comics, not Marvel.",
+          "fr": "Son héros vient de DC Comics, pas de Marvel.",
+          "pt": "O herói vem da DC Comics, não da Marvel."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its hero has no superpowers: just money, gadgets and training.",
+          "fr": "Son héros n’a aucun superpouvoir : de l’argent, des gadgets, de l’entraînement.",
+          "pt": "O herói não tem superpoderes: só dinheiro, engenhocas e treino."
+        }
+      },
+      {
+        "text": {
+          "en": "Christopher Nolan, 2008: Heath Ledger wins a posthumous Oscar for his villain.",
+          "fr": "Christopher Nolan, 2008 : Heath Ledger reçoit un Oscar posthume pour son méchant.",
+          "pt": "Christopher Nolan, 2008: Heath Ledger recebe um Óscar póstumo pelo seu vilão."
+        }
+      },
+      {
+        "text": {
+          "en": "Christian Bale, Gotham City, Harvey Dent, and the Joker asking why so serious.",
+          "fr": "Christian Bale, Gotham City, Harvey Dent, et le Joker qui demande pourquoi tant de sérieux.",
+          "pt": "Christian Bale, Gotham City, Harvey Dent, e o Joker a perguntar porquê tão sério."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Avengers: Endgame",
+        "fr": "Avengers: Endgame",
+        "pt": "Vingadores: Endgame"
+      },
+      {
+        "en": "Iron Man",
+        "fr": "Iron Man",
+        "pt": "Iron Man"
+      },
+      {
+        "en": "Superman Returns",
+        "fr": "Superman Returns",
+        "pt": "Super-Homem: O Regresso"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-dark-knight",
+    "name": {
+      "en": "The Dark Knight",
+      "fr": "The Dark Knight : Le Chevalier noir",
+      "pt": "O Cavaleiro das Trevas"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Gladiator"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A historical epic from the 2000s.",
+          "fr": "Une fresque historique des années 2000.",
+          "pt": "Um épico histórico dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Ridley Scott.",
+          "fr": "Réalisé par Ridley Scott.",
+          "pt": "Realizado por Ridley Scott."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in the Roman Empire.",
+          "fr": "L’action se passe dans l’Empire romain.",
+          "pt": "A ação passa-se no Império Romano."
+        }
+      },
+      {
+        "text": {
+          "en": "A betrayed general, sold as a slave, fights his way to the Colosseum to face the emperor.",
+          "fr": "Un général trahi, vendu comme esclave, combat jusqu’au Colisée pour affronter l’empereur.",
+          "pt": "Um general traído, vendido como escravo, combate até ao Coliseu para enfrentar o imperador."
+        }
+      },
+      {
+        "text": {
+          "en": "Russell Crowe as Maximus, Joaquin Phoenix as Commodus: are you not entertained?",
+          "fr": "Russell Crowe en Maximus, Joaquin Phoenix en Commode : n’êtes-vous pas divertis ?",
+          "pt": "Russell Crowe é Maximus, Joaquin Phoenix é Cómodo: não estão entretidos?"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ben-Hur",
+        "fr": "Ben-Hur",
+        "pt": "Ben-Hur"
+      },
+      {
+        "en": "Troy",
+        "fr": "Troie",
+        "pt": "Troia"
+      },
+      {
+        "en": "Kingdom of Heaven",
+        "fr": "Kingdom of Heaven",
+        "pt": "Reino dos Céus"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gladiator",
+    "name": {
+      "en": "Gladiator",
+      "fr": "Gladiator",
+      "pt": "Gladiador"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A crime film from the 1990s.",
+          "fr": "Un film criminel des années 1990.",
+          "pt": "Um filme de crime dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Written and directed by Quentin Tarantino.",
+          "fr": "Écrit et réalisé par Quentin Tarantino.",
+          "pt": "Escrito e realizado por Quentin Tarantino."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "John Travolta and Uma Thurman share the screen.",
+          "fr": "John Travolta et Uma Thurman se partagent l’affiche.",
+          "pt": "John Travolta e Uma Thurman partilham o ecrã."
+        }
+      },
+      {
+        "text": {
+          "en": "Palme d’Or 1994; its stories run out of order and cross in a diner.",
+          "fr": "Palme d’or 1994 ; ses histoires s’entrecroisent dans le désordre, jusque dans un diner.",
+          "pt": "Palma de Ouro em 1994; as histórias cruzam-se fora de ordem, até num restaurante."
+        }
+      },
+      {
+        "text": {
+          "en": "A twist contest, a glowing briefcase, and a royale with cheese.",
+          "fr": "Un concours de twist, une mallette qui brille et un « Royale with cheese ».",
+          "pt": "Um concurso de twist, uma mala que brilha e um “Royale with cheese”."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Godfather",
+        "fr": "Le Parrain",
+        "pt": "O Padrinho"
+      },
+      {
+        "en": "Fargo",
+        "fr": "Fargo",
+        "pt": "Fargo"
+      },
+      {
+        "en": "Reservoir Dogs",
+        "fr": "Reservoir Dogs",
+        "pt": "Cães Danados"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pulp-fiction",
+    "name": {
+      "en": "Pulp Fiction",
+      "fr": "Pulp Fiction",
+      "pt": "Pulp Fiction"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Schindler"],
+      "fr": ["Liste de Schindler", "Schindler"],
+      "pt": ["Lista de Schindler", "Schindler"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Second World War drama from the 1990s.",
+          "fr": "Un drame de la Seconde Guerre mondiale, sorti dans les années 1990.",
+          "pt": "Um drama da Segunda Guerra Mundial, estreado nos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Steven Spielberg.",
+          "fr": "Réalisé par Steven Spielberg.",
+          "pt": "Realizado por Steven Spielberg."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Shot almost entirely in black and white.",
+          "fr": "Tourné presque entièrement en noir et blanc.",
+          "pt": "Filmado quase todo a preto e branco."
+        }
+      },
+      {
+        "text": {
+          "en": "A German industrialist saves over a thousand Jews by employing them in his factories.",
+          "fr": "Un industriel allemand sauve plus d’un millier de Juifs en les employant dans ses usines.",
+          "pt": "Um industrial alemão salva mais de mil judeus ao empregá-los nas suas fábricas."
+        }
+      },
+      {
+        "text": {
+          "en": "Liam Neeson, Ben Kingsley, Ralph Fiennes, and a little girl in a red coat.",
+          "fr": "Liam Neeson, Ben Kingsley, Ralph Fiennes et une petite fille au manteau rouge.",
+          "pt": "Liam Neeson, Ben Kingsley, Ralph Fiennes e uma menina de casaco vermelho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Pianist",
+        "fr": "Le Pianiste",
+        "pt": "O Pianista"
+      },
+      {
+        "en": "Life Is Beautiful",
+        "fr": "La vie est belle",
+        "pt": "A Vida É Bela"
+      },
+      {
+        "en": "Saving Private Ryan",
+        "fr": "Il faut sauver le soldat Ryan",
+        "pt": "O Resgate do Soldado Ryan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "schindlers-list",
+    "name": {
+      "en": "Schindler’s List",
+      "fr": "La Liste de Schindler",
+      "pt": "A Lista de Schindler"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Amelie", "Le Fabuleux Destin d’Amélie Poulain"],
+      "fr": ["Amélie Poulain", "Amélie"],
+      "pt": ["Amélie", "Amélie Poulain"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French film from the 2000s, a hit far beyond France.",
+          "fr": "Un film français des années 2000, un succès bien au-delà de la France.",
+          "pt": "Um filme francês dos anos 2000, um êxito muito para lá de França."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in Paris.",
+          "fr": "L’histoire se passe à Paris.",
+          "pt": "A história passa-se em Paris."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroine is a shy waitress in a café.",
+          "fr": "Son héroïne est une serveuse timide dans un café.",
+          "pt": "A heroína é uma empregada de café tímida."
+        }
+      },
+      {
+        "text": {
+          "en": "Jean-Pierre Jeunet; she secretly mends strangers’ lives while a garden gnome travels the world.",
+          "fr": "Jean-Pierre Jeunet ; elle arrange en secret la vie des autres, et un nain de jardin voyage.",
+          "pt": "Jean-Pierre Jeunet; ela arranja em segredo a vida dos outros, e um anão de jardim viaja pelo mundo."
+        }
+      },
+      {
+        "text": {
+          "en": "Audrey Tautou in Montmartre, cracking crème brûlée with a spoon.",
+          "fr": "Audrey Tautou à Montmartre, qui casse la croûte des crèmes brûlées à la cuillère.",
+          "pt": "Audrey Tautou em Montmartre, a partir com a colher a crosta do crème brûlée."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Delicatessen",
+        "fr": "Delicatessen",
+        "pt": "Delicatessen"
+      },
+      {
+        "en": "The Chorus",
+        "fr": "Les Choristes",
+        "pt": "Os Coristas"
+      },
+      {
+        "en": "La Vie en Rose",
+        "fr": "La Môme",
+        "pt": "La Vie en Rose"
+      }
+    ],
+    "homeCountry": null,
+    "id": "amelie",
+    "name": {
+      "en": "Amélie",
+      "fr": "Le Fabuleux Destin d’Amélie Poulain",
+      "pt": "O Fabuloso Destino de Amélie"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American boxing film.",
+          "fr": "Un film américain sur la boxe.",
+          "pt": "Um filme americano sobre boxe."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Released in the 1970s.",
+          "fr": "Sorti dans les années 1970.",
+          "pt": "Estreado nos anos 1970."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its unknown star wrote the script and refused to sell it unless he played the lead.",
+          "fr": "Sa vedette, inconnue, en a écrit le scénario et refusé de le vendre sans y jouer.",
+          "pt": "A estrela, desconhecida, escreveu o argumento e recusou vendê-lo sem ser o protagonista."
+        }
+      },
+      {
+        "text": {
+          "en": "A Philadelphia nobody gets a shot at the world heavyweight title; Best Picture 1977.",
+          "fr": "Un boxeur obscur de Philadelphie a sa chance face au champion du monde ; Oscar du meilleur film 1977.",
+          "pt": "Um pugilista obscuro de Filadélfia tem uma oportunidade contra o campeão; Óscar de Melhor Filme em 1977."
+        }
+      },
+      {
+        "text": {
+          "en": "Sylvester Stallone runs up the museum steps, punches sides of beef and yells for Adrian.",
+          "fr": "Sylvester Stallone gravit les marches du musée, frappe des carcasses et hurle « Adrian ! ».",
+          "pt": "Sylvester Stallone sobe a escadaria do museu, esmurra carcaças e grita por Adrian."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Taxi Driver",
+        "fr": "Taxi Driver",
+        "pt": "Taxi Driver"
+      },
+      {
+        "en": "Raging Bull",
+        "fr": "Raging Bull",
+        "pt": "O Touro Enraivecido"
+      },
+      {
+        "en": "The Champ",
+        "fr": "Le Champion",
+        "pt": "O Campeão"
+      }
+    ],
+    "homeCountry": null,
+    "id": "rocky",
+    "name": {
+      "en": "Rocky",
+      "fr": "Rocky",
+      "pt": "Rocky"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Alien"],
+      "pt": ["Alien"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction film set in deep space.",
+          "fr": "Un film de science-fiction qui se passe dans l’espace lointain.",
+          "pt": "Um filme de ficção científica passado no espaço profundo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A horror film: its creature hunts the crew one by one.",
+          "fr": "Un film d’horreur : sa créature traque l’équipage un par un.",
+          "pt": "Um filme de terror: a criatura caça a tripulação um a um."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Released in 1979.",
+          "fr": "Sorti en 1979.",
+          "pt": "Estreado em 1979."
+        }
+      },
+      {
+        "text": {
+          "en": "Ridley Scott; the creature bursts out of a crewman’s chest at dinner.",
+          "fr": "Ridley Scott ; la créature jaillit de la poitrine d’un membre d’équipage en plein repas.",
+          "pt": "Ridley Scott; a criatura irrompe do peito de um tripulante ao jantar."
+        }
+      },
+      {
+        "text": {
+          "en": "Sigourney Weaver as Ripley aboard the Nostromo: in space, no one can hear you scream.",
+          "fr": "Sigourney Weaver en Ripley, à bord du Nostromo : dans l’espace, personne ne vous entend crier.",
+          "pt": "Sigourney Weaver é Ripley, a bordo da Nostromo: no espaço, ninguém nos ouve gritar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Close Encounters of the Third Kind",
+        "fr": "Rencontres du troisième type",
+        "pt": "Encontros Imediatos do Terceiro Grau"
+      },
+      {
+        "en": "Star Wars",
+        "fr": "La Guerre des étoiles",
+        "pt": "A Guerra das Estrelas"
+      },
+      {
+        "en": "Prometheus",
+        "fr": "Prometheus",
+        "pt": "Prometheus"
+      }
+    ],
+    "homeCountry": null,
+    "id": "alien",
+    "name": {
+      "en": "Alien",
+      "fr": "Alien, le huitième passager",
+      "pt": "Alien - O 8.º Passageiro"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A musical from the 1960s.",
+          "fr": "Une comédie musicale des années 1960.",
+          "pt": "Um musical dos anos 1960."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by the Walt Disney studio.",
+          "fr": "Produit par le studio Walt Disney.",
+          "pt": "Produzido pelo estúdio Walt Disney."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Real actors share the screen with cartoon animals.",
+          "fr": "De vrais acteurs y partagent l’écran avec des animaux de dessin animé.",
+          "pt": "Atores reais partilham o ecrã com animais de desenho animado."
+        }
+      },
+      {
+        "text": {
+          "en": "Julie Andrews wins an Oscar as a magical nanny in 1910 London.",
+          "fr": "Julie Andrews gagne un Oscar en nounou magique dans le Londres de 1910.",
+          "pt": "Julie Andrews ganha um Óscar como ama mágica na Londres de 1910."
+        }
+      },
+      {
+        "text": {
+          "en": "A flying umbrella, Bert the chimney sweep, and a spoonful of sugar.",
+          "fr": "Un parapluie volant, Bert le ramoneur et supercalifragilisticexpidélilicieux.",
+          "pt": "Um guarda-chuva voador, Bert, o limpa-chaminés, e uma colher de açúcar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Wizard of Oz",
+        "fr": "Le Magicien d’Oz",
+        "pt": "O Feiticeiro de Oz"
+      },
+      {
+        "en": "The Sound of Music",
+        "fr": "La Mélodie du bonheur",
+        "pt": "Música no Coração"
+      },
+      {
+        "en": "The Jungle Book",
+        "fr": "Le Livre de la jungle",
+        "pt": "O Livro da Selva"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mary-poppins",
+    "name": {
+      "en": "Mary Poppins",
+      "fr": "Mary Poppins",
+      "pt": "Mary Poppins"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Ratatouille"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A computer-animated film from the 2000s.",
+          "fr": "Un film d’animation en images de synthèse des années 2000.",
+          "pt": "Um filme de animação digital dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made by the Pixar studio.",
+          "fr": "Produit par le studio Pixar.",
+          "pt": "Produzido pelo estúdio Pixar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in Paris.",
+          "fr": "L’histoire se déroule à Paris.",
+          "pt": "A história passa-se em Paris."
+        }
+      },
+      {
+        "text": {
+          "en": "Anyone can cook, said the late chef Gusteau; a feared critic named Ego is about to find out.",
+          "fr": "Tout le monde peut cuisiner, disait feu le chef Gusteau ; le redoutable critique Ego va le vérifier.",
+          "pt": "Qualquer um pode cozinhar, dizia o falecido chef Gusteau; o temível crítico Ego vai pô-lo à prova."
+        }
+      },
+      {
+        "text": {
+          "en": "Remy the rat cooks by tugging the hair of a clumsy kitchen boy.",
+          "fr": "Rémy le rat cuisine en tirant les cheveux d’un commis maladroit.",
+          "pt": "Remy, o rato, cozinha a puxar os cabelos de um ajudante desajeitado."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Toy Story",
+        "fr": "Toy Story",
+        "pt": "Toy Story: Os Rivais"
+      },
+      {
+        "en": "Madagascar",
+        "fr": "Madagascar",
+        "pt": "Madagáscar"
+      },
+      {
+        "en": "WALL-E",
+        "fr": "WALL-E",
+        "pt": "WALL-E"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ratatouille",
+    "name": {
+      "en": "Ratatouille",
+      "fr": "Ratatouille",
+      "pt": "Ratatui"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Silence of the Lambs"],
+      "fr": ["Silence des agneaux"],
+      "pt": ["Silêncio dos Inocentes"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A thriller from the 1990s.",
+          "fr": "Un thriller des années 1990.",
+          "pt": "Um thriller dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "The investigation is led by a woman.",
+          "fr": "L’enquête est menée par une femme.",
+          "pt": "Quem investiga é uma mulher."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "To catch a serial killer, she seeks help from another one, behind glass.",
+          "fr": "Pour attraper un tueur en série, elle demande l’aide d’un autre, derrière une vitre.",
+          "pt": "Para apanhar um assassino em série, ela pede ajuda a outro, atrás de um vidro."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1992 it swept the five top Oscars: film, director, actor, actress, screenplay.",
+          "fr": "En 1992, il rafle les cinq Oscars majeurs : film, réalisateur, acteur, actrice, scénario.",
+          "pt": "Em 1992, arrebatou os cinco Óscares principais: filme, realização, ator, atriz, argumento."
+        }
+      },
+      {
+        "text": {
+          "en": "Jodie Foster as Clarice Starling, Anthony Hopkins as Hannibal Lecter.",
+          "fr": "Jodie Foster en Clarice Starling, Anthony Hopkins en Hannibal Lecter.",
+          "pt": "Jodie Foster é Clarice Starling, Anthony Hopkins é Hannibal Lecter."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Psycho",
+        "fr": "Psychose",
+        "pt": "Psico"
+      },
+      {
+        "en": "Se7en",
+        "fr": "Seven",
+        "pt": "Sete Pecados Mortais"
+      },
+      {
+        "en": "Fargo",
+        "fr": "Fargo",
+        "pt": "Fargo"
+      }
+    ],
+    "homeCountry": null,
+    "id": "the-silence-of-the-lambs",
+    "name": {
+      "en": "The Silence of the Lambs",
+      "fr": "Le Silence des agneaux",
+      "pt": "O Silêncio dos Inocentes"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Gisaengchung"],
+      "fr": [],
+      "pt": ["Parasite"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A South Korean film from the 2010s.",
+          "fr": "Un film sud-coréen des années 2010.",
+          "pt": "Um filme sul-coreano dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A thriller about the gulf between rich and poor.",
+          "fr": "Un thriller sur le fossé entre riches et pauvres.",
+          "pt": "Um thriller sobre o fosso entre ricos e pobres."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It won both the Palme d’Or and the Oscar for Best Picture.",
+          "fr": "Il a remporté la Palme d’or et l’Oscar du meilleur film.",
+          "pt": "Venceu a Palma de Ouro e o Óscar de Melhor Filme."
+        }
+      },
+      {
+        "text": {
+          "en": "Bong Joon-ho’s film, the first not in English to win Best Picture.",
+          "fr": "Signé Bong Joon-ho, premier film non anglophone sacré meilleur film aux Oscars.",
+          "pt": "De Bong Joon-ho, o primeiro filme não falado em inglês a ganhar o Óscar de Melhor Filme."
+        }
+      },
+      {
+        "text": {
+          "en": "A poor family infiltrates a rich family’s house, one fake job at a time — then, a basement.",
+          "fr": "Une famille pauvre infiltre la maison d’une famille riche, emploi après emploi… puis, un sous-sol.",
+          "pt": "Uma família pobre infiltra-se na casa de uma família rica, emprego a emprego… e depois, uma cave."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Oldboy",
+        "fr": "Old Boy",
+        "pt": "Oldboy - Velho Amigo"
+      },
+      {
+        "en": "Train to Busan",
+        "fr": "Dernier train pour Busan",
+        "pt": "Comboio para Busan"
+      },
+      {
+        "en": "Burning",
+        "fr": "Burning",
+        "pt": "Burning"
+      }
+    ],
+    "homeCountry": null,
+    "id": "parasite",
+    "name": {
+      "en": "Parasite",
+      "fr": "Parasite",
+      "pt": "Parasitas"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Les Choristes"],
+      "fr": ["Choristes"],
+      "pt": ["Les Choristes"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French film from the 2000s.",
+          "fr": "Un film français des années 2000.",
+          "pt": "Um filme francês dos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Music is at the heart of its story.",
+          "fr": "La musique est au cœur de son histoire.",
+          "pt": "A música está no centro da história."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in a boarding school for troubled boys, just after the war.",
+          "fr": "L’action se passe dans un internat pour garçons difficiles, juste après la guerre.",
+          "pt": "Passa-se num internato para rapazes difíceis, logo depois da guerra."
+        }
+      },
+      {
+        "text": {
+          "en": "Gérard Jugnot plays a failed musician turned supervisor, who gets the tearaways singing.",
+          "fr": "Gérard Jugnot joue un musicien raté devenu surveillant, qui fait chanter les cancres.",
+          "pt": "Gérard Jugnot é um músico falhado feito vigilante, que põe os rufias a cantar."
+        }
+      },
+      {
+        "text": {
+          "en": "Fond de l’Étang, Clément Mathieu, and a boy soloist singing “Vois sur ton chemin”.",
+          "fr": "Fond de l’Étang, Clément Mathieu et « Vois sur ton chemin » chanté par un jeune soliste.",
+          "pt": "Fond de l’Étang, Clément Mathieu e “Vois sur ton chemin” cantada por um jovem solista."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Don’t Look Now… We’re Being Shot At!",
+        "fr": "La Grande Vadrouille",
+        "pt": "La Grande Vadrouille"
+      },
+      {
+        "en": "Amélie",
+        "fr": "Le Fabuleux Destin d’Amélie Poulain",
+        "pt": "O Fabuloso Destino de Amélie"
+      },
+      {
+        "en": "La Vie en Rose",
+        "fr": "La Môme",
+        "pt": "La Vie en Rose"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "les-choristes",
+    "name": {
+      "en": "The Chorus",
+      "fr": "Les Choristes",
+      "pt": "Os Coristas"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Hate"],
+      "fr": ["Haine"],
+      "pt": ["La Haine"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French film from the 1990s.",
+          "fr": "Un film français des années 1990.",
+          "pt": "Um filme francês dos anos 1990."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Set in France.",
+          "fr": "L’action se passe en France.",
+          "pt": "A ação passa-se em França."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Shot entirely in black and white.",
+          "fr": "Tourné entièrement en noir et blanc.",
+          "pt": "Filmado inteiramente a preto e branco."
+        }
+      },
+      {
+        "text": {
+          "en": "Mathieu Kassovitz; 24 hours in the lives of three friends from the banlieue after a riot.",
+          "fr": "Mathieu Kassovitz ; vingt-quatre heures dans la vie de trois amis de banlieue après une émeute.",
+          "pt": "Mathieu Kassovitz; vinte e quatro horas na vida de três amigos dos subúrbios depois de um motim."
+        }
+      },
+      {
+        "text": {
+          "en": "Vincent Cassel, a lost police revolver, and a man falling: so far, so good.",
+          "fr": "Vincent Cassel, un revolver de policier perdu, et « jusqu’ici tout va bien ».",
+          "pt": "Vincent Cassel, um revólver de polícia perdido e um homem a cair: até aqui, tudo bem."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Les Misérables",
+        "fr": "Les Misérables",
+        "pt": "Os Miseráveis"
+      },
+      {
+        "en": "Léon: The Professional",
+        "fr": "Léon",
+        "pt": "Léon, o Profissional"
+      },
+      {
+        "en": "Taxi",
+        "fr": "Taxi",
+        "pt": "Taxi"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "la-haine",
+    "name": {
+      "en": "La Haine",
+      "fr": "La Haine",
+      "pt": "O Ódio"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["A Gaiola Dourada", "La Cage dorée"],
+      "fr": ["A Gaiola Dourada"],
+      "pt": ["La Cage dorée"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese box-office hit of the 2010s.",
+          "fr": "Un succès du box-office portugais des années 2010.",
+          "pt": "Um êxito de bilheteira português dos anos 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A family comedy.",
+          "fr": "Une comédie familiale.",
+          "pt": "Uma comédia familiar."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set mostly in Paris, among Portuguese emigrants.",
+          "fr": "L’histoire se déroule surtout à Paris, chez des immigrés portugais.",
+          "pt": "Passa-se sobretudo em Paris, entre emigrantes portugueses."
+        }
+      },
+      {
+        "text": {
+          "en": "A concierge and a builder inherit a house back home, if they agree to leave France.",
+          "fr": "Une concierge et un maçon héritent d’une maison au pays… s’ils acceptent de quitter la France.",
+          "pt": "Uma porteira e um pedreiro herdam uma casa na terra… se aceitarem deixar França."
+        }
+      },
+      {
+        "text": {
+          "en": "Rita Blanco and Joaquim de Almeida, directed by Ruben Alves, a son of Portuguese emigrants.",
+          "fr": "Rita Blanco et Joaquim de Almeida, réalisé par Ruben Alves, fils d’immigrés portugais.",
+          "pt": "Rita Blanco e Joaquim de Almeida, realização de Ruben Alves, filho de emigrantes portugueses."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Aniki-Bóbó",
+        "fr": "Aniki-Bóbó",
+        "pt": "Aniki-Bóbó"
+      },
+      {
+        "en": "The Maias",
+        "fr": "Les Maia",
+        "pt": "Os Maias"
+      },
+      {
+        "en": "O Leão da Estrela",
+        "fr": "O Leão da Estrela",
+        "pt": "O Leão da Estrela"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "a-gaiola-dourada",
+    "name": {
+      "en": "The Gilded Cage",
+      "fr": "La Cage dorée",
+      "pt": "A Gaiola Dourada"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Pátio das Cantigas"],
+      "fr": ["Pátio das Cantigas"],
+      "pt": ["Pátio das Cantigas"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A black-and-white Portuguese comedy, still rerun on television.",
+          "fr": "Une comédie portugaise en noir et blanc, encore rediffusée à la télévision.",
+          "pt": "Uma comédia portuguesa a preto e branco, ainda hoje repetida na televisão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Released in the 1940s.",
+          "fr": "Sortie dans les années 1940.",
+          "pt": "Estreada nos anos 1940."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Remade for the cinema in 2015 by Leonel Vieira.",
+          "fr": "Refaite au cinéma en 2015 par Leonel Vieira.",
+          "pt": "Refeita para cinema em 2015 por Leonel Vieira."
+        }
+      },
+      {
+        "text": {
+          "en": "Neighbours squabble and fall in love in a Lisbon quarter, with Vasco Santana and António Silva.",
+          "fr": "Des voisins se chamaillent et s’aiment dans un quartier de Lisbonne, avec Vasco Santana et António Silva.",
+          "pt": "Vizinhos discutem e apaixonam-se num bairro de Lisboa, com Vasco Santana e António Silva."
+        }
+      },
+      {
+        "text": {
+          "en": "Directed by Ribeirinho, 1942: “Ó Evaristo, tens cá disto?”",
+          "fr": "Réalisé par Ribeirinho, 1942 : « Ó Evaristo, tens cá disto ? »",
+          "pt": "Realização de Ribeirinho, 1942: “Ó Evaristo, tens cá disto?”"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Gilded Cage",
+        "fr": "La Cage dorée",
+        "pt": "A Gaiola Dourada"
+      },
+      {
+        "en": "A Canção de Lisboa",
+        "fr": "A Canção de Lisboa",
+        "pt": "A Canção de Lisboa"
+      },
+      {
+        "en": "O Pai Tirano",
+        "fr": "O Pai Tirano",
+        "pt": "O Pai Tirano"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "o-patio-das-cantigas",
+    "name": {
+      "en": "O Pátio das Cantigas",
+      "fr": "O Pátio das Cantigas",
+      "pt": "O Pátio das Cantigas"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Grease"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "John Travolta sings or dances his way through it.",
+          "fr": "John Travolta y chante ou y danse.",
+          "pt": "John Travolta canta ou dança ao longo do filme."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Released in the 1970s.",
+          "fr": "Sorti dans les années 1970.",
+          "pt": "Estreado nos anos 1970."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in an American high school in the 1950s.",
+          "fr": "L’action se passe dans un lycée américain des années 1950.",
+          "pt": "Passa-se num liceu americano dos anos 1950."
+        }
+      },
+      {
+        "text": {
+          "en": "A leather-jacketed rebel and a sweet Australian girl had a summer fling; senior year tests it.",
+          "fr": "Un blouson noir et une gentille Australienne ont vécu un amour d’été ; la rentrée le met à l’épreuve.",
+          "pt": "Um rebelde de blusão de cabedal e uma doce australiana tiveram um amor de verão; as aulas põem-no à prova."
+        }
+      },
+      {
+        "text": {
+          "en": "Danny, Sandy, the T-Birds, the Pink Ladies and “You’re the One That I Want”.",
+          "fr": "Danny, Sandy, les T-Birds, les Pink Ladies et « You’re the One That I Want ».",
+          "pt": "Danny, Sandy, os T-Birds, as Pink Ladies e “You’re the One That I Want”."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dirty Dancing",
+        "fr": "Dirty Dancing",
+        "pt": "Dirty Dancing"
+      },
+      {
+        "en": "Hairspray",
+        "fr": "Hairspray",
+        "pt": "Hairspray"
+      },
+      {
+        "en": "Saturday Night Fever",
+        "fr": "La Fièvre du samedi soir",
+        "pt": "Febre de Sábado à Noite"
+      }
+    ],
+    "homeCountry": null,
+    "id": "grease",
+    "name": {
+      "en": "Grease",
+      "fr": "Grease",
+      "pt": "Grease - Brilhantina"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Kane"],
+      "fr": ["Kane"],
+      "pt": ["Citizen Kane"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A black-and-white Hollywood film from the early 1940s.",
+          "fr": "Un film hollywoodien en noir et blanc du début des années 1940.",
+          "pt": "Um filme de Hollywood a preto e branco do início dos anos 1940."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Its director also plays the lead.",
+          "fr": "Son réalisateur en tient aussi le rôle principal.",
+          "pt": "O realizador é também o protagonista."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "After a newspaper tycoon dies, a reporter pieces his life together.",
+          "fr": "Après la mort d’un magnat de la presse, un journaliste reconstitue sa vie.",
+          "pt": "Depois da morte de um magnata da imprensa, um jornalista reconstitui a sua vida."
+        }
+      },
+      {
+        "text": {
+          "en": "Orson Welles made it at 25; for decades it was voted the greatest film ever made.",
+          "fr": "Orson Welles l’a tourné à 25 ans ; il a été élu des décennies durant meilleur film de tous les temps.",
+          "pt": "Orson Welles fê-lo aos 25 anos; durante décadas foi eleito o melhor filme de sempre."
+        }
+      },
+      {
+        "text": {
+          "en": "Xanadu, a last word whispered — “Rosebud” — and a sled thrown into the fire.",
+          "fr": "Xanadu, un dernier mot murmuré, « Rosebud », et une luge jetée au feu.",
+          "pt": "Xanadu, uma última palavra sussurrada, “Rosebud”, e um trenó atirado ao fogo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sunset Boulevard",
+        "fr": "Boulevard du crépuscule",
+        "pt": "O Crepúsculo dos Deuses"
+      },
+      {
+        "en": "Casablanca",
+        "fr": "Casablanca",
+        "pt": "Casablanca"
+      },
+      {
+        "en": "The Great Dictator",
+        "fr": "Le Dictateur",
+        "pt": "O Grande Ditador"
+      }
+    ],
+    "homeCountry": null,
+    "id": "citizen-kane",
+    "name": {
+      "en": "Citizen Kane",
+      "fr": "Citizen Kane",
+      "pt": "O Mundo a Seus Pés"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Vertigo"],
+      "pt": ["Vertigo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood thriller in colour from the 1950s.",
+          "fr": "Un thriller hollywoodien en couleurs des années 1950.",
+          "pt": "Um thriller de Hollywood a cores dos anos 1950."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "James Stewart plays the lead.",
+          "fr": "James Stewart y tient le rôle principal.",
+          "pt": "James Stewart é o protagonista."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in San Francisco.",
+          "fr": "L’action se passe à San Francisco.",
+          "pt": "A ação passa-se em São Francisco."
+        }
+      },
+      {
+        "text": {
+          "en": "Hitchcock: a detective afraid of heights falls for the woman he is paid to follow.",
+          "fr": "Hitchcock : un détective qui a peur du vide s’éprend de la femme qu’il est payé pour suivre.",
+          "pt": "Hitchcock: um detetive com medo das alturas apaixona-se pela senhora que é pago para seguir."
+        }
+      },
+      {
+        "text": {
+          "en": "Kim Novak, a spiral bun, a bell tower — and in 2012 critics ranked it above Citizen Kane.",
+          "fr": "Kim Novak, un chignon en spirale, un clocher, et en 2012 la critique le place devant Citizen Kane.",
+          "pt": "Kim Novak, um carrapito em espiral, uma torre sineira e, em 2012, a crítica pô-lo à frente de Citizen Kane."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Psycho",
+        "fr": "Psychose",
+        "pt": "Psico"
+      },
+      {
+        "en": "North by Northwest",
+        "fr": "La Mort aux trousses",
+        "pt": "Intriga Internacional"
+      },
+      {
+        "en": "Rear Window",
+        "fr": "Fenêtre sur cour",
+        "pt": "Janela Indiscreta"
+      }
+    ],
+    "homeCountry": null,
+    "id": "vertigo",
+    "name": {
+      "en": "Vertigo",
+      "fr": "Sueurs froides",
+      "pt": "A Mulher Que Viveu Duas Vezes"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["2001"],
+      "fr": ["2001"],
+      "pt": ["2001"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A science-fiction film from the 1960s.",
+          "fr": "Un film de science-fiction des années 1960.",
+          "pt": "Um filme de ficção científica dos anos 1960."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Released in 1968, a year before men walked on the Moon.",
+          "fr": "Sorti en 1968, un an avant les premiers pas sur la Lune.",
+          "pt": "Estreado em 1968, um ano antes de o homem pisar a Lua."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Directed by Stanley Kubrick.",
+          "fr": "Réalisé par Stanley Kubrick.",
+          "pt": "Realizado por Stanley Kubrick."
+        }
+      },
+      {
+        "text": {
+          "en": "Apes discover the tool beside a black monolith; a bone flung skyward becomes a satellite.",
+          "fr": "Des singes découvrent l’outil près d’un monolithe noir ; un os lancé en l’air devient un satellite.",
+          "pt": "Macacos descobrem a ferramenta junto a um monólito negro; um osso atirado ao ar torna-se um satélite."
+        }
+      },
+      {
+        "text": {
+          "en": "HAL 9000, the computer that won’t open the pod bay doors, Dave.",
+          "fr": "HAL 9000, l’ordinateur qui refuse d’ouvrir la porte à Dave.",
+          "pt": "HAL 9000, o computador que se recusa a abrir a porta ao Dave."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Star Wars",
+        "fr": "La Guerre des étoiles",
+        "pt": "A Guerra das Estrelas"
+      },
+      {
+        "en": "Fantastic Voyage",
+        "fr": "Le Voyage fantastique",
+        "pt": "Viagem Fantástica"
+      },
+      {
+        "en": "Planet of the Apes",
+        "fr": "La Planète des singes",
+        "pt": "O Planeta dos Macacos"
+      }
+    ],
+    "homeCountry": null,
+    "id": "2001-a-space-odyssey",
+    "name": {
+      "en": "2001: A Space Odyssey",
+      "fr": "2001, l’Odyssée de l’espace",
+      "pt": "2001: Odisseia no Espaço"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Singing in the Rain"],
+      "fr": ["Singin’ in the Rain"],
+      "pt": ["Singin’ in the Rain"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood musical of the 1950s.",
+          "fr": "Une comédie musicale hollywoodienne des années 1950.",
+          "pt": "Um musical de Hollywood dos anos 1950."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Gene Kelly sings and dances in it.",
+          "fr": "Gene Kelly y chante et y danse.",
+          "pt": "Gene Kelly canta e dança."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in Hollywood as silent films give way to talkies.",
+          "fr": "L’action se passe à Hollywood, au passage du muet au parlant.",
+          "pt": "Passa-se em Hollywood, na passagem do mudo para o sonoro."
+        }
+      },
+      {
+        "text": {
+          "en": "A silent star’s shrill voice must be secretly dubbed by a young chorus girl.",
+          "fr": "La voix criarde d’une star du muet doit être doublée en secret par une jeune choriste.",
+          "pt": "A voz estridente de uma estrela do mudo tem de ser dobrada em segredo por uma jovem corista."
+        }
+      },
+      {
+        "text": {
+          "en": "Debbie Reynolds, and Gene Kelly swinging round a lamppost, soaked and happy.",
+          "fr": "Debbie Reynolds, et Gene Kelly qui tourne autour d’un réverbère, trempé et heureux.",
+          "pt": "Debbie Reynolds, e Gene Kelly a rodar à volta de um candeeiro, encharcado e feliz."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Sound of Music",
+        "fr": "La Mélodie du bonheur",
+        "pt": "Música no Coração"
+      },
+      {
+        "en": "Gigi",
+        "fr": "Gigi",
+        "pt": "Gigi"
+      },
+      {
+        "en": "An American in Paris",
+        "fr": "Un Américain à Paris",
+        "pt": "Um Americano em Paris"
+      }
+    ],
+    "homeCountry": null,
+    "id": "singin-in-the-rain",
+    "name": {
+      "en": "Singin’ in the Rain",
+      "fr": "Chantons sous la pluie",
+      "pt": "Serenata à Chuva"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Temps modernes"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood comedy from the 1930s.",
+          "fr": "Une comédie hollywoodienne des années 1930.",
+          "pt": "Uma comédia de Hollywood dos anos 1930."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Written, directed by and starring Charlie Chaplin.",
+          "fr": "Écrit, réalisé et interprété par Charlie Chaplin.",
+          "pt": "Escrito, realizado e interpretado por Charlie Chaplin."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its hero is a factory worker driven mad by the assembly line.",
+          "fr": "Son héros est un ouvrier rendu fou par le travail à la chaîne.",
+          "pt": "O herói é um operário enlouquecido pela linha de montagem."
+        }
+      },
+      {
+        "text": {
+          "en": "The Tramp’s last outing, and the first time audiences heard his voice, singing gibberish.",
+          "fr": "Dernière apparition de Charlot, et la première fois qu’on entend sa voix, dans une chanson en charabia.",
+          "pt": "A última aparição de Charlot e a primeira vez que se ouve a sua voz, numa canção sem sentido."
+        }
+      },
+      {
+        "text": {
+          "en": "Swallowed by giant gears, fed by a machine, tightening bolts without end.",
+          "fr": "Avalé par des engrenages géants, nourri par une machine, serrant des boulons sans fin.",
+          "pt": "Engolido por engrenagens gigantes, alimentado por uma máquina, a apertar parafusos sem parar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Gold Rush",
+        "fr": "La Ruée vers l’or",
+        "pt": "A Quimera do Ouro"
+      },
+      {
+        "en": "It Happened One Night",
+        "fr": "New York-Miami",
+        "pt": "Uma Noite Aconteceu"
+      },
+      {
+        "en": "City Lights",
+        "fr": "Les Lumières de la ville",
+        "pt": "Luzes da Cidade"
+      }
+    ],
+    "homeCountry": null,
+    "id": "modern-times",
+    "name": {
+      "en": "Modern Times",
+      "fr": "Les Temps modernes",
+      "pt": "Tempos Modernos"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Shichinin no Samurai"],
+      "fr": ["Seven Samurai"],
+      "pt": ["Seven Samurai"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Japanese film from the 1950s.",
+          "fr": "Un film japonais des années 1950.",
+          "pt": "Um filme japonês dos anos 1950."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Akira Kurosawa.",
+          "fr": "Réalisé par Akira Kurosawa.",
+          "pt": "Realizado por Akira Kurosawa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Poor farmers hire warriors to defend their village from bandits.",
+          "fr": "De pauvres paysans engagent des guerriers pour défendre leur village contre des bandits.",
+          "pt": "Camponeses pobres contratam guerreiros para defender a aldeia de bandidos."
+        }
+      },
+      {
+        "text": {
+          "en": "Toshiro Mifune; over three hours long, with a final battle in pouring rain.",
+          "fr": "Toshiro Mifune ; plus de trois heures, et une bataille finale sous une pluie battante.",
+          "pt": "Toshiro Mifune; mais de três horas, e uma batalha final sob chuva torrencial."
+        }
+      },
+      {
+        "text": {
+          "en": "Hollywood remade it as a western with Yul Brynner and Steve McQueen.",
+          "fr": "Hollywood en a fait un western avec Yul Brynner et Steve McQueen.",
+          "pt": "Hollywood refê-lo como western com Yul Brynner e Steve McQueen."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Crouching Tiger, Hidden Dragon",
+        "fr": "Tigre et Dragon",
+        "pt": "O Tigre e o Dragão"
+      },
+      {
+        "en": "Godzilla",
+        "fr": "Godzilla",
+        "pt": "Godzilla"
+      },
+      {
+        "en": "Rashomon",
+        "fr": "Rashōmon",
+        "pt": "Rashomon"
+      }
+    ],
+    "homeCountry": null,
+    "id": "seven-samurai",
+    "name": {
+      "en": "Seven Samurai",
+      "fr": "Les Sept Samouraïs",
+      "pt": "Os Sete Samurais"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Some Like It Hot"],
+      "pt": ["Some Like It Hot"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood comedy from the 1950s.",
+          "fr": "Une comédie hollywoodienne des années 1950.",
+          "pt": "Uma comédia de Hollywood dos anos 1950."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Billy Wilder, starring Marilyn Monroe.",
+          "fr": "Réalisé par Billy Wilder, avec Marilyn Monroe.",
+          "pt": "Realizado por Billy Wilder, com Marilyn Monroe."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Two musicians on the run disguise themselves as women.",
+          "fr": "Deux musiciens en fuite se déguisent en femmes.",
+          "pt": "Dois músicos em fuga disfarçam-se de mulheres."
+        }
+      },
+      {
+        "text": {
+          "en": "Witnesses to the St Valentine’s Day massacre, they hide in an all-girl band bound for Florida.",
+          "fr": "Témoins du massacre de la Saint-Valentin, ils se cachent dans un orchestre de femmes parti pour la Floride.",
+          "pt": "Testemunhas do massacre do Dia de São Valentim, escondem-se numa orquestra feminina a caminho da Florida."
+        }
+      },
+      {
+        "text": {
+          "en": "Tony Curtis, Jack Lemmon, and the last line: well, nobody’s perfect.",
+          "fr": "Tony Curtis, Jack Lemmon, et la réplique finale : personne n’est parfait.",
+          "pt": "Tony Curtis, Jack Lemmon, e a última fala: ninguém é perfeito."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tootsie",
+        "fr": "Tootsie",
+        "pt": "Tootsie"
+      },
+      {
+        "en": "Gentlemen Prefer Blondes",
+        "fr": "Les hommes préfèrent les blondes",
+        "pt": "Os Homens Preferem as Loiras"
+      },
+      {
+        "en": "The Seven Year Itch",
+        "fr": "Sept ans de réflexion",
+        "pt": "O Pecado Mora ao Lado"
+      }
+    ],
+    "homeCountry": null,
+    "id": "some-like-it-hot",
+    "name": {
+      "en": "Some Like It Hot",
+      "fr": "Certains l’aiment chaud",
+      "pt": "Quanto Mais Quente Melhor"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Lawrence"],
+      "fr": ["Lawrence"],
+      "pt": ["Lawrence"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A historical epic from the 1960s.",
+          "fr": "Une fresque historique des années 1960.",
+          "pt": "Um épico histórico dos anos 1960."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by David Lean.",
+          "fr": "Réalisé par David Lean.",
+          "pt": "Realizado por David Lean."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in the desert, during the First World War.",
+          "fr": "L’action se passe dans le désert, pendant la Première Guerre mondiale.",
+          "pt": "Passa-se no deserto, durante a Primeira Guerra Mundial."
+        }
+      },
+      {
+        "text": {
+          "en": "Peter O’Toole as a British officer who leads a revolt against the Ottomans.",
+          "fr": "Peter O’Toole en officier britannique qui mène une révolte contre les Ottomans.",
+          "pt": "Peter O’Toole é um oficial britânico que lidera uma revolta contra os otomanos."
+        }
+      },
+      {
+        "text": {
+          "en": "Omar Sharif rides out of a mirage; a match blown out cuts to a desert sunrise.",
+          "fr": "Omar Sharif surgit d’un mirage ; une allumette soufflée laisse place au soleil levant sur le désert.",
+          "pt": "Omar Sharif surge de uma miragem; um fósforo apagado dá lugar ao nascer do sol no deserto."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gladiator",
+        "fr": "Gladiator",
+        "pt": "Gladiador"
+      },
+      {
+        "en": "Cleopatra",
+        "fr": "Cléopâtre",
+        "pt": "Cleópatra"
+      },
+      {
+        "en": "Doctor Zhivago",
+        "fr": "Le Docteur Jivago",
+        "pt": "Doutor Jivago"
+      }
+    ],
+    "homeCountry": null,
+    "id": "lawrence-of-arabia",
+    "name": {
+      "en": "Lawrence of Arabia",
+      "fr": "Lawrence d’Arabie",
+      "pt": "Lawrence da Arábia"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Breakfast at Tiffany’s"],
+      "pt": ["Breakfast at Tiffany’s"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A romantic comedy from the 1960s.",
+          "fr": "Une comédie romantique des années 1960.",
+          "pt": "Uma comédia romântica dos anos 1960."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Audrey Hepburn plays the lead.",
+          "fr": "Audrey Hepburn y tient le rôle principal.",
+          "pt": "Audrey Hepburn é a protagonista."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Set in New York, adapted from a Truman Capote novella.",
+          "fr": "L’action se passe à New York, d’après un court roman de Truman Capote.",
+          "pt": "Passa-se em Nova Iorque, adaptado de uma novela de Truman Capote."
+        }
+      },
+      {
+        "text": {
+          "en": "Holly Golightly, a cat with no name, and “Moon River” sung at the window.",
+          "fr": "Holly Golightly, un chat sans nom, et « Moon River » chantée à la fenêtre.",
+          "pt": "Holly Golightly, um gato sem nome e “Moon River” cantada à janela."
+        }
+      },
+      {
+        "text": {
+          "en": "A black Givenchy dress, a cigarette holder, and a pastry eaten at a Fifth Avenue jeweller’s window.",
+          "fr": "Une robe noire Givenchy, un fume-cigarette et un croissant devant la vitrine d’un joaillier de la Cinquième Avenue.",
+          "pt": "Um vestido preto Givenchy, uma boquilha e um croissant diante da montra de um joalheiro da Quinta Avenida."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Roman Holiday",
+        "fr": "Vacances romaines",
+        "pt": "Férias em Roma"
+      },
+      {
+        "en": "The Apartment",
+        "fr": "La Garçonnière",
+        "pt": "O Apartamento"
+      },
+      {
+        "en": "My Fair Lady",
+        "fr": "My Fair Lady",
+        "pt": "My Fair Lady"
+      }
+    ],
+    "homeCountry": null,
+    "id": "breakfast-at-tiffanys",
+    "name": {
+      "en": "Breakfast at Tiffany’s",
+      "fr": "Diamants sur canapé",
+      "pt": "Boneca de Luxo"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Canção de Lisboa"],
+      "fr": ["Canção de Lisboa"],
+      "pt": ["Canção de Lisboa"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A black-and-white classic of Portuguese comedy.",
+          "fr": "Un classique de la comédie portugaise, en noir et blanc.",
+          "pt": "Um clássico da comédia portuguesa, a preto e branco."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Released in the 1930s.",
+          "fr": "Sortie dans les années 1930.",
+          "pt": "Estreada nos anos 1930."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The first sound film shot and recorded entirely in Portugal.",
+          "fr": "Le premier film parlant tourné et enregistré entièrement au Portugal.",
+          "pt": "O primeiro filme sonoro rodado e gravado inteiramente em Portugal."
+        }
+      },
+      {
+        "text": {
+          "en": "A medical student who keeps failing his exams must fool the rich aunts who pay for them.",
+          "fr": "Un étudiant en médecine qui rate ses examens doit tromper les riches tantes qui les lui paient.",
+          "pt": "Um estudante de medicina que chumba nos exames tem de enganar as tias ricas que lhe pagam o curso."
+        }
+      },
+      {
+        "text": {
+          "en": "Vasco Santana, Beatriz Costa, 1933 — “chapéus há muitos, seu palerma!”",
+          "fr": "Vasco Santana, Beatriz Costa, 1933 — « chapéus há muitos, seu palerma ! »",
+          "pt": "Vasco Santana, Beatriz Costa, 1933 — “chapéus há muitos, seu palerma!”"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Gilded Cage",
+        "fr": "La Cage dorée",
+        "pt": "A Gaiola Dourada"
+      },
+      {
+        "en": "O Pátio das Cantigas",
+        "fr": "O Pátio das Cantigas",
+        "pt": "O Pátio das Cantigas"
+      },
+      {
+        "en": "A Aldeia da Roupa Branca",
+        "fr": "A Aldeia da Roupa Branca",
+        "pt": "A Aldeia da Roupa Branca"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "a-cancao-de-lisboa",
+    "name": {
+      "en": "A Canção de Lisboa",
+      "fr": "A Canção de Lisboa",
+      "pt": "A Canção de Lisboa"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A black-and-white Portuguese film.",
+          "fr": "Un film portugais en noir et blanc.",
+          "pt": "Um filme português a preto e branco."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Manoel de Oliveira, in the city where he was born.",
+          "fr": "Réalisé par Manoel de Oliveira, dans sa ville natale.",
+          "pt": "Realizado por Manoel de Oliveira, na cidade onde nasceu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroes are a gang of children by the river.",
+          "fr": "Ses héros sont une bande d’enfants au bord du fleuve.",
+          "pt": "Os heróis são um bando de crianças à beira-rio."
+        }
+      },
+      {
+        "text": {
+          "en": "1942, his first feature: two boys vie for Teresinha, and a doll is stolen from a shop.",
+          "fr": "1942, son premier long métrage : deux garçons se disputent Teresinha, et une poupée est volée.",
+          "pt": "1942, a sua primeira longa-metragem: dois rapazes disputam a Teresinha, e uma boneca é roubada."
+        }
+      },
+      {
+        "text": {
+          "en": "Carlitos, Eduardinho, the Ribeira of Porto, and a children’s counting rhyme for a title.",
+          "fr": "Carlitos, Eduardinho, la Ribeira de Porto, et une comptine pour titre.",
+          "pt": "Carlitos, Eduardinho, a Ribeira do Porto, e uma lengalenga infantil como título."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "The Maias",
+        "fr": "Les Maia",
+        "pt": "Os Maias"
+      },
+      {
+        "en": "O Pátio das Cantigas",
+        "fr": "O Pátio das Cantigas",
+        "pt": "O Pátio das Cantigas"
+      },
+      {
+        "en": "Douro, Faina Fluvial",
+        "fr": "Douro, Faina Fluvial",
+        "pt": "Douro, Faina Fluvial"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "aniki-bobo",
+    "name": {
+      "en": "Aniki-Bóbó",
+      "fr": "Aniki-Bóbó",
+      "pt": "Aniki-Bóbó"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Le Grand Bleu"],
+      "fr": ["Grand Bleu"],
+      "pt": ["Le Grand Bleu"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French film from the 1980s.",
+          "fr": "Un film français des années 1980.",
+          "pt": "Um filme francês dos anos 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Directed by Luc Besson.",
+          "fr": "Réalisé par Luc Besson.",
+          "pt": "Realizado por Luc Besson."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Its heroes are free divers, holding their breath ever deeper.",
+          "fr": "Ses héros sont des apnéistes qui descendent toujours plus profond.",
+          "pt": "Os heróis são mergulhadores em apneia, cada vez mais fundo."
+        }
+      },
+      {
+        "text": {
+          "en": "Two childhood rivals, a Frenchman and a Sicilian, compete off Greece and Taormina.",
+          "fr": "Deux rivaux d’enfance, un Français et un Sicilien, s’affrontent en Grèce et à Taormine.",
+          "pt": "Dois rivais de infância, um francês e um siciliano, defrontam-se na Grécia e em Taormina."
+        }
+      },
+      {
+        "text": {
+          "en": "Jean-Marc Barr as Jacques Mayol, Jean Reno as Enzo, and dolphins.",
+          "fr": "Jean-Marc Barr en Jacques Mayol, Jean Reno en Enzo, et des dauphins.",
+          "pt": "Jean-Marc Barr é Jacques Mayol, Jean Reno é Enzo, e golfinhos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Léon: The Professional",
+        "fr": "Léon",
+        "pt": "Léon, o Profissional"
+      },
+      {
+        "en": "Jean de Florette",
+        "fr": "Jean de Florette",
+        "pt": "Jean de Florette"
+      },
+      {
+        "en": "Subway",
+        "fr": "Subway",
+        "pt": "Subway"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "the-big-blue",
+    "name": {
+      "en": "The Big Blue",
+      "fr": "Le Grand Bleu",
+      "pt": "Vertigem Azul"
+    },
+    "tier": "hard",
+    "wikidata": null
+  }
+]

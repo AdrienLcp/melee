@@ -1,0 +1,4392 @@
+[
+  {
+    "accepted": {
+      "en": ["Harry", "Potter"],
+      "fr": ["Harry", "Potter"],
+      "pt": ["Harry", "Potter"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A boy wizard who catches a train from a London station every September.",
+          "fr": "Un garçon sorcier qui prend un train dans une gare de Londres chaque mois de septembre.",
+          "pt": "Um rapaz feiticeiro que apanha um comboio numa estação de Londres todos os setembros."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "The Sorting Hat put him in Gryffindor.",
+          "fr": "Le Choixpeau l’a envoyé à Gryffondor.",
+          "pt": "O Chapéu Seletor colocou-o nos Gryffindor."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His parents were murdered when he was one year old.",
+          "fr": "Ses parents ont été assassinés quand il avait un an.",
+          "pt": "Os pais foram assassinados quando ele tinha um ano."
+        }
+      },
+      {
+        "text": {
+          "en": "He grew up in a cupboard under the stairs at his aunt and uncle’s.",
+          "fr": "Il a grandi dans un placard sous l’escalier, chez son oncle et sa tante.",
+          "pt": "Cresceu num armário debaixo das escadas, em casa dos tios."
+        }
+      },
+      {
+        "text": {
+          "en": "Round glasses and a lightning-bolt scar: the Boy Who Lived.",
+          "fr": "Lunettes rondes et cicatrice en forme d’éclair : le Survivant.",
+          "pt": "Óculos redondos e cicatriz em forma de raio: o Rapaz Que Sobreviveu."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Hermione Granger",
+        "fr": "Hermione Granger",
+        "pt": "Hermione Granger"
+      },
+      {
+        "en": "Draco Malfoy",
+        "fr": "Drago Malefoy",
+        "pt": "Draco Malfoy"
+      },
+      {
+        "en": "Ron Weasley",
+        "fr": "Ron Weasley",
+        "pt": "Ron Weasley"
+      }
+    ],
+    "homeCountry": null,
+    "id": "harry-potter",
+    "name": {
+      "en": "Harry Potter",
+      "fr": "Harry Potter",
+      "pt": "Harry Potter"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Sherlock", "Holmes"],
+      "fr": ["Sherlock", "Holmes"],
+      "pt": ["Sherlock", "Holmes"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A famous fictional detective.",
+          "fr": "Un célèbre détective de fiction.",
+          "pt": "Um célebre detetive de ficção."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A character English to the bone.",
+          "fr": "Un personnage anglais jusqu’au bout des ongles.",
+          "pt": "Uma personagem inglesa até à medula."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A man living in a London flat, who plays the violin to help him think.",
+          "fr": "Un homme qui vit dans un appartement londonien et joue du violon pour mieux réfléchir.",
+          "pt": "Um homem que vive num apartamento em Londres e toca violino para pensar melhor."
+        }
+      },
+      {
+        "text": {
+          "en": "His address, 221B Baker Street, still receives letters from readers.",
+          "fr": "Son adresse, le 221B Baker Street, reçoit encore des lettres de lecteurs.",
+          "pt": "A sua morada, 221B Baker Street, ainda recebe cartas de leitores."
+        }
+      },
+      {
+        "text": {
+          "en": "Deerstalker hat, pipe, and the loyal Dr Watson at his side.",
+          "fr": "Casquette à rabats, pipe, et le fidèle docteur Watson à ses côtés.",
+          "pt": "Boné de caçador, cachimbo e o fiel Dr. Watson ao seu lado."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Arsène Lupin",
+        "fr": "Arsène Lupin",
+        "pt": "Arsène Lupin"
+      },
+      {
+        "en": "Hercule Poirot",
+        "fr": "Hercule Poirot",
+        "pt": "Hercule Poirot"
+      },
+      {
+        "en": "Miss Marple",
+        "fr": "Miss Marple",
+        "pt": "Miss Marple"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sherlock-holmes",
+    "name": {
+      "en": "Sherlock Holmes",
+      "fr": "Sherlock Holmes",
+      "pt": "Sherlock Holmes"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Vader", "Anakin Skywalker", "Anakin"],
+      "fr": ["Vador", "Darth Vader", "Anakin Skywalker", "Anakin"],
+      "pt": ["Vader", "Anakin Skywalker", "Anakin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "He was trained as a Jedi in his youth.",
+          "fr": "Il a été formé comme Jedi dans sa jeunesse.",
+          "pt": "Foi treinado como Jedi na juventude."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He turned to the dark side of the Force.",
+          "fr": "Il a basculé du côté obscur de la Force.",
+          "pt": "Passou para o lado negro da Força."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He is the father of twins, separated at birth.",
+          "fr": "Il est le père de jumeaux, séparés à la naissance.",
+          "pt": "É pai de gémeos, separados à nascença."
+        }
+      },
+      {
+        "text": {
+          "en": "Born a slave on Tatooine, he once won a podrace as a boy.",
+          "fr": "Né esclave sur Tatooine, il a gagné une course de modules quand il était enfant.",
+          "pt": "Nascido escravo em Tatooine, venceu uma corrida de pods em criança."
+        }
+      },
+      {
+        "text": {
+          "en": "Black armour, rasping breath: “I am your father.”",
+          "fr": "Armure noire, respiration rauque : « Je suis ton père. »",
+          "pt": "Armadura negra, respiração ofegante: «Eu sou o teu pai.»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Han Solo",
+        "fr": "Han Solo",
+        "pt": "Han Solo"
+      },
+      {
+        "en": "Luke Skywalker",
+        "fr": "Luke Skywalker",
+        "pt": "Luke Skywalker"
+      },
+      {
+        "en": "Kylo Ren",
+        "fr": "Kylo Ren",
+        "pt": "Kylo Ren"
+      }
+    ],
+    "homeCountry": null,
+    "id": "darth-vader",
+    "name": {
+      "en": "Darth Vader",
+      "fr": "Dark Vador",
+      "pt": "Darth Vader"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Super Mario"],
+      "fr": ["Super Mario"],
+      "pt": ["Super Mario"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A video game hero who sets out to rescue a princess.",
+          "fr": "Un héros de jeu vidéo parti sauver une princesse.",
+          "pt": "Um herói de videojogo que parte para salvar uma princesa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He wears a cap and a thick moustache.",
+          "fr": "Il porte une casquette et une grosse moustache.",
+          "pt": "Usa boné e um bigode farfalhudo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Dressed in red, with an M on his cap.",
+          "fr": "Habillé de rouge, avec un M sur sa casquette.",
+          "pt": "Vestido de vermelho, com um M no boné."
+        }
+      },
+      {
+        "text": {
+          "en": "He first appeared in 1981, in Donkey Kong, under the name Jumpman.",
+          "fr": "Apparu en 1981 dans Donkey Kong, il s’appelait alors Jumpman.",
+          "pt": "Estreou em 1981, em Donkey Kong, então com o nome Jumpman."
+        }
+      },
+      {
+        "text": {
+          "en": "Nintendo’s plumber, who grows when he eats a mushroom.",
+          "fr": "Le plombier de Nintendo, qui grandit en mangeant un champignon.",
+          "pt": "O canalizador da Nintendo, que cresce quando come um cogumelo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Bowser",
+        "fr": "Bowser",
+        "pt": "Bowser"
+      },
+      {
+        "en": "Link",
+        "fr": "Link",
+        "pt": "Link"
+      },
+      {
+        "en": "Luigi",
+        "fr": "Luigi",
+        "pt": "Luigi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mario",
+    "name": {
+      "en": "Mario",
+      "fr": "Mario",
+      "pt": "Mario"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A creature that trainers catch and carry around in a ball.",
+          "fr": "Une créature que les dresseurs capturent et transportent dans une balle.",
+          "pt": "Uma criatura que os treinadores capturam e transportam numa bola."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "It is an Electric type.",
+          "fr": "Il est de type Électrik.",
+          "pt": "É do tipo Elétrico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Expose it to a Thunder Stone and it evolves.",
+          "fr": "Au contact d’une Pierre Foudre, il évolue.",
+          "pt": "Em contacto com uma Pedra Trovão, evolui."
+        }
+      },
+      {
+        "text": {
+          "en": "Its red cheeks store electricity, and its own name is all it can say.",
+          "fr": "Ses joues rouges stockent l’électricité, et il ne sait dire que son propre nom.",
+          "pt": "As bochechas vermelhas armazenam eletricidade e só sabe dizer o próprio nome."
+        }
+      },
+      {
+        "text": {
+          "en": "The yellow mouse that won’t go in its Poké Ball, riding on Ash’s shoulder.",
+          "fr": "La souris jaune qui refuse sa Poké Ball, perchée sur l’épaule de Sacha.",
+          "pt": "O rato amarelo que recusa a Poké Bola, sempre ao ombro do Ash."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ash Ketchum",
+        "fr": "Sacha",
+        "pt": "Ash"
+      },
+      {
+        "en": "Charmander",
+        "fr": "Salamèche",
+        "pt": "Charmander"
+      },
+      {
+        "en": "Raichu",
+        "fr": "Raichu",
+        "pt": "Raichu"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pikachu",
+    "name": {
+      "en": "Pikachu",
+      "fr": "Pikachu",
+      "pt": "Pikachu"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Blanche Neige"],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Her tale ends with a wedding to a prince.",
+          "fr": "Son conte se termine par un mariage avec un prince.",
+          "pt": "O seu conto termina com um casamento com um príncipe."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Her stepmother cannot bear her.",
+          "fr": "Sa belle-mère ne la supporte pas.",
+          "pt": "A madrasta não a suporta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The queen orders a huntsman to kill her in the woods.",
+          "fr": "La reine ordonne à un chasseur de la tuer dans la forêt.",
+          "pt": "A rainha manda um caçador matá-la na floresta."
+        }
+      },
+      {
+        "text": {
+          "en": "A magic mirror tells the queen that this girl is fairer than she is.",
+          "fr": "Un miroir magique affirme à la reine que la jeune fille est plus belle qu’elle.",
+          "pt": "Um espelho mágico diz à rainha que a jovem é mais bela do que ela."
+        }
+      },
+      {
+        "text": {
+          "en": "A poisoned apple, a glass coffin and seven dwarfs.",
+          "fr": "Une pomme empoisonnée, un cercueil de verre et sept nains.",
+          "pt": "Uma maçã envenenada, um caixão de vidro e sete anões."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Little Red Riding Hood",
+        "fr": "Le Petit Chaperon rouge",
+        "pt": "Capuchinho Vermelho"
+      },
+      {
+        "en": "Sleeping Beauty",
+        "fr": "La Belle au bois dormant",
+        "pt": "A Bela Adormecida"
+      },
+      {
+        "en": "Cinderella",
+        "fr": "Cendrillon",
+        "pt": "Cinderela"
+      }
+    ],
+    "homeCountry": null,
+    "id": "snow-white",
+    "name": {
+      "en": "Snow White",
+      "fr": "Blanche-Neige",
+      "pt": "Branca de Neve"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Bruce Wayne"],
+      "fr": ["Bruce Wayne"],
+      "pt": ["Bruce Wayne"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A superhero from DC Comics.",
+          "fr": "Un super-héros de l’écurie DC Comics.",
+          "pt": "Um super-herói da DC Comics."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He has no superpowers whatsoever.",
+          "fr": "Il n’a aucun superpouvoir.",
+          "pt": "Não tem qualquer superpoder."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He watches over Gotham City by night.",
+          "fr": "Il veille sur Gotham City la nuit.",
+          "pt": "Vigia Gotham City durante a noite."
+        }
+      },
+      {
+        "text": {
+          "en": "Orphaned as a boy when a mugger shot his parents in an alley.",
+          "fr": "Devenu orphelin enfant, quand un voleur a abattu ses parents dans une ruelle.",
+          "pt": "Ficou órfão em criança, quando um assaltante matou os pais num beco."
+        }
+      },
+      {
+        "text": {
+          "en": "Billionaire by day, masked vigilante by night, sworn enemy of the Joker.",
+          "fr": "Milliardaire le jour, justicier masqué la nuit, ennemi juré du Joker.",
+          "pt": "Milionário de dia, justiceiro mascarado à noite, arqui-inimigo do Joker."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Spider-Man",
+        "fr": "Spider-Man",
+        "pt": "Homem-Aranha"
+      },
+      {
+        "en": "Superman",
+        "fr": "Superman",
+        "pt": "Super-Homem"
+      },
+      {
+        "en": "Green Arrow",
+        "fr": "Green Arrow",
+        "pt": "Arqueiro Verde"
+      }
+    ],
+    "homeCountry": null,
+    "id": "batman",
+    "name": {
+      "en": "Batman",
+      "fr": "Batman",
+      "pt": "Batman"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Spiderman", "Peter Parker"],
+      "fr": ["Spiderman", "Peter Parker", "L’Homme-Araignée"],
+      "pt": ["Spider-Man", "Spiderman", "Peter Parker"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Marvel superhero.",
+          "fr": "Un super-héros Marvel.",
+          "pt": "Um super-herói da Marvel."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "His powers come from an accident involving a science experiment.",
+          "fr": "Ses pouvoirs viennent d’un accident lié à une expérience scientifique.",
+          "pt": "Os poderes vêm de um acidente ligado a uma experiência científica."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It happened to him when he was just a teenager from Queens.",
+          "fr": "Ça lui est arrivé quand il n’était qu’un ado du Queens.",
+          "pt": "Aconteceu-lhe quando era apenas um adolescente de Queens."
+        }
+      },
+      {
+        "text": {
+          "en": "Raised by his Aunt May, he takes photos for a newspaper.",
+          "fr": "Élevé par sa tante May, il est photographe pour un journal.",
+          "pt": "Criado pela tia May, é fotógrafo de um jornal."
+        }
+      },
+      {
+        "text": {
+          "en": "Bitten by a radioactive spider, he swings between New York’s skyscrapers.",
+          "fr": "Mordu par une araignée radioactive, il se balance entre les gratte-ciel de New York.",
+          "pt": "Mordido por uma aranha radioativa, balança-se entre os arranha-céus de Nova Iorque."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Batman",
+        "fr": "Batman",
+        "pt": "Batman"
+      },
+      {
+        "en": "Iron Man",
+        "fr": "Iron Man",
+        "pt": "Homem de Ferro"
+      },
+      {
+        "en": "Hulk",
+        "fr": "Hulk",
+        "pt": "Hulk"
+      }
+    ],
+    "homeCountry": null,
+    "id": "spider-man",
+    "name": {
+      "en": "Spider-Man",
+      "fr": "Spider-Man",
+      "pt": "Homem-Aranha"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Homer"],
+      "fr": ["Homer"],
+      "pt": ["Homer"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A grown man from the town of Springfield.",
+          "fr": "Un homme adulte de la ville de Springfield.",
+          "pt": "Um homem adulto da cidade de Springfield."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A married father of a family.",
+          "fr": "Un père de famille marié.",
+          "pt": "Um pai de família casado."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He works at the town’s nuclear power plant.",
+          "fr": "Il travaille à la centrale nucléaire de la ville.",
+          "pt": "Trabalha na central nuclear da cidade."
+        }
+      },
+      {
+        "text": {
+          "en": "His three great loves: Duff beer, doughnuts and the couch.",
+          "fr": "Ses trois grandes passions : la bière Duff, les donuts et le canapé.",
+          "pt": "As suas três grandes paixões: cerveja Duff, donuts e o sofá."
+        }
+      },
+      {
+        "text": {
+          "en": "Bald and yellow, Marge’s husband and Bart’s dad: “D’oh!”",
+          "fr": "Chauve et jaune, mari de Marge et père de Bart : « D’oh ! »",
+          "pt": "Careca e amarelo, marido da Marge e pai do Bart: «D’oh!»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Marge Simpson",
+        "fr": "Marge Simpson",
+        "pt": "Marge Simpson"
+      },
+      {
+        "en": "Mr Burns",
+        "fr": "M. Burns",
+        "pt": "Sr. Burns"
+      },
+      {
+        "en": "Ned Flanders",
+        "fr": "Ned Flanders",
+        "pt": "Ned Flanders"
+      }
+    ],
+    "homeCountry": null,
+    "id": "homer-simpson",
+    "name": {
+      "en": "Homer Simpson",
+      "fr": "Homer Simpson",
+      "pt": "Homer Simpson"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from a DreamWorks animated film.",
+          "fr": "Un personnage d’un film d’animation DreamWorks.",
+          "pt": "Uma personagem de um filme de animação da DreamWorks."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Green from head to toe.",
+          "fr": "Vert de la tête aux pieds.",
+          "pt": "Verde dos pés à cabeça."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A grumpy loner who wants his swamp all to himself.",
+          "fr": "Un ronchon solitaire qui veut garder son marais pour lui tout seul.",
+          "pt": "Um rabugento solitário que quer o pântano só para si."
+        }
+      },
+      {
+        "text": {
+          "en": "A chatterbox donkey follows him everywhere.",
+          "fr": "Un âne bavard le suit partout.",
+          "pt": "Um burro tagarela segue-o para todo o lado."
+        }
+      },
+      {
+        "text": {
+          "en": "The ogre who rescues Princess Fiona on behalf of Lord Farquaad.",
+          "fr": "L’ogre qui délivre la princesse Fiona pour le compte de Lord Farquaad.",
+          "pt": "O ogre que salva a princesa Fiona a mando de Lord Farquaad."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Buzz Lightyear",
+        "fr": "Buzz l’Éclair",
+        "pt": "Buzz Lightyear"
+      },
+      {
+        "en": "Po",
+        "fr": "Po",
+        "pt": "Po"
+      },
+      {
+        "en": "Fiona",
+        "fr": "Fiona",
+        "pt": "Fiona"
+      }
+    ],
+    "homeCountry": null,
+    "id": "shrek",
+    "name": {
+      "en": "Shrek",
+      "fr": "Shrek",
+      "pt": "Shrek"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Pinocchio"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A little boy, the hero of a classic tale.",
+          "fr": "Un petit garçon, héros d’un conte classique.",
+          "pt": "Um rapazinho, herói de um conto clássico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "His father is a poor man.",
+          "fr": "Son père est un homme pauvre.",
+          "pt": "O pai é um homem pobre."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was carved out of a piece of wood.",
+          "fr": "Il a été taillé dans un morceau de bois.",
+          "pt": "Foi esculpido num pedaço de madeira."
+        }
+      },
+      {
+        "text": {
+          "en": "A talking cricket tries to act as his conscience.",
+          "fr": "Un grillon qui parle tente de lui servir de conscience.",
+          "pt": "Um grilo falante tenta ser a sua consciência."
+        }
+      },
+      {
+        "text": {
+          "en": "The puppet whose nose grows every time he tells a lie.",
+          "fr": "La marionnette dont le nez s’allonge à chaque mensonge.",
+          "pt": "O boneco cujo nariz cresce sempre que mente."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Alice",
+        "fr": "Alice",
+        "pt": "Alice"
+      },
+      {
+        "en": "Peter Pan",
+        "fr": "Peter Pan",
+        "pt": "Peter Pan"
+      },
+      {
+        "en": "Tom Thumb",
+        "fr": "Le Petit Poucet",
+        "pt": "O Pequeno Polegar"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pinocchio",
+    "name": {
+      "en": "Pinocchio",
+      "fr": "Pinocchio",
+      "pt": "Pinóquio"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Disney heroine from a computer-animated film.",
+          "fr": "Une héroïne Disney d’un film en images de synthèse.",
+          "pt": "Uma heroína da Disney de um filme de animação por computador."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Her parents, the king and queen, died in a shipwreck.",
+          "fr": "Ses parents, le roi et la reine, ont péri dans un naufrage.",
+          "pt": "Os pais, o rei e a rainha, morreram num naufrágio."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She was born with a magical power.",
+          "fr": "Elle est née avec un pouvoir magique.",
+          "pt": "Nasceu com um poder mágico."
+        }
+      },
+      {
+        "text": {
+          "en": "For years she hid her gift behind gloves and a closed door.",
+          "fr": "Pendant des années, elle a caché son don derrière des gants et une porte close.",
+          "pt": "Durante anos escondeu o dom atrás de luvas e de uma porta fechada."
+        }
+      },
+      {
+        "text": {
+          "en": "The ice queen of Arendelle who sings “Let It Go”.",
+          "fr": "La reine des glaces d’Arendelle qui chante « Libérée, délivrée ».",
+          "pt": "A rainha do gelo de Arendelle que canta «Já Passou»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ariel",
+        "fr": "Ariel",
+        "pt": "Ariel"
+      },
+      {
+        "en": "Rapunzel",
+        "fr": "Raiponce",
+        "pt": "Rapunzel"
+      },
+      {
+        "en": "Anna",
+        "fr": "Anna",
+        "pt": "Anna"
+      }
+    ],
+    "homeCountry": null,
+    "id": "elsa",
+    "name": {
+      "en": "Elsa",
+      "fr": "Elsa",
+      "pt": "Elsa"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A young Disney animal who loses a parent in the course of the film.",
+          "fr": "Un jeune animal Disney qui perd un parent au fil du film.",
+          "pt": "Um jovem animal da Disney que perde um dos pais ao longo do filme."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A mammal.",
+          "fr": "Un mammifère.",
+          "pt": "Um mamífero."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His father is killed before his eyes.",
+          "fr": "Son père est tué sous ses yeux.",
+          "pt": "O pai é morto diante dos seus olhos."
+        }
+      },
+      {
+        "text": {
+          "en": "A meerkat and a warthog raise him to the tune of “Hakuna Matata”.",
+          "fr": "Un suricate et un phacochère l’élèvent au son de « Hakuna Matata ».",
+          "pt": "Um suricata e um javali criam-no ao som de «Hakuna Matata»."
+        }
+      },
+      {
+        "text": {
+          "en": "The lion cub who takes the throne back from his uncle Scar.",
+          "fr": "Le lionceau qui reprend le trône à son oncle Scar.",
+          "pt": "O leãozinho que recupera o trono ao tio Scar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Baloo",
+        "fr": "Baloo",
+        "pt": "Balu"
+      },
+      {
+        "en": "Nemo",
+        "fr": "Nemo",
+        "pt": "Nemo"
+      },
+      {
+        "en": "Bambi",
+        "fr": "Bambi",
+        "pt": "Bambi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "simba",
+    "name": {
+      "en": "Simba",
+      "fr": "Simba",
+      "pt": "Simba"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Red Riding Hood"],
+      "fr": ["Petit Chaperon rouge", "Chaperon rouge"],
+      "pt": ["Capuchinho"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A girl, the heroine of a fairy tale.",
+          "fr": "Une jeune fille, héroïne d’un conte.",
+          "pt": "Uma rapariga, heroína de um conto tradicional."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She ventures into the woods on her own.",
+          "fr": "Elle s’aventure seule dans les bois.",
+          "pt": "Aventura-se sozinha pelo bosque."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "On the way, she meets a wolf.",
+          "fr": "En chemin, elle rencontre un loup.",
+          "pt": "Pelo caminho, encontra um lobo."
+        }
+      },
+      {
+        "text": {
+          "en": "She is taking a cake and a little pot of butter to her grandmother.",
+          "fr": "Elle apporte une galette et un petit pot de beurre à sa mère-grand.",
+          "pt": "Leva um bolo e um potinho de manteiga à avó."
+        }
+      },
+      {
+        "text": {
+          "en": "“Grandmother, what big teeth you have!”",
+          "fr": "« Mère-grand, que vous avez de grandes dents ! »",
+          "pt": "«Avó, que dentes tão grandes que tu tens!»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Puss in Boots",
+        "fr": "Le Chat botté",
+        "pt": "O Gato das Botas"
+      },
+      {
+        "en": "Cinderella",
+        "fr": "Cendrillon",
+        "pt": "Cinderela"
+      },
+      {
+        "en": "Goldilocks",
+        "fr": "Boucle d’or",
+        "pt": "Caracóis de Ouro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "little-red-riding-hood",
+    "name": {
+      "en": "Little Red Riding Hood",
+      "fr": "Le Petit Chaperon rouge",
+      "pt": "Capuchinho Vermelho"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Bond", "007"],
+      "fr": ["Bond", "007"],
+      "pt": ["Bond", "007"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A spy from the big screen.",
+          "fr": "Un espion du grand écran.",
+          "pt": "Um espião do grande ecrã."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A British agent.",
+          "fr": "Un agent britannique.",
+          "pt": "Um agente britânico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He first appeared in the novels of Ian Fleming.",
+          "fr": "Il est né dans les romans de Ian Fleming.",
+          "pt": "Nasceu nos romances de Ian Fleming."
+        }
+      },
+      {
+        "text": {
+          "en": "He takes his martini shaken, not stirred.",
+          "fr": "Il veut sa vodka-martini « au shaker, pas à la cuillère ».",
+          "pt": "Gosta do martini «agitado, não mexido»."
+        }
+      },
+      {
+        "text": {
+          "en": "The MI6 agent with a licence to kill, played by Connery, Moore and Craig.",
+          "fr": "L’agent du MI6 au permis de tuer, joué par Connery, Moore et Craig.",
+          "pt": "O agente do MI6 com licença para matar, interpretado por Connery, Moore e Craig."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Indiana Jones",
+        "fr": "Indiana Jones",
+        "pt": "Indiana Jones"
+      },
+      {
+        "en": "Jason Bourne",
+        "fr": "Jason Bourne",
+        "pt": "Jason Bourne"
+      },
+      {
+        "en": "Austin Powers",
+        "fr": "Austin Powers",
+        "pt": "Austin Powers"
+      }
+    ],
+    "homeCountry": null,
+    "id": "james-bond",
+    "name": {
+      "en": "James Bond",
+      "fr": "James Bond",
+      "pt": "James Bond"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Astérix"],
+      "fr": ["Asterix"],
+      "pt": ["Asterix"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "He lives in the one Gaulish village still holding out against Rome.",
+          "fr": "Il vit dans le seul village gaulois qui résiste encore à Rome.",
+          "pt": "Vive na única aldeia gaulesa que ainda resiste a Roma."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A warrior, always first in line when there are Romans to thump.",
+          "fr": "Un guerrier, toujours le premier pour aller taper du Romain.",
+          "pt": "Um guerreiro, sempre o primeiro a ir dar pancada nos romanos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He has to drink the magic potion to get his strength.",
+          "fr": "Il doit boire la potion magique pour avoir sa force.",
+          "pt": "Precisa de beber a poção mágica para ter força."
+        }
+      },
+      {
+        "text": {
+          "en": "Small and sharp-witted, with a winged helmet and a blond moustache.",
+          "fr": "Petit et malin, casque ailé et moustache blonde.",
+          "pt": "Pequeno e astuto, de capacete com asas e bigode loiro."
+        }
+      },
+      {
+        "text": {
+          "en": "Obelix’s best friend, created by Goscinny and Uderzo.",
+          "fr": "Le meilleur ami d’Obélix, créé par Goscinny et Uderzo.",
+          "pt": "O melhor amigo de Obélix, criado por Goscinny e Uderzo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Julius Caesar",
+        "fr": "Jules César",
+        "pt": "Júlio César"
+      },
+      {
+        "en": "Getafix",
+        "fr": "Panoramix",
+        "pt": "Panoramix"
+      },
+      {
+        "en": "Obelix",
+        "fr": "Obélix",
+        "pt": "Obélix"
+      }
+    ],
+    "homeCountry": null,
+    "id": "asterix",
+    "name": {
+      "en": "Asterix",
+      "fr": "Astérix",
+      "pt": "Astérix"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Tintin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from a Belgian comic.",
+          "fr": "Un personnage de bande dessinée belge.",
+          "pt": "Uma personagem de banda desenhada belga."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Drawn by Hergé.",
+          "fr": "Dessiné par Hergé.",
+          "pt": "Desenhado por Hergé."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A young reporter who is hardly ever seen writing.",
+          "fr": "Un jeune reporter qu’on ne voit presque jamais écrire.",
+          "pt": "Um jovem repórter que quase nunca se vê a escrever."
+        }
+      },
+      {
+        "text": {
+          "en": "He walked on the Moon fifteen years before Neil Armstrong.",
+          "fr": "Il a marché sur la Lune quinze ans avant Neil Armstrong.",
+          "pt": "Andou na Lua quinze anos antes de Neil Armstrong."
+        }
+      },
+      {
+        "text": {
+          "en": "A quiff, plus-fours, and his little white dog Snowy.",
+          "fr": "Une houppe, un pantalon de golf et son petit chien blanc, Milou.",
+          "pt": "Uma poupa, calças de golfe e o seu cãozinho branco, Milu."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Asterix",
+        "fr": "Astérix",
+        "pt": "Astérix"
+      },
+      {
+        "en": "Spirou",
+        "fr": "Spirou",
+        "pt": "Spirou"
+      },
+      {
+        "en": "Captain Haddock",
+        "fr": "Capitaine Haddock",
+        "pt": "Capitão Haddock"
+      }
+    ],
+    "homeCountry": null,
+    "id": "tintin",
+    "name": {
+      "en": "Tintin",
+      "fr": "Tintin",
+      "pt": "Tintim"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An old wizard with a long beard and a staff.",
+          "fr": "Un vieux magicien à longue barbe, bâton à la main.",
+          "pt": "Um velho feiticeiro de barba comprida e cajado na mão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He roams the lands of Middle-earth.",
+          "fr": "Il arpente les terres du Milieu.",
+          "pt": "Percorre as terras da Terra Média."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He never betrays the fight against Sauron.",
+          "fr": "Il ne trahit jamais la lutte contre Sauron.",
+          "pt": "Nunca trai a luta contra Sauron."
+        }
+      },
+      {
+        "text": {
+          "en": "He falls fighting a Balrog in the mines of Moria… and comes back.",
+          "fr": "Il tombe face à un Balrog dans la Moria… et revient.",
+          "pt": "Cai a combater um Balrog nas minas de Moria… e regressa."
+        }
+      },
+      {
+        "text": {
+          "en": "The Grey, then the White: “You shall not pass!”",
+          "fr": "Le Gris, puis le Blanc : « Vous ne passerez pas ! »",
+          "pt": "O Cinzento, depois o Branco: «Não passarás!»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Aragorn",
+        "fr": "Aragorn",
+        "pt": "Aragorn"
+      },
+      {
+        "en": "Albus Dumbledore",
+        "fr": "Albus Dumbledore",
+        "pt": "Albus Dumbledore"
+      },
+      {
+        "en": "Saruman",
+        "fr": "Saroumane",
+        "pt": "Saruman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gandalf",
+    "name": {
+      "en": "Gandalf",
+      "fr": "Gandalf",
+      "pt": "Gandalf"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Frodo"],
+      "fr": ["Frodon", "Frodo"],
+      "pt": ["Frodo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hobbit from the Shire.",
+          "fr": "Un hobbit de la Comté.",
+          "pt": "Um hobbit do Condado."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He sets out on the quest to destroy the One Ring.",
+          "fr": "Il part en quête pour détruire l’Anneau unique.",
+          "pt": "Parte na demanda para destruir o Anel Único."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "The Council of Elrond names him the Ring-bearer.",
+          "fr": "Le Conseil d’Elrond fait de lui le Porteur de l’Anneau.",
+          "pt": "O Conselho de Elrond nomeia-o Portador do Anel."
+        }
+      },
+      {
+        "text": {
+          "en": "He loses a finger to Gollum on the edge of Mount Doom.",
+          "fr": "Il perd un doigt, arraché par Gollum au bord de la Montagne du Destin.",
+          "pt": "Perde um dedo, arrancado pelo Gollum à beira do vulcão de Mordor."
+        }
+      },
+      {
+        "text": {
+          "en": "Bilbo’s heir, who carries the Ring all the way to Mordor with Sam.",
+          "fr": "L’héritier de Bilbon, qui porte l’Anneau jusqu’au Mordor avec Sam.",
+          "pt": "O herdeiro de Bilbo, que leva o Anel até Mordor com o Sam."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Legolas",
+        "fr": "Legolas",
+        "pt": "Legolas"
+      },
+      {
+        "en": "Bilbo Baggins",
+        "fr": "Bilbon Sacquet",
+        "pt": "Bilbo Bolseiro"
+      },
+      {
+        "en": "Sam Gamgee",
+        "fr": "Sam Gamegie",
+        "pt": "Sam Gamgee"
+      }
+    ],
+    "homeCountry": null,
+    "id": "frodo-baggins",
+    "name": {
+      "en": "Frodo Baggins",
+      "fr": "Frodon Sacquet",
+      "pt": "Frodo Bolseiro"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A video game character who fights with a sword.",
+          "fr": "Un personnage de jeu vidéo qui se bat à l’épée.",
+          "pt": "Uma personagem de videojogo que luta com espada."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in a Nintendo series.",
+          "fr": "Issu d’une série Nintendo.",
+          "pt": "Saído de uma série da Nintendo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He is on the side of good.",
+          "fr": "Il est du côté des gentils.",
+          "pt": "Está do lado dos bons."
+        }
+      },
+      {
+        "text": {
+          "en": "Green tunic, pointed ears, and hardly ever a word.",
+          "fr": "Tunique verte, oreilles pointues, et presque jamais un mot.",
+          "pt": "Túnica verde, orelhas pontiagudas e quase nunca uma palavra."
+        }
+      },
+      {
+        "text": {
+          "en": "Hyrule’s hero with the Master Sword — and no, he isn’t called Zelda.",
+          "fr": "Le héros d’Hyrule à l’Épée de légende — et non, il ne s’appelle pas Zelda.",
+          "pt": "O herói de Hyrule com a Espada Mestra — e não, não se chama Zelda."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mario",
+        "fr": "Mario",
+        "pt": "Mario"
+      },
+      {
+        "en": "Cloud Strife",
+        "fr": "Cloud Strife",
+        "pt": "Cloud Strife"
+      },
+      {
+        "en": "Ganondorf",
+        "fr": "Ganondorf",
+        "pt": "Ganondorf"
+      }
+    ],
+    "homeCountry": null,
+    "id": "link",
+    "name": {
+      "en": "Link",
+      "fr": "Link",
+      "pt": "Link"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Sonic the Hedgehog"],
+      "fr": ["Sonic the Hedgehog"],
+      "pt": ["Sonic the Hedgehog"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from Sega’s video games.",
+          "fr": "Un personnage des jeux vidéo Sega.",
+          "pt": "Uma personagem dos videojogos da Sega."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A hedgehog.",
+          "fr": "Un hérisson.",
+          "pt": "Um ouriço."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Blue from his spines to his tail.",
+          "fr": "Bleu des piquants jusqu’à la queue.",
+          "pt": "Azul dos espinhos até à cauda."
+        }
+      },
+      {
+        "text": {
+          "en": "He collects golden rings and cannot swim.",
+          "fr": "Il ramasse des anneaux d’or et ne sait pas nager.",
+          "pt": "Apanha anéis dourados e não sabe nadar."
+        }
+      },
+      {
+        "text": {
+          "en": "Sega’s super-fast mascot, sworn enemy of Doctor Eggman.",
+          "fr": "La mascotte ultrarapide de Sega, ennemi juré du docteur Robotnik.",
+          "pt": "A mascote super-rápida da Sega, inimiga jurada do Dr. Eggman."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Crash Bandicoot",
+        "fr": "Crash Bandicoot",
+        "pt": "Crash Bandicoot"
+      },
+      {
+        "en": "Tails",
+        "fr": "Tails",
+        "pt": "Tails"
+      },
+      {
+        "en": "Shadow",
+        "fr": "Shadow",
+        "pt": "Shadow"
+      }
+    ],
+    "homeCountry": null,
+    "id": "sonic",
+    "name": {
+      "en": "Sonic",
+      "fr": "Sonic",
+      "pt": "Sonic"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Lara", "Croft"],
+      "fr": ["Lara", "Croft"],
+      "pt": ["Lara", "Croft"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A video game heroine.",
+          "fr": "Une héroïne de jeu vidéo.",
+          "pt": "Uma heroína de videojogo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She explores ancient ruins, bow or pistol in hand.",
+          "fr": "Elle explore des ruines antiques, arc ou pistolet en main.",
+          "pt": "Explora ruínas antigas, de arco ou pistola na mão."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A British aristocrat with a manor house.",
+          "fr": "Une aristocrate britannique, propriétaire d’un manoir.",
+          "pt": "Uma aristocrata britânica, dona de uma mansão."
+        }
+      },
+      {
+        "text": {
+          "en": "Played on screen by Angelina Jolie, then by Alicia Vikander.",
+          "fr": "Incarnée au cinéma par Angelina Jolie, puis par Alicia Vikander.",
+          "pt": "Interpretada no cinema por Angelina Jolie e depois por Alicia Vikander."
+        }
+      },
+      {
+        "text": {
+          "en": "The heroine of Tomb Raider, with twin pistols and a long braid.",
+          "fr": "L’héroïne de Tomb Raider, deux pistolets et une longue tresse.",
+          "pt": "A heroína de Tomb Raider, com duas pistolas e uma longa trança."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Nathan Drake",
+        "fr": "Nathan Drake",
+        "pt": "Nathan Drake"
+      },
+      {
+        "en": "Samus Aran",
+        "fr": "Samus Aran",
+        "pt": "Samus Aran"
+      },
+      {
+        "en": "Aloy",
+        "fr": "Aloy",
+        "pt": "Aloy"
+      }
+    ],
+    "homeCountry": null,
+    "id": "lara-croft",
+    "name": {
+      "en": "Lara Croft",
+      "fr": "Lara Croft",
+      "pt": "Lara Croft"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Mickey"],
+      "fr": ["Mickey Mouse"],
+      "pt": ["Mickey", "Mickey Mouse"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Disney cartoon character.",
+          "fr": "Un personnage de dessin animé Disney.",
+          "pt": "Uma personagem de desenhos animados da Disney."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A mouse.",
+          "fr": "Une souris.",
+          "pt": "Um roedor da família dos ratos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He wears red shorts with two big white buttons.",
+          "fr": "Il porte une culotte rouge à deux gros boutons blancs.",
+          "pt": "Usa calções vermelhos com dois grandes botões brancos."
+        }
+      },
+      {
+        "text": {
+          "en": "Walt Disney himself was his voice for nearly twenty years.",
+          "fr": "Walt Disney lui-même lui a prêté sa voix pendant près de vingt ans.",
+          "pt": "O próprio Walt Disney deu-lhe voz durante quase vinte anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Disney’s mascot with the round ears, Minnie’s sweetheart.",
+          "fr": "La mascotte aux oreilles rondes de Disney, l’amoureux de Minnie.",
+          "pt": "A mascote de orelhas redondas da Disney, o namorado da Minnie."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Bugs Bunny",
+        "fr": "Bugs Bunny",
+        "pt": "Bugs Bunny"
+      },
+      {
+        "en": "Donald Duck",
+        "fr": "Donald",
+        "pt": "Pato Donald"
+      },
+      {
+        "en": "Minnie Mouse",
+        "fr": "Minnie",
+        "pt": "Minnie"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mickey-mouse",
+    "name": {
+      "en": "Mickey Mouse",
+      "fr": "Mickey",
+      "pt": "Rato Mickey"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Buzz"],
+      "fr": ["Buzz", "Buzz Lightyear"],
+      "pt": ["Buzz"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A toy that comes to life when nobody is looking.",
+          "fr": "Un jouet qui s’anime dès qu’on a le dos tourné.",
+          "pt": "Um brinquedo que ganha vida quando ninguém está a ver."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A space-themed toy.",
+          "fr": "Un jouet sur le thème de l’espace.",
+          "pt": "Um brinquedo com tema espacial."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He fights on the side of good.",
+          "fr": "Il se bat du côté des gentils.",
+          "pt": "Luta do lado dos bons."
+        }
+      },
+      {
+        "text": {
+          "en": "At first he is sure he is a real space ranger, not a toy.",
+          "fr": "Au début, il est persuadé d’être un vrai ranger de l’espace, pas un jouet.",
+          "pt": "No início, está convencido de que é um verdadeiro patrulheiro espacial e não um brinquedo."
+        }
+      },
+      {
+        "text": {
+          "en": "Woody’s rival turned friend: “To infinity and beyond!”",
+          "fr": "Le rival devenu ami de Woody : « Vers l’infini et au-delà ! »",
+          "pt": "O rival que se torna amigo do Woody: «Até ao infinito e mais além!»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Shrek",
+        "fr": "Shrek",
+        "pt": "Shrek"
+      },
+      {
+        "en": "Woody",
+        "fr": "Woody",
+        "pt": "Woody"
+      },
+      {
+        "en": "Emperor Zurg",
+        "fr": "l’Empereur Zurg",
+        "pt": "Imperador Zurg"
+      }
+    ],
+    "homeCountry": null,
+    "id": "buzz-lightyear",
+    "name": {
+      "en": "Buzz Lightyear",
+      "fr": "Buzz l’Éclair",
+      "pt": "Buzz Lightyear"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["SpongeBob", "Sponge Bob"],
+      "fr": ["Bob", "SpongeBob"],
+      "pt": ["SpongeBob SquarePants", "Bob Esponja"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "He lives in the undersea town of Bikini Bottom.",
+          "fr": "Il vit dans la ville sous-marine de Bikini Bottom.",
+          "pt": "Vive na cidade submarina de Bikini Bottom."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He works at the Krusty Krab restaurant.",
+          "fr": "Il travaille au restaurant le Crabe Croustillant.",
+          "pt": "Trabalha no restaurante Krusty Krab."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Relentlessly cheerful, he laughs at everything.",
+          "fr": "D’une bonne humeur à toute épreuve, il rit de tout.",
+          "pt": "Sempre bem-disposto, ri-se de tudo."
+        }
+      },
+      {
+        "text": {
+          "en": "He lives in a pineapple and flips Krabby Patties.",
+          "fr": "Il habite dans un ananas et prépare des pâtés de crabe.",
+          "pt": "Mora num ananás e prepara hambúrgueres de caranguejo."
+        }
+      },
+      {
+        "text": {
+          "en": "A yellow sea sponge in square trousers, Patrick’s best friend.",
+          "fr": "Une éponge de mer jaune en pantalon carré, meilleure amie de Patrick.",
+          "pt": "Uma esponja-do-mar amarela de calças quadradas, a melhor amiga do Patrick."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Nemo",
+        "fr": "Nemo",
+        "pt": "Nemo"
+      },
+      {
+        "en": "Patrick Star",
+        "fr": "Patrick",
+        "pt": "Patrick"
+      },
+      {
+        "en": "Squidward",
+        "fr": "Carlo Tentacule",
+        "pt": "Squidward"
+      }
+    ],
+    "homeCountry": null,
+    "id": "spongebob",
+    "name": {
+      "en": "SpongeBob SquarePants",
+      "fr": "Bob l’éponge",
+      "pt": "SpongeBob"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A child, the hero of a classic story.",
+          "fr": "Un enfant, héros d’un récit classique.",
+          "pt": "Uma criança, protagonista de uma história clássica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Can fly through the night sky.",
+          "fr": "Capable de voler dans le ciel nocturne.",
+          "pt": "Consegue voar pelo céu noturno."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A boy who leads a gang of lost children.",
+          "fr": "Un garçon à la tête d’une bande d’enfants perdus.",
+          "pt": "Um rapaz que lidera um bando de crianças perdidas."
+        }
+      },
+      {
+        "text": {
+          "en": "His fairy, Tinker Bell, is jealous of every girl he meets.",
+          "fr": "Sa fée, la fée Clochette, est jalouse de toutes les filles qu’il croise.",
+          "pt": "A sua fada, a Sininho, tem ciúmes de todas as raparigas que ele conhece."
+        }
+      },
+      {
+        "text": {
+          "en": "The boy who never grows up, Captain Hook’s enemy in Neverland.",
+          "fr": "Le garçon qui ne voulait pas grandir, ennemi du capitaine Crochet au Pays imaginaire.",
+          "pt": "O rapaz que nunca cresce, inimigo do Capitão Gancho na Terra do Nunca."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Captain Hook",
+        "fr": "Capitaine Crochet",
+        "pt": "Capitão Gancho"
+      },
+      {
+        "en": "Mowgli",
+        "fr": "Mowgli",
+        "pt": "Mowgli"
+      },
+      {
+        "en": "Wendy Darling",
+        "fr": "Wendy",
+        "pt": "Wendy"
+      }
+    ],
+    "homeCountry": null,
+    "id": "peter-pan",
+    "name": {
+      "en": "Peter Pan",
+      "fr": "Peter Pan",
+      "pt": "Peter Pan"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Quixote", "Don Quijote"],
+      "fr": ["Quichotte", "Don Quixote"],
+      "pt": ["Quixote", "Don Quixote"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from Spanish literature.",
+          "fr": "Un personnage de la littérature espagnole.",
+          "pt": "Uma personagem da literatura espanhola."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He takes to the roads of La Mancha in search of adventure.",
+          "fr": "Il court les routes de la Manche en quête d’aventures.",
+          "pt": "Percorre as estradas da Mancha em busca de aventuras."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A lanky gentleman who has read far too many tales of chivalry.",
+          "fr": "Un hidalgo dégingandé qui a lu bien trop de romans de chevalerie.",
+          "pt": "Um fidalgo esguio que leu romances de cavalaria a mais."
+        }
+      },
+      {
+        "text": {
+          "en": "He charges at windmills, convinced they are giants.",
+          "fr": "Il charge des moulins à vent, persuadé que ce sont des géants.",
+          "pt": "Investe contra moinhos de vento, convencido de que são gigantes."
+        }
+      },
+      {
+        "text": {
+          "en": "Cervantes’ Knight of the Sorrowful Countenance, on his horse Rocinante.",
+          "fr": "Le chevalier à la triste figure de Cervantès, monté sur Rossinante.",
+          "pt": "O Cavaleiro da Triste Figura, de Cervantes, montado no Rocinante."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Hamlet",
+        "fr": "Hamlet",
+        "pt": "Hamlet"
+      },
+      {
+        "en": "Don Juan",
+        "fr": "Don Juan",
+        "pt": "D. Juan"
+      },
+      {
+        "en": "Sancho Panza",
+        "fr": "Sancho Panza",
+        "pt": "Sancho Pança"
+      }
+    ],
+    "homeCountry": null,
+    "id": "don-quixote",
+    "name": {
+      "en": "Don Quixote",
+      "fr": "Don Quichotte",
+      "pt": "Dom Quixote"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Poirot"],
+      "fr": ["Poirot"],
+      "pt": ["Poirot"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A famous fictional detective.",
+          "fr": "Un célèbre détective de fiction.",
+          "pt": "Um célebre detetive de ficção."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "French is his mother tongue.",
+          "fr": "Le français est sa langue maternelle.",
+          "pt": "O francês é a sua língua materna."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A Belgian who is forever being mistaken for a Frenchman.",
+          "fr": "Un Belge qu’on prend sans cesse pour un Français.",
+          "pt": "Um belga que estão sempre a confundir com um francês."
+        }
+      },
+      {
+        "text": {
+          "en": "He trusts his “little grey cells” and pampers his moustache.",
+          "fr": "Il se fie à ses « petites cellules grises » et bichonne sa moustache.",
+          "pt": "Confia nas suas «pequenas células cinzentas» e trata do bigode com esmero."
+        }
+      },
+      {
+        "text": {
+          "en": "Agatha Christie’s sleuth, aboard the Orient Express.",
+          "fr": "Le détective d’Agatha Christie, à bord de l’Orient-Express.",
+          "pt": "O detetive de Agatha Christie, a bordo do Expresso do Oriente."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Arsène Lupin",
+        "fr": "Arsène Lupin",
+        "pt": "Arsène Lupin"
+      },
+      {
+        "en": "Sherlock Holmes",
+        "fr": "Sherlock Holmes",
+        "pt": "Sherlock Holmes"
+      },
+      {
+        "en": "Inspector Maigret",
+        "fr": "Le commissaire Maigret",
+        "pt": "Comissário Maigret"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hercule-poirot",
+    "name": {
+      "en": "Hercule Poirot",
+      "fr": "Hercule Poirot",
+      "pt": "Hercule Poirot"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Count Dracula"],
+      "fr": ["Comte Dracula"],
+      "pt": ["Dracula", "Conde Drácula"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "He drinks human blood.",
+          "fr": "Il boit du sang humain.",
+          "pt": "Bebe sangue humano."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was created more than a hundred years ago.",
+          "fr": "Il a été créé il y a plus de cent ans.",
+          "pt": "Foi criado há mais de cem anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was born in a novel, not on film.",
+          "fr": "Il est né dans un roman, pas au cinéma.",
+          "pt": "Nasceu num romance, não no cinema."
+        }
+      },
+      {
+        "text": {
+          "en": "A nobleman who lives in a castle in Transylvania.",
+          "fr": "Un noble qui vit dans un château de Transylvanie.",
+          "pt": "Um nobre que vive num castelo na Transilvânia."
+        }
+      },
+      {
+        "text": {
+          "en": "Bram Stoker’s vampire, the most famous of them all.",
+          "fr": "Le vampire de Bram Stoker, le plus célèbre de tous.",
+          "pt": "O vampiro de Bram Stoker, o mais famoso de todos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Frankenstein’s monster",
+        "fr": "La créature de Frankenstein",
+        "pt": "O monstro de Frankenstein"
+      },
+      {
+        "en": "Edward Cullen",
+        "fr": "Edward Cullen",
+        "pt": "Edward Cullen"
+      },
+      {
+        "en": "Count Orlok",
+        "fr": "Le comte Orlok",
+        "pt": "O conde Orlok"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dracula",
+    "name": {
+      "en": "Dracula",
+      "fr": "Dracula",
+      "pt": "Drácula"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Robin Hood"],
+      "pt": ["Robin Hood"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A legendary hero of England.",
+          "fr": "Un héros légendaire d’Angleterre.",
+          "pt": "Um herói lendário de Inglaterra."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "An outlaw hiding out in the forest.",
+          "fr": "Un hors-la-loi caché dans la forêt.",
+          "pt": "Um fora da lei escondido na floresta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He leads a band of merry men.",
+          "fr": "Il mène une joyeuse bande de compagnons.",
+          "pt": "Lidera um alegre bando de companheiros."
+        }
+      },
+      {
+        "text": {
+          "en": "His sworn enemy is the Sheriff of Nottingham.",
+          "fr": "Son ennemi juré est le shérif de Nottingham.",
+          "pt": "O seu inimigo jurado é o xerife de Nottingham."
+        }
+      },
+      {
+        "text": {
+          "en": "The archer of Sherwood who robs the rich to give to the poor.",
+          "fr": "L’archer de Sherwood qui vole les riches pour donner aux pauvres.",
+          "pt": "O arqueiro de Sherwood que rouba aos ricos para dar aos pobres."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Zorro",
+        "fr": "Zorro",
+        "pt": "Zorro"
+      },
+      {
+        "en": "King Arthur",
+        "fr": "Le roi Arthur",
+        "pt": "O Rei Artur"
+      },
+      {
+        "en": "Little John",
+        "fr": "Petit Jean",
+        "pt": "João Pequeno"
+      }
+    ],
+    "homeCountry": null,
+    "id": "robin-hood",
+    "name": {
+      "en": "Robin Hood",
+      "fr": "Robin des Bois",
+      "pt": "Robin dos Bosques"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Gaston", "Lagaffe"],
+      "fr": ["Gaston", "Lagaffe"],
+      "pt": ["Gaston", "Lagaffe"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from Belgian comics.",
+          "fr": "Un personnage de la BD belge.",
+          "pt": "Uma personagem da banda desenhada belga."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He spends his days in the offices of a comics magazine.",
+          "fr": "Il passe ses journées dans les bureaux d’un journal de BD.",
+          "pt": "Passa os dias nos escritórios de uma revista de banda desenhada."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "An office boy who takes more naps than he does work.",
+          "fr": "Un garçon de bureau qui fait plus de siestes qu’il ne travaille.",
+          "pt": "Um paquete que dorme mais sestas do que trabalha."
+        }
+      },
+      {
+        "text": {
+          "en": "His inventions blow up, and his favourite cry is “M’enfin !”",
+          "fr": "Ses inventions explosent, et son cri favori est « M’enfin ! »",
+          "pt": "As invenções dele explodem, e o seu grito favorito é «M’enfin!»"
+        }
+      },
+      {
+        "text": {
+          "en": "Franquin’s hero in espadrilles, with a laughing gull and a cat.",
+          "fr": "Le héros en espadrilles de Franquin, avec sa mouette rieuse et son chat.",
+          "pt": "O herói de alpercatas de Franquin, com uma gaivota e um gato."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Asterix",
+        "fr": "Astérix",
+        "pt": "Astérix"
+      },
+      {
+        "en": "Marsupilami",
+        "fr": "Marsupilami",
+        "pt": "Marsupilami"
+      },
+      {
+        "en": "Fantasio",
+        "fr": "Fantasio",
+        "pt": "Fantasio"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "gaston-lagaffe",
+    "name": {
+      "en": "Gaston Lagaffe",
+      "fr": "Gaston Lagaffe",
+      "pt": "Gaston Lagaffe"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A comics character from the Wild West.",
+          "fr": "Un personnage de BD du Far West.",
+          "pt": "Uma personagem de banda desenhada do Faroeste."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Created by the Belgian cartoonist Morris.",
+          "fr": "Né sous le crayon du Belge Morris.",
+          "pt": "Criado pelo desenhador belga Morris."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He is on the side of the law.",
+          "fr": "Il est du côté de la loi.",
+          "pt": "Está do lado da lei."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1983 he swapped his cigarette for a blade of grass.",
+          "fr": "En 1983, il a troqué sa cigarette contre un brin d’herbe.",
+          "pt": "Em 1983 trocou o cigarro por uma palhinha."
+        }
+      },
+      {
+        "text": {
+          "en": "The cowboy who shoots faster than his shadow, on his horse Jolly Jumper.",
+          "fr": "L’homme qui tire plus vite que son ombre, sur son cheval Jolly Jumper.",
+          "pt": "O cowboy que dispara mais rápido do que a própria sombra, no cavalo Jolly Jumper."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tintin",
+        "fr": "Tintin",
+        "pt": "Tintim"
+      },
+      {
+        "en": "Blueberry",
+        "fr": "Blueberry",
+        "pt": "Blueberry"
+      },
+      {
+        "en": "Joe Dalton",
+        "fr": "Joe Dalton",
+        "pt": "Joe Dalton"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "lucky-luke",
+    "name": {
+      "en": "Lucky Luke",
+      "fr": "Lucky Luke",
+      "pt": "Lucky Luke"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A schoolboy.",
+          "fr": "Un écolier.",
+          "pt": "Um aluno da escola primária."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He first appeared in the 1990s.",
+          "fr": "Il est apparu dans les années 1990.",
+          "pt": "Apareceu pela primeira vez nos anos 1990."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Drawn by the Swiss cartoonist Zep.",
+          "fr": "Dessiné par le Suisse Zep.",
+          "pt": "Desenhado pelo suíço Zep."
+        }
+      },
+      {
+        "text": {
+          "en": "He has a thousand questions about love, sex, and Nadia, who ignores him.",
+          "fr": "Il se pose mille questions sur l’amour, le zizi et Nadia, qui l’ignore.",
+          "pt": "Tem mil perguntas sobre o amor, o sexo e a Nadia, que não lhe liga."
+        }
+      },
+      {
+        "text": {
+          "en": "The kid with the tuft of yellow hair who says “Tchô !”",
+          "fr": "Le gamin à la mèche jaune qui dit « Tchô ! »",
+          "pt": "O miúdo da madeixa amarela que diz «Tchô!»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gaston Lagaffe",
+        "fr": "Gaston Lagaffe",
+        "pt": "Gaston Lagaffe"
+      },
+      {
+        "en": "Little Nicholas",
+        "fr": "Le Petit Nicolas",
+        "pt": "O Menino Nicolau"
+      },
+      {
+        "en": "Ducobu",
+        "fr": "L’Élève Ducobu",
+        "pt": "Ducobu"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "titeuf",
+    "name": {
+      "en": "Titeuf",
+      "fr": "Titeuf",
+      "pt": "Titeuf"
+    },
+    "tier": "easy",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A schemer who dreams of seizing power.",
+          "fr": "Un comploteur qui rêve de prendre le pouvoir.",
+          "pt": "Um conspirador que sonha tomar o poder."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in a French-language comic.",
+          "fr": "Né dans une BD franco-belge.",
+          "pt": "Nascido na banda desenhada franco-belga."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He lives in the Baghdad of the caliphs.",
+          "fr": "Il vit dans la Bagdad des califes.",
+          "pt": "Vive na Bagdade dos califas."
+        }
+      },
+      {
+        "text": {
+          "en": "A grand vizier, caught every time in his own traps.",
+          "fr": "Un grand vizir, pris à chaque fois à ses propres pièges.",
+          "pt": "Um grão-vizir, sempre apanhado nas próprias armadilhas."
+        }
+      },
+      {
+        "text": {
+          "en": "Goscinny’s villain who wants to be caliph instead of the caliph.",
+          "fr": "Le méchant de Goscinny qui veut devenir calife à la place du calife.",
+          "pt": "O vilão de Goscinny que quer ser califa no lugar do califa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tintin",
+        "fr": "Tintin",
+        "pt": "Tintim"
+      },
+      {
+        "en": "Jafar",
+        "fr": "Jafar",
+        "pt": "Jafar"
+      },
+      {
+        "en": "Zorglub",
+        "fr": "Zorglub",
+        "pt": "Zorglub"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "iznogoud",
+    "name": {
+      "en": "Iznogoud",
+      "fr": "Iznogoud",
+      "pt": "Iznogoud"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A little boy, the hero of an animated film.",
+          "fr": "Un petit garçon, héros d’un film d’animation.",
+          "pt": "Um rapazinho, herói de um filme de animação."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Created by the animator Michel Ocelot.",
+          "fr": "Créé par Michel Ocelot.",
+          "pt": "Criado pelo realizador de animação Michel Ocelot."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A tiny boy from a West African village.",
+          "fr": "Un tout petit garçon d’un village d’Afrique de l’Ouest.",
+          "pt": "Um rapazinho pequenino de uma aldeia da África Ocidental."
+        }
+      },
+      {
+        "text": {
+          "en": "He delivered himself at birth and stands up to the sorceress Karaba.",
+          "fr": "Il s’est mis au monde tout seul et tient tête à la sorcière Karaba.",
+          "pt": "Nasceu sozinho e enfrenta a feiticeira Karaba."
+        }
+      },
+      {
+        "text": {
+          "en": "“He isn’t big, but he is brave”: the little one who saves his village.",
+          "fr": "« Il n’est pas grand, mais il est vaillant » : le petit qui sauve son village.",
+          "pt": "«Não é grande, mas é valente»: o pequenino que salva a aldeia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Simba",
+        "fr": "Simba",
+        "pt": "Simba"
+      },
+      {
+        "en": "Mowgli",
+        "fr": "Mowgli",
+        "pt": "Mowgli"
+      },
+      {
+        "en": "Azur",
+        "fr": "Azur",
+        "pt": "Azur"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "kirikou",
+    "name": {
+      "en": "Kirikou",
+      "fr": "Kirikou",
+      "pt": "Kirikou"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Le Petit Nicolas", "Nicholas", "Nicolas"],
+      "fr": ["Petit Nicolas", "Nicolas"],
+      "pt": ["Nicolau", "Le Petit Nicolas"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A schoolboy.",
+          "fr": "Un écolier.",
+          "pt": "Um menino em idade escolar."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He first appeared in the 1950s.",
+          "fr": "Il est apparu dans les années 1950.",
+          "pt": "Apareceu pela primeira vez nos anos 1950."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A little French boy with a gang of inseparable pals.",
+          "fr": "Un petit Français entouré d’une bande de copains inséparables.",
+          "pt": "Um pequeno francês com uma turma de amigos inseparáveis."
+        }
+      },
+      {
+        "text": {
+          "en": "His pal Alceste never stops eating, and Agnan is teacher’s pet.",
+          "fr": "Son copain Alceste mange sans arrêt, et Agnan est le chouchou de la maîtresse.",
+          "pt": "Um dos amigos não para de comer, e outro é o queridinho da professora."
+        }
+      },
+      {
+        "text": {
+          "en": "The schoolboy dreamed up by Goscinny and Sempé.",
+          "fr": "L’écolier imaginé par Goscinny et Sempé.",
+          "pt": "O menino imaginado por Goscinny e Sempé."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gaston Lagaffe",
+        "fr": "Gaston Lagaffe",
+        "pt": "Gaston Lagaffe"
+      },
+      {
+        "en": "Titeuf",
+        "fr": "Titeuf",
+        "pt": "Titeuf"
+      },
+      {
+        "en": "Charlie Brown",
+        "fr": "Charlie Brown",
+        "pt": "Charlie Brown"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "le-petit-nicolas",
+    "name": {
+      "en": "Little Nicholas",
+      "fr": "Le Petit Nicolas",
+      "pt": "O Menino Nicolau"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Lupin", "Arsene Lupin"],
+      "fr": ["Lupin"],
+      "pt": ["Lupin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "He makes his living by stealing.",
+          "fr": "Il vit du vol.",
+          "pt": "Vive de roubos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "French through and through.",
+          "fr": "Français jusqu’au bout des ongles.",
+          "pt": "Francês dos pés à cabeça."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A gentleman who never kills anyone.",
+          "fr": "Un gentleman qui ne tue jamais personne.",
+          "pt": "Um cavalheiro que nunca mata ninguém."
+        }
+      },
+      {
+        "text": {
+          "en": "He crossed swords with an English detective renamed Herlock Sholmès.",
+          "fr": "Il a croisé le fer avec un détective anglais rebaptisé Herlock Sholmès.",
+          "pt": "Mediu forças com um detetive inglês rebatizado Herlock Sholmès."
+        }
+      },
+      {
+        "text": {
+          "en": "Maurice Leblanc’s gentleman burglar, in top hat and monocle.",
+          "fr": "Le gentleman cambrioleur de Maurice Leblanc, haut-de-forme et monocle.",
+          "pt": "O ladrão de casaca de Maurice Leblanc, de cartola e monóculo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sherlock Holmes",
+        "fr": "Sherlock Holmes",
+        "pt": "Sherlock Holmes"
+      },
+      {
+        "en": "Robin Hood",
+        "fr": "Robin des Bois",
+        "pt": "Robin dos Bosques"
+      },
+      {
+        "en": "Fantômas",
+        "fr": "Fantômas",
+        "pt": "Fantômas"
+      }
+    ],
+    "homeCountry": null,
+    "id": "arsene-lupin",
+    "name": {
+      "en": "Arsène Lupin",
+      "fr": "Arsène Lupin",
+      "pt": "Arsène Lupin"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Valjean"],
+      "fr": ["Valjean"],
+      "pt": ["Valjean"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character born from Victor Hugo’s pen.",
+          "fr": "Un personnage né sous la plume de Victor Hugo.",
+          "pt": "Uma personagem nascida da pena de Victor Hugo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He appears in Les Misérables.",
+          "fr": "Il apparaît dans Les Misérables.",
+          "pt": "Aparece em Os Miseráveis."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A former convict.",
+          "fr": "Un ancien bagnard.",
+          "pt": "Um ex-presidiário."
+        }
+      },
+      {
+        "text": {
+          "en": "Nineteen years of hard labour, all for stealing a loaf of bread.",
+          "fr": "Dix-neuf ans de bagne, tout ça pour avoir volé un pain.",
+          "pt": "Dezanove anos de trabalhos forçados, tudo por ter roubado um pão."
+        }
+      },
+      {
+        "text": {
+          "en": "Cosette’s adoptive father, hunted by Inspector Javert.",
+          "fr": "Le père adoptif de Cosette, traqué par l’inspecteur Javert.",
+          "pt": "O pai adotivo de Cosette, perseguido pelo inspetor Javert."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Edmond Dantès",
+        "fr": "Edmond Dantès",
+        "pt": "Edmond Dantès"
+      },
+      {
+        "en": "Quasimodo",
+        "fr": "Quasimodo",
+        "pt": "Quasimodo"
+      },
+      {
+        "en": "Javert",
+        "fr": "Javert",
+        "pt": "Javert"
+      }
+    ],
+    "homeCountry": null,
+    "id": "jean-valjean",
+    "name": {
+      "en": "Jean Valjean",
+      "fr": "Jean Valjean",
+      "pt": "Jean Valjean"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": ["Quasimodo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from a 19th-century French novel.",
+          "fr": "Un personnage d’un roman français du XIXe siècle.",
+          "pt": "Uma personagem de um romance francês do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born from Victor Hugo’s pen.",
+          "fr": "Né sous la plume de Victor Hugo.",
+          "pt": "Nascido da pena de Victor Hugo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was abandoned as a baby in a church.",
+          "fr": "Il a été abandonné bébé dans une église.",
+          "pt": "Foi abandonado em bebé numa igreja."
+        }
+      },
+      {
+        "text": {
+          "en": "Ringing the bells has made him deaf.",
+          "fr": "À force de sonner les cloches, il est devenu sourd.",
+          "pt": "De tanto tocar os sinos, ficou surdo."
+        }
+      },
+      {
+        "text": {
+          "en": "The hunchback of Notre-Dame, in love with Esmeralda.",
+          "fr": "Le bossu de Notre-Dame, amoureux d’Esmeralda.",
+          "pt": "O corcunda de Notre-Dame, apaixonado por Esmeralda."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Frankenstein’s monster",
+        "fr": "La créature de Frankenstein",
+        "pt": "O monstro de Frankenstein"
+      },
+      {
+        "en": "D’Artagnan",
+        "fr": "D’Artagnan",
+        "pt": "D’Artagnan"
+      },
+      {
+        "en": "Jean Valjean",
+        "fr": "Jean Valjean",
+        "pt": "Jean Valjean"
+      }
+    ],
+    "homeCountry": null,
+    "id": "quasimodo",
+    "name": {
+      "en": "Quasimodo",
+      "fr": "Quasimodo",
+      "pt": "Quasímodo"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Artagnan", "Dartagnan"],
+      "fr": ["Artagnan", "Dartagnan"],
+      "pt": ["Artagnan", "Dartagnan"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hero of Alexandre Dumas.",
+          "fr": "Un héros d’Alexandre Dumas.",
+          "pt": "Um herói de Alexandre Dumas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He serves the king as a musketeer.",
+          "fr": "Il sert le roi comme mousquetaire.",
+          "pt": "Serve o rei como mosqueteiro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A young Gascon who rides up to Paris to make his fortune.",
+          "fr": "Un jeune Gascon monté à Paris pour faire fortune.",
+          "pt": "Um jovem gascão que parte para Paris em busca de fortuna."
+        }
+      },
+      {
+        "text": {
+          "en": "On his very first day, he challenges three men to three duels.",
+          "fr": "Dès son premier jour, il provoque trois hommes en duel.",
+          "pt": "Logo no primeiro dia, desafia três homens para três duelos."
+        }
+      },
+      {
+        "text": {
+          "en": "The fourth of the Three Musketeers, friend of Athos, Porthos and Aramis.",
+          "fr": "Le quatrième des Trois Mousquetaires, ami d’Athos, Porthos et Aramis.",
+          "pt": "O quarto dos Três Mosqueteiros, amigo de Athos, Porthos e Aramis."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jean Valjean",
+        "fr": "Jean Valjean",
+        "pt": "Jean Valjean"
+      },
+      {
+        "en": "Edmond Dantès",
+        "fr": "Edmond Dantès",
+        "pt": "Edmond Dantès"
+      },
+      {
+        "en": "Athos",
+        "fr": "Athos",
+        "pt": "Athos"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dartagnan",
+    "name": {
+      "en": "D’Artagnan",
+      "fr": "D’Artagnan",
+      "pt": "D’Artagnan"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [
+        "Edmond Dantès",
+        "Dantès",
+        "Monte Cristo",
+        "Count of Monte Cristo"
+      ],
+      "fr": [
+        "Edmond Dantès",
+        "Dantès",
+        "Monte-Cristo",
+        "Comte de Monte-Cristo"
+      ],
+      "pt": ["Edmond Dantès", "Dantès", "Monte Cristo", "Conde de Monte Cristo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French novel’s hero who spends long years behind bars.",
+          "fr": "Un héros de roman français qui passe de longues années derrière les barreaux.",
+          "pt": "Um herói de romance francês que passa longos anos atrás das grades."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born from the pen of Alexandre Dumas.",
+          "fr": "Né sous la plume d’Alexandre Dumas.",
+          "pt": "Saído da pena de Alexandre Dumas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A young sailor from Marseille, arrested at his own betrothal feast.",
+          "fr": "Un jeune marin marseillais, arrêté en plein repas de fiançailles.",
+          "pt": "Um jovem marinheiro de Marselha, preso em pleno banquete de noivado."
+        }
+      },
+      {
+        "text": {
+          "en": "He escapes the Château d’If sewn into a dead man’s shroud.",
+          "fr": "Il s’évade du château d’If cousu dans le linceul d’un mort.",
+          "pt": "Foge do Castelo de If cosido na mortalha de um morto."
+        }
+      },
+      {
+        "text": {
+          "en": "Made rich by a hidden treasure, he returns under a noble title for revenge.",
+          "fr": "Enrichi par un trésor caché, il revient sous un titre de noblesse pour se venger.",
+          "pt": "Enriquecido por um tesouro escondido, regressa com um título nobre para se vingar."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "D’Artagnan",
+        "fr": "D’Artagnan",
+        "pt": "D’Artagnan"
+      },
+      {
+        "en": "Jean Valjean",
+        "fr": "Jean Valjean",
+        "pt": "Jean Valjean"
+      },
+      {
+        "en": "The Man in the Iron Mask",
+        "fr": "L’Homme au masque de fer",
+        "pt": "O Homem da Máscara de Ferro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "count-of-monte-cristo",
+    "name": {
+      "en": "The Count of Monte Cristo",
+      "fr": "Le Comte de Monte-Cristo",
+      "pt": "O Conde de Monte Cristo"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Prince Hamlet"],
+      "fr": ["Prince Hamlet"],
+      "pt": ["Príncipe Hamlet"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from Shakespeare.",
+          "fr": "Un personnage de Shakespeare.",
+          "pt": "Uma personagem de Shakespeare."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He never sits on a throne.",
+          "fr": "Il ne monte jamais sur le trône.",
+          "pt": "Nunca chega a sentar-se no trono."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A prince in mourning for his father, the late king.",
+          "fr": "Un prince en deuil de son père, le roi défunt.",
+          "pt": "Um príncipe de luto pelo pai, o falecido rei."
+        }
+      },
+      {
+        "text": {
+          "en": "His father’s ghost tells him that his uncle is the murderer.",
+          "fr": "Le spectre de son père lui révèle que son oncle est l’assassin.",
+          "pt": "O fantasma do pai revela-lhe que o tio é o assassino."
+        }
+      },
+      {
+        "text": {
+          "en": "The Prince of Denmark, skull in hand: “To be, or not to be.”",
+          "fr": "Le prince du Danemark, un crâne à la main : « Être ou ne pas être. »",
+          "pt": "O príncipe da Dinamarca, de caveira na mão: «Ser ou não ser.»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Don Quixote",
+        "fr": "Don Quichotte",
+        "pt": "Dom Quixote"
+      },
+      {
+        "en": "Macbeth",
+        "fr": "Macbeth",
+        "pt": "Macbeth"
+      },
+      {
+        "en": "Romeo",
+        "fr": "Roméo",
+        "pt": "Romeu"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hamlet",
+    "name": {
+      "en": "Hamlet",
+      "fr": "Hamlet",
+      "pt": "Hamlet"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Ulysses"],
+      "fr": ["Odysseus"],
+      "pt": ["Odisseu", "Odysseus"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hero of the Trojan War.",
+          "fr": "Un héros de la guerre de Troie.",
+          "pt": "Um herói da Guerra de Troia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He comes out of the war alive.",
+          "fr": "Il sort vivant de la guerre.",
+          "pt": "Sai vivo da guerra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "It then takes him ten years to get home.",
+          "fr": "Il met ensuite dix ans à rentrer chez lui.",
+          "pt": "Depois demora dez anos a regressar a casa."
+        }
+      },
+      {
+        "text": {
+          "en": "He blinds a Cyclops and has himself tied to the mast to hear the Sirens.",
+          "fr": "Il aveugle un cyclope et se fait attacher au mât pour entendre les sirènes.",
+          "pt": "Cega um ciclope e faz-se amarrar ao mastro para ouvir as sereias."
+        }
+      },
+      {
+        "text": {
+          "en": "The king of Ithaca behind the wooden horse, awaited by Penelope.",
+          "fr": "Le roi d’Ithaque, inventeur du cheval de Troie, que Pénélope attend.",
+          "pt": "O rei de Ítaca, autor do cavalo de Troia, por quem Penélope espera."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Hercules",
+        "fr": "Hercule",
+        "pt": "Hércules"
+      },
+      {
+        "en": "Achilles",
+        "fr": "Achille",
+        "pt": "Aquiles"
+      },
+      {
+        "en": "Agamemnon",
+        "fr": "Agamemnon",
+        "pt": "Agamémnon"
+      }
+    ],
+    "homeCountry": null,
+    "id": "odysseus",
+    "name": {
+      "en": "Odysseus",
+      "fr": "Ulysse",
+      "pt": "Ulisses"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A monster of Greek mythology.",
+          "fr": "Un monstre de la mythologie grecque.",
+          "pt": "Um monstro da mitologia grega."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She has the face of a woman.",
+          "fr": "Elle a un visage de femme.",
+          "pt": "Tem rosto de mulher."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A hero cuts off her head.",
+          "fr": "Un héros lui tranche la tête.",
+          "pt": "Um herói corta-lhe a cabeça."
+        }
+      },
+      {
+        "text": {
+          "en": "Perseus beheads her, using a polished shield as a mirror.",
+          "fr": "Persée la décapite en se servant d’un bouclier poli comme d’un miroir.",
+          "pt": "Perseu decapita-a usando um escudo polido como espelho."
+        }
+      },
+      {
+        "text": {
+          "en": "The Gorgon with snakes for hair, whose gaze turns you to stone.",
+          "fr": "La Gorgone à la chevelure de serpents, dont le regard pétrifie.",
+          "pt": "A Górgona de cabelos de serpentes, cujo olhar transforma em pedra."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pegasus",
+        "fr": "Pégase",
+        "pt": "Pégaso"
+      },
+      {
+        "en": "The Minotaur",
+        "fr": "Le Minotaure",
+        "pt": "O Minotauro"
+      },
+      {
+        "en": "The Sphinx",
+        "fr": "Le Sphinx",
+        "pt": "A Esfinge"
+      }
+    ],
+    "homeCountry": null,
+    "id": "medusa",
+    "name": {
+      "en": "Medusa",
+      "fr": "Méduse",
+      "pt": "Medusa"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": ["Merlin l’Enchanteur"],
+      "pt": ["Merlin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great master of magic.",
+          "fr": "Un grand maître de la magie.",
+          "pt": "Um grande mestre da magia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A figure of Arthurian legend.",
+          "fr": "Une figure de la légende arthurienne.",
+          "pt": "Uma figura das lendas arturianas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A man, and the king’s wise counsellor.",
+          "fr": "Un homme, sage conseiller du roi.",
+          "pt": "Um homem, sábio conselheiro do rei."
+        }
+      },
+      {
+        "text": {
+          "en": "He ends up imprisoned by Viviane, the Lady of the Lake, whom he loved.",
+          "fr": "Il finit prisonnier de Viviane, la Dame du Lac, qu’il aimait.",
+          "pt": "Acaba prisioneiro de Viviana, a Dama do Lago, que amava."
+        }
+      },
+      {
+        "text": {
+          "en": "The enchanter who raised young Arthur, the boy who drew the sword from the stone.",
+          "fr": "L’enchanteur qui a élevé le jeune Arthur, l’enfant qui tira l’épée du rocher.",
+          "pt": "O feiticeiro que educou o jovem Artur, o rapaz que tirou a espada da pedra."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Lancelot",
+        "fr": "Lancelot",
+        "pt": "Lancelote"
+      },
+      {
+        "en": "Gandalf",
+        "fr": "Gandalf",
+        "pt": "Gandalf"
+      },
+      {
+        "en": "Morgan le Fay",
+        "fr": "La fée Morgane",
+        "pt": "A fada Morgana"
+      }
+    ],
+    "homeCountry": null,
+    "id": "merlin",
+    "name": {
+      "en": "Merlin",
+      "fr": "Merlin",
+      "pt": "Merlim"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Heisenberg", "Walt"],
+      "fr": ["Heisenberg", "Walt"],
+      "pt": ["Heisenberg", "Walt"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A TV series character with blood on his hands.",
+          "fr": "Un personnage de série qui a du sang sur les mains.",
+          "pt": "Uma personagem de série com sangue nas mãos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He cooks methamphetamine.",
+          "fr": "Il fabrique de la méthamphétamine.",
+          "pt": "Fabrica metanfetamina."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A high-school chemistry teacher.",
+          "fr": "Un professeur de chimie au lycée.",
+          "pt": "Um professor de química do secundário."
+        }
+      },
+      {
+        "text": {
+          "en": "Diagnosed with lung cancer, he wants to leave money for his family.",
+          "fr": "Atteint d’un cancer du poumon, il veut laisser de l’argent à sa famille.",
+          "pt": "Com cancro do pulmão, quer deixar dinheiro à família."
+        }
+      },
+      {
+        "text": {
+          "en": "Breaking Bad’s bald chemist: “I am the one who knocks.”",
+          "fr": "Le chimiste chauve de Breaking Bad : « C’est moi qui frappe. »",
+          "pt": "O químico careca de Breaking Bad: «Eu sou aquele que bate à porta.»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sheldon Cooper",
+        "fr": "Sheldon Cooper",
+        "pt": "Sheldon Cooper"
+      },
+      {
+        "en": "Tony Soprano",
+        "fr": "Tony Soprano",
+        "pt": "Tony Soprano"
+      },
+      {
+        "en": "Jesse Pinkman",
+        "fr": "Jesse Pinkman",
+        "pt": "Jesse Pinkman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "walter-white",
+    "name": {
+      "en": "Walter White",
+      "fr": "Walter White",
+      "pt": "Walter White"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Daenerys", "Khaleesi", "Dany"],
+      "fr": ["Daenerys", "Khaleesi", "Dany"],
+      "pt": ["Daenerys", "Khaleesi", "Dany"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A woman from Game of Thrones.",
+          "fr": "Une femme de Game of Thrones.",
+          "pt": "Uma mulher de A Guerra dos Tronos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She is crowned queen.",
+          "fr": "Elle est couronnée reine.",
+          "pt": "Chega a ser coroada rainha."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She grew up in exile, far from Westeros.",
+          "fr": "Elle a grandi en exil, loin de Westeros.",
+          "pt": "Cresceu no exílio, longe de Westeros."
+        }
+      },
+      {
+        "text": {
+          "en": "She walks into a funeral pyre and comes out unburnt.",
+          "fr": "Elle entre dans un bûcher funéraire et en ressort indemne.",
+          "pt": "Entra numa pira funerária e sai ilesa."
+        }
+      },
+      {
+        "text": {
+          "en": "The silver-haired Mother of Dragons.",
+          "fr": "La Mère des dragons aux cheveux d’argent.",
+          "pt": "A Mãe dos Dragões de cabelo prateado."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tyrion Lannister",
+        "fr": "Tyrion Lannister",
+        "pt": "Tyrion Lannister"
+      },
+      {
+        "en": "Arya Stark",
+        "fr": "Arya Stark",
+        "pt": "Arya Stark"
+      },
+      {
+        "en": "Cersei Lannister",
+        "fr": "Cersei Lannister",
+        "pt": "Cersei Lannister"
+      }
+    ],
+    "homeCountry": null,
+    "id": "daenerys-targaryen",
+    "name": {
+      "en": "Daenerys Targaryen",
+      "fr": "Daenerys Targaryen",
+      "pt": "Daenerys Targaryen"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Hannibal", "Lecter"],
+      "fr": ["Hannibal", "Lecter"],
+      "pt": ["Hannibal", "Lecter"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A serial killer of page and screen.",
+          "fr": "Un tueur en série du roman et du cinéma.",
+          "pt": "Um assassino em série dos livros e do cinema."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Polished, well-off and always impeccably dressed.",
+          "fr": "Distingué, aisé, toujours tiré à quatre épingles.",
+          "pt": "Distinto, abastado e sempre impecavelmente vestido."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A brilliant psychiatrist.",
+          "fr": "Un psychiatre brillant.",
+          "pt": "Um psiquiatra brilhante."
+        }
+      },
+      {
+        "text": {
+          "en": "He helps FBI trainee Clarice Starling from behind the glass of his cell.",
+          "fr": "Il aide la jeune recrue du FBI Clarice Starling, derrière la vitre de sa cellule.",
+          "pt": "Ajuda a estagiária do FBI Clarice Starling, por detrás do vidro da cela."
+        }
+      },
+      {
+        "text": {
+          "en": "The cannibal of The Silence of the Lambs, played by Anthony Hopkins.",
+          "fr": "Le cannibale du Silence des agneaux, joué par Anthony Hopkins.",
+          "pt": "O canibal de O Silêncio dos Inocentes, interpretado por Anthony Hopkins."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Clarice Starling",
+        "fr": "Clarice Starling",
+        "pt": "Clarice Starling"
+      },
+      {
+        "en": "Norman Bates",
+        "fr": "Norman Bates",
+        "pt": "Norman Bates"
+      },
+      {
+        "en": "Patrick Bateman",
+        "fr": "Patrick Bateman",
+        "pt": "Patrick Bateman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "hannibal-lecter",
+    "name": {
+      "en": "Hannibal Lecter",
+      "fr": "Hannibal Lecter",
+      "pt": "Hannibal Lecter"
+    },
+    "tier": "medium",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Nemo"],
+      "fr": ["Nemo"],
+      "pt": ["Nemo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Jules Verne character.",
+          "fr": "Un personnage de Jules Verne.",
+          "pt": "Uma personagem de Júlio Verne."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He travels aboard a machine he built himself.",
+          "fr": "Il voyage à bord d’une machine qu’il a lui-même conçue.",
+          "pt": "Viaja numa máquina que ele próprio concebeu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His journeys take him beneath the waves.",
+          "fr": "Ses voyages l’emmènent sous les mers.",
+          "pt": "As suas viagens levam-no ao fundo dos mares."
+        }
+      },
+      {
+        "text": {
+          "en": "An Indian prince who turned his back on the world of men.",
+          "fr": "Un prince indien qui a tourné le dos au monde des hommes.",
+          "pt": "Um príncipe indiano que virou costas ao mundo dos homens."
+        }
+      },
+      {
+        "text": {
+          "en": "Commander of the Nautilus in “Twenty Thousand Leagues Under the Sea”.",
+          "fr": "Le commandant du Nautilus, dans « Vingt mille lieues sous les mers ».",
+          "pt": "O comandante do Nautilus, em «Vinte Mil Léguas Submarinas»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Captain Ahab",
+        "fr": "Le capitaine Achab",
+        "pt": "Capitão Ahab"
+      },
+      {
+        "en": "Phileas Fogg",
+        "fr": "Phileas Fogg",
+        "pt": "Phileas Fogg"
+      },
+      {
+        "en": "Robur",
+        "fr": "Robur",
+        "pt": "Robur"
+      }
+    ],
+    "homeCountry": null,
+    "id": "captain-nemo",
+    "name": {
+      "en": "Captain Nemo",
+      "fr": "Capitaine Nemo",
+      "pt": "Capitão Nemo"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Fogg"],
+      "fr": ["Fogg"],
+      "pt": ["Fogg"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Jules Verne hero.",
+          "fr": "Un héros de Jules Verne.",
+          "pt": "Um herói de Júlio Verne."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He gets around by the ordinary means of his day, nothing invented.",
+          "fr": "Il voyage avec les moyens de transport ordinaires de son époque.",
+          "pt": "Viaja com os meios de transporte comuns da sua época."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A wealthy English gentleman, obsessively punctual.",
+          "fr": "Un riche gentleman anglais, d’une ponctualité maniaque.",
+          "pt": "Um rico cavalheiro inglês, de uma pontualidade obsessiva."
+        }
+      },
+      {
+        "text": {
+          "en": "He bets twenty thousand pounds at his London club, the Reform Club.",
+          "fr": "Il parie vingt mille livres à son club londonien, le Reform Club.",
+          "pt": "Aposta vinte mil libras no seu clube londrino, o Reform Club."
+        }
+      },
+      {
+        "text": {
+          "en": "With Passepartout, he goes around the world in eighty days.",
+          "fr": "Avec Passepartout, il fait le tour du monde en quatre-vingts jours.",
+          "pt": "Com Passepartout, dá a volta ao mundo em oitenta dias."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sherlock Holmes",
+        "fr": "Sherlock Holmes",
+        "pt": "Sherlock Holmes"
+      },
+      {
+        "en": "Captain Nemo",
+        "fr": "Capitaine Nemo",
+        "pt": "Capitão Nemo"
+      },
+      {
+        "en": "Michael Strogoff",
+        "fr": "Michel Strogoff",
+        "pt": "Miguel Strogoff"
+      }
+    ],
+    "homeCountry": null,
+    "id": "phileas-fogg",
+    "name": {
+      "en": "Phileas Fogg",
+      "fr": "Phileas Fogg",
+      "pt": "Phileas Fogg"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Ahab"],
+      "fr": ["Achab", "Ahab", "Capitaine Achab"],
+      "pt": ["Ahab", "Acab"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A seafarer from a classic novel.",
+          "fr": "Un marin d’un roman classique.",
+          "pt": "Um homem do mar de um romance clássico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He stumps about on an artificial leg.",
+          "fr": "Il se déplace sur une jambe artificielle.",
+          "pt": "Anda com uma perna artificial."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He commands a whaling ship.",
+          "fr": "Il commande un baleinier.",
+          "pt": "Comanda um baleeiro."
+        }
+      },
+      {
+        "text": {
+          "en": "His ship, the Pequod, sails out of Nantucket.",
+          "fr": "Son navire, le Pequod, part de Nantucket.",
+          "pt": "O seu navio, o Pequod, parte de Nantucket."
+        }
+      },
+      {
+        "text": {
+          "en": "Melville’s skipper, hunting the white whale Moby Dick.",
+          "fr": "Le commandant de Melville, lancé à la poursuite de la baleine blanche Moby Dick.",
+          "pt": "O comandante de Melville, obcecado pela baleia branca Moby Dick."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sherlock Holmes",
+        "fr": "Sherlock Holmes",
+        "pt": "Sherlock Holmes"
+      },
+      {
+        "en": "Captain Hook",
+        "fr": "Capitaine Crochet",
+        "pt": "Capitão Gancho"
+      },
+      {
+        "en": "Long John Silver",
+        "fr": "Long John Silver",
+        "pt": "Long John Silver"
+      }
+    ],
+    "homeCountry": null,
+    "id": "captain-ahab",
+    "name": {
+      "en": "Captain Ahab",
+      "fr": "Le capitaine Achab",
+      "pt": "Capitão Ahab"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Gatsby"],
+      "fr": ["Gatsby"],
+      "pt": ["Gatsby"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from American literature.",
+          "fr": "Un personnage de la littérature américaine.",
+          "pt": "Uma personagem da literatura norte-americana."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A grown man of immense wealth.",
+          "fr": "Un homme fait, immensément riche.",
+          "pt": "Um homem feito, imensamente rico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born poor, he made his fortune in murky ways.",
+          "fr": "Né pauvre, il a bâti sa fortune par des voies troubles.",
+          "pt": "Nascido pobre, fez fortuna por caminhos duvidosos."
+        }
+      },
+      {
+        "text": {
+          "en": "He throws lavish parties on Long Island, hoping Daisy will come.",
+          "fr": "Il donne des fêtes somptueuses à Long Island, en espérant que Daisy viendra.",
+          "pt": "Dá festas sumptuosas em Long Island, na esperança de que Daisy apareça."
+        }
+      },
+      {
+        "text": {
+          "en": "Fitzgerald’s hero, gazing at a green light across the bay.",
+          "fr": "Le héros de Fitzgerald, les yeux fixés sur une lumière verte de l’autre côté de la baie.",
+          "pt": "O herói de Fitzgerald, de olhos fixos numa luz verde do outro lado da baía."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mr Darcy",
+        "fr": "Mr Darcy",
+        "pt": "Sr. Darcy"
+      },
+      {
+        "en": "Holden Caulfield",
+        "fr": "Holden Caulfield",
+        "pt": "Holden Caulfield"
+      },
+      {
+        "en": "Tom Buchanan",
+        "fr": "Tom Buchanan",
+        "pt": "Tom Buchanan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "jay-gatsby",
+    "name": {
+      "en": "Jay Gatsby",
+      "fr": "Jay Gatsby",
+      "pt": "Jay Gatsby"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Holden", "Caulfield"],
+      "fr": ["Holden", "Caulfield"],
+      "pt": ["Holden", "Caulfield"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A teenager who narrates his own story.",
+          "fr": "Un adolescent qui raconte sa propre histoire.",
+          "pt": "Um adolescente que narra a própria história."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "His story is set in the 20th century.",
+          "fr": "Son histoire se déroule au XXe siècle.",
+          "pt": "A sua história passa-se no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Expelled from his prep school, he drifts around New York.",
+          "fr": "Renvoyé de son pensionnat, il erre dans New York.",
+          "pt": "Expulso do colégio interno, vagueia por Nova Iorque."
+        }
+      },
+      {
+        "text": {
+          "en": "He wonders where the ducks in Central Park go in winter.",
+          "fr": "Il se demande où vont les canards de Central Park en hiver.",
+          "pt": "Pergunta-se para onde vão os patos do Central Park no inverno."
+        }
+      },
+      {
+        "text": {
+          "en": "Salinger’s narrator in The Catcher in the Rye.",
+          "fr": "Le narrateur de L’Attrape-cœurs, de Salinger.",
+          "pt": "O narrador de À Espera no Centeio, de Salinger."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jay Gatsby",
+        "fr": "Jay Gatsby",
+        "pt": "Jay Gatsby"
+      },
+      {
+        "en": "Huckleberry Finn",
+        "fr": "Huckleberry Finn",
+        "pt": "Huckleberry Finn"
+      },
+      {
+        "en": "Alex DeLarge",
+        "fr": "Alex DeLarge",
+        "pt": "Alex DeLarge"
+      }
+    ],
+    "homeCountry": null,
+    "id": "holden-caulfield",
+    "name": {
+      "en": "Holden Caulfield",
+      "fr": "Holden Caulfield",
+      "pt": "Holden Caulfield"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Darcy", "Fitzwilliam Darcy"],
+      "fr": ["Darcy", "M. Darcy", "Fitzwilliam Darcy"],
+      "pt": ["Darcy", "Mr. Darcy", "Fitzwilliam Darcy"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A romantic hero of 19th-century English literature.",
+          "fr": "Un héros romantique de la littérature anglaise du XIXe siècle.",
+          "pt": "Um herói romântico da literatura inglesa do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born from Jane Austen’s pen.",
+          "fr": "Né sous la plume de Jane Austen.",
+          "pt": "Nascido da pena de Jane Austen."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Proud, cold and aloof when we first meet him.",
+          "fr": "Fier, froid et distant au premier abord.",
+          "pt": "Orgulhoso, frio e distante à primeira vista."
+        }
+      },
+      {
+        "text": {
+          "en": "His first proposal of marriage is turned down flat.",
+          "fr": "Sa première demande en mariage est sèchement refusée.",
+          "pt": "O primeiro pedido de casamento é recusado sem rodeios."
+        }
+      },
+      {
+        "text": {
+          "en": "The master of Pemberley, who wins over Elizabeth Bennet.",
+          "fr": "Le maître de Pemberley, qui finit par conquérir Elizabeth Bennet.",
+          "pt": "O senhor de Pemberley, que acaba por conquistar Elizabeth Bennet."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jay Gatsby",
+        "fr": "Jay Gatsby",
+        "pt": "Jay Gatsby"
+      },
+      {
+        "en": "Heathcliff",
+        "fr": "Heathcliff",
+        "pt": "Heathcliff"
+      },
+      {
+        "en": "Mr Bingley",
+        "fr": "Mr Bingley",
+        "pt": "Sr. Bingley"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mr-darcy",
+    "name": {
+      "en": "Mr Darcy",
+      "fr": "Mr Darcy",
+      "pt": "Sr. Darcy"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Cyrano", "Bergerac"],
+      "fr": ["Cyrano", "Bergerac"],
+      "pt": ["Cyrano", "Bergerac"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A swordsman from French literature.",
+          "fr": "Une fine lame de la littérature française.",
+          "pt": "Um espadachim da literatura francesa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was born on stage, in a play.",
+          "fr": "Il est né sur scène, dans une pièce de théâtre.",
+          "pt": "Nasceu em palco, numa peça de teatro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He loves one woman alone and never dares tell her.",
+          "fr": "Il aime une seule femme et n’ose jamais le lui dire.",
+          "pt": "Ama uma só mulher e nunca se atreve a dizer-lho."
+        }
+      },
+      {
+        "text": {
+          "en": "He writes love letters to Roxane on behalf of a handsomer man.",
+          "fr": "Il écrit des lettres d’amour à Roxane pour le compte d’un autre, plus beau que lui.",
+          "pt": "Escreve cartas de amor a Roxane em nome de outro, mais bonito do que ele."
+        }
+      },
+      {
+        "text": {
+          "en": "Edmond Rostand’s Gascon poet with an enormous nose.",
+          "fr": "Le poète gascon d’Edmond Rostand, au nez immense.",
+          "pt": "O poeta gascão de Edmond Rostand, de nariz enorme."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jean Valjean",
+        "fr": "Jean Valjean",
+        "pt": "Jean Valjean"
+      },
+      {
+        "en": "D’Artagnan",
+        "fr": "D’Artagnan",
+        "pt": "D’Artagnan"
+      },
+      {
+        "en": "Don Juan",
+        "fr": "Dom Juan",
+        "pt": "D. Juan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "cyrano-de-bergerac",
+    "name": {
+      "en": "Cyrano de Bergerac",
+      "fr": "Cyrano de Bergerac",
+      "pt": "Cyrano de Bergerac"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Bovary", "Madame Bovary"],
+      "fr": ["Bovary", "Madame Bovary"],
+      "pt": ["Bovary", "Madame Bovary"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "The heroine of a 19th-century novel.",
+          "fr": "L’héroïne d’un roman du XIXe siècle.",
+          "pt": "A heroína de um romance do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A Frenchwoman.",
+          "fr": "Une Française.",
+          "pt": "Uma francesa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Bored with her marriage, she takes lovers.",
+          "fr": "Lassée de son mariage, elle prend des amants.",
+          "pt": "Entediada com o casamento, arranja amantes."
+        }
+      },
+      {
+        "text": {
+          "en": "Married to a country doctor in Normandy, she drowns in debt.",
+          "fr": "Épouse d’un médecin de campagne normand, elle se noie sous les dettes.",
+          "pt": "Casada com um médico de província na Normandia, afunda-se em dívidas."
+        }
+      },
+      {
+        "text": {
+          "en": "Flaubert’s dreamer, who poisons herself with arsenic.",
+          "fr": "La rêveuse de Flaubert, qui s’empoisonne à l’arsenic.",
+          "pt": "A sonhadora de Flaubert, que se envenena com arsénio."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Edmond Dantès",
+        "fr": "Edmond Dantès",
+        "pt": "Edmond Dantès"
+      },
+      {
+        "en": "Anna Karenina",
+        "fr": "Anna Karénine",
+        "pt": "Anna Karenina"
+      },
+      {
+        "en": "Cosette",
+        "fr": "Cosette",
+        "pt": "Cosette"
+      }
+    ],
+    "homeCountry": null,
+    "id": "emma-bovary",
+    "name": {
+      "en": "Emma Bovary",
+      "fr": "Emma Bovary",
+      "pt": "Emma Bovary"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Corto"],
+      "fr": ["Corto"],
+      "pt": ["Corto"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hero of European comics.",
+          "fr": "Un héros de la bande dessinée européenne.",
+          "pt": "Um herói da banda desenhada europeia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Created by an Italian author.",
+          "fr": "Créé par un auteur italien.",
+          "pt": "Criado por um autor italiano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A sailor of fortune, never far from the sea.",
+          "fr": "Un marin aventurier, jamais loin de la mer.",
+          "pt": "Um marinheiro aventureiro, nunca longe do mar."
+        }
+      },
+      {
+        "text": {
+          "en": "As a boy, he carved his own line of fate into his palm with a razor.",
+          "fr": "Enfant, il s’est tracé lui-même sa ligne de chance au rasoir dans la paume.",
+          "pt": "Em criança, traçou ele próprio a linha da sorte na palma da mão, com uma navalha."
+        }
+      },
+      {
+        "text": {
+          "en": "Hugo Pratt’s sailor, with an earring and a cap.",
+          "fr": "Le marin d’Hugo Pratt, anneau à l’oreille et casquette.",
+          "pt": "O marinheiro de Hugo Pratt, de brinco na orelha e boné."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Superman",
+        "fr": "Superman",
+        "pt": "Super-Homem"
+      },
+      {
+        "en": "Captain Haddock",
+        "fr": "Capitaine Haddock",
+        "pt": "Capitão Haddock"
+      },
+      {
+        "en": "Diabolik",
+        "fr": "Diabolik",
+        "pt": "Diabolik"
+      }
+    ],
+    "homeCountry": null,
+    "id": "corto-maltese",
+    "name": {
+      "en": "Corto Maltese",
+      "fr": "Corto Maltese",
+      "pt": "Corto Maltese"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Snake"],
+      "fr": ["Snake"],
+      "pt": ["Snake"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A soldier from video games.",
+          "fr": "Un soldat de jeu vidéo.",
+          "pt": "Um soldado de videojogo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He would rather sneak past than be seen.",
+          "fr": "Il préfère passer en douce que se faire repérer.",
+          "pt": "Prefere passar despercebido a ser visto."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Created by the Japanese designer Hideo Kojima.",
+          "fr": "Créé par le Japonais Hideo Kojima.",
+          "pt": "Criado pelo japonês Hideo Kojima."
+        }
+      },
+      {
+        "text": {
+          "en": "He hides under a cardboard box; an exclamation mark over a guard means he’s spotted.",
+          "fr": "Il se cache sous un carton ; un point d’exclamation au-dessus d’un garde, et il est repéré.",
+          "pt": "Esconde-se debaixo de uma caixa de cartão; um ponto de exclamação sobre um guarda e foi descoberto."
+        }
+      },
+      {
+        "text": {
+          "en": "The bandana-wearing hero of Metal Gear Solid.",
+          "fr": "Le héros au bandana de Metal Gear Solid.",
+          "pt": "O herói de bandana de Metal Gear Solid."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mario",
+        "fr": "Mario",
+        "pt": "Mario"
+      },
+      {
+        "en": "Master Chief",
+        "fr": "Master Chief",
+        "pt": "Master Chief"
+      },
+      {
+        "en": "Sam Fisher",
+        "fr": "Sam Fisher",
+        "pt": "Sam Fisher"
+      }
+    ],
+    "homeCountry": null,
+    "id": "solid-snake",
+    "name": {
+      "en": "Solid Snake",
+      "fr": "Solid Snake",
+      "pt": "Solid Snake"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Samsa", "Gregor"],
+      "fr": ["Samsa", "Gregor"],
+      "pt": ["Samsa", "Gregor"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A literary character who undergoes a monstrous transformation.",
+          "fr": "Un personnage littéraire qui subit une transformation monstrueuse.",
+          "pt": "Uma personagem literária que sofre uma transformação monstruosa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He is turned into an animal.",
+          "fr": "Il se retrouve changé en animal.",
+          "pt": "Acaba transformado num animal."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A humble travelling salesman.",
+          "fr": "Un modeste représentant de commerce.",
+          "pt": "Um modesto caixeiro-viajante."
+        }
+      },
+      {
+        "text": {
+          "en": "One morning he wakes up on a hard shell, unable to get out of bed.",
+          "fr": "Un matin, il se réveille couché sur une carapace, incapable de se lever.",
+          "pt": "Certa manhã acorda deitado sobre uma carapaça, incapaz de se levantar."
+        }
+      },
+      {
+        "text": {
+          "en": "Kafka’s hero who wakes up as a giant insect in The Metamorphosis.",
+          "fr": "Le héros de Kafka qui se réveille en insecte géant dans La Métamorphose.",
+          "pt": "O herói de Kafka que acorda transformado num inseto gigante em A Metamorfose."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Hamlet",
+        "fr": "Hamlet",
+        "pt": "Hamlet"
+      },
+      {
+        "en": "Dr Jekyll",
+        "fr": "Le docteur Jekyll",
+        "pt": "Dr. Jekyll"
+      },
+      {
+        "en": "The Beast",
+        "fr": "La Bête",
+        "pt": "O Monstro"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gregor-samsa",
+    "name": {
+      "en": "Gregor Samsa",
+      "fr": "Gregor Samsa",
+      "pt": "Gregor Samsa"
+    },
+    "tier": "hard",
+    "wikidata": null
+  },
+  {
+    "accepted": {
+      "en": ["Atticus", "Finch"],
+      "fr": ["Atticus", "Finch"],
+      "pt": ["Atticus", "Finch"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A character from American literature.",
+          "fr": "Un personnage de la littérature américaine.",
+          "pt": "Uma personagem da literatura norte-americana."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A lawyer who pleads in court.",
+          "fr": "Un avocat qui plaide au tribunal.",
+          "pt": "Um advogado que pleiteia em tribunal."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A widower raising two children in a small Alabama town.",
+          "fr": "Un veuf qui élève deux enfants dans une petite ville d’Alabama.",
+          "pt": "Um viúvo que cria dois filhos numa pequena cidade do Alabama."
+        }
+      },
+      {
+        "text": {
+          "en": "In the 1930s, he defends a Black man falsely accused of rape.",
+          "fr": "Dans les années 1930, il défend un homme noir accusé à tort de viol.",
+          "pt": "Nos anos 1930, defende um homem negro falsamente acusado de violação."
+        }
+      },
+      {
+        "text": {
+          "en": "Scout’s father in Harper Lee’s novel, played on screen by Gregory Peck.",
+          "fr": "Le père de Scout dans le roman de Harper Lee, joué à l’écran par Gregory Peck.",
+          "pt": "O pai de Scout no romance de Harper Lee, interpretado no cinema por Gregory Peck."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mr Darcy",
+        "fr": "Mr Darcy",
+        "pt": "Sr. Darcy"
+      },
+      {
+        "en": "Jay Gatsby",
+        "fr": "Jay Gatsby",
+        "pt": "Jay Gatsby"
+      },
+      {
+        "en": "Perry Mason",
+        "fr": "Perry Mason",
+        "pt": "Perry Mason"
+      }
+    ],
+    "homeCountry": null,
+    "id": "atticus-finch",
+    "name": {
+      "en": "Atticus Finch",
+      "fr": "Atticus Finch",
+      "pt": "Atticus Finch"
+    },
+    "tier": "hard",
+    "wikidata": null
+  }
+]

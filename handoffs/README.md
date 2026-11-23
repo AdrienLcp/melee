@@ -8,7 +8,6 @@ file in the commit that finishes it, and delete this README with the last one.
 | Wave | File                            | Depends on           |
 | ---- | ------------------------------- | -------------------- |
 | 2    | `08-blindtest-flash.md`         | 01 landed            |
-| 3    | `10-five-clues-new-subjects.md` | 09 landed            |
 | 3    | `11-international-evening.md`   | 05, 08 and 09 landed |
 | 3    | `12-ambient-music.md`           | 08 landed            |
 

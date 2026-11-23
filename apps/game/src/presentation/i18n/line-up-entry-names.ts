@@ -1,5 +1,9 @@
 import type { Difficulty } from '@melee/protocol/difficulty'
 import { QUANTITY_TOPICS, type QuantityTopic } from '@melee/protocol/estimate'
+import {
+  type FiveCluesSubject,
+  fiveCluesSubjects
+} from '@melee/protocol/five-clues'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings, RoundView } from '@melee/protocol/room'
@@ -182,6 +186,21 @@ const topicsOf = ({
       : topics.map((topic) => translate(`estimate.topics.${topic}`))
 })
 
+/** Every subject ticked reads as no pick at all: the round may hide anything it holds. */
+const fiveCluesSubjectsOf = ({
+  subjects,
+  translate
+}: {
+  subjects: readonly FiveCluesSubject[]
+  translate: Translate
+}): Picks => ({
+  everything: translate('host.evening.detail.allSubjects'),
+  picks:
+    subjects.length === fiveCluesSubjects.length
+      ? []
+      : subjects.map((subject) => translate(`fiveclues.subjects.${subject}`))
+})
+
 const levelOf = ({
   difficulty,
   translate
@@ -279,6 +298,13 @@ const namingOf = ({
 
       return topic !== undefined && others.length === 0
         ? [translate(`estimate.topics.${topic}`)]
+        : []
+    }
+    case 'fiveclues': {
+      const [subject, ...others] = entry.subjects
+
+      return subject !== undefined && others.length === 0
+        ? [translate(`fiveclues.subjects.${subject}`)]
         : []
     }
     default:
@@ -422,6 +448,9 @@ const settingsOf = ({
       ]
     case 'fiveclues':
       return [
+        allPicks(
+          fiveCluesSubjectsOf({ subjects: entry.subjects, translate })
+        ),
         LANGUAGE_NAMES[entry.language],
         levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.clueDurationMs, translate })

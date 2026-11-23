@@ -45,9 +45,9 @@ there until the reveal writes out the shortest way the tiles allowed, and
 **Pense comme la table** puts up a prompt — a red fruit, something in a
 fridge — that every screen answers in one word, each seat paid by how many
 others wrote the same, the host folding _frigo_ into _réfrigérateur_ at the
-reveal, and **Cinq indices** hides a country behind five clues — its size,
-its region, its outline, its cities, its flag and capital — that open one
-after another on every screen, the earlier the clue a seat names it on the
+reveal, and **Cinq indices** hides a country, a person, a character, a film,
+an animal or a landmark behind five clues that open one after another on
+every screen, the earlier the clue a seat names it on the
 more it pays, and **Lumières** — a format of Reflex with a kind of its own —
 lights one cell at a time on a board of nine
 that every screen chases for twenty seconds, a trap beside it freezing the

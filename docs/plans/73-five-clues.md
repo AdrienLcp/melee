@@ -307,6 +307,53 @@ decoys as the staircase above; handoff 10 writes the new subjects' content.
   size step removed fails it), the anti-leak transcript with the reveal guard
   removed.
 
+## Step 5 — people, characters, films, animals, landmarks ✅ 24/11/2026
+
+Adrien: other themes, "a bit of everything — it needs to grow a lot". Settled
+at the start of the session, each by fun at the table:
+
+- **Five new subjects beside the country**: `person`, `character`, `film`,
+  `animal`, `landmark`. Five graded clues suit each — a career, a plot, a
+  habitat, a record climb from vague to giveaway — and a table knows hundreds
+  of each. Brands, sports clubs and inventions were weighed and left out: a
+  brand's ladder is a logo nobody may draw and a slogan that names it, a club
+  is known to a third of a table, and an invention's answer has too many
+  names to type.
+- **Written by hand, never generated**: a generator drafts a ladder of dry
+  facts and decoys of the wrong kind; a hand-written one reads like a riddle,
+  and its decoys are designed with its first three clues. **330 ladders**,
+  `five-clues-<subject>.json` beside the bank (people in two files, those any
+  table knows and those one culture does), 60 a file, about 40 % easy, 40 %
+  medium, 20 % hard, each in French, English and European Portuguese.
+- **A culture per row**: `homeCountry` null for a row any table knows (272),
+  otherwise the one country whose language alone deals it — `FRA` to French
+  tables, `GBR` and `USA` to English ones, `PRT` to Portuguese ones (58:
+  Johnny Hallyday, Amália Rodrigues, Delia Smith, the Viaduc de Millau, _O
+  Pátio das Cantigas_). Handoff 11's international evening deals the null
+  rows alone.
+- **The staircase, enforced**: each row names beside its first three rungs
+  which decoy each strikes, 0, 1, 2 in order, and the row's schema refuses
+  anything else. The bank test adds what a schema cannot: no clue names the
+  answer or an accepted alias in any language (whole words, accents
+  ignored), the answer grades right and every decoy wrong.
+- **The photograph rung**: a person, an animal or a landmark whose Wikidata
+  item has a free photograph shows it in place of its last rung, the rung's
+  text read to a screen reader instead — so a missing photograph changes
+  nothing but the picture. `build-picture-bank.ts` fetches it, and first
+  checks the item's labels (en, fr, pt or the language-neutral `mul`) name
+  the row, because a QID written wrong would show somebody else's face.
+  Films and characters never have one: posters and characters are
+  copyrighted. Every shut rung of these subjects shows the quote glyph.
+- **One subject drawn evenly, then a row**: the room's `subjects` setting
+  (all six by default, and for a room stored before it) lists what a round
+  may hide, and `drawFiveCluesCard` shuffles them and deals the first that
+  still has a row — a hundred and forty countries must not drown sixty films.
+  The played id is `fiveclues:<subject>:<id>`.
+- **Line-ups**: _Mêlée générale_ deals one entry per subject, six, as it deals
+  one quiz per category; _Culture générale_ keeps one entry of all six
+  mixed. The game's setup gains a strip of six toggles, _À trouver_, the
+  estimate's topics' control.
+
 ## How to tell it is done
 
 Muted, with `MAX_PLAYERS_PER_ROOM` seats at phone width and a paired wall:

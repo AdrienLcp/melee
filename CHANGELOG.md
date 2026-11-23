@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **Cinq indices hides people, characters, films, animals and
+  landmarks.** Three hundred and thirty ladders written by hand in three
+  languages beside the countries, each early clue striking one of the four
+  choices, the last rung of a person, an animal or a landmark a photograph
+  where Commons has one. The setup picks what may be hidden; a French table
+  also meets Johnny Hallyday and a Portuguese one Amália Rodrigues, and
+  _Mêlée générale_ plays one entry per subject.
 - `[Shared]` **Every Cinq indices clue rules a choice out as it opens.** The
   four choices used to share the region on purpose, so _Amérique du Sud_
   struck nothing on a screen of four South American countries. Now the size

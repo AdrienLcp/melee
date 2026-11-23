@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { fiveCluesSubjects } from '@melee/protocol/five-clues'
 import { gameSettingsSchema, shelvedGames } from '@melee/protocol/game'
 import { LOCALES, type Locale } from '@melee/protocol/locale'
 import {
@@ -242,6 +243,7 @@ describe.each(LOCALES)('the grand mix in %s', (locale) => {
     expect(countOf('blindtest')).toBe(locale === 'pt' ? 9 : 10)
     expect(countOf('quiz')).toBe(13)
     expect(countOf('atlas')).toBe(6)
+    expect(countOf('fiveclues')).toBe(fiveCluesSubjects.length)
   })
 })
 

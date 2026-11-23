@@ -17,6 +17,7 @@ import type {
 import { questionLanguages } from '@melee/protocol/question'
 
 import { greatCircleKm } from '@melee/core/atlas/distance'
+import { shuffled } from '@melee/core/helpers/random'
 import type { QuestionAnswer } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 import { drawByDifficulty } from '@melee/core/round/difficulty-draw'
@@ -27,6 +28,12 @@ import {
   COUNTRY_NAMES_BY_LANGUAGE
 } from './country-answers'
 import { BANKED_COUNTRIES } from './country-bank'
+import {
+  type AuthoredSubject,
+  authoredLadderOf,
+  drawAuthoredRow,
+  playedAuthoredId
+} from './five-clues-authored'
 import { countryTierOf, flagFileOf } from './flag-questions'
 import { bankedQuantities } from './quantity-bank'
 import {
@@ -475,11 +482,7 @@ export const fiveCluesAnswerOf = ({
   }
 }
 
-/**
- * The next round's card at the room's level, in its question language: a
- * country the room has not climbed yet, or `null` with none at that level.
- */
-export const drawFiveCluesCard = ({
+const countryCardOf = ({
   difficulty,
   language,
   playedIds
@@ -498,4 +501,62 @@ export const drawFiveCluesCard = ({
         playedId: playedFiveCluesId(country.code),
         subject: 'country'
       }
+}
+
+const authoredCardOf = ({
+  difficulty,
+  language,
+  playedIds,
+  subject
+}: {
+  difficulty: Difficulty
+  language: QuestionLanguage
+  playedIds: ReadonlySet<string>
+  subject: AuthoredSubject
+}): FiveCluesCard | null => {
+  const row = drawAuthoredRow({ difficulty, language, playedIds, subject })
+
+  return row === null
+    ? null
+    : {
+        answer: {
+          accepted: row.accepted[language],
+          answer: row.name[language],
+          decoys: row.decoys.map((decoy) => decoy[language])
+        },
+        ladder: authoredLadderOf({ language, row, subject }),
+        playedId: playedAuthoredId({ row, subject }),
+        subject
+      }
+}
+
+/**
+ * The next round's card at the room's level, in its question language: one
+ * of the room's subjects drawn evenly — a hundred and forty countries must
+ * not drown sixty films — then an item of it the room has not climbed yet,
+ * or `null` when no subject has one at that level.
+ */
+export const drawFiveCluesCard = ({
+  difficulty,
+  language,
+  playedIds,
+  subjects
+}: {
+  difficulty: Difficulty
+  language: QuestionLanguage
+  playedIds: ReadonlySet<string>
+  subjects: readonly FiveCluesSubject[]
+}): FiveCluesCard | null => {
+  for (const subject of shuffled(subjects)) {
+    const card =
+      subject === 'country'
+        ? countryCardOf({ difficulty, language, playedIds })
+        : authoredCardOf({ difficulty, language, playedIds, subject })
+
+    if (card !== null) {
+      return card
+    }
+  }
+
+  return null
 }

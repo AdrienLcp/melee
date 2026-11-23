@@ -699,7 +699,8 @@ export const beginRound = async (
     const drawn = drawFiveCluesCard({
       difficulty: game.difficulty,
       language: game.language,
-      playedIds: room.playedContentIds
+      playedIds: room.playedContentIds,
+      subjects: game.subjects
     })
 
     if (drawn === null) {

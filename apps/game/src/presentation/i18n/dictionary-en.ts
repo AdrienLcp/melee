@@ -818,7 +818,12 @@ export const EN_DICTIONARY = defineDictionary({
   },
   fiveclues: {
     answer: {
-      country: 'A country'
+      animal: 'An animal',
+      character: 'A character',
+      country: 'A country',
+      film: 'A film',
+      landmark: 'A landmark',
+      person: 'A person'
     },
     climbing: 'Still climbing: {count:number}',
     clue: {
@@ -829,7 +834,7 @@ export const EN_DICTIONARY = defineDictionary({
     clueDuration: 'Time per clue',
     home: {
       description:
-        'A country hides behind five clues, from the vaguest to the most obvious: its size, its region, its outline, three of its cities, then its flag and its capital. The whole table climbs the ladder a clue at a time, one answer a clue. Find it on the first and it pays the most; wait for the flag and it pays the least.'
+        'A country, a person, a film, a character, an animal or a landmark hides behind five clues, from the vaguest to the most obvious. The whole table climbs the ladder a clue at a time, one answer a clue. Find it on the first and it pays the most; wait for the last and it pays the least.'
     },
     kind: {
       cities: 'Cities',
@@ -875,8 +880,17 @@ export const EN_DICTIONARY = defineDictionary({
     },
     rung: 'Clue {index:number}, worth {worth:number}',
     scoring:
-      'The earlier the clue you find the country on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.',
-    tagline: 'Name the country before anyone else.',
+      'The earlier the clue you find it on, the more you score: 100 points on the first, then 80, 60, 40 and 20 on the last.',
+    subjects: {
+      animal: 'Animals',
+      character: 'Characters',
+      country: 'Countries',
+      film: 'Films',
+      label: 'Hidden',
+      landmark: 'Landmarks',
+      person: 'People'
+    },
+    tagline: 'Name it before anyone else.',
     you: {
       found: 'Found on clue {index:number}',
       held: 'One guess a clue. Next try on clue {index:number}',

@@ -24,8 +24,15 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import './five-clues-ladder.sass'
 
 /** What every rung of a subject asks, vaguest first: a shut rung shows its kind's glyph before its clue opens. */
+const WRITTEN_RUNGS = ['text', 'text', 'text', 'text', 'text'] as const
+
 const RUNG_KINDS = {
-  country: ['size', 'region', 'outline', 'cities', 'flag']
+  animal: WRITTEN_RUNGS,
+  character: WRITTEN_RUNGS,
+  country: ['size', 'region', 'outline', 'cities', 'flag'],
+  film: WRITTEN_RUNGS,
+  landmark: WRITTEN_RUNGS,
+  person: WRITTEN_RUNGS
 } as const satisfies Record<FiveCluesSubject, readonly Clue['kind'][]>
 
 /** One name a rung, so a rung keeps its element whichever clue lands on it. */

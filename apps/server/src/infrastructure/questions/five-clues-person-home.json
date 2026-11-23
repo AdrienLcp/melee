@@ -1,0 +1,4442 @@
+[
+  {
+    "accepted": {
+      "en": ["Johnny", "Hallyday"],
+      "fr": ["Johnny", "Hallyday"],
+      "pt": ["Johnny", "Hallyday"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French male singer adored by several generations of fans.",
+          "fr": "Un chanteur français adulé par plusieurs générations.",
+          "pt": "Um cantor francês idolatrado por várias gerações."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He rose with the early-1960s rock’n’roll wave, under an American-sounding stage name.",
+          "fr": "Il a percé avec la vague rock’n’roll du début des années 1960, sous un nom de scène à l’américaine.",
+          "pt": "Surgiu na vaga do rock’n’roll do início dos anos 60, com um nome artístico à americana."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He died in December 2017; crowds lined the Champs-Élysées for his funeral procession.",
+          "fr": "Il est mort en décembre 2017 ; la foule a bordé les Champs-Élysées pour son dernier cortège.",
+          "pt": "Morreu em dezembro de 2017 e uma multidão encheu os Campos Elísios para o cortejo fúnebre."
+        }
+      },
+      {
+        "text": {
+          "en": "His hits include “Que je t’aime”, “Allumer le feu” and “L’envie”.",
+          "fr": "Ses tubes : « Que je t’aime », « Allumer le feu », « L’envie ».",
+          "pt": "Êxitos: «Que je t’aime», «Allumer le feu», «L’envie»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Born Jean-Philippe Smet, he was nicknamed “the idol of the young”.",
+          "fr": "Né Jean-Philippe Smet, on l’appelait « l’idole des jeunes ».",
+          "pt": "Nascido Jean-Philippe Smet, chamavam-lhe «o ídolo dos jovens»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mylène Farmer",
+        "fr": "Mylène Farmer",
+        "pt": "Mylène Farmer"
+      },
+      {
+        "en": "Jean-Jacques Goldman",
+        "fr": "Jean-Jacques Goldman",
+        "pt": "Jean-Jacques Goldman"
+      },
+      {
+        "en": "Eddy Mitchell",
+        "fr": "Eddy Mitchell",
+        "pt": "Eddy Mitchell"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "johnny-hallyday",
+    "name": {
+      "en": "Johnny Hallyday",
+      "fr": "Johnny Hallyday",
+      "pt": "Johnny Hallyday"
+    },
+    "tier": "easy",
+    "wikidata": "Q212015"
+  },
+  {
+    "accepted": {
+      "en": ["Goldman"],
+      "fr": ["Goldman"],
+      "pt": ["Goldman"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French singer-songwriter who broke through by the early 1980s, and is still alive.",
+          "fr": "Un auteur-compositeur français révélé avant le milieu des années 1980, toujours en vie.",
+          "pt": "Um cantautor francês que se revelou até ao início dos anos 80 e continua vivo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was born in Paris in the early 1950s.",
+          "fr": "Il est né à Paris au début des années 1950.",
+          "pt": "Nasceu em Paris no início dos anos 50."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He once sang in a trio with Michael Jones and Carole Fredericks.",
+          "fr": "Il a chanté en trio avec Michael Jones et Carole Fredericks.",
+          "pt": "Cantou num trio com Michael Jones e Carole Fredericks."
+        }
+      },
+      {
+        "text": {
+          "en": "His hits: “Quand la musique est bonne”, “Je te donne”, “Envole-moi”.",
+          "fr": "Ses tubes : « Quand la musique est bonne », « Je te donne », « Envole-moi ».",
+          "pt": "Êxitos: «Quand la musique est bonne», «Je te donne», «Envole-moi»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "He wrote the Restos du cœur anthem and Céline Dion’s album “D’eux”.",
+          "fr": "Il a écrit la chanson des Restos du cœur et l’album « D’eux » de Céline Dion.",
+          "pt": "Escreveu o hino dos Restos du cœur e o álbum «D’eux» de Céline Dion."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Daniel Balavoine",
+        "fr": "Daniel Balavoine",
+        "pt": "Daniel Balavoine"
+      },
+      {
+        "en": "Francis Cabrel",
+        "fr": "Francis Cabrel",
+        "pt": "Francis Cabrel"
+      },
+      {
+        "en": "Renaud",
+        "fr": "Renaud",
+        "pt": "Renaud"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "jean-jacques-goldman",
+    "name": {
+      "en": "Jean-Jacques Goldman",
+      "fr": "Jean-Jacques Goldman",
+      "pt": "Jean-Jacques Goldman"
+    },
+    "tier": "easy",
+    "wikidata": "Q44709"
+  },
+  {
+    "accepted": {
+      "en": ["Michel Colucci", "Colucci"],
+      "fr": ["Michel Colucci", "Colucci"],
+      "pt": ["Michel Colucci", "Colucci"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French comic who died in the 1980s and is still quoted today.",
+          "fr": "Un humoriste français mort dans les années 1980, qu’on cite encore aujourd’hui.",
+          "pt": "Um humorista francês que morreu nos anos 80 e ainda hoje é citado."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "In 1985 he was one half of a famous mock wedding between two comics.",
+          "fr": "En 1985, il a été l’un des deux mariés d’un faux mariage entre humoristes resté célèbre.",
+          "pt": "Em 1985 foi um dos noivos de um famoso casamento a fingir entre dois humoristas."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He ran for president in 1981 before pulling out of the race.",
+          "fr": "Il s’est présenté à la présidentielle de 1981 avant de se retirer.",
+          "pt": "Candidatou-se às presidenciais francesas de 1981 antes de desistir."
+        }
+      },
+      {
+        "text": {
+          "en": "He founded the Restos du cœur and won a César for “Tchao Pantin”.",
+          "fr": "Il a fondé les Restos du cœur et reçu un César pour « Tchao Pantin ».",
+          "pt": "Fundou os Restos du cœur e ganhou um César com «Tchao Pantin»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The comic in striped dungarees whose sketches began “C’est l’histoire d’un mec…”.",
+          "fr": "L’humoriste en salopette à rayures de « C’est l’histoire d’un mec… ».",
+          "pt": "O humorista de jardineiras às riscas que começava com «C’est l’histoire d’un mec…»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jamel Debbouze",
+        "fr": "Jamel Debbouze",
+        "pt": "Jamel Debbouze"
+      },
+      {
+        "en": "Pierre Desproges",
+        "fr": "Pierre Desproges",
+        "pt": "Pierre Desproges"
+      },
+      {
+        "en": "Thierry Le Luron",
+        "fr": "Thierry Le Luron",
+        "pt": "Thierry Le Luron"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "coluche",
+    "name": {
+      "en": "Coluche",
+      "fr": "Coluche",
+      "pt": "Coluche"
+    },
+    "tier": "easy",
+    "wikidata": "Q2190"
+  },
+  {
+    "accepted": {
+      "en": ["Drucker"],
+      "fr": ["Drucker"],
+      "pt": ["Drucker"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French TV presenter, a man, famous for decades.",
+          "fr": "Un animateur de télévision français, un homme, célèbre depuis des décennies.",
+          "pt": "Um apresentador de televisão francês, homem, famoso há décadas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was still on air in the 2020s, more than fifty years after his debut.",
+          "fr": "Il était encore à l’antenne dans les années 2020, plus de cinquante ans après ses débuts.",
+          "pt": "Ainda estava no ar nos anos 2020, mais de cinquenta anos depois de se estrear."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His Sunday afternoon show on France 2 has run for over twenty-five years.",
+          "fr": "Son émission du dimanche après-midi sur France 2 dure depuis plus de vingt-cinq ans.",
+          "pt": "O seu programa de domingo à tarde na France 2 dura há mais de vinte e cinco anos."
+        }
+      },
+      {
+        "text": {
+          "en": "He began in sports journalism in the 1960s, then made a red sofa famous.",
+          "fr": "Il a débuté au service des sports dans les années 1960, puis a rendu un canapé rouge célèbre.",
+          "pt": "Começou no jornalismo desportivo nos anos 60 e depois tornou famoso um sofá vermelho."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Host of “Vivement dimanche”; his brother Jean once ran the channel M6.",
+          "fr": "L’animateur de « Vivement dimanche » ; son frère Jean a dirigé M6.",
+          "pt": "Apresentador de «Vivement dimanche»; o irmão, Jean, dirigiu o canal M6."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Évelyne Dhéliat",
+        "fr": "Évelyne Dhéliat",
+        "pt": "Évelyne Dhéliat"
+      },
+      {
+        "en": "Jacques Martin",
+        "fr": "Jacques Martin",
+        "pt": "Jacques Martin"
+      },
+      {
+        "en": "Jean-Pierre Foucault",
+        "fr": "Jean-Pierre Foucault",
+        "pt": "Jean-Pierre Foucault"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "michel-drucker",
+    "name": {
+      "en": "Michel Drucker",
+      "fr": "Michel Drucker",
+      "pt": "Michel Drucker"
+    },
+    "tier": "easy",
+    "wikidata": "Q933434"
+  },
+  {
+    "accepted": {
+      "en": ["Riner"],
+      "fr": ["Riner"],
+      "pt": ["Riner"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French athlete with several Olympic gold medals.",
+          "fr": "Un sportif français plusieurs fois champion olympique.",
+          "pt": "Um desportista francês com várias medalhas de ouro olímpicas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "All of those golds were won after 2010.",
+          "fr": "Tous ces titres olympiques ont été gagnés après 2010.",
+          "pt": "Todos esses ouros foram conquistados depois de 2010."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He shines at the Summer Games, in a combat sport.",
+          "fr": "Il brille aux Jeux d’été, dans un sport de combat.",
+          "pt": "Brilha nos Jogos de verão, num desporto de combate."
+        }
+      },
+      {
+        "text": {
+          "en": "Standing over two metres tall, he went unbeaten for almost a decade.",
+          "fr": "Plus de deux mètres, et presque dix ans sans perdre un combat.",
+          "pt": "Com mais de dois metros, passou quase uma década sem perder um combate."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The French heavyweight judoka who lit the Paris 2024 cauldron.",
+          "fr": "Le judoka poids lourd qui a allumé la vasque des Jeux de Paris 2024.",
+          "pt": "O judoca peso pesado francês que acendeu a pira olímpica de Paris 2024."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tony Parker",
+        "fr": "Tony Parker",
+        "pt": "Tony Parker"
+      },
+      {
+        "en": "Marie-José Pérec",
+        "fr": "Marie-José Pérec",
+        "pt": "Marie-José Pérec"
+      },
+      {
+        "en": "Martin Fourcade",
+        "fr": "Martin Fourcade",
+        "pt": "Martin Fourcade"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "teddy-riner",
+    "name": {
+      "en": "Teddy Riner",
+      "fr": "Teddy Riner",
+      "pt": "Teddy Riner"
+    },
+    "tier": "easy",
+    "wikidata": "Q353514"
+  },
+  {
+    "accepted": {
+      "en": ["de Funès", "Funès"],
+      "fr": ["de Funès", "Funès"],
+      "pt": ["de Funès", "Funès"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great French screen comedian who died in the 20th century.",
+          "fr": "Un grand comique du cinéma français, mort au XXe siècle.",
+          "pt": "Um grande cómico do cinema francês que morreu no século XX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was one of the two stars of “La Grande Vadrouille”.",
+          "fr": "Il est l’une des deux vedettes de « La Grande Vadrouille ».",
+          "pt": "Foi uma das duas estrelas de «A Grande Paródia» («La Grande Vadrouille»)."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He played a hot-headed gendarme in a series of six films.",
+          "fr": "Il a joué un gendarme colérique dans une série de six films.",
+          "pt": "Interpretou um gendarme irascível numa série de seis filmes."
+        }
+      },
+      {
+        "text": {
+          "en": "“Oscar”, “L’Aile ou la cuisse”, “Le Corniaud”: grimaces and fits of rage.",
+          "fr": "« Oscar », « L’Aile ou la cuisse », « Le Corniaud » : grimaces et colères.",
+          "pt": "«Oscar», «L’Aile ou la cuisse», «Le Corniaud»: caretas e fúrias."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Commissioner Juve in “Fantômas” and the hero of “The Mad Adventures of Rabbi Jacob”.",
+          "fr": "Le commissaire Juve de « Fantômas » et le héros des « Aventures de Rabbi Jacob ».",
+          "pt": "O comissário Juve de «Fantomas» e o herói de «As Loucas Aventuras do Rabi Jacob»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jean Dujardin",
+        "fr": "Jean Dujardin",
+        "pt": "Jean Dujardin"
+      },
+      {
+        "en": "Fernandel",
+        "fr": "Fernandel",
+        "pt": "Fernandel"
+      },
+      {
+        "en": "Bourvil",
+        "fr": "Bourvil",
+        "pt": "Bourvil"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "louis-de-funes",
+    "name": {
+      "en": "Louis de Funès",
+      "fr": "Louis de Funès",
+      "pt": "Louis de Funès"
+    },
+    "tier": "easy",
+    "wikidata": "Q2737"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French singer-songwriter with a rebellious, left-wing streak.",
+          "fr": "Un chanteur français à textes, rebelle et de gauche.",
+          "pt": "Um cantautor francês rebelde e de esquerda."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He is still alive and still recording.",
+          "fr": "Il est toujours en vie et enregistre encore.",
+          "pt": "Continua vivo e ainda grava discos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A Paris street kid in a red bandana, he sang in the city’s slang.",
+          "fr": "Titi parisien au bandana rouge, il chante en argot.",
+          "pt": "Um miúdo das ruas de Paris, de bandana vermelha, que canta em calão parisiense."
+        }
+      },
+      {
+        "text": {
+          "en": "His hits: “Mistral gagnant”, “Laisse béton”, “Morgane de toi”.",
+          "fr": "Ses tubes : « Mistral gagnant », « Laisse béton », « Morgane de toi ».",
+          "pt": "Êxitos: «Mistral gagnant», «Laisse béton», «Morgane de toi»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The singer of “Dès que le vent soufflera”, “Miss Maggie” and “Hexagone”.",
+          "fr": "Le chanteur de « Dès que le vent soufflera », « Miss Maggie » et « Hexagone ».",
+          "pt": "O cantor de «Dès que le vent soufflera», «Miss Maggie» e «Hexagone»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Michel Sardou",
+        "fr": "Michel Sardou",
+        "pt": "Michel Sardou"
+      },
+      {
+        "en": "Jean Ferrat",
+        "fr": "Jean Ferrat",
+        "pt": "Jean Ferrat"
+      },
+      {
+        "en": "Bernard Lavilliers",
+        "fr": "Bernard Lavilliers",
+        "pt": "Bernard Lavilliers"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "renaud",
+    "name": {
+      "en": "Renaud",
+      "fr": "Renaud",
+      "pt": "Renaud"
+    },
+    "tier": "easy",
+    "wikidata": "Q1716"
+  },
+  {
+    "accepted": {
+      "en": ["Chirac"],
+      "fr": ["Chirac"],
+      "pt": ["Chirac"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A president of France’s Fifth Republic who held office after 1980.",
+          "fr": "Un président de la Ve République en fonction après 1980.",
+          "pt": "Um presidente da V República francesa em funções depois de 1980."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A president from the right.",
+          "fr": "Un président de droite.",
+          "pt": "Um presidente de direita."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He served two terms: the first seven years long, the second five.",
+          "fr": "Il a fait deux mandats, un septennat puis un quinquennat.",
+          "pt": "Cumpriu dois mandatos: o primeiro de sete anos, o segundo de cinco."
+        }
+      },
+      {
+        "text": {
+          "en": "Mayor of Paris for eighteen years, he said no to the Iraq war in 2003.",
+          "fr": "Maire de Paris pendant dix-huit ans, il a dit non à la guerre en Irak en 2003.",
+          "pt": "Presidente da Câmara de Paris durante dezoito anos, disse não à guerra do Iraque em 2003."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "His 1995 campaign urged “Mangez des pommes”, with Bernadette by his side.",
+          "fr": "« Mangez des pommes » en 1995, et Bernadette à ses côtés.",
+          "pt": "Em 1995 fez campanha com «Mangez des pommes», ao lado de Bernadette."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Charles de Gaulle",
+        "fr": "Charles de Gaulle",
+        "pt": "Charles de Gaulle"
+      },
+      {
+        "en": "François Mitterrand",
+        "fr": "François Mitterrand",
+        "pt": "François Mitterrand"
+      },
+      {
+        "en": "Nicolas Sarkozy",
+        "fr": "Nicolas Sarkozy",
+        "pt": "Nicolas Sarkozy"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "jacques-chirac",
+    "name": {
+      "en": "Jacques Chirac",
+      "fr": "Jacques Chirac",
+      "pt": "Jacques Chirac"
+    },
+    "tier": "easy",
+    "wikidata": "Q2105"
+  },
+  {
+    "accepted": {
+      "en": ["Boon"],
+      "fr": ["Boon"],
+      "pt": ["Boon"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French comic who became famous in the 1990s.",
+          "fr": "Un humoriste français devenu célèbre dans les années 1990.",
+          "pt": "Um humorista francês que ficou famoso nos anos 90."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was born in France.",
+          "fr": "Il est né en France.",
+          "pt": "Nasceu em França."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He comes from the North of France, and is proud of it.",
+          "fr": "Il vient du Nord de la France, et en est fier.",
+          "pt": "É do Norte de França e tem orgulho disso."
+        }
+      },
+      {
+        "text": {
+          "en": "He directed and starred in “Rien à déclarer” and “Raid dingue”.",
+          "fr": "Il a réalisé et joué « Rien à déclarer » et « Raid dingue ».",
+          "pt": "Realizou e protagonizou «Rien à déclarer» e «Raid dingue»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Writer-director of “Bienvenue chez les Ch’tis”, a record French box-office hit.",
+          "fr": "Le réalisateur de « Bienvenue chez les Ch’tis », record du box-office français.",
+          "pt": "Realizador de «Bem-vindo ao Norte», recorde de bilheteira em França."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Coluche",
+        "fr": "Coluche",
+        "pt": "Coluche"
+      },
+      {
+        "en": "Gad Elmaleh",
+        "fr": "Gad Elmaleh",
+        "pt": "Gad Elmaleh"
+      },
+      {
+        "en": "Jamel Debbouze",
+        "fr": "Jamel Debbouze",
+        "pt": "Jamel Debbouze"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "dany-boon",
+    "name": {
+      "en": "Dany Boon",
+      "fr": "Dany Boon",
+      "pt": "Dany Boon"
+    },
+    "tier": "easy",
+    "wikidata": "Q468190"
+  },
+  {
+    "accepted": {
+      "en": ["Farmer", "Mylène"],
+      "fr": ["Farmer", "Mylène"],
+      "pt": ["Farmer", "Mylène"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French female pop star who is still alive.",
+          "fr": "Une star de la chanson française, toujours en vie.",
+          "pt": "Uma estrela da canção francesa que continua viva."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Her career took off in the 1980s.",
+          "fr": "Sa carrière a décollé dans les années 1980.",
+          "pt": "A carreira dela arrancou nos anos 80."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Flame-red hair and a mysterious image: she almost never gives interviews.",
+          "fr": "Cheveux roux flamboyants et image mystérieuse : elle ne donne presque jamais d’interview.",
+          "pt": "Cabelo ruivo flamejante e imagem misteriosa: quase nunca dá entrevistas."
+        }
+      },
+      {
+        "text": {
+          "en": "Her hits: “Libertine”, “Désenchantée”, “Pourvu qu’elles soient douces”.",
+          "fr": "Ses tubes : « Libertine », « Désenchantée », « Pourvu qu’elles soient douces ».",
+          "pt": "Êxitos: «Libertine», «Désenchantée», «Pourvu qu’elles soient douces»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Born in Quebec, she sings Laurent Boutonnat’s music in vast stadium shows.",
+          "fr": "Née au Québec, elle chante les musiques de Laurent Boutonnat dans des stades.",
+          "pt": "Nascida no Quebeque, canta a música de Laurent Boutonnat em espetáculos de estádio."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "France Gall",
+        "fr": "France Gall",
+        "pt": "France Gall"
+      },
+      {
+        "en": "Sheila",
+        "fr": "Sheila",
+        "pt": "Sheila"
+      },
+      {
+        "en": "Patricia Kaas",
+        "fr": "Patricia Kaas",
+        "pt": "Patricia Kaas"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "mylene-farmer",
+    "name": {
+      "en": "Mylène Farmer",
+      "fr": "Mylène Farmer",
+      "pt": "Mylène Farmer"
+    },
+    "tier": "medium",
+    "wikidata": "Q185002"
+  },
+  {
+    "accepted": {
+      "en": ["Pernaut", "JPP"],
+      "fr": ["Pernaut", "JPP"],
+      "pt": ["Pernaut", "JPP"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French TV news anchor, a man, who fronted a bulletin for years.",
+          "fr": "Un présentateur de journal télévisé français, un homme, resté des années à l’antenne.",
+          "pt": "Um pivô de telejornal francês, homem, que apresentou um noticiário durante anos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He presented TF1’s 1 pm news, not the evening one.",
+          "fr": "Il présentait le journal de 13 h de TF1, pas celui du soir.",
+          "pt": "Apresentava o noticiário das 13 h da TF1, não o da noite."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He held that slot for over thirty years, from 1988 to 2020.",
+          "fr": "Il a tenu ce créneau plus de trente ans, de 1988 à 2020.",
+          "pt": "Ocupou esse horário durante mais de trinta anos, de 1988 a 2020."
+        }
+      },
+      {
+        "text": {
+          "en": "His bulletin championed villages, local markets and craftsmen.",
+          "fr": "Son journal mettait à l’honneur les villages, les marchés et les artisans.",
+          "pt": "O seu noticiário dava destaque às aldeias, aos mercados e aos artesãos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The face of TF1’s lunchtime news, husband of Miss France Nathalie Marquay.",
+          "fr": "Le visage du 13 h de TF1, mari de Miss France Nathalie Marquay.",
+          "pt": "O rosto do noticiário da hora de almoço da TF1, marido da Miss França Nathalie Marquay."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Claire Chazal",
+        "fr": "Claire Chazal",
+        "pt": "Claire Chazal"
+      },
+      {
+        "en": "Patrick Poivre d’Arvor",
+        "fr": "Patrick Poivre d’Arvor",
+        "pt": "Patrick Poivre d’Arvor"
+      },
+      {
+        "en": "Yves Mourousi",
+        "fr": "Yves Mourousi",
+        "pt": "Yves Mourousi"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "jean-pierre-pernaut",
+    "name": {
+      "en": "Jean-Pierre Pernaut",
+      "fr": "Jean-Pierre Pernaut",
+      "pt": "Jean-Pierre Pernaut"
+    },
+    "tier": "medium",
+    "wikidata": "Q3169632"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French film actor who also had hit songs.",
+          "fr": "Un acteur de cinéma français qui a aussi eu des chansons à succès.",
+          "pt": "Um ator de cinema francês que também teve canções de sucesso."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A comic actor first and foremost.",
+          "fr": "Un acteur comique avant tout.",
+          "pt": "Um ator cómico acima de tudo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was born in Normandy, and played the good-natured country boy.",
+          "fr": "Né en Normandie, il jouait les braves gars de la campagne.",
+          "pt": "Nasceu na Normandia e fazia de bom rapaz do campo."
+        }
+      },
+      {
+        "text": {
+          "en": "He sang “Salade de fruits” and “La Tendresse”, and starred in “Le Corniaud”.",
+          "fr": "Il a chanté « Salade de fruits » et « La Tendresse », et joué dans « Le Corniaud ».",
+          "pt": "Cantou «Salade de fruits» e «La Tendresse» e entrou em «Le Corniaud»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Born André Raimbourg, he hid from the Germans beside de Funès in “La Grande Vadrouille”.",
+          "fr": "Né André Raimbourg, il fuyait les Allemands avec de Funès dans « La Grande Vadrouille ».",
+          "pt": "Nascido André Raimbourg, fugia aos alemães com de Funès em «A Grande Paródia»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Louis de Funès",
+        "fr": "Louis de Funès",
+        "pt": "Louis de Funès"
+      },
+      {
+        "en": "Yves Montand",
+        "fr": "Yves Montand",
+        "pt": "Yves Montand"
+      },
+      {
+        "en": "Fernandel",
+        "fr": "Fernandel",
+        "pt": "Fernandel"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "bourvil",
+    "name": {
+      "en": "Bourvil",
+      "fr": "Bourvil",
+      "pt": "Bourvil"
+    },
+    "tier": "medium",
+    "wikidata": "Q2750"
+  },
+  {
+    "accepted": {
+      "en": ["Veil"],
+      "fr": ["Veil"],
+      "pt": ["Veil"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Frenchwoman in public life who fought for women’s rights.",
+          "fr": "Une femme publique française qui s’est battue pour les droits des femmes.",
+          "pt": "Uma figura pública francesa que lutou pelos direitos das mulheres."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She served as a government minister in the 1970s.",
+          "fr": "Elle a été membre du gouvernement dans les années 1970.",
+          "pt": "Fez parte do governo francês nos anos 70."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She survived Auschwitz as a teenager.",
+          "fr": "Adolescente, elle a survécu à Auschwitz.",
+          "pt": "Sobreviveu a Auschwitz ainda adolescente."
+        }
+      },
+      {
+        "text": {
+          "en": "The 1975 law legalising abortion in France carries her name.",
+          "fr": "La loi de 1975 qui dépénalise l’avortement porte son nom.",
+          "pt": "A lei de 1975 que legalizou o aborto em França tem o nome dela."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "First president of the directly elected European Parliament, she lies in the Panthéon.",
+          "fr": "Première présidente du Parlement européen élu au suffrage direct, elle repose au Panthéon.",
+          "pt": "Primeira presidente do Parlamento Europeu eleito por sufrágio direto; repousa no Panteão."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Marine Le Pen",
+        "fr": "Marine Le Pen",
+        "pt": "Marine Le Pen"
+      },
+      {
+        "en": "Gisèle Halimi",
+        "fr": "Gisèle Halimi",
+        "pt": "Gisèle Halimi"
+      },
+      {
+        "en": "Françoise Giroud",
+        "fr": "Françoise Giroud",
+        "pt": "Françoise Giroud"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "simone-veil",
+    "name": {
+      "en": "Simone Veil",
+      "fr": "Simone Veil",
+      "pt": "Simone Veil"
+    },
+    "tier": "medium",
+    "wikidata": "Q298180"
+  },
+  {
+    "accepted": {
+      "en": ["Manaudou"],
+      "fr": ["Manaudou"],
+      "pt": ["Manaudou"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French swimmer with an Olympic gold medal.",
+          "fr": "Un grand nom de la natation française, titré aux Jeux olympiques.",
+          "pt": "Um nadador francês com uma medalha de ouro olímpica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "That gold was won in the 2000s.",
+          "fr": "Ce titre a été gagné dans les années 2000.",
+          "pt": "Esse ouro foi conquistado nos anos 2000."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She won her Olympic gold as a teenager.",
+          "fr": "Elle a gagné son or olympique encore adolescente.",
+          "pt": "Ganhou o ouro olímpico ainda adolescente."
+        }
+      },
+      {
+        "text": {
+          "en": "Coached by the fiery Philippe Lucas, she was France’s swimming darling of the 2000s.",
+          "fr": "Entraînée par le bouillant Philippe Lucas, elle était la reine des bassins des années 2000.",
+          "pt": "Treinada pelo explosivo Philippe Lucas, foi a rainha da natação francesa nos anos 2000."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Gold in the 400 m freestyle at Athens 2004; her little brother Florent swims too.",
+          "fr": "Or sur 400 m nage libre à Athènes en 2004 ; son petit frère Florent nage aussi.",
+          "pt": "Ouro nos 400 m livres em Atenas 2004; o irmão mais novo, Florent, também nada."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Philippe Lucas",
+        "fr": "Philippe Lucas",
+        "pt": "Philippe Lucas"
+      },
+      {
+        "en": "Léon Marchand",
+        "fr": "Léon Marchand",
+        "pt": "Léon Marchand"
+      },
+      {
+        "en": "Alain Bernard",
+        "fr": "Alain Bernard",
+        "pt": "Alain Bernard"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "laure-manaudou",
+    "name": {
+      "en": "Laure Manaudou",
+      "fr": "Laure Manaudou",
+      "pt": "Laure Manaudou"
+    },
+    "tier": "medium",
+    "wikidata": "Q45659"
+  },
+  {
+    "accepted": {
+      "en": ["Dupont"],
+      "fr": ["Dupont"],
+      "pt": ["Dupont"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French rugby star of the 2020s.",
+          "fr": "Une star du rugby français des années 2020.",
+          "pt": "Uma estrela do râguebi francês dos anos 2020."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He plays his club rugby for Stade Toulousain.",
+          "fr": "En club, il joue au Stade toulousain.",
+          "pt": "No clube, joga no Stade Toulousain."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He plays scrum-half, wearing the number 9.",
+          "fr": "Il joue demi de mêlée, avec le numéro 9.",
+          "pt": "Joga como médio de formação, com o número 9."
+        }
+      },
+      {
+        "text": {
+          "en": "World player of the year in 2021, he won Olympic sevens gold at Paris 2024.",
+          "fr": "Meilleur joueur du monde en 2021, champion olympique de rugby à 7 à Paris en 2024.",
+          "pt": "Melhor jogador do mundo em 2021, campeão olímpico de râguebi de sete em Paris 2024."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The scrum-half from Castelnau-Magnoac who captains the French XV.",
+          "fr": "Le demi de mêlée de Castelnau-Magnoac, capitaine du XV de France.",
+          "pt": "O médio de formação de Castelnau-Magnoac, capitão da seleção francesa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Sébastien Chabal",
+        "fr": "Sébastien Chabal",
+        "pt": "Sébastien Chabal"
+      },
+      {
+        "en": "Grégory Alldritt",
+        "fr": "Grégory Alldritt",
+        "pt": "Grégory Alldritt"
+      },
+      {
+        "en": "Romain Ntamack",
+        "fr": "Romain Ntamack",
+        "pt": "Romain Ntamack"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "antoine-dupont",
+    "name": {
+      "en": "Antoine Dupont",
+      "fr": "Antoine Dupont",
+      "pt": "Antoine Dupont"
+    },
+    "tier": "medium",
+    "wikidata": "Q20666534"
+  },
+  {
+    "accepted": {
+      "en": ["Noah"],
+      "fr": ["Noah"],
+      "pt": ["Noah"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French tennis player of the 1980s.",
+          "fr": "Un joueur de tennis français des années 1980.",
+          "pt": "Um tenista francês dos anos 80."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He later captained France in the Davis Cup.",
+          "fr": "Il a ensuite été capitaine de l’équipe de France de Coupe Davis.",
+          "pt": "Mais tarde foi capitão da França na Taça Davis."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He went on to become one of France’s best-selling singers.",
+          "fr": "Il est ensuite devenu l’un des chanteurs qui vendent le plus en France.",
+          "pt": "Depois tornou-se um dos cantores que mais vendem em França."
+        }
+      },
+      {
+        "text": {
+          "en": "Roland-Garros champion in 1983, he sang “Saga Africa”.",
+          "fr": "Vainqueur de Roland-Garros en 1983, il a chanté « Saga Africa ».",
+          "pt": "Campeão de Roland-Garros em 1983, cantou «Saga Africa»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Father of NBA player Joakim, and still the last Frenchman to win Roland-Garros.",
+          "fr": "Père du basketteur Joakim, et toujours le dernier Français vainqueur à Roland-Garros.",
+          "pt": "Pai do basquetebolista Joakim e ainda o último francês a vencer Roland-Garros."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Gaël Monfils",
+        "fr": "Gaël Monfils",
+        "pt": "Gaël Monfils"
+      },
+      {
+        "en": "Henri Leconte",
+        "fr": "Henri Leconte",
+        "pt": "Henri Leconte"
+      },
+      {
+        "en": "Guy Forget",
+        "fr": "Guy Forget",
+        "pt": "Guy Forget"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "yannick-noah",
+    "name": {
+      "en": "Yannick Noah",
+      "fr": "Yannick Noah",
+      "pt": "Yannick Noah"
+    },
+    "tier": "medium",
+    "wikidata": "Q221908"
+  },
+  {
+    "accepted": {
+      "en": ["Pagnol"],
+      "fr": ["Pagnol"],
+      "pt": ["Pagnol"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French writer who made Provence his great subject.",
+          "fr": "Un écrivain français qui a fait de la Provence son grand sujet.",
+          "pt": "Um escritor francês que fez da Provença o seu grande tema."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He lived and wrote in the 20th century.",
+          "fr": "Il a vécu et écrit au XXe siècle.",
+          "pt": "Viveu e escreveu no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was born in Aubagne, near Marseille, and made his own films.",
+          "fr": "Né à Aubagne, près de Marseille, il tournait ses propres films.",
+          "pt": "Nasceu em Aubagne, perto de Marselha, e realizava os seus próprios filmes."
+        }
+      },
+      {
+        "text": {
+          "en": "His childhood memories: “La Gloire de mon père”, “Le Château de ma mère”.",
+          "fr": "Ses souvenirs d’enfance : « La Gloire de mon père », « Le Château de ma mère ».",
+          "pt": "Memórias de infância: «A Glória do Meu Pai», «O Castelo da Minha Mãe»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The author of “Marius”, “Fanny” and “Jean de Florette”.",
+          "fr": "L’auteur de « Marius », « Fanny » et « Jean de Florette ».",
+          "pt": "O autor de «Marius», «Fanny» e «Jean de Florette»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Victor Hugo",
+        "fr": "Victor Hugo",
+        "pt": "Victor Hugo"
+      },
+      {
+        "en": "Alphonse Daudet",
+        "fr": "Alphonse Daudet",
+        "pt": "Alphonse Daudet"
+      },
+      {
+        "en": "Jean Giono",
+        "fr": "Jean Giono",
+        "pt": "Jean Giono"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "marcel-pagnol",
+    "name": {
+      "en": "Marcel Pagnol",
+      "fr": "Marcel Pagnol",
+      "pt": "Marcel Pagnol"
+    },
+    "tier": "medium",
+    "wikidata": "Q236630"
+  },
+  {
+    "accepted": {
+      "en": ["Pivot"],
+      "fr": ["Pivot"],
+      "pt": ["Pivot"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French broadcaster famous for his long conversations with writers.",
+          "fr": "Un homme de radio et de télévision connu pour ses grands entretiens avec des écrivains.",
+          "pt": "Um jornalista francês de rádio e televisão famoso pelas longas conversas com escritores."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "His show was devoted entirely to books.",
+          "fr": "Son émission était entièrement consacrée aux livres.",
+          "pt": "O seu programa era inteiramente dedicado aos livros."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "That Friday-night show ran from 1975 to 1990.",
+          "fr": "Cette émission du vendredi soir a duré de 1975 à 1990.",
+          "pt": "Esse programa de sexta à noite durou de 1975 a 1990."
+        }
+      },
+      {
+        "text": {
+          "en": "He ran a famous national dictation, and presided over the Académie Goncourt.",
+          "fr": "Il a lancé une célèbre dictée nationale et présidé l’académie Goncourt.",
+          "pt": "Criou um famoso ditado nacional e presidiu à academia Goncourt."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The host of “Apostrophes” and of the Dicos d’or dictation.",
+          "fr": "L’animateur d’« Apostrophes » et des Dicos d’or.",
+          "pt": "O apresentador de «Apostrophes» e do ditado Dicos d’or."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jacques Martin",
+        "fr": "Jacques Martin",
+        "pt": "Jacques Martin"
+      },
+      {
+        "en": "Jacques Chancel",
+        "fr": "Jacques Chancel",
+        "pt": "Jacques Chancel"
+      },
+      {
+        "en": "François Busnel",
+        "fr": "François Busnel",
+        "pt": "François Busnel"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "bernard-pivot",
+    "name": {
+      "en": "Bernard Pivot",
+      "fr": "Bernard Pivot",
+      "pt": "Bernard Pivot"
+    },
+    "tier": "hard",
+    "wikidata": "Q1101521"
+  },
+  {
+    "accepted": {
+      "en": ["Poulidor", "Poupou"],
+      "fr": ["Poulidor", "Poupou"],
+      "pt": ["Poulidor", "Poupou"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French cyclist, a man, much loved on the Tour de France.",
+          "fr": "Un coureur cycliste français adoré du public du Tour de France.",
+          "pt": "Um ciclista francês muito querido do público da Volta a França."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He never won the Tour de France.",
+          "fr": "Il n’a jamais gagné le Tour de France.",
+          "pt": "Nunca ganhou a Volta a França."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He raced in the 1960s and 1970s.",
+          "fr": "Il a couru dans les années 1960 et 1970.",
+          "pt": "Correu nos anos 60 e 70."
+        }
+      },
+      {
+        "text": {
+          "en": "Eight times on the Tour podium, he never once wore the yellow jersey.",
+          "fr": "Huit fois sur le podium du Tour, il n’a jamais porté le maillot jaune.",
+          "pt": "Oito vezes no pódio da Volta, nunca vestiu a camisola amarela."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Jacques Anquetil’s great rival, and grandfather of Mathieu van der Poel.",
+          "fr": "Le grand rival de Jacques Anquetil, grand-père de Mathieu van der Poel.",
+          "pt": "O grande rival de Jacques Anquetil e avô de Mathieu van der Poel."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jeannie Longo",
+        "fr": "Jeannie Longo",
+        "pt": "Jeannie Longo"
+      },
+      {
+        "en": "Bernard Hinault",
+        "fr": "Bernard Hinault",
+        "pt": "Bernard Hinault"
+      },
+      {
+        "en": "Richard Virenque",
+        "fr": "Richard Virenque",
+        "pt": "Richard Virenque"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "raymond-poulidor",
+    "name": {
+      "en": "Raymond Poulidor",
+      "fr": "Raymond Poulidor",
+      "pt": "Raymond Poulidor"
+    },
+    "tier": "hard",
+    "wikidata": "Q435462"
+  },
+  {
+    "accepted": {
+      "en": ["Monique Serf"],
+      "fr": ["Monique Serf"],
+      "pt": ["Monique Serf"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French female singer who wrote her own songs.",
+          "fr": "Une chanteuse française qui écrivait ses propres chansons.",
+          "pt": "Uma cantora francesa que escrevia as suas próprias canções."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She is no longer alive.",
+          "fr": "Elle n’est plus de ce monde.",
+          "pt": "Já morreu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Dressed all in black, she sang at the piano.",
+          "fr": "Tout de noir vêtue, elle chantait au piano.",
+          "pt": "Toda vestida de preto, cantava ao piano."
+        }
+      },
+      {
+        "text": {
+          "en": "Her songs: “L’Aigle noir”, “Göttingen”, “Nantes”.",
+          "fr": "Ses chansons : « L’Aigle noir », « Göttingen », « Nantes ».",
+          "pt": "Canções: «L’Aigle noir», «Göttingen», «Nantes»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The lady in black”, who sang “Ma plus belle histoire d’amour”.",
+          "fr": "« La dame en noir », qui chantait « Ma plus belle histoire d’amour ».",
+          "pt": "«A senhora de negro», que cantava «Ma plus belle histoire d’amour»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dalida",
+        "fr": "Dalida",
+        "pt": "Dalida"
+      },
+      {
+        "en": "Véronique Sanson",
+        "fr": "Véronique Sanson",
+        "pt": "Véronique Sanson"
+      },
+      {
+        "en": "Françoise Hardy",
+        "fr": "Françoise Hardy",
+        "pt": "Françoise Hardy"
+      }
+    ],
+    "homeCountry": "FRA",
+    "id": "barbara",
+    "name": {
+      "en": "Barbara",
+      "fr": "Barbara",
+      "pt": "Barbara"
+    },
+    "tier": "hard",
+    "wikidata": "Q1804"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese footballer who won the Ballon d’Or.",
+          "fr": "Un footballeur portugais lauréat du Ballon d’or.",
+          "pt": "Um futebolista português que ganhou a Bola de Ouro."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was born outside mainland Portugal.",
+          "fr": "Il est né hors du Portugal continental.",
+          "pt": "Nasceu fora de Portugal continental."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was the top scorer of the 1966 World Cup.",
+          "fr": "Il a été le meilleur buteur de la Coupe du monde 1966.",
+          "pt": "Foi o melhor marcador do Mundial de 1966."
+        }
+      },
+      {
+        "text": {
+          "en": "He scored twice as Benfica beat Real Madrid 5–3 in the 1962 European Cup final.",
+          "fr": "Il a marqué deux fois quand Benfica a battu le Real Madrid 5-3 en finale de 1962.",
+          "pt": "Marcou dois golos na final da Taça dos Campeões de 1962, Benfica 5–3 Real Madrid."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Born in Mozambique, Benfica’s “Black Panther”.",
+          "fr": "Né au Mozambique, la « Panthère noire » de Benfica.",
+          "pt": "Nascido em Moçambique, o «Pantera Negra» do Benfica."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Rui Costa",
+        "fr": "Rui Costa",
+        "pt": "Rui Costa"
+      },
+      {
+        "en": "Luís Figo",
+        "fr": "Luís Figo",
+        "pt": "Luís Figo"
+      },
+      {
+        "en": "Cristiano Ronaldo",
+        "fr": "Cristiano Ronaldo",
+        "pt": "Cristiano Ronaldo"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "eusebio",
+    "name": {
+      "en": "Eusébio",
+      "fr": "Eusébio",
+      "pt": "Eusébio"
+    },
+    "tier": "easy",
+    "wikidata": "Q162043"
+  },
+  {
+    "accepted": {
+      "en": ["Amália"],
+      "fr": ["Amália"],
+      "pt": ["Amália"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great fado singer.",
+          "fr": "Une grande voix du fado.",
+          "pt": "Uma grande voz do fado."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in Lisbon, in the first half of the 20th century.",
+          "fr": "Née à Lisbonne, dans la première moitié du XXe siècle.",
+          "pt": "Nasceu em Lisboa, na primeira metade do século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A woman, she was already singing in Lisbon’s fado houses in the 1930s.",
+          "fr": "Une femme, qui chantait déjà dans les maisons de fado de Lisbonne dans les années 1930.",
+          "pt": "Uma mulher que já cantava nas casas de fado de Lisboa nos anos 30."
+        }
+      },
+      {
+        "text": {
+          "en": "Her songs: “Barco Negro”, “Uma Casa Portuguesa”, “Povo que Lavas no Rio”.",
+          "fr": "Ses chansons : « Barco Negro », « Uma Casa Portuguesa », « Povo que Lavas no Rio ».",
+          "pt": "Canções: «Barco Negro», «Uma Casa Portuguesa», «Povo que Lavas no Rio»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The “Queen of Fado”, the first woman laid in Portugal’s National Pantheon.",
+          "fr": "La « reine du fado », première femme inhumée au Panthéon national portugais.",
+          "pt": "A «Rainha do Fado», a primeira mulher sepultada no Panteão Nacional."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Rui Veloso",
+        "fr": "Rui Veloso",
+        "pt": "Rui Veloso"
+      },
+      {
+        "en": "Mariza",
+        "fr": "Mariza",
+        "pt": "Mariza"
+      },
+      {
+        "en": "Carlos do Carmo",
+        "fr": "Carlos do Carmo",
+        "pt": "Carlos do Carmo"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "amalia-rodrigues",
+    "name": {
+      "en": "Amália Rodrigues",
+      "fr": "Amália Rodrigues",
+      "pt": "Amália Rodrigues"
+    },
+    "tier": "easy",
+    "wikidata": "Q214813"
+  },
+  {
+    "accepted": {
+      "en": ["Camões", "Camoens"],
+      "fr": ["Camões", "Camoens"],
+      "pt": ["Camões"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A great Portuguese poet.",
+          "fr": "Un grand poète portugais.",
+          "pt": "Um grande poeta português."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He lived before the 19th century.",
+          "fr": "Il a vécu avant le XIXe siècle.",
+          "pt": "Viveu antes do século XIX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He lived in the 16th century, the age of the Discoveries.",
+          "fr": "Il a vécu au XVIe siècle, en pleines Grandes Découvertes.",
+          "pt": "Viveu no século XVI, em plena época dos Descobrimentos."
+        }
+      },
+      {
+        "text": {
+          "en": "He lost an eye in Ceuta, and saved his manuscript from a shipwreck in the Mekong.",
+          "fr": "Il a perdu un œil à Ceuta et sauvé son manuscrit d’un naufrage dans le Mékong.",
+          "pt": "Perdeu um olho em Ceuta e salvou o manuscrito de um naufrágio no Mekong."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Author of “The Lusiads”; Portugal’s national day, 10 June, marks his death.",
+          "fr": "L’auteur des « Lusiades » ; la fête nationale portugaise, le 10 juin, marque sa mort.",
+          "pt": "Autor de «Os Lusíadas»; o 10 de Junho, Dia de Portugal, assinala a sua morte."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Eça de Queirós",
+        "fr": "Eça de Queirós",
+        "pt": "Eça de Queirós"
+      },
+      {
+        "en": "Fernando Pessoa",
+        "fr": "Fernando Pessoa",
+        "pt": "Fernando Pessoa"
+      },
+      {
+        "en": "Bocage",
+        "fr": "Bocage",
+        "pt": "Bocage"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "luis-de-camoes",
+    "name": {
+      "en": "Luís de Camões",
+      "fr": "Luís de Camões",
+      "pt": "Luís de Camões"
+    },
+    "tier": "easy",
+    "wikidata": "Q590"
+  },
+  {
+    "accepted": {
+      "en": ["Pessoa"],
+      "fr": ["Pessoa"],
+      "pt": ["Pessoa"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese writer of the 20th century.",
+          "fr": "Un écrivain portugais du XXe siècle.",
+          "pt": "Um escritor português do século XX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A poet above all.",
+          "fr": "Un poète avant tout.",
+          "pt": "Um poeta acima de tudo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He spent his childhood in Durban, South Africa.",
+          "fr": "Il a passé son enfance à Durban, en Afrique du Sud.",
+          "pt": "Passou a infância em Durban, na África do Sul."
+        }
+      },
+      {
+        "text": {
+          "en": "He also wrote as Alberto Caeiro, Ricardo Reis and Álvaro de Campos.",
+          "fr": "Il écrivait aussi sous les noms d’Alberto Caeiro, Ricardo Reis et Álvaro de Campos.",
+          "pt": "Também escreveu como Alberto Caeiro, Ricardo Reis e Álvaro de Campos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Author of “Message” and “The Book of Disquiet”, in bronze outside A Brasileira café.",
+          "fr": "L’auteur de « Message » et du « Livre de l’intranquillité », en bronze devant A Brasileira.",
+          "pt": "Autor de «Mensagem» e do «Livro do Desassossego», em bronze à porta d’A Brasileira."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Luís de Camões",
+        "fr": "Luís de Camões",
+        "pt": "Luís de Camões"
+      },
+      {
+        "en": "José Saramago",
+        "fr": "José Saramago",
+        "pt": "José Saramago"
+      },
+      {
+        "en": "Sophia de Mello Breyner Andresen",
+        "fr": "Sophia de Mello Breyner Andresen",
+        "pt": "Sophia de Mello Breyner Andresen"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "fernando-pessoa",
+    "name": {
+      "en": "Fernando Pessoa",
+      "fr": "Fernando Pessoa",
+      "pt": "Fernando Pessoa"
+    },
+    "tier": "easy",
+    "wikidata": "Q173481"
+  },
+  {
+    "accepted": {
+      "en": ["Marcelo", "Rebelo de Sousa"],
+      "fr": ["Marcelo", "Rebelo de Sousa"],
+      "pt": ["Marcelo", "Rebelo de Sousa"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A President of Portugal elected after the 1974 revolution.",
+          "fr": "Un président de la République portugaise élu après la révolution de 1974.",
+          "pt": "Um Presidente da República eleito depois do 25 de Abril."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He comes from the centre-right PSD.",
+          "fr": "Il vient du PSD, le centre droit.",
+          "pt": "Vem do PSD, o centro-direita."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Before Belém, he was a TV commentator every Sunday night.",
+          "fr": "Avant Belém, il commentait l’actualité à la télévision tous les dimanches soir.",
+          "pt": "Antes de Belém, era comentador na televisão todos os domingos à noite."
+        }
+      },
+      {
+        "text": {
+          "en": "A law professor famous for selfies, hugs and swims in the sea.",
+          "fr": "Professeur de droit, connu pour ses selfies, ses accolades et ses baignades en mer.",
+          "pt": "Professor de Direito, conhecido pelas selfies, pelos abraços e pelos mergulhos no mar."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Elected President in 2016 and re-elected in 2021: the “president of affection”.",
+          "fr": "Élu président en 2016, réélu en 2021 : le « président des affections ».",
+          "pt": "Eleito Presidente em 2016 e reeleito em 2021: o «Presidente dos afetos»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "António de Oliveira Salazar",
+        "fr": "António de Oliveira Salazar",
+        "pt": "António de Oliveira Salazar"
+      },
+      {
+        "en": "Mário Soares",
+        "fr": "Mário Soares",
+        "pt": "Mário Soares"
+      },
+      {
+        "en": "Aníbal Cavaco Silva",
+        "fr": "Aníbal Cavaco Silva",
+        "pt": "Aníbal Cavaco Silva"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "marcelo-rebelo-de-sousa",
+    "name": {
+      "en": "Marcelo Rebelo de Sousa",
+      "fr": "Marcelo Rebelo de Sousa",
+      "pt": "Marcelo Rebelo de Sousa"
+    },
+    "tier": "easy",
+    "wikidata": "Q6756617"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese TV presenter, a woman.",
+          "fr": "Une animatrice de télévision portugaise.",
+          "pt": "Uma apresentadora de televisão portuguesa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She became famous on daytime talk shows.",
+          "fr": "Elle est devenue célèbre grâce aux émissions de la journée.",
+          "pt": "Ficou famosa nos programas de entretenimento diurnos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She went on to run programming at a TV channel.",
+          "fr": "Elle est ensuite devenue directrice des programmes d’une chaîne.",
+          "pt": "Mais tarde passou a dirigir a programação de um canal."
+        }
+      },
+      {
+        "text": {
+          "en": "For years she co-hosted the mornings with Manuel Luís Goucha.",
+          "fr": "Elle a longtemps animé les matinées avec Manuel Luís Goucha.",
+          "pt": "Durante anos apresentou as manhãs com Manuel Luís Goucha."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "From Malveira, she left TVI for SIC, then came back to run TVI’s shows.",
+          "fr": "Originaire de Malveira, elle a quitté TVI pour SIC, puis est revenue diriger les programmes de TVI.",
+          "pt": "Natural da Malveira, trocou a TVI pela SIC e voltou para dirigir a programação da TVI."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Manuel Luís Goucha",
+        "fr": "Manuel Luís Goucha",
+        "pt": "Manuel Luís Goucha"
+      },
+      {
+        "en": "Catarina Furtado",
+        "fr": "Catarina Furtado",
+        "pt": "Catarina Furtado"
+      },
+      {
+        "en": "Fátima Lopes",
+        "fr": "Fátima Lopes",
+        "pt": "Fátima Lopes"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "cristina-ferreira",
+    "name": {
+      "en": "Cristina Ferreira",
+      "fr": "Cristina Ferreira",
+      "pt": "Cristina Ferreira"
+    },
+    "tier": "easy",
+    "wikidata": "Q10261673"
+  },
+  {
+    "accepted": {
+      "en": ["Mota"],
+      "fr": ["Mota"],
+      "pt": ["Mota"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese Olympic champion in athletics.",
+          "fr": "Un champion olympique portugais d’athlétisme.",
+          "pt": "Um campeão olímpico português de atletismo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A long-distance runner.",
+          "fr": "Un coureur de fond.",
+          "pt": "Um corredor de fundo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "That Olympic gold came in Seoul, in 1988.",
+          "fr": "Ce titre olympique a été gagné à Séoul, en 1988.",
+          "pt": "Esse ouro olímpico foi conquistado em Seul, em 1988."
+        }
+      },
+      {
+        "text": {
+          "en": "European marathon champion three times running: 1982, 1986 and 1990.",
+          "fr": "Trois fois de suite championne d’Europe du marathon : 1982, 1986 et 1990.",
+          "pt": "Três vezes seguidas campeã europeia da maratona: 1982, 1986 e 1990."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "From Porto, the first Portuguese woman to win Olympic gold.",
+          "fr": "Originaire de Porto, première Portugaise championne olympique.",
+          "pt": "Natural do Porto, a primeira portuguesa campeã olímpica."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Francis Obikwelu",
+        "fr": "Francis Obikwelu",
+        "pt": "Francis Obikwelu"
+      },
+      {
+        "en": "Nelson Évora",
+        "fr": "Nelson Évora",
+        "pt": "Nelson Évora"
+      },
+      {
+        "en": "Carlos Lopes",
+        "fr": "Carlos Lopes",
+        "pt": "Carlos Lopes"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "rosa-mota",
+    "name": {
+      "en": "Rosa Mota",
+      "fr": "Rosa Mota",
+      "pt": "Rosa Mota"
+    },
+    "tier": "medium",
+    "wikidata": "Q231084"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A fado singer performing in the 21st century.",
+          "fr": "Une voix du fado qui chante au XXIe siècle.",
+          "pt": "Uma voz do fado que canta no século XXI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A woman, a fadista.",
+          "fr": "Une femme, une fadista.",
+          "pt": "Uma mulher, uma fadista."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She was born in Mozambique.",
+          "fr": "Elle est née au Mozambique.",
+          "pt": "Nasceu em Moçambique."
+        }
+      },
+      {
+        "text": {
+          "en": "Short platinum-blonde hair, she grew up in Lisbon’s Mouraria.",
+          "fr": "Cheveux courts blond platine, elle a grandi dans la Mouraria, à Lisbonne.",
+          "pt": "Cabelo curto louro platinado, cresceu na Mouraria, em Lisboa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Hailed as “the new Amália”, she made “Ó Gente da Minha Terra” her own.",
+          "fr": "Saluée comme « la nouvelle Amália », elle a fait sienne « Ó Gente da Minha Terra ».",
+          "pt": "Aclamada como «a nova Amália», fez sua a «Ó Gente da Minha Terra»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Amália Rodrigues",
+        "fr": "Amália Rodrigues",
+        "pt": "Amália Rodrigues"
+      },
+      {
+        "en": "Camané",
+        "fr": "Camané",
+        "pt": "Camané"
+      },
+      {
+        "en": "Ana Moura",
+        "fr": "Ana Moura",
+        "pt": "Ana Moura"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "mariza",
+    "name": {
+      "en": "Mariza",
+      "fr": "Mariza",
+      "pt": "Mariza"
+    },
+    "tier": "medium",
+    "wikidata": "Q463918"
+  },
+  {
+    "accepted": {
+      "en": ["Sobral"],
+      "fr": ["Sobral"],
+      "pt": ["Sobral"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese singer who sang for Portugal at Eurovision.",
+          "fr": "Un chanteur portugais qui a représenté le Portugal à l’Eurovision.",
+          "pt": "Um cantor português que representou Portugal na Eurovisão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "His Eurovision song was a gentle, quiet ballad.",
+          "fr": "Sa chanson de l’Eurovision était une ballade douce et feutrée.",
+          "pt": "A sua canção da Eurovisão era uma balada suave e intimista."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His was the first Portuguese entry ever to win.",
+          "fr": "Il a offert au Portugal sa toute première victoire.",
+          "pt": "Deu a Portugal a primeira vitória de sempre."
+        }
+      },
+      {
+        "text": {
+          "en": "Months after his win, he had a heart transplant.",
+          "fr": "Quelques mois après sa victoire, il a subi une greffe du cœur.",
+          "pt": "Meses depois da vitória, fez um transplante de coração."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“Amar pelos Dois”, Kyiv 2017, a song written by his sister Luísa.",
+          "fr": "« Amar pelos Dois », Kiev 2017, une chanson écrite par sa sœur Luísa.",
+          "pt": "«Amar pelos Dois», Kiev 2017, uma canção escrita pela irmã, Luísa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Rui Veloso",
+        "fr": "Rui Veloso",
+        "pt": "Rui Veloso"
+      },
+      {
+        "en": "Conan Osíris",
+        "fr": "Conan Osíris",
+        "pt": "Conan Osíris"
+      },
+      {
+        "en": "Paulo de Carvalho",
+        "fr": "Paulo de Carvalho",
+        "pt": "Paulo de Carvalho"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "salvador-sobral",
+    "name": {
+      "en": "Salvador Sobral",
+      "fr": "Salvador Sobral",
+      "pt": "Salvador Sobral"
+    },
+    "tier": "medium",
+    "wikidata": "Q28836888"
+  },
+  {
+    "accepted": {
+      "en": ["Saramago"],
+      "fr": ["Saramago"],
+      "pt": ["Saramago"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese writer of the 20th century.",
+          "fr": "Un écrivain portugais du XXe siècle.",
+          "pt": "Um escritor português do século XX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A novelist above all.",
+          "fr": "Un romancier avant tout.",
+          "pt": "Um romancista acima de tudo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He won the Nobel Prize in Literature.",
+          "fr": "Il a reçu le prix Nobel de littérature.",
+          "pt": "Ganhou o Prémio Nobel da Literatura."
+        }
+      },
+      {
+        "text": {
+          "en": "“Blindness” and “The Gospel According to Jesus Christ”, with hardly a full stop.",
+          "fr": "« L’Aveuglement » et « L’Évangile selon Jésus-Christ », presque sans ponctuation.",
+          "pt": "«Ensaio sobre a Cegueira» e «O Evangelho segundo Jesus Cristo», quase sem pontuação."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Born in Azinhaga, he moved to Lanzarote after a row with the government.",
+          "fr": "Né à Azinhaga, il s’est installé à Lanzarote après un conflit avec le gouvernement.",
+          "pt": "Nascido na Azinhaga, mudou-se para Lanzarote depois de um conflito com o governo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Luís de Camões",
+        "fr": "Luís de Camões",
+        "pt": "Luís de Camões"
+      },
+      {
+        "en": "Fernando Pessoa",
+        "fr": "Fernando Pessoa",
+        "pt": "Fernando Pessoa"
+      },
+      {
+        "en": "António Lobo Antunes",
+        "fr": "António Lobo Antunes",
+        "pt": "António Lobo Antunes"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "jose-saramago",
+    "name": {
+      "en": "José Saramago",
+      "fr": "José Saramago",
+      "pt": "José Saramago"
+    },
+    "tier": "medium",
+    "wikidata": "Q37060"
+  },
+  {
+    "accepted": {
+      "en": ["Prince Henry", "Infante Dom Henrique"],
+      "fr": ["Infant Henri", "Infante Dom Henrique"],
+      "pt": ["Infante Dom Henrique", "Henrique o Navegador"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese figure of the Age of Discoveries.",
+          "fr": "Une figure portugaise des Grandes Découvertes.",
+          "pt": "Uma figura portuguesa dos Descobrimentos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He never reached India.",
+          "fr": "Il n’a jamais atteint l’Inde.",
+          "pt": "Nunca chegou à Índia."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He never led a great voyage of discovery himself.",
+          "fr": "Il n’a lui-même jamais mené de grand voyage de découverte.",
+          "pt": "Ele próprio nunca comandou uma grande viagem de descoberta."
+        }
+      },
+      {
+        "text": {
+          "en": "A son of King João I, he sent ships ever further down the coast of Africa.",
+          "fr": "Fils du roi Jean Ier, il a envoyé des navires toujours plus loin le long de l’Afrique.",
+          "pt": "Filho de D. João I, mandou navios cada vez mais longe pela costa de África."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The prince at the prow of Lisbon’s Monument to the Discoveries.",
+          "fr": "Le prince à la proue du monument des Découvertes, à Lisbonne.",
+          "pt": "O príncipe à proa do Padrão dos Descobrimentos, em Lisboa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Afonso Henriques",
+        "fr": "Afonso Henriques",
+        "pt": "D. Afonso Henriques"
+      },
+      {
+        "en": "Vasco da Gama",
+        "fr": "Vasco de Gama",
+        "pt": "Vasco da Gama"
+      },
+      {
+        "en": "Bartolomeu Dias",
+        "fr": "Bartolomeu Dias",
+        "pt": "Bartolomeu Dias"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "infante-d-henrique",
+    "name": {
+      "en": "Henry the Navigator",
+      "fr": "Henri le Navigateur",
+      "pt": "Infante D. Henrique"
+    },
+    "tier": "easy",
+    "wikidata": "Q182897"
+  },
+  {
+    "accepted": {
+      "en": ["Pombal", "Sebastião José de Carvalho e Melo"],
+      "fr": ["Pombal", "Sebastião José de Carvalho e Melo"],
+      "pt": ["Pombal", "Sebastião José de Carvalho e Melo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A man who held power in Portugal, though never as king.",
+          "fr": "Un homme qui a tenu le pouvoir au Portugal, sans jamais être roi.",
+          "pt": "Um homem que teve o poder em Portugal sem nunca ser rei."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He lived before 1900.",
+          "fr": "Il a vécu avant 1900.",
+          "pt": "Viveu antes de 1900."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He served King José I, in the 18th century.",
+          "fr": "Il a servi le roi Joseph Ier, au XVIIIe siècle.",
+          "pt": "Serviu D. José I, no século XVIII."
+        }
+      },
+      {
+        "text": {
+          "en": "He rebuilt Lisbon’s Baixa after the 1755 earthquake and expelled the Jesuits.",
+          "fr": "Il a reconstruit la Baixa de Lisbonne après le séisme de 1755 et expulsé les jésuites.",
+          "pt": "Reconstruiu a Baixa de Lisboa depois do terramoto de 1755 e expulsou os jesuítas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "His statue, with a lion, towers over the Lisbon square named after his title.",
+          "fr": "Sa statue au lion domine la grande place de Lisbonne qui porte son titre.",
+          "pt": "A sua estátua com um leão domina a rotunda de Lisboa que tem o seu título."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "King Sebastian",
+        "fr": "Sébastien Ier",
+        "pt": "D. Sebastião"
+      },
+      {
+        "en": "António de Oliveira Salazar",
+        "fr": "António de Oliveira Salazar",
+        "pt": "António de Oliveira Salazar"
+      },
+      {
+        "en": "Fontes Pereira de Melo",
+        "fr": "Fontes Pereira de Melo",
+        "pt": "Fontes Pereira de Melo"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "marques-de-pombal",
+    "name": {
+      "en": "Marquis of Pombal",
+      "fr": "Marquis de Pombal",
+      "pt": "Marquês de Pombal"
+    },
+    "tier": "medium",
+    "wikidata": "Q319511"
+  },
+  {
+    "accepted": {
+      "en": ["Afonso I"],
+      "fr": ["Afonso I", "Alphonse Ier"],
+      "pt": ["Afonso Henriques", "Afonso I"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A king of Portugal.",
+          "fr": "Un roi du Portugal.",
+          "pt": "Um rei de Portugal."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He did not die on a battlefield.",
+          "fr": "Il n’est pas mort sur un champ de bataille.",
+          "pt": "Não morreu num campo de batalha."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He fought his own mother’s army at São Mamede, in 1128.",
+          "fr": "Il a combattu l’armée de sa propre mère à São Mamede, en 1128.",
+          "pt": "Combateu o exército da própria mãe em São Mamede, em 1128."
+        }
+      },
+      {
+        "text": {
+          "en": "He won at Ourique and took Lisbon from the Moors in 1147.",
+          "fr": "Vainqueur à Ourique, il a pris Lisbonne aux Maures en 1147.",
+          "pt": "Venceu em Ourique e conquistou Lisboa aos mouros em 1147."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The Conqueror”, Portugal’s first king, born, so legend says, in Guimarães.",
+          "fr": "« Le Conquérant », premier roi du Portugal, né selon la légende à Guimarães.",
+          "pt": "«O Conquistador», primeiro rei de Portugal, nascido, diz a lenda, em Guimarães."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Henry the Navigator",
+        "fr": "Henri le Navigateur",
+        "pt": "Infante D. Henrique"
+      },
+      {
+        "en": "King Sebastian",
+        "fr": "Sébastien Ier",
+        "pt": "D. Sebastião"
+      },
+      {
+        "en": "King Denis",
+        "fr": "Denis Ier",
+        "pt": "D. Dinis"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "afonso-henriques",
+    "name": {
+      "en": "Afonso Henriques",
+      "fr": "Afonso Henriques",
+      "pt": "D. Afonso Henriques"
+    },
+    "tier": "easy",
+    "wikidata": "Q587697"
+  },
+  {
+    "accepted": {
+      "en": ["Solnado"],
+      "fr": ["Solnado"],
+      "pt": ["Solnado"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese comic actor of the 20th century, no longer alive.",
+          "fr": "Un acteur comique portugais du XXe siècle, aujourd’hui disparu.",
+          "pt": "Um ator cómico português do século XX, já desaparecido."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was a star of Portuguese television.",
+          "fr": "Il a été une vedette de la télévision portugaise.",
+          "pt": "Foi uma estrela da televisão portuguesa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "His best-known number is a monologue about going off to war.",
+          "fr": "Son numéro le plus célèbre est un monologue sur son départ à la guerre.",
+          "pt": "O seu número mais famoso é um monólogo sobre a ida à guerra."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1969 he presented “Zip-Zip”, a landmark of Portuguese TV.",
+          "fr": "En 1969, il a présenté « Zip-Zip », un monument de la télévision portugaise.",
+          "pt": "Em 1969 apresentou o «Zip-Zip», um marco da televisão portuguesa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "He signed off with “Façam o favor de ser felizes”.",
+          "fr": "Il saluait le public d’un « Façam o favor de ser felizes ».",
+          "pt": "Despedia-se com «Façam o favor de ser felizes»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Herman José",
+        "fr": "Herman José",
+        "pt": "Herman José"
+      },
+      {
+        "en": "Vasco Santana",
+        "fr": "Vasco Santana",
+        "pt": "Vasco Santana"
+      },
+      {
+        "en": "Nicolau Breyner",
+        "fr": "Nicolau Breyner",
+        "pt": "Nicolau Breyner"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "raul-solnado",
+    "name": {
+      "en": "Raul Solnado",
+      "fr": "Raul Solnado",
+      "pt": "Raul Solnado"
+    },
+    "tier": "hard",
+    "wikidata": "Q959703"
+  },
+  {
+    "accepted": {
+      "en": ["Herman"],
+      "fr": ["Herman"],
+      "pt": ["Herman"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese TV comedian who was already a star in the 1980s.",
+          "fr": "Un humoriste de la télévision portugaise déjà star dans les années 1980.",
+          "pt": "Um humorista da televisão portuguesa que já era estrela nos anos 80."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Still alive today.",
+          "fr": "Toujours en vie aujourd’hui.",
+          "pt": "Ainda hoje vivo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Lisbon, he has a German father.",
+          "fr": "Né à Lisbonne, il a un père allemand.",
+          "pt": "Nasceu em Lisboa, filho de pai alemão."
+        }
+      },
+      {
+        "text": {
+          "en": "He created Tony Silva and the Diácono Remédios.",
+          "fr": "Il a créé Tony Silva et le Diácono Remédios.",
+          "pt": "Criou o Tony Silva e o Diácono Remédios."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The king of Portuguese TV comedy since “O Tal Canal” in 1983.",
+          "fr": "Le roi de l’humour télévisé portugais depuis « O Tal Canal » en 1983.",
+          "pt": "O rei do humor na televisão portuguesa desde «O Tal Canal», em 1983."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ricardo Araújo Pereira",
+        "fr": "Ricardo Araújo Pereira",
+        "pt": "Ricardo Araújo Pereira"
+      },
+      {
+        "en": "Raul Solnado",
+        "fr": "Raul Solnado",
+        "pt": "Raul Solnado"
+      },
+      {
+        "en": "Ana Bola",
+        "fr": "Ana Bola",
+        "pt": "Ana Bola"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "herman-jose",
+    "name": {
+      "en": "Herman José",
+      "fr": "Herman José",
+      "pt": "Herman José"
+    },
+    "tier": "easy",
+    "wikidata": "Q91365"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A male fado singer.",
+          "fr": "Un chanteur de fado.",
+          "pt": "Um fadista, homem."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He is no longer alive.",
+          "fr": "Il n’est plus de ce monde.",
+          "pt": "Já morreu."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He sang well into the 21st century, saying farewell to the stage in 2019.",
+          "fr": "Il a chanté jusqu’en plein XXIe siècle et fait ses adieux à la scène en 2019.",
+          "pt": "Cantou até bem dentro do século XXI e despediu-se dos palcos em 2019."
+        }
+      },
+      {
+        "text": {
+          "en": "The son of a famous fadista mother, he sang “Canoas do Tejo”.",
+          "fr": "Fils d’une célèbre fadista, il a chanté « Canoas do Tejo ».",
+          "pt": "Filho de uma fadista célebre, cantou «Canoas do Tejo»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The voice of “Lisboa, Menina e Moça”, the first Portuguese to win a Latin Grammy.",
+          "fr": "La voix de « Lisboa, Menina e Moça », premier Portugais récompensé d’un Latin Grammy.",
+          "pt": "A voz de «Lisboa, Menina e Moça», o primeiro português a receber um Grammy Latino."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Amália Rodrigues",
+        "fr": "Amália Rodrigues",
+        "pt": "Amália Rodrigues"
+      },
+      {
+        "en": "Camané",
+        "fr": "Camané",
+        "pt": "Camané"
+      },
+      {
+        "en": "Alfredo Marceneiro",
+        "fr": "Alfredo Marceneiro",
+        "pt": "Alfredo Marceneiro"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "carlos-do-carmo",
+    "name": {
+      "en": "Carlos do Carmo",
+      "fr": "Carlos do Carmo",
+      "pt": "Carlos do Carmo"
+    },
+    "tier": "hard",
+    "wikidata": "Q983479"
+  },
+  {
+    "accepted": {
+      "en": ["José Afonso", "Zeca"],
+      "fr": ["José Afonso", "Zeca"],
+      "pt": ["José Afonso", "Zeca"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese singer of protest songs against the dictatorship.",
+          "fr": "Un chanteur portugais de chansons engagées contre la dictature.",
+          "pt": "Um cantor português de intervenção contra a ditadura."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He died in the 1980s.",
+          "fr": "Il est mort dans les années 1980.",
+          "pt": "Morreu nos anos 80."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "One of his songs was broadcast as a signal for the Carnation Revolution.",
+          "fr": "L’une de ses chansons a servi de signal radio à la révolution des Œillets.",
+          "pt": "Uma das suas canções foi a senha na rádio para a Revolução dos Cravos."
+        }
+      },
+      {
+        "text": {
+          "en": "Born in Aveiro, he began with Coimbra fado, then wrote “Venham Mais Cinco”.",
+          "fr": "Né à Aveiro, il a débuté dans le fado de Coimbra, puis écrit « Venham Mais Cinco ».",
+          "pt": "Nascido em Aveiro, começou no fado de Coimbra e depois escreveu «Venham Mais Cinco»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "He wrote and sang “Grândola, Vila Morena”.",
+          "fr": "Il a écrit et chanté « Grândola, Vila Morena ».",
+          "pt": "Escreveu e cantou «Grândola, Vila Morena»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Tony Carreira",
+        "fr": "Tony Carreira",
+        "pt": "Tony Carreira"
+      },
+      {
+        "en": "Sérgio Godinho",
+        "fr": "Sérgio Godinho",
+        "pt": "Sérgio Godinho"
+      },
+      {
+        "en": "Adriano Correia de Oliveira",
+        "fr": "Adriano Correia de Oliveira",
+        "pt": "Adriano Correia de Oliveira"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "zeca-afonso",
+    "name": {
+      "en": "Zeca Afonso",
+      "fr": "Zeca Afonso",
+      "pt": "Zeca Afonso"
+    },
+    "tier": "medium",
+    "wikidata": "Q559269"
+  },
+  {
+    "accepted": {
+      "en": ["Araújo Pereira", "RAP"],
+      "fr": ["Araújo Pereira", "RAP"],
+      "pt": ["Araújo Pereira", "RAP"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese comedian who became famous in the 2000s.",
+          "fr": "Un humoriste portugais devenu célèbre dans les années 2000.",
+          "pt": "Um humorista português que ficou famoso nos anos 2000."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was one of the four members of Gato Fedorento.",
+          "fr": "Il faisait partie des quatre membres de Gato Fedorento.",
+          "pt": "Foi um dos quatro elementos dos Gato Fedorento."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He hosts SIC’s satire show “Isto É Gozar com Quem Trabalha”.",
+          "fr": "Il anime l’émission satirique « Isto É Gozar com Quem Trabalha » sur SIC.",
+          "pt": "Apresenta o programa satírico «Isto É Gozar com Quem Trabalha», na SIC."
+        }
+      },
+      {
+        "text": {
+          "en": "His radio sketches, “Mixórdia de Temáticas”, ran for years on Rádio Comercial.",
+          "fr": "Ses sketchs radio « Mixórdia de Temáticas » ont duré des années sur Rádio Comercial.",
+          "pt": "Os seus sketches «Mixórdia de Temáticas» passaram anos na Rádio Comercial."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Gato Fedorento’s best-known face, and a devoted Benfica fan.",
+          "fr": "Le visage le plus connu de Gato Fedorento, grand supporter de Benfica.",
+          "pt": "A cara mais conhecida dos Gato Fedorento e benfiquista ferrenho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Herman José",
+        "fr": "Herman José",
+        "pt": "Herman José"
+      },
+      {
+        "en": "Bruno Nogueira",
+        "fr": "Bruno Nogueira",
+        "pt": "Bruno Nogueira"
+      },
+      {
+        "en": "José Diogo Quintela",
+        "fr": "José Diogo Quintela",
+        "pt": "José Diogo Quintela"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "ricardo-araujo-pereira",
+    "name": {
+      "en": "Ricardo Araújo Pereira",
+      "fr": "Ricardo Araújo Pereira",
+      "pt": "Ricardo Araújo Pereira"
+    },
+    "tier": "medium",
+    "wikidata": "Q7322543"
+  },
+  {
+    "accepted": {
+      "en": ["Évora"],
+      "fr": ["Évora"],
+      "pt": ["Évora"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese Olympic champion in athletics.",
+          "fr": "Un champion olympique portugais d’athlétisme.",
+          "pt": "Um campeão olímpico português de atletismo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A jumper.",
+          "fr": "Un sauteur.",
+          "pt": "Um saltador."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was born in Côte d’Ivoire, to Cape Verdean parents.",
+          "fr": "Il est né en Côte d’Ivoire, de parents cap-verdiens.",
+          "pt": "Nasceu na Costa do Marfim, filho de pais cabo-verdianos."
+        }
+      },
+      {
+        "text": {
+          "en": "He became world champion in Osaka in 2007.",
+          "fr": "Il a été sacré champion du monde à Osaka en 2007.",
+          "pt": "Sagrou-se campeão do mundo em Osaka, em 2007."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Portugal’s Olympic triple-jump champion of Beijing 2008.",
+          "fr": "Le champion olympique portugais du triple saut à Pékin en 2008.",
+          "pt": "O campeão olímpico português do triplo salto em Pequim 2008."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Francis Obikwelu",
+        "fr": "Francis Obikwelu",
+        "pt": "Francis Obikwelu"
+      },
+      {
+        "en": "Rosa Mota",
+        "fr": "Rosa Mota",
+        "pt": "Rosa Mota"
+      },
+      {
+        "en": "Pedro Pichardo",
+        "fr": "Pedro Pichardo",
+        "pt": "Pedro Pichardo"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "nelson-evora",
+    "name": {
+      "en": "Nelson Évora",
+      "fr": "Nelson Évora",
+      "pt": "Nelson Évora"
+    },
+    "tier": "hard",
+    "wikidata": "Q303241"
+  },
+  {
+    "accepted": {
+      "en": ["Variações"],
+      "fr": ["Variações"],
+      "pt": ["Variações"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Portuguese singer who released records in the 1980s.",
+          "fr": "Un chanteur portugais qui a sorti des disques dans les années 1980.",
+          "pt": "Um cantor português que lançou discos nos anos 80."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He died in the 1980s.",
+          "fr": "Il est mort dans les années 1980.",
+          "pt": "Morreu nos anos 80."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was a barber before he was a singer.",
+          "fr": "Il était barbier avant d’être chanteur.",
+          "pt": "Era barbeiro antes de ser cantor."
+        }
+      },
+      {
+        "text": {
+          "en": "A flamboyant beard and outfits; he died in 1984, aged 39.",
+          "fr": "Barbe et tenues extravagantes ; il est mort en 1984, à 39 ans.",
+          "pt": "Barba e roupas extravagantes; morreu em 1984, aos 39 anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The voice of “Canção de Engate” and “O Corpo É Que Paga”.",
+          "fr": "La voix de « Canção de Engate » et « O Corpo É Que Paga ».",
+          "pt": "A voz de «Canção de Engate» e «O Corpo É Que Paga»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Salvador Sobral",
+        "fr": "Salvador Sobral",
+        "pt": "Salvador Sobral"
+      },
+      {
+        "en": "Rui Veloso",
+        "fr": "Rui Veloso",
+        "pt": "Rui Veloso"
+      },
+      {
+        "en": "Zeca Afonso",
+        "fr": "Zeca Afonso",
+        "pt": "Zeca Afonso"
+      }
+    ],
+    "homeCountry": "PRT",
+    "id": "antonio-variacoes",
+    "name": {
+      "en": "António Variações",
+      "fr": "António Variações",
+      "pt": "António Variações"
+    },
+    "tier": "hard",
+    "wikidata": "Q594399"
+  },
+  {
+    "accepted": {
+      "en": ["Lineker"],
+      "fr": ["Lineker"],
+      "pt": ["Lineker"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An England striker who became a TV football presenter or pundit.",
+          "fr": "Un attaquant anglais devenu présentateur ou consultant football à la télévision.",
+          "pt": "Um avançado inglês que se tornou apresentador ou comentador de futebol na televisão."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He scored for England at a World Cup.",
+          "fr": "Il a marqué pour l’Angleterre en Coupe du monde.",
+          "pt": "Marcou pela Inglaterra num Mundial."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was never once booked in his whole career.",
+          "fr": "Il n’a jamais reçu un seul carton de toute sa carrière.",
+          "pt": "Nunca viu um único cartão em toda a carreira."
+        }
+      },
+      {
+        "text": {
+          "en": "Leicester-born, he played for Everton, Barcelona and Tottenham.",
+          "fr": "Né à Leicester, il a joué à Everton, au Barça et à Tottenham.",
+          "pt": "Nascido em Leicester, jogou no Everton, no Barcelona e no Tottenham."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Golden Boot of the 1986 World Cup, long-time host of “Match of the Day”.",
+          "fr": "Meilleur buteur du Mondial 1986, longtemps présentateur de « Match of the Day ».",
+          "pt": "Melhor marcador do Mundial de 1986, durante anos apresentador do «Match of the Day»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "David Beckham",
+        "fr": "David Beckham",
+        "pt": "David Beckham"
+      },
+      {
+        "en": "Ian Wright",
+        "fr": "Ian Wright",
+        "pt": "Ian Wright"
+      },
+      {
+        "en": "Alan Shearer",
+        "fr": "Alan Shearer",
+        "pt": "Alan Shearer"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "gary-lineker",
+    "name": {
+      "en": "Gary Lineker",
+      "fr": "Gary Lineker",
+      "pt": "Gary Lineker"
+    },
+    "tier": "easy",
+    "wikidata": "Q47778"
+  },
+  {
+    "accepted": {
+      "en": ["Clarkson"],
+      "fr": ["Clarkson"],
+      "pt": ["Clarkson"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A presenter of the BBC motoring show “Top Gear”.",
+          "fr": "Un présentateur de l’émission automobile de la BBC « Top Gear ».",
+          "pt": "Um apresentador do programa de automóveis da BBC «Top Gear»."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He went on to front Amazon’s “The Grand Tour”.",
+          "fr": "Il a ensuite animé « The Grand Tour » sur Amazon.",
+          "pt": "Depois apresentou «The Grand Tour», na Amazon."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He has a hit show about running his own farm.",
+          "fr": "Il a une émission à succès sur la gestion de sa propre ferme.",
+          "pt": "Tem um programa de sucesso sobre a gestão da sua própria quinta."
+        }
+      },
+      {
+        "text": {
+          "en": "The BBC dropped him in 2015 after a fracas with a producer.",
+          "fr": "La BBC l’a écarté en 2015 après une altercation avec un producteur.",
+          "pt": "A BBC dispensou-o em 2015 depois de uma altercação com um produtor."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The tallest of the Top Gear trio, owner of the Diddly Squat farm shop.",
+          "fr": "Le plus grand du trio de « Top Gear », patron de la ferme Diddly Squat.",
+          "pt": "O mais alto do trio do «Top Gear», dono da quinta Diddly Squat."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jeremy Paxman",
+        "fr": "Jeremy Paxman",
+        "pt": "Jeremy Paxman"
+      },
+      {
+        "en": "Chris Evans",
+        "fr": "Chris Evans",
+        "pt": "Chris Evans"
+      },
+      {
+        "en": "Richard Hammond",
+        "fr": "Richard Hammond",
+        "pt": "Richard Hammond"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "jeremy-clarkson",
+    "name": {
+      "en": "Jeremy Clarkson",
+      "fr": "Jeremy Clarkson",
+      "pt": "Jeremy Clarkson"
+    },
+    "tier": "easy",
+    "wikidata": "Q216160"
+  },
+  {
+    "accepted": {
+      "en": ["Cowell"],
+      "fr": ["Cowell"],
+      "pt": ["Cowell"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A judge on a British TV talent show.",
+          "fr": "Un juré d’un télé-crochet britannique.",
+          "pt": "Um jurado de um concurso de talentos britânico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He is English.",
+          "fr": "Il est anglais.",
+          "pt": "É inglês."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He created “The X Factor” and the “Got Talent” shows.",
+          "fr": "Il a créé « The X Factor » et les émissions « Got Talent ».",
+          "pt": "Criou o «The X Factor» e os programas «Got Talent»."
+        }
+      },
+      {
+        "text": {
+          "en": "Famous for brutal put-downs on “Pop Idol” and “American Idol”.",
+          "fr": "Célèbre pour ses verdicts assassins dans « Pop Idol » et « American Idol ».",
+          "pt": "Famoso pelas críticas arrasadoras no «Pop Idol» e no «American Idol»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The record boss whose label signed One Direction.",
+          "fr": "Le patron de maison de disques qui a signé One Direction.",
+          "pt": "O patrão discográfico cuja editora contratou os One Direction."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dermot O’Leary",
+        "fr": "Dermot O’Leary",
+        "pt": "Dermot O’Leary"
+      },
+      {
+        "en": "Louis Walsh",
+        "fr": "Louis Walsh",
+        "pt": "Louis Walsh"
+      },
+      {
+        "en": "David Walliams",
+        "fr": "David Walliams",
+        "pt": "David Walliams"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "simon-cowell",
+    "name": {
+      "en": "Simon Cowell",
+      "fr": "Simon Cowell",
+      "pt": "Simon Cowell"
+    },
+    "tier": "easy",
+    "wikidata": "Q162629"
+  },
+  {
+    "accepted": {
+      "en": ["Berry"],
+      "fr": ["Berry"],
+      "pt": ["Berry"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A judge on “The Great British Bake Off”.",
+          "fr": "Un juré du « Meilleur Pâtissier » britannique, « The Great British Bake Off ».",
+          "pt": "Um jurado do «The Great British Bake Off»."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in the 1930s or 1940s.",
+          "fr": "Né dans les années 1930 ou 1940.",
+          "pt": "Nasceu nos anos 30 ou 40."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She judged the first seven series, on the BBC.",
+          "fr": "Elle a jugé les sept premières saisons, sur la BBC.",
+          "pt": "Foi jurada das sete primeiras temporadas, na BBC."
+        }
+      },
+      {
+        "text": {
+          "en": "Her cakes and sponges have taught Britain to bake for over half a century.",
+          "fr": "Ses gâteaux apprennent la pâtisserie aux Britanniques depuis plus d’un demi-siècle.",
+          "pt": "Os seus bolos ensinam os britânicos a fazer pastelaria há mais de meio século."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The original queen of the Bake Off tent, beside Paul Hollywood.",
+          "fr": "La reine historique du chapiteau de Bake Off, aux côtés de Paul Hollywood.",
+          "pt": "A rainha original da tenda do Bake Off, ao lado de Paul Hollywood."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Delia Smith",
+        "fr": "Delia Smith",
+        "pt": "Delia Smith"
+      },
+      {
+        "en": "Paul Hollywood",
+        "fr": "Paul Hollywood",
+        "pt": "Paul Hollywood"
+      },
+      {
+        "en": "Prue Leith",
+        "fr": "Prue Leith",
+        "pt": "Prue Leith"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "mary-berry",
+    "name": {
+      "en": "Mary Berry",
+      "fr": "Mary Berry",
+      "pt": "Mary Berry"
+    },
+    "tier": "medium",
+    "wikidata": "Q12035946"
+  },
+  {
+    "accepted": {
+      "en": ["Nigella", "Lawson"],
+      "fr": ["Nigella", "Lawson"],
+      "pt": ["Nigella", "Lawson"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British TV cook, a woman.",
+          "fr": "Une cuisinière de la télévision britannique.",
+          "pt": "Uma cozinheira da televisão britânica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She has never judged a TV baking contest.",
+          "fr": "Elle n’a jamais été jurée d’un concours de pâtisserie télévisé.",
+          "pt": "Nunca foi jurada de um concurso de pastelaria na televisão."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Her father was Chancellor of the Exchequer under Thatcher.",
+          "fr": "Son père a été ministre des Finances de Margaret Thatcher.",
+          "pt": "O pai foi ministro das Finanças de Margaret Thatcher."
+        }
+      },
+      {
+        "text": {
+          "en": "A former food journalist, known for sensual cooking and midnight fridge raids.",
+          "fr": "Ex-journaliste culinaire, connue pour sa cuisine sensuelle et ses razzias nocturnes dans le frigo.",
+          "pt": "Ex-jornalista de gastronomia, conhecida pela cozinha sensual e pelos assaltos noturnos ao frigorífico."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Author of “How to Eat” and “How to Be a Domestic Goddess”.",
+          "fr": "L’autrice de « How to Eat » et « How to Be a Domestic Goddess ».",
+          "pt": "Autora de «How to Eat» e «How to Be a Domestic Goddess»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jamie Oliver",
+        "fr": "Jamie Oliver",
+        "pt": "Jamie Oliver"
+      },
+      {
+        "en": "Mary Berry",
+        "fr": "Mary Berry",
+        "pt": "Mary Berry"
+      },
+      {
+        "en": "Delia Smith",
+        "fr": "Delia Smith",
+        "pt": "Delia Smith"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "nigella-lawson",
+    "name": {
+      "en": "Nigella Lawson",
+      "fr": "Nigella Lawson",
+      "pt": "Nigella Lawson"
+    },
+    "tier": "medium",
+    "wikidata": "Q264724"
+  },
+  {
+    "accepted": {
+      "en": ["Fry"],
+      "fr": ["Fry"],
+      "pt": ["Fry"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British comedian on TV since the 1980s.",
+          "fr": "Un humoriste britannique à la télévision depuis les années 1980.",
+          "pt": "Um humorista britânico na televisão desde os anos 80."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He made his name in a famous comedy double act.",
+          "fr": "Il s’est fait un nom dans un célèbre duo comique.",
+          "pt": "Fez nome num famoso dueto cómico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He was the original host of a long-running BBC panel quiz.",
+          "fr": "Il a été le premier animateur d’un jeu-débat de la BBC resté longtemps à l’antenne.",
+          "pt": "Foi o primeiro apresentador de um longo concurso de painel da BBC."
+        }
+      },
+      {
+        "text": {
+          "en": "He narrated the Harry Potter audiobooks in Britain and played Oscar Wilde on film.",
+          "fr": "Il a lu les livres audio d’Harry Potter au Royaume-Uni et incarné Oscar Wilde au cinéma.",
+          "pt": "Leu os audiolivros de Harry Potter no Reino Unido e interpretou Oscar Wilde no cinema."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Jeeves to Hugh Laurie’s Wooster, and the first host of “QI”.",
+          "fr": "Le Jeeves du Wooster de Hugh Laurie, et le premier animateur de « QI ».",
+          "pt": "O Jeeves do Wooster de Hugh Laurie e o primeiro apresentador do «QI»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "James Corden",
+        "fr": "James Corden",
+        "pt": "James Corden"
+      },
+      {
+        "en": "Rowan Atkinson",
+        "fr": "Rowan Atkinson",
+        "pt": "Rowan Atkinson"
+      },
+      {
+        "en": "Hugh Laurie",
+        "fr": "Hugh Laurie",
+        "pt": "Hugh Laurie"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "stephen-fry",
+    "name": {
+      "en": "Stephen Fry",
+      "fr": "Stephen Fry",
+      "pt": "Stephen Fry"
+    },
+    "tier": "medium",
+    "wikidata": "Q192912"
+  },
+  {
+    "accepted": {
+      "en": ["Radcliffe"],
+      "fr": ["Radcliffe"],
+      "pt": ["Radcliffe"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British long-distance runner.",
+          "fr": "Un coureur de fond britannique.",
+          "pt": "Um corredor de fundo britânico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Never an Olympic champion.",
+          "fr": "Jamais champion olympique.",
+          "pt": "Nunca foi campeão olímpico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Her marathon world record stood for sixteen years.",
+          "fr": "Son record du monde du marathon a tenu seize ans.",
+          "pt": "O seu recorde mundial da maratona durou dezasseis anos."
+        }
+      },
+      {
+        "text": {
+          "en": "She stopped for a roadside toilet break in the 2005 London Marathon, and still won.",
+          "fr": "Elle s’est arrêtée pour un besoin pressant au bord de la route au marathon de Londres 2005, et a gagné.",
+          "pt": "Parou à beira da estrada para uma necessidade na Maratona de Londres de 2005 e mesmo assim ganhou."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "2:15:25, the women’s marathon record she set in London in 2003.",
+          "fr": "2 h 15 min 25 s, le record du marathon féminin qu’elle a établi à Londres en 2003.",
+          "pt": "2:15:25, o recorde da maratona feminina que bateu em Londres em 2003."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jessica Ennis-Hill",
+        "fr": "Jessica Ennis-Hill",
+        "pt": "Jessica Ennis-Hill"
+      },
+      {
+        "en": "Mo Farah",
+        "fr": "Mo Farah",
+        "pt": "Mo Farah"
+      },
+      {
+        "en": "Liz McColgan",
+        "fr": "Liz McColgan",
+        "pt": "Liz McColgan"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "paula-radcliffe",
+    "name": {
+      "en": "Paula Radcliffe",
+      "fr": "Paula Radcliffe",
+      "pt": "Paula Radcliffe"
+    },
+    "tier": "medium",
+    "wikidata": "Q233672"
+  },
+  {
+    "accepted": {
+      "en": ["Jessica Ennis", "Ennis"],
+      "fr": ["Jessica Ennis", "Ennis"],
+      "pt": ["Jessica Ennis", "Ennis"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British Olympic champion at London 2012.",
+          "fr": "Un champion olympique britannique des Jeux de Londres 2012.",
+          "pt": "Um campeão olímpico britânico em Londres 2012."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Jumping is part of the event that won this athlete gold.",
+          "fr": "Le saut fait partie de l’épreuve qui a valu l’or à ce champion.",
+          "pt": "Saltar faz parte da prova que deu o ouro a este atleta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Her event has seven disciplines, spread over two days.",
+          "fr": "Son épreuve compte sept disciplines, sur deux jours.",
+          "pt": "A sua prova tem sete disciplinas, ao longo de dois dias."
+        }
+      },
+      {
+        "text": {
+          "en": "From Sheffield, she was the face on the London 2012 posters.",
+          "fr": "Originaire de Sheffield, elle était le visage des affiches de Londres 2012.",
+          "pt": "Natural de Sheffield, era a cara dos cartazes de Londres 2012."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The London 2012 heptathlon champion, now a Dame.",
+          "fr": "La championne olympique de l’heptathlon à Londres en 2012, anoblie depuis.",
+          "pt": "A campeã olímpica do heptatlo em Londres 2012, hoje Dame."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Paula Radcliffe",
+        "fr": "Paula Radcliffe",
+        "pt": "Paula Radcliffe"
+      },
+      {
+        "en": "Mo Farah",
+        "fr": "Mo Farah",
+        "pt": "Mo Farah"
+      },
+      {
+        "en": "Greg Rutherford",
+        "fr": "Greg Rutherford",
+        "pt": "Greg Rutherford"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "jessica-ennis-hill",
+    "name": {
+      "en": "Jessica Ennis-Hill",
+      "fr": "Jessica Ennis-Hill",
+      "pt": "Jessica Ennis-Hill"
+    },
+    "tier": "medium",
+    "wikidata": "Q6091"
+  },
+  {
+    "accepted": {
+      "en": ["Forsyth", "Brucie"],
+      "fr": ["Forsyth", "Brucie"],
+      "pt": ["Forsyth", "Brucie"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British TV presenter who died in the 2010s.",
+          "fr": "Un animateur de la télévision britannique mort dans les années 2010.",
+          "pt": "Um apresentador da televisão britânica que morreu na década de 2010."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in England.",
+          "fr": "Né en Angleterre.",
+          "pt": "Nasceu em Inglaterra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He co-hosted a BBC ballroom dancing show into his eighties.",
+          "fr": "Il a coanimé une émission de danse de salon de la BBC passé quatre-vingts ans.",
+          "pt": "Co-apresentou um programa de dança de salão da BBC já depois dos oitenta anos."
+        }
+      },
+      {
+        "text": {
+          "en": "“Nice to see you, to see you… nice!”, and “The Generation Game”.",
+          "fr": "« Nice to see you, to see you… nice! », et « The Generation Game ».",
+          "pt": "«Nice to see you, to see you… nice!» e «The Generation Game»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Strictly’s first host, and the “Didn’t he do well?” man of “Play Your Cards Right”.",
+          "fr": "Le premier animateur de « Strictly », et le « Didn’t he do well? » de « Play Your Cards Right ».",
+          "pt": "O primeiro apresentador do «Strictly» e o «Didn’t he do well?» do «Play Your Cards Right»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Ant McPartlin",
+        "fr": "Ant McPartlin",
+        "pt": "Ant McPartlin"
+      },
+      {
+        "en": "Terry Wogan",
+        "fr": "Terry Wogan",
+        "pt": "Terry Wogan"
+      },
+      {
+        "en": "Cilla Black",
+        "fr": "Cilla Black",
+        "pt": "Cilla Black"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "bruce-forsyth",
+    "name": {
+      "en": "Bruce Forsyth",
+      "fr": "Bruce Forsyth",
+      "pt": "Bruce Forsyth"
+    },
+    "tier": "hard",
+    "wikidata": "Q1245136"
+  },
+  {
+    "accepted": {
+      "en": ["Delia"],
+      "fr": ["Delia"],
+      "pt": ["Delia"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British TV cook, a woman.",
+          "fr": "Une cuisinière de la télévision britannique.",
+          "pt": "Uma cozinheira da televisão britânica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She has never judged a TV baking contest.",
+          "fr": "Elle n’a jamais été jurée d’un concours de pâtisserie télévisé.",
+          "pt": "Nunca foi jurada de um concurso de pastelaria na televisão."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She has been teaching Britain to cook on TV since the 1970s.",
+          "fr": "Elle apprend à cuisiner aux Britanniques à la télévision depuis les années 1970.",
+          "pt": "Ensina os britânicos a cozinhar na televisão desde os anos 70."
+        }
+      },
+      {
+        "text": {
+          "en": "One TV recipe of hers could empty Britain’s shops of an ingredient overnight.",
+          "fr": "Une de ses recettes à la télé pouvait vider les rayons britanniques d’un ingrédient en une nuit.",
+          "pt": "Uma receita sua na televisão podia esgotar um ingrediente nas lojas britânicas de um dia para o outro."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Majority shareholder of Norwich City, author of “How to Cook”.",
+          "fr": "Actionnaire majoritaire de Norwich City, autrice de « How to Cook ».",
+          "pt": "Acionista maioritária do Norwich City, autora de «How to Cook»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jamie Oliver",
+        "fr": "Jamie Oliver",
+        "pt": "Jamie Oliver"
+      },
+      {
+        "en": "Mary Berry",
+        "fr": "Mary Berry",
+        "pt": "Mary Berry"
+      },
+      {
+        "en": "Nigella Lawson",
+        "fr": "Nigella Lawson",
+        "pt": "Nigella Lawson"
+      }
+    ],
+    "homeCountry": "GBR",
+    "id": "delia-smith",
+    "name": {
+      "en": "Delia Smith",
+      "fr": "Delia Smith",
+      "pt": "Delia Smith"
+    },
+    "tier": "hard",
+    "wikidata": "Q1808967"
+  },
+  {
+    "accepted": {
+      "en": ["Ruth", "The Bambino", "Bambino"],
+      "fr": ["Ruth", "Bambino"],
+      "pt": ["Ruth", "Bambino"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American baseball legend.",
+          "fr": "Une légende américaine du baseball.",
+          "pt": "Uma lenda americana do basebol."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He played for the New York Yankees.",
+          "fr": "Il a joué pour les Yankees de New York.",
+          "pt": "Jogou nos New York Yankees."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He started out as a pitcher for the Boston Red Sox.",
+          "fr": "Il a débuté comme lanceur chez les Red Sox de Boston.",
+          "pt": "Começou como lançador nos Boston Red Sox."
+        }
+      },
+      {
+        "text": {
+          "en": "He hit 60 home runs in 1927, a record that stood for 34 years.",
+          "fr": "Il a frappé 60 home runs en 1927, un record qui a tenu 34 ans.",
+          "pt": "Bateu 60 home runs em 1927, um recorde que durou 34 anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The Sultan of Swat”, whose sale to New York cursed Boston for 86 years.",
+          "fr": "« The Sultan of Swat », dont la vente à New York a maudit Boston pendant 86 ans.",
+          "pt": "«The Sultan of Swat», cuja venda a Nova Iorque amaldiçoou Boston durante 86 anos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Joe Montana",
+        "fr": "Joe Montana",
+        "pt": "Joe Montana"
+      },
+      {
+        "en": "Jackie Robinson",
+        "fr": "Jackie Robinson",
+        "pt": "Jackie Robinson"
+      },
+      {
+        "en": "Lou Gehrig",
+        "fr": "Lou Gehrig",
+        "pt": "Lou Gehrig"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "babe-ruth",
+    "name": {
+      "en": "Babe Ruth",
+      "fr": "Babe Ruth",
+      "pt": "Babe Ruth"
+    },
+    "tier": "easy",
+    "wikidata": "Q213812"
+  },
+  {
+    "accepted": {
+      "en": ["Brady"],
+      "fr": ["Brady"],
+      "pt": ["Brady"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American football quarterback.",
+          "fr": "Un quarterback de football américain.",
+          "pt": "Um quarterback de futebol americano."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He won at least four Super Bowls.",
+          "fr": "Il a gagné au moins quatre Super Bowls.",
+          "pt": "Ganhou pelo menos quatro Super Bowls."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He kept playing until he was 45.",
+          "fr": "Il a joué jusqu’à 45 ans.",
+          "pt": "Jogou até aos 45 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Picked 199th in the 2000 draft, he won six Super Bowls with New England.",
+          "fr": "Choisi en 199e position à la draft 2000, il a gagné six Super Bowls avec New England.",
+          "pt": "Escolhido em 199.º no draft de 2000, ganhou seis Super Bowls com os New England."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Seven Super Bowl rings, the last one with Tampa Bay.",
+          "fr": "Sept bagues de Super Bowl, la dernière avec Tampa Bay.",
+          "pt": "Sete anéis de Super Bowl, o último com os Tampa Bay."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jerry Rice",
+        "fr": "Jerry Rice",
+        "pt": "Jerry Rice"
+      },
+      {
+        "en": "Peyton Manning",
+        "fr": "Peyton Manning",
+        "pt": "Peyton Manning"
+      },
+      {
+        "en": "Joe Montana",
+        "fr": "Joe Montana",
+        "pt": "Joe Montana"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "tom-brady",
+    "name": {
+      "en": "Tom Brady",
+      "fr": "Tom Brady",
+      "pt": "Tom Brady"
+    },
+    "tier": "easy",
+    "wikidata": "Q313381"
+  },
+  {
+    "accepted": {
+      "en": ["Mister Rogers", "Mr Rogers", "Rogers"],
+      "fr": ["Mister Rogers", "Rogers"],
+      "pt": ["Mister Rogers", "Rogers"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American children’s TV host.",
+          "fr": "Un animateur américain d’émissions pour enfants.",
+          "pt": "Um apresentador americano de programas infantis."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He died in the early 2000s.",
+          "fr": "Il est mort au début des années 2000.",
+          "pt": "Morreu no início dos anos 2000."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He began every show by changing into a cardigan and sneakers.",
+          "fr": "Il commençait chaque émission en enfilant un gilet et des baskets.",
+          "pt": "Começava cada programa a vestir um casaco de malha e a calçar ténis."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1969 his testimony persuaded a US Senate committee to fund public TV.",
+          "fr": "En 1969, son témoignage a convaincu une commission du Sénat de financer la télévision publique.",
+          "pt": "Em 1969, o seu depoimento convenceu uma comissão do Senado a financiar a televisão pública."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“Won’t you be my neighbor?”, he asked children for over thirty years.",
+          "fr": "« Won’t you be my neighbor? », demandait-il aux enfants depuis plus de trente ans.",
+          "pt": "«Won’t you be my neighbor?», perguntou às crianças durante mais de trinta anos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Dr. Seuss",
+        "fr": "Dr Seuss",
+        "pt": "Dr. Seuss"
+      },
+      {
+        "en": "LeVar Burton",
+        "fr": "LeVar Burton",
+        "pt": "LeVar Burton"
+      },
+      {
+        "en": "Bob Keeshan (Captain Kangaroo)",
+        "fr": "Bob Keeshan (Captain Kangaroo)",
+        "pt": "Bob Keeshan (Captain Kangaroo)"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "fred-rogers",
+    "name": {
+      "en": "Fred Rogers",
+      "fr": "Fred Rogers",
+      "pt": "Fred Rogers"
+    },
+    "tier": "easy",
+    "wikidata": "Q1275768"
+  },
+  {
+    "accepted": {
+      "en": ["Martha", "Stewart"],
+      "fr": ["Martha", "Stewart"],
+      "pt": ["Martha", "Stewart"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American TV host of cooking and home shows.",
+          "fr": "Une animatrice américaine d’émissions de cuisine et de maison.",
+          "pt": "Uma apresentadora americana de programas de culinária e de casa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "She was born in the 1940s or later.",
+          "fr": "Elle est née dans les années 1940 ou après.",
+          "pt": "Nasceu nos anos 40 ou depois."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "She spent five months in prison in 2004–2005.",
+          "fr": "Elle a passé cinq mois en prison en 2004-2005.",
+          "pt": "Passou cinco meses na prisão em 2004–2005."
+        }
+      },
+      {
+        "text": {
+          "en": "A former model and stockbroker who built an empire on homemaking.",
+          "fr": "Ancienne mannequin et agente de change, elle a bâti un empire sur l’art de tenir sa maison.",
+          "pt": "Ex-modelo e corretora da bolsa, construiu um império sobre a arte de cuidar da casa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Snoop Dogg’s cooking partner on TV, and founder of “Living” magazine.",
+          "fr": "La complice de Snoop Dogg en cuisine à la télé, fondatrice du magazine « Living ».",
+          "pt": "A parceira de cozinha de Snoop Dogg na televisão, fundadora da revista «Living»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Oprah Winfrey",
+        "fr": "Oprah Winfrey",
+        "pt": "Oprah Winfrey"
+      },
+      {
+        "en": "Julia Child",
+        "fr": "Julia Child",
+        "pt": "Julia Child"
+      },
+      {
+        "en": "Rachael Ray",
+        "fr": "Rachael Ray",
+        "pt": "Rachael Ray"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "martha-stewart",
+    "name": {
+      "en": "Martha Stewart",
+      "fr": "Martha Stewart",
+      "pt": "Martha Stewart"
+    },
+    "tier": "medium",
+    "wikidata": "Q234606"
+  },
+  {
+    "accepted": {
+      "en": ["Carson"],
+      "fr": ["Carson"],
+      "pt": ["Carson"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American late-night TV host.",
+          "fr": "Un animateur américain de talk-show de fin de soirée.",
+          "pt": "Um apresentador americano de talk-show da noite."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He hosted “The Tonight Show”.",
+          "fr": "Il a présenté « The Tonight Show ».",
+          "pt": "Apresentou o «The Tonight Show»."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He hosted it for thirty years, from 1962 to 1992.",
+          "fr": "Il l’a présenté trente ans, de 1962 à 1992.",
+          "pt": "Apresentou-o durante trinta anos, de 1962 a 1992."
+        }
+      },
+      {
+        "text": {
+          "en": "His sidekick Ed McMahon introduced him every night.",
+          "fr": "Son acolyte Ed McMahon l’annonçait chaque soir.",
+          "pt": "O seu parceiro Ed McMahon anunciava-o todas as noites."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The King of Late Night”, who played Carnac the Magnificent.",
+          "fr": "« Le roi de la fin de soirée », interprète de Carnac le Magnifique.",
+          "pt": "«O rei da noite», que interpretava Carnac, o Magnífico."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Oprah Winfrey",
+        "fr": "Oprah Winfrey",
+        "pt": "Oprah Winfrey"
+      },
+      {
+        "en": "David Letterman",
+        "fr": "David Letterman",
+        "pt": "David Letterman"
+      },
+      {
+        "en": "Jay Leno",
+        "fr": "Jay Leno",
+        "pt": "Jay Leno"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "johnny-carson",
+    "name": {
+      "en": "Johnny Carson",
+      "fr": "Johnny Carson",
+      "pt": "Johnny Carson"
+    },
+    "tier": "hard",
+    "wikidata": "Q310819"
+  },
+  {
+    "accepted": {
+      "en": ["Brooks"],
+      "fr": ["Brooks"],
+      "pt": ["Brooks"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American country music star.",
+          "fr": "Une star américaine de la musique country.",
+          "pt": "Uma estrela americana da música country."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He became a star in the 1990s.",
+          "fr": "Il est devenu une star dans les années 1990.",
+          "pt": "Tornou-se uma estrela nos anos 90."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He is the best-selling solo artist in US history by album sales.",
+          "fr": "C’est l’artiste solo qui a vendu le plus d’albums de l’histoire aux États-Unis.",
+          "pt": "É o artista a solo com mais álbuns vendidos da história dos Estados Unidos."
+        }
+      },
+      {
+        "text": {
+          "en": "He stepped away to raise his daughters, and married Trisha Yearwood.",
+          "fr": "Il s’est retiré pour élever ses filles, et a épousé Trisha Yearwood.",
+          "pt": "Afastou-se para criar as filhas e casou com Trisha Yearwood."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“Friends in Low Places”, and an alter ego called Chris Gaines.",
+          "fr": "« Friends in Low Places », et un double nommé Chris Gaines.",
+          "pt": "«Friends in Low Places» e um alter ego chamado Chris Gaines."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Bruce Springsteen",
+        "fr": "Bruce Springsteen",
+        "pt": "Bruce Springsteen"
+      },
+      {
+        "en": "Dolly Parton",
+        "fr": "Dolly Parton",
+        "pt": "Dolly Parton"
+      },
+      {
+        "en": "Tim McGraw",
+        "fr": "Tim McGraw",
+        "pt": "Tim McGraw"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "garth-brooks",
+    "name": {
+      "en": "Garth Brooks",
+      "fr": "Garth Brooks",
+      "pt": "Garth Brooks"
+    },
+    "tier": "medium",
+    "wikidata": "Q216288"
+  },
+  {
+    "accepted": {
+      "en": ["Robinson"],
+      "fr": ["Robinson"],
+      "pt": ["Robinson"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American baseball legend.",
+          "fr": "Une légende américaine du baseball.",
+          "pt": "Uma lenda americana do basebol."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He was African American.",
+          "fr": "Il était afro-américain.",
+          "pt": "Era afro-americano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He played for the Brooklyn Dodgers.",
+          "fr": "Il a joué pour les Dodgers de Brooklyn.",
+          "pt": "Jogou nos Brooklyn Dodgers."
+        }
+      },
+      {
+        "text": {
+          "en": "Every major-league player wears his number 42 on 15 April.",
+          "fr": "Chaque 15 avril, tous les joueurs des ligues majeures portent son numéro 42.",
+          "pt": "Todos os 15 de abril, os jogadores das ligas principais vestem o seu número 42."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "In 1947, the first Black player in modern Major League Baseball.",
+          "fr": "En 1947, le premier joueur noir de l’ère moderne des ligues majeures.",
+          "pt": "Em 1947, o primeiro jogador negro da era moderna da Major League Baseball."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jesse Owens",
+        "fr": "Jesse Owens",
+        "pt": "Jesse Owens"
+      },
+      {
+        "en": "Babe Ruth",
+        "fr": "Babe Ruth",
+        "pt": "Babe Ruth"
+      },
+      {
+        "en": "Willie Mays",
+        "fr": "Willie Mays",
+        "pt": "Willie Mays"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "jackie-robinson",
+    "name": {
+      "en": "Jackie Robinson",
+      "fr": "Jackie Robinson",
+      "pt": "Jackie Robinson"
+    },
+    "tier": "medium",
+    "wikidata": "Q221048"
+  },
+  {
+    "accepted": {
+      "en": ["Revere"],
+      "fr": ["Revere"],
+      "pt": ["Revere"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A hero of the American Revolution.",
+          "fr": "Un héros de la révolution américaine.",
+          "pt": "Um herói da Revolução Americana."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He never became president.",
+          "fr": "Il n’est jamais devenu président.",
+          "pt": "Nunca chegou a presidente."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A silversmith by trade, in Boston.",
+          "fr": "Orfèvre de métier, à Boston.",
+          "pt": "Ourives de profissão, em Boston."
+        }
+      },
+      {
+        "text": {
+          "en": "A Longfellow poem made his horseback ride famous.",
+          "fr": "Un poème de Longfellow a rendu sa chevauchée célèbre.",
+          "pt": "Um poema de Longfellow tornou famosa a sua cavalgada."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "His midnight ride of 18 April 1775 warned that British troops were coming.",
+          "fr": "Sa chevauchée nocturne du 18 avril 1775 a prévenu de l’arrivée des troupes britanniques.",
+          "pt": "A sua cavalgada noturna de 18 de abril de 1775 avisou que as tropas britânicas vinham aí."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Abraham Lincoln",
+        "fr": "Abraham Lincoln",
+        "pt": "Abraham Lincoln"
+      },
+      {
+        "en": "George Washington",
+        "fr": "George Washington",
+        "pt": "George Washington"
+      },
+      {
+        "en": "Samuel Adams",
+        "fr": "Samuel Adams",
+        "pt": "Samuel Adams"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "paul-revere",
+    "name": {
+      "en": "Paul Revere",
+      "fr": "Paul Revere",
+      "pt": "Paul Revere"
+    },
+    "tier": "medium",
+    "wikidata": "Q327071"
+  },
+  {
+    "accepted": {
+      "en": ["Cronkite"],
+      "fr": ["Cronkite"],
+      "pt": ["Cronkite"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American TV news anchor.",
+          "fr": "Un présentateur de journal télévisé américain.",
+          "pt": "Um pivô de telejornal americano."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He anchored the “CBS Evening News”.",
+          "fr": "Il a présenté le « CBS Evening News ».",
+          "pt": "Apresentou o «CBS Evening News»."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He anchored it from 1962 to 1981.",
+          "fr": "Il l’a présenté de 1962 à 1981.",
+          "pt": "Apresentou-o de 1962 a 1981."
+        }
+      },
+      {
+        "text": {
+          "en": "He announced JFK’s death on air, taking off his glasses.",
+          "fr": "Il a annoncé la mort de JFK à l’antenne, en ôtant ses lunettes.",
+          "pt": "Anunciou a morte de JFK em direto, tirando os óculos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The most trusted man in America”: “And that’s the way it is.”",
+          "fr": "« L’homme le plus digne de confiance d’Amérique » : « And that’s the way it is. »",
+          "pt": "«O homem mais digno de confiança da América»: «And that’s the way it is.»"
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Johnny Carson",
+        "fr": "Johnny Carson",
+        "pt": "Johnny Carson"
+      },
+      {
+        "en": "Peter Jennings",
+        "fr": "Peter Jennings",
+        "pt": "Peter Jennings"
+      },
+      {
+        "en": "Dan Rather",
+        "fr": "Dan Rather",
+        "pt": "Dan Rather"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "walter-cronkite",
+    "name": {
+      "en": "Walter Cronkite",
+      "fr": "Walter Cronkite",
+      "pt": "Walter Cronkite"
+    },
+    "tier": "hard",
+    "wikidata": "Q31073"
+  },
+  {
+    "accepted": {
+      "en": ["Earnhardt"],
+      "fr": ["Earnhardt"],
+      "pt": ["Earnhardt"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A NASCAR Cup Series champion.",
+          "fr": "Un champion de NASCAR Cup Series.",
+          "pt": "Um campeão da NASCAR Cup Series."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "He won seven Cup titles.",
+          "fr": "Il a remporté sept titres en Cup.",
+          "pt": "Ganhou sete títulos da Cup."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "He died in a race crash in 2001.",
+          "fr": "Il s’est tué dans un accident de course en 2001.",
+          "pt": "Morreu num acidente em corrida em 2001."
+        }
+      },
+      {
+        "text": {
+          "en": "He finally won the Daytona 500 in 1998, at his twentieth attempt.",
+          "fr": "Il a enfin gagné les 500 miles de Daytona en 1998, à sa vingtième tentative.",
+          "pt": "Ganhou finalmente as 500 Milhas de Daytona em 1998, à vigésima tentativa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "“The Intimidator” in the black No. 3, father of Dale Jr.",
+          "fr": "« The Intimidator », à la n° 3 noire, père de Dale Jr.",
+          "pt": "«The Intimidator», do n.º 3 preto, pai de Dale Jr."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Danica Patrick",
+        "fr": "Danica Patrick",
+        "pt": "Danica Patrick"
+      },
+      {
+        "en": "Jeff Gordon",
+        "fr": "Jeff Gordon",
+        "pt": "Jeff Gordon"
+      },
+      {
+        "en": "Richard Petty",
+        "fr": "Richard Petty",
+        "pt": "Richard Petty"
+      }
+    ],
+    "homeCountry": "USA",
+    "id": "dale-earnhardt",
+    "name": {
+      "en": "Dale Earnhardt",
+      "fr": "Dale Earnhardt",
+      "pt": "Dale Earnhardt"
+    },
+    "tier": "hard",
+    "wikidata": "Q355420"
+  }
+]

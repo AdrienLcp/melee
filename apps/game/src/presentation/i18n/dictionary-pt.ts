@@ -863,7 +863,12 @@ const PORTUGUESE = defineDictionary({
   },
   fiveclues: {
     answer: {
-      country: 'Um país'
+      animal: 'Um animal',
+      character: 'Uma personagem',
+      country: 'Um país',
+      film: 'Um filme',
+      landmark: 'Um monumento',
+      person: 'Uma personalidade'
     },
     climbing: 'Ainda em jogo: {count:number}',
     clue: {
@@ -874,7 +879,7 @@ const PORTUGUESE = defineDictionary({
     clueDuration: 'Tempo por pista',
     home: {
       description:
-        'Um país esconde-se atrás de cinco pistas, da mais vaga à mais óbvia: o tamanho, a região, a silhueta, três das suas cidades, depois a bandeira e a capital. A mesa inteira sobe a escada uma pista de cada vez, uma resposta por pista. Descobri-lo logo na primeira vale mais, esperar pela bandeira vale menos.'
+        'Um país, uma personalidade, um filme, uma personagem, um animal ou um monumento esconde-se atrás de cinco pistas, da mais vaga à mais óbvia. A mesa inteira sobe a escada uma pista de cada vez, uma resposta por pista. Descobri-lo logo na primeira vale mais, esperar pela última vale menos.'
     },
     kind: {
       cities: 'Cidades',
@@ -920,8 +925,17 @@ const PORTUGUESE = defineDictionary({
     },
     rung: 'Pista {index:number}, {worth:number} pontos',
     scoring:
-      'Quanto mais cedo encontrares o país, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.',
-    tagline: 'Descobre o país antes dos outros.',
+      'Quanto mais cedo o encontrares, mais pontos ganhas: 100 na primeira pista, depois 80, 60, 40 e 20 na última.',
+    subjects: {
+      animal: 'Animais',
+      character: 'Personagens',
+      country: 'Países',
+      film: 'Filmes',
+      label: 'Por descobrir',
+      landmark: 'Monumentos',
+      person: 'Personalidades'
+    },
+    tagline: 'Descobre-o antes dos outros.',
     you: {
       found: 'Encontrado na pista {index:number}',
       held: 'Uma resposta por pista. Próxima tentativa na pista {index:number}',

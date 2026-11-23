@@ -10,11 +10,25 @@ export const FIVE_CLUES_CLUE_COUNT = 5
 /**
  * What a round hides, which the screens name in their prompt: a country
  * climbs its own rich rungs — its size, its region, its outline, its cities,
- * its flag — and every other subject climbs `text` and `image` ones.
+ * its flag — and every other subject climbs `text` and `image` ones, written
+ * by hand.
  */
-export const fiveCluesSubjects = ['country'] as const
+export const fiveCluesSubjects = [
+  'country',
+  'person',
+  'character',
+  'film',
+  'animal',
+  'landmark'
+] as const
 
 export const fiveCluesSubjectSchema = z.enum(fiveCluesSubjects)
+
+/** The subjects a room deals from, each round drawing one of them: never empty, never twice the same. */
+export const fiveCluesSubjectSetSchema = z
+  .array(fiveCluesSubjectSchema)
+  .min(1)
+  .refine((subjects) => new Set(subjects).size === subjects.length)
 
 export type FiveCluesSubject = z.infer<typeof fiveCluesSubjectSchema>
 

@@ -1,0 +1,4442 @@
+[
+  {
+    "accepted": {
+      "en": ["Curie", "Marie Sklodowska-Curie", "Maria Sklodowska"],
+      "fr": ["Curie", "Marie Skłodowska-Curie"],
+      "pt": ["Curie", "Marie Skłodowska-Curie"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Won a Nobel Prize.",
+          "fr": "A reçu un prix Nobel.",
+          "pt": "Recebeu um Prémio Nobel."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Spent years studying radioactivity.",
+          "fr": "A consacré des années à l’étude de la radioactivité.",
+          "pt": "Dedicou anos ao estudo da radioatividade."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Won two Nobel Prizes, in two different sciences.",
+          "fr": "A remporté deux prix Nobel, dans deux sciences différentes.",
+          "pt": "Ganhou dois Prémios Nobel, em duas ciências diferentes."
+        }
+      },
+      {
+        "text": {
+          "en": "Born in Warsaw, she named a newly found element after her homeland.",
+          "fr": "Née à Varsovie, elle a baptisé un nouvel élément du nom de sa patrie.",
+          "pt": "Nascida em Varsóvia, deu a um novo elemento o nome da sua pátria."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "First woman to win a Nobel; discovered radium with her husband Pierre.",
+          "fr": "Première femme prix Nobel, elle a découvert le radium avec son mari Pierre.",
+          "pt": "Primeira mulher a ganhar um Nobel, descobriu o rádio com o marido, Pierre."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Isaac Newton",
+        "fr": "Isaac Newton",
+        "pt": "Isaac Newton"
+      },
+      {
+        "en": "Albert Einstein",
+        "fr": "Albert Einstein",
+        "pt": "Albert Einstein"
+      },
+      {
+        "en": "Ernest Rutherford",
+        "fr": "Ernest Rutherford",
+        "pt": "Ernest Rutherford"
+      }
+    ],
+    "homeCountry": null,
+    "id": "marie-curie",
+    "name": {
+      "en": "Marie Curie",
+      "fr": "Marie Curie",
+      "pt": "Marie Curie"
+    },
+    "tier": "easy",
+    "wikidata": "Q7186"
+  },
+  {
+    "accepted": {
+      "en": ["Einstein"],
+      "fr": ["Einstein"],
+      "pt": ["Einstein"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A physicist who changed how we understand the universe.",
+          "fr": "Un physicien qui a changé notre façon de comprendre l’univers.",
+          "pt": "Um físico que mudou a forma como compreendemos o universo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the 20th century.",
+          "fr": "A vécu au XXᵉ siècle.",
+          "pt": "Viveu no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Once worked as a clerk in a Swiss patent office.",
+          "fr": "A été employé dans un bureau des brevets, en Suisse.",
+          "pt": "Trabalhou como funcionário num gabinete de patentes, na Suíça."
+        }
+      },
+      {
+        "text": {
+          "en": "His 1921 Nobel was for the photoelectric effect, not for relativity.",
+          "fr": "Son Nobel de 1921 récompense l’effet photoélectrique, pas la relativité.",
+          "pt": "O seu Nobel de 1921 premiou o efeito fotoelétrico, não a relatividade."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Gave the world the equation E = mc².",
+          "fr": "On lui doit l’équation E = mc².",
+          "pt": "Deu ao mundo a equação E = mc²."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Charles Darwin",
+        "fr": "Charles Darwin",
+        "pt": "Charles Darwin"
+      },
+      {
+        "en": "Isaac Newton",
+        "fr": "Isaac Newton",
+        "pt": "Isaac Newton"
+      },
+      {
+        "en": "Niels Bohr",
+        "fr": "Niels Bohr",
+        "pt": "Niels Bohr"
+      }
+    ],
+    "homeCountry": null,
+    "id": "albert-einstein",
+    "name": {
+      "en": "Albert Einstein",
+      "fr": "Albert Einstein",
+      "pt": "Albert Einstein"
+    },
+    "tier": "easy",
+    "wikidata": "Q937"
+  },
+  {
+    "accepted": {
+      "en": ["Newton"],
+      "fr": ["Newton"],
+      "pt": ["Newton"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A scientist who lived in the 17th century.",
+          "fr": "Un scientifique qui a vécu au XVIIᵉ siècle.",
+          "pt": "Um cientista que viveu no século XVII."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was English.",
+          "fr": "Était anglais.",
+          "pt": "Era inglês."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Invented calculus at the same time as a German rival.",
+          "fr": "A inventé le calcul infinitésimal en même temps qu’un rival allemand.",
+          "pt": "Inventou o cálculo infinitesimal ao mesmo tempo que um rival alemão."
+        }
+      },
+      {
+        "text": {
+          "en": "Ran the Royal Mint and personally hunted down counterfeiters.",
+          "fr": "A dirigé la Monnaie royale et traqué lui-même les faux-monnayeurs.",
+          "pt": "Dirigiu a Casa da Moeda inglesa e perseguiu pessoalmente falsificadores."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A falling apple supposedly inspired his law of universal gravitation.",
+          "fr": "Une pomme qui tombe lui aurait inspiré la loi de la gravitation universelle.",
+          "pt": "Uma maçã a cair ter-lhe-á inspirado a lei da gravitação universal."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Archimedes",
+        "fr": "Archimède",
+        "pt": "Arquimedes"
+      },
+      {
+        "en": "Galileo Galilei",
+        "fr": "Galilée",
+        "pt": "Galileu Galilei"
+      },
+      {
+        "en": "Edmond Halley",
+        "fr": "Edmond Halley",
+        "pt": "Edmond Halley"
+      }
+    ],
+    "homeCountry": null,
+    "id": "isaac-newton",
+    "name": {
+      "en": "Isaac Newton",
+      "fr": "Isaac Newton",
+      "pt": "Isaac Newton"
+    },
+    "tier": "easy",
+    "wikidata": "Q935"
+  },
+  {
+    "accepted": {
+      "en": ["Darwin"],
+      "fr": ["Darwin"],
+      "pt": ["Darwin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A naturalist who lived in the 19th century.",
+          "fr": "Un naturaliste qui a vécu au XIXᵉ siècle.",
+          "pt": "Um naturalista que viveu no século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was British.",
+          "fr": "Était britannique.",
+          "pt": "Era britânico."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Sailed around the world for five years aboard HMS Beagle.",
+          "fr": "A fait le tour du monde pendant cinq ans à bord du HMS Beagle.",
+          "pt": "Deu a volta ao mundo durante cinco anos a bordo do HMS Beagle."
+        }
+      },
+      {
+        "text": {
+          "en": "The finches and giant tortoises of the Galápagos shaped his ideas.",
+          "fr": "Les pinsons et les tortues géantes des Galápagos ont nourri ses idées.",
+          "pt": "Os tentilhões e as tartarugas-gigantes das Galápagos inspiraram as suas ideias."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Wrote On the Origin of Species and explained natural selection.",
+          "fr": "Auteur de L’Origine des espèces, il a expliqué la sélection naturelle.",
+          "pt": "Escreveu A Origem das Espécies e explicou a seleção natural."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Carl Linnaeus",
+        "fr": "Carl von Linné",
+        "pt": "Lineu"
+      },
+      {
+        "en": "Gregor Mendel",
+        "fr": "Gregor Mendel",
+        "pt": "Gregor Mendel"
+      },
+      {
+        "en": "Alfred Russel Wallace",
+        "fr": "Alfred Russel Wallace",
+        "pt": "Alfred Russel Wallace"
+      }
+    ],
+    "homeCountry": null,
+    "id": "charles-darwin",
+    "name": {
+      "en": "Charles Darwin",
+      "fr": "Charles Darwin",
+      "pt": "Charles Darwin"
+    },
+    "tier": "medium",
+    "wikidata": "Q1035"
+  },
+  {
+    "accepted": {
+      "en": ["Pasteur"],
+      "fr": ["Pasteur"],
+      "pt": ["Pasteur"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French scientist.",
+          "fr": "Un scientifique français.",
+          "pt": "Um cientista francês."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the 19th century.",
+          "fr": "A vécu au XIXᵉ siècle.",
+          "pt": "Viveu no século XIX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Studied microbes and the diseases they cause.",
+          "fr": "A étudié les microbes et les maladies qu’ils provoquent.",
+          "pt": "Estudou os micróbios e as doenças que provocam."
+        }
+      },
+      {
+        "text": {
+          "en": "In 1885, saved a boy bitten by a rabid dog with his new vaccine.",
+          "fr": "En 1885, il sauve un garçon mordu par un chien enragé grâce à son vaccin.",
+          "pt": "Em 1885, salvou com a sua vacina um rapaz mordido por um cão raivoso."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Heating milk briefly to kill its germs is named after him.",
+          "fr": "Chauffer le lait pour en tuer les germes porte son nom.",
+          "pt": "Aquecer o leite para lhe matar os micróbios tem o seu nome."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Alexander Fleming",
+        "fr": "Alexander Fleming",
+        "pt": "Alexander Fleming"
+      },
+      {
+        "en": "Antoine Lavoisier",
+        "fr": "Antoine Lavoisier",
+        "pt": "Antoine Lavoisier"
+      },
+      {
+        "en": "Pierre Curie",
+        "fr": "Pierre Curie",
+        "pt": "Pierre Curie"
+      }
+    ],
+    "homeCountry": null,
+    "id": "louis-pasteur",
+    "name": {
+      "en": "Louis Pasteur",
+      "fr": "Louis Pasteur",
+      "pt": "Louis Pasteur"
+    },
+    "tier": "medium",
+    "wikidata": "Q529"
+  },
+  {
+    "accepted": {
+      "en": ["Hawking"],
+      "fr": ["Hawking"],
+      "pt": ["Hawking"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British scientist.",
+          "fr": "Un scientifique britannique.",
+          "pt": "Um cientista britânico."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the 20th century.",
+          "fr": "A vécu au XXᵉ siècle.",
+          "pt": "Viveu no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Studied black holes and the birth of the universe.",
+          "fr": "A étudié les trous noirs et la naissance de l’univers.",
+          "pt": "Estudou os buracos negros e o nascimento do universo."
+        }
+      },
+      {
+        "text": {
+          "en": "Wrote A Brief History of Time, a bestseller worldwide.",
+          "fr": "Auteur d’Une brève histoire du temps, best-seller mondial.",
+          "pt": "Escreveu Breve História do Tempo, um êxito mundial."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Paralysed by motor neurone disease, he spoke through a computer voice.",
+          "fr": "Paralysé par la maladie de Charcot, il parlait avec une voix de synthèse.",
+          "pt": "Paralisado por esclerose lateral amiotrófica, falava com uma voz de computador."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Albert Einstein",
+        "fr": "Albert Einstein",
+        "pt": "Albert Einstein"
+      },
+      {
+        "en": "Isaac Newton",
+        "fr": "Isaac Newton",
+        "pt": "Isaac Newton"
+      },
+      {
+        "en": "Alan Turing",
+        "fr": "Alan Turing",
+        "pt": "Alan Turing"
+      }
+    ],
+    "homeCountry": null,
+    "id": "stephen-hawking",
+    "name": {
+      "en": "Stephen Hawking",
+      "fr": "Stephen Hawking",
+      "pt": "Stephen Hawking"
+    },
+    "tier": "medium",
+    "wikidata": "Q17714"
+  },
+  {
+    "accepted": {
+      "en": ["Lovelace"],
+      "fr": ["Lovelace"],
+      "pt": ["Lovelace"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A mathematician of the 19th century.",
+          "fr": "Une figure des mathématiques du XIXᵉ siècle.",
+          "pt": "Uma figura da matemática do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A woman, in a science almost closed to women.",
+          "fr": "Une femme, dans une science presque fermée aux femmes.",
+          "pt": "Uma mulher, numa ciência quase vedada às mulheres."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Daughter of the poet Lord Byron.",
+          "fr": "Fille du poète Lord Byron.",
+          "pt": "Filha do poeta Lord Byron."
+        }
+      },
+      {
+        "text": {
+          "en": "Wrote what is seen as the first computer program, for a machine never built.",
+          "fr": "A écrit ce qu’on tient pour le premier programme, pour une machine jamais construite.",
+          "pt": "Escreveu o que se considera o primeiro programa, para uma máquina nunca construída."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A programming language made for the US military bears her first name.",
+          "fr": "Un langage de programmation de l’armée américaine porte son prénom.",
+          "pt": "Uma linguagem de programação das forças armadas americanas tem o seu nome próprio."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Alan Turing",
+        "fr": "Alan Turing",
+        "pt": "Alan Turing"
+      },
+      {
+        "en": "Charles Babbage",
+        "fr": "Charles Babbage",
+        "pt": "Charles Babbage"
+      },
+      {
+        "en": "Mary Somerville",
+        "fr": "Mary Somerville",
+        "pt": "Mary Somerville"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ada-lovelace",
+    "name": {
+      "en": "Ada Lovelace",
+      "fr": "Ada Lovelace",
+      "pt": "Ada Lovelace"
+    },
+    "tier": "hard",
+    "wikidata": "Q7259"
+  },
+  {
+    "accepted": {
+      "en": ["Mendeleev", "Mendeleyev"],
+      "fr": ["Mendeleïev", "Mendeleiev", "Mendeleev"],
+      "pt": ["Mendeleiev", "Mendeleev"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A chemist of the 19th century.",
+          "fr": "Un chimiste du XIXᵉ siècle.",
+          "pt": "Um químico do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A chemical element is named after him.",
+          "fr": "Un élément chimique porte son nom.",
+          "pt": "Um elemento químico tem o seu nome."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Siberia, the youngest of a very large family.",
+          "fr": "Né en Sibérie, benjamin d’une très grande fratrie.",
+          "pt": "Nasceu na Sibéria, o mais novo de uma família muito numerosa."
+        }
+      },
+      {
+        "text": {
+          "en": "Left gaps in his chart for elements nobody had found yet.",
+          "fr": "A laissé des cases vides pour des éléments encore inconnus.",
+          "pt": "Deixou espaços vazios para elementos ainda por descobrir."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Drew up the periodic table of the elements.",
+          "fr": "A conçu le tableau périodique des éléments.",
+          "pt": "Criou a tabela periódica dos elementos."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Linus Pauling",
+        "fr": "Linus Pauling",
+        "pt": "Linus Pauling"
+      },
+      {
+        "en": "Louis Pasteur",
+        "fr": "Louis Pasteur",
+        "pt": "Louis Pasteur"
+      },
+      {
+        "en": "Alfred Nobel",
+        "fr": "Alfred Nobel",
+        "pt": "Alfred Nobel"
+      }
+    ],
+    "homeCountry": null,
+    "id": "dmitri-mendeleev",
+    "name": {
+      "en": "Dmitri Mendeleev",
+      "fr": "Dmitri Mendeleïev",
+      "pt": "Dmitri Mendeleiev"
+    },
+    "tier": "hard",
+    "wikidata": "Q9106"
+  },
+  {
+    "accepted": {
+      "en": ["Napoleon Bonaparte", "Bonaparte", "Napoleon I"],
+      "fr": ["Napoléon", "Bonaparte", "Napoléon Ier"],
+      "pt": ["Napoleão", "Bonaparte", "Napoleão I"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A leader of France.",
+          "fr": "Un dirigeant de la France.",
+          "pt": "Um dirigente de França."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Rose to power through the army, not by birth.",
+          "fr": "Est arrivé au pouvoir par l’armée, pas par la naissance.",
+          "pt": "Chegou ao poder pelo exército, não por nascimento."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Corsica a year after the island became French.",
+          "fr": "Né en Corse un an après que l’île est devenue française.",
+          "pt": "Nasceu na Córsega um ano depois de a ilha se tornar francesa."
+        }
+      },
+      {
+        "text": {
+          "en": "Crowned himself emperor in 1804 and gave France its civil code.",
+          "fr": "S’est sacré empereur en 1804 et a donné à la France son Code civil.",
+          "pt": "Coroou-se imperador em 1804 e deu a França o seu Código Civil."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Beaten at Waterloo, he died in exile on Saint Helena.",
+          "fr": "Vaincu à Waterloo, il meurt en exil à Sainte-Hélène.",
+          "pt": "Derrotado em Waterloo, morreu exilado em Santa Helena."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Julius Caesar",
+        "fr": "Jules César",
+        "pt": "Júlio César"
+      },
+      {
+        "en": "Louis XIV",
+        "fr": "Louis XIV",
+        "pt": "Luís XIV"
+      },
+      {
+        "en": "Charles de Gaulle",
+        "fr": "Charles de Gaulle",
+        "pt": "Charles de Gaulle"
+      }
+    ],
+    "homeCountry": null,
+    "id": "napoleon-bonaparte",
+    "name": {
+      "en": "Napoleon",
+      "fr": "Napoléon Bonaparte",
+      "pt": "Napoleão Bonaparte"
+    },
+    "tier": "easy",
+    "wikidata": "Q517"
+  },
+  {
+    "accepted": {
+      "en": ["Cleopatra VII"],
+      "fr": ["Cléopâtre VII"],
+      "pt": ["Cleópatra VII"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A queen of the ancient world.",
+          "fr": "Une reine de l’Antiquité.",
+          "pt": "Uma rainha da Antiguidade."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Went to war against Rome.",
+          "fr": "A fait la guerre contre Rome.",
+          "pt": "Fez guerra contra Roma."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Of Greek descent, said to be the first of her dynasty to speak Egyptian.",
+          "fr": "D’origine grecque, la première de sa dynastie à parler égyptien, dit-on.",
+          "pt": "De origem grega, terá sido a primeira da sua dinastia a falar egípcio."
+        }
+      },
+      {
+        "text": {
+          "en": "Had children with Julius Caesar and with Mark Antony.",
+          "fr": "A eu des enfants de Jules César et de Marc Antoine.",
+          "pt": "Teve filhos de Júlio César e de Marco António."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The last pharaoh of Egypt, said to have died from a snake bite.",
+          "fr": "Dernière pharaonne d’Égypte, morte, dit-on, de la morsure d’un aspic.",
+          "pt": "A última faraó do Egito, terá morrido da mordedura de uma áspide."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Elizabeth I",
+        "fr": "Élisabeth Iʳᵉ",
+        "pt": "Isabel I"
+      },
+      {
+        "en": "Nefertiti",
+        "fr": "Néfertiti",
+        "pt": "Nefertiti"
+      },
+      {
+        "en": "Boudica",
+        "fr": "Boadicée",
+        "pt": "Boudica"
+      }
+    ],
+    "homeCountry": null,
+    "id": "cleopatra",
+    "name": {
+      "en": "Cleopatra",
+      "fr": "Cléopâtre",
+      "pt": "Cleópatra"
+    },
+    "tier": "easy",
+    "wikidata": "Q635"
+  },
+  {
+    "accepted": {
+      "en": ["Mandela", "Madiba"],
+      "fr": ["Mandela", "Madiba"],
+      "pt": ["Mandela", "Madiba"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Won the Nobel Peace Prize.",
+          "fr": "A reçu le prix Nobel de la paix.",
+          "pt": "Recebeu o Prémio Nobel da Paz."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in South Africa.",
+          "fr": "Né en Afrique du Sud.",
+          "pt": "Nasceu na África do Sul."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Spent 27 years in prison.",
+          "fr": "A passé 27 ans en prison.",
+          "pt": "Passou 27 anos na prisão."
+        }
+      },
+      {
+        "text": {
+          "en": "Became his country’s first Black president in 1994.",
+          "fr": "Devient en 1994 le premier président noir de son pays.",
+          "pt": "Tornou-se em 1994 o primeiro presidente negro do seu país."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The face of the fight against apartheid, once held on Robben Island.",
+          "fr": "Visage de la lutte contre l’apartheid, longtemps détenu à Robben Island.",
+          "pt": "Rosto da luta contra o apartheid, esteve preso em Robben Island."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Mahatma Gandhi",
+        "fr": "Mahatma Gandhi",
+        "pt": "Mahatma Gandhi"
+      },
+      {
+        "en": "Martin Luther King",
+        "fr": "Martin Luther King",
+        "pt": "Martin Luther King"
+      },
+      {
+        "en": "Desmond Tutu",
+        "fr": "Desmond Tutu",
+        "pt": "Desmond Tutu"
+      }
+    ],
+    "homeCountry": null,
+    "id": "nelson-mandela",
+    "name": {
+      "en": "Nelson Mandela",
+      "fr": "Nelson Mandela",
+      "pt": "Nelson Mandela"
+    },
+    "tier": "easy",
+    "wikidata": "Q8023"
+  },
+  {
+    "accepted": {
+      "en": ["Lincoln", "Abe Lincoln"],
+      "fr": ["Lincoln"],
+      "pt": ["Lincoln"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A president of the United States.",
+          "fr": "Un président des États-Unis.",
+          "pt": "Um presidente dos Estados Unidos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was assassinated while in office.",
+          "fr": "A été assassiné pendant son mandat.",
+          "pt": "Foi assassinado durante o mandato."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in a one-room log cabin in Kentucky.",
+          "fr": "Né dans une cabane en rondins d’une seule pièce, au Kentucky.",
+          "pt": "Nasceu numa cabana de troncos de uma só divisão, no Kentucky."
+        }
+      },
+      {
+        "text": {
+          "en": "Led the Union through the Civil War and ended slavery.",
+          "fr": "A mené le Nord pendant la guerre de Sécession et aboli l’esclavage.",
+          "pt": "Liderou a União na Guerra Civil e aboliu a escravatura."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Gave the Gettysburg Address; his face is on the five-dollar bill.",
+          "fr": "Auteur du discours de Gettysburg, son visage orne le billet de 5 dollars.",
+          "pt": "Fez o discurso de Gettysburg; o seu rosto está na nota de 5 dólares."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Winston Churchill",
+        "fr": "Winston Churchill",
+        "pt": "Winston Churchill"
+      },
+      {
+        "en": "George Washington",
+        "fr": "George Washington",
+        "pt": "George Washington"
+      },
+      {
+        "en": "John F. Kennedy",
+        "fr": "John F. Kennedy",
+        "pt": "John F. Kennedy"
+      }
+    ],
+    "homeCountry": null,
+    "id": "abraham-lincoln",
+    "name": {
+      "en": "Abraham Lincoln",
+      "fr": "Abraham Lincoln",
+      "pt": "Abraham Lincoln"
+    },
+    "tier": "easy",
+    "wikidata": "Q91"
+  },
+  {
+    "accepted": {
+      "en": ["Gandhi", "Mohandas Gandhi", "Mohandas Karamchand Gandhi"],
+      "fr": ["Gandhi", "Mohandas Gandhi"],
+      "pt": ["Gandhi", "Mohandas Gandhi"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Led a nation’s struggle for independence.",
+          "fr": "A mené la lutte d’une nation pour son indépendance.",
+          "pt": "Liderou a luta de uma nação pela independência."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the 20th century.",
+          "fr": "A vécu au XXᵉ siècle.",
+          "pt": "Viveu no século XX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Never held any office in government.",
+          "fr": "N’a jamais exercé la moindre fonction au gouvernement.",
+          "pt": "Nunca ocupou qualquer cargo no governo."
+        }
+      },
+      {
+        "text": {
+          "en": "Walked 24 days to the sea to make salt, defying a British tax.",
+          "fr": "A marché 24 jours jusqu’à la mer pour y faire du sel, contre une taxe britannique.",
+          "pt": "Caminhou 24 dias até ao mar para fazer sal, desafiando um imposto britânico."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Called the ‘Great Soul’, the apostle of non-violence who freed India.",
+          "fr": "Surnommé la « Grande Âme », l’apôtre de la non-violence qui a libéré l’Inde.",
+          "pt": "Chamado «Grande Alma», o apóstolo da não-violência que libertou a Índia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Martin Luther King",
+        "fr": "Martin Luther King",
+        "pt": "Martin Luther King"
+      },
+      {
+        "en": "George Washington",
+        "fr": "George Washington",
+        "pt": "George Washington"
+      },
+      {
+        "en": "Jawaharlal Nehru",
+        "fr": "Jawaharlal Nehru",
+        "pt": "Jawaharlal Nehru"
+      }
+    ],
+    "homeCountry": null,
+    "id": "mahatma-gandhi",
+    "name": {
+      "en": "Mahatma Gandhi",
+      "fr": "Mahatma Gandhi",
+      "pt": "Mahatma Gandhi"
+    },
+    "tier": "medium",
+    "wikidata": "Q1001"
+  },
+  {
+    "accepted": {
+      "en": ["Churchill"],
+      "fr": ["Churchill"],
+      "pt": ["Churchill"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Led his country through the Second World War.",
+          "fr": "A dirigé son pays pendant la Seconde Guerre mondiale.",
+          "pt": "Liderou o seu país durante a Segunda Guerra Mundial."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Fought as a young soldier and was taken prisoner.",
+          "fr": "Jeune soldat, il a combattu et a été fait prisonnier.",
+          "pt": "Combateu como jovem soldado e foi feito prisioneiro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Won the Nobel Prize in Literature.",
+          "fr": "A reçu le prix Nobel de littérature.",
+          "pt": "Recebeu o Prémio Nobel da Literatura."
+        }
+      },
+      {
+        "text": {
+          "en": "Took office promising only ‘blood, toil, tears and sweat’.",
+          "fr": "A pris ses fonctions en promettant « du sang, de la peine, des larmes et de la sueur ».",
+          "pt": "Tomou posse prometendo apenas «sangue, sofrimento, lágrimas e suor»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Britain’s wartime prime minister, cigar in mouth, fingers in a V.",
+          "fr": "Premier ministre britannique de la guerre, cigare aux lèvres et doigts en V.",
+          "pt": "Primeiro-ministro britânico da guerra, de charuto na boca e dedos em V."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Margaret Thatcher",
+        "fr": "Margaret Thatcher",
+        "pt": "Margaret Thatcher"
+      },
+      {
+        "en": "Franklin D. Roosevelt",
+        "fr": "Franklin D. Roosevelt",
+        "pt": "Franklin D. Roosevelt"
+      },
+      {
+        "en": "Charles de Gaulle",
+        "fr": "Charles de Gaulle",
+        "pt": "Charles de Gaulle"
+      }
+    ],
+    "homeCountry": null,
+    "id": "winston-churchill",
+    "name": {
+      "en": "Winston Churchill",
+      "fr": "Winston Churchill",
+      "pt": "Winston Churchill"
+    },
+    "tier": "medium",
+    "wikidata": "Q8016"
+  },
+  {
+    "accepted": {
+      "en": ["Jeanne d'Arc", "Jeanne d’Arc"],
+      "fr": ["Jeanne d'Arc", "Jeanne"],
+      "pt": ["Joana d'Arc", "Joana"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A figure of French history.",
+          "fr": "Une figure de l’histoire de France.",
+          "pt": "Uma figura da história de França."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the Middle Ages.",
+          "fr": "A vécu au Moyen Âge.",
+          "pt": "Viveu na Idade Média."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A peasant girl who said the voices of saints spoke to her.",
+          "fr": "Une jeune paysanne qui disait entendre la voix de saints.",
+          "pt": "Uma jovem camponesa que dizia ouvir as vozes de santos."
+        }
+      },
+      {
+        "text": {
+          "en": "At 17, lifted the siege of Orléans and had her king crowned at Reims.",
+          "fr": "À 17 ans, elle délivre Orléans et fait sacrer son roi à Reims.",
+          "pt": "Aos 17 anos, libertou Orleães e fez coroar o seu rei em Reims."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Burnt at the stake in Rouen in 1431, made a saint in 1920.",
+          "fr": "Brûlée vive à Rouen en 1431, canonisée en 1920.",
+          "pt": "Queimada viva em Ruão em 1431, canonizada em 1920."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Boudica",
+        "fr": "Boadicée",
+        "pt": "Boudica"
+      },
+      {
+        "en": "Marie Antoinette",
+        "fr": "Marie-Antoinette",
+        "pt": "Maria Antonieta"
+      },
+      {
+        "en": "Eleanor of Aquitaine",
+        "fr": "Aliénor d’Aquitaine",
+        "pt": "Leonor da Aquitânia"
+      }
+    ],
+    "homeCountry": null,
+    "id": "joan-of-arc",
+    "name": {
+      "en": "Joan of Arc",
+      "fr": "Jeanne d’Arc",
+      "pt": "Joana d’Arc"
+    },
+    "tier": "medium",
+    "wikidata": "Q7226"
+  },
+  {
+    "accepted": {
+      "en": ["Bolívar", "Bolivar"],
+      "fr": ["Bolívar", "Bolivar"],
+      "pt": ["Bolívar", "Bolivar"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Fought to free his homeland from Spain.",
+          "fr": "S’est battu pour libérer sa terre de l’Espagne.",
+          "pt": "Lutou para libertar a sua terra de Espanha."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Fought his wars in South America.",
+          "fr": "A mené ses guerres en Amérique du Sud.",
+          "pt": "Travou as suas guerras na América do Sul."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Caracas to a wealthy family.",
+          "fr": "Né à Caracas dans une famille fortunée.",
+          "pt": "Nasceu em Caracas, numa família abastada."
+        }
+      },
+      {
+        "text": {
+          "en": "A country and a currency are named after him.",
+          "fr": "Un pays et une monnaie portent son nom.",
+          "pt": "Um país e uma moeda têm o seu nome."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Called the Liberator, he freed six of today’s nations from Spanish rule.",
+          "fr": "Surnommé le Libérateur, il a affranchi six pays actuels du joug espagnol.",
+          "pt": "Chamado o Libertador, libertou seis dos atuais países do domínio espanhol."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "George Washington",
+        "fr": "George Washington",
+        "pt": "George Washington"
+      },
+      {
+        "en": "Miguel Hidalgo",
+        "fr": "Miguel Hidalgo",
+        "pt": "Miguel Hidalgo"
+      },
+      {
+        "en": "José de San Martín",
+        "fr": "José de San Martín",
+        "pt": "José de San Martín"
+      }
+    ],
+    "homeCountry": null,
+    "id": "simon-bolivar",
+    "name": {
+      "en": "Simón Bolívar",
+      "fr": "Simón Bolívar",
+      "pt": "Simón Bolívar"
+    },
+    "tier": "hard",
+    "wikidata": "Q8605"
+  },
+  {
+    "accepted": {
+      "en": ["Shakespeare"],
+      "fr": ["Shakespeare"],
+      "pt": ["Shakespeare"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A playwright still performed centuries after his death.",
+          "fr": "Un dramaturge encore joué des siècles après sa mort.",
+          "pt": "Um dramaturgo ainda encenado séculos depois da sua morte."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Wrote in English.",
+          "fr": "Écrivait en anglais.",
+          "pt": "Escrevia em inglês."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born and buried in the same small Warwickshire town.",
+          "fr": "Né et enterré dans la même petite ville du Warwickshire.",
+          "pt": "Nasceu e foi sepultado na mesma pequena cidade do Warwickshire."
+        }
+      },
+      {
+        "text": {
+          "en": "His company played at London’s Globe theatre.",
+          "fr": "Sa troupe jouait au théâtre du Globe, à Londres.",
+          "pt": "A sua companhia atuava no teatro Globe, em Londres."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Wrote Romeo and Juliet and Hamlet.",
+          "fr": "Auteur de Roméo et Juliette et d’Hamlet.",
+          "pt": "Escreveu Romeu e Julieta e Hamlet."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Charles Dickens",
+        "fr": "Charles Dickens",
+        "pt": "Charles Dickens"
+      },
+      {
+        "en": "Molière",
+        "fr": "Molière",
+        "pt": "Molière"
+      },
+      {
+        "en": "Christopher Marlowe",
+        "fr": "Christopher Marlowe",
+        "pt": "Christopher Marlowe"
+      }
+    ],
+    "homeCountry": null,
+    "id": "william-shakespeare",
+    "name": {
+      "en": "William Shakespeare",
+      "fr": "William Shakespeare",
+      "pt": "William Shakespeare"
+    },
+    "tier": "easy",
+    "wikidata": "Q692"
+  },
+  {
+    "accepted": {
+      "en": ["Leonardo", "da Vinci"],
+      "fr": ["Léonard", "Vinci", "Leonardo da Vinci"],
+      "pt": ["Leonardo", "da Vinci"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A man of the Italian Renaissance.",
+          "fr": "Un homme de la Renaissance italienne.",
+          "pt": "Um homem do Renascimento italiano."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A scientist and an inventor.",
+          "fr": "Un scientifique et un inventeur.",
+          "pt": "Um cientista e um inventor."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A painter, though fewer than twenty of his paintings survive.",
+          "fr": "Un peintre, dont moins de vingt tableaux nous sont parvenus.",
+          "pt": "Um pintor, de quem restam menos de vinte quadros."
+        }
+      },
+      {
+        "text": {
+          "en": "Filled notebooks with flying machines, in mirror writing.",
+          "fr": "A rempli ses carnets de machines volantes, en écriture inversée.",
+          "pt": "Encheu cadernos de máquinas voadoras, em escrita espelhada."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Painted the Mona Lisa and The Last Supper.",
+          "fr": "A peint La Joconde et La Cène.",
+          "pt": "Pintou a Mona Lisa e A Última Ceia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pablo Picasso",
+        "fr": "Pablo Picasso",
+        "pt": "Pablo Picasso"
+      },
+      {
+        "en": "Michelangelo",
+        "fr": "Michel-Ange",
+        "pt": "Miguel Ângelo"
+      },
+      {
+        "en": "Galileo Galilei",
+        "fr": "Galilée",
+        "pt": "Galileu Galilei"
+      }
+    ],
+    "homeCountry": null,
+    "id": "leonardo-da-vinci",
+    "name": {
+      "en": "Leonardo da Vinci",
+      "fr": "Léonard de Vinci",
+      "pt": "Leonardo da Vinci"
+    },
+    "tier": "easy",
+    "wikidata": "Q762"
+  },
+  {
+    "accepted": {
+      "en": ["Van Gogh"],
+      "fr": ["Van Gogh"],
+      "pt": ["Van Gogh"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A painter born in the 19th century.",
+          "fr": "Un peintre né au XIXᵉ siècle.",
+          "pt": "Um pintor nascido no século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Dutch.",
+          "fr": "Était néerlandais.",
+          "pt": "Era neerlandês."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died at 37, having sold almost nothing in his lifetime.",
+          "fr": "Mort à 37 ans sans avoir presque rien vendu de son vivant.",
+          "pt": "Morreu aos 37 anos, quase sem ter vendido nada em vida."
+        }
+      },
+      {
+        "text": {
+          "en": "Cut off part of his own ear in Arles.",
+          "fr": "S’est tranché une partie de l’oreille à Arles.",
+          "pt": "Cortou parte da própria orelha em Arles."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Painted The Starry Night and the Sunflowers.",
+          "fr": "A peint La Nuit étoilée et Les Tournesols.",
+          "pt": "Pintou A Noite Estrelada e Os Girassóis."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Leonardo da Vinci",
+        "fr": "Léonard de Vinci",
+        "pt": "Leonardo da Vinci"
+      },
+      {
+        "en": "Pablo Picasso",
+        "fr": "Pablo Picasso",
+        "pt": "Pablo Picasso"
+      },
+      {
+        "en": "Piet Mondrian",
+        "fr": "Piet Mondrian",
+        "pt": "Piet Mondrian"
+      }
+    ],
+    "homeCountry": null,
+    "id": "vincent-van-gogh",
+    "name": {
+      "en": "Vincent van Gogh",
+      "fr": "Vincent van Gogh",
+      "pt": "Vincent van Gogh"
+    },
+    "tier": "easy",
+    "wikidata": "Q5582"
+  },
+  {
+    "accepted": {
+      "en": ["Christie"],
+      "fr": ["Christie"],
+      "pt": ["Christie"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A British woman writer with hundreds of millions of books sold.",
+          "fr": "Une romancière britannique vendue à des centaines de millions d’exemplaires.",
+          "pt": "Uma escritora britânica com centenas de milhões de livros vendidos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in the 19th century.",
+          "fr": "Née au XIXᵉ siècle.",
+          "pt": "Nasceu no século XIX."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Wrote a play that has been on stage in London since 1952.",
+          "fr": "A écrit une pièce à l’affiche à Londres depuis 1952.",
+          "pt": "Escreveu uma peça em cena em Londres desde 1952."
+        }
+      },
+      {
+        "text": {
+          "en": "Vanished for eleven days in 1926, setting off a nationwide hunt.",
+          "fr": "A disparu onze jours en 1926, déclenchant des recherches dans tout le pays.",
+          "pt": "Desapareceu onze dias em 1926, desencadeando buscas em todo o país."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Created Hercule Poirot and Miss Marple.",
+          "fr": "A créé Hercule Poirot et Miss Marple.",
+          "pt": "Criou Hercule Poirot e Miss Marple."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Arthur Conan Doyle",
+        "fr": "Arthur Conan Doyle",
+        "pt": "Arthur Conan Doyle"
+      },
+      {
+        "en": "J. K. Rowling",
+        "fr": "J. K. Rowling",
+        "pt": "J. K. Rowling"
+      },
+      {
+        "en": "Enid Blyton",
+        "fr": "Enid Blyton",
+        "pt": "Enid Blyton"
+      }
+    ],
+    "homeCountry": null,
+    "id": "agatha-christie",
+    "name": {
+      "en": "Agatha Christie",
+      "fr": "Agatha Christie",
+      "pt": "Agatha Christie"
+    },
+    "tier": "medium",
+    "wikidata": "Q35064"
+  },
+  {
+    "accepted": {
+      "en": ["Kahlo", "Frida"],
+      "fr": ["Kahlo", "Frida"],
+      "pt": ["Kahlo", "Frida"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Latin American painter of the 20th century.",
+          "fr": "Un grand nom de la peinture latino-américaine du XXᵉ siècle.",
+          "pt": "Um grande nome da pintura latino-americana do século XX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Mexican.",
+          "fr": "Venait du Mexique.",
+          "pt": "Era do México."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Began painting while bedridden after a bus crash at 18.",
+          "fr": "A commencé à peindre alitée, après un accident de bus à 18 ans.",
+          "pt": "Começou a pintar acamada, após um acidente de autocarro aos 18 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Married the muralist Diego Rivera — twice.",
+          "fr": "A épousé le muraliste Diego Rivera, deux fois.",
+          "pt": "Casou com o muralista Diego Rivera, duas vezes."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Painted herself with joined eyebrows and flowers in her hair.",
+          "fr": "Se peignait les sourcils joints et des fleurs dans les cheveux.",
+          "pt": "Pintava-se de sobrancelhas unidas e flores no cabelo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pablo Picasso",
+        "fr": "Pablo Picasso",
+        "pt": "Pablo Picasso"
+      },
+      {
+        "en": "Fernando Botero",
+        "fr": "Fernando Botero",
+        "pt": "Fernando Botero"
+      },
+      {
+        "en": "Diego Rivera",
+        "fr": "Diego Rivera",
+        "pt": "Diego Rivera"
+      }
+    ],
+    "homeCountry": null,
+    "id": "frida-kahlo",
+    "name": {
+      "en": "Frida Kahlo",
+      "fr": "Frida Kahlo",
+      "pt": "Frida Kahlo"
+    },
+    "tier": "medium",
+    "wikidata": "Q5588"
+  },
+  {
+    "accepted": {
+      "en": ["Austen"],
+      "fr": ["Austen"],
+      "pt": ["Austen"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An English woman novelist of the 19th century.",
+          "fr": "Une romancière anglaise du XIXᵉ siècle.",
+          "pt": "Uma romancista inglesa do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Wrote novels about love, courtship and marriage.",
+          "fr": "A écrit des romans d’amour, de séduction et de mariage.",
+          "pt": "Escreveu romances sobre amor, namoro e casamento."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died in 1817, two years before Queen Victoria was born.",
+          "fr": "Morte en 1817, deux ans avant la naissance de la reine Victoria.",
+          "pt": "Morreu em 1817, dois anos antes do nascimento da rainha Vitória."
+        }
+      },
+      {
+        "text": {
+          "en": "Her portrait appears on the Bank of England’s £10 note.",
+          "fr": "Son portrait figure sur le billet de 10 livres de la Banque d’Angleterre.",
+          "pt": "O seu retrato figura na nota de 10 libras do Banco de Inglaterra."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Wrote Pride and Prejudice.",
+          "fr": "A écrit Orgueil et Préjugés.",
+          "pt": "Escreveu Orgulho e Preconceito."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Charles Dickens",
+        "fr": "Charles Dickens",
+        "pt": "Charles Dickens"
+      },
+      {
+        "en": "Mary Shelley",
+        "fr": "Mary Shelley",
+        "pt": "Mary Shelley"
+      },
+      {
+        "en": "Charlotte Brontë",
+        "fr": "Charlotte Brontë",
+        "pt": "Charlotte Brontë"
+      }
+    ],
+    "homeCountry": null,
+    "id": "jane-austen",
+    "name": {
+      "en": "Jane Austen",
+      "fr": "Jane Austen",
+      "pt": "Jane Austen"
+    },
+    "tier": "medium",
+    "wikidata": "Q36322"
+  },
+  {
+    "accepted": {
+      "en": ["Hugo"],
+      "fr": ["Hugo"],
+      "pt": ["Hugo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A French writer of the 19th century.",
+          "fr": "Un écrivain français du XIXᵉ siècle.",
+          "pt": "Um escritor francês do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Wrote novels set centuries before his own time.",
+          "fr": "A écrit des romans situés des siècles avant son époque.",
+          "pt": "Escreveu romances passados séculos antes do seu tempo."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Spent nearly twenty years in exile, mostly on Jersey and Guernsey.",
+          "fr": "A passé près de vingt ans en exil, surtout à Jersey et Guernesey.",
+          "pt": "Passou quase vinte anos exilado, sobretudo em Jersey e Guernsey."
+        }
+      },
+      {
+        "text": {
+          "en": "Created the hunchback Quasimodo.",
+          "fr": "A créé le bossu Quasimodo.",
+          "pt": "Criou o corcunda Quasímodo."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Wrote Les Misérables.",
+          "fr": "A écrit Les Misérables.",
+          "pt": "Escreveu Os Miseráveis."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "William Shakespeare",
+        "fr": "William Shakespeare",
+        "pt": "William Shakespeare"
+      },
+      {
+        "en": "Émile Zola",
+        "fr": "Émile Zola",
+        "pt": "Émile Zola"
+      },
+      {
+        "en": "Alexandre Dumas",
+        "fr": "Alexandre Dumas",
+        "pt": "Alexandre Dumas"
+      }
+    ],
+    "homeCountry": null,
+    "id": "victor-hugo",
+    "name": {
+      "en": "Victor Hugo",
+      "fr": "Victor Hugo",
+      "pt": "Victor Hugo"
+    },
+    "tier": "hard",
+    "wikidata": "Q535"
+  },
+  {
+    "accepted": {
+      "en": ["García Márquez", "Garcia Marquez", "Gabo"],
+      "fr": ["García Márquez", "Garcia Marquez", "Gabo"],
+      "pt": ["García Márquez", "Garcia Marquez", "Gabo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Won the Nobel Prize in Literature.",
+          "fr": "A reçu le prix Nobel de littérature.",
+          "pt": "Recebeu o Prémio Nobel da Literatura."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Wrote in Spanish.",
+          "fr": "Écrivait en espagnol.",
+          "pt": "Escrevia em espanhol."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in a small town on Colombia’s Caribbean coast.",
+          "fr": "Né dans un village de la côte caraïbe colombienne.",
+          "pt": "Nasceu numa pequena vila da costa caribenha da Colômbia."
+        }
+      },
+      {
+        "text": {
+          "en": "Invented Macondo, a village where the marvellous is everyday.",
+          "fr": "A inventé Macondo, un village où le merveilleux est quotidien.",
+          "pt": "Inventou Macondo, uma aldeia onde o maravilhoso é quotidiano."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Wrote One Hundred Years of Solitude.",
+          "fr": "A écrit Cent ans de solitude.",
+          "pt": "Escreveu Cem Anos de Solidão."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jorge Luis Borges",
+        "fr": "Jorge Luis Borges",
+        "pt": "Jorge Luis Borges"
+      },
+      {
+        "en": "Ernest Hemingway",
+        "fr": "Ernest Hemingway",
+        "pt": "Ernest Hemingway"
+      },
+      {
+        "en": "Mario Vargas Llosa",
+        "fr": "Mario Vargas Llosa",
+        "pt": "Mario Vargas Llosa"
+      }
+    ],
+    "homeCountry": null,
+    "id": "gabriel-garcia-marquez",
+    "name": {
+      "en": "Gabriel García Márquez",
+      "fr": "Gabriel García Márquez",
+      "pt": "Gabriel García Márquez"
+    },
+    "tier": "hard",
+    "wikidata": "Q5878"
+  },
+  {
+    "accepted": {
+      "en": ["Mozart"],
+      "fr": ["Mozart"],
+      "pt": ["Mozart"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A composer of the 18th century.",
+          "fr": "Un compositeur du XVIIIᵉ siècle.",
+          "pt": "Um compositor do século XVIII."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Austrian.",
+          "fr": "Était autrichien.",
+          "pt": "Era austríaco."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died at just 35.",
+          "fr": "Mort à seulement 35 ans.",
+          "pt": "Morreu com apenas 35 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Toured Europe’s royal courts as a child prodigy from the age of six.",
+          "fr": "Enfant prodige, il joue dès six ans devant les cours d’Europe.",
+          "pt": "Menino prodígio, tocava desde os seis anos nas cortes da Europa."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Composed The Magic Flute and a Requiem he never finished.",
+          "fr": "A composé La Flûte enchantée et un Requiem resté inachevé.",
+          "pt": "Compôs A Flauta Mágica e um Requiem que nunca acabou."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Frédéric Chopin",
+        "fr": "Frédéric Chopin",
+        "pt": "Frédéric Chopin"
+      },
+      {
+        "en": "Johann Sebastian Bach",
+        "fr": "Jean-Sébastien Bach",
+        "pt": "Johann Sebastian Bach"
+      },
+      {
+        "en": "Joseph Haydn",
+        "fr": "Joseph Haydn",
+        "pt": "Joseph Haydn"
+      }
+    ],
+    "homeCountry": null,
+    "id": "wolfgang-amadeus-mozart",
+    "name": {
+      "en": "Wolfgang Amadeus Mozart",
+      "fr": "Wolfgang Amadeus Mozart",
+      "pt": "Wolfgang Amadeus Mozart"
+    },
+    "tier": "easy",
+    "wikidata": "Q254"
+  },
+  {
+    "accepted": {
+      "en": ["Beethoven"],
+      "fr": ["Beethoven"],
+      "pt": ["Beethoven"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A composer who lived into the 19th century.",
+          "fr": "Un compositeur qui a vécu jusqu’au XIXᵉ siècle.",
+          "pt": "Um compositor que viveu até ao século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in Germany.",
+          "fr": "Né en Allemagne.",
+          "pt": "Nasceu na Alemanha."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Wrote only one opera in his whole life.",
+          "fr": "N’a écrit qu’un seul opéra de toute sa vie.",
+          "pt": "Escreveu uma única ópera em toda a vida."
+        }
+      },
+      {
+        "text": {
+          "en": "Kept composing after going completely deaf.",
+          "fr": "A continué à composer après être devenu complètement sourd.",
+          "pt": "Continuou a compor depois de ficar completamente surdo."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The ‘Ode to Joy’ from his Ninth Symphony is Europe’s anthem.",
+          "fr": "L’« Ode à la joie » de sa 9ᵉ symphonie est l’hymne européen.",
+          "pt": "A «Ode à Alegria» da sua 9.ª Sinfonia é o hino da Europa."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Wolfgang Amadeus Mozart",
+        "fr": "Wolfgang Amadeus Mozart",
+        "pt": "Wolfgang Amadeus Mozart"
+      },
+      {
+        "en": "Franz Schubert",
+        "fr": "Franz Schubert",
+        "pt": "Franz Schubert"
+      },
+      {
+        "en": "Richard Wagner",
+        "fr": "Richard Wagner",
+        "pt": "Richard Wagner"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ludwig-van-beethoven",
+    "name": {
+      "en": "Ludwig van Beethoven",
+      "fr": "Ludwig van Beethoven",
+      "pt": "Ludwig van Beethoven"
+    },
+    "tier": "easy",
+    "wikidata": "Q255"
+  },
+  {
+    "accepted": {
+      "en": ["Jackson"],
+      "fr": ["Jackson"],
+      "pt": ["Jackson"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American pop star born in 1958.",
+          "fr": "Une star de la pop américaine née en 1958.",
+          "pt": "Uma estrela pop americana nascida em 1958."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Died suddenly, in their fifties.",
+          "fr": "Morte brutalement, à la cinquantaine.",
+          "pt": "Morreu de repente, na casa dos cinquenta."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Started out as a child star, singing with his brothers.",
+          "fr": "A débuté enfant, en chantant avec ses frères.",
+          "pt": "Começou em criança, a cantar com os irmãos."
+        }
+      },
+      {
+        "text": {
+          "en": "His album Thriller is the best-selling of all time.",
+          "fr": "Son album Thriller est le plus vendu de l’histoire.",
+          "pt": "O seu álbum Thriller é o mais vendido de sempre."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The King of Pop, famous for his moonwalk.",
+          "fr": "Le roi de la pop, célèbre pour son moonwalk.",
+          "pt": "O Rei da Pop, famoso pelo moonwalk."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Elvis Presley",
+        "fr": "Elvis Presley",
+        "pt": "Elvis Presley"
+      },
+      {
+        "en": "Madonna",
+        "fr": "Madonna",
+        "pt": "Madonna"
+      },
+      {
+        "en": "Prince",
+        "fr": "Prince",
+        "pt": "Prince"
+      }
+    ],
+    "homeCountry": null,
+    "id": "michael-jackson",
+    "name": {
+      "en": "Michael Jackson",
+      "fr": "Michael Jackson",
+      "pt": "Michael Jackson"
+    },
+    "tier": "easy",
+    "wikidata": "Q2831"
+  },
+  {
+    "accepted": {
+      "en": ["Marley"],
+      "fr": ["Marley"],
+      "pt": ["Marley"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A singer born in the Caribbean.",
+          "fr": "Une voix née dans les Caraïbes.",
+          "pt": "Uma voz nascida nas Caraíbas."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A reggae musician.",
+          "fr": "Un musicien de reggae.",
+          "pt": "Um músico de reggae."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died of cancer at 36.",
+          "fr": "Mort d’un cancer à 36 ans.",
+          "pt": "Morreu de cancro aos 36 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Shot in 1976, he still played a concert two days later.",
+          "fr": "Blessé par balle en 1976, il donne un concert deux jours plus tard.",
+          "pt": "Baleado em 1976, deu um concerto dois dias depois."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Sang ‘No Woman, No Cry’ with the Wailers.",
+          "fr": "Chantait « No Woman, No Cry » avec les Wailers.",
+          "pt": "Cantava «No Woman, No Cry» com os Wailers."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Jimi Hendrix",
+        "fr": "Jimi Hendrix",
+        "pt": "Jimi Hendrix"
+      },
+      {
+        "en": "Rihanna",
+        "fr": "Rihanna",
+        "pt": "Rihanna"
+      },
+      {
+        "en": "Peter Tosh",
+        "fr": "Peter Tosh",
+        "pt": "Peter Tosh"
+      }
+    ],
+    "homeCountry": null,
+    "id": "bob-marley",
+    "name": {
+      "en": "Bob Marley",
+      "fr": "Bob Marley",
+      "pt": "Bob Marley"
+    },
+    "tier": "easy",
+    "wikidata": "Q409"
+  },
+  {
+    "accepted": {
+      "en": ["Elvis", "Presley"],
+      "fr": ["Elvis", "Presley"],
+      "pt": ["Elvis", "Presley"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A rock ’n’ roll pioneer of the 1950s.",
+          "fr": "Un pionnier du rock ’n’ roll des années 1950.",
+          "pt": "Um pioneiro do rock ’n’ roll dos anos 50."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Died before turning 45.",
+          "fr": "Mort avant ses 45 ans.",
+          "pt": "Morreu antes de fazer 45 anos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Did his military service in Germany, from 1958 to 1960.",
+          "fr": "A fait son service militaire en Allemagne, de 1958 à 1960.",
+          "pt": "Cumpriu o serviço militar na Alemanha, de 1958 a 1960."
+        }
+      },
+      {
+        "text": {
+          "en": "Lived at Graceland, a mansion in Memphis.",
+          "fr": "Vivait à Graceland, un manoir de Memphis.",
+          "pt": "Vivia em Graceland, uma mansão em Memphis."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The King of Rock ’n’ Roll, who sang ‘Jailhouse Rock’.",
+          "fr": "Le King du rock ’n’ roll, qui chantait « Jailhouse Rock ».",
+          "pt": "O Rei do Rock ’n’ Roll, que cantava «Jailhouse Rock»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Frank Sinatra",
+        "fr": "Frank Sinatra",
+        "pt": "Frank Sinatra"
+      },
+      {
+        "en": "Chuck Berry",
+        "fr": "Chuck Berry",
+        "pt": "Chuck Berry"
+      },
+      {
+        "en": "Buddy Holly",
+        "fr": "Buddy Holly",
+        "pt": "Buddy Holly"
+      }
+    ],
+    "homeCountry": null,
+    "id": "elvis-presley",
+    "name": {
+      "en": "Elvis Presley",
+      "fr": "Elvis Presley",
+      "pt": "Elvis Presley"
+    },
+    "tier": "medium",
+    "wikidata": "Q303"
+  },
+  {
+    "accepted": {
+      "en": ["Mercury", "Farrokh Bulsara"],
+      "fr": ["Mercury", "Farrokh Bulsara"],
+      "pt": ["Mercury", "Farrokh Bulsara"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "The lead singer of a rock band.",
+          "fr": "Le chanteur d’un groupe de rock.",
+          "pt": "O vocalista de uma banda de rock."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Died in the early 1990s.",
+          "fr": "Mort au début des années 1990.",
+          "pt": "Morreu no início dos anos 90."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Zanzibar, off the coast of East Africa.",
+          "fr": "Né à Zanzibar, au large de l’Afrique de l’Est.",
+          "pt": "Nasceu em Zanzibar, ao largo da África Oriental."
+        }
+      },
+      {
+        "text": {
+          "en": "Sang all six minutes of ‘Bohemian Rhapsody’.",
+          "fr": "Chantait les six minutes de « Bohemian Rhapsody ».",
+          "pt": "Cantava os seis minutos de «Bohemian Rhapsody»."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Queen’s moustached frontman, who sang ‘We Are the Champions’.",
+          "fr": "Le leader moustachu de Queen, qui chantait « We Are the Champions ».",
+          "pt": "O vocalista de bigode dos Queen, que cantava «We Are the Champions»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Elton John",
+        "fr": "Elton John",
+        "pt": "Elton John"
+      },
+      {
+        "en": "Mick Jagger",
+        "fr": "Mick Jagger",
+        "pt": "Mick Jagger"
+      },
+      {
+        "en": "Kurt Cobain",
+        "fr": "Kurt Cobain",
+        "pt": "Kurt Cobain"
+      }
+    ],
+    "homeCountry": null,
+    "id": "freddie-mercury",
+    "name": {
+      "en": "Freddie Mercury",
+      "fr": "Freddie Mercury",
+      "pt": "Freddie Mercury"
+    },
+    "tier": "medium",
+    "wikidata": "Q15869"
+  },
+  {
+    "accepted": {
+      "en": ["Piaf", "Edith Piaf"],
+      "fr": ["Piaf", "Edith Piaf"],
+      "pt": ["Piaf", "Edith Piaf"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A singer of French chanson.",
+          "fr": "Une voix de la chanson française.",
+          "pt": "Uma voz da canção francesa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in Paris.",
+          "fr": "A vu le jour à Paris.",
+          "pt": "Nasceu em Paris."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died in 1963, aged just 47.",
+          "fr": "Sa vie s’arrête en 1963, à 47 ans seulement.",
+          "pt": "Morreu em 1963, com apenas 47 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Her stage name was slang for ‘sparrow’.",
+          "fr": "Son nom de scène veut dire « moineau » en argot.",
+          "pt": "O seu nome artístico significa «pardal» em calão."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Sang ‘La Vie en rose’ and ‘Non, je ne regrette rien’.",
+          "fr": "Chantait « La Vie en rose » et « Non, je ne regrette rien ».",
+          "pt": "Cantava «La Vie en rose» e «Non, je ne regrette rien»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Maria Callas",
+        "fr": "Maria Callas",
+        "pt": "Maria Callas"
+      },
+      {
+        "en": "Dalida",
+        "fr": "Dalida",
+        "pt": "Dalida"
+      },
+      {
+        "en": "Charles Aznavour",
+        "fr": "Charles Aznavour",
+        "pt": "Charles Aznavour"
+      }
+    ],
+    "homeCountry": null,
+    "id": "edith-piaf",
+    "name": {
+      "en": "Édith Piaf",
+      "fr": "Édith Piaf",
+      "pt": "Édith Piaf"
+    },
+    "tier": "medium",
+    "wikidata": "Q1631"
+  },
+  {
+    "accepted": {
+      "en": ["Bach", "J. S. Bach", "JS Bach"],
+      "fr": ["Bach", "Johann Sebastian Bach", "J.-S. Bach"],
+      "pt": ["Bach", "J. S. Bach"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Baroque composer.",
+          "fr": "Un compositeur baroque.",
+          "pt": "Um compositor barroco."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Born in Germany.",
+          "fr": "Né en Allemagne.",
+          "pt": "Nasceu na Alemanha."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Fathered twenty children, several of them composers.",
+          "fr": "Père de vingt enfants, dont plusieurs compositeurs.",
+          "pt": "Pai de vinte filhos, vários deles compositores."
+        }
+      },
+      {
+        "text": {
+          "en": "Spent his last 27 years as music director in Leipzig.",
+          "fr": "A passé ses 27 dernières années comme cantor à Leipzig.",
+          "pt": "Passou os últimos 27 anos como diretor musical em Leipzig."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Composed the Brandenburg Concertos and the Toccata and Fugue in D minor.",
+          "fr": "A composé les Concertos brandebourgeois et la Toccata et fugue en ré mineur.",
+          "pt": "Compôs os Concertos Brandeburgueses e a Tocata e Fuga em Ré menor."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Wolfgang Amadeus Mozart",
+        "fr": "Wolfgang Amadeus Mozart",
+        "pt": "Wolfgang Amadeus Mozart"
+      },
+      {
+        "en": "Antonio Vivaldi",
+        "fr": "Antonio Vivaldi",
+        "pt": "Antonio Vivaldi"
+      },
+      {
+        "en": "George Frideric Handel",
+        "fr": "Georg Friedrich Haendel",
+        "pt": "Georg Friedrich Händel"
+      }
+    ],
+    "homeCountry": null,
+    "id": "johann-sebastian-bach",
+    "name": {
+      "en": "Johann Sebastian Bach",
+      "fr": "Jean-Sébastien Bach",
+      "pt": "Johann Sebastian Bach"
+    },
+    "tier": "hard",
+    "wikidata": "Q1339"
+  },
+  {
+    "accepted": {
+      "en": ["Edson Arantes do Nascimento"],
+      "fr": ["Edson Arantes do Nascimento"],
+      "pt": ["Edson Arantes do Nascimento"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Won the World Cup as a player.",
+          "fr": "A gagné la Coupe du monde en tant que joueur.",
+          "pt": "Ganhou o Mundial como jogador."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Brazilian.",
+          "fr": "Était brésilien.",
+          "pt": "Era brasileiro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Won his first World Cup at 17, in 1958.",
+          "fr": "A gagné sa première Coupe du monde à 17 ans, en 1958.",
+          "pt": "Ganhou o primeiro Mundial aos 17 anos, em 1958."
+        }
+      },
+      {
+        "text": {
+          "en": "Spent most of his career at Santos, then joined the New York Cosmos.",
+          "fr": "A joué presque toute sa carrière à Santos, puis au Cosmos de New York.",
+          "pt": "Jogou quase toda a carreira no Santos e acabou no Cosmos de Nova Iorque."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The only player to win the World Cup three times.",
+          "fr": "Le seul joueur à avoir gagné trois Coupes du monde.",
+          "pt": "O único jogador a ganhar três Mundiais."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Johan Cruyff",
+        "fr": "Johan Cruyff",
+        "pt": "Johan Cruyff"
+      },
+      {
+        "en": "Diego Maradona",
+        "fr": "Diego Maradona",
+        "pt": "Diego Maradona"
+      },
+      {
+        "en": "Ronaldo Nazário",
+        "fr": "Ronaldo Nazário",
+        "pt": "Ronaldo Nazário"
+      }
+    ],
+    "homeCountry": null,
+    "id": "pele",
+    "name": {
+      "en": "Pelé",
+      "fr": "Pelé",
+      "pt": "Pelé"
+    },
+    "tier": "easy",
+    "wikidata": "Q12897"
+  },
+  {
+    "accepted": {
+      "en": ["Bolt"],
+      "fr": ["Bolt"],
+      "pt": ["Bolt"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A sprinter.",
+          "fr": "Un sprinteur.",
+          "pt": "Um velocista."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in Jamaica.",
+          "fr": "Est né en Jamaïque.",
+          "pt": "Nasceu na Jamaica."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Became Olympic 100 m champion.",
+          "fr": "A été champion olympique du 100 m.",
+          "pt": "Foi campeão olímpico dos 100 metros."
+        }
+      },
+      {
+        "text": {
+          "en": "Ran the 100 m in 9.58 seconds in Berlin in 2009, a world record.",
+          "fr": "A couru le 100 m en 9 s 58 à Berlin en 2009, un record du monde.",
+          "pt": "Correu os 100 m em 9,58 s em Berlim, em 2009, um recorde mundial."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Eight-time Olympic champion, famous for his lightning pose.",
+          "fr": "Huit fois champion olympique, célèbre pour sa pose de l’éclair.",
+          "pt": "Oito vezes campeão olímpico, famoso pela pose do relâmpago."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Michael Phelps",
+        "fr": "Michael Phelps",
+        "pt": "Michael Phelps"
+      },
+      {
+        "en": "Carl Lewis",
+        "fr": "Carl Lewis",
+        "pt": "Carl Lewis"
+      },
+      {
+        "en": "Asafa Powell",
+        "fr": "Asafa Powell",
+        "pt": "Asafa Powell"
+      }
+    ],
+    "homeCountry": null,
+    "id": "usain-bolt",
+    "name": {
+      "en": "Usain Bolt",
+      "fr": "Usain Bolt",
+      "pt": "Usain Bolt"
+    },
+    "tier": "easy",
+    "wikidata": "Q1189"
+  },
+  {
+    "accepted": {
+      "en": ["Ronaldo", "CR7"],
+      "fr": ["Ronaldo", "CR7"],
+      "pt": ["Ronaldo", "CR7"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A footballer of the 21st century.",
+          "fr": "Un footballeur du XXIᵉ siècle.",
+          "pt": "Um futebolista do século XXI."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Played for both Manchester United and Real Madrid.",
+          "fr": "A joué à Manchester United et au Real Madrid.",
+          "pt": "Jogou no Manchester United e no Real Madrid."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born on the island of Madeira.",
+          "fr": "Né sur l’île de Madère.",
+          "pt": "Nasceu na ilha da Madeira."
+        }
+      },
+      {
+        "text": {
+          "en": "Won five Ballon d’Or awards and Euro 2016.",
+          "fr": "A remporté cinq Ballons d’or et l’Euro 2016.",
+          "pt": "Ganhou cinco Bolas de Ouro e o Euro 2016."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Portugal’s captain and top scorer in men’s international football.",
+          "fr": "Capitaine du Portugal, meilleur buteur de l’histoire des sélections masculines.",
+          "pt": "Capitão de Portugal e melhor marcador de sempre em seleções masculinas."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Pelé",
+        "fr": "Pelé",
+        "pt": "Pelé"
+      },
+      {
+        "en": "Lionel Messi",
+        "fr": "Lionel Messi",
+        "pt": "Lionel Messi"
+      },
+      {
+        "en": "David Beckham",
+        "fr": "David Beckham",
+        "pt": "David Beckham"
+      }
+    ],
+    "homeCountry": null,
+    "id": "cristiano-ronaldo",
+    "name": {
+      "en": "Cristiano Ronaldo",
+      "fr": "Cristiano Ronaldo",
+      "pt": "Cristiano Ronaldo"
+    },
+    "tier": "easy",
+    "wikidata": "Q11571"
+  },
+  {
+    "accepted": {
+      "en": ["Serena"],
+      "fr": ["Serena"],
+      "pt": ["Serena"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A champion of women’s tennis.",
+          "fr": "Une championne de tennis.",
+          "pt": "Uma campeã de ténis."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in the United States.",
+          "fr": "Est née aux États-Unis.",
+          "pt": "Nasceu nos Estados Unidos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Won 23 Grand Slam singles titles.",
+          "fr": "A gagné 23 titres du Grand Chelem en simple.",
+          "pt": "Ganhou 23 torneios do Grand Slam em singulares."
+        }
+      },
+      {
+        "text": {
+          "en": "Won the 2017 Australian Open while pregnant.",
+          "fr": "A remporté l’Open d’Australie 2017 en étant enceinte.",
+          "pt": "Venceu o Open da Austrália de 2017 grávida."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Coached by her father in Compton, alongside her older sister Venus.",
+          "fr": "Entraînée par son père à Compton, avec sa grande sœur Venus.",
+          "pt": "Treinada pelo pai em Compton, com a irmã mais velha, Venus."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Roger Federer",
+        "fr": "Roger Federer",
+        "pt": "Roger Federer"
+      },
+      {
+        "en": "Steffi Graf",
+        "fr": "Steffi Graf",
+        "pt": "Steffi Graf"
+      },
+      {
+        "en": "Venus Williams",
+        "fr": "Venus Williams",
+        "pt": "Venus Williams"
+      }
+    ],
+    "homeCountry": null,
+    "id": "serena-williams",
+    "name": {
+      "en": "Serena Williams",
+      "fr": "Serena Williams",
+      "pt": "Serena Williams"
+    },
+    "tier": "medium",
+    "wikidata": "Q11459"
+  },
+  {
+    "accepted": {
+      "en": ["Ali", "Cassius Clay"],
+      "fr": ["Ali", "Muhammad Ali", "Cassius Clay"],
+      "pt": ["Ali", "Mohamed Ali", "Cassius Clay"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A world heavyweight boxing champion.",
+          "fr": "Un champion du monde de boxe des poids lourds.",
+          "pt": "Um campeão mundial de boxe de pesos-pesados."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Won an Olympic gold medal.",
+          "fr": "A remporté une médaille d’or olympique.",
+          "pt": "Ganhou uma medalha de ouro olímpica."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Was stripped of his title for refusing to fight in Vietnam.",
+          "fr": "Déchu de son titre pour avoir refusé d’aller combattre au Vietnam.",
+          "pt": "Perdeu o título por se recusar a combater no Vietname."
+        }
+      },
+      {
+        "text": {
+          "en": "Beat George Foreman in the ‘Rumble in the Jungle’ in Kinshasa, 1974.",
+          "fr": "A battu George Foreman lors du « combat du siècle » à Kinshasa, en 1974.",
+          "pt": "Venceu George Foreman no «Rumble in the Jungle», em Kinshasa, em 1974."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "‘Float like a butterfly, sting like a bee’ was his motto.",
+          "fr": "« Vole comme un papillon, pique comme une abeille », disait-il.",
+          "pt": "«Flutua como uma borboleta, pica como uma abelha», dizia ele."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Michael Jordan",
+        "fr": "Michael Jordan",
+        "pt": "Michael Jordan"
+      },
+      {
+        "en": "Mike Tyson",
+        "fr": "Mike Tyson",
+        "pt": "Mike Tyson"
+      },
+      {
+        "en": "George Foreman",
+        "fr": "George Foreman",
+        "pt": "George Foreman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "muhammad-ali",
+    "name": {
+      "en": "Muhammad Ali",
+      "fr": "Mohamed Ali",
+      "pt": "Muhammad Ali"
+    },
+    "tier": "medium",
+    "wikidata": "Q36107"
+  },
+  {
+    "accepted": {
+      "en": ["Biles"],
+      "fr": ["Biles"],
+      "pt": ["Biles"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A gymnast.",
+          "fr": "Une figure de la gymnastique.",
+          "pt": "Uma figura da ginástica."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Competes for the United States.",
+          "fr": "Concourt pour les États-Unis.",
+          "pt": "Compete pelos Estados Unidos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Has several gymnastics moves named after her.",
+          "fr": "Plusieurs figures de gymnastique portent son nom.",
+          "pt": "Vários elementos da ginástica têm o seu nome."
+        }
+      },
+      {
+        "text": {
+          "en": "Pulled out of finals at the Tokyo Games to protect her mental health.",
+          "fr": "S’est retirée de finales aux JO de Tokyo pour protéger sa santé mentale.",
+          "pt": "Desistiu de finais nos Jogos de Tóquio para proteger a saúde mental."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The most decorated gymnast in history, with over 30 world medals.",
+          "fr": "La gymnaste la plus titrée de l’histoire, avec plus de 30 médailles mondiales.",
+          "pt": "A ginasta mais medalhada da história, com mais de 30 medalhas mundiais."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Michael Phelps",
+        "fr": "Michael Phelps",
+        "pt": "Michael Phelps"
+      },
+      {
+        "en": "Nadia Comăneci",
+        "fr": "Nadia Comăneci",
+        "pt": "Nadia Comăneci"
+      },
+      {
+        "en": "Gabby Douglas",
+        "fr": "Gabby Douglas",
+        "pt": "Gabby Douglas"
+      }
+    ],
+    "homeCountry": null,
+    "id": "simone-biles",
+    "name": {
+      "en": "Simone Biles",
+      "fr": "Simone Biles",
+      "pt": "Simone Biles"
+    },
+    "tier": "medium",
+    "wikidata": "Q7520267"
+  },
+  {
+    "accepted": {
+      "en": ["Senna"],
+      "fr": ["Senna"],
+      "pt": ["Senna"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Won a Formula One world title in the 1980s.",
+          "fr": "A été champion du monde de Formule 1 dans les années 1980.",
+          "pt": "Foi campeão do mundo de Fórmula 1 nos anos 80."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Brazilian.",
+          "fr": "Était brésilien.",
+          "pt": "Era brasileiro."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Won all three of his titles with McLaren.",
+          "fr": "A gagné ses trois titres avec McLaren.",
+          "pt": "Ganhou os três títulos com a McLaren."
+        }
+      },
+      {
+        "text": {
+          "en": "Won the Monaco Grand Prix a record six times.",
+          "fr": "A remporté le Grand Prix de Monaco six fois, un record.",
+          "pt": "Venceu o Grande Prémio do Mónaco seis vezes, um recorde."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Brazil’s racing hero, killed at Imola in 1994.",
+          "fr": "Héros brésilien de la course, tué à Imola en 1994.",
+          "pt": "Herói brasileiro das corridas, morto em Ímola em 1994."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Lewis Hamilton",
+        "fr": "Lewis Hamilton",
+        "pt": "Lewis Hamilton"
+      },
+      {
+        "en": "Alain Prost",
+        "fr": "Alain Prost",
+        "pt": "Alain Prost"
+      },
+      {
+        "en": "Nelson Piquet",
+        "fr": "Nelson Piquet",
+        "pt": "Nelson Piquet"
+      }
+    ],
+    "homeCountry": null,
+    "id": "ayrton-senna",
+    "name": {
+      "en": "Ayrton Senna",
+      "fr": "Ayrton Senna",
+      "pt": "Ayrton Senna"
+    },
+    "tier": "hard",
+    "wikidata": "Q10490"
+  },
+  {
+    "accepted": {
+      "en": ["Chaplin", "Charles Chaplin"],
+      "fr": ["Chaplin", "Charlot", "Charles Chaplin"],
+      "pt": ["Chaplin", "Charlot", "Charles Chaplin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A star of silent films.",
+          "fr": "Une star du cinéma muet.",
+          "pt": "Uma estrela do cinema mudo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in England.",
+          "fr": "Né en Angleterre.",
+          "pt": "Nasceu em Inglaterra."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Wrote, directed and scored his own feature films.",
+          "fr": "Écrivait, réalisait et composait la musique de ses propres films.",
+          "pt": "Escrevia, realizava e compunha a música dos seus próprios filmes."
+        }
+      },
+      {
+        "text": {
+          "en": "Mocked Hitler in The Great Dictator in 1940.",
+          "fr": "A ridiculisé Hitler dans Le Dictateur, en 1940.",
+          "pt": "Ridicularizou Hitler em O Grande Ditador, em 1940."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The Tramp, with bowler hat, cane and toothbrush moustache.",
+          "fr": "Le vagabond au chapeau melon, à la canne et à la petite moustache.",
+          "pt": "O vagabundo de chapéu de coco, bengala e bigodinho."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Marilyn Monroe",
+        "fr": "Marilyn Monroe",
+        "pt": "Marilyn Monroe"
+      },
+      {
+        "en": "Buster Keaton",
+        "fr": "Buster Keaton",
+        "pt": "Buster Keaton"
+      },
+      {
+        "en": "Stan Laurel",
+        "fr": "Stan Laurel",
+        "pt": "Stan Laurel"
+      }
+    ],
+    "homeCountry": null,
+    "id": "charlie-chaplin",
+    "name": {
+      "en": "Charlie Chaplin",
+      "fr": "Charlie Chaplin",
+      "pt": "Charlie Chaplin"
+    },
+    "tier": "easy",
+    "wikidata": "Q882"
+  },
+  {
+    "accepted": {
+      "en": ["Spielberg"],
+      "fr": ["Spielberg"],
+      "pt": ["Spielberg"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American film director born in the 1940s.",
+          "fr": "Un réalisateur américain né dans les années 1940.",
+          "pt": "Um realizador americano nascido nos anos 40."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Has won the Oscar for best director.",
+          "fr": "A reçu l’Oscar du meilleur réalisateur.",
+          "pt": "Ganhou o Óscar de melhor realizador."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Became famous at 28 with a film about a man-eating shark.",
+          "fr": "Célèbre à 28 ans grâce à un film de requin mangeur d’hommes.",
+          "pt": "Ficou famoso aos 28 anos com um filme sobre um tubarão assassino."
+        }
+      },
+      {
+        "text": {
+          "en": "Won best director for Schindler’s List and Saving Private Ryan.",
+          "fr": "Oscarisé pour La Liste de Schindler et Il faut sauver le soldat Ryan.",
+          "pt": "Óscar de realização por A Lista de Schindler e O Resgate do Soldado Ryan."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Directed E.T. and Jurassic Park.",
+          "fr": "A réalisé E.T. l’extra-terrestre et Jurassic Park.",
+          "pt": "Realizou E.T. – O Extraterrestre e Parque Jurássico."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Alfred Hitchcock",
+        "fr": "Alfred Hitchcock",
+        "pt": "Alfred Hitchcock"
+      },
+      {
+        "en": "George Lucas",
+        "fr": "George Lucas",
+        "pt": "George Lucas"
+      },
+      {
+        "en": "Martin Scorsese",
+        "fr": "Martin Scorsese",
+        "pt": "Martin Scorsese"
+      }
+    ],
+    "homeCountry": null,
+    "id": "steven-spielberg",
+    "name": {
+      "en": "Steven Spielberg",
+      "fr": "Steven Spielberg",
+      "pt": "Steven Spielberg"
+    },
+    "tier": "easy",
+    "wikidata": "Q8877"
+  },
+  {
+    "accepted": {
+      "en": ["Monroe", "Norma Jeane"],
+      "fr": ["Monroe", "Norma Jeane"],
+      "pt": ["Monroe", "Norma Jeane"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Hollywood star of the 1950s.",
+          "fr": "Une star hollywoodienne des années 1950.",
+          "pt": "Uma estrela de Hollywood dos anos 50."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Married more than once.",
+          "fr": "S’est mariée plus d’une fois.",
+          "pt": "Casou-se mais de uma vez."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died in 1962, aged just 36.",
+          "fr": "Morte en 1962, à seulement 36 ans.",
+          "pt": "Morreu em 1962, com apenas 36 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Sang ‘Happy Birthday, Mr. President’ to John F. Kennedy.",
+          "fr": "A chanté « Happy Birthday, Mr. President » à John F. Kennedy.",
+          "pt": "Cantou «Happy Birthday, Mr. President» a John F. Kennedy."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Her white dress billowed over a subway grate in The Seven Year Itch.",
+          "fr": "Sa robe blanche se soulève au-dessus d’une bouche de métro dans Sept ans de réflexion.",
+          "pt": "O seu vestido branco esvoaça sobre a grelha do metro em O Pecado Mora ao Lado."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Meryl Streep",
+        "fr": "Meryl Streep",
+        "pt": "Meryl Streep"
+      },
+      {
+        "en": "Grace Kelly",
+        "fr": "Grace Kelly",
+        "pt": "Grace Kelly"
+      },
+      {
+        "en": "Elizabeth Taylor",
+        "fr": "Elizabeth Taylor",
+        "pt": "Elizabeth Taylor"
+      }
+    ],
+    "homeCountry": null,
+    "id": "marilyn-monroe",
+    "name": {
+      "en": "Marilyn Monroe",
+      "fr": "Marilyn Monroe",
+      "pt": "Marilyn Monroe"
+    },
+    "tier": "medium",
+    "wikidata": "Q4616"
+  },
+  {
+    "accepted": {
+      "en": ["Hitchcock"],
+      "fr": ["Hitchcock"],
+      "pt": ["Hitchcock"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A film director who began in the silent era.",
+          "fr": "Un réalisateur qui a débuté au temps du muet.",
+          "pt": "Um realizador que começou na era do cinema mudo."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Best known for thrillers.",
+          "fr": "Surtout connu pour ses films à suspense.",
+          "pt": "Mais conhecido pelos filmes de suspense."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Was born in London.",
+          "fr": "Né à Londres.",
+          "pt": "Nasceu em Londres."
+        }
+      },
+      {
+        "text": {
+          "en": "Slipped a brief cameo of himself into most of his films.",
+          "fr": "Faisait une brève apparition dans la plupart de ses films.",
+          "pt": "Fazia uma breve aparição na maioria dos seus filmes."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Directed Psycho and The Birds.",
+          "fr": "A réalisé Psychose et Les Oiseaux.",
+          "pt": "Realizou Psico e Os Pássaros."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steven Spielberg",
+        "fr": "Steven Spielberg",
+        "pt": "Steven Spielberg"
+      },
+      {
+        "en": "Charlie Chaplin",
+        "fr": "Charlie Chaplin",
+        "pt": "Charlie Chaplin"
+      },
+      {
+        "en": "Fritz Lang",
+        "fr": "Fritz Lang",
+        "pt": "Fritz Lang"
+      }
+    ],
+    "homeCountry": null,
+    "id": "alfred-hitchcock",
+    "name": {
+      "en": "Alfred Hitchcock",
+      "fr": "Alfred Hitchcock",
+      "pt": "Alfred Hitchcock"
+    },
+    "tier": "medium",
+    "wikidata": "Q7374"
+  },
+  {
+    "accepted": {
+      "en": ["Lee Jun-fan"],
+      "fr": ["Lee Jun-fan"],
+      "pt": ["Lee Jun-fan"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A martial arts film star.",
+          "fr": "Une star du cinéma d’arts martiaux.",
+          "pt": "Uma estrela do cinema de artes marciais."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in the United States.",
+          "fr": "Né aux États-Unis.",
+          "pt": "Nasceu nos Estados Unidos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died at 32, weeks before his biggest film came out.",
+          "fr": "Mort à 32 ans, quelques semaines avant la sortie de son plus grand film.",
+          "pt": "Morreu aos 32 anos, semanas antes da estreia do seu maior filme."
+        }
+      },
+      {
+        "text": {
+          "en": "Created his own martial art, Jeet Kune Do.",
+          "fr": "A créé son propre art martial, le Jeet Kune Do.",
+          "pt": "Criou a sua própria arte marcial, o Jeet Kune Do."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Starred in Enter the Dragon, Hong Kong’s ‘Little Dragon’.",
+          "fr": "Star d’Opération Dragon, le « Petit Dragon » de Hong Kong.",
+          "pt": "Estrela de O Dragão Ataca, o «Pequeno Dragão» de Hong Kong."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Charlie Chaplin",
+        "fr": "Charlie Chaplin",
+        "pt": "Charlie Chaplin"
+      },
+      {
+        "en": "Jackie Chan",
+        "fr": "Jackie Chan",
+        "pt": "Jackie Chan"
+      },
+      {
+        "en": "Chuck Norris",
+        "fr": "Chuck Norris",
+        "pt": "Chuck Norris"
+      }
+    ],
+    "homeCountry": null,
+    "id": "bruce-lee",
+    "name": {
+      "en": "Bruce Lee",
+      "fr": "Bruce Lee",
+      "pt": "Bruce Lee"
+    },
+    "tier": "medium",
+    "wikidata": "Q16397"
+  },
+  {
+    "accepted": {
+      "en": ["Hepburn"],
+      "fr": ["Hepburn"],
+      "pt": ["Hepburn"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A film star born in Europe.",
+          "fr": "Une star de cinéma née en Europe.",
+          "pt": "Uma estrela de cinema nascida na Europa."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Made her name in Hollywood films.",
+          "fr": "S’est fait un nom dans les films hollywoodiens.",
+          "pt": "Fez nome em filmes de Hollywood."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Brussels, she grew up in the occupied Netherlands.",
+          "fr": "Née à Bruxelles, elle a grandi aux Pays-Bas sous l’Occupation.",
+          "pt": "Nascida em Bruxelas, cresceu nos Países Baixos ocupados."
+        }
+      },
+      {
+        "text": {
+          "en": "Won an Oscar for Roman Holiday, then became a UNICEF ambassador.",
+          "fr": "Oscarisée pour Vacances romaines, puis ambassadrice de l’UNICEF.",
+          "pt": "Ganhou o Óscar com Férias em Roma e foi embaixadora da UNICEF."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The little black dress and long cigarette holder of Breakfast at Tiffany’s.",
+          "fr": "La petite robe noire et le long fume-cigarette de Diamants sur canapé.",
+          "pt": "O vestidinho preto e a longa boquilha de Boneca de Luxo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Marilyn Monroe",
+        "fr": "Marilyn Monroe",
+        "pt": "Marilyn Monroe"
+      },
+      {
+        "en": "Brigitte Bardot",
+        "fr": "Brigitte Bardot",
+        "pt": "Brigitte Bardot"
+      },
+      {
+        "en": "Ingrid Bergman",
+        "fr": "Ingrid Bergman",
+        "pt": "Ingrid Bergman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "audrey-hepburn",
+    "name": {
+      "en": "Audrey Hepburn",
+      "fr": "Audrey Hepburn",
+      "pt": "Audrey Hepburn"
+    },
+    "tier": "hard",
+    "wikidata": "Q42786"
+  },
+  {
+    "accepted": {
+      "en": ["Kurosawa"],
+      "fr": ["Kurosawa"],
+      "pt": ["Kurosawa"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An Asian film director.",
+          "fr": "Un réalisateur asiatique.",
+          "pt": "Um realizador asiático."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was Japanese.",
+          "fr": "Était japonais.",
+          "pt": "Era japonês."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Shot live-action samurai epics starring Toshiro Mifune.",
+          "fr": "A tourné des fresques de samouraïs avec l’acteur Toshirō Mifune.",
+          "pt": "Filmou épicos de samurais com o ator Toshiro Mifune."
+        }
+      },
+      {
+        "text": {
+          "en": "One of his films was remade as the western The Magnificent Seven.",
+          "fr": "Un de ses films a été refait en western : Les Sept Mercenaires.",
+          "pt": "Um dos seus filmes foi refeito como o western Os Sete Magníficos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Japan’s master director of Seven Samurai, Rashomon and Ran.",
+          "fr": "Le maître japonais des Sept Samouraïs, de Rashōmon et de Ran.",
+          "pt": "O mestre japonês de Os Sete Samurais, Rashomon e Ran."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steven Spielberg",
+        "fr": "Steven Spielberg",
+        "pt": "Steven Spielberg"
+      },
+      {
+        "en": "Bong Joon-ho",
+        "fr": "Bong Joon-ho",
+        "pt": "Bong Joon-ho"
+      },
+      {
+        "en": "Hayao Miyazaki",
+        "fr": "Hayao Miyazaki",
+        "pt": "Hayao Miyazaki"
+      }
+    ],
+    "homeCountry": null,
+    "id": "akira-kurosawa",
+    "name": {
+      "en": "Akira Kurosawa",
+      "fr": "Akira Kurosawa",
+      "pt": "Akira Kurosawa"
+    },
+    "tier": "hard",
+    "wikidata": "Q8006"
+  },
+  {
+    "accepted": {
+      "en": ["Columbus", "Cristoforo Colombo"],
+      "fr": ["Colomb", "Cristoforo Colombo"],
+      "pt": ["Colombo", "Cristoforo Colombo"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A navigator of the Age of Discovery.",
+          "fr": "Un navigateur des grandes découvertes.",
+          "pt": "Um navegador da época dos Descobrimentos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Sailed west across the Atlantic.",
+          "fr": "A traversé l’Atlantique vers l’ouest.",
+          "pt": "Atravessou o Atlântico rumo a oeste."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died believing he had reached Asia.",
+          "fr": "Est mort persuadé d’avoir atteint l’Asie.",
+          "pt": "Morreu convencido de ter chegado à Ásia."
+        }
+      },
+      {
+        "text": {
+          "en": "Landed in the Bahamas in October 1492.",
+          "fr": "A débarqué aux Bahamas en octobre 1492.",
+          "pt": "Desembarcou nas Baamas em outubro de 1492."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "A Genoese sailor with the Niña, the Pinta and the Santa María.",
+          "fr": "Marin génois de la Niña, de la Pinta et de la Santa María.",
+          "pt": "Marinheiro genovês da Niña, da Pinta e da Santa María."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Neil Armstrong",
+        "fr": "Neil Armstrong",
+        "pt": "Neil Armstrong"
+      },
+      {
+        "en": "Vasco da Gama",
+        "fr": "Vasco de Gama",
+        "pt": "Vasco da Gama"
+      },
+      {
+        "en": "Amerigo Vespucci",
+        "fr": "Amerigo Vespucci",
+        "pt": "Américo Vespúcio"
+      }
+    ],
+    "homeCountry": null,
+    "id": "christopher-columbus",
+    "name": {
+      "en": "Christopher Columbus",
+      "fr": "Christophe Colomb",
+      "pt": "Cristóvão Colombo"
+    },
+    "tier": "easy",
+    "wikidata": "Q7322"
+  },
+  {
+    "accepted": {
+      "en": ["Armstrong"],
+      "fr": ["Armstrong"],
+      "pt": ["Armstrong"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Flew into space.",
+          "fr": "Est allé dans l’espace.",
+          "pt": "Foi ao espaço."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was American.",
+          "fr": "Était américain.",
+          "pt": "Era americano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Commanded the Apollo 11 mission.",
+          "fr": "Commandait la mission Apollo 11.",
+          "pt": "Comandou a missão Apollo 11."
+        }
+      },
+      {
+        "text": {
+          "en": "A former test pilot who flew the X-15 rocket plane.",
+          "fr": "Ancien pilote d’essai, il a volé sur l’avion-fusée X-15.",
+          "pt": "Antigo piloto de testes, voou no avião-foguete X-15."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The first person to walk on the Moon, in July 1969.",
+          "fr": "Le premier homme à marcher sur la Lune, en juillet 1969.",
+          "pt": "O primeiro homem a andar na Lua, em julho de 1969."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Christopher Columbus",
+        "fr": "Christophe Colomb",
+        "pt": "Cristóvão Colombo"
+      },
+      {
+        "en": "Yuri Gagarin",
+        "fr": "Youri Gagarine",
+        "pt": "Iuri Gagarin"
+      },
+      {
+        "en": "Buzz Aldrin",
+        "fr": "Buzz Aldrin",
+        "pt": "Buzz Aldrin"
+      }
+    ],
+    "homeCountry": null,
+    "id": "neil-armstrong",
+    "name": {
+      "en": "Neil Armstrong",
+      "fr": "Neil Armstrong",
+      "pt": "Neil Armstrong"
+    },
+    "tier": "easy",
+    "wikidata": "Q1615"
+  },
+  {
+    "accepted": {
+      "en": ["Edison"],
+      "fr": ["Edison"],
+      "pt": ["Edison"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An inventor of the 19th century.",
+          "fr": "Un inventeur du XIXᵉ siècle.",
+          "pt": "Um inventor do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Grew rich from his inventions.",
+          "fr": "S’est enrichi grâce à ses inventions.",
+          "pt": "Enriqueceu com as suas invenções."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in Ohio, he was schooled mostly by his mother.",
+          "fr": "Né dans l’Ohio, il a surtout été instruit par sa mère.",
+          "pt": "Nascido no Ohio, foi educado sobretudo pela mãe."
+        }
+      },
+      {
+        "text": {
+          "en": "Invented the phonograph and held over a thousand US patents.",
+          "fr": "A inventé le phonographe et déposé plus de mille brevets américains.",
+          "pt": "Inventou o fonógrafo e registou mais de mil patentes americanas."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Made the electric light bulb a practical, everyday object.",
+          "fr": "A fait de l’ampoule électrique un objet du quotidien.",
+          "pt": "Tornou a lâmpada elétrica um objeto do dia a dia."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steve Jobs",
+        "fr": "Steve Jobs",
+        "pt": "Steve Jobs"
+      },
+      {
+        "en": "Nikola Tesla",
+        "fr": "Nikola Tesla",
+        "pt": "Nikola Tesla"
+      },
+      {
+        "en": "Alexander Graham Bell",
+        "fr": "Alexander Graham Bell",
+        "pt": "Alexander Graham Bell"
+      }
+    ],
+    "homeCountry": null,
+    "id": "thomas-edison",
+    "name": {
+      "en": "Thomas Edison",
+      "fr": "Thomas Edison",
+      "pt": "Thomas Edison"
+    },
+    "tier": "medium",
+    "wikidata": "Q8743"
+  },
+  {
+    "accepted": {
+      "en": ["Gagarin", "Iouri Gagarine"],
+      "fr": ["Gagarine", "Gagarin", "Yuri Gagarin"],
+      "pt": ["Gagarin", "Yuri Gagarin"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A Soviet space traveller.",
+          "fr": "Une figure de la conquête spatiale soviétique.",
+          "pt": "Uma figura da conquista espacial soviética."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was a fighter pilot before going into space.",
+          "fr": "Était pilote de chasse avant de partir dans l’espace.",
+          "pt": "Era piloto de caça antes de ir ao espaço."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Made only one spaceflight, lasting 108 minutes.",
+          "fr": "N’a volé qu’une fois dans l’espace, pendant 108 minutes.",
+          "pt": "Voou uma única vez no espaço, durante 108 minutos."
+        }
+      },
+      {
+        "text": {
+          "en": "Died at 34 when his training jet crashed in 1968.",
+          "fr": "Mort à 34 ans dans l’accident de son avion d’entraînement, en 1968.",
+          "pt": "Morreu aos 34 anos na queda do seu avião de treino, em 1968."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The first human in space, aboard Vostok 1 in 1961.",
+          "fr": "Le premier humain dans l’espace, à bord de Vostok 1 en 1961.",
+          "pt": "O primeiro ser humano no espaço, a bordo da Vostok 1, em 1961."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Neil Armstrong",
+        "fr": "Neil Armstrong",
+        "pt": "Neil Armstrong"
+      },
+      {
+        "en": "Valentina Tereshkova",
+        "fr": "Valentina Terechkova",
+        "pt": "Valentina Tereshkova"
+      },
+      {
+        "en": "Alexei Leonov",
+        "fr": "Alexeï Leonov",
+        "pt": "Alexei Leonov"
+      }
+    ],
+    "homeCountry": null,
+    "id": "yuri-gagarin",
+    "name": {
+      "en": "Yuri Gagarin",
+      "fr": "Youri Gagarine",
+      "pt": "Iuri Gagarin"
+    },
+    "tier": "medium",
+    "wikidata": "Q7327"
+  },
+  {
+    "accepted": {
+      "en": ["Tesla"],
+      "fr": ["Tesla"],
+      "pt": ["Tesla"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An inventor active around the year 1900.",
+          "fr": "Un inventeur actif autour de 1900.",
+          "pt": "Um inventor ativo por volta de 1900."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in Europe.",
+          "fr": "Né en Europe.",
+          "pt": "Nasceu na Europa."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Died poor and alone in a New York hotel room.",
+          "fr": "Mort pauvre et seul dans une chambre d’hôtel new-yorkaise.",
+          "pt": "Morreu pobre e sozinho num quarto de hotel em Nova Iorque."
+        }
+      },
+      {
+        "text": {
+          "en": "Championed alternating current against Edison’s direct current.",
+          "fr": "A défendu le courant alternatif contre le courant continu d’Edison.",
+          "pt": "Defendeu a corrente alternada contra a corrente contínua de Edison."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "An electric car brand and the unit of magnetic field bear his name.",
+          "fr": "Une marque de voitures électriques et l’unité de champ magnétique portent son nom.",
+          "pt": "Uma marca de carros elétricos e a unidade de campo magnético têm o seu nome."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steve Jobs",
+        "fr": "Steve Jobs",
+        "pt": "Steve Jobs"
+      },
+      {
+        "en": "Thomas Edison",
+        "fr": "Thomas Edison",
+        "pt": "Thomas Edison"
+      },
+      {
+        "en": "Guglielmo Marconi",
+        "fr": "Guglielmo Marconi",
+        "pt": "Guglielmo Marconi"
+      }
+    ],
+    "homeCountry": null,
+    "id": "nikola-tesla",
+    "name": {
+      "en": "Nikola Tesla",
+      "fr": "Nikola Tesla",
+      "pt": "Nikola Tesla"
+    },
+    "tier": "medium",
+    "wikidata": "Q9036"
+  },
+  {
+    "accepted": {
+      "en": [],
+      "fr": [],
+      "pt": []
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A traveller who reached Asia.",
+          "fr": "Un voyageur parvenu jusqu’en Asie.",
+          "pt": "Um viajante que chegou à Ásia."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Lived in the 13th and 14th centuries.",
+          "fr": "A vécu aux XIIIᵉ et XIVᵉ siècles.",
+          "pt": "Viveu nos séculos XIII e XIV."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "A Venetian merchant who set out with his father and uncle.",
+          "fr": "Un marchand vénitien parti avec son père et son oncle.",
+          "pt": "Um mercador veneziano que partiu com o pai e o tio."
+        }
+      },
+      {
+        "text": {
+          "en": "Served the Mongol emperor Kublai Khan for some seventeen years.",
+          "fr": "A servi l’empereur mongol Kubilai Khan pendant quelque dix-sept ans.",
+          "pt": "Serviu o imperador mongol Kublai Khan durante cerca de dezassete anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Dictated the tale of his travels from a prison cell in Genoa.",
+          "fr": "A dicté le récit de ses voyages dans une prison de Gênes.",
+          "pt": "Ditou o relato das suas viagens numa prisão de Génova."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Christopher Columbus",
+        "fr": "Christophe Colomb",
+        "pt": "Cristóvão Colombo"
+      },
+      {
+        "en": "Vasco da Gama",
+        "fr": "Vasco de Gama",
+        "pt": "Vasco da Gama"
+      },
+      {
+        "en": "Ibn Battuta",
+        "fr": "Ibn Battûta",
+        "pt": "Ibn Battuta"
+      }
+    ],
+    "homeCountry": null,
+    "id": "marco-polo",
+    "name": {
+      "en": "Marco Polo",
+      "fr": "Marco Polo",
+      "pt": "Marco Polo"
+    },
+    "tier": "hard",
+    "wikidata": "Q6101"
+  },
+  {
+    "accepted": {
+      "en": ["Earhart"],
+      "fr": ["Earhart"],
+      "pt": ["Earhart"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An aviation pioneer of the 1920s and 1930s.",
+          "fr": "Une figure pionnière de l’aviation des années 1920 et 1930.",
+          "pt": "Uma figura pioneira da aviação dos anos 20 e 30."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A woman in the cockpit when few were allowed there.",
+          "fr": "Une femme aux commandes, quand si peu l’étaient.",
+          "pt": "Uma mulher aos comandos, quando tão poucas o eram."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Was born in Kansas.",
+          "fr": "Née au Kansas.",
+          "pt": "Nasceu no Kansas."
+        }
+      },
+      {
+        "text": {
+          "en": "First woman to fly solo across the Atlantic, in 1932.",
+          "fr": "Première femme à traverser l’Atlantique seule en avion, en 1932.",
+          "pt": "Primeira mulher a atravessar o Atlântico sozinha de avião, em 1932."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Vanished over the Pacific in 1937 while flying around the world.",
+          "fr": "Disparue au-dessus du Pacifique en 1937, en plein tour du monde.",
+          "pt": "Desapareceu sobre o Pacífico em 1937, a meio de uma volta ao mundo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Neil Armstrong",
+        "fr": "Neil Armstrong",
+        "pt": "Neil Armstrong"
+      },
+      {
+        "en": "Charles Lindbergh",
+        "fr": "Charles Lindbergh",
+        "pt": "Charles Lindbergh"
+      },
+      {
+        "en": "Amy Johnson",
+        "fr": "Amy Johnson",
+        "pt": "Amy Johnson"
+      }
+    ],
+    "homeCountry": null,
+    "id": "amelia-earhart",
+    "name": {
+      "en": "Amelia Earhart",
+      "fr": "Amelia Earhart",
+      "pt": "Amelia Earhart"
+    },
+    "tier": "hard",
+    "wikidata": "Q3355"
+  },
+  {
+    "accepted": {
+      "en": ["Jobs"],
+      "fr": ["Jobs"],
+      "pt": ["Jobs"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Co-founded a computer company.",
+          "fr": "A cofondé une entreprise d’informatique.",
+          "pt": "Cofundou uma empresa de informática."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Grew up in California.",
+          "fr": "A grandi en Californie.",
+          "pt": "Cresceu na Califórnia."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Was pushed out of his own company, then came back to save it.",
+          "fr": "Évincé de sa propre entreprise, il y est revenu pour la sauver.",
+          "pt": "Foi afastado da própria empresa e voltou para a salvar."
+        }
+      },
+      {
+        "text": {
+          "en": "Also ran Pixar, the studio behind Toy Story.",
+          "fr": "A aussi dirigé Pixar, le studio de Toy Story.",
+          "pt": "Também dirigiu a Pixar, o estúdio de Toy Story."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Unveiled the iPhone in 2007, in his black turtleneck.",
+          "fr": "A présenté l’iPhone en 2007, en col roulé noir.",
+          "pt": "Apresentou o iPhone em 2007, de camisola de gola alta preta."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Walt Disney",
+        "fr": "Walt Disney",
+        "pt": "Walt Disney"
+      },
+      {
+        "en": "Bill Gates",
+        "fr": "Bill Gates",
+        "pt": "Bill Gates"
+      },
+      {
+        "en": "Steve Wozniak",
+        "fr": "Steve Wozniak",
+        "pt": "Steve Wozniak"
+      }
+    ],
+    "homeCountry": null,
+    "id": "steve-jobs",
+    "name": {
+      "en": "Steve Jobs",
+      "fr": "Steve Jobs",
+      "pt": "Steve Jobs"
+    },
+    "tier": "easy",
+    "wikidata": "Q19837"
+  },
+  {
+    "accepted": {
+      "en": ["Gates"],
+      "fr": ["Gates"],
+      "pt": ["Gates"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Co-founded a computer company.",
+          "fr": "A cofondé une entreprise d’informatique.",
+          "pt": "Cofundou uma empresa de informática."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Grew up in Seattle.",
+          "fr": "A grandi à Seattle.",
+          "pt": "Cresceu em Seattle."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Left Harvard without a degree to start his company.",
+          "fr": "A quitté Harvard sans diplôme pour lancer son entreprise.",
+          "pt": "Deixou Harvard sem diploma para fundar a sua empresa."
+        }
+      },
+      {
+        "text": {
+          "en": "Has given much of his fortune to fight malaria and polio.",
+          "fr": "A consacré une grande part de sa fortune à combattre le paludisme et la polio.",
+          "pt": "Deu grande parte da fortuna para combater a malária e a poliomielite."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Co-founded Microsoft and put Windows on the world’s computers.",
+          "fr": "A cofondé Microsoft et mis Windows sur les ordinateurs du monde entier.",
+          "pt": "Cofundou a Microsoft e pôs o Windows nos computadores do mundo inteiro."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Henry Ford",
+        "fr": "Henry Ford",
+        "pt": "Henry Ford"
+      },
+      {
+        "en": "Steve Jobs",
+        "fr": "Steve Jobs",
+        "pt": "Steve Jobs"
+      },
+      {
+        "en": "Paul Allen",
+        "fr": "Paul Allen",
+        "pt": "Paul Allen"
+      }
+    ],
+    "homeCountry": null,
+    "id": "bill-gates",
+    "name": {
+      "en": "Bill Gates",
+      "fr": "Bill Gates",
+      "pt": "Bill Gates"
+    },
+    "tier": "easy",
+    "wikidata": "Q5284"
+  },
+  {
+    "accepted": {
+      "en": ["Disney"],
+      "fr": ["Disney"],
+      "pt": ["Disney"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A pioneer of animated films.",
+          "fr": "Un pionnier du cinéma d’animation.",
+          "pt": "Um pioneiro do cinema de animação."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was American.",
+          "fr": "Était américain.",
+          "pt": "Era americano."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Holds the record for the most Oscars won by one person.",
+          "fr": "Détient le record d’Oscars remportés par une seule personne.",
+          "pt": "Detém o recorde de Óscares ganhos por uma só pessoa."
+        }
+      },
+      {
+        "text": {
+          "en": "Voiced a famous mouse himself for nearly twenty years.",
+          "fr": "A prêté sa propre voix à une célèbre souris pendant près de vingt ans.",
+          "pt": "Deu a própria voz a um rato famoso durante quase vinte anos."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Created Mickey Mouse and opened a theme park in California in 1955.",
+          "fr": "Créateur de Mickey, il ouvre un parc d’attractions en Californie en 1955.",
+          "pt": "Criou o Rato Mickey e abriu um parque temático na Califórnia em 1955."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steven Spielberg",
+        "fr": "Steven Spielberg",
+        "pt": "Steven Spielberg"
+      },
+      {
+        "en": "Hayao Miyazaki",
+        "fr": "Hayao Miyazaki",
+        "pt": "Hayao Miyazaki"
+      },
+      {
+        "en": "John Lasseter",
+        "fr": "John Lasseter",
+        "pt": "John Lasseter"
+      }
+    ],
+    "homeCountry": null,
+    "id": "walt-disney",
+    "name": {
+      "en": "Walt Disney",
+      "fr": "Walt Disney",
+      "pt": "Walt Disney"
+    },
+    "tier": "easy",
+    "wikidata": "Q8704"
+  },
+  {
+    "accepted": {
+      "en": ["Chanel", "Gabrielle Chanel"],
+      "fr": ["Chanel", "Gabrielle Chanel"],
+      "pt": ["Chanel", "Gabrielle Chanel"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "A woman fashion designer.",
+          "fr": "Une créatrice de mode.",
+          "pt": "Uma criadora de moda."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "A star of Paris fashion in the 1930s.",
+          "fr": "Une reine de la mode parisienne dans les années 1930.",
+          "pt": "Uma estrela da moda parisiense nos anos 30."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Born in France, she grew up in a convent orphanage.",
+          "fr": "Née en France, elle a grandi dans un orphelinat tenu par des religieuses.",
+          "pt": "Nascida em França, cresceu num orfanato de freiras."
+        }
+      },
+      {
+        "text": {
+          "en": "Freed women from the corset and made the little black dress chic.",
+          "fr": "A libéré les femmes du corset et rendu chic la petite robe noire.",
+          "pt": "Libertou as mulheres do espartilho e tornou chique o vestido preto."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Her No. 5 is the world’s most famous perfume.",
+          "fr": "Son N° 5 est le parfum le plus célèbre du monde.",
+          "pt": "O seu N.º 5 é o perfume mais famoso do mundo."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Christian Dior",
+        "fr": "Christian Dior",
+        "pt": "Christian Dior"
+      },
+      {
+        "en": "Vivienne Westwood",
+        "fr": "Vivienne Westwood",
+        "pt": "Vivienne Westwood"
+      },
+      {
+        "en": "Elsa Schiaparelli",
+        "fr": "Elsa Schiaparelli",
+        "pt": "Elsa Schiaparelli"
+      }
+    ],
+    "homeCountry": null,
+    "id": "coco-chanel",
+    "name": {
+      "en": "Coco Chanel",
+      "fr": "Coco Chanel",
+      "pt": "Coco Chanel"
+    },
+    "tier": "medium",
+    "wikidata": "Q45661"
+  },
+  {
+    "accepted": {
+      "en": ["Ford"],
+      "fr": ["Ford"],
+      "pt": ["Ford"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "Founded a car company.",
+          "fr": "A fondé une marque automobile.",
+          "pt": "Fundou uma marca de automóveis."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Designed a cheap car for ordinary families.",
+          "fr": "A conçu une voiture bon marché pour les familles ordinaires.",
+          "pt": "Concebeu um carro barato para as famílias comuns."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Was born on a farm in Michigan.",
+          "fr": "Né dans une ferme du Michigan.",
+          "pt": "Nasceu numa quinta no Michigan."
+        }
+      },
+      {
+        "text": {
+          "en": "Brought in the moving assembly line and paid workers $5 a day.",
+          "fr": "A lancé la chaîne de montage mobile et payé ses ouvriers 5 dollars par jour.",
+          "pt": "Introduziu a linha de montagem móvel e pagou 5 dólares por dia aos operários."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Sold the Model T in ‘any colour, so long as it is black’.",
+          "fr": "Vendait la Model T « de n’importe quelle couleur, pourvu qu’elle soit noire ».",
+          "pt": "Vendia o Modelo T «em qualquer cor, desde que seja preto»."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Steve Jobs",
+        "fr": "Steve Jobs",
+        "pt": "Steve Jobs"
+      },
+      {
+        "en": "Enzo Ferrari",
+        "fr": "Enzo Ferrari",
+        "pt": "Enzo Ferrari"
+      },
+      {
+        "en": "Ferdinand Porsche",
+        "fr": "Ferdinand Porsche",
+        "pt": "Ferdinand Porsche"
+      }
+    ],
+    "homeCountry": null,
+    "id": "henry-ford",
+    "name": {
+      "en": "Henry Ford",
+      "fr": "Henry Ford",
+      "pt": "Henry Ford"
+    },
+    "tier": "medium",
+    "wikidata": "Q8768"
+  },
+  {
+    "accepted": {
+      "en": ["Oprah", "Winfrey"],
+      "fr": ["Oprah", "Winfrey"],
+      "pt": ["Oprah", "Winfrey"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American TV talk show host.",
+          "fr": "Une figure américaine des talk-shows télévisés.",
+          "pt": "Uma figura americana dos talk shows televisivos."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Started out on local TV news.",
+          "fr": "A débuté au journal télévisé d’une chaîne locale.",
+          "pt": "Começou no noticiário de uma televisão local."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Hosted a daytime talk show from Chicago for 25 years.",
+          "fr": "A animé une émission de jour depuis Chicago pendant 25 ans.",
+          "pt": "Apresentou um programa diurno a partir de Chicago durante 25 anos."
+        }
+      },
+      {
+        "text": {
+          "en": "Gave every member of her studio audience a car in 2004.",
+          "fr": "A offert une voiture à chaque spectateur de son plateau en 2004.",
+          "pt": "Ofereceu um carro a cada pessoa da plateia em 2004."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "The queen of talk shows, America’s first Black woman billionaire.",
+          "fr": "La reine des talk-shows, première milliardaire noire des États-Unis.",
+          "pt": "A rainha dos talk shows, primeira mulher negra a juntar mil milhões de dólares nos EUA."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Rupert Murdoch",
+        "fr": "Rupert Murdoch",
+        "pt": "Rupert Murdoch"
+      },
+      {
+        "en": "Ellen DeGeneres",
+        "fr": "Ellen DeGeneres",
+        "pt": "Ellen DeGeneres"
+      },
+      {
+        "en": "David Letterman",
+        "fr": "David Letterman",
+        "pt": "David Letterman"
+      }
+    ],
+    "homeCountry": null,
+    "id": "oprah-winfrey",
+    "name": {
+      "en": "Oprah Winfrey",
+      "fr": "Oprah Winfrey",
+      "pt": "Oprah Winfrey"
+    },
+    "tier": "medium",
+    "wikidata": "Q55800"
+  },
+  {
+    "accepted": {
+      "en": ["Rockefeller", "John Rockefeller"],
+      "fr": ["Rockefeller", "John Rockefeller"],
+      "pt": ["Rockefeller", "John Rockefeller"]
+    },
+    "clues": [
+      {
+        "strikes": 0,
+        "text": {
+          "en": "An American tycoon of the 19th century.",
+          "fr": "Un magnat américain du XIXᵉ siècle.",
+          "pt": "Um magnata americano do século XIX."
+        }
+      },
+      {
+        "strikes": 1,
+        "text": {
+          "en": "Was born in the United States.",
+          "fr": "Né aux États-Unis.",
+          "pt": "Nasceu nos Estados Unidos."
+        }
+      },
+      {
+        "strikes": 2,
+        "text": {
+          "en": "Built his fortune by refining oil.",
+          "fr": "A bâti sa fortune sur le raffinage du pétrole.",
+          "pt": "Construiu a fortuna com a refinação de petróleo."
+        }
+      },
+      {
+        "text": {
+          "en": "His company was broken up by the US Supreme Court in 1911.",
+          "fr": "Son entreprise a été démantelée par la Cour suprême américaine en 1911.",
+          "pt": "A sua empresa foi desmantelada pelo Supremo Tribunal americano em 1911."
+        }
+      },
+      {
+        "photo": true,
+        "text": {
+          "en": "Founder of Standard Oil, often called the richest American ever.",
+          "fr": "Fondateur de la Standard Oil, souvent dit l’Américain le plus riche de l’histoire.",
+          "pt": "Fundador da Standard Oil, muitas vezes tido como o americano mais rico de sempre."
+        }
+      }
+    ],
+    "decoys": [
+      {
+        "en": "Bill Gates",
+        "fr": "Bill Gates",
+        "pt": "Bill Gates"
+      },
+      {
+        "en": "Andrew Carnegie",
+        "fr": "Andrew Carnegie",
+        "pt": "Andrew Carnegie"
+      },
+      {
+        "en": "J. P. Morgan",
+        "fr": "J. P. Morgan",
+        "pt": "J. P. Morgan"
+      }
+    ],
+    "homeCountry": null,
+    "id": "john-d-rockefeller",
+    "name": {
+      "en": "John D. Rockefeller",
+      "fr": "John D. Rockefeller",
+      "pt": "John D. Rockefeller"
+    },
+    "tier": "hard",
+    "wikidata": "Q160278"
+  }
+]

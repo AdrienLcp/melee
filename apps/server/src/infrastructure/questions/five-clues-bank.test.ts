@@ -217,7 +217,8 @@ describe('the five-clues bank', () => {
       drawFiveCluesCard({
         difficulty: 'mixed',
         language: 'en',
-        playedIds: allButOne
+        playedIds: allButOne,
+        subjects: ['country']
       })
     ).toEqual({
       answer: fiveCluesAnswerOf({ country: kept, language: 'en' }),

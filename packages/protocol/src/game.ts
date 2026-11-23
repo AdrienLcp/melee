@@ -11,6 +11,8 @@ import { QUANTITY_TOPICS, quantityTopicSetSchema } from './estimate'
 import {
   DEFAULT_CLUE_DURATION_MS,
   FIVE_CLUES_CLUE_COUNT,
+  fiveCluesSubjectSetSchema,
+  fiveCluesSubjects,
   MAX_CLUE_DURATION_MS,
   MIN_CLUE_DURATION_MS
 } from './five-clues'
@@ -347,8 +349,10 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     /** The tiers of countries dealt, as the flags rubric deals them. */
     difficulty: difficultySchema,
     kind: z.literal('fiveclues'),
-    /** The wording of the cities, the capital, the four names and every typed answer: one language for the table, like the quiz's. */
-    language: questionLanguageSchema
+    /** The wording of every clue, the four names and every typed answer: one language for the table, like the quiz's. */
+    language: questionLanguageSchema,
+    /** What a round may hide, each round drawing one of them: a room set before there was more than countries takes them all. */
+    subjects: fiveCluesSubjectSetSchema.default([...fiveCluesSubjects])
   }),
   z.object({
     /** Whether about one light in four comes up beside a trap that darkens the board for a second. */
@@ -570,7 +574,8 @@ export const DEFAULT_FIVE_CLUES_SETTINGS: FiveCluesSettings = {
   clueDurationMs: DEFAULT_CLUE_DURATION_MS,
   difficulty: 'mixed',
   kind: 'fiveclues',
-  language: 'fr'
+  language: 'fr',
+  subjects: [...fiveCluesSubjects]
 }
 
 export const DEFAULT_LIGHTS_SETTINGS: LightsSettings = {
