@@ -818,7 +818,7 @@ export const EN_DICTIONARY = defineDictionary({
   },
   fiveclues: {
     answer: {
-      label: 'A country'
+      country: 'A country'
     },
     climbing: 'Still climbing: {count:number}',
     clue: {
@@ -834,9 +834,11 @@ export const EN_DICTIONARY = defineDictionary({
     kind: {
       cities: 'Cities',
       flag: 'Flag and capital',
+      image: 'Picture',
       outline: 'Outline',
       region: 'Region',
-      size: 'Size'
+      size: 'Size',
+      text: 'Clue'
     },
     language: 'Clues in',
     name: 'Five clues',

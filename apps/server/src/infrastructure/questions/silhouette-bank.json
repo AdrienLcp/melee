@@ -4,6 +4,10 @@
     "decoys": ["PAK", "TJK", "TKM"],
     "easyDecoys": ["GHA", "DNK", "CUB"],
     "file": "5f427b036db3.svg",
+    "outline": {
+      "compactness": 0.363,
+      "elongation": 1.842
+    },
     "tier": "medium"
   },
   {
@@ -11,6 +15,10 @@
     "decoys": ["NAM", "ZMB", "COD"],
     "easyDecoys": ["IRQ", "LVA", "ARG"],
     "file": "01aefa7b7d21.svg",
+    "outline": {
+      "compactness": 0.418,
+      "elongation": 1.173
+    },
     "tier": "hard"
   },
   {
@@ -18,6 +26,10 @@
     "decoys": ["MKD", "XKX", "MNE"],
     "easyDecoys": ["MAR", "PER", "SAU"],
     "file": "24034b629008.svg",
+    "outline": {
+      "compactness": 0.466,
+      "elongation": 2.727
+    },
     "tier": "easy"
   },
   {
@@ -25,6 +37,10 @@
     "decoys": ["QAT", "OMN", "KWT"],
     "easyDecoys": ["CHL", "CZE", "DZA"],
     "file": "0cca36f4379d.svg",
+    "outline": {
+      "compactness": 0.267,
+      "elongation": 2.057
+    },
     "tier": "easy"
   },
   {
@@ -32,6 +48,10 @@
     "decoys": ["CHL", "URY", "PRY"],
     "easyDecoys": ["ROU", "ZAF", "IDN"],
     "file": "2933f419721d.svg",
+    "outline": {
+      "compactness": 0.249,
+      "elongation": 2.71
+    },
     "tier": "easy"
   },
   {
@@ -39,6 +59,10 @@
     "decoys": ["AZE", "GEO", "SYR"],
     "easyDecoys": ["ROU", "COL", "EGY"],
     "file": "0b6843307e15.svg",
+    "outline": {
+      "compactness": 0.311,
+      "elongation": 2.329
+    },
     "tier": "medium"
   },
   {
@@ -46,6 +70,10 @@
     "decoys": ["TLS", "PNG", "NCL"],
     "easyDecoys": ["PHL", "COL", "GBR"],
     "file": "e8bdb681c0fe.svg",
+    "outline": {
+      "compactness": 0.248,
+      "elongation": 1.487
+    },
     "tier": "easy"
   },
   {
@@ -53,6 +81,10 @@
     "decoys": ["SVN", "CZE", "HRV"],
     "easyDecoys": ["THA", "BOL", "MAR"],
     "file": "b0e3bffe685b.svg",
+    "outline": {
+      "compactness": 0.33,
+      "elongation": 2.281
+    },
     "tier": "easy"
   },
   {
@@ -60,6 +92,10 @@
     "decoys": ["ARM", "GEO", "IRQ"],
     "easyDecoys": ["CAN", "CIV", "SRB"],
     "file": "1df355f92021.svg",
+    "outline": {
+      "compactness": 0.202,
+      "elongation": 1.273
+    },
     "tier": "medium"
   },
   {
@@ -67,6 +103,10 @@
     "decoys": ["RWA", "UGA", "TZA"],
     "easyDecoys": ["GRC", "AUS", "ECU"],
     "file": "e73dbfbb1b49.svg",
+    "outline": {
+      "compactness": 0.538,
+      "elongation": 1.425
+    },
     "tier": "medium"
   },
   {
@@ -74,6 +114,10 @@
     "decoys": ["LUX", "NLD", "DEU"],
     "easyDecoys": ["VEN", "PHL", "DZA"],
     "file": "cd3d1aaf3b09.svg",
+    "outline": {
+      "compactness": 0.415,
+      "elongation": 1.72
+    },
     "tier": "easy"
   },
   {
@@ -81,6 +125,10 @@
     "decoys": ["TGO", "GHA", "BFA"],
     "easyDecoys": ["AND", "AUS", "CAN"],
     "file": "df9795e6787b.svg",
+    "outline": {
+      "compactness": 0.434,
+      "elongation": 2.614
+    },
     "tier": "medium"
   },
   {
@@ -88,6 +136,10 @@
     "decoys": ["GHA", "TGO", "BEN"],
     "easyDecoys": ["HRV", "MEX", "KOR"],
     "file": "84ba3ff7ed03.svg",
+    "outline": {
+      "compactness": 0.445,
+      "elongation": 1.865
+    },
     "tier": "medium"
   },
   {
@@ -95,6 +147,10 @@
     "decoys": ["BTN", "MMR", "NPL"],
     "easyDecoys": ["BGR", "GHA", "CHL"],
     "file": "fc5892702761.svg",
+    "outline": {
+      "compactness": 0.113,
+      "elongation": 1.586
+    },
     "tier": "medium"
   },
   {
@@ -102,6 +158,10 @@
     "decoys": ["MKD", "ROU", "XKX"],
     "easyDecoys": ["BOL", "DZA", "IRQ"],
     "file": "2fc0c5da057d.svg",
+    "outline": {
+      "compactness": 0.457,
+      "elongation": 1.651
+    },
     "tier": "easy"
   },
   {
@@ -109,6 +169,10 @@
     "decoys": ["CUB", "JAM", "HTI"],
     "easyDecoys": ["NGA", "CHE", "IRQ"],
     "file": "8b850c4bf197.svg",
+    "outline": {
+      "compactness": 0.063,
+      "elongation": 3.305
+    },
     "tier": "hard"
   },
   {
@@ -116,6 +180,10 @@
     "decoys": ["HRV", "MNE", "SRB"],
     "easyDecoys": ["JAM", "SEN", "IND"],
     "file": "029f83d3e00b.svg",
+    "outline": {
+      "compactness": 0.503,
+      "elongation": 1.419
+    },
     "tier": "medium"
   },
   {
@@ -123,6 +191,10 @@
     "decoys": ["LTU", "LVA", "UKR"],
     "easyDecoys": ["GHA", "VNM", "NZL"],
     "file": "4bc3777add6f.svg",
+    "outline": {
+      "compactness": 0.449,
+      "elongation": 1.205
+    },
     "tier": "hard"
   },
   {
@@ -130,6 +202,10 @@
     "decoys": ["GTM", "HND", "SLV"],
     "easyDecoys": ["ARE", "LVA", "NGA"],
     "file": "d22e7a17d341.svg",
+    "outline": {
+      "compactness": 0.372,
+      "elongation": 2.706
+    },
     "tier": "hard"
   },
   {
@@ -137,6 +213,10 @@
     "decoys": ["PRY", "PER", "BRA"],
     "easyDecoys": ["LTU", "CIV", "TUR"],
     "file": "4a2243168797.svg",
+    "outline": {
+      "compactness": 0.463,
+      "elongation": 1.235
+    },
     "tier": "easy"
   },
   {
@@ -144,6 +224,10 @@
     "decoys": ["BOL", "PRY", "SUR"],
     "easyDecoys": ["LTU", "VNM", "GHA"],
     "file": "a6b1cc6374a6.svg",
+    "outline": {
+      "compactness": 0.261,
+      "elongation": 1.367
+    },
     "tier": "easy"
   },
   {
@@ -151,6 +235,10 @@
     "decoys": ["MYS", "IDN", "KHM"],
     "easyDecoys": ["HUN", "ECU", "KEN"],
     "file": "a10f330208ea.svg",
+    "outline": {
+      "compactness": 0.265,
+      "elongation": 1.608
+    },
     "tier": "hard"
   },
   {
@@ -158,6 +246,10 @@
     "decoys": ["BGD", "NPL", "MMR"],
     "easyDecoys": ["HRV", "KEN", "ECU"],
     "file": "e82ad67fb00f.svg",
+    "outline": {
+      "compactness": 0.61,
+      "elongation": 1.916
+    },
     "tier": "medium"
   },
   {
@@ -165,6 +257,10 @@
     "decoys": ["NAM", "ZWE", "ZAF"],
     "easyDecoys": ["IRL", "TUR", "PER"],
     "file": "f7b6fce844f6.svg",
+    "outline": {
+      "compactness": 0.592,
+      "elongation": 1.195
+    },
     "tier": "hard"
   },
   {
@@ -172,6 +268,10 @@
     "decoys": ["CMR", "TCD", "COG"],
     "easyDecoys": ["IRN", "COL", "SRB"],
     "file": "abaf7fd7087f.svg",
+    "outline": {
+      "compactness": 0.423,
+      "elongation": 2.112
+    },
     "tier": "medium"
   },
   {
@@ -179,6 +279,10 @@
     "decoys": ["USA", "GRL", "MEX"],
     "easyDecoys": ["TUN", "FRA", "SAU"],
     "file": "9961202df0f4.svg",
+    "outline": {
+      "compactness": 0.027,
+      "elongation": 1.575
+    },
     "tier": "easy"
   },
   {
@@ -186,6 +290,10 @@
     "decoys": ["LUX", "FRA", "AUT"],
     "easyDecoys": ["MEX", "AUS", "NGA"],
     "file": "451a55593451.svg",
+    "outline": {
+      "compactness": 0.326,
+      "elongation": 1.658
+    },
     "tier": "easy"
   },
   {
@@ -193,6 +301,10 @@
     "decoys": ["ARG", "URY", "PRY"],
     "easyDecoys": ["ESP", "JPN", "ZAF"],
     "file": "5b30a7c24f6d.svg",
+    "outline": {
+      "compactness": 0.032,
+      "elongation": 11.322
+    },
     "tier": "easy"
   },
   {
@@ -200,6 +312,10 @@
     "decoys": ["MNG", "BTN", "MMR"],
     "easyDecoys": ["CUB", "AUS", "DNK"],
     "file": "401ef504516b.svg",
+    "outline": {
+      "compactness": 0.231,
+      "elongation": 1.454
+    },
     "tier": "easy"
   },
   {
@@ -207,6 +323,10 @@
     "decoys": ["LBR", "GHA", "BFA"],
     "easyDecoys": ["BEL", "BRA", "QAT"],
     "file": "023db7f7250c.svg",
+    "outline": {
+      "compactness": 0.416,
+      "elongation": 1.002
+    },
     "tier": "easy"
   },
   {
@@ -214,6 +334,10 @@
     "decoys": ["GNQ", "NGA", "GAB"],
     "easyDecoys": ["ARE", "NOR", "CHL"],
     "file": "75a7d7564b6d.svg",
+    "outline": {
+      "compactness": 0.307,
+      "elongation": 1.56
+    },
     "tier": "easy"
   },
   {
@@ -221,6 +345,10 @@
     "decoys": ["BDI", "RWA", "COG"],
     "easyDecoys": ["GRC", "TUR", "BRA"],
     "file": "0ca305eca97b.svg",
+    "outline": {
+      "compactness": 0.398,
+      "elongation": 1.128
+    },
     "tier": "medium"
   },
   {
@@ -228,6 +356,10 @@
     "decoys": ["GAB", "GNQ", "CMR"],
     "easyDecoys": ["URY", "AND", "KOR"],
     "file": "d33acc52eeda.svg",
+    "outline": {
+      "compactness": 0.283,
+      "elongation": 2.479
+    },
     "tier": "medium"
   },
   {
@@ -235,6 +367,10 @@
     "decoys": ["ECU", "VEN", "PAN"],
     "easyDecoys": ["ITA", "AUS", "PHL"],
     "file": "7dfe528dd32b.svg",
+    "outline": {
+      "compactness": 0.284,
+      "elongation": 1.374
+    },
     "tier": "easy"
   },
   {
@@ -242,6 +378,10 @@
     "decoys": ["NIC", "PAN", "HND"],
     "easyDecoys": ["PHL", "ZAF", "IRL"],
     "file": "e9def037ffa9.svg",
+    "outline": {
+      "compactness": 0.27,
+      "elongation": 2.349
+    },
     "tier": "hard"
   },
   {
@@ -249,6 +389,10 @@
     "decoys": ["BHS", "JAM", "HTI"],
     "easyDecoys": ["NZL", "MAR", "POL"],
     "file": "85bb563edc52.svg",
+    "outline": {
+      "compactness": 0.11,
+      "elongation": 5.564
+    },
     "tier": "easy"
   },
   {
@@ -256,6 +400,10 @@
     "decoys": ["LBN", "PSE", "ISR"],
     "easyDecoys": ["VEN", "BEL", "NZL"],
     "file": "bbd8f4be2676.svg",
+    "outline": {
+      "compactness": 0.368,
+      "elongation": 2.572
+    },
     "tier": "medium"
   },
   {
@@ -263,6 +411,10 @@
     "decoys": ["AUT", "SVK", "DEU"],
     "easyDecoys": ["PAK", "TUN", "BRA"],
     "file": "a4b47be73927.svg",
+    "outline": {
+      "compactness": 0.443,
+      "elongation": 1.955
+    },
     "tier": "easy"
   },
   {
@@ -270,6 +422,10 @@
     "decoys": ["LUX", "NLD", "CZE"],
     "easyDecoys": ["LBN", "KEN", "ECU"],
     "file": "28d543acf0e0.svg",
+    "outline": {
+      "compactness": 0.282,
+      "elongation": 1.453
+    },
     "tier": "easy"
   },
   {
@@ -277,6 +433,10 @@
     "decoys": ["ETH", "ERI", "YEM"],
     "easyDecoys": ["PER", "NOR", "QAT"],
     "file": "0f35581a52d3.svg",
+    "outline": {
+      "compactness": 0.463,
+      "elongation": 1.641
+    },
     "tier": "medium"
   },
   {
@@ -284,6 +444,10 @@
     "decoys": ["NLD", "DEU", "BEL"],
     "easyDecoys": ["TUR", "CUB", "NGA"],
     "file": "fbe17c62dc29.svg",
+    "outline": {
+      "compactness": 0.091,
+      "elongation": 1.337
+    },
     "tier": "easy"
   },
   {
@@ -291,6 +455,10 @@
     "decoys": ["HTI", "PRI", "JAM"],
     "easyDecoys": ["CZE", "ARE", "ZAF"],
     "file": "d6d7418b2b37.svg",
+    "outline": {
+      "compactness": 0.404,
+      "elongation": 1.79
+    },
     "tier": "medium"
   },
   {
@@ -298,6 +466,10 @@
     "decoys": ["TUN", "MAR", "MLI"],
     "easyDecoys": ["GBR", "QAT", "JAM"],
     "file": "3963f861524a.svg",
+    "outline": {
+      "compactness": 0.602,
+      "elongation": 1.13
+    },
     "tier": "easy"
   },
   {
@@ -305,6 +477,10 @@
     "decoys": ["COL", "PER", "PAN"],
     "easyDecoys": ["AUT", "KOR", "KEN"],
     "file": "50b521b90932.svg",
+    "outline": {
+      "compactness": 0.378,
+      "elongation": 1.277
+    },
     "tier": "easy"
   },
   {
@@ -312,6 +488,10 @@
     "decoys": ["ISR", "PSE", "JOR"],
     "easyDecoys": ["NOR", "JPN", "AUS"],
     "file": "dbb5498e0670.svg",
+    "outline": {
+      "compactness": 0.447,
+      "elongation": 1.138
+    },
     "tier": "easy"
   },
   {
@@ -319,6 +499,10 @@
     "decoys": ["DJI", "ETH", "YEM"],
     "easyDecoys": ["AND", "JPN", "CAN"],
     "file": "7d44fe499e9c.svg",
+    "outline": {
+      "compactness": 0.231,
+      "elongation": 2.283
+    },
     "tier": "medium"
   },
   {
@@ -326,6 +510,10 @@
     "decoys": ["MRT", "MAR", "SEN"],
     "easyDecoys": ["BOL", "CZE", "QAT"],
     "file": "7a2ef57dc75f.svg",
+    "outline": {
+      "compactness": 0.13,
+      "elongation": 4.837
+    },
     "tier": "medium"
   },
   {
@@ -333,6 +521,10 @@
     "decoys": ["PRT", "FRA", "CHE"],
     "easyDecoys": ["KOR", "CAN", "AUS"],
     "file": "02f501dba9da.svg",
+    "outline": {
+      "compactness": 0.329,
+      "elongation": 1.079
+    },
     "tier": "easy"
   },
   {
@@ -340,6 +532,10 @@
     "decoys": ["LVA", "LTU", "BLR"],
     "easyDecoys": ["THA", "VEN", "ZAF"],
     "file": "015759525d7c.svg",
+    "outline": {
+      "compactness": 0.254,
+      "elongation": 1.517
+    },
     "tier": "easy"
   },
   {
@@ -347,6 +543,10 @@
     "decoys": ["DJI", "SOM", "ERI"],
     "easyDecoys": ["LUX", "ARE", "BRA"],
     "file": "04ae24747529.svg",
+    "outline": {
+      "compactness": 0.579,
+      "elongation": 1.267
+    },
     "tier": "medium"
   },
   {
@@ -354,6 +554,10 @@
     "decoys": ["SWE", "EST", "NOR"],
     "easyDecoys": ["THA", "CMR", "BRA"],
     "file": "dfdea04a90eb.svg",
+    "outline": {
+      "compactness": 0.285,
+      "elongation": 2.62
+    },
     "tier": "easy"
   },
   {
@@ -361,6 +565,10 @@
     "decoys": ["VUT", "NCL", "SLB"],
     "easyDecoys": ["QAT", "HRV", "DZA"],
     "file": "7af1cf9ff92d.svg",
+    "outline": {
+      "compactness": 0.201,
+      "elongation": 3.483
+    },
     "tier": "hard"
   },
   {
@@ -368,6 +576,10 @@
     "decoys": ["ARG", "URY", "CHL"],
     "easyDecoys": ["HRV", "CIV", "CHN"],
     "file": "f2815cbdb3b9.svg",
+    "outline": {
+      "compactness": 0.128,
+      "elongation": 2.222
+    },
     "tier": "medium"
   },
   {
@@ -375,6 +587,10 @@
     "decoys": ["CHE", "LUX", "BEL"],
     "easyDecoys": ["CHL", "SEN", "JPN"],
     "file": "0b5911a2c922.svg",
+    "outline": {
+      "compactness": 0.272,
+      "elongation": 1.17
+    },
     "tier": "easy"
   },
   {
@@ -382,6 +598,10 @@
     "decoys": ["GNQ", "COG", "CMR"],
     "easyDecoys": ["CHE", "ARE", "CAN"],
     "file": "1c271e1ebb34.svg",
+    "outline": {
+      "compactness": 0.313,
+      "elongation": 1.215
+    },
     "tier": "medium"
   },
   {
@@ -389,6 +609,10 @@
     "decoys": ["IRL", "NLD", "BEL"],
     "easyDecoys": ["ZAF", "BOL", "AUS"],
     "file": "f86e091dfa95.svg",
+    "outline": {
+      "compactness": 0.062,
+      "elongation": 2.324
+    },
     "tier": "easy"
   },
   {
@@ -396,6 +620,10 @@
     "decoys": ["ARM", "AZE", "TUR"],
     "easyDecoys": ["CIV", "BRA", "LTU"],
     "file": "87b2bcbbc3f5.svg",
+    "outline": {
+      "compactness": 0.352,
+      "elongation": 2.637
+    },
     "tier": "medium"
   },
   {
@@ -403,6 +631,10 @@
     "decoys": ["TGO", "BEN", "CIV"],
     "easyDecoys": ["CZE", "VEN", "IND"],
     "file": "77af29381e5b.svg",
+    "outline": {
+      "compactness": 0.561,
+      "elongation": 1.703
+    },
     "tier": "easy"
   },
   {
@@ -410,6 +642,10 @@
     "decoys": ["SLE", "GNB", "LBR"],
     "easyDecoys": ["NZL", "ALB", "PAK"],
     "file": "ccb5f87ea0dc.svg",
+    "outline": {
+      "compactness": 0.317,
+      "elongation": 1.986
+    },
     "tier": "medium"
   },
   {
@@ -417,6 +653,10 @@
     "decoys": ["SEN", "GNB", "GIN"],
     "easyDecoys": ["SVK", "USA", "QAT"],
     "file": "0248222db4cb.svg",
+    "outline": {
+      "compactness": 0.12,
+      "elongation": 5.74
+    },
     "tier": "hard"
   },
   {
@@ -424,6 +664,10 @@
     "decoys": ["GMB", "SEN", "GIN"],
     "easyDecoys": ["HRV", "VEN", "IDN"],
     "file": "ea80f5f4a12f.svg",
+    "outline": {
+      "compactness": 0.183,
+      "elongation": 1.754
+    },
     "tier": "hard"
   },
   {
@@ -431,6 +675,10 @@
     "decoys": ["GAB", "CMR", "COG"],
     "easyDecoys": ["LBN", "FIN", "CHL"],
     "file": "136346b46dbd.svg",
+    "outline": {
+      "compactness": 0.669,
+      "elongation": 1.518
+    },
     "tier": "medium"
   },
   {
@@ -438,6 +686,10 @@
     "decoys": ["MKD", "ALB", "XKX"],
     "easyDecoys": ["CAN", "ARE", "GHA"],
     "file": "a23ca93f0814.svg",
+    "outline": {
+      "compactness": 0.031,
+      "elongation": 1.36
+    },
     "tier": "easy"
   },
   {
@@ -445,6 +697,10 @@
     "decoys": ["ISL", "NOR", "SWE"],
     "easyDecoys": ["MEX", "ARE", "AUS"],
     "file": "7126ebdcbfe0.svg",
+    "outline": {
+      "compactness": 0.098,
+      "elongation": 2.099
+    },
     "tier": "medium"
   },
   {
@@ -452,6 +708,10 @@
     "decoys": ["BLZ", "SLV", "HND"],
     "easyDecoys": ["LVA", "EGY", "JPN"],
     "file": "a971c4719c71.svg",
+    "outline": {
+      "compactness": 0.436,
+      "elongation": 1.49
+    },
     "tier": "hard"
   },
   {
@@ -459,6 +719,10 @@
     "decoys": ["SUR", "TTO", "VEN"],
     "easyDecoys": ["PRT", "CHN", "CMR"],
     "file": "7b13a455c449.svg",
+    "outline": {
+      "compactness": 0.356,
+      "elongation": 2.279
+    },
     "tier": "medium"
   },
   {
@@ -466,6 +730,10 @@
     "decoys": ["SLV", "NIC", "BLZ"],
     "easyDecoys": ["ZAF", "HRV", "LBN"],
     "file": "141f336751a5.svg",
+    "outline": {
+      "compactness": 0.334,
+      "elongation": 2.215
+    },
     "tier": "hard"
   },
   {
@@ -473,6 +741,10 @@
     "decoys": ["BIH", "SVN", "HUN"],
     "easyDecoys": ["DZA", "CHL", "LBN"],
     "file": "5362dcc7207e.svg",
+    "outline": {
+      "compactness": 0.066,
+      "elongation": 1.119
+    },
     "tier": "easy"
   },
   {
@@ -480,6 +752,10 @@
     "decoys": ["DOM", "JAM", "PRI"],
     "easyDecoys": ["POL", "EGY", "PHL"],
     "file": "966ac4b60d6d.svg",
+    "outline": {
+      "compactness": 0.174,
+      "elongation": 1.487
+    },
     "tier": "medium"
   },
   {
@@ -487,6 +763,10 @@
     "decoys": ["SVK", "HRV", "SRB"],
     "easyDecoys": ["CIV", "IND", "COL"],
     "file": "87418634eef3.svg",
+    "outline": {
+      "compactness": 0.532,
+      "elongation": 1.989
+    },
     "tier": "easy"
   },
   {
@@ -494,6 +774,10 @@
     "decoys": ["MYS", "BRN", "TLS"],
     "easyDecoys": ["GHA", "USA", "HUN"],
     "file": "1fc64f604061.svg",
+    "outline": {
+      "compactness": 0.048,
+      "elongation": 4.682
+    },
     "tier": "easy"
   },
   {
@@ -501,6 +785,10 @@
     "decoys": ["NPL", "BGD", "BTN"],
     "easyDecoys": ["NOR", "PER", "NGA"],
     "file": "2cd3c1593dd1.svg",
+    "outline": {
+      "compactness": 0.165,
+      "elongation": 1.165
+    },
     "tier": "easy"
   },
   {
@@ -508,6 +796,10 @@
     "decoys": ["GBR", "BEL", "NLD"],
     "easyDecoys": ["KOR", "USA", "CMR"],
     "file": "0124dd47b31c.svg",
+    "outline": {
+      "compactness": 0.165,
+      "elongation": 1.47
+    },
     "tier": "easy"
   },
   {
@@ -515,6 +807,10 @@
     "decoys": ["KWT", "TKM", "QAT"],
     "easyDecoys": ["LTU", "ARG", "EGY"],
     "file": "f976e45d2d0e.svg",
+    "outline": {
+      "compactness": 0.398,
+      "elongation": 1.72
+    },
     "tier": "easy"
   },
   {
@@ -522,6 +818,10 @@
     "decoys": ["SYR", "KWT", "JOR"],
     "easyDecoys": ["BGR", "MEX", "NZL"],
     "file": "e8d69a22cc03.svg",
+    "outline": {
+      "compactness": 0.524,
+      "elongation": 1.483
+    },
     "tier": "easy"
   },
   {
@@ -529,6 +829,10 @@
     "decoys": ["GRL", "IRL", "NOR"],
     "easyDecoys": ["PAK", "NGA", "BOL"],
     "file": "5b6bfb966e36.svg",
+    "outline": {
+      "compactness": 0.168,
+      "elongation": 1.474
+    },
     "tier": "easy"
   },
   {
@@ -536,6 +840,10 @@
     "decoys": ["PSE", "JOR", "LBN"],
     "easyDecoys": ["DZA", "SRB", "COL"],
     "file": "bc9e70965514.svg",
+    "outline": {
+      "compactness": 0.206,
+      "elongation": 4.267
+    },
     "tier": "easy"
   },
   {
@@ -543,6 +851,10 @@
     "decoys": ["SVN", "HRV", "BIH"],
     "easyDecoys": ["NZL", "VNM", "CMR"],
     "file": "217b435c62d0.svg",
+    "outline": {
+      "compactness": 0.105,
+      "elongation": 2.018
+    },
     "tier": "easy"
   },
   {
@@ -550,6 +862,10 @@
     "decoys": ["CUB", "HTI", "DOM"],
     "easyDecoys": ["AUT", "THA", "DZA"],
     "file": "8df2be373814.svg",
+    "outline": {
+      "compactness": 0.466,
+      "elongation": 3.134
+    },
     "tier": "easy"
   },
   {
@@ -557,6 +873,10 @@
     "decoys": ["PSE", "ISR", "LBN"],
     "easyDecoys": ["PER", "HUN", "GHA"],
     "file": "3d760eddd7b2.svg",
+    "outline": {
+      "compactness": 0.417,
+      "elongation": 2.084
+    },
     "tier": "hard"
   },
   {
@@ -564,6 +884,10 @@
     "decoys": ["KOR", "PRK", "TWN"],
     "easyDecoys": ["SVN", "CAN", "SEN"],
     "file": "a66de1bcafb2.svg",
+    "outline": {
+      "compactness": 0.051,
+      "elongation": 3.579
+    },
     "tier": "easy"
   },
   {
@@ -571,6 +895,10 @@
     "decoys": ["UZB", "KGZ", "TJK"],
     "easyDecoys": ["TUN", "ARG", "CZE"],
     "file": "8ffa07fac295.svg",
+    "outline": {
+      "compactness": 0.277,
+      "elongation": 2.06
+    },
     "tier": "medium"
   },
   {
@@ -578,6 +906,10 @@
     "decoys": ["UGA", "TZA", "ETH"],
     "easyDecoys": ["AUT", "PAK", "MEX"],
     "file": "b69785f6a0f8.svg",
+    "outline": {
+      "compactness": 0.54,
+      "elongation": 1.3
+    },
     "tier": "easy"
   },
   {
@@ -585,6 +917,10 @@
     "decoys": ["TJK", "UZB", "KAZ"],
     "easyDecoys": ["CIV", "CHL", "SWE"],
     "file": "c8f6e13234d4.svg",
+    "outline": {
+      "compactness": 0.233,
+      "elongation": 2.318
+    },
     "tier": "medium"
   },
   {
@@ -592,6 +928,10 @@
     "decoys": ["VNM", "THA", "LAO"],
     "easyDecoys": ["ITA", "KEN", "BOL"],
     "file": "26994d94db2f.svg",
+    "outline": {
+      "compactness": 0.443,
+      "elongation": 1.356
+    },
     "tier": "medium"
   },
   {
@@ -599,6 +939,10 @@
     "decoys": ["PRK", "JPN", "TWN"],
     "easyDecoys": ["IRL", "URY", "TUN"],
     "file": "3e7d22f6d4b2.svg",
+    "outline": {
+      "compactness": 0.224,
+      "elongation": 1.663
+    },
     "tier": "easy"
   },
   {
@@ -606,6 +950,10 @@
     "decoys": ["IRQ", "QAT", "SAU"],
     "easyDecoys": ["GHA", "URY", "NZL"],
     "file": "9a7a10989d25.svg",
+    "outline": {
+      "compactness": 0.375,
+      "elongation": 1.347
+    },
     "tier": "hard"
   },
   {
@@ -613,6 +961,10 @@
     "decoys": ["VNM", "THA", "KHM"],
     "easyDecoys": ["DEU", "TUN", "CAN"],
     "file": "ad65f5e1b317.svg",
+    "outline": {
+      "compactness": 0.203,
+      "elongation": 3.176
+    },
     "tier": "hard"
   },
   {
@@ -620,6 +972,10 @@
     "decoys": ["PSE", "SYR", "CYP"],
     "easyDecoys": ["RUS", "CAN", "SEN"],
     "file": "566830d0df72.svg",
+    "outline": {
+      "compactness": 0.43,
+      "elongation": 3.088
+    },
     "tier": "easy"
   },
   {
@@ -627,6 +983,10 @@
     "decoys": ["SLE", "CIV", "GIN"],
     "easyDecoys": ["CUB", "ITA", "IRN"],
     "file": "b49c17a6b9d6.svg",
+    "outline": {
+      "compactness": 0.462,
+      "elongation": 2.153
+    },
     "tier": "hard"
   },
   {
@@ -634,6 +994,10 @@
     "decoys": ["TUN", "EGY", "TCD"],
     "easyDecoys": ["HUN", "QAT", "CHL"],
     "file": "ef5f4bd3950e.svg",
+    "outline": {
+      "compactness": 0.582,
+      "elongation": 1.442
+    },
     "tier": "hard"
   },
   {
@@ -641,6 +1005,10 @@
     "decoys": ["IND", "BGD", "MMR"],
     "easyDecoys": ["GBR", "ARG", "SEN"],
     "file": "7a9a22dbcd24.svg",
+    "outline": {
+      "compactness": 0.473,
+      "elongation": 1.877
+    },
     "tier": "medium"
   },
   {
@@ -648,6 +1016,10 @@
     "decoys": ["ZAF", "SWZ", "BWA"],
     "easyDecoys": ["ESP", "THA", "URY"],
     "file": "3b27b266001e.svg",
+    "outline": {
+      "compactness": 0.788,
+      "elongation": 1.451
+    },
     "tier": "hard"
   },
   {
@@ -655,6 +1027,10 @@
     "decoys": ["LVA", "BLR", "EST"],
     "easyDecoys": ["IDN", "BOL", "ZAF"],
     "file": "8a709dc2d753.svg",
+    "outline": {
+      "compactness": 0.51,
+      "elongation": 1.372
+    },
     "tier": "easy"
   },
   {
@@ -662,6 +1038,10 @@
     "decoys": ["BEL", "NLD", "DEU"],
     "easyDecoys": ["VEN", "CMR", "PHL"],
     "file": "1325323d17f0.svg",
+    "outline": {
+      "compactness": 0.616,
+      "elongation": 1.679
+    },
     "tier": "easy"
   },
   {
@@ -669,6 +1049,10 @@
     "decoys": ["LTU", "EST", "BLR"],
     "easyDecoys": ["KOR", "BOL", "NGA"],
     "file": "866d3e052e47.svg",
+    "outline": {
+      "compactness": 0.41,
+      "elongation": 2.222
+    },
     "tier": "easy"
   },
   {
@@ -676,6 +1060,10 @@
     "decoys": ["ESH", "MRT", "PRT"],
     "easyDecoys": ["PER", "JPN", "NZL"],
     "file": "20453dbab668.svg",
+    "outline": {
+      "compactness": 0.262,
+      "elongation": 5.236
+    },
     "tier": "easy"
   },
   {
@@ -683,6 +1071,10 @@
     "decoys": ["ROU", "UKR", "BGR"],
     "easyDecoys": ["JPN", "TUN", "MEX"],
     "file": "8634deb4de66.svg",
+    "outline": {
+      "compactness": 0.349,
+      "elongation": 2.09
+    },
     "tier": "medium"
   },
   {
@@ -690,6 +1082,10 @@
     "decoys": ["MOZ", "MWI", "SWZ"],
     "easyDecoys": ["NZL", "CZE", "LBN"],
     "file": "40abdd1bbab6.svg",
+    "outline": {
+      "compactness": 0.414,
+      "elongation": 2.758
+    },
     "tier": "medium"
   },
   {
@@ -697,6 +1093,10 @@
     "decoys": ["GTM", "BLZ", "SLV"],
     "easyDecoys": ["IDN", "DZA", "FRA"],
     "file": "1f3919c88491.svg",
+    "outline": {
+      "compactness": 0.137,
+      "elongation": 2.849
+    },
     "tier": "easy"
   },
   {
@@ -704,6 +1104,10 @@
     "decoys": ["XKX", "ALB", "MNE"],
     "easyDecoys": ["KOR", "COL", "GHA"],
     "file": "8a209dcbb1b3.svg",
+    "outline": {
+      "compactness": 0.751,
+      "elongation": 1.464
+    },
     "tier": "medium"
   },
   {
@@ -711,6 +1115,10 @@
     "decoys": ["BFA", "MRT", "BEN"],
     "easyDecoys": ["GBR", "BRA", "IND"],
     "file": "ebec86e3f2a6.svg",
+    "outline": {
+      "compactness": 0.361,
+      "elongation": 1.524
+    },
     "tier": "medium"
   },
   {
@@ -718,6 +1126,10 @@
     "decoys": ["BGD", "LAO", "THA"],
     "easyDecoys": ["CZE", "CUB", "NZL"],
     "file": "14bc8c7a45f7.svg",
+    "outline": {
+      "compactness": 0.135,
+      "elongation": 2.236
+    },
     "tier": "medium"
   },
   {
@@ -725,6 +1137,10 @@
     "decoys": ["XKX", "BIH", "ALB"],
     "easyDecoys": ["THA", "MEX", "CIV"],
     "file": "732ff2c754ff.svg",
+    "outline": {
+      "compactness": 0.439,
+      "elongation": 1.076
+    },
     "tier": "medium"
   },
   {
@@ -732,6 +1148,10 @@
     "decoys": ["CHN", "PRK", "RUS"],
     "easyDecoys": ["ALB", "PER", "CMR"],
     "file": "ae7a481f89da.svg",
+    "outline": {
+      "compactness": 0.421,
+      "elongation": 2.129
+    },
     "tier": "medium"
   },
   {
@@ -739,6 +1159,10 @@
     "decoys": ["MWI", "ZWE", "ZMB"],
     "easyDecoys": ["AUT", "QAT", "COL"],
     "file": "1c57ecb976c6.svg",
+    "outline": {
+      "compactness": 0.229,
+      "elongation": 2.381
+    },
     "tier": "hard"
   },
   {
@@ -746,6 +1170,10 @@
     "decoys": ["ESH", "SEN", "MLI"],
     "easyDecoys": ["PHL", "GBR", "ECU"],
     "file": "215d375a0c20.svg",
+    "outline": {
+      "compactness": 0.429,
+      "elongation": 1.256
+    },
     "tier": "medium"
   },
   {
@@ -753,6 +1181,10 @@
     "decoys": ["MOZ", "ZMB", "TZA"],
     "easyDecoys": ["HRV", "JPN", "COL"],
     "file": "d2d18eec1893.svg",
+    "outline": {
+      "compactness": 0.244,
+      "elongation": 3.584
+    },
     "tier": "hard"
   },
   {
@@ -760,6 +1192,10 @@
     "decoys": ["BRN", "IDN", "KHM"],
     "easyDecoys": ["EGY", "CHE", "COL"],
     "file": "0418093c35aa.svg",
+    "outline": {
+      "compactness": 0.131,
+      "elongation": 4.317
+    },
     "tier": "medium"
   },
   {
@@ -767,6 +1203,10 @@
     "decoys": ["BWA", "AGO", "ZAF"],
     "easyDecoys": ["GRC", "LBN", "VEN"],
     "file": "2cde09a66a0f.svg",
+    "outline": {
+      "compactness": 0.4,
+      "elongation": 1.542
+    },
     "tier": "medium"
   },
   {
@@ -774,6 +1214,10 @@
     "decoys": ["VUT", "FJI", "SLB"],
     "easyDecoys": ["NLD", "QAT", "CMR"],
     "file": "52066c5392e6.svg",
+    "outline": {
+      "compactness": 0.151,
+      "elongation": 2.595
+    },
     "tier": "medium"
   },
   {
@@ -781,6 +1225,10 @@
     "decoys": ["NGA", "TCD", "BEN"],
     "easyDecoys": ["CHE", "BRA", "IND"],
     "file": "833bcb82b26d.svg",
+    "outline": {
+      "compactness": 0.519,
+      "elongation": 1.833
+    },
     "tier": "medium"
   },
   {
@@ -788,6 +1236,10 @@
     "decoys": ["BEN", "CMR", "TGO"],
     "easyDecoys": ["QAT", "SVN", "USA"],
     "file": "b1f7d7c9f6fa.svg",
+    "outline": {
+      "compactness": 0.504,
+      "elongation": 1.4
+    },
     "tier": "easy"
   },
   {
@@ -795,6 +1247,10 @@
     "decoys": ["HND", "CRI", "SLV"],
     "easyDecoys": ["SEN", "FRA", "VNM"],
     "file": "77c44e7260d3.svg",
+    "outline": {
+      "compactness": 0.453,
+      "elongation": 1.191
+    },
     "tier": "hard"
   },
   {
@@ -802,6 +1258,10 @@
     "decoys": ["BEL", "LUX", "DEU"],
     "easyDecoys": ["VEN", "IDN", "TUN"],
     "file": "6c82e6dd1aaa.svg",
+    "outline": {
+      "compactness": 0.185,
+      "elongation": 1.737
+    },
     "tier": "easy"
   },
   {
@@ -809,6 +1269,10 @@
     "decoys": ["SWE", "FIN", "DNK"],
     "easyDecoys": ["URY", "IDN", "CIV"],
     "file": "d54a59ab9ed4.svg",
+    "outline": {
+      "compactness": 0.033,
+      "elongation": 3.658
+    },
     "tier": "easy"
   },
   {
@@ -816,6 +1280,10 @@
     "decoys": ["BTN", "IND", "BGD"],
     "easyDecoys": ["BOL", "ALB", "ZAF"],
     "file": "98fcfa666c58.svg",
+    "outline": {
+      "compactness": 0.376,
+      "elongation": 4.085
+    },
     "tier": "medium"
   },
   {
@@ -823,6 +1291,10 @@
     "decoys": ["NCL", "FJI", "VUT"],
     "easyDecoys": ["BEL", "TUN", "THA"],
     "file": "8398966367a3.svg",
+    "outline": {
+      "compactness": 0.092,
+      "elongation": 3.849
+    },
     "tier": "easy"
   },
   {
@@ -830,6 +1302,10 @@
     "decoys": ["ARE", "QAT", "YEM"],
     "easyDecoys": ["AND", "MAR", "CUB"],
     "file": "bf28272b410a.svg",
+    "outline": {
+      "compactness": 0.35,
+      "elongation": 2.26
+    },
     "tier": "medium"
   },
   {
@@ -837,6 +1313,10 @@
     "decoys": ["AFG", "TJK", "IND"],
     "easyDecoys": ["LVA", "MEX", "GHA"],
     "file": "0ccae153b48f.svg",
+    "outline": {
+      "compactness": 0.258,
+      "elongation": 2.35
+    },
     "tier": "easy"
   },
   {
@@ -844,6 +1324,10 @@
     "decoys": ["CRI", "NIC", "COL"],
     "easyDecoys": ["SVK", "CHN", "NGA"],
     "file": "1193efd51090.svg",
+    "outline": {
+      "compactness": 0.133,
+      "elongation": 2.992
+    },
     "tier": "hard"
   },
   {
@@ -851,6 +1335,10 @@
     "decoys": ["ECU", "BOL", "COL"],
     "easyDecoys": ["ARE", "TUN", "IRL"],
     "file": "46d78541e524.svg",
+    "outline": {
+      "compactness": 0.327,
+      "elongation": 2.061
+    },
     "tier": "easy"
   },
   {
@@ -858,6 +1346,10 @@
     "decoys": ["TWN", "BRN", "MYS"],
     "easyDecoys": ["AND", "ZAF", "CAN"],
     "file": "30308afbf01f.svg",
+    "outline": {
+      "compactness": 0.03,
+      "elongation": 2.835
+    },
     "tier": "easy"
   },
   {
@@ -865,6 +1357,10 @@
     "decoys": ["SLB", "TLS", "AUS"],
     "easyDecoys": ["SEN", "IRL", "CUB"],
     "file": "c080d93eadae.svg",
+    "outline": {
+      "compactness": 0.077,
+      "elongation": 1.902
+    },
     "tier": "medium"
   },
   {
@@ -872,6 +1368,10 @@
     "decoys": ["SVK", "CZE", "LTU"],
     "easyDecoys": ["BRA", "ARE", "NZL"],
     "file": "fe26924c3e02.svg",
+    "outline": {
+      "compactness": 0.542,
+      "elongation": 1.258
+    },
     "tier": "easy"
   },
   {
@@ -879,6 +1379,10 @@
     "decoys": ["DOM", "HTI", "TTO"],
     "easyDecoys": ["NZL", "FRA", "KEN"],
     "file": "d5bcae422f7f.svg",
+    "outline": {
+      "compactness": 0.457,
+      "elongation": 2.864
+    },
     "tier": "medium"
   },
   {
@@ -886,6 +1390,10 @@
     "decoys": ["KOR", "JPN", "TWN"],
     "easyDecoys": ["CHE", "EGY", "URY"],
     "file": "c18672105b16.svg",
+    "outline": {
+      "compactness": 0.282,
+      "elongation": 2.207
+    },
     "tier": "medium"
   },
   {
@@ -893,6 +1401,10 @@
     "decoys": ["ESP", "MAR", "FRA"],
     "easyDecoys": ["QAT", "MEX", "NGA"],
     "file": "3bd4cb90a94c.svg",
+    "outline": {
+      "compactness": 0.312,
+      "elongation": 3.056
+    },
     "tier": "easy"
   },
   {
@@ -900,6 +1412,10 @@
     "decoys": ["BOL", "URY", "ARG"],
     "easyDecoys": ["ESP", "IRQ", "NZL"],
     "file": "699568aa1e66.svg",
+    "outline": {
+      "compactness": 0.494,
+      "elongation": 2.263
+    },
     "tier": "hard"
   },
   {
@@ -907,6 +1423,10 @@
     "decoys": ["ISR", "JOR", "LBN"],
     "easyDecoys": ["SVK", "SEN", "PER"],
     "file": "c420738c458c.svg",
+    "outline": {
+      "compactness": 0.342,
+      "elongation": 1.84
+    },
     "tier": "medium"
   },
   {
@@ -914,6 +1434,10 @@
     "decoys": ["ARE", "KWT", "SAU"],
     "easyDecoys": ["DEU", "GHA", "CUB"],
     "file": "0cb5e968b110.svg",
+    "outline": {
+      "compactness": 0.736,
+      "elongation": 2.19
+    },
     "tier": "easy"
   },
   {
@@ -921,6 +1445,10 @@
     "decoys": ["MDA", "BGR", "SRB"],
     "easyDecoys": ["EGY", "PHL", "AUS"],
     "file": "222f247b431d.svg",
+    "outline": {
+      "compactness": 0.516,
+      "elongation": 1.329
+    },
     "tier": "easy"
   },
   {
@@ -928,6 +1456,10 @@
     "decoys": ["MNG", "KAZ", "KGZ"],
     "easyDecoys": ["GHA", "KOR", "NZL"],
     "file": "1ae893ac8008.svg",
+    "outline": {
+      "compactness": 0.079,
+      "elongation": 2.237
+    },
     "tier": "easy"
   },
   {
@@ -935,6 +1467,10 @@
     "decoys": ["BDI", "UGA", "COD"],
     "easyDecoys": ["LVA", "USA", "SAU"],
     "file": "5dd8c1e2cbc1.svg",
+    "outline": {
+      "compactness": 0.559,
+      "elongation": 1.662
+    },
     "tier": "medium"
   },
   {
@@ -942,6 +1478,10 @@
     "decoys": ["KWT", "QAT", "YEM"],
     "easyDecoys": ["BOL", "GHA", "UKR"],
     "file": "ffc26e6e4769.svg",
+    "outline": {
+      "compactness": 0.534,
+      "elongation": 1.688
+    },
     "tier": "easy"
   },
   {
@@ -949,6 +1489,10 @@
     "decoys": ["ERI", "SSD", "EGY"],
     "easyDecoys": ["ALB", "CUB", "AUS"],
     "file": "51a3f66410db.svg",
+    "outline": {
+      "compactness": 0.511,
+      "elongation": 1.323
+    },
     "tier": "hard"
   },
   {
@@ -956,6 +1500,10 @@
     "decoys": ["GMB", "GNB", "GIN"],
     "easyDecoys": ["KOR", "COL", "SRB"],
     "file": "89f30b8acbab.svg",
+    "outline": {
+      "compactness": 0.317,
+      "elongation": 1.435
+    },
     "tier": "easy"
   },
   {
@@ -963,6 +1511,10 @@
     "decoys": ["VUT", "NCL", "PNG"],
     "easyDecoys": ["NGA", "PHL", "IRL"],
     "file": "9884a9f992a8.svg",
+    "outline": {
+      "compactness": 0.062,
+      "elongation": 4.14
+    },
     "tier": "hard"
   },
   {
@@ -970,6 +1522,10 @@
     "decoys": ["GIN", "LBR", "GNB"],
     "easyDecoys": ["IRN", "LVA", "CHL"],
     "file": "7bf1f428471a.svg",
+    "outline": {
+      "compactness": 0.453,
+      "elongation": 1.118
+    },
     "tier": "hard"
   },
   {
@@ -977,6 +1533,10 @@
     "decoys": ["GTM", "HND", "BLZ"],
     "easyDecoys": ["ALB", "DZA", "THA"],
     "file": "eceafdc16744.svg",
+    "outline": {
+      "compactness": 0.482,
+      "elongation": 2.563
+    },
     "tier": "hard"
   },
   {
@@ -984,6 +1544,10 @@
     "decoys": ["DJI", "ETH", "KEN"],
     "easyDecoys": ["SVN", "TUR", "COL"],
     "file": "7f6ef42db607.svg",
+    "outline": {
+      "compactness": 0.284,
+      "elongation": 2.613
+    },
     "tier": "hard"
   },
   {
@@ -991,6 +1555,10 @@
     "decoys": ["XKX", "MNE", "BIH"],
     "easyDecoys": ["THA", "CHL", "AUS"],
     "file": "956d8233ca85.svg",
+    "outline": {
+      "compactness": 0.349,
+      "elongation": 1.957
+    },
     "tier": "easy"
   },
   {
@@ -998,6 +1566,10 @@
     "decoys": ["UGA", "SDN", "RWA"],
     "easyDecoys": ["LUX", "TUR", "ECU"],
     "file": "9154cc639722.svg",
+    "outline": {
+      "compactness": 0.439,
+      "elongation": 1.481
+    },
     "tier": "medium"
   },
   {
@@ -1005,6 +1577,10 @@
     "decoys": ["GUY", "TTO", "VEN"],
     "easyDecoys": ["GHA", "TUR", "UKR"],
     "file": "6a698a09dc76.svg",
+    "outline": {
+      "compactness": 0.585,
+      "elongation": 1.059
+    },
     "tier": "hard"
   },
   {
@@ -1012,6 +1588,10 @@
     "decoys": ["HUN", "CZE", "POL"],
     "easyDecoys": ["NZL", "DZA", "IDN"],
     "file": "e3f3e40277da.svg",
+    "outline": {
+      "compactness": 0.461,
+      "elongation": 2.753
+    },
     "tier": "easy"
   },
   {
@@ -1019,6 +1599,10 @@
     "decoys": ["HRV", "AUT", "BIH"],
     "easyDecoys": ["BOL", "JPN", "ZAF"],
     "file": "b24f514dae24.svg",
+    "outline": {
+      "compactness": 0.379,
+      "elongation": 1.896
+    },
     "tier": "easy"
   },
   {
@@ -1026,6 +1610,10 @@
     "decoys": ["NOR", "FIN", "EST"],
     "easyDecoys": ["ZAF", "PER", "ARE"],
     "file": "7ec0c27a4e17.svg",
+    "outline": {
+      "compactness": 0.232,
+      "elongation": 4.144
+    },
     "tier": "easy"
   },
   {
@@ -1033,6 +1621,10 @@
     "decoys": ["LSO", "ZAF", "ZWE"],
     "easyDecoys": ["CHE", "ECU", "IRN"],
     "file": "9ea47376e408.svg",
+    "outline": {
+      "compactness": 0.8,
+      "elongation": 1.325
+    },
     "tier": "medium"
   },
   {
@@ -1040,6 +1632,10 @@
     "decoys": ["LBN", "JOR", "PSE"],
     "easyDecoys": ["CIV", "IRL", "NZL"],
     "file": "4be9d6696296.svg",
+    "outline": {
+      "compactness": 0.52,
+      "elongation": 1.655
+    },
     "tier": "medium"
   },
   {
@@ -1047,6 +1643,10 @@
     "decoys": ["CAF", "NER", "SDN"],
     "easyDecoys": ["PAK", "DEU", "USA"],
     "file": "17f5a55c6288.svg",
+    "outline": {
+      "compactness": 0.537,
+      "elongation": 1.698
+    },
     "tier": "medium"
   },
   {
@@ -1054,6 +1654,10 @@
     "decoys": ["BEN", "GHA", "BFA"],
     "easyDecoys": ["URY", "CZE", "CHN"],
     "file": "d189b237aaf2.svg",
+    "outline": {
+      "compactness": 0.327,
+      "elongation": 4.448
+    },
     "tier": "medium"
   },
   {
@@ -1061,6 +1665,10 @@
     "decoys": ["LAO", "KHM", "VNM"],
     "easyDecoys": ["FIN", "CAN", "MAR"],
     "file": "800e571360b8.svg",
+    "outline": {
+      "compactness": 0.155,
+      "elongation": 1.839
+    },
     "tier": "easy"
   },
   {
@@ -1068,6 +1676,10 @@
     "decoys": ["KGZ", "AFG", "UZB"],
     "easyDecoys": ["POL", "NZL", "JAM"],
     "file": "01cdfde1a29e.svg",
+    "outline": {
+      "compactness": 0.186,
+      "elongation": 1.931
+    },
     "tier": "hard"
   },
   {
@@ -1075,6 +1687,10 @@
     "decoys": ["UZB", "AFG", "IRN"],
     "easyDecoys": ["POL", "USA", "NZL"],
     "file": "add53a3eb56a.svg",
+    "outline": {
+      "compactness": 0.278,
+      "elongation": 2.132
+    },
     "tier": "hard"
   },
   {
@@ -1082,6 +1698,10 @@
     "decoys": ["IDN", "MYS", "BRN"],
     "easyDecoys": ["NLD", "TUN", "ECU"],
     "file": "c4383585fb9c.svg",
+    "outline": {
+      "compactness": 0.269,
+      "elongation": 3.999
+    },
     "tier": "hard"
   },
   {
@@ -1089,6 +1709,10 @@
     "decoys": ["VEN", "GUY", "SUR"],
     "easyDecoys": ["KEN", "RUS", "THA"],
     "file": "88f169a2e917.svg",
+    "outline": {
+      "compactness": 0.309,
+      "elongation": 1.932
+    },
     "tier": "hard"
   },
   {
@@ -1096,6 +1720,10 @@
     "decoys": ["DZA", "ITA", "LBY"],
     "easyDecoys": ["SAU", "SVK", "CAN"],
     "file": "08d1779565e7.svg",
+    "outline": {
+      "compactness": 0.344,
+      "elongation": 2.468
+    },
     "tier": "easy"
   },
   {
@@ -1103,6 +1731,10 @@
     "decoys": ["CYP", "SYR", "LBN"],
     "easyDecoys": ["AND", "DZA", "PER"],
     "file": "dcc0c414bfc1.svg",
+    "outline": {
+      "compactness": 0.245,
+      "elongation": 2.701
+    },
     "tier": "easy"
   },
   {
@@ -1110,6 +1742,10 @@
     "decoys": ["PHL", "KOR", "VNM"],
     "easyDecoys": ["SVK", "PER", "TUN"],
     "file": "9132bd77b248.svg",
+    "outline": {
+      "compactness": 0.526,
+      "elongation": 2.435
+    },
     "tier": "medium"
   },
   {
@@ -1117,6 +1753,10 @@
     "decoys": ["BDI", "RWA", "MWI"],
     "easyDecoys": ["PRT", "CHL", "IDN"],
     "file": "0cedb8f56628.svg",
+    "outline": {
+      "compactness": 0.528,
+      "elongation": 1.539
+    },
     "tier": "medium"
   },
   {
@@ -1124,6 +1764,10 @@
     "decoys": ["RWA", "BDI", "KEN"],
     "easyDecoys": ["GRC", "NZL", "CAN"],
     "file": "e9e5a5607bf7.svg",
+    "outline": {
+      "compactness": 0.59,
+      "elongation": 1.473
+    },
     "tier": "medium"
   },
   {
@@ -1131,6 +1775,10 @@
     "decoys": ["MDA", "BLR", "ROU"],
     "easyDecoys": ["PHL", "JAM", "GHA"],
     "file": "273d203aa547.svg",
+    "outline": {
+      "compactness": 0.274,
+      "elongation": 2.006
+    },
     "tier": "easy"
   },
   {
@@ -1138,6 +1786,10 @@
     "decoys": ["ARG", "PRY", "CHL"],
     "easyDecoys": ["KEN", "LTU", "NZL"],
     "file": "7d419cefc0f0.svg",
+    "outline": {
+      "compactness": 0.701,
+      "elongation": 1.271
+    },
     "tier": "easy"
   },
   {
@@ -1145,6 +1797,10 @@
     "decoys": ["MEX", "CAN", "BHS"],
     "easyDecoys": ["THA", "DEU", "CIV"],
     "file": "4b3c4c3caeb3.svg",
+    "outline": {
+      "compactness": 0.198,
+      "elongation": 1.857
+    },
     "tier": "easy"
   },
   {
@@ -1152,6 +1808,10 @@
     "decoys": ["TKM", "TJK", "KAZ"],
     "easyDecoys": ["HUN", "PER", "CIV"],
     "file": "ed3c1f98dce1.svg",
+    "outline": {
+      "compactness": 0.19,
+      "elongation": 2.77
+    },
     "tier": "medium"
   },
   {
@@ -1159,6 +1819,10 @@
     "decoys": ["TTO", "GUY", "COL"],
     "easyDecoys": ["GBR", "CIV", "NZL"],
     "file": "f28ed0587f64.svg",
+    "outline": {
+      "compactness": 0.214,
+      "elongation": 1.458
+    },
     "tier": "easy"
   },
   {
@@ -1166,6 +1830,10 @@
     "decoys": ["LAO", "KHM", "THA"],
     "easyDecoys": ["BRA", "AUS", "ZAF"],
     "file": "8d9a931bd45e.svg",
+    "outline": {
+      "compactness": 0.109,
+      "elongation": 3.691
+    },
     "tier": "easy"
   },
   {
@@ -1173,6 +1841,10 @@
     "decoys": ["NCL", "SLB", "FJI"],
     "easyDecoys": ["USA", "SWE", "ARE"],
     "file": "5fda50eca0da.svg",
+    "outline": {
+      "compactness": 0.154,
+      "elongation": 2.831
+    },
     "tier": "medium"
   },
   {
@@ -1180,6 +1852,10 @@
     "decoys": ["MKD", "MNE", "ALB"],
     "easyDecoys": ["CHL", "ZAF", "NZL"],
     "file": "ab81e6d74033.svg",
+    "outline": {
+      "compactness": 0.545,
+      "elongation": 1.03
+    },
     "tier": "medium"
   },
   {
@@ -1187,6 +1863,10 @@
     "decoys": ["DJI", "ERI", "SAU"],
     "easyDecoys": ["CUB", "ITA", "TUN"],
     "file": "e0e233741ce3.svg",
+    "outline": {
+      "compactness": 0.467,
+      "elongation": 2.303
+    },
     "tier": "medium"
   },
   {
@@ -1194,6 +1874,10 @@
     "decoys": ["LSO", "SWZ", "BWA"],
     "easyDecoys": ["LTU", "IRQ", "ECU"],
     "file": "9080ebd26d4c.svg",
+    "outline": {
+      "compactness": 0.34,
+      "elongation": 1.799
+    },
     "tier": "easy"
   },
   {
@@ -1201,6 +1885,10 @@
     "decoys": ["ZWE", "MWI", "MOZ"],
     "easyDecoys": ["CHL", "LVA", "JPN"],
     "file": "58e0b83e1d0b.svg",
+    "outline": {
+      "compactness": 0.357,
+      "elongation": 2.06
+    },
     "tier": "hard"
   },
   {
@@ -1208,6 +1896,10 @@
     "decoys": ["MOZ", "ZMB", "BWA"],
     "easyDecoys": ["ITA", "CAN", "PAK"],
     "file": "eb941ef51da2.svg",
+    "outline": {
+      "compactness": 0.678,
+      "elongation": 1.036
+    },
     "tier": "hard"
   }
 ]

@@ -7,13 +7,30 @@ import { questionLanguages } from '@melee/protocol/question'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import {
+  drawFiveCluesCard,
   drawFiveCluesCountry,
   type FiveCluesCountry,
   fiveCluesAnswerOf,
   fiveCluesCountries,
   fiveCluesLadderOf,
-  playedFiveCluesId
+  measuredCountries,
+  outlinesDiffer,
+  playedFiveCluesId,
+  regionHolds,
+  SIZE_APART,
+  sizeRatioOf
 } from './five-clues-bank'
+
+/**
+ * Where a region holds no country of a like size drawn clearly otherwise —
+ * Western Europe for France, whose like-sized neighbours are all as compact —
+ * the outline clue strikes nothing new and the third decoy waits for the flag.
+ * A ceiling, so a bank change that thins the staircase shows.
+ */
+const MOST_OUTLINE_STAND_INS = 60
+
+/** Luxembourg: nothing outside Western Europe is within three times its size, so its region decoy already fell on the size clue. */
+const REGION_STAND_INS = ['LUX']
 
 const countryOf = (code: string): FiveCluesCountry => {
   const country = fiveCluesCountries().find(
@@ -84,17 +101,63 @@ describe('the five-clues bank', () => {
     )
   })
 
-  it('[fiveclues] puts beside a country three others of its own region, nearest first', () => {
-    for (const country of fiveCluesCountries()) {
-      expect(new Set(country.decoys).size).toBe(3)
-      expect(country.decoys).not.toContain(country.code)
+  it('[fiveclues] lays its decoys as a staircase: the size, the region and the outline each strike one as they open', () => {
+    const measured = new Map(
+      measuredCountries().map((country) => [country.code, country])
+    )
+    const decoyOf = (code: string) => {
+      const decoy = measured.get(countryCodeSchema.parse(code))
 
-      for (const decoy of country.decoys) {
-        expect(countryOf(decoy).region).toBe(country.region)
+      if (decoy === undefined) {
+        throw new Error(`${code} is not measured`)
+      }
+
+      return decoy
+    }
+    const outlineStandIns: string[] = []
+    const regionStandIns: string[] = []
+
+    for (const country of fiveCluesCountries()) {
+      const size = decoyOf(country.decoys.size)
+      const region = decoyOf(country.decoys.region)
+      const outline = decoyOf(country.decoys.outline)
+      const holds = (decoy: typeof size) =>
+        regionHolds({ country: decoy, region: country.region })
+      const survivesSize = (decoy: typeof size) =>
+        sizeRatioOf(country, decoy) < SIZE_APART
+
+      expect(
+        new Set([size.code, region.code, outline.code, country.code]).size
+      ).toBe(4)
+
+      expect(survivesSize(size)).toBe(false)
+      expect(holds(size)).toBe(true)
+
+      expect(holds(region)).toBe(false)
+      if (!survivesSize(region)) {
+        regionStandIns.push(country.code)
+      }
+
+      expect(holds(outline)).toBe(true)
+      if (
+        !survivesSize(outline) ||
+        !outlinesDiffer(country.outline, outline.outline)
+      ) {
+        outlineStandIns.push(country.code)
+      }
+
+      for (const decoy of [size, region, outline]) {
+        expect(decoy.capital.fr).not.toBe(country.capital.fr)
       }
     }
 
-    expect(countryOf('URY').decoys).toContain('ARG')
+    expect(regionStandIns).toEqual(REGION_STAND_INS)
+    expect(outlineStandIns.length).toBeLessThanOrEqual(MOST_OUTLINE_STAND_INS)
+    expect(countryOf('PER').decoys).toEqual({
+      outline: 'CHL',
+      region: 'MLI',
+      size: 'ECU'
+    })
   })
 
   it('[fiveclues] writes a ladder from the banks, the names in the room’s language', () => {
@@ -103,32 +166,38 @@ describe('the five-clues bank', () => {
       language: 'fr'
     })
 
-    expect(size.population).toBe(34_200_000)
-    expect(region.region).toBe('005')
-    expect(outline.silhouette).toMatch(/^[0-9a-f]{12}\.svg$/)
-    expect(cities.cities).toEqual(['Cuzco', 'Arequipa', 'Trujillo'])
-    expect(flag.capital).toBe('Lima')
+    expect(size).toEqual(
+      expect.objectContaining({ kind: 'size', population: 34_200_000 })
+    )
+    expect(region).toEqual({ kind: 'region', region: '005' })
+    expect(outline).toEqual({
+      kind: 'outline',
+      silhouette: expect.stringMatching(/^[0-9a-f]{12}\.svg$/)
+    })
+    expect(cities).toEqual({
+      cities: ['Cuzco', 'Arequipa', 'Trujillo'],
+      kind: 'cities'
+    })
+    expect(flag).toEqual(expect.objectContaining({ capital: 'Lima' }))
     expect(
       fiveCluesLadderOf({ country: countryOf('NPL'), language: 'en' })[4]
-        .capital
-    ).toBe('Kathmandu')
+    ).toEqual(expect.objectContaining({ capital: 'Kathmandu' }))
     expect(
       fiveCluesLadderOf({ country: countryOf('NPL'), language: 'fr' })[4]
-        .capital
-    ).toBe('Katmandou')
+    ).toEqual(expect.objectContaining({ capital: 'Katmandou' }))
   })
 
   it('[fiveclues] grades a typed line as the flags rubric does, never paying a decoy', () => {
     const country = countryOf('PER')
     const answer = fiveCluesAnswerOf({ country, language: 'fr' })
 
-    expect(answer.decoys).toEqual(['Équateur', 'Bolivie', 'Colombie'])
+    expect(answer.decoys).toEqual(['Équateur', 'Mali', 'Chili'])
     expect(
       gradeQuizGuess({ guess: 'le Pérou', question: answer }).isCorrect
     ).toBe(true)
-    expect(
-      gradeQuizGuess({ guess: 'Bolivie', question: answer }).isCorrect
-    ).toBe(false)
+    expect(gradeQuizGuess({ guess: 'Chili', question: answer }).isCorrect).toBe(
+      false
+    )
   })
 
   it('[fiveclues] deals a country the room has not climbed, and any once it has climbed them all', () => {
@@ -143,7 +212,19 @@ describe('the five-clues bank', () => {
 
     expect(
       drawFiveCluesCountry({ difficulty: 'mixed', playedIds: allButOne })
-    ).toEqual({ country: kept, playedId: playedFiveCluesId(kept.code) })
+    ).toEqual(kept)
+    expect(
+      drawFiveCluesCard({
+        difficulty: 'mixed',
+        language: 'en',
+        playedIds: allButOne
+      })
+    ).toEqual({
+      answer: fiveCluesAnswerOf({ country: kept, language: 'en' }),
+      ladder: fiveCluesLadderOf({ country: kept, language: 'en' }),
+      playedId: playedFiveCluesId(kept.code),
+      subject: 'country'
+    })
 
     const all = new Set(countries.map(({ code }) => playedFiveCluesId(code)))
 

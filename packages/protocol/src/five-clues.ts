@@ -1,11 +1,22 @@
 import { z } from 'zod'
 
-import { countryCodeSchema } from './country-code'
+import { estimatePhotoSchema } from './estimate'
 import { playerIdSchema } from './identifiers'
 import { flagFileSchema, silhouetteFileSchema } from './question'
 
-/** Every round climbs the same five rungs, vaguest first. */
+/** Every round climbs five rungs, vaguest first. */
 export const FIVE_CLUES_CLUE_COUNT = 5
+
+/**
+ * What a round hides, which the screens name in their prompt: a country
+ * climbs its own rich rungs — its size, its region, its outline, its cities,
+ * its flag — and every other subject climbs `text` and `image` ones.
+ */
+export const fiveCluesSubjects = ['country'] as const
+
+export const fiveCluesSubjectSchema = z.enum(fiveCluesSubjects)
+
+export type FiveCluesSubject = z.infer<typeof fiveCluesSubjectSchema>
 
 /**
  * How long a clue stays open before the next one goes up, unless every seat
@@ -97,26 +108,37 @@ export const flagClueSchema = z.object({
   kind: z.literal('flag')
 })
 
+/** A rung of any subject: one line, worded in the room's question language. */
+export const textClueSchema = z.object({
+  kind: z.literal('text'),
+  text: z.string().min(1)
+})
+
+/** A rung of any subject: a photograph the app serves, and what it shows for a screen reader. */
+export const imageClueSchema = z.object({
+  alt: z.string().min(1),
+  kind: z.literal('image'),
+  photo: estimatePhotoSchema
+})
+
 export const fiveCluesClueSchema = z.discriminatedUnion('kind', [
   sizeClueSchema,
   regionClueSchema,
   outlineClueSchema,
   citiesClueSchema,
-  flagClueSchema
+  flagClueSchema,
+  textClueSchema,
+  imageClueSchema
 ])
 
 export type FiveCluesClue = z.infer<typeof fiveCluesClueSchema>
 
-/** A country's five clues in the order they open; a screen is sent only the ones already open. */
-export const fiveCluesLadderSchema = z.tuple([
-  sizeClueSchema,
-  regionClueSchema,
-  outlineClueSchema,
-  citiesClueSchema,
-  flagClueSchema
-])
+/** The five clues in the order they open; a screen is sent only the ones already open. */
+export const fiveCluesLadderSchema = z
+  .array(fiveCluesClueSchema)
+  .length(FIVE_CLUES_CLUE_COUNT)
 
-export type FiveCluesLadder = z.infer<typeof fiveCluesLadderSchema>
+export type FiveCluesLadder = readonly FiveCluesClue[]
 
 /** Which rung, the first clue 0 and the flag 4. */
 export const clueIndexSchema = z
@@ -154,10 +176,10 @@ export const yourCluesStandingSchema = z.discriminatedUnion('status', [
   z.object({ status: z.literal('out') })
 ])
 
-/** The country climbed to, sent at the reveal: its code for a screen to name it in its own locale, and its name in the room's language as the four choices print it. */
+/** What the round hid, sent at the reveal: its name in the room's language, as the four choices print it. */
 export const fiveCluesAnswerSchema = z.object({
-  code: countryCodeSchema,
-  name: z.string().min(1)
+  name: z.string().min(1),
+  subject: fiveCluesSubjectSchema
 })
 
 export type CluesStanding = z.infer<typeof cluesStandingSchema>

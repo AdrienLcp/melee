@@ -13,7 +13,10 @@ import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { Deck, OwnLines } from '@melee/protocol/deck'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
-import type { FiveCluesLadder } from '@melee/protocol/five-clues'
+import type {
+  FiveCluesLadder,
+  FiveCluesSubject
+} from '@melee/protocol/five-clues'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
   SentHigherLowerSheet,
@@ -624,13 +627,13 @@ export type Round = {
         clueOpenedAtElapsedMs: number
         /** Like the quiz's, the one field of this arm that must never be projected. */
         correctChoiceIndex: number | null
-        country: CountryCode
         kind: 'fiveclues'
         /** All five clues; a screen is sent only the ones already open. */
         ladder: FiveCluesLadder
         openClueIndex: number
         /** Each seat that has guessed; a seat absent here is still racing, having guessed on no clue. */
         seats: Map<PlayerId, CluesSeat>
+        subject: FiveCluesSubject
       }
     | {
         hasTraps: boolean

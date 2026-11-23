@@ -111,6 +111,7 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
           </ol>
         )}
         size='reveal'
+        subject={content.subject}
       />
       {size === 'reveal' && out.length > 0 && (
         <ul className='misses'>
@@ -138,16 +139,16 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
 type FlagClue = Extract<FiveCluesClue, { kind: 'flag' }>
 
 type FiveCluesSummitProps = {
-  /** The country's name, as the reader is to say it. */
-  country: string
+  /** What the round hid, named as the room says it. */
+  name: string
   /** The last rung once it is open, which prints the flag and the capital beside the name; `null` before. */
   flag: FlagClue | null
 }
 
-/** The country climbed to, on a green summit beside its flag and its capital once the ladder has shown them. */
+/** What the round hid, on a green summit — a country beside its flag and its capital once the ladder has shown them. */
 export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
-  country,
-  flag
+  flag,
+  name
 }) => {
   const translate = useTranslate()
 
@@ -157,7 +158,7 @@ export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
       data-flagged={flag !== null || undefined}
     >
       {flag !== null && <FlagPicture file={flag.flag} isNamedBeside />}
-      <p className='country'>{country}</p>
+      <p className='name'>{name}</p>
       {flag !== null && (
         <p className='capital'>
           <small>{translate('fiveclues.clue.capital')}</small>
@@ -168,11 +169,10 @@ export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
   )
 }
 
-/** The summit of a revealed round, named in the reader's locale. */
+/** The summit of a revealed round, named as the room says it. */
 export const FiveCluesRoundSummit: React.FC<{ round: RoundView }> = ({
   round
 }) => {
-  const translate = useTranslate()
   const content = fiveCluesContent(round)
   const answer = content?.answer ?? null
 
@@ -182,8 +182,8 @@ export const FiveCluesRoundSummit: React.FC<{ round: RoundView }> = ({
 
   return (
     <FiveCluesSummit
-      country={translate(`atlas.country.${answer.code}.name`)}
       flag={content.clues.find((clue) => clue.kind === 'flag') ?? null}
+      name={answer.name}
     />
   )
 }

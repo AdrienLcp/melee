@@ -55,13 +55,31 @@ _Five clues_ in English, _Cinco pistas_ in Portuguese.
   spraying every country they know. Choice allows **one pick for the round**:
   a wrong pick is out, because four candidates with retries is the answer
   with extra steps.
-- **The decoys share the region clue.** The silhouettes rubric's three
-  nearest countries were the brief's pick, measured first: for 73 of 154
-  countries one of them sits in another group (Mexico beside the United
-  States, Austria beside the Czech Republic), and the region clue struck it
-  off the screen on clue 2. The decoys are the three dealt countries of the
-  same region clue whose capitals lie nearest — Peru's are Ecuador, Bolivia
-  and Colombia.
+- **The decoys are a staircase: each of the first three clues strikes one
+  as it opens.** Reversed on 23/11/2026, Adrien's word after a weekend of
+  play: the decoys used to share the region clue on purpose — the three
+  nearest capitals of the same region, Peru's Ecuador, Bolivia and Colombia —
+  so the region clue never struck one, and on a screen of four South American
+  countries _South America_ said nothing. A clue that rules nothing out is a
+  clue the `choice` table cannot use, so now the **size** clue strikes a
+  country of the same region three times bigger or smaller (`SIZE_APART`, on
+  its people or its land), the **region** clue one from elsewhere the size
+  clue left standing, and the **outline** clue one of the same region and a
+  like size whose silhouette is drawn clearly otherwise — 1.6 times more or
+  less stretched, or twice as compact (`outlinesDiffer`, measured on the
+  drawn path at build, `scripts/outline-measure.ts`). Each is the nearest
+  capital that fits, the plainly alike in size (within twice) first. Peru's
+  are Ecuador, Mali and Chile. The cities cannot be guaranteed to strike —
+  only a table that knows them is helped — and the flag and capital strike
+  all three. **Where a region is too thin, the step falls back**: no country
+  of the same region within three times the size is drawn otherwise for 60
+  of 147 (France's like-sized neighbours are all as compact), and the nearest
+  same-region capital stands in, struck by the flag alone; Luxembourg has
+  nothing outside Western Europe within three times its size, so its region
+  decoy, Cyprus, already fell on the size clue. The bank test names both and
+  holds the first under a ceiling. No threshold moves the outline count much
+  — 43 at 1.3 and 1.5 — because the constraint is the region and the size,
+  not the measure.
 - **The pay**: a right answer on clue _k_ (1 to 5) is worth `(6 − k) / 5` of
   `MOST_A_ROUND_PAYS` — 100, 80, 60, 40, 20. Nine tenths are flat and the
   last tenth is the clock, falling linearly over that clue's window, so the
@@ -253,6 +271,41 @@ pages: a ladder climbed a clue at a time. Two sessions built it.
 - **The seat's own pill hugs its pawn** — 23/11/2026: at seat size a finder
   is one column with no gap, so `[data-you]` no longer paints the hidden
   name's and pay's gaps beside the pawn.
+
+## Step 4 — any subject, and clues that rule choices out ✅ 23/11/2026
+
+Adrien, after a weekend of play: always countries, and a region clue that
+excluded nothing. This step reshapes the round for any subject and lays the
+decoys as the staircase above; handoff 10 writes the new subjects' content.
+
+- **The ladder is five rungs of a union**, no longer a tuple: the country's
+  rich kinds — `size`, `region`, `outline`, `cities`, `flag` — keep drawing as
+  they did, and two kinds any subject can climb join them, `text` (one line in
+  the room's language) and `image` (a photograph from `/pictures/` and its
+  alt). The country stays one producer of that ladder, kept as variants
+  rather than flattened into text, because a size printed in the screen's own
+  locale and a region each screen names are worth keeping; the screens stay
+  one code path, a switch on the rung's kind.
+- **The answer is `{ name, subject }`**, no code: the name in the room's
+  language, as the four choices print it. `subject` (`fiveCluesSubjects`,
+  `country` alone until handoff 10) is on the round view from the first frame,
+  where it labels the seat's field (`fiveclues.answer.country`) and says which
+  glyph each shut rung shows (`RUNG_KINDS` in the ladder).
+- **The server deals a card**, `drawFiveCluesCard`: the ladder, a
+  `QuestionAnswer` — what typed is graded against, its three decoys what
+  `choice` shows and what the near-miss guard keeps a slip away from — the
+  played id and the subject. The round holds the subject where it held the
+  country code. A country card is `fiveclues:PER` as before. A subject of its
+  own writes, beside each rung, which decoy it strikes, and the bank test
+  holds it to the staircase as it holds the countries.
+- **Shape, measured at build**: `build-silhouette-bank.ts` writes each
+  outline's elongation (the square root of its principal second moments'
+  ratio) and compactness (its area over the disc of the same perimeter's)
+  beside its file. Rebuilt on 23/11/2026: every file and decoy unchanged, the
+  two numbers added. Chile's elongation is 11.3, Bolivia's 1.2.
+- **Tests, each seen red once**: the staircase over every dealt country (the
+  size step removed fails it), the anti-leak transcript with the reveal guard
+  removed.
 
 ## How to tell it is done
 

@@ -84,6 +84,7 @@ export const FiveCluesSeatLadder: React.FC<FiveCluesSeatLadderProps> = ({
       }
       openClueIndex={content.openClueIndex}
       size='seat'
+      subject={content.subject}
       window={<FiveCluesWindow clock={clock} content={content} />}
     />
   )
@@ -244,9 +245,9 @@ const FiveCluesGuess: React.FC<{
         enterKeyHint='send'
         inputRef={field}
         isDisabled={isClosed}
-        label={translate('fiveclues.answer.label')}
+        label={translate(`fiveclues.answer.${content.subject}`)}
         onChange={setGuess}
-        placeholder={translate('fiveclues.answer.label')}
+        placeholder={translate(`fiveclues.answer.${content.subject}`)}
         value={guess}
       />
       <Button isDisabled={isClosed || isHeld} size='large' type='submit'>

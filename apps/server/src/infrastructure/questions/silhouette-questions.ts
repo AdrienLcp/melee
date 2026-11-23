@@ -35,9 +35,19 @@ const silhouetteBankSchema = z.array(
       countryCodeSchema
     ]),
     file: silhouetteFileSchema,
+    /** Measured on the drawn path by `scripts/outline-measure.ts`. */
+    outline: z.object({
+      compactness: z.number().positive(),
+      elongation: z.number().min(1)
+    }),
     tier: z.enum(contentTiers)
   })
 )
+
+/** How stretched and how compact a silhouette is drawn, which tells two outlines apart at a glance. */
+export type SilhouetteOutline = z.infer<
+  typeof silhouetteBankSchema
+>[number]['outline']
 
 const PROMPT_BY_LANGUAGE = {
   en: 'Which country has this shape?',
@@ -99,4 +109,19 @@ export const silhouetteFileOf = (code: CountryCode): SilhouetteFile | null => {
   )
 
   return silhouetteFiles.get(code) ?? null
+}
+
+let silhouetteOutlines: ReadonlyMap<CountryCode, SilhouetteOutline> | undefined
+
+/** How the country's silhouette is shaped, or `null` for a country the rubric draws no outline of. */
+export const silhouetteOutlineOf = (
+  code: CountryCode
+): SilhouetteOutline | null => {
+  silhouetteOutlines ??= new Map(
+    silhouetteBankSchema
+      .parse(silhouetteBank)
+      .map(({ code, outline }) => [code, outline])
+  )
+
+  return silhouetteOutlines.get(code) ?? null
 }

@@ -158,6 +158,7 @@ export const FiveCluesClimb: React.FC<FiveCluesClimbProps> = ({
         peopleOf={peopleOf}
         size='wall'
         stillThrough={stillThrough}
+        subject={content.subject}
         window={<FiveCluesWindow clock={clock} content={content} />}
       />
       <div className='foot'>

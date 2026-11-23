@@ -227,7 +227,7 @@ const Answer: React.FC<{
       )
     case 'fiveclues':
       return content.answer === null ? null : (
-        <FiveCluesSummit country={content.answer.name} flag={null} />
+        <FiveCluesSummit flag={null} name={content.answer.name} />
       )
     case 'quiz':
       return content.question === null ? null : (

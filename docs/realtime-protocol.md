@@ -1196,21 +1196,25 @@ each with its `key`, its most-written `text`, its `authors` and the
 the difference. `think-alike-game.test.ts` searches every frame of a round,
 the console's and the wall's included, for another seat's line.
 
-**A five-clues rung travels only once it is open, and the country only at
+**A five-clues rung travels only once it is open, and the answer only at
 the reveal** — to every screen, a seated or a seatless console and the wall
 included: the server judges, and a console at the table is somebody's eyes,
 so `currentContent.answer` is `null` — save in a `buzzer` round, where the
-console judges what is said aloud and holds the country's `code` and `name`,
-seated or not, a seated console sitting the round out. The round
-view's `clues` holds the open rungs, vaguest first, and none while the
+console judges what is said aloud and holds the answer, seated or not, a
+seated console sitting the round out. The answer is `{ name, subject }`, the
+name in the room's language and no code, so a subject that is not a country
+travels the same way; `subject` is also on the round view from the first
+frame, which is what the seat's field and the shut rungs are labelled by. The
+round view's `clues` holds the open rungs, vaguest first, and none while the
 countdown runs; a rung still to come — its numbers, its region, its outline
-or flag file, its cities, its capital — is in no frame. `openClueIndex` says
+or flag file, its cities, its capital, a `text` rung's line or an `image`
+rung's photograph — is in no frame. `openClueIndex` says
 which is open, and `nextClueAt` when its window ends in server time, `null`
 while the clock is stopped (the countdown, a pause, the console away, the
 reveal). A window is `clueDurationMs` on the round's own clock, and the next
 clue opens early once every seat still racing has answered on the open one.
 `choices` holds four names in a `choice` round from the first frame,
-shuffled; `answer`, the country's `code` and `name`, and the whole ladder
+shuffled; `answer` and the whole ladder
 come with the reveal. `standings` says who found on which clue and who is
 out, never what anyone guessed; `yourStanding` adds the reader's
 `guessedOnClue`, which holds a typed or buzzing seat until the next clue.
@@ -1227,7 +1231,7 @@ round closes once every stamped seat has found, is out or has guessed on the
 last clue, and pays each by the clue it found on (`pointsForClue`), the clock
 ordering one clue's ties.
 `five-clues-game.test.ts` searches every frame of a whole round, per peer,
-for a rung before it opened and for the country before the reveal — in
+for a rung before it opened and for the answer before the reveal — in
 `buzzer` too, where the console alone carries it.
 
 ## Errors

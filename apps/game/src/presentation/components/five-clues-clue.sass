@@ -1,4 +1,4 @@
-// Side-effect module: styles `.five-clues-clue`, one rung's clue — two figures, a region, an outline, cities, or a flag and its capital — sized by the rung it lies on.
+// Side-effect module: styles `.five-clues-clue`, one rung's clue — two figures, a region, an outline, cities, a flag and its capital, a line or a photograph — sized by the rung it lies on.
 @use '../styles/typography'
 
 @layer components
@@ -46,9 +46,13 @@
         content: ' ·'
 
     &[data-kind='outline'],
-    &[data-kind='flag']
+    &[data-kind='flag'],
+    &[data-kind='image']
       flex-wrap: nowrap
       min-block-size: 0
+
+    &[data-kind='image']
+      --prompt-picture-height: var(--clue-picture)
 
     // Sized here rather than through `--prompt-picture-height`, which the
     // reveal panel sets on every picture it holds.

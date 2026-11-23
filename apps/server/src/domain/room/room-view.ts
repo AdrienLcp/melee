@@ -295,7 +295,7 @@ const toHostContent = ({
     return {
       answer:
         round.mode.kind === 'buzzer' && seatId === null
-          ? { code: content.country, name: content.answer.answer }
+          ? { name: content.answer.answer, subject: content.subject }
           : null,
       kind: 'fiveclues'
     }

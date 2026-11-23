@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import type { FiveCluesClue } from '@melee/protocol/five-clues'
 import { DEFAULT_FIVE_CLUES_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
+import type { QuestionLanguage } from '@melee/protocol/question'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -48,12 +50,20 @@ vi.mock(
 
     return {
       ...bank,
-      drawFiveCluesCountry: () => ({
-        country: bank
+      drawFiveCluesCard: ({ language }: { language: QuestionLanguage }) => {
+        const peru = bank
           .fiveCluesCountries()
-          .find(({ code }) => code === PERU_CODE),
-        playedId: `fiveclues:${PERU_CODE}`
-      })
+          .find(({ code }) => code === PERU_CODE)
+
+        return peru === undefined
+          ? null
+          : {
+              answer: bank.fiveCluesAnswerOf({ country: peru, language }),
+              ladder: bank.fiveCluesLadderOf({ country: peru, language }),
+              playedId: `fiveclues:${PERU_CODE}`,
+              subject: 'country'
+            }
+      }
     }
   }
 )
@@ -72,14 +82,27 @@ const PERU = peruOf()
 const LADDER = fiveCluesLadderOf({ country: PERU, language: 'fr' })
 const ANSWER = fiveCluesAnswerOf({ country: PERU, language: 'fr' })
 
+const marksOf = (clue: FiveCluesClue): readonly string[] => {
+  switch (clue.kind) {
+    case 'size':
+      return [`"population":${clue.population}`]
+    case 'region':
+      return [`"region":"${clue.region}"`]
+    case 'outline':
+      return [clue.silhouette]
+    case 'cities':
+      return clue.cities
+    case 'flag':
+      return [clue.flag, clue.capital]
+    case 'text':
+      return [clue.text]
+    case 'image':
+      return [clue.photo.file, clue.alt]
+  }
+}
+
 /** What each rung puts in a frame, read off the ladder itself: nothing of a rung may travel before it opens. */
-const MARKS_BY_CLUE: readonly (readonly string[])[] = [
-  [`"population":${LADDER[0].population}`],
-  [`"region":"${LADDER[1].region}"`],
-  [LADDER[2].silhouette],
-  LADDER[3].cities,
-  [LADDER[4].flag, LADDER[4].capital]
-]
+const MARKS_BY_CLUE = LADDER.map(marksOf)
 
 /** What names the country: on no screen before the reveal, `choice`'s four names aside. */
 const COUNTRY_MARKS = [ANSWER.answer, ...ANSWER.accepted, `"${PERU_CODE}"`]
@@ -339,8 +362,8 @@ describe('a five-clues round through the seam', () => {
       }
 
       expect(cluesRound(playerView(zoe))?.answer).toEqual({
-        code: PERU_CODE,
-        name: ANSWER.answer
+        name: ANSWER.answer,
+        subject: 'country'
       })
       expect(cluesRound(playerView(zoe))?.clues).toEqual([...LADDER])
 
@@ -646,7 +669,7 @@ describe('a five-clues round on the buzzer', () => {
       consoleSeat
     )
     expect(hostView(host)?.currentContent).toEqual({
-      answer: { code: PERU_CODE, name: ANSWER.answer },
+      answer: { name: ANSWER.answer, subject: 'country' },
       kind: 'fiveclues'
     })
     expect(cluesRound(hostView(host))?.yourStanding).toBeNull()
@@ -681,7 +704,7 @@ describe('a five-clues round on the buzzer', () => {
 
       const consoleLeaks = leaksIn(host.frames)
 
-      expect(consoleLeaks).toContain(`"${PERU_CODE}"`)
+      expect(consoleLeaks).toContain(ANSWER.answer)
       expect(
         consoleLeaks.filter((mark) => !COUNTRY_MARKS.includes(mark))
       ).toEqual([])

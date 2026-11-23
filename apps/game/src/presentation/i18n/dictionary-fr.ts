@@ -779,7 +779,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   fiveclues: {
     answer: {
-      label: 'Un pays'
+      country: 'Un pays'
     },
     climbing: 'Encore en course : {count:number}',
     clue: {
@@ -795,9 +795,11 @@ export const FR_DICTIONARY = defineDictionary({
     kind: {
       cities: 'Villes',
       flag: 'Drapeau et capitale',
+      image: 'Image',
       outline: 'Silhouette',
       region: 'Région',
-      size: 'Taille'
+      size: 'Taille',
+      text: 'Indice'
     },
     language: 'Indices en',
     name: 'Cinq indices',

@@ -1,6 +1,9 @@
 import type React from 'react'
 
-import type { FiveCluesClue as Clue } from '@melee/protocol/five-clues'
+import type {
+  FiveCluesClue as Clue,
+  FiveCluesSubject
+} from '@melee/protocol/five-clues'
 
 import { worthOfClue } from '@melee/core/fiveclues/clue-pay'
 
@@ -10,7 +13,9 @@ import {
   CitiesIcon,
   FlagIcon,
   OutlineIcon,
+  PictureIcon,
   PlayersIcon,
+  QuoteIcon,
   WorldIcon
 } from '@/presentation/components/icons'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -18,21 +23,22 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './five-clues-ladder.sass'
 
-/** What every rung asks, vaguest first — the ladder's order is the protocol's tuple. */
-const CLUE_KINDS = [
-  'size',
-  'region',
-  'outline',
-  'cities',
-  'flag'
-] as const satisfies readonly Clue['kind'][]
+/** What every rung of a subject asks, vaguest first: a shut rung shows its kind's glyph before its clue opens. */
+const RUNG_KINDS = {
+  country: ['size', 'region', 'outline', 'cities', 'flag']
+} as const satisfies Record<FiveCluesSubject, readonly Clue['kind'][]>
+
+/** One name a rung, so a rung keeps its element whichever clue lands on it. */
+const RUNGS = ['first', 'second', 'third', 'fourth', 'fifth'] as const
 
 const KIND_ICONS = {
   cities: CitiesIcon,
   flag: FlagIcon,
+  image: PictureIcon,
   outline: OutlineIcon,
   region: WorldIcon,
-  size: PlayersIcon
+  size: PlayersIcon,
+  text: QuoteIcon
 } satisfies Record<Clue['kind'], React.FC>
 
 /** A rung still shut, the one open now, or one the climb went past (every rung once revealed). */
@@ -47,6 +53,8 @@ type FiveCluesLadderProps = {
   isRevealed?: boolean
   /** Which screen draws it, which sets every rung's proportions. */
   size: 'seat' | 'wall' | 'reveal'
+  /** What the round hides, which says what each shut rung will ask. */
+  subject: FiveCluesSubject
   /** Laid on the open rung under its clue: the window's bar. */
   window?: React.ReactNode
   /** What stands at a rung's start, before its worth: the seat's own pawn. */
@@ -72,14 +80,16 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
   peopleOf,
   size,
   stillThrough = -1,
+  subject,
   window
 }) => {
   const translate = useTranslate()
 
   return (
     <ol className='five-clues-ladder' data-size={size}>
-      {CLUE_KINDS.map((kind, clueIndex) => {
+      {RUNG_KINDS[subject].map((plannedKind, clueIndex) => {
         const clue = clues[clueIndex]
+        const kind = clue?.kind ?? plannedKind
         const state: RungState =
           clue === undefined
             ? 'closed'
@@ -94,7 +104,7 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
             className='rung'
             data-state={state}
             data-still={clueIndex <= stillThrough || undefined}
-            key={kind}
+            key={RUNGS[clueIndex]}
           >
             {laneOf !== undefined && (
               <span className='lane'>{laneOf(clueIndex)}</span>

@@ -3,6 +3,7 @@ import type React from 'react'
 import type { FiveCluesClue as Clue } from '@melee/protocol/five-clues'
 
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
+import { EstimatePhoto } from '@/presentation/components/estimate-photo'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -91,6 +92,25 @@ export const FiveCluesClue: React.FC<FiveCluesClueProps> = ({
             <small>{translate('fiveclues.clue.capital')}</small>
             {clue.capital}
           </p>
+        </div>
+      )
+
+    case 'text':
+      return (
+        <p className='five-clues-clue' data-kind='text'>
+          {clue.text}
+        </p>
+      )
+
+    case 'image':
+      return (
+        <div
+          aria-label={clue.alt}
+          className='five-clues-clue'
+          data-kind='image'
+          role='img'
+        >
+          <EstimatePhoto photo={clue.photo} />
         </div>
       )
   }

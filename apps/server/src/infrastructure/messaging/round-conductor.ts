@@ -101,11 +101,7 @@ import {
   drawCountry,
   playedCountryId
 } from '@/infrastructure/questions/country-bank'
-import {
-  drawFiveCluesCountry,
-  fiveCluesAnswerOf,
-  fiveCluesLadderOf
-} from '@/infrastructure/questions/five-clues-bank'
+import { drawFiveCluesCard } from '@/infrastructure/questions/five-clues-bank'
 import { namingOf } from '@/infrastructure/questions/map-naming'
 import {
   drawMostLikelyLine,
@@ -700,15 +696,16 @@ export const beginRound = async (
   }
 
   if (game.kind === 'fiveclues') {
-    const drawn = drawFiveCluesCountry({
+    const drawn = drawFiveCluesCard({
       difficulty: game.difficulty,
+      language: game.language,
       playedIds: room.playedContentIds
     })
 
     if (drawn === null) {
       tellHost(engine, {
         code: 'no_content_available',
-        message: 'No country is left to climb to'
+        message: 'Nothing is left to climb to'
       })
       publishRoom(engine)
 
@@ -719,17 +716,11 @@ export const beginRound = async (
 
     openRound({
       content: fiveCluesContent({
-        answer: fiveCluesAnswerOf({
-          country: drawn.country,
-          language: game.language
-        }),
+        answer: drawn.answer,
         clueDurationMs: game.clueDurationMs,
-        country: drawn.country.code,
-        ladder: fiveCluesLadderOf({
-          country: drawn.country,
-          language: game.language
-        }),
-        mode: room.settings.mode.kind
+        ladder: drawn.ladder,
+        mode: room.settings.mode.kind,
+        subject: drawn.subject
       }),
       id: newRoundId(),
       now: engine.now(),

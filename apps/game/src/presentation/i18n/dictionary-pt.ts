@@ -863,7 +863,7 @@ const PORTUGUESE = defineDictionary({
   },
   fiveclues: {
     answer: {
-      label: 'Um país'
+      country: 'Um país'
     },
     climbing: 'Ainda em jogo: {count:number}',
     clue: {
@@ -879,9 +879,11 @@ const PORTUGUESE = defineDictionary({
     kind: {
       cities: 'Cidades',
       flag: 'Bandeira e capital',
+      image: 'Imagem',
       outline: 'Silhueta',
       region: 'Região',
-      size: 'Tamanho'
+      size: 'Tamanho',
+      text: 'Pista'
     },
     language: 'Pistas em',
     name: 'Cinco pistas',

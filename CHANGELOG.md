@@ -6,6 +6,19 @@ one part.
 
 ## Unreleased
 
+### Features
+
+- `[Shared]` **Every Cinq indices clue rules a choice out as it opens.** The
+  four choices used to share the region on purpose, so _Amérique du Sud_
+  struck nothing on a screen of four South American countries. Now the size
+  strikes one of the same region three times bigger or smaller, the region
+  one of a like size from elsewhere, and the outline one drawn clearly
+  otherwise: Peru stands beside Ecuador, Mali and Chile. Where a region is
+  too thin to hold one, the nearest neighbour stands in until the flag.
+- `[Shared]` **Cinq indices can hide more than a country.** A rung may be a
+  line or a photograph, and the answer is a name rather than a country code;
+  the new subjects themselves come next.
+
 ### Fixes
 
 - `[Server]` **A generated quiz decoy is of the kind the question asks for.**

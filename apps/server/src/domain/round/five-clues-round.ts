@@ -1,9 +1,9 @@
 import { Result } from '@adrienlcp/result'
 
-import type { CountryCode } from '@melee/protocol/country-code'
 import type {
   CluesStanding,
   FiveCluesLadder,
+  FiveCluesSubject,
   YourCluesStanding
 } from '@melee/protocol/five-clues'
 import type { PlayerId } from '@melee/protocol/identifiers'
@@ -45,17 +45,17 @@ export type FiveCluesGuess =
 export const fiveCluesContent = ({
   answer,
   clueDurationMs,
-  country,
   ladder,
-  mode
+  mode,
+  subject
 }: {
   /** What a typed line is graded against, and the three names `choice` puts beside it. */
   answer: QuestionAnswer
   clueDurationMs: number
-  country: CountryCode
   ladder: FiveCluesLadder
   /** The room's answer mode as the round opens: `choice` deals the four names, anything else none. */
   mode: AnswerMode
+  subject: FiveCluesSubject
 }): FiveCluesContent => {
   const choices =
     mode === 'choice' ? shuffled([answer.answer, ...answer.decoys]) : []
@@ -67,11 +67,11 @@ export const fiveCluesContent = ({
     clueOpenedAtElapsedMs: 0,
     correctChoiceIndex:
       choices.length === 0 ? null : choices.indexOf(answer.answer),
-    country,
     kind: 'fiveclues',
     ladder,
     openClueIndex: 0,
-    seats: new Map()
+    seats: new Map(),
+    subject
   }
 }
 
@@ -486,7 +486,7 @@ const yourStandingOf = (seat: CluesSeat): YourCluesStanding => {
  * The round as a seat, the wall or a console reads it — the console blind
  * like the rest. No clue before the clock starts, then the open ones alone, so
  * a rung still to come travels in no frame, its outline and flag files
- * included; the country and the whole ladder only once revealed.
+ * included; the answer and the whole ladder only once revealed.
  */
 export const fiveCluesContentView = ({
   content,
@@ -513,7 +513,7 @@ export const fiveCluesContentView = ({
 
   return {
     answer: round.revealed
-      ? { code: content.country, name: content.answer.answer }
+      ? { name: content.answer.answer, subject: content.subject }
       : null,
     choices: [...content.choices],
     clueDurationMs: content.clueDurationMs,
@@ -535,6 +535,7 @@ export const fiveCluesContentView = ({
           seat: content.seats.get(playerId) ?? RACING_SEAT
         })
       ),
+    subject: content.subject,
     yourStanding: yourSeat === null ? null : yourStandingOf(yourSeat)
   }
 }

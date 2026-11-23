@@ -3774,7 +3774,10 @@ const FIVE_CLUES_LADDER = [
   { capital: 'Saint-Domingue', flag: '18f7b6562cee.svg', kind: 'flag' }
 ]
 
-const FIVE_CLUES_ANSWER = { code: 'DOM', name: 'République dominicaine' }
+const FIVE_CLUES_ANSWER = {
+  name: 'République dominicaine',
+  subject: 'country'
+}
 
 /**
  * Where each of the full table stands on the last clue: some found on every
@@ -3808,6 +3811,7 @@ const fiveCluesContent = ({
   nextClueAt: SERVER_TIME + 6_000,
   openClueIndex: FIVE_CLUES_LADDER.length - 1,
   standings: fiveCluesStandings(players),
+  subject: 'country',
   yourStanding: { guessedOnClue: null, status: 'racing' }
 })
 

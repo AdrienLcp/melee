@@ -21,6 +21,7 @@ import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import { countryGeometryOf } from '../src/infrastructure/map/world-atlas'
 import { orStop, readJsonFile } from './json-file'
+import { outlineMeasureOf } from './outline-measure'
 
 /**
  * Writes the silhouettes rubric's two halves from the atlas's 1:50m outlines:
@@ -200,6 +201,16 @@ const silhouetteOf = (pieces: Polygon[]): string => {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${VIEW_BOX} ${VIEW_BOX}"><path fill-rule="evenodd" d="${simplifiedPath(path)}"/></svg>\n`
 }
 
+const pathOf = (svg: string): string => {
+  const path = / d="([^"]+)"/.exec(svg)?.[1]
+
+  if (path === undefined) {
+    throw new Error('A silhouette holds no path')
+  }
+
+  return path
+}
+
 const silhouetteFileName = (svg: string): string =>
   `${createHash('sha256').update(svg).digest('hex').slice(0, 12)}.svg`
 
@@ -273,6 +284,7 @@ const main = async () => {
       decoys: decoysOf({ centres, code: country.code }),
       easyDecoys: country.easyDecoys,
       file,
+      outline: outlineMeasureOf(pathOf(country.svg)),
       tier: country.tier
     })
   }

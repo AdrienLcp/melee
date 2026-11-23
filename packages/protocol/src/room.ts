@@ -35,6 +35,7 @@ import {
   cluesStandingSchema,
   fiveCluesAnswerSchema,
   fiveCluesClueSchema,
+  fiveCluesSubjectSchema,
   yourCluesStandingSchema
 } from './five-clues'
 import { gameSettingsSchema } from './game'
@@ -932,7 +933,7 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourAnswer: thinkAlikeAnswerSchema.nullable()
   }),
   z.object({
-    /** The country, its code and its name, and `null` until the reveal — to the console and the wall too. */
+    /** What the round hid, named in the room's language, and `null` until the reveal — to the console and the wall too. */
     answer: fiveCluesAnswerSchema.nullable(),
     /** Four names in the room's language in a `choice` round, shuffled, from the first frame; empty in a `typed` one. */
     choices: z.array(z.string()),
@@ -956,6 +957,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     openClueIndex: clueIndexSchema,
     /** Every seat the round opened on, found on which clue or out; empty before the clock starts. */
     standings: z.array(cluesStandingSchema),
+    /** What kind of thing the round hides — a country — public from the first frame, as the prompt names it. */
+    subject: fiveCluesSubjectSchema,
     /** The reader's own standing, and `null` without a seat in the race. */
     yourStanding: yourCluesStandingSchema.nullable()
   }),
@@ -1290,7 +1293,7 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   /** Nothing withheld, and nothing more: no answer exists before the room writes one. */
   z.object({ kind: z.literal('thinkalike') }),
   /**
-   * The country, its code and its name in the room's language, in a `buzzer`
+   * What the round hid, named in the room's language, in a `buzzer`
    * round alone, where the console judges what is said aloud and sits the
    * round out if seated. `null` in `typed` and `choice`: the server judges
    * every answer, and a console at the table is somebody's eyes, so it climbs
