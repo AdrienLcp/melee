@@ -42,12 +42,6 @@
     "why": "Naming the third-highest summit on Earth is mountaineering trivia beyond a typical table."
   },
   {
-    "id": "mintaka-04059463",
-    "language": "fr",
-    "prompt": "Qui était le plus jeune roi britannique ?",
-    "why": "Henry VI acceding at nine months is English royal trivia few French adults know."
-  },
-  {
     "id": "mintaka-05aecdca",
     "language": "fr",
     "prompt": "Dans quel État est situé le monument du mont Rushmore ?",
@@ -136,12 +130,6 @@
     "language": "fr",
     "prompt": "Quel film de la Terre du Milieu, entre Le Seigneur des anneaux et Le Hobbit, a eu le plus gros budget ?",
     "why": "The answer is a Hobbit film, not a Lord of the Rings one, and budget rankings are trivia nobody remembers."
-  },
-  {
-    "id": "mintaka-0c705e1b",
-    "language": "fr",
-    "prompt": "Quel est le deuxième fleuve le plus long d’Espagne ?",
-    "why": "The Ebro edging out the Douro for second place is a length ranking nobody remembers."
   },
   {
     "id": "mintaka-0ce053f9",
@@ -238,12 +226,6 @@
     "language": "fr",
     "prompt": "Quel film a été réalisé par George Lucas et est sorti en 1973 ?",
     "why": "American Graffiti is a film few French adults could produce as George Lucas's 1973 work."
-  },
-  {
-    "id": "mintaka-13bca964",
-    "language": "fr",
-    "prompt": "Quel secrétaire général de l’ONU était le plus âgé lors de son départ en retraite ?",
-    "why": "Which UN Secretary-General was oldest on leaving office is a figure nobody knows, and Guterres has since overtaken Boutros-Ghali."
   },
   {
     "id": "mintaka-13cdde92",
@@ -378,12 +360,6 @@
     "why": "Catching Fire is the highest-grossing Hunger Games film, not Mockingjay Part 2, and the ranking is box-office detail."
   },
   {
-    "id": "mintaka-22e026f2",
-    "language": "fr",
-    "prompt": "Qui a été la femme du roi Philippe et cousine de Don Carlos ?",
-    "why": "Philip II's fourth wife is specialist history, and French players will think of Louis XIII's Anne d'Autriche."
-  },
-  {
     "id": "mintaka-234bfa40",
     "language": "fr",
     "prompt": "Quel est le plus long film a avoir remporté un Oscar ?",
@@ -468,18 +444,6 @@
     "why": "Jackie Robinson is a baseball figure unknown in France."
   },
   {
-    "id": "mintaka-283de7f0",
-    "language": "fr",
-    "prompt": "Quel était le premier roi saxon ?",
-    "why": "Egbert as the first Saxon king is contested medieval trivia almost nobody knows."
-  },
-  {
-    "id": "mintaka-284deba9",
-    "language": "fr",
-    "prompt": "Quelle guerre a résulté dans la renégociation des frontières espagnoles en Amérique, et a aussi été responsable de l’incendie de la Maison blanche ?",
-    "why": "The War of 1812 and the burning of the White House are American school history."
-  },
-  {
     "id": "mintaka-2861a1aa",
     "language": "fr",
     "prompt": "Quel jeu a le plus haut pourcentage d’opinions positives sur Steam ?",
@@ -496,12 +460,6 @@
     "language": "fr",
     "prompt": "Quel était le deuxième président des États-Unis à avoir été assassiné ?",
     "why": "Garfield as the second assassinated president is American school trivia."
-  },
-  {
-    "id": "mintaka-2a22381e",
-    "language": "fr",
-    "prompt": "Qui était le premier secrétaire au Trésor des États-Unis ?",
-    "why": "The prompt lacks the country, and Hamilton's cabinet post is US politics beyond the presidents."
   },
   {
     "id": "mintaka-2a22965f",
@@ -616,12 +574,6 @@
     "language": "fr",
     "prompt": "Quel acteur a joué dans le plus de films ?",
     "why": "Eric Roberts having the most film credits is a database curiosity no quiz player knows."
-  },
-  {
-    "id": "mintaka-36d9402c",
-    "language": "fr",
-    "prompt": "Qui a été pape le plus longtemps ?",
-    "why": "Pius IX as the longest-reigning pope after Peter is a fact almost nobody can produce."
   },
   {
     "id": "mintaka-37b050bd",
@@ -966,12 +918,6 @@
     "why": "Andrew Johnson as the first impeached president is US political history that never crossed over."
   },
   {
-    "id": "mintaka-5816f3f6",
-    "language": "fr",
-    "prompt": "Quel roi thaïlandais est resté le plus longtemps au pouvoir ?",
-    "why": "Rama IX by that name is not something a French table can produce for Thailand's longest reign."
-  },
-  {
     "id": "mintaka-58de137b",
     "language": "fr",
     "prompt": "Quel célèbre acteur est mort en 1980 d’un mésothéliome, un cancer rare causé par une exposition à l’amiante ?",
@@ -994,12 +940,6 @@
     "language": "fr",
     "prompt": "Qui est l’actrice la plus âgée à remporter un Oscar en tant que meilleure actrice ?",
     "why": "Jessica Tandy as the oldest Best Actress winner is Oscar record trivia nobody remembers."
-  },
-  {
-    "id": "mintaka-5b365412",
-    "language": "fr",
-    "prompt": "Qui a été le premier dirigeant du Royaume-Uni de Grande-Bretagne ?",
-    "why": "Queen Anne as the first sovereign of the Kingdom of Great Britain is a fine point of British constitutional history."
   },
   {
     "id": "mintaka-5b5e04ba",
@@ -1030,18 +970,6 @@
     "language": "fr",
     "prompt": "Qui est la personne la plus âgée à avoir remporté un Oscar, toutes catégories confondues ?",
     "why": "James Ivory as the oldest Oscar winner is a record nobody outside awards trivia knows."
-  },
-  {
-    "id": "mintaka-5d91b52e",
-    "language": "fr",
-    "prompt": "Qui était la sixième épouse du roi Henry VIII ?",
-    "why": "The name of Henry VIII's sixth wife is deep English royal trivia."
-  },
-  {
-    "id": "mintaka-5dd63693",
-    "language": "fr",
-    "prompt": "Quel était le premier président d’Indonésie ?",
-    "why": "Sukarno as Indonesia's first president is not something an ordinary French table can produce."
   },
   {
     "id": "mintaka-5e11db69",
@@ -1590,12 +1518,6 @@
     "why": "Steve Carell's wife is not a public figure anyone at a table could name."
   },
   {
-    "id": "mintaka-83a595fc",
-    "language": "fr",
-    "prompt": "Quel est la plus haute montagne du Canada ?",
-    "why": "Mount Logan is a name almost no French player can produce."
-  },
-  {
     "id": "mintaka-840553b4",
     "language": "fr",
     "prompt": "Quel est le quatrième épisode de la série Zelda ?",
@@ -1630,12 +1552,6 @@
     "language": "fr",
     "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le troisième film de l’Univers cinématographique de Marvel ?",
     "why": "Release order gives Iron Man 2, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
-  },
-  {
-    "id": "mintaka-8653bc9d",
-    "language": "fr",
-    "prompt": "Quel est le deuxième fleuve le plus long d’Italie ?",
-    "why": "The Adige as Italy's second river is unknown typed, and the non-Italian decoys make the choice a giveaway."
   },
   {
     "id": "mintaka-87159ed1",
@@ -1674,12 +1590,6 @@
     "why": "Secession order and James Brown's home state are US state trivia."
   },
   {
-    "id": "mintaka-8a57774a",
-    "language": "fr",
-    "prompt": "Qui a dirigé les États confédérés pendant la Guerre de Sécession ?",
-    "why": "Jefferson Davis is a name from American school history that never crossed over."
-  },
-  {
     "id": "mintaka-8adf9011",
     "language": "fr",
     "prompt": "Quel État est le 17e plus grand par sa superficie et abrite le parc des Badlands ?",
@@ -1708,12 +1618,6 @@
     "language": "fr",
     "prompt": "Quel jeu de The Legend of Zelda comporte un boss en forme de chenille et date de 1991 ?",
     "why": "A caterpillar boss in a 1991 Zelda is a deep series detail, with another Zelda among the decoys."
-  },
-  {
-    "id": "mintaka-8e24b459",
-    "language": "fr",
-    "prompt": "Quelle était la première femme monarque d’Angleterre ?",
-    "why": "England's first queen regnant is contested English history a French table guesses blind."
   },
   {
     "id": "mintaka-8e6811f5",
@@ -1896,12 +1800,6 @@
     "why": "'Rue des Lombards' is a Paris street, and Lombard Street itself is a US sight few French know."
   },
   {
-    "id": "mintaka-9c3f7d38",
-    "language": "fr",
-    "prompt": "Quel souverain britannique était le plus petit par la taille à l’âge adulte ?",
-    "why": "\"Le plus court\" is a mistranslation of the shortest in height, and Victoria's height is a detail few know."
-  },
-  {
     "id": "mintaka-9d5a01cd",
     "language": "fr",
     "prompt": "Quel jeu trouve-t-on dans la série Uncharted et vous fait découvrir Madagascar ?",
@@ -2050,12 +1948,6 @@
     "language": "fr",
     "prompt": "Qui est le père d’Emilio Estevez ?",
     "why": "Emilio Estevez is a US-only celebrity a French table does not know."
-  },
-  {
-    "id": "mintaka-a94287c4",
-    "language": "fr",
-    "prompt": "Qui était le plus jeune Empereur de l’Empire russe ?",
-    "why": "Ivan VI as the youngest Russian emperor is specialist knowledge."
   },
   {
     "id": "mintaka-aa26ce7f",
@@ -2310,12 +2202,6 @@
     "why": "Which Call of Duty sold best is contested between several entries and known to nobody casually."
   },
   {
-    "id": "mintaka-c27755e6",
-    "language": "fr",
-    "prompt": "Qui était procureur général des États Unis et a également été assassiné ?",
-    "why": "Who was US attorney general is US politics beyond the presidency."
-  },
-  {
     "id": "mintaka-c2c43f64",
     "language": "fr",
     "prompt": "Quelle est la ville la plus chaude des États-Unis pendant l’été ?",
@@ -2422,12 +2308,6 @@
     "language": "fr",
     "prompt": "Qui est la plus jeune actrice à avoir remporté l’Oscar de la meilleure actrice ?",
     "why": "Marlee Matlin as the youngest Best Actress winner is an awards record few know."
-  },
-  {
-    "id": "mintaka-ceb8cf7c",
-    "language": "fr",
-    "prompt": "Qui était le premier président de la Confédération ?",
-    "why": "Jefferson Davis is a name from American school history that never crossed over."
   },
   {
     "id": "mintaka-d0024315",
@@ -2604,12 +2484,6 @@
     "why": "Pella as Alexander's birthplace is ancient-history trivia almost nobody knows."
   },
   {
-    "id": "mintaka-da427973",
-    "language": "fr",
-    "prompt": "Qui a été la première femme à gagner un million de dollars aux États-Unis ?",
-    "why": "Madam C.J. Walker is an American figure who never crossed over to France."
-  },
-  {
     "id": "mintaka-dac2a90e",
     "language": "fr",
     "prompt": "Quel jeu a reçu le plus de nominations aux Game Awards 2020 ?",
@@ -2724,12 +2598,6 @@
     "why": "Manaslu as the eighth-highest peak is a ranking almost nobody remembers."
   },
   {
-    "id": "mintaka-e468d240",
-    "language": "fr",
-    "prompt": "Quel premier ministre canadien a eu le mandat le plus long ?",
-    "why": "Mackenzie King is Canadian political history unknown in France."
-  },
-  {
     "id": "mintaka-e4e5e49a",
     "language": "fr",
     "prompt": "Quel est le plus petit État américain en termes de superficie ?",
@@ -2764,12 +2632,6 @@
     "language": "fr",
     "prompt": "Quel est le quatrième jeu de la série Zelda ?",
     "why": "Counting the Zelda series to its fourth entry is something only collectors can do."
-  },
-  {
-    "id": "mintaka-e8a719cd",
-    "language": "fr",
-    "prompt": "Qui a été la femme du roi Henri V et la fille de Charles VI ?",
-    "why": "Henry V's queen is specialist history few French players know."
   },
   {
     "id": "mintaka-e915c0bd",
@@ -2862,12 +2724,6 @@
     "why": "Comparative sales of the two Last of Us games are figures nobody knows."
   },
   {
-    "id": "mintaka-f1aedb99",
-    "language": "fr",
-    "prompt": "Qui était la deuxième femme de John Rolfe ?",
-    "why": "John Rolfe is a figure of Virginia colonial history unknown in France, so the question cannot be answered from his name."
-  },
-  {
     "id": "mintaka-f1b4c6a2",
     "language": "fr",
     "prompt": "Quel acteur a remporté le plus grand nombre de Emmys Award ?",
@@ -2904,12 +2760,6 @@
     "why": "Who Stephenie Meyer first pictured as Edward Cullen is casting gossip almost nobody knows."
   },
   {
-    "id": "mintaka-f4ad5c45",
-    "language": "fr",
-    "prompt": "Quel système de montagnes se trouve aux États-Unis et s’étend sur 13 États ?",
-    "why": "How many states the Appalachians cross is American school geography."
-  },
-  {
     "id": "mintaka-f574ffa0",
     "language": "fr",
     "prompt": "Quelle célébrité a fait la une des journaux en 1980 quand elle s’est immolée par le feu sous l’emprise de la cocaïne ?",
@@ -2920,12 +2770,6 @@
     "language": "fr",
     "prompt": "Quel était le premier film qui a mis en vedette Julia Roberts en 2003 ?",
     "why": "Which Julia Roberts film came first in 2003 is release-calendar trivia nobody knows."
-  },
-  {
-    "id": "mintaka-f7882675",
-    "language": "fr",
-    "prompt": "Qui était la première femme de Joe Biden ?",
-    "why": "Joe Biden's first wife Neilia Hunter is US political biography unknown in France."
   },
   {
     "id": "mintaka-f7a824a7",

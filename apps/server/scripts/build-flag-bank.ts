@@ -610,6 +610,7 @@ const main = async () => {
         tiers: new Map([...tiers].filter(([other]) => regionOfState.has(other)))
       }),
       file,
+      isSovereign: sovereign.has(code),
       tier: tiers.get(code) ?? 'hard'
     })
   }

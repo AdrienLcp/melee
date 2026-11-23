@@ -168,12 +168,6 @@
     "why": "North Carolina borders both as squarely as Alabama does, and the row banks one member of a set the sentence never closes"
   },
   {
-    "id": "mintaka-cb71611a",
-    "language": "fr",
-    "prompt": "Quel est le plus grand lac du Canada ?",
-    "why": "Lake Superior is shared with the US, so a typed Great Bear Lake, the largest lake wholly in Canada, is as right."
-  },
-  {
     "id": "mintaka-d2f21e12",
     "language": "fr",
     "prompt": "Où se situe la région appelée le berceau de l’humanité ?",

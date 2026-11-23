@@ -81,3 +81,14 @@ it alone plays a flags round; one that ticks it beside history mixes them.
 - Monaco is out rather than shown at 4:3 beside Indonesia.
 - The 77 well-known flags and the look-alike groups are a first pass, in
   `build-flag-bank.ts`; a flag a table finds unfair is one line there.
+
+## After the weekend of 23/11/2026
+
+- The rubric deals **states only**, 195 of the 229 flags (`isSovereign` in
+  `flag-bank.json`, written by the build from the capital bank and its two
+  states without a capital). The 34 territories were nearly all medium or
+  hard and made the rubric feel like a test; the map and five clues still
+  read their flags and tiers.
+- On `mixed`, a well-known flag takes its `easyDecoys` (`softensDecoys` in
+  core): the decoys follow the flag's tier, not the room's level alone.
+  Capitals get the same, through the same `hostQuestionOf`.

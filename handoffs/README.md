@@ -8,7 +8,6 @@ file in the commit that finishes it, and delete this README with the last one.
 | Wave | File                            | Depends on           |
 | ---- | ------------------------------- | -------------------- |
 | 1    | `01-replay-and-ready.md`        | none                 |
-| 1    | `05-content-fixes.md`           | none                 |
 | 1    | `13-e2e-ports-per-worktree.md`  | none                 |
 | 2    | `06-hands-free-table.md`        | 01 landed            |
 | 2    | `07-results-screens.md`         | 02 landed            |

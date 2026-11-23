@@ -178,9 +178,9 @@
     "prompt": "Que capital do Reino Unido fica na margem sul do estuário do Forth?",
     "answer": "Edimburgo",
     "decoys": [
-      "Dubai",
-      "St. Louis",
-      "Chicago"
+      "Glasgow",
+      "Londres",
+      "Cardiff"
     ],
     "accepted": [
       "Edinburgh"
@@ -346,9 +346,9 @@
     "prompt": "Quem é o realizador mais velho a ganhar o Óscar de melhor realização?",
     "answer": "Clint Eastwood",
     "decoys": [
-      "Natalie Portman",
-      "Robert Pattinson",
-      "Tom Cruise"
+      "Martin Scorsese",
+      "Roman Polanski",
+      "Woody Allen"
     ],
     "accepted": [
       "Eastwood"
@@ -490,23 +490,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-0bfc1d16",
-    "from": "mintaka-0bfc1d16",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Que cidade da Alemanha conta mais habitantes?",
-    "answer": "Berlim",
-    "decoys": [
-      "Joanesburgo",
-      "Havana",
-      "Deli"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-0c3eaca3",
     "from": "mintaka-0c3eaca3",
     "category": "videogames",
@@ -536,34 +519,13 @@
     "prompt": "Que rio nasce no Colorado e é o quarto mais longo dos Estados Unidos?",
     "answer": "Rio Grande",
     "decoys": [
-      "Níger",
-      "Yangtzé",
-      "Tamisa"
+      "Missouri",
+      "Colorado",
+      "Ohio"
     ],
     "accepted": [
       "Río Bravo",
       "Rio Bravo"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-0d823068",
-    "from": "mintaka-0d823068",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/ordinal",
-    "prompt": "Como se chamava o primeiro presidente da Rússia?",
-    "answer": "Boris Ieltsin",
-    "decoys": [
-      "Vladimir Putin",
-      "Dmitri Medvedev",
-      "Mikhail Gorbachev"
-    ],
-    "accepted": [
-      "Ieltsin",
-      "Boris Yeltsin",
-      "Yeltsin"
     ],
     "note": null
   },
@@ -665,7 +627,7 @@
     "answer": "Margaret Court",
     "decoys": [
       "Serena Williams",
-      "Novak Djokovic",
+      "Ashleigh Barty",
       "Martina Hingis"
     ],
     "accepted": [
@@ -759,9 +721,9 @@
     "prompt": "Que ator detém o recorde masculino de nomeações para os Óscares de interpretação?",
     "answer": "Jack Nicholson",
     "decoys": [
-      "Cher",
-      "Marlon Brando",
-      "Vin Diesel"
+      "Laurence Olivier",
+      "Spencer Tracy",
+      "Paul Newman"
     ],
     "accepted": [
       "Nicholson"
@@ -857,8 +819,8 @@
     "answer": "Martina Hingis",
     "decoys": [
       "Monica Seles",
-      "Michael Chang",
-      "Boris Becker"
+      "Tracy Austin",
+      "Steffi Graf"
     ],
     "accepted": [
       "Hingis"
@@ -1094,25 +1056,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-1b491ff5",
-    "from": "mintaka-1b491ff5",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual é a maior cidade da Coreia do Sul em população?",
-    "answer": "Seul",
-    "decoys": [
-      "Reiquiavique",
-      "Siracusa",
-      "Lagos"
-    ],
-    "accepted": [
-      "Seoul"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-1b8a084f",
     "from": "mintaka-1b8a084f",
     "category": "videogames",
@@ -1142,9 +1085,9 @@
     "prompt": "Quem interpretou Mrs. Robinson em «A Primeira Noite»?",
     "answer": "Anne Bancroft",
     "decoys": [
-      "Shawn Michaels",
-      "Colin Jost",
-      "Marlee Matlin"
+      "Katharine Ross",
+      "Faye Dunaway",
+      "Jane Fonda"
     ],
     "accepted": [],
     "note": null
@@ -1339,26 +1282,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-1ea0c735",
-    "from": "mintaka-1ea0c735",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual era a cidade mais populosa da Índia segundo a ONU em 2018?",
-    "answer": "Deli",
-    "decoys": [
-      "Havana",
-      "Santiago",
-      "Joanesburgo"
-    ],
-    "accepted": [
-      "Delhi",
-      "Nova Deli"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-1ee0fa7b",
     "from": "mintaka-1ee0fa7b",
     "category": "history",
@@ -1369,8 +1292,8 @@
     "answer": "Augusto",
     "decoys": [
       "Nero",
-      "Júlio César",
-      "Marco António"
+      "Calígula",
+      "Tibério"
     ],
     "accepted": [
       "Octávio",
@@ -1407,9 +1330,9 @@
     "prompt": "Quem interpreta Wolverine nos filmes X-Men?",
     "answer": "Hugh Jackman",
     "decoys": [
-      "Brendan Fraser",
-      "Laura Dern",
-      "Eminem"
+      "Russell Crowe",
+      "Ryan Reynolds",
+      "Chris Hemsworth"
     ],
     "accepted": [
       "Jackman"
@@ -1445,9 +1368,9 @@
     "prompt": "Quem fez o papel principal em «Spartacus»?",
     "answer": "Kirk Douglas",
     "decoys": [
-      "Ben Stiller",
-      "Katharine Hepburn",
-      "Elizabeth Olsen"
+      "Burt Lancaster",
+      "Charlton Heston",
+      "Tony Curtis"
     ],
     "accepted": [],
     "note": null
@@ -1479,8 +1402,8 @@
     "prompt": "Como se chama a personagem principal da série Zelda?",
     "answer": "Link",
     "decoys": [
-      "Albert Wesker",
-      "Princesa Peach",
+      "Ganondorf",
+      "Mario",
       "Bowser"
     ],
     "accepted": [],
@@ -1496,9 +1419,9 @@
     "prompt": "Quem é a pessoa mais jovem a ter ganho o Óscar de melhor realização?",
     "answer": "Damien Chazelle",
     "decoys": [
-      "Glenn Close",
-      "Chris Pine",
-      "Hilary Swank"
+      "Orson Welles",
+      "Steven Spielberg",
+      "Sam Mendes"
     ],
     "accepted": [
       "Chazelle"
@@ -1590,9 +1513,9 @@
     "prompt": "Quem ganhou o Óscar de melhor ator secundário na cerimónia de 2010?",
     "answer": "Christoph Waltz",
     "decoys": [
-      "Rachel Weisz",
-      "Adam Sandler",
-      "Antonio Banderas"
+      "Matt Damon",
+      "Woody Harrelson",
+      "Stanley Tucci"
     ],
     "accepted": [
       "Waltz"
@@ -1811,25 +1734,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-280e4016",
-    "from": "mintaka-280e4016",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Qual é a cidade mais populosa do Paquistão, onde está sediada a maioria das multinacionais do país?",
-    "answer": "Carachi",
-    "decoys": [
-      "Albany",
-      "San Antonio",
-      "Orlando"
-    ],
-    "accepted": [
-      "Karachi"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-281683c4",
     "from": "mintaka-281683c4",
     "category": "cinema",
@@ -1839,9 +1743,9 @@
     "prompt": "Que ator ganhou um Óscar pelo papel de Abraham Lincoln?",
     "answer": "Daniel Day-Lewis",
     "decoys": [
-      "Katie Holmes",
-      "Anna Kendrick",
-      "Mike Tyson"
+      "Liam Neeson",
+      "Tom Hanks",
+      "Joaquin Phoenix"
     ],
     "accepted": [
       "Day-Lewis"
@@ -1898,9 +1802,9 @@
     "prompt": "Qual foi a primeira grande celebridade americana cujo diagnóstico de sida foi tornado público?",
     "answer": "Rock Hudson",
     "decoys": [
-      "Tom Felton",
-      "Daisy Ridley",
-      "Frances McDormand"
+      "Liberace",
+      "Anthony Perkins",
+      "Freddie Mercury"
     ],
     "accepted": [
       "Hudson"
@@ -2059,23 +1963,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-2cac592f",
-    "from": "mintaka-2cac592f",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que rio atravessa tanto a Áustria como a Roménia?",
-    "answer": "Danúbio",
-    "decoys": [
-      "Reno",
-      "Nilo",
-      "Amazonas"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-2cd8f0e4",
     "from": "mintaka-2cd8f0e4",
     "category": "geography",
@@ -2129,27 +2016,6 @@
     ],
     "accepted": [
       "Cyberpunk"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-2ea36164",
-    "from": "mintaka-2ea36164",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Qual é o rio mais longo da China?",
-    "answer": "Yangtzé",
-    "decoys": [
-      "Níger",
-      "Tamisa",
-      "Rio Grande"
-    ],
-    "accepted": [
-      "Iangtzé",
-      "Chang Jiang",
-      "rio Azul"
     ],
     "note": null
   },
@@ -2224,9 +2090,9 @@
     "prompt": "Que ator nascido na Escócia interpretou James Bond?",
     "answer": "Sean Connery",
     "decoys": [
-      "Elle Fanning",
-      "Sam Raimi",
-      "Max Verstappen"
+      "Roger Moore",
+      "Daniel Craig",
+      "Timothy Dalton"
     ],
     "accepted": [
       "Connery"
@@ -2521,23 +2387,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-375e7ca5",
-    "from": "mintaka-375e7ca5",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Que monumento pré-histórico do Reino Unido é feito de grandes blocos de pedra?",
-    "answer": "Stonehenge",
-    "decoys": [
-      "Coliseu",
-      "Babilónia",
-      "Machu Picchu"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-37fe2b75",
     "from": "mintaka-37fe2b75",
     "category": "cinema",
@@ -2594,25 +2443,6 @@
     "accepted": [
       "O Primeiro Vingador",
       "Captain America: The First Avenger"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-3a92007b",
-    "from": "mintaka-3a92007b",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/generic",
-    "prompt": "Quem era o rei da Grã-Bretanha durante a Revolução Americana?",
-    "answer": "Jorge III",
-    "decoys": [
-      "Guilherme IV",
-      "Vitória",
-      "Jaime II"
-    ],
-    "accepted": [
-      "George III"
     ],
     "note": null
   },
@@ -2873,25 +2703,6 @@
     ],
     "accepted": [
       "GTA"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-4492a044",
-    "from": "mintaka-4492a044",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que montanha dos Alpes é o pico mais alto da Áustria?",
-    "answer": "Grossglockner",
-    "decoys": [
-      "Makalu",
-      "monte Logan",
-      "Dhaulagiri"
-    ],
-    "accepted": [
-      "Großglockner"
     ],
     "note": null
   },
@@ -3214,25 +3025,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-4f9bddde",
-    "from": "mintaka-4f9bddde",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Qual é a segunda maior cidade da Turquia?",
-    "answer": "Ancara",
-    "decoys": [
-      "Cusco",
-      "Damasco",
-      "Melbourne"
-    ],
-    "accepted": [
-      "Ankara"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-4f9da6b1",
     "from": "mintaka-4f9da6b1",
     "category": "cinema",
@@ -3283,7 +3075,7 @@
     "answer": "Kobe Bryant",
     "decoys": [
       "Shaquille O'Neal",
-      "Stephen Curry",
+      "Dennis Rodman",
       "Russell Westbrook"
     ],
     "accepted": [
@@ -3645,32 +3437,12 @@
     "prompt": "Quem interpretou Ron Weasley nos filmes de Harry Potter?",
     "answer": "Rupert Grint",
     "decoys": [
-      "Brooke Shields",
-      "Julianne Moore",
-      "Olivia Colman"
+      "Daniel Radcliffe",
+      "Tom Felton",
+      "Matthew Lewis"
     ],
     "accepted": [
       "Grint"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-5887be95",
-    "from": "mintaka-5887be95",
-    "category": "videogames",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "videogames/generic",
-    "prompt": "Como se chama a princesa de Super Mario Bros.?",
-    "answer": "Princesa Peach",
-    "decoys": [
-      "Link",
-      "Geralt de Rívia",
-      "Leon S. Kennedy"
-    ],
-    "accepted": [
-      "Peach",
-      "Princesa Toadstool"
     ],
     "note": null
   },
@@ -3743,9 +3515,9 @@
     "prompt": "Que personagem da Marvel é interpretada por Chris Hemsworth?",
     "answer": "Thor",
     "decoys": [
-      "Han Solo",
-      "Pepper Potts",
-      "Sonic"
+      "Loki",
+      "Capitão América",
+      "Hulk"
     ],
     "accepted": [],
     "note": null
@@ -3798,9 +3570,9 @@
     "prompt": "Qual era a cidade mais populosa dos Estados Unidos em 2021?",
     "answer": "Nova Iorque",
     "decoys": [
-      "Hong Kong",
-      "Genebra",
-      "Istambul"
+      "Los Angeles",
+      "Chicago",
+      "Houston"
     ],
     "accepted": [
       "New York",
@@ -3972,9 +3744,9 @@
     "prompt": "Qual é o realizador mais idoso a ter ganho o Óscar de melhor realização?",
     "answer": "Clint Eastwood",
     "decoys": [
-      "Natalie Portman",
-      "Diego Maradona",
-      "Bruce Willis"
+      "Martin Scorsese",
+      "Roman Polanski",
+      "Woody Allen"
     ],
     "accepted": [
       "Eastwood"
@@ -4016,25 +3788,6 @@
     ],
     "accepted": [
       "Far Cry VI"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-60bf9176",
-    "from": "mintaka-60bf9176",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Qual é a cordilheira mais longa dos Estados Unidos, que se estende também por outro país?",
-    "answer": "montanhas Rochosas",
-    "decoys": [
-      "Annapurna",
-      "Urais",
-      "cordilheira dos Andes"
-    ],
-    "accepted": [
-      "Rochosas"
     ],
     "note": null
   },
@@ -4198,33 +3951,14 @@
     "prompt": "Qual é a montanha mais alta dos Estados Unidos?",
     "answer": "Denali",
     "decoys": [
-      "Aconcágua",
-      "Nanga Parbat",
+      "Monte Santa Helena",
+      "Monte Rainier",
       "Mauna Kea"
     ],
     "accepted": [
       "monte Denali",
       "monte McKinley",
       "McKinley"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-661a6cf0",
-    "from": "mintaka-661a6cf0",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/intersection",
-    "prompt": "Que rainha de França nasceu arquiduquesa da Áustria?",
-    "answer": "Maria Antonieta",
-    "decoys": [
-      "Catarina de Médici",
-      "Ana de Áustria",
-      "Josefina de Beauharnais"
-    ],
-    "accepted": [
-      "Marie Antoinette"
     ],
     "note": null
   },
@@ -4257,9 +3991,9 @@
     "prompt": "Quem foi o primeiro afro-americano a ganhar o Óscar de melhor ator?",
     "answer": "Sidney Poitier",
     "decoys": [
-      "Julia Louis-Dreyfus",
-      "John Ford",
-      "Roy Scheider"
+      "Denzel Washington",
+      "Morgan Freeman",
+      "James Earl Jones"
     ],
     "accepted": [
       "Poitier"
@@ -4315,32 +4049,12 @@
     "prompt": "Que ator fez o papel de Beetlejuice?",
     "answer": "Michael Keaton",
     "decoys": [
-      "Chris Pratt",
-      "Martin Scorsese",
-      "Julia Roberts"
+      "Jack Nicholson",
+      "Danny DeVito",
+      "Jim Carrey"
     ],
     "accepted": [
       "Keaton"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-695e3f04",
-    "from": "mintaka-695e3f04",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/intersection",
-    "prompt": "Quem foi ao mesmo tempo Prémio Nobel e presidente da União Soviética?",
-    "answer": "Mikhail Gorbachev",
-    "decoys": [
-      "Boris Ieltsin",
-      "Leonid Brejnev",
-      "Nikita Khrushchov"
-    ],
-    "accepted": [
-      "Gorbachev",
-      "Gorbatchov"
     ],
     "note": null
   },
@@ -4470,25 +4184,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-6cdf80c2",
-    "from": "mintaka-6cdf80c2",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que rio atravessa todo o Egito e é também o mais longo do mundo?",
-    "answer": "Nilo",
-    "decoys": [
-      "Amazonas",
-      "Congo",
-      "Volga"
-    ],
-    "accepted": [
-      "Rio Nilo"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-6d96a11d",
     "from": "mintaka-6d96a11d",
     "category": "sport",
@@ -4536,9 +4231,9 @@
     "prompt": "Quem interpretou Forrest Gump?",
     "answer": "Tom Hanks",
     "decoys": [
-      "Emma Watson",
-      "Christian Bale",
-      "Michael Keaton"
+      "Bill Murray",
+      "John Travolta",
+      "Robin Williams"
     ],
     "accepted": [
       "Hanks"
@@ -4632,9 +4327,9 @@
     "prompt": "Que ator interpretou James Bond em sete filmes oficiais, de 1973 a 1985?",
     "answer": "Roger Moore",
     "decoys": [
-      "Anna Kendrick",
-      "Katie Holmes",
-      "Daniel Day-Lewis"
+      "Sean Connery",
+      "Timothy Dalton",
+      "Pierce Brosnan"
     ],
     "accepted": [
       "Moore"
@@ -4652,8 +4347,8 @@
     "answer": "Hudson",
     "decoys": [
       "Mississippi",
-      "Amazonas",
-      "Ebro"
+      "Colorado",
+      "Rio Grande"
     ],
     "accepted": [
       "rio Hudson"
@@ -4670,9 +4365,9 @@
     "prompt": "Quem foi o primeiro presidente a viver na Casa Branca?",
     "answer": "John Adams",
     "decoys": [
-      "James Madison",
-      "William Henry Harrison",
-      "Otto von Bismarck"
+      "George Washington",
+      "Thomas Jefferson",
+      "James Madison"
     ],
     "accepted": [
       "Adams"
@@ -4827,25 +4522,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-746cb1b5",
-    "from": "mintaka-746cb1b5",
-    "category": "cinema",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "movies/intersection",
-    "prompt": "Que atriz nascida na Austrália entrou em «Moulin Rouge»?",
-    "answer": "Nicole Kidman",
-    "decoys": [
-      "Angelina Jolie",
-      "Gal Gadot",
-      "Jennifer Lopez"
-    ],
-    "accepted": [
-      "Kidman"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-7487d160",
     "from": "mintaka-7487d160",
     "category": "history",
@@ -4981,9 +4657,9 @@
     "prompt": "Qual é a cidade mais populosa da Grã-Bretanha?",
     "answer": "Londres",
     "decoys": [
-      "Nova Iorque",
-      "Veneza",
-      "Amesterdão"
+      "Birmingham",
+      "Manchester",
+      "Glasgow"
     ],
     "accepted": [
       "London"
@@ -5053,9 +4729,9 @@
     "prompt": "Como se chama a personagem interpretada por Kaley Cuoco na série «The Big Bang Theory»?",
     "answer": "Penny",
     "decoys": [
-      "Princesa Daisy",
-      "Trevor Philips",
-      "Niko Bellic"
+      "Bernadette",
+      "Amy Farrah Fowler",
+      "Rachel Green"
     ],
     "accepted": [],
     "note": null
@@ -5076,25 +4752,6 @@
     ],
     "accepted": [
       "Hitler"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-7bee8924",
-    "from": "mintaka-7bee8924",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual é o rio mais longo do Brasil?",
-    "answer": "Amazonas",
-    "decoys": [
-      "Nilo",
-      "Mississippi",
-      "Hudson"
-    ],
-    "accepted": [
-      "rio Amazonas"
     ],
     "note": null
   },
@@ -5185,9 +4842,9 @@
     "prompt": "Que cantora, vencedora de Grammys, também entrou no filme «Assim Nasce uma Estrela»?",
     "answer": "Lady Gaga",
     "decoys": [
-      "Eminem",
-      "Hugh Jackman",
-      "Paul McCartney"
+      "Beyoncé",
+      "Rihanna",
+      "Madonna"
     ],
     "accepted": [
       "Gaga"
@@ -5261,9 +4918,9 @@
     "prompt": "Que atriz é a estrela feminina dos dois primeiros filmes Transformers?",
     "answer": "Megan Fox",
     "decoys": [
-      "John Wayne",
-      "James Cameron",
-      "Alison Brie"
+      "Rosie Huntington-Whiteley",
+      "Scarlett Johansson",
+      "Jessica Alba"
     ],
     "accepted": [],
     "note": null
@@ -5355,42 +5012,6 @@
       "Espanha",
       "Grécia",
       "Países Baixos"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-83a595fc",
-    "from": "mintaka-83a595fc",
-    "category": "geography",
-    "isWellKnown": false,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual é a montanha mais alta do Canadá?",
-    "answer": "monte Logan",
-    "decoys": [
-      "Makalu",
-      "Dhaulagiri",
-      "Grossglockner"
-    ],
-    "accepted": [
-      "Logan"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-83ba2958",
-    "from": "mintaka-83ba2958",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que rio, que atravessa a Alemanha, é o segundo mais longo da Europa?",
-    "answer": "Danúbio",
-    "decoys": [
-      "Reno",
-      "Nilo",
-      "Amazonas"
     ],
     "accepted": [],
     "note": null
@@ -5495,32 +5116,13 @@
     "prompt": "Que personagem se controla em Metal Gear Solid?",
     "answer": "Solid Snake",
     "decoys": [
-      "Penny",
+      "Big Boss",
       "Leon S. Kennedy",
-      "Apollo Creed"
+      "Sam Fisher"
     ],
     "accepted": [
       "Snake",
       "David"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-8653bc9d",
-    "from": "mintaka-8653bc9d",
-    "category": "geography",
-    "isWellKnown": false,
-    "choiceOnly": false,
-    "theme": "geography/ordinal",
-    "prompt": "Qual é o segundo rio mais longo de Itália?",
-    "answer": "Ádige",
-    "decoys": [
-      "Ienissei",
-      "Ob",
-      "Missouri"
-    ],
-    "accepted": [
-      "Etsch"
     ],
     "note": null
   },
@@ -5554,9 +5156,9 @@
     "prompt": "Quem é o ator mais velho a ter ganho o Óscar de melhor ator?",
     "answer": "Anthony Hopkins",
     "decoys": [
-      "Samuel L. Jackson",
-      "Jennifer Aniston",
-      "Daniel Radcliffe"
+      "Henry Fonda",
+      "Michael Caine",
+      "Christopher Plummer"
     ],
     "accepted": [
       "Hopkins"
@@ -5573,9 +5175,9 @@
     "prompt": "Que atriz entrou em «E Tudo o Vento Levou» e em «Um Elétrico Chamado Desejo»?",
     "answer": "Vivien Leigh",
     "decoys": [
-      "Gisele Bündchen",
-      "Jennifer Esposito",
-      "Robert Mitchum"
+      "Olivia de Havilland",
+      "Bette Davis",
+      "Katharine Hepburn"
     ],
     "accepted": [
       "Vivian Leigh"
@@ -5592,9 +5194,9 @@
     "prompt": "Quem realizou o primeiro filme de Harry Potter?",
     "answer": "Chris Columbus",
     "decoys": [
-      "James Wan",
-      "Tim Allen",
-      "Marlee Matlin"
+      "Alfonso Cuarón",
+      "Mike Newell",
+      "David Yates"
     ],
     "accepted": [],
     "note": null
@@ -5666,9 +5268,9 @@
     "prompt": "Que grande cidade dos Estados Unidos não pertence a nenhum estado nem a nenhum território?",
     "answer": "Washington",
     "decoys": [
-      "São Petersburgo",
-      "Munique",
-      "Amesterdão"
+      "Nova Iorque",
+      "Filadélfia",
+      "Boston"
     ],
     "accepted": [
       "Washington D.C.",
@@ -5686,9 +5288,9 @@
     "prompt": "Que personagem de videojogo tem um irmão chamado Luigi?",
     "answer": "Mario",
     "decoys": [
-      "Kratos",
-      "Jack Sparrow",
-      "Pepper Potts"
+      "Wario",
+      "Donkey Kong",
+      "Sonic"
     ],
     "accepted": [
       "Super Mario"
@@ -5705,7 +5307,7 @@
     "prompt": "Quem era o treinador dos Chicago Bulls nos títulos de Michael Jordan?",
     "answer": "Phil Jackson",
     "decoys": [
-      "Gregg Popovich",
+      "Doug Collins",
       "Pat Riley",
       "Steve Kerr"
     ],
@@ -5823,9 +5425,9 @@
     "prompt": "Que montanha dos Estados Unidos entrou em erupção em 1980?",
     "answer": "monte Santa Helena",
     "decoys": [
-      "monte Olimpo",
-      "Elbrus",
-      "Mauna Kea"
+      "Monte Rainier",
+      "Monte Shasta",
+      "Kilauea"
     ],
     "accepted": [
       "Santa Helena",
@@ -5947,23 +5549,6 @@
       "O Berço da Vida",
       "Lara Croft Tomb Raider: The Cradle of Life"
     ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-91d74ce8",
-    "from": "mintaka-91d74ce8",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/generic",
-    "prompt": "Na Segunda Guerra Mundial, qual se rendeu primeiro: a Alemanha ou o Japão?",
-    "answer": "Alemanha",
-    "decoys": [
-      "Japão",
-      "Os dois no mesmo dia",
-      "Nenhum dos dois"
-    ],
-    "accepted": [],
     "note": null
   },
   {
@@ -6192,28 +5777,11 @@
     "decoys": [
       "Ben Affleck",
       "Al Pacino",
-      "Sandra Bullock"
+      "Robert Downey Jr."
     ],
     "accepted": [
       "Depp"
     ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-97be38c6",
-    "from": "mintaka-97be38c6",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Que cidade alemã tem mais habitantes?",
-    "answer": "Berlim",
-    "decoys": [
-      "Viena",
-      "Toronto",
-      "Budapeste"
-    ],
-    "accepted": [],
     "note": null
   },
   {
@@ -6282,9 +5850,9 @@
     "prompt": "Quem realizou a primeira trilogia do Homem-Aranha?",
     "answer": "Sam Raimi",
     "decoys": [
-      "Dustin Hoffman",
-      "Kate Winslet",
-      "Amy Adams"
+      "Marc Webb",
+      "Jon Watts",
+      "Tim Burton"
     ],
     "accepted": [
       "Raimi"
@@ -6341,23 +5909,6 @@
       "Machu Picchu",
       "Cairo",
       "Petra"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-9b586b9c",
-    "from": "mintaka-9b586b9c",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que cordilheira se estende pela França e pela Itália?",
-    "answer": "Alpes",
-    "decoys": [
-      "Apalaches",
-      "Himalaias",
-      "cordilheira dos Andes"
     ],
     "accepted": [],
     "note": null
@@ -6489,9 +6040,9 @@
     "prompt": "Quem é a pessoa mais velha a ter ganho o Óscar de melhor realização?",
     "answer": "Clint Eastwood",
     "decoys": [
-      "Natalie Portman",
-      "Robert Pattinson",
-      "Tom Cruise"
+      "Martin Scorsese",
+      "Roman Polanski",
+      "Woody Allen"
     ],
     "accepted": [
       "Eastwood"
@@ -6580,8 +6131,8 @@
     "answer": "Scarlett Johansson",
     "decoys": [
       "Diane Kruger",
-      "Arnold Schwarzenegger",
-      "Robert Downey Jr."
+      "Sandra Bullock",
+      "Emma Stone"
     ],
     "accepted": [
       "Johansson"
@@ -6636,9 +6187,9 @@
     "prompt": "Qual é a quarta maior cidade dos Estados Unidos?",
     "answer": "Houston",
     "decoys": [
-      "Portland",
-      "Pittsburgh",
-      "Manila"
+      "Phoenix",
+      "Filadélfia",
+      "Dallas"
     ],
     "accepted": [],
     "note": null
@@ -6703,48 +6254,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-a1669d51",
-    "from": "mintaka-a1669d51",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Qual é a montanha mais alta do Japão, que é também um vulcão ativo?",
-    "answer": "Monte Fuji",
-    "decoys": [
-      "Vesúvio",
-      "K2",
-      "Monte Rushmore"
-    ],
-    "accepted": [
-      "Fuji",
-      "Fujiyama",
-      "Fujisan"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-a1a056fa",
-    "from": "mintaka-a1a056fa",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/intersection",
-    "prompt": "Quem foi ao mesmo tempo secretária de Estado e antiga primeira-dama dos Estados Unidos?",
-    "answer": "Hillary Clinton",
-    "decoys": [
-      "Condoleezza Rice",
-      "Madeleine Albright",
-      "Michelle Obama"
-    ],
-    "accepted": [
-      "Hillary Rodham Clinton",
-      "Hillary",
-      "Clinton"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-a3fd31e7",
     "from": "mintaka-a3fd31e7",
     "category": "geography",
@@ -6760,26 +6269,6 @@
     ],
     "accepted": [
       "Estado de Israel"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-a534dab3",
-    "from": "mintaka-a534dab3",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/generic",
-    "prompt": "Em que guerra morreram cerca de dois por cento da população dos Estados Unidos?",
-    "answer": "Guerra Civil Americana",
-    "decoys": [
-      "Primeira Guerra Mundial",
-      "Segunda Guerra Mundial",
-      "Guerra do Vietname"
-    ],
-    "accepted": [
-      "Guerra da Secessão",
-      "Guerra de Secessão"
     ],
     "note": null
   },
@@ -6848,7 +6337,7 @@
     "prompt": "Que monarca austríaco teve o reinado mais longo?",
     "answer": "Francisco José I",
     "decoys": [
-      "Maria Teresa",
+      "Carlos VI",
       "José II",
       "Leopoldo I"
     ],
@@ -6867,9 +6356,9 @@
     "prompt": "Quem realizou «Tudo Bons Rapazes» e estudou na escola de cinema da Universidade de Nova Iorque?",
     "answer": "Martin Scorsese",
     "decoys": [
-      "Orlando Bloom",
-      "Blake Lively",
-      "Chris Pratt"
+      "Francis Ford Coppola",
+      "Brian De Palma",
+      "Oliver Stone"
     ],
     "accepted": [
       "Scorsese"
@@ -6888,7 +6377,7 @@
     "decoys": [
       "Marlon Brando",
       "Jack Nicholson",
-      "Jessica Chastain"
+      "Michael Douglas"
     ],
     "accepted": [
       "Diesel"
@@ -6948,23 +6437,6 @@
     "accepted": [
       "Jaws"
     ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-a9d76f10",
-    "from": "mintaka-a9d76f10",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que montanha da cordilheira de Wetterstein é a mais alta da Alemanha?",
-    "answer": "Zugspitze",
-    "decoys": [
-      "monte Rainier",
-      "Kangchenjunga",
-      "Puncak Jaya"
-    ],
-    "accepted": [],
     "note": null
   },
   {
@@ -7190,8 +6662,8 @@
     "answer": "Otto von Bismarck",
     "decoys": [
       "Helmut Kohl",
-      "Angela Merkel",
-      "Konrad Adenauer"
+      "Konrad Adenauer",
+      "Helmut Schmidt"
     ],
     "accepted": [
       "Bismarck"
@@ -7323,9 +6795,9 @@
     "prompt": "Quem ganhou o Óscar de melhor atriz na cerimónia de 2016?",
     "answer": "Brie Larson",
     "decoys": [
-      "50 Cent",
-      "Jennifer Garner",
-      "Walt Disney"
+      "Cate Blanchett",
+      "Saoirse Ronan",
+      "Charlotte Rampling"
     ],
     "accepted": [
       "Larson"
@@ -7518,9 +6990,9 @@
     "prompt": "Quem é o protagonista do «Homem-Aranha» de Sam Raimi, de 2002?",
     "answer": "Tobey Maguire",
     "decoys": [
-      "Kate Winslet",
-      "Amy Adams",
-      "Alfred Hitchcock"
+      "Andrew Garfield",
+      "Tom Holland",
+      "James Franco"
     ],
     "accepted": [
       "Maguire"
@@ -7687,9 +7159,9 @@
     "prompt": "Quem interpretou Ethan Edwards em «A Desaparecida», de John Ford?",
     "answer": "John Wayne",
     "decoys": [
-      "Megan Fox",
-      "James Cameron",
-      "Alison Brie"
+      "James Stewart",
+      "Gary Cooper",
+      "Henry Fonda"
     ],
     "accepted": [],
     "note": null
@@ -7715,26 +7187,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-be25c771",
-    "from": "mintaka-be25c771",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/superlative",
-    "prompt": "Qual é o monarca que reinou durante mais tempo na história britânica?",
-    "answer": "Isabel II",
-    "decoys": [
-      "Vitória",
-      "Jorge III",
-      "Jorge VI"
-    ],
-    "accepted": [
-      "Rainha Isabel",
-      "Isabel"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-be95e04a",
     "from": "mintaka-be95e04a",
     "category": "cinema",
@@ -7744,26 +7196,9 @@
     "prompt": "Quem realizou a trilogia «O Senhor dos Anéis»?",
     "answer": "Peter Jackson",
     "decoys": [
-      "Rosario Dawson",
-      "Lindsay Lohan",
-      "Mary Steenburgen"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-bebb4204",
-    "from": "mintaka-bebb4204",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Qual é a cidade mais populosa da Alemanha?",
-    "answer": "Berlim",
-    "decoys": [
-      "Viena",
-      "Toronto",
-      "Budapeste"
+      "Guillermo del Toro",
+      "James Cameron",
+      "Ridley Scott"
     ],
     "accepted": [],
     "note": null
@@ -7797,9 +7232,9 @@
     "prompt": "Que intérprete recebeu mais nomeações para os Óscares?",
     "answer": "Meryl Streep",
     "decoys": [
-      "Robin Williams",
-      "George Clooney",
-      "Robert De Niro"
+      "Katharine Hepburn",
+      "Bette Davis",
+      "Cate Blanchett"
     ],
     "accepted": [
       "Streep"
@@ -7932,8 +7367,8 @@
     "answer": "Christian Bale",
     "decoys": [
       "Michael Keaton",
-      "Margot Robbie",
-      "Jodie Foster"
+      "George Clooney",
+      "Ben Affleck"
     ],
     "accepted": [
       "Bale"
@@ -8190,7 +7625,7 @@
     "decoys": [
       "Thomas Jefferson",
       "John Adams",
-      "George Washington"
+      "James Monroe"
     ],
     "accepted": [
       "Franklin"
@@ -8248,9 +7683,9 @@
     "prompt": "Qual é o rio mais longo dos Estados Unidos?",
     "answer": "Missouri",
     "decoys": [
-      "Ob",
-      "rio Amarelo",
-      "Dniepre"
+      "Mississippi",
+      "Colorado",
+      "Rio Grande"
     ],
     "accepted": [
       "rio Missouri"
@@ -8331,25 +7766,6 @@
     "accepted": [
       "Majora's Mask",
       "Zelda Majora's Mask"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-ceb8cf7c",
-    "from": "mintaka-ceb8cf7c",
-    "category": "history",
-    "isWellKnown": false,
-    "choiceOnly": false,
-    "theme": "history/ordinal",
-    "prompt": "Quem foi o primeiro presidente dos Estados Confederados da América?",
-    "answer": "Jefferson Davis",
-    "decoys": [
-      "Robert E. Lee",
-      "Alexander Stephens",
-      "Andrew Johnson"
-    ],
-    "accepted": [
-      "Davis"
     ],
     "note": null
   },
@@ -8467,23 +7883,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-d175d8ca",
-    "from": "mintaka-d175d8ca",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual era a cidade mais populosa do Egito segundo a ONU em 2018?",
-    "answer": "Cairo",
-    "decoys": [
-      "Estocolmo",
-      "Rio de Janeiro",
-      "Cidade do México"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-d17bf935",
     "from": "mintaka-d17bf935",
     "category": "cinema",
@@ -8493,9 +7892,9 @@
     "prompt": "Que atriz entrou em «Marvin's Room» e detém o recorde de nomeações para os Óscares?",
     "answer": "Meryl Streep",
     "decoys": [
-      "Robin Williams",
-      "Pelé",
-      "George Clooney"
+      "Diane Keaton",
+      "Katharine Hepburn",
+      "Cate Blanchett"
     ],
     "accepted": [
       "Streep"
@@ -8565,9 +7964,9 @@
     "prompt": "Que atriz casou com Cooke Maroney e entrou nos filmes X-Men?",
     "answer": "Jennifer Lawrence",
     "decoys": [
-      "Julia Roberts",
-      "Chris Pratt",
-      "Harrison Ford"
+      "Halle Berry",
+      "Anna Paquin",
+      "Sophie Turner"
     ],
     "accepted": [],
     "note": null
@@ -8803,9 +8202,9 @@
     "prompt": "Quem é a grande estrela da saga Exterminador Implacável?",
     "answer": "Arnold Schwarzenegger",
     "decoys": [
-      "Scarlett Johansson",
-      "Johnny Depp",
-      "Ben Affleck"
+      "Sylvester Stallone",
+      "Bruce Willis",
+      "Jean-Claude Van Damme"
     ],
     "accepted": [
       "Schwarzenegger"
@@ -8939,44 +8338,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-dbcc631e",
-    "from": "mintaka-dbcc631e",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que rio atravessa o Egito e é o mais importante de África?",
-    "answer": "Nilo",
-    "decoys": [
-      "Amazonas",
-      "Mississippi",
-      "Hudson"
-    ],
-    "accepted": [
-      "rio Nilo"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-dbed3f98",
-    "from": "mintaka-dbed3f98",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/generic",
-    "prompt": "Em que ilha chilena se erguem os moais, antigas estátuas monumentais?",
-    "answer": "Ilha de Páscoa",
-    "decoys": [
-      "Bornéu",
-      "Grã-Bretanha",
-      "Nova Guiné"
-    ],
-    "accepted": [
-      "Rapa Nui"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-dda523ef",
     "from": "mintaka-dda523ef",
     "category": "geography",
@@ -9056,26 +8417,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-de6f6c0b",
-    "from": "mintaka-de6f6c0b",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/superlative",
-    "prompt": "Que monarca britânico esteve casado durante mais tempo?",
-    "answer": "Isabel II",
-    "decoys": [
-      "Vitória",
-      "Jorge V",
-      "Jorge III"
-    ],
-    "accepted": [
-      "Rainha Isabel",
-      "Isabel"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-de774371",
     "from": "mintaka-de774371",
     "category": "sport",
@@ -9142,9 +8483,9 @@
     "prompt": "Quem interpreta Katniss Everdeen nos filmes The Hunger Games?",
     "answer": "Jennifer Lawrence",
     "decoys": [
-      "Morgan Freeman",
-      "Pierce Brosnan",
-      "Liam Neeson"
+      "Shailene Woodley",
+      "Emma Stone",
+      "Kristen Stewart"
     ],
     "accepted": [],
     "note": null
@@ -9249,9 +8590,9 @@
     "prompt": "Que rio passa pelo Kentucky e é o segundo mais longo dos Estados Unidos?",
     "answer": "Mississippi",
     "decoys": [
-      "Volga",
-      "Congo",
-      "Hudson"
+      "Ohio",
+      "Missouri",
+      "Colorado"
     ],
     "accepted": [
       "rio Mississippi",
@@ -9296,42 +8637,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-e5aa3547",
-    "from": "mintaka-e5aa3547",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/superlative",
-    "prompt": "Que rei inglês se casou mais vezes?",
-    "answer": "Henrique VIII",
-    "decoys": [
-      "Jaime I",
-      "Henrique VI",
-      "Ricardo III"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-e64f9ea5",
-    "from": "mintaka-e64f9ea5",
-    "category": "sport",
-    "isWellKnown": false,
-    "choiceOnly": false,
-    "theme": "sports/intersection",
-    "prompt": "Que quarterback jogou nos New England Patriots e depois nos Tampa Bay Buccaneers?",
-    "answer": "Tom Brady",
-    "decoys": [
-      "Peyton Manning",
-      "Patrick Mahomes",
-      "Aaron Rodgers"
-    ],
-    "accepted": [
-      "Brady"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-e673be89",
     "from": "mintaka-e673be89",
     "category": "cinema",
@@ -9341,9 +8646,9 @@
     "prompt": "Que futuro presidente dos Estados Unidos aparece em «Sozinho em Casa 2», de 1992?",
     "answer": "Donald Trump",
     "decoys": [
-      "Matt Damon",
-      "Clint Eastwood",
-      "Brad Pitt"
+      "John F. Kennedy",
+      "Ronald Reagan",
+      "George W. Bush"
     ],
     "accepted": [
       "Trump"
@@ -9483,23 +8788,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-eb370592",
-    "from": "mintaka-eb370592",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual é a cidade mais populosa do Canadá?",
-    "answer": "Toronto",
-    "decoys": [
-      "Atenas",
-      "Hamburgo",
-      "Munique"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-ebae1451",
     "from": "mintaka-ebae1451",
     "category": "geography",
@@ -9512,42 +8800,6 @@
       "Antártida",
       "Ásia",
       "Polinésia"
-    ],
-    "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-ec108ccf",
-    "from": "mintaka-ec108ccf",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/intersection",
-    "prompt": "Quem foi governador da Califórnia e vencedor do concurso de culturismo Mister Olympia?",
-    "answer": "Arnold Schwarzenegger",
-    "decoys": [
-      "Robert Downey Jr.",
-      "Scarlett Johansson",
-      "Johnny Depp"
-    ],
-    "accepted": [
-      "Schwarzenegger"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-ec3b6ee6",
-    "from": "mintaka-ec3b6ee6",
-    "category": "videogames",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "videogames/generic",
-    "prompt": "Que empresa francesa de videojogos publica a série Far Cry?",
-    "answer": "Ubisoft",
-    "decoys": [
-      "Nintendo",
-      "Electronic Arts",
-      "Sega"
     ],
     "accepted": [],
     "note": null
@@ -9828,9 +9080,9 @@
     "prompt": "Quem interpretou Rocky Balboa nos filmes Rocky?",
     "answer": "Sylvester Stallone",
     "decoys": [
-      "Meryl Streep",
-      "Tobey Maguire",
-      "Leonardo DiCaprio"
+      "Dolph Lundgren",
+      "Robert De Niro",
+      "Arnold Schwarzenegger"
     ],
     "accepted": [
       "Stallone",
@@ -9918,27 +9170,6 @@
     "note": null
   },
   {
-    "id": "pt-mintaka-f4239f52",
-    "from": "mintaka-f4239f52",
-    "category": "geography",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "geography/superlative",
-    "prompt": "Qual é o arranha-céus mais alto dos Estados Unidos?",
-    "answer": "One World Trade Center",
-    "decoys": [
-      "Burj Khalifa",
-      "The Shard",
-      "Chrysler Building"
-    ],
-    "accepted": [
-      "1 WTC",
-      "Freedom Tower",
-      "Torre da Liberdade"
-    ],
-    "note": null
-  },
-  {
     "id": "pt-mintaka-f451da6b",
     "from": "mintaka-f451da6b",
     "category": "geography",
@@ -9953,25 +9184,6 @@
       "Dubai"
     ],
     "accepted": [],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-f4ad5c45",
-    "from": "mintaka-f4ad5c45",
-    "category": "geography",
-    "isWellKnown": false,
-    "choiceOnly": false,
-    "theme": "geography/intersection",
-    "prompt": "Que sistema montanhoso dos Estados Unidos se estende por 13 estados?",
-    "answer": "Apalaches",
-    "decoys": [
-      "Alpes",
-      "Himalaias",
-      "montanhas Rochosas"
-    ],
-    "accepted": [
-      "montes Apalaches"
-    ],
     "note": null
   },
   {
@@ -10041,7 +9253,7 @@
     "decoys": [
       "Klay Thompson",
       "Kyrie Irving",
-      "Russell Westbrook"
+      "Stephen Curry"
     ],
     "accepted": [
       "Durant"
@@ -10150,9 +9362,9 @@
     "prompt": "Que rio dos Estados Unidos é conhecido como Old Man River?",
     "answer": "Mississippi",
     "decoys": [
-      "Volga",
-      "Congo",
-      "Hudson"
+      "Missouri",
+      "Ohio",
+      "Colorado"
     ],
     "accepted": [
       "rio Mississippi",
@@ -10317,9 +9529,9 @@
     "prompt": "Quem é o ator e realizador do filme «Gran Torino»?",
     "answer": "Clint Eastwood",
     "decoys": [
-      "Natalie Portman",
-      "Diego Maradona",
-      "Bruce Willis"
+      "Robert Redford",
+      "Mel Gibson",
+      "Kevin Costner"
     ],
     "accepted": [
       "Eastwood"
@@ -10363,27 +9575,6 @@
     "accepted": [
       "GTA V",
       "GTA 5"
-    ],
-    "note": null
-  },
-  {
-    "id": "pt-mintaka-fe117edf",
-    "from": "mintaka-fe117edf",
-    "category": "history",
-    "isWellKnown": true,
-    "choiceOnly": false,
-    "theme": "history/intersection",
-    "prompt": "Que membro muito conhecido da família real britânica morreu num acidente de viação nos anos 90?",
-    "answer": "Diana Spencer",
-    "decoys": [
-      "Príncipe William",
-      "Wallis Simpson",
-      "Princesa Margarida"
-    ],
-    "accepted": [
-      "Diana",
-      "Princesa Diana",
-      "Lady Di"
     ],
     "note": null
   },

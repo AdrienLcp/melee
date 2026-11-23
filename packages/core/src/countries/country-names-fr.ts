@@ -55,7 +55,10 @@ export const COUNTRY_NAMES_FR = {
     name: 'République démocratique du Congo',
     withArticle: 'la République démocratique du Congo'
   },
-  COG: { name: 'Congo', withArticle: 'le Congo' },
+  COG: {
+    name: 'République du Congo',
+    withArticle: 'la République du Congo'
+  },
   COK: { name: 'Îles Cook', withArticle: 'les îles Cook' },
   COL: { name: 'Colombie', withArticle: 'la Colombie' },
   COM: { name: 'Comores', withArticle: 'les Comores' },

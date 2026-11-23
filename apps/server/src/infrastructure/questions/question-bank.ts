@@ -18,7 +18,8 @@ import {
   type ContentTier,
   contentTiers,
   dealByDifficulty,
-  drawByDifficulty
+  drawByDifficulty,
+  softensDecoys
 } from '@melee/core/round/difficulty-draw'
 
 import {
@@ -152,10 +153,15 @@ const categoriesIn = (
   return questionsByLanguage.get(language) ?? new Map()
 }
 
-/** The round's question, with the softer decoys when the room plays `easy` and the row has them. */
+/** The round's question, with the softer decoys when its tier and the room's level call for them and the row has them. */
 export const hostQuestionOf = ({
   difficulty,
-  question: {
+  question
+}: {
+  difficulty: Difficulty
+  question: BankedQuestion
+}): HostQuestion => {
+  const {
     accepted,
     answer,
     category,
@@ -167,22 +173,25 @@ export const hostQuestionOf = ({
     prompt,
     rebus,
     silhouette
+  } = question
+
+  return {
+    accepted,
+    answer,
+    category,
+    decoys:
+      easyDecoys !== null &&
+      softensDecoys({ difficulty, tier: tierOfQuestion(question) })
+        ? easyDecoys
+        : decoys,
+    flag,
+    id,
+    note,
+    prompt,
+    rebus,
+    silhouette
   }
-}: {
-  difficulty: Difficulty
-  question: BankedQuestion
-}): HostQuestion => ({
-  accepted,
-  answer,
-  category,
-  decoys: difficulty === 'easy' && easyDecoys !== null ? easyDecoys : decoys,
-  flag,
-  id,
-  note,
-  prompt,
-  rebus,
-  silhouette
-})
+}
 
 /**
  * A rubric's row carries its tier. The bank's own carry a verdict, not a

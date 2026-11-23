@@ -112,6 +112,19 @@ describe('an easy room asking a country', () => {
     }
   )
 
+  it('[difficulty] gives a mixed room the softer decoys for a well-known flag alone', () => {
+    const french = rowsOf('flags').filter(({ language }) => language === 'en')
+    const france = french.find(({ answer }) => answer === 'France')
+    const bhutan = french.find(({ answer }) => answer === 'Bhutan')
+
+    expect(
+      france && hostQuestionOf({ difficulty: 'mixed', question: france }).decoys
+    ).toEqual(france?.easyDecoys)
+    expect(
+      bhutan && hostQuestionOf({ difficulty: 'mixed', question: bhutan }).decoys
+    ).toEqual(bhutan?.decoys)
+  })
+
   it('[difficulty] puts Japan beside no Asian flag', () => {
     const japan = rowsOf('flags').find(
       ({ answer, language }) => language === 'en' && answer === 'Japan'

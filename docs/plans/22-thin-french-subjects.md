@@ -466,3 +466,18 @@ its own decoys — which is the half Mintaka reuses rather than repeats.
 | A licence changed since 10 September 2026                           | drops the candidate | the licence file no longer says what the table above says          |
 
 **Out of the estimate**: the picker, a second source, and any rating work.
+
+## Mintaka's decoys follow the prompt (23/11/2026)
+
+The widest kind alone stood Karl Marx under _quel président des États-Unis_.
+`decoy-constraints.ts` now narrows each pool to entities sharing the answer's
+sex (P21, every person), what the question names among country, citizenship,
+office and team (P17, P27, P39, P54, one any-of group a property), and an
+office whose name starts a word of the prompt. Caps are summed per entity
+over the overlapping pools. 1 918 → 1 762 French rows, 622 re-dressed; the
+loss is mostly cities and rivers named by their country (_la ville la plus
+peuplée d'Irlande_ had Pékin and Moscou for decoys) and ancient rulers whose
+narrowed pool holds nobody within a century. A row a repair writes decoys for
+bypasses the generator. Known left over: the widest occupation still deals
+_Malcolm X_ under an Austrian monarch and players under an NBA coach — the
+prompt names neither property, so no constraint fires.

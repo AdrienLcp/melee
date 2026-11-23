@@ -66,6 +66,21 @@ export const dealByDifficulty = <TItem, TDealt>({
   return null
 }
 
+/**
+ * Whether an item is dealt with its softer decoys, which follow its own tier
+ * rather than the room's level alone: at `easy` everything is, and at `mixed`
+ * a well-known item is too — France is not stood among the flags that look
+ * like it because the room asked for a mix.
+ */
+export const softensDecoys = ({
+  difficulty,
+  tier
+}: {
+  difficulty: Difficulty
+  tier: ContentTier
+}): boolean =>
+  difficulty === 'easy' || (difficulty === 'mixed' && tier === 'easy')
+
 /** One item of the pool at the room's level, or `null` for an empty pool. */
 export const drawByDifficulty = <TItem>({
   difficulty,

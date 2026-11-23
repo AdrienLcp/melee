@@ -243,7 +243,13 @@ const run = async (): Promise<void> => {
   const wikidata = await ingestPolyFact()
 
   console.info('\nMintaka (fr)')
-  const mintaka = await ingestMintaka()
+  const mintaka = await ingestMintaka({
+    handDecoys: new Map(
+      Object.entries(repairs).flatMap(([id, { decoys }]) =>
+        decoys === undefined ? [] : [[id, decoys]]
+      )
+    )
+  })
 
   console.info('\nVikidia (fr)')
   const vikidia = await ingestVikidia()

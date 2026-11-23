@@ -57,14 +57,6 @@
     "prompt": "Quelle est la plus longue bataille que l’armée des États-Unis ait jamais livrée ?",
     "why": "\"La longue bataille isolée\" is garbled, and the Hürtgen Forest is a detail almost nobody knows."
   },
-  "mintaka-1ba6e4ea": {
-    "drop": true,
-    "why": "Philip II, not Alexander, brought the Greek cities under Macedon, and no candidate names him."
-  },
-  "mintaka-1d664f53": {
-    "drop": true,
-    "why": "it asks which American war had many dead, which the two world wars printed beside it answer as well as the Civil War does"
-  },
   "mintaka-1d702f03": {
     "drop": true,
     "why": "The most expensive film ever is disputed and has changed since (Star Wars: The Force Awakens now tops most lists)."
@@ -89,10 +81,6 @@
     "prompt": "Qui joue Wolverine dans le film X-Men ?",
     "why": "'Qui état la vedette' is misspelt and an ensemble film has no single star."
   },
-  "mintaka-2a22381e": {
-    "prompt": "Qui était le premier secrétaire au Trésor des États-Unis ?",
-    "why": "The prompt lacks the country, and Hamilton's cabinet post is US politics beyond the presidents."
-  },
   "mintaka-2a22965f": {
     "prompt": "Dans le film Jumanji, dans quel État habite Alan Parrish ?",
     "why": "Names a character without the film he comes from."
@@ -100,10 +88,6 @@
   "mintaka-2aab7299": {
     "drop": true,
     "why": "it names Black Ops the best-selling Call of Duty while mintaka-e03cc903 names Modern Warfare, and sales figures by edition settle neither"
-  },
-  "mintaka-2aac49ec": {
-    "answer": "duc de Wellington",
-    "why": "A French table names him the duke of Wellington, and Arthur Wellesley alone would mark that answer wrong."
   },
   "mintaka-2af2f393": {
     "drop": true,
@@ -182,10 +166,6 @@
     "prompt": "Quel jeu God of War, sorti en 2022, fait suite à celui de 2018 ?",
     "why": "The future tense is stale since Ragnarök shipped in 2022, and calling it the fifth instalment miscounts the series."
   },
-  "mintaka-3d277e5a": {
-    "answer": "Louis-Napoléon Bonaparte",
-    "why": "The first French president was elected as Louis-Napoléon Bonaparte and only became Napoléon III as emperor."
-  },
   "mintaka-3dbaec95": {
     "prompt": "Qui a remporté l’Oscar du meilleur acteur dans un second rôle en 2020 ?",
     "why": "Brad Pitt won Best Supporting Actor in 2020; Best Actor went to Joaquin Phoenix."
@@ -206,14 +186,6 @@
     "prompt": "Quel acteur a joué Spider-Man dans le film de Sam Raimi sorti en 2002 ?",
     "why": "'Le premier film' does not say which Spider-Man film is meant."
   },
-  "mintaka-4b1c8652": {
-    "prompt": "Quel joueur les Pelicans de La Nouvelle-Orléans ont-ils choisi en premier à la draft NBA de 2019 ?",
-    "why": "Present tense 'joue pour les Pelicans' ages badly, and the franchise also took Anthony Davis first in 2012."
-  },
-  "mintaka-4b3c60bb": {
-    "prompt": "Quel quart-arrière a mené les Seahawks de Seattle à leur victoire au Super Bowl de 2014 ?",
-    "why": "Russell Wilson left Seattle in 2022, so 'the current quarterback' is outdated."
-  },
   "mintaka-4b041796": {
     "prompt": "Avant Stephen Curry, qui détenait le record du nombre de paniers à trois points en NBA ?",
     "why": "Stephen Curry broke Ray Allen's record in 2021."
@@ -225,10 +197,6 @@
   "mintaka-4d054e62": {
     "prompt": "Quelle ville a été la première à accueillir les Jeux olympiques d’été à trois reprises ?",
     "why": "Paris now ties London at three Summer Games since 2024."
-  },
-  "mintaka-4d5801f2": {
-    "prompt": "Quel joueur du Real Madrid a été sélectionné avec l’Allemagne pour l’Euro 2020 ?",
-    "why": "Toni Kroos retired in 2024, so 'joue au Real Madrid' is outdated."
   },
   "mintaka-4e497e31": {
     "prompt": "Quel acteur a joué dans Fight Club et est également un militant écologiste ?",
@@ -289,10 +257,6 @@
   "mintaka-5ed0e96d": {
     "prompt": "Quel jeu de survie viking, sorti en accès anticipé sur Steam en 2021, est devenu un succès instantané ?",
     "why": "The machine translation mangled early access and crafting, and Valheim is known to PC players only."
-  },
-  "mintaka-6a7b71a9": {
-    "drop": true,
-    "why": "A queen 'who had a dog and a budgie' has no fair unique reading."
   },
   "mintaka-6b5f02bf": {
     "prompt": "Lequel de ces footballeurs est argentin ?",
@@ -394,10 +358,6 @@
     "prompt": "Quel État américain a la température moyenne la plus élevée ?",
     "why": "The prompt is a truncated comparative with no country and no superlative."
   },
-  "mintaka-9c3f7d38": {
-    "prompt": "Quel souverain britannique était le plus petit par la taille à l’âge adulte ?",
-    "why": "\"Le plus court\" is a mistranslation of the shortest in height, and Victoria's height is a detail few know."
-  },
   "mintaka-9c21e322": {
     "prompt": "Dans quelle ville se trouve Lombard Street, la rue en lacets la plus célèbre du monde ?",
     "why": "'Rue des Lombards' is a Paris street, and Lombard Street itself is a US sight few French know."
@@ -494,10 +454,6 @@
     "drop": true,
     "why": "it asks which country and answers Moscow; all three wrong answers are cities too"
   },
-  "mintaka-16adbbd2": {
-    "prompt": "Qui était le premier président de la République populaire de Chine ?",
-    "why": "The first president of the Republic of China was Sun Yat-sen, so Mao is right only for the People's Republic."
-  },
   "mintaka-17cb0347": {
     "prompt": "Quel est le titre du troisième film de la série « Rocky » ?",
     "why": "The prompt read \"du troisième la série\", a garbled machine translation."
@@ -505,14 +461,6 @@
   "mintaka-21d8f51d": {
     "drop": true,
     "why": "Later Call of Duty campaigns are shorter than Black Ops Cold War, so the answer is outdated."
-  },
-  "mintaka-22e026f2": {
-    "prompt": "Qui a été la quatrième épouse du roi Philippe II d’Espagne et la cousine de Don Carlos ?",
-    "why": "'Le roi Philippe' does not say which of many kings named Philippe."
-  },
-  "mintaka-25a8fa0a": {
-    "prompt": "Quel joueur passé par les Nets de Brooklyn a joué sa première saison NBA à Seattle ?",
-    "why": "Kevin Durant left the Nets in 2023, so 'est membre des Nets' is outdated."
   },
   "mintaka-25c387e0": {
     "drop": true,
@@ -543,10 +491,6 @@
     "drop": true,
     "why": "Cleopatra belonged to the Ptolemaic dynasty; the kingdom of Macedon it answers had been dissolved for a century and a half"
   },
-  "mintaka-33f37e25": {
-    "prompt": "Quel quart-arrière a été titulaire des Seahawks de Seattle de 2012 à 2021 ?",
-    "why": "Russell Wilson left Seattle in 2022, so 'the current starter' is outdated."
-  },
   "mintaka-36f67fca": {
     "drop": true,
     "why": "Dragon Ball: Sparking! Zero (2024) has far more fighters than Smash Ultimate."
@@ -571,10 +515,6 @@
   "mintaka-43f49cff": {
     "drop": true,
     "why": "Pong was not the very first video game, and the repaired wording already lives on its twin row mintaka-010c79ea."
-  },
-  "mintaka-44f94e20": {
-    "prompt": "Quel quart-arrière a été titulaire des Packers de Green Bay de 2008 à 2022 ?",
-    "why": "Aaron Rodgers left Green Bay in 2023, so 'the current quarterback' is outdated."
   },
   "mintaka-46a4d235": {
     "drop": true,
@@ -619,10 +559,6 @@
   "mintaka-71fdfbe2": {
     "drop": true,
     "why": "The Detroit Pistons tied the 28-game losing streak in 2023-24, so the record is now shared."
-  },
-  "mintaka-72b5e90a": {
-    "prompt": "Quel joueur des Angels de Los Angeles était à la fois lanceur et batteur de 2018 à 2023 ?",
-    "why": "Ohtani left the Angels in 2023, so the present tense is outdated."
   },
   "mintaka-73a4d785": {
     "prompt": "Quelle est la quatrième ville la plus peuplée des États-Unis ?",
@@ -789,10 +725,6 @@
   "mintaka-650e81a3": {
     "prompt": "Quel est le lac d'eau douce le plus long du monde ?",
     "why": "The Caspian Sea is a longer lake than Tanganyika, so the question has to say freshwater."
-  },
-  "mintaka-663eae85": {
-    "drop": true,
-    "why": "Shirley Temple was the famous actress herself, not her child, so the prompt describes nobody"
   },
   "mintaka-663ec3d9": {
     "prompt": "Quelle entreprise a créé les jeux Mario ?",
@@ -1026,17 +958,9 @@
     "drop": true,
     "why": "Nixon held no office during the Second World War and resigned rather than being removed, so neither half of the prompt fits him"
   },
-  "mintaka-065434bd": {
-    "answer": "Louis XIX",
-    "why": "\"Louis de France\" names a dozen princes, while the twenty-minute reign is known as that of Louis XIX."
-  },
   "mintaka-241197ce": {
     "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le cinquième film Star Wars ?",
     "why": "Read as release order, the fifth Star Wars film is Attack of the Clones; Rogue One is only fifth in story order."
-  },
-  "mintaka-285218ca": {
-    "drop": true,
-    "why": "Babylon was a city rather than a country, and the row answers the prompt with the word the prompt uses"
   },
   "mintaka-433585d8": {
     "drop": true,
@@ -1098,10 +1022,6 @@
     "answer": "Marshall Mathers",
     "why": "The answer repeats the stage name instead of Eminem's real name."
   },
-  "mintaka-9828072a": {
-    "prompt": "Quel joueur de l’équipe des États-Unis a évolué au FC Barcelone de 2020 à 2022 ?",
-    "why": "Sergiño Dest left Barcelona in 2022, so 'joue pour le FC Barcelone' is outdated."
-  },
   "mintaka-01149327": {
     "drop": true,
     "why": "the prompt asks it of tennis players at large, where Djokovic — printed as a decoy — passed Serena Williams in 2023"
@@ -1155,10 +1075,6 @@
     "prompt": "Quel film, parmi les Jurassic Park et Jurassic World, est le plus long ?",
     "why": "Dominion (147 min) is longer than The Lost World, the prompt misspells Jurassic, and running times are trivia nobody holds."
   },
-  "mintaka-a5ab3ea8": {
-    "prompt": "Qui a été le premier tsar de Russie ?",
-    "why": "\"Le premier dirigeant après l'indépendance de Moscou\" is a garbled translation with no clear meaning."
-  },
   "mintaka-a8bf3993": {
     "drop": true,
     "why": "The biggest box-office loss is disputed between The 13th Warrior, Cutthroat Island, John Carter and others, so no single answer is right."
@@ -1194,10 +1110,6 @@
   "mintaka-a220a791": {
     "drop": true,
     "why": "A minor True Romance character dated 1995 for a 1993 film: obscure and wrongly dated."
-  },
-  "mintaka-a0561dea": {
-    "drop": true,
-    "why": "'Louis de France' names many people, and the shortest reign (Louis XIX or Jean Ier) is disputed."
   },
   "mintaka-a6360f07": {
     "prompt": "Quel est le 9e plus grand État américain en termes de superficie et celui où se trouve le Mont Hood ?",
@@ -1243,10 +1155,6 @@
     "drop": true,
     "why": "the fastest goal in a World Cup is Hakan Şükür’s at eleven seconds; Benteke’s record is a qualifier"
   },
-  "mintaka-af28ab08": {
-    "prompt": "Quelle cité perdue, située dans les montagnes du Pérou, est l’une des sept nouvelles merveilles du monde ?",
-    "why": "The prompt opens on the English typo 'Whast'."
-  },
   "mintaka-b0b16347": {
     "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le quatrième film Star Wars ?",
     "why": "Read as release order, the fourth Star Wars film is The Phantom Menace; Solo is only fourth in story order."
@@ -1254,10 +1162,6 @@
   "mintaka-b3dc4455": {
     "drop": true,
     "why": "'Amérique' is ambiguous, and in the US the Missouri is the longest river, not the second."
-  },
-  "mintaka-b3f6d899": {
-    "drop": true,
-    "why": "Clement Attlee was prime minister through the Berlin blockade, not Churchill, who was out of office from 1945 to 1951"
   },
   "mintaka-b4b9fb26": {
     "prompt": "Quelle ville a été la première à accueillir les Jeux olympiques d’été à trois reprises ?",
@@ -1411,10 +1315,6 @@
     "prompt": "Qui a épousé le prince Charles en 1981 ?",
     "why": "Diana was not a member of the royal family before marrying Charles, and the translated sentence is garbled."
   },
-  "mintaka-c9195ecb": {
-    "prompt": "Qui dirigeait l'Italie pendant la Seconde Guerre mondiale et était un proche allié d'Adolf Hitler ?",
-    "why": "Mussolini was head of government, never president of Italy."
-  },
   "mintaka-c51693d5": {
     "drop": true,
     "why": "Pirates of the Caribbean is set across fictional and real islands, Jamaica only in part, and Belize is a Caribbean decoy."
@@ -1523,10 +1423,6 @@
     "drop": true,
     "why": "Repeats mintaka-6da69515, The Last of Us Part II and its awards. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
   },
-  "mintaka-dbed3f98": {
-    "prompt": "Sur quelle île chilienne se dressent les moaï, d’anciennes statues monumentales ?",
-    "why": "The prompt asked which monuments while the answer is the island."
-  },
   "mintaka-dc2e80b8": {
     "drop": true,
     "why": "Hadrian's Wall was built in the second century AD, and the prompt says before our era"
@@ -1587,10 +1483,6 @@
     "prompt": "Quelle cité antique est surnommée la « cité rose » ?",
     "why": "The nickname was left in English, while French calls Petra la cité rose."
   },
-  "mintaka-e64f9ea5": {
-    "prompt": "Quel quart-arrière a joué pour les Patriots de la Nouvelle-Angleterre, puis pour les Buccaneers de Tampa Bay ?",
-    "why": "Tom Brady has retired, so 'joue maintenant pour Tampa Bay' is outdated."
-  },
   "mintaka-e88b6de6": {
     "drop": true,
     "why": "The first film released in 2021 is not Black Widow and has no single answer anyway."
@@ -1631,10 +1523,6 @@
     "prompt": "Quelle ville était la plus peuplée au monde selon l’ONU en 2018 ?",
     "why": "Unanchored 'most populous city' ranking has changed since (UN 2025 puts Jakarta first); anchor to the 2018 UN figures."
   },
-  "mintaka-effe50ba": {
-    "drop": true,
-    "why": "James I of England was Scotland’s king six hundred years after Kenneth MacAlpin, and the question asks for the first"
-  },
   "mintaka-f1be9d65": {
     "prompt": "Qui était président des États-Unis pendant la Première Guerre mondiale ?",
     "why": "Without naming the country the question has no single answer."
@@ -1670,10 +1558,6 @@
   "mintaka-f7e531b0": {
     "drop": true,
     "why": "it names Star Citizen the most expensive game ever made while mintaka-9321a417 names Red Dead Redemption 2, and budgets are not published to settle it"
-  },
-  "mintaka-f8f5b8f7": {
-    "prompt": "Quel artiste de la Renaissance a aussi passé beaucoup de temps au service de Ludovic Sforza ?",
-    "why": "The patron's name is misspelt 'Ludovico Storza'."
   },
   "mintaka-f9ace1fb": {
     "prompt": "Quel pays faisait partie de l'Axe pendant la Seconde Guerre mondiale et a été anciennement uni avec l'Autriche ?",

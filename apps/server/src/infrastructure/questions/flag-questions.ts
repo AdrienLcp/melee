@@ -39,6 +39,7 @@ const flagBankSchema = z.array(
       countryCodeSchema
     ]),
     file: flagFileSchema,
+    isSovereign: z.boolean(),
     tier: z.enum(contentTiers)
   })
 )
@@ -81,44 +82,51 @@ export const flagFileOf = (code: CountryCode): FlagFile | null => {
 let flagQuestions: BankedQuestion[] | undefined
 
 /**
- * Every flag in both languages, built on the first draw like the bank. The id
- * is the file's, never the country's: it travels to every player with the
- * prompt.
+ * Every sovereign state's flag in every language, built on the first draw like
+ * the bank. The id is the file's, never the country's: it travels to every
+ * player with the prompt.
+ *
+ * **States only.** The territories keep their flags for the map and five
+ * clues, but dealt here they were thirty-five hard flags among a hundred and
+ * ninety-four, nearly all medium or hard — Greenland, Puerto Rico, Hong Kong —
+ * and the rubric felt like a test rather than any flag at random.
  */
 export const bankedFlagQuestions = (): BankedQuestion[] => {
-  flagQuestions ??= flagRows().flatMap((flag) =>
-    questionLanguages.map((language) => {
-      const names = COUNTRY_NAMES_BY_LANGUAGE[language]
+  flagQuestions ??= flagRows()
+    .filter(({ isSovereign }) => isSovereign)
+    .flatMap((flag) =>
+      questionLanguages.map((language) => {
+        const names = COUNTRY_NAMES_BY_LANGUAGE[language]
 
-      return {
-        accepted: acceptedCountryNames({ code: flag.code, language }),
-        answer: names[flag.code].name,
-        category: 'flags' as const,
-        choiceOnly: false,
-        decoys: [
-          names[flag.decoys[0]].name,
-          names[flag.decoys[1]].name,
-          names[flag.decoys[2]].name
-        ] as const,
-        easyDecoys: [
-          names[flag.easyDecoys[0]].name,
-          names[flag.easyDecoys[1]].name,
-          names[flag.easyDecoys[2]].name
-        ] as const,
-        flag: flag.file,
-        id: `flag-${language}-${flag.file.replace('.svg', '')}`,
-        isAdult: false,
-        isWellKnown: flag.tier === 'easy',
-        language,
-        note: null,
-        prompt: PROMPT_BY_LANGUAGE[language],
-        rebus: null,
-        silhouette: null,
-        theme: 'flag-icons',
-        tier: flag.tier
-      }
-    })
-  )
+        return {
+          accepted: acceptedCountryNames({ code: flag.code, language }),
+          answer: names[flag.code].name,
+          category: 'flags' as const,
+          choiceOnly: false,
+          decoys: [
+            names[flag.decoys[0]].name,
+            names[flag.decoys[1]].name,
+            names[flag.decoys[2]].name
+          ] as const,
+          easyDecoys: [
+            names[flag.easyDecoys[0]].name,
+            names[flag.easyDecoys[1]].name,
+            names[flag.easyDecoys[2]].name
+          ] as const,
+          flag: flag.file,
+          id: `flag-${language}-${flag.file.replace('.svg', '')}`,
+          isAdult: false,
+          isWellKnown: flag.tier === 'easy',
+          language,
+          note: null,
+          prompt: PROMPT_BY_LANGUAGE[language],
+          rebus: null,
+          silhouette: null,
+          theme: 'flag-icons',
+          tier: flag.tier
+        }
+      })
+    )
 
   return flagQuestions
 }

@@ -363,6 +363,11 @@ const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
 const NAMES_SAID: Readonly<Record<string, Names>> = {
   Q148: { en: 'China', fr: 'Chine', pt: 'China' },
   Q240: { en: 'Brussels', fr: 'Bruxelles', pt: 'Bruxelas' },
+  Q971: {
+    en: 'Republic of the Congo',
+    fr: 'République du Congo',
+    pt: 'República do Congo'
+  },
   Q8818: { en: 'Valencia', fr: 'Valence (Espagne)', pt: 'Valência' },
   Q44210: { en: 'Córdoba', fr: 'Córdoba', pt: 'Córdoba' }
 }

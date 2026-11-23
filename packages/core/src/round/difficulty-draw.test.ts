@@ -5,7 +5,8 @@ import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   type ContentTier,
   dealByDifficulty,
-  drawByDifficulty
+  drawByDifficulty,
+  softensDecoys
 } from './difficulty-draw'
 
 type Row = { id: string; tier: ContentTier }
@@ -134,5 +135,21 @@ describe('dealByDifficulty', () => {
     })
 
     expect(dealt?.map(tierOf)).toEqual(['medium', 'medium', 'medium'])
+  })
+})
+
+describe('softensDecoys', () => {
+  it('[difficulty] softens every item for an easy room', () => {
+    expect(softensDecoys({ difficulty: 'easy', tier: 'hard' })).toBe(true)
+  })
+
+  it('[difficulty] softens a well-known item alone for a mixed room', () => {
+    expect(softensDecoys({ difficulty: 'mixed', tier: 'easy' })).toBe(true)
+    expect(softensDecoys({ difficulty: 'mixed', tier: 'medium' })).toBe(false)
+    expect(softensDecoys({ difficulty: 'mixed', tier: 'hard' })).toBe(false)
+  })
+
+  it('[difficulty] never softens a hard room, even a well-known item', () => {
+    expect(softensDecoys({ difficulty: 'hard', tier: 'easy' })).toBe(false)
   })
 })

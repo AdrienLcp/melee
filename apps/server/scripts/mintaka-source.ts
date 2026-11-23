@@ -4,6 +4,12 @@ import type { QuestionCategory } from '@melee/protocol/question'
 
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
+import {
+  constraintKeyOf,
+  constraintsOf,
+  type DecoyConstraint,
+  meetsConstraints
+} from './decoy-constraints'
 import { frenchViewsOf, isWellKnownInFrench } from './frwiki-notability'
 import { orStop, parseJson } from './json-file'
 import {
@@ -14,7 +20,9 @@ import {
   type IngestedQuestions
 } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
+import { claimsOf } from './wikidata-claims'
 import { kindsOf } from './wikidata-kinds'
+import { namesOf } from './wikidata-names'
 import { birthYearsOf } from './wikidata-years'
 
 /**
@@ -314,6 +322,12 @@ const notabilityDistance = ({
 
 type PoolEntry = { entityId: string; label: string; views: number }
 
+/**
+ * One of the answer's kinds with every member that fails the row's
+ * constraints taken out, keyed by both so rows asking the same share a cap.
+ */
+type NarrowedPool = { entries: PoolEntry[]; key: string }
+
 /** A row with its three wrong answers found, before its other spellings are known. */
 type Dressed = {
   candidate: Candidate
@@ -332,13 +346,13 @@ type Dressed = {
  */
 const decoysFor = ({
   candidate,
-  cap,
+  caps,
   pool,
   uses,
   years
 }: {
   candidate: Candidate
-  cap: number
+  caps: ReadonlyMap<string, number>
   pool: readonly PoolEntry[]
   uses: Map<string, number>
   years: ReadonlyMap<string, number>
@@ -351,7 +365,8 @@ const decoysFor = ({
         entry.entityId !== candidate.answerId &&
         entry.label !== candidate.answer &&
         !candidate.prompt.includes(entry.label) &&
-        (uses.get(entry.label) ?? 0) < cap &&
+        (uses.get(entry.label) ?? 0) <
+          (caps.get(entry.label) ?? SMALLEST_DECOY_CAP) &&
         !gradeQuizGuess({
           guess: entry.label,
           question: { accepted: [], answer: candidate.answer, decoys: [] }
@@ -471,63 +486,84 @@ const poolsByKind = ({
  * a reason to go back — the widest bucket within a rung is measured and
  * settled, and seven rows for one is the trade it makes here.
  */
-const poolFor = ({
+export const poolsFor = ({
   answerId,
   category,
+  claims,
+  constraints,
   kinds,
   pools
 }: {
   answerId: string
   category: QuestionCategory
+  claims: ReadonlyMap<string, readonly string[]>
+  constraints: readonly DecoyConstraint[]
   kinds: ReadonlyMap<string, string[]>
   pools: ReadonlyMap<string, PoolEntry[]>
-}): PoolEntry[] | null => {
+}): NarrowedPool[] => {
   const rungs =
     category === 'sport'
       ? ['sport', 'occupation', 'class']
       : ['occupation', 'sport', 'class']
+  const constraintKey = constraintKeyOf(constraints)
 
-  for (const rung of rungs) {
-    const held = (kinds.get(answerId) ?? [])
+  return rungs.flatMap((rung) =>
+    (kinds.get(answerId) ?? [])
       .filter((kind) => kind.startsWith(`${rung}:`))
       .flatMap((kind) => {
         const pool = pools.get(kind)
 
-        return pool === undefined ? [] : [pool]
+        return pool === undefined ? [] : [{ kind, pool }]
       })
-      .toSorted((left, right) => right.length - left.length)
+      .flatMap(({ kind, pool }) => {
+        const entries = pool.filter((entry) =>
+          meetsConstraints({
+            constraints,
+            facts: claims.get(entry.entityId) ?? []
+          })
+        )
 
-    if (held[0] !== undefined) {
-      return held[0]
-    }
-  }
-
-  return null
+        return entries.filter(({ entityId }) => entityId !== answerId).length <
+          3
+          ? []
+          : [{ entries, key: `${kind}&${constraintKey}` }]
+      })
+      .toSorted((left, right) => right.entries.length - left.entries.length)
+  )
 }
 
 /**
- * How often each pool may lean on one of its own, read off the load it carries:
- * three slots per row it dresses, spread over its members, and half again on
- * top so that a greedy pass has somewhere to go when its first choice is spent.
+ * How often each entity may be leant on, read off the load it carries: every
+ * row it may dress spreads three slots over its pool, so the entity owes three
+ * over the pool's size to each, and half again on top so that a greedy pass
+ * has somewhere to go when its first choice is spent.
+ *
+ * Summed **per entity** rather than read per pool, because the constraints cut
+ * one population into overlapping pools — the Roman emperors under *male
+ * emperor* and under *male emperor of Rome* — and a cap read off each pool
+ * alone refused Augustus for slots the other pool had spent. Over pools that
+ * do not overlap, it is the per-pool arithmetic it replaced.
  */
 const decoyCaps = (
-  dressed: ReadonlyArray<{ pool: PoolEntry[] | null }>
-): Map<PoolEntry[], number> => {
-  const rowsPerPool = new Map<PoolEntry[], number>()
+  dressed: ReadonlyArray<{ pools: readonly NarrowedPool[] }>
+): Map<string, number> => {
+  const loads = new Map<string, number>()
 
-  for (const { pool } of dressed) {
-    if (pool !== null) {
-      rowsPerPool.set(pool, (rowsPerPool.get(pool) ?? 0) + 1)
+  for (const { pools } of dressed) {
+    const [first] = pools
+
+    for (const { label } of first?.entries ?? []) {
+      loads.set(
+        label,
+        (loads.get(label) ?? 0) + 3 / (first?.entries.length ?? 1)
+      )
     }
   }
 
   return new Map(
-    [...rowsPerPool].map(([pool, rows]) => [
-      pool,
-      Math.max(
-        SMALLEST_DECOY_CAP,
-        Math.ceil(((rows * 3) / pool.length) * DECOY_SLACK)
-      )
+    [...loads].map(([label, load]) => [
+      label,
+      Math.max(SMALLEST_DECOY_CAP, Math.ceil(load * DECOY_SLACK))
     ])
   )
 }
@@ -596,7 +632,16 @@ const poolEntries = async (
   return [...entries.values()]
 }
 
-export const ingestMintaka = async (): Promise<IngestedQuestions> => {
+/**
+ * @param handDecoys The three decoys a repair writes over a row, by its id: such
+ * a row is banked whatever the generator finds for it, because the repair is
+ * what a room is dealt.
+ */
+export const ingestMintaka = async ({
+  handDecoys
+}: {
+  handDecoys: ReadonlyMap<string, readonly [string, string, string]>
+}): Promise<IngestedQuestions> => {
   const rows = await upstreamRows()
   const rejections: string[] = []
 
@@ -690,41 +735,79 @@ export const ingestMintaka = async (): Promise<IngestedQuestions> => {
   const years = await birthYearsOf({
     entityIds: entries.map(({ entityId }) => entityId)
   })
+  const claims = await claimsOf({
+    entityIds: entries.map(({ entityId }) => entityId)
+  })
+  const offices = await namesOf({
+    cache: 'wikidata-office-labels.json',
+    entityIds: candidates.flatMap(({ answerId }) =>
+      (claims.get(answerId) ?? []).flatMap((fact) =>
+        fact.startsWith('P39:') ? [fact.slice('P39:'.length)] : []
+      )
+    )
+  })
+  const officeLabels = new Map(
+    [...offices].map(([entityId, { fr }]) => [entityId, fr])
+  )
   const pools = poolsByKind({ entries, kinds })
 
   console.info(
     `  ${entries.length} entities over ${pools.size} kinds of ${SMALLEST_POOL} or more are what the wrong answers are drawn from`
   )
 
-  const dressed = candidates.map((candidate) => ({
-    candidate,
-    pool: poolFor({
-      answerId: candidate.answerId,
-      category: candidate.category,
-      kinds,
-      pools
+  const dressed = candidates.map((candidate) => {
+    const constraints = constraintsOf({
+      answerFacts: claims.get(candidate.answerId) ?? [],
+      officeLabels,
+      prompt: candidate.prompt,
+      questionEntities: subjectsOf(candidate.row)
     })
-  }))
+
+    return {
+      candidate,
+      constraints,
+      pools: poolsFor({
+        answerId: candidate.answerId,
+        category: candidate.category,
+        claims,
+        constraints,
+        kinds,
+        pools
+      })
+    }
+  })
   const caps = decoyCaps(dressed)
 
   const uses = new Map<string, number>()
   const banked: Dressed[] = []
+  const handDecoyed: Candidate[] = []
 
-  for (const { candidate, pool } of dressed) {
-    if (pool === null) {
+  for (const { candidate, constraints, pools: narrowed } of dressed) {
+    if (handDecoys.has(`mintaka-${candidate.row.id}`)) {
+      handDecoyed.push(candidate)
+      continue
+    }
+
+    if (narrowed.length === 0) {
       rejections.push(
-        `${candidate.row.id}: "${candidate.answer}" is the only one of its kind here`
+        constraints.length === 0
+          ? `${candidate.row.id}: "${candidate.answer}" is the only one of its kind here`
+          : `${candidate.row.id}: "${candidate.answer}" has fewer than three of its kind sharing ${constraintKeyOf(constraints)}`
       )
       continue
     }
 
-    const decoys = decoysFor({
-      candidate,
-      cap: caps.get(pool) ?? SMALLEST_DECOY_CAP,
-      pool,
-      uses,
-      years
-    })
+    let decoys: Dressed['decoys'] | null = null
+
+    for (const pool of narrowed) {
+      decoys ??= decoysFor({
+        candidate,
+        caps,
+        pool: pool.entries,
+        uses,
+        years
+      })
+    }
 
     if (decoys === null) {
       rejections.push(
@@ -737,10 +820,13 @@ export const ingestMintaka = async (): Promise<IngestedQuestions> => {
   }
 
   const aliases = await aliasesOf({
-    entityIds: banked.flatMap(({ candidate, decoys }) => [
-      candidate.answerId,
-      ...decoys.map(({ entityId }) => entityId)
-    ]),
+    entityIds: [
+      ...banked.flatMap(({ candidate, decoys }) => [
+        candidate.answerId,
+        ...decoys.map(({ entityId }) => entityId)
+      ]),
+      ...handDecoyed.map(({ answerId }) => answerId)
+    ],
     language: 'fr'
   })
 
@@ -770,5 +856,28 @@ export const ingestMintaka = async (): Promise<IngestedQuestions> => {
     `  ${questions.filter(({ accepted }) => accepted.length > 0).length} of those answer to a name a room may shorten, and now take it`
   )
 
-  return { attribution: ATTRIBUTION, questions, rejections }
+  const handDressed = handDecoyed.flatMap((candidate) => {
+    const decoys = handDecoys.get(`mintaka-${candidate.row.id}`)
+
+    return decoys === undefined
+      ? []
+      : [
+          toBankedQuestion({
+            accepted: acceptedOf({
+              answer: candidate.answer,
+              decoys: [...decoys],
+              spellings: aliases.get(candidate.answerId) ?? [],
+              wrongSpellings: []
+            }),
+            candidate,
+            decoys: [...decoys]
+          })
+        ]
+  })
+
+  return {
+    attribution: ATTRIBUTION,
+    questions: [...questions, ...handDressed],
+    rejections
+  }
 }

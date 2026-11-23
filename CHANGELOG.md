@@ -6,6 +6,20 @@ one part.
 
 ## Unreleased
 
+### Fixes
+
+- `[Server]` **A generated quiz decoy is of the kind the question asks for.**
+  _Quel président des États-Unis était le plus grand ?_ stood Lincoln beside
+  Karl Marx, Lenin and Catherine II; it now stands him beside Washington,
+  Truman and Roosevelt. Mintaka's decoys share the answer's sex, the country,
+  citizenship, office or team the question names, and the office its words
+  name; a row that cannot find three is left out. 622 French rows took new
+  decoys, 178 went (1 918 → 1 762), and the Portuguese translations followed:
+  68 rewritten, 43 gone with their French row.
+- `[Shared]` **The two Congos are told apart.** Brazzaville's Congo is
+  _République du Congo_ in French and _República do Congo_ in Portuguese on
+  every game that names a country; _Congo_ is still an accepted answer.
+
 ### Improvements
 
 - `[Game]` **The keyboard stays up between two guesses.** Black square, the
@@ -22,6 +36,10 @@ one part.
   is, so a big phone no longer makes the thumb travel further.
 - `[Game]` **The home page's wordmark starts on the menu's line** on a
   phone, rather than under an empty band the menu's height.
+- `[Server]` **Any flag at random.** The flags rubric deals the 195 states and
+  no territory — Greenland and Puerto Rico keep their flags for the map — and
+  a mixed room sees a well-known flag beside the gentler decoys, so France is
+  no longer stood among the flags that look like it.
 
 - `[Game]` **The home shelf stands in families.** _Culture_, _Lettres et
   chiffres_, _Instinct_ and _Entre vous_, each with a _Tout_ that ticks the

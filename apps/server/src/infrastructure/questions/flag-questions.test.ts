@@ -42,6 +42,21 @@ describe('the flags rubric', () => {
     expect(telling).toEqual([])
   })
 
+  it('[flags] deals the flag of a state, never of a territory', () => {
+    const asked = new Set(
+      bankedFlagQuestions()
+        .filter(({ language }) => language === 'en')
+        .map(({ answer }) => answer)
+    )
+
+    expect(asked.size).toBe(195)
+    expect(asked).toContain('France')
+    expect(asked).toContain('Bhutan')
+    expect(asked).not.toContain('Greenland')
+    expect(asked).not.toContain('Puerto Rico')
+    expect(asked).not.toContain('Hong Kong')
+  })
+
   it('[flags] stands every flag beside three other countries', () => {
     const lopsided = bankedFlagQuestions().filter(
       ({ answer, decoys }) => new Set([answer, ...decoys]).size !== 4

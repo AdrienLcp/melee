@@ -4,6 +4,7 @@
     "decoys": ["CUW", "DOM", "VEN"],
     "easyDecoys": ["PHL", "CIV", "GBR"],
     "file": "a8909ce530f8.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -11,6 +12,7 @@
     "decoys": ["TJK", "PAK", "UZB"],
     "easyDecoys": ["GHA", "DNK", "CUB"],
     "file": "59e4570133b4.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -18,6 +20,7 @@
     "decoys": ["PRT", "BRA", "MOZ"],
     "easyDecoys": ["IRQ", "LVA", "ARG"],
     "file": "a231c51cee1b.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -25,6 +28,7 @@
     "decoys": ["SXM", "KNA", "VGB"],
     "easyDecoys": ["IRN", "NLD", "CMR"],
     "file": "d009ddf26738.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -32,6 +36,7 @@
     "decoys": ["SWE", "FIN", "ISL"],
     "easyDecoys": ["PHL", "USA", "AUS"],
     "file": "a0a729016674.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -39,6 +44,7 @@
     "decoys": ["MNE", "SRB", "MKD"],
     "easyDecoys": ["MAR", "PER", "SAU"],
     "file": "4bd505aed666.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -46,6 +52,7 @@
     "decoys": ["ROU", "TCD", "MDA"],
     "easyDecoys": ["GHA", "CUB", "IRN"],
     "file": "8e7698a91504.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -53,6 +60,7 @@
     "decoys": ["SDN", "JOR", "PSE"],
     "easyDecoys": ["CHL", "CZE", "DZA"],
     "file": "2e719b974462.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -60,6 +68,7 @@
     "decoys": ["URY", "GRC", "SLV"],
     "easyDecoys": ["ROU", "ZAF", "IDN"],
     "file": "fa3585c3c657.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -67,6 +76,7 @@
     "decoys": ["COL", "ECU", "VEN"],
     "easyDecoys": ["ROU", "COL", "EGY"],
     "file": "43494ec6e0da.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -74,6 +84,7 @@
     "decoys": ["WSM", "NIU", "TON"],
     "easyDecoys": ["GHA", "URY", "SAU"],
     "file": "204ea9540314.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -81,6 +92,7 @@
     "decoys": ["SGS", "FLK", "ATF"],
     "easyDecoys": ["EST", "IRN", "SEN"],
     "file": "3109c221bb4f.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -88,6 +100,7 @@
     "decoys": ["MUS", "MDG", "LSO"],
     "easyDecoys": ["LUX", "IRQ", "CUB"],
     "file": "edbad8678f03.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -95,6 +108,7 @@
     "decoys": ["MSR", "KNA", "SXM"],
     "easyDecoys": ["BEL", "IRQ", "ZAF"],
     "file": "5500e75e1fdc.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -102,6 +116,7 @@
     "decoys": ["NZL", "COK", "FJI"],
     "easyDecoys": ["PHL", "COL", "GBR"],
     "file": "5a2d037fba4d.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -109,6 +124,7 @@
     "decoys": ["LVA", "PER", "CAN"],
     "easyDecoys": ["THA", "BOL", "MAR"],
     "file": "ffe6ef510562.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -116,6 +132,7 @@
     "decoys": ["TUR", "TUN", "MDV"],
     "easyDecoys": ["CAN", "CIV", "SRB"],
     "file": "64a5cb1916da.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -123,6 +140,7 @@
     "decoys": ["RWA", "UGA", "TZA"],
     "easyDecoys": ["GRC", "AUS", "ECU"],
     "file": "cb68cf765af1.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -130,6 +148,7 @@
     "decoys": ["DEU", "UGA", "LTU"],
     "easyDecoys": ["VEN", "PHL", "DZA"],
     "file": "ad88030e43bd.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -137,6 +156,7 @@
     "decoys": ["TGO", "GHA", "BFA"],
     "easyDecoys": ["AND", "AUS", "CAN"],
     "file": "e40fb6d6bc9b.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -144,6 +164,7 @@
     "decoys": ["GHA", "TGO", "BEN"],
     "easyDecoys": ["HRV", "MEX", "KOR"],
     "file": "bc14c3291aa4.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -151,6 +172,7 @@
     "decoys": ["JPN", "PLW", "KOR"],
     "easyDecoys": ["BGR", "GHA", "CHL"],
     "file": "db54db116574.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -158,6 +180,7 @@
     "decoys": ["HUN", "IRN", "TJK"],
     "easyDecoys": ["BOL", "DZA", "IRQ"],
     "file": "96c783a769ec.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -165,6 +188,7 @@
     "decoys": ["QAT", "LVA", "AUT"],
     "easyDecoys": ["MAR", "PER", "FRA"],
     "file": "8757fdec1372.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -172,6 +196,7 @@
     "decoys": ["CZE", "PHL", "TLS"],
     "easyDecoys": ["NGA", "CHE", "IRQ"],
     "file": "7e078eb93c67.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -179,6 +204,7 @@
     "decoys": ["MNE", "HRV", "SRB"],
     "easyDecoys": ["JAM", "SEN", "IND"],
     "file": "b43c27fc706a.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -186,6 +212,7 @@
     "decoys": ["LTU", "LVA", "UKR"],
     "easyDecoys": ["GHA", "VNM", "NZL"],
     "file": "c582619d9773.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -193,6 +220,7 @@
     "decoys": ["GTM", "SLV", "HND"],
     "easyDecoys": ["ARE", "LVA", "NGA"],
     "file": "38a37802a0c0.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -200,6 +228,7 @@
     "decoys": ["TCA", "BHS", "VGB"],
     "easyDecoys": ["ITA", "AUS", "CMR"],
     "file": "54aa7df3a5d8.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -207,6 +236,7 @@
     "decoys": ["GHA", "LTU", "ETH"],
     "easyDecoys": ["LTU", "CIV", "TUR"],
     "file": "4737c5e95dd9.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -214,6 +244,7 @@
     "decoys": ["PRT", "AGO", "MOZ"],
     "easyDecoys": ["LTU", "VNM", "GHA"],
     "file": "f91247d982b4.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -221,6 +252,7 @@
     "decoys": ["LCA", "VCT", "GRD"],
     "easyDecoys": ["FIN", "VNM", "CIV"],
     "file": "4f33e8cb39d2.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -228,6 +260,7 @@
     "decoys": ["MYS", "IDN", "SGP"],
     "easyDecoys": ["HUN", "ECU", "KEN"],
     "file": "81ca7ac3fd68.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -235,6 +268,7 @@
     "decoys": ["BGD", "NPL", "IND"],
     "easyDecoys": ["HRV", "KEN", "ECU"],
     "file": "e77704501402.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -242,6 +276,7 @@
     "decoys": ["SLE", "GAB", "RWA"],
     "easyDecoys": ["IRL", "TUR", "PER"],
     "file": "d1c8c1af1a9c.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -249,6 +284,7 @@
     "decoys": ["TCD", "CMR", "COG"],
     "easyDecoys": ["IRN", "COL", "SRB"],
     "file": "c4a944439f5a.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -256,6 +292,7 @@
     "decoys": ["AUT", "LVA", "PER"],
     "easyDecoys": ["TUN", "FRA", "SAU"],
     "file": "3818e87be83a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -263,6 +300,7 @@
     "decoys": ["DNK", "GEO", "TON"],
     "easyDecoys": ["MEX", "AUS", "NGA"],
     "file": "50ee187ebea9.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -270,6 +308,7 @@
     "decoys": ["CUB", "PRI", "CZE"],
     "easyDecoys": ["ESP", "JPN", "ZAF"],
     "file": "6dadb930bc40.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -277,6 +316,7 @@
     "decoys": ["VNM", "MAR", "KGZ"],
     "easyDecoys": ["CUB", "AUS", "DNK"],
     "file": "d1492bc657af.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -284,6 +324,7 @@
     "decoys": ["IRL", "ITA", "IND"],
     "easyDecoys": ["BEL", "BRA", "QAT"],
     "file": "a2f48de0e94e.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -291,6 +332,7 @@
     "decoys": ["SEN", "MLI", "GIN"],
     "easyDecoys": ["ARE", "NOR", "CHL"],
     "file": "5541f7a4391a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -298,6 +340,7 @@
     "decoys": ["BDI", "RWA", "AGO"],
     "easyDecoys": ["GRC", "TUR", "BRA"],
     "file": "dc00ea48b215.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -305,6 +348,7 @@
     "decoys": ["GAB", "GNQ", "CMR"],
     "easyDecoys": ["URY", "AND", "KOR"],
     "file": "b7bcb0659e51.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -312,6 +356,7 @@
     "decoys": ["AUS", "NZL", "FJI"],
     "easyDecoys": ["GBR", "IDN", "GHA"],
     "file": "930c93012e44.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -319,6 +364,7 @@
     "decoys": ["ECU", "VEN", "ARM"],
     "easyDecoys": ["ITA", "AUS", "PHL"],
     "file": "774d22b65a4d.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -326,6 +372,7 @@
     "decoys": ["MDG", "MWI", "MOZ"],
     "easyDecoys": ["NZL", "VNM", "IRL"],
     "file": "25cbadb1c4a8.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -333,6 +380,7 @@
     "decoys": ["GMB", "GNB", "SEN"],
     "easyDecoys": ["ALB", "PAK", "BRA"],
     "file": "89a535a4c3e0.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -340,6 +388,7 @@
     "decoys": ["THA", "NOR", "PRK"],
     "easyDecoys": ["PHL", "ZAF", "IRL"],
     "file": "f64c4abe55cb.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -347,6 +396,7 @@
     "decoys": ["PRI", "CHL", "CZE"],
     "easyDecoys": ["NZL", "MAR", "POL"],
     "file": "0349e8252cc4.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -354,6 +404,7 @@
     "decoys": ["ABW", "VEN", "PRI"],
     "easyDecoys": ["MAR", "BEL", "CHN"],
     "file": "e57673136503.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -361,6 +412,7 @@
     "decoys": ["CUB", "JAM", "HND"],
     "easyDecoys": ["TUR", "GHA", "BGR"],
     "file": "ff0157e5d7ea.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -368,6 +420,7 @@
     "decoys": ["LBN", "AUT", "PER"],
     "easyDecoys": ["VEN", "BEL", "NZL"],
     "file": "f9b2dddb50c7.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -375,6 +428,7 @@
     "decoys": ["CUB", "PRI", "CHL"],
     "easyDecoys": ["PAK", "TUN", "BRA"],
     "file": "979796e9ec94.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -382,6 +436,7 @@
     "decoys": ["BEL", "UGA", "LTU"],
     "easyDecoys": ["LBN", "KEN", "ECU"],
     "file": "4c7ca6eb38c3.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -389,6 +444,7 @@
     "decoys": ["ETH", "ERI", "SOM"],
     "easyDecoys": ["PER", "NOR", "QAT"],
     "file": "41625ee4accb.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -396,6 +452,7 @@
     "decoys": ["MSR", "LCA", "ATG"],
     "easyDecoys": ["PHL", "TUN", "IRL"],
     "file": "a6917555a40e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -403,6 +460,7 @@
     "decoys": ["NOR", "ISL", "FRO"],
     "easyDecoys": ["TUR", "CUB", "NGA"],
     "file": "0b27e706aca5.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -410,6 +468,7 @@
     "decoys": ["CRI", "THA", "PRK"],
     "easyDecoys": ["CZE", "ARE", "ZAF"],
     "file": "18f7b6562cee.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -417,6 +476,7 @@
     "decoys": ["PAK", "MRT", "TKM"],
     "easyDecoys": ["GBR", "QAT", "JAM"],
     "file": "0c7b64ab3f6a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -424,6 +484,7 @@
     "decoys": ["COL", "VEN", "ARM"],
     "easyDecoys": ["AUT", "KOR", "KEN"],
     "file": "dafa3df988ab.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -431,6 +492,7 @@
     "decoys": ["IRQ", "SYR", "YEM"],
     "easyDecoys": ["NOR", "JPN", "AUS"],
     "file": "616ab674fa55.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -438,6 +500,7 @@
     "decoys": ["DJI", "ETH", "YEM"],
     "easyDecoys": ["AND", "JPN", "CAN"],
     "file": "d625b8f7c5b8.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -445,6 +508,7 @@
     "decoys": ["MRT", "MAR", "SEN"],
     "easyDecoys": ["BOL", "CZE", "QAT"],
     "file": "dba877dc234a.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -452,6 +516,7 @@
     "decoys": ["COL", "BOL", "AND"],
     "easyDecoys": ["KOR", "CAN", "AUS"],
     "file": "d6d7fd584f52.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -459,6 +524,7 @@
     "decoys": ["BWA", "SLE", "FIN"],
     "easyDecoys": ["THA", "VEN", "ZAF"],
     "file": "b8fbfdc916af.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -466,6 +532,7 @@
     "decoys": ["GHA", "BOL", "LTU"],
     "easyDecoys": ["LUX", "ARE", "BRA"],
     "file": "30202dfd6982.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -473,6 +540,7 @@
     "decoys": ["SWE", "ALA", "ISL"],
     "easyDecoys": ["THA", "CMR", "BRA"],
     "file": "a05e9dbbf7b5.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -480,6 +548,7 @@
     "decoys": ["AUS", "NZL", "COK"],
     "easyDecoys": ["QAT", "HRV", "DZA"],
     "file": "3ccf9dddd6c3.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -487,6 +556,7 @@
     "decoys": ["CHL", "SGS", "ARG"],
     "easyDecoys": ["HRV", "CIV", "CHN"],
     "file": "d6ca5657e39b.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -494,6 +564,7 @@
     "decoys": ["NLD", "RUS", "LUX"],
     "easyDecoys": ["CHL", "SEN", "JPN"],
     "file": "005ee74fa428.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -501,6 +572,7 @@
     "decoys": ["DNK", "NOR", "ISL"],
     "easyDecoys": ["MEX", "CIV", "NZL"],
     "file": "633edac49944.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -508,6 +580,7 @@
     "decoys": ["GUM", "MNP", "PNG"],
     "easyDecoys": ["POL", "JPN", "CIV"],
     "file": "3b2aa2ca6d53.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -515,6 +588,7 @@
     "decoys": ["SLE", "RWA", "BWA"],
     "easyDecoys": ["CHE", "ARE", "CAN"],
     "file": "722162c97cbf.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -522,6 +596,7 @@
     "decoys": ["AUS", "NZL", "ISL"],
     "easyDecoys": ["ZAF", "BOL", "AUS"],
     "file": "84136bf6db0c.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -529,6 +604,7 @@
     "decoys": ["CHE", "DNK", "TON"],
     "easyDecoys": ["CIV", "BRA", "LTU"],
     "file": "bb4e8a7d5db9.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -536,6 +612,7 @@
     "decoys": ["JEY", "FRA", "GBR"],
     "easyDecoys": ["COL", "IRQ", "DZA"],
     "file": "2a5d7496f99f.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -543,6 +620,7 @@
     "decoys": ["BOL", "LTU", "ETH"],
     "easyDecoys": ["CZE", "VEN", "IND"],
     "file": "2b20c9ba3a3d.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -550,6 +628,7 @@
     "decoys": ["SEN", "MLI", "CMR"],
     "easyDecoys": ["NZL", "ALB", "PAK"],
     "file": "709c86012598.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -557,6 +636,7 @@
     "decoys": ["TTO", "KNA", "NAM"],
     "easyDecoys": ["SVK", "USA", "QAT"],
     "file": "0461c76a7231.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -564,6 +644,7 @@
     "decoys": ["GMB", "SEN", "SLE"],
     "easyDecoys": ["HRV", "VEN", "IDN"],
     "file": "b06348bbe94e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -571,6 +652,7 @@
     "decoys": ["GAB", "STP", "COG"],
     "easyDecoys": ["LBN", "FIN", "CHL"],
     "file": "952728bbe7a1.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -578,6 +660,7 @@
     "decoys": ["ARG", "URY", "SLV"],
     "easyDecoys": ["CAN", "ARE", "GHA"],
     "file": "6afbe6557d98.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -585,6 +668,7 @@
     "decoys": ["VCT", "TTO", "LCA"],
     "easyDecoys": ["DZA", "LVA", "PHL"],
     "file": "c38d858cbbc3.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -592,6 +676,7 @@
     "decoys": ["ISL", "FRO", "NOR"],
     "easyDecoys": ["MEX", "ARE", "AUS"],
     "file": "3bbceb8f4e4b.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -599,6 +684,7 @@
     "decoys": ["HND", "NIC", "SLV"],
     "easyDecoys": ["LVA", "EGY", "JPN"],
     "file": "131a0c0473a3.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -606,6 +692,7 @@
     "decoys": ["MNP", "FSM", "PLW"],
     "easyDecoys": ["EST", "SEN", "QAT"],
     "file": "8cf1766c8af2.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -613,6 +700,7 @@
     "decoys": ["ZAF", "VUT", "JAM"],
     "easyDecoys": ["PRT", "CHN", "CMR"],
     "file": "4fe914e33aac.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -620,6 +708,7 @@
     "decoys": ["MAC", "TWN", "VNM"],
     "easyDecoys": ["JAM", "FIN", "KEN"],
     "file": "9766c6d3fbf4.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -627,6 +716,7 @@
     "decoys": ["NIC", "SLV", "GTM"],
     "easyDecoys": ["ZAF", "HRV", "LBN"],
     "file": "ddeb5864f850.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -634,6 +724,7 @@
     "decoys": ["NLD", "LUX", "PRY"],
     "easyDecoys": ["DZA", "CHL", "LBN"],
     "file": "3df080b26d1f.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -641,6 +732,7 @@
     "decoys": ["DOM", "TCA", "JAM"],
     "easyDecoys": ["POL", "EGY", "PHL"],
     "file": "281367314ac1.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -648,6 +740,7 @@
     "decoys": ["ITA", "MEX", "IRL"],
     "easyDecoys": ["CIV", "IND", "COL"],
     "file": "1a756559e813.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -655,6 +748,7 @@
     "decoys": ["POL", "SGP", "MLT"],
     "easyDecoys": ["GHA", "USA", "HUN"],
     "file": "700446c51010.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -662,6 +756,7 @@
     "decoys": ["GBR", "IRL", "GGY"],
     "easyDecoys": ["DZA", "COL", "ARE"],
     "file": "29a0075d35e2.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -669,6 +764,7 @@
     "decoys": ["IRL", "CIV", "ITA"],
     "easyDecoys": ["NOR", "PER", "NGA"],
     "file": "b4a7161511be.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -676,6 +772,7 @@
     "decoys": ["MDV", "SYC", "LKA"],
     "easyDecoys": ["NLD", "CHL", "NGA"],
     "file": "efadf1efd688.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -683,6 +780,7 @@
     "decoys": ["CIV", "ITA", "IND"],
     "easyDecoys": ["KOR", "USA", "CMR"],
     "file": "0a9b0e4fd776.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -690,6 +788,7 @@
     "decoys": ["HUN", "BGR", "TJK"],
     "easyDecoys": ["LTU", "ARG", "EGY"],
     "file": "93f58266cf9a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -697,6 +796,7 @@
     "decoys": ["EGY", "SYR", "YEM"],
     "easyDecoys": ["BGR", "MEX", "NZL"],
     "file": "45cbbe60ebf3.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -704,6 +804,7 @@
     "decoys": ["DNK", "NOR", "FRO"],
     "easyDecoys": ["PAK", "NGA", "BOL"],
     "file": "4072255ad4d1.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -711,6 +812,7 @@
     "decoys": ["GRC", "FIN", "URY"],
     "easyDecoys": ["DZA", "SRB", "COL"],
     "file": "cbde28eeecd1.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -718,6 +820,7 @@
     "decoys": ["IRL", "CIV", "IND"],
     "easyDecoys": ["NZL", "VNM", "CMR"],
     "file": "a89ee101d2c5.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -725,6 +828,7 @@
     "decoys": ["ZAF", "VUT", "GUY"],
     "easyDecoys": ["AUT", "THA", "DZA"],
     "file": "2216d6e33b69.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -732,6 +836,7 @@
     "decoys": ["GGY", "FRA", "BEL"],
     "easyDecoys": ["VEN", "PHL", "NGA"],
     "file": "88db0dcc5985.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -739,6 +844,7 @@
     "decoys": ["SDN", "PSE", "ARE"],
     "easyDecoys": ["PER", "HUN", "GHA"],
     "file": "60d4172a31ff.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -746,6 +852,7 @@
     "decoys": ["BGD", "PLW", "KOR"],
     "easyDecoys": ["SVN", "CAN", "SEN"],
     "file": "cc8a23941336.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -753,6 +860,7 @@
     "decoys": ["UKR", "SWE", "RWA"],
     "easyDecoys": ["TUN", "ARG", "CZE"],
     "file": "95f02d3b49b5.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -760,6 +868,7 @@
     "decoys": ["SSD", "MWI", "ZMB"],
     "easyDecoys": ["AUT", "PAK", "MEX"],
     "file": "7a9db1ab0d50.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -767,6 +876,7 @@
     "decoys": ["VNM", "CHN", "MAR"],
     "easyDecoys": ["CIV", "CHL", "SWE"],
     "file": "23574f8d2807.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -774,6 +884,7 @@
     "decoys": ["VNM", "THA", "LAO"],
     "easyDecoys": ["ITA", "KEN", "BOL"],
     "file": "40f9a5827b4c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -781,6 +892,7 @@
     "decoys": ["WSM", "ASM", "NIU"],
     "easyDecoys": ["BOL", "KOR", "AUT"],
     "file": "053132e2cb35.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -788,6 +900,7 @@
     "decoys": ["TTO", "GMB", "NAM"],
     "easyDecoys": ["GRC", "EGY", "PHL"],
     "file": "41f952dec1b5.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -795,6 +908,7 @@
     "decoys": ["JPN", "BGD", "PLW"],
     "easyDecoys": ["IRL", "URY", "TUN"],
     "file": "e9bcd229b3bc.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -802,6 +916,7 @@
     "decoys": ["ARE", "JOR", "PSE"],
     "easyDecoys": ["GHA", "URY", "NZL"],
     "file": "c8fbacea511b.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -809,6 +924,7 @@
     "decoys": ["VNM", "THA", "KHM"],
     "easyDecoys": ["DEU", "TUN", "CAN"],
     "file": "b7f2bb14361e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -816,6 +932,7 @@
     "decoys": ["AUT", "PER", "CYP"],
     "easyDecoys": ["RUS", "CAN", "SEN"],
     "file": "d867ab7b3a95.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -823,6 +940,7 @@
     "decoys": ["USA", "MYS", "PRI"],
     "easyDecoys": ["CUB", "ITA", "IRN"],
     "file": "9cd2c3fc6029.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -830,6 +948,7 @@
     "decoys": ["MLT", "TUN", "EGY"],
     "easyDecoys": ["HUN", "QAT", "CHL"],
     "file": "d3f76ec43995.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -837,6 +956,7 @@
     "decoys": ["VCT", "BRB", "DMA"],
     "easyDecoys": ["NZL", "CHN", "LTU"],
     "file": "b9e7749f5d99.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -844,6 +964,7 @@
     "decoys": ["CHE", "AUT", "LUX"],
     "easyDecoys": ["PAK", "BOL", "KEN"],
     "file": "473b8c08d94c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -851,6 +972,7 @@
     "decoys": ["MDV", "IND", "IOT"],
     "easyDecoys": ["GBR", "ARG", "SEN"],
     "file": "9696cacfda11.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -858,6 +980,7 @@
     "decoys": ["ZAF", "SWZ", "BWA"],
     "easyDecoys": ["ESP", "THA", "URY"],
     "file": "ea9f0edc73bc.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -865,6 +988,7 @@
     "decoys": ["GHA", "BOL", "ETH"],
     "easyDecoys": ["IDN", "BOL", "ZAF"],
     "file": "523dfe70ed7a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -872,6 +996,7 @@
     "decoys": ["NLD", "PRY", "HRV"],
     "easyDecoys": ["VEN", "CMR", "PHL"],
     "file": "a903a62de23a.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -879,6 +1004,7 @@
     "decoys": ["AUT", "PER", "CAN"],
     "easyDecoys": ["KOR", "BOL", "NGA"],
     "file": "3d729f90847d.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -886,6 +1012,7 @@
     "decoys": ["HKG", "TWN", "VNM"],
     "easyDecoys": ["CUB", "ALB", "AUS"],
     "file": "e2dfcb37cba4.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -893,6 +1020,7 @@
     "decoys": ["VNM", "CHN", "KGZ"],
     "easyDecoys": ["PER", "JPN", "NZL"],
     "file": "05f2125d46e3.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -900,6 +1028,7 @@
     "decoys": ["ROU", "TCD", "AND"],
     "easyDecoys": ["JPN", "TUN", "MEX"],
     "file": "63ad21f8066c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -907,6 +1036,7 @@
     "decoys": ["COM", "MUS", "MOZ"],
     "easyDecoys": ["NZL", "CZE", "LBN"],
     "file": "e25991deff7c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -914,6 +1044,7 @@
     "decoys": ["TUR", "TUN", "AZE"],
     "easyDecoys": ["VEN", "SVN", "TUN"],
     "file": "bf17a0852fb0.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -921,6 +1052,7 @@
     "decoys": ["ITA", "IRL", "HUN"],
     "easyDecoys": ["IDN", "DZA", "FRA"],
     "file": "d6e6dcdac206.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -928,6 +1060,7 @@
     "decoys": ["NRU", "SLB", "FSM"],
     "easyDecoys": ["ISL", "EGY", "QAT"],
     "file": "071039e56c4e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -935,6 +1068,7 @@
     "decoys": ["ALB", "MNE", "SRB"],
     "easyDecoys": ["KOR", "COL", "GHA"],
     "file": "e8144391ce75.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -942,6 +1076,7 @@
     "decoys": ["SEN", "GIN", "CMR"],
     "easyDecoys": ["GBR", "BRA", "IND"],
     "file": "c0725423bcf6.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -949,6 +1084,7 @@
     "decoys": ["IDN", "POL", "SGP"],
     "easyDecoys": ["NZL", "QAT", "JAM"],
     "file": "be0d2ee6c6d8.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -956,6 +1092,7 @@
     "decoys": ["GHA", "LTU", "BOL"],
     "easyDecoys": ["CZE", "CUB", "NZL"],
     "file": "0f2a164faf6d.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -963,6 +1100,7 @@
     "decoys": ["ALB", "SRB", "MKD"],
     "easyDecoys": ["THA", "MEX", "CIV"],
     "file": "87141eeb506f.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -970,6 +1108,7 @@
     "decoys": ["CHN", "PRK", "RUS"],
     "easyDecoys": ["ALB", "PER", "CMR"],
     "file": "ba644942bbdd.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -977,6 +1116,7 @@
     "decoys": ["GUM", "FSM", "PLW"],
     "easyDecoys": ["ECU", "IRN", "CMR"],
     "file": "202f6959577b.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -984,6 +1124,7 @@
     "decoys": ["PRT", "BRA", "AGO"],
     "easyDecoys": ["AUT", "QAT", "COL"],
     "file": "7e3e7afd816c.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -991,6 +1132,7 @@
     "decoys": ["PAK", "DZA", "TKM"],
     "easyDecoys": ["PHL", "GBR", "ECU"],
     "file": "ecb12581e22f.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -998,6 +1140,7 @@
     "decoys": ["ATG", "KNA", "DMA"],
     "easyDecoys": ["NOR", "PAK", "KEN"],
     "file": "374f45e923c5.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1005,6 +1148,7 @@
     "decoys": ["MDG", "COM", "SYC"],
     "easyDecoys": ["ARE", "CUB", "LUX"],
     "file": "b3af949eba83.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1012,6 +1156,7 @@
     "decoys": ["KEN", "SSD", "ZMB"],
     "easyDecoys": ["HRV", "JPN", "COL"],
     "file": "90229801d20e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1019,6 +1164,7 @@
     "decoys": ["USA", "LBR", "PRI"],
     "easyDecoys": ["EGY", "CHE", "COL"],
     "file": "43cebc90345c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1026,6 +1172,7 @@
     "decoys": ["TTO", "GMB", "KNA"],
     "easyDecoys": ["GRC", "LBN", "VEN"],
     "file": "70829b7f63e3.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1033,6 +1180,7 @@
     "decoys": ["VUT", "NFK", "FJI"],
     "easyDecoys": ["NLD", "QAT", "CMR"],
     "file": "52453d8113d7.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -1040,6 +1188,7 @@
     "decoys": ["IND", "CIV", "IRL"],
     "easyDecoys": ["CHE", "BRA", "IND"],
     "file": "337aae653531.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1047,6 +1196,7 @@
     "decoys": ["NGA", "CIV", "IRL"],
     "easyDecoys": ["CAN", "SAU", "SEN"],
     "file": "1b61cc0bb022.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1054,6 +1204,7 @@
     "decoys": ["NFK", "CIV", "IRL"],
     "easyDecoys": ["QAT", "SVN", "USA"],
     "file": "cb9b2fbb4260.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1061,6 +1212,7 @@
     "decoys": ["HND", "SLV", "GTM"],
     "easyDecoys": ["SEN", "FRA", "VNM"],
     "file": "af25e095266c.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1068,6 +1220,7 @@
     "decoys": ["ASM", "WSM", "TON"],
     "easyDecoys": ["PER", "AUT", "PHL"],
     "file": "f78769796b6b.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1075,6 +1228,7 @@
     "decoys": ["LUX", "PRY", "HRV"],
     "easyDecoys": ["VEN", "IDN", "TUN"],
     "file": "9887ee51a164.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1082,6 +1236,7 @@
     "decoys": ["DNK", "ISL", "FRO"],
     "easyDecoys": ["URY", "IDN", "CIV"],
     "file": "8891bd9059ba.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1089,6 +1244,7 @@
     "decoys": ["IND", "BTN", "BGD"],
     "easyDecoys": ["BOL", "ALB", "ZAF"],
     "file": "45adb6b4b681.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1096,6 +1252,7 @@
     "decoys": ["MHL", "SLB", "VUT"],
     "easyDecoys": ["JPN", "GBR", "TUN"],
     "file": "7ebbaeada04d.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1103,6 +1260,7 @@
     "decoys": ["AUS", "COK", "FJI"],
     "easyDecoys": ["BEL", "TUN", "THA"],
     "file": "8c58061cd369.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1110,6 +1268,7 @@
     "decoys": ["ARE", "QAT", "BHR"],
     "easyDecoys": ["AND", "MAR", "CUB"],
     "file": "d43d96bbc2a7.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1117,6 +1276,7 @@
     "decoys": ["DZA", "MRT", "TKM"],
     "easyDecoys": ["LVA", "MEX", "GHA"],
     "file": "37e4ad24c8d4.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1124,6 +1284,7 @@
     "decoys": ["CRI", "NIC", "HND"],
     "easyDecoys": ["SVK", "CHN", "NGA"],
     "file": "187fd2b84878.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1131,6 +1292,7 @@
     "decoys": ["PYF", "COK", "NIU"],
     "easyDecoys": ["PAK", "GRC", "EGY"],
     "file": "b5de2ff9e9e1.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1138,6 +1300,7 @@
     "decoys": ["AUT", "LVA", "CAN"],
     "easyDecoys": ["ARE", "TUN", "IRL"],
     "file": "c9f5613e56d5.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1145,6 +1308,7 @@
     "decoys": ["CZE", "BHS", "TLS"],
     "easyDecoys": ["AND", "ZAF", "CAN"],
     "file": "65f26c3b5808.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1152,6 +1316,7 @@
     "decoys": ["JPN", "BGD", "KOR"],
     "easyDecoys": ["SEN", "DNK", "CHN"],
     "file": "7a61eb1fba8f.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1159,6 +1324,7 @@
     "decoys": ["SLB", "FSM", "PLW"],
     "easyDecoys": ["SEN", "IRL", "CUB"],
     "file": "27ec37917de9.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1166,6 +1332,7 @@
     "decoys": ["IDN", "SGP", "MLT"],
     "easyDecoys": ["BRA", "ARE", "NZL"],
     "file": "98e9b6d04128.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1173,6 +1340,7 @@
     "decoys": ["USA", "LBR", "MYS"],
     "easyDecoys": ["NZL", "FRA", "KEN"],
     "file": "a58f12147621.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -1180,6 +1348,7 @@
     "decoys": ["THA", "CRI", "NOR"],
     "easyDecoys": ["CHE", "EGY", "URY"],
     "file": "92969b34aaef.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1187,6 +1356,7 @@
     "decoys": ["BRA", "AGO", "MOZ"],
     "easyDecoys": ["QAT", "MEX", "NGA"],
     "file": "6dfa8cbfb92c.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1194,6 +1364,7 @@
     "decoys": ["NLD", "LUX", "HRV"],
     "easyDecoys": ["ESP", "IRQ", "NZL"],
     "file": "cc3c0f20fee3.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1201,6 +1372,7 @@
     "decoys": ["SDN", "JOR", "ARE"],
     "easyDecoys": ["SVK", "SEN", "PER"],
     "file": "310aac4a9343.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1208,6 +1380,7 @@
     "decoys": ["PCN", "COK", "NIU"],
     "easyDecoys": ["MEX", "THA", "LTU"],
     "file": "78cf4ca2dfe6.svg",
+    "isSovereign": false,
     "tier": "medium"
   },
   {
@@ -1215,6 +1388,7 @@
     "decoys": ["BHR", "LVA", "AUT"],
     "easyDecoys": ["DEU", "GHA", "CUB"],
     "file": "808ec3b51a49.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1222,6 +1396,7 @@
     "decoys": ["TCD", "AND", "MDA"],
     "easyDecoys": ["EGY", "PHL", "AUS"],
     "file": "b126fbff51e4.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1229,6 +1404,7 @@
     "decoys": ["FRA", "NLD", "LUX"],
     "easyDecoys": ["GHA", "KOR", "NZL"],
     "file": "b632879e3bc6.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1236,6 +1412,7 @@
     "decoys": ["SLE", "GAB", "BWA"],
     "easyDecoys": ["LVA", "USA", "SAU"],
     "file": "fa5b0b5f72b6.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1243,6 +1420,7 @@
     "decoys": ["BHR", "QAT", "KWT"],
     "easyDecoys": ["BOL", "GHA", "UKR"],
     "file": "b46847b89c87.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1250,6 +1428,7 @@
     "decoys": ["JOR", "PSE", "ARE"],
     "easyDecoys": ["ALB", "CUB", "AUS"],
     "file": "2e4601d4c819.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1257,6 +1436,7 @@
     "decoys": ["MLI", "GIN", "CMR"],
     "easyDecoys": ["KOR", "COL", "SRB"],
     "file": "540820da1aa3.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1264,6 +1444,7 @@
     "decoys": ["IDN", "POL", "MLT"],
     "easyDecoys": ["NLD", "KEN", "CHL"],
     "file": "3508eb232e5a.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1271,6 +1452,7 @@
     "decoys": ["FLK", "ATA", "URY"],
     "easyDecoys": ["VNM", "AND", "DZA"],
     "file": "823ae3625fb4.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1278,6 +1460,7 @@
     "decoys": ["VUT", "NRU", "PNG"],
     "easyDecoys": ["NGA", "PHL", "IRL"],
     "file": "447c92fae334.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1285,6 +1468,7 @@
     "decoys": ["GAB", "RWA", "BWA"],
     "easyDecoys": ["IRN", "LVA", "CHL"],
     "file": "d8b044345eb3.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1292,6 +1476,7 @@
     "decoys": ["HND", "NIC", "GTM"],
     "easyDecoys": ["ALB", "DZA", "THA"],
     "file": "f84aa29d6bd6.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1299,6 +1484,7 @@
     "decoys": ["ITA", "VAT", "SVN"],
     "easyDecoys": ["PER", "LBN", "ZAF"],
     "file": "d512add8ffce.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1306,6 +1492,7 @@
     "decoys": ["DJI", "ETH", "YEM"],
     "easyDecoys": ["SVN", "TUR", "COL"],
     "file": "601e902f315e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1313,6 +1500,7 @@
     "decoys": ["RUS", "SVK", "SVN"],
     "easyDecoys": ["THA", "CHL", "AUS"],
     "file": "fdb3afadc5f1.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1320,6 +1508,7 @@
     "decoys": ["KEN", "MWI", "ZMB"],
     "easyDecoys": ["LUX", "TUR", "ECU"],
     "file": "29fe0a4cc390.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1327,6 +1516,7 @@
     "decoys": ["GNQ", "GAB", "COG"],
     "easyDecoys": ["LTU", "TUR", "BOL"],
     "file": "9766fa11aa70.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1334,6 +1524,7 @@
     "decoys": ["GUY", "TTO", "BRB"],
     "easyDecoys": ["GHA", "TUR", "UKR"],
     "file": "1d76a5499f6a.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1341,6 +1532,7 @@
     "decoys": ["RUS", "SVN", "SRB"],
     "easyDecoys": ["NZL", "DZA", "IDN"],
     "file": "d42fc46e1646.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1348,6 +1540,7 @@
     "decoys": ["RUS", "SVK", "SRB"],
     "easyDecoys": ["BOL", "JPN", "ZAF"],
     "file": "6c2b962d1dcb.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1355,6 +1548,7 @@
     "decoys": ["FIN", "ALA", "ISL"],
     "easyDecoys": ["ZAF", "PER", "ARE"],
     "file": "3c9c4ca28b7e.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1362,6 +1556,7 @@
     "decoys": ["LSO", "ZAF", "BWA"],
     "easyDecoys": ["CHE", "ECU", "IRN"],
     "file": "8ddadca99e52.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1369,6 +1564,7 @@
     "decoys": ["AIA", "KNA", "VGB"],
     "easyDecoys": ["LVA", "AUS", "IND"],
     "file": "2a61366d0e61.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1376,6 +1572,7 @@
     "decoys": ["COM", "SOM", "MDG"],
     "easyDecoys": ["IRQ", "BOL", "SRB"],
     "file": "66e9acce52eb.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1383,6 +1580,7 @@
     "decoys": ["EGY", "IRQ", "YEM"],
     "easyDecoys": ["CIV", "IRL", "NZL"],
     "file": "378192cd7d17.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1390,6 +1588,7 @@
     "decoys": ["HTI", "DOM", "JAM"],
     "easyDecoys": ["VNM", "EGY", "FIN"],
     "file": "e710c13e5b4a.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1397,6 +1596,7 @@
     "decoys": ["ROU", "AND", "MDA"],
     "easyDecoys": ["PAK", "DEU", "USA"],
     "file": "801b7809dd6c.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1404,6 +1604,7 @@
     "decoys": ["MYS", "LBR", "USA"],
     "easyDecoys": ["URY", "CZE", "CHN"],
     "file": "43d92b293a0d.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1411,6 +1612,7 @@
     "decoys": ["CRI", "NOR", "PRK"],
     "easyDecoys": ["FIN", "CAN", "MAR"],
     "file": "0fccc726f307.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1418,6 +1620,7 @@
     "decoys": ["HUN", "BGR", "IRN"],
     "easyDecoys": ["POL", "NZL", "JAM"],
     "file": "3fc040a03ef9.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1425,6 +1628,7 @@
     "decoys": ["PAK", "DZA", "MRT"],
     "easyDecoys": ["POL", "USA", "NZL"],
     "file": "fc157e8568bf.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1432,6 +1636,7 @@
     "decoys": ["CZE", "PHL", "BHS"],
     "easyDecoys": ["NLD", "TUN", "ECU"],
     "file": "14b3df0adc35.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1439,6 +1644,7 @@
     "decoys": ["CHE", "DNK", "GEO"],
     "easyDecoys": ["JPN", "DZA", "HRV"],
     "file": "1b90704d2513.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1446,6 +1652,7 @@
     "decoys": ["GMB", "KNA", "NAM"],
     "easyDecoys": ["KEN", "RUS", "THA"],
     "file": "a7ffcc3072c8.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1453,6 +1660,7 @@
     "decoys": ["TUR", "AZE", "MDV"],
     "easyDecoys": ["SAU", "SVK", "CAN"],
     "file": "ec9d174fddd0.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1460,6 +1668,7 @@
     "decoys": ["TUN", "AZE", "MDV"],
     "easyDecoys": ["AND", "DZA", "PER"],
     "file": "de9a0e80c335.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1467,6 +1676,7 @@
     "decoys": ["HKG", "MAC", "PHL"],
     "easyDecoys": ["SVK", "PER", "TUN"],
     "file": "79cff05e1f57.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1474,6 +1684,7 @@
     "decoys": ["BDI", "MWI", "RWA"],
     "easyDecoys": ["PRT", "CHL", "IDN"],
     "file": "d99cfe53ce29.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1481,6 +1692,7 @@
     "decoys": ["DEU", "BEL", "LTU"],
     "easyDecoys": ["GRC", "NZL", "CAN"],
     "file": "c43c544d5126.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1488,6 +1700,7 @@
     "decoys": ["SWE", "KAZ", "RWA"],
     "easyDecoys": ["PHL", "JAM", "GHA"],
     "file": "43f673537f17.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1495,6 +1708,7 @@
     "decoys": ["ARG", "GRC", "SLV"],
     "easyDecoys": ["KEN", "LTU", "NZL"],
     "file": "524422ffec1d.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1502,6 +1716,7 @@
     "decoys": ["LBR", "MYS", "PRI"],
     "easyDecoys": ["THA", "DEU", "CIV"],
     "file": "227bad7baca2.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1509,6 +1724,7 @@
     "decoys": ["TJK", "KGZ", "TKM"],
     "easyDecoys": ["HUN", "PER", "CIV"],
     "file": "6b4f852b9fcb.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1516,6 +1732,7 @@
     "decoys": ["ITA", "SMR", "HRV"],
     "easyDecoys": ["IDN", "GHA", "URY"],
     "file": "da7abd81b44a.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1523,6 +1740,7 @@
     "decoys": ["LCA", "GRD", "BRB"],
     "easyDecoys": ["FRA", "IRQ", "AUS"],
     "file": "bb7001b6d9e7.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1530,6 +1748,7 @@
     "decoys": ["COL", "ECU", "ARM"],
     "easyDecoys": ["GBR", "CIV", "NZL"],
     "file": "1d23d29290ae.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1537,6 +1756,7 @@
     "decoys": ["VIR", "AIA", "SXM"],
     "easyDecoys": ["DEU", "IND", "DZA"],
     "file": "b250ac1952df.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1544,6 +1764,7 @@
     "decoys": ["VGB", "SXM", "AIA"],
     "easyDecoys": ["SEN", "POL", "QAT"],
     "file": "14fb8c38b2ea.svg",
+    "isSovereign": false,
     "tier": "hard"
   },
   {
@@ -1551,6 +1772,7 @@
     "decoys": ["CHN", "MAR", "KGZ"],
     "easyDecoys": ["BRA", "AUS", "ZAF"],
     "file": "80f8d8d348db.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1558,6 +1780,7 @@
     "decoys": ["ZAF", "GUY", "JAM"],
     "easyDecoys": ["USA", "SWE", "ARE"],
     "file": "3efcc74aeddb.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1565,6 +1788,7 @@
     "decoys": ["ASM", "NIU", "TON"],
     "easyDecoys": ["LUX", "MAR", "IRQ"],
     "file": "74f2844574ea.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1572,6 +1796,7 @@
     "decoys": ["MKD", "MNE", "ALB"],
     "easyDecoys": ["CHL", "ZAF", "NZL"],
     "file": "1f11cea4f46a.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1579,6 +1804,7 @@
     "decoys": ["EGY", "IRQ", "SYR"],
     "easyDecoys": ["CUB", "ITA", "TUN"],
     "file": "111a0aee0301.svg",
+    "isSovereign": true,
     "tier": "medium"
   },
   {
@@ -1586,6 +1812,7 @@
     "decoys": ["VUT", "GUY", "JAM"],
     "easyDecoys": ["LTU", "IRQ", "ECU"],
     "file": "7e38d84a07cb.svg",
+    "isSovereign": true,
     "tier": "easy"
   },
   {
@@ -1593,6 +1820,7 @@
     "decoys": ["KEN", "SSD", "MWI"],
     "easyDecoys": ["CHL", "LVA", "JPN"],
     "file": "49fe32e9541e.svg",
+    "isSovereign": true,
     "tier": "hard"
   },
   {
@@ -1600,6 +1828,7 @@
     "decoys": ["MOZ", "BWA", "ZMB"],
     "easyDecoys": ["ITA", "CAN", "PAK"],
     "file": "29996861ac43.svg",
+    "isSovereign": true,
     "tier": "hard"
   }
 ]
