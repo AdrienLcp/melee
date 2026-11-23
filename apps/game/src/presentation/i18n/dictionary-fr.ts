@@ -1699,20 +1699,16 @@ export const FR_DICTIONARY = defineDictionary({
         'Six plaques et un nombre à trouver s’affichent sur tous les écrans. Chacun assemble les plaques deux à deux — addition, soustraction, multiplication, division — vers le nombre, autant de calculs qu’il veut : seul le plus proche compte. La pièce voit le nombre de chacun, jamais comment il l’a fait, jusqu’à ce que la révélation montre le plus court chemin que permettaient les plaques.'
     },
     kept: ', le calcul gardé',
-    ladder: {
-      above: 'Au-dessus',
-      below: 'En dessous',
-      empty:
-        'Chacun apparaît sur la règle dès qu’il tient un nombre — plus il est proche de {target:number}, plus il monte',
-      exact: '{name} : le compte est bon',
-      far: 'Plus loin',
-      label: 'Le nombre de chacun autour du compte',
-      seat: '{name} : {value:number}, à {distance:number}',
-      waiting: 'Pas encore de nombre',
-      waitingSeat: '{name} : pas encore de nombre'
-    },
     made: ', plaque calculée',
     name: 'Le compte est bon',
+    nearest: {
+      exact: 'bon',
+      exactSeat: '{name} : le compte est bon',
+      label: 'Le nombre de chacun, du plus proche au plus loin',
+      seat: '{name} : {value:number}, à {distance:number}',
+      waiting: 'pas encore',
+      waitingSeat: '{name} : pas encore de nombre'
+    },
     operator: {
       add: 'Plus',
       divide: 'Divisé par',

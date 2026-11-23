@@ -11,7 +11,7 @@ import {
   OPERATOR_SIGNS
 } from '@melee/core/makenumber/calculation-check'
 
-import { nameWithin, wordsOf } from '@/helpers/make-number-ladder'
+import { nameWithin, wordsOf } from '@/helpers/name-within'
 import { makeNumberContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { CheckIcon } from '@/presentation/components/icons'

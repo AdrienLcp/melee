@@ -31,6 +31,10 @@ one part.
   joins the line-up. The spines are slimmer, so the shelf reads at a glance.
 - `[Game]` **The rounds drawn past the plan say less.** _Puis au hasard_,
   and how many games the draw picks among, rather than every game's name.
+- `[Game]` **Le compte est bon shows what you hold.** Lifting a tile turns
+  it coral and opens the four signs beside it; the sign you pick is stamped
+  on the tile, and the tiles that cannot follow it lie flat. The wall drops
+  its ladder for one row a seat, nearest first, each gap written out.
 
 ### Features
 
@@ -703,6 +707,11 @@ one part.
 - `[Game]` **The board's numbers sit in the middle of their squares**, and
   rise to the top edge as a pawn lands, settling back once it leaves.
 
+- `[Shared]` **A rack built before the clock runs out is kept.** A tile
+  merged while the screen's connection blinked is sent again once it is
+  back, the last half-second's merges still land, and an unsent result is
+  banked at the close — in Le compte est bon and every game that keeps
+  unsent work. The trophy badge reads in the dark palette.
 - `[Server]` **The assistant composing an evening is told the whole of
   each game.** The quiz answers in Portuguese too, a blind test draws from
   genre charts, decades and film scores by default — with the genre ids

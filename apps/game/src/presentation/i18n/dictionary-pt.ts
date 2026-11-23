@@ -1913,20 +1913,16 @@ const PORTUGUESE = defineDictionary({
         'Seis peças com números e um alvo aparecem em todos os ecrãs. Cada um junta as peças duas a duas — somar, subtrair, multiplicar, dividir — rumo ao alvo, quantas contas quiser: só vale a mais próxima. A sala vê o número de cada um, nunca como lá chegou, até a revelação mostrar o caminho mais curto que as peças permitiam.'
     },
     kept: ', a conta guardada',
-    ladder: {
-      above: 'Acima',
-      below: 'Abaixo',
-      empty:
-        'Cada um aparece na régua assim que tiver um número — quanto mais perto de {target:number}, mais acima',
-      exact: '{name}: conta certa',
-      far: 'Mais longe',
-      label: 'O número de cada um à volta do alvo',
-      seat: '{name}: {value:number}, a {distance:number}',
-      waiting: 'Ainda sem número',
-      waitingSeat: '{name}: ainda sem número'
-    },
     made: ', uma peça calculada',
     name: 'Conta certa',
+    nearest: {
+      exact: 'certo',
+      exactSeat: '{name}: conta certa',
+      label: 'O número de cada um, do mais perto ao mais longe',
+      seat: '{name}: {value:number}, a {distance:number}',
+      waiting: 'ainda não',
+      waitingSeat: '{name}: ainda sem número'
+    },
     operator: {
       add: 'Mais',
       divide: 'Dividido por',

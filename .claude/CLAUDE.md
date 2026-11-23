@@ -40,7 +40,7 @@ screen and asks each seat for the longest word they make, the wall showing
 each seat's length and never its word until the reveal turns over the
 longest the draw held, and **Le compte est bon** deals six number tiles and
 a target, every seat merging the tiles two at a time towards it, the wall
-pinning each seat's number on a ruler round the target and never how it got
+ranking each seat's number by its gap to the target and never how it got
 there until the reveal writes out the shortest way the tiles allowed, and
 **Pense comme la table** puts up a prompt — a red fruit, something in a
 fridge — that every screen answers in one word, each seat paid by how many

@@ -1,4 +1,4 @@
-// Side-effect module: styles `.make-number-answer`, a seat's target over its calculation, its six tiles and the four operators.
+// Side-effect module: styles `.make-number-answer`, a seat's target over its calculation, its six tiles and the tray of four signs between their rows.
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
@@ -78,7 +78,7 @@
       > .kept
         @include typography.score
 
-        background: var(--track-b)
+        background: var(--card-socket)
         border-radius: var(--radius-m)
         color: var(--card-ink)
         font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
@@ -158,10 +158,6 @@
         animation: number-tile-fuses var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.6) backwards
         display: inline-block
 
-      > .pending
-        background: transparent
-        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
-
     .current
       display: grid
       justify-items: end
@@ -185,24 +181,24 @@
         color: var(--ink-muted)
         font-size: var(--text-xs)
 
-    > .keys
-      display: grid
-      gap: var(--answer-gap)
-      grid-area: keys
-      grid-template-rows: minmax(0, 1fr) auto
-      min-block-size: 0
-
     .rack
       --rack-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-s))
-      --tile-font-size: clamp(var(--text-l), min(calc((100cqh - var(--rack-gap)) * 0.23), calc((100cqi - 2 * var(--rack-gap)) * 0.11)), var(--text-4xl))
+      --operator-height: var(--control-height)
+      --tray-open: calc(var(--operator-height) + var(--rack-gap) * 3.5)
+      --tile-font-size: clamp(var(--text-l), min(calc((100cqh - var(--tray-open)) * 0.23), calc((100cqi - 2 * var(--rack-gap)) * 0.11)), var(--text-4xl))
+      // How far a top-row tile's badge stands above it, its own overhang and
+      // the lift together, held inside the rack so it never covers the clock.
+      --badge-reach: calc(var(--space-s) + var(--space-xs))
 
+      align-content: end
       container: rack / size
       display: grid
-      gap: var(--rack-gap)
+      gap: 0 var(--rack-gap)
+      grid-area: keys
       grid-template-columns: repeat(3, minmax(0, 1fr))
-      align-content: end
-      grid-template-rows: repeat(2, minmax(0, calc(var(--text-4xl) * 2)))
-      min-block-size: calc(var(--target) * 2 + var(--space-xs))
+      grid-template-rows: minmax(0, calc(var(--text-4xl) * 2)) auto minmax(0, calc(var(--text-4xl) * 2))
+      min-block-size: calc(var(--target) * 2 + var(--tray-open))
+      padding-block-start: var(--badge-reach)
 
       > .number-tile
         @include piece.pressable
@@ -210,26 +206,51 @@
         aspect-ratio: auto
         block-size: 100%
         cursor: pointer
+        grid-row: 3
         inline-size: 100%
         touch-action: manipulation
+        transition: background-color var(--transition-base, 0s) var(--ease-in), box-shadow var(--transition-base, 0s) var(--ease-in), color var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in), transform var(--transition-fast, 0s) var(--ease-out)
+
+        &:nth-child(-n + 3)
+          grid-row: 1
+
+        > .made-mark
+          transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), background-color var(--transition-base, 0s) var(--ease-out)
 
         &[data-lifted]
-          box-shadow: 0 calc(var(--tile-edge) * 2.4) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--card-ink), var(--shadow-lifted)
-          translate: 0 calc(var(--tile-edge) * -1.6)
+          background: var(--primary)
+          box-shadow: 0 calc(var(--tile-edge) * 2.6) 0 var(--primary-edge), var(--shadow-pulled)
+          color: var(--on-primary)
+          scale: 1.03
+          transition-timing-function: var(--ease-out)
+          translate: 0 calc(var(--tile-edge) * -2)
+          z-index: 2
 
-        &[data-made][data-lifted]
-          box-shadow: 0 calc(var(--tile-edge) * 2.4) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--tile-ink), var(--shadow-lifted)
+          > .made-mark
+            background: var(--on-primary)
 
+        // A tile the chosen sign cannot take lies flat in the board, printed
+        // rather than faded: a faded tile still reads as one waiting its turn.
         &[data-off]
+          background: transparent
+          box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+          color: var(--socket-line)
           cursor: default
-          opacity: 0.38
+          transition-timing-function: var(--ease-out)
+          translate: 0 var(--tile-edge)
 
+          > .made-mark
+            background: var(--socket-line)
+
+        // The ghost leaves from here as the tile it was, so the socket under
+        // it is bare at once rather than fading out behind it.
         &[data-empty]
           cursor: default
+          transition-duration: 0s
 
-        // Above its neighbours while the tile merging onto it slides in.
+        // Over the tray, so the tile sliding in hops across the signs.
         &:has(> .ghost)
-          z-index: 1
+          z-index: 4
 
       .face
         --travel-offset: 0 0
@@ -242,14 +263,14 @@
           animation: number-tile-fuses var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.6) backwards
 
       .ghost
-        --ghost-from: calc(var(--from-column, 0) * (100% + var(--rack-gap))) calc(var(--from-row, 0) * (100% + var(--rack-gap)))
+        --ghost-from: calc(var(--from-column, 0) * (100% + var(--rack-gap))) calc(var(--from-row, 0) * (100% + var(--tray-open)))
 
         align-items: center
         animation: make-number-ghost-slides calc(var(--transition-base, 0s) * 1.3) var(--ease-out) forwards
-        background: var(--card)
+        background: var(--primary)
         border-radius: inherit
-        box-shadow: 0 var(--tile-edge) 0 var(--chipboard), var(--shadow-lifted)
-        color: var(--card-ink)
+        box-shadow: 0 var(--tile-edge) 0 var(--primary-edge), var(--shadow-lifted)
+        color: var(--on-primary)
         display: grid
         font-size: calc(var(--tile-font-size) * min(1, 3 / var(--digits, 1)))
         inset: 0
@@ -257,18 +278,105 @@
         pointer-events: none
         position: absolute
 
-        &[data-made]
-          background: var(--tile-2)
-          color: var(--tile-ink)
+      // The sign chosen, stamped on the lifted tile's corner: it stands in
+      // for the half-written line until the second tile completes it.
+      .operator-badge
+        align-items: center
+        background: var(--card)
+        block-size: var(--target)
+        border-radius: var(--radius-full)
+        box-shadow: 0 var(--tile-edge) 0 var(--chipboard), var(--shadow-piece)
+        color: var(--card-ink)
+        display: grid
+        font-size: var(--text-m)
+        inline-size: var(--target)
+        inset-block-start: calc(var(--space-s) * -1)
+        inset-inline-end: calc(var(--space-xs) * -1)
+        justify-items: center
+        opacity: 0
+        pointer-events: none
+        position: absolute
+        scale: 0.4
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in)
 
+        &[data-shown]
+          opacity: 1
+          scale: 1
+          transition-timing-function: var(--ease-out)
+
+        > .glyph
+          animation: swap-in var(--transition-base, 0s) var(--ease-out)
+          display: grid
+
+    // The signs, folded into the gap between the two rows of tiles until one
+    // is lifted, then laid on a tray whose notch points at it.
     .operators
+      --notch-inline: 1.8rem
+      --notch-block: 0.95rem
+      --notch-reach: var(--space-s)
+      --plate-inset: calc(var(--rack-gap) * 0.75)
+
+      align-items: center
+      block-size: var(--rack-gap)
       display: grid
       gap: var(--space-xs)
+      grid-column: 1 / -1
+      grid-row: 2
       grid-template-columns: repeat(4, minmax(0, 1fr))
+      // The notch stands past the tray's edge, which a plain clip would cut.
+      overflow: clip
+      overflow-clip-margin: var(--space-m)
+      padding: 0
+      position: relative
+      transition: block-size var(--transition-slow, 0s) var(--ease-in), padding var(--transition-slow, 0s) var(--ease-in)
+      z-index: 3
+
+      &::before
+        background: var(--socket)
+        border-radius: var(--radius-m)
+        box-shadow: var(--shadow-recess), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+        content: ''
+        inset: var(--plate-inset) 0
+        opacity: 0
+        position: absolute
+        transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+      // The notch in the lifted tile's own edge, so it still reads where its
+      // tip lands on the tile's face.
+      &::after
+        background: var(--primary-edge)
+        block-size: var(--notch-block)
+        clip-path: polygon(50% 0, 100% 100%, 0 100%)
+        content: ''
+        inline-size: var(--notch-inline)
+        inset-block-start: calc(var(--plate-inset) - var(--notch-reach))
+        inset-inline-start: calc((100% - 2 * var(--rack-gap)) / 6 + var(--lifted-column, 0) * ((100% - 2 * var(--rack-gap)) / 3 + var(--rack-gap)))
+        opacity: 0
+        position: absolute
+        transition: opacity var(--transition-base, 0s) var(--ease-in), inset-inline-start var(--transition-base, 0s) var(--ease-out), inset-block-start var(--transition-base, 0s) var(--ease-out), clip-path var(--transition-base, 0s) var(--ease-out)
+        translate: -50% 0
+
+      &[data-from='bottom']::after
+        clip-path: polygon(50% 100%, 100% 0, 0 0)
+        inset-block-start: calc(100% - var(--plate-inset) + var(--notch-reach) - var(--notch-block))
+
+      &[data-open]
+        block-size: var(--tray-open)
+        padding: calc(var(--rack-gap) * 1.6) calc(var(--rack-gap) * 0.9)
+        transition-timing-function: var(--ease-out)
+
+        &::before,
+        &::after
+          opacity: 1
+
+        &::before
+          transition-timing-function: var(--ease-out)
 
     .operator
       @include piece.piece($radius: var(--radius-m), $nubs: false)
       @include piece.pressable
+
+      --sign-order: 0
 
       align-items: center
       background: var(--track-a)
@@ -277,21 +385,37 @@
       display: grid
       font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), var(--text-2xl))
       justify-items: center
-      min-block-size: var(--control-height)
+      min-block-size: var(--operator-height)
+      opacity: 0
       padding: 0
+      scale: 0.9
       touch-action: manipulation
-      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+      transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), translate var(--transition-base, 0s) var(--ease-in), background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out)
+      translate: 0 var(--space-xs)
+      z-index: 1
+
+      @for $order from 2 through 4
+        &:nth-child(#{$order})
+          --sign-order: #{$order - 1}
+
+      // Each sign lands once the tray has started to open, one after the
+      // other; a press on one later moves at once.
+      &:not([data-disabled])
+        --landing: calc(var(--transition-base, 0s) * (0.46 + var(--sign-order) * 0.19))
+
+        opacity: 1
+        scale: 1
+        transition-delay: var(--landing), var(--landing), var(--landing), 0s, 0s, 0s, 0s
+        transition-timing-function: var(--ease-out)
+        translate: 0 0
 
       &[aria-pressed='true']
-        background: var(--ticked)
-        box-shadow: inset 0 0 0 var(--stroke-bold) var(--ticked-ink), var(--shadow-groove)
-        color: var(--ticked-ink)
+        background: var(--primary)
+        box-shadow: 0 calc(var(--edge) * 0.25) 0 var(--primary-edge), var(--shadow-pressed)
+        color: var(--on-primary)
         transform: translateY(calc(var(--edge) * 0.75))
 
       &[data-disabled]
-        background: transparent
-        box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
-        color: var(--ink-muted)
         cursor: default
 
     > .actions

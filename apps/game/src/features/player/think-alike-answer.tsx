@@ -16,6 +16,7 @@ import { ThinkAlikeTable } from '@/presentation/components/think-alike-table'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useLean } from './use-lean'
 
 import './think-alike-answer.sass'
 
@@ -27,6 +28,8 @@ const sendOnEnter = (event: { key: string; target: EventTarget }): void => {
 }
 
 type ThinkAlikeAnswerProps = {
+  /** What is left of the round's clock on the last snapshot, `null` while nothing counts down. */
+  closesInMs: number | null
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
   /** Holds the line still in the field, which the round sends for the seat if the clock runs out first. */
@@ -46,6 +49,7 @@ type ThinkAlikeAnswerProps = {
  * Mounted under `key={round.id}`, so every round opens on a blank card.
  */
 export const ThinkAlikeAnswer: React.FC<ThinkAlikeAnswerProps> = ({
+  closesInMs,
   onAnswer,
   onLean,
   players,
@@ -53,6 +57,7 @@ export const ThinkAlikeAnswer: React.FC<ThinkAlikeAnswerProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const leaning = useLean({ closesInMs, onLean })
   const [draft, setDraft] = useState('')
   const [sentAnswer, setSentAnswer] = useState<string | null>(null)
   const content = thinkAlikeContent(round)
@@ -89,7 +94,7 @@ export const ThinkAlikeAnswer: React.FC<ThinkAlikeAnswerProps> = ({
     setDraft(text)
 
     const line = text.trim()
-    onLean?.(line.length > 0 ? { answer: line, kind: 'match' } : null)
+    leaning.lean(line.length > 0 ? { answer: line, kind: 'match' } : null)
   }
 
   return (
@@ -101,6 +106,7 @@ export const ThinkAlikeAnswer: React.FC<ThinkAlikeAnswerProps> = ({
           const answer = draft.trim()
 
           if (answer.length > 0 && onAnswer({ answer, kind: 'match' })) {
+            leaning.cancel()
             fadeOffACopyOfTheForm(event.currentTarget)
             setSentAnswer(answer)
           }

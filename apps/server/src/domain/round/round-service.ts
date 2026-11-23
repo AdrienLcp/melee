@@ -111,6 +111,7 @@ import {
 } from '@/domain/round/longest-word-round'
 import {
   gradeCalculation,
+  MAKE_NUMBER_IN_FLIGHT_GRACE_MS,
   valueOfCalculation,
   writtenCalculation
 } from '@/domain/round/make-number-round'
@@ -2318,8 +2319,8 @@ export const elapsedRoundMs = (round: Round, now: number): number =>
   )
 
 /**
- * How long the open round runs for, and the three games that answer it from
- * somewhere other than the round duration. The reflex race draws its wait per
+ * How long the open round runs for, and the games that answer it from
+ * somewhere other than the round duration alone. The reflex race draws its wait per
  * round, so the only thing that knows how long the heat runs is the heat; the
  * inner clock's cap is its target's, which the settings never hold either.
  */
@@ -2355,6 +2356,10 @@ const openPhaseDurationMs = (room: Room): number | null => {
           round.content.stopClosesAtElapsedMs ?? round.durationMs
         ) + PETIT_BAC_IN_FLIGHT_GRACE_MS
       )
+    case 'makenumber':
+      return round.durationMs === null
+        ? null
+        : round.durationMs + MAKE_NUMBER_IN_FLIGHT_GRACE_MS
     default:
       return round.durationMs
   }

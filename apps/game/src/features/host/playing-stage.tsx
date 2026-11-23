@@ -67,7 +67,7 @@ import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { BlackSquareGauge } from './black-square-gauge'
 import { FiveCluesClimb } from './five-clues-climb'
 import { LongestWordTowers } from './longest-word-towers'
-import { MakeNumberLadder } from './make-number-ladder'
+import { MakeNumberNearest } from './make-number-nearest'
 import { MysteryWordTowers } from './mystery-word-towers'
 
 import './playing-stage.sass'
@@ -260,6 +260,9 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
                 tiles: makeNumber.tiles.join(', ')
               })}
             </VisuallyHidden>
+            <span aria-hidden className='target'>
+              {makeNumber.target}
+            </span>
             <span aria-hidden className='tiles'>
               {makeNumber.tiles
                 .map((value, position) => ({ position, value }))
@@ -512,7 +515,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         ))}
       {makeNumber !== null &&
         (onAnswer === null ? (
-          <MakeNumberLadder players={view.players} round={round} />
+          <MakeNumberNearest players={view.players} round={round} />
         ) : (
           <MakeNumberAnswer
             closesInMs={closesInMs}
@@ -528,6 +531,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <ThinkAlikeTable players={view.players} round={round} />
         ) : (
           <ThinkAlikeAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={onAnswer}
             onLean={onLean}

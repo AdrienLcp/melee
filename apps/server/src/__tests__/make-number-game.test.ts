@@ -33,6 +33,7 @@ import {
   type Peer,
   playerView,
   type RoomHarness,
+  sessionIdOf,
   waitFor
 } from './room-harness'
 
@@ -170,6 +171,7 @@ const roundInPlay = async ({
   await waitFor(() => playerView(zoe)?.phase === 'playing', 'the tiles')
 
   return {
+    code,
     host,
     lou,
     max,
@@ -450,6 +452,55 @@ describe('a make-the-number round through the seam', () => {
         { playerId: idOf(lou), steps: EXACT }
       ])
     )
+  })
+
+  it('[makenumber] banks a rack through a dropped socket: the lean sent before the drop, and the one sent again once it reopens', async () => {
+    const { code, host, max, roundId, zoe } = await roundInPlay()
+
+    leanCalculation({ roundId, seat: zoe, steps: SEVEN_TEN })
+    leanCalculation({ roundId, seat: max, steps: SEVEN_FIFTY })
+    await leansRead([zoe, max])
+
+    const reopened = await Promise.all(
+      [zoe, max].map(async (seat, index) => {
+        seat.close()
+        await seat.whenClosed
+
+        return harness.seat({
+          code,
+          nickname: index === 0 ? 'Zoe' : 'Max',
+          sessionId: sessionIdOf(seat)
+        })
+      })
+    )
+    const [zoeAgain, maxAgain] = reopened
+
+    if (zoeAgain === undefined || maxAgain === undefined) {
+      throw new Error('both seats should be back')
+    }
+
+    leanCalculation({ roundId, seat: maxAgain, steps: SEVEN_HUNDRED })
+    await leansRead([maxAgain])
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(
+      () => playerView(zoeAgain)?.phase === 'revealed',
+      'the reveal'
+    )
+
+    const view = hostView(host)
+    const awardOf = (seat: Peer<PlayerServerMessage>) =>
+      view?.round?.awards.find((award) => award.playerId === idOf(seat))
+
+    expect(idOf(zoeAgain)).toBe(idOf(zoe))
+    expect(awardOf(zoeAgain)).toMatchObject({
+      isUnsent: true,
+      verdict: { distance: 7, value: 710 }
+    })
+    expect(awardOf(maxAgain)).toMatchObject({
+      isUnsent: true,
+      points: answerShareOf(pointsForCalculation({ distance: 3 })),
+      verdict: { distance: 3, value: 700 }
+    })
   })
 
   it('[makenumber] pays an exact hit the whole round, a near miss its share and a far one nothing', async () => {

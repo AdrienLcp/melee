@@ -179,7 +179,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     writeHostToken({ hostToken, roomCode })
   })
   const [hasClosedRoom, setHasClosedRoom] = useState(false)
-  const { clearError, clock, error, retry, send, status, view } =
+  const { clearError, clock, error, openings, retry, send, status, view } =
     useHostConnection({
       fadeOffTheStage,
       isLeaving: hasClosedRoom,
@@ -212,7 +212,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // anywhere a reload would find it again.
   const [rightAway, setRightAway] = useState<RightAwayStart>('idle')
 
-  useReportConnection({ clock, status })
+  useReportConnection({ clock, openings, status })
   useOwnLinesInRoom({ send, view })
   usePhaseField(view?.phase ?? null)
   const slateWall = useSlateWall(view)

@@ -8,6 +8,8 @@ import type { SocketStatus } from '@/infrastructure/messaging/use-room-socket'
 
 export type ScreenConnection = {
   clock: ClockEstimate | null
+  /** How many times this screen's socket has opened, counting every reconnection a blink hides from `status`. */
+  openings: number
   status: SocketStatus
 }
 
@@ -40,17 +42,25 @@ export const ConnectionProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useConnection = (): ScreenConnection | null =>
   useChannel().connection
 
-export const useReportConnection = ({ clock, status }: ScreenConnection) => {
+export const useReportConnection = ({
+  clock,
+  openings,
+  status
+}: ScreenConnection) => {
   const { report } = useChannel()
 
   useEffect(() => {
-    report({ clock, status })
+    report({ clock, openings, status })
 
     return () => {
       report(null)
     }
-  }, [clock, report, status])
+  }, [clock, openings, report, status])
 }
+
+/** `0` on a screen that holds no socket. A change means a socket opened again, and what it was sent into the last one may never have arrived. */
+export const useSocketOpenings = (): number =>
+  useOptionalChannel()?.connection?.openings ?? 0
 
 /**
  * Whether this screen's socket is down and on its way back. A press then goes

@@ -74,6 +74,8 @@ export type RoomSocket = {
   clearError: () => void
   clock: ClockEstimate | null
   error: ProtocolErrorMessage | null
+  /** How many times the socket has opened, a reconnection inside a blink included, which `status` hides. */
+  openings: number
   /**
    * Opens a fresh socket after a **refusal**, and does nothing on a socket that
    * had not given up. A refusal is final until something changes on this side —
@@ -140,6 +142,7 @@ export const useRoomSocket = ({
   const [socketStatus, setSocketStatus] = useState<SocketStatus>('connecting')
   const [error, setError] = useState<ProtocolErrorMessage | null>(null)
   const [clock, setClock] = useState<ClockEstimate | null>(null)
+  const [openings, setOpenings] = useState(0)
 
   const socketRef = useRef<WebSocket | null>(null)
   const samplesRef = useRef<ClockSample[]>([])
@@ -192,6 +195,7 @@ export const useRoomSocket = ({
         attempt = 0
         lastHeardAt = nowMs()
         setSocketStatus('open')
+        setOpenings((count) => count + 1)
         setError(null)
         // Everything the hello carries is read here rather than when the effect
         // ran: a refusal can have voided the seat since, and a screen handed the
@@ -457,5 +461,5 @@ export const useRoomSocket = ({
     reconnectRef.current?.()
   }, [])
 
-  return { clearError, clock, error, retry, send, status }
+  return { clearError, clock, error, openings, retry, send, status }
 }

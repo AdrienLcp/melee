@@ -458,23 +458,43 @@
         flex: 1 1 0
         inline-size: min(100%, 36rem)
 
-    // The six tiles dealt on the card and the ruler under them, the target at
-    // its head — or, for a seated console, its own rack in their place.
+    // The target on the spine and the six tiles dealt beside it on the card,
+    // every seat's row under them — or, for a seated console, its own rack
+    // in their place.
     &[data-make-number]
       --spine: var(--spine-makenumber)
+      --spine-edge: var(--spine-edge-makenumber)
 
       > .round-card
         flex: none
         margin-block: 0
 
       .make-number-draw
+        --tile-font-size: clamp(1.25rem, min(calc(var(--stage-unit) * 4.6), 6cqh), 3rem)
+
+        align-items: center
         display: flex
+        gap: calc(var(--tile-font-size) * 0.6)
         justify-content: center
         margin: 0
 
-        > .tiles
-          --tile-font-size: clamp(1.25rem, min(calc(var(--stage-unit) * 4.6), 6cqh), 3rem)
+        // What every row is measured from, a size above the tiles.
+        > .target
+          @include typography.score
+          @include typography.solid
 
+          align-content: center
+          animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+          background: var(--spine)
+          block-size: 1.25em
+          border-radius: var(--radius-l)
+          box-shadow: 0 0.1875rem 0 var(--spine-edge), var(--shadow-piece)
+          color: var(--on-spine)
+          font-size: calc(var(--tile-font-size) * 1.55)
+          font-stretch: 76%
+          padding-inline: 0.35em
+
+        > .tiles
           display: grid
           gap: clamp(var(--space-2xs), calc(var(--stage-unit) * 1.4), var(--space-m))
           grid-template-columns: repeat(6, auto)
@@ -489,7 +509,7 @@
               &:nth-child(#{$tile})
                 animation-delay: calc(var(--transition-fast, 0s) * #{($tile - 1) * 0.7})
 
-      > .make-number-ladder
+      > .make-number-nearest
         align-self: stretch
         flex: 1 1 0
 

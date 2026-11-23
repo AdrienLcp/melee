@@ -84,6 +84,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const {
     clock,
     error,
+    openings,
     send,
     status,
     view: wallView
@@ -109,7 +110,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     isAbsent: view !== null && !view.isHostConnected
   })
 
-  useReportConnection({ clock, status })
+  useReportConnection({ clock, openings, status })
   useReturnToWallPairing(isLetGo)
   usePhaseField(view?.phase ?? null)
   useMarkingField(view?.phase === 'playing' && slateWall.isOnWall)

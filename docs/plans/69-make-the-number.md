@@ -240,6 +240,37 @@ tiles — and the reveal's solution, in one pass.
    table's rows, and the target's plate is wider. Seen muted at 1920×1080
    and 1024×768, both palettes, 24 seats: empty, half and full, no scroll,
    no chip outside its rung, the first pin filmed entering.
+   **Revised** 23/11/2026, after a seat ran out of clock and lost its rack.
+   A lean the socket could not write was dropped and never sent again:
+   `useLean` (every game that leans, think-alike moved onto it) now holds
+   the latest lean in `createLeanSender` until a write takes it, and sends
+   the last one again on every socket that reopens (`openings` on the
+   connection, counting the reconnections a blink hides from `status`).
+   **A grace past the clock**: the tiles stay open
+   `MAKE_NUMBER_IN_FLIGHT_GRACE_MS` (500 ms) on the server's own clock after
+   every screen reads zero, as petit bac's sheets do, so a merge in the last
+   moments lands rather than meeting `wrong_phase`; the arrival stamp
+   decides, and the clock's tenth has already run out inside it. Two games
+   now carry the same 500 ms; the other leaning games may take it the day a
+   loss is seen there. **A bare dealt tile is not leaned**: the rules make a
+   calculation one to five steps and a bare tile cannot be sent either, and
+   the only bare tile that could ever pay is a 100 against a target of 101
+   to 109 the draw did not already exclude. The trophy badge prints on
+   `--card-socket` with `--card-ink` (paper in both palettes); it read
+   `--track-b`, 1.16:1 in the dark.
+   **Redrawn** 23/11/2026, after a table could not tell what was lifted or
+   when a sign applied, and called the wall's ladder empty lines. Three
+   directions were built as example pages and the one where _the signs come
+   out of the tile_ shipped. **The rack**: at rest only the tiles; lifting
+   one turns it coral and opens a tray of the four signs between the two
+   rows, its notch pointing at the lifted tile; the chosen sign is stamped
+   on that tile's corner and the tiles that cannot follow it lie flat, so
+   the three states — nothing lifted, signs armed, second tile invited —
+   never look alike. **The wall**: the ladder is gone for one row a seat,
+   nearest first, the value large and its gap written out (_à 292_ stays
+   apart from _à 50_), in one to four columns sized to the screen so 24
+   seats fill it without a scroll; seats with no number wait last, and rows
+   slide to their new place as values change.
 
 ## How to tell it is done
 

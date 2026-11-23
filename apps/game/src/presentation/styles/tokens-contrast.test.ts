@@ -290,6 +290,11 @@ describe('colour tokens', () => {
           foreground: '--card-socket-line',
           minimum: WCAG_AA.nonText
         },
+        {
+          background: '--good-soft',
+          foreground: '--tile-ink',
+          minimum: WCAG_AA.text
+        },
         ...PARTY_FILLS.map((background) => ({
           background,
           foreground: '--party-ink',

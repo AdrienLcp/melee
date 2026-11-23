@@ -40,6 +40,7 @@ import {
   UndoIcon
 } from '@/presentation/components/icons'
 import { RefusalNote } from '@/presentation/components/refusal-note'
+import { useLastShown } from '@/presentation/components/use-last-shown'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -112,10 +113,11 @@ type MakeNumberAnswerProps = {
 }
 
 /**
- * A seat's six tiles and the target. A tile pressed is lifted, an operator
- * chosen, and a second tile pressed takes the result: the first slides onto
- * it and leaves an empty socket, and the result is lifted for the next step.
- * A step the rule refuses is out of reach, its tiles dimmed. The send press sends
+ * A seat's six tiles and the target. A tile pressed is lifted and opens the
+ * four signs between the rows, pointing at it; the sign chosen is stamped on
+ * its corner, and a second tile pressed takes the result: the first slides
+ * onto it and leaves an empty socket, and the result is lifted for the next
+ * step. A tile the sign cannot take lies flat, out of reach. The send press sends
  * the lifted made tile's calculation, or the made tile nearest the target,
  * which is also what is saved as it changes and paid if the clock runs out
  * first. The calculations sent are listed by value, the kept one marked.
@@ -139,10 +141,14 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
   const [lifted, setLifted] = useState<number | null>(null)
   const [operator, setOperator] = useState<CalculationOperator | null>(null)
   const [move, setMove] = useState<RackMove>('settled')
+  const [merges, setMerges] = useState(0)
+  const [landedMerges, setLandedMerges] = useState(0)
   const [sendsSeen, setSendsSeen] = useState(sends.length)
   const [answered, setAnswered] = useState(refusal)
   const [isSending, setIsSending] = useState(false)
   const leaned = useRef<string>('null')
+  const aimed = useLastShown(lifted) ?? 0
+  const stamped = useLastShown(operator)
 
   // A calculation banked: whatever the server last refused is spent.
   if (sends.length !== sendsSeen) {
@@ -221,6 +227,7 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
       setLifted(place)
       setOperator(null)
       setMove('merged')
+      setMerges((count) => count + 1)
     }
   }
 
@@ -282,10 +289,7 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
     move === 'merged' && lastMerge !== undefined
       ? rackPlaces(undoneRack(rack))[lastMerge.from]
       : undefined
-  const pending =
-    liftedPlace?.kind === 'tile' && operator !== null
-      ? `${liftedPlace.value} ${OPERATOR_SIGNS[operator]}`
-      : null
+  const StampedGlyph = stamped === null ? null : OPERATOR_GLYPHS[stamped]
 
   return (
     <section
@@ -336,7 +340,7 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
         <ol
           aria-label={translate('makenumber.work')}
           className='lines'
-          data-empty={(lines.length === 0 && pending === null) || undefined}
+          data-empty={lines.length === 0 || undefined}
         >
           <li className='hint' key='hint'>
             {translate('makenumber.hint')}
@@ -355,11 +359,6 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
                 <span className='result'>{line.result}</span>
               </li>
             ))}
-          {pending !== null && (
-            <li className='line pending' key='pending'>
-              {pending}
-            </li>
-          )}
         </ol>
         <p className='current' data-empty={toSendValue === null || undefined}>
           <span className='value' key={toSendValue ?? 'none'}>
@@ -383,80 +382,97 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
             : translate(`makenumber.refusal.${shownRefusal}`)
         }
       />
-      <div className='keys'>
-        <Group aria-label={translate('makenumber.rack')} className='rack'>
-          {RACK_PLACES.map((place) => {
-            const held = places[place] ?? EMPTY_PLACE
-            const isEmpty = held.kind === 'empty'
-            const isLifted = lifted === place
-            const isOff =
-              !isEmpty &&
-              !isLifted &&
-              lifted !== null &&
-              operator !== null &&
-              !canMerge(place)
-            const isFused = move === 'merged' && lastMerge?.onto === place
+      <Group aria-label={translate('makenumber.rack')} className='rack'>
+        {RACK_PLACES.map((place) => {
+          const held = places[place] ?? EMPTY_PLACE
+          const isEmpty = held.kind === 'empty'
+          const isLifted = lifted === place
+          const isOff =
+            !isEmpty &&
+            !isLifted &&
+            lifted !== null &&
+            operator !== null &&
+            !canMerge(place)
+          const isFused = move === 'merged' && lastMerge?.onto === place
 
-            return (
-              <Button
-                aria-pressed={isEmpty ? undefined : isLifted}
-                className='number-tile'
-                data-empty={isEmpty || undefined}
-                data-lifted={isLifted || undefined}
-                data-made={(held.kind === 'tile' && held.isMade) || undefined}
-                data-off={isOff || undefined}
-                isDisabled={isEmpty || isOff}
-                key={place}
-                onPress={(event) => {
-                  releaseFocus(event)
-                  pressTile(place)
-                }}
-                preventFocusOnPress
+          return (
+            <Button
+              aria-pressed={isEmpty ? undefined : isLifted}
+              className='number-tile'
+              data-empty={isEmpty || undefined}
+              data-lifted={isLifted || undefined}
+              data-made={(held.kind === 'tile' && held.isMade) || undefined}
+              data-off={isOff || undefined}
+              isDisabled={isEmpty || isOff}
+              key={place}
+              onPress={(event) => {
+                releaseFocus(event)
+                pressTile(place)
+              }}
+              preventFocusOnPress
+            >
+              {held.kind === 'tile' && (
+                <span
+                  className='face'
+                  data-arrival={isFused ? 'fused' : 'set'}
+                  key={held.source}
+                  style={{ '--digits': String(held.value).length }}
+                >
+                  {held.value}
+                  {held.isMade && (
+                    <VisuallyHidden elementType='span'>
+                      {translate('makenumber.made')}
+                    </VisuallyHidden>
+                  )}
+                </span>
+              )}
+              <span aria-hidden className='made-mark' />
+              <span
+                aria-hidden
+                className='operator-badge'
+                data-shown={(isLifted && operator !== null) || undefined}
               >
-                {held.kind === 'tile' && (
-                  <span
-                    className='face'
-                    data-arrival={isFused ? 'fused' : 'set'}
-                    key={held.source}
-                    style={{ '--digits': String(held.value).length }}
-                  >
-                    {held.value}
-                    {held.isMade && (
-                      <VisuallyHidden elementType='span'>
-                        {translate('makenumber.made')}
-                      </VisuallyHidden>
-                    )}
+                {StampedGlyph !== null && (
+                  <span className='glyph' key={stamped}>
+                    <StampedGlyph />
                   </span>
                 )}
-                <span aria-hidden className='made-mark' />
-                {isFused &&
-                  ghostFrom?.kind === 'tile' &&
-                  lastMerge !== undefined && (
-                    <span
-                      aria-hidden
-                      className='ghost'
-                      data-made={ghostFrom.isMade || undefined}
-                      key={rack.merges.length}
-                      style={{
-                        '--digits': String(ghostFrom.value).length,
-                        '--from-column':
-                          (lastMerge.from % RACK_COLUMNS) -
-                          (lastMerge.onto % RACK_COLUMNS),
-                        '--from-row':
-                          Math.floor(lastMerge.from / RACK_COLUMNS) -
-                          Math.floor(lastMerge.onto / RACK_COLUMNS)
-                      }}
-                    >
-                      {ghostFrom.value}
-                    </span>
-                  )}
-              </Button>
-            )
-          })}
-        </Group>
+              </span>
+              {isFused &&
+                merges !== landedMerges &&
+                ghostFrom?.kind === 'tile' &&
+                lastMerge !== undefined && (
+                  <span
+                    aria-hidden
+                    className='ghost'
+                    key={merges}
+                    onAnimationEnd={(event) => {
+                      if (event.target === event.currentTarget) {
+                        setLandedMerges(merges)
+                      }
+                    }}
+                    style={{
+                      '--digits': String(ghostFrom.value).length,
+                      '--from-column':
+                        (lastMerge.from % RACK_COLUMNS) -
+                        (lastMerge.onto % RACK_COLUMNS),
+                      '--from-row':
+                        Math.floor(lastMerge.from / RACK_COLUMNS) -
+                        Math.floor(lastMerge.onto / RACK_COLUMNS)
+                    }}
+                  >
+                    {ghostFrom.value}
+                  </span>
+                )}
+            </Button>
+          )
+        })}
         <Group
           aria-label={translate('makenumber.operators')}
           className='operators'
+          data-from={aimed < RACK_COLUMNS ? 'top' : 'bottom'}
+          data-open={lifted !== null || undefined}
+          style={{ '--lifted-column': aimed % RACK_COLUMNS }}
         >
           {calculationOperators.map((each) => {
             const Glyph = OPERATOR_GLYPHS[each]
@@ -479,7 +495,7 @@ export const MakeNumberAnswer: React.FC<MakeNumberAnswerProps> = ({
             )
           })}
         </Group>
-      </div>
+      </Group>
       <div className='actions'>
         <Button
           aria-label={translate('makenumber.undo')}

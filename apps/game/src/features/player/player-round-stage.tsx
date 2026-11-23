@@ -803,6 +803,7 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
             <RoundClock clock={clock} view={view} />
           </div>
           <ThinkAlikeAnswer
+            closesInMs={closesInMs}
             key={round.id}
             onAnswer={answerWithRound}
             onLean={leanWithRound}

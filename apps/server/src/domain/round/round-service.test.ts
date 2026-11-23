@@ -2,15 +2,24 @@ import { describe, expect, it } from 'vitest'
 
 import type { GameKind } from '@melee/protocol/game'
 
+import { drawPlayableNumbers } from '@melee/core/makenumber/playable-draw'
 import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
+import { joinAsPlayer } from '@/domain/room/room-service'
 
 import {
+  MAKE_NUMBER_IN_FLIGHT_GRACE_MS,
+  makeNumberContent
+} from './make-number-round'
+import {
   advanceDueAt,
+  closeRound,
   controlClip,
   elapsedRoundMs,
   openRound,
+  registerLean,
+  remainingRoundMs,
   resumeRoundClock,
   revealRound,
   startRoundClock,
@@ -192,5 +201,91 @@ describe('resumeRoundClock', () => {
     expect(room.round && elapsedRoundMs(room.round, backAt)).toBe(
       RESTARTED_AFTER_MS
     )
+  })
+})
+
+describe('the make-the-number close', () => {
+  const ROUND_MS = 60_000
+  const RUNNING_FROM = OPENED_AT + COUNTDOWN_MS
+
+  const runningRack = () => {
+    const room = newRoom({
+      code: 'ABCD',
+      games: ['makenumber'],
+      hostToken: generateHostToken(),
+      locale: 'fr',
+      now: OPENED_AT
+    })
+    const numbers = drawPlayableNumbers({
+      draw: () => ({ target: 703, tiles: [75, 25, 7, 3, 10, 10] })
+    })
+
+    if (numbers === null || room.settings.game?.kind !== 'makenumber') {
+      throw new Error('the draw should be playable')
+    }
+
+    room.settings.countdownMs = COUNTDOWN_MS
+    room.settings.game.roundDurationMs = ROUND_MS
+    joinAsPlayer({
+      askedPiece: null,
+      newPlayerId: 'player-zoe',
+      nickname: 'Zoe',
+      now: OPENED_AT,
+      room,
+      sessionId: 'session-zoe'
+    })
+    openRound({
+      content: makeNumberContent(numbers),
+      id: 'round-1',
+      now: OPENED_AT,
+      room
+    })
+    startRoundClock({ now: RUNNING_FROM, room, roundId: 'round-1' })
+
+    return room
+  }
+
+  it('[makenumber] keeps the tiles open a grace past every screen’s clock, by the server’s own', () => {
+    const room = runningRack()
+
+    expect(remainingRoundMs(room, RUNNING_FROM + ROUND_MS)).toBe(
+      MAKE_NUMBER_IN_FLIGHT_GRACE_MS
+    )
+  })
+
+  it('[makenumber] banks a rack leaned inside the grace at the close, with no speed', () => {
+    const room = runningRack()
+    const arrivedAt =
+      RUNNING_FROM + ROUND_MS + MAKE_NUMBER_IN_FLIGHT_GRACE_MS / 2
+
+    expect(remainingRoundMs(room, arrivedAt)).toBeGreaterThan(0)
+
+    const leaned = registerLean({
+      attempt: {
+        kind: 'calculation',
+        steps: [
+          { left: 0, operator: 'add', right: 1 },
+          { left: 6, operator: 'multiply', right: 2 }
+        ]
+      },
+      isWord: () => false,
+      now: arrivedAt,
+      playerId: 'player-zoe',
+      room,
+      roundId: 'round-1',
+      shapeOf: () => null
+    })
+
+    closeRound(room, RUNNING_FROM + ROUND_MS + MAKE_NUMBER_IN_FLIGHT_GRACE_MS)
+
+    expect(leaned.status).toBe('success')
+    expect(room.round?.awards).toEqual([
+      expect.objectContaining({
+        isUnsent: true,
+        playerId: 'player-zoe',
+        speedBonus: 0,
+        verdict: { distance: 3, kind: 'calculation', value: 700 }
+      })
+    ])
   })
 })

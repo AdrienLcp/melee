@@ -1,0 +1,141 @@
+// Side-effect module: styles `.make-number-nearest`, every seat's nearest value on a row of its own, nearest the target first.
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The rows fill the height in the columns `useNearestLayout` picks, top to
+  // bottom, each laid out by its CSS `order` rather than its place in the
+  // document, so a row moving never replays its entrance.
+  .make-number-nearest
+    --row-cap: 10.5rem
+
+    align-content: center
+    display: grid
+    font-size: var(--row-font, var(--text-l))
+    gap: clamp(var(--space-2xs), calc(var(--stage-unit) * 1.1), var(--space-s)) clamp(var(--space-s), calc(var(--stage-unit) * 2.6), var(--space-l))
+    grid-auto-flow: column
+    grid-template-columns: repeat(var(--nearest-columns, 1), minmax(0, 1fr))
+    grid-template-rows: repeat(var(--nearest-rows, var(--nearest-count, 1)), minmax(0, var(--row-cap)))
+    list-style: none
+    margin: 0
+    min-block-size: 0
+    min-inline-size: 0
+    overflow: clip
+    // The pieces' chipboard edge and shadow hang under the last row.
+    overflow-clip-margin: 0.5rem
+    padding: 0
+
+  .make-number-nearest > .row
+    --rank: 0
+
+    align-items: center
+    animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+    animation-delay: calc(var(--transition-fast, 0s) * min(var(--rank), 8) * 0.25)
+    background: var(--card)
+    border-radius: var(--radius-m)
+    box-shadow: 0 0.12em 0 var(--chipboard), var(--shadow-piece)
+    color: var(--card-ink)
+    column-gap: 0.45em
+    display: grid
+    grid-template-columns: auto minmax(0, 1fr) auto auto
+    min-block-size: 0
+    min-inline-size: 0
+    order: var(--order, 0)
+    overflow: clip
+    padding-inline: 0.5em 0.4em
+    transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+
+    > .pawn
+      font-size: var(--text-em-xl)
+
+    > .name
+      @include typography.title
+
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: var(--name-lines, 2)
+      display: -webkit-box
+      font-size: 1em
+      hyphens: auto
+      overflow: hidden
+
+    // A new nearer value swaps in where the old one stood.
+    > .figure
+      @include typography.score
+      @include typography.solid
+
+      animation: swap-in var(--transition-base, 0s) var(--ease-out) backwards
+      font-size: calc(var(--text-em-xl) * 1.5)
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
+
+    // How far off, written out on a pill: `à 292`, or the check for exact.
+    > .gap
+      @include typography.strong
+      @include typography.solid
+
+      align-items: center
+      background: var(--card-socket)
+      border-radius: var(--radius-full)
+      color: var(--card-ink)
+      display: inline-flex
+      font-size: calc(var(--text-em-s) * 1.2)
+      justify-content: center
+      min-inline-size: 4.2em
+      padding: 0.3em 0.6em
+      transition: background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+      white-space: nowrap
+
+      > .gap-text
+        animation: swap-in var(--transition-base, 0s) var(--ease-out) backwards
+
+      // The check stays mounted and folded at no width until the row is
+      // exact, then opens its room and inks in.
+      > .stamp
+        block-size: 1.1em
+        flex: none
+        inline-size: 1.1em
+        margin-inline-end: -1.1em
+        opacity: 0
+        scale: 0.4
+        transition: margin var(--transition-base, 0s) var(--ease-in), opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in)
+
+    &[data-band='exact']
+      background: var(--good-soft)
+      box-shadow: 0 0.12em 0 var(--good-edge), var(--shadow-piece)
+      color: var(--tile-ink)
+
+      > .gap
+        background: var(--good-edge)
+        color: var(--on-spine)
+
+        > .stamp
+          margin-inline-end: 0.2em
+          opacity: 1
+          scale: 1
+          transition-timing-function: var(--ease-out)
+
+    &[data-band='far']
+      background: var(--track-a)
+      color: var(--board-ink)
+
+      > .gap
+        background: var(--track-five)
+        color: var(--track-ink)
+
+    // A seat holding no number yet: the row's outline printed on the board,
+    // and no figure.
+    &[data-band='owed']
+      background: transparent
+      box-shadow: none
+      color: var(--board-ink)
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -1)
+
+      > .figure
+        opacity: 0
+
+      > .gap
+        background: transparent
+        color: var(--board-muted)
+
+    // A seat that left the table fades out of its place.
+    &[data-leaving]
+      animation: page-leave var(--transition-base, 0s) var(--ease-in) forwards

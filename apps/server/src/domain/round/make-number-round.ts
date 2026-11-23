@@ -14,6 +14,15 @@ import type { Lean, Round, SentCalculation } from '@/domain/room/room'
 
 type MakeNumberContent = Extract<Round['content'], { kind: 'makenumber' }>
 
+/**
+ * How long the tiles stay open here after every screen's clock reads zero. A
+ * rack merged in its last moments is leaned at once and has a trip to make;
+ * the server stamps it on arrival and takes it until its own clock is this
+ * much past the round's, so the merge lands rather than vanishing with the
+ * rack. No speed is paid inside it: the clock's tenth runs out at zero.
+ */
+export const MAKE_NUMBER_IN_FLIGHT_GRACE_MS = 500
+
 /** A round on these six tiles and this target, solved before it opens. */
 export const makeNumberContent = ({
   solution,

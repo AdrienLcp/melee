@@ -41,11 +41,11 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
   roomCode
 }) => {
   const translate = useTranslate()
-  const { clock, error, send, status, view } = connection
+  const { clock, error, openings, send, status, view } = connection
 
   useWorldMapAhead(view?.settings.lineUp ?? [])
 
-  useReportConnection({ clock, status })
+  useReportConnection({ clock, openings, status })
   usePhaseField(view?.phase ?? null)
   const isRoundDealt = useRoundDealt(view)
   const slate = slateContent(view?.round)
