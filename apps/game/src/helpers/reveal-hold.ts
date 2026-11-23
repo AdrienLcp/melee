@@ -59,3 +59,22 @@ export const isHoldInReadyPress = ({
 }): boolean =>
   round.isReadyHold &&
   revealHoldOf({ round: { ...round, isReadyHold: false }, settings }) === null
+
+/**
+ * The wait a table all ready armed in the lobby or on the final board
+ * (`readyStartsAt`), drawn as a reveal's is: it ends where the first round's
+ * countdown starts.
+ */
+export const tableStartHoldOf = ({
+  readyStartsAt,
+  settings
+}: {
+  readyStartsAt: number | null
+  settings: Pick<RoomSettings, 'countdownMs'>
+}): RevealHoldSpan | null => {
+  const holdMs = READY_HOLD_MS - settings.countdownMs
+
+  return readyStartsAt === null || holdMs <= 0
+    ? null
+    : { advancesAt: readyStartsAt - settings.countdownMs, holdMs }
+}

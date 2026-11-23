@@ -29,7 +29,6 @@ import {
   savedEveningOf,
   withSavedEvening
 } from '@melee/core/room/saved-evening'
-import { mayAskReady } from '@melee/core/round/asks-ready'
 
 import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
@@ -546,7 +545,6 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
   const summaries = useSetupSummaries(settings)
   const { seconds } = useDurationLabels()
   const offersAutoAdvance = settings.game?.kind !== 'slate'
-  const offersHostAlone = mayAskReady(settings)
 
   return (
     <>
@@ -574,25 +572,19 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
             settings={settings}
           />
         </div>
-        <div
-          className='host-alone-fold'
-          data-open={offersHostAlone || undefined}
-          inert={!offersHostAlone}
-        >
-          <Switch
-            description={translate(
-              settings.hostOpensNextRound
-                ? 'host.ready.hostAlone.hint.on'
-                : 'host.ready.hostAlone.hint.off'
-            )}
-            isDisabled={!isLive}
-            isSelected={settings.hostOpensNextRound}
-            label={translate('host.ready.hostAlone.label')}
-            onChange={(hostOpensNextRound) => {
-              onSettingsChange({ ...settings, hostOpensNextRound })
-            }}
-          />
-        </div>
+        <Switch
+          description={translate(
+            settings.hostOpensNextRound
+              ? 'host.ready.hostAlone.hint.on'
+              : 'host.ready.hostAlone.hint.off'
+          )}
+          isDisabled={!isLive}
+          isSelected={settings.hostOpensNextRound}
+          label={translate('host.ready.hostAlone.label')}
+          onChange={(hostOpensNextRound) => {
+            onSettingsChange({ ...settings, hostOpensNextRound })
+          }}
+        />
         <NumberChoice
           className='countdown-choice'
           isDisabled={!isLive}

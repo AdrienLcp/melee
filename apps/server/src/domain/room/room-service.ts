@@ -308,7 +308,9 @@ export const releaseAbandonedSeats = (room: Room, now: number): PlayerId[] => {
 }
 
 /**
- * A seat back at the table, or no longer. Refused while a round is under way,
+ * A seat back at the table, or no longer: in the lobby to open the game, on a
+ * reveal for the next round or the final board, on the final board to play it
+ * again. Refused while a round is under way,
  * where it would mean nothing: the round opening is what cleared it, and the
  * next reveal is when it is asked again. A press landing in the countdown
  * crossed that opening on the wire — often the very round it armed — and is
@@ -348,7 +350,8 @@ export const markReady = ({
  *
  * A host taking the next round to themselves clears every seat's ready, so no
  * mark stays up saying a seat is waited on, and the hold a whole table armed
- * goes back to the setting's (`settleReadyHold`).
+ * goes back to the setting's (`settleReadyHold`). A change in the lobby starts
+ * a table's start over (`settleTableStart`).
  */
 export const updateSettings = (
   room: Room,
@@ -383,6 +386,12 @@ export const updateSettings = (
     for (const seat of room.players.values()) {
       seat.isReady = false
     }
+  }
+
+  // A host still setting the game up is at the console, and a table that was
+  // ready before the change would open it under their hands.
+  if (room.phase === 'lobby') {
+    room.readyStartsAt = null
   }
 
   touch(room, now)

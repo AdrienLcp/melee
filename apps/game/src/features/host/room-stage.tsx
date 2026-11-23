@@ -14,7 +14,6 @@ import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 
 import { isRoundJudgedByHost } from '@melee/core/room/game-modes'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
-import { asksReady } from '@melee/core/round/asks-ready'
 import { buildScoreboard } from '@melee/core/scoring/scoreboard'
 import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import { buildTeamBoard } from '@melee/core/team/team-board'
@@ -52,6 +51,7 @@ import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
 import { type StandingBefore, Standings, standingsRowsOf } from './standings'
 import { isSetAsTable, TableLobby } from './table-lobby'
+import { TableStartHold } from './table-start-hold'
 import { TeamVerdicts } from './team-verdicts'
 import type { SlateWall } from './use-slate-wall'
 import { VerdictPanel } from './verdict-panel'
@@ -470,10 +470,6 @@ const PhaseStage: React.FC<RoomStageProps> = ({
 
   if (view.phase === 'revealed' && round != null) {
     const hold = revealHoldOf({ round, settings: view.settings })
-    const isReadyAsked = asksReady({
-      game: round.content.kind,
-      isFinal: round.isFinal
-    })
 
     // The standings, at the one moment the room asks for them. They are on this
     // screen during `playing` already, where nobody is looking at them — the
@@ -533,7 +529,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           {controls?.isRosterBeside !== true && (
             <Standings
               board={view.settings.board}
-              marksReady={isReadyAsked}
+              marksReady
               onAdjust={
                 controls === null
                   ? undefined
@@ -574,6 +570,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           teams={view.teams}
           youId={youId}
         />
+        <TableStartHold clock={clock} view={view} />
       </div>
     )
   }
@@ -581,11 +578,14 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   // A table of teams sitting down, read across the room: the setup is the
   // panel's, and what the room reads is who sits with whom.
   if (controls === null && isSetAsTable(view.settings)) {
-    return <TableLobby roomCode={roomCode} view={view} youId={youId} />
+    return (
+      <TableLobby clock={clock} roomCode={roomCode} view={view} youId={youId} />
+    )
   }
 
   return (
     <LobbyStage
+      clock={clock}
       controls={controls}
       isBoardAround={isBoardAround}
       roomCode={roomCode}

@@ -62,6 +62,7 @@ const viewFor = (
       score: 0
     }
   ],
+  readyStartsAt: null,
   round,
   roundElapsedMs: 0,
   settings: DEFAULT_ROOM_SETTINGS,

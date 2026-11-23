@@ -63,6 +63,13 @@
   .host-console-page:has(> .stage.table-lobby)
     max-block-size: var(--shown-height)
 
+    // The ready table's wait, under the table, in the page's own column.
+    > .table-start-hold
+      --table-start-gap: var(--space-l)
+
+      align-self: center
+      width: min(100%, 72rem)
+
   // A screen lying down and short — a phone as the room's screen — has no
   // height for the card over the table: the card takes one side and the seats
   // the other, starting under the menu's corner. The header gives its band

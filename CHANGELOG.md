@@ -56,6 +56,14 @@ one part.
 
 ### Features
 
+- `[Shared]` **A ready table runs itself.** A console on the TV across the
+  room no longer has to be walked up to: every seat pressing _Prêt_ in the
+  lobby starts the game, on the last reveal puts the final board up, and on
+  the final board plays the evening again — each five seconds out, counted
+  down on the wall, the console and every phone, and called off by a seat
+  taking its ready back. The host's own press still goes at once. _Tu lances
+  tout toi-même_, in the table panel, now keeps every one of those presses
+  for the host, not only the next round.
 - `[Game]` **Lumières is now a way of playing Réflexe.** One card on the
   shelf for both: open _Réflexe_ and pick _Top départ_ or _Lumières_ in its
   settings, between any two rounds. The chase keeps its window and its traps,

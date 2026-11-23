@@ -10,6 +10,7 @@ import type {
 } from '@melee/protocol/room'
 
 import { racesToTheFinish } from '@melee/core/board/track-finish'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { AwayMark } from '@/presentation/components/away-mark'
 import { GameIcon } from '@/presentation/components/icons'
@@ -21,6 +22,7 @@ import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
+import { TableStartHold } from './table-start-hold'
 import { useWholeChips } from './use-whole-chips'
 
 import './table-lobby.sass'
@@ -40,6 +42,8 @@ export const isSetAsTable = ({
   (teams.kind === 'off' && board.kind === 'track')
 
 type TableLobbyProps = {
+  /** This device's estimate of the server clock; `null` before the first pong. */
+  clock: ClockEstimate | null
   roomCode: RoomCode
   view: HostRoomView
   /** The seat this console took, in a keyline; `null` on the wall. */
@@ -55,6 +59,7 @@ type TableLobbyProps = {
  * It carries no control: it is the wall's alone.
  */
 export const TableLobby: React.FC<TableLobbyProps> = ({
+  clock,
   roomCode,
   view,
   youId
@@ -75,79 +80,86 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
     players.filter((player) => team.seatIds.includes(player.id))
 
   return (
-    <div
-      className='stage table-lobby'
-      style={{ '--team-count': Math.max(teams.length, 1) }}
-    >
-      <TableCard roomCode={roomCode} view={view} />
+    <>
+      <div
+        className='stage table-lobby'
+        style={{ '--team-count': Math.max(teams.length, 1) }}
+      >
+        <TableCard roomCode={roomCode} view={view} />
 
-      <div className='table-seats'>
-        {players.length === 0 ? (
-          <section className='arrivals'>
-            <div className='arrivals-head'>
-              <h3>{translate('team.empty')}</h3>
-            </div>
-          </section>
-        ) : (
-          unassigned.length > 0 && (
+        <div className='table-seats'>
+          {players.length === 0 ? (
             <section className='arrivals'>
               <div className='arrivals-head'>
-                <h3>
-                  {translate(
-                    isBySeat
-                      ? 'host.table.arrivals.seats'
-                      : isDrawn
-                        ? 'host.table.arrivals.drawn'
-                        : 'host.table.arrivals.chosen',
-                    { count: unassigned.length }
-                  )}
-                </h3>
+                <h3>{translate('team.empty')}</h3>
               </div>
-              <SeatChips players={unassigned} roster={players} youId={youId} />
             </section>
-          )
-        )}
-
-        {!isBySeat && (
-          <ol aria-label={translate('team.title')} className='table-teams'>
-            {teams.map((team) => {
-              const members = seatsOf(team)
-
-              return (
-                <li
-                  className={classNames(
-                    'team-block',
-                    youId !== null && team.seatIds.includes(youId) && 'yours'
-                  )}
-                  data-waiting={isWaitingForDraw || undefined}
-                  key={team.id}
-                  style={{ '--team': `var(--pawn-${team.colour})` }}
-                >
-                  <h3 className='team-head'>
-                    <Pawn colour={team.colour} />
-                    <span className='team-name'>{teamName(team)}</span>
-                    {members.length > 0 && (
-                      <span className='team-size'>
-                        {translate('host.players.count', {
-                          count: members.length
-                        })}
-                      </span>
+          ) : (
+            unassigned.length > 0 && (
+              <section className='arrivals'>
+                <div className='arrivals-head'>
+                  <h3>
+                    {translate(
+                      isBySeat
+                        ? 'host.table.arrivals.seats'
+                        : isDrawn
+                          ? 'host.table.arrivals.drawn'
+                          : 'host.table.arrivals.chosen',
+                      { count: unassigned.length }
                     )}
                   </h3>
-                  {members.length > 0 && (
-                    <SeatChips
-                      players={members}
-                      roster={players}
-                      youId={youId}
-                    />
-                  )}
-                </li>
-              )
-            })}
-          </ol>
-        )}
+                </div>
+                <SeatChips
+                  players={unassigned}
+                  roster={players}
+                  youId={youId}
+                />
+              </section>
+            )
+          )}
+
+          {!isBySeat && (
+            <ol aria-label={translate('team.title')} className='table-teams'>
+              {teams.map((team) => {
+                const members = seatsOf(team)
+
+                return (
+                  <li
+                    className={classNames(
+                      'team-block',
+                      youId !== null && team.seatIds.includes(youId) && 'yours'
+                    )}
+                    data-waiting={isWaitingForDraw || undefined}
+                    key={team.id}
+                    style={{ '--team': `var(--pawn-${team.colour})` }}
+                  >
+                    <h3 className='team-head'>
+                      <Pawn colour={team.colour} />
+                      <span className='team-name'>{teamName(team)}</span>
+                      {members.length > 0 && (
+                        <span className='team-size'>
+                          {translate('host.players.count', {
+                            count: members.length
+                          })}
+                        </span>
+                      )}
+                    </h3>
+                    {members.length > 0 && (
+                      <SeatChips
+                        players={members}
+                        roster={players}
+                        youId={youId}
+                      />
+                    )}
+                  </li>
+                )
+              })}
+            </ol>
+          )}
+        </div>
       </div>
-    </div>
+      <TableStartHold clock={clock} view={view} />
+    </>
   )
 }
 

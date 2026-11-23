@@ -609,48 +609,6 @@
     > :is(.hold, .back-at-the-table, .table-colours, .overall)
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
 
-    // Under the round, where the next press of the evening lands: the word to
-    // the wall that this seat is back.
-    .back-at-the-table
-      @include fold.opens-in-column(var(--space-m))
-
-      align-self: stretch
-
-      > div
-        display: flex
-        flex-direction: column
-
-      .toggle-button
-        position: relative
-
-        > .ready-mark
-          @include mark.pops-in-line('&:is([data-selected] > *)', calc(-1em - var(--space-xs)), 0)
-
-          display: inline-flex
-          inline-size: 1em
-
-      // The press's own padding and gap, inherited, lay the label printed on
-      // the fill exactly over the one underneath.
-      .ready-hold-fill
-        align-items: center
-        animation: ready-hold-fill var(--fill-duration, 0ms) linear forwards
-        background: var(--phase-ink)
-        border-radius: inherit
-        color: var(--phase-on-ink)
-        display: flex
-        gap: inherit
-        inset: 0
-        justify-content: center
-        opacity: 0
-        padding: inherit
-        pointer-events: none
-        position: absolute
-        transition: opacity var(--transition-base, 0s) var(--ease-in)
-
-        &[data-filling]
-          opacity: 1
-          transition-timing-function: var(--ease-out)
-
     :is(.overall, .table-colours)
       display: flex
       flex-direction: column
@@ -1272,12 +1230,6 @@
     stroke-dashoffset: var(--drained, 0)
   to
     stroke-dashoffset: 1
-
-@keyframes ready-hold-fill
-  from
-    clip-path: inset(0rem var(--unfilled-from, 100%) 0rem 0rem)
-  to
-    clip-path: inset(0rem)
 
 @layer components
   // The prompt large on the board with the round's sand over it, and the

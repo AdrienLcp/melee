@@ -1856,6 +1856,12 @@ const start = ({
   outbound: Outbound
   slateKeys: readonly (string | null)[] | undefined
 }): void => {
+  // The table all ready opens the game on its own, so a press that crossed
+  // it on the wire asked for what is already happening.
+  if (engine.room.phase === 'countdown') {
+    return
+  }
+
   if (engine.room.phase !== 'lobby') {
     sendError(outbound, {
       code: 'wrong_phase',
@@ -2209,6 +2215,11 @@ const dismissWalls = (engine: RoomEngine): void => {
 }
 
 const replay = (outbound: Outbound, engine: RoomEngine): void => {
+  // The table all ready already played it again.
+  if (engine.room.phase === 'countdown') {
+    return
+  }
+
   if (engine.room.phase !== 'finished' && engine.room.phase !== 'revealed') {
     sendError(outbound, {
       code: 'wrong_phase',

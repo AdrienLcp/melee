@@ -312,10 +312,23 @@ frame.
   next round `READY_HOLD_MS` out (`settleReadyHold`). An away seat is still
   awaited and never counts as ready, so a phone put down mid-reveal holds the
   table rather than completing it; the host's next-round press goes on
-  without it. A room whose `hostOpensNextRound` is on asks no seat at all:
+  without it. The last reveal asks too, and its hold puts the final board up.
+  A room whose `hostOpensNextRound` is on asks no seat at all:
   `player.ready` is dropped without a word, turning it on clears every seat's
   (which lets a hold the table armed go), and the player's screen folds its
   press away — only the host's press, or the setting's own hold, goes on.
+- **A ready table opens the game, and plays it again.** In the lobby and on
+  the final board `player.ready` is stored too, and every seat ready and on
+  screen — two at least, a game chosen, `hostOpensNextRound` off — stamps
+  `readyStartsAt` on the room view, `READY_HOLD_MS` out (`settleTableStart`,
+  on every publish). It is the lobby's `advancesAt`: the room has no round to
+  carry it. The `start` deadline fires `countdownMs` before it (and a blind
+  test's draw lead before that), so the first round counts in where the bar
+  ends; from the final board it replays the same evening first
+  (`restartGame`), the table kept ready. A seat un-readying, leaving or going
+  away clears it, a settings change in the lobby starts it over; `finishGame`, `restartGame` and
+  `openRound` clear every seat's ready. The host's own start or replay still
+  goes at once, and one crossing the deadline in `countdown` is dropped.
 
 **Teams are the shell's, and no game's arm learns what one is.**
 `settings.teams` is `off`, or `drawn`, `chosen` or `aloud` with a `count` of

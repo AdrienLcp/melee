@@ -1077,6 +1077,15 @@ const baseRoomViewSchema = z.object({
   isWallConnected: z.boolean(),
   phase: roomPhaseSchema,
   players: z.array(publicPlayerSchema),
+  /**
+   * When the table, every seat ready, opens the game from the lobby or plays
+   * it again from the final board: the first note of its first round, as
+   * `advancesAt` is between two rounds, so its countdown takes the last
+   * `countdownMs`. `null` whenever nothing is counting, which a seat taking
+   * its ready back returns it to — and in every other phase, where the round's
+   * own `advancesAt` says it.
+   */
+  readyStartsAt: serverTimeSchema.nullable(),
   round: roundViewSchema.nullable(),
   /**
    * Round time already consumed, buzz pauses excluded. It is what lets a host

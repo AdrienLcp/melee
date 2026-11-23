@@ -1192,11 +1192,11 @@ export const FR_DICTIONARY = defineDictionary({
       everyone: 'Tout le monde est prêt',
       hostAlone: {
         hint: {
-          off: 'Dès que toute la table est prête, la manche suivante part d’elle-même.',
-          on: 'Personne n’a à dire qu’il est prêt : la manche suivante part quand tu la lances.'
+          off: 'Dès que toute la table est prête, la partie se lance, enchaîne ses manches, montre les résultats et rejoue d’elle-même.',
+          on: 'Personne n’a à dire qu’il est prêt : la partie, chaque manche, les résultats et la revanche partent quand tu les lances.'
         },
-        label: 'Tu lances chaque manche',
-        summaryOn: 'tu lances chaque manche'
+        label: 'Tu lances tout toi-même',
+        summaryOn: 'tu lances tout toi-même'
       }
     },
     recovery: {

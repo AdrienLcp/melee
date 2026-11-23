@@ -149,6 +149,12 @@ export type Room = {
    */
   presenceAnnouncedUntil: number
   /**
+   * When a table all ready opens the game from the lobby, or plays it again
+   * from the final board — the view's `readyStartsAt`, settled by
+   * `settleTableStart` on every publish.
+   */
+  readyStartsAt: number | null
+  /**
    * The room's own secret, minted with it and handed to whoever created it. It
    * never reaches a room view: `room-view.ts` projects neither this nor
    * `hostSessionId`, and the only frame carrying it travels the other way.

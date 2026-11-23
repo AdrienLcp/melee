@@ -67,6 +67,7 @@ import {
   quizContent,
   reflexContent,
   releaseBuzz,
+  restartGame,
   resumeRoundClock,
   startRoundClock,
   TRACK_DRAW_LEAD_MS,
@@ -1157,10 +1158,12 @@ const waitToOpen = async (
     await new Promise((resolve) => setTimeout(resolve, waitMs))
   }
 
+  const { room } = engine
+
   return (
     !engine.isClosed &&
-    engine.room.phase === 'revealed' &&
-    engine.room.round?.advancesAt === heldUntil
+    ((room.phase === 'revealed' && room.round?.advancesAt === heldUntil) ||
+      (room.phase === 'lobby' && room.readyStartsAt === heldUntil))
   )
 }
 
@@ -1174,18 +1177,33 @@ const retryHeldDraw = (
   engine: RoomEngine,
   { heldUntil, isExhausted }: { heldUntil: number | null; isExhausted: boolean }
 ): void => {
-  const { round } = engine.room
-
-  if (heldUntil === null || round === null) {
-    return
-  }
-
-  round.advancesAt = isExhausted
+  const { room } = engine
+  const retriesAt = isExhausted
     ? null
     : engine.now() +
       DRAW_RETRY_MS +
-      engine.room.settings.countdownMs +
+      room.settings.countdownMs +
       TRACK_DRAW_LEAD_MS
+
+  if (heldUntil === null) {
+    return
+  }
+
+  if (room.phase === 'lobby') {
+    room.readyStartsAt = retriesAt
+
+    if (retriesAt === null) {
+      for (const seat of room.players.values()) {
+        seat.isReady = false
+      }
+    }
+
+    return
+  }
+
+  if (room.round !== null) {
+    room.round.advancesAt = retriesAt
+  }
 }
 
 const tellHost = (
@@ -1297,6 +1315,26 @@ const runDeadline = (
       }
 
       return beginRound(engine, { heldUntil: room.round?.advancesAt ?? null })
+    }
+
+    // The table, every seat ready, opening the game or playing it again. A
+    // replay is the lobby's start carried on from the final board: the room
+    // rewinds with the table still ready and its start still counting, so a
+    // seat taking its ready back during a track's draw still calls it off.
+    case 'start': {
+      const heldUntil = room.readyStartsAt
+
+      if (room.phase === 'finished') {
+        restartGame(room, now)
+
+        for (const seat of room.players.values()) {
+          seat.isReady = true
+        }
+
+        room.readyStartsAt = heldUntil
+      }
+
+      return beginRound(engine, { heldUntil })
     }
 
     case 'presence': {

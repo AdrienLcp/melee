@@ -1334,11 +1334,11 @@ const PORTUGUESE = defineDictionary({
       everyone: 'Toda a gente cá está',
       hostAlone: {
         hint: {
-          off: 'Assim que toda a mesa disser «Cá estou», a ronda seguinte arranca sozinha.',
-          on: 'Ninguém tem de dizer «Cá estou»: a ronda seguinte arranca quando a lançares.'
+          off: 'Assim que toda a mesa disser «Cá estou», o jogo arranca, passa de ronda em ronda, mostra os resultados e recomeça sozinho.',
+          on: 'Ninguém tem de dizer «Cá estou»: o jogo, cada ronda, os resultados e a desforra arrancam quando os lançares.'
         },
-        label: 'Tu lanças cada ronda',
-        summaryOn: 'tu lanças cada ronda'
+        label: 'Tu lanças tudo',
+        summaryOn: 'tu lanças tudo'
       }
     },
     recovery: {

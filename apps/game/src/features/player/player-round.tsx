@@ -15,11 +15,13 @@ import { teamOfSeat } from '@melee/core/team/team-board'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import type { PlayerAnswer } from '@/features/player/answer-forms'
+import { BackAtTheTable } from '@/features/player/back-at-the-table'
 import {
   LobbyTeams,
   type TeamSeatMessage
 } from '@/features/player/player-teams'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
+import { tableStartHoldOf } from '@/helpers/reveal-hold'
 import { innerclockContent } from '@/helpers/round-content'
 import { lazyModule } from '@/infrastructure/lazy-module'
 import { BoardKindProvider } from '@/presentation/components/board-kind'
@@ -141,7 +143,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = (props) => {
 }
 
 const PlayerRoundPhase: React.FC<PlayerRoundProps> = (props) => {
-  const { clock, onTeam, view } = props
+  const { clock, onReady, onTeam, view } = props
   const translate = useTranslate()
   const round = view.round
   const isPickingTeam =
@@ -215,6 +217,13 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = (props) => {
             <NoticeCard title={translate('buzz.blocked.host_away')} />
           </div>
         </div>
+
+        <BackAtTheTable
+          clock={clock}
+          hold={tableStartHoldOf(view)}
+          onReady={onReady}
+          view={view}
+        />
 
         <YourTrackStrip view={view} />
 

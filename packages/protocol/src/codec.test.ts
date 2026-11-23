@@ -50,6 +50,7 @@ const playerView: PlayerRoomView = {
       score: 2
     }
   ],
+  readyStartsAt: null,
   round: runningRound,
   roundElapsedMs: 8_200,
   settings: DEFAULT_ROOM_SETTINGS,

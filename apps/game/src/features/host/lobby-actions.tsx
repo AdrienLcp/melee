@@ -9,6 +9,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { challengePickFor } from './challenge-line'
 import { ChallengeLinePicker } from './challenge-line-picker'
+import { ConsoleReady } from './console-ready'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 
@@ -76,21 +77,24 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   return (
     <div className='launch'>
       {fields}
-      <Button
-        isDisabled={!isLive || isRoomEmpty || hasNoGame}
-        onPress={() => {
-          onOpenRound()
-          send({
-            ...challengePickFor(challengeLine),
-            innerclockTargetSeconds: targetToSend(innerclockTarget),
-            slateKeys,
-            type: 'host.startRound'
-          })
-        }}
-        size='large'
-      >
-        {translate('host.startGame')}
-      </Button>
+      <div className='console-ready-group'>
+        <ConsoleReady isDisabled={!isLive} send={send} view={view} />
+        <Button
+          isDisabled={!isLive || isRoomEmpty || hasNoGame}
+          onPress={() => {
+            onOpenRound()
+            send({
+              ...challengePickFor(challengeLine),
+              innerclockTargetSeconds: targetToSend(innerclockTarget),
+              slateKeys,
+              type: 'host.startRound'
+            })
+          }}
+          size='large'
+        >
+          {translate('host.startGame')}
+        </Button>
+      </div>
       <div
         className='reason-fold'
         data-open={reason !== null || undefined}

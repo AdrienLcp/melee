@@ -8,6 +8,7 @@ import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { Button } from '@/presentation/components/button'
 import {
@@ -30,12 +31,15 @@ import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SeatOffer } from './seat-offer'
 import { SlatePreparation } from './slate-preparation'
+import { TableStartHold } from './table-start-hold'
 import { TeamCountField } from './team-count-field'
 import { mostTeamsOffered } from './teams-setup'
 import { useTeamCountFollowingHeadcount, useTeamDeal } from './use-team-deal'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
 type LobbyStageProps = {
+  /** This device's estimate of the server clock; `null` before the first pong. */
+  clock: ClockEstimate | null
   /** `null` on the wall, which shows who has arrived and what they will play. */
   controls: StageControls | null
   /** As on `RoomStage`: a preview beside the whole track would show the board twice. */
@@ -57,6 +61,7 @@ type LobbyStageProps = {
  * panel, beside the stage rather than on it.
  */
 export const LobbyStage: React.FC<LobbyStageProps> = ({
+  clock,
   controls,
   isBoardAround,
   roomCode,
@@ -95,6 +100,8 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             <GamePitch view={view} />
           </section>
         )}
+
+        <TableStartHold clock={clock} view={view} />
 
         {controls !== null && view.settings.game?.kind === 'slate' && (
           <SlatePreparation

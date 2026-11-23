@@ -7,7 +7,6 @@ file in the commit that finishes it, and delete this README with the last one.
 
 | Wave | File                            | Depends on           |
 | ---- | ------------------------------- | -------------------- |
-| 2    | `06-hands-free-table.md`        | 01 landed            |
 | 2    | `07-results-screens.md`         | 02 landed            |
 | 2    | `08-blindtest-flash.md`         | 01 landed            |
 | 2    | `09-five-clues-any-subject.md`  | 05 landed            |

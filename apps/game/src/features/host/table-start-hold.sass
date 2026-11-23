@@ -1,0 +1,17 @@
+@use '../../presentation/styles/fold'
+
+@layer components
+  // The ready table's wait, in whatever column it lies in: that column says
+  // its own gap through `--table-start-gap`, which the fold hands back closed.
+  .table-start-hold
+    @include fold.opens-in-column(var(--table-start-gap, var(--space-s)))
+
+    flex: none
+
+    > div
+      display: flex
+      justify-content: center
+
+    .round-progress
+      max-width: none
+      width: 100%

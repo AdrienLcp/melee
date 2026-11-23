@@ -1251,11 +1251,11 @@ export const EN_DICTIONARY = defineDictionary({
       everyone: 'Everyone’s ready',
       hostAlone: {
         hint: {
-          off: 'Once the whole table is ready, the next round starts on its own.',
-          on: 'Nobody is asked whether they’re ready: the next round starts when you start it.'
+          off: 'Once the whole table is ready, the game starts, moves on, shows the results and plays again on its own.',
+          on: 'Nobody is asked whether they’re ready: the game, each round, the results and a replay start when you start them.'
         },
-        label: 'You start every round',
-        summaryOn: 'you start every round'
+        label: 'You start everything',
+        summaryOn: 'you start everything'
       }
     },
     recovery: {

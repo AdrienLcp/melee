@@ -3,8 +3,6 @@ import type React from 'react'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { HostRoomView } from '@melee/protocol/room'
 
-import { asksReady } from '@melee/core/round/asks-ready'
-
 import { CheckIcon } from '@/presentation/components/icons'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -19,10 +17,10 @@ type ConsoleReadyProps = {
 
 /**
  * A seated host's word that they are back at the table, beside the press
- * that opens the next round without anyone: while the table drives the
- * evening, the room waits on the console's seat as on any other. Kept
- * mounted while the console holds a seat, and opened by whether the reveal
- * asks for it.
+ * that goes on without anyone — the start, the next round, the final board,
+ * the replay: while the table drives the evening, the room waits on the
+ * console's seat as on any other. Kept mounted while the console holds a
+ * seat, and opened wherever a seat is asked, which a lobby with no game is not.
  */
 export const ConsoleReady: React.FC<ConsoleReadyProps> = ({
   isDisabled,
@@ -31,16 +29,16 @@ export const ConsoleReady: React.FC<ConsoleReadyProps> = ({
 }) => {
   const translate = useTranslate()
   const you = view.players.find((player) => player.id === view.youId)
-  const round = view.round
 
   if (you === undefined) {
     return null
   }
 
   const isAsked =
-    round != null &&
     !view.settings.hostOpensNextRound &&
-    asksReady({ game: round.content.kind, isFinal: round.isFinal })
+    (view.phase === 'finished' ||
+      (view.phase === 'revealed' && view.round !== null) ||
+      (view.phase === 'lobby' && view.settings.game !== null))
 
   return (
     <div

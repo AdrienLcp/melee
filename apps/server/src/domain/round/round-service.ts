@@ -236,9 +236,7 @@ export const openRound = ({
 
   placeUnseatedSeats(room)
 
-  for (const participant of room.players.values()) {
-    participant.isReady = false
-  }
+  clearReady(room)
 
   const duel = takeDuel(room)
 
@@ -2071,12 +2069,18 @@ const seatsAwaited = (room: Room): Participant[] => [...room.players.values()]
 const isBackAtTheTable = (seat: Participant): boolean =>
   seat.isConnected && seat.isReady
 
+const isEveryoneBack = (room: Room): boolean => {
+  const awaited = seatsAwaited(room)
+
+  return awaited.length > 0 && awaited.every(isBackAtTheTable)
+}
+
 /**
- * Every seat back at the table arms the next round `READY_HOLD_MS` out, unless
- * the setting's hold ends sooner; one of them taking it back — or its screen
- * going away — returns the reveal to the setting's hold. Run on every published
- * change, because a seat leaving undoes the table as surely as a seat taking
- * its ready back.
+ * Every seat back at the table arms the next round `READY_HOLD_MS` out — the
+ * final board, on the last reveal — unless the setting's hold ends sooner; one
+ * of them taking it back, or its screen going away, returns the reveal to the
+ * setting's hold. Run on every published change, because a seat leaving undoes
+ * the table as surely as a seat taking its ready back.
  */
 export const settleReadyHold = (room: Room, now: number): void => {
   const round = room.round
@@ -2085,15 +2089,12 @@ export const settleReadyHold = (room: Room, now: number): void => {
     round === null ||
     room.phase !== 'revealed' ||
     round.isPaused ||
-    round.isHoldWaived ||
-    round.content.kind === 'slate' ||
-    isFinalRound(room)
+    round.isHoldWaived
   ) {
     return
   }
 
-  const awaited = seatsAwaited(room)
-  const isEveryoneReady = awaited.length > 0 && awaited.every(isBackAtTheTable)
+  const isEveryoneReady = isEveryoneBack(room)
 
   if (isEveryoneReady && !round.isReadyHold) {
     const readyEndsAt = now + READY_HOLD_MS
@@ -2107,6 +2108,45 @@ export const settleReadyHold = (room: Room, now: number): void => {
     round.isReadyHold = false
   }
 }
+
+/**
+ * The fewest seats a table opens a game by itself with: one player alone is
+ * the console's own launch (`launchesWithHostSeated`), not a table agreeing.
+ */
+export const LEAST_SEATS_FOR_TABLE_START = 2
+
+/**
+ * The lobby's and the final board's counterpart of `settleReadyHold`: every
+ * seat back at the table opens the game, or plays it again, `READY_HOLD_MS`
+ * out, and one taking it back calls it off. Nothing counts in a room whose host
+ * keeps every press, with no game chosen, or with fewer than
+ * `LEAST_SEATS_FOR_TABLE_START` seats. Run on every published change.
+ */
+export const settleTableStart = (room: Room, now: number): void => {
+  const isArmed =
+    (room.phase === 'lobby' || room.phase === 'finished') &&
+    !room.settings.hostOpensNextRound &&
+    room.settings.game !== null &&
+    room.players.size >= LEAST_SEATS_FOR_TABLE_START &&
+    isEveryoneBack(room)
+
+  if (!isArmed) {
+    room.readyStartsAt = null
+  } else if (room.readyStartsAt === null) {
+    room.readyStartsAt = now + READY_HOLD_MS
+  }
+}
+
+/**
+ * When the table's start is due: its countdown, and a blind test's draw, come
+ * out of the hold as they do between two rounds (`advanceDueAt`).
+ */
+export const tableStartDueAt = (room: Room): number | null =>
+  room.readyStartsAt === null
+    ? null
+    : room.readyStartsAt -
+      room.settings.countdownMs -
+      (room.settings.game?.kind === 'blindtest' ? TRACK_DRAW_LEAD_MS : 0)
 
 /**
  * The host keeps the reveal up: neither hold opens the next round, which waits
@@ -2238,8 +2278,21 @@ export const closeRound = (room: Room, now: number): void => {
   settleSimultaneousRound({ now, room })
 }
 
+/**
+ * A ready said on the last reveal was for the final board, so the board starts
+ * with nobody ready: replaying is asked again there.
+ */
+const clearReady = (room: Room): void => {
+  for (const participant of room.players.values()) {
+    participant.isReady = false
+  }
+
+  room.readyStartsAt = null
+}
+
 export const finishGame = (room: Room, now: number): void => {
   bankRound(room)
+  clearReady(room)
   room.isDuelAsked = false
   room.phase = 'finished'
   room.round = null
@@ -2260,6 +2313,7 @@ export const restartGame = (room: Room, now: number): void => {
     participant.score = 0
   }
 
+  clearReady(room)
   resetTeamScores(room)
   room.openedEntries = []
   room.phase = 'lobby'

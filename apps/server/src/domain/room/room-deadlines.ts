@@ -4,7 +4,11 @@ import {
 } from '@melee/core/room/seat-presence'
 
 import { lightsPublishDueAt } from '@/domain/round/lights-round'
-import { advanceDueAt, remainingRoundMs } from '@/domain/round/round-service'
+import {
+  advanceDueAt,
+  remainingRoundMs,
+  tableStartDueAt
+} from '@/domain/round/round-service'
 
 import type { Room } from './room'
 
@@ -30,6 +34,7 @@ export type RoomDeadlineKind =
   | 'publish'
   | 'round'
   | 'seats'
+  | 'start'
 
 export type RoomDeadline = { at: number; kind: RoomDeadlineKind }
 
@@ -60,12 +65,14 @@ export const roomDeadlines = ({
     isHostConnected && room.round?.isPaused !== true
       ? roundDeadline({ isDrawing, now, room })
       : null
+  const startAt = isHostConnected && !isDrawing ? tableStartDueAt(room) : null
   const seats = seatDeadline(room)
   const presence = presenceDeadline(room)
   const publishAt = lightsPublishDueAt(room)
 
   return [
     ...(round === null ? [] : [round]),
+    ...(startAt === null ? [] : [{ at: startAt, kind: 'start' as const }]),
     ...(publishAt === null
       ? []
       : [{ at: publishAt, kind: 'publish' as const }]),

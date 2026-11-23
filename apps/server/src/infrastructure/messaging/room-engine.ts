@@ -6,7 +6,7 @@ import {
   type RoomDeadline,
   roomDeadlines
 } from '@/domain/room/room-deadlines'
-import { settleReadyHold } from '@/domain/round/round-service'
+import { settleReadyHold, settleTableStart } from '@/domain/round/round-service'
 import {
   liveRoomFactsOf,
   liveRoomRowToWrite,
@@ -124,6 +124,7 @@ export const commitRoom = (engine: RoomEngine): void => {
  */
 export const publishRoom = (engine: RoomEngine): void => {
   settleReadyHold(engine.room, engine.now())
+  settleTableStart(engine.room, engine.now())
   electSpeakerWall(engine)
   commitRoom(engine)
   broadcastRoom(engine)

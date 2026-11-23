@@ -38,10 +38,21 @@ import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 /** A room stored before the evening kept a history of what it heard. */
 type StoredRoom = Omit<
   Room,
-  'decks' | 'ownLines' | 'presenceAnnouncedUntil' | 'trackHistory'
+  | 'decks'
+  | 'ownLines'
+  | 'presenceAnnouncedUntil'
+  | 'readyStartsAt'
+  | 'trackHistory'
 > &
   Partial<
-    Pick<Room, 'decks' | 'ownLines' | 'presenceAnnouncedUntil' | 'trackHistory'>
+    Pick<
+      Room,
+      | 'decks'
+      | 'ownLines'
+      | 'presenceAnnouncedUntil'
+      | 'readyStartsAt'
+      | 'trackHistory'
+    >
   >
 
 const ROOM_KEY = 'room'
@@ -126,6 +137,7 @@ export class RoomObject extends DurableObject<Env> {
         ...games,
         players: withSeatPieces(stored.players),
         presenceAnnouncedUntil: stored.presenceAnnouncedUntil ?? 0,
+        readyStartsAt: stored.readyStartsAt ?? null,
         round: stored.round === null ? null : withHoldFields(stored.round),
         trackHistory: stored.trackHistory ?? NOTHING_HEARD
       })

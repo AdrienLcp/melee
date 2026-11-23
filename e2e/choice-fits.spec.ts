@@ -160,6 +160,7 @@ const choosingView = (question: Question) => ({
   isWallConnected: false,
   phase: 'playing',
   players,
+  readyStartsAt: null,
   round: {
     activeBuzz: null,
     advancesAt: null,

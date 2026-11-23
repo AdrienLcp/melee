@@ -197,10 +197,12 @@
     // The host's own column, beside the invitation the room is reading: what
     // they are about to play, and who has turned up for it.
     .host-side
+      --table-start-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-xl))
+
       container-type: inline-size
       display: flex
       flex-direction: column
-      gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-xl))
+      gap: var(--table-start-gap)
       min-width: 0
 
     // On the wall, what the table is about to play: the console chooses it in
@@ -648,8 +650,16 @@
     gap: var(--space-stage-rows)
     grid-template-rows: auto minmax(min(18rem, 50dvh), 1fr) auto
 
+    // The ready table's wait for the replay takes a row under the board, as
+    // the reveal's hold does under its answer.
     > .stage.finished
+      --table-start-gap: var(--space-s)
+
       container-type: size
+      gap: var(--table-start-gap)
+
+      > .final-board
+        flex: 1 1 0
 
   // The reveal held to the screen the ring leaves, like the round before it:
   // the stage is a size container between the header and the footer, and the
@@ -1186,6 +1196,12 @@
 
       .slate-preparation
         order: 2
+
+      // The ready table's wait, over the start it stands in for.
+      .table-start-hold
+        --table-start-gap: var(--space-l)
+
+        order: 3
 
       > footer
         order: 3

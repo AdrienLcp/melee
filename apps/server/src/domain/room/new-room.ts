@@ -55,6 +55,7 @@ export const newRoom = ({
     playedLetters: [],
     players: new Map(),
     presenceAnnouncedUntil: now,
+    readyStartsAt: null,
     round: null,
     settings: roomSettingsFor({ games, locale }),
     sound: { silentClip: null, soundCheck: null, speaker: null, volume: null },

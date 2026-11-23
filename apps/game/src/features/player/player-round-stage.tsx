@@ -22,7 +22,6 @@ import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { answerPointsOf } from '@melee/core/board/answer-points'
 import { isSpotOn } from '@melee/core/estimate/estimate-pay'
-import { asksReady } from '@melee/core/round/asks-ready'
 import {
   type BuzzBlocker,
   findBuzzBlocker
@@ -34,11 +33,7 @@ import {
   standingOf
 } from '@melee/core/scoring/scoreboard'
 import { playsThisRound } from '@melee/core/team/duel'
-import {
-  hasAnyTeamScored,
-  teamOfSeat,
-  teamStandingOf
-} from '@melee/core/team/team-board'
+import { teamOfSeat, teamStandingOf } from '@melee/core/team/team-board'
 import {
   type ClockEstimate,
   millisecondsUntil
@@ -46,6 +41,7 @@ import {
 
 import { LightsRace } from '@/features/host/lights-race'
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
+import { BackAtTheTable } from '@/features/player/back-at-the-table'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
@@ -85,8 +81,8 @@ import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   isHoldInReadyPress,
-  type RevealHoldSpan,
-  revealHoldOf
+  revealHoldOf,
+  tableStartHoldOf
 } from '@/helpers/reveal-hold'
 import {
   atlasContent,
@@ -129,7 +125,6 @@ import { FiveCluesReveal } from '@/presentation/components/five-clues-reveal'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
-import { CheckIcon } from '@/presentation/components/icons'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -148,7 +143,6 @@ import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
-import { ToggleButton } from '@/presentation/components/toggle-button'
 import { typedName } from '@/presentation/components/typed-name'
 import {
   useMoveWords,
@@ -184,31 +178,17 @@ type RevealedRoundProps = {
  * which is the round's block.
  */
 const OverallStandings: React.FC<{
-  round: RoundView
   view: PlayerRoomView
-}> = ({ round, view }) => {
+}> = ({ view }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
   const titleId = useId()
   const { board } = view.settings
   const isByTeam = view.teams.length > 0
-  const marksReady = asksReady({
-    game: round.content.kind,
-    isFinal: round.isFinal
-  })
-  const isRanked = isByTeam
-    ? hasAnyTeamScored(view.teams)
-    : hasAnybodyScored(view.players)
   const standing = isByTeam
     ? teamStandingOf({ playerId: view.youId, teams: view.teams })
     : standingOf({ players: view.players, youId: view.youId })
   const title = translate('round.overallStandings')
-
-  // Before the first point it would be a roster, which is not what a reveal
-  // is for — unless it is where the table reads who is back.
-  if (!isRanked && !marksReady) {
-    return null
-  }
 
   return (
     <section aria-labelledby={titleId} className='overall'>
@@ -230,7 +210,7 @@ const OverallStandings: React.FC<{
         <TeamRoster
           isRanked
           label={title}
-          marksReady={marksReady}
+          marksReady
           players={view.players}
           teamDetail={
             board.kind === 'track'
@@ -249,7 +229,7 @@ const OverallStandings: React.FC<{
       ) : (
         <Scoreboard
           hasPawns
-          marksReady={marksReady}
+          marksReady
           players={view.players}
           trackLength={board.kind === 'track' ? board.length : undefined}
           youId={view.youId}
@@ -357,112 +337,11 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         clock={clock}
         hold={readyHold}
         onReady={onReady}
-        round={round}
         view={view}
       />
       <TableColours round={round} view={view} />
-      <OverallStandings round={round} view={view} />
+      <OverallStandings view={view} />
     </section>
-  )
-}
-
-/**
- * Between two rounds, the press that tells the table this seat is back. Every
- * seat ready starts the next round after a short hold, and the host still
- * starts it whenever they like. The next game stays unnamed until its
- * countdown, so a planned line-up keeps its surprises. A room whose host alone
- * opens the next round folds it away: a press there would arm nothing.
- */
-const BackAtTheTable: React.FC<{
-  clock: ClockEstimate | null
-  /** The wait every seat being ready armed, when the press draws it. */
-  hold: RevealHoldSpan | null
-  onReady: (isReady: boolean) => boolean
-  round: RoundView
-  view: PlayerRoomView
-}> = ({ clock, hold, onReady, round, view }) => {
-  const translate = useTranslate()
-  const you = view.players.find((player) => player.id === view.youId)
-
-  if (
-    you === undefined ||
-    !asksReady({ game: round.content.kind, isFinal: round.isFinal })
-  ) {
-    return null
-  }
-
-  const label = translate('player.lineUp.ready')
-  const isAsked = !view.settings.hostOpensNextRound
-
-  return (
-    <div
-      className='back-at-the-table'
-      data-open={isAsked || undefined}
-      inert={!isAsked}
-    >
-      <div>
-        <ToggleButton
-          isSelected={you.isReady}
-          onChange={(isReady) => {
-            onReady(isReady)
-          }}
-          size='large'
-        >
-          <span aria-hidden className='ready-mark'>
-            <CheckIcon />
-          </span>
-          {label}
-          <ReadyHoldFill clock={clock} hold={hold} label={label} />
-        </ToggleButton>
-      </div>
-    </div>
-  )
-}
-
-/**
- * The wait to the next round, filling the Ready press from its leading edge in
- * the phase's ink. The label is printed again on the fill, so it reads over
- * both materials. Once shown it stays mounted, and a hold called off fades out.
- */
-const ReadyHoldFill: React.FC<{
-  clock: ClockEstimate | null
-  hold: RevealHoldSpan | null
-  label: string
-}> = ({ clock, hold, label }) => {
-  const [shown, setShown] = useState<
-    (RevealHoldSpan & { remainingMs: number }) | null
-  >(null)
-
-  // Read once per hold: re-aiming a running animation rebases what it has
-  // already played, and the fill would jump on every snapshot.
-  if (hold !== null && hold.advancesAt !== shown?.advancesAt) {
-    setShown({
-      ...hold,
-      remainingMs: Math.max(
-        0,
-        millisecondsUntil(clock, hold.advancesAt, nowMs())
-      )
-    })
-  }
-
-  if (shown === null) {
-    return null
-  }
-
-  return (
-    <span
-      aria-hidden
-      className='ready-hold-fill'
-      data-filling={hold !== null || undefined}
-      key={shown.advancesAt}
-      style={{
-        '--fill-duration': `${shown.remainingMs}ms`,
-        '--unfilled-from': `${((shown.remainingMs / shown.holdMs) * 100).toFixed(1)}%`
-      }}
-    >
-      <CheckIcon />
-      <span className='control-label'>{label}</span>
-    </span>
   )
 }
 
@@ -500,13 +379,26 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
   }
 
   if (view.phase === 'finished') {
+    const again = (
+      <BackAtTheTable
+        clock={clock}
+        hold={tableStartHoldOf(view)}
+        onReady={onReady}
+        view={view}
+      />
+    )
+
     return (
       <section className='player-round finished'>
         {view.teams.length > 0 ? (
-          <TeamFinish view={view} />
+          <>
+            {again}
+            <TeamFinish view={view} />
+          </>
         ) : (
           <>
             <YourPlacing view={view} />
+            {again}
             <SectionHeading>{translate('round.finalStandings')}</SectionHeading>
             <Scoreboard
               hasPawns

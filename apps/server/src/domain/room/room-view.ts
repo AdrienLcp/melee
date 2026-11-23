@@ -402,6 +402,7 @@ const toBaseView = ({
   isWallConnected,
   phase: room.phase,
   players: toPublicPlayers({ now, room }),
+  readyStartsAt: room.readyStartsAt,
   round:
     room.round === null
       ? null
