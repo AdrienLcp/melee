@@ -39,9 +39,7 @@ Mêlée générale."
   round's answer time — the clip plays `clipWindowMs` (default 1 000, a
   setting down to 500) from `startsAt`, then the deck pauses; the round's
   answer time runs on in silence. The reveal plays the track on as today.
-  The host may replay the flash (the reveal's clip controls play the window
-  again during the round? — no: during the round nothing replays; Adrien's
-  game is one hearing).
+  Nothing replays the flash during the round: the game is one hearing.
 - **Mega-hits**: a high rank floor (start from ~850k, measured on the
   catalogue so every locale keeps a deep enough pool) over the decades and
   charts, per `homeCountry` like the decades: France's classics for a
