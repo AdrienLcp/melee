@@ -10,6 +10,7 @@ import { byLocale } from '@melee/protocol/locale'
 import type { Award } from '@melee/protocol/scoring'
 
 import { pointsForPlace } from '@melee/core/challenge/place-pay'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round, TeamAward } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -184,6 +185,7 @@ const rebuildAwards = ({
     }
 
     return {
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId,
       points,

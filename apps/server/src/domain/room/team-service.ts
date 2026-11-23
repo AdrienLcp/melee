@@ -19,6 +19,7 @@ import {
   type PawnMove
 } from '@melee/core/board/board-strategy'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
 import {
   fieldsTeams,
@@ -27,7 +28,11 @@ import {
   teamIdAt
 } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
-import { type PaidSeat, teamRoundResult } from '@melee/core/team/team-score'
+import {
+  isTeamRoundPerfect,
+  type PaidSeat,
+  teamRoundResult
+} from '@melee/core/team/team-score'
 
 import { isSpokenRound } from '@/domain/round/black-square-round'
 
@@ -413,6 +418,23 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
         .filter((award) => award.teamId === teamId)
         .reduce((total, award) => total + award.points, 0)
 
+/**
+ * Whether the team's round on screen holds a perfect answer: a seat's, read
+ * the way its result is added up, or a whole round the host paid the team.
+ */
+const liveRoundIsPerfect = (room: Room, teamId: TeamId): boolean =>
+  room.round !== null &&
+  (isTeamRoundPerfect({
+    answersAsOne: answersAsOneIn(room),
+    awards: room.round.awards,
+    openedWithPlayerIds: room.round.openedWithPlayerIds,
+    scoring: room.settings.teamScoring,
+    seatIds: seatsOf(room, teamId).map((seat) => seat.id)
+  }) ||
+    room.round.teamAwards.some(
+      (award) => award.teamId === teamId && isPerfectPay(award.points)
+    ))
+
 /** What the team's seats earned on the round on screen, read off `awards`. */
 const liveSeatsResult = ({
   awards,
@@ -426,15 +448,22 @@ const liveSeatsResult = ({
   room.round === null
     ? 0
     : teamRoundResult({
-        answersAsOne:
-          room.round.duel !== null ||
-          room.round.content.kind === 'challenge' ||
-          isSpokenRound(room.round),
+        answersAsOne: answersAsOneIn(room),
         awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
         scoring: room.settings.teamScoring,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)
       })
+
+/**
+ * A duel, a challenge's placing and a spoken round pay a team one attempt
+ * held by every seat it was stamped on, rather than one per seat.
+ */
+const answersAsOneIn = (room: Room): boolean =>
+  room.round !== null &&
+  (room.round.duel !== null ||
+    room.round.content.kind === 'challenge' ||
+    isSpokenRound(room.round))
 
 /** How much of the team's round the clock paid: its seats' results with and without their speed bonus. */
 const liveSpeedBonus = (room: Room, teamId: TeamId): number => {
@@ -453,6 +482,7 @@ const liveSpeedBonus = (room: Room, teamId: TeamId): number => {
 /** Whose pawn walks, what the round on screen paid it, and how much of that the clock did. */
 type TrackPawn = {
   holder: Participant | RoomTeam
+  isPerfect: boolean
   points: number
   speedBonus: number
 }
@@ -466,6 +496,7 @@ const trackPawnsOf = (room: Room): TrackPawn[] => {
   if (room.teams.length > 0) {
     return room.teams.map((team) => ({
       holder: team,
+      isPerfect: liveRoundIsPerfect(room, team.id),
       points: liveRoundResult(room, team.id),
       speedBonus: liveSpeedBonus(room, team.id)
     }))
@@ -484,6 +515,7 @@ const trackPawnsOf = (room: Room): TrackPawn[] => {
 
       return {
         holder: seat,
+        isPerfect: awards.some((award) => award.isPerfect),
         points: awards.reduce((total, award) => total + award.points, 0),
         speedBonus: awards.reduce((total, award) => total + award.speedBonus, 0)
       }
@@ -510,6 +542,7 @@ const liveMoves = (room: Room): PawnMove[] => {
       pawns.map((pawn) => [pawn.holder.id, pawn.holder.bankedCase])
     ),
     results: pawns.map((pawn) => ({
+      isPerfect: pawn.isPerfect,
       pawnId: pawn.holder.id,
       points: pawn.points,
       speedBonus: pawn.speedBonus

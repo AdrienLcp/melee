@@ -8,6 +8,7 @@ import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
 import { revealedColoursInOrder, swatchContent } from '@/helpers/round-content'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { usePlaysOnTrack } from './board-kind'
 import { Pawn } from './pawn'
 import { AwardFigure } from './round-podium'
 import { SwatchChip } from './swatch-chip'
@@ -48,6 +49,7 @@ export const SwatchGuesses: React.FC<SwatchGuessesProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
   const shown = swatchContent(round)?.colour ?? null
 
   if (shown === null) {
@@ -97,10 +99,10 @@ export const SwatchGuesses: React.FC<SwatchGuessesProps> = ({
                 </VisuallyHidden>
               )}
             </span>
-            {award !== undefined && award.points > 0 ? (
+            {award !== undefined && (isOnTrack || award.points > 0) ? (
               <AwardFigure
                 award={award}
-                walked={players[seatOf(guess.playerId)]?.board?.move ?? null}
+                board={players[seatOf(guess.playerId)]?.board ?? null}
               />
             ) : (
               <span className='points'>0</span>

@@ -50,3 +50,33 @@ export const teamRoundResult = ({
     ? total
     : Math.round(total / playingSeatIds.length)
 }
+
+/**
+ * Whether a team's round holds a perfect answer, read the way its result is
+ * added up: a team paid its seats' sum holds one when any seat gave it, as it
+ * does when the team answers as one; a team paid their mean only when every
+ * seat it opened on did, since one seat short of it pulls the mean short too.
+ */
+export const isTeamRoundPerfect = ({
+  answersAsOne,
+  awards,
+  openedWithPlayerIds,
+  scoring,
+  seatIds
+}: {
+  answersAsOne: boolean
+  awards: readonly { isPerfect: boolean; playerId: PlayerId }[]
+  openedWithPlayerIds: ReadonlySet<PlayerId> | null
+  scoring: TeamScoring
+  seatIds: readonly PlayerId[]
+}): boolean => {
+  const playingSeatIds = seatIds.filter(
+    (seatId) => openedWithPlayerIds?.has(seatId) ?? true
+  )
+  const isPerfectSeat = (seatId: PlayerId): boolean =>
+    awards.some((award) => award.playerId === seatId && award.isPerfect)
+
+  return answersAsOne || scoring === 'sum'
+    ? playingSeatIds.some(isPerfectSeat)
+    : playingSeatIds.length > 0 && playingSeatIds.every(isPerfectSeat)
+}

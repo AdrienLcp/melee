@@ -20,6 +20,19 @@ step that lands keeps its line here, dated, and loses its details.
    turn ranks the team on it alone, since the waiting teams were paid nothing:
    ranking over the whole set would hold every move until the last turn.
 
+   **The top step is a perfect answer's** — done 23/11/2026, after a
+   timeline reveal stood a perfect order level with two swapped pairs. Every
+   award carries `isPerfect`, and `onePointOneCase` walks it 3 and anything
+   else 2 at most; catch-up never lifts a pawn level with a better answer; a
+   reveal ranks on the answer, never the squares the finish allowed, and says
+   the finish's word for a move it cut short. Both older pieces were weighed and kept.
+   `rank` is a different race rather than a looser one — the round's best
+   answer takes 3 even when nobody was perfect, which is what a podium means
+   — and with the answer order it now ranks a perfect answer first in a team
+   room too. Catch-up keeps its point, a hand for the pawn alone at the back,
+   now that it can no longer undo a better answer; it also lifts a pawn that
+   scored and walked nought, the case it was too strict for.
+
 3. **Solo and duel** — done 21/10/2026: `playStyle` (`together`, `byTeam`,
    `solo`, `duel`) replaces `byTeam` on the host's start and next, protocol 32,
    and `round.turn` names `teamIds` and `seatIds`. Both are roster rules on the

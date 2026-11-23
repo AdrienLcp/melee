@@ -4,6 +4,7 @@ import {
   estimateVerdictsOf,
   pointsForEstimate
 } from '@melee/core/estimate/estimate-pay'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round } from '@/domain/room/room'
 
@@ -49,6 +50,7 @@ export const payEstimates = (room: Room): void => {
     }
 
     round.awards.push({
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId,
       points,

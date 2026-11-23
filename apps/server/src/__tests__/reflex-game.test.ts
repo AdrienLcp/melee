@@ -168,6 +168,7 @@ describe('a heat nobody has to judge', () => {
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
     expect(hostView(host)?.round?.awards[0]).toEqual({
+      isPerfect: true,
       isUnsent: false,
       playerId: aliceId,
       points: MOST_A_ROUND_PAYS,

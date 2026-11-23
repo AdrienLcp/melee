@@ -424,19 +424,46 @@ see one of them.
   into a number of cases; `advanceOnTrack` stops each pawn on the last case.
   Cases are counted on the **answer's** share of the round and never the
   clock's (`answerPointsOf`, the award's `speedBonus` taken out), so two pawns
-  that answered alike walk alike whoever was quicker. `onePointOneCase` moves
-  a case for every whole `POINTS_PER_CASE` — 30 printed points — floored: a
-  right answer walks three, two thirds of one two, a third one. `rank` moves
-  the round's pawns 3, 2 and 1 cases by what it paid them, speed bonus
-  included; a tie shares the better place and skips the next, and only a pawn
-  whose answer earned a case's worth stands on the podium — a far-off guess is
-  not walked like a right one for being third of three, and a team waiting for
-  its turn in a set, paid nothing, is never ranked against the one playing.
+  that answered alike walk alike whoever was quicker. **The top step is a
+  perfect answer's alone**: every award carries `isPerfect` — it earned the
+  whole round before the clock took its share (`isPerfectPay`, the same test
+  that lets an answer race the clock) — and `onePointOneCase` walks it three;
+  any other answer walks a case per whole `POINTS_PER_CASE` (30 printed
+  points), floored, two at most:
+
+  | The answer                              | Cases |
+  | --------------------------------------- | ----- |
+  | perfect — clocked or not, quick or slow | 3     |
+  | 60 points or more short of perfect      | 2     |
+  | 30 to 59                                | 1     |
+  | under 30                                | 0     |
+
+  So a timeline walks 3, 2, 1 and 0 for nought, one, two and three pairs
+  swapped, a colour a shade off or a pin just short walks 2 beside the exact
+  one's 3, and a five-clues find walks 3 on the first clue alone. A team holds
+  a perfect answer the way its result adds up (`isTeamRoundPerfect`): under a
+  sum when any seat gave one, under a mean only when every seat it opened on
+  did, and as one when its attempt was. `rank` moves the round's pawns 3, 2
+  and 1 cases in `byBetterAnswer`'s order — a perfect answer first, then the
+  answer, the clock only between two answers alike; a tie shares the better
+  place and skips the next, and only a pawn whose answer earned a case's worth
+  stands on the podium — a far-off guess is not walked like a right one for
+  being third of three, and a team waiting for its turn in a set, paid
+  nothing, is never ranked against the one playing.
 - **Catch-up is the track's, not a strategy's.** With `catchUp` on,
-  `advanceOnTrack` gives one case more to a team standing _alone_ on the
-  rearmost case, on a round its strategy walks it at all. Two pawns level at
-  the back are a race, not a team left behind. The field defaults to `false`,
-  so a track stored by a host before it existed still parses.
+  `advanceOnTrack` gives one case more to a pawn standing _alone_ on the
+  rearmost case, on a round it scored in — a pawn whose answer walked nought
+  included — **unless that would bring it level with, or past, a pawn whose
+  answer beat it**: a better answer always walks further. A pawn that
+  answered alike may be passed, which is what catch-up is for. Two pawns level
+  at the back are a race, not a team left behind. The field defaults to
+  `false`, so a track stored by a host before it existed still parses.
+- **A reveal ranks the round on the answer, never on the squares.** The
+  finish stops a perfect answer one case from home at +1, beside a near one
+  that walked +1 honestly, so `roundScorers` orders a track's round by
+  `byBetterAnswer`, and a move the finish cut short prints the finish's word (`board.finish`) rather
+  than _+1 case_ (`useWalkedLabel`). A seat that answered and walked nought
+  prints _+0 case_, so its line is never empty.
 - **The move shows at the reveal and not before.** `move` is what the round on
   screen walked the pawn, nought until `revealed`, so a screen plays the walk
   from `case - move` instead of teleporting the pawn, and nothing moves while

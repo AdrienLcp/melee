@@ -23,6 +23,7 @@ import {
   groupAnswers,
   isBlankAnswer
 } from '@melee/core/round/answer-groups'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -802,6 +803,7 @@ const rescore = ({
     }
 
     return {
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId,
       points,

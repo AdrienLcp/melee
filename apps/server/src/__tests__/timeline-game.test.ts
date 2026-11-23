@@ -196,6 +196,56 @@ describe('a timeline round through the seam', () => {
     )
   })
 
+  it('[timeline] walks the true order the top step and a swapped pair short of it', async () => {
+    const { code, host } = await harness.openRoom({
+      ...TIMELINE,
+      board: {
+        catchUp: true,
+        kind: 'track',
+        length: 40,
+        strategy: 'onePointOneCase'
+      }
+    })
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const max = await harness.seat({ code, nickname: 'Max' })
+    const lea = await harness.seat({ code, nickname: 'Lea' })
+    const [first = '', second = '', third = '', ...rest] = TRUE_ORDER
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the events')
+
+    const roundId = playerView(zoe)?.round?.id ?? ''
+    const orders = [
+      [zoe, TRUE_ORDER],
+      [max, [second, first, third, ...rest]],
+      [lea, [second, third, first, ...rest]]
+    ] as const
+
+    for (const [seat, eventIds] of orders) {
+      seat.send({
+        answer: { eventIds: [...eventIds], kind: 'order' },
+        roundId,
+        type: 'player.answer'
+      })
+    }
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const walkOf = (seat: typeof zoe) => {
+      const id = playerView(seat)?.youId
+
+      return {
+        isPerfect: view?.round?.awards.find((award) => award.playerId === id)
+          ?.isPerfect,
+        move: view?.players.find((player) => player.id === id)?.board?.move
+      }
+    }
+
+    expect(walkOf(zoe)).toEqual({ isPerfect: true, move: 3 })
+    expect(walkOf(max)).toEqual({ isPerfect: false, move: 2 })
+    expect(walkOf(lea)).toEqual({ isPerfect: false, move: 1 })
+  })
+
   it('[timeline] pays an order moved and never sent as it stood, with no speed bonus', async () => {
     const { host, max, roundId, zoe } = await roundInPlay()
     const [first = '', second = '', ...rest] = TRUE_ORDER

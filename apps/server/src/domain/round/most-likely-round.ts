@@ -6,6 +6,7 @@ import {
   roomsChoice,
   tallyBallots
 } from '@melee/core/mostlikely/tally'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round } from '@/domain/room/room'
 
@@ -54,6 +55,7 @@ export const payBallotsWithTheRoom = (room: Room): void => {
     }
 
     round.awards.push({
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId,
       points,

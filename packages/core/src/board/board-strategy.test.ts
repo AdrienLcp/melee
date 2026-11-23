@@ -46,6 +46,7 @@ const play = ({
       length: LENGTH,
       positions,
       results: Object.entries(round).map(([pawnId, points]) => ({
+        isPerfect: points >= 3 * POINTS_PER_CASE,
         pawnId,
         points,
         speedBonus: 0
@@ -90,11 +91,12 @@ describe('board strategy', () => {
       positions: new Map(),
       results: [
         {
+          isPerfect: false,
           pawnId: 'quick',
           points: answer + 0.1 * POINTS_PER_CASE,
           speedBonus: 0.1 * POINTS_PER_CASE
         },
-        { pawnId: 'slow', points: answer, speedBonus: 0 }
+        { isPerfect: false, pawnId: 'slow', points: answer, speedBonus: 0 }
       ],
       strategy: 'onePointOneCase'
     })
@@ -110,7 +112,14 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 1]]),
-      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE, speedBonus: 0 }],
+      results: [
+        {
+          isPerfect: true,
+          pawnId: 'blue',
+          points: 3 * POINTS_PER_CASE,
+          speedBonus: 0
+        }
+      ],
       strategy: 'onePointOneCase'
     })
 
@@ -126,7 +135,14 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 4]]),
-      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE, speedBonus: 0 }],
+      results: [
+        {
+          isPerfect: true,
+          pawnId: 'blue',
+          points: 3 * POINTS_PER_CASE,
+          speedBonus: 0
+        }
+      ],
       strategy: 'onePointOneCase'
     })
 
@@ -150,11 +166,31 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: 2 * POINTS_PER_CASE, speedBonus: 0 },
-        { pawnId: 'red', points: 2 * POINTS_PER_CASE, speedBonus: 0 },
-        { pawnId: 'green', points: POINTS_PER_CASE, speedBonus: 0 },
-        { pawnId: 'gold', points: 0.5 * POINTS_PER_CASE, speedBonus: 0 },
-        { pawnId: 'pink', points: 0, speedBonus: 0 }
+        {
+          isPerfect: false,
+          pawnId: 'blue',
+          points: 2 * POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        {
+          isPerfect: false,
+          pawnId: 'red',
+          points: 2 * POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        {
+          isPerfect: false,
+          pawnId: 'green',
+          points: POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        {
+          isPerfect: false,
+          pawnId: 'gold',
+          points: 0.5 * POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        { isPerfect: false, pawnId: 'pink', points: 0, speedBonus: 0 }
       ],
       strategy: 'rank'
     })
@@ -174,8 +210,13 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: POINTS_PER_CASE, speedBonus: 0 },
-        { pawnId: 'red', points: 0, speedBonus: 0 }
+        {
+          isPerfect: false,
+          pawnId: 'blue',
+          points: POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        { isPerfect: false, pawnId: 'red', points: 0, speedBonus: 0 }
       ],
       strategy: 'rank'
     })
@@ -192,13 +233,24 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'right', points: POINTS_PER_CASE, speedBonus: 0 },
         {
+          isPerfect: false,
+          pawnId: 'right',
+          points: POINTS_PER_CASE,
+          speedBonus: 0
+        },
+        {
+          isPerfect: false,
           pawnId: 'near',
           points: POINTS_PER_CASE,
           speedBonus: 0.1 * POINTS_PER_CASE
         },
-        { pawnId: 'far', points: 0.2 * POINTS_PER_CASE, speedBonus: 0 }
+        {
+          isPerfect: false,
+          pawnId: 'far',
+          points: 0.2 * POINTS_PER_CASE,
+          speedBonus: 0
+        }
       ],
       strategy: 'rank'
     })
@@ -210,20 +262,20 @@ describe('board strategy', () => {
     ])
   })
 
-  it('[board] gives the team alone at the back one case more on a round it scores', () => {
+  it('[board] gives the team alone at the back one case more, never level with a better answer', () => {
     expect(
       play({ catchUp: true, rounds: EVENING, strategy: 'onePointOneCase' })
     ).toEqual([
       { isOver: false, positions: { blue: 2, green: 0, red: 3 } },
       { isOver: false, positions: { blue: 3, green: 0, red: 4 } },
-      { isOver: false, positions: { blue: 6, green: 3, red: 4 } },
-      { isOver: false, positions: { blue: 6, green: 7, red: 6 } },
-      { isOver: false, positions: { blue: 8, green: 8, red: 9 } },
+      { isOver: false, positions: { blue: 6, green: 2, red: 4 } },
+      { isOver: false, positions: { blue: 6, green: 6, red: 6 } },
+      { isOver: false, positions: { blue: 8, green: 7, red: 9 } },
       { isOver: true, positions: { blue: 11, green: 11, red: 12 } }
     ])
     expect(play({ catchUp: true, rounds: EVENING, strategy: 'rank' })).toEqual([
       { isOver: false, positions: { blue: 2, green: 0, red: 3 } },
-      { isOver: false, positions: { blue: 5, green: 0, red: 5 } },
+      { isOver: false, positions: { blue: 5, green: 1, red: 5 } },
       { isOver: false, positions: { blue: 8, green: 3, red: 5 } },
       { isOver: false, positions: { blue: 8, green: 7, red: 7 } },
       { isOver: false, positions: { blue: 10, green: 8, red: 10 } },

@@ -12,6 +12,7 @@ import {
   hasJoinedAfterStart,
   isExpectedInRound
 } from '@melee/core/round/round-roster'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -126,6 +127,7 @@ export const payInnerclockCounts = (room: Room): void => {
     }
 
     round.awards.push({
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId: press.playerId,
       points,

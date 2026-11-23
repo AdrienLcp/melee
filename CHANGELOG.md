@@ -689,6 +689,19 @@ one part.
 - `[Game]` **Petit Bac's sheet no longer collapses on the last line's first
   letter.** The note saying why a full sheet cannot stop yet took the list's
   height; it now folds open under the press.
+- **A perfect answer walks further than any other.** On a track, three
+  squares now belong to a perfect answer alone — the order with no pair
+  swapped, the exact colour, the right pick — and anything short of it walks
+  two at most, so a near miss never lands level with a right answer. Catch-up
+  no longer lifts the pawn at the back level with someone who answered better.
+- `[Game]` **A reveal ranks the round on the answers, not on the squares.** A
+  perfect answer the finish stopped after one square is first, and says
+  _Arrivée_ rather than _+1 case_; a seat that answered and walked nothing says
+  _+0 case_, so no Shades card sits lower than its neighbours.
+- `[Game]` **No second list repeats the podium.** Under a reveal, the chips
+  grouping the answers show only when they hold one the podium does not.
+- `[Game]` **The board's numbers sit in the middle of their squares**, and
+  rise to the top edge as a pawn lands, settling back once it leaves.
 
 - `[Server]` **The assistant composing an evening is told the whole of
   each game.** The quiz answers in Portuguese too, a blind test draws from

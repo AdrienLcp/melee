@@ -1,5 +1,7 @@
 import { MOST_A_ROUND_PAYS, MOST_THE_CLOCK_PAYS } from '@melee/protocol/scoring'
 
+import { isPerfectPay } from './perfect-pay'
+
 export type ClockedPay = {
   /** Everything the answer was paid, the clock's share included. */
   points: number
@@ -39,7 +41,7 @@ export const clockedPay = ({
   roundDurationMs: number
 }): ClockedPay => {
   const clockShare = earned * (MOST_THE_CLOCK_PAYS / MOST_A_ROUND_PAYS)
-  const isPerfect = earned >= MOST_A_ROUND_PAYS
+  const isPerfect = isPerfectPay(earned)
   const left =
     !isPerfect || elapsedMs === null || roundDurationMs <= 0
       ? 0

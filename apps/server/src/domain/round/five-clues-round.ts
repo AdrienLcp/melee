@@ -10,7 +10,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { AnswerMode, RoundContent } from '@melee/protocol/room'
 import type { Award } from '@melee/protocol/scoring'
 
-import { pointsForClue } from '@melee/core/fiveclues/clue-pay'
+import { pointsForClue, worthOfClue } from '@melee/core/fiveclues/clue-pay'
 import {
   type CluesSeat,
   type FiveCluesMode,
@@ -27,6 +27,7 @@ import {
   type QuestionAnswer
 } from '@melee/core/quiz/question-answer'
 import { isExpectedInRound } from '@melee/core/round/round-roster'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -397,6 +398,7 @@ export const payFiveClues = (room: Room): void => {
 
     if (seat?.status !== 'found') {
       return {
+        isPerfect: false,
         isUnsent: false,
         playerId: attempts.playerId,
         points: 0,
@@ -418,6 +420,7 @@ export const payFiveClues = (room: Room): void => {
     }
 
     return {
+      isPerfect: isPerfectPay(worthOfClue(seat.clueIndex)),
       isUnsent: false,
       playerId: attempts.playerId,
       points,

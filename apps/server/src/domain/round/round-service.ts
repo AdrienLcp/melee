@@ -55,6 +55,7 @@ import {
   hasJoinedAfterStart,
   isExpectedInRound
 } from '@melee/core/round/round-roster'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { clockedPay } from '@melee/core/scoring/speed-bonus'
 import {
   isFinal,
@@ -1192,6 +1193,7 @@ export const settleSimultaneousRound = ({
 
     if (earned === 0 || attempts.scoredAfterMs === null) {
       round.awards.push({
+        isPerfect: false,
         isUnsent: attempts.isUnsent,
         playerId: attempts.playerId,
         points: 0,
@@ -1221,6 +1223,7 @@ export const settleSimultaneousRound = ({
     }
 
     round.awards.push({
+      isPerfect: isPerfectPay(earned),
       isUnsent: attempts.isUnsent,
       playerId: attempts.playerId,
       points,
@@ -1419,6 +1422,7 @@ export const settleReflexRound = (room: Room, now: number): void => {
     }
 
     round.awards.push({
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId: press.playerId,
       points,
@@ -1836,6 +1840,7 @@ export const applyVerdict = ({
   // No speed bonus: a judged round is one player on the floor, so the order is
   // the buzz and speed is already the whole prize.
   round.awards.push({
+    isPerfect: isPerfectPay(points),
     isUnsent: false,
     playerId,
     points,

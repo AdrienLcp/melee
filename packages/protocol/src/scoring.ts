@@ -273,6 +273,13 @@ export const verdictSchema = z.discriminatedUnion('kind', [
 
 export const awardSchema = z.object({
   /**
+   * The answer earned the whole round before the clock took its share — the
+   * order with no pair swapped, the exact colour, the right pick. Only a
+   * perfect answer walks a pawn the track's top step, so a perfect and a near
+   * answer never land on the same square (`onePointOneCase`).
+   */
+  isPerfect: z.boolean(),
+  /**
    * Paid on what the seat's screen held when the round closed, because it
    * never sent an answer, or never sent the longest word it is paid for — see
    * `player.lean`. Said on that seat's own reveal,

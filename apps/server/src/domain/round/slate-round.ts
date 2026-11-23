@@ -10,6 +10,7 @@ import {
   groupAnswers,
   isBlankAnswer
 } from '@melee/core/round/answer-groups'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import {
   closedItem,
   OPEN_ITEM,
@@ -601,6 +602,7 @@ const rescoreSheets = ({
       }
 
       return {
+        isPerfect: isPerfectPay(points),
         isUnsent: false,
         playerId,
         points,

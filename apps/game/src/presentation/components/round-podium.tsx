@@ -1,9 +1,11 @@
 import type React from 'react'
 
+import type { BoardPosition } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 import type { Award } from '@melee/protocol/scoring'
 
+import { byBetterAnswer } from '@melee/core/board/answer-order'
 import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
 import { isFoundOrMissed } from '@melee/core/scoring/verdict'
 
@@ -12,6 +14,7 @@ import {
   revealedInOrder,
   swatchContent
 } from '@/helpers/round-content'
+import { PODIUM_PLACES, roundScorers } from '@/helpers/round-scorers'
 import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -21,6 +24,7 @@ import { Pawn } from './pawn'
 import { SwatchChip } from './swatch-chip'
 import { useAnswerWords } from './use-distance-words'
 import { VisuallyHidden } from './visually-hidden'
+import { useWalkedLabel } from './walked-label'
 
 import './round-podium.sass'
 
@@ -36,8 +40,6 @@ type RoundPodiumProps = {
   /** The seat this screen holds, in the keyline; omitted or `null` on a screen nobody sits at. */
   youId?: PlayerId | null
 }
-
-const PODIUM_PLACES = 3
 
 /**
  * What a seat said, drawn the way the round showed it: a rebuilt colour on a
@@ -85,22 +87,12 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
   const translate = useTranslate()
   const answerWords = useAnswerWords(round)
   const isOnTrack = usePlaysOnTrack()
-  const walkedBy = (playerId: string): number | null =>
-    players.find((player) => player.id === playerId)?.board?.move ?? null
-  // On a track a seat walking its own pawn stands on the squares it walked;
-  // one whose team walks stands on its answer, the clock left out, because
-  // the clock moves no pawn and a place it decided would be a hidden figure.
-  const standingOf = (award: Award): number =>
-    isOnTrack
-      ? (walkedBy(award.playerId) ?? award.points - award.speedBonus)
-      : award.points
-  const scorers = round.awards
-    .filter((award) => standingOf(award) > 0)
-    .toSorted((left, right) => standingOf(right) - standingOf(left))
+  const boardOf = (playerId: string): BoardPosition | null =>
+    players.find((player) => player.id === playerId)?.board ?? null
+  const scorers = roundScorers({ awards: round.awards, isOnTrack })
   const placeOf = (award: Award): number | null =>
     isOnTrack
-      ? scorers.findIndex((other) => standingOf(other) === standingOf(award)) +
-        1
+      ? scorers.filter((other) => byBetterAnswer(other, award) < 0).length + 1
       : roundPlacingOf({ awards: round.awards, playerId: award.playerId })
   const podium = scorers.slice(0, PODIUM_PLACES)
   const answers = revealedInOrder(round)
@@ -155,7 +147,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
                   {wordsOf(award.playerId, words.text)}
                 </span>
               )}
-              <AwardFigure award={award} walked={walkedBy(award.playerId)} />
+              <AwardFigure award={award} board={boardOf(award.playerId)} />
             </li>
           )
         })}
@@ -191,22 +183,22 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
 
 /**
  * What the round paid a seat, beside its name: points with the clock's share
- * apart, or on a track the squares its own pawn walked — and nothing for a
- * seat whose team walks, since the team's move is the standings' to print.
+ * apart, or on a track the squares its own pawn walked — _+0_ included, so a
+ * row never loses its line — and nothing for a seat whose team walks, since
+ * the team's move is the standings' to print.
  */
 export const AwardFigure: React.FC<{
   award: Award
-  /** The squares the seat's own pawn walked this round; `null` with no pawn of its own. */
-  walked: number | null
-}> = ({ award, walked }) => {
+  /** The seat's own pawn; `null` with no pawn of its own. */
+  board: BoardPosition | null
+}> = ({ award, board }) => {
   const translate = useTranslate()
   const isOnTrack = usePlaysOnTrack()
+  const walkedLabel = useWalkedLabel()
 
   if (isOnTrack) {
-    return walked === null || walked === 0 ? null : (
-      <span className='points'>
-        {translate('board.walkedSquares', { count: walked })}
-      </span>
+    return board === null ? null : (
+      <span className='points'>{walkedLabel(board)}</span>
     )
   }
 

@@ -29,6 +29,7 @@ import {
   withLineBanked
 } from '@melee/core/blacksquare/sheet-pay'
 import { drawSpokenTurn } from '@melee/core/blacksquare/spoken-turn'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
 
 import type { Room, Round } from '@/domain/room/room'
@@ -252,6 +253,7 @@ export const payGuessingTeam = (room: Room): void => {
 
     return [
       {
+        isPerfect: isPerfectPay(points),
         isUnsent: false,
         playerId,
         points,

@@ -78,7 +78,9 @@
         border-radius: var(--radius-s)
         display: grid
         font-size: clamp(var(--text-xs), calc(var(--cell-side) * 0.14), var(--text-l))
-        grid-template-rows: minmax(0, 1fr) auto auto
+        // The figure's line is held even when a seat whose team walks prints
+        // none, so no chip in the grid sits lower than its neighbours.
+        grid-template-rows: minmax(0, 1fr) auto minmax(1lh, auto)
         justify-items: center
         row-gap: 0.15em
 

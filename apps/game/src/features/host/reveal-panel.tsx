@@ -1,11 +1,13 @@
 import type React from 'react'
 import { useRef } from 'react'
 
+import type { BoardPosition } from '@melee/protocol/board'
 import type { GameSettings } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { answerPointsOf } from '@melee/core/board/answer-points'
 import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
 
 import { LightsRanking } from '@/features/host/lights-ranking'
@@ -32,6 +34,7 @@ import {
   thinkAlikeContent,
   timelineContent
 } from '@/helpers/round-content'
+import { PODIUM_PLACES, roundScorers } from '@/helpers/round-scorers'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { CountedBoard } from '@/presentation/components/counted-board'
@@ -60,6 +63,7 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { useQuantityWords } from '@/presentation/components/use-quantity-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
+import { useWalkedLabel } from '@/presentation/components/walked-label'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { LongestWordBest } from './longest-word-best'
@@ -681,6 +685,20 @@ const Outcome: React.FC<
   }))
 
   const wordsOf = useWordsOf(round)
+  const isOnTrack = usePlaysOnTrack()
+  const groups = saidTogether(answers)
+  // The podium's rows already print what each of its seats said; the tally
+  // earns its place only with an answer none of them gave — the wrong ones of
+  // a round nobody found, a fourth answer past the third step.
+  const saidOnPodium = new Set(
+    roundScorers({ awards: round.awards, isOnTrack })
+      .slice(0, PODIUM_PLACES)
+      .map(
+        (award) =>
+          answers.find((answer) => answer.playerId === award.playerId)?.said
+      )
+  )
+  const isTallyNews = groups.some((group) => !saidOnPodium.has(group.said))
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
@@ -703,24 +721,29 @@ const Outcome: React.FC<
           wordsOf={wordsOf}
           youId={youId}
         />
-        <ul className='tally' ref={tally}>
-          {saidTogether(answers).map((group) => (
-            <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
-              {group.isCorrect && <CheckIcon />}
-              <span className='words'>
-                {wordsOf(group.playerIds[0] ?? '', group.said)}
-              </span>
-              <span aria-hidden='true' className='pawns'>
-                {group.playerIds.map((playerId) => (
-                  <Pawn key={playerId} seat={seatOf(playerId)} />
-                ))}
-              </span>
-              <VisuallyHidden elementType='span'>
-                {`${group.isCorrect ? ` (${translate('host.verdict.right')})` : ''} — ${group.playerIds.map(nameOf).join(', ')}`}
-              </VisuallyHidden>
-            </li>
-          ))}
-        </ul>
+        {isTallyNews && (
+          <ul className='tally' ref={tally}>
+            {groups.map((group) => (
+              <li
+                className={group.isCorrect ? 'right' : 'wrong'}
+                key={group.key}
+              >
+                {group.isCorrect && <CheckIcon />}
+                <span className='words'>
+                  {wordsOf(group.playerIds[0] ?? '', group.said)}
+                </span>
+                <span aria-hidden='true' className='pawns'>
+                  {group.playerIds.map((playerId) => (
+                    <Pawn key={playerId} seat={seatOf(playerId)} />
+                  ))}
+                </span>
+                <VisuallyHidden elementType='span'>
+                  {`${group.isCorrect ? ` (${translate('host.verdict.right')})` : ''} — ${group.playerIds.map(nameOf).join(', ')}`}
+                </VisuallyHidden>
+              </li>
+            ))}
+          </ul>
+        )}
       </>
     )
   }
@@ -757,9 +780,9 @@ const ThisRoundHead: React.FC<
       aside={
         youId === null || seat === -1 || !isStamped ? null : (
           <SeatedResult
+            board={players[seat]?.board ?? null}
             round={round}
             seat={seat}
-            walked={players[seat]?.board?.move ?? null}
             youId={youId}
           />
         )
@@ -773,32 +796,31 @@ const ThisRoundHead: React.FC<
 
 /** What the round paid the seat this console holds, beside its pawn. */
 const SeatedResult: React.FC<{
+  /** The seat's own pawn; `null` with no pawn of its own. */
+  board: BoardPosition | null
   round: RoundView
   /** The seat's index, which colours its pawn. */
   seat: number
-  /** The squares the seat's own pawn walked this round; `null` with no pawn of its own. */
-  walked: number | null
   youId: PlayerId
-}> = ({ round, seat, walked, youId }) => {
+}> = ({ board, round, seat, youId }) => {
   const translate = useTranslate()
   const isOnTrack = usePlaysOnTrack()
+  const walkedLabel = useWalkedLabel()
   const award = round.awards.find((each) => each.playerId === youId)
   const points = award?.points ?? 0
 
   if (isOnTrack) {
-    // A seat whose team walks has no squares of its own: its answer says
-    // whether it counted, and the team's move is the standings' to print.
-    const hasCounted =
-      walked === null ? points - (award?.speedBonus ?? 0) > 0 : walked > 0
+    // Its answer says whether it counted, whatever the squares: a seat whose
+    // team walks has none of its own, the team's move is the standings' to
+    // print, and a pawn the finish stopped walked less than it earned.
+    const hasCounted = award !== undefined && answerPointsOf(award) > 0
 
     return (
       <span className={hasCounted ? 'seated-result scored' : 'seated-result'}>
         <Pawn seat={seat} />
         <span className='who'>{translate('player.you')}</span>
-        {walked !== null && walked > 0 && (
-          <span className='payout'>
-            {translate('board.walkedSquares', { count: walked })}
-          </span>
+        {board !== null && hasCounted && (
+          <span className='payout'>{walkedLabel(board)}</span>
         )}
         {!hasCounted && (
           <span className='placing'>{translate('round.missed')}</span>

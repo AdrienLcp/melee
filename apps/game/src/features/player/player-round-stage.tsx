@@ -20,6 +20,7 @@ import type { ColourHex } from '@melee/protocol/swatch'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { answerPointsOf } from '@melee/core/board/answer-points'
 import { isSpotOn } from '@melee/core/estimate/estimate-pay'
 import { asksReady } from '@melee/core/round/asks-ready'
 import {
@@ -1080,19 +1081,30 @@ const YourRound: React.FC<{
   const isOnTrack = view.settings.board.kind === 'track'
   // On a track the round is the squares the pawn walked — the seat's own, or
   // its team's — and no point is printed: the room plays for one or the other.
-  const walked =
-    (
-      teamOfSeat({ playerId: view.youId, teams: view.teams }) ??
-      view.players.find((player) => player.id === view.youId)
-    )?.board?.move ?? 0
+  const pawn = (
+    teamOfSeat({ playerId: view.youId, teams: view.teams }) ??
+    view.players.find((player) => player.id === view.youId)
+  )?.board
+  const walked = pawn?.move ?? 0
+  const { board } = view.settings
+  // A pawn the finish stopped walked less than its answer earned, and _+1_
+  // beside a perfect answer would read as a punishment.
+  const hasArrived =
+    board.kind === 'track' && walked > 0 && (pawn?.case ?? 0) >= board.length
   const points = award?.points ?? 0
   const speedBonus = isOnTrack ? 0 : (award?.speedBonus ?? 0)
-  const hasGained = isOnTrack ? walked > 0 : points > 0
+  // An answer that counted walks nought at worst, and says so rather than
+  // being told it missed.
+  const hasGained = isOnTrack
+    ? walked > 0 || (award !== undefined && answerPointsOf(award) > 0)
+    : points > 0
   const payout = !hasGained
     ? '0'
-    : isOnTrack
-      ? translate('board.walked', { count: walked })
-      : translate('round.scored', { points: shownPoints(points) })
+    : hasArrived
+      ? translate('board.finish')
+      : isOnTrack
+        ? translate('board.walked', { count: walked })
+        : translate('round.scored', { points: shownPoints(points) })
   const roundPlacing = isOnTrack
     ? null
     : roundPlacingOf({
@@ -1115,7 +1127,7 @@ const YourRound: React.FC<{
         )}
       </p>
       <div className='payout-words'>
-        {isOnTrack && hasGained && (
+        {isOnTrack && hasGained && !hasArrived && (
           <p className='walked-unit'>
             {translate('board.walkedUnit', { count: walked })}
           </p>

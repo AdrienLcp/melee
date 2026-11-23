@@ -19,6 +19,7 @@ import { bestHitsOf } from '@melee/core/lights/hits-pay'
 import { lightsRunOf } from '@melee/core/lights/lights-run'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { pointsFor } from '@melee/core/scoring/verdict'
 
 import type { Room, Round } from '@/domain/room/room'
@@ -210,6 +211,7 @@ export const payLights = (room: Room): void => {
     }
 
     return {
+      isPerfect: isPerfectPay(points),
       isUnsent: false,
       playerId,
       points,

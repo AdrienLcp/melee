@@ -2,6 +2,8 @@ import type { BoardStrategy } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { TeamId } from '@melee/protocol/team'
 
+import { byBetterAnswer } from './answer-order'
+import { answerPointsOf } from './answer-points'
 import { onePointOneCase } from './one-point-one-case'
 import { rank } from './rank'
 
@@ -12,6 +14,8 @@ import { rank } from './rank'
 export type PawnId = PlayerId | TeamId
 
 export type PawnRoundResult = {
+  /** Whether the pawn's answer earned the whole round, the only one walked the top step. */
+  isPerfect: boolean
   pawnId: PawnId
   /** What the round paid the pawn, in the board's units — a thousand to the `POINT`, a hundred `POINT`s at most. */
   points: number
@@ -73,6 +77,37 @@ const loneLastPawn = ({
 }
 
 /**
+ * Whether catch-up may lift the lone last pawn a case: only on a round it
+ * scored in, and never level with — let alone past — a pawn whose answer beat
+ * it, because a better answer must walk further. A pawn that answered alike
+ * may be passed, which is the whole of what catch-up is for.
+ */
+const isLiftedByCatchUp = ({
+  moves,
+  pawnId,
+  results
+}: {
+  moves: readonly PawnMove[]
+  pawnId: PawnId | null
+  results: readonly PawnRoundResult[]
+}): boolean => {
+  const result = results.find((each) => each.pawnId === pawnId)
+
+  if (result === undefined || answerPointsOf(result) <= 0) {
+    return false
+  }
+
+  const movedBy = (id: PawnId): number =>
+    moves.find((move) => move.pawnId === id)?.cases ?? 0
+  const lifted = movedBy(result.pawnId) + 1
+
+  return results.every(
+    (other) =>
+      byBetterAnswer(other, result) >= 0 || movedBy(other.pawnId) > lifted
+  )
+}
+
+/**
  * One round on the track: the strategy's moves, the catch-up case on top, each
  * pawn stopped at the last case, and whether a pawn has reached it — the
  * evening's other end, beside the round count and the host's *End*.
@@ -90,11 +125,15 @@ export const advanceOnTrack = ({
   results: readonly PawnRoundResult[]
   strategy: BoardStrategy
 }): TrackProgress => {
+  const walked = STRATEGIES[strategy](results)
   const behind = catchUp ? loneLastPawn({ positions, results }) : null
+  const isBehindLifted =
+    behind !== null &&
+    isLiftedByCatchUp({ moves: walked, pawnId: behind, results })
 
-  const moves = STRATEGIES[strategy](results).map((move) => {
+  const moves = walked.map((move) => {
     const from = positions.get(move.pawnId) ?? 0
-    const bonus = move.pawnId === behind && move.cases > 0 ? 1 : 0
+    const bonus = isBehindLifted && move.pawnId === behind ? 1 : 0
 
     return {
       ...move,

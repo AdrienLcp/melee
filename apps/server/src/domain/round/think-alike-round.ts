@@ -5,6 +5,7 @@ import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { RoundContent } from '@melee/protocol/room'
 import type { ThinkAlikeGroup } from '@melee/protocol/think-alike'
 
+import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { crowdGroups } from '@melee/core/thinkalike/crowd-key'
 import { matchesOf, pointsForMatch } from '@melee/core/thinkalike/crowd-pay'
 
@@ -73,6 +74,7 @@ export const payThinkAlike = (room: Room): void => {
     attempts.verdict = verdict
 
     return {
+      isPerfect: isPerfectPay(points),
       isUnsent: attempts.isUnsent,
       playerId: attempts.playerId,
       points,
