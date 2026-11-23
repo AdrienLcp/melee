@@ -9,6 +9,13 @@ Never a `git checkout` in `C:/git/melee`: other sessions run there.
 
 - **Under `C:/git/wt-<branch>`**, short: a worktree under a deep temp folder
   pushes pnpm's `node_modules` paths past Windows' limit.
+- **Its end-to-end servers take ports of their own.**
+  `e2e/support/worktree-ports.ts` picks three ports from 20000–27799 by a
+  hash of the checkout's path, so two worktrees run `pnpm test:e2e` or
+  `pnpm validate` at the same time with no setup. Two paths that hash to the
+  same slot fail at once on _is already used_: set `MELEE_E2E_PORT_SLOT`
+  (0–2599) in one of them. The dev ports stay 3100 and 5273, and a second
+  dev stack picks its own.
 - **A worktree holds only what git tracks.** `validate` reads nothing
   git-ignored today; a git-ignored input added later — a `.dev.vars`, a
   `.env.local` — is copied from the main checkout before `validate` runs.

@@ -1,12 +1,13 @@
 import { createServer } from 'node:http'
 
+import { E2E_PORTS } from './worktree-ports.ts'
+
 /**
  * Stands in for `api.deezer.com` during an end-to-end run, so a journey never
  * depends on what is charting today — or on the network being there at all.
  * The server reaches it through `DEEZER_API_URL`, which is the same seam a real
  * catalogue swap would use.
  */
-const PORT = Number(process.env.DEEZER_STUB_PORT) || 3199
 
 /** A hundredth of a second of silence: the host only has to be able to load it. */
 const AUDIBLE_NOTHING =
@@ -62,6 +63,6 @@ const bodyFor = (path: string): unknown => {
 createServer((request, response) => {
   response.writeHead(200, { 'content-type': 'application/json' })
   response.end(JSON.stringify(bodyFor(request.url ?? '/')))
-}).listen(PORT, () => {
-  process.stdout.write(`Catalogue stub listening on ${PORT}\n`)
+}).listen(E2E_PORTS.catalogue, () => {
+  process.stdout.write(`Catalogue stub listening on ${E2E_PORTS.catalogue}\n`)
 })

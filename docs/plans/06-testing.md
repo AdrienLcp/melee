@@ -35,8 +35,10 @@ is the title the phone was shown. `e2e/dead-socket.spec.ts` points a host at a
 room nobody holds and asserts the console is _replaced_ by a reason and a way
 out, rather than annotated.
 
-The journeys run on their own ports (`5274`, `3101`, `3199`) so they never
-borrow — or evict — a dev server, and against `e2e/support/deezer-stub.ts`
+The journeys run on their own ports — three per checkout, hashed from its
+path by `e2e/support/worktree-ports.ts`, since 23/11/2026 (`5274`, `3101` and
+`3199` before) — so they never borrow — or evict — a dev server or another
+worktree's run, and against `e2e/support/deezer-stub.ts`
 rather than the real catalogue, reached through the `DEEZER_API_URL` seam.
 Nothing about what is charting today can turn them red.
 

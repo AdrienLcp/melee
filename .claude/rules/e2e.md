@@ -26,7 +26,11 @@ The second earns its place because the two shapes are opposites — one player
 taking the floor against everyone writing at once — and no socket suite can
 stand in for two browsers, two forms and a screen that has to end up showing
 both answers. They run on ports of their own against `support/deezer-stub.ts`,
-so neither the dev server nor today's charts can turn them red.
+so neither the dev server nor today's charts can turn them red — and those
+ports are the **checkout's** own (`support/worktree-ports.ts`, a hash of its
+path, `MELEE_E2E_PORT_SLOT` to force one), so a second worktree's run never
+meets _is already used_. Nothing else may write a port down: the config, the
+stub and every URL read it from there.
 
 **One journey per way in**, which is how the room-first flow got covered
 without a fourth: the buzzer game presses the home page's **"Open a table"**

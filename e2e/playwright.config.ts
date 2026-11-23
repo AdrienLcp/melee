@@ -4,14 +4,16 @@ import { join } from 'node:path'
 
 import { defineConfig, devices } from '@playwright/test'
 
+import { E2E_PORTS } from './support/worktree-ports.ts'
+
 /**
  * Its own ports, never the dev stack's: an end-to-end run must not borrow a
  * server someone left running against the real catalogue, and it must not take
- * the ports of one they are still using.
+ * the ports of one they are still using — nor another worktree's run.
  */
-const APP_PORT = 5274
-const SERVER_PORT = 3101
-const CATALOGUE_PORT = 3199
+const APP_PORT = E2E_PORTS.app
+const SERVER_PORT = E2E_PORTS.server
+const CATALOGUE_PORT = E2E_PORTS.catalogue
 
 // `127.0.0.1`, not `localhost`: the Worker is bound to IPv4 only, and the
 // readiness probe resolves `localhost` to `::1` first and never falls back.
@@ -52,7 +54,6 @@ export default defineConfig({
   webServer: [
     {
       command: 'pnpm exec tsx support/deezer-stub.ts',
-      env: { DEEZER_STUB_PORT: String(CATALOGUE_PORT) },
       reuseExistingServer: false,
       url: `${CATALOGUE_URL}/chart/0/tracks`
     },

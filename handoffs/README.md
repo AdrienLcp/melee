@@ -7,7 +7,6 @@ file in the commit that finishes it, and delete this README with the last one.
 
 | Wave | File                            | Depends on           |
 | ---- | ------------------------------- | -------------------- |
-| 1    | `13-e2e-ports-per-worktree.md`  | none                 |
 | 2    | `06-hands-free-table.md`        | 01 landed            |
 | 2    | `07-results-screens.md`         | 02 landed            |
 | 2    | `08-blindtest-flash.md`         | 01 landed            |
@@ -24,7 +23,8 @@ file in the commit that finishes it, and delete this README with the last one.
   `C:/git/melee`, and work in `C:/git/wt-<file-slug>`
   (`.claude/rules/worktrees.md`: stop its servers by process tree, remove the
   folder with PowerShell, then `git worktree prune`). Each session uses dev
-  ports of its own — another session's servers hold 3100 and 5273.
+  ports of its own — another session's servers hold 3100 and 5273; the e2e
+  ports pick themselves per worktree.
 - **Landing**: `git fetch`, `git rebase origin/main`, `pnpm validate`, then
   push the branch onto `main` (`git push origin HEAD:main`) — no pull request.
   A rebase conflict in `packages/protocol` or a dictionary is another wave-mate
