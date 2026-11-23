@@ -355,7 +355,7 @@ const SOURCES: Record<WikidataQuantityFamily, readonly FamilySource[]> = {
   ]
 }
 
-// cspell:words Bruxelas Espagne Valência
+// cspell:words Bruxelas Espagne República République Valência
 /**
  * Where Wikidata's label is the official form, the name a table says — and
  * where a French name is a prefecture's too, the one that tells them apart.
