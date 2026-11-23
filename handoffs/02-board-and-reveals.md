@@ -27,8 +27,8 @@ answer last.
   and 2 swaps lands on exactly 30 000 through `Math.round(29999.7)`, a
   rounding edge.
 - **Catch-up** (`board-strategy.ts:97`): a lone last pawn gets +1, so one swap
-  + catch-up = 3 = perfect; on the `rank` strategy second place + catch-up
-  equals first.
+  - catch-up = 3 = perfect; on the `rank` strategy second place + catch-up
+    equals first.
 - **Games not paid for speed** (`packages/core/src/scoring/verdict.ts:197-203`:
   colour, place, number, count, cells, match) and every game when
   `paysForSpeed` is off: anything ≥ 90 walks 3, the same as perfect — a

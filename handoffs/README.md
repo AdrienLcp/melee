@@ -5,19 +5,19 @@ Adrien's feedback after a weekend of play (23/11/2026), almost all of it on the
 the host console and phones as seats. One file per fresh session. Delete a
 file in the commit that finishes it, and delete this README with the last one.
 
-| Wave | File                          | Depends on                       |
-| ---- | ----------------------------- | -------------------------------- |
-| 1    | `01-replay-and-ready.md`      | none                             |
-| 1    | `02-board-and-reveals.md`     | none                             |
-| 1    | `03-small-fixes.md`           | none                             |
-| 1    | `04-make-the-number.md`       | none                             |
-| 1    | `05-content-fixes.md`         | none                             |
-| 2    | `06-hands-free-table.md`      | 01 landed                        |
-| 2    | `07-results-screens.md`       | 02 landed                        |
-| 2    | `08-blindtest-flash.md`       | 01 landed                        |
-| 2    | `09-five-clues-any-subject.md`| 05 landed                        |
-| 3    | `10-five-clues-new-subjects.md`| 09 landed                       |
-| 3    | `11-international-evening.md` | 05, 08 and 09 landed             |
+| Wave | File                            | Depends on           |
+| ---- | ------------------------------- | -------------------- |
+| 1    | `01-replay-and-ready.md`        | none                 |
+| 1    | `02-board-and-reveals.md`       | none                 |
+| 1    | `03-small-fixes.md`             | none                 |
+| 1    | `04-make-the-number.md`         | none                 |
+| 1    | `05-content-fixes.md`           | none                 |
+| 2    | `06-hands-free-table.md`        | 01 landed            |
+| 2    | `07-results-screens.md`         | 02 landed            |
+| 2    | `08-blindtest-flash.md`         | 01 landed            |
+| 2    | `09-five-clues-any-subject.md`  | 05 landed            |
+| 3    | `10-five-clues-new-subjects.md` | 09 landed            |
+| 3    | `11-international-evening.md`   | 05, 08 and 09 landed |
 
 ## How every session here works
 
