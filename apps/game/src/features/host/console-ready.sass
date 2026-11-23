@@ -2,12 +2,17 @@
 @use '../../presentation/styles/mark'
 
 @layer components
-  // Beside the next-round press, in a footer that lays its presses in a row
-  // or a column: closed, it gives back its width and its height.
+  // Beside the next-round press: closed, it gives back its width and the gap
+  // to the press, then stops being drawn at all, so nothing holds a box there.
   .console-ready
-    @include fold.opens-in-line(var(--reveal-gap, var(--space-m)), $side: end, $gives-back-height: true)
+    @include fold.opens-in-line(var(--space-s), $side: end)
+
+    &:not([data-open]) > div
+      content-visibility: hidden
+      transition: content-visibility calc(var(--transition-base, 0s) + var(--transition-fast, 0s)) allow-discrete
 
     .toggle-button
+      block-size: 100%
       position: relative
 
       > .ready-mark

@@ -21,7 +21,8 @@ type ConsoleReadyProps = {
  * A seated host's word that they are back at the table, beside the press
  * that opens the next round without anyone: while the table drives the
  * evening, the room waits on the console's seat as on any other. Kept
- * mounted, and opened by whether the reveal asks for it.
+ * mounted while the console holds a seat, and opened by whether the reveal
+ * asks for it.
  */
 export const ConsoleReady: React.FC<ConsoleReadyProps> = ({
   isDisabled,
@@ -31,8 +32,12 @@ export const ConsoleReady: React.FC<ConsoleReadyProps> = ({
   const translate = useTranslate()
   const you = view.players.find((player) => player.id === view.youId)
   const round = view.round
+
+  if (you === undefined) {
+    return null
+  }
+
   const isAsked =
-    you !== undefined &&
     round != null &&
     !view.settings.hostOpensNextRound &&
     asksReady({ game: round.content.kind, isFinal: round.isFinal })
@@ -46,7 +51,7 @@ export const ConsoleReady: React.FC<ConsoleReadyProps> = ({
       <div>
         <ToggleButton
           isDisabled={isDisabled}
-          isSelected={you?.isReady ?? false}
+          isSelected={you.isReady}
           onChange={(isReady) => {
             send({ isReady, type: 'player.ready' })
           }}

@@ -1,0 +1,29 @@
+@use '../../presentation/styles/layout'
+
+@layer components
+  // The seated host's Ready beside the next-round press, on the press's own
+  // line: under it, a row more pushed a full table's podium past the stage.
+  .reveal-actions .next-round-group
+    align-items: stretch
+    display: flex
+    gap: var(--space-s)
+    max-inline-size: 100%
+
+    @include layout.narrow
+      inline-size: min(100%, 24rem)
+
+      > .next-round-press
+        flex: 1 1 0
+        inline-size: auto
+        min-inline-size: 0
+
+      // Sharing 288px at the narrowest, both give up padding before the
+      // press's label has to break.
+      &:has(> .console-ready[data-open])
+        > .console-ready .toggle-button
+          padding-inline: var(--space-m)
+
+        > .next-round-press > .control-label
+          padding-inline: var(--space-s)
+          text-wrap: balance
+          white-space: normal

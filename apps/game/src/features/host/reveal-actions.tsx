@@ -21,6 +21,8 @@ import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { isLastRound } from './is-last-round'
 import { NextRoundPress } from './next-round-press'
 
+import './reveal-actions.sass'
+
 /**
  * Whether the next round may be a duel, read off the room as it stands: two
  * teams holding a seat each, in a game and a mode a duel can be played in.
@@ -152,13 +154,15 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
-      <ConsoleReady isDisabled={!isLive} send={send} view={view} />
-      <NextRoundPress
-        announced={announced}
-        isDisabled={!isLive}
-        onPress={() => openNextRound({ isDuel: false })}
-        spineId={nextNameId}
-      />
+      <div className='next-round-group'>
+        <ConsoleReady isDisabled={!isLive} send={send} view={view} />
+        <NextRoundPress
+          announced={announced}
+          isDisabled={!isLive}
+          onPress={() => openNextRound({ isDuel: false })}
+          spineId={nextNameId}
+        />
+      </div>
       {/* Beside the press it varies. */}
       {offersDuel(view) && (
         <Button
