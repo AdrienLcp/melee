@@ -79,7 +79,7 @@ jobs:
 
       - name: Test end to end
         env:
-          SPECS: ${{ matrix.specs == 'strip-rows' && 'strip-rows' || 'choice-fits dead-socket everyone-answers full-game menu-opens' }}
+          SPECS: ${{ matrix.specs == 'strip-rows' && 'strip-rows' || 'choice-fits countdown-stays dead-socket everyone-answers full-game menu-opens' }}
           SHARD: ${{ matrix.shard }}
         run: |
           read -ra specs <<< "$SPECS"

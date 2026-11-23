@@ -1198,7 +1198,9 @@ one part.
   `choice-fits` answers its socket in the page and opens no room, so it runs
   as a project of its own across every worker, while the specs that share
   the server run one at a time beside it — 14½ minutes on a loaded laptop,
-  where `choice-fits` alone used to take 32.
+  where `choice-fits` alone used to take 32. On CI the slowest shard went
+  from about five minutes to four and a half, and `countdown-stays`, never
+  run there, joins the shards.
 
 - `[Game]` **`?crash` shows the error screen anywhere but production.** Any
   page with it in the address throws, so the screen can be looked at on

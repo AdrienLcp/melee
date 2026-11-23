@@ -78,6 +78,10 @@ load and wears `test.slow()`. A new sweep that heavy wears it too.
 A run long enough to outlast an idle timer needs the machine awake: a standby
 reads as a test stuck 25 minutes on _Loading…_.
 
+**A new spec joins `SPECS` in `ci.yaml`**, which names every spec but
+`strip-rows`: CI runs nothing else, and `countdown-stays` went eight days
+green locally without one CI run.
+
 It runs under `reducedMotion: 'reduce'`. Every page arrives on `page-enter`,
 8px low for 260ms, and the first viewport is measured inside that window: a
 slow CI runner caught a full-height page one or two pixels under the fold, a
