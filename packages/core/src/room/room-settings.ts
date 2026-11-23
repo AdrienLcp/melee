@@ -6,8 +6,6 @@ import {
 import { DEFAULT_LIGHTS_ROUND_COUNT } from '@melee/protocol/lights'
 import type { Locale } from '@melee/protocol/locale'
 import {
-  type AnswerMode,
-  DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type ModeSettings,
   type RoomSettings
@@ -17,7 +15,7 @@ import type { TeamsSettings } from '@melee/protocol/team'
 import { randomUnit } from '../helpers/random'
 import { questionLanguageFor } from '../quiz/question-language'
 import { isPlayableWithTeams } from './game-capabilities'
-import { modeOfferedBy } from './game-modes'
+import { modeOfferedBy, openingModeOf } from './game-modes'
 import { homeCountryFor } from './home-country'
 import { dealtOrder } from './running-order'
 
@@ -66,44 +64,6 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   thinkalike: 10,
   /** Five events a round, so eight rounds deal forty and leave the bank plenty. */
   timeline: 8
-}
-
-/**
- * How a game expects to be answered before anybody has said otherwise. It is
- * the game's preference and not the room's rule: `modeOfferedBy` still narrows
- * it, so an entry naming a mode its own game does not offer is corrected rather
- * than served.
- *
- * Both games that serve their own content open on four candidates. A quiz
- * question is a sentence with one fact missing, and a table reads it faster
- * than it types it — the shape most of the bank was written in. A blind test
- * was opened on typing until a table played it over lunch: a clip leaves no
- * time to type an artist on a phone, and the room it was played in asked for
- * the four.
- */
-const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
-  atlas: 'point',
-  blacksquare: 'typed',
-  blindtest: 'choice',
-  buzzer: 'buzzer',
-  challenge: 'buzzer',
-  estimate: 'number',
-  fiveclues: 'choice',
-  higherlower: 'pairs',
-  innerclock: 'buzzer',
-  lights: 'tap',
-  longestword: 'letters',
-  makenumber: 'calculation',
-  matchsticks: 'move',
-  mostlikely: 'vote',
-  mysteryword: 'word',
-  petitbac: 'typed',
-  quiz: 'choice',
-  reflex: 'buzzer',
-  slate: 'typed',
-  swatch: 'colour',
-  thinkalike: 'match',
-  timeline: 'order'
 }
 
 /**
@@ -254,10 +214,7 @@ export const openedSetup = ({
   return {
     autoAdvanceMs: DEFAULT_HOLD_MS[game],
     game: opened,
-    mode: modeOfferedBy({
-      game: opened,
-      preferred: DEFAULT_MODE_SETTINGS[DEFAULT_ANSWER_MODE[game]]
-    }),
+    mode: openingModeOf(opened),
     roundCount: DEFAULT_ROUND_COUNT[game]
   }
 }

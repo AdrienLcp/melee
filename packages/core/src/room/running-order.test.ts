@@ -14,7 +14,8 @@ import {
   dealtOrder,
   orderWithEntryNext,
   rewoundToFirstRow,
-  scheduledEntryAt
+  scheduledEntryAt,
+  withNextEntryDealt
 } from './running-order'
 
 const lineUp = [
@@ -246,11 +247,63 @@ describe('rewoundToFirstRow', () => {
     ).toBe(true)
   })
 
+  it('[running-order] replays an evening that ended on a pawn on its first game’s own mode', () => {
+    const rewound = rewoundToFirstRow({
+      ...playedThrough,
+      game: DEFAULT_GAME_SETTINGS.atlas,
+      mode: DEFAULT_MODE_SETTINGS.point
+    })
+
+    expect(rewound.game).toEqual(DEFAULT_GAME_SETTINGS.blindtest)
+    expect(rewound.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
+  it('[running-order] replays on the first game’s own mode even when the last one offered another', () => {
+    const rewound = rewoundToFirstRow({
+      ...playedThrough,
+      mode: DEFAULT_MODE_SETTINGS.typed
+    })
+
+    expect(rewound.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
+  it('[running-order] keeps the mode of an entry replayed on the row it was just played on', () => {
+    const rewound = rewoundToFirstRow({
+      ...playedThrough,
+      lineUpAt: 2,
+      mode: DEFAULT_MODE_SETTINGS.typed
+    })
+
+    expect(rewound.mode).toEqual(DEFAULT_MODE_SETTINGS.typed)
+  })
+
   it('[running-order] leaves an evening with no order to be dealt afresh', () => {
     const rewound = rewoundToFirstRow({ ...playedThrough, runningOrder: [] })
 
     expect(rewound.lineUpAt).toBe(3)
     expect(rewound.runningOrder).toEqual([])
+  })
+})
+
+describe('withNextEntryDealt', () => {
+  it('[running-order] deals the next entry on its own mode, not the last game’s', () => {
+    const dealt = withNextEntryDealt({
+      lastAt: 1,
+      played: [1, 1, 0, 0],
+      random: () => 0,
+      roundAt: 2,
+      settings: {
+        ...DEFAULT_ROOM_SETTINGS,
+        game: DEFAULT_GAME_SETTINGS.challenge,
+        lineUp,
+        lineUpAt: 1,
+        mode: DEFAULT_MODE_SETTINGS.buzzer,
+        runningOrder: [0, 1, 2, 3]
+      }
+    })
+
+    expect(dealt.game).toEqual(DEFAULT_GAME_SETTINGS.blindtest)
+    expect(dealt.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 })
 

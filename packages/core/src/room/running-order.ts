@@ -5,7 +5,7 @@ import {
   RUNNING_ORDER_MAX_ROWS
 } from '@melee/protocol/room'
 
-import { modeOfferedBy } from './game-modes'
+import { openingModeOf } from './game-modes'
 import { dealsOf, isDealtARow, isInTheDraw } from './line-up-deals'
 import { isPlayedOut, nextEntryAt } from './next-game'
 import { spacedCycle } from './spaced-cycle'
@@ -113,8 +113,8 @@ export const scheduledEntryAt = ({
  * reconnecting, or a frame refused — the room is still on the entry just
  * played, and would play it again. Unless the order holds that entry on the
  * next row, which is how a host asks for it back, the next round is dealt here
- * instead, on the settings the room already holds: the console's remembered
- * setup for that game is on the console alone.
+ * instead, on the settings the room already holds and the mode the entry opens
+ * on: the console's remembered setup for that game is on the console alone.
  */
 export const withNextEntryDealt = ({
   lastAt,
@@ -165,7 +165,7 @@ export const withNextEntryDealt = ({
     ...settings,
     game: entry,
     lineUpAt: drawn,
-    mode: modeOfferedBy({ game: entry, preferred: settings.mode })
+    mode: openingModeOf(entry)
   }
 }
 
@@ -189,8 +189,11 @@ const entryAfterInOrder = ({
 /**
  * The settings an evening is played again on: its running order kept — the
  * host's, or the one dealt — and the round about to open back on its first
- * row, the answer mode narrowed to that entry's game. An order with no row an
- * entry may take is left empty, for the next frame to deal afresh.
+ * row, answered the way that entry opens. The last round's mode is the last
+ * game's: carried over, an atlas's pawn narrowed a blind test to the buzzer,
+ * a verdict every round on an evening promised to need none. The entry just
+ * played keeps the mode it was played on. An order with no row an entry may
+ * take is left empty, for the next frame to deal afresh.
  */
 export const rewoundToFirstRow = (settings: RoomSettings): RoomSettings => {
   const { lineUp, lineUpDeals, runningOrder } = settings
@@ -207,7 +210,7 @@ export const rewoundToFirstRow = (settings: RoomSettings): RoomSettings => {
     ...settings,
     game: entry,
     lineUpAt: firstAt,
-    mode: modeOfferedBy({ game: entry, preferred: settings.mode })
+    mode: firstAt === settings.lineUpAt ? settings.mode : openingModeOf(entry)
   }
 }
 

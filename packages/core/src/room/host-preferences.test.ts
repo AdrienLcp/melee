@@ -13,8 +13,10 @@ import {
   type HostPreferences,
   rememberedSetupFor,
   rememberSettings,
+  replayedSettings,
   restoredSettings
 } from './host-preferences'
+import { readyMadeLineUpsFor, withReadyMadeFiled } from './ready-made-line-ups'
 import { roomSettingsFor } from './room-settings'
 
 const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
@@ -447,5 +449,72 @@ describe('a table of several games', () => {
       difficulty: 'hard',
       source: EVERY_STRAND
     })
+  })
+})
+
+describe('replayedSettings', () => {
+  const evening = roomSettingsFor({
+    games: ['blindtest', 'quiz', 'atlas'],
+    locale: 'fr'
+  })
+  const endedOnAPawn = {
+    ...evening,
+    game: evening.lineUp[2] ?? null,
+    lineUpAt: 2,
+    mode: DEFAULT_MODE_SETTINGS.point,
+    runningOrder: [0, 1, 2]
+  }
+  const blindtestOn = (mode: keyof typeof DEFAULT_MODE_SETTINGS) =>
+    rememberSettings({
+      preferences: null,
+      settings: {
+        ...roomSettingsFor({ games: ['blindtest'], locale: 'fr' }),
+        mode: DEFAULT_MODE_SETTINGS[mode]
+      }
+    })
+
+  it('[host-preferences] replays an evening ended on a pawn from its blind test, on the mode the host left it', () => {
+    const replayed = replayedSettings({
+      locale: 'fr',
+      preferences: blindtestOn('typed'),
+      settings: endedOnAPawn
+    })
+
+    expect(replayed.lineUpAt).toBe(0)
+    expect(replayed.game?.kind).toBe('blindtest')
+    expect(replayed.mode).toEqual(DEFAULT_MODE_SETTINGS.typed)
+  })
+
+  it('[host-preferences] replays the grand mix on its blind test’s own mode over a buzzer a replay once filed', () => {
+    const grandMix = readyMadeLineUpsFor('fr').find(
+      (lineUp) => lineUp.id === 'grandMix'
+    )
+    if (grandMix === undefined) {
+      throw new Error('the grand mix is a ready-made line-up')
+    }
+
+    const replayed = replayedSettings({
+      locale: 'fr',
+      preferences: withReadyMadeFiled({
+        lineUp: grandMix,
+        locale: 'fr',
+        preferences: blindtestOn('buzzer')
+      }),
+      settings: endedOnAPawn
+    })
+
+    expect(replayed.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
+  it('[host-preferences] leaves one game played again on the mode it was played on', () => {
+    const quizRoom = { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.typed }
+
+    expect(
+      replayedSettings({
+        locale: 'fr',
+        preferences: blindtestOn('buzzer'),
+        settings: quizRoom
+      }).mode
+    ).toEqual(DEFAULT_MODE_SETTINGS.typed)
   })
 })

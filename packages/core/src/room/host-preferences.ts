@@ -6,7 +6,8 @@ import { EVERY_STRAND } from '@melee/protocol/track'
 import { questionLanguageFor } from '../quiz/question-language'
 import { homeCountryFor } from './home-country'
 import { followedByLineUp, lineUpHolds } from './line-up'
-import type { GameSetup } from './room-settings'
+import { type GameSetup, movedToEntry } from './room-settings'
+import { rewoundToFirstRow } from './running-order'
 
 /**
  * What one host keeps between rooms, split on the seam `movedToGame` turns on: a
@@ -141,6 +142,38 @@ export const rememberedSetupFor = ({
   return setup.game.kind === 'blindtest'
     ? { ...setup, game: { ...setup.game, source: EVERY_STRAND } }
     : setup
+}
+
+/**
+ * The settings a replay opens on, as this console plays it: the room's rewind
+ * (`rewoundToFirstRow`), with the first row's game answered the way this host
+ * last left it, as every draw of the evening is. The room rewinds onto the
+ * mode the entry opens on because the host's word on each game is on the
+ * console alone. One game played again keeps its room as it was.
+ */
+export const replayedSettings = ({
+  locale,
+  preferences,
+  settings
+}: {
+  locale: Locale
+  preferences: HostPreferences | null
+  settings: RoomSettings
+}): RoomSettings => {
+  const rewound = rewoundToFirstRow(settings)
+  const at = rewound.lineUpAt
+  const entry = at === null ? undefined : rewound.lineUp[at]
+
+  if (!isEvening(rewound) || at === null || entry === undefined) {
+    return rewound
+  }
+
+  return movedToEntry({
+    at,
+    locale,
+    remembered: rememberedSetupFor({ game: entry.kind, preferences }),
+    settings: rewound
+  })
 }
 
 const restoredTable = ({

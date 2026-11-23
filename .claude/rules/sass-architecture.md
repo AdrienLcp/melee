@@ -290,7 +290,11 @@ Bold to their metric twins; no copy of it lives here.
 Semantic names scoped by nesting, not BEM. The root class matches the file name
 (`player-page.tsx` → `.player-page`); everything inside takes a plain semantic
 name (`.roster`, `.blocker`). Prefer `.join-url` over `.url` — a bare generic
-name collides with a shared component's class.
+name collides with a shared component's class. **Nothing sits at the layer's
+root but the root class**: the home shelf's `.spine` stood beside
+`.game-shelf` rather than inside it, and every other `.spine` in the app — the
+next-round press's — took its `width: 100%`, its grid and its piece edge, and
+spilled over its neighbours on a television.
 
 ## A component answers its container
 

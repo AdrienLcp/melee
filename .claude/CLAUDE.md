@@ -241,9 +241,10 @@ which is why a user-visible string written into a component is a bug — see
   because a game's own would end it or cut a reveal short. **Ready** is a seat
   saying it is back at the table between two rounds, checked on its row of
   the standings and cleared as a round opens; every seat ready and on screen
-  arms the next round, and an away seat holds it until the host goes on — a
-  room whose host keeps that press to themselves (`hostOpensNextRound`) asks
-  no seat at all
+  arms the next round — a seated console's among them, which is asked on its
+  own reveal and whose next-round press still goes on without anyone — and an
+  away seat holds it until the host goes on — a room whose host keeps that
+  press to themselves (`hostOpensNextRound`) asks no seat at all
 - **Round** — one track, one question, a screen about to change colour, or
   nothing at all.
   `lobby → countdown → playing → buzzed → revealed → finished`.

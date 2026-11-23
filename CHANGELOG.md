@@ -730,6 +730,23 @@ one part.
   back, the last half-second's merges still land, and an unsent result is
   banked at the close — in Le compte est bon and every game that keeps
   unsent work. The trophy badge reads in the dark palette.
+- `[Shared]` **_Rejouer_ plays the evening again as it was.** A finished
+  Mêlée générale replayed on its blind test, on the buzzer, every time: the
+  replay opened its first game on the last round's answer mode, which a
+  blind test does not offer, and the console then remembered that buzzer
+  for every blind test after. Each game now comes back the way it opens —
+  or the way this host left it on an evening of their own — in the same
+  running order.
+- `[Shared]` **A seated host is waited for.** When the table opens the next
+  round, the console's own seat counts like any other: its reveal shows the
+  _Prêt_ press, and one other seat's ready no longer launches the round
+  alone. _Manche suivante_ still goes on without anyone.
+- `[Game]` **The next-round press holds together on a television.** The
+  next game's coloured band spilled out of the red press over its
+  neighbours — _Depuis le début_ cut behind it at 1920×1080 — because the
+  home shelf's styles leaked onto it. It now sits inside the press at
+  every width.
+
 - `[Server]` **The assistant composing an evening is told the whole of
   each game.** The quiz answers in Portuguese too, a blind test draws from
   genre charts, decades and film scores by default — with the genre ids

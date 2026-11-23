@@ -15,6 +15,7 @@ import { BoardMoves } from './board-moves'
 import { challengePickFor } from './challenge-line'
 import { ChallengeLinePicker } from './challenge-line-picker'
 import { ClipControls } from './clip-controls'
+import { ConsoleReady } from './console-ready'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { isLastRound } from './is-last-round'
@@ -151,6 +152,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
+      <ConsoleReady isDisabled={!isLive} send={send} view={view} />
       <NextRoundPress
         announced={announced}
         isDisabled={!isLive}

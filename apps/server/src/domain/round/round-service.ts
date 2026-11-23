@@ -67,7 +67,7 @@ import {
   verdictKindFor
 } from '@melee/core/scoring/verdict'
 
-import { consoleSeatId, playingSeatIds } from '@/domain/room/console-seat'
+import { playingSeatIds } from '@/domain/room/console-seat'
 import type {
   AtlasNaming,
   AtlasRoundTarget,
@@ -2059,16 +2059,13 @@ export const startAutoAdvanceHold = (room: Room, now: number): void => {
 }
 
 /**
- * The seats whose ready the room waits on: every one, less the console's own,
- * which starts the next round with a press of its own. An away seat stays
- * awaited — a phone put down to answer a message is still at the table, and
- * the host's next-round press is what goes on without it.
+ * The seats whose ready the room waits on: every one, the console's own among
+ * them — a host playing at the table is a seat like any other, and one other
+ * seat's ready arming the round left them behind. Their next-round press still
+ * goes on without anyone. An away seat stays awaited — a phone put down to
+ * answer a message is still at the table.
  */
-const seatsAwaited = (room: Room): Participant[] => {
-  const consoleSeat = consoleSeatId(room)
-
-  return [...room.players.values()].filter((seat) => seat.id !== consoleSeat)
-}
+const seatsAwaited = (room: Room): Participant[] => [...room.players.values()]
 
 /** An away seat is never back at the table, whatever it pressed before it went. */
 const isBackAtTheTable = (seat: Participant): boolean =>

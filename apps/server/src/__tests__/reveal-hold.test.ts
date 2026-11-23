@@ -291,6 +291,34 @@ describe('a table that says it is ready for the next round', () => {
     expect(hostView(host)?.round?.isReadyHold).toBe(false)
   })
 
+  it('[ready-hold] waits on a seated host as on any other seat', async () => {
+    const { code, host } = await harness.openRoom(FAST_GAME, 'Ada')
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(
+      () => hostView(host)?.phase === 'playing',
+      'the clip to start'
+    )
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.players.some((seat) => seat.isReady) === true,
+      'Zoe to be ready'
+    )
+    await sleep(READIES_SETTLE_MS)
+
+    expect(hostView(host)?.round?.isReadyHold).toBe(false)
+
+    host.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === true,
+      'the host’s ready to arm the round'
+    )
+  })
+
   it('[ready-hold] arms nothing at a table whose host alone opens the next round', async () => {
     const { host, max, zoe } = await revealedTable({
       ...FAST_GAME,

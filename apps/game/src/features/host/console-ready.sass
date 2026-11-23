@@ -1,0 +1,17 @@
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/mark'
+
+@layer components
+  // Beside the next-round press, in a footer that lays its presses in a row
+  // or a column: closed, it gives back its width and its height.
+  .console-ready
+    @include fold.opens-in-line(var(--reveal-gap, var(--space-m)), $side: end, $gives-back-height: true)
+
+    .toggle-button
+      position: relative
+
+      > .ready-mark
+        @include mark.pops-in-line('&:is([data-selected] > *)', calc(-1em - var(--space-xs)), 0)
+
+        display: inline-flex
+        inline-size: 1em
