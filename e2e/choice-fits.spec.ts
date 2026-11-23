@@ -744,6 +744,7 @@ const revealedView = (
       awards: revealedAnswers
         .filter((answer) => answer.isCorrect)
         .map(({ playerId }, order) => ({
+          isPerfect: true,
           isUnsent: false,
           playerId,
           points: 3 + Math.max(0, 3 - order),
@@ -868,6 +869,7 @@ const REVEALS = [
     overrides: {
       round: {
         awards: table.map(({ id }, seat) => ({
+          isPerfect: false,
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
@@ -900,6 +902,7 @@ const REVEALS = [
     overrides: {
       round: {
         awards: table.map(({ id }, seat) => ({
+          isPerfect: false,
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
@@ -932,6 +935,7 @@ const REVEALS = [
     overrides: {
       round: {
         awards: table.map(({ id }, seat) => ({
+          isPerfect: false,
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
@@ -1387,6 +1391,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
         phase === 'revealed'
           ? [
               {
+                isPerfect: true,
                 isUnsent: false,
                 playerId: 'p3',
                 points: 1,
@@ -2408,6 +2413,7 @@ const wallRevealOfAFullTable = () => {
       ...view.round,
       advancesAt: SERVER_TIME + 20_000,
       awards: fullTable.slice(0, 5).map(({ id }, order) => ({
+        isPerfect: true,
         isUnsent: false,
         playerId: id,
         points: (5 - order) * 300,
@@ -2468,6 +2474,7 @@ const wallShadesRevealOfAFullTable = () => {
     round: {
       ...view.round,
       awards: fullTable.map(({ id }, seat) => ({
+        isPerfect: seat === 0,
         isUnsent: seat % 5 === 0,
         playerId: id,
         points: Math.max(0, 20 - seat) * 5_000,
@@ -3838,6 +3845,7 @@ const lightsRoomView = (phase: 'playing' | 'revealed') => {
       awards:
         phase === 'revealed'
           ? fullSeats.map(({ id }, seat) => ({
+              isPerfect: seat === 0,
               isUnsent: false,
               playerId: id,
               points: (100 - seat * 4) * 1_000,
@@ -4872,6 +4880,7 @@ const fiveCluesRevealView = () => {
       ...view.round,
       advancesAt: SERVER_TIME + 20_000,
       awards: finders.map(({ player, rung }, order) => ({
+        isPerfect: rung === 0,
         isUnsent: false,
         playerId: player.id,
         points: (90 - rung * 18) * 1_000,
