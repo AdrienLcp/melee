@@ -17,6 +17,7 @@ file in the commit that finishes it, and delete this README with the last one.
 | 2    | `09-five-clues-any-subject.md`  | 05 landed            |
 | 3    | `10-five-clues-new-subjects.md` | 09 landed            |
 | 3    | `11-international-evening.md`   | 05, 08 and 09 landed |
+| 3    | `12-ambient-music.md`           | 08 landed            |
 
 ## How every session here works
 
