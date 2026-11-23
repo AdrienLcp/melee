@@ -58,7 +58,10 @@ workflow replaces it, so follow it with a proper deploy of the fix.
 `wrangler deploy` from a checkout ships whatever the working tree holds,
 uncommitted changes included, and stamps no commit. Both environments are
 deployed by CI only, with the `CLOUDFLARE_ACCOUNT_ID` and
-`CLOUDFLARE_API_TOKEN` repository secrets.
+`CLOUDFLARE_API_TOKEN` repository secrets. The account id is not secret
+(`431a529079f2d76802b95056e39950f0`); the token is the item
+`Cloudflare Pages token` of the owner's personal Bitwarden, set with
+`bw get password "Cloudflare Pages token" | gh secret set CLOUDFLARE_API_TOKEN -R AdrienLcp/melee`.
 
 ## Browser support
 
