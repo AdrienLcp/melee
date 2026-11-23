@@ -11,6 +11,7 @@ file in the commit that finishes it, and delete this README with the last one.
 | 1    | `02-board-and-reveals.md`       | none                 |
 | 1    | `04-make-the-number.md`         | none                 |
 | 1    | `05-content-fixes.md`           | none                 |
+| 1    | `13-e2e-ports-per-worktree.md`  | none                 |
 | 2    | `06-hands-free-table.md`        | 01 landed            |
 | 2    | `07-results-screens.md`         | 02 landed            |
 | 2    | `08-blindtest-flash.md`         | 01 landed            |
