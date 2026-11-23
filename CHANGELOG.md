@@ -1191,6 +1191,8 @@ one part.
   ports hashed from the checkout's path (`e2e/support/worktree-ports.ts`,
   `MELEE_E2E_PORT_SLOT` to force a slot), so parallel sessions' `pnpm
   validate` no longer stop on _is already used_ or queue behind one another.
+  The app's modules are compiled before the first test, so a run's first
+  specs no longer fail on a page still loading.
 
 - `[Game]` **`?crash` shows the error screen anywhere but production.** Any
   page with it in the address throws, so the screen can be looked at on

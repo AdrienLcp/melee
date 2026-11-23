@@ -32,6 +32,13 @@ path, `MELEE_E2E_PORT_SLOT` to force one), so a second worktree's run never
 meets _is already used_. Nothing else may write a port down: the config, the
 stub and every URL read it from there.
 
+**Every module is compiled before the first test.** Vite transforms a module
+on its first request, and on a machine running other sessions' suites the
+first visit to a route outlasted the test's timeout: the first three specs of
+a run failed on a page still saying _Loading…_ and passed on every later
+visit. `support/warm-app.ts`, the `globalSetup`, requests every `.ts`, `.tsx`
+and non-partial `.sass` under `apps/game/src` once the servers answer.
+
 **One journey per way in**, which is how the room-first flow got covered
 without a fourth: the buzzer game presses the home page's **"Open a table"**
 and picks its game on the console, the simultaneous one follows the blind

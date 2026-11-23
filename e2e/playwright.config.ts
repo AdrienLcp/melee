@@ -29,6 +29,9 @@ export default defineConfig({
   // Lets `--shard` split a spec by test rather than by file: CI spreads
   // `choice-fits` over several runners. One worker still runs them in turn.
   fullyParallel: true,
+  // Runs once the three servers answer: the app's modules are compiled before
+  // the first test asks for them.
+  globalSetup: './support/warm-app.ts',
   // Explicit, or a run started from the repository root drops `test-results/`
   // there rather than beside the specs — which is the one thing moving this
   // config into `e2e/` was for.
