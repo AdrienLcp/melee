@@ -38,6 +38,7 @@ const playerView: PlayerRoomView = {
   isPaused: false,
   isWallConnected: false,
   phase: 'playing',
+  playedGames: [],
   players: [
     {
       board: null,

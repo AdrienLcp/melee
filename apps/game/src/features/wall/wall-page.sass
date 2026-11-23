@@ -3,27 +3,7 @@
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/mark'
 @use '../../presentation/styles/typography'
-
-/// A ranking past twelve seats in two columns, filled top to bottom, each
-/// row dividing the box by half the table. A row no longer travels: its old
-/// place may be in the other column. Its move is stilled rather than taken
-/// off: added back as the wall turns upright, it starts over, and sent the
-/// rows back to where they stood before the round.
-@mixin two-ranked-columns
-  --row-width-cap: 2.6cqi
-  --rows-per-column: round(up, var(--standings-rows, 8) / 2, 1)
-
-  column-gap: var(--space-l)
-  columns: 2
-  display: block
-
-  li
-    border-bottom: var(--hairline)
-    border-top: none
-    break-inside: avoid
-
-    &[data-moved]
-      --moved-travel: 0%
+@use '../host/boxed-standings'
 
 @layer components
   // Nobody scrolls the room's screen, and the gutter `html` keeps for a
@@ -328,7 +308,7 @@
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
 
         .scoreboard
-          @include two-ranked-columns
+          @include boxed-standings.two-ranked-columns
 
       // Think alike's piles are the whole round, each with its authors' names
       // under it: on half the width a name of two words broke mid-word and a
@@ -407,10 +387,15 @@
           --winners-share: 0.8
 
           align-items: center
-          grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+          grid-template: 'podium standings' minmax(0, 1fr) 'games games' auto / minmax(0, 1fr) minmax(0, 1fr)
 
           &:has(> .seat-podium)
-            grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto / minmax(0, 1fr) minmax(0, 1fr)
+            grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto 'games games' auto / minmax(0, 1fr) minmax(0, 1fr)
+
+          // As above the split: a winner named over their pawns keeps the
+          // games' tiles in their column, the track the whole height.
+          &:not(:has(> .seat-podium, > .podium > .seat-podium))
+            grid-template: 'podium standings' minmax(0, 1fr) 'games standings' auto / minmax(0, 1fr) minmax(0, 1fr)
 
           // Beside the standings the winner has the height a stacked board
           // keeps for them, and stands over its name as above the split.
@@ -490,12 +475,12 @@
         --winners-share: 0.4
 
         align-content: center
-        grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
+        grid-template: 'podium' auto 'games' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
 
         // A team evening stacks three blocks, so the winning team gives up
         // the height the best seats and the teams' board stand in.
         &:has(> .seat-podium)
-          grid-template: 'podium' auto 'seats' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
+          grid-template: 'podium' auto 'seats' auto 'games' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
 
           .podium .pawns
             font-size: clamp(2rem, calc(min(14cqh, 30cqi) / var(--winner-count, 1)), 10rem)
@@ -528,6 +513,21 @@
           justify-self: center
           width: min(100%, 48rem)
 
+        // Past twelve seats the rows stand in two columns across the whole
+        // width and divide what the winner and the games leave: in an `auto`
+        // row the list's own height reads 0 to its rows, and twenty-four
+        // names were set at the floor over half a screen of nothing.
+        &:has(> .standings > .scoreboard > li:nth-child(13))
+          grid-template: 'podium' auto 'games' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+
+          // Its rows wider than the two columns' own cap, so the height
+          // they are handed sets their size and not a band left under them.
+          > .standings
+            width: 100%
+
+            .scoreboard
+              --row-width-cap: 3cqi
+
           // A size container is 0px tall in an `auto` row, and its rows,
           // centred on nothing, spilled up over the heading. It claims the
           // height its rows take at their cap, and the row hands it no more
@@ -551,7 +551,7 @@
         display: none
 
       &.host-console-page > .stage:is(.revealed, .finished):has(.standings > .scoreboard > li:nth-child(13)) .scoreboard
-        @include two-ranked-columns
+        @include boxed-standings.two-ranked-columns
 
       // The rows the console boxes on a wide screen, so the size the list
       // divides its box by is the size each part is drawn at.

@@ -667,7 +667,14 @@ floor and the reflex race keep their footer under the stage at every ratio.
   drop their words for `n/8` and the numeral under 5.5rem; the marking prints
   each answer on one line with its pawns.
 - **The final board** keeps the ruled standings while its box is 26rem tall
-  and takes the track under that; a tie stands its pawns over the names.
+  and takes the track under that — but a seat-by-seat board, its height spent
+  on the steps and _By game_, draws neither, the console's roster ranking the
+  rest; a team evening drops its best seats' steps there, which pushed the
+  tiles over the replay press — skipped by `content-visibility`, never
+  `display: none`, which Chromium applied for a style pass on a 875px wall
+  and restarted the pawns' entrance six times a second. Under 36rem each _By game_ tile takes two
+  lines, glyph and name over the best seat. A tie stands its pawns over the
+  names.
 - **The hold strip** is not drawn; the panel's room tab carries it, and the
   games tab the slate's key and item names while the sheets are open.
 
@@ -1347,7 +1354,8 @@ console, the wall and the player's screen): the top three by points, each with
 its place in the round (ties share one), what it said and its `+N` with the
 speed half, then _Found: N of M_, falling back on the stage's height to the
 first alone (_+ N others_) and then the count alone; the seat a screen holds
-takes the _yours_ keyline. The tally above it is cut in whole chips
+takes the _yours_ keyline. A phone's last reveal (`round.isFinal`) lists every
+scorer instead (`isEveryScorer`) and never folds by height: the page scrolls. The tally above it is cut in whole chips
 (`useWholeChips`), never scrolled. Under the next-round press, _Wait_ and _End
 the game_ share one quiet row of underlined presses.
 
@@ -1374,10 +1382,28 @@ host's round). Standings divide their own box under it
 (`_boxed-standings.sass`, shared by the reveal, the final board and the
 marking); a team's tray on a track prints the cases walked (`TeamMove`) and no
 `+N`. The wall's list past twelve seats takes two
-columns lying down. On a track with seats and no teams the standings are the
-`TrackPodium`: three steps and a heap of chips, in one column that scrolls. The final board stands the winner's pawn oversize, the name sized by
-its longest run (`answerFitting`), _wins with N points_ under it; a tie stands
-every winner's pawn at one shared size.
+columns lying down, and so does the final board's on any stage standing up
+40rem wide or more. On a track with seats and no teams the standings are the
+`TrackPodium`: three steps and a heap of chips, in one column that scrolls.
+
+**The final board is the same on every screen** — a phone, the console, the
+wall. A seat-by-seat evening on points opens on three steps (`SeatPodium
+isWinners`: no heading, pawns and names sized off the column and the stage
+unit, a name clamped to three lines), the names in a hidden `h1`; then **By
+game** (`BestPerGame`), one tile per line-up entry played — its glyph on its
+spine, the best seats still at the table (a tie shown together) and what they
+earned a round on it, their points over the rounds the room played on it —
+hidden under two entries, across the foot when lying down; then every other seat ranked from the fourth
+(`skipsPodium`), on a phone under _Final standings_ with its own place as the
+aside. A phone scrolls to the rows; no height decides what it shows. A team or
+a track evening keeps the winner's pawn oversize, the name sized by its
+longest run (`answerFitting`), _wins with N points_ under it — a tie stands
+every winner's pawn at one shared size — and lying down _By game_ takes the
+column under the winner, beside the standings, or the foot when a team's
+best seats stand there. Beside or stacked is read off the stage
+(`@container finished`), never the screen's width: a stage taller than wide —
+a console running the room on a panel hung upright, as much as the wall —
+stacks the winner over _By game_ over the rows, as a phone does.
 
 **In a line-up the round's block is headed by what was played**
 (`ThisRoundHeading`): the entry the round was stamped on, named as the console
@@ -1686,15 +1712,30 @@ gaps.
 held in a hand, so the console's split at `$wide-screen` says nothing about it.
 Taller than wide (`aspect-ratio < 1`), the reveal and the final board are one
 column across the width the track leaves: the answer and what the table said
-over the standings or the teams' trays, the winner over the best seats and the
-board — Petit Bac's sheet included; only Atlas keeps the console's own upright
+over the standings or the teams' trays, the winner over the best seats, _By
+game_ and the board, a board past twelve seats in two columns across the
+width, dividing what the winner and the games leave — Petit Bac's sheet included; only Atlas keeps the console's own upright
 column, its map first. A square wall (up to 13/10) cannot stack an answer over a
 table of teams: there the trays stand in one packed column beside it and what
 the table said is one chip a row. Lying down the wall keeps the console's
-split, the race on a wider column (1.35fr / 1fr), and Think alike's piles on
-1.75fr beside a ranking past twelve seats in two columns: on half the width
-each pile's names broke mid-word. A narrow wall (810×1440)
+split, the race on a wider column (1.35fr / 1fr), and Think alike's answers
+table on 1.75fr beside a ranking past twelve seats in two columns: on half the
+width each answer's names broke mid-word. A narrow wall (810×1440)
 keeps its standings under the answer and draws no score track.
+
+**Think alike's reveal is a table, one row an answer**, the most shared on
+top: the count large in the game's spine, the word, every author as a pawn
+and name chip on the same row, and what each was paid at its end. The answers
+written alone share one dashed row, the word before each chip, and the blank
+seats a quiet last line. The whole table is set in ems of one font size
+(`useFittedFont`), the largest a still copy of the table fits its box at —
+24 seats of twenty-letter names fit 1280×720 at 13px and 1920×1080 at 21px —
+so the wall never scrolls and a console with no wall scrolls past a 14px
+floor. Under 36rem of width a row takes two lines, the word and its pay over
+the chips. The rows come in from the foot, the biggest crowd last; a regroup
+glides a row's height as chips open or close their width, and a row leaving
+fades and closes its room — margins between rows rather than a grid gap,
+which a closed row would have left open.
 
 **Every block stands in the middle of the box it is given**: the answer and
 its chips are one block, the title and the race another, and on a standing
@@ -1714,7 +1755,9 @@ size container, and on an `auto` basis it collapsed under the list.
 
 **A name breaks between words and nowhere else.** A podium step clamps its
 name to two lines and ends a word longer than the step with an ellipsis —
-`overflow-wrap: anywhere` cut a two-word name into four lines on a portrait wall. The best seats under a winning team do the same. Two pawns stand on two steps
+`overflow-wrap: anywhere` cut a two-word name into four lines on a portrait wall. The best seats under a winning team do the same; a final board's own
+steps clamp at three, since two cut the surname off _Marie-Charlotte Smith_
+on every screen. Two pawns stand on two steps
 and one on one, rather than beside an empty step, and a Petit Bac seat's name
 yields its width (8rem) before a category does.
 

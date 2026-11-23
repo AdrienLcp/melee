@@ -159,6 +159,7 @@ const choosingView = (question: Question) => ({
   isPaused: false,
   isWallConnected: false,
   phase: 'playing',
+  playedGames: [],
   players,
   readyStartsAt: null,
   round: {
@@ -989,7 +990,7 @@ const measureReveal = (): RevealOverflow => {
     element.checkVisibility({ visibilityProperty: true })
   const rows = [
     ...document.querySelectorAll<HTMLElement>(
-      '.stage.revealed .reveal-panel li, .stage:is(.revealed, .finished, .slate-correcting) .standings li, .slate-correcting .groups li, .slate-writing :is(.items, .progress) li'
+      '.stage.revealed .reveal-panel li, .stage:is(.revealed, .finished, .slate-correcting) .standings li, .slate-correcting .groups li, .final-board :is(.seat-podium, .best-per-game) li, .slate-writing :is(.items, .progress) li'
     )
   ].filter(isDrawn)
   // The host's panel scrolls inside its own box, so nothing in it reaches
@@ -1177,10 +1178,30 @@ for (const screen of FLOOR_SCREENS) {
   })
 }
 
+/** The board counts a thousand to the point every screen prints. */
+const BOARD_POINT = 1_000
+
 /**
- * The final board on the screen the room reads: the winner's pawn and name
- * beside the standings, with the two exits under them. The longest legal
- * nickname winning alone, and three sharing first place.
+ * Four games of an evening, each paying the seats by turns, so the "by game"
+ * strip holds a tile per game and the longest name tops one of them.
+ */
+const PLAYED_GAMES = (['quiz', 'blindtest', 'reflex', 'atlas'] as const).map(
+  (kind, at) => ({
+    kind,
+    lineUpAt: null,
+    roundCount: 4,
+    totals: table.map((player, seat) => ({
+      playerId: player.id,
+      points: ((seat + at * 3) % table.length) * 40 * BOARD_POINT
+    }))
+  })
+)
+
+/**
+ * The final board on the screen the room reads: the best three on their
+ * steps, who played each of four games best, and every other seat ranked
+ * under them. The longest legal nickname winning alone, and three sharing
+ * first place.
  */
 const finishedView = (scores: number[]) => {
   const view = consoleView(LONGEST_PROMPT)
@@ -1188,9 +1209,10 @@ const finishedView = (scores: number[]) => {
   return {
     ...view,
     phase: 'finished',
+    playedGames: PLAYED_GAMES,
     players: table.map((player, seat) => ({
       ...player,
-      score: scores[seat] ?? 0
+      score: (scores[seat] ?? 0) * BOARD_POINT
     })),
     round: null
   }
@@ -1213,7 +1235,9 @@ for (const final of FINALS) {
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
-    await expect(page.locator('.final-board .standings li')).toHaveCount(8)
+    // The steps stand the best three and the standings rank the rest.
+    await expect(page.locator('.final-board .seat-podium li')).toHaveCount(3)
+    await expect(page.locator('.final-board .standings li')).toHaveCount(5)
 
     const faults: string[] = []
 
@@ -1744,7 +1768,7 @@ const PLAYER_PAGE_SCREENS = [
   },
   {
     name: 'the final board of a full table',
-    ready: '.your-placing',
+    ready: '.final-rows .scoreboard li',
     view: { ...finishedView(LONG_NAME_WINNING), youId: 'p1', yourVerdict: null }
   }
 ]
@@ -1753,7 +1777,7 @@ const measurePage = (): { page: number; spills: string[] } => {
   const root = document.scrollingElement ?? document.documentElement
   const pieces = [
     ...document.querySelectorAll<HTMLElement>(
-      '.round-chrome, .up-next, .room-invitation, .seats li, .asked-question, .answer-form, .answer-card, .your-round, .round-podium li, .your-placing, .scoreboard li, .scoreboard .nickname, .slate-sheet .writing, .slate-sheet .tile, .slate-on-the-wall .said, .slate-on-the-wall .key, .slate-whole-sheet li'
+      '.round-chrome, .up-next, .room-invitation, .seats li, .asked-question, .answer-form, .answer-card, .your-round, .round-podium li, .your-placing, .seat-podium li, .best-per-game li, .scoreboard li, .scoreboard .nickname, .slate-sheet .writing, .slate-sheet .tile, .slate-on-the-wall .said, .slate-on-the-wall .key, .slate-whole-sheet li'
     )
   ]
 

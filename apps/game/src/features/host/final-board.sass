@@ -1,6 +1,64 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/layout'
 @use 'boxed-standings'
 @use '../../presentation/styles/typography'
+
+/// Each game of the evening on two lines — its glyph and name over the best
+/// seat — in columns of equal tiles, centred.
+@mixin games-on-two-lines
+  ol
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9em), 1fr))
+
+  li
+    column-gap: 0.4em
+    grid-template: 'mark name name average' auto 'mark pawns best best' auto / auto auto minmax(0, 1fr) auto
+    justify-items: start
+    text-align: start
+    width: auto
+
+  .game
+    display: contents
+
+  .spine-mark
+    grid-area: mark
+
+  .game-name
+    -webkit-line-clamp: 1
+    grid-area: name
+    line-clamp: 1
+
+  .pawns
+    font-size: var(--text-em-xl)
+    grid-area: pawns
+    margin-block-start: 0
+
+  .best
+    -webkit-line-clamp: 1
+    grid-area: best
+    line-clamp: 1
+
+  .average
+    grid-area: average
+
+/// A wide stage that lies down or stands square: the winner beside the
+/// standings. Read off the stage rather than the screen, because a console
+/// running the room on a panel hung upright is wide and still taller than it
+/// is wide, and beside the rows the steps stood over half a screen of nothing.
+@mixin beside
+  @include layout.wide
+    @container finished (aspect-ratio >= 1)
+      @content
+
+/// A phone's width, or a stage taller than wide: the winner over the games
+/// over the rows, in one column.
+@mixin upright
+  @include layout.narrow
+    @content
+
+  @include layout.wide
+    @container finished (aspect-ratio < 1)
+      @content
 
 @layer components
   // The winner and the standings inside the box the page grid leaves between
@@ -14,31 +72,70 @@
 
     display: grid
     gap: clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-2xl))
-    grid-template: 'podium' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+    grid-template: 'podium' auto 'games' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
     height: 100%
     min-height: 0
 
-    @include layout.wide
+    @include beside
       --winners-share: 0.8
 
       align-items: center
-      grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1.35fr) minmax(0, 1fr)
+      grid-template: 'podium standings' minmax(0, 1fr) 'games games' auto / minmax(0, 1.35fr) minmax(0, 1fr)
+
+  // A winner named over their pawns — on a track, or a team without its
+  // seats' steps — leaves the column under the name free, and the track's
+  // standings need the whole height beside it: across the foot, the games'
+  // tiles sat under the track's last rows.
+  .final-board:not(:has(> .seat-podium, > .podium > .seat-podium))
+    @include beside
+      grid-template: 'podium standings' minmax(0, 1fr) 'games standings' auto / minmax(0, 1.35fr) minmax(0, 1fr)
 
   // A team evening stands its best seats under the winning team, which gives
   // up some of its height to them.
   .final-board:has(> .seat-podium)
-    grid-template: 'podium' auto 'seats' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+    grid-template: 'podium' auto 'seats' auto 'games' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
 
-    @include layout.wide
-      grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto / minmax(0, 1.35fr) minmax(0, 1fr)
+    @include beside
+      grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto 'games games' auto / minmax(0, 1.35fr) minmax(0, 1fr)
 
     .podium .pawns
       font-size: clamp(2.5rem, calc(min(26cqh, 40cqi) / var(--winner-count, 1)), 14rem)
 
+  // With the games' tiles across the foot, the winning team, its best seats
+  // and the tiles share the column's height: the team's pawn and name give
+  // theirs up, or they ran over the seats' title on a 16:9 wall.
+  .final-board:has(> .seat-podium):has(> .best-per-game)
+    @include beside
+      .podium .pawns
+        font-size: clamp(2rem, calc(min(12cqh, 40cqi) / var(--winner-count, 1)), 10rem)
+
+      .podium .winners
+        font-size: clamp(1.5rem, min(7cqh, calc(160cqi / var(--longest-word-width, 6)), var(--fits-its-length)), 5rem)
+
   .final-board > .seat-podium
     grid-area: seats
 
-  .final-board > :is(.seat-podium, .standings, .score-track)
+  // A console's short box holds the winning team and the games' tiles, not
+  // its best seats too, which pushed the tiles over the replay press: the
+  // console's own roster ranks every seat. Skipped rather than `display:
+  // none`, which Chromium applied for a frame on a tall wall too, its pawns
+  // entering again six times a second.
+  @container (height < 26rem)
+    .final-board > .seat-podium
+      content-visibility: hidden
+      interactivity: inert
+      pointer-events: none
+      position: absolute
+
+  .final-board > .best-per-game
+    grid-area: games
+
+  // A seat-by-seat evening's steps take the whole column the winner's name
+  // would have had.
+  .final-board .podium > .seat-podium
+    width: 100%
+
+  .final-board > :is(.seat-podium, .best-per-game, .standings, .score-track)
     animation: swap-in var(--transition-fast, 0s) var(--ease-out)
 
   .final-board .podium
@@ -108,7 +205,7 @@
   // Upright the standings need the height, so a lone winner's pawn stands
   // beside the name rather than over it. A tie keeps its pawns over the names,
   // which need the whole width to say who shares it.
-  @include layout.narrow
+  @include upright
     .final-board .podium:has(.pawns)
       .pawns
         font-size: clamp(2rem, calc(min(16cqh, 24cqi) / var(--winner-count, 1)), 8rem)
@@ -137,6 +234,17 @@
 
     grid-area: standings
 
+  // Upright on a stage wide enough for two names abreast, a table past twelve
+  // seats ranks in two columns: one column of twenty-one rows under the steps
+  // was set under the text floor, its last rows scrolled out of a 810×1440
+  // screen nobody scrolls.
+  @container finished (aspect-ratio < 1) and (width >= 40rem)
+    .final-board:has(> .standings > .scoreboard > li:nth-child(13)) .scoreboard
+      @include boxed-standings.two-ranked-columns
+
+      li
+        font-size: clamp(var(--text-xs), min(var(--row-width-cap), calc(100cqh / var(--rows-per-column) / 2.3)), 1.75rem)
+
   // Below the split the ruled board stands under the winner while the box has
   // the height for every row of it at the floor, and the score track takes
   // its place where it has not.
@@ -155,3 +263,55 @@
     @container (height < 26rem)
       .final-board .standings
         visibility: hidden
+
+      // Under its steps and the games, a seat-by-seat board has no height
+      // left for every pawn: the console's own roster lists the rest.
+      .final-board:has(> .podium > .seat-podium) > .score-track
+        visibility: hidden
+
+  // The board divides the stage's box rather than the screen: the steps and
+  // the games' tiles take their size from its height as well as its width
+  // (`cqh` is the stage's, both being inline-size containers), so a console
+  // beside its panels keeps the rows in view as a wall does.
+  .final-board .podium > .seat-podium[data-winners]
+    ol
+      font-size: clamp(var(--text-xs), min(7cqi, 4.2cqh), 3.5rem)
+
+    .pawn
+      font-size: clamp(var(--text-xl), min(20cqi, 13cqh), 11rem)
+
+  .final-board > .best-per-game ol
+    font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.2), 2.4cqh), var(--text-xl))
+
+  // Upright, the steps stand over the games and the rows, and give up some of
+  // their height to them, or the last rows ran out of the box on a phone.
+  @include upright
+    .final-board:has(> .best-per-game) .podium > .seat-podium[data-winners]
+      ol
+        font-size: clamp(var(--text-xs), min(6cqi, 3.4cqh), 3.5rem)
+
+      .pawn
+        font-size: clamp(var(--text-xl), min(16cqi, 10cqh), 11rem)
+
+  // A short box — a console beside its panels — and an upright one, the steps
+  // over the games over the rows, lay each game on two lines, its glyph and
+  // name over the best seat, in as many columns as the width holds: tiles
+  // stood up one a row ran the rows out of the box.
+  @container (height < 36rem)
+    .final-board > .best-per-game
+      @include games-on-two-lines
+
+  @include upright
+    .final-board > .best-per-game
+      @include games-on-two-lines
+
+  // Shorter still — a phone lying down running the room — the glyph on its
+  // spine names the game alone, its name kept for a screen reader, and each
+  // tile holds the best seat over what it earned, two to a row.
+  @container (height < 26rem)
+    .final-board > .best-per-game
+      li
+        grid-template: 'mark pawns best' auto 'mark average average' auto / auto auto minmax(0, 1fr)
+
+      .game-name
+        @include accessibility.visually-hidden

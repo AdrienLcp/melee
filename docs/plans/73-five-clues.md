@@ -250,6 +250,9 @@ pages: a ladder climbed a clue at a time. Two sessions built it.
   at 1280×720, 1920×1080 and 1080×1920 with 24 long names on one rung, spread
   over every rung, and a few: nothing outside its rung, no name cut, no
   scroll.
+- **The seat's own pill hugs its pawn** — 23/11/2026: at seat size a finder
+  is one column with no gap, so `[data-you]` no longer paints the hidden
+  name's and pay's gaps beside the pawn.
 
 ## How to tell it is done
 

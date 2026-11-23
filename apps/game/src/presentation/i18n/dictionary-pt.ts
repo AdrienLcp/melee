@@ -2683,6 +2683,12 @@ const PORTUGUESE = defineDictionary({
      * table learns that answering early pays without anybody explaining it.
      */
     awardWithSpeed: '{answer:number} +{speed:number}',
+    /** The final board's strip of each game the evening played and who played it best. */
+    bestPerGame: {
+      /** What the best seat earned a round on that game, on average. */
+      average: '{points:number} por ronda',
+      title: 'Por jogo'
+    },
     /**
      * The figure beside a round clock. A clock of a minute or more reads
      * `minutes` from its first second to its last; one under a minute reads
@@ -3062,7 +3068,7 @@ const PORTUGUESE = defineDictionary({
     scoring:
       'A tua resposta vale conforme quantos outros a escreveram: todos, 100 pontos; metade, 50; ninguém, nada.',
     sort: {
-      close: 'Voltar às pilhas',
+      close: 'Voltar às respostas',
       drag: 'Mover «{answer}»',
       hint: 'Arrasta uma resposta para cima de outra para as contar como uma só.',
       into: 'Com «{answer}»',

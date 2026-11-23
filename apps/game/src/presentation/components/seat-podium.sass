@@ -109,3 +109,29 @@
     // *This one is yours* in the keyline the track's podium draws round its step.
     .you .step
       outline: var(--stroke-bold) solid var(--ink)
+
+  // The game's own result: the steps are the first thing the final board
+  // says, sized from the column it is given and the screen's short side, so
+  // three steps of long names stand in a hand and from across the room alike.
+  .seat-podium[data-winners]
+    ol
+      font-size: clamp(var(--text-m), min(7cqi, calc(var(--stage-unit) * 3.2)), 3.5rem)
+      grid-auto-columns: minmax(0, 7em)
+
+    .pawn
+      font-size: clamp(var(--text-3xl), min(20cqi, calc(var(--stage-unit) * 11)), 11rem)
+
+    // A winner is named in full: at a step's width a twenty-character name
+    // with a hyphen in it — `Marie-Charlotte Smith` — takes three lines, and
+    // two cut the surname off on every screen. A step a third of a phone
+    // wide cut `Christopher` short, so the name steps down from the steps' size.
+    .name
+      -webkit-line-clamp: 3
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s) backwards
+      font-size: clamp(var(--text-xs), 5cqi, 1em)
+      line-clamp: 3
+      text-wrap: balance
+
+    .score
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 2) backwards
+      font-size: var(--text-em-s)

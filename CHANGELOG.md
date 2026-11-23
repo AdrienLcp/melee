@@ -19,6 +19,11 @@ one part.
 - `[Shared]` **The two Congos are told apart.** Brazzaville's Congo is
   _République du Congo_ in French and _República do Congo_ in Portuguese on
   every game that names a country; _Congo_ is still an accepted answer.
+- `[Game]` **Pense comme la table's field takes the width** — the whole of a
+  phone's, a line's measure on a wide screen — and the stray line over it is
+  gone: the card's thicker edge is the one sign of typing there.
+- `[Game]` **Cinq indices' green mark hugs your pawn** on a seat's reveal,
+  rather than running past it.
 
 ### Improvements
 
@@ -53,6 +58,17 @@ one part.
   it coral and opens the four signs beside it; the sign you pick is stamped
   on the tile, and the tiles that cannot follow it lie flat. The wall drops
   its ladder for one row a seat, nearest first, each gap written out.
+- **The results are the same on every screen.** A phone no longer shows the
+  winner alone where another shows three: the last reveal lists everyone who
+  scored, and the final board — on the phone, the console and the wall —
+  stands the best three on a podium, then _Par jeu_, who played each game of
+  the evening best and what they earned a round on it, then every other seat
+  ranked. A phone scrolls to the end of the list; the wall never does.
+- `[Game]` **Pense comme la table reveals its answers as a table** on the
+  wall: one row per answer, the biggest crowd on top, each author's pawn and
+  name on the row, the answers written alone together on the last. It fits
+  every seat without scrolling, and a regroup moves only the rows it
+  changes.
 
 ### Features
 

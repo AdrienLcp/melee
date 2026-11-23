@@ -566,6 +566,8 @@ const PhaseStage: React.FC<RoomStageProps> = ({
       <div className='stage finished'>
         <FinalBoard
           board={view.settings.board}
+          lineUp={view.settings.lineUp}
+          playedGames={view.playedGames}
           players={view.players}
           teams={view.teams}
           youId={youId}

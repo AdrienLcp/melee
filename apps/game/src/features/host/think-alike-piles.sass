@@ -1,412 +1,328 @@
-// Side-effect module: styles `.think-alike-piles`, the round's answers turned over on the room's screen — lone cards in a grid, then piles from smallest to biggest.
+// Side-effect module: styles `.think-alike-piles`, the round's answers on the room's screen as a table — a row per shared answer, the biggest crowd on top, then the answers written alone and the blank seats.
 @use '../../presentation/styles/typography'
 
-/// A card lying face down turned over on its long side, its face up.
-@keyframes think-alike-pile-turns
+/// A chip handing back its width and the gap after it, once it has faded.
+@keyframes think-alike-chip-closes
   from
-    transform: rotateY(180deg)
+    inline-size: auto
+  to
+    inline-size: 0rem
+    margin-inline-end: -0.3em
+    padding-inline: 0rem
 
-/// A card's edge or a flat card going from its back to its face as it turns.
-@keyframes think-alike-face-shows
+/// A chip a regroup brings into a row opening its width before it shows.
+@keyframes think-alike-chip-opens
   from
-    background: var(--spine-thinkalike)
-
-@keyframes think-alike-pawn-shows
-  from
-    opacity: 0
+    inline-size: 0rem
+    margin-inline-end: -0.3em
+    padding-inline: 0rem
+  to
+    inline-size: auto
 
 @layer components
   .think-alike-piles
-    // When each card turns: the lone ones together once the piles have
-    // gathered, then each pile a beat after the one before it.
-    --turn: 0
-    --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
-    --edge: min(1.5rem, calc(46cqh / var(--most-authors)))
-    --pile-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-l))
-    --lone-card-least: 5.5rem
-    // The lone column's floor, its cards' own rather than its `min-content`,
-    // which follows the widest word: a card leaving with it narrowed the
-    // column, and moved every pile, in one frame.
-    --lone-least: calc(var(--lone-columns, 1) * var(--lone-card-least) + (var(--lone-columns, 1) - 1) * var(--space-s))
-
-    align-items: end
+    align-content: safe center
     container: think-alike-piles / size
     display: grid
-    grid-template-columns: var(--columns-template)
-    grid-template-rows: minmax(0, 1fr) auto minmax(0, auto)
     min-block-size: 0
-    // A regroup moves the columns on the timing a leaving row closes on: a
-    // pile's column shuts as the one taking its answers in widens.
-    transition: grid-template-columns var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5)
 
-    // On the podium's card beside a wall, read at arm's length by the host,
-    // nothing hands the piles a height: each stack takes one of its own.
-    &:is(.podium-round *)
-      --edge: min(1rem, calc(4.5rem / var(--most-authors)))
+    // Every size inside is an em of this one, which `useFittedFont` sets to
+    // the largest the box holds the whole table at, between a floor read
+    // from across the room and a ceiling that keeps two rows from shouting.
+    > .table
+      --fit-least: var(--text-2xs)
+      --fit-most: clamp(var(--text-m), calc(var(--stage-unit) * 3.4), var(--text-3xl))
 
-      container-type: inline-size
-      grid-template-rows: 9rem auto minmax(0, 1fr)
+      // The table's steps, each an em of its fitted size.
+      --size-count: 2.1em
+      --size-count-alone: 1.4em
+      --size-word: 1.5em
+      --size-alone-word: 1.15em
+      --size-pay: 1.2em
+
+      column-gap: 0.75em
+      display: grid
+      font-size: clamp(var(--fit-least), var(--fitted-size, var(--text-m)), var(--fit-most))
+      // The word's column is as wide as the longest word and no wider than a
+      // third: past it a word wraps between words, and the authors keep
+      // the rest of the row.
+      grid-template-columns: [count] auto [word] fit-content(32%) [authors] minmax(0, 1fr) [pay] auto
+      inline-size: 100%
+      list-style: none
+      margin: 0
+      max-inline-size: 72em
+      margin-inline: auto
+      padding: 0
+      transition: font-size var(--transition-base, 0s) var(--ease-out)
+
+    // A row: how many, the word, who wrote it, what each was paid. The rows
+    // come in from the foot one after another, the biggest crowd last.
+    .row
+      --travel-offset: -1.5rem 0
+      --turn-at: calc(var(--transition-slow, 0s) * (0.3 + var(--turn) * 0.85))
+      --stamp-at: calc(var(--turn-at) + var(--transition-base, 0s))
+
+      align-items: center
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out) var(--turn-at) backwards
+      background: var(--card)
+      border-radius: var(--radius-m)
+      box-shadow: 0 0.125rem 0 var(--chipboard)
+      color: var(--card-ink)
+      display: grid
+      grid-column: 1 / -1
+      grid-template-columns: subgrid
+      // The space between rows is each row's own, which a row leaving
+      // closes with it: a grid's gap would stay open after the row had gone.
+      margin-block-end: 0.35em
+      min-block-size: 2.4em
+      order: var(--order)
+      padding: 0.3em 0.7em
+
+      &[data-yours]
+        outline: var(--stroke-bold) solid var(--ink)
+        outline-offset: 0.15rem
+
+    .count
+      @include typography.score
+      @include typography.solid
+
+      --travel-scale: 1.5
+
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--stamp-at) backwards
+      color: var(--spine-thinkalike)
+      font-size: var(--size-count)
+      grid-column: count
+      min-inline-size: 1em
+      text-align: center
+
+    .word
+      @include typography.billboard-revealed
+      @include typography.typed
+
+      font-size: var(--size-word)
+      grid-column: word
+      hyphens: auto
+      margin: 0
+      text-wrap: balance
 
     .authors
       @include typography.caption-strong
 
-      color: var(--ink)
-      column-gap: var(--space-s)
-      columns: 9rem
-      font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 1.9), calc(100cqi / var(--columns) / 8)), var(--text-m))
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      font-size: 1em
+      gap: 0.3em
+      grid-column: authors
+      interpolate-size: allow-keywords
       list-style: none
       margin: 0
+      min-inline-size: 0
       padding: 0
 
       > li
-        align-items: start
-        break-inside: avoid
-        display: flex
-        gap: 0.35em
-        min-inline-size: 0
-        padding-block: 0.12em
+        --chip-at: calc(var(--stamp-at) + var(--at) * 25ms)
+        --travel-offset: 0 0.4rem
 
-      // A name wraps between words and nowhere else; a word wider than its
-      // column ends on an ellipsis on its own line rather than breaking.
+        align-items: center
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--chip-at) backwards
+        background: var(--card-well)
+        border-radius: var(--radius-full)
+        display: inline-flex
+        gap: 0.3em
+        max-inline-size: 100%
+        min-inline-size: 0
+        padding: 0.12em 0.6em 0.12em 0.3em
+
+        &[data-yours]
+          outline: var(--stroke-thin) solid var(--ink)
+
+        > .pawn
+          flex: none
+
+      // A name keeps to one line, ending on an ellipsis past its row.
       .name
         @include typography.typed
 
         min-inline-size: 0
         overflow: hidden
         text-overflow: ellipsis
+        white-space: nowrap
 
-    // The blank seats and the lone answers: small flat cards, turned over
-    // together before the first pile.
-    > .lone
-      align-content: end
-      display: grid
-      gap: var(--space-xs) var(--space-s)
-      grid-column: 1
-      grid-row: 1 / -1
-      grid-template-columns: repeat(var(--lone-columns), minmax(var(--lone-card-least), 1fr))
-      list-style: none
-      margin: 0
-      padding: 0
-
-    // Lone answers alone, with no pile beside them: as many columns as the
-    // box holds, the block in the middle of it.
-    &:not(:has(> .pile)) > .lone
-      align-self: center
-      grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr))
-
-    .lone-card
-      --travel-offset: 0 1.5rem
-
-      animation: page-enter var(--transition-slow, 0s) var(--ease-out) backwards
-      display: grid
-      gap: var(--space-2xs)
-      min-inline-size: 0
-      order: var(--order)
-
-      > .face
-        animation: think-alike-face-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
-        background: var(--card)
-        container-type: inline-size
-        border-block-start: var(--stroke-thin) solid var(--spine-thinkalike)
-        border-radius: var(--radius-s)
-        box-shadow: 0 0.125rem 0 var(--chipboard)
-        display: grid
-        min-block-size: 2.4em
-        padding: 0.3em 0.5em
-        place-items: center
-
-      .word
+      .alone-word
         @include typography.card-name
         @include typography.typed
 
-        animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
-        color: var(--card-ink)
-        font-size: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.6), calc(190cqi / var(--letters, 4))), var(--text-xl))
-        text-align: center
-
-      &[data-blank] .face
-        background: repeating-linear-gradient(var(--card) 0 0.4rem, var(--card-rule) 0.4rem 0.45rem)
-
-      &[data-yours] .face
-        outline: var(--stroke-bold) solid var(--ink)
-
-      > .authors
-        columns: auto
-        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.7), var(--text-s))
-
-    // A pile: gathered face down, then turned over — its top card's word
-    // large, a card edge under it for each author with that author's pawn,
-    // what each was paid and who they are.
-    // A pile changing places with another travels to its new column's
-    // width as well as to its place: the tracks stay where they are, and the
-    // two piles traded widths at once.
-    > .pile
-      --travel-offset: 0 3rem
-      // Declared again here, where `--turn` is the pile's own: a custom property resolves where it is declared.
-      --turn-at: calc(var(--transition-slow, 0s) * (1.4 + var(--turn) * 1.7))
-
-      --enter-at: calc(var(--transition-fast, 0s) * var(--turn) * 0.6)
-
-      animation: page-enter var(--transition-slow, 0s) var(--ease-out) var(--enter-at) backwards
-      display: grid
-      grid-column: var(--column)
-      grid-row: 1 / -1
-      // Held to its own track: an `auto` column grew to its widest word or
-      // name and ran into the next pile's.
-      grid-template-columns: minmax(0, 1fr)
-      grid-template-rows: subgrid
-      interpolate-size: allow-keywords
-      justify-items: center
-      min-inline-size: 0
-      order: var(--order)
-      row-gap: var(--space-xs)
-
-    .stack
-      align-self: stretch
-      block-size: 100%
-      container-type: size
-      display: flex
-      flex-direction: column
-      inline-size: 100%
-      justify-content: end
-
-    .top
-      animation: think-alike-pile-turns var(--transition-slow, 0s) var(--ease-out) var(--turn-at) backwards
-      block-size: min(max(70cqi, 3.5rem), calc(100cqh - var(--authors) * var(--edge)))
-      transition: block-size var(--transition-base, 0s) var(--ease-out)
-      display: grid
-      flex: none
-      perspective: 60rem
-      transform-style: preserve-3d
-
-      > *
-        backface-visibility: hidden
-        border-radius: var(--radius-m)
-        grid-area: 1 / 1
-
-    .back
-      background: var(--spine-thinkalike)
-      outline: var(--stroke-thin) solid var(--card-back-rule-thinkalike)
-      outline-offset: -0.5rem
-      transform: rotateY(180deg)
-
-    .front
-      align-content: start
-      background: var(--card)
-      border-block-start: 0.4rem solid var(--spine-thinkalike)
-      box-shadow: var(--shadow-card)
-      display: grid
-      grid-template-rows: auto minmax(0, 1fr)
-      min-block-size: 0
-      overflow: hidden
-      padding: var(--space-2xs) var(--space-xs)
-
-    .count
-      @include typography.score
-
-      color: var(--spine-thinkalike)
-      font-size: clamp(var(--text-s), 9cqi, var(--text-2xl))
-
-    .word
-      @include typography.billboard-revealed
-      @include typography.typed
-
-      color: var(--card-ink)
-      font-size: clamp(var(--text-xs), min(24cqi, calc((100cqi - 2 * var(--space-xs)) * 1.5 / var(--letters)), 30cqh), 7rem)
-      align-self: center
-      hyphens: auto
-      margin: 0
-      text-align: center
-
-    [data-yours] .front
-      outline: var(--stroke-bold) solid var(--ink)
-      outline-offset: 0.2rem
-
-    .edges
-      display: grid
-      flex: none
-      grid-auto-rows: var(--edge)
-      list-style: none
-      margin: 0
-      padding: 0
-
-      > li
-        align-items: center
-        animation: think-alike-face-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
-        background: var(--card)
-        border-block-end: 0.0625rem solid var(--card-rule)
-        border-radius: 0 0 var(--radius-xs) var(--radius-xs)
-        box-shadow: 0 0.0625rem 0 var(--chipboard)
-        display: flex
-        font-size: calc(var(--edge) * 0.8)
-        margin-inline: 0.2rem
-        padding-inline: 0.4rem
-
-        > .pawn
-          animation: think-alike-pawn-shows var(--transition-base, 0s) var(--ease-out) var(--turn-at) backwards
+        flex: none
+        font-size: var(--size-alone-word)
+        margin-inline-end: 0.1em
 
     .pay
       @include typography.score
 
       --travel-scale: 1.4
 
-      align-self: start
-      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
-      background: var(--well)
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--stamp-at) backwards
+      background: var(--card-well)
       border-radius: var(--radius-full)
-      color: var(--ink)
-      // As large as its pile's column holds it: a glyph is about two thirds
-      // of an em, the padding another 1.2.
-      font-size: clamp(var(--text-s), min(calc(var(--stage-unit) * 3.6), calc((100cqi - var(--columns) * var(--pile-gap)) * var(--share, 1) / (var(--pay-glyphs) * 0.65 + 1.3))), var(--text-3xl))
+      color: var(--card-muted)
+      font-size: var(--size-pay)
+      grid-column: pay
+      justify-self: end
       margin: 0
-      max-inline-size: 100%
-      padding: 0.1em 0.6em
+      padding: 0.05em 0.55em
       white-space: nowrap
-      transition: font-size var(--transition-base, 0s) var(--ease-out)
 
       // The pill stays as a regroup changes its figure, so its size eases;
       // the figure alone is stamped again.
       .points
         --travel-scale: 1
 
-        animation: tick-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
+        animation: tick-stamp var(--transition-base, 0s) var(--ease-out) var(--stamp-at) backwards
 
       &[data-paid]
         background: var(--good-soft)
         box-shadow: 0 0.125rem 0 var(--good-edge)
         color: var(--tile-ink)
 
-    .pile > .authors
-      --travel-offset: 0 0.5rem
+    // The answers written alone, gathered on one dashed row, the word before
+    // each seat: nobody shared them, so nothing is paid there.
+    .row[data-alone]
+      background: transparent
+      border: var(--stroke-thin) dashed var(--rule-strong)
+      box-shadow: none
+      color: var(--ink)
 
-      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--turn-at) + var(--transition-slow, 0s)) backwards
-      justify-self: stretch
+      > .count
+        color: var(--ink-muted)
+        font-size: var(--size-count-alone)
 
-    // On a console with no wall the box scrolls rather than cut a card, so
-    // nothing is held centred past its top.
-    &:is(.think-alike-console-reveal *)
-      overflow-y: auto
-      overscroll-behavior: contain
+      > .authors
+        grid-column: word / -1
 
-      > .lone
-        align-content: safe end
+        > li
+          background: var(--board-well)
 
-    &:is(.think-alike-console-reveal *):not(:has(> .pile)) > .lone
-      align-self: safe center
+    // The seats that wrote nothing, last and quietest.
+    .row[data-blank]
+      background: transparent
+      box-shadow: none
+      color: var(--ink-muted)
+      min-block-size: 0
+      padding-block: 0.1em
 
-    // A console with no wall too narrow for the piles side by side, or too
-    // short to stand them over their names, lays each pile on a line of its own, the biggest first: the stack on the left,
-    // what it paid and who wrote it beside it, the lone cards last. The box
-    // scrolls when the round holds more than it does. A flex column rather
-    // than a grid, which keeps the gap of a pile closed to nothing.
-    @container think-alike-console (inline-size < 36rem) or (block-size < 32rem)
-      --edge: 0.45rem
+      > .word
+        @include typography.caption-strong
 
-      display: flex
-      flex-direction: column
-      row-gap: var(--space-s)
-      scrollbar-gutter: stable
+        font-size: 1em
+        grid-column: count / authors
+        white-space: nowrap
 
-      > .lone
-        align-self: stretch
-        flex: none
-        grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr))
-        order: 1
+      > .authors > li
+        background: transparent
+        padding-inline: 0 0.4em
 
-      &:is(.think-alike-console-reveal *):not(:has(> .pile)) > .lone
-        align-self: stretch
-        margin-block: auto
+    // A chip leaving fades, then closes its width: the chips after it slide
+    // up to its place rather than jump once it is gone.
+    .authors > li[data-leaving]
+      animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, think-alike-chip-closes var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.4) both
+      interpolate-size: allow-keywords
+      overflow: clip
+      pointer-events: none
+      white-space: nowrap
 
-      > .pile
-        align-items: start
-        flex: none
-        column-gap: var(--space-s)
-        grid-row: auto
-        grid-template-areas: 'stack pay' 'stack authors'
-        grid-template-columns: minmax(7rem, 2fr) minmax(0, 3fr)
-        grid-template-rows: auto minmax(0, 1fr)
-        justify-items: start
-        order: calc(-1 * var(--order))
-        row-gap: var(--space-2xs)
+    // A chip a regroup brings in opens its room, then fades in.
+    &[data-regrouped] .authors > li[data-arriving]:not([data-leaving])
+      animation: think-alike-chip-opens var(--transition-base, 0s) var(--ease-out) both, page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.6) backwards
+      interpolate-size: allow-keywords
+      overflow: clip
+      white-space: nowrap
 
-      .lone-card .word
-        font-size: clamp(var(--text-s), calc(150cqi / var(--letters, 4)), var(--text-l))
+    // A row a regroup brings in opens its room as it fades in, so the rows
+    // under it go down with it rather than jump — once the chips it takes
+    // from another row have gone, which hands that room back first.
+    .row[data-arriving]
+      --row-gap-closed: 0rem
+      min-block-size: 0rem
 
-      .stack
-        align-self: start
-        block-size: auto
-        container-type: inline-size
-        grid-area: stack
+      animation: row-opens var(--transition-base, 0s) var(--ease-out) var(--transition-base, 0s) both, page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 1.4) backwards
+      interpolate-size: allow-keywords
 
-      .top
-        block-size: 3.25rem
+    // A row leaving fades, then closes its room and the space under it, so
+    // the rows after it rise with it rather than jump once it goes.
+    .row[data-leaving]
+      --row-gap-closed: 0rem
+      --travel-offset: 1.5rem 0
 
-      .word
-        font-size: clamp(var(--text-s), calc(150cqi / var(--letters)), var(--text-xl))
-
-      .count
-        font-size: var(--text-s)
-
-      .pay
-        font-size: var(--text-l)
-        grid-area: pay
-
-      .pile > .authors
-        columns: auto
-        font-size: var(--text-xs)
-        grid-area: authors
-        justify-self: stretch
+      animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-out) both
+      interpolate-size: allow-keywords
+      min-block-size: 0rem
+      overflow: clip
+      pointer-events: none
 
     // A merge or a split lays its changes in at once: the stagger was the
     // reveal's, and a delay lengthened on a played animation sends the
     // piece back to its first frame.
-    &[data-regrouped]
+    &[data-regrouped] .row
       --turn-at: 0s
+      --stamp-at: 0s
 
-      > .pile
-        --enter-at: 0s
-        --turn-at: 0s
+      .authors > li
+        --chip-at: 0s
 
-      .pay .points
-        animation-delay: 0s
+    // Back from the sorting rows, the table stands as the room last saw it.
+    &[data-face-up] :is(.row:not([data-leaving]), .count, .pay, .points, .authors > li:not([data-leaving]))
+      animation: none
 
-    // Back from the rows, the piles stand as the table last saw them: the
-    // screen change brings them in, and nothing turns over again.
-    &[data-face-up]
-      --turn-at: 0s
+    // A console with no wall scrolls rather than set the table below a size
+    // read at arm's length.
+    &:is(.think-alike-console-reveal *)
+      overflow-y: auto
+      overscroll-behavior: contain
 
-      > .pile
-        --enter-at: 0s
-        --turn-at: 0s
+      > .table
+        --fit-least: var(--text-xs)
 
-      :is(.lone-card, .pile):not([data-leaving]),
-      :is(.top, .face, .word, .edges li, .edges .pawn)
-        animation: none
+    // On the podium's card beside a wall nothing hands the table a height:
+    // it takes its own, at a size read at arm's length.
+    &:is(.podium-round *)
+      container-type: inline-size
+      overflow: visible
 
-    // Side by side, a lone card goes once it has faded and the cards after
-    // it travel up a place; a pile fades as its column shuts, and goes once
-    // the column is shut. Each ends on `row-closes` at no duration and
-    // filling backwards alone, which closes nothing: a lone card's cell
-    // closed under its column's cards dropped them a card's height at once,
-    // and a subgrid's height is not the pile's to hand back.
-    :is(.lone-card, .pile)[data-leaving]
-      --travel-offset: 0 -1rem
+      > .table
+        font-size: var(--text-s)
 
-      animation: page-leave var(--transition-base, 0s) var(--ease-in) both, row-closes 0s linear var(--transition-base, 0s) backwards
-      pointer-events: none
+    // Too narrow for a row on one line: the word and its pay on the first,
+    // the authors under them.
+    @container think-alike-piles (inline-size < 36rem)
+      > .table
+        grid-template-columns: [count] auto [word authors] minmax(0, 1fr) [pay] auto
 
-    > .pile[data-leaving]
-      animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes 0s linear calc(var(--transition-base, 0s) * 1.5) backwards
-      overflow: clip
+      .row
+        margin-block-end: 0.45em
+        row-gap: 0.25em
 
-    // One a line in a box that scrolls, faded then closed: taken out at its
-    // full height, a box scrolled to its foot jumped by it.
-    @container think-alike-console (inline-size < 36rem) or (block-size < 32rem)
-      :is(.lone-card, .pile)[data-leaving]
-        animation: page-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-in) both, row-closes var(--transition-base, 0s) var(--ease-in) calc(var(--transition-base, 0s) * 0.5) both
-        interpolate-size: allow-keywords
-        min-block-size: 0rem
-        overflow: clip
+      .count
+        grid-row: 1 / span 2
 
-      > .pile[data-leaving]
-        --row-gap-closed: calc(-1 * var(--space-s))
+      .word
+        grid-column: word
+        grid-row: 1
+
+      .authors
+        grid-column: authors / -1
+        grid-row: 2
+
+      .pay
+        grid-row: 1
+
+      .row[data-alone] > .authors
+        grid-column: word / -1
+        grid-row: 1 / span 2
+
+      .row[data-blank]
+        > .word
+          grid-column: 1 / -1
+
+        > .authors
+          grid-column: 1 / -1

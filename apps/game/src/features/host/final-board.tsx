@@ -1,11 +1,17 @@
 import type React from 'react'
 
 import type { BoardSettings } from '@melee/protocol/board'
+import type { GameSettings } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PlayedGame } from '@melee/protocol/played-game'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
-import { winnersOf } from '@melee/core/scoring/scoreboard'
+import {
+  buildScoreboard,
+  standsOnPodium,
+  winnersOf
+} from '@melee/core/scoring/scoreboard'
 import {
   isEveryTeamItsOwnSeat,
   teamWinnersOf
@@ -13,8 +19,10 @@ import {
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import { shownPoints } from '@/helpers/shown-points'
+import { BestPerGame } from '@/presentation/components/best-per-game'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
+import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
@@ -29,6 +37,10 @@ type FinalBoardProps = {
    * order, and the case is the only figure printed.
    */
   board: BoardSettings
+  /** The room's line-up, which names each game the evening played. */
+  lineUp: readonly GameSettings[]
+  /** Each game the evening played and what every seat earned on it. */
+  playedGames: readonly PlayedGame[]
   players: readonly PublicPlayer[]
   /** When the room plays in teams, the game ends on a team rather than a seat. */
   teams: readonly Team[]
@@ -37,9 +49,10 @@ type FinalBoardProps = {
 }
 
 /**
- * A game ends on a name, not on a table: the winner's pawn stood up oversize
- * and named, with the standings beside it for each player to find themselves.
- * A team evening adds the best three seats under its winning team.
+ * A game ends on a podium, not on a table: the best three seats on their
+ * steps, who played each game of the evening best, and every other seat
+ * ranked under them for each player to find themselves. A team evening ends
+ * on its winning team's name instead, the best three seats under it.
  *
  * Ties are named rather than broken: competition ranking already shares first
  * place, and inventing a winner out of alphabetical order would be a lie the
@@ -47,6 +60,8 @@ type FinalBoardProps = {
  */
 export const FinalBoard: React.FC<FinalBoardProps> = ({
   board,
+  lineUp,
+  playedGames,
   players,
   teams,
   youId
@@ -72,17 +87,31 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
   const topScore = winners[0]?.score ?? 0
   const topCase = board.kind === 'track' ? (winners[0]?.case ?? null) : null
   const named = winners.map((winner) => winner.name).join(' · ')
+  // A seat-by-seat evening on points stands its best three on the steps and
+  // ranks the rest under them; a track keeps its pawns on the track.
+  const isSeatPodium = teams.length === 0 && board.kind === 'points'
+  const podiumSeats = isSeatPodium
+    ? buildScoreboard(players).filter(standsOnPodium).length
+    : 0
 
   return (
     <section
       className='final-board'
       style={{
-        '--standings-rows': standingsRowsOf({ board, players, teams })
+        '--standings-rows': Math.max(
+          1,
+          standingsRowsOf({ board, players, teams }) - podiumSeats
+        )
       }}
     >
       <div className='podium' style={{ '--winner-count': winners.length }}>
         {winners.length === 0 ? (
           <h1 className='nobody'>{translate('host.final.nobody')}</h1>
+        ) : isSeatPodium ? (
+          <>
+            <VisuallyHidden elementType='h1'>{named}</VisuallyHidden>
+            <SeatPodium isWinners players={players} youId={youId} />
+          </>
         ) : (
           <>
             <div className='pawns'>{winners.map((winner) => winner.pawn)}</div>
@@ -118,13 +147,21 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
         !isEveryTeamItsOwnSeat({ players, teams }) && (
           <SeatPodium players={players} youId={youId} />
         )}
-      <Standings
-        board={board}
-        isFinal
+      <BestPerGame
+        lineUp={lineUp}
+        playedGames={playedGames}
         players={players}
-        teams={teams}
-        youId={youId}
       />
+      {players.length > podiumSeats && (
+        <Standings
+          board={board}
+          isFinal
+          players={players}
+          skipsPodium={isSeatPodium}
+          teams={teams}
+          youId={youId}
+        />
+      )}
       <ScoreTrack
         players={players}
         teams={teams}

@@ -30,7 +30,8 @@ import {
   buildScoreboard,
   hasAnybodyScored,
   roundPlacingOf,
-  standingOf
+  standingOf,
+  standsOnPodium
 } from '@melee/core/scoring/scoreboard'
 import { playsThisRound } from '@melee/core/team/duel'
 import { teamOfSeat, teamStandingOf } from '@melee/core/team/team-board'
@@ -115,6 +116,7 @@ import { slateLabelsOf } from '@/helpers/slate-labels'
 import { buzzFeedback } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import { AskedQuestion } from '@/presentation/components/asked-question'
+import { BestPerGame } from '@/presentation/components/best-per-game'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
 import { CountedBoard } from '@/presentation/components/counted-board'
@@ -136,6 +138,7 @@ import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { SeatPodium } from '@/presentation/components/seat-podium'
 import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { SwatchGuesses } from '@/presentation/components/swatch-guesses'
@@ -293,6 +296,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         <ThisRoundHeading lineUp={view.settings.lineUp} round={round} />
         <YourRound round={round} view={view} />
         <RoundPodium
+          isEveryScorer={round.isFinal}
           players={view.players}
           round={round}
           wordsOf={wordsOf}
@@ -394,23 +398,26 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
           <>
             {again}
             <TeamFinish view={view} />
+            <BestPerGame
+              lineUp={view.settings.lineUp}
+              playedGames={view.playedGames}
+              players={view.players}
+            />
           </>
         ) : (
           <>
-            <YourPlacing view={view} />
-            {again}
-            <SectionHeading>{translate('round.finalStandings')}</SectionHeading>
-            <Scoreboard
-              hasPawns
-              isResult
+            {hasAnybodyScored(view.players) ? (
+              <SeatPodium isWinners players={view.players} youId={view.youId} />
+            ) : (
+              <h1 className='final-nobody'>{translate('host.final.nobody')}</h1>
+            )}
+            <BestPerGame
+              lineUp={view.settings.lineUp}
+              playedGames={view.playedGames}
               players={view.players}
-              trackLength={
-                view.settings.board.kind === 'track'
-                  ? view.settings.board.length
-                  : undefined
-              }
-              youId={view.youId}
             />
+            {again}
+            <FinalRows view={view} />
           </>
         )}
       </section>
@@ -1047,55 +1054,47 @@ const YourRound: React.FC<{
 }
 
 /**
- * Where this player finished, which the console only ever says for the winner.
- * Ties share a place, the way the board itself ranks them — a room of two on
- * the same score reads "1st" on both players' screens, and `host.final.tied` is
- * already saying so across the room.
+ * Every seat the final board's steps do not stand, ranked from the fourth
+ * place — every seat when nobody scored — under a heading that says where
+ * this one finished. The page scrolls to it: no height decides what is shown.
  */
-const YourPlacing: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
+const FinalRows: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const translate = useTranslate()
-
-  if (!hasAnybodyScored(view.players)) {
-    return null
-  }
-
-  const seat = view.players.findIndex((player) => player.id === view.youId)
-  const yours = buildScoreboard(view.players).find(
-    (entry) => entry.player.id === view.youId
+  const titleId = useId()
+  const standing = standingOf({ players: view.players, youId: view.youId })
+  const { board } = view.settings
+  const hasRows = buildScoreboard(view.players).some(
+    (entry) => !standsOnPodium(entry)
   )
 
-  if (yours === undefined) {
+  if (!hasRows) {
     return null
   }
 
   return (
-    <div className='your-placing'>
-      <Pawn seat={Math.max(0, seat)} />
-      <p className='your-rank'>
-        <VisuallyHidden elementType='span'>
-          {`${translate('player.final.placing')} `}
-        </VisuallyHidden>
-        {translate('player.final.rank', { rank: yours.rank })}
-      </p>
-      <p className='your-total'>
-        {yours.player.board === null ? (
-          <>
-            <span className='value'>
-              {translate('player.score', {
-                points: shownPoints(yours.player.score)
-              })}
-            </span>{' '}
-            {translate('player.points', {
-              points: shownPoints(yours.player.score)
-            })}
-          </>
-        ) : (
-          <span className='case'>
-            {translate('board.at', { case: yours.player.board.case })}
-          </span>
-        )}
-      </p>
-    </div>
+    <section aria-labelledby={titleId} className='final-rows'>
+      <SectionHeading
+        aside={
+          standing === null
+            ? null
+            : translate('player.standing.overall', {
+                count: standing.roomSize,
+                rank: standing.rank
+              })
+        }
+        id={titleId}
+      >
+        {translate('round.finalStandings')}
+      </SectionHeading>
+      <Scoreboard
+        hasPawns
+        isResult
+        players={view.players}
+        skipsPodium
+        trackLength={board.kind === 'track' ? board.length : undefined}
+        youId={view.youId}
+      />
+    </section>
   )
 }
 

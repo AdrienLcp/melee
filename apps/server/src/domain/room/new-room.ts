@@ -50,6 +50,7 @@ export const newRoom = ({
     lastActivityAt: now,
     openedEntries: [],
     ownLines: NO_OWN_LINES,
+    paidRounds: [],
     phase: 'lobby',
     playedContentIds: new Set(),
     playedLetters: [],

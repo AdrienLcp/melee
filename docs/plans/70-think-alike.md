@@ -175,6 +175,18 @@ What diverged from the plan:
   nothing in Think alike is spelt or found — the table is guessed.
 - **Only _Mêlée générale_ deals it** among the ready-made line-ups: it falls
   flat at two seats, the reason _Première partie_ leaves out _Qui de nous ?_.
+- **The piles became a table** — 23/11/2026, Adrien's pick after a weekend
+  of play found the wall's reveal unreadable: a card, card edges under it and
+  the names a grid row further down. One row per answer, biggest crowd on
+  top — count, word, pawn and name chips, pay — the lone answers on one
+  dashed row, blank seats a last line. One font size fitted to the box by a
+  binary search on a still clone (`useFittedFont`) sets every size in ems,
+  so the wall never scrolls at 24 seats. The console's toggle reads _Revoir
+  les réponses_.
+- **The field fills the width** — same day: a phone's whole width, 36rem
+  centred on a wide screen. Its stray line was the textarea's ring under the
+  card's head; the card's thickened edge is now the one focus mark, a rule a
+  mis-indented Sass comment had swallowed since step 3.
 
 ## Step 4 — the evening's own prompts (done 16/11/2026)
 

@@ -69,3 +69,18 @@ step that lands keeps its line here, dated, and loses its details.
    through `ActionSlot` (`features/host/action-slot.tsx`) rather than being
    written twice; the drawer carries the rest of the phase, the hold, the
    seats to remove, the setup, the slate's key and the menu's exits.
+
+7. **One final board on every screen** — done 23/11/2026, after an iPhone
+   showed the winner alone where a Galaxy showed three: the phone's last
+   reveal folded places 2–3 under 640px of viewport height, which iOS
+   measures with its toolbars out. No height decides what a phone shows any
+   more. The phone, the console and the wall stand the best three on steps
+   (`SeatPodium isWinners`), then _By game_ — the best seat of each line-up
+   entry played, by its points over the rounds the room played on it — then
+   every other seat from the fourth; the phone's last reveal lists every
+   scorer. Adrien picked it from directions mixing the podium and a strip by
+   game. The strip needed a history: `playedGames` on the base view, built by
+   `playedGamesOf` from `Room.paidRounds`, which `bankRound` writes from
+   `round.awards` — totals per entry rather than per round, because the
+   strip reads nothing finer. An entry is told by value as `playedPerEntry`
+   tells it; a crowned seat must still be at the table.

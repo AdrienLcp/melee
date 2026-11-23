@@ -46,11 +46,13 @@
 
 /// The podium giving way as the console's does: the first alone, then how
 /// many more the round paid.
+/// The game's last reveal lists every scorer instead, whatever the height:
+/// the page scrolls to them.
 @mixin podium-first-alone
-  .round-podium .podium li:not(:first-child)
+  .round-podium:not([data-every-scorer]) .podium li:not(:first-child)
     display: none
 
-  .round-podium .found .others
+  .round-podium:not([data-every-scorer]) .found .others
     display: inline
 
 @layer components
@@ -956,14 +958,21 @@
 
       color: var(--ink-muted)
 
-  // Where the evening left this player: their pawn stood up oversize beside
-  // the place, the way the console stands the winner's.
+  // The evening's result, the same on every screen: the best three on their
+  // steps, who played each game best, then every other seat ranked. The page
+  // scrolls to the rows; no height decides what a screen shows.
   .player-round.finished
     container-type: inline-size
+    gap: clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-xl))
 
-    > :not(.your-placing)
+    > :not(.seat-podium, .your-placing)
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
 
+    > .seat-podium
+      padding-block-start: var(--space-s)
+
+    // A team evening opens on where this seat's team finished: its pawn stood
+    // up oversize beside the place, the way the console stands the winner's.
     .your-placing
       align-items: end
       column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))
@@ -1000,12 +1009,23 @@
 
           color: var(--ink)
 
-        // Where the pawn finished, in the points' place: on a track the case
+        // Where the team finished, in the points' place: on a track the case
         // is the race, and nothing else is printed.
         .case
           @include typography.numeric
 
           color: var(--ink)
+
+    .final-nobody
+      @include typography.billboard
+
+      padding-block: var(--space-m)
+      text-align: center
+      text-wrap: balance
+
+    .final-rows
+      display: grid
+      gap: var(--space-xs)
 
     .scoreboard .pawn
       font-size: var(--text-em-l)

@@ -2316,6 +2316,7 @@ export const restartGame = (room: Room, now: number): void => {
   clearReady(room)
   resetTeamScores(room)
   room.openedEntries = []
+  room.paidRounds = []
   room.phase = 'lobby'
   room.round = null
   room.isDuelAsked = false

@@ -8,6 +8,7 @@ import {
   hasAnybodyScored,
   roundPlacingOf,
   standingOf,
+  standsOnPodium,
   winnersOf
 } from './scoreboard'
 
@@ -139,6 +140,30 @@ describe('hasAnybodyScored', () => {
 
   it('[scoring] is false for an empty room', () => {
     expect(hasAnybodyScored([])).toBe(false)
+  })
+})
+
+describe('standsOnPodium', () => {
+  it('[scoreboard] stands the best three places, a tie sharing its step, and never a seat on nought', () => {
+    const onPodium = buildScoreboard([
+      playerOn('Ada', 90),
+      playerOn('Bo', 70),
+      playerOn('Cy', 70),
+      playerOn('Di', 40),
+      playerOn('Ed', 0)
+    ])
+      .filter(standsOnPodium)
+      .map((entry) => entry.player.nickname)
+
+    expect(onPodium).toEqual(['Ada', 'Bo', 'Cy'])
+  })
+
+  it('[scoreboard] leaves a seat on nought off the steps even inside the best three', () => {
+    const onPodium = buildScoreboard([playerOn('Ada', 90), playerOn('Bo', 0)])
+      .filter(standsOnPodium)
+      .map((entry) => entry.player.nickname)
+
+    expect(onPodium).toEqual(['Ada'])
   })
 })
 

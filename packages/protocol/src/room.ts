@@ -91,6 +91,7 @@ import {
   petitBacRowSchema,
   petitBacSettledLineSchema
 } from './petit-bac'
+import { playedGameSchema } from './played-game'
 import {
   hostQuestionSchema,
   questionLanguageSchema,
@@ -1076,6 +1077,12 @@ const baseRoomViewSchema = z.object({
    */
   isWallConnected: z.boolean(),
   phase: roomPhaseSchema,
+  /**
+   * Every line-up entry this game has opened a round on, in the order each was
+   * first played, with what each seat earned on it. Grows as each round is
+   * left behind — the final board reads it whole — and empties with the scores.
+   */
+  playedGames: z.array(playedGameSchema),
   players: z.array(publicPlayerSchema),
   /**
    * When the table, every seat ready, opens the game from the lobby or plays

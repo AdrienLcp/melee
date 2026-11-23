@@ -33,6 +33,8 @@ type StandingsProps = {
   players: readonly PublicPlayer[]
   /** The order before the round moved it, which the rows and trays travel from. */
   rankedBefore?: StandingBefore | null
+  /** Leaves the seats the final board stands on its steps out of the rows. */
+  skipsPodium?: boolean
   /** Ranked in the seats' place when the room plays in teams, the seats under them. */
   teams: readonly Team[]
   /** The seated host's own row, highlighted; `null` on a screen nobody sits at. */
@@ -77,6 +79,7 @@ export const Standings: React.FC<StandingsProps> = ({
   onAdjust,
   players,
   rankedBefore,
+  skipsPodium,
   teams,
   youId
 }) => {
@@ -135,6 +138,7 @@ export const Standings: React.FC<StandingsProps> = ({
           marksReady={marksReady}
           players={players}
           rankedBefore={rankedBefore?.seats}
+          skipsPodium={skipsPodium}
           trackLength={board?.kind === 'track' ? board.length : undefined}
           youId={youId}
         />

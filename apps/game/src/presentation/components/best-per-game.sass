@@ -1,0 +1,86 @@
+@use '../styles/typography'
+
+@layer components
+  // One tile per game of the evening, laid in rows that wrap rather than a
+  // strip that scrolls sideways: every screen holds every game, and the wall
+  // never scrolls. Lengths are the list's em, set from the screen's short
+  // side, so the tiles read in a hand and from across the room.
+  .best-per-game
+    display: grid
+    gap: var(--space-xs)
+    min-width: 0
+
+    ol
+      display: flex
+      flex-wrap: wrap
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.2), var(--text-xl))
+      gap: 0.6em 0.9em
+      justify-content: center
+      list-style: none
+
+    li
+      align-content: start
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * (2 + var(--tile-at, 0))) backwards
+      display: grid
+      gap: 0.2em
+      justify-items: center
+      min-width: 0
+      text-align: center
+      width: 7em
+
+    .game
+      display: grid
+      gap: 0.2em
+      justify-items: center
+
+    .spine-mark
+      background: var(--spine)
+      border-radius: var(--radius-s)
+      color: var(--spine-ink)
+      display: grid
+      height: 2.2em
+      place-items: center
+      width: 2.2em
+
+      .game-icon
+        height: 1.3em
+        width: 1.3em
+
+    .game-name,
+    .best
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: 2
+      display: -webkit-box
+      line-clamp: 2
+      max-width: 100%
+      overflow: hidden
+      overflow-wrap: anywhere
+
+    .game-name
+      @include typography.caption
+
+      color: var(--ink-muted)
+      font-size: var(--text-em-s)
+
+    .pawns
+      display: flex
+      font-size: calc(var(--text-em-xl) * 1.5)
+      gap: 0.05em
+      justify-content: center
+      margin-block-start: 0.15em
+
+      .pawn
+        filter: drop-shadow(0 0.06em 0 var(--chipboard-dark))
+
+    .best
+      @include typography.label
+      @include typography.typed
+
+    .nobody
+      color: var(--ink-muted)
+
+    .average
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      font-size: var(--text-em-s)

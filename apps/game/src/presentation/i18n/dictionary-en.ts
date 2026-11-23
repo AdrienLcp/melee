@@ -2499,6 +2499,12 @@ export const EN_DICTIONARY = defineDictionary({
      * table learns that answering early pays without anybody explaining it.
      */
     awardWithSpeed: '{answer:number} +{speed:number}',
+    /** The final board's strip of each game the evening played and who played it best. */
+    bestPerGame: {
+      /** What the best seat earned a round on that game, on average. */
+      average: '{points:number} a round',
+      title: 'By game'
+    },
     /**
      * The figure beside a round clock. A clock of a minute or more reads
      * `minutes` from its first second to its last; one under a minute reads
@@ -2850,7 +2856,7 @@ export const EN_DICTIONARY = defineDictionary({
     scoring:
       'Your answer is paid by how many of the others wrote it too: all of them score 100 points, half of them 50, nobody nothing.',
     sort: {
-      close: 'Back to the piles',
+      close: 'Back to the answers',
       drag: 'Move “{answer}”',
       hint: 'Drag one answer onto another to count them as one.',
       into: 'With “{answer}”',

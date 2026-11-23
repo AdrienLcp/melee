@@ -9,12 +9,18 @@
     align-content: start
     display: grid
     gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+    // One track the full width: `answer-form` centres the content, which
+    // shrank a track left to its content down to the empty field's width.
+    grid-template-columns: minmax(0, 1fr)
     min-block-size: 0
 
+    // The whole width on a phone, a line's measure in the middle of a wide screen.
     > form
       display: grid
-      inline-size: 100%
       gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+      inline-size: 100%
+      justify-self: center
+      max-inline-size: 36rem
 
     // The field is the card: the seat's pawn in its corner, the spine's rule
     // under it, the count of what is left, and the line written large.
@@ -26,7 +32,8 @@
       padding: var(--space-s) var(--space-m) var(--space-m)
       transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
 
-      // A tap draws no focus ring, so the card's own edge thickens to say *typing here*.
+      // The card's own edge thickens to say *typing here*, and it is the one
+      // focus mark: the field's ring drew a second line under the card's head.
       &:has(.react-aria-TextArea[data-focused])
         box-shadow: 0 var(--edge) 0 var(--chipboard), var(--shadow-card), inset 0 0 0 var(--stroke-bold) var(--card-ink)
 
@@ -65,6 +72,9 @@
         resize: none
         user-select: text
         width: 100%
+
+        &:is([data-focus-visible], :focus-visible)
+          outline: none
 
     // Sent: the card turned over and laid down a little askew, the seat's
     // pawn on its back and its own line under it, over the table.

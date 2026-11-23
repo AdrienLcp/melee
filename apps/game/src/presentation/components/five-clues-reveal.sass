@@ -217,6 +217,10 @@
         box-shadow: none
         display: inline-grid
         font-size: var(--text-m)
+        // The pawn alone shows: one column and no gap, or the pill painted
+        // under it stretched over the hidden name's tracks.
+        gap: 0
+        grid-template-columns: auto
         padding: 0.1em
 
         &[data-you]

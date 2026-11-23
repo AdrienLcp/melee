@@ -57,6 +57,17 @@ export const buildScoreboard = (
   })
 }
 
+/** How many places the final board stands on its steps. */
+export const PODIUM_PLACES = 3
+
+/**
+ * Whether a seat stands on the final board's steps rather than in the rows
+ * under them: the best three places, a tie sharing its step, and never a seat
+ * on nought, which placed nowhere.
+ */
+export const standsOnPodium = (entry: ScoreboardEntry): boolean =>
+  entry.rank <= PODIUM_PLACES && standingOfSeat(entry.player) > 0
+
 /**
  * Who has sat down, by name, everyone sharing first: what `buildScoreboard`
  * returns before anybody has scored, kept by a roster whatever the scores say,

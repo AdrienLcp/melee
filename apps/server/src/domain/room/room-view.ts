@@ -19,6 +19,7 @@ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import { tallyBallots } from '@melee/core/mostlikely/tally'
 import { playedPerEntry } from '@melee/core/room/next-game'
+import { playedGamesOf } from '@melee/core/room/played-games'
 import { isStillExpected } from '@melee/core/room/seat-presence'
 import { isBlankAnswer } from '@melee/core/round/answer-groups'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
@@ -401,6 +402,11 @@ const toBaseView = ({
   isPaused: room.round?.isPaused === true,
   isWallConnected,
   phase: room.phase,
+  playedGames: playedGamesOf({
+    lineUp: room.settings.lineUp,
+    opened: room.openedEntries,
+    paid: room.paidRounds
+  }),
   players: toPublicPlayers({ now, room }),
   readyStartsAt: room.readyStartsAt,
   round:

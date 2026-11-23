@@ -45,3 +45,24 @@
     min-height: 0
     overflow-y: auto
     padding-block-end: var(--space-xs)
+
+/// A ranking past twelve seats in two columns, filled top to bottom, each
+/// row dividing the box by half the table. A row no longer travels: its old
+/// place may be in the other column. Its move is stilled rather than taken
+/// off: added back as the wall turns upright, it starts over, and sent the
+/// rows back to where they stood before the round.
+@mixin two-ranked-columns
+  --row-width-cap: 2.6cqi
+  --rows-per-column: round(up, var(--standings-rows, 8) / 2, 1)
+
+  column-gap: var(--space-l)
+  columns: 2
+  display: block
+
+  li
+    border-bottom: var(--hairline)
+    border-top: none
+    break-inside: avoid
+
+    &[data-moved]
+      --moved-travel: 0%

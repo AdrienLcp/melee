@@ -769,6 +769,9 @@ Shared by all three:
   "code": "K3M9",
   "phase": "playing",              // lobby | countdown | playing | buzzed | revealed | finished
   "players": [{ "id": "…", "nickname": "Alice", "score": 2, "isConnected": true }],
+  "playedGames": [{ "kind": "quiz", "lineUpAt": 0,          // null → the line-up no longer holds it
+                    "roundCount": 4,                        // rounds the room opened on that entry
+                    "totals": [{ "playerId": "…", "points": 182000 }] }],  // a seat paid nothing is absent
   "teams": [{ "id": "team-1", "colour": 1, "name": null,   // null → the dictionary's name
               "score": 1500, "seatIds": ["…"],
               "gain": 300,                                  // what the round paid it; 0 outside a reveal.
@@ -810,6 +813,17 @@ game on it is drawn: `roundCount`, `countdownMs`, `autoAdvanceMs`, `startsAt`,
 the buzz, the lockout and the awards are every game's, and what the round is
 _asking_ belongs to the game asking it. A client that does not recognise a `kind` has no business
 rendering that room at all, which is why the shape moving bumps the version.
+
+`playedGames` is the game's history by line-up entry, what the final board
+crowns each game's best seat from (`playedGamesOf`): one item per entry a
+round opened on, in the order each was first played, every seat's total over
+its rounds on the board's scale. The server keeps `Room.paidRounds`, what each
+round paid each seat (from `round.awards`, written by `bankRound` as the round
+is left behind, by the index `openedEntries` keeps), and empties both on a
+restart. An entry is told apart by value, so the same game edited mid-evening
+is two. Public on all three views, since every figure was already on a reveal;
+an added field, so no version bump, and a room stored before it loads with no
+history.
 
 `advancesAt` is read with `settings.autoAdvanceMs` beside it: the deadline says
 _when_, the setting says how long the whole wait was, and a screen needs both to

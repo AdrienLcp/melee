@@ -7,7 +7,6 @@ file in the commit that finishes it, and delete this README with the last one.
 
 | Wave | File                            | Depends on           |
 | ---- | ------------------------------- | -------------------- |
-| 2    | `07-results-screens.md`         | 02 landed            |
 | 2    | `08-blindtest-flash.md`         | 01 landed            |
 | 2    | `09-five-clues-any-subject.md`  | 05 landed            |
 | 3    | `10-five-clues-new-subjects.md` | 09 landed            |
@@ -35,8 +34,9 @@ file in the commit that finishes it, and delete this README with the last one.
   seats with long names at phone width, a paired wall, every motion filmed
   (`docs/browser-driving.md`). A design choice starts with the `impeccable`
   skill and its directions reach Adrien as **complete example pages behind one
-  index page**, opened for him in the built-in browser (`preview_start` with
-  the `file:///C:/...` URL).
+  index page**, given to him as a link he opens in his own browser, never
+  opened in the app's built-in one — served over `http://127.0.0.1:<port>`,
+  since a `file:///` page loses its relative stylesheets and scripts there.
 - **Finish the finishing touches**: changelog entry, the plan's record
   (`docs/plans/`), CLAUDE.md or a rule when a documented behaviour changes.
 - Adrien's words are translated into English here; what he said is quoted as

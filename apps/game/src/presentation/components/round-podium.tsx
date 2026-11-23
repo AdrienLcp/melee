@@ -32,6 +32,12 @@ import { typedName } from '@/presentation/components/typed-name'
 import { RichText } from '@/presentation/i18n/rich-text'
 
 type RoundPodiumProps = {
+  /**
+   * Lists every seat the round paid rather than the best three: the game's
+   * last reveal on a seat's own screen, which scrolls, and the last look at
+   * who earned what before the final board.
+   */
+  isEveryScorer?: boolean
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
@@ -76,9 +82,10 @@ export const useWordsOf = (
  * The round's podium: the seats it paid the most, each at its place in the
  * round with what it said, over how many of those it opened on scored. Every
  * figure on it is the round's — the game so far is the standings' — so it
- * never grows past three.
+ * grows past three only where it is asked to list every scorer.
  */
 export const RoundPodium: React.FC<RoundPodiumProps> = ({
+  isEveryScorer = false,
   players,
   round,
   wordsOf,
@@ -94,7 +101,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
     isOnTrack
       ? scorers.filter((other) => byBetterAnswer(other, award) < 0).length + 1
       : roundPlacingOf({ awards: round.awards, playerId: award.playerId })
-  const podium = scorers.slice(0, PODIUM_PLACES)
+  const podium = isEveryScorer ? scorers : scorers.slice(0, PODIUM_PLACES)
   const answers = revealedInOrder(round)
   const stampedCount = round.openedWithPlayerIds?.length ?? players.length
 
@@ -118,7 +125,10 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
   }
 
   return (
-    <div className='round-podium'>
+    <div
+      className='round-podium'
+      data-every-scorer={isEveryScorer || undefined}
+    >
       <ol className='podium'>
         {podium.map((award) => {
           const answer = answers.find(
@@ -153,7 +163,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
         })}
       </ol>
       <p className='found'>
-        {scorers.length > 1 && (
+        {scorers.length > 1 && !isEveryScorer && (
           <span className='others'>
             {translate('round.othersScored', { count: scorers.length - 1 })}
           </span>

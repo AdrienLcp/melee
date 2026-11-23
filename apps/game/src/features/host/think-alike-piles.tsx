@@ -18,74 +18,40 @@ import { useSizeGlideOnSwap } from '@/presentation/components/use-size-glide-on-
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { useFittedFont } from './use-fitted-font'
+
 import './think-alike-piles.sass'
 
-/** How many lone cards stand one over the other beside the piles before another column starts. */
-const LONE_ROWS_BESIDE_PILES = 5
-
-const LEAVING_ANIMATION = 'row-closes'
+/** A chip leaving fades, then closes its width, and goes once that is shut. */
+const CHIP_LEAVING_ANIMATION = 'think-alike-chip-closes'
+/** A row leaving fades, then closes its room, and goes once that is shut. */
+const ROW_LEAVING_ANIMATION = 'row-closes'
+const ALONE_ROW = 'alone'
+const BLANK_ROW = 'blank'
 
 type ThinkAlikePilesProps = {
   /**
-   * Drawn face up from the first frame: the console coming back from the
-   * rows to piles the table already watched turn over. `false` by default.
+   * Drawn whole from the first frame: the console coming back from the
+   * sorting rows to a table the room already watched fill. `false` by default.
    */
   isFaceUp?: boolean
   players: readonly PublicPlayer[]
   round: RoundView
-  /** The seat this screen holds, whose pile is framed; `null` on the wall. */
+  /** The seat this screen holds, whose answer is framed; `null` on the wall. */
   youId: PlayerId | null
 }
 
-const CLOSED_TRACK = 'minmax(0, 0fr)'
-
-/** A column of the piles side by side: its track, and whether it stays once the regroup has played. */
-type Column = { isStanding: boolean; track: string }
-
-/**
- * The grid's columns with a track of their own for each gap: a column leaving
- * closes its track and the gap it brought to no width, so taking it out
- * changes nothing, where `column-gap` handed a gap back at once. A gap stands
- * before a column that stays with another staying before it.
- */
-const columnsTemplateOf = (columns: readonly Column[]): string =>
-  columns
-    .flatMap(({ isStanding, track }, at) => {
-      if (at === 0) {
-        return [track]
-      }
-
-      const hasStandingBefore = columns
-        .slice(0, at)
-        .some((column) => column.isStanding)
-
-      return [
-        isStanding && hasStandingBefore ? 'var(--pile-gap)' : '0rem',
-        isStanding ? track : CLOSED_TRACK
-      ]
-    })
-    .join(' ')
-
-/** A pile's share of the width beside the others, which grows with its authors. */
-const pileWeightOf = (authorCount: number): number => 3 + authorCount * 0.6
-
-/** The letters of an answer's longest word, which its card is sized by so no word has to break. */
-const longestWordOf = (text: string): number =>
-  Math.max(4, ...text.split(/\s+/u).map((word) => word.length))
-
-/** A seat's name and pawn, under a pile or a lone card. */
-const Author: React.FC<{ player: PublicPlayer; seat: number }> = ({
-  player,
-  seat
-}) => (
-  <li>
-    <Pawn seat={seat} />
-    <span className='name'>{player.nickname}</span>
-  </li>
-)
+/** One chip on a row: a seat's pawn and name, and the word it wrote alone. */
+type Chip = {
+  id: string
+  isYours: boolean
+  nickname: string
+  seat: number
+  word: string | null
+}
 
 /**
- * What a pile's authors were each paid, on a pill that stays through a
+ * What an answer's authors were each paid, on a pill that stays through a
  * regroup: its width eases to the new figure's, the figure alone stamped again.
  */
 const PayPill: React.FC<{ points: number }> = ({ points }) => {
@@ -106,11 +72,51 @@ const PayPill: React.FC<{ points: number }> = ({ points }) => {
 }
 
 /**
- * The round's reveal on the screen the room shares: the blank seats and the
- * lone answers as small flat cards first, then every answer two or more
- * wrote as a pile, smallest to biggest, gathered face down and turned over
- * one by one — the top card's word large, the pile as thick as its authors,
- * a card edge a pawn, what each of them was paid and who they are under it.
+ * A row's authors, wrapping inside it: a chip joining opens its width and
+ * fades in, one leaving fades and closes its width, so the chips beside it
+ * slide rather than jump, and the row's height eases to the lines they take.
+ */
+const Chips: React.FC<{ chips: readonly Chip[] }> = ({ chips }) => {
+  const list = useRef<HTMLUListElement>(null)
+  const { endExitOf, rows: drawn } = useLeavingRows({
+    exitAnimation: CHIP_LEAVING_ANIMATION,
+    rows: chips
+  })
+
+  const drawnIds = drawn.map((chip) => chip.id).join(' ')
+
+  // The row grows or shrinks by a line as chips come and go, and the rows
+  // under it follow its height rather than jump.
+  useSizeGlideOnSwap({ box: list, swap: drawnIds })
+
+  return (
+    <ul className='authors' ref={list}>
+      {drawn.map((chip, at) => (
+        <li
+          data-arriving={chip.isArriving || undefined}
+          data-key={chip.id}
+          data-leaving={chip.isLeaving || undefined}
+          data-yours={chip.isYours || undefined}
+          key={chip.id}
+          onAnimationEnd={chip.isLeaving ? endExitOf(chip.id) : undefined}
+          style={{ '--at': at }}
+        >
+          {chip.word !== null && <b className='alone-word'>{chip.word}</b>}
+          <Pawn seat={chip.seat} />
+          <span className='name'>{chip.nickname}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/**
+ * The round's reveal on the screen the room shares, as a table: a row for
+ * every answer two or more wrote, the most shared on top — how many, the
+ * word, who wrote it and what each was paid — then one dashed row of every
+ * answer written alone, and the seats that wrote nothing. The rows come in
+ * one by one from the foot, the biggest crowd last, and the whole table is
+ * set at the largest size its box holds: the wall never scrolls.
  */
 export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   isFaceUp = false,
@@ -120,7 +126,7 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
 }) => {
   const translate = useTranslate()
   const section = useRef<HTMLElement>(null)
-  const loneList = useRef<HTMLUListElement>(null)
+  const table = useRef<HTMLOListElement>(null)
   const dealt = thinkAlikeContent(round)?.groups ?? []
   const isRegrouped = useChangedSinceFirstDraw(
     dealt.map(({ authors, key }) => `${key}:${authors.length}`).join(' ')
@@ -128,216 +134,143 @@ export const ThinkAlikePiles: React.FC<ThinkAlikePilesProps> = ({
   const payOf = (group: ThinkAlikeGroup): number =>
     round.awards.find((award) => group.authors.includes(award.playerId))
       ?.points ?? 0
-  const { endExitOf, rows: groups } = useLeavingRows({
-    exitAnimation: LEAVING_ANIMATION,
-    rows: dealt.map((group) => ({
-      ...group,
-      id: group.key,
-      points: payOf(group)
-    }))
+  const { endExitOf, rows: shared } = useLeavingRows({
+    exitAnimation: ROW_LEAVING_ANIMATION,
+    rows: dealt
+      .filter((group) => group.authors.length > 1)
+      .map((group) => ({ ...group, id: group.key, points: payOf(group) }))
   })
-  const writers = new Set(groups.flatMap((group) => group.authors))
+  const singles = dealt.filter((group) => group.authors.length === 1)
+  const writers = new Set(dealt.flatMap((group) => group.authors))
   const blanks = playersOfRound({
     openedWithPlayerIds: round.openedWithPlayerIds,
     players
   }).filter((player) => !writers.has(player.id))
-  const singles = groups.filter((group) => group.authors.length === 1)
-  const piles = groups.filter((group) => group.authors.length > 1)
-  const firstDrawnAt = useFirstDrawnOrder(groups.map((group) => group.key))
-  const byFirstDrawn = (one: ThinkAlikeGroup, other: ThinkAlikeGroup) =>
+  const firstDrawnAt = useFirstDrawnOrder(shared.map((row) => row.key))
+  const byFirstDrawn = (one: ThinkAlikeGroup, other: ThinkAlikeGroup): number =>
     firstDrawnAt(one.key) - firstDrawnAt(other.key)
-  const seatOf = (id: PlayerId): number =>
-    players.findIndex((player) => player.id === id)
-  const authorsOf = (group: ThinkAlikeGroup) =>
-    group.authors.flatMap((id) => {
-      const player = players.find((seated) => seated.id === id)
+  const ranked = shared.toSorted(
+    (one, other) =>
+      other.authors.length - one.authors.length || byFirstDrawn(one, other)
+  )
+  const chipOf = ({
+    id,
+    word
+  }: {
+    id: PlayerId
+    word: string | null
+  }): Chip[] => {
+    const seat = players.findIndex((player) => player.id === id)
+    const player = players[seat]
 
-      return player === undefined ? [] : [player]
-    })
-  const loneCount = singles.length + blanks.length
-
-  useRowsTravel({
-    arcsWhenPassing: true,
-    isOrderedByStyle: true,
-    list: section,
-    order: piles.map((pile) => pile.key).join(' '),
-    pace: 'gather'
-  })
-  useRowsTravel({
-    list: loneList,
-    order: [
-      ...blanks.map((player) => player.id),
-      ...singles.map((group) => group.key)
-    ].join(' '),
-    pace: 'gather'
-  })
-  const columnCount = piles.length + (loneCount > 0 ? 1 : 0)
-  const loneWeight = Math.min(6, Math.ceil(Math.sqrt(loneCount)) * 1.3)
-  const standingWeights = piles
-    .filter((pile) => !pile.isLeaving)
-    .map((pile) => pileWeightOf(pile.authors.length))
-  const totalWeight =
-    standingWeights.reduce((sum, weight) => sum + weight, 0) +
-    (loneCount > 0 ? loneWeight : 0)
-  const shareOf = (pile: ThinkAlikeGroup): number => {
-    const weight = pileWeightOf(pile.authors.length)
-
-    return weight / Math.max(totalWeight, weight)
+    return player === undefined
+      ? []
+      : [{ id, isYours: id === youId, nickname: player.nickname, seat, word }]
   }
-  const loneColumns: readonly Column[] =
-    loneCount > 0
-      ? [
-          {
-            isStanding: true,
-            track: `minmax(var(--lone-least), ${loneWeight}fr)`
-          }
-        ]
-      : []
-  const pileColumns: readonly Column[] = piles.map((pile) => ({
-    isStanding: !pile.isLeaving,
-    track: `minmax(0, ${pileWeightOf(pile.authors.length)}fr)`
-  }))
-  const gridLineOf = (pileAt: number): number =>
-    1 + (loneColumns.length + pileAt) * 2
+  const aloneChips = singles.flatMap((group) =>
+    group.authors.flatMap((id) =>
+      chipOf({ id, word: group.text }).map((chip) => ({
+        ...chip,
+        id: group.key
+      }))
+    )
+  )
+  const blankChips = blanks.flatMap((player) =>
+    chipOf({ id: player.id, word: null })
+  )
+  const footOrder = ranked.length
+  const { endExitOf: endFootExitOf, rows: foot } = useLeavingRows({
+    exitAnimation: ROW_LEAVING_ANIMATION,
+    rows: [
+      { chips: aloneChips, id: ALONE_ROW },
+      { chips: blankChips, id: BLANK_ROW }
+    ].filter((row) => row.chips.length > 0)
+  })
+
+  useRowsTravel({
+    isOrderedByStyle: true,
+    list: table,
+    order: [...ranked.map((row) => row.key), ...foot.map((row) => row.id)].join(
+      ' '
+    ),
+    pace: 'gather'
+  })
+  useFittedFont({
+    box: section,
+    list: table,
+    signature: [
+      ...ranked.map((row) => `${row.key}:${row.authors.length}`),
+      ...singles.map((group) => group.key),
+      blanks.length
+    ].join(' ')
+  })
 
   return (
     <section
       className='think-alike-piles'
       data-face-up={isFaceUp || undefined}
-      data-lone={loneCount > 0 || undefined}
       data-regrouped={isRegrouped || undefined}
       ref={section}
-      style={{
-        '--columns': columnCount,
-        '--columns-template': columnsTemplateOf([
-          ...loneColumns,
-          ...pileColumns
-        ]),
-        '--lone-columns':
-          piles.length > 0
-            ? Math.ceil(loneCount / LONE_ROWS_BESIDE_PILES)
-            : Math.ceil(Math.sqrt(loneCount * 1.8)),
-        '--most-authors': Math.max(
-          2,
-          ...piles.map((pile) => pile.authors.length)
-        )
-      }}
     >
-      {loneCount > 0 && (
-        <ul className='lone' ref={loneList}>
-          {blanks.map((player) => (
-            <li
-              className='lone-card'
-              data-blank
-              data-key={player.id}
-              key={player.id}
-            >
-              <span className='face'>
-                <span className='word'>
-                  <VisuallyHidden elementType='span'>
-                    {translate('thinkalike.reveal.blank')}
-                  </VisuallyHidden>
-                </span>
-              </span>
-              <ul className='authors'>
-                <Author player={player} seat={seatOf(player.id)} />
-              </ul>
-            </li>
-          ))}
-          {singles.toSorted(byFirstDrawn).map((group) => (
-            <li
-              className='lone-card'
-              data-key={group.key}
-              data-leaving={group.isLeaving || undefined}
-              data-yours={
-                (youId !== null && group.authors.includes(youId)) || undefined
-              }
-              key={group.key}
-              onAnimationEnd={
-                group.isLeaving ? endExitOf(group.key) : undefined
-              }
-              style={{
-                '--letters': longestWordOf(group.text),
-                '--order': singles.indexOf(group)
-              }}
-            >
-              <span className='face'>
-                <span className='word'>{group.text}</span>
-              </span>
-              <ul className='authors'>
-                {authorsOf(group).map((player) => (
-                  <Author
-                    key={player.id}
-                    player={player}
-                    seat={seatOf(player.id)}
-                  />
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      )}
-      {piles.toSorted(byFirstDrawn).map((pile) => {
-        const turn = piles.indexOf(pile)
-        const { points } = pile
-        const authors = authorsOf(pile)
+      <ol className='table' ref={table}>
+        {shared.toSorted(byFirstDrawn).map((row) => {
+          const rank = ranked.indexOf(row)
 
-        return (
-          <div
-            className='pile'
-            data-key={pile.key}
-            data-leaving={pile.isLeaving || undefined}
-            data-yours={
-              (youId !== null && pile.authors.includes(youId)) || undefined
-            }
-            key={pile.key}
-            onAnimationEnd={pile.isLeaving ? endExitOf(pile.key) : undefined}
+          return (
+            <li
+              className='row'
+              data-arriving={(isRegrouped && row.isArriving) || undefined}
+              data-key={row.key}
+              data-leaving={row.isLeaving || undefined}
+              data-yours={
+                (youId !== null && row.authors.includes(youId)) || undefined
+              }
+              key={row.key}
+              onAnimationEnd={row.isLeaving ? endExitOf(row.key) : undefined}
+              style={{ '--order': rank, '--turn': ranked.length - rank }}
+            >
+              <span aria-hidden className='count' key={row.authors.length}>
+                {row.authors.length}
+              </span>
+              <p className='word'>
+                {row.text}
+                <VisuallyHidden elementType='span'>
+                  {`, ${translate('thinkalike.reveal.crowd', { count: row.authors.length })}`}
+                </VisuallyHidden>
+              </p>
+              <Chips
+                chips={row.authors.flatMap((id) => chipOf({ id, word: null }))}
+              />
+              <PayPill points={row.points} />
+            </li>
+          )
+        })}
+        {foot.map((row) => (
+          <li
+            className='row'
+            data-alone={row.id === ALONE_ROW || undefined}
+            data-arriving={(isRegrouped && row.isArriving) || undefined}
+            data-blank={row.id === BLANK_ROW || undefined}
+            data-key={row.id}
+            data-leaving={row.isLeaving || undefined}
+            key={row.id}
+            onAnimationEnd={row.isLeaving ? endFootExitOf(row.id) : undefined}
             style={{
-              '--authors': pile.authors.length,
-              '--column': gridLineOf(turn),
-              '--letters': longestWordOf(pile.text),
-              '--order': turn + 1,
-              '--pay-glyphs': points > 0 ? `+${shownPoints(points)}`.length : 1,
-              '--share': shareOf(pile),
-              '--turn': turn + 1
+              '--order': footOrder + (row.id === BLANK_ROW ? 1 : 0),
+              '--turn': 0
             }}
           >
-            <div className='stack'>
-              <div className='top'>
-                <div aria-hidden className='back' />
-                <div className='front'>
-                  <span aria-hidden className='count'>
-                    {pile.authors.length}
-                  </span>
-                  <p className='word'>
-                    {pile.text}
-                    <VisuallyHidden elementType='span'>
-                      {`, ${translate('thinkalike.reveal.crowd', { count: pile.authors.length })}`}
-                    </VisuallyHidden>
-                  </p>
-                </div>
-              </div>
-              <ol aria-hidden className='edges'>
-                {authors.map((player) => (
-                  <li key={player.id}>
-                    <Pawn seat={seatOf(player.id)} />
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <PayPill points={points} />
-            <ul className='authors'>
-              {authors.map((player) => (
-                <Author
-                  key={player.id}
-                  player={player}
-                  seat={seatOf(player.id)}
-                />
-              ))}
-            </ul>
-          </div>
-        )
-      })}
+            {row.id === ALONE_ROW ? (
+              <span aria-hidden className='count'>
+                1
+              </span>
+            ) : (
+              <p className='word'>{translate('thinkalike.reveal.blank')}</p>
+            )}
+            <Chips chips={row.chips} />
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }

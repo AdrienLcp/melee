@@ -39,6 +39,7 @@ import type {
   PetitBacCategoryState,
   PetitBacLetter
 } from '@melee/protocol/petit-bac'
+import type { SeatTotal } from '@melee/protocol/played-game'
 import type { HostQuestion, QuestionLanguage } from '@melee/protocol/question'
 import type {
   ClipPlayback,
@@ -174,6 +175,12 @@ export type Room = {
    * by a restart, so *play again* deals the evening afresh.
    */
   openedEntries: GameSettings[]
+  /**
+   * What each round of this game paid each seat, by the index `openedEntries`
+   * keeps, written as the round is left behind (`bankRound`) — the history
+   * the final board crowns each game's best player from. Emptied with it.
+   */
+  paidRounds: SeatTotal[][]
   /**
    * The lines the console's host wrote ahead, by game, sent whole after every
    * edit: every entry of the game deals them after its own deck and before

@@ -2368,6 +2368,10 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     awardWithSpeed: '{answer:number} +{speed:number}',
+    bestPerGame: {
+      average: '{points:number} par manche',
+      title: 'Par jeu'
+    },
     clock: {
       minutes: defineTranslation('{minutes:number}:{seconds:number}', {
         number: { seconds: { minimumIntegerDigits: 2 } }
@@ -2681,7 +2685,7 @@ export const FR_DICTIONARY = defineDictionary({
     scoring:
       'Ta réponse est payée selon le nombre des autres qui ont écrit la même : tous les autres, 100 points ; la moitié, 50 ; personne, rien.',
     sort: {
-      close: 'Revoir les piles',
+      close: 'Revoir les réponses',
       drag: 'Déplacer « {answer} »',
       hint: 'Glisse une réponse sur une autre pour les compter ensemble.',
       into: 'Avec « {answer} »',

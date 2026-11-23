@@ -537,6 +537,13 @@ What stays inside a game's prefix is what only that game can say:
 `--accent`, never a hex. A game that wants to be green sets `--accent` on its
 root element and the whole surface follows, with no fork of the palette.
 
+**The evening's history is the shell's, kept per line-up entry and in points
+alone.** `playedGames` on every view — each entry played, its round count and
+every seat's total — is read off `round.awards` as each round is banked, so it
+knows no game's answer and every game fills it for free. It is the only
+history the room keeps: a per-round record of what was said would carry each
+game's content, and nothing has asked for it.
+
 **`packages/core` holds both kinds of rule, split by directory.** `time/*`,
 `room/*`, `i18n/*`, `round/*` and `scoring/*` are the shell's — including
 `pointsFor`, which reads a verdict of either shape. `blindtest/typed-answer.ts`

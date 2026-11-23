@@ -7,7 +7,8 @@ import type { PublicPlayer } from '@melee/protocol/room'
 import {
   buildRoster,
   buildScoreboard,
-  hasAnybodyScored
+  hasAnybodyScored,
+  standsOnPodium
 } from '@melee/core/scoring/scoreboard'
 
 import { shownPoints } from '@/helpers/shown-points'
@@ -79,6 +80,11 @@ type ScoreboardProps = {
   /** Ranked here, not by the caller — ties share a rank and the order is stable. */
   players: readonly PublicPlayer[]
   /**
+   * Leaves out the seats the final board stands on its steps, so the rows
+   * carry on from the fourth place — every seat, when nobody scored.
+   */
+  skipsPodium?: boolean
+  /**
    * The order the rows stood in before the scores last moved. A row that
    * changed places travels from its old one; omitted, every row is drawn where
    * it stands. Only for a single column, where a place is one row's height.
@@ -123,6 +129,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   players,
   rankedBefore,
   seatedBefore,
+  skipsPodium = false,
   style,
   trackLength,
   youAction,
@@ -131,13 +138,13 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   const translate = useTranslate()
   const { endExitOf, rows } = useLeavingRows({
     exitAnimation: ROW_EXIT_ANIMATION,
-    rows: (isRoster === true ? buildRoster : buildScoreboard)(players).map(
-      (row) => ({
+    rows: (isRoster === true ? buildRoster : buildScoreboard)(players)
+      .filter((row) => !(skipsPodium && standsOnPodium(row)))
+      .map((row) => ({
         ...row,
         id: row.player.id,
         seat: players.findIndex((seated) => seated.id === row.player.id)
-      })
-    )
+      }))
   })
   const climbs = rows.map(({ isLeaving, player }, at) =>
     isLeaving ? 0 : placesClimbedBy({ at, player, rankedBefore })
@@ -166,9 +173,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       className={[
         'scoreboard',
         isRanked && 'ranked',
-        isResult === true &&
-          players.length > PLAYERS_PER_COLUMN &&
-          'in-columns',
+        isResult === true && rows.length > PLAYERS_PER_COLUMN && 'in-columns',
         onRemove !== undefined && 'removable',
         className
       ]
@@ -179,8 +184,8 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
         ...style,
         ...(isResult === true
           ? {
-              '--scoreboard-count': players.length,
-              '--scoreboard-rows': Math.ceil(players.length / 2)
+              '--scoreboard-count': rows.length,
+              '--scoreboard-rows': Math.ceil(rows.length / 2)
             }
           : {})
       }}

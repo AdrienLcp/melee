@@ -35,11 +35,12 @@ import {
 } from '@/infrastructure/messaging/socket-handler'
 import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 
-/** A room stored before the evening kept a history of what it heard. */
+/** A room stored before the evening kept a history of what it heard, or of what it paid. */
 type StoredRoom = Omit<
   Room,
   | 'decks'
   | 'ownLines'
+  | 'paidRounds'
   | 'presenceAnnouncedUntil'
   | 'readyStartsAt'
   | 'trackHistory'
@@ -49,6 +50,7 @@ type StoredRoom = Omit<
       Room,
       | 'decks'
       | 'ownLines'
+      | 'paidRounds'
       | 'presenceAnnouncedUntil'
       | 'readyStartsAt'
       | 'trackHistory'
@@ -135,6 +137,7 @@ export class RoomObject extends DurableObject<Env> {
       this.engine = this.engineFor({
         ...stored,
         ...games,
+        paidRounds: stored.paidRounds ?? [],
         players: withSeatPieces(stored.players),
         presenceAnnouncedUntil: stored.presenceAnnouncedUntil ?? 0,
         readyStartsAt: stored.readyStartsAt ?? null,

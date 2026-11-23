@@ -18,6 +18,7 @@ import {
   type PawnId,
   type PawnMove
 } from '@melee/core/board/board-strategy'
+import { roundTotalsOf } from '@melee/core/room/played-games'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
@@ -560,6 +561,10 @@ const moveOf = (moves: readonly PawnMove[], pawnId: PawnId): number =>
  */
 export const bankRound = (room: Room): void => {
   const moves = liveMoves(room)
+
+  if (room.round !== null) {
+    room.paidRounds[room.round.index - 1] = roundTotalsOf(room.round.awards)
+  }
 
   for (const team of room.teams) {
     team.bankedScore += liveRoundResult(room, team.id)
