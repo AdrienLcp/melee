@@ -33,7 +33,7 @@ monotonous, you see what I mean?"
 - **A table setting**, on by default, in the table panel beside the room
   volume; the host's choice is remembered with the rest of the host's setup.
 - **Never monotonous**: not one loop. Either a pool of tracks (eight or more,
-  a few minutes each, shuffled, never the same twice running, crossfaded),
+  a few minutes each, shuffled, never the same twice running, each fading into the next),
   or music generated live on the cue context (endless variation, no file),
   or both — a mood for the lobby, another between rounds, the final board
   its own. Adrien chooses by ear: the session builds **one index page** of
