@@ -9,7 +9,8 @@ import { resolve } from 'node:path'
  *
  * The range sits clear of the dev stack (3100, 5273), under the ephemeral
  * ports every OS hands out (32768 and up) and under the blocks Hyper-V
- * reserves on Windows (`netsh int ipv4 show excludedportrange protocol=tcp`).
+ * reserves on Windows, the lowest of them 28385 on the machine this was
+ * written on.
  */
 const FIRST_PORT = 20_000
 const PORTS_PER_SLOT = 3
