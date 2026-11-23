@@ -2,7 +2,7 @@
 
 Starts once 05, 08 and 09 have landed (it deals their fixed flags, the flash
 blind test on `homeCountry: null`, and Five clues' new shape). Read
-`README.md`, `docs/plans/14-question-languages.md`, `docs/plans/72-portuguese.md`
+`README.md`, `docs/plans/14-question-languages.md`, plan 72 (`docs/plans/72-*.md`)
 and `docs/game-catalogue.md`. Mapped read-only on 23/11/2026, lines from
 `7ded3593`. Write the plan (`docs/plans/78-international.md`) first and cut it
 into sessions if it outgrows one (~150k tokens).
@@ -58,7 +58,7 @@ two:
     (`timeline-bank.ts:26`: Bastille, Tour de France, Veil law…) with a
     country and deal the untagged ones.
   - Black square: tag French themes (French dishes, presidents and kings of
-    France, regions, French champions, Veber films — plan 72:186-198) and
+    France, regions, French champions, French comedy films — plan 72:186-198) and
     deal the rest.
   - Estimate / higher-lower: `homeCountry: null` already deals universal
     rows only (`quantity-bank.ts:81-83`) — the model the others copy.

@@ -19,7 +19,7 @@ names (nationality, office, team, sex).
 **Spread**: 1 918 fr Mintaka rows + 551 `pt-mintaka-*` translations (same
 decoys). 93 fr prompts say "président", most mixing foreign leaders (Biden
 beside Xi and Saddam Hussein); also Simone Biles beside Michael Jordan,
-"American actor" with Pierce Brosnan, Reagan beside Eminem. The other sources
+"American actor" with Irish and British actors, Reagan beside Eminem. The other sources
 (OpenQuizzDB, Open Trivia DB, PolyFact, Vikidia) carry human-written decoys.
 
 **Do**: at build, fetch the answer's and decoys' Wikidata P27 (citizenship),
@@ -38,7 +38,7 @@ They are two countries (COG, Brazzaville; COD, Kinshasa) — no duplicate. But
 the short French and Portuguese name for COG reads as the same place.
 **Decided**: COG becomes « République du Congo » (`withArticle`
 « la République du Congo ») in `packages/core/src/countries/country-names-fr.ts:58`
-and « República do Congo » (« a República do Congo ») in
+and its Portuguese equivalent (with its article) in
 `country-names-pt.ts:60-64`; English already says Republic of the Congo.
 « Congo » / « Congo-Brazzaville » stay accepted answers
 (`apps/server/src/infrastructure/questions/country-answers.ts:42,57`). The
@@ -58,7 +58,7 @@ practically uniform over 229. So one round in three is well known.
 
 **What makes it feel hard**: the 35 territories (Greenland, Puerto Rico,
 Hong Kong… all but one medium or hard), and the decoys: below `easy` they are
-look-alikes then geographic neighbours (`decoysOf`,
+similar-looking flags then geographic neighbours (`decoysOf`,
 `apps/server/scripts/build-flag-bank.ts:509`), so even France comes with
 similar flags; the gentler `easyDecoys` serve only `easy`
 (`question-bank.ts:178`).
