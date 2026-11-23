@@ -67,6 +67,17 @@ seated far down a full table, a seat beyond it away, is held inside the
 viewport sideways from the lobby to the final board: the page and every box
 holding the score track, whose hidden "(you)" once widened the page.
 
+**It is the config's `layouts` project, on every worker**; every other spec
+is `journeys`, held to one worker because they share one server. It opens
+no room, which is what lets it spread. `journeys` is listed first: workers
+take tests in project order, and listed second it waited for every layout
+test before its first. The two made a full run 14½ minutes on a loaded
+laptop, down from fifty. A sweep run on four workers runs up to eight times
+slower than alone: the full-table reveal, eight seconds alone, took 66 under
+load and wears `test.slow()`. A new sweep that heavy wears it too.
+A run long enough to outlast an idle timer needs the machine awake: a standby
+reads as a test stuck 25 minutes on _Loading…_.
+
 It runs under `reducedMotion: 'reduce'`. Every page arrives on `page-enter`,
 8px low for 260ms, and the first viewport is measured inside that window: a
 slow CI runner caught a full-height page one or two pixels under the fold, a

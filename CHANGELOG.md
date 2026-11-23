@@ -1194,6 +1194,12 @@ one part.
   The app's modules are compiled before the first test, so a run's first
   specs no longer fail on a page still loading.
 
+- **A full `pnpm test:e2e` takes a quarter hour, not fifty minutes.**
+  `choice-fits` answers its socket in the page and opens no room, so it runs
+  as a project of its own across every worker, while the specs that share
+  the server run one at a time beside it — 14½ minutes on a loaded laptop,
+  where `choice-fits` alone used to take 32.
+
 - `[Game]` **`?crash` shows the error screen anywhere but production.** Any
   page with it in the address throws, so the screen can be looked at on
   staging or locally without waiting for a real bug; production ignores it,

@@ -2968,6 +2968,10 @@ for (const reveal of PLAYER_REVEALS) {
     test(`[layout] player, the reveal of a full table, ${reveal.name}${isWithoutTextBox ? ', without text-box' : ''}: the round and the press first, every row scrolled to and never covered`, async ({
       page
     }) => {
+      // Twenty-four rows laid out at every viewport: 8s alone, 66s once
+      // every worker of a loaded machine shared it.
+      test.slow()
+
       if (isWithoutTextBox) {
         await forceTextBoxFallback(page)
       }

@@ -23,11 +23,23 @@ const SERVER_URL = `http://127.0.0.1:${SERVER_PORT}`
 
 const WORKER_STATE = mkdtempSync(join(tmpdir(), 'melee-e2e-'))
 
+const LAYOUT_SPECS = 'choice-fits.spec.ts'
+
+const CHROMIUM = {
+  ...devices['Desktop Chrome'],
+  // The room plays a clip at a stored volume defaulting to 80%, and a run
+  // started headed would play it out loud. Muted at the process rather than
+  // through the store, so no journey can forget.
+  launchOptions: { args: ['--mute-audio'] },
+  // Pinned: the locators read accessible names, and those are translated.
+  locale: 'en-US'
+}
+
 export default defineConfig({
   expect: { timeout: 10_000 },
   forbidOnly: Boolean(process.env.CI),
   // Lets `--shard` split a spec by test rather than by file: CI spreads
-  // `choice-fits` over several runners. One worker still runs them in turn.
+  // `choice-fits` over several runners, and over every worker of each.
   fullyParallel: true,
   // Runs once the three servers answer: the app's modules are compiled before
   // the first test asks for them.
@@ -36,18 +48,25 @@ export default defineConfig({
   // there rather than beside the specs — which is the one thing moving this
   // config into `e2e/` was for.
   outputDir: './test-results',
+  // Journeys first: workers take tests in project order, and listed second
+  // they waited for every layout test before starting, one at a time.
   projects: [
     {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        // The room plays a clip at a stored volume defaulting to 80%, and a run
-        // started headed would play it out loud. Muted at the process rather
-        // than through the store, so no journey can forget.
-        launchOptions: { args: ['--mute-audio'] },
-        // Pinned: the locators read accessible names, and those are translated.
-        locale: 'en-US'
-      }
+      name: 'journeys',
+      testIgnore: LAYOUT_SPECS,
+      use: CHROMIUM,
+      // One server process holds every room, and one journey asserts that a
+      // given code is held by nobody. Two of them at once could invent exactly
+      // that code. CI runs them in parallel by `--shard` instead, each shard
+      // with servers of its own.
+      workers: 1
+    },
+    {
+      // Answers its socket in the page and never opens a room on the server,
+      // so its tests share nothing and take every worker the machine has.
+      name: 'layouts',
+      testMatch: LAYOUT_SPECS,
+      use: CHROMIUM
     }
   ],
   reporter: 'list',
@@ -87,9 +106,5 @@ export default defineConfig({
       timeout: 120_000,
       url: APP_URL
     }
-  ],
-  // One server process holds every room, and one journey asserts that a given
-  // code is held by nobody. Two of them at once could invent exactly that code.
-  // CI runs in parallel by `--shard` instead, each shard with servers of its own.
-  workers: 1
+  ]
 })
