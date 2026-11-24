@@ -364,7 +364,7 @@ export const EN_DICTIONARY = defineDictionary({
       silent: 'No sound is coming from here.',
       start: 'Start the music'
     },
-    clip: 'Clip length',
+    clip: 'Round length',
     decade: {
       '1970s': '70s',
       '1980s': '80s',
@@ -375,6 +375,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Which years',
       none: 'Pick none and you get every decade.'
     },
+    flash: 'Flash',
     genre: {
       '52': 'French songs',
       '106': 'Electro',
@@ -391,12 +392,18 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Which music',
       none: 'Pick none and you get every genre.'
     },
+    hearing: {
+      flashOf: '{seconds:number}-second flash',
+      label: 'What the room hears',
+      whole: 'All of it'
+    },
     home: {
       description:
         'Three notes are sometimes enough, and the whole table is already hunting. Title, artist, or both: the quickest to know takes the round.'
     },
     listening: 'Listening…',
     name: 'Blind test',
+    oneHearing: 'One hearing only',
     play: 'Play Blind test',
     reveal: {
       title: 'It was'
@@ -424,6 +431,7 @@ export const EN_DICTIONARY = defineDictionary({
     source: {
       catalogue: 'The catalogue',
       chart: 'Top charts',
+      classics: 'The classics',
       decades: 'Decades',
       film: 'Film scores',
       filmHint:

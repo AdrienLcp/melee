@@ -123,8 +123,27 @@ export const shelvedGameSchema = z.enum(shelvedGames)
  */
 const homeCountrySchema = countryCodeSchema.nullable().default(null)
 
+/** Below half a second a clip is a click, not a song. */
+const MIN_CLIP_WINDOW_MS = 500
+const MAX_CLIP_WINDOW_MS = 5_000
+
 export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({
+    /**
+     * How much of the clip the room hears, from the moment it starts — the
+     * **flash**: a second of a song everyone knows, then silence for the rest
+     * of the round's answer time, which `roundDurationMs` still sets. `null`
+     * plays the clip for the whole round. Nothing replays it during the round:
+     * the game is one hearing, and the reveal plays the track on. Defaulted so
+     * a setup remembered before it existed still parses.
+     */
+    clipWindowMs: z
+      .number()
+      .int()
+      .min(MIN_CLIP_WINDOW_MS)
+      .max(MAX_CLIP_WINDOW_MS)
+      .nullable()
+      .default(null),
     difficulty: trackDifficultySchema,
     /**
      * The country whose table this is, seeded from the host's language as the
@@ -435,6 +454,7 @@ export const locksOutOnMissIn = (game: GameSettings | null): boolean =>
  * classics a fresh room has always been dealt.
  */
 export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
+  clipWindowMs: null,
   difficulty: 'easy',
   homeCountry: null,
   kind: 'blindtest',

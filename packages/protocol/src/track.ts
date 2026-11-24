@@ -96,6 +96,15 @@ const catalogueSourceSchema = z
     /** `null` leaves the decades out; **empty is every decade**, as for the charts. */
     decades: z.array(trackDecadeSchema).nullable(),
     /**
+     * The songs everyone knows from the first second: the decades and the
+     * chart above a popularity floor far higher than any difficulty's, the
+     * table's own country's beside the world's. A strand of its own rather
+     * than a difficulty, because it pins its floor whatever the room's level
+     * says, as the film scores do. Defaulted so a source stored before it
+     * existed still parses.
+     */
+    hasClassics: z.boolean().default(false),
+    /**
      * Film and series music, drawn from a table of **composers** and never
      * from the soundtrack charts. A song used in a film is not a film's score:
      * *Shallow* or *Eye of the Tiger* under this name would be a label the
@@ -109,14 +118,15 @@ const catalogueSourceSchema = z
     kind: z.literal('catalogue')
   })
   .refine(
-    ({ charts, decades, hasFilmScores }) =>
-      charts !== null || decades !== null || hasFilmScores,
+    ({ charts, decades, hasClassics, hasFilmScores }) =>
+      charts !== null || decades !== null || hasClassics || hasFilmScores,
     { message: 'A catalogue draws from at least one strand' }
   )
 
 const NO_STRAND = {
   charts: null,
   decades: null,
+  hasClassics: false,
   hasFilmScores: false,
   kind: 'catalogue'
 } as const
@@ -208,8 +218,21 @@ export const trackDifficultySchema = z.preprocess(
   difficultySchema
 )
 
+/**
+ * What of a round's clip the room hears: from `startMs` into the preview, for
+ * `windowMs` or for the whole round when that is `null`. Stamped on the round
+ * as it opens, so a speaker reloading mid-round, a wall paired late and a
+ * console resumed from a pause all start and stop on the same second, and a
+ * setting changed between two rounds reaches only the next.
+ */
+export const clipSpanSchema = z.object({
+  startMs: z.number().int().nonnegative(),
+  windowMs: z.number().int().positive().nullable()
+})
+
 export type TrackIdentity = z.infer<typeof trackIdentitySchema>
 export type HostTrack = z.infer<typeof hostTrackSchema>
 export type TrackDecade = z.infer<typeof trackDecadeSchema>
 export type TrackSource = z.infer<typeof trackSourceSchema>
+export type ClipSpan = z.infer<typeof clipSpanSchema>
 export type CatalogueSource = Extract<TrackSource, { kind: 'catalogue' }>

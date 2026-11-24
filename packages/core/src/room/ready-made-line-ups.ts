@@ -56,7 +56,6 @@ export type ReadyMadeLineUp = Omit<SavedEvening, 'decks' | 'name'> & {
 
 const FRENCH_CHANSON_GENRE_ID: GenreId = 52
 const RAP_GENRE_ID: GenreId = 116
-const ROCK_GENRE_ID: GenreId = 152
 
 const quizOn = ({
   categories,
@@ -83,6 +82,22 @@ const blindtestOn = ({
   ...DEFAULT_BLINDTEST_SETTINGS,
   homeCountry: homeCountryFor(locale),
   source
+})
+
+/**
+ * A second of a song the whole table knows, then the answer time in silence:
+ * the classics alone, because a flash of anything less famous is a guess. A
+ * shorter round than the blind test's own, since nothing more is coming.
+ */
+const FLASH_WINDOW_MS = 1_000
+const FLASH_ROUND_MS = 15_000
+
+const flashOn = (locale: Locale): SavedEntry => ({
+  ...DEFAULT_BLINDTEST_SETTINGS,
+  clipWindowMs: FLASH_WINDOW_MS,
+  homeCountry: homeCountryFor(locale),
+  roundDurationMs: FLASH_ROUND_MS,
+  source: catalogueOf({ hasClassics: true })
 })
 
 /** The cities a table places in the grand mix: its own country's, France's for a table with none. */
@@ -163,12 +178,15 @@ const GRAND_MIX_QUIZ_DIFFICULTY: Record<QuestionCategory, Difficulty> = {
  * The charts the grand mix plays beside its decades: the ones a table names
  * that the decades do not already deal. Pop and dance are what every decade's
  * chart is made of, and metal, reggae or jazz are one corner of the room.
- * Deezer's chanson chart is France's, which a Portuguese table leaves out.
+ * Rock gave its entry to the flash: the seventies to the nineties deal it
+ * already, and an eleventh blind test left the dealer no order spacing it
+ * its share of the evening. Deezer's chanson chart is France's, which a
+ * Portuguese table leaves out.
  */
 const GRAND_MIX_CHARTS_OF_LOCALE = {
-  en: [RAP_GENRE_ID, ROCK_GENRE_ID, FRENCH_CHANSON_GENRE_ID],
-  fr: [RAP_GENRE_ID, ROCK_GENRE_ID, FRENCH_CHANSON_GENRE_ID],
-  pt: [RAP_GENRE_ID, ROCK_GENRE_ID]
+  en: [RAP_GENRE_ID, FRENCH_CHANSON_GENRE_ID],
+  fr: [RAP_GENRE_ID, FRENCH_CHANSON_GENRE_ID],
+  pt: [RAP_GENRE_ID]
 } as const satisfies Record<Locale, readonly GenreId[]>
 
 /**
@@ -205,7 +223,8 @@ const grandMixVarietiesOf = (
     blindtestOn({ locale, source: catalogueOf({ hasFilmScores: true }) }),
     ...GRAND_MIX_CHARTS_OF_LOCALE[locale].map((genre) =>
       blindtestOn({ locale, source: catalogueOf({ charts: [genre] }) })
-    )
+    ),
+    flashOn(locale)
   ],
   fiveclues: fiveCluesSubjects.map((subject) => ({
     ...DEFAULT_FIVE_CLUES_SETTINGS,

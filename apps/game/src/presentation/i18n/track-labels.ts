@@ -28,12 +28,18 @@ export const asDecade = (value: string | number): TrackDecade | undefined =>
   trackDecades.find((decade) => decade === value)
 
 /** The catalogue's strands, in the order the picker offers them. */
-export const CATALOGUE_STRANDS = ['charts', 'decades', 'filmScores'] as const
+export const CATALOGUE_STRANDS = [
+  'charts',
+  'decades',
+  'classics',
+  'filmScores'
+] as const
 
 export type CatalogueStrand = (typeof CATALOGUE_STRANDS)[number]
 
 export const STRAND_LABEL_KEYS = {
   charts: 'blindtest.source.chart',
+  classics: 'blindtest.source.classics',
   decades: 'blindtest.source.decades',
   filmScores: 'blindtest.source.film'
 } as const satisfies Record<CatalogueStrand, `blindtest.source.${string}`>
@@ -48,6 +54,8 @@ const isDrawn = ({
   switch (strand) {
     case 'charts':
       return source.charts !== null
+    case 'classics':
+      return source.hasClassics
     case 'decades':
       return source.decades !== null
     case 'filmScores':

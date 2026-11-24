@@ -474,6 +474,23 @@ nothing and every later cue is silent with no error. Drive it with Playwright's
 own `click`, and check it took by patching `AudioContext.prototype.resume` the
 same way — it reports `running` when the context was born inside a real gesture.
 
+## A clip nobody hears can be timed
+
+The blind test's clip is an `<audio>` element, never attached to the page, so
+its events reach no listener on `document`. **Patch `HTMLMediaElement`'s
+prototype in the init script** — `play`, `pause` and the `currentTime`
+setter — and log `currentTime` with each, keeping only an `http` source (the
+blessing silence is a `data:` URL). The log answers where a clip started,
+where it stopped and whether it ever played again: a flash read
+`play 10.000 → pause 11.013`, a reload past its window read nothing at all,
+and a reveal read `play 11.013`. Read `this.paused` before logging a pause,
+or every deck the hook silences on each run reports one.
+
+A wall paired by its token is **not armed**: it offers _Mettre le son_, and
+until a Playwright click presses it the wall never calls `play()` — a log
+that reads empty on a wall is that, not a broken clip. A console that
+reloaded offers _Lancer le son_ the same way.
+
 ## A vibration nobody can feel can be counted the same way
 
 Desktop Chromium answers `navigator.vibrate` and does nothing with it, so the

@@ -97,6 +97,7 @@ const revealedBlindtest = (): Room => {
   openRound({
     content: {
       choices: [],
+      clip: { startMs: 0, windowMs: null },
       correctChoiceIndex: null,
       kind: 'blindtest',
       playback: { isPaused: false, restarts: 0 },

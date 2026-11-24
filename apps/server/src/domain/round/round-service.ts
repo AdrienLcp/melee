@@ -26,6 +26,7 @@ import {
   distanceToCountryKm,
   greatCircleKm
 } from '@melee/core/atlas/distance'
+import { clipSpanFor } from '@melee/core/blindtest/clip-audio'
 import {
   choiceVerdict,
   gradeGuess,
@@ -161,6 +162,11 @@ export const blindtestContent = ({
 
   return {
     choices: drawn?.choices ?? [],
+    clip: clipSpanFor(
+      room.settings.game?.kind === 'blindtest'
+        ? room.settings.game.clipWindowMs
+        : null
+    ),
     correctChoiceIndex: drawn?.correctIndex ?? null,
     kind: 'blindtest',
     playback: { isPaused: false, restarts: 0 },

@@ -290,7 +290,10 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           {translate(
             round.content.kind === 'buzzer'
               ? 'buzzer.running'
-              : 'blindtest.listening'
+              : round.content.kind === 'blindtest' &&
+                  round.content.clip.windowMs !== null
+                ? 'blindtest.oneHearing'
+                : 'blindtest.listening'
           )}
         </p>
       )}

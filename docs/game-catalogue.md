@@ -199,6 +199,16 @@ each strand is filtered on its own rules before they meet. The answer line
 follows the same split: title and artist, the film, or — a mix holding scores
 — title and artist, or the film for a score (`trackAnswersOf`).
 
+The **classics** are the fourth strand, and the second to overrule the room's
+difficulty: the decade playlists alone above a floor of their own (850k, a
+country's own playlists at their share), because a flash of anything less
+famous is a guess. They are a strand rather than a level because the floor
+belongs to them, not to the room, and they mix like any other. **The flash**
+is a setting of the blind test, not a source: `clipWindowMs` is how much of
+the clip sounds, stamped on the round as `clip` so every speaker starts and
+stops on the same second, and it combines with any source — the classics at
+one second is the one _Mêlée générale_ plays (`docs/plans/77-blindtest-flash.md`).
+
 So `QuestionSource: hosted | bank | api`, and each arm is a separate size:
 
 **1. `hosted` — the host asks out loud. An evening.** The server serves a round

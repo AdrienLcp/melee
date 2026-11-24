@@ -183,6 +183,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'easy',
+      homeCountry: 'FRA',
       source: catalogueOf({ decades: ['1990s'] })
     })
 
@@ -199,12 +200,33 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'easy',
+      homeCountry: 'FRA',
       source: catalogueOf({ decades: ['1990s'] })
     })
 
     expect(
       found.status === 'success' && found.data.tracks.map((t) => t.title)
     ).toEqual(['Wannabe'])
+  })
+
+  it('[decades] deals a table with no country of its own the world’s hits alone', async () => {
+    const requested = catalogueByPath({
+      '/playlist/878989033/tracks': [namedTrack('a', 'Wannabe')],
+      '/playlist/1051470831/tracks': [namedTrack('b', 'Alors regarde')]
+    })
+
+    const found = await fetchTracksFor({
+      difficulty: 'easy',
+      homeCountry: null,
+      source: catalogueOf({ decades: ['1990s'] })
+    })
+
+    expect(
+      found.status === 'success' && found.data.tracks.map((t) => t.title)
+    ).toEqual(['Wannabe'])
+    expect(requested().map((path) => path.split('?')[0])).toEqual([
+      '/playlist/878989033/tracks'
+    ])
   })
 
   it('[decades] reads every decade when none was chosen', async () => {
@@ -214,6 +236,7 @@ describe('fetchTracksFor', () => {
 
     await fetchTracksFor({
       difficulty: 'easy',
+      homeCountry: 'FRA',
       source: catalogueOf({ decades: [] })
     })
 
@@ -320,6 +343,7 @@ describe('fetchTracksFor', () => {
     const caller = new AbortController()
     const found = fetchTracksFor({
       difficulty: 'easy',
+      homeCountry: 'FRA',
       signal: caller.signal,
       source: catalogueOf({ decades: [] })
     })
@@ -449,6 +473,64 @@ describe('the film source', () => {
     ])
 
     expect(pool.map((track) => track.film)).toEqual(['Gladiator'])
+  })
+})
+
+describe('the classics', () => {
+  it('[classics] reads every decade’s playlists, the table’s own beside the world’s, and no chart', async () => {
+    const requested = catalogueByPath({})
+
+    await fetchTracksFor({
+      difficulty: 'easy',
+      homeCountry: 'FRA',
+      source: catalogueOf({ hasClassics: true })
+    })
+
+    const paths = requested().map((path) => path.split('?')[0])
+
+    expect(paths.filter((path) => path?.startsWith('/chart/'))).toEqual([])
+    expect(paths).toHaveLength(trackDecades.length * 2)
+    expect(paths).toContain('/playlist/867825522/tracks')
+    expect(paths).toContain('/playlist/791349661/tracks')
+  })
+
+  it('[classics] pins a floor above every difficulty’s, whatever the room asked for', async () => {
+    catalogueByPath({
+      '/playlist/867825522/tracks': [
+        { ...namedTrack('a', 'Take On Me'), rank: 900_000 },
+        { ...namedTrack('b', 'A B-side'), rank: 600_000 }
+      ]
+    })
+
+    const found = await fetchTracksFor({
+      difficulty: 'hard',
+      homeCountry: null,
+      source: catalogueOf({ hasClassics: true })
+    })
+
+    expect(
+      found.status === 'success' && found.data.tracks.map((t) => t.title)
+    ).toEqual(['Take On Me'])
+  })
+
+  /** Deezer has few listeners in Portugal, so its own hits are measured at a fifth of the floor. */
+  it('[classics] measures a Portuguese table’s own hits against their own floor', async () => {
+    catalogueByPath({
+      '/playlist/12896990123/tracks': [
+        { ...namedTrack('a', 'Contentores'), rank: 200_000 },
+        { ...namedTrack('b', 'Nobody knows it'), rank: 120_000 }
+      ]
+    })
+
+    const found = await fetchTracksFor({
+      difficulty: 'easy',
+      homeCountry: 'PRT',
+      source: catalogueOf({ hasClassics: true })
+    })
+
+    expect(
+      found.status === 'success' && found.data.tracks.map((t) => t.title)
+    ).toEqual(['Contentores'])
   })
 })
 
@@ -591,3 +673,4 @@ describe('a catalogue mixing strands, weighed', () => {
     ).toBe(1)
   })
 })
+// cspell:words Contentores

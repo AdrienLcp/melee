@@ -67,10 +67,16 @@ export const sourceSummary = ({
 
   const strands = strandsOf(source)
 
-  return strands.length === CATALOGUE_STRANDS.length
+  // The classics are the decades' best known, so every other strand on is
+  // already the whole catalogue whether they are ticked or not.
+  return EVERY_STRAND_BUT_CLASSICS.every((strand) => strands.includes(strand))
     ? translate('blindtest.source.wholeCatalogue')
     : strands.map((strand) => translate(STRAND_LABEL_KEYS[strand])).join(' + ')
 }
+
+const EVERY_STRAND_BUT_CLASSICS = CATALOGUE_STRANDS.filter(
+  (strand) => strand !== 'classics'
+)
 
 /**
  * Everything every place needs, all at once, so moving between them keeps what
@@ -121,6 +127,7 @@ const sourceFromDraft = ({
         : {
             charts: strands.includes('charts') ? charts : null,
             decades: strands.includes('decades') ? decades : null,
+            hasClassics: strands.includes('classics'),
             hasFilmScores: strands.includes('filmScores'),
             kind: 'catalogue'
           }

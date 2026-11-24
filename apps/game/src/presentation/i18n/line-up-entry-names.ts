@@ -9,7 +9,7 @@ import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings, RoundView } from '@melee/protocol/room'
 import type { CatalogueSource, TrackSource } from '@melee/protocol/track'
 
-import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
+import { pinsItsOwnFloor } from '@melee/core/blindtest/track-answers'
 import {
   difficultyOf,
   eveningDifficultyOf
@@ -98,6 +98,8 @@ const strandPicksOf = ({
           translate(decadeLabelKey(decade))
         )
       }
+    case 'classics':
+      return translate('blindtest.source.classics')
     case 'filmScores':
       return translate('blindtest.source.film')
   }
@@ -237,14 +239,24 @@ const namingOf = ({
   switch (entry.kind) {
     case 'blindtest': {
       const pick = sourcePickOf({ source: entry.source, translate })
+      const isClassicsAlone =
+        entry.source.kind === 'catalogue' &&
+        strandsOf(entry.source).join() === 'classics'
+      const level = pinsItsOwnFloor(entry.source)
+        ? []
+        : [levelOf({ difficulty: entry.difficulty, translate })]
 
-      if (pick === null) {
-        return []
+      // A flash is the game's own way to play, and names the entry before
+      // anything it draws; of the classics it says everything.
+      if (entry.clipWindowMs !== null) {
+        return [
+          translate('blindtest.flash'),
+          ...(pick === null || isClassicsAlone ? [] : [pick]),
+          ...level
+        ]
       }
 
-      return trackAnswersOf(entry.source) === 'films'
-        ? [pick]
-        : [pick, levelOf({ difficulty: entry.difficulty, translate })]
+      return pick === null ? [] : [pick, ...level]
     }
     case 'buzzer':
       return entry.locksOutOnMiss
@@ -336,9 +348,16 @@ const settingsOf = ({
     case 'blindtest':
       return [
         sourceInFullOf({ source: entry.source, translate }),
-        ...(trackAnswersOf(entry.source) === 'films'
+        ...(pinsItsOwnFloor(entry.source)
           ? []
           : [levelOf({ difficulty: entry.difficulty, translate })]),
+        ...(entry.clipWindowMs === null
+          ? []
+          : [
+              translate('blindtest.hearing.flashOf', {
+                seconds: entry.clipWindowMs / 1_000
+              })
+            ]),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
     case 'buzzer':
@@ -479,7 +498,7 @@ const levelNamingOf = ({
 
   if (
     difficulty === null ||
-    (entry.kind === 'blindtest' && trackAnswersOf(entry.source) === 'films')
+    (entry.kind === 'blindtest' && pinsItsOwnFloor(entry.source))
   ) {
     return null
   }

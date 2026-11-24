@@ -15,6 +15,7 @@ const runningRound = {
   content: {
     asksForAFilm: false,
     choices: [],
+    clip: { startMs: 0, windowMs: null },
     kind: 'blindtest' as const,
     revealedTrack: null
   },

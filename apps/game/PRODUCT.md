@@ -99,8 +99,11 @@ on the shelf inherits it.
   - **Blind test** — a 30-second Deezer preview on the room's speaker; players
     name title and artist, or the film for a score cue. Sources: a catalogue
     mixing whichever of genre charts, decades (international and French) and
-    47 film composers are ticked — all three by default — or any Deezer
-    playlist, or a free search; a difficulty setting by popularity.
+    47 film composers are ticked — all three by default — and the classics
+    (the decades' best known, the table's country's beside the world's), or
+    any Deezer playlist, or a free search; a difficulty setting by
+    popularity; a **flash** that plays one second of the clip, or two, or
+    half of one, then leaves the answer time silent.
   - **Quiz** — a bundled bank of 12 458 questions (7 473 French, 4 985 English)
     over nine subjects: history, geography, science, arts, film and TV, quotes (a
     line from a film, a series, a game, an ad or a real person — name where

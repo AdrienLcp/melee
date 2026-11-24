@@ -61,7 +61,7 @@ import type {
 import type { ColourHex, SentColour } from '@melee/protocol/swatch'
 import type { PawnHead, TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
-import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
+import type { ClipSpan, HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import type { TrackHistory } from '@melee/core/blindtest/track-variety'
 import type { CluesSeat } from '@melee/core/fiveclues/clue-race'
@@ -420,6 +420,8 @@ export type Round = {
   content:
     | {
         choices: TrackIdentity[]
+        /** Stamped from the room's window as the round opens — see `ClipSpan`. */
+        clip: ClipSpan
         correctChoiceIndex: number | null
         kind: 'blindtest'
         /** Moved by the host under the reveal alone — see `ClipPlayback`. */

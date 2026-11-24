@@ -7,23 +7,32 @@ describe('trackSourceSchema', () => {
     expect(trackSourceSchema.parse({ kind: 'all' })).toEqual({
       charts: [],
       decades: [],
+      hasClassics: false,
       hasFilmScores: true,
       kind: 'catalogue'
     })
     expect(trackSourceSchema.parse({ genreIds: [152], kind: 'chart' })).toEqual(
-      { charts: [152], decades: null, hasFilmScores: false, kind: 'catalogue' }
+      {
+        charts: [152],
+        decades: null,
+        hasClassics: false,
+        hasFilmScores: false,
+        kind: 'catalogue'
+      }
     )
     expect(
       trackSourceSchema.parse({ decades: ['1980s'], kind: 'decade' })
     ).toEqual({
       charts: null,
       decades: ['1980s'],
+      hasClassics: false,
       hasFilmScores: false,
       kind: 'catalogue'
     })
     expect(trackSourceSchema.parse({ kind: 'film' })).toEqual({
       charts: null,
       decades: null,
+      hasClassics: false,
       hasFilmScores: true,
       kind: 'catalogue'
     })
@@ -38,6 +47,35 @@ describe('trackSourceSchema', () => {
         kind: 'catalogue'
       }).success
     ).toBe(false)
+  })
+
+  it('[track-source] reads a catalogue stored before the classics as drawing none of them', () => {
+    expect(
+      trackSourceSchema.parse({
+        charts: [],
+        decades: null,
+        hasFilmScores: false,
+        kind: 'catalogue'
+      })
+    ).toEqual({
+      charts: [],
+      decades: null,
+      hasClassics: false,
+      hasFilmScores: false,
+      kind: 'catalogue'
+    })
+  })
+
+  it('[track-source] takes the classics alone as a catalogue', () => {
+    expect(
+      trackSourceSchema.safeParse({
+        charts: null,
+        decades: null,
+        hasClassics: true,
+        hasFilmScores: false,
+        kind: 'catalogue'
+      }).success
+    ).toBe(true)
   })
 
   it('[track-source] keeps a playlist and a search as they are', () => {

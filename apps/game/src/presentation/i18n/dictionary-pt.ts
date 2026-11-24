@@ -385,7 +385,7 @@ const PORTUGUESE = defineDictionary({
       silent: 'Não sai som daqui.',
       start: 'Ligar o som'
     },
-    clip: 'Duração do excerto',
+    clip: 'Duração da ronda',
     decade: {
       '1970s': 'Anos 70',
       '1980s': 'Anos 80',
@@ -396,6 +396,7 @@ const PORTUGUESE = defineDictionary({
       label: 'Que anos',
       none: 'Se não escolheres nenhuma, tens todas as décadas.'
     },
+    flash: 'Flash',
     genre: {
       '52': 'Canção francesa',
       '106': 'Eletrónica',
@@ -412,12 +413,18 @@ const PORTUGUESE = defineDictionary({
       label: 'Que música',
       none: 'Se não escolheres nenhum, tens todos os géneros.'
     },
+    hearing: {
+      flashOf: 'Flash de {seconds:number} s',
+      label: 'O que se ouve',
+      whole: 'Tudo'
+    },
     home: {
       description:
         'Às vezes bastam três notas, e a mesa inteira já anda à procura. Título, artista, ou os dois: quem souber primeiro leva a ronda.'
     },
     listening: 'A ouvir…',
     name: 'Adivinha a música',
+    oneHearing: 'Só se ouve uma vez',
     play: 'Jogar Adivinha a música',
     reveal: {
       title: 'Era'
@@ -445,6 +452,7 @@ const PORTUGUESE = defineDictionary({
     source: {
       catalogue: 'O catálogo',
       chart: 'Os tops',
+      classics: 'Os clássicos',
       decades: 'As décadas',
       film: 'Música de cinema',
       filmHint:

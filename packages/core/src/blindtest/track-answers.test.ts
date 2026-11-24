@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { catalogueOf, EVERY_STRAND } from '@melee/protocol/track'
 
-import { trackAnswersOf } from './track-answers'
+import { pinsItsOwnFloor, trackAnswersOf } from './track-answers'
 
 describe('trackAnswersOf', () => {
   it('[track-answers] asks for a film only where the film scores are all that is drawn', () => {
@@ -10,6 +10,9 @@ describe('trackAnswersOf', () => {
     expect(trackAnswersOf(EVERY_STRAND)).toBe('mixed')
     expect(
       trackAnswersOf(catalogueOf({ decades: ['1980s'], hasFilmScores: true }))
+    ).toBe('mixed')
+    expect(
+      trackAnswersOf(catalogueOf({ hasClassics: true, hasFilmScores: true }))
     ).toBe('mixed')
   })
 
@@ -20,5 +23,23 @@ describe('trackAnswersOf', () => {
     expect(trackAnswersOf({ kind: 'search', query: 'john williams' })).toBe(
       'songs'
     )
+  })
+})
+
+describe('pinsItsOwnFloor', () => {
+  it('[track-answers] leaves the level to the host wherever a chart or a decade is drawn', () => {
+    expect(pinsItsOwnFloor(EVERY_STRAND)).toBe(false)
+    expect(
+      pinsItsOwnFloor(catalogueOf({ decades: ['1990s'], hasClassics: true }))
+    ).toBe(false)
+    expect(pinsItsOwnFloor({ kind: 'playlist', playlistId: '42' })).toBe(false)
+  })
+
+  it('[track-answers] pins the level for the classics and the film scores alone', () => {
+    expect(pinsItsOwnFloor(catalogueOf({ hasClassics: true }))).toBe(true)
+    expect(pinsItsOwnFloor(catalogueOf({ hasFilmScores: true }))).toBe(true)
+    expect(
+      pinsItsOwnFloor(catalogueOf({ hasClassics: true, hasFilmScores: true }))
+    ).toBe(true)
   })
 })

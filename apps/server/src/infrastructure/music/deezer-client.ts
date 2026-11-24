@@ -106,7 +106,7 @@ export const fetchTracksFor = async ({
   source
 }: {
   difficulty: Difficulty
-  /** The table's own country, whose hits a decade deals beside the world's: `null` for none. */
+  /** The table's own country, whose hits a decade and the classics deal beside the world's: `null` for the world's alone. */
   homeCountry?: CountryCode | null
   /**
    * The browser's own request, so a preview the host has already moved past
@@ -275,10 +275,25 @@ const catalogued = ({
   lists: { rankShare: number; tracks: DeezerTrack[] }[]
   strand: Strand
 }): CatalogueTrack[] => {
+  if (strand.kind === 'classics') {
+    return lists.flatMap(({ rankShare, tracks }) =>
+      tracks
+        .filter((track) =>
+          clearsFloor({ floor: CLASSICS_FLOOR * rankShare, track })
+        )
+        .map((track) => toCatalogueTrack(track))
+    )
+  }
+
   if (strand.kind !== 'film') {
     return lists.flatMap(({ rankShare, tracks }) =>
       tracks
-        .filter((track) => isWorthGuessing({ difficulty, rankShare, track }))
+        .filter((track) =>
+          clearsFloor({
+            floor: MINIMUM_RANK_BY_DIFFICULTY[difficulty] * rankShare,
+            track
+          })
+        )
         .map((track) => toCatalogueTrack(track))
     )
   }
@@ -304,17 +319,29 @@ const catalogued = ({
   )
 }
 
-const isWorthGuessing = ({
-  difficulty,
-  rankShare,
+const clearsFloor = ({
+  floor,
   track
 }: {
-  difficulty: Difficulty
-  rankShare: number
+  floor: number
   track: DeezerTrack
-}): boolean =>
-  track.preview.length > 0 &&
-  (track.rank ?? 0) >= MINIMUM_RANK_BY_DIFFICULTY[difficulty] * rankShare
+}): boolean => track.preview.length > 0 && (track.rank ?? 0) >= floor
+
+/**
+ * The floor the classics pin in the room's place, over the decade playlists
+ * alone. Measured 24 November 2026: past 800k the rank no longer tells one hit
+ * from another — the editors' lists are hits already — and 900k cuts _Freed
+ * From Desire_, _Rocket Man_ and _Plus près des étoiles_ for nothing. Here a
+ * world table keeps 226 tracks by 164 artists and a French one 297 by 219,
+ * and Portugal's own playlists, measured at their fifth like every decade's,
+ * clear 200k with Xutos, GNR, Variações and Abrunhosa: 457 by 294.
+ *
+ * The chart stays out. Deezer's all-genres chart is the caller's country's
+ * and today's — 60 of its 100 are France's top, this week's rap among them —
+ * ranked 866k to a million, so no floor tells it from a classic, and it would
+ * deal a Portuguese table France's new releases.
+ */
+const CLASSICS_FLOOR = 850_000
 
 /** `0` is Deezer's all-genres chart, which is what an empty selection means. */
 const EVERY_GENRE = 0
@@ -385,9 +412,20 @@ const HOME_DECADE_PLAYLISTS = {
   }
 >
 
-/** The decade playlists a table of `homeCountry` is dealt: France's for every table with none of its own. */
-const homeDecadePlaylistsOf = (homeCountry: CountryCode | null) =>
-  homeCountry === 'PRT' ? HOME_DECADE_PLAYLISTS.PRT : HOME_DECADE_PLAYLISTS.FRA
+/**
+ * The decade playlists of a table's own country, `null` for a table with none:
+ * an English table dealt France's hits was hearing another country's evening.
+ */
+const homeDecadePlaylistsOf = (homeCountry: CountryCode | null) => {
+  switch (homeCountry) {
+    case 'FRA':
+      return HOME_DECADE_PLAYLISTS.FRA
+    case 'PRT':
+      return HOME_DECADE_PLAYLISTS.PRT
+    default:
+      return null
+  }
+}
 
 /**
  * Where a film's music comes from, and the reason this arm exists at all.
@@ -485,6 +523,7 @@ const FILM_SCORE_FLOOR = 200_000
  */
 type Strand =
   | Exclude<TrackSource, { kind: 'catalogue' }>
+  | { kind: 'classics' }
   | { decades: readonly TrackDecade[]; kind: 'decade' }
   | { genreIds: readonly number[]; kind: 'chart' }
   | { kind: 'film' }
@@ -539,10 +578,11 @@ const sharesOf = ({
     ]
   }
 
-  const { charts, decades, hasFilmScores } = source
+  const { charts, decades, hasClassics, hasFilmScores } = source
   const isMixed =
-    [charts !== null, decades !== null, hasFilmScores].filter(Boolean).length >
-    1
+    [charts !== null, decades !== null, hasClassics, hasFilmScores].filter(
+      Boolean
+    ).length > 1
 
   return [
     ...(charts === null
@@ -559,6 +599,17 @@ const sharesOf = ({
     ...(decades === null
       ? []
       : decadeShares({ decades, homeCountry, isMixed })),
+    ...(hasClassics
+      ? [
+          {
+            paths: trackDecades.flatMap((decade) =>
+              decadePathsFor({ decade, homeCountry })
+            ),
+            strand: { kind: 'classics' as const },
+            weight: 1
+          }
+        ]
+      : []),
     ...(hasFilmScores
       ? [
           {
@@ -598,7 +649,9 @@ const decadeShares = ({
   })
 }
 
-const pathsFor = (strand: Exclude<Strand, { kind: 'decade' }>): string[] => {
+const pathsFor = (
+  strand: Exclude<Strand, { kind: 'classics' | 'decade' }>
+): string[] => {
   switch (strand.kind) {
     case 'chart': {
       const genreIds =
@@ -623,8 +676,14 @@ const pathsFor = (strand: Exclude<Strand, { kind: 'decade' }>): string[] => {
   }
 }
 
+/**
+ * Two of Portugal's decade playlists hold more than a hundred tracks, 126 and
+ * 145, and Deezer serves a playlist up to this many in one page.
+ */
+const DECADE_PLAYLIST_LIMIT = 200
+
 const playlistPath = (playlistId: string): string =>
-  `/playlist/${playlistId}/tracks?limit=${POOL_SIZE}`
+  `/playlist/${playlistId}/tracks?limit=${DECADE_PLAYLIST_LIMIT}`
 
 /** A decade's lists for a table: the world's at the full floor, its country's at that country's share. */
 const decadePathsFor = ({
@@ -638,10 +697,10 @@ const decadePathsFor = ({
 
   return [
     atFullFloor(playlistPath(INTERNATIONAL_DECADE_PLAYLIST_IDS[decade])),
-    ...home.playlistIds[decade].map((playlistId) => ({
+    ...(home?.playlistIds[decade].map((playlistId) => ({
       path: playlistPath(playlistId),
       rankShare: home.rankShare
-    }))
+    })) ?? [])
   ]
 }
 
@@ -727,4 +786,4 @@ const requestJson = async (
   }
 }
 
-// cspell:words Xutos Mariza Contentores
+// cspell:words Xutos Mariza Contentores Variações Abrunhosa

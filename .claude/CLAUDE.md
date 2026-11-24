@@ -3,7 +3,8 @@
 **Melee** is a shelf of party games sharing one room, one QR code and one set
 of screens. **Blind test** is the first: one screen runs the game and shows the
 QR code, everyone else plays on whatever screen they have to hand, and the first
-to buzz names the track. **Buzzer** is the same unforgeable race for the floor
+to buzz names the track — or, played as a **flash**, hears one second of a
+classic and answers in silence. **Buzzer** is the same unforgeable race for the floor
 with no content at all — the host brings the charade, the quiz on paper or the
 lesson. **Quiz** serves its own, three question banks bundled with the server in
 French, English and European Portuguese, a flags rubric dealt from every state the map

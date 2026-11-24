@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Blind test « Flash »: a song everyone knows, heard for one
+  second.** _Ce qu'on entend_ in the blind test's setup plays the whole clip,
+  two seconds, one or half of one, ten seconds into the preview where the
+  slow intros are over, then leaves the round's time to answer in silence;
+  the reveal plays the track on. _Les classiques_ is a new strand of the
+  catalogue — the decades' best known, the table's country's beside the
+  world's, whatever the difficulty. _Mêlée générale_ plays a flash of the
+  classics in place of its rock chart. Protocol 78.
+
 - `[Shared]` **Cinq indices hides people, characters, films, animals and
   landmarks.** Three hundred and thirty ladders written by hand in three
   languages beside the countries, each early clue striking one of the four
@@ -27,6 +36,9 @@ one part.
   the new subjects themselves come next.
 
 ### Fixes
+
+- `[Server]` **A table with no country of its own hears the world's hits
+  alone.** An English table's decades fell back on France's playlists.
 
 - `[Server]` **A generated quiz decoy is of the kind the question asks for.**
   _Quel président des États-Unis était le plus grand ?_ stood Lincoln beside

@@ -56,6 +56,7 @@ const revealedRoom = ({
         ? { kind: 'buzzer' }
         : {
             choices: [],
+            clip: { startMs: 0, windowMs: null },
             correctChoiceIndex: null,
             kind: 'blindtest',
             playback: { isPaused: false, restarts: 0 },

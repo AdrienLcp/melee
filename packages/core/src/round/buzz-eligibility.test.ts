@@ -24,6 +24,7 @@ const runningRound: RoundView = {
   content: {
     asksForAFilm: false,
     choices: [],
+    clip: { startMs: 0, windowMs: null },
     kind: 'blindtest',
     revealedTrack: null
   },

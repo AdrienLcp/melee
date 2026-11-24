@@ -52,7 +52,7 @@ import {
   MIN_THINK_ALIKE_ROUND_MS
 } from '@melee/protocol/think-alike'
 
-import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
+import { pinsItsOwnFloor } from '@melee/core/blindtest/track-answers'
 import {
   ESTIMATE_FORMATS,
   inEstimateFormat,
@@ -90,6 +90,9 @@ import { SlateLabelsEditor } from './slate-labels-editor'
 import './settings-panel.sass'
 
 const CLIP_DURATIONS_MS = [10_000, 20_000, 30_000] as const
+
+/** How much of the clip the room hears: all of it, or a flash of it. */
+const CLIP_WINDOWS_MS = [NO_LIMIT, 2_000, 1_000, 500] as const
 
 /**
  * Longer than a clip at both ends: a question has to be read before it can be
@@ -290,7 +293,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
     isPlayableWithTeams({ mode: offered, teams: settings.teams })
   )
   const pinsItsOwnDifficulty =
-    game?.kind === 'blindtest' && trackAnswersOf(game.source) === 'films'
+    game?.kind === 'blindtest' && pinsItsOwnFloor(game.source)
   const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
   // Buzzer-moded and still nothing to hold: a reflex press takes no floor
   // and waits for no verdict, nor does a count stopping, and nobody buzzes a
@@ -513,6 +516,29 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           onChange={(next) => {
             onChange({ ...settings, game: next })
           }}
+        />
+      )}
+
+      {game?.kind === 'blindtest' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('blindtest.hearing.label')}
+          onChange={(chosen) => {
+            onChange({
+              ...settings,
+              game: {
+                ...game,
+                clipWindowMs: chosen === NO_LIMIT ? null : chosen
+              }
+            })
+          }}
+          optionLabel={(windowMs) =>
+            windowMs === NO_LIMIT
+              ? translate('blindtest.hearing.whole')
+              : secondsLabel(windowMs)
+          }
+          options={CLIP_WINDOWS_MS}
+          value={game.clipWindowMs ?? NO_LIMIT}
         />
       )}
 

@@ -1,4 +1,56 @@
 import type { RoomPhase } from '@melee/protocol/room'
+import type { ClipSpan } from '@melee/protocol/track'
+
+/**
+ * Where in a Deezer preview a flash opens. A preview is already cut from the
+ * middle of the song — 88% of 120 famous ones are at full level from their
+ * first second — but the rest are slow intros (_Hotel California_, _Creep_,
+ * _Skyfall_), and one second of an intro is not the song. Ten seconds in, 97%
+ * are at full level and none is quiet, measured on their decoded energy
+ * 24 November 2026; a fixed second rather than one per track, because energy
+ * is the only measure there is and it cannot tell a chorus from a bridge.
+ */
+export const FLASH_START_MS = 10_000
+
+/**
+ * What of the clip a round plays, stamped as it opens: the whole preview from
+ * its start, or a window of it from `FLASH_START_MS`. A preview is thirty
+ * seconds and so is the longest round, so only a window can afford to start
+ * late.
+ */
+export const clipSpanFor = (clipWindowMs: number | null): ClipSpan =>
+  clipWindowMs === null
+    ? { startMs: 0, windowMs: null }
+    : { startMs: FLASH_START_MS, windowMs: clipWindowMs }
+
+/**
+ * Whether the clip still sounds `elapsedMs` into the round. Past its window a
+ * flash stays silent through every way back into the round — a reload, a
+ * resumed pause, a buzz judged wrong — because the game is one hearing.
+ */
+export const isClipWindowOpen = ({
+  elapsedMs,
+  span
+}: {
+  /** How far into the round the server says the room is. */
+  elapsedMs: number
+  span: ClipSpan
+}): boolean => span.windowMs === null || elapsedMs < span.windowMs
+
+/**
+ * Whether a speaker has played the whole of the window, read off its own
+ * position in the preview rather than a timer, so a clip that started late or
+ * stalled on its first bytes still sounds for the whole window it was owed.
+ */
+export const hasPlayedClipWindow = ({
+  playedMs,
+  span
+}: {
+  /** How far into the preview this screen has actually played. */
+  playedMs: number
+  span: ClipSpan
+}): boolean =>
+  span.windowMs !== null && playedMs >= span.startMs + span.windowMs
 
 /**
  * Below this a reload landed close enough to the start that seeking would be
@@ -18,14 +70,20 @@ const SEEK_THRESHOLD_MS = 750
  */
 export const seekTargetMs = ({
   elapsedMs,
-  playedMs
+  playedMs,
+  startMs
 }: {
   /** How far into the round the server says the room is. */
   elapsedMs: number
-  /** How far into the clip this screen has actually played. */
+  /** How far into the preview this screen has actually played. */
   playedMs: number
-}): number | null =>
-  playedMs < elapsedMs - SEEK_THRESHOLD_MS ? elapsedMs : null
+  /** Where in the preview the round's clip opened. */
+  startMs: number
+}): number | null => {
+  const targetMs = startMs + elapsedMs
+
+  return playedMs < targetMs - SEEK_THRESHOLD_MS ? targetMs : null
+}
 
 /**
  * Whether this screen is silent through a round that should be sounding — the

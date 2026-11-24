@@ -177,6 +177,7 @@ const isSameSource = (left: TrackSource, right: TrackSource): boolean => {
     case 'catalogue':
       return (
         right.kind === 'catalogue' &&
+        left.hasClassics === right.hasClassics &&
         left.hasFilmScores === right.hasFilmScores &&
         holdsTheSameStrand({ left: left.charts, right: right.charts }) &&
         holdsTheSameStrand({ left: left.decades, right: right.decades })

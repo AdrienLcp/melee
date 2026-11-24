@@ -335,7 +335,7 @@ export const FR_DICTIONARY = defineDictionary({
       silent: 'Le son ne sort pas d’ici.',
       start: 'Lancer le son'
     },
-    clip: 'Durée de l’extrait',
+    clip: 'Durée de la manche',
     decade: {
       '1970s': 'Années 70',
       '1980s': 'Années 80',
@@ -346,6 +346,7 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Quelles années',
       none: 'N’en choisis aucune et tu as toutes les décennies.'
     },
+    flash: 'Flash',
     genre: {
       '52': 'Chanson française',
       '106': 'Électro',
@@ -362,12 +363,18 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Quelle musique',
       none: 'N’en choisis aucun et tu as tous les genres.'
     },
+    hearing: {
+      flashOf: 'Flash de {seconds:number} s',
+      label: 'Ce qu’on entend',
+      whole: 'Tout'
+    },
     home: {
       description:
         'Trois notes suffisent parfois, et toute la table cherche déjà. Titre, artiste, ou les deux : le plus rapide à savoir rafle la manche.'
     },
     listening: 'À l’écoute…',
     name: 'Blind test',
+    oneHearing: 'Une seule écoute',
     play: 'Jouer au Blind test',
     reveal: {
       title: 'C’était'
@@ -395,6 +402,7 @@ export const FR_DICTIONARY = defineDictionary({
     source: {
       catalogue: 'Le catalogue',
       chart: 'Le top du moment',
+      classics: 'Les classiques',
       decades: 'Les décennies',
       film: 'Musiques de films',
       filmHint:

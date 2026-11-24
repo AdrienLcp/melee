@@ -131,7 +131,7 @@ import {
   thinkAlikePromptSchema
 } from './think-alike'
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
-import { hostTrackSchema, trackIdentitySchema } from './track'
+import { clipSpanSchema, hostTrackSchema, trackIdentitySchema } from './track'
 
 export const MAX_PLAYERS_PER_ROOM = 24
 
@@ -557,6 +557,11 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     asksForAFilm: z.boolean(),
     /** Choice mode only, and shuffled per round. */
     choices: z.array(trackIdentitySchema),
+    /**
+     * What of the clip sounds, public because it is the rule of the round
+     * rather than its answer: a player's screen says a flash is one hearing.
+     */
+    clip: clipSpanSchema,
     kind: z.literal('blindtest'),
     revealedTrack: trackIdentitySchema.nullable()
   }),

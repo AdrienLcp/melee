@@ -7,8 +7,10 @@ import {
   type ClipRefusal,
   clipRecoveryFor,
   clipRefusalFor,
+  hasPlayedClipWindow,
   isClipStalled,
   isClipUnheard,
+  isClipWindowOpen,
   seekTargetMs
 } from '@melee/core/blindtest/clip-audio'
 import {
@@ -27,6 +29,9 @@ import { noteMediaError } from '@/infrastructure/diagnostics'
  * which is the clock the compositor is already keeping.
  */
 const SPIN_LEAD_MS = 200
+
+/** What a round with no clip of its own reads: nothing to start late or stop early. */
+const WHOLE_CLIP = { startMs: 0, windowMs: null } as const
 
 /**
  * Silence, so the element can be blessed inside the press that starts the game.
@@ -314,10 +319,28 @@ export const useRoundAudio = ({
   const roundId = round?.id ?? null
   const elapsedMs = view?.roundElapsedMs ?? 0
   const isRoomPaused = view?.isPaused ?? false
+  const clip =
+    round?.content.kind === 'blindtest' ? round.content.clip : WHOLE_CLIP
+  const clipStartMs = clip.startMs
+  const clipWindowMs = clip.windowMs
   const currentClip =
     roundId === null || previewUrl === null
       ? null
       : clipKeyOf({ roundId, url: previewUrl })
+
+  // A flash past its window is silent on purpose, and a clip that does not
+  // move then is neither stalled nor worth loading again.
+  const isWindowOpenNow = useEffectEvent((): boolean =>
+    isClipWindowOpen({
+      elapsedMs: elapsedMs + nowMs() - elapsedSeenAtRef.current,
+      span: { startMs: clipStartMs, windowMs: clipWindowMs }
+    })
+  )
+
+  const isSilentOnPurpose = useEffectEvent(
+    (deck: HTMLAudioElement): boolean =>
+      clipWindowMs !== null && (deck.paused || !isWindowOpenNow())
+  )
 
   // Reloads only the element, never the page: the press that armed it would
   // be lost with a reload, and the screen would have nothing to show for it.
@@ -341,11 +364,19 @@ export const useRoundAudio = ({
       loadClip(loaded.deck, loaded.url)
 
       // A countdown's clip is started by its own schedule, which still holds.
-      if (phase !== 'playing' || isRoomPaused || loadedRef.current !== loaded) {
+      if (
+        phase !== 'playing' ||
+        isRoomPaused ||
+        loadedRef.current !== loaded ||
+        !isWindowOpenNow()
+      ) {
         return
       }
 
-      moveTo(loaded.deck, elapsedMs + nowMs() - elapsedSeenAtRef.current)
+      moveTo(
+        loaded.deck,
+        clipStartMs + elapsedMs + nowMs() - elapsedSeenAtRef.current
+      )
       play(loaded.deck, (refused) => {
         if (refused === 'unsupported') {
           setClipFault({ cause, clip })
@@ -407,6 +438,12 @@ export const useRoundAudio = ({
       }
 
       const now = nowMs()
+
+      if (isSilentOnPurpose(loaded.deck)) {
+        stillSinceMs = now
+
+        return
+      }
 
       if (loaded.deck.currentTime !== position) {
         const hasMoved = !Number.isNaN(position)
@@ -491,7 +528,13 @@ export const useRoundAudio = ({
         return
       }
 
+      // A flash fell silent after its window: the reveal is where the rest of
+      // the track is heard.
       if (steered?.roundId !== roundId) {
+        if (clipWindowMs !== null && !isPaused) {
+          play(loaded.deck, refuse)
+        }
+
         return
       }
 
@@ -502,7 +545,7 @@ export const useRoundAudio = ({
       }
 
       if (restarts !== steered.playback.restarts) {
-        moveTo(loaded.deck, 0)
+        moveTo(loaded.deck, clipStartMs)
         play(loaded.deck, refuse)
       } else if (isPaused !== steered.playback.isPaused) {
         if (isPaused) {
@@ -554,11 +597,33 @@ export const useRoundAudio = ({
     if (phase === 'playing') {
       other.pause()
 
+      // One hearing: a reload, a resumed pause or a wrong buzz past the
+      // window hears nothing more of it, and the reveal picks the track up
+      // where the flash stopped rather than from the top of the preview.
+      if (
+        clipWindowMs !== null &&
+        !isClipWindowOpen({
+          elapsedMs,
+          span: { startMs: clipStartMs, windowMs: clipWindowMs }
+        })
+      ) {
+        deck.pause()
+
+        const flashEndMs = clipStartMs + clipWindowMs
+
+        if (deck.currentTime * 1_000 < flashEndMs) {
+          moveTo(deck, flashEndMs)
+        }
+
+        return
+      }
+
       // Either the clip was paused by a buzz, or this host just reloaded into a
       // round already running — `roundElapsedMs` is what tells the two apart.
       const seekTo = seekTargetMs({
         elapsedMs,
-        playedMs: deck.currentTime * 1_000
+        playedMs: deck.currentTime * 1_000,
+        startMs: clipStartMs
       })
 
       if (seekTo !== null) {
@@ -574,7 +639,7 @@ export const useRoundAudio = ({
       return
     }
 
-    moveTo(deck, 0)
+    moveTo(deck, clipStartMs)
 
     let frame = 0
 
@@ -602,6 +667,8 @@ export const useRoundAudio = ({
     // a console that reloaded mid-clip presses once, and this has to run again
     // or the decks sit blessed and silent until the next round opens.
   }, [
+    clipStartMs,
+    clipWindowMs,
     decks,
     disarm,
     elapsedMs,
@@ -613,6 +680,54 @@ export const useRoundAudio = ({
     roundId,
     startsAt
   ])
+
+  // A flash closes on the deck's own position, so a clip that started late or
+  // waited on its first bytes still sounds for the whole window. A frame is
+  // the precise clock, and `timeupdate` the one a hidden tab still keeps.
+  useEffect(() => {
+    if (
+      decks === null ||
+      clipWindowMs === null ||
+      (phase !== 'countdown' && phase !== 'playing')
+    ) {
+      return
+    }
+
+    const span = { startMs: clipStartMs, windowMs: clipWindowMs }
+    let frame = 0
+
+    const closeOncePlayed = (): void => {
+      const loaded = loadedRef.current
+
+      if (
+        loaded !== null &&
+        loaded.roundId === roundId &&
+        !loaded.deck.paused &&
+        hasPlayedClipWindow({ playedMs: loaded.deck.currentTime * 1_000, span })
+      ) {
+        loaded.deck.pause()
+      }
+    }
+
+    const onFrame = (): void => {
+      closeOncePlayed()
+      frame = requestAnimationFrame(onFrame)
+    }
+
+    frame = requestAnimationFrame(onFrame)
+
+    for (const deck of decks) {
+      deck.addEventListener('timeupdate', closeOncePlayed)
+    }
+
+    return () => {
+      cancelAnimationFrame(frame)
+
+      for (const deck of decks) {
+        deck.removeEventListener('timeupdate', closeOncePlayed)
+      }
+    }
+  }, [clipStartMs, clipWindowMs, decks, phase, roundId])
 
   const isUnarmed = isClipUnheard({
     canPlay: decks !== null,

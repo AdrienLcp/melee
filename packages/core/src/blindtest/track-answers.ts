@@ -16,5 +16,19 @@ export const trackAnswersOf = (source: TrackSource): TrackAnswers => {
     return 'songs'
   }
 
-  return source.charts === null && source.decades === null ? 'films' : 'mixed'
+  return source.charts === null &&
+    source.decades === null &&
+    !source.hasClassics
+    ? 'films'
+    : 'mixed'
 }
+
+/**
+ * Whether the room's difficulty reaches none of a source's tracks: the film
+ * scores and the classics each pin a floor of their own, so a catalogue of
+ * those alone has no level for the host to set.
+ */
+export const pinsItsOwnFloor = (source: TrackSource): boolean =>
+  source.kind === 'catalogue' &&
+  source.charts === null &&
+  source.decades === null

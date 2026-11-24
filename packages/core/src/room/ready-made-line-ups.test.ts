@@ -241,6 +241,19 @@ describe.each(LOCALES)('the grand mix in %s', (locale) => {
       grandMix.lineUp.filter((entry) => gameOfEntry(entry) === game).length
 
     expect(countOf('blindtest')).toBe(locale === 'pt' ? 9 : 10)
+    expect(
+      grandMix.lineUp.filter(
+        (entry) =>
+          typeof entry !== 'string' &&
+          entry.kind === 'blindtest' &&
+          entry.clipWindowMs !== null
+      )
+    ).toEqual([
+      expect.objectContaining({
+        clipWindowMs: 1_000,
+        source: expect.objectContaining({ charts: null, hasClassics: true })
+      })
+    ])
     expect(countOf('quiz')).toBe(13)
     expect(countOf('atlas')).toBe(6)
     expect(countOf('fiveclues')).toBe(fiveCluesSubjects.length)

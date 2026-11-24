@@ -959,6 +959,7 @@ const REVEALS = [
     content: {
       asksForAFilm: false,
       choices: [],
+      clip: { startMs: 0, windowMs: null },
       kind: 'blindtest',
       revealedTrack: {
         artist: 'Jean-Jacques Goldman',
@@ -1099,6 +1100,7 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
       content: {
         asksForAFilm: false,
         choices: [],
+        clip: { startMs: 0, windowMs: null },
         kind: 'blindtest',
         revealedTrack: null
       },
@@ -3168,6 +3170,7 @@ const blindTestScreen = ({
     content: {
       asksForAFilm: false,
       choices,
+      clip: { startMs: 0, windowMs: null },
       kind: 'blindtest',
       revealedTrack: null
     },
