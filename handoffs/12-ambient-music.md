@@ -89,20 +89,26 @@ Built and tested, typecheck green:
 
 Left, in order:
 
-1. **Adrien's pick.** Candidate page:
-   `C:/Users/AdrienLacourpaille/AppData/Local/Temp/claude/9442010d3e26fb24/e546e1df-d18d-4d1c-991f-57f856cbc779/scratchpad/candidates/`
-   (`index.html` + `entry.ts`, bundled to `candidates.js` with
-   `node_modules/.pnpm/esbuild@0.28.2/.../esbuild entry.ts --bundle --format=esm`
-   run from `apps/game`). Serve it with
-   `python -m http.server 5297 --bind 127.0.0.1` from that folder and give
-   Adrien `http://127.0.0.1:5297/` (his own browser). Styles: Salon jazz
-   (`lounge`), Lo-fi (`lofi`), Dérive (`drift`), Terrasse marimba
-   (`marimba`), Arcade (`arcade`). Offline renders (no sound) measured every
-   style at rms 0.03–0.11, peaks ≤ 0.56. Once picked: bind it in
-   `soundtrack.ts`, delete the four other style files.
-2. The menu switch (`app-menu-leaflet.tsx`, under the room volume slider,
-   console only): `Switch` bound to `playsMusic` / `setPlaysMusic`, its label
-   in the three dictionaries (`preferences.music`). Start with `impeccable`.
+1. **Adrien's pick: all five, a random mix by default, any one choosable.**
+   Adrien (24/11/2026): "I like them all. Could we have a random one across
+   all the lists? And otherwise choose them in the settings?" Shape decided:
+   replace `settings.playsMusic: boolean` with one room setting
+   `soundtrack: 'off' | 'mix' | 'lounge' | 'lofi' | 'drift' | 'marimba' |
+   'arcade'`, defaulted to `'mix'` (protocol enum; `ambientMoodOf` and
+   `isEveningSilent` read `soundtrack !== 'off'`). `'mix'` draws each new
+   piece's style at random, never the style just played, so the crossfade
+   between pieces also changes band. One control, not a switch plus a list:
+   _Music_ — None / Random / the five names (FR: Aucune, Aléatoire, Salon
+   jazz, Lo-fi, Dérive, Terrasse marimba, Arcade). `startAmbient`'s
+   `beginPiece` already takes each piece separately, so `soundtrack.ts`
+   picks the style per piece; the hook passes the setting and the player
+   switches style from the next piece when it changes. Keep all five style
+   files. The candidate page (scratchpad, `http://127.0.0.1:5297/`) is no
+   longer needed.
+2. The menu control (`app-menu-leaflet.tsx`, under the room volume slider,
+   console only), bound to `soundtrack` (rename `RoomActions.playsMusic` /
+   `setPlaysMusic` to match), labels in the three dictionaries
+   (`preferences.music.*`). Start with `impeccable`.
 3. The wall gives way during its own sound check too (`useWallSoundCheck`
    does not report `isTesting`; the console's sound check already does).
 4. Browser pass, muted (`melee:volume` `'0'` by init script), full and
