@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Music between the rounds.** The room's speaker — the wall
+  when one is paired — plays a soundtrack generated live from the lobby to
+  the final board: a jazz lounge, lo-fi, a slow drift, a marimba terrace and
+  arcade, a fresh key, tempo and progression with each piece, each fading
+  into the next. It fades out under every blind test clip, a sound check, a
+  pause and Inner clock's count, and back in after. _Musique_ in the menu,
+  under the room volume, picks one style, _Aléatoire_ — a different style
+  each piece, the default — or _Aucune_.
+
 - `[Shared]` **Blind test « Flash »: a song everyone knows, heard for one
   second.** _Ce qu'on entend_ in the blind test's setup plays the whole clip,
   two seconds, one or half of one, ten seconds into the preview where the
