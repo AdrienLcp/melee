@@ -160,16 +160,16 @@ describe('readStoredPanelFolded', () => {
     vi.unstubAllGlobals()
   })
 
-  it('[panel] opens a panel never folded, on the right', () => {
-    expect(readStoredPanelFolded()).toEqual({ data: false, status: 'success' })
+  it('[panel] leaves a fold never chosen to the room, on the right', () => {
+    expect(readStoredPanelFolded()).toEqual({ data: null, status: 'success' })
     expect(readStoredPanelSide()).toEqual({ data: 'right', status: 'success' })
   })
 
   it('[panel] reads back the fold and the side the host left', () => {
-    writeStoredPanelFolded(true)
+    writeStoredPanelFolded(false)
     writeStoredPanelSide('left')
 
-    expect(readStoredPanelFolded()).toEqual({ data: true, status: 'success' })
+    expect(readStoredPanelFolded()).toEqual({ data: false, status: 'success' })
     expect(readStoredPanelSide()).toEqual({ data: 'left', status: 'success' })
   })
 

@@ -169,7 +169,7 @@ describe('a table that opens, ends and replays its game by itself', () => {
     expect(hostView(host)?.phase).toBe('lobby')
   })
 
-  it('[table-start] never opens a game for one seat alone', async () => {
+  it('[table-start] opens the game for one seat alone', async () => {
     const { code, host } = await harness.openRoom(FAST_GAME)
     const zoe = await harness.seat({ code, nickname: 'Zoe' })
 
@@ -180,7 +180,7 @@ describe('a table that opens, ends and replays its game by itself', () => {
     )
     await sleep(PAST_THE_HOLD_MS)
 
-    expect(hostView(host)?.phase).toBe('lobby')
+    expect(hostView(host)?.phase).not.toBe('lobby')
   })
 
   it('[table-start] lets the host open the game at once over a counting table', async () => {

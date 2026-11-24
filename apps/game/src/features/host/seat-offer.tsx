@@ -7,15 +7,15 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
 import { Button } from '@/presentation/components/button'
+import { Disclosure } from '@/presentation/components/disclosure'
 import { TextField } from '@/presentation/components/text-field'
+import { typedName } from '@/presentation/components/typed-name'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { RichText } from '@/presentation/i18n/rich-text'
 
 import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './seat-offer.sass'
-
-import { typedName } from '@/presentation/components/typed-name'
-import { RichText } from '@/presentation/i18n/rich-text'
 
 type SeatOfferProps = {
   /** What the room is playing, which decides what the seat costs this screen. */
@@ -40,7 +40,8 @@ const storedNicknameOrNone = (): string => {
 /**
  * Playing is joining: the console's seat is offered in the roster, where every
  * other player appears as they give a name, rather than as a question asked
- * before the room exists. A screen that only shows the code ignores it.
+ * before the room exists. It stays one folded row until the host opens it, so
+ * a console that only runs the room spends no room on it.
  *
  * Under the name this device already answers to, with a way to change it; a
  * device that has none asks for it here.
@@ -55,6 +56,7 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
   const [remembered] = useState(storedNicknameOrNone)
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
+  const [isExpanded, setIsExpanded] = useState(false)
   const nickname = draft.trim()
   const naming = useRef<HTMLDivElement>(null)
 
@@ -66,23 +68,28 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
       data-closed={!isOpen || undefined}
       inert={!isOpen}
     >
-      <Form
+      <Disclosure
         className='seat-offer'
-        onSubmit={(event) => {
-          event.preventDefault()
-
-          if (nickname !== '' && !isDisabled) {
-            onTakeSeat(nickname)
-          }
-        }}
+        isExpanded={isExpanded}
+        label={translate('host.seat.offer')}
+        onExpandedChange={setIsExpanded}
+        summary={null}
       >
-        <div className='offer'>
-          <p className='title'>{translate('host.seat.offer')}</p>
-          <div className='naming' ref={naming}>
+        <Form
+          className='seat-form'
+          onSubmit={(event) => {
+            event.preventDefault()
+
+            if (nickname !== '' && !isDisabled) {
+              setIsExpanded(false)
+              onTakeSeat(nickname)
+            }
+          }}
+        >
+          <div className='name-field' ref={naming}>
             {isNaming ? (
               <TextField
                 autoComplete='nickname'
-                autoFocus={remembered !== ''}
                 enterKeyHint='go'
                 label={translate('join.rightAway.name')}
                 maxLength={NICKNAME_MAX_LENGTH}
@@ -109,6 +116,13 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
               </p>
             )}
           </div>
+          <Button
+            isDisabled={isDisabled || nickname === ''}
+            type='submit'
+            variant='outlined'
+          >
+            {translate('host.seat.action')}
+          </Button>
           <p className='cost'>
             {translate(
               game === 'reflex' || game === 'innerclock'
@@ -116,15 +130,8 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
                 : 'host.seat.cost.hiddenAnswer'
             )}
           </p>
-        </div>
-        <Button
-          isDisabled={isDisabled || nickname === ''}
-          type='submit'
-          variant='outlined'
-        >
-          {translate('host.seat.action')}
-        </Button>
-      </Form>
+        </Form>
+      </Disclosure>
     </div>
   )
 }

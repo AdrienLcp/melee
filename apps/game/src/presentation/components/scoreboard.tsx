@@ -200,7 +200,12 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
         const nickname = (
           <>
             {hasPawns === true && <Pawn seat={seat} />}
-            <span className='name'>{player.nickname}</span>
+            <span
+              className='name'
+              style={{ '--name-length': [...player.nickname].length }}
+            >
+              {player.nickname}
+            </span>
             {marksReady === true && <ReadyMark isReady={player.isReady} />}
             <AwayMark isAway={!player.isConnected} />
             {isYou && (

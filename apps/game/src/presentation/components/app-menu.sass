@@ -350,8 +350,10 @@
     // Asking twice opens in place: the warning's row unfolds over the press,
     // and the press turns into the one that closes, so the sheet grows rather
     // than jumping to its new height.
+    // The warning opens under the presses, so the confirm lands where the
+    // press asking for it was and the pointer never has to follow it.
     .close-room
-      @include fold.opens-row('.warning', $rows-after: auto, $gap: var(--space-s), $open: '&[data-confirming]')
+      @include fold.opens-row('.warning', $rows-before: auto, $gap: var(--space-s), $open: '&[data-confirming]')
 
       .close-presses
         @include swap.swaps-in-one-cell('.close-ask', '.close-confirm', '&:is(.close-room[data-confirming] *)')

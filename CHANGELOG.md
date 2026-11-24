@@ -62,6 +62,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **_Oui, on ferme_ lands where _Fermer la table_ was.** The
+  warning opened above the presses and pushed the confirm a line down, so the
+  pointer had to chase it; it opens under them now, the confirm in the same
+  place at the same size.
+- `[Server]` **One player ready starts the game.** A table of one seat
+  waited forever on its Ready press: the start needed two seats, so a lone
+  player had to walk up to the console across the room.
 - `[Game]` **The menu no longer covers a seat on the console's lobby.** Wider
   than a phone, the table's first row of seats ran under the corner menu: the
   heading meant to stand beside it was never the side's first piece. The
@@ -94,6 +101,17 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The console's side panel opens folded on a table already set.**
+  A ready-made line-up or a game's own door shows the rail of tabs and gives
+  the stage the width; a table still choosing its game opens on the games. A
+  host who folds or opens it is remembered as before.
+- `[Game]` **A seat's name stays on one line.** The lobby's chips wrapped a
+  long name over up to three lines; its type now shrinks with its length down
+  to the smallest size a name is drawn at, and only past that ends on an
+  ellipsis.
+- `[Game]` **Playing from the console is one folded row.** _Jouer depuis cet
+  écran_ opens the name and _Prendre place_ on one line, the press aligned on
+  the field, instead of a block standing open over the seats.
 - `[Game]` **The host stepping away is said at the top of the reveal and the
   final board.** A player's screen opens _L'hôte a décroché_ first, above the
   answer and the standings, which stay readable under it, rather than in the

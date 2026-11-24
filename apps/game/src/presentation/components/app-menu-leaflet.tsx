@@ -154,7 +154,6 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         className='close-room'
         data-confirming={isConfirmingClose || undefined}
       >
-        <p className='warning'>{translate('host.closeRoom.warning')}</p>
         <div className='close-presses'>
           <Button
             className='close-ask'
@@ -177,6 +176,7 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
             {translate('host.closeRoom.confirm')}
           </Link>
         </div>
+        <p className='warning'>{translate('host.closeRoom.warning')}</p>
       </div>
     </div>
   )

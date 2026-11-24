@@ -319,7 +319,7 @@ frame.
   press away — only the host's press, or the setting's own hold, goes on.
 - **A ready table opens the game, and plays it again.** In the lobby and on
   the final board `player.ready` is stored too, and every seat ready and on
-  screen — two at least, a game chosen, `hostOpensNextRound` off — stamps
+  screen — one alone included, a game chosen, `hostOpensNextRound` off — stamps
   `readyStartsAt` on the room view, `READY_HOLD_MS` out (`settleTableStart`,
   on every publish). It is the lobby's `advancesAt`: the room has no round to
   carry it. The `start` deadline fires `countdownMs` before it (and a blind

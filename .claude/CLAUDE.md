@@ -248,7 +248,7 @@ which is why a user-visible string written into a component is a bug — see
   included, and on the final board — checked on its row of the standings and
   cleared as a round opens or a game ends; every seat ready and on screen
   starts what comes next `READY_HOLD_MS` out, counted down on every screen:
-  the game from the lobby (a game chosen and two seats at least), the next
+  the game from the lobby (a game chosen, one seat enough), the next
   round, the final board, the replay — a seated console's ready among them,
   whose own press still goes on at once. A seat taking its ready back calls it
   off, and an away seat holds it until the host goes on — a room whose host

@@ -47,8 +47,14 @@ export const hostConsole = (page: Page) => ({
   openBlindTestRound: page
     .getByRole('list', { name: 'Planned games' })
     .getByRole('button', { name: /^Blind test/ }),
-  /** The panel's games tab, where the planned games are. */
-  openGamesTab: page.getByRole('tab', { name: 'Games' }),
+  /**
+   * The panel's games tab, where the planned games are: a tab of the open
+   * panel, or the rail's press opening it on the games — a table opened
+   * already set to its game shows the rail.
+   */
+  openGamesTab: page
+    .getByRole('tab', { name: 'Games' })
+    .or(page.locator('.panel-rail').getByRole('button', { name: 'Games' })),
   /**
    * The blind test in the games tab's pick list, shown while the room has no
    * game. A press plans it and opens its page. Its name runs on into the

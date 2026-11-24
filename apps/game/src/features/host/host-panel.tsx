@@ -78,10 +78,10 @@ const PANEL_TABS: readonly PanelTabFace[] = [
 const isPanelTab = (key: React.Key): key is PanelTab =>
   PANEL_TABS.some((tab) => tab.id === key)
 
-const storedFoldOrOpen = (): boolean => {
+const storedFoldOrNone = (): boolean | null => {
   const stored = readStoredPanelFolded()
 
-  return stored.status === 'success' && stored.data
+  return stored.status === 'success' ? stored.data : null
 }
 
 const storedSideOrRight = (): PanelSide => {
@@ -142,14 +142,21 @@ export const HostPanel: React.FC<HostPanelProps> = ({
 }) => {
   const translate = useTranslate()
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
-  const [isFolded, setIsFolded] = useState(storedFoldOrOpen)
+  const [isFolded, setIsFolded] = useState(storedFoldOrNone)
   const [side, setSide] = useState(storedSideOrRight)
   const [chosenTab, setChosenTab] = useState<PanelTab | null>(null)
   const [shownScreen, setScreen] = useState<NarrowScreen | null>(null)
   const [isStageBack, setIsStageBack] = useState(false)
   const screen = shownScreen ?? narrowStart ?? 'stage'
   const wideTab = chosenTab ?? defaultTab
-  const isRail = isDesk && isFolded
+  const isRail = isDesk && isFolded !== false
+
+  // A host who never chose finds the panel as the room needs it, decided once
+  // on the first view: open where the table waits for its game, the rail
+  // where the game is already set.
+  if (isFolded === null && narrowStart !== null) {
+    setIsFolded(narrowStart !== 'game')
+  }
 
   if (!isDesk && shownScreen === null && narrowStart !== null) {
     setScreen(narrowStart)
@@ -197,13 +204,13 @@ export const HostPanel: React.FC<HostPanelProps> = ({
 
   const foldTool = (
     <ReactAriaButton
-      aria-label={translate(isFolded ? 'host.panel.unfold' : 'host.panel.fold')}
+      aria-label={translate(isRail ? 'host.panel.unfold' : 'host.panel.fold')}
       className='panel-tool'
       onPress={() => {
-        fold(!isFolded)
+        fold(!isRail)
       }}
     >
-      {isFolded ? <PanelOpenIcon /> : <PanelFoldIcon />}
+      {isRail ? <PanelOpenIcon /> : <PanelFoldIcon />}
     </ReactAriaButton>
   )
 

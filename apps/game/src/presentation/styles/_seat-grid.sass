@@ -2,6 +2,11 @@
 
 $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
 
+// The width of one letter of a name, in its own em, averaged over long names
+// in the read face; and what a chip spends beside its name.
+$-name-advance: 0.58
+$-chip-trim: 4rem
+
 /// Who has sat down, each on a chip beside their pawn, and a socket for every
 /// pawn still in the box — the roster a `Scoreboard` with pawns and an
 /// `EmptySockets` draw together. The two lists are one grid, so the sockets
@@ -43,6 +48,8 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
     min-height: $-cell-height
 
   .scoreboard li
+    --seat-chip-width: calc((100cqi - (var(--seat-columns) - 1) * var(--space-s)) / var(--seat-columns))
+
     align-items: center
     --travel-offset: 0 -40%
     --travel-scale: 1.08
@@ -71,16 +78,15 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
     .pawn
       font-size: var(--text-em-xl)
 
-    // On one line a chip a third of the roster wide cut a long name to its
-    // first five letters, and two Anne- read as the same seat. On two it
-    // still cut one where the page's language hyphenates nothing: `Anne-`
-    // takes a line alone, and `Charlotte Vi 22` needs two more.
+    // One line, its type taking the name's length down to the floor, and an
+    // ellipsis only past it: cut at full size, a chip a third of the roster
+    // wide kept a long name's first five letters and two Anne- read as the
+    // same seat; wrapped, the rows of one roster stood at three heights.
     .name
-      -webkit-box-orient: vertical
-      display: -webkit-box
-      hyphens: auto
-      -webkit-line-clamp: 3
-      white-space: normal
+      font-size: max(var(--text-xs), min(1em, calc((var(--seat-chip-width) - #{$-chip-trim}) / var(--name-length, 1) / #{$-name-advance})))
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
 
     .away-mark
       grid-column: 3

@@ -255,15 +255,18 @@ const isPanelFoldedValue = (
 ): text is (typeof PANEL_FOLDED_VALUES)[number] =>
   PANEL_FOLDED_VALUES.some((value) => value === text)
 
-/** Whether the host last folded the console's panel down to its rail; never stored means open. */
-export const readStoredPanelFolded = (): Result<boolean, StorageReadError> => {
+/** Whether the host last folded the console's panel down to its rail; `null` if they never chose. */
+export const readStoredPanelFolded = (): Result<
+  boolean | null,
+  StorageReadError
+> => {
   const stored = readRecognizedText({
     isRecognized: isPanelFoldedValue,
     key: PANEL_FOLDED_KEY
   })
 
   return stored.status === 'success'
-    ? Result.success(stored.data === 'true')
+    ? Result.success(stored.data === null ? null : stored.data === 'true')
     : stored
 }
 

@@ -2118,24 +2118,18 @@ export const settleReadyHold = (room: Room, now: number): void => {
 }
 
 /**
- * The fewest seats a table opens a game by itself with: one player alone is
- * the console's own launch (`launchesWithHostSeated`), not a table agreeing.
- */
-export const LEAST_SEATS_FOR_TABLE_START = 2
-
-/**
  * The lobby's and the final board's counterpart of `settleReadyHold`: every
  * seat back at the table opens the game, or plays it again, `READY_HOLD_MS`
- * out, and one taking it back calls it off. Nothing counts in a room whose host
- * keeps every press, with no game chosen, or with fewer than
- * `LEAST_SEATS_FOR_TABLE_START` seats. Run on every published change.
+ * out, and one taking it back calls it off — a lone seat as much as a full
+ * table, since a console on the TV across the room is no press for one player
+ * to walk up to. Nothing counts in a room whose host keeps every press, or
+ * with no game chosen. Run on every published change.
  */
 export const settleTableStart = (room: Room, now: number): void => {
   const isArmed =
     (room.phase === 'lobby' || room.phase === 'finished') &&
     !room.settings.hostOpensNextRound &&
     room.settings.game !== null &&
-    room.players.size >= LEAST_SEATS_FOR_TABLE_START &&
     isEveryoneBack(room)
 
   if (!isArmed) {

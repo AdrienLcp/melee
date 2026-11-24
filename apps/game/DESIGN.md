@@ -740,8 +740,10 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   `--card-well` with a chipboard edge; the players' tab carries the head count.
   Beside them, two tools: the side switch (right by default) and the fold,
   which leaves a rail of the same tabs, `--host-rail-width` (5.75rem); a rail
-  tab opens the panel on itself. It never folds on its own, and both choices
-  are remembered on the machine (`melee:panel-folded`, `melee:panel-side`).
+  tab opens the panel on itself. A machine that never chose finds it as the
+  room needs it on the first view: open on the games where the table waits
+  for one, the rail where the game is already set. It never folds on its own, and both choices are remembered on the machine
+  (`melee:panel-folded`, `melee:panel-side`).
   The fixed menu moves off the panel when the panel is on the right.
 - **Below it** the tabs are a bar along the foot, `--panel-bar-height`
   (3.625rem, the measured bar: a tab at the touch target, its glyph at
