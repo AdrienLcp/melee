@@ -2,7 +2,7 @@ import { globSync } from 'node:fs'
 import { basename, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { expect, test } from '@playwright/test'
+import { expect, type Page, type Request, test } from '@playwright/test'
 
 const GAME_ROOT = fileURLToPath(new URL('../apps/game', import.meta.url))
 
@@ -20,11 +20,50 @@ const GAME_ROOT = fileURLToPath(new URL('../apps/game', import.meta.url))
 /** The press lands in a click handler, and its render commits before the next frame paints. */
 const MOST_FRAMES_TO_DRAW = 2
 
+/** Playwright's own `networkidle` window. */
+const QUIET_MS = 500
+
+/**
+ * Resolves once the menu's chunk has been asked for and nothing has been in
+ * flight for `QUIET_MS` since. `networkidle` alone is not that: a cold dev
+ * server on a loaded runner spends longer than its window rendering the
+ * front door, so it settled before the mount had even asked for the chunk,
+ * and the press then fetched the whole menu.
+ */
+const menuChunkLanded = (page: Page): Promise<void> =>
+  new Promise((resolve) => {
+    const inFlight = new Set<Request>()
+    let isMenuAskedFor = false
+    let quiet: ReturnType<typeof setTimeout> | undefined
+
+    const settle = (): void => {
+      clearTimeout(quiet)
+
+      if (isMenuAskedFor && inFlight.size === 0) {
+        quiet = setTimeout(resolve, QUIET_MS)
+      }
+    }
+
+    const finish = (request: Request): void => {
+      inFlight.delete(request)
+      settle()
+    }
+
+    page.on('request', (request) => {
+      isMenuAskedFor ||= request.url().includes('app-menu-leaflet')
+      inFlight.add(request)
+      settle()
+    })
+    page.on('requestfinished', finish)
+    page.on('requestfailed', finish)
+  })
+
 test('[e2e] the menu opens on the frame after its first press, fetching nothing', async ({
   page
 }) => {
+  const landed = menuChunkLanded(page)
   await page.goto('/en')
-  await page.waitForLoadState('networkidle')
+  await landed
 
   const fetchedOnOpen: string[] = []
   page.on('request', (request) => {
