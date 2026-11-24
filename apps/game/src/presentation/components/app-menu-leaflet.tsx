@@ -389,6 +389,11 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
             </Button>
           </HeldPress>
 
+          {/* Under the round's two presses, which a seated host opens the
+                  menu mid-round for, and above everything that scrolls: a
+                  screen across the room is put full screen first. */}
+          <Fullscreen />
+
           {/*
                 The room's volume, on the console alone: it reaches whichever
                 screen is sounding, so a wall carries no slider of its own. In
@@ -409,18 +414,14 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
 
           {musicChoice}
 
-          {/* Beside the level it checks; the outcome is a notice, so the
-                  menu closes on a start to let it be read. */}
+          {/* Beside the level it checks, and the menu stays open on it: the
+                  same press stops the sample while the level is set. */}
           <HeldPress isOpen={testSound !== null}>
             <Button
               className='sound-check-press'
               isDisabled={connection?.status !== 'open'}
               onPress={() => {
                 testSound?.()
-
-                if (!isTestingSound) {
-                  close()
-                }
               }}
               size='small'
               variant='outlined'
@@ -460,8 +461,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
             }))}
             value={preference}
           />
-
-          <Fullscreen />
 
           <InstallApp />
 

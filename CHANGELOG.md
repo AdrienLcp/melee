@@ -101,6 +101,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Full screen heads the menu.** It sits under the round's own
+  presses and above everything else, so a screen across the room goes full
+  screen without scrolling the menu; and _Tester le son_ leaves the menu open,
+  so the same press stops the sample while the level is set.
 - `[Game]` **The console's side panel opens folded on a table already set.**
   A ready-made line-up or a game's own door shows the rail of tabs and gives
   the stage the width; a table still choosing its game opens on the games. A
