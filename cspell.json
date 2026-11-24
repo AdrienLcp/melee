@@ -344,6 +344,8 @@
   ],
   "version": "0.2",
   "words": [
+    "requestfailed",
+    "requestfinished",
     "crossfade",
     "crossfades",
     "lofi",
