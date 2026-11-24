@@ -47,23 +47,36 @@ const LoadedMenuSeatRows: React.FC = () => {
   return <MenuSeatRows />
 }
 
+const musicChoiceModule = lazyModule(() => import('./menu-music-choice'))
+
+/** The console's choice of soundtrack, under the same rule as the seat rows. */
+const LoadedMenuMusicChoice: React.FC = () => {
+  const { MenuMusicChoice } = use(musicChoiceModule.load())
+
+  return <MenuMusicChoice />
+}
+
+/** The parts a screen's menu draws beside the leaflet every screen has. */
+type MenuParts = { hasMusicChoice: boolean; hasSeatRows: boolean }
+
 const loadMenu = async ({
+  hasMusicChoice,
   hasSeatRows
-}: {
-  hasSeatRows: boolean
-}): Promise<void> => {
+}: MenuParts): Promise<void> => {
   await Promise.all([
     leafletModule.load(),
-    hasSeatRows ? seatRowsModule.load() : null
+    hasSeatRows ? seatRowsModule.load() : null,
+    hasMusicChoice ? musicChoiceModule.load() : null
   ])
 }
 
-const isMenuLoaded = ({ hasSeatRows }: { hasSeatRows: boolean }): boolean =>
+const isMenuLoaded = ({ hasMusicChoice, hasSeatRows }: MenuParts): boolean =>
   leafletModule.loaded() !== null &&
-  (!hasSeatRows || seatRowsModule.loaded() !== null)
+  (!hasSeatRows || seatRowsModule.loaded() !== null) &&
+  (!hasMusicChoice || musicChoiceModule.loaded() !== null)
 
-const preloadMenu = ({ hasSeatRows }: { hasSeatRows: boolean }): void => {
-  loadMenu({ hasSeatRows }).catch(() => undefined)
+const preloadMenu = (parts: MenuParts): void => {
+  loadMenu(parts).catch(() => undefined)
 }
 
 /**
@@ -81,9 +94,10 @@ export const AppMenu: React.FC = () => {
   const [hasOpened, setHasOpened] = useState(false)
   const [isWaitingForMenu, setIsWaitingForMenu] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
-  const { invitation, pawnRoom, rename } = useRoomActions()
+  const { invitation, pawnRoom, rename, soundtrack } = useRoomActions()
   const hasSeatRows =
     invitation !== null || pawnRoom !== null || rename !== null
+  const hasMusicChoice = soundtrack !== null
   // Open on one page only: a console handed over becomes the wall under a menu
   // still open on the square that handed it, in front of the whole room.
   const pathname = usePathname()
@@ -95,8 +109,8 @@ export const AppMenu: React.FC = () => {
   // thing a hand does on a page, so waiting for a gesture or a quiet moment
   // left that press paying the download — 1.4s on a front door.
   useEffect(() => {
-    preloadMenu({ hasSeatRows })
-  }, [hasSeatRows])
+    preloadMenu({ hasMusicChoice, hasSeatRows })
+  }, [hasMusicChoice, hasSeatRows])
 
   const alert =
     connection === null || connection.status === 'open'
@@ -144,13 +158,13 @@ export const AppMenu: React.FC = () => {
 
           // Opened once the menu's code is in hand, never on a suspended
           // render: React holds what a fallback stood in for 300ms past it.
-          if (isMenuLoaded({ hasSeatRows })) {
+          if (isMenuLoaded({ hasMusicChoice, hasSeatRows })) {
             open()
             return
           }
 
           setIsWaitingForMenu(true)
-          void loadMenu({ hasSeatRows })
+          void loadMenu({ hasMusicChoice, hasSeatRows })
             .catch(() => undefined)
             .then(() => {
               setIsWaitingForMenu(false)
@@ -176,6 +190,7 @@ export const AppMenu: React.FC = () => {
           <Suspense fallback={null}>
             <LoadedLeaflet
               build={build}
+              musicChoice={hasMusicChoice ? <LoadedMenuMusicChoice /> : null}
               seatRows={hasSeatRows ? <LoadedMenuSeatRows /> : null}
             />
           </Suspense>

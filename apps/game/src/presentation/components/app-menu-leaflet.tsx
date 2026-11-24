@@ -8,7 +8,6 @@ import type React from 'react'
 import { useState, useSyncExternalStore } from 'react'
 
 import { LOCALES } from '@melee/protocol/locale'
-import { type Soundtrack, soundtrackSchema } from '@melee/protocol/room'
 
 import {
   canGoFullscreen,
@@ -58,7 +57,6 @@ import { Link } from './link'
 import { ProjectWithCode } from './project-with-code'
 import { ReportProblem } from './report-problem'
 import { SegmentedControl } from './segmented-control'
-import { Select } from './select'
 import { Slider } from './slider'
 import { TextLink } from './text-link'
 
@@ -288,19 +286,6 @@ const ReloadApp: React.FC = () => {
   )
 }
 
-const SOUNDTRACK_KEYS: Readonly<Record<Soundtrack, PlainTranslationKey>> = {
-  arcade: 'preferences.music.arcade',
-  drift: 'preferences.music.drift',
-  lofi: 'preferences.music.lofi',
-  lounge: 'preferences.music.lounge',
-  marimba: 'preferences.music.marimba',
-  mix: 'preferences.music.mix',
-  off: 'preferences.music.off'
-}
-
-const soundtrackOf = (key: unknown): Soundtrack | undefined =>
-  soundtrackSchema.options.find((soundtrack) => soundtrack === key)
-
 const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
   dark: 'preferences.theme.dark',
   light: 'preferences.theme.light',
@@ -322,6 +307,8 @@ type AppMenuLeafletProps = {
    * The rows of a screen in a room — invitation, seat name, pawn — or `null`
    * where there is none: a chunk of their own, loaded by the trigger.
    */
+  /** The console's choice of soundtrack, under the room volume; `null` elsewhere. */
+  musicChoice: React.ReactNode
   seatRows: React.ReactNode
 }
 
@@ -336,6 +323,7 @@ type AppMenuLeafletProps = {
  */
 export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
   build,
+  musicChoice,
   seatRows
 }) => {
   const { locale, setLocale, translate } = useI18n()
@@ -349,8 +337,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
     revealRound,
     roomVolume,
     setRoomVolume,
-    setSoundtrack,
-    soundtrack,
     testSound
   } = useRoomActions()
   const isOnAssistant = useIsCurrentPath(assistantPathFor(locale))
@@ -421,23 +407,7 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({
             />
           )}
 
-          {soundtrack !== null && setSoundtrack !== null && (
-            <Select
-              label={translate('preferences.music.label')}
-              onSelectionChange={(key) => {
-                const next = soundtrackOf(key)
-
-                if (next !== undefined) {
-                  setSoundtrack(next)
-                }
-              }}
-              options={soundtrackSchema.options.map((value) => ({
-                id: value,
-                label: translate(SOUNDTRACK_KEYS[value])
-              }))}
-              selectedKey={soundtrack}
-            />
-          )}
+          {musicChoice}
 
           {/* Beside the level it checks; the outcome is a notice, so the
                   menu closes on a start to let it be read. */}

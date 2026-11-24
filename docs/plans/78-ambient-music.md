@@ -33,6 +33,9 @@ candidate styles: keep them all, a random one by default, any one choosable.
 - **The menu's _Music_**, a `Select` under the room volume, on the console
   alone: _None · Random · Jazz lounge · Lo-fi · Drift · Marimba terrace ·
   Arcade_. A closed list of seven is too long for a strip.
+  `menu-music-choice.tsx` is a module of its own, loaded with the menu on the
+  console alone: inside the menu's chunk, react-aria's list pushed a player's
+  arrival 2.4 kB past its 340 kB script budget.
 
 ## Verified
 
