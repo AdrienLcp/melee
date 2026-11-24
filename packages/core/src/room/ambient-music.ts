@@ -1,5 +1,10 @@
 import type { GameKind } from '@melee/protocol/game'
-import type { RoomPhase } from '@melee/protocol/room'
+import {
+  type RoomPhase,
+  type Soundtrack,
+  type SoundtrackStyle,
+  soundtrackStyles
+} from '@melee/protocol/room'
 
 /**
  * How much of the soundtrack plays: `calm` under a lobby filling up and a
@@ -40,17 +45,17 @@ export const ambientMoodOf = ({
   isPaused,
   isTestingSound,
   phase,
-  playsMusic,
-  roundKind
+  roundKind,
+  soundtrack
 }: {
   isPaused: boolean
   isTestingSound: boolean
   phase: RoomPhase
-  playsMusic: boolean
   /** The game the round on screen was opened on, `null` with no round. */
   roundKind: GameKind | null
+  soundtrack: Soundtrack
 }): AmbientMood | null => {
-  if (!playsMusic || isPaused || isTestingSound) {
+  if (soundtrack === 'off' || isPaused || isTestingSound) {
     return null
   }
 
@@ -67,4 +72,33 @@ export const ambientMoodOf = ({
   }
 
   return MOOD_OF_PHASE[phase]
+}
+
+/**
+ * The style the next piece is played in: the one the room chose, or under
+ * `mix` a draw among the others than `previous`, so the crossfade between two
+ * pieces also changes band. `null` when the soundtrack is off.
+ */
+export const nextSoundtrackStyle = ({
+  previous,
+  random,
+  soundtrack
+}: {
+  /** The style of the piece now ending, `null` before the first. */
+  previous: SoundtrackStyle | null
+  /** In `[0, 1)`. */
+  random: () => number
+  soundtrack: Soundtrack
+}): SoundtrackStyle | null => {
+  if (soundtrack === 'off') {
+    return null
+  }
+
+  if (soundtrack !== 'mix') {
+    return soundtrack
+  }
+
+  const others = soundtrackStyles.filter((style) => style !== previous)
+
+  return others[Math.floor(random() * others.length)] ?? null
 }

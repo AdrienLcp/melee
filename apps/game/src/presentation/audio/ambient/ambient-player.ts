@@ -43,10 +43,16 @@ type Playing = {
   fader: Fader
   nextBar: number
   piece: Piece
+  startsAt: number
   successorStarted: boolean
 }
 
 export type AmbientPlayer = {
+  /**
+   * Fades what plays out now and the next piece in under it, rather than
+   * waiting minutes for the outro — what a change of style asks for.
+   */
+  crossfadeNow: () => void
   dispose: () => void
   /** 0 to 1, the level a mood plays at, approached smoothly. */
   setLevel: (level: number) => void
@@ -93,18 +99,19 @@ export const startAmbient = ({
       fader,
       nextBar: 0,
       piece,
+      startsAt: startAt,
       successorStarted: false
     })
   }
 
   const write = (horizon: number): void => {
     for (const entry of [...playing]) {
-      const { piece } = entry
-      const startsAt = entry.ends - piece.bars * piece.secondsPerBar
+      const { piece, startsAt } = entry
 
       while (
         entry.nextBar < piece.bars &&
-        startsAt + entry.nextBar * piece.secondsPerBar < horizon
+        startsAt + entry.nextBar * piece.secondsPerBar < horizon &&
+        startsAt + entry.nextBar * piece.secondsPerBar < entry.ends
       ) {
         const section = piece.sections[entry.nextBar] ?? 'body'
 
@@ -171,9 +178,29 @@ export const startAmbient = ({
     tick()
   }
 
+  const crossfadeNow = (): void => {
+    if (playing.length === 0) {
+      return
+    }
+
+    const time = now()
+    const fadedAt = time + PIECE_FADE_IN_S
+
+    for (const entry of playing) {
+      entry.successorStarted = true
+      entry.fader.gain.cancelScheduledValues(time)
+      entry.fader.gain.setValueAtTime(entry.fader.gain.value, time)
+      entry.fader.gain.linearRampToValueAtTime(0, fadedAt)
+      entry.ends = Math.min(entry.ends, fadedAt)
+    }
+
+    begin(time + 0.05)
+  }
+
   const timer = setInterval(tick, TICK_MS)
 
   return {
+    crossfadeNow,
     dispose: () => {
       clearInterval(timer)
       playing.forEach(letGo)
@@ -197,17 +224,18 @@ export const startAmbient = ({
 }
 
 /**
- * `style` played through `context`: a bus behind a gentle limiter, and a
- * fader per piece so one fades into the next.
+ * Pieces played through `context`, each in the style `styleOfNextPiece`
+ * answers as it begins: a bus behind a gentle limiter, and a fader per piece
+ * so one fades into the next.
  */
-export const startStyle = ({
+export const startStyles = ({
   context,
   destination,
-  style
+  styleOfNextPiece
 }: {
   context: BaseAudioContext
   destination: AudioNode
-  style: Style
+  styleOfNextPiece: () => Style
 }): AmbientPlayer => {
   const bus = context.createGain()
   const limiter = context.createDynamicsCompressor()
@@ -224,7 +252,7 @@ export const startStyle = ({
 
       return {
         fader,
-        piece: style.createPiece({
+        piece: styleOfNextPiece().createPiece({
           context,
           destination: fader,
           random,

@@ -112,4 +112,23 @@ describe('startAmbient', () => {
 
     expect(beginPiece).toHaveBeenCalledTimes(2)
   })
+
+  it('[ambient] crossfades into a fresh piece at once, the last stopping where it fades out', () => {
+    const { beginPiece, clock, playedBars, player } = start()
+
+    player.setLevel(0.35)
+    player.setMood('calm')
+    clock.time = 4
+    player.crossfadeNow()
+    clock.time = 20
+    vi.advanceTimersByTime(250)
+
+    const barsOfTheFirstUntilItFades = 4
+    const barsOfTheSecondUntilTheLead = 10
+
+    expect(beginPiece).toHaveBeenCalledTimes(2)
+    expect(playedBars).toHaveLength(
+      barsOfTheFirstUntilItFades + barsOfTheSecondUntilTheLead
+    )
+  })
 })

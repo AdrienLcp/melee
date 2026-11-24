@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { ambientMoodOf } from '@melee/core/room/ambient-music'
 
-import type { AmbientPlayer } from './ambient/ambient-player'
+import type { SoundtrackPlayer } from './ambient/soundtrack'
 import { onCuesRunning, unlockCues } from './cue-audio'
 
 /**
@@ -32,8 +32,10 @@ export const useAmbientMusic = ({
   /** The level the room's speaker plays at. */
   volume: number
 }): void => {
-  const [player, setPlayer] = useState<AmbientPlayer | null>(null)
-  const isWanted = view?.settings.playsMusic === true
+  const [player, setPlayer] = useState<SoundtrackPlayer | null>(null)
+  const soundtrack = view?.settings.soundtrack ?? 'off'
+  const soundtrackRef = useRef(soundtrack)
+  const isWanted = soundtrack !== 'off'
   const mood =
     view === null
       ? null
@@ -41,8 +43,8 @@ export const useAmbientMusic = ({
           isPaused: view.isPaused,
           isTestingSound,
           phase: view.phase,
-          playsMusic: view.settings.playsMusic,
-          roundKind: view.round?.content.kind ?? null
+          roundKind: view.round?.content.kind ?? null,
+          soundtrack
         })
 
   useEffect(() => {
@@ -64,7 +66,7 @@ export const useAmbientMusic = ({
       return
     }
 
-    let started: AmbientPlayer | null = null
+    let started: SoundtrackPlayer | null = null
     let isCancelled = false
     let isLoading = false
 
@@ -76,7 +78,10 @@ export const useAmbientMusic = ({
       isLoading = true
       void import('./ambient/soundtrack').then(({ startSoundtrack }) => {
         if (!isCancelled) {
-          started = startSoundtrack(context)
+          started = startSoundtrack({
+            context,
+            soundtrack: soundtrackRef.current
+          })
           setPlayer(started)
         }
       })
@@ -95,6 +100,11 @@ export const useAmbientMusic = ({
       }
     }
   }, [isWanted])
+
+  useEffect(() => {
+    soundtrackRef.current = soundtrack
+    player?.follow(soundtrack)
+  }, [player, soundtrack])
 
   useEffect(() => {
     player?.setLevel(volume * MUSIC_SHARE)

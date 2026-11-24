@@ -6,7 +6,11 @@ import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { Deck } from '@melee/protocol/deck'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
+import type {
+  HostRoomView,
+  RoomSettings,
+  Soundtrack
+} from '@melee/protocol/room'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import {
@@ -481,10 +485,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [keepVolume, send]
   )
 
-  const setPlaysMusic = useCallback(
-    (playsMusic: boolean) => {
+  const setSoundtrack = useCallback(
+    (soundtrack: Soundtrack) => {
       if (view !== null) {
-        changeSettings({ ...view.settings, playsMusic })
+        changeSettings({ ...view.settings, soundtrack })
       }
     },
     [changeSettings, view]
@@ -533,7 +537,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     pauseRound: pausableRoundId === null ? null : pauseRound,
     ...pawn,
     isTestingSound: soundCheck.isTesting,
-    playsMusic: view?.settings.playsMusic ?? null,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname
@@ -544,8 +547,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: view?.players ?? NOBODY,
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
-    setPlaysMusic: view === null ? null : setPlaysMusic,
     setRoomVolume: view === null ? null : setRoomVolume,
+    setSoundtrack: view === null ? null : setSoundtrack,
+    soundtrack: view?.settings.soundtrack ?? null,
     testSound:
       view?.phase === 'lobby' || soundCheck.isTesting
         ? soundCheck.onPress

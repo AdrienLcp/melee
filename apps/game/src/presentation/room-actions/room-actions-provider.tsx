@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
+import type { PublicPlayer, RoomPhase, Soundtrack } from '@melee/protocol/room'
 import type { PawnPiece, Team } from '@melee/protocol/team'
 
 import { isSameData } from '@/helpers/same-data'
@@ -103,16 +103,16 @@ export type RoomActions = {
    */
   roomVolume: number | null
   /**
-   * Whether the room's speaker plays its soundtrack. Read and set from the
-   * console alone, so `null` on every other screen.
+   * What the room's speaker plays between the sounds of the game. Read and
+   * set from the console alone, so `null` on every other screen.
    */
-  playsMusic: boolean | null
+  soundtrack: Soundtrack | null
   /** The seats *Points* lists when the room plays without teams. */
   scoredPlayers: readonly PublicPlayer[]
   /** The teams *Points* lists, which take the seats' place whenever there are any. */
   scoredTeams: readonly Team[]
-  /** Turns `playsMusic` for the whole room. The host console's alone. */
-  setPlaysMusic: ((playsMusic: boolean) => void) | null
+  /** Sets `soundtrack` for the whole room. The host console's alone. */
+  setSoundtrack: ((soundtrack: Soundtrack) => void) | null
   /** Sets `roomVolume` for the whole room. The host console's alone. */
   setRoomVolume: ((volume: number) => void) | null
   /**
@@ -141,7 +141,6 @@ const NO_ACTIONS: RoomActions = {
   leaveSeat: null,
   pauseRound: null,
   pawnRoom: null,
-  playsMusic: null,
   recolourPawn: null,
   refusedNickname: null,
   refusedRecolour: null,
@@ -151,8 +150,9 @@ const NO_ACTIONS: RoomActions = {
   scoredPlayers: NOBODY,
   scoredTeams: NOBODY,
   seatNickname: null,
-  setPlaysMusic: null,
   setRoomVolume: null,
+  setSoundtrack: null,
+  soundtrack: null,
   testSound: null,
   trackLength: null
 }
@@ -236,13 +236,13 @@ export const useReportRoomActions = ({
   refusedNickname,
   refusedRecolour,
   rename,
-  playsMusic,
+  soundtrack,
   revealRound,
   roomVolume,
   scoredPlayers,
   scoredTeams,
   seatNickname,
-  setPlaysMusic,
+  setSoundtrack,
   setRoomVolume,
   testSound,
   isTestingSound,
@@ -264,7 +264,6 @@ export const useReportRoomActions = ({
       leaveSeat,
       pauseRound,
       pawnRoom: keptPawnRoom,
-      playsMusic,
       recolourPawn,
       refusedNickname,
       refusedRecolour,
@@ -274,8 +273,9 @@ export const useReportRoomActions = ({
       scoredPlayers: keptScoredPlayers,
       scoredTeams: keptScoredTeams,
       seatNickname,
-      setPlaysMusic,
       setRoomVolume,
+      setSoundtrack,
+      soundtrack,
       testSound,
       trackLength
     })
@@ -297,13 +297,13 @@ export const useReportRoomActions = ({
     refusedRecolour,
     rename,
     report,
-    playsMusic,
+    soundtrack,
     revealRound,
     roomVolume,
     keptScoredPlayers,
     keptScoredTeams,
     seatNickname,
-    setPlaysMusic,
+    setSoundtrack,
     setRoomVolume,
     testSound,
     isTestingSound,

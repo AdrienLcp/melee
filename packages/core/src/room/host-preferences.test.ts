@@ -56,6 +56,7 @@ describe('rememberSettings', () => {
       isFamilyFriendly: true,
       paysForSpeed: true,
       repeatsRunningOrder: false,
+      soundtrack: 'mix',
       teamScoring: 'balanced',
       teams: { kind: 'off' }
     })
@@ -243,6 +244,7 @@ describe('rememberedSetupFor', () => {
         isFamilyFriendly: true,
         paysForSpeed: true,
         repeatsRunningOrder: false,
+        soundtrack: 'mix',
         teamScoring: 'balanced',
         teams: { kind: 'off' }
       }

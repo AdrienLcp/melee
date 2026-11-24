@@ -1,5 +1,9 @@
 import type { GameKind, GameSettings } from '@melee/protocol/game'
-import { type AnswerMode, answerModes } from '@melee/protocol/room'
+import {
+  type AnswerMode,
+  answerModes,
+  type Soundtrack
+} from '@melee/protocol/room'
 import type { TeamsSettings } from '@melee/protocol/team'
 
 /** What a game that serves its own question offers: a buzzer, four candidates or a typed field. */
@@ -387,16 +391,16 @@ export const isPlayableWithTeams = ({
 export const isEveningSilent = ({
   game,
   lineUp,
-  playsMusic
+  soundtrack
 }: {
   game: GameSettings | null
   lineUp: readonly GameSettings[]
-  playsMusic: boolean
+  soundtrack: Soundtrack
 }): boolean => {
   const games = game === null ? lineUp : [...lineUp, game]
 
   return (
-    !playsMusic &&
+    soundtrack === 'off' &&
     games.length > 0 &&
     games.every(({ kind }) => !capabilitiesOf(kind).makesSound)
   )

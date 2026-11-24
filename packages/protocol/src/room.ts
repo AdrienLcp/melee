@@ -260,6 +260,21 @@ const lineUpAtSchema = z
  */
 export const lineUpDealSchema = z.enum(['row', 'chance', 'both'])
 
+/** The bands the soundtrack is generated in, one style each. */
+export const soundtrackStyles = [
+  'lounge',
+  'lofi',
+  'drift',
+  'marimba',
+  'arcade'
+] as const
+
+export type SoundtrackStyle = (typeof soundtrackStyles)[number]
+
+export const soundtrackSchema = z.enum(['off', 'mix', ...soundtrackStyles])
+
+export type Soundtrack = z.infer<typeof soundtrackSchema>
+
 export type LineUpDeal = z.infer<typeof lineUpDealSchema>
 
 /**
@@ -375,15 +390,6 @@ export const roomSettingsSchema = z.object({
    */
   paysForSpeed: z.boolean().default(true),
   /**
-   * Whether the room's speaker plays a soundtrack from the lobby to the final
-   * board, under everything but a clip and Inner clock's count
-   * (`ambientMoodOf`). A room setting so a wall hears it with the rest, and
-   * remembered with the host's setup.
-   *
-   * On by default, and defaulted, so a stored setup from before it plays it.
-   */
-  playsMusic: z.boolean().default(true),
-  /**
    * Whether the rounds past the running order's last row play it again from
    * its top rather than being drawn: a table that liked the order it played
    * goes round it once more. Read only while every entry holds a row
@@ -413,6 +419,16 @@ export const roomSettingsSchema = z.object({
    * place; an edit that takes an entry out rewrites the rows with it.
    */
   runningOrder: z.array(lineUpAtSchema).max(RUNNING_ORDER_MAX_ROWS),
+  /**
+   * What the room's speaker plays from the lobby to the final board, under
+   * everything but a clip and Inner clock's count (`ambientMoodOf`): one of
+   * the generated styles, `mix` for a style drawn at random with each piece —
+   * never the one just played — or `off`. A room setting so a wall hears it
+   * with the rest, and remembered with the host's setup.
+   *
+   * `mix` by default, and defaulted, so a stored setup from before it plays.
+   */
+  soundtrack: soundtrackSchema.default('mix'),
   /**
    * Whether a team is paid the sum or the mean of its seats — see `team.ts`.
    * Ignored by a room without seated teams.
@@ -470,10 +486,10 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
   paysForSpeed: true,
-  playsMusic: true,
   repeatsRunningOrder: false,
   roundCount: 10,
   runningOrder: [],
+  soundtrack: 'mix',
   teamScoring: DEFAULT_TEAM_SCORING,
   teams: DEFAULT_TEAMS_SETTINGS
 }

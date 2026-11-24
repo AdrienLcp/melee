@@ -1,3 +1,5 @@
+import type { SoundtrackStyle } from '@melee/protocol/room'
+
 import type { AmbientMood } from '@melee/core/room/ambient-music'
 
 import {
@@ -48,7 +50,7 @@ export type Style = {
     /** When its first bar sounds, for a voice held under the whole piece. */
     startAt: number
   }) => Piece
-  name: string
+  name: SoundtrackStyle
 }
 
 /** Where a beat of the bar falls, its off-beat eighths pushed late by `swing`. */

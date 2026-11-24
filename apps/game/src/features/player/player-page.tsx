@@ -145,7 +145,6 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     pauseRound: null,
     ...pawn,
     isTestingSound: false,
-    playsMusic: null,
     refusedNickname:
       requestedNickname !== null && connection.error?.code === 'nickname_taken'
         ? requestedNickname
@@ -156,8 +155,9 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: NOBODY,
     scoredTeams: NOBODY,
     seatNickname,
-    setPlaysMusic: null,
     setRoomVolume: null,
+    setSoundtrack: null,
+    soundtrack: null,
     testSound: null,
     trackLength: null
   })
