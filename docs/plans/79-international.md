@@ -60,7 +60,7 @@ reads the round in its own language**. Plan 72 left the games in three kinds:
 ## Measures
 
 - **Timeline: 31 events tagged `FRA`** of 218 — the Veil law, Mitterrand,
-  the TGV, _Les Visiteurs_, Johnny Hallyday's death, Marignan, the Fifth
+  the TGV, _Les Visiteurs_, the death of Johnny Hallyday, Marignan, the Fifth
   Republic… Left everyone's: what the world was taught or watched — the
   Bastille, Charlemagne, Joan of Arc, Napoleon, 1998 (a Brazilian knows that
   final), Notre-Dame's fire, the Paris Olympics, Disneyland Paris, _Amélie_.
