@@ -49,6 +49,9 @@ const WALL_VIEWPORTS = ROOM_VIEWPORTS.filter(
   ([width, height]) => Math.min(width, height) >= 720
 )
 
+/** A line in every language a screen reads, the French one standing in for Portuguese. */
+const inEveryLocale = (fr: string, en: string = fr) => ({ en, fr, pt: fr })
+
 type Question = {
   category: string
   choices: [string, string, string, string]
@@ -168,13 +171,13 @@ const choosingView = (question: Question) => ({
     answers: [],
     awards: [],
     content: {
-      choices: question.choices,
+      choices: question.choices.map((choice) => inEveryLocale(choice)),
       kind: 'quiz',
       prompt: {
         category: question.category,
         flag: null,
         id: question.id,
-        prompt: question.prompt,
+        prompt: inEveryLocale(question.prompt),
         rebus: null,
         silhouette: null
       },
@@ -764,18 +767,9 @@ const revealedView = (
 }
 
 const QUIZ_WITH_A_NOTE = {
-  choices: LONGEST_PROMPT.choices,
-  kind: 'quiz',
-  prompt: {
-    category: LONGEST_PROMPT.category,
-    flag: null,
-    id: LONGEST_PROMPT.id,
-    prompt: LONGEST_PROMPT.prompt,
-    rebus: null,
-    silhouette: null
-  },
+  ...choosingView(LONGEST_PROMPT).round.content,
   revealedQuestion: {
-    answer: 'France',
+    answer: inEveryLocale('France'),
     note: 'Offerte par la France pour le centenaire de la Déclaration d’indépendance, elle fut inaugurée à New York en 1886, dix ans après la date prévue.'
   }
 }
@@ -3066,8 +3060,6 @@ const PHONE_VIEWPORTS = VIEWPORTS.filter(
 
 const fullSeats = fullTable.map((player) => ({ ...player, isReady: false }))
 
-const inEveryLocale = (fr: string, en: string = fr) => ({ en, fr, pt: fr })
-
 /** A round of any game on the first seat's screen, the table full and the round two seconds in. */
 const answeringView = ({
   activeBuzz = null,
@@ -3204,9 +3196,16 @@ const quizContent = ({
   rebus?: string | null
   silhouette?: string | null
 }) => ({
-  choices,
+  choices: choices.map((choice) => inEveryLocale(choice)),
   kind: 'quiz',
-  prompt: { category, flag, id, prompt, rebus, silhouette },
+  prompt: {
+    category,
+    flag,
+    id,
+    prompt: inEveryLocale(prompt),
+    rebus,
+    silhouette
+  },
   revealedQuestion: null
 })
 
