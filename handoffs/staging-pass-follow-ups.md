@@ -32,7 +32,7 @@ delete this file.
   leaving at the final board, on the console, the wall and a phone.
 - **DESIGN.md** — add `RoundGame` / the chrome's spine under the header
   sections, and `SpineMark` beside `ThisRoundHeading`.
-- **Point 3 and point 5: waiting on Adrien's letters.** Comparison page:
+- **Point 3 and point 5: Adrien chose 3 → A and 5 → A (24/11).** Comparison page:
   `C:/git/melee-mockups/staging-pass/index.html`, served with
   `python -m http.server 4417 --bind 127.0.0.1` from that folder
   (`http://127.0.0.1:4417/index.html`). Recommended: **3 → A** (card at the top
