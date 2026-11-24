@@ -274,6 +274,29 @@ const TableColours: React.FC<{
   )
 }
 
+type HostAwayFoldProps = Pick<PlayerRoomView, 'isHostConnected'>
+
+/**
+ * The console gone, said first on a screen that keeps what the round turned
+ * out to be: the reveal and the final board stay readable under it, where a
+ * round still running gives way to the card whole.
+ */
+const HostAwayFold: React.FC<HostAwayFoldProps> = ({ isHostConnected }) => {
+  const translate = useTranslate()
+
+  return (
+    <div
+      className='fold host-away'
+      data-open={!isHostConnected || undefined}
+      inert={isHostConnected}
+    >
+      <div>
+        <NoticeCard title={translate('buzz.blocked.host_away')} />
+      </div>
+    </div>
+  )
+}
+
 const RevealedRound: React.FC<RevealedRoundProps> = ({
   clock,
   onReady,
@@ -292,6 +315,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         screen lays the round beside the standings and a grid item spanning
         rows it never declared silently resolves back to the first one. */}
       <div className='outcome'>
+        <HostAwayFold isHostConnected={view.isHostConnected} />
         <Revealed round={round} view={view} />
         <ThisRoundHeading lineUp={view.settings.lineUp} round={round} />
         <YourRound round={round} view={view} />
@@ -303,18 +327,10 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
           youId={view.youId}
         />
       </div>
-      {/* The server stops the hold while the console is away, so the slot that
-        counted down to the next round says why nothing comes next. */}
+      {/* The server stops the hold while the console is away, so the slot
+        that counted down to the next round closes with it: the card at the top
+        of the round's block says why nothing comes next. */}
       <div className='hold'>
-        <div
-          className='fold'
-          data-open={!view.isHostConnected || undefined}
-          inert={view.isHostConnected}
-        >
-          <div>
-            <NoticeCard title={translate('buzz.blocked.host_away')} />
-          </div>
-        </div>
         {round.isFinal && (
           <div
             className='fold'
@@ -394,6 +410,7 @@ export const PlayerRoundStage: React.FC<PlayerRoundProps> = ({
 
     return (
       <section className='player-round finished'>
+        <HostAwayFold isHostConnected={view.isHostConnected} />
         {view.teams.length > 0 ? (
           <>
             {again}

@@ -578,6 +578,11 @@
       > .section-heading
         margin-block-start: var(--space-xs)
 
+      // First in the round's block, so it is the top of the first screen on a
+      // phone and of the round's column beside the standings.
+      > .host-away
+        @include fold.opens-in-column(var(--space-s), $side: end)
+
     // Read at forty centimetres, never across a room: the console's sizes
     // would spend the screen the hold and the press are owed.
     .round-podium .podium li
@@ -967,6 +972,9 @@
 
     > :not(.seat-podium, .your-placing)
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
+
+    > .host-away
+      @include fold.opens-in-column(clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-xl)), $side: end)
 
     > .seat-podium
       padding-block-start: var(--space-s)

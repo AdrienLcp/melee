@@ -84,7 +84,7 @@ describe('swapsThePlayerScreen', () => {
     ).toBe(false)
   })
 
-  it('[screen] replaces a round frozen, and leaves the reveal its own word for the host away', () => {
+  it('[screen] replaces a round frozen, and leaves the reveal and the final board their own word for the host away', () => {
     expect(
       swapsThePlayerScreen({
         from: at('playing'),
@@ -101,6 +101,12 @@ describe('swapsThePlayerScreen', () => {
       swapsThePlayerScreen({
         from: at('revealed'),
         to: at('revealed', { isHostConnected: false })
+      })
+    ).toBe(false)
+    expect(
+      swapsThePlayerScreen({
+        from: at('finished'),
+        to: at('finished', { isHostConnected: false })
       })
     ).toBe(false)
   })

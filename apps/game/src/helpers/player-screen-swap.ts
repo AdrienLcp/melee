@@ -30,7 +30,8 @@ const ARRIVED_AT_AS_A_WHOLE: ReadonlySet<PlayerRoomView['phase']> = new Set([
  * frozen — paused, or its host gone — and Petit Bac's sheet giving way to its
  * vote, since nothing is pressed on what any of them gives way to. Never the floor changing hands, nor a freeze lifted:
  * the transition holds every press for its length, and the race reopens the
- * moment either happens. The reveal's own hold says the host left on its own.
+ * moment either happens. The reveal and the final board say the host left on
+ * their own, with a card opening at their top over what stays readable.
  */
 export const swapsThePlayerScreen = ({
   from,
@@ -52,7 +53,9 @@ export const swapsThePlayerScreen = ({
   return (
     closesTheSheets({ from, to }) ||
     (!from.isPaused && to.isPaused) ||
-    (from.isHostConnected && !to.isHostConnected && to.phase !== 'revealed')
+    (from.isHostConnected &&
+      !to.isHostConnected &&
+      !ARRIVED_AT_AS_A_WHOLE.has(to.phase))
   )
 }
 

@@ -1416,6 +1416,17 @@ the heading's line by a negative block margin so the heading keeps the height
 of _Classement général_: the mark had cost a phone's reveal 5.6px). A room of
 one entry keeps _Cette manche_; it knows what it is playing.
 
+**The same square heads every screen while a line-up plays** (`SpineMark`,
+the glyph on its spine, shared with `ThisRoundHeading`). The console and the
+wall print `RoundGame` beside the round's number, from the countdown to the
+reveal — the game's mark and its name, the entry's own name only beside
+another entry of the same game (`playingRoundName`, the next-round press's
+rule). A player's `RoundChrome` carries the mark in its round line, and the
+name too where the line has the room; a phone keeps the mark alone. The name
+fades in with the countdown, cross-fades in place on a change of game
+(`LeavesInPlace`), and fades out as the final board arrives. Nothing in a room
+of one entry.
+
 ### Black square (`BlackSquareSheet`, `BlackSquareReveal`, `BlackSquareGauge`)
 
 Direction A, _the grid_, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
@@ -1617,6 +1628,15 @@ face draws U+202F almost zero wide, so grouping uses U+00A0 instead.
 `card` lying face up, the title in `billboard` sized down, an optional detail in
 `body` / `--card-muted`. The reflex wait is the same card under the reflex lid's
 saffron band, with no groove — this round must show no clock.
+
+**The host away takes the round, never the result.** While a round runs, the
+card replaces the round whole: nothing on it can be answered. On the reveal
+and the final board it opens at the top of the first screen instead — first
+in the round's block, or first on the final board — and what the round turned
+out to be stays readable under it; the hold that counted to the next round
+closes with it. It opens as a fold (`fold.opens-in-column`, first in its
+column, so it hands the gap back below it), in place rather than as a swapped
+screen.
 
 The order of preference before any spinner: draw what is already known; say it
 in words; reserve the box and let content arrive (cover art). _Known_ means

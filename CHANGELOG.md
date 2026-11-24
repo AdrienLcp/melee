@@ -94,6 +94,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The host stepping away is said at the top of the reveal and the
+  final board.** A player's screen opens _L'hôte a décroché_ first, above the
+  answer and the standings, which stay readable under it, rather than in the
+  countdown's place under the podium — often below a phone's first screen.
+  The final board, which never said it, now does too. Mid-round nothing
+  changes: the card still takes the round.
 - `[Game]` **Every screen names the game being played.** In a line-up of
   several games, the console and the wall print the game's spine and name
   beside the round's number from the countdown to the reveal, and a player's
