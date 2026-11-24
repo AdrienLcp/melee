@@ -23,6 +23,11 @@ Never a `git checkout` in `C:/git/melee`: other sessions run there.
   `.wrangler/` SQLite files locked, and `git worktree remove` fails half-way.
   It fails on pnpm's `node_modules` too: remove the folder with PowerShell
   `Remove-Item -Recurse -Force`, then `git worktree prune`.
+- **A fresh worktree's `wrangler dev` needs `apps/game/dist`**: the assets
+  binding names it, and wrangler exits on a folder that does not exist yet.
+  An empty `apps/game/dist` is enough for a dev stack, where Vite serves the
+  pages. Start each half with `pnpm exec`, not `npx`, which looks for the
+  binary in the wrong folder.
 - **Merging `main` into a branch that deleted a module**: grep `main`'s new
   code for imports of every module the branch removed. Git merges both sides
   cleanly, and the build breaks on an import that no longer resolves.
