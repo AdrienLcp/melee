@@ -1272,10 +1272,11 @@ phone's strip keeps its words: its two ends hold 3.25rem whatever the rest
 get.
 
 **A case beside a name is drawn as a case** (`CaseMark`): a printed case in
-miniature, sized by the font it stands in, its number in the corner, the
+miniature, sized by the font it stands in, its number in the middle, the
 house at the start and the flag at the finish. A bare figure beside a name
 read as a score; the console's list and the wall's heap of chips both print
-the mark.
+the mark. The board's own cases keep the number in their corner, where a
+pawn standing on the case leaves it readable.
 
 **A crowd fits its case.** Past three other pawns a case prints `+N`, and
 three pawns beside a two-figure count stand 4.25 times the pawns' size: on

@@ -4,15 +4,13 @@
 // The most figures a plain case prints: a track is at most 100 cases long
 // (`MAX_BOARD_LENGTH`), and the 100th is the finish's flag.
 $most-figures: 2
-$padding-inline-start: 0.2em
-$padding-inline-end: 0.4em
+$padding-inline: 0.3em
 
 @layer components
-  // A case of the track in miniature, sized by the font it stands in: the
-  // number printed in its corner as the board prints it, so it reads as the
-  // square a pawn stands on beside a name rather than as a score.
+  // A case of the track in miniature, sized by the font it stands in, its
+  // number in the middle: it reads as the square a pawn stands on beside a
+  // name rather than as a score, and no pawn stands on it to need the corner.
   .case-mark
-    align-items: start
     background: var(--track-a)
     border-radius: var(--radius-s)
     box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
@@ -21,21 +19,20 @@ $padding-inline-end: 0.4em
     color: var(--ink)
     display: inline-grid
     flex: none
-    justify-items: start
     min-block-size: 1.5em
     // As wide as its widest number whatever it prints, so a column of cases
     // keeps one edge on either side: a 9 beside a 12 is the same case.
-    min-inline-size: $most-figures * figures.$numeric-width + $padding-inline-start + $padding-inline-end
-    padding: 0.1em $padding-inline-end 0.3em $padding-inline-start
+    min-inline-size: $most-figures * figures.$numeric-width + 2 * $padding-inline
+    // The foot's shadow is the case's edge, so the middle is taken above it.
+    padding: 0.1em $padding-inline 0.2em
+    place-items: center
 
     &[data-mark]
       background: var(--track-five)
       color: var(--track-ink)
 
-    // A glyph is the whole case, not a number printed in its corner.
     &[data-mark='start'], &[data-mark='finish']
       padding: 0.2em 0.2em 0.3em
-      place-items: center
 
     .number
       @include typography.numeric

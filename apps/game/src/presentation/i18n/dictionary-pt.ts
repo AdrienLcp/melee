@@ -1329,14 +1329,10 @@ const PORTUGUESE = defineDictionary({
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
       actions: 'Opções para {nickname}',
-      casesHint:
-        '− e +: uma casa por toque, para uma resposta que o jogo não viu.',
       empty:
         'Ainda ninguém. Lê {code} em voz alta, ou mostra o código QR no ecrã da sala.',
       /** The roster's summary on a narrow screen, after its first three seats. */
       more: '+{count:number}',
-      pointsHint:
-        '− e +: {points:number} pontos por toque, para uma resposta que o jogo não viu.',
       roster: 'Jogadores',
       settings: 'Definições',
       tied: 'empate'

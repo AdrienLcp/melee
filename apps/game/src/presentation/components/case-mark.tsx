@@ -40,7 +40,7 @@ type CaseMarkProps = {
 
 /**
  * The case a pawn stands on, drawn as the track draws it — a printed case with
- * its number in the corner, the start's house and the finish's flag at the
+ * its number in the middle, the start's house and the finish's flag at the
  * ends — so a list beside the names reads as squares, never as a score.
  */
 export const CaseMark: React.FC<CaseMarkProps> = ({ at, length }) => {

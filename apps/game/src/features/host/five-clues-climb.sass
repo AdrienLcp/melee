@@ -176,9 +176,13 @@ $most-named-on-a-rung: 6
       font-size: calc(var(--crowd-pawn) * 0.9)
 
     > .foot
+      --foot-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
+
       align-items: center
+      // The gap before the seats out is their own margin, so it closes with
+      // them: a column gap stays open beside a track at no width.
+      column-gap: 0rem
       display: grid
-      gap: clamp(var(--space-s), calc(var(--stage-unit) * 2), var(--space-l))
       grid-area: foot
       grid-template-columns: minmax(0, 1fr) auto
 
@@ -189,6 +193,10 @@ $most-named-on-a-rung: 6
         .answer-tile
           font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), var(--text-2xl))
 
+    // Closed at no width and with no margin before it, so the choices
+    // run the ladder's whole width until a seat is out: kept at its own
+    // width, it held them short of the rungs' edge. It widens, then fades
+    // in, and fades before it narrows.
     .out
       align-items: center
       background: var(--socket)
@@ -198,18 +206,23 @@ $most-named-on-a-rung: 6
       font-size: var(--crowd-pawn)
       gap: var(--space-xs)
       grid-column: -2 / -1
-      margin: 0
+      inline-size: 0rem
+      interpolate-size: allow-keywords
+      margin: 0rem
       min-inline-size: 0
       overflow: clip
       opacity: 0
       outline: var(--stroke-thin) dashed var(--socket-line)
       outline-offset: calc(-1 * var(--stroke-thin))
-      padding: var(--space-xs) var(--space-s)
-      transition: opacity var(--transition-base, 0s) var(--ease-in)
+      padding: var(--space-xs) 0rem
+      transition: opacity var(--transition-base, 0s) var(--ease-in), inline-size var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s), margin var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s), padding var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s)
 
       &[data-open]
+        inline-size: auto
+        margin-inline-start: var(--foot-gap)
         opacity: 1
-        transition: opacity var(--transition-base, 0s) var(--ease-out)
+        padding-inline: var(--space-s)
+        transition: inline-size var(--transition-base, 0s) var(--ease-out), margin var(--transition-base, 0s) var(--ease-out), padding var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
 
       .pawns
         flex-wrap: nowrap

@@ -1193,13 +1193,9 @@ export const FR_DICTIONARY = defineDictionary({
     },
     podium: {
       actions: 'Options pour {nickname}',
-      casesHint:
-        '– et + : une case d’un coup, pour une réponse que le jeu n’a pas vue.',
       empty:
         'Personne pour l’instant. Lis {code} à voix haute, ou montre le QR de l’écran de la salle.',
       more: '+{count:number}',
-      pointsHint:
-        '– et + : {points:number} points d’un coup, pour une réponse que le jeu n’a pas vue.',
       roster: 'Joueurs',
       settings: 'Réglages',
       tied: 'à égalité'

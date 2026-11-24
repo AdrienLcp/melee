@@ -65,11 +65,15 @@
         background: var(--track-a)
         box-shadow: 0 var(--edge) 0 var(--chipboard)
 
+      // Never shorter than its worth: a share of the height under it let
+      // the worth spill over the dashed edge and dropped the shut mark below
+      // the rung's middle.
       &[data-state='closed']
         background: var(--socket)
         box-shadow: var(--shadow-recess-shallow)
         color: var(--socket-ink)
         flex-grow: var(--closed-grow)
+        min-block-size: calc(var(--worth-size) + var(--rung-pad-block) * 2)
         outline: var(--stroke-thin) dashed var(--socket-line)
         outline-offset: calc(-1 * var(--stroke-thin))
 

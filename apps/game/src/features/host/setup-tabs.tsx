@@ -30,8 +30,6 @@ import {
   withSavedEvening
 } from '@melee/core/room/saved-evening'
 
-import { PointsRows } from '@/presentation/components/points-rows'
-import { Scoreboard } from '@/presentation/components/scoreboard'
 import { ScoringRule } from '@/presentation/components/scoring-rule'
 import { Switch } from '@/presentation/components/switch'
 import { useLastShown } from '@/presentation/components/use-last-shown'
@@ -46,6 +44,7 @@ import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds } from './evening-rounds'
 import { GamePickList } from './game-pick-list'
 import { NumberChoice, useDurationLabels } from './number-choice'
+import { PodiumRoster } from './podium-roster'
 import { ReadyMadeNote, ReadyMadeRows } from './ready-made-line-ups'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
@@ -602,63 +601,27 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
 }
 
 /**
- * Who is at the table, each removable, then points by hand once the game runs:
- * on a desk this tab stands beside the stage, so a bonus called out at the
- * table needs no trip to the menu. This console's own seat is the Room tab's.
+ * Who is at the table, in one list: each seat's standing between the presses
+ * that change it once the game runs, so a bonus called out at the table needs
+ * no trip to the menu, and its removal behind a menu on its row.
  */
 export const PlayersTab: React.FC<SetupTabsProps> = ({
   onRemovePlayer,
   view
 }) => {
   const translate = useTranslate()
-  const [seatedWhenOpened] = useState(
-    () => new Set(view.players.map((player) => player.id))
-  )
   const isEmpty = view.players.length === 0
-  const isPlaying = view.phase !== 'lobby'
   const roster = useRef<HTMLDivElement>(null)
 
   useCrossFadeOnReshape({ box: roster, shape: isEmpty ? 'empty' : 'seated' })
 
   return (
     <div className='players-roster' ref={roster}>
-      {isEmpty ? (
-        <p className='tab-summary'>{translate('team.empty')}</p>
-      ) : (
-        <div className='tab-column'>
-          <Scoreboard
-            hasPawns
-            isRoster={
-              view.teams.length > 0 && view.settings.board.kind === 'track'
-            }
-            onRemove={onRemovePlayer}
-            players={view.players}
-            seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
-            trackLength={
-              view.settings.board.kind === 'track'
-                ? view.settings.board.length
-                : undefined
-            }
-            youId={view.youId}
-          />
-          <div
-            className='hand-points-fold'
-            data-open={isPlaying || undefined}
-            inert={!isPlaying}
-          >
-            <section className='hand-points'>
-              <h3>
-                {translate(
-                  view.settings.board.kind === 'track'
-                    ? 'board.fix'
-                    : 'host.points.label'
-                )}
-              </h3>
-              <PointsRows />
-            </section>
-          </div>
-        </div>
-      )}
+      <PodiumRoster
+        empty={translate('team.empty')}
+        onRemovePlayer={onRemovePlayer}
+        view={view}
+      />
     </div>
   )
 }

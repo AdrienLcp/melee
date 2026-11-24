@@ -1,8 +1,8 @@
 import type React from 'react'
+import { useRef, useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, PublicPlayer } from '@melee/protocol/room'
-import { SCORE_ADJUSTMENT_STEP } from '@melee/protocol/scoring'
 
 import {
   buildRoster,
@@ -24,39 +24,39 @@ import {
   usePointsRows
 } from '@/presentation/components/points-rows'
 import { ReadyMark } from '@/presentation/components/ready-mark'
+import { typedName } from '@/presentation/components/typed-name'
+import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
+import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { RichText } from '@/presentation/i18n/rich-text'
 
 import './podium-roster.sass'
 
-import { typedName } from '@/presentation/components/typed-name'
-import { RichText } from '@/presentation/i18n/rich-text'
+const ROW_EXIT_ANIMATION = 'page-leave'
 
 type PodiumRosterProps = {
+  /** What an empty table says in the list's place. */
+  empty: React.ReactNode
   /** Takes a seat off the table. Never offered on this console's own seat. */
   onRemovePlayer: (playerId: PlayerId) => void
   view: HostRoomView
 }
 
 /**
- * Who is at the table, ranked, each seat's points by hand on its own line once
- * the game runs and its removal behind a menu, so a press aimed at a `+` never
- * lands on the cross. In a room of teams the presses are the teams', drawn
- * under the seats, because a seat's adjustment never reaches its team.
+ * Who is at the table, ranked, in one list: once the game runs, each seat's
+ * standing between the presses that change it, and its removal behind a menu
+ * so a press aimed at a `+` never lands on the cross. In a room of teams the
+ * presses are the teams', drawn under the seats, because a seat's adjustment
+ * never reaches its team. The console's roster, beside a wall or on its own.
  */
 export const PodiumRoster: React.FC<PodiumRosterProps> = ({
+  empty,
   onRemovePlayer,
   view
 }) => {
   const translate = useTranslate()
   const points = usePointsRows()
-
-  if (view.players.length === 0) {
-    return (
-      <p className='podium-empty'>
-        {translate('host.podium.empty', { code: view.code })}
-      </p>
-    )
-  }
+  const list = useRef<HTMLOListElement>(null)
 
   const isInLobby = view.phase === 'lobby'
   const isBetweenRounds = view.phase === 'revealed'
@@ -67,17 +67,51 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
   // own to print, and a rank read off its points would be one nobody sees.
   const seatsStand = !(isByTeam && isOnTrack)
   const isRanked = seatsStand && hasAnybodyScored(view.players)
-  const ranked = seatsStand
-    ? buildScoreboard(view.players)
-    : buildRoster(view.players)
-  const seatPresses = isInLobby || isByTeam ? null : points
+  const ranked = (seatsStand ? buildScoreboard : buildRoster)(view.players)
+  const seatPresses = isByTeam ? null : points
   const sharesRank = (rank: number) =>
     ranked.filter((entry) => entry.rank === rank).length > 1
 
+  // The order is read again as the phase turns, never on a press: a row
+  // re-ranked under the thumb sent the next `+` to the seat that took its
+  // place. A seat that joins meanwhile goes last, and the rank each prints
+  // stays live.
+  const [heldOrder, setHeldOrder] = useState(() => ({
+    ids: ranked.map(({ player }) => player.id),
+    phase: view.phase
+  }))
+
+  if (heldOrder.phase !== view.phase) {
+    setHeldOrder({
+      ids: ranked.map(({ player }) => player.id),
+      phase: view.phase
+    })
+  }
+
+  const { endExitOf, rows } = useLeavingRows({
+    exitAnimation: ROW_EXIT_ANIMATION,
+    rows: inHeldOrder({ held: heldOrder.ids, ranked }).map((entry) => ({
+      ...entry,
+      id: entry.player.id
+    }))
+  })
+
+  // A seat that joins makes room between its neighbours, one that leaves is
+  // closed up behind, and a seat a score lifts travels to its new place.
+  useRowsTravel({
+    list,
+    order: rows.map(({ id }) => id).join(' '),
+    pace: 'gather'
+  })
+
+  if (view.players.length === 0) {
+    return <p className='podium-empty'>{empty}</p>
+  }
+
   return (
-    <>
-      <ol className='podium-roster'>
-        {ranked.map(({ player, rank }) => {
+    <div className='podium-roster-column'>
+      <ol className='podium-roster' ref={list}>
+        {rows.map(({ isArriving, isLeaving, player, rank }) => {
           const row = seatPresses?.rows.find((each) => each.id === player.id)
           const isYou = player.id === view.youId
           const notes = [
@@ -88,11 +122,17 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
 
           return (
             <li
+              aria-hidden={isLeaving || undefined}
               className='podium-seat'
+              data-arrived={isArriving || undefined}
               data-away={!player.isConnected || undefined}
+              data-key={player.id}
               data-leads={(isRanked && rank === 1) || undefined}
+              data-leaving={isLeaving || undefined}
               data-you={isYou || undefined}
+              inert={isLeaving}
               key={player.id}
+              onAnimationEnd={isLeaving ? endExitOf(player.id) : undefined}
             >
               <span className='podium-rank'>{isRanked ? rank : ''}</span>
               <Pawn
@@ -107,48 +147,55 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                   <span className='podium-note'>{notes.join(' · ')}</span>
                 )}
               </span>
-              <span className='podium-tally'>
-                {seatPresses !== null && row !== undefined && (
-                  <Button
-                    aria-label={row.takeLabel}
-                    isDisabled={!seatPresses.isLive || !row.canTake}
-                    onPress={() => {
-                      seatPresses.onStep(row, -1)
-                    }}
-                    size='small'
-                    variant='outlined'
-                  >
-                    <MinusIcon />
-                  </Button>
-                )}
-                <span className='podium-score'>
-                  {!seatsStand
-                    ? null
-                    : board.kind === 'track'
-                      ? player.board !== null && (
-                          <CaseMark
-                            at={player.board.case}
-                            length={board.length}
-                          />
-                        )
-                      : translate('player.score', {
-                          points: shownPoints(player.score)
-                        })}
+              {seatsStand && (
+                <span
+                  className='podium-tally'
+                  data-open={!isInLobby || undefined}
+                  data-presses={row !== undefined || undefined}
+                  inert={isInLobby}
+                >
+                  <span className='podium-tally-pieces'>
+                    {seatPresses !== null && row !== undefined && (
+                      <Button
+                        aria-label={row.takeLabel}
+                        isDisabled={!seatPresses.isLive || !row.canTake}
+                        onPress={() => {
+                          seatPresses.onStep(row, -1)
+                        }}
+                        size='small'
+                        variant='outlined'
+                      >
+                        <MinusIcon />
+                      </Button>
+                    )}
+                    <span className='podium-score'>
+                      {board.kind === 'track'
+                        ? player.board !== null && (
+                            <CaseMark
+                              at={player.board.case}
+                              length={board.length}
+                            />
+                          )
+                        : translate('player.score', {
+                            points: shownPoints(player.score)
+                          })}
+                    </span>
+                    {seatPresses !== null && row !== undefined && (
+                      <Button
+                        aria-label={row.giveLabel}
+                        isDisabled={!seatPresses.isLive || !row.canGive}
+                        onPress={() => {
+                          seatPresses.onStep(row, 1)
+                        }}
+                        size='small'
+                        variant='outlined'
+                      >
+                        <PlusIcon />
+                      </Button>
+                    )}
+                  </span>
                 </span>
-                {seatPresses !== null && row !== undefined && (
-                  <Button
-                    aria-label={row.giveLabel}
-                    isDisabled={!seatPresses.isLive || !row.canGive}
-                    onPress={() => {
-                      seatPresses.onStep(row, 1)
-                    }}
-                    size='small'
-                    variant='outlined'
-                  >
-                    <PlusIcon />
-                  </Button>
-                )}
-              </span>
+              )}
               {isYou ? (
                 <span className='podium-menu-slot' />
               ) : (
@@ -183,23 +230,37 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
           )
         })}
       </ol>
-      {seatPresses !== null && (
-        <p className='podium-hint'>
-          {isOnTrack
-            ? translate('host.podium.casesHint')
-            : translate('host.podium.pointsHint', {
-                points: shownPoints(SCORE_ADJUSTMENT_STEP)
-              })}
-        </p>
+      {isByTeam && (
+        <div
+          className='podium-team-fold'
+          data-open={!isInLobby || undefined}
+          inert={isInLobby}
+        >
+          <section className='podium-team-points'>
+            <h3>{translate(isOnTrack ? 'board.fix' : 'host.points.label')}</h3>
+            <PointsRows />
+          </section>
+        </div>
       )}
-      {!isInLobby && isByTeam && (
-        <section className='podium-team-points'>
-          <h3>{translate(isOnTrack ? 'board.fix' : 'host.points.label')}</h3>
-          <PointsRows />
-        </section>
-      )}
-    </>
+    </div>
   )
+}
+
+/** The seats in the order held, those it does not hold yet after them in rank order. */
+const inHeldOrder = <Entry extends { player: PublicPlayer }>({
+  held,
+  ranked
+}: {
+  held: readonly PlayerId[]
+  ranked: readonly Entry[]
+}): Entry[] => {
+  const placeOf = (entry: Entry) => {
+    const at = held.indexOf(entry.player.id)
+
+    return at === -1 ? held.length : at
+  }
+
+  return ranked.toSorted((one, other) => placeOf(one) - placeOf(other))
 }
 
 /**

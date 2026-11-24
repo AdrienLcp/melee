@@ -1,7 +1,19 @@
+@use '../../presentation/styles/fold'
+@use '../../presentation/styles/focus'
 @use '../../presentation/styles/rank'
 @use '../../presentation/styles/typography'
 
 @layer components
+  // The seats over the teams' presses: a flex column, so the presses folded
+  // away in the lobby hand their gap back.
+  .podium-roster-column
+    display: flex
+    flex-direction: column
+    gap: var(--space-m)
+
+    > .podium-team-fold
+      @include fold.opens-in-column(var(--space-m))
+
   // One grid for every seat, each row a subgrid of it, so the scores stand in
   // a column whatever the names are.
   .podium-roster
@@ -30,11 +42,24 @@
       .podium-name
         color: var(--ink-muted)
 
-    // In a column as narrow as the console's beside a wall, the name takes
-    // the first line whole and the tally the second, its presses beside the
-    // menu: inline, they left a name five letters.
+    // A seat sets itself down as it joins, and lifts off the way it came
+    // before the rows under it close up.
+    &[data-arrived],
+    &[data-leaving]
+      --travel-offset: 0 -40%
+      --travel-scale: 1.08
+
+    &[data-arrived]
+      animation: page-enter var(--transition-slow, 0s) var(--ease-out)
+
+    &[data-leaving]
+      animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
+
+    // In a column as narrow as the console's panel, the name and its menu
+    // take the first line and the stepper the second, where it opens with
+    // the game: inline, they left a name five letters.
     @container podium-roster (width < 26rem)
-      &:has(.podium-tally > :not(.podium-score))
+      &:has(.podium-tally[data-presses])
         grid-template-rows: auto auto
         row-gap: var(--space-2xs)
 
@@ -42,7 +67,7 @@
           display: contents
 
         .podium-line
-          grid-column: 3 / -1
+          grid-column: 3 / 5
           grid-row: 1
 
         .podium-note
@@ -50,12 +75,12 @@
           grid-row: 2
 
         .podium-tally
-          grid-column: 4
+          grid-column: 4 / -1
           grid-row: 2
 
         > :is(.action-menu-trigger, .podium-menu-slot)
           grid-column: 5
-          grid-row: 2
+          grid-row: 1
 
         > :is(.podium-rank, .pawn)
           grid-row: 1
@@ -95,8 +120,18 @@
     white-space: nowrap
 
   // The score between the presses that change it, a stepper rather than a
-  // figure with two buttons left beside it.
+  // figure with two buttons left beside it. Folded away in the lobby, where
+  // nobody stands anywhere yet, and opened with the game.
   .podium-tally
+    @include fold.opens-in-line(0rem, $gives-back-height: true)
+
+    justify-self: end
+
+    // The fold clips across; a press's ring reaches past its box.
+    > *
+      overflow-clip-margin: focus.$ring-reach
+
+  .podium-tally-pieces
     align-items: center
     display: flex
     gap: var(--space-xs)
@@ -116,7 +151,6 @@
     &:has(.case-mark)
       font-size: var(--text-m)
 
-  .podium-hint,
   .podium-empty
     @include typography.caption
 

@@ -173,39 +173,15 @@
       &[data-mark='finish']
         background: linear-gradient(var(--track-five) 0 0) top / 100% 78% no-repeat, repeating-conic-gradient(var(--board-ink) 0 25%, var(--track-a) 0 50%) bottom left / clamp(0.5rem, 11cqmin, 0.875rem) clamp(0.5rem, 11cqmin, 0.875rem)
 
-    // A printed number in the middle of an empty case, heavier every five,
-    // with the start and the finish spelling themselves out where the word
-    // fits. A pawn arriving stands at the case's foot, and the number rises
-    // to the top edge to make room for it, then settles back once it leaves.
+    // A printed number in the case's corner, heavier every five, with the
+    // start and the finish spelling themselves out where the word fits.
     .number
       @include typography.numeric
       @include typography.solid
 
       font-size: clamp(var(--text-3xs), 22cqmin, var(--text-m))
-      inset-block-start: 50%
-      inset-inline-start: 50%
+      inset: 0.3em auto auto 0.45em
       position: absolute
-      transition: inset-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out), translate var(--transition-base, 0s) var(--ease-out)
-      translate: -50% -50%
-      white-space: nowrap
-
-      // The finish's checks take the case's foot, so its word centres on
-      // what is left above them.
-      &:is([data-mark='finish'] > *)
-        inset-block-start: 39%
-
-      // Out of the way quicker than it settles back, so a pawn landing never
-      // stands on its number for a frame.
-      &:has(+ .pawns > .standing)
-        inset-block-start: 0.3em
-        transition-duration: var(--transition-fast, 0s)
-        translate: -50% 0
-
-        // A case too short for a number over a pawn — a phone-wide wall at a
-        // hundred cases — gives the pawn the whole of it, and its neighbours
-        // say which case it is.
-        @container board-case (height < 2.75rem)
-          opacity: 0
 
       &:is([data-mark='five'] > *)
         font-size: clamp(var(--text-3xs), 30cqmin, var(--text-xl))

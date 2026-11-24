@@ -15,7 +15,6 @@ import {
   OutlineIcon,
   PictureIcon,
   PlayersIcon,
-  QuoteIcon,
   WorldIcon
 } from '@/presentation/components/icons'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -23,7 +22,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './five-clues-ladder.sass'
 
-/** What every rung of a subject asks, vaguest first: a shut rung shows its kind's glyph before its clue opens. */
+/** What every rung of a subject asks, vaguest first: a shut rung shows its kind's glyph, where it has one, before its clue opens. */
 const WRITTEN_RUNGS = ['text', 'text', 'text', 'text', 'text'] as const
 
 const RUNG_KINDS = {
@@ -38,6 +37,11 @@ const RUNG_KINDS = {
 /** One name a rung, so a rung keeps its element whichever clue lands on it. */
 const RUNGS = ['first', 'second', 'third', 'fourth', 'fifth'] as const
 
+/**
+ * The glyph a shut rung shows of what is coming. A written clue has none: on a
+ * subject whose five rungs are all written it said nothing, five times, and a
+ * quote mark that small read as letters.
+ */
 const KIND_ICONS = {
   cities: CitiesIcon,
   flag: FlagIcon,
@@ -45,8 +49,8 @@ const KIND_ICONS = {
   outline: OutlineIcon,
   region: WorldIcon,
   size: PlayersIcon,
-  text: QuoteIcon
-} satisfies Record<Clue['kind'], React.FC>
+  text: null
+} satisfies Record<Clue['kind'], React.FC | null>
 
 /** A rung still shut, the one open now, or one the climb went past (every rung once revealed). */
 export type RungState = 'closed' | 'open' | 'past'
@@ -138,7 +142,7 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
             </VisuallyHidden>
             <div className='face'>
               <span className='shut'>
-                <KindIcon />
+                {KindIcon !== null && <KindIcon />}
                 <VisuallyHidden elementType='span'>
                   {translate(`fiveclues.kind.${kind}`)}
                 </VisuallyHidden>

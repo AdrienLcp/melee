@@ -54,7 +54,6 @@ import {
   Play,
   Plus,
   QrCode,
-  Quote,
   RotateCcw,
   RotateCcwClock,
   RotateCw,
@@ -103,7 +102,6 @@ export const CitiesIcon = inFamily(Building2)
 export const FlagIcon = inFamily(Flag)
 export const OutlineIcon = inFamily(MapGlyph)
 export const PictureIcon = inFamily(ImageGlyph)
-export const QuoteIcon = inFamily(Quote)
 // Its pips are near-zero-length strokes, which a butt cap draws as nothing.
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)

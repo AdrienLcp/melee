@@ -57,7 +57,11 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
   const rosterTitleId = useId()
 
   const roster = (
-    <PodiumRoster onRemovePlayer={setup.onRemovePlayer} view={view} />
+    <PodiumRoster
+      empty={translate('host.podium.empty', { code: view.code })}
+      onRemovePlayer={setup.onRemovePlayer}
+      view={view}
+    />
   )
 
   const settings = (

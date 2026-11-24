@@ -15,9 +15,7 @@ import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AwayMark } from './away-mark'
-import { Button } from './button'
 import { CaseMark } from './case-mark'
-import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
 import { ReadyMark } from './ready-mark'
 import { useLeavingRows } from './use-leaving-rows'
@@ -70,13 +68,6 @@ type ScoreboardProps = {
    * without one.
    */
   hasPawns?: boolean
-  /**
-   * Gives each row a way to drop that player. Omitted everywhere the board is
-   * something to *read* — the room's screen mid-round, a player's screen, the
-   * final board — and passed only by the host's own roster, which is the one
-   * surface where who is in the room is being managed rather than shown.
-   */
-  onRemove?: (playerId: string) => void
   /** Ranked here, not by the caller — ties share a rank and the order is stable. */
   players: readonly PublicPlayer[]
   /**
@@ -129,7 +120,6 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   isRoster,
   label,
   marksReady,
-  onRemove,
   ownRow,
   players,
   rankedBefore,
@@ -178,7 +168,6 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
         'scoreboard',
         isRanked && 'ranked',
         isResult === true && rows.length > PLAYERS_PER_COLUMN && 'in-columns',
-        onRemove !== undefined && 'removable',
         className
       ]
         .filter(Boolean)
@@ -267,24 +256,6 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                   points: shownPoints(player.score)
                 })}
               </span>
-            )}
-            {onRemove !== undefined && (
-              <Button
-                aria-label={translate
-                  .rich('host.players.removeNamed', {
-                    name: (nickname) => nickname,
-                    nickname: player.nickname
-                  })
-                  .join('')}
-                className='remove'
-                onPress={() => {
-                  onRemove(player.id)
-                }}
-                size='small'
-                variant='outlined'
-              >
-                <CrossIcon />
-              </Button>
             )}
           </li>
         )

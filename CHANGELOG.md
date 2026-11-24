@@ -62,6 +62,18 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The console's Players tab is one list.** Each seat's case or
+  points sits between its − and + on the seat's own row, opened with the
+  game, and its removal behind the row's menu — the same list as beside a
+  wall. A press no longer re-ranks the list under the thumb: the order is read
+  again as the phase turns, so a second `+` lands on the seat the first one
+  did. A case beside a name prints its number in the middle; the board's
+  cases have theirs back in the corner, clear of the pawns.
+- `[Game]` **Cinq indices' shut rungs hold their worth.** A rung still shut is
+  never shorter than its worth, which spilled over the dashed edge, and a
+  written rung shows no glyph: five quote marks said nothing and read as
+  letters. The four choices run the ladder's whole width until a seat is
+  out, the seats out widening in beside them.
 - `[Game]` **_Oui, on ferme_ lands where _Fermer la table_ was.** The
   warning opened above the presses and pushed the confirm a line down, so the
   pointer had to chase it; it opens under them now, the confirm in the same
