@@ -91,9 +91,20 @@ export const FiveCluesLadder: React.FC<FiveCluesLadderProps> = ({
   window
 }) => {
   const translate = useTranslate()
+  const openClue = isRevealed ? undefined : clues[openClueIndex]
+  const openPhoto = openClue?.kind === 'image' ? openClue.photo : null
 
   return (
-    <ol className='five-clues-ladder' data-size={size}>
+    <ol
+      className='five-clues-ladder'
+      data-open-photo={openPhoto !== null || undefined}
+      data-size={size}
+      style={
+        openPhoto === null
+          ? undefined
+          : { '--open-photo-ratio': openPhoto.width / openPhoto.height }
+      }
+    >
       {RUNG_KINDS[subject].map((plannedKind, clueIndex) => {
         const clue = clues[clueIndex]
         const kind = clue?.kind ?? plannedKind

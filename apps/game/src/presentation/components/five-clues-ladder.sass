@@ -59,7 +59,7 @@
       min-block-size: 0
       padding: var(--rung-pad-block) var(--rung-pad-end) var(--rung-pad-block) var(--rung-pad-start)
       position: relative
-      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), flex-basis var(--transition-slow, 0s) var(--ease-out), padding var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
+      transition: flex-grow var(--transition-slow, 0s) var(--ease-out), flex-basis var(--transition-slow, 0s) var(--ease-out), padding var(--transition-slow, 0s) var(--ease-out), margin-inline-end var(--transition-slow, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), outline-color var(--transition-base, 0s) var(--ease-out)
 
       &[data-state='past']
         background: var(--track-a)
@@ -157,6 +157,27 @@
     .rung[data-still] .clue
       animation: none
 
+    // The photograph is the giveaway rung, and a face drawn at the outline's
+    // size could not be known: open, its rung takes every row the climbed
+    // rungs leave and the photograph fills what the window's bar leaves of it.
+    &[data-open-photo]
+      > .rung[data-state='past']
+        flex-grow: 0
+
+      > .rung[data-state='open']
+        flex-grow: 1
+
+        .clue
+          align-content: stretch
+          grid-template-rows: auto minmax(0, 1fr)
+
+          > .five-clues-clue
+            --prompt-picture-height: 100cqh
+
+            align-self: stretch
+            container-type: size
+            grid-row: -2 / -1
+
     // A seat's rungs below and above the open one stand at their clue's own
     // height, never under it: the open rung grows into what they leave.
     &[data-size='seat']
@@ -217,13 +238,54 @@
       --open-clue: clamp(var(--text-s), min(calc(var(--stage-unit) * 4.6), 8cqh), var(--text-4xl))
       --past-clue: clamp(var(--text-xs), min(calc(var(--stage-unit) * 2.6), 3.4cqh), var(--text-2xl))
 
-      container-type: size
+      container: five-clues-wall / size
       // A rung opening goes from a share of the height to its clue's own.
       interpolate-size: allow-keywords
 
       > .rung:not([data-state='closed'])
         flex-basis: auto
         flex-shrink: 0
+
+    // A wall lying down has no height for a face in a rung: the photograph
+    // hangs beside the whole ladder instead, at its height, and the rungs
+    // draw in to make room for it.
+    &[data-size='wall'][data-open-photo]
+      --photo-column: min(calc(100cqh * var(--open-photo-ratio, 1)), 42cqw)
+
+      // Named: the photograph is a size container of its own, and an unnamed
+      // query would ask its shape rather than the ladder's.
+      @container five-clues-wall (aspect-ratio >= 2)
+        > .rung
+          margin-inline-end: calc(var(--photo-column) + var(--rung-columns-gap))
+
+        > .rung[data-state='past']
+          flex-grow: var(--past-grow)
+
+        // Positioned against the ladder rather than its rung, and landing on
+        // its own: the clue's landing translates it, which would carry the
+        // photograph with it.
+        > .rung[data-state='open']
+          flex-grow: var(--past-grow)
+          position: static
+
+          .clue
+            animation: none
+
+            > .five-clues-clue
+              animation: five-clues-clue-lands var(--transition-slow, 0s) var(--ease-out) var(--transition-base, 0s) backwards
+              align-items: start
+              inline-size: var(--photo-column)
+              inset-block: 0
+              inset-inline-end: 0
+              justify-content: center
+              position: absolute
+
+              // Ringed in the open rung's ink: the clue it is.
+              > .estimate-photo
+                box-shadow: 0 0 0 var(--stroke-bold) var(--phase-ink), 0 calc(var(--edge) * 1.6) 0 var(--chipboard), var(--shadow-pulled)
+
+        > .rung[data-still] .clue > .five-clues-clue
+          animation: none
 
     &[data-size='reveal']
       --rung-columns: var(--worth-size) minmax(0, 0.8fr) minmax(0, 1.5fr)

@@ -47,6 +47,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Cinq indices' photograph is big enough to know.** The last rung's
+  face was drawn at the outline's size, a thumbnail in an empty card: open,
+  it now fills the rung on a phone and on a wall standing up, and on a wall
+  lying down it hangs beside the ladder at its full height while the rungs
+  draw in for it.
 - `[Game]` **The keyboard stays up between two guesses.** Black square, the
   typed quiz and blind test, Cinq indices and L’Ardoise hand the focus back
   to the field after a send or a Previous/Next press, so the next guess is

@@ -344,6 +344,15 @@ at the start of the session, each by fun at the table:
   the row, because a QID written wrong would show somebody else's face.
   Films and characters never have one: posters and characters are
   copyrighted. Every shut rung of these subjects shows the quote glyph.
+  Drawn at the outline's size the photograph was a face too small to know
+  (about 60px on a phone, 100px on a wall — 24/11/2026): open, its rung
+  takes every row the climbed rungs leave and the photograph fills it
+  (268px wide on a 390px phone, 400 tall on a 9:16 wall). A wall wider than
+  twice its ladder's height has no such row, so the photograph hangs beside
+  the whole ladder at its height, ringed in the open rung's ink, and the
+  rungs draw in for it (381px tall at 1280 × 720, 601 at 1920 × 1080, four
+  choices and 24 seats on screen). The ladder carries the photograph's ratio
+  (`--open-photo-ratio`) so that column is exactly the picture's width.
 - **One subject drawn evenly, then a row**: the room's `subjects` setting
   (all six by default, and for a room stored before it) lists what a round
   may hide, and `drawFiveCluesCard` shuffles them and deals the first that
