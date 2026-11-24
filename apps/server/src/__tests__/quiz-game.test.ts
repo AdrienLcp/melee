@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { DEFAULT_QUIZ_SETTINGS } from '@melee/protocol/game'
+import { pickedChoiceIndexOf } from '@melee/protocol/picked-choice'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -48,7 +49,7 @@ const BUZZER_QUIZ = quizWith(DEFAULT_MODE_SETTINGS.buzzer)
 
 /** Every string a player must never be handed before the answer is public. */
 const SECRETS = [
-  ...QUESTIONS.map((question) => question.answer),
+  ...QUESTIONS.flatMap((question) => Object.values(question.answer)),
   ...QUESTIONS.flatMap((question) => question.accepted),
   ...QUESTIONS.flatMap((question) =>
     question.note === null ? [] : [question.note]
@@ -105,8 +106,10 @@ describe('a quiz through the seam', () => {
   it('[quiz] opens a round with no catalogue behind it', async () => {
     const { host, zoe } = await roundInPlay(TYPED_QUIZ)
 
-    expect(quizRound(playerView(zoe))?.prompt.prompt).toBe(QUESTIONS[0]?.prompt)
-    expect(hostQuestion(host)?.answer).toBe(QUESTIONS[0]?.answer)
+    expect(quizRound(playerView(zoe))?.prompt.prompt).toEqual(
+      QUESTIONS[0]?.prompt
+    )
+    expect(hostQuestion(host)?.answer).toEqual(QUESTIONS[0]?.answer)
   })
 
   /**
@@ -146,7 +149,7 @@ describe('a quiz through the seam', () => {
 
     const revealed = quizRound(playerView(zoe))?.revealedQuestion
 
-    expect(revealed?.answer).toBe(QUESTIONS[0]?.answer)
+    expect(revealed?.answer).toEqual(QUESTIONS[0]?.answer)
     expect(revealed?.note).toBe(QUESTIONS[0]?.note)
   })
 
@@ -156,8 +159,10 @@ describe('a quiz through the seam', () => {
     const choices = quizRound(playerView(zoe))?.choices ?? []
 
     expect(choices).toHaveLength(4)
-    expect(choices.toSorted()).toEqual(
-      [QUESTIONS[0]?.answer, ...(QUESTIONS[0]?.decoys ?? [])].toSorted()
+    expect(choices.map(({ en }) => en).toSorted()).toEqual(
+      [QUESTIONS[0]?.answer, ...(QUESTIONS[0]?.decoys ?? [])]
+        .map((choice) => choice?.en)
+        .toSorted()
     )
     expect(transcriptOf(zoe)).not.toContain('correctChoiceIndex')
   })
@@ -192,7 +197,9 @@ describe('a quiz through the seam', () => {
 
     picked.zoe.send({
       answer: {
-        choiceIndex: choices.indexOf(QUESTIONS[0]?.answer ?? ''),
+        choiceIndex: choices.findIndex(
+          ({ en }) => en === QUESTIONS[0]?.answer.en
+        ),
         kind: 'choice'
       },
       roundId: playerView(picked.zoe)?.round?.id ?? '',
@@ -374,7 +381,113 @@ describe('a quiz through the seam', () => {
 
     expect(quizRound(playerView(zoe))?.prompt.flag).toBe('0123456789ab.svg')
     expect(hostQuestion(host)?.flag).toBe('0123456789ab.svg')
-    expect(transcriptOf(zoe)).not.toContain('Japan')
+
+    for (const name of ['Japan', 'Japon', 'Japão']) {
+      expect(transcriptOf(zoe)).not.toContain(name)
+    }
+  })
+
+  const FRENCH_CHOICE_QUIZ: RoomSettings = {
+    ...CHOICE_QUIZ,
+    game: { ...DEFAULT_QUIZ_SETTINGS, language: 'fr', roundDurationMs: 5_000 },
+    roundCount: QUESTIONS.length
+  }
+
+  it('[quiz] reads a flag in every language a screen speaks, whatever the room’s', async () => {
+    const { host, zoe } = await contestedRoundInPlay(FRENCH_CHOICE_QUIZ)
+
+    await playUntil({ category: 'flags', host, zoe })
+
+    const round = quizRound(playerView(zoe))
+
+    expect(round?.prompt.prompt).toEqual({
+      en: 'Whose flag is this?',
+      fr: 'À qui est ce drapeau ?',
+      pt: 'De quem é esta bandeira?'
+    })
+    expect(round?.choices.map(({ pt }) => pt).toSorted()).toEqual(
+      ['Bangladesh', 'Coreia do Sul', 'Japão', 'Palau'].toSorted()
+    )
+
+    for (const choice of round?.choices ?? []) {
+      const sameCountry =
+        QUESTIONS[3]?.decoys.find(({ en }) => en === choice.en) ??
+        QUESTIONS[3]?.answer
+
+      expect(choice).toEqual(sameCountry)
+    }
+  })
+
+  it('[quiz] records a pick by its place among the four, in no language', async () => {
+    const { host, zoe } = await contestedRoundInPlay(FRENCH_CHOICE_QUIZ)
+
+    await playUntil({ category: 'flags', host, zoe })
+    await waitFor(
+      () => playerView(zoe)?.phase === 'playing',
+      'the flag to open'
+    )
+
+    const roundId = playerView(zoe)?.round?.id ?? ''
+    const japan =
+      quizRound(playerView(zoe))?.choices.findIndex(
+        ({ en }) => en === 'Japan'
+      ) ?? -1
+
+    zoe.send({
+      answer: { choiceIndex: japan, kind: 'choice' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the pick to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const said = hostView(host)?.round?.revealedAnswers.find(
+      ({ playerId }) => playerId === playerView(zoe)?.youId
+    )?.said
+
+    expect(pickedChoiceIndexOf(said ?? '')).toBe(japan)
+    expect(quizRound(playerView(zoe))?.revealedQuestion?.answer).toEqual({
+      en: 'Japan',
+      fr: 'Japon',
+      pt: 'Japão'
+    })
+  })
+
+  it('[quiz] takes a flag typed in a language the room is not playing', async () => {
+    const { host, zoe } = await roundInPlay({
+      ...TYPED_QUIZ,
+      game: {
+        ...DEFAULT_QUIZ_SETTINGS,
+        language: 'fr',
+        roundDurationMs: 5_000
+      },
+      roundCount: QUESTIONS.length
+    })
+
+    await playUntil({ category: 'flags', host, zoe })
+    await waitFor(
+      () => playerView(zoe)?.phase === 'playing',
+      'the flag to open'
+    )
+
+    zoe.send({
+      answer: { guess: 'Japão', kind: 'typed' },
+      roundId: playerView(zoe)?.round?.id ?? '',
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => playerView(zoe)?.yourVerdict !== null,
+      'the guess to be graded'
+    )
+
+    expect(playerView(zoe)?.yourVerdict).toEqual({
+      isCorrect: true,
+      kind: 'single'
+    })
   })
 
   it('[quiz] draws a rebus on every screen and keeps its title', async () => {

@@ -393,6 +393,15 @@ which is why a user-visible string written into a component is a bug — see
   view it draws: a mid-game reload must re-apply nothing, because the server
   would refuse the three a round is built on and the rest would rearrange
   somebody's evening between two rounds
+- **A screen's language** — every screen reads a round in its own locale: a
+  round's text travels as `LocalizedText` in all three, a one-language bank
+  row copied into each, and a pick is said as its index (`pickedChoiceSaid`),
+  never as words. Only the word games deal one `language` for the table, since
+  a word matched across two dictionaries never matches. **`homeCountry`** is
+  the one tag of a country's own content — on the row, `null` for every
+  table's, and on the settings of each game whose bank holds such rows, seeded
+  from the host's locale. _Sans frontières_ is the ready-made evening that
+  sets it `null` everywhere and leaves the word games out
 
 ## The blind test is the first game, not the product
 

@@ -253,6 +253,7 @@
         "pt": "Um padrão de pelagem que aparece em muitas raças, não uma raça."
       }
     },
+    "homeCountry": null,
     "id": "cat-breeds",
     "labels": {
       "en": "Cat breeds",
@@ -515,6 +516,7 @@
         "pt": "O rei da selva vive na savana."
       }
     },
+    "homeCountry": null,
     "id": "jungle-animals",
     "labels": {
       "en": "Jungle animals",
@@ -790,6 +792,7 @@
         "pt": "Vive em lagos, mas é um anfíbio."
       }
     },
+    "homeCountry": null,
     "id": "freshwater-fish",
     "labels": {
       "en": "Freshwater fish",
@@ -1052,6 +1055,7 @@
         "pt": "Uma ave da Nova Zelândia, não da Austrália."
       }
     },
+    "homeCountry": null,
     "id": "australian-animals",
     "labels": {
       "en": "Australian animals",
@@ -1301,6 +1305,7 @@
         "pt": "Canta de noite na primavera, mas vive de dia."
       }
     },
+    "homeCountry": null,
     "id": "nocturnal-animals",
     "labels": {
       "en": "Nocturnal animals",
@@ -1576,6 +1581,7 @@
         "pt": "Uma forma de cultivar uma árvore em miniatura, não uma planta."
       }
     },
+    "homeCountry": null,
     "id": "houseplants",
     "labels": {
       "en": "Houseplants",
@@ -1851,6 +1857,7 @@
         "pt": "Uma liga de ferro e carbono, não um elemento."
       }
     },
+    "homeCountry": null,
     "id": "chemical-elements",
     "labels": {
       "en": "Chemical elements",
@@ -2126,6 +2133,7 @@
         "pt": "Uma única estrela, na ponta da Ursa Menor."
       }
     },
+    "homeCountry": null,
     "id": "constellations",
     "labels": {
       "en": "Constellations",
@@ -2388,6 +2396,7 @@
         "pt": "Um lago salgado sem saída, diga o nome o que disser."
       }
     },
+    "homeCountry": null,
     "id": "seas-and-oceans",
     "labels": {
       "en": "Seas and oceans",
@@ -2676,6 +2685,7 @@
         "pt": "Um departamento ultramarino francês, não um país."
       }
     },
+    "homeCountry": null,
     "id": "african-countries",
     "labels": {
       "en": "African countries",
@@ -2964,6 +2974,7 @@
         "pt": "Uma região da China, não um país à parte."
       }
     },
+    "homeCountry": null,
     "id": "asian-countries",
     "labels": {
       "en": "Asian countries",
@@ -3148,6 +3159,7 @@
         "pt": "Uma região francesa, não um país."
       }
     },
+    "homeCountry": null,
     "id": "south-american-countries",
     "labels": {
       "en": "South American countries",
@@ -3436,6 +3448,7 @@
         "pt": "Um território dos EUA, não um estado."
       }
     },
+    "homeCountry": null,
     "id": "us-states",
     "labels": {
       "en": "US states",
@@ -3724,6 +3737,7 @@
         "pt": "Um bairro de Nova Iorque, não uma cidade à parte."
       }
     },
+    "homeCountry": null,
     "id": "world-cities",
     "labels": {
       "en": "Big cities of the world",
@@ -4012,6 +4026,7 @@
         "pt": "Escavado por um rio, construído por ninguém."
       }
     },
+    "homeCountry": null,
     "id": "famous-monuments",
     "labels": {
       "en": "Famous monuments",
@@ -4248,6 +4263,7 @@
         "pt": "Uma catástrofe, sim, mas causada pelo homem."
       }
     },
+    "homeCountry": null,
     "id": "natural-disasters",
     "labels": {
       "en": "Natural disasters",
@@ -4536,6 +4552,7 @@
         "pt": "O Nilo nasce nele, mas é um lago."
       }
     },
+    "homeCountry": null,
     "id": "rivers",
     "labels": {
       "en": "Rivers of the world",
@@ -4785,6 +4802,7 @@
         "pt": "Um único cume, nos Himalaias."
       }
     },
+    "homeCountry": null,
     "id": "mountain-ranges",
     "labels": {
       "en": "Mountain ranges",
@@ -5047,6 +5065,7 @@
         "pt": "Conta como continente, não como ilha."
       }
     },
+    "homeCountry": null,
     "id": "islands",
     "labels": {
       "en": "Islands",
@@ -5309,6 +5328,7 @@
         "pt": "Bico de pato, põe ovos e nada, mas é um mamífero."
       }
     },
+    "homeCountry": null,
     "id": "water-birds",
     "labels": {
       "en": "Water birds",
@@ -5545,6 +5565,7 @@
         "pt": "Não tem patas, mas é um lagarto."
       }
     },
+    "homeCountry": null,
     "id": "snakes",
     "labels": {
       "en": "Snakes",
@@ -5794,6 +5815,7 @@
         "pt": "Uma faixa semiárida a sul do Sara, não um deserto."
       }
     },
+    "homeCountry": null,
     "id": "deserts",
     "labels": {
       "en": "Deserts",
@@ -6069,6 +6091,7 @@
         "pt": "Resina de árvore fossilizada, não um mineral."
       }
     },
+    "homeCountry": null,
     "id": "rocks-and-minerals",
     "labels": {
       "en": "Rocks and minerals",
@@ -6357,6 +6380,7 @@
         "pt": "Uma lenda: nunca ninguém apanhou nenhum."
       }
     },
+    "homeCountry": null,
     "id": "mountain-animals",
     "labels": {
       "en": "Mountain animals",
@@ -6575,6 +6599,7 @@
         "pt": "Tem hastes, que caem todos os anos, não chifres."
       }
     },
+    "homeCountry": null,
     "id": "horned-animals",
     "labels": {
       "en": "Horned animals",

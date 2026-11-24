@@ -80,13 +80,14 @@
           // A card of fixed height whose list kept what its rows left over drew
           // a single chip over a blank half: the list keeps what its rows need,
           // as the map's does, and the answer's card takes the rest. Black
-          // square is the other way up — a title over a grid that divides the
-          // rest — and keeps the reveal's own `auto minmax(0, 1fr)`: under
-          // this one its grid, a size container, was handed `auto`, which is
-          // nothing.
+          // square and Five clues are the other way up — a title over a grid
+          // or a ladder that divides the rest — and keep the reveal's own
+          // rows ending on `minmax(0, 1fr)`: under this one each, a size
+          // container, was handed `auto`, which is nothing — five rungs
+          // folded into one line under the summit.
           // The answer's card never shrinks under its own lines: the list
           // under the round's heading and podium gives way first, scrolling.
-          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'], [data-game='thinkalike'])
+          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='fiveclues'], [data-game='petitbac'], [data-game='swatch'], [data-game='thinkalike'])
             grid-template-rows: minmax(min-content, 1fr) auto auto
 
             &:has(> .tally)
@@ -110,8 +111,10 @@
           height: var(--podium-atlas-height)
 
         // Every pile keeps a stack of its own height and every author's name
-        // under it: the card grows past the fold and the column scrolls.
-        &:has(> .stage.revealed > .reveal-panel[data-game='thinkalike'])
+        // under it, and every rung of Five clues its clue whole over a full
+        // table's pays and misses: the card grows past the fold and the
+        // column scrolls.
+        &:has(> .stage.revealed > .reveal-panel:is([data-game='thinkalike'], [data-game='fiveclues']))
           height: max(var(--podium-round-height), 46rem)
 
         // Every seat's pin on the ruler, at a size one reader can still tell

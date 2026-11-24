@@ -194,6 +194,15 @@ describe('lineUpEntrySummaries', () => {
     ])
   })
 
+  it('[line-up] leaves the language out of a quiz asking only what each screen names in its own', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [{ ...quiz(['flags', 'capitals']), language: 'fr' }],
+        translate
+      }).map((summary) => summary.settings)
+    ).toEqual(['Flags, Capitals · Mixed · 30s'])
+  })
+
   it('[line-up] names every strand a catalogue draws from, and drops the level for film scores alone', () => {
     expect(
       [

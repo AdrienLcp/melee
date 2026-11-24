@@ -343,54 +343,60 @@ const PLAYED_THROUGH_TIMEOUT_MS = 60_000
 describe('a ready-made evening, played through', {
   timeout: PLAYED_THROUGH_TIMEOUT_MS
 }, () => {
-  it('[line-up] keeps Free-for-all’s games half their share apart, past its last row', () => {
-    const { lineUp, runningOrder } = readyMade('grandMix')
-    const keys = lineUp.map((entry) => spacingKeyOf(entry.kind))
-    const shareOf = (key: string) =>
-      Math.floor(lineUp.length / keys.filter((other) => other === key).length)
+  it.each(['grandMix', 'international'] as const)(
+    '[line-up] keeps %s’s games half their share apart, past its last row',
+    (id) => {
+      const { lineUp, runningOrder } = readyMade(id)
+      const keys = lineUp.map((entry) => spacingKeyOf(entry.kind))
+      const shareOf = (key: string) =>
+        Math.floor(lineUp.length / keys.filter((other) => other === key).length)
 
-    for (const seed of SEEDS.slice(0, 10)) {
-      const kinds = playedKinds({
-        lineUp,
-        order: runningOrder,
-        rounds: 2 * lineUp.length,
-        seed
-      }).map(spacingKeyOf)
-
-      expect(kinds).toHaveLength(2 * lineUp.length)
-      expect(
-        shortGaps({
-          isShort: ({ gap, kind }) =>
-            gap < Math.max(2, Math.floor(shareOf(kind) / 2)),
-          kinds
-        })
-      ).toEqual([])
-    }
-  })
-
-  it('[line-up] never runs one game of Free-for-all twice in a row over 150 rounds, played again or drawn', () => {
-    const { lineUp, runningOrder } = readyMade('grandMix')
-
-    for (const seed of SEEDS.slice(0, 10)) {
-      for (const repeatsOrder of [false, true]) {
+      for (const seed of SEEDS.slice(0, 10)) {
         const kinds = playedKinds({
           lineUp,
           order: runningOrder,
-          repeatsOrder,
-          rounds: 150,
+          rounds: 2 * lineUp.length,
           seed
-        })
+        }).map(spacingKeyOf)
 
-        expect(kinds).toHaveLength(150)
+        expect(kinds).toHaveLength(2 * lineUp.length)
         expect(
           shortGaps({
-            isShort: ({ gap }) => gap < 2,
-            kinds: kinds.map(spacingKeyOf)
+            isShort: ({ gap, kind }) =>
+              gap < Math.max(2, Math.floor(shareOf(kind) / 2)),
+            kinds
           })
         ).toEqual([])
       }
     }
-  })
+  )
+
+  it.each(['grandMix', 'international'] as const)(
+    '[line-up] never runs one game of %s twice in a row over 150 rounds, played again or drawn',
+    (id) => {
+      const { lineUp, runningOrder } = readyMade(id)
+
+      for (const seed of SEEDS.slice(0, 10)) {
+        for (const repeatsOrder of [false, true]) {
+          const kinds = playedKinds({
+            lineUp,
+            order: runningOrder,
+            repeatsOrder,
+            rounds: 150,
+            seed
+          })
+
+          expect(kinds).toHaveLength(150)
+          expect(
+            shortGaps({
+              isShort: ({ gap }) => gap < 2,
+              kinds: kinds.map(spacingKeyOf)
+            })
+          ).toEqual([])
+        }
+      }
+    }
+  )
 
   it('[line-up] moves Free-for-all off the game just played when the console’s draw never lands', () => {
     const { lineUp, runningOrder } = readyMade('grandMix')

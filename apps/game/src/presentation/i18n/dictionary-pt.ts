@@ -898,7 +898,6 @@ const PORTUGUESE = defineDictionary({
       size: 'Tamanho',
       text: 'Pista'
     },
-    language: 'Pistas em',
     name: 'Cinco pistas',
     outCount: 'Eliminados: {count:number}',
     play: 'Jogar Cinco pistas',
@@ -2620,6 +2619,10 @@ const PORTUGUESE = defineDictionary({
       grandMix: {
         caption: 'Um pouco de tudo, sem juiz, enquanto quiserem.',
         name: 'Vale tudo'
+      },
+      international: {
+        caption: 'Cada ecrã na sua língua, nada de um só país.',
+        name: 'Sem fronteiras'
       },
       music: {
         caption:

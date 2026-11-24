@@ -201,6 +201,7 @@
         "pt": "Um instrumento de sopro: os lábios vibram dentro de um longo tubo."
       }
     },
+    "homeCountry": null,
     "id": "percussion-instruments",
     "labels": {
       "en": "Percussion instruments",
@@ -463,6 +464,7 @@
         "pt": "Feito pelos estúdios de animação da Disney, não pela Pixar."
       }
     },
+    "homeCountry": null,
     "id": "pixar-films",
     "labels": {
       "en": "Pixar films",
@@ -751,6 +753,7 @@
         "pt": "Frankenstein é o cientista que cria a criatura, e a criatura não tem nome."
       }
     },
+    "homeCountry": null,
     "id": "film-villains",
     "labels": {
       "en": "Film villains",
@@ -1039,6 +1042,7 @@
         "pt": "A escola de magia e feitiçaria: um lugar, não uma personagem."
       }
     },
+    "homeCountry": null,
     "id": "harry-potter-characters",
     "labels": {
       "en": "Harry Potter characters",
@@ -1327,6 +1331,7 @@
         "pt": "O oficial vulcano de Star Trek, a outra saga das estrelas."
       }
     },
+    "homeCountry": null,
     "id": "star-wars-characters",
     "labels": {
       "en": "Star Wars characters",
@@ -1615,6 +1620,7 @@
         "pt": "Um tenor que cantava os compositores, sem nunca compor nada."
       }
     },
+    "homeCountry": null,
     "id": "classical-composers",
     "labels": {
       "en": "Classical composers",
@@ -1903,6 +1909,7 @@
         "pt": "Uma trilogia de cinema, nunca uma série."
       }
     },
+    "homeCountry": null,
     "id": "tv-series",
     "labels": {
       "en": "Cult TV series",
@@ -2191,6 +2198,7 @@
         "pt": "O treinador que os apanha, não um Pokémon."
       }
     },
+    "homeCountry": null,
     "id": "pokemon",
     "labels": {
       "en": "Pokémon",
@@ -2479,6 +2487,7 @@
         "pt": "O ouriço da Sega: defronta o Mario nos Jogos Olímpicos, mas é de outro estúdio."
       }
     },
+    "homeCountry": null,
     "id": "mario-characters",
     "labels": {
       "en": "Mario characters",
@@ -2741,6 +2750,7 @@
         "pt": "Uma forma de banda desenhada japonesa, que abrange todos os géneros."
       }
     },
+    "homeCountry": null,
     "id": "literary-genres",
     "labels": {
       "en": "Literary genres",
@@ -2990,6 +3000,7 @@
         "pt": "Uma diversão de feira: o circo tem picadeiro, não carrosséis."
       }
     },
+    "homeCountry": null,
     "id": "circus-acts",
     "labels": {
       "en": "At the circus",
@@ -3278,6 +3289,7 @@
         "pt": "Um relojoeiro que nunca fez roupa."
       }
     },
+    "homeCountry": null,
     "id": "fashion-brands",
     "labels": {
       "en": "Fashion brands",
@@ -3553,6 +3565,7 @@
         "pt": "O sistema operativo da Microsoft: um produto, não uma empresa."
       }
     },
+    "homeCountry": null,
     "id": "tech-companies",
     "labels": {
       "en": "Tech companies",
@@ -3828,6 +3841,7 @@
         "pt": "Um astrólogo cujas profecias nada têm de ciência."
       }
     },
+    "homeCountry": null,
     "id": "famous-scientists",
     "labels": {
       "en": "Famous scientists",
@@ -4103,6 +4117,7 @@
         "pt": "O fogo foi descoberto e dominado, nunca inventado."
       }
     },
+    "homeCountry": null,
     "id": "inventions",
     "labels": {
       "en": "Great inventions",
@@ -4378,6 +4393,7 @@
         "pt": "Uma festa mexicana em honra dos mortos, depois do Halloween e distinta dele."
       }
     },
+    "homeCountry": null,
     "id": "halloween",
     "labels": {
       "en": "Halloween",
@@ -4663,6 +4679,7 @@
         "pt": "Um mês de jejum; a festa é o Eid, que o encerra."
       }
     },
+    "homeCountry": null,
     "id": "celebrations",
     "labels": {
       "en": "Holidays and celebrations",
@@ -4938,6 +4955,7 @@
         "pt": "Um cantor a solo, rei do rock e de banda nenhuma."
       }
     },
+    "homeCountry": null,
     "id": "rock-bands",
     "labels": {
       "en": "Rock bands",
@@ -5226,6 +5244,7 @@
         "pt": "A princesa do Shrek, da DreamWorks: não é da Disney."
       }
     },
+    "homeCountry": null,
     "id": "disney-princesses",
     "labels": {
       "en": "Disney princesses",
@@ -5501,6 +5520,7 @@
         "pt": "A irmã da Elsa em Frozen, princesa de Arendelle: o que o tema deixa de fora."
       }
     },
+    "homeCountry": null,
     "id": "disney-heroines",
     "labels": {
       "en": "Disney or Pixar heroines, princesses aside",
@@ -5763,6 +5783,7 @@
         "pt": "Um ilusionista e rei da fuga: destreza, nenhum feitiço."
       }
     },
+    "homeCountry": null,
     "id": "famous-wizards",
     "labels": {
       "en": "Famous wizards and witches",
@@ -6012,6 +6033,7 @@
         "pt": "Um ladrão de casaca: aquele que os detetives perseguem."
       }
     },
+    "homeCountry": null,
     "id": "fictional-detectives",
     "labels": {
       "en": "Fictional detectives",
@@ -6287,6 +6309,7 @@
         "pt": "Um desporto olímpico de inverno numa pista de gelo, não um desporto radical."
       }
     },
+    "homeCountry": null,
     "id": "extreme-sports",
     "labels": {
       "en": "Extreme sports",
@@ -6575,6 +6598,7 @@
         "pt": "Um treinador: como jogador, nunca passou de um modesto médio."
       }
     },
+    "homeCountry": null,
     "id": "legendary-footballers",
     "labels": {
       "en": "Football legends",
@@ -6863,6 +6887,7 @@
         "pt": "Um só jogo que muda a cada temporada, não uma saga."
       }
     },
+    "homeCountry": null,
     "id": "video-game-series",
     "labels": {
       "en": "Video game series",
@@ -7151,6 +7176,7 @@
         "pt": "Em todos os carros de corrida e desportos radicais, mas vende bebidas energéticas."
       }
     },
+    "homeCountry": null,
     "id": "sports-brands",
     "labels": {
       "en": "Sports brands",

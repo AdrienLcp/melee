@@ -67,7 +67,7 @@ describe('roomSettingsFor', () => {
     ).toEqual(DEFAULT_MODE_SETTINGS.move)
   })
 
-  it.each(['mysteryword', 'longestword', 'thinkalike', 'fiveclues'] as const)(
+  it.each(['mysteryword', 'longestword', 'thinkalike'] as const)(
     '[room-settings] deals %s in the language the host reads',
     (game) => {
       const inEnglish = roomSettingsFor({ games: [game], locale: 'en' })
@@ -80,7 +80,14 @@ describe('roomSettingsFor', () => {
     }
   )
 
-  it.each(['blindtest', 'estimate', 'higherlower'] as const)(
+  it.each([
+    'blindtest',
+    'estimate',
+    'higherlower',
+    'timeline',
+    'blacksquare',
+    'fiveclues'
+  ] as const)(
     '[room-settings] sits %s at the table of the host’s country',
     (game) => {
       const inEnglish = roomSettingsFor({ games: [game], locale: 'en' })

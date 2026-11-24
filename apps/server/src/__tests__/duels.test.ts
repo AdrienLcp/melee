@@ -106,7 +106,7 @@ describe('a duel', () => {
     )
 
     return {
-      answer: hostQuestion(host)?.answer ?? '',
+      answer: hostQuestion(host)?.answer.en ?? '',
       roundId: hostView(host)?.round?.id ?? ''
     }
   }

@@ -14,7 +14,7 @@ import { FiveCluesSummit } from '@/presentation/components/five-clues-reveal'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { Pawn } from '@/presentation/components/pawn'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { RichText } from '@/presentation/i18n/rich-text'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 
@@ -202,6 +202,8 @@ const Answer: React.FC<{
   content: HostRoundContent
   matchsticksGlyphs: string | null
 }> = ({ content, matchsticksGlyphs }) => {
+  const { locale } = useI18n()
+
   switch (content.kind) {
     case 'blindtest':
       return content.track === null ? null : (
@@ -227,12 +229,12 @@ const Answer: React.FC<{
       )
     case 'fiveclues':
       return content.answer === null ? null : (
-        <FiveCluesSummit flag={null} name={content.answer.name} />
+        <FiveCluesSummit flag={null} name={content.answer.name[locale]} />
       )
     case 'quiz':
       return content.question === null ? null : (
         <div className='answer'>
-          <p className='title'>{content.question.answer}</p>
+          <p className='title'>{content.question.answer[locale]}</p>
         </div>
       )
   }

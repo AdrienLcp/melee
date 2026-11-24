@@ -2,12 +2,13 @@ import type React from 'react'
 import { useRef, useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import { atlasPickSaid, type GeoPoint } from '@melee/protocol/atlas'
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 import type { Calculation } from '@melee/protocol/make-number'
 import type { StickMove } from '@melee/protocol/matchsticks'
+import { pickedChoiceSaid } from '@melee/protocol/picked-choice'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { ColourHex } from '@melee/protocol/swatch'
@@ -69,7 +70,7 @@ export const candidatesIn = ({
   locale,
   round
 }: {
-  /** The map's names are sent in both languages, and a tile shows the reader's. */
+  /** Every candidate is sent in every language, and a tile shows the reader's. */
   locale: Locale
   round: RoundView
 }): Candidate[] => {
@@ -103,16 +104,11 @@ export const candidatesIn = ({
     case 'swatch':
     case 'timeline':
       return []
-    case 'quiz':
-    case 'fiveclues':
-      return content.choices.map((choice) => ({
-        key: choice,
-        subtitle: null,
-        title: choice
-      }))
     case 'atlas':
+    case 'fiveclues':
+    case 'quiz':
       return content.choices.map((choice, index) => ({
-        key: atlasPickSaid(index),
+        key: pickedChoiceSaid(index),
         subtitle: null,
         title: choice[locale]
       }))

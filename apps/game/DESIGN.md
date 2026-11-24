@@ -55,6 +55,7 @@ colors:
   pawn-11: "oklch(54% 0.22 345)"
   pawn-12: "oklch(80% 0.09 235)"
   party-grand-mix: "oklch(86% 0.15 88)"
+  party-international: "oklch(82% 0.1 300)"
   party-first-game: "oklch(85% 0.11 160)"
   party-music: "oklch(81% 0.12 350)"
   party-general-knowledge: "oklch(83% 0.09 240)"
@@ -274,7 +275,8 @@ A cool printed board under warm, saturated die-cut inks, every value one
   heads, and the thirteenth seat is the first square one. A team's pawn always
   wears the round head. A pawn's colour is never a ground text is printed on.
 
-- **Party lids** (`--party-grand-mix` saffron, `--party-first-game` mint,
+- **Party lids** (`--party-grand-mix` saffron, `--party-international`
+  lavender, `--party-first-game` mint,
   `--party-music` pink, `--party-general-knowledge` sky, `--party-quick`
   peach, all printed in `--party-ink`): each ready-made line-up's lid on the
   front door. Light and chromatic (81–86% lightness), so a lid never reads

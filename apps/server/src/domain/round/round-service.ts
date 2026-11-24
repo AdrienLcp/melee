@@ -1,10 +1,6 @@
 import { Result } from '@adrienlcp/result'
 
-import {
-  atlasPickSaid,
-  type GeoPoint,
-  placesOfTarget
-} from '@melee/protocol/atlas'
+import { type GeoPoint, placesOfTarget } from '@melee/protocol/atlas'
 import type { ClipAction, LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
@@ -14,6 +10,7 @@ import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { Calculation } from '@melee/protocol/make-number'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import { PETIT_BAC_IN_FLIGHT_GRACE_MS } from '@melee/protocol/petit-bac'
+import { pickedChoiceSaid } from '@melee/protocol/picked-choice'
 import type { HostQuestion } from '@melee/protocol/question'
 import { type ModeSettings, READY_HOLD_MS } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
@@ -38,7 +35,10 @@ import {
 import { shuffled } from '@melee/core/helpers/random'
 import { innerclockRoundDurationMs } from '@melee/core/innerclock/gap-pay'
 import { applyMove } from '@melee/core/matchsticks/one-move'
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import {
+  answerInEveryLanguage,
+  gradeQuizGuess
+} from '@melee/core/quiz/question-answer'
 import {
   drawFlipDelayMs,
   reflexRoundDurationMs
@@ -1696,7 +1696,7 @@ const grade = ({
       }
 
       return {
-        said: picked,
+        said: pickedChoiceSaid(attempt.choiceIndex),
         verdict: {
           isCorrect: attempt.choiceIndex === content.correctChoiceIndex,
           kind: 'single'
@@ -1711,8 +1711,10 @@ const grade = ({
       verdict: {
         isCorrect:
           banked ||
-          gradeQuizGuess({ guess: attempt.guess, question: content.question })
-            .isCorrect,
+          gradeQuizGuess({
+            guess: attempt.guess,
+            question: answerInEveryLanguage(content.question)
+          }).isCorrect,
         kind: 'single'
       }
     }
@@ -1724,8 +1726,8 @@ const grade = ({
 /**
  * A `name` round is a quiz question asked by the map, and graded like one:
  * the whole line against every spelling in both languages, short of the
- * neighbours. A pick says the name in French, which a screen finds among the
- * choices to say in its own language.
+ * neighbours. A pick says its place among the choices, which a screen reads
+ * back in its own language.
  */
 const gradeNaming = ({
   attempt,
@@ -1742,7 +1744,7 @@ const gradeNaming = ({
     return picked === undefined
       ? null
       : {
-          said: atlasPickSaid(attempt.choiceIndex),
+          said: pickedChoiceSaid(attempt.choiceIndex),
           verdict: {
             isCorrect: attempt.choiceIndex === naming.correctChoiceIndex,
             kind: 'single'

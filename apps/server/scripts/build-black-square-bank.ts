@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
+import { countryCodeSchema } from '@melee/protocol/country-code'
+
 import {
   franchiseStemOf,
   isFranchiseBase,
@@ -27,6 +29,7 @@ import {
   SHOWN_LABELS,
   SPOKEN_ALIASES,
   type ThemeSpec,
+  themeIdOf,
   UMBRELLA_SERIES
 } from './black-square-themes'
 import { frenchViewsOf } from './frwiki-notability'
@@ -325,9 +328,6 @@ type ThemeEntities = {
   wording: Wording
 }
 
-const themeIdOf = ({ neighbour, subject, template }: ThemeSpec): string =>
-  [template, subject, neighbour].filter((part) => part !== undefined).join(':')
-
 const entitiesOf = async (spec: ThemeSpec): Promise<QueriedTheme> => {
   const template = TEMPLATES[spec.template]
   const query = {
@@ -487,6 +487,7 @@ const bankedRowSchema = z.object({
     labels: wordingSchema,
     why: wordingSchema
   }),
+  homeCountry: countryCodeSchema.nullable(),
   id: z.string(),
   labels: wordingSchema
 })
@@ -693,6 +694,7 @@ const build = async (): Promise<void> => {
         labels: blackWord.labels,
         why: spec.why
       },
+      homeCountry: spec.homeCountry ?? null,
       id,
       labels: wording
     })

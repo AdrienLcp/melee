@@ -232,6 +232,7 @@
         "pt": "Um eletrodoméstico que conserva a comida, não um móvel."
       }
     },
+    "homeCountry": null,
     "id": "furniture",
     "labels": {
       "en": "Furniture",
@@ -481,6 +482,7 @@
         "pt": "Fica fora das paredes: um jardim não é uma divisão da casa."
       }
     },
+    "homeCountry": null,
     "id": "rooms-of-a-house",
     "labels": {
       "en": "Rooms of a house",
@@ -717,6 +719,7 @@
         "pt": "O que o martelo crava: uma fixação, não uma ferramenta."
       }
     },
+    "homeCountry": null,
     "id": "diy-tools",
     "labels": {
       "en": "DIY tools",
@@ -979,6 +982,7 @@
         "pt": "Vende-se na secção de imagem e som: não faz nenhuma tarefa doméstica."
       }
     },
+    "homeCountry": null,
     "id": "household-appliances",
     "labels": {
       "en": "Household appliances",
@@ -1254,6 +1258,7 @@
         "pt": "Seca a loiça e vive na cozinha, não na casa de banho."
       }
     },
+    "homeCountry": null,
     "id": "bathroom-items",
     "labels": {
       "en": "In the bathroom",
@@ -1535,6 +1540,7 @@
         "pt": "É da sala, está na parede: nenhum aluno o compra pela lista."
       }
     },
+    "homeCountry": null,
     "id": "school-supplies",
     "labels": {
       "en": "School supplies",
@@ -1784,6 +1790,7 @@
         "pt": "Uma máquina de obras: empurra terra e não transporta ninguém."
       }
     },
+    "homeCountry": null,
     "id": "means-of-transport",
     "labels": {
       "en": "Means of transport",
@@ -2072,6 +2079,7 @@
         "pt": "A marca que uma ferida sarada deixa na pele, não uma parte do corpo."
       }
     },
+    "homeCountry": null,
     "id": "body-parts",
     "labels": {
       "en": "Body parts",
@@ -2334,6 +2342,7 @@
         "pt": "Um tecido líquido que irriga os órgãos, não um órgão."
       }
     },
+    "homeCountry": null,
     "id": "organs",
     "labels": {
       "en": "Organs of the body",
@@ -2610,6 +2619,7 @@
         "pt": "O veterinário trata animais, na sua clínica, nunca no hospital."
       }
     },
+    "homeCountry": null,
     "id": "hospital-jobs",
     "labels": {
       "en": "Hospital jobs",
@@ -2885,6 +2895,7 @@
         "pt": "A biblioteca empresta os livros e não vende nada: a loja é a livraria."
       }
     },
+    "homeCountry": null,
     "id": "shops",
     "labels": {
       "en": "Shops",
@@ -3160,6 +3171,7 @@
         "pt": "Uma quinta vive das suas terras: fica no campo, fora da cidade."
       }
     },
+    "homeCountry": null,
     "id": "places-in-town",
     "labels": {
       "en": "Places in town",
@@ -3435,6 +3447,7 @@
         "pt": "Uma necessidade do corpo que o estômago assinala, não uma emoção."
       }
     },
+    "homeCountry": null,
     "id": "emotions",
     "labels": {
       "en": "Emotions",
@@ -3727,6 +3740,7 @@
         "pt": "Escolhido no batismo, o padrinho não é parente de sangue nem por casamento."
       }
     },
+    "homeCountry": null,
     "id": "family-members",
     "labels": {
       "en": "Family members",
@@ -4019,6 +4033,7 @@
         "pt": "O tempo entre duas aulas, passado no recreio: ninguém o ensina."
       }
     },
+    "homeCountry": null,
     "id": "school-subjects",
     "labels": {
       "en": "School subjects",
@@ -4281,6 +4296,7 @@
         "pt": "Leva-se na mão, não se veste: uma mala é um acessório, não roupa."
       }
     },
+    "homeCountry": null,
     "id": "clothes",
     "labels": {
       "en": "Clothes",
@@ -4524,6 +4540,7 @@
         "pt": "Usa-se dentro do sapato: a meia é roupa, não calçado."
       }
     },
+    "homeCountry": null,
     "id": "shoes",
     "labels": {
       "en": "Kinds of shoes",
@@ -4786,6 +4803,7 @@
         "pt": "Usa-se na cabeça, mas é cabelo falso, não um chapéu."
       }
     },
+    "homeCountry": null,
     "id": "hats",
     "labels": {
       "en": "Hats",
@@ -4996,6 +5014,7 @@
         "pt": "Uma pedra que se engasta numa joia, não uma joia em si."
       }
     },
+    "homeCountry": null,
     "id": "jewellery",
     "labels": {
       "en": "Jewellery",
@@ -5271,6 +5290,7 @@
         "pt": "Acalma o bebé: ninguém brinca com uma chupeta."
       }
     },
+    "homeCountry": null,
     "id": "toys",
     "labels": {
       "en": "Toys",
@@ -5533,6 +5553,7 @@
         "pt": "Uma norma de rede sem fios pela qual os aparelhos comunicam, não um aparelho."
       }
     },
+    "homeCountry": null,
     "id": "electronic-devices",
     "labels": {
       "en": "Electronic devices",
@@ -5821,6 +5842,7 @@
         "pt": "Uma piscina é um tanque construído: a praia tem o mar."
       }
     },
+    "homeCountry": null,
     "id": "at-the-beach",
     "labels": {
       "en": "At the beach",
@@ -6083,6 +6105,7 @@
         "pt": "Comida para tostar na fogueira, não material de campismo."
       }
     },
+    "homeCountry": null,
     "id": "camping-gear",
     "labels": {
       "en": "Camping gear",
@@ -6337,6 +6360,7 @@
         "pt": "Os professores vestem o que querem: a profissão não impõe farda."
       }
     },
+    "homeCountry": null,
     "id": "uniformed-jobs",
     "labels": {
       "en": "Jobs in uniform",

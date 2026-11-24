@@ -1,5 +1,9 @@
 import { z } from 'zod'
 
+import {
+  type CountryCode,
+  countryCodeSchema
+} from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import { localizedSchema } from '@melee/protocol/locale'
 
@@ -45,6 +49,13 @@ const blackSquareAnswerSchema = namedEntitySchema.extend({
   views: z.number().int().nonnegative()
 })
 
+/**
+ * The one country whose table can name its answers — the kings of France, its
+ * regions — `null` for a theme any table can, wherever its answers come from.
+ * On every theme, so whoever adds one has to decide.
+ */
+const homeCountrySchema = countryCodeSchema.nullable()
+
 /** How many of a theme's best-known answers its reach is read on: the same nine whatever the depth of its pool. */
 const BEST_KNOWN_COUNT = 9
 
@@ -59,6 +70,7 @@ const blackSquareThemeSchema = z.object({
     /** Why it is wrong, one line for the reveal. */
     why: bilingualSchema
   }),
+  homeCountry: homeCountrySchema,
   /** `template:subject[:neighbour]`, as the build script declared it. */
   id: z.string(),
   /** The theme as the wall shows it. */
@@ -91,6 +103,7 @@ const authoredThemeSchema = z.object({
     labels: authoredBilingualSchema,
     why: authoredBilingualSchema
   }),
+  homeCountry: homeCountrySchema,
   /** Kebab-case, unique across both banks: a Wikidata id always holds a colon. */
   id: z.string().regex(/^[a-z]+(-[a-z]+)*$/),
   labels: authoredBilingualSchema,
@@ -172,6 +185,7 @@ const pooledFromWikidata = (
       labels: theme.blackWord.labels,
       why: theme.blackWord.why
     },
+    homeCountry: theme.homeCountry,
     id: theme.id,
     labels: theme.labels,
     tier: reachOf(theme) >= medianReach ? 'medium' : 'hard'
@@ -191,18 +205,28 @@ export const blackSquareThemePool = (): readonly PooledBlackSquareTheme[] => {
 export const playedBlackSquareThemeId = (id: string): string =>
   `blacksquare:${id}`
 
-/** A theme at the room's level the room has not been dealt, or `null` once the bank is spent. */
+const isDealtAt =
+  (homeCountry: CountryCode | null) =>
+  (theme: PooledBlackSquareTheme): boolean =>
+    theme.homeCountry === null || theme.homeCountry === homeCountry
+
+/**
+ * A theme at the room's level, everyone's or the table's own country's, the
+ * room has not been dealt, or `null` once the bank is spent.
+ */
 export const drawBlackSquareTheme = ({
   difficulty,
+  homeCountry,
   playedIds
 }: {
   difficulty: Difficulty
+  homeCountry: CountryCode | null
   playedIds: ReadonlySet<string>
 }): PooledBlackSquareTheme | null =>
   drawByDifficulty({
     difficulty,
-    pool: blackSquareThemePool().filter(
-      ({ id }) => !playedIds.has(playedBlackSquareThemeId(id))
-    ),
+    pool: blackSquareThemePool()
+      .filter(isDealtAt(homeCountry))
+      .filter(({ id }) => !playedIds.has(playedBlackSquareThemeId(id))),
     tierOf: ({ tier }) => tier
   })

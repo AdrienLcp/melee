@@ -1,5 +1,9 @@
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { QuestionLanguage } from '@melee/protocol/question'
+import { byLocale, type LocalizedText } from '@melee/protocol/locale'
+import {
+  type QuestionLanguage,
+  questionLanguages
+} from '@melee/protocol/question'
 
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
@@ -82,3 +86,27 @@ export const acceptedCountryNames = ({
 
   return [...(accepted[code] ?? [])]
 }
+
+/** A country's name in every language a screen reads it in. */
+export const localizedCountryName = (code: CountryCode): LocalizedText =>
+  byLocale((locale) => COUNTRY_NAMES_BY_LANGUAGE[locale][code].name)
+
+/** Every name a table may type for a country beside the map's, whatever language it types in. */
+export const acceptedCountryNamesInEveryLanguage = (
+  code: CountryCode
+): string[] => [
+  ...new Set(
+    questionLanguages.flatMap((language) =>
+      acceptedCountryNames({ code, language })
+    )
+  )
+]
+
+/** Three countries' names, in the order their codes came: choice i is the same country in every language. */
+export const localizedCountryNames = (
+  codes: readonly [CountryCode, CountryCode, CountryCode]
+): [LocalizedText, LocalizedText, LocalizedText] => [
+  localizedCountryName(codes[0]),
+  localizedCountryName(codes[1]),
+  localizedCountryName(codes[2])
+]

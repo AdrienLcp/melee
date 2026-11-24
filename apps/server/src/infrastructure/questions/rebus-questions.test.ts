@@ -36,7 +36,7 @@ describe('the rebus rubric', () => {
       portuguese
         .filter(
           ({ id, prompt }) =>
-            !id.startsWith('rebus-pt-') || !PORTUGUESE_ASKS.has(prompt)
+            !id.startsWith('rebus-pt-') || !PORTUGUESE_ASKS.has(prompt.pt)
         )
         .map(({ id }) => id)
     ).toEqual([])
@@ -65,7 +65,7 @@ describe('the rebus rubric', () => {
   it('[rebus] stands every answer beside three others', () => {
     const lopsided = REBUSES.filter(
       ({ answer, decoys }) =>
-        new Set([answer, ...decoys].map((title) => title.toLowerCase()))
+        new Set([answer, ...decoys].map((title) => title.en.toLowerCase()))
           .size !== 4
     )
 

@@ -199,6 +199,7 @@
         "pt": "Escrito por Tarantino, realizado por Robert Rodriguez"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q3772",
     "labels": {
       "en": "Films directed by Quentin Tarantino",
@@ -623,6 +624,7 @@
         "pt": "Produzido por Spielberg, realizado por Robert Zemeckis"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q8877",
     "labels": {
       "en": "Films directed by Steven Spielberg",
@@ -857,6 +859,7 @@
         "pt": "Desenvolvido por Kubrick, realizado por Spielberg após a sua morte"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q2001",
     "labels": {
       "en": "Films directed by Stanley Kubrick",
@@ -1195,6 +1198,7 @@
         "pt": "Realizado por Henri-Georges Clouzot"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q7374",
     "labels": {
       "en": "Films directed by Alfred Hitchcock",
@@ -1491,6 +1495,7 @@
         "pt": "Realizado por Brian De Palma"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q41148",
     "labels": {
       "en": "Films directed by Martin Scorsese",
@@ -1702,6 +1707,7 @@
         "pt": "Produzido por Nolan, realizado por Zack Snyder"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q25191",
     "labels": {
       "en": "Films directed by Christopher Nolan",
@@ -1970,6 +1976,7 @@
         "pt": "Produzido por Ridley Scott, realizado por Denis Villeneuve"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q56005",
     "labels": {
       "en": "Films directed by Ridley Scott",
@@ -2274,6 +2281,7 @@
         "pt": "Imaginado e produzido por Burton, realizado por Henry Selick"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q56008",
     "labels": {
       "en": "Films directed by Tim Burton",
@@ -2751,6 +2759,7 @@
         "pt": "Eastwood é o ator, Sergio Leone o realizador"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q43203",
     "labels": {
       "en": "Films directed by Clint Eastwood",
@@ -3023,6 +3032,7 @@
         "pt": "Escrito e produzido por Besson, realizado por Gérard Pirès"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q484779",
     "labels": {
       "en": "Films directed by Luc Besson",
@@ -3261,6 +3271,7 @@
         "pt": "Realizado por Jonathan Demme"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q184903",
     "labels": {
       "en": "Films directed by David Fincher",
@@ -3569,6 +3580,7 @@
         "pt": "Realizado por Joe Dante, produzido por Spielberg"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q187364",
     "labels": {
       "en": "Films directed by Robert Zemeckis",
@@ -3841,6 +3853,7 @@
         "pt": "Realizado por Matthew Vaughn, produtor dos primeiros Ritchie"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q192990",
     "labels": {
       "en": "Films directed by Guy Ritchie",
@@ -4017,6 +4030,7 @@
         "pt": "O original de Ridley Scott; Villeneuve realizou a sequela, 2049"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q548823",
     "labels": {
       "en": "Films directed by Denis Villeneuve",
@@ -4246,6 +4260,7 @@
         "pt": "Com Louis de Funès, mas realizado por Jean Girault"
       }
     },
+    "homeCountry": "FRA",
     "id": "films-directed-by:Q470798",
     "labels": {
       "en": "Films directed by Gérard Oury",
@@ -4440,6 +4455,7 @@
         "pt": "Coescrito por Veber, realizado por Édouard Molinaro"
       }
     },
+    "homeCountry": "FRA",
     "id": "films-directed-by:Q358356",
     "labels": {
       "en": "Films directed by Francis Veber",
@@ -4628,6 +4644,7 @@
         "pt": "Realizado por Roland Emmerich"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q59259",
     "labels": {
       "en": "Films directed by Michael Bay",
@@ -4841,6 +4858,7 @@
         "pt": "Realizado por Michael Bay"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q60100",
     "labels": {
       "en": "Films directed by Roland Emmerich",
@@ -5230,6 +5248,7 @@
         "pt": "Um filme da DreamWorks Animation"
       }
     },
+    "homeCountry": null,
     "id": "films-of-studio:Q127552:Q191224",
     "labels": {
       "en": "Pixar films",
@@ -5593,6 +5612,7 @@
         "pt": "Um filme dos estúdios Blue Sky"
       }
     },
+    "homeCountry": null,
     "id": "films-of-studio:Q500088",
     "labels": {
       "en": "DreamWorks Animation films",
@@ -6079,6 +6099,7 @@
         "pt": "Realizado por Don Bluth para a 20th Century Fox"
       }
     },
+    "homeCountry": null,
     "id": "films-of-studio:Q1047410",
     "labels": {
       "en": "Walt Disney Animation Studios films",
@@ -6405,6 +6426,7 @@
         "pt": "Produzido pela 20th Century Fox; só Deadpool & Wolverine é da Marvel Studios"
       }
     },
+    "homeCountry": null,
     "id": "films-of-studio:Q367466",
     "labels": {
       "en": "Marvel Studios films",
@@ -6665,6 +6687,7 @@
         "pt": "Um álbum a solo de John Lennon"
       }
     },
+    "homeCountry": null,
     "id": "albums-by-band:Q1299",
     "labels": {
       "en": "Albums by the Beatles",
@@ -7190,6 +7213,7 @@
         "pt": "Saiu da União Europeia em 2020"
       }
     },
+    "homeCountry": null,
     "id": "members-of:Q458",
     "labels": {
       "en": "Member states of the European Union",
@@ -7728,6 +7752,7 @@
         "pt": "Convidada permanente, não membro"
       }
     },
+    "homeCountry": null,
     "id": "members-of:Q19771",
     "labels": {
       "en": "Members of the G20",
@@ -8294,6 +8319,7 @@
         "pt": "Muito falado, mas só o árabe e o tamazigue são oficiais"
       }
     },
+    "homeCountry": null,
     "id": "countries-speaking:Q150",
     "labels": {
       "en": "Countries where French is an official language",
@@ -8743,6 +8769,7 @@
         "pt": "Óscar de atriz secundária, nunca de melhor atriz"
       }
     },
+    "homeCountry": null,
     "id": "award-winning-people:Q103618",
     "labels": {
       "en": "Winners of the Academy Award for Best Actress",
@@ -9018,6 +9045,7 @@
         "pt": "Segundo em 2003, nunca venceu"
       }
     },
+    "homeCountry": null,
     "id": "award-winners:Q166177",
     "labels": {
       "en": "Ballon d'Or winners",
@@ -9602,6 +9630,7 @@
         "pt": "Três finais, três derrotas"
       }
     },
+    "homeCountry": null,
     "id": "competition-winners:Q18756:Q18760",
     "labels": {
       "en": "UEFA Champions League winners",
@@ -10162,6 +10191,7 @@
         "pt": "Nunca foi campeão de França"
       }
     },
+    "homeCountry": "FRA",
     "id": "competition-winners:Q13394:Q193121",
     "labels": {
       "en": "French football champions",
@@ -10404,6 +10434,7 @@
         "pt": "Primeiro-ministro, derrotado nas presidenciais de 1995"
       }
     },
+    "homeCountry": "FRA",
     "id": "position-holders:Q191954:Q1587677",
     "labels": {
       "en": "Presidents of the French Republic",
@@ -10959,6 +10990,7 @@
         "pt": "Pai fundador, nunca presidente"
       }
     },
+    "homeCountry": null,
     "id": "position-holders:Q11696:Q11699",
     "labels": {
       "en": "Presidents of the United States",
@@ -11240,6 +11272,7 @@
         "pt": "Um romance de Alexandre Dumas"
       }
     },
+    "homeCountry": "FRA",
     "id": "books-by-author:Q535",
     "labels": {
       "en": "Works by Victor Hugo",
@@ -11565,6 +11598,7 @@
         "pt": "Um romance de Guy de Maupassant"
       }
     },
+    "homeCountry": "FRA",
     "id": "books-by-author:Q504",
     "labels": {
       "en": "Books by Émile Zola",
@@ -11807,6 +11841,7 @@
         "pt": "Um romance de H. G. Wells"
       }
     },
+    "homeCountry": null,
     "id": "books-by-author:Q33977",
     "labels": {
       "en": "Books by Jules Verne",
@@ -12085,6 +12120,7 @@
         "pt": "Um romance de Arthur Conan Doyle"
       }
     },
+    "homeCountry": null,
     "id": "books-by-author:Q35064",
     "labels": {
       "en": "Books by Agatha Christie",
@@ -12505,6 +12541,7 @@
         "pt": "Um romance de William Peter Blatty"
       }
     },
+    "homeCountry": null,
     "id": "books-by-author:Q39829",
     "labels": {
       "en": "Books by Stephen King",
@@ -12919,6 +12956,7 @@
         "pt": "Um quadro de Edvard Munch"
       }
     },
+    "homeCountry": null,
     "id": "paintings-by:Q5582",
     "labels": {
       "en": "Paintings by Vincent van Gogh",
@@ -13241,6 +13279,7 @@
         "pt": "Um quadro de Botticelli"
       }
     },
+    "homeCountry": null,
     "id": "paintings-by:Q762",
     "labels": {
       "en": "Paintings by Leonardo da Vinci",
@@ -13548,6 +13587,7 @@
         "pt": "Um quadro de Édouard Manet"
       }
     },
+    "homeCountry": null,
     "id": "paintings-by:Q296",
     "labels": {
       "en": "Paintings by Claude Monet",
@@ -13874,6 +13914,7 @@
         "pt": "Um quadro de Rembrandt"
       }
     },
+    "homeCountry": null,
     "id": "paintings-by:Q41264",
     "labels": {
       "en": "Paintings by Johannes Vermeer",
@@ -14185,6 +14226,7 @@
         "pt": "Uma personagem de House of the Dragon"
       }
     },
+    "homeCountry": null,
     "id": "characters-of-work:Q23572",
     "labels": {
       "en": "Characters of Game of Thrones",
@@ -14653,6 +14695,7 @@
         "pt": "O dragão de O Hobbit"
       }
     },
+    "homeCountry": null,
     "id": "characters-of-work:Q15228",
     "labels": {
       "en": "Characters of The Lord of the Rings",
@@ -15085,6 +15128,7 @@
         "pt": "Fundida no Grande Leste em 2016"
       }
     },
+    "homeCountry": "FRA",
     "id": "subdivisions-of:Q142:Q36784",
     "labels": {
       "en": "Regions of France",
@@ -15735,6 +15779,7 @@
         "pt": "Um território, não um estado"
       }
     },
+    "homeCountry": null,
     "id": "subdivisions-of:Q30:Q35657",
     "labels": {
       "en": "States of the United States",
@@ -16194,6 +16239,7 @@
         "pt": "Nomeado em 2011, perdeu para O Discurso do Rei"
       }
     },
+    "homeCountry": null,
     "id": "award-winning-films:Q102427",
     "labels": {
       "en": "Winners of the Academy Award for Best Picture",
@@ -16619,6 +16665,7 @@
         "pt": "Óscar de argumento por O Bom Rebelde, nunca de melhor ator"
       }
     },
+    "homeCountry": null,
     "id": "award-winning-people:Q103916",
     "labels": {
       "en": "Winners of the Academy Award for Best Actor",
@@ -17157,6 +17204,7 @@
         "pt": "Imperador, nunca rei"
       }
     },
+    "homeCountry": "FRA",
     "id": "position-holders:Q18384454:Q191954",
     "labels": {
       "en": "Kings of France",
@@ -17541,6 +17589,7 @@
         "pt": "Escrito pelos Coen, realizado por Spielberg"
       }
     },
+    "homeCountry": null,
     "id": "films-directed-by:Q13595311",
     "labels": {
       "en": "Films directed by the Coen brothers",
@@ -17741,6 +17790,7 @@
         "pt": "Um romance de Ian Fleming; Dahl só escreveu o argumento do filme"
       }
     },
+    "homeCountry": null,
     "id": "books-by-author:Q25161",
     "labels": {
       "en": "Books by Roald Dahl",
@@ -18081,6 +18131,7 @@
         "pt": "Nomeado em 2007, perdeu para Happy Feet"
       }
     },
+    "homeCountry": null,
     "id": "award-winning-films:Q106800",
     "labels": {
       "en": "Winners of the Academy Award for Best Animated Feature",
@@ -18645,6 +18696,7 @@
         "pt": "A maior cidade da Suíça; a capital é Berna"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:europe",
     "labels": {
       "en": "Capitals of Europe",
@@ -18858,6 +18910,7 @@
         "pt": "Sede da ONU na Europa, mas a capital suíça é Berna"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:western-europe",
     "labels": {
       "en": "Capitals of Western Europe",
@@ -19103,6 +19156,7 @@
         "pt": "A segunda cidade da Suécia; a capital é Estocolmo"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:northern-europe",
     "labels": {
       "en": "Capitals of Northern Europe",
@@ -19398,6 +19452,7 @@
         "pt": "A capital económica de Itália; a capital é Roma"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:southern-europe",
     "labels": {
       "en": "Capitals of Southern Europe",
@@ -19699,6 +19754,7 @@
         "pt": "Capital da Rússia até 1918; Moscovo desde então"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:eastern-europe",
     "labels": {
       "en": "Capitals of Eastern Europe",
@@ -19913,6 +19969,7 @@
         "pt": "Na fronteira francesa, mas a capital suíça é Berna"
       }
     },
+    "homeCountry": null,
     "id": "capitals-of:bordering-france",
     "labels": {
       "en": "Capitals of the countries bordering France",

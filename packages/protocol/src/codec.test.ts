@@ -180,6 +180,55 @@ describe('encodeChecked', () => {
     expect(decoded.view.round.content.choices).toHaveLength(2)
   })
 
+  it('[anti-cheat] hands a quiz player every language of the four, and nothing of the answer', () => {
+    const japan = { en: 'Japan', fr: 'Japon', pt: 'Japão' }
+    const leakyView = {
+      ...playerView,
+      round: {
+        ...runningRound,
+        answerMode: 'choice' as const,
+        content: {
+          choices: [
+            { en: 'Palau', fr: 'Palaos', pt: 'Palau' },
+            japan,
+            { en: 'Bangladesh', fr: 'Bangladesh', pt: 'Bangladesh' },
+            { en: 'South Korea', fr: 'Corée du Sud', pt: 'Coreia do Sul' }
+          ],
+          correctChoiceIndex: 1,
+          kind: 'quiz' as const,
+          prompt: {
+            category: 'flags' as const,
+            flag: '0123456789ab.svg',
+            id: 'flag-0123456789ab',
+            prompt: {
+              en: 'Whose flag is this?',
+              fr: 'À qui est ce drapeau ?',
+              pt: 'De quem é esta bandeira?'
+            },
+            rebus: null,
+            silhouette: null
+          },
+          question: { accepted: ['Nippon'], answer: japan },
+          revealedQuestion: null
+        }
+      }
+    }
+
+    const decoded = JSON.parse(
+      encodeChecked(playerServerMessageSchema, {
+        type: 'room.updated' as const,
+        view: leakyView
+      })
+    )
+
+    expect(decoded.view.round.content.correctChoiceIndex).toBeUndefined()
+    expect(decoded.view.round.content.question).toBeUndefined()
+    expect(decoded.view.round.content.choices[1]).toEqual(japan)
+    expect(decoded.view.round.content.prompt.prompt.pt).toBe(
+      'De quem é esta bandeira?'
+    )
+  })
+
   it('[codec] throws when the server builds a message it cannot honour', () => {
     const invalid = {
       type: 'room.updated' as const,

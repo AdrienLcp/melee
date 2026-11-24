@@ -190,7 +190,14 @@ describe('askedIn', () => {
     }
   )
 
-  it.each(['blindtest', 'estimate', 'higherlower'] as const)(
+  it.each([
+    'blindtest',
+    'estimate',
+    'higherlower',
+    'timeline',
+    'blacksquare',
+    'fiveclues'
+  ] as const)(
     '[host-preferences] sits the remembered %s at the table of the host’s country',
     (game) => {
       const inFrench = rememberSettings({

@@ -8,24 +8,26 @@ import {
   MOST_CLUE_CITIES,
   m49RegionSchema
 } from '@melee/protocol/five-clues'
-import type { Locale } from '@melee/protocol/locale'
-import type {
-  FlagFile,
-  QuestionLanguage,
-  SilhouetteFile
+import type { LocalizedText } from '@melee/protocol/locale'
+import {
+  type FlagFile,
+  questionLanguages,
+  type SilhouetteFile
 } from '@melee/protocol/question'
-import { questionLanguages } from '@melee/protocol/question'
 
 import { greatCircleKm } from '@melee/core/atlas/distance'
 import { shuffled } from '@melee/core/helpers/random'
-import type { QuestionAnswer } from '@melee/core/quiz/question-answer'
+import type { LocalizedQuestionAnswer } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 import { drawByDifficulty } from '@melee/core/round/difficulty-draw'
 
 import { bankedCapitals, type CapitalRow } from './capital-bank'
 import {
   acceptedCountryNames,
-  COUNTRY_NAMES_BY_LANGUAGE
+  acceptedCountryNamesInEveryLanguage,
+  COUNTRY_NAMES_BY_LANGUAGE,
+  localizedCountryName,
+  localizedCountryNames
 } from './country-answers'
 import { BANKED_COUNTRIES } from './country-bank'
 import {
@@ -58,10 +60,10 @@ export type StaircaseDecoys = {
 /** A country with the numbers a decoy is chosen on. */
 export type MeasuredCountry = {
   areaSquareKilometres: number
-  capital: Readonly<Record<Locale, string>>
+  capital: LocalizedText
   capitalPoint: GeoPoint
   /** Up to three, never one whose name carries the country's in any language. */
-  cities: readonly Readonly<Record<Locale, string>>[]
+  cities: readonly LocalizedText[]
   code: CountryCode
   flag: FlagFile
   /** Its M49 continent and the group beneath it: a region clue naming either leaves it standing. */
@@ -78,12 +80,13 @@ export type FiveCluesCountry = MeasuredCountry & {
 }
 
 /**
- * What one round hides, whatever its subject: the ladder in climbing order,
- * what a typed line is graded against — `decoys` being the three names
- * `choice` shows — and the id the room's no-repeat set keeps.
+ * What one round hides, whatever its subject, in every language a screen
+ * reads: the ladder in climbing order, what a typed line is graded against —
+ * `decoys` being the three names `choice` shows — and the id the room's
+ * no-repeat set keeps.
  */
 export type FiveCluesCard = {
-  answer: QuestionAnswer
+  answer: LocalizedQuestionAnswer
   ladder: FiveCluesLadder
   playedId: string
   subject: FiveCluesSubject
@@ -441,14 +444,10 @@ export const drawFiveCluesCountry = ({
   })
 }
 
-/** The five clues in the order they open, the names in the room's question language. */
-export const fiveCluesLadderOf = ({
-  country,
-  language
-}: {
+/** The five clues in the order they open, the names in every language a screen reads. */
+export const fiveCluesLadderOf = (
   country: FiveCluesCountry
-  language: QuestionLanguage
-}): FiveCluesLadder => [
+): FiveCluesLadder => [
   {
     areaSquareKilometres: country.areaSquareKilometres,
     kind: 'size',
@@ -456,39 +455,32 @@ export const fiveCluesLadderOf = ({
   },
   { kind: 'region', region: country.region },
   { kind: 'outline', silhouette: country.silhouette },
-  { cities: country.cities.map((names) => names[language]), kind: 'cities' },
-  { capital: country.capital[language], flag: country.flag, kind: 'flag' }
+  { cities: country.cities.map((names) => ({ ...names })), kind: 'cities' },
+  { capital: { ...country.capital }, flag: country.flag, kind: 'flag' }
 ]
 
 /**
- * What a typed line is graded against with `gradeQuizGuess`, as the flags
- * rubric grades: the country's name and what a table says instead, never
- * forgiving a slip as far as one of the three countries `choice` puts beside it.
+ * The country's name and the three `choice` puts beside it, in every
+ * language, and what a table says instead in any of them: graded as the flags
+ * rubric grades, never forgiving a slip as far as one of the three.
  */
-export const fiveCluesAnswerOf = ({
-  country,
-  language
-}: {
+export const fiveCluesAnswerOf = (
   country: FiveCluesCountry
-  language: QuestionLanguage
-}): QuestionAnswer => {
-  const names = COUNTRY_NAMES_BY_LANGUAGE[language]
+): LocalizedQuestionAnswer => {
   const { outline, region, size } = country.decoys
 
   return {
-    accepted: acceptedCountryNames({ code: country.code, language }),
-    answer: names[country.code].name,
-    decoys: [size, region, outline].map((code) => names[code].name)
+    accepted: acceptedCountryNamesInEveryLanguage(country.code),
+    answer: localizedCountryName(country.code),
+    decoys: localizedCountryNames([size, region, outline])
   }
 }
 
 const countryCardOf = ({
   difficulty,
-  language,
   playedIds
 }: {
   difficulty: Difficulty
-  language: QuestionLanguage
   playedIds: ReadonlySet<string>
 }): FiveCluesCard | null => {
   const country = drawFiveCluesCountry({ difficulty, playedIds })
@@ -496,8 +488,8 @@ const countryCardOf = ({
   return country === null
     ? null
     : {
-        answer: fiveCluesAnswerOf({ country, language }),
-        ladder: fiveCluesLadderOf({ country, language }),
+        answer: fiveCluesAnswerOf(country),
+        ladder: fiveCluesLadderOf(country),
         playedId: playedFiveCluesId(country.code),
         subject: 'country'
       }
@@ -505,53 +497,57 @@ const countryCardOf = ({
 
 const authoredCardOf = ({
   difficulty,
-  language,
+  homeCountry,
   playedIds,
   subject
 }: {
   difficulty: Difficulty
-  language: QuestionLanguage
+  homeCountry: CountryCode | null
   playedIds: ReadonlySet<string>
   subject: AuthoredSubject
 }): FiveCluesCard | null => {
-  const row = drawAuthoredRow({ difficulty, language, playedIds, subject })
+  const row = drawAuthoredRow({ difficulty, homeCountry, playedIds, subject })
 
   return row === null
     ? null
     : {
         answer: {
-          accepted: row.accepted[language],
-          answer: row.name[language],
-          decoys: row.decoys.map((decoy) => decoy[language])
+          accepted: [
+            ...new Set(
+              questionLanguages.flatMap((language) => row.accepted[language])
+            )
+          ],
+          answer: { ...row.name },
+          decoys: row.decoys.map((decoy) => ({ ...decoy }))
         },
-        ladder: authoredLadderOf({ language, row, subject }),
+        ladder: authoredLadderOf({ row, subject }),
         playedId: playedAuthoredId({ row, subject }),
         subject
       }
 }
 
 /**
- * The next round's card at the room's level, in its question language: one
+ * The next round's card at the room's level and for its table's country: one
  * of the room's subjects drawn evenly — a hundred and forty countries must
  * not drown sixty films — then an item of it the room has not climbed yet,
  * or `null` when no subject has one at that level.
  */
 export const drawFiveCluesCard = ({
   difficulty,
-  language,
+  homeCountry,
   playedIds,
   subjects
 }: {
   difficulty: Difficulty
-  language: QuestionLanguage
+  homeCountry: CountryCode | null
   playedIds: ReadonlySet<string>
   subjects: readonly FiveCluesSubject[]
 }): FiveCluesCard | null => {
   for (const subject of shuffled(subjects)) {
     const card =
       subject === 'country'
-        ? countryCardOf({ difficulty, language, playedIds })
-        : authoredCardOf({ difficulty, language, playedIds, subject })
+        ? countryCardOf({ difficulty, playedIds })
+        : authoredCardOf({ difficulty, homeCountry, playedIds, subject })
 
     if (card !== null) {
       return card

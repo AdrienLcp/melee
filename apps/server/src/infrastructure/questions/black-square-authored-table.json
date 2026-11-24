@@ -214,6 +214,7 @@
         "pt": "Botanicamente uma baga: o grande «caroço» é uma semente nua, sem casca dura."
       }
     },
+    "homeCountry": null,
     "id": "stone-fruits",
     "labels": {
       "en": "Stone fruits",
@@ -463,6 +464,7 @@
         "pt": "Massa folhada com manteiga, de pastelaria: não é um pão."
       }
     },
+    "homeCountry": null,
     "id": "breads",
     "labels": {
       "en": "Breads of the world",
@@ -701,6 +703,7 @@
         "pt": "Um fungo aliado a uma alga: nunca faz chapéu nem pé."
       }
     },
+    "homeCountry": null,
     "id": "mushrooms",
     "labels": {
       "en": "Mushrooms",
@@ -897,6 +900,7 @@
         "pt": "Feita de óleos vegetais, sem uma gota de leite."
       }
     },
+    "homeCountry": null,
     "id": "dairy-products",
     "labels": {
       "en": "Dairy products",
@@ -1159,6 +1163,7 @@
         "pt": "Nasceu no Texas: é tex-mex, não cozinha mexicana."
       }
     },
+    "homeCountry": null,
     "id": "mexican-food",
     "labels": {
       "en": "Mexican food",
@@ -1408,6 +1413,7 @@
         "pt": "Uma cadeia de cafés: serve café, não menus de fast food."
       }
     },
+    "homeCountry": null,
     "id": "fast-food-chains",
     "labels": {
       "en": "Fast food chains",
@@ -1670,6 +1676,7 @@
         "pt": "Vem do Levante — Líbano, Síria, Palestina —, não da Grécia."
       }
     },
+    "homeCountry": null,
     "id": "greek-food",
     "labels": {
       "en": "Greek food",
@@ -1906,6 +1913,7 @@
         "pt": "Água mineral com gás, sem nada acrescentado: não é um refrigerante."
       }
     },
+    "homeCountry": null,
     "id": "soft-drinks",
     "labels": {
       "en": "Soda brands",
@@ -2155,6 +2163,7 @@
         "pt": "Drageias vendidas em pacote, não uma barra."
       }
     },
+    "homeCountry": null,
     "id": "chocolate-bars",
     "labels": {
       "en": "Chocolate bars",
@@ -2383,6 +2392,7 @@
         "pt": "Coze-se em cima dele, não se come."
       }
     },
+    "homeCountry": null,
     "id": "baking-ingredients",
     "labels": {
       "en": "Baking ingredients",
@@ -2580,6 +2590,7 @@
         "pt": "Frito, não cozido no forno: nenhum destes bolos vai ao óleo."
       }
     },
+    "homeCountry": null,
     "id": "breakfast-pastries",
     "labels": {
       "en": "Viennoiserie",
@@ -2842,6 +2853,7 @@
         "pt": "Cerveja cortada com gasosa: uma mistura, não um estilo de cerveja."
       }
     },
+    "homeCountry": null,
     "id": "beer-styles",
     "labels": {
       "en": "Beer styles",
@@ -3039,6 +3051,7 @@
         "pt": "Da mesma família das cucurbitáceas, mas um pepino, não uma abóbora."
       }
     },
+    "homeCountry": null,
     "id": "squashes",
     "labels": {
       "en": "Squashes and pumpkins",
@@ -3288,6 +3301,7 @@
         "pt": "Nasceu na Califórnia e é desconhecido na China."
       }
     },
+    "homeCountry": null,
     "id": "chinese-food",
     "labels": {
       "en": "Chinese food",
@@ -3563,6 +3577,7 @@
         "pt": "Tailandês, com leite de coco e malagueta verde: não é indiano."
       }
     },
+    "homeCountry": null,
     "id": "indian-food",
     "labels": {
       "en": "Indian food",
@@ -3831,6 +3846,7 @@
         "pt": "Cubano, de Havana: não é espanhol."
       }
     },
+    "homeCountry": null,
     "id": "spanish-food",
     "labels": {
       "en": "Spanish food",
@@ -4067,6 +4083,7 @@
         "pt": "Um fruto seco de casca rija, comido como nasce: nada foi desidratado."
       }
     },
+    "homeCountry": null,
     "id": "dried-fruits",
     "labels": {
       "en": "Dried fruit",
@@ -4342,6 +4359,7 @@
         "pt": "Uma pera — a Williams —, não uma maçã."
       }
     },
+    "homeCountry": null,
     "id": "apple-varieties",
     "labels": {
       "en": "Apple varieties",
@@ -4578,6 +4596,7 @@
         "pt": "A batata-doce é outra planta, não uma batata."
       }
     },
+    "homeCountry": null,
     "id": "potato-dishes",
     "labels": {
       "en": "Potato dishes",
@@ -4833,6 +4852,7 @@
         "pt": "Carne de vaca crua cortada fina, nunca curada: um prato, não charcutaria."
       }
     },
+    "homeCountry": null,
     "id": "cold-meats",
     "labels": {
       "en": "Cold meats",
@@ -5102,6 +5122,7 @@
         "pt": "Deixa-se de molho para ganhar sabor: não coze nada."
       }
     },
+    "homeCountry": null,
     "id": "cooking-methods",
     "labels": {
       "en": "Cooking methods",
@@ -5377,6 +5398,7 @@
         "pt": "Uma denominação da Borgonha, feita de chardonnay: não é uma casta."
       }
     },
+    "homeCountry": null,
     "id": "grape-varieties",
     "labels": {
       "en": "Grape varieties",
@@ -5652,6 +5674,7 @@
         "pt": "Carne e legumes cozidos, comidos no prato: o caldo é só um extra."
       }
     },
+    "homeCountry": null,
     "id": "soups",
     "labels": {
       "en": "Soups",
@@ -5901,6 +5924,7 @@
         "pt": "Chocolate, sem um único ovo lá dentro."
       }
     },
+    "homeCountry": null,
     "id": "egg-dishes",
     "labels": {
       "en": "Egg dishes",
@@ -6124,6 +6148,7 @@
         "pt": "Sémola enrolada, trigo moído: desta «semente» não nasce nada."
       }
     },
+    "homeCountry": null,
     "id": "seeds",
     "labels": {
       "en": "Seeds",

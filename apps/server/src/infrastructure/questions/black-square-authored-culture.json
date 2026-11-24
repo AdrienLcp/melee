@@ -245,6 +245,7 @@
         "pt": "Joga-se na praia, mas na areia, nunca dentro de água."
       }
     },
+    "homeCountry": null,
     "id": "water-sports",
     "labels": {
       "en": "Water sports",
@@ -504,6 +505,7 @@
         "pt": "É hóquei, mas na relva — um desporto dos Jogos de verão."
       }
     },
+    "homeCountry": null,
     "id": "winter-sports",
     "labels": {
       "en": "Winter sports",
@@ -733,6 +735,7 @@
         "pt": "Vem da Ásia e está cheio de posturas, mas ninguém luta."
       }
     },
+    "homeCountry": null,
     "id": "martial-arts",
     "labels": {
       "en": "Martial arts and combat sports",
@@ -1008,6 +1011,7 @@
         "pt": "Um jogo de cartas: nem sombra de tabuleiro."
       }
     },
+    "homeCountry": null,
     "id": "board-games",
     "labels": {
       "en": "Board games",
@@ -1244,6 +1248,7 @@
         "pt": "Joga-se com peças, não com cartas."
       }
     },
+    "homeCountry": null,
     "id": "card-games",
     "labels": {
       "en": "Card games",
@@ -1480,6 +1485,7 @@
         "pt": "Um jogo de festa: precisa de cadeiras e de música, que o recreio não tem."
       }
     },
+    "homeCountry": null,
     "id": "playground-games",
     "labels": {
       "en": "Playground games",
@@ -1703,6 +1709,7 @@
         "pt": "Acaba como saxofone, mas toca-se a bater: é percussão."
       }
     },
+    "homeCountry": null,
     "id": "wind-instruments",
     "labels": {
       "en": "Wind instruments",
@@ -1952,6 +1959,7 @@
         "pt": "Toca violino, mas não é um instrumento."
       }
     },
+    "homeCountry": null,
     "id": "string-instruments",
     "labels": {
       "en": "String instruments",
@@ -2227,6 +2235,7 @@
         "pt": "Canta-se em qualquer género: é um passatempo, não um género."
       }
     },
+    "homeCountry": null,
     "id": "music-genres",
     "labels": {
       "en": "Music genres",
@@ -2515,6 +2524,7 @@
         "pt": "Um filme da DreamWorks, feito para gozar com os contos da Disney."
       }
     },
+    "homeCountry": null,
     "id": "disney-films",
     "labels": {
       "en": "Disney animated films",
@@ -2790,6 +2800,7 @@
         "pt": "O arqui-inimigo do Batman: um vilão, não um herói."
       }
     },
+    "homeCountry": null,
     "id": "superheroes",
     "labels": {
       "en": "Superheroes",
@@ -3065,6 +3076,7 @@
         "pt": "Uma fábula, de Esopo e La Fontaine: uma moral, nenhuma fada."
       }
     },
+    "homeCountry": null,
     "id": "fairy-tales",
     "labels": {
       "en": "Fairy tales",
@@ -3340,6 +3352,7 @@
         "pt": "Um herói mortal da guerra de Troia, não um deus."
       }
     },
+    "homeCountry": null,
     "id": "greek-gods",
     "labels": {
       "en": "Greek gods",
@@ -3628,6 +3641,7 @@
         "pt": "Um escultor: O Pensador é de bronze, não de tela."
       }
     },
+    "homeCountry": null,
     "id": "famous-painters",
     "labels": {
       "en": "Famous painters",
@@ -3890,6 +3904,7 @@
         "pt": "Um passo do Michael Jackson, não uma dança em si."
       }
     },
+    "homeCountry": null,
     "id": "dances",
     "labels": {
       "en": "Dances",
@@ -4139,6 +4154,7 @@
         "pt": "Vem dos livros ilustrados para crianças, não da banda desenhada."
       }
     },
+    "homeCountry": null,
     "id": "comic-strip-heroes",
     "labels": {
       "en": "Comic strip heroes",
@@ -4414,6 +4430,7 @@
         "pt": "Um Marreta: um fantoche de pano, não uma personagem de desenhos animados."
       }
     },
+    "homeCountry": null,
     "id": "cartoon-characters",
     "labels": {
       "en": "Cartoon characters",
@@ -4663,6 +4680,7 @@
         "pt": "Natação, ciclismo e corrida: um desporto à parte, não uma prova de atletismo."
       }
     },
+    "homeCountry": null,
     "id": "athletics-events",
     "labels": {
       "en": "Athletics events",
@@ -4942,6 +4960,7 @@
         "pt": "Um animal virtual num porta-chaves: nem cartucho, nem jogos."
       }
     },
+    "homeCountry": null,
     "id": "video-game-consoles",
     "labels": {
       "en": "Video game consoles",
@@ -5230,6 +5249,7 @@
         "pt": "Italiana e rápida, mas faz motas."
       }
     },
+    "homeCountry": null,
     "id": "car-brands",
     "labels": {
       "en": "Car brands",
@@ -5515,6 +5535,7 @@
         "pt": "Um bolo francês do Dia de Reis, a 6 de janeiro: não vai à mesa de Natal."
       }
     },
+    "homeCountry": null,
     "id": "christmas",
     "labels": {
       "en": "Christmas",
@@ -5777,6 +5798,7 @@
         "pt": "O cientista que criou o monstro — a criatura, essa, não tem nome."
       }
     },
+    "homeCountry": null,
     "id": "monsters",
     "labels": {
       "en": "Monsters",
@@ -5961,6 +5983,7 @@
         "pt": "Uma 13.ª constelação que o Sol atravessa, mas não é um signo do zodíaco."
       }
     },
+    "homeCountry": null,
     "id": "zodiac-signs",
     "labels": {
       "en": "Zodiac signs",
@@ -6223,6 +6246,7 @@
         "pt": "Um serviço de streaming: toda a gente vê, ninguém publica."
       }
     },
+    "homeCountry": null,
     "id": "social-networks",
     "labels": {
       "en": "Social networks",

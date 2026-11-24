@@ -1,9 +1,16 @@
 import { describe, expect, it } from 'vitest'
 
-import { fiveCluesLadderSchema } from '@melee/protocol/five-clues'
+import {
+  type FiveCluesClue,
+  fiveCluesLadderSchema
+} from '@melee/protocol/five-clues'
+import type { LocalizedText } from '@melee/protocol/locale'
 import { questionLanguages } from '@melee/protocol/question'
 
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import {
+  answerInEveryLanguage,
+  gradeQuizGuess
+} from '@melee/core/quiz/question-answer'
 
 import {
   type AuthoredRow,
@@ -11,7 +18,7 @@ import {
   authoredLadderOf,
   authoredRowSchema,
   authoredRowsOf,
-  isDealtIn,
+  isDealtAt,
   playedAuthoredId
 } from './five-clues-authored'
 import { drawFiveCluesCard } from './five-clues-bank'
@@ -27,6 +34,9 @@ const AUTHORED_SUBJECTS = [
 /** Enough that an evening of twenty rounds on one subject never repeats, at any table. */
 const FEWEST_DEALT_A_TABLE = 40
 
+/** The tables a host's language seats — none for English — and the borderless one. */
+const TABLE_COUNTRIES = ['FRA', 'PRT', null] as const
+
 /** Lowercase, accents and punctuation dropped, padded so a match is whole words. */
 const wordsOf = (text: string): string =>
   ` ${text
@@ -35,6 +45,17 @@ const wordsOf = (text: string): string =>
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .trim()} `
+
+const wordingOf = (clue: FiveCluesClue): LocalizedText | null => {
+  switch (clue.kind) {
+    case 'text':
+      return clue.text
+    case 'image':
+      return clue.alt
+    default:
+      return null
+  }
+}
 
 const namesOf = ({
   language,
@@ -48,9 +69,9 @@ describe.each(AUTHORED_SUBJECTS)('the %s ladders', (subject) => {
   const rows = authoredRowsOf(subject)
 
   it('[fiveclues] deals every table enough of them', () => {
-    for (const language of questionLanguages) {
+    for (const homeCountry of TABLE_COUNTRIES) {
       expect(
-        rows.filter((row) => isDealtIn({ language, row })).length
+        rows.filter((row) => isDealtAt({ homeCountry, row })).length
       ).toBeGreaterThanOrEqual(FEWEST_DEALT_A_TABLE)
     }
   })
@@ -102,14 +123,37 @@ describe.each(AUTHORED_SUBJECTS)('the %s ladders', (subject) => {
 
   it('[fiveclues] climbs five rungs every screen can draw', () => {
     for (const row of rows) {
-      for (const language of questionLanguages) {
-        expect(
-          fiveCluesLadderSchema.safeParse(
-            authoredLadderOf({ language, row, subject })
-          ).success
-        ).toBe(true)
-      }
+      expect(
+        fiveCluesLadderSchema.safeParse(authoredLadderOf({ row, subject }))
+          .success
+      ).toBe(true)
     }
+  })
+
+  it('[fiveclues] grades the answer right in every language, and no decoy in any', () => {
+    const misgraded = rows.flatMap((row) => {
+      const question = answerInEveryLanguage({
+        accepted: questionLanguages.flatMap(
+          (language) => row.accepted[language]
+        ),
+        answer: row.name,
+        decoys: row.decoys
+      })
+
+      return questionLanguages.flatMap((language) => [
+        ...(gradeQuizGuess({ guess: row.name[language], question }).isCorrect
+          ? []
+          : [`${row.id} (${language}): its own name`]),
+        ...row.decoys
+          .map((decoy) => decoy[language])
+          .filter(
+            (decoy) => gradeQuizGuess({ guess: decoy, question }).isCorrect
+          )
+          .map((decoy) => `${row.id} (${language}): ${decoy}`)
+      ])
+    })
+
+    expect(misgraded).toEqual([])
   })
 })
 
@@ -137,7 +181,7 @@ describe('a Five clues card', () => {
     for (const subject of AUTHORED_SUBJECTS) {
       const card = drawFiveCluesCard({
         difficulty: 'mixed',
-        language: 'fr',
+        homeCountry: 'FRA',
         playedIds: new Set(),
         subjects: [subject]
       })
@@ -147,17 +191,51 @@ describe('a Five clues card', () => {
     }
   })
 
-  it('[fiveclues] never deals a row tied to another table’s culture', () => {
-    const portuguese = authoredRowsOf('person').filter(
-      ({ homeCountry }) => homeCountry === 'PRT'
+  it.each([
+    { dealt: [null], homeCountry: null },
+    { dealt: [null, 'FRA'], homeCountry: 'FRA' },
+    { dealt: [null, 'PRT'], homeCountry: 'PRT' }
+  ] as const)(
+    "[fiveclues] deals a table of $homeCountry everyone's people and its own, never another country's",
+    ({ dealt, homeCountry }) => {
+      const homes = new Set(
+        Array.from({ length: 300 }, () =>
+          drawFiveCluesCard({
+            difficulty: 'mixed',
+            homeCountry,
+            playedIds: new Set(),
+            subjects: ['person']
+          })
+        ).map(
+          (card) =>
+            authoredRowsOf('person').find(
+              (row) =>
+                card !== null &&
+                card.playedId === playedAuthoredId({ row, subject: 'person' })
+            )?.homeCountry
+        )
+      )
+
+      expect(homes).toEqual(new Set(dealt))
+    }
+  )
+
+  it('[fiveclues] sends every rung of a written ladder in all three languages', () => {
+    const card = drawFiveCluesCard({
+      difficulty: 'mixed',
+      homeCountry: null,
+      playedIds: new Set(),
+      subjects: ['film']
+    })
+    const row = authoredRowsOf('film').find(
+      (film) =>
+        card?.playedId === playedAuthoredId({ row: film, subject: 'film' })
     )
 
-    expect(portuguese.length).toBeGreaterThan(0)
-
-    for (const row of portuguese) {
-      expect(isDealtIn({ language: 'fr', row })).toBe(false)
-      expect(isDealtIn({ language: 'pt', row })).toBe(true)
-    }
+    expect(card?.answer.answer).toEqual(row?.name)
+    expect(card?.ladder.map(wordingOf)).toEqual(
+      row?.clues.map(({ text }) => text)
+    )
   })
 
   it('[fiveclues] deals a row the room has not climbed', () => {
@@ -170,13 +248,13 @@ describe('a Five clues card', () => {
 
     const card = drawFiveCluesCard({
       difficulty: 'mixed',
-      language: 'en',
+      homeCountry: null,
       playedIds: new Set(
         rest.map((row) => playedAuthoredId({ row, subject: 'animal' }))
       ),
       subjects: ['animal']
     })
 
-    expect(card?.answer.answer).toBe(kept.name.en)
+    expect(card?.answer.answer).toEqual(kept.name)
   })
 })

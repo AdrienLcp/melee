@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { FiveCluesClue } from '@melee/protocol/five-clues'
 import { DEFAULT_FIVE_CLUES_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
-import type { QuestionLanguage } from '@melee/protocol/question'
+import { pickedChoiceIndexOf } from '@melee/protocol/picked-choice'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -50,7 +50,7 @@ vi.mock(
 
     return {
       ...bank,
-      drawFiveCluesCard: ({ language }: { language: QuestionLanguage }) => {
+      drawFiveCluesCard: () => {
         const peru = bank
           .fiveCluesCountries()
           .find(({ code }) => code === PERU_CODE)
@@ -58,8 +58,8 @@ vi.mock(
         return peru === undefined
           ? null
           : {
-              answer: bank.fiveCluesAnswerOf({ country: peru, language }),
-              ladder: bank.fiveCluesLadderOf({ country: peru, language }),
+              answer: bank.fiveCluesAnswerOf(peru),
+              ladder: bank.fiveCluesLadderOf(peru),
               playedId: `fiveclues:${PERU_CODE}`,
               subject: 'country'
             }
@@ -79,8 +79,10 @@ const peruOf = () => {
 }
 
 const PERU = peruOf()
-const LADDER = fiveCluesLadderOf({ country: PERU, language: 'fr' })
-const ANSWER = fiveCluesAnswerOf({ country: PERU, language: 'fr' })
+const LADDER = fiveCluesLadderOf(PERU)
+const ANSWER = fiveCluesAnswerOf(PERU)
+/** What a French seat types and reads. */
+const PERU_NAME = ANSWER.answer.fr
 
 const marksOf = (clue: FiveCluesClue): readonly string[] => {
   switch (clue.kind) {
@@ -91,13 +93,13 @@ const marksOf = (clue: FiveCluesClue): readonly string[] => {
     case 'outline':
       return [clue.silhouette]
     case 'cities':
-      return clue.cities
+      return clue.cities.flatMap((city) => Object.values(city))
     case 'flag':
-      return [clue.flag, clue.capital]
+      return [clue.flag, ...Object.values(clue.capital)]
     case 'text':
-      return [clue.text]
+      return Object.values(clue.text)
     case 'image':
-      return [clue.photo.file, clue.alt]
+      return [clue.photo.file, ...Object.values(clue.alt)]
   }
 }
 
@@ -105,7 +107,13 @@ const marksOf = (clue: FiveCluesClue): readonly string[] => {
 const MARKS_BY_CLUE = LADDER.map(marksOf)
 
 /** What names the country: on no screen before the reveal, `choice`'s four names aside. */
-const COUNTRY_MARKS = [ANSWER.answer, ...ANSWER.accepted, `"${PERU_CODE}"`]
+const COUNTRY_MARKS = [
+  ...new Set([
+    ...Object.values(ANSWER.answer),
+    ...ANSWER.accepted,
+    `"${PERU_CODE}"`
+  ])
+]
 
 /** One wrong country a clue, none of them a neighbour a typed slip could be forgiven into. */
 const WRONG_GUESSES = ['Chili', 'Cuba', 'Mali', 'Canada', 'Laos'] as const
@@ -318,8 +326,8 @@ describe('a five-clues round through the seam', () => {
 
     expect(content?.clues).toEqual([LADDER[0]])
     expect(content?.openClueIndex).toBe(0)
-    expect(content?.choices.toSorted()).toEqual(
-      [ANSWER.answer, ...ANSWER.decoys].toSorted()
+    expect(content?.choices.map(({ fr }) => fr).toSorted()).toEqual(
+      [ANSWER.answer, ...ANSWER.decoys].map(({ fr }) => fr).toSorted()
     )
     expect(content?.answer).toBeNull()
     expect(content?.nextClueAt).not.toBeNull()
@@ -381,7 +389,7 @@ describe('a five-clues round through the seam', () => {
       () => playerView(zoe)?.round?.answers.length === 1,
       'the wrong guess to land'
     )
-    type({ guess: ANSWER.answer, roundId, seat: zoe })
+    type({ guess: PERU_NAME, roundId, seat: zoe })
     await waitFor(() => errorsIn(zoe).length === 1, 'the second guess refused')
 
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['already_buzzed'])
@@ -396,7 +404,7 @@ describe('a five-clues round through the seam', () => {
 
     expect(cluesRound(playerView(zoe))?.clues).toEqual([LADDER[0], LADDER[1]])
 
-    type({ guess: ANSWER.answer, roundId, seat: zoe })
+    type({ guess: PERU_NAME, roundId, seat: zoe })
     await waitFor(
       () => cluesRound(playerView(zoe))?.yourStanding?.status === 'found',
       'the guess on the next clue to land'
@@ -413,27 +421,72 @@ describe('a five-clues round through the seam', () => {
   it('[fiveclues] puts a wrong pick out for the round', async () => {
     const { roundId, zoe } = await roundInPlay({ mode: 'choice' })
     const choices = cluesRound(playerView(zoe))?.choices ?? []
-    const wrong = choices.findIndex((name) => name !== ANSWER.answer)
+    const right = choices.findIndex(({ fr }) => fr === PERU_NAME)
+    const wrong = choices.findIndex(({ fr }) => fr !== PERU_NAME)
 
     pick({ choiceIndex: wrong, roundId, seat: zoe })
     await waitFor(
       () => cluesRound(playerView(zoe))?.yourStanding?.status === 'out',
       'the wrong pick to land'
     )
-    pick({ choiceIndex: choices.indexOf(ANSWER.answer), roundId, seat: zoe })
+    pick({ choiceIndex: right, roundId, seat: zoe })
     await waitFor(() => errorsIn(zoe).length === 1, 'the second pick refused')
 
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['player_locked_out'])
     expect(playerView(zoe)?.phase).toBe('playing')
   })
 
+  it('[fiveclues] deals four names a screen reads in its own language, the same country in each', async () => {
+    const { zoe } = await roundInPlay({ mode: 'choice' })
+    const choices = cluesRound(playerView(zoe))?.choices ?? []
+
+    expect(choices).toHaveLength(4)
+    expect(choices).toEqual(
+      expect.arrayContaining([ANSWER.answer, ...ANSWER.decoys])
+    )
+  })
+
+  it('[fiveclues] says a pick as its place among the choices, which every screen names in its own language', async () => {
+    const { max, roundId, zoe } = await roundInPlay({ mode: 'choice' })
+    const choices = cluesRound(playerView(zoe))?.choices ?? []
+    const right = choices.findIndex(({ fr }) => fr === PERU_NAME)
+    const wrong = choices.findIndex(({ fr }) => fr !== PERU_NAME)
+
+    pick({ choiceIndex: right, roundId, seat: zoe })
+    pick({ choiceIndex: wrong, roundId, seat: max })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const saidBy = (seat: Seat) =>
+      playerView(zoe)?.round?.revealedAnswers.find(
+        ({ playerId }) => playerId === idOf(seat)
+      )?.said ?? ''
+
+    expect(pickedChoiceIndexOf(saidBy(zoe))).toBe(right)
+    expect(pickedChoiceIndexOf(saidBy(max))).toBe(wrong)
+  })
+
+  it('[fiveclues] takes a typed answer in any language a screen reads', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay({ mode: 'typed' })
+
+    type({ guess: ANSWER.answer.pt, roundId, seat: zoe })
+    type({ guess: ANSWER.answer.en, roundId, seat: max })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(cluesRound(playerView(zoe))?.standings).toEqual(
+      expect.arrayContaining([
+        { clueIndex: 0, playerId: idOf(zoe), status: 'found' },
+        { clueIndex: 0, playerId: idOf(max), status: 'found' }
+      ])
+    )
+  })
+
   it('[fiveclues] closes once everyone has found and pays each seat by its clue, the clock ordering a clue', async () => {
     const { host, max, roundId, zoe } = await roundInPlay({ mode: 'typed' })
 
-    type({ guess: ANSWER.answer, roundId, seat: zoe })
+    type({ guess: PERU_NAME, roundId, seat: zoe })
     type({ guess: 'Cuba', roundId, seat: max })
     await waitFor(() => openClueOf(max) === 1, 'the second clue to open early')
-    type({ guess: ANSWER.answer, roundId, seat: max })
+    type({ guess: PERU_NAME, roundId, seat: max })
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
     const awards = hostView(host)?.round?.awards ?? []
@@ -457,7 +510,7 @@ describe('a five-clues round through the seam', () => {
     const { code, roundId } = await roundInPlay({ mode: 'typed' })
     const late = await harness.seat({ code, nickname: 'Ana' })
 
-    type({ guess: ANSWER.answer, roundId, seat: late })
+    type({ guess: PERU_NAME, roundId, seat: late })
     await waitFor(() => errorsIn(late).length === 1, 'the late guess refused')
 
     expect(errorsIn(late).map(({ code }) => code)).toEqual(['joined_mid_round'])
@@ -704,7 +757,7 @@ describe('a five-clues round on the buzzer', () => {
 
       const consoleLeaks = leaksIn(host.frames)
 
-      expect(consoleLeaks).toContain(ANSWER.answer)
+      expect(consoleLeaks).toContain(PERU_NAME)
       expect(
         consoleLeaks.filter((mark) => !COUNTRY_MARKS.includes(mark))
       ).toEqual([])

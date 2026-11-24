@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Question } from '@melee/protocol/question'
+import {
+  answerInEveryLanguage,
+  gradeQuizGuess,
+  type QuestionAnswer
+} from './question-answer'
 
-import { gradeQuizGuess } from './question-answer'
-
-type Answerable = Pick<Question, 'accepted' | 'answer' | 'decoys'>
-
-const QUESTION: Answerable = {
+const QUESTION: QuestionAnswer = {
   accepted: [],
   answer: 'Kate Winslet',
   decoys: ['Cate Blanchett', 'Nicole Kidman', 'Naomi Watts']
 }
 
-const isRight = (guess: string, question: Answerable = QUESTION): boolean =>
+const isRight = (guess: string, question: QuestionAnswer = QUESTION): boolean =>
   gradeQuizGuess({ guess, question }).isCorrect
 
 describe('gradeQuizGuess', () => {
@@ -29,7 +29,7 @@ describe('gradeQuizGuess', () => {
   })
 
   it('[quiz] takes an answer typed without its accents', () => {
-    const question: Answerable = {
+    const question: QuestionAnswer = {
       accepted: [],
       answer: 'Léonard de Vinci',
       decoys: ['Michel-Ange', 'Raphaël', 'Donatello']
@@ -45,7 +45,7 @@ describe('gradeQuizGuess', () => {
    * searching within it pays a player for covering the field.
    */
   it('[quiz] refuses a line that hedges its way onto the answer', () => {
-    const question: Answerable = {
+    const question: QuestionAnswer = {
       accepted: [],
       answer: 'Quatre',
       decoys: ['Deux', 'Trois', 'Cinq']
@@ -57,7 +57,7 @@ describe('gradeQuizGuess', () => {
   })
 
   it('[quiz] takes any spelling the bank named as well as the answer', () => {
-    const question: Answerable = {
+    const question: QuestionAnswer = {
       accepted: ['Cervin', 'Matterhorn'],
       answer: 'Le Cervin',
       decoys: ['Le Mont Blanc', 'La Jungfrau', 'Le Grand Combin']
@@ -77,7 +77,7 @@ describe('gradeQuizGuess', () => {
    * still forgiven, up to where the bank says a different answer starts.
    */
   it('[quiz] never forgives its way onto an answer the question calls wrong', () => {
-    const question: Answerable = {
+    const question: QuestionAnswer = {
       accepted: [],
       answer: '5 minutes',
       decoys: ['7 minutes', '30 secondes', '2 heures']
@@ -94,7 +94,7 @@ describe('gradeQuizGuess', () => {
    * forgiving one correction answers it for the room.
    */
   it('[quiz] asks for the spelling when the spelling is the question', () => {
-    const question: Answerable = {
+    const question: QuestionAnswer = {
       accepted: [],
       answer: 'Accueil',
       decoys: ['Acueil', 'Accueille', 'Aceuil']
@@ -107,5 +107,66 @@ describe('gradeQuizGuess', () => {
   it('[quiz] refuses an empty line rather than reading it as a match', () => {
     expect(isRight('')).toBe(false)
     expect(isRight('   ')).toBe(false)
+  })
+})
+
+describe('answerInEveryLanguage', () => {
+  const flagOfPortugal = {
+    accepted: ['Portuguese Republic'],
+    answer: { en: 'Portugal', fr: 'Portugal', pt: 'Portugal' },
+    decoys: [
+      { en: 'Spain', fr: 'Espagne', pt: 'Espanha' },
+      { en: 'Morocco', fr: 'Maroc', pt: 'Marrocos' },
+      { en: 'Italy', fr: 'Italie', pt: 'Itália' }
+    ] as const
+  }
+  const flagOfGermany = {
+    accepted: [],
+    answer: { en: 'Germany', fr: 'Allemagne', pt: 'Alemanha' },
+    decoys: [
+      { en: 'Austria', fr: 'Autriche', pt: 'Áustria' },
+      { en: 'Belgium', fr: 'Belgique', pt: 'Bélgica' },
+      { en: 'Poland', fr: 'Pologne', pt: 'Polónia' }
+    ] as const
+  }
+
+  const isRightIn = (
+    guess: string,
+    question: Parameters<typeof answerInEveryLanguage>[0]
+  ): boolean =>
+    gradeQuizGuess({ guess, question: answerInEveryLanguage(question) })
+      .isCorrect
+
+  it('[quiz] takes the answer in whichever language a seat types it', () => {
+    expect(isRightIn('Germany', flagOfGermany)).toBe(true)
+    expect(isRightIn('Allemagne', flagOfGermany)).toBe(true)
+    expect(isRightIn('Alemanha', flagOfGermany)).toBe(true)
+  })
+
+  it('[quiz] keeps the spellings the row names beside the answers', () => {
+    expect(isRightIn('Portuguese Republic', flagOfPortugal)).toBe(true)
+  })
+
+  it('[quiz] refuses a decoy named in any language', () => {
+    expect(isRightIn('Espanha', flagOfPortugal)).toBe(false)
+    expect(isRightIn('Autriche', flagOfGermany)).toBe(false)
+  })
+
+  it('[quiz] names a word shared by every language once', () => {
+    expect(answerInEveryLanguage(flagOfPortugal)).toEqual({
+      accepted: ['Portuguese Republic'],
+      answer: 'Portugal',
+      decoys: [
+        'Spain',
+        'Espagne',
+        'Espanha',
+        'Morocco',
+        'Maroc',
+        'Marrocos',
+        'Italy',
+        'Italie',
+        'Itália'
+      ]
+    })
   })
 })

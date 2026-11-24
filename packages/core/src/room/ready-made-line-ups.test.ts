@@ -17,6 +17,7 @@ import {
   isJudgedInEveryMode,
   modeOfferedBy
 } from './game-modes'
+import { homeCountryFor } from './home-country'
 import {
   type HostPreferences,
   rememberedSetupFor,
@@ -260,13 +261,7 @@ describe.each(LOCALES)('the grand mix in %s', (locale) => {
   })
 })
 
-it.each([
-  'quiz',
-  'mysteryword',
-  'longestword',
-  'thinkalike',
-  'fiveclues'
-] as const)(
+it.each(['quiz', 'mysteryword', 'longestword', 'thinkalike'] as const)(
   '[ready-made] deals %s in the language the table speaks',
   (game) => {
     const languagesOf = (locale: Locale) =>
@@ -304,8 +299,13 @@ describe('a Portuguese table', () => {
     expect(places).not.toContain('frenchCities')
   })
 
-  it('[ready-made] deals every blind test from Portugal, and the music special its own decades', () => {
-    const blindTests = entriesOf('blindtest')
+  it('[ready-made] deals every blind test from Portugal but the borderless one’s, and the music special its own decades', () => {
+    const blindTests = lineUps
+      .filter(({ id }) => id !== 'international')
+      .flatMap(({ lineUp }) => lineUp)
+      .flatMap((entry) =>
+        typeof entry !== 'string' && entry.kind === 'blindtest' ? [entry] : []
+      )
     const music = lineUps.find(({ id }) => id === 'music')
 
     expect(
@@ -318,6 +318,114 @@ describe('a Portuguese table', () => {
       expect.objectContaining({ source: catalogueOf({ decades: ['1990s'] }) }),
       expect.objectContaining({ source: catalogueOf({ hasFilmScores: true }) })
     ])
+  })
+})
+
+it.each(LOCALES)(
+  '[ready-made] deals the grand mix’s black squares the themes of the table’s own country in %s',
+  (locale) => {
+    const grandMix = readyMadeLineUpsFor(locale).find(
+      ({ id }) => id === 'grandMix'
+    )
+    const homeCountries = (grandMix?.lineUp ?? []).flatMap((entry) =>
+      typeof entry !== 'string' && entry.kind === 'blacksquare'
+        ? [entry.homeCountry]
+        : []
+    )
+
+    expect(new Set(homeCountries)).toEqual(new Set([homeCountryFor(locale)]))
+  }
+)
+
+it.each(LOCALES)(
+  '[ready-made] climbs every five clues but the borderless evening’s to the table’s own country in %s',
+  (locale) => {
+    const homeCountries = readyMadeLineUpsFor(locale)
+      .filter(({ id }) => id !== 'international')
+      .flatMap(({ lineUp }) => lineUp)
+      .flatMap((entry) =>
+        typeof entry !== 'string' && entry.kind === 'fiveclues'
+          ? [entry.homeCountry]
+          : []
+      )
+
+    expect(homeCountries.length).toBeGreaterThan(fiveCluesSubjects.length)
+    expect(new Set(homeCountries)).toEqual(new Set([homeCountryFor(locale)]))
+  }
+)
+
+describe.each(LOCALES)('the borderless evening in %s', (locale) => {
+  const international = readyMadeLineUpsFor(locale).find(
+    ({ id }) => id === 'international'
+  )
+
+  if (international === undefined) {
+    throw new Error('the borderless evening ships')
+  }
+
+  const spelled = international.lineUp.flatMap((entry) =>
+    typeof entry === 'string' ? [] : [entry]
+  )
+
+  it('[ready-made] plays every game no host judges but the word games, never twice on one setting', () => {
+    const settings = international.lineUp.map((entry) => JSON.stringify(entry))
+
+    expect(new Set(international.lineUp.map(gameOfEntry))).toEqual(
+      new Set(
+        shelvedGames.filter(
+          (game) =>
+            !isJudgedInEveryMode(game) &&
+            !['longestword', 'mysteryword', 'petitbac', 'thinkalike'].includes(
+              game
+            )
+        )
+      )
+    )
+    expect(new Set(settings).size).toBe(settings.length)
+    expect(international.lineUp.length).toBeLessThanOrEqual(LINE_UP_MAX_ENTRIES)
+  })
+
+  it('[ready-made] deals no table’s own content, whatever the host’s language', () => {
+    const homeCountries = spelled.flatMap((entry) =>
+      'homeCountry' in entry ? [entry.homeCountry] : []
+    )
+    const games = new Set(
+      spelled.flatMap((entry) => ('homeCountry' in entry ? [entry.kind] : []))
+    )
+
+    expect(games).toEqual(
+      new Set([
+        'blacksquare',
+        'blindtest',
+        'estimate',
+        'fiveclues',
+        'higherlower',
+        'timeline'
+      ])
+    )
+    expect(new Set(homeCountries)).toEqual(new Set([null]))
+  })
+
+  it('[ready-made] places countries and world capitals alone, and hears no chart', () => {
+    const places = spelled.flatMap((entry) =>
+      entry.kind === 'atlas' ? entry.places : []
+    )
+    const charts = spelled.flatMap((entry) =>
+      entry.kind === 'blindtest' && entry.source.kind === 'catalogue'
+        ? (entry.source.charts ?? [])
+        : []
+    )
+
+    expect(new Set(places)).toEqual(new Set(['countries', 'worldCapitals']))
+    expect(charts).toEqual([])
+  })
+
+  it('[ready-made] asks only the quiz subjects each screen names in its own language', () => {
+    const categories = spelled.flatMap((entry) =>
+      entry.kind === 'quiz' ? entry.categories : []
+    )
+
+    expect(categories).toEqual(['flags', 'capitals', 'silhouettes'])
   })
 })
 

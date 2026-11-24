@@ -14,6 +14,10 @@ import {
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import {
+  BLACK_SQUARE_THEMES,
+  themeIdOf
+} from '../../../scripts/black-square-themes'
+import {
   authoredBlackSquareSources,
   authoredBlackSquareThemes,
   bankedBlackSquareThemes,
@@ -105,6 +109,21 @@ describe('the black-square bank', () => {
 
     expect(ids.length).toBeGreaterThanOrEqual(55)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('[blacksquare] banks every Wikidata theme under the country its spec names, so a rebuild keeps it', () => {
+    const specHomes = new Map(
+      BLACK_SQUARE_THEMES.map((spec) => [
+        themeIdOf(spec),
+        spec.homeCountry ?? null
+      ])
+    )
+
+    expect(
+      bankedBlackSquareThemes()
+        .filter(({ homeCountry, id }) => specHomes.get(id) !== homeCountry)
+        .map(({ id }) => id)
+    ).toEqual([])
   })
 
   it('[blacksquare] pools nine to twenty-four different answers a theme, every tier at least three', () => {
@@ -391,22 +410,76 @@ describe('the black-square theme pool', () => {
     const playedIds = new Set<string>()
 
     for (const _ of easyIds) {
-      const theme = drawBlackSquareTheme({ difficulty: 'easy', playedIds })
+      const theme = drawBlackSquareTheme({
+        difficulty: 'easy',
+        homeCountry: 'FRA',
+        playedIds
+      })
 
       expect(easyIds.has(theme?.id ?? '')).toBe(true)
       playedIds.add(playedBlackSquareThemeId(theme?.id ?? ''))
     }
 
-    expect(drawBlackSquareTheme({ difficulty: 'easy', playedIds })?.tier).toBe(
-      'medium'
-    )
+    expect(
+      drawBlackSquareTheme({
+        difficulty: 'easy',
+        homeCountry: 'FRA',
+        playedIds
+      })?.tier
+    ).toBe('medium')
   })
 
   it('[blacksquare] never deals a hard room an easy theme while another is left', () => {
     for (const _ of Array.from({ length: 30 })) {
       expect(
-        drawBlackSquareTheme({ difficulty: 'hard', playedIds: new Set() })?.tier
+        drawBlackSquareTheme({
+          difficulty: 'hard',
+          homeCountry: 'FRA',
+          playedIds: new Set()
+        })?.tier
       ).not.toBe('easy')
     }
+  })
+
+  it.each([
+    { dealt: [null], homeCountry: 'PRT' },
+    { dealt: [null, 'FRA'], homeCountry: 'FRA' },
+    { dealt: [null], homeCountry: null }
+  ] as const)(
+    "[blacksquare] deals a table of $homeCountry everyone's themes and its own, never another country's",
+    ({ dealt, homeCountry }) => {
+      const playedIds = new Set<string>()
+      const homes = new Set<string | null>()
+
+      for (
+        let theme = drawBlackSquareTheme({
+          difficulty: 'mixed',
+          homeCountry,
+          playedIds
+        });
+        theme !== null;
+        theme = drawBlackSquareTheme({
+          difficulty: 'mixed',
+          homeCountry,
+          playedIds
+        })
+      ) {
+        homes.add(theme.homeCountry)
+        playedIds.add(playedBlackSquareThemeId(theme.id))
+      }
+
+      expect(homes).toEqual(new Set(dealt))
+    }
+  )
+
+  it('[blacksquare] keeps a French theme to the French table, and one the world knows to every table', () => {
+    const homeCountryOf = new Map(
+      blackSquareThemePool().map(({ homeCountry, id }) => [id, homeCountry])
+    )
+
+    expect(homeCountryOf.get('french-dishes')).toBe('FRA')
+    expect(homeCountryOf.get('position-holders:Q18384454:Q191954')).toBe('FRA')
+    expect(homeCountryOf.get('cheeses')).toBeNull()
+    expect(homeCountryOf.get('position-holders:Q11696:Q11699')).toBeNull()
   })
 })

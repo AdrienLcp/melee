@@ -5,7 +5,7 @@ import type { QuestionPrompt } from '@melee/protocol/question'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { RebusLine } from '@/presentation/components/rebus-line'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { questionCategoryKey } from '@/presentation/i18n/translation'
 
 import './asked-question.sass'
@@ -29,18 +29,17 @@ type AskedQuestionProps = {
  * word is a coin flip, and a question's longest is fourteen characters.
  */
 export const AskedQuestion: React.FC<AskedQuestionProps> = ({ prompt }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
 
   if (prompt === null) {
     return null
   }
 
+  const asked = prompt.prompt[locale]
+
   return (
-    <div
-      className='asked-question'
-      style={{ '--prompt-length': prompt.prompt.length }}
-    >
-      <p className='prompt'>{prompt.prompt}</p>
+    <div className='asked-question' style={{ '--prompt-length': asked.length }}>
+      <p className='prompt'>{asked}</p>
       {/* After the prompt so it is read second; the card prints it above. */}
       {prompt.category !== null && (
         <p className='category'>

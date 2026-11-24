@@ -266,6 +266,7 @@
         "pt": "Um grande felino das florestas da Ásia, nunca da savana africana."
       }
     },
+    "homeCountry": null,
     "id": "savanna-animals",
     "labels": {
       "en": "Savanna animals",
@@ -528,6 +529,7 @@
         "pt": "Dentes temíveis, mas só vive nos rios da América do Sul."
       }
     },
+    "homeCountry": null,
     "id": "sea-animals",
     "labels": {
       "en": "Sea creatures",
@@ -717,6 +719,7 @@
         "pt": "Negro, bico curvo e ar feroz, mas um passeriforme da família dos corvídeos."
       }
     },
+    "homeCountry": null,
     "id": "birds-of-prey",
     "labels": {
       "en": "Birds of prey",
@@ -992,6 +995,7 @@
         "pt": "Oito patas, não seis: é um aracnídeo."
       }
     },
+    "homeCountry": null,
     "id": "insects",
     "labels": {
       "en": "Insects",
@@ -1267,6 +1271,7 @@
         "pt": "Uma raça grande e de pelo comprido, mas de gato."
       }
     },
+    "homeCountry": null,
     "id": "dog-breeds",
     "labels": {
       "en": "Dog breeds",
@@ -1529,6 +1534,7 @@
         "pt": "Vive ao lado das pessoas, mas como gado, não como animal de estimação."
       }
     },
+    "homeCountry": null,
     "id": "pets",
     "labels": {
       "en": "Pets",
@@ -1760,6 +1766,7 @@
         "pt": "Parece um lagarto, mas é um anfíbio de pele húmida."
       }
     },
+    "homeCountry": null,
     "id": "reptiles",
     "labels": {
       "en": "Reptiles",
@@ -2009,6 +2016,7 @@
         "pt": "Vive nos prados de altitude, acima do limite das árvores."
       }
     },
+    "homeCountry": null,
     "id": "forest-animals",
     "labels": {
       "en": "Forest animals",
@@ -2245,6 +2253,7 @@
         "pt": "Feito para a neve, mas nas montanhas da Ásia Central, longe dos polos."
       }
     },
+    "homeCountry": null,
     "id": "polar-animals",
     "labels": {
       "en": "Polar animals",
@@ -2507,6 +2516,7 @@
         "pt": "Um réptil voador da mesma época, mas não um dinossauro."
       }
     },
+    "homeCountry": null,
     "id": "dinosaurs",
     "labels": {
       "en": "Dinosaurs",
@@ -2756,6 +2766,7 @@
         "pt": "Um primata de Madagáscar, mas não um macaco."
       }
     },
+    "homeCountry": null,
     "id": "monkeys",
     "labels": {
       "en": "Monkeys and apes",
@@ -3005,6 +3016,7 @@
         "pt": "Tem ar de grande felino, mas pertence a uma família à parte."
       }
     },
+    "homeCountry": null,
     "id": "wild-cats",
     "labels": {
       "en": "Wild cats",
@@ -3280,6 +3292,7 @@
         "pt": "Rói como eles, mas é um lagomorfo, com um segundo par de incisivos."
       }
     },
+    "homeCountry": null,
     "id": "rodents",
     "labels": {
       "en": "Rodents",
@@ -3555,6 +3568,7 @@
         "pt": "Só vive nas Américas: o que paira num jardim europeu é uma borboleta."
       }
     },
+    "homeCountry": null,
     "id": "garden-birds",
     "labels": {
       "en": "Garden birds",
@@ -3830,6 +3844,7 @@
         "pt": "Uma planta que nunca dá flor: reproduz-se por esporos."
       }
     },
+    "homeCountry": null,
     "id": "flowers",
     "labels": {
       "en": "Flowers",
@@ -4105,6 +4120,7 @@
         "pt": "Alto como uma árvore, mas é uma erva gigante."
       }
     },
+    "homeCountry": null,
     "id": "trees",
     "labels": {
       "en": "Trees",
@@ -4380,6 +4396,7 @@
         "pt": "Preciosa como uma gema, mas feita por uma ostra, não é uma pedra."
       }
     },
+    "homeCountry": null,
     "id": "gemstones",
     "labels": {
       "en": "Gemstones",
@@ -4655,6 +4672,7 @@
         "pt": "Parece metal, mas é uma liga de ferro e carbono."
       }
     },
+    "homeCountry": null,
     "id": "metals",
     "labels": {
       "en": "Metals",
@@ -4917,6 +4935,7 @@
         "pt": "Uma catástrofe natural, mas do solo, não do céu."
       }
     },
+    "homeCountry": null,
     "id": "weather",
     "labels": {
       "en": "Weather",
@@ -5192,6 +5211,7 @@
         "pt": "A nossa galáxia: é o sistema solar que está dentro dela, e não o contrário."
       }
     },
+    "homeCountry": null,
     "id": "solar-system",
     "labels": {
       "en": "The solar system",
@@ -5467,6 +5487,7 @@
         "pt": "Gelo que flutua e anda à deriva: não faz parte do relevo."
       }
     },
+    "homeCountry": null,
     "id": "landforms",
     "labels": {
       "en": "Landforms",
@@ -5755,6 +5776,7 @@
         "pt": "Dinamarquesa, mas não é um país, e fica do lado norte-americano do Atlântico."
       }
     },
+    "homeCountry": null,
     "id": "european-countries",
     "labels": {
       "en": "European countries",
@@ -6017,6 +6039,7 @@
         "pt": "Não é uma cor: deixa passar a luz e não tem cor própria."
       }
     },
+    "homeCountry": null,
     "id": "colours",
     "labels": {
       "en": "Colours",
@@ -6279,6 +6302,7 @@
         "pt": "Onde duas retas se cruzam: uma medida, não uma forma."
       }
     },
+    "homeCountry": null,
     "id": "shapes",
     "labels": {
       "en": "Shapes",

@@ -120,19 +120,6 @@ export type AtlasCityPlaces = z.infer<typeof atlasCityPlacesSchema>
 export type AtlasDirection = z.infer<typeof atlasDirectionSchema>
 export type LocalizedName = z.infer<typeof localizedNameSchema>
 
-/**
- * How a picked name is recorded in the line a revealed answer says: its place
- * among the round's `choices`, which every screen holds in the same order. Never
- * the name itself, which would be one language's, read back on a screen
- * speaking another.
- */
-export const atlasPickSaid = (choiceIndex: number): string =>
-  String(choiceIndex)
-
-/** The place among `choices` a revealed answer's line holds, or `null` when it holds none. */
-export const atlasPickIndexOf = (said: string): number | null =>
-  /^\d+$/.test(said) ? Number(said) : null
-
 export type AtlasShown = z.infer<typeof atlasShownSchema>
 export type AtlasTargetKind = z.infer<typeof atlasTargetKindSchema>
 export type AtlasTarget = z.infer<typeof atlasTargetSchema>

@@ -35,6 +35,7 @@ import {
   MYSTERY_WORD_MIN_LENGTH
 } from '@melee/protocol/mystery-word'
 import {
+  isAskedInEveryLanguage,
   type QuestionCategory,
   questionCategories,
   questionLanguages
@@ -188,7 +189,7 @@ const QuestionBankSettings: React.FC<{
         room can play in French on an English console.
       */}
       <LanguageChoice
-        isDisabled={isDisabled}
+        isDisabled={isDisabled || isAskedInEveryLanguage(game.categories)}
         label={translate('quiz.language')}
         languages={questionLanguages}
         onChange={(language) => {
@@ -903,15 +904,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
               value: subject
             }))}
             selectedKeys={game.subjects}
-          />
-          <LanguageChoice
-            isDisabled={isDisabled}
-            label={translate('fiveclues.language')}
-            languages={questionLanguages}
-            onChange={(language) => {
-              onChange({ ...settings, game: { ...game, language } })
-            }}
-            value={game.language}
           />
           <DifficultyChoice
             isDisabled={isDisabled}

@@ -167,7 +167,9 @@ describe('a quiz deck', () => {
     })
 
     await openRound({ host, zoe })
-    expect(quizRound(playerView(zoe))?.prompt.prompt).toBe(GRANDMOTHER.prompt)
+    expect(quizRound(playerView(zoe))?.prompt.prompt.en).toBe(
+      GRANDMOTHER.prompt
+    )
     expect(quizRound(playerView(zoe))?.prompt.category).toBeNull()
     await reveal({ host, zoe })
     expect(quizRound(playerView(zoe))?.revealedQuestion?.note).toBe(
@@ -175,7 +177,7 @@ describe('a quiz deck', () => {
     )
 
     await openRound({ host, zoe })
-    expect(quizRound(playerView(zoe))?.prompt.prompt).toBe(DOG.prompt)
+    expect(quizRound(playerView(zoe))?.prompt.prompt.en).toBe(DOG.prompt)
     await reveal({ host, zoe })
     expect(hostView(host)?.deckSummaries).toEqual([{ played: 2, size: 2 }])
 
@@ -226,7 +228,7 @@ describe('a quiz deck', () => {
 
     await openRound({ host, zoe })
 
-    expect(quizRound(playerView(zoe))?.prompt.prompt).toBe(DOG.prompt)
+    expect(quizRound(playerView(zoe))?.prompt.prompt.en).toBe(DOG.prompt)
   })
 
   it('[deck] follows its entry when the line-up is reordered', async () => {
@@ -264,7 +266,9 @@ describe('a quiz deck', () => {
     )
     await openRound({ host, zoe })
 
-    expect(quizRound(playerView(zoe))?.prompt.prompt).toBe(GRANDMOTHER.prompt)
+    expect(quizRound(playerView(zoe))?.prompt.prompt.en).toBe(
+      GRANDMOTHER.prompt
+    )
   })
 
   it('[deck] refuses a deck beside an entry of another game, and once a round has opened', async () => {

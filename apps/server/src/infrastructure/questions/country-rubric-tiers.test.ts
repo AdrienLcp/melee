@@ -106,16 +106,17 @@ describe('an easy room asking a country', () => {
 
         expect(easy.decoys).toEqual(question.easyDecoys)
         expect(hard.decoys).toEqual(question.decoys)
-        expect(easy.decoys).not.toContain(question.answer)
-        expect(new Set(easy.decoys).size).toBe(3)
+        expect(easy.decoys.map(({ en }) => en)).not.toContain(
+          question.answer.en
+        )
+        expect(new Set(easy.decoys.map(({ en }) => en)).size).toBe(3)
       }
     }
   )
 
   it('[difficulty] gives a mixed room the softer decoys for a well-known flag alone', () => {
-    const french = rowsOf('flags').filter(({ language }) => language === 'en')
-    const france = french.find(({ answer }) => answer === 'France')
-    const bhutan = french.find(({ answer }) => answer === 'Bhutan')
+    const france = rowsOf('flags').find(({ answer }) => answer.en === 'France')
+    const bhutan = rowsOf('flags').find(({ answer }) => answer.en === 'Bhutan')
 
     expect(
       france && hostQuestionOf({ difficulty: 'mixed', question: france }).decoys
@@ -126,13 +127,12 @@ describe('an easy room asking a country', () => {
   })
 
   it('[difficulty] puts Japan beside no Asian flag', () => {
-    const japan = rowsOf('flags').find(
-      ({ answer, language }) => language === 'en' && answer === 'Japan'
-    )
+    const japan = rowsOf('flags').find(({ answer }) => answer.en === 'Japan')
+    const easyDecoys = japan?.easyDecoys?.map(({ en }) => en)
 
-    expect(japan?.easyDecoys).not.toContain('South Korea')
-    expect(japan?.easyDecoys).not.toContain('Bangladesh')
-    expect(japan?.decoys).toContain('Bangladesh')
+    expect(easyDecoys).not.toContain('South Korea')
+    expect(easyDecoys).not.toContain('Bangladesh')
+    expect(japan?.decoys.map(({ en }) => en)).toContain('Bangladesh')
   })
 })
 

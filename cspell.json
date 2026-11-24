@@ -267,6 +267,7 @@
     {
       "filename": [
         "CHANGELOG.md",
+        "docs/plans/79-international.md",
         "apps/game/src/presentation/head/document-head.ts",
         "apps/server/scripts/build-capital-bank.ts",
         "apps/server/src/infrastructure/questions/capital-questions.test.ts",
@@ -286,6 +287,15 @@
         "apps/game/src/presentation/i18n/portuguese-plurals.test.ts",
         "packages/core/src/challenge/letter-slot.test.ts",
         "packages/protocol/src/locale.test.ts",
+        "packages/protocol/src/codec.test.ts",
+        "packages/core/src/quiz/question-answer.test.ts",
+        "apps/server/src/__tests__/quiz-game.test.ts",
+        "apps/server/src/__tests__/room-harness.ts",
+        "apps/server/src/infrastructure/questions/flag-questions.test.ts",
+        "apps/server/src/infrastructure/questions/silhouette-questions.test.ts",
+        "docs/game-catalogue.md",
+        "apps/server/src/domain/room/stored-round.test.ts",
+        "apps/server/src/infrastructure/questions/five-clues-bank.test.ts",
         "apps/game/src/features/credits/credits-page.tsx",
         "apps/game/src/presentation/i18n/dictionary-en.ts",
         "apps/game/src/presentation/i18n/dictionary-fr.ts",

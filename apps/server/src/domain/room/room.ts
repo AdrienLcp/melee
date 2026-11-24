@@ -30,6 +30,7 @@ import type {
   RoundId,
   SessionId
 } from '@melee/protocol/identifiers'
+import type { LocalizedText } from '@melee/protocol/locale'
 import type { Calculation, CalculationStep } from '@melee/protocol/make-number'
 import type {
   MatchsticksPuzzle,
@@ -66,7 +67,7 @@ import type { ClipSpan, HostTrack, TrackIdentity } from '@melee/protocol/track'
 import type { TrackHistory } from '@melee/core/blindtest/track-variety'
 import type { CluesSeat } from '@melee/core/fiveclues/clue-race'
 import type { LightsStep } from '@melee/core/lights/lights-run'
-import type { QuestionAnswer } from '@melee/core/quiz/question-answer'
+import type { LocalizedQuestionAnswer } from '@melee/core/quiz/question-answer'
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
 import type { CrowdAnswer, CrowdMerge } from '@melee/core/thinkalike/crowd-key'
@@ -503,7 +504,7 @@ export type Round = {
         votesDone: Set<PlayerId>
       }
     | {
-        choices: string[]
+        choices: LocalizedText[]
         correctChoiceIndex: number | null
         kind: 'quiz'
         question: HostQuestion
@@ -619,10 +620,10 @@ export type Round = {
         prompt: string
       }
     | {
-        /** The country's name, what a table says instead and the decoys, in the room's language: what a typed line is graded against. */
-        answer: QuestionAnswer
-        /** Four names in a `choice` round, shuffled once as it opens; empty in a `typed` one. */
-        choices: string[]
+        /** The name, what a table says instead and the decoys, in every language: what a typed line in any of them is graded against. */
+        answer: LocalizedQuestionAnswer
+        /** Four names, each in every language, in a `choice` round, shuffled once as it opens; empty in a `typed` one. */
+        choices: LocalizedText[]
         /** Stamped as the round opens, so a host moving the setting mid-round decides the next one. */
         clueDurationMs: number
         /** When the open clue opened, on the round's own clock, so a pause or the console away stops its window too. */

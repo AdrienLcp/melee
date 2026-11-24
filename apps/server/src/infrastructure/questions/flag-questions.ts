@@ -4,12 +4,8 @@ import {
   type CountryCode,
   countryCodeSchema
 } from '@melee/protocol/country-code'
-import {
-  type FlagFile,
-  flagFileSchema,
-  type QuestionLanguage,
-  questionLanguages
-} from '@melee/protocol/question'
+import type { LocalizedText } from '@melee/protocol/locale'
+import { type FlagFile, flagFileSchema } from '@melee/protocol/question'
 
 import {
   type ContentTier,
@@ -17,8 +13,9 @@ import {
 } from '@melee/core/round/difficulty-draw'
 
 import {
-  acceptedCountryNames,
-  COUNTRY_NAMES_BY_LANGUAGE
+  acceptedCountryNamesInEveryLanguage,
+  localizedCountryName,
+  localizedCountryNames
 } from './country-answers'
 import flagBank from './flag-bank.json' with { type: 'json' }
 import type { BankedQuestion } from './question-bank'
@@ -44,11 +41,11 @@ const flagBankSchema = z.array(
   })
 )
 
-const PROMPT_BY_LANGUAGE = {
+const FLAG_PROMPT = {
   en: 'Whose flag is this?',
   fr: 'À qui est ce drapeau ?',
   pt: 'De quem é esta bandeira?'
-} as const satisfies Record<QuestionLanguage, string>
+} as const satisfies LocalizedText
 
 let parsedFlags: z.infer<typeof flagBankSchema> | undefined
 
@@ -82,9 +79,9 @@ export const flagFileOf = (code: CountryCode): FlagFile | null => {
 let flagQuestions: BankedQuestion[] | undefined
 
 /**
- * Every sovereign state's flag in every language, built on the first draw like
- * the bank. The id is the file's, never the country's: it travels to every
- * player with the prompt.
+ * Every sovereign state's flag, each one question read in every language. The
+ * id is the file's, never the country's: it travels to every player with the
+ * prompt.
  *
  * **States only.** The territories keep their flags for the map and five
  * clues, but dealt here they were thirty-five hard flags among a hundred and
@@ -94,39 +91,25 @@ let flagQuestions: BankedQuestion[] | undefined
 export const bankedFlagQuestions = (): BankedQuestion[] => {
   flagQuestions ??= flagRows()
     .filter(({ isSovereign }) => isSovereign)
-    .flatMap((flag) =>
-      questionLanguages.map((language) => {
-        const names = COUNTRY_NAMES_BY_LANGUAGE[language]
-
-        return {
-          accepted: acceptedCountryNames({ code: flag.code, language }),
-          answer: names[flag.code].name,
-          category: 'flags' as const,
-          choiceOnly: false,
-          decoys: [
-            names[flag.decoys[0]].name,
-            names[flag.decoys[1]].name,
-            names[flag.decoys[2]].name
-          ] as const,
-          easyDecoys: [
-            names[flag.easyDecoys[0]].name,
-            names[flag.easyDecoys[1]].name,
-            names[flag.easyDecoys[2]].name
-          ] as const,
-          flag: flag.file,
-          id: `flag-${language}-${flag.file.replace('.svg', '')}`,
-          isAdult: false,
-          isWellKnown: flag.tier === 'easy',
-          language,
-          note: null,
-          prompt: PROMPT_BY_LANGUAGE[language],
-          rebus: null,
-          silhouette: null,
-          theme: 'flag-icons',
-          tier: flag.tier
-        }
-      })
-    )
+    .map((flag) => ({
+      accepted: acceptedCountryNamesInEveryLanguage(flag.code),
+      answer: localizedCountryName(flag.code),
+      category: 'flags' as const,
+      choiceOnly: false,
+      decoys: localizedCountryNames(flag.decoys),
+      easyDecoys: localizedCountryNames(flag.easyDecoys),
+      flag: flag.file,
+      id: `flag-${flag.file.replace('.svg', '')}`,
+      isAdult: false,
+      isWellKnown: flag.tier === 'easy',
+      language: null,
+      note: null,
+      prompt: FLAG_PROMPT,
+      rebus: null,
+      silhouette: null,
+      theme: 'flag-icons',
+      tier: flag.tier
+    }))
 
   return flagQuestions
 }

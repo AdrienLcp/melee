@@ -56,13 +56,16 @@ export const askedIn = ({
   const language = questionLanguageFor(locale)
   const homeCountry = homeCountryFor(locale)
   const {
+    blacksquare,
     blindtest,
     estimate,
+    fiveclues,
     higherlower,
     longestword,
     mysteryword,
     quiz,
-    thinkalike
+    thinkalike,
+    timeline
   } = preferences.games
   const games = { ...preferences.games }
 
@@ -79,6 +82,21 @@ export const askedIn = ({
       ...higherlower,
       game: { ...higherlower.game, homeCountry }
     }
+  }
+
+  if (timeline?.game.kind === 'timeline') {
+    games.timeline = { ...timeline, game: { ...timeline.game, homeCountry } }
+  }
+
+  if (blacksquare?.game.kind === 'blacksquare') {
+    games.blacksquare = {
+      ...blacksquare,
+      game: { ...blacksquare.game, homeCountry }
+    }
+  }
+
+  if (fiveclues?.game.kind === 'fiveclues') {
+    games.fiveclues = { ...fiveclues, game: { ...fiveclues.game, homeCountry } }
   }
 
   if (quiz?.game.kind === 'quiz') {

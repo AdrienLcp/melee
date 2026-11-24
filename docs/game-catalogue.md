@@ -387,13 +387,29 @@ rule is one more thing a host cannot see from the setup.
 
 **The table's language and its country are the game's too, never the room's.**
 `language` sits on the four arms whose content is written in one language
-(quiz, mystery word, longest word, think alike); `homeCountry` on the three
+(quiz, mystery word, longest word, think alike); `homeCountry` on the six
 that deal a country's own content to that country's table (estimate, higher
-or lower, the blind test's decades). Both are seeded from the host's locale as
+or lower, the blind test's decades, timeline's dates, black square's themes
+and five clues' written ladders). Both are seeded from the host's locale as
 the room opens and re-synced by `askedIn`, and no arm holds both, so no
 precedence rule exists to explain. Atlas holds neither: its place set names the
 country itself. The argument, measured on those three cases, is
 `docs/plans/72-portuguese.md`.
+
+**A quiz's country rubric is read on each screen, never dealt in the table's
+language.** Every language names a flag's, a capital's or an outline's country,
+so the quiz's prompt, choices and answer travel as a `LocalizedText` and each
+screen reads its own: a French phone and a Portuguese one at one table see
+_Japon_ and _Japão_ on the same tile. Every other row stands its one language
+in all three locales (`writtenInOneLanguage`), so a screen reads
+`text[locale]` and never asks which rubric it holds. `language` still picks the
+bank for those rows; the country rubrics are dealt whatever it says, under
+language-free ids, and a typed answer is graded against every language's names
+(`answerInEveryLanguage`). A pick is recorded as its place among the choices
+(`pickedChoiceSaid`), Atlas's rule, so a reveal names it in the reader's
+language. Five clues reads the same way, every rung of every ladder: it lost
+its `language` for `homeCountry`, which picks only which written ladders a
+table is dealt.
 
 **A country's tier is one list, and it is not the traffic.** Sixty days of
 French Wikipedia readers follow the news — a coup put Burkina Faso above

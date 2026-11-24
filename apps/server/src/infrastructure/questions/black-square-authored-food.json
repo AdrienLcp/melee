@@ -201,6 +201,7 @@
         "pt": "Um tubérculo: um caule inchado, não uma raiz."
       }
     },
+    "homeCountry": null,
     "id": "root-vegetables",
     "labels": {
       "en": "Root vegetables",
@@ -402,6 +403,7 @@
         "pt": "Vermelho e presente em muitos crumbles, mas é um caule: um legume."
       }
     },
+    "homeCountry": null,
     "id": "red-fruits",
     "labels": {
       "en": "Red fruits and berries",
@@ -586,6 +588,7 @@
         "pt": "Cheira a limão, mas é uma erva."
       }
     },
+    "homeCountry": null,
     "id": "citrus-fruits",
     "labels": {
       "en": "Citrus fruits",
@@ -848,6 +851,7 @@
         "pt": "Parece um queijo fresco, mas não leva uma gota de leite."
       }
     },
+    "homeCountry": null,
     "id": "cheeses",
     "labels": {
       "en": "Cheeses",
@@ -1123,6 +1127,7 @@
         "pt": "Não é uma especiaria, mas uma mistura de uma dúzia delas."
       }
     },
+    "homeCountry": null,
     "id": "spices",
     "labels": {
       "en": "Spices",
@@ -1385,6 +1390,7 @@
         "pt": "Perfuma tudo, mas é um bolbo, não uma erva."
       }
     },
+    "homeCountry": null,
     "id": "aromatic-herbs",
     "labels": {
       "en": "Herbs",
@@ -1634,6 +1640,7 @@
         "pt": "Servem-se como massa, mas são bolinhos de batata."
       }
     },
+    "homeCountry": null,
     "id": "pasta-shapes",
     "labels": {
       "en": "Kinds of pasta",
@@ -1896,6 +1903,7 @@
         "pt": "É do pequeno-almoço, ao lado do café: nem bolo, nem sobremesa."
       }
     },
+    "homeCountry": null,
     "id": "cakes-and-desserts",
     "labels": {
       "en": "Cakes and desserts",
@@ -2171,6 +2179,7 @@
         "pt": "Um licor que se bebe puro, não uma mistura."
       }
     },
+    "homeCountry": null,
     "id": "cocktails",
     "labels": {
       "en": "Cocktails",
@@ -2389,6 +2398,7 @@
         "pt": "Chá, sim, mas servido frio."
       }
     },
+    "homeCountry": null,
     "id": "hot-drinks",
     "labels": {
       "en": "Hot drinks",
@@ -2599,6 +2609,7 @@
         "pt": "Está na taça dos aperitivos, mas é uma leguminosa, como a ervilha."
       }
     },
+    "homeCountry": null,
     "id": "nuts",
     "labels": {
       "en": "Nuts",
@@ -2861,6 +2872,7 @@
         "pt": "Fazem-se passar por caranguejo, mas são feitas de peixe branco."
       }
     },
+    "homeCountry": null,
     "id": "seafood",
     "labels": {
       "en": "Seafood",
@@ -3123,6 +3135,7 @@
         "pt": "Vende-se na peixaria, mas é um molusco, não um peixe."
       }
     },
+    "homeCountry": null,
     "id": "fish-on-the-menu",
     "labels": {
       "en": "Fish on the menu",
@@ -3398,6 +3411,7 @@
         "pt": "Entra no vinagrete, mas sozinho é um condimento."
       }
     },
+    "homeCountry": null,
     "id": "sauces",
     "labels": {
       "en": "Sauces",
@@ -3673,6 +3687,7 @@
         "pt": "Está na bancada, mas é um eletrodoméstico, não um utensílio."
       }
     },
+    "homeCountry": null,
     "id": "kitchen-utensils",
     "labels": {
       "en": "Kitchen utensils",
@@ -3870,6 +3885,7 @@
         "pt": "Nem sequer é uma gramínea: é primo da azeda e do ruibarbo."
       }
     },
+    "homeCountry": null,
     "id": "cereal-grains",
     "labels": {
       "en": "Cereal grains",
@@ -4153,6 +4169,7 @@
         "pt": "Chamam-lhe fava, mas cresce numa árvore da família das malvas."
       }
     },
+    "homeCountry": null,
     "id": "pulses",
     "labels": {
       "en": "Legumes (the pea family)",
@@ -4415,6 +4432,7 @@
         "pt": "Inventada em Tijuana, no México, por um restaurador de origem italiana."
       }
     },
+    "homeCountry": null,
     "id": "italian-dishes",
     "labels": {
       "en": "Italian dishes",
@@ -4677,6 +4695,7 @@
         "pt": "Enrolado ao contrário na América do Norte, não no Japão."
       }
     },
+    "homeCountry": null,
     "id": "japanese-food",
     "labels": {
       "en": "Japanese food",
@@ -4939,6 +4958,7 @@
         "pt": "Açúcar puro, mas cozido no forno: pastelaria, não guloseima."
       }
     },
+    "homeCountry": null,
     "id": "sweets",
     "labels": {
       "en": "Sweets and candy",
@@ -5201,6 +5221,7 @@
         "pt": "Uma sobremesa montada com três bolas, não um sabor."
       }
     },
+    "homeCountry": null,
     "id": "ice-cream-flavours",
     "labels": {
       "en": "Ice cream flavours",
@@ -5476,6 +5497,7 @@
         "pt": "Uma pizza inteira dobrada ao meio, não algo que se põe por cima."
       }
     },
+    "homeCountry": null,
     "id": "pizza-toppings",
     "labels": {
       "en": "Pizza toppings",
@@ -5738,6 +5760,7 @@
         "pt": "Fabrica-se a partir de arroz como uma cerveja: nunca é destilado."
       }
     },
+    "homeCountry": null,
     "id": "spirits",
     "labels": {
       "en": "Spirits",
@@ -6013,6 +6036,7 @@
         "pt": "Inventada em Nova Iorque, no Ritz-Carlton, em 1917."
       }
     },
+    "homeCountry": "FRA",
     "id": "french-dishes",
     "labels": {
       "en": "French dishes",

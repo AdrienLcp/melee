@@ -2,21 +2,19 @@ import { z } from 'zod'
 
 import type { Difficulty } from '@melee/protocol/difficulty'
 import {
-  flagFileSchema,
   type HostQuestion,
-  hostQuestionSchema,
   type QuestionCategory,
   type QuestionDrawSettings,
   type QuestionLanguage,
   questionCategorySchema,
   questionLanguageSchema,
-  silhouetteFileSchema
+  questionLanguages,
+  writtenInOneLanguage
 } from '@melee/protocol/question'
 
 import { pickRandom } from '@melee/core/helpers/random'
 import {
   type ContentTier,
-  contentTiers,
   dealByDifficulty,
   drawByDifficulty,
   softensDecoys
@@ -42,7 +40,9 @@ import { bankedSilhouetteQuestions } from './silhouette-questions'
  * no business going down because somebody else's web server did, in the middle
  * of a party.
  */
-const bankedQuestionSchema = hostQuestionSchema.extend({
+const writtenRowSchema = z.object({
+  accepted: z.array(z.string()),
+  answer: z.string().min(1),
   category: questionCategorySchema,
   /**
    * Whether the prompt is only a question with its own three decoys under it.
@@ -51,17 +51,8 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
    * for a room that will show them and nowhere else — see `drawQuestion`.
    */
   choiceOnly: z.boolean(),
-  /**
-   * The decoys an `easy` room is shown instead, from other continents — a
-   * child picks Japan's flag beside Brazil's, not beside Bangladesh's. Only a
-   * country rubric carries them: a near miss is the game everywhere else.
-   */
-  easyDecoys: z
-    .tuple([z.string(), z.string(), z.string()])
-    .nullable()
-    .default(null),
-  /** Absent from the bank's own rows, which are all text: only `flag-questions.ts` deals a flag. */
-  flag: flagFileSchema.nullable().default(null),
+  decoys: z.tuple([z.string(), z.string(), z.string()]),
+  id: z.string().min(1),
   /**
    * Drawn only for a room that is not `isFamilyFriendly`. A rating beside the
    * category rather than one more category: a question about a porn actress's
@@ -77,17 +68,52 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
    */
   isWellKnown: z.boolean(),
   language: questionLanguageSchema,
-  /** Absent from the bank's own rows too: only `rebus-questions.ts` deals one. */
-  rebus: z.string().nullable().default(null),
-  /** Absent from the bank's own rows too: only `silhouette-questions.ts` deals one. */
-  silhouette: silhouetteFileSchema.nullable().default(null),
+  note: z.string().nullable(),
+  prompt: z.string().min(1),
   /** The upstream pack, so a question that turns out to be wrong is traceable. */
-  theme: z.string(),
-  /**
-   * How hard the rubric that built the row ranks it. Absent from the bank's
-   * own rows, which carry `isWellKnown` and nothing finer.
-   */
-  tier: z.enum(contentTiers).nullable().default(null)
+  theme: z.string()
+})
+
+/** A row of `question-bank.json` as it was written: one language's text. */
+export type WrittenRow = z.infer<typeof writtenRowSchema>
+
+/**
+ * A row as the bank holds it, which is more than a round needs: the rating that
+ * decides whether it may be drawn, and the pack it came from. Neither belongs
+ * to the game, so `hostQuestionOf` names the fields that do rather than
+ * spreading the row into a round.
+ */
+export type BankedQuestion = HostQuestion &
+  Pick<WrittenRow, 'choiceOnly' | 'isAdult' | 'isWellKnown' | 'theme'> & {
+    category: QuestionCategory
+    /**
+     * The decoys an `easy` room is shown instead, from other continents — a
+     * child picks Japan's flag beside Brazil's, not beside Bangladesh's. Only a
+     * country rubric carries them: a near miss is the game everywhere else.
+     */
+    easyDecoys: HostQuestion['decoys'] | null
+    /**
+     * The one language the row was written in, and `null` for a country
+     * rubric's, which is written in all three and dealt to a room whatever it
+     * speaks: each screen reads the flag's answer in its own.
+     */
+    language: QuestionLanguage | null
+    /**
+     * How hard the rubric that built the row ranks it. `null` on the bank's
+     * own rows, which carry `isWellKnown` and nothing finer.
+     */
+    tier: ContentTier | null
+  }
+
+/** A row written in one language, standing in every locale a screen reads. */
+const bankedFromWritten = (row: WrittenRow): BankedQuestion => ({
+  ...row,
+  ...writtenInOneLanguage(row),
+  easyDecoys: null,
+  flag: null,
+  rebus: null,
+  silhouette: null,
+  tier: null
 })
 
 /**
@@ -108,9 +134,10 @@ let parsedBank: BankedQuestion[] | undefined
 export const bankedQuestions = (): BankedQuestion[] => {
   parsedBank ??= [
     ...z
-      .array(bankedQuestionSchema)
+      .array(writtenRowSchema)
       .parse(bank.questions)
-      .filter((question) => !asksACapitalTheRubricAsks(question)),
+      .filter((row) => !asksACapitalTheRubricAsks(row))
+      .map(bankedFromWritten),
     ...bankedFlagQuestions(),
     ...bankedCapitalQuestions(),
     ...bankedRebusQuestions(),
@@ -121,18 +148,12 @@ export const bankedQuestions = (): BankedQuestion[] => {
 }
 
 /**
- * A row as the bank holds it, which is more than a round needs: the rating that
- * decides whether it may be drawn, and the pack it came from. Neither belongs
- * to the game, so `hostQuestionOf` names the fields that do rather than
- * spreading the row into a round.
- */
-export type BankedQuestion = z.infer<typeof bankedQuestionSchema>
-
-/**
  * Split once, with the parse, because a room only ever draws from one language
  * and, at `mixed`, from one category: the two banks are separate downloads from
  * separate sources, and scanning every row on every draw to keep one category
  * of them cost a test of twelve hundred draws its timeout on a loaded machine.
+ * A country rubric's row stands in every language's list, being written in
+ * all three.
  */
 let questionsByLanguage:
   | Map<string, Map<QuestionCategory, BankedQuestion[]>>
@@ -142,12 +163,16 @@ const categoriesIn = (
   language: QuestionLanguage
 ): Map<QuestionCategory, BankedQuestion[]> => {
   questionsByLanguage ??= new Map(
-    [...Map.groupBy(bankedQuestions(), (question) => question.language)].map(
-      ([rowsLanguage, rows]) => [
-        rowsLanguage,
-        Map.groupBy(rows, (question) => question.category)
-      ]
-    )
+    questionLanguages.map((rowsLanguage) => [
+      rowsLanguage,
+      Map.groupBy(
+        bankedQuestions().filter(
+          (question) =>
+            question.language === null || question.language === rowsLanguage
+        ),
+        (question) => question.category
+      )
+    ])
   )
 
   return questionsByLanguage.get(language) ?? new Map()

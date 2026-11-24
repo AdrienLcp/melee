@@ -1,16 +1,45 @@
-import type { Question } from '@melee/protocol/question'
+import type { LocalizedText } from '@melee/protocol/locale'
 import type { SingleVerdict } from '@melee/protocol/scoring'
 
 import { matchesAnswer } from '../round/answer-matching'
 
 /** Everything grading a question needs, and nothing a player may hold. */
-export type QuestionAnswer = Pick<Question, 'accepted' | 'answer'> & {
+export type QuestionAnswer = {
+  /** Other spellings that count, whatever language they are in. */
+  accepted: readonly string[]
+  answer: string
   /**
    * The candidates the row calls wrong. Three of them everywhere the bank is
    * the source, but how many there are is the bank's business rather than the
    * grader's — this reads them as a set of rivals and counts nothing.
    */
   decoys: readonly string[]
+}
+
+/** An answer and its rivals in every language a screen reads, and every other spelling that counts in any of them. */
+export type LocalizedQuestionAnswer = {
+  accepted: readonly string[]
+  answer: LocalizedText
+  decoys: readonly LocalizedText[]
+}
+
+/**
+ * A question read in every language at once, because a table may type in any
+ * of them: the answer in each counts, and so does each spelling, and no typo
+ * is forgiven far enough to reach a decoy named in any of them.
+ */
+export const answerInEveryLanguage = (
+  question: LocalizedQuestionAnswer
+): QuestionAnswer => {
+  const [answer, ...otherAnswers] = new Set(Object.values(question.answer))
+
+  return {
+    accepted: [...new Set([...otherAnswers, ...question.accepted])],
+    answer: answer ?? '',
+    decoys: [
+      ...new Set(question.decoys.flatMap((decoy) => Object.values(decoy)))
+    ]
+  }
 }
 
 /**

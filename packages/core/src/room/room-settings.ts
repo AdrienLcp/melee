@@ -224,7 +224,7 @@ export const openedSetup = ({
  * question drawn in a language the host does not read is the wrong game, and the
  * protocol's default has no way of knowing which that is — so a game that draws
  * from a bank in either language, the quiz's questions, the word games'
- * dictionary, think alike's prompts or five clues' cities, takes the host's. A game that deals a
+ * dictionary or think alike's prompts, takes the host's. A game that deals a
  * country's own content beside everyone's takes the host's country the same way.
  */
 const openedGameSettings = ({
@@ -241,11 +241,13 @@ const openedGameSettings = ({
     case 'mysteryword':
     case 'longestword':
     case 'thinkalike':
-    case 'fiveclues':
       return { ...opened, language: questionLanguageFor(locale) }
     case 'blindtest':
     case 'estimate':
     case 'higherlower':
+    case 'timeline':
+    case 'blacksquare':
+    case 'fiveclues':
       return { ...opened, homeCountry: homeCountryFor(locale) }
     default:
       return opened

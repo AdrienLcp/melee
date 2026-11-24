@@ -7,7 +7,10 @@ import type {
 import type { OwnQuantityAsk } from '@melee/protocol/estimate'
 import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
 import { byLocale } from '@melee/protocol/locale'
-import type { HostQuestion } from '@melee/protocol/question'
+import {
+  type HostQuestion,
+  writtenInOneLanguage
+} from '@melee/protocol/question'
 import type { DeckSummary } from '@melee/protocol/room'
 import {
   type DatedTimelineEvent,
@@ -30,14 +33,12 @@ const questionOf = ({
   id: string
   item: QuizDeckItem
 }): HostQuestion => ({
+  ...writtenInOneLanguage(item),
   accepted: item.accepted,
-  answer: item.answer,
   category: item.category,
-  decoys: item.decoys,
   flag: null,
   id,
   note: item.note,
-  prompt: item.prompt,
   rebus: null,
   silhouette: null
 })

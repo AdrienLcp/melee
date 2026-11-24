@@ -240,6 +240,7 @@
         "pt": "Um enfeite plantado no jardim: não trabalha nele."
       }
     },
+    "homeCountry": null,
     "id": "garden-tools",
     "labels": {
       "en": "Garden tools",
@@ -515,6 +516,7 @@
         "pt": "Flutua e pousa na água, mas é um avião."
       }
     },
+    "homeCountry": null,
     "id": "boats",
     "labels": {
       "en": "Boats",
@@ -745,6 +747,7 @@
         "pt": "Um tapete dos contos, levado por magia: nunca ninguém construiu um."
       }
     },
+    "homeCountry": null,
     "id": "flying-machines",
     "labels": {
       "en": "Flying machines",
@@ -1020,6 +1023,7 @@
         "pt": "Uma bicicleta ou uma mota conduz-se pelo guiador; um carro, pelo volante."
       }
     },
+    "homeCountry": null,
     "id": "car-parts",
     "labels": {
       "en": "Car parts",
@@ -1282,6 +1286,7 @@
         "pt": "Uma almofada de cartilagem dentro do joelho, não um osso."
       }
     },
+    "homeCountry": null,
     "id": "bones",
     "labels": {
       "en": "Bones of the body",
@@ -1544,6 +1549,7 @@
         "pt": "Uma profissão liberal que desenha edifícios; não constrói nada com as mãos."
       }
     },
+    "homeCountry": null,
     "id": "craft-jobs",
     "labels": {
       "en": "Trades and crafts",
@@ -1793,6 +1799,7 @@
         "pt": "Fecha um recipiente e não contém nada."
       }
     },
+    "homeCountry": null,
     "id": "containers",
     "labels": {
       "en": "Containers",
@@ -2029,6 +2036,7 @@
         "pt": "A França trocou-o pelo euro em 2002."
       }
     },
+    "homeCountry": null,
     "id": "currencies",
     "labels": {
       "en": "World currencies",
@@ -2291,6 +2299,7 @@
         "pt": "Na Suíça fala-se alemão, francês, italiano e romanche: não há língua suíça."
       }
     },
+    "homeCountry": null,
     "id": "languages",
     "labels": {
       "en": "World languages",
@@ -2527,6 +2536,7 @@
         "pt": "Doze de qualquer coisa: conta, não mede grandeza nenhuma."
       }
     },
+    "homeCountry": null,
     "id": "units-of-measure",
     "labels": {
       "en": "Units of measurement",
@@ -2789,6 +2799,7 @@
         "pt": "Lê o destino nos astros: nenhuma experiência alguma vez lhe deu razão."
       }
     },
+    "homeCountry": null,
     "id": "sciences",
     "labels": {
       "en": "Sciences",
@@ -3064,6 +3075,7 @@
         "pt": "Rola sozinho e não tem roda nenhuma."
       }
     },
+    "homeCountry": null,
     "id": "things-with-wheels",
     "labels": {
       "en": "Things with wheels",
@@ -3326,6 +3338,7 @@
         "pt": "A sua luz é branca: só a atmosfera o faz parecer amarelo visto do chão."
       }
     },
+    "homeCountry": null,
     "id": "yellow-things",
     "labels": {
       "en": "Yellow things",
@@ -3601,6 +3614,7 @@
         "pt": "Morde com as presas: não pica."
       }
     },
+    "homeCountry": null,
     "id": "things-that-sting",
     "labels": {
       "en": "Things that sting or prick",
@@ -3863,6 +3877,7 @@
         "pt": "Um edifício agrícola para o feno e os animais: ninguém vive lá."
       }
     },
+    "homeCountry": null,
     "id": "dwellings",
     "labels": {
       "en": "Types of home",
@@ -4047,6 +4062,7 @@
         "pt": "O rei reina sobre a nobreza e concede-lhe os títulos: o dele não é um deles."
       }
     },
+    "homeCountry": null,
     "id": "noble-titles",
     "labels": {
       "en": "Titles of nobility",
@@ -4296,6 +4312,7 @@
         "pt": "Um cosmético que se borrifa na pele, não um acessório que se usa."
       }
     },
+    "homeCountry": null,
     "id": "fashion-accessories",
     "labels": {
       "en": "Fashion accessories",
@@ -4558,6 +4575,7 @@
         "pt": "Uma pele de animal curtida: nada nela é tecido nem tricotado."
       }
     },
+    "homeCountry": null,
     "id": "fabrics",
     "labels": {
       "en": "Fabrics",
@@ -4807,6 +4825,7 @@
         "pt": "Uma cor posta no cabelo: não o corta nem o penteia."
       }
     },
+    "homeCountry": null,
     "id": "hairstyles",
     "labels": {
       "en": "Hairstyles",
@@ -5034,6 +5053,7 @@
         "pt": "Tira a maquilhagem: não é maquilhagem."
       }
     },
+    "homeCountry": null,
     "id": "makeup",
     "labels": {
       "en": "Make-up",
@@ -5262,6 +5282,7 @@
         "pt": "Julga restaurantes para um guia ou um jornal, e não trabalha em nenhum."
       }
     },
+    "homeCountry": null,
     "id": "restaurant-jobs",
     "labels": {
       "en": "Restaurant jobs",
@@ -5498,6 +5519,7 @@
         "pt": "Disfarça um cheiro e não limpa nada."
       }
     },
+    "homeCountry": null,
     "id": "cleaning",
     "labels": {
       "en": "Cleaning",
@@ -5773,6 +5795,7 @@
         "pt": "Apertado dentro do carro: não está na estrada."
       }
     },
+    "homeCountry": null,
     "id": "on-the-road",
     "labels": {
       "en": "On the road",
@@ -6048,6 +6071,7 @@
         "pt": "Oferecido no noivado, antes do casamento, que tem as suas alianças."
       }
     },
+    "homeCountry": null,
     "id": "wedding",
     "labels": {
       "en": "Wedding",
@@ -6323,6 +6347,7 @@
         "pt": "É o jogo da Páscoa: num aniversário faz-se a caça ao tesouro."
       }
     },
+    "homeCountry": null,
     "id": "birthday-party",
     "labels": {
       "en": "Birthday party",

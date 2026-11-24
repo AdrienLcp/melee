@@ -3758,8 +3758,8 @@ const photographedHigherLowerScreen = () =>
 const FIVE_CLUES_GAME = {
   clueDurationMs: 10_000,
   difficulty: 'mixed',
+  homeCountry: 'FRA',
   kind: 'fiveclues',
-  language: 'fr',
   subjects: ['country']
 }
 
@@ -3772,14 +3772,22 @@ const FIVE_CLUES_LADDER = [
   { kind: 'region', region: '029' },
   { kind: 'outline', silhouette: 'd6d7418b2b37.svg' },
   {
-    cities: ['Santiago de los Caballeros', 'La Romana', 'San Pedro de Macorís'],
+    cities: [
+      'Santiago de los Caballeros',
+      'La Romana',
+      'San Pedro de Macorís'
+    ].map((city) => inEveryLocale(city)),
     kind: 'cities'
   },
-  { capital: 'Saint-Domingue', flag: '18f7b6562cee.svg', kind: 'flag' }
+  {
+    capital: inEveryLocale('Saint-Domingue', 'Santo Domingo'),
+    flag: '18f7b6562cee.svg',
+    kind: 'flag'
+  }
 ]
 
 const FIVE_CLUES_ANSWER = {
-  name: 'République dominicaine',
+  name: inEveryLocale('République dominicaine', 'Dominican Republic'),
   subject: 'country'
 }
 
@@ -3807,7 +3815,12 @@ const fiveCluesContent = ({
   answer: null,
   choices:
     mode === 'choice'
-      ? ['Haïti', 'République dominicaine', 'Jamaïque', 'Cuba']
+      ? [
+          inEveryLocale('Haïti', 'Haiti'),
+          FIVE_CLUES_ANSWER.name,
+          inEveryLocale('Jamaïque', 'Jamaica'),
+          inEveryLocale('Cuba')
+        ]
       : [],
   clueDurationMs: FIVE_CLUES_GAME.clueDurationMs,
   clues: FIVE_CLUES_LADDER,
@@ -4930,7 +4943,7 @@ const fiveCluesRevealView = () => {
         atServerTime: SERVER_TIME - 1_000,
         isCorrect: true,
         playerId: id,
-        said: FIVE_CLUES_ANSWER.name
+        said: '1'
       }))
     },
     settings: { ...view.settings, autoAdvanceMs: 25_000 }

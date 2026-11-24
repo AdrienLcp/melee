@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { atlasPickIndexOf } from '@melee/protocol/atlas'
 import { DEFAULT_ATLAS_SETTINGS } from '@melee/protocol/game'
+import { pickedChoiceIndexOf } from '@melee/protocol/picked-choice'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -654,7 +654,7 @@ describe('a map round that shows a place for the table to name', () => {
       ({ playerId }) => playerId === playerView(zoe)?.youId
     )?.said
 
-    expect(atlasPickIndexOf(said ?? '')).toBe(france)
+    expect(pickedChoiceIndexOf(said ?? '')).toBe(france)
   })
 
   it('[atlas] sends no screen the city’s name in a typed round, and takes it typed', async () => {

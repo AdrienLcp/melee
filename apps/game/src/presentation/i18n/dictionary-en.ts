@@ -853,7 +853,6 @@ export const EN_DICTIONARY = defineDictionary({
       size: 'Size',
       text: 'Clue'
     },
-    language: 'Clues in',
     name: 'Five clues',
     outCount: 'Out: {count:number}',
     play: 'Play Five clues',
@@ -2451,6 +2450,10 @@ export const EN_DICTIONARY = defineDictionary({
       grandMix: {
         caption: 'A bit of everything, no judge, for as long as you like.',
         name: 'Free-for-all'
+      },
+      international: {
+        caption: 'Every screen in its own language, nothing from one country.',
+        name: 'Without borders'
       },
       music: {
         caption: 'Three blind tests: French hits, the 80s and film scores.',

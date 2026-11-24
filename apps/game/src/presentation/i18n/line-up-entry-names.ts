@@ -5,7 +5,10 @@ import {
   fiveCluesSubjects
 } from '@melee/protocol/five-clues'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
-import type { QuestionCategory } from '@melee/protocol/question'
+import {
+  isAskedInEveryLanguage,
+  type QuestionCategory
+} from '@melee/protocol/question'
 import type { RoomSettings, RoundView } from '@melee/protocol/room'
 import type { CatalogueSource, TrackSource } from '@melee/protocol/track'
 
@@ -411,7 +414,9 @@ const settingsOf = ({
       return [
         allPicks(subjectsOf({ categories: entry.categories, translate })),
         levelOf({ difficulty: entry.difficulty, translate }),
-        LANGUAGE_NAMES[entry.language],
+        ...(isAskedInEveryLanguage(entry.categories)
+          ? []
+          : [LANGUAGE_NAMES[entry.language]]),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
     case 'slate':
@@ -468,7 +473,6 @@ const settingsOf = ({
     case 'fiveclues':
       return [
         allPicks(fiveCluesSubjectsOf({ subjects: entry.subjects, translate })),
-        LANGUAGE_NAMES[entry.language],
         levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.clueDurationMs, translate })
       ]

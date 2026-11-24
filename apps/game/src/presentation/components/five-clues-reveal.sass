@@ -153,13 +153,20 @@
       > .paid
         display: block
 
+    // Whole rows or none: a height of twelve units cut the fourth row of a
+    // full table's misses in half on the wall. The font is the list's, so a
+    // row's `lh` and `em` measured here are a miss's own.
     .misses
+      --miss-row: calc(1lh + 0.5em)
+
       display: flex
       flex-wrap: wrap
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.6), var(--text-s))
       gap: var(--space-xs)
       list-style: none
       margin: 0
       max-block-size: calc(var(--stage-unit) * 12)
+      max-block-size: max(var(--miss-row), round(down, calc(var(--stage-unit) * 12 + var(--space-xs)), calc(var(--miss-row) + var(--space-xs))) - var(--space-xs))
       overflow: clip
       padding: 0
 
@@ -168,7 +175,6 @@
       border-radius: var(--radius-m)
       color: var(--ink-muted)
       display: flex
-      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.6), var(--text-s))
       gap: 0.4em
       max-inline-size: 20em
       outline: var(--stroke-thin) dashed var(--socket-line)

@@ -1,12 +1,15 @@
-import { type AtlasTargetKind, atlasPickIndexOf } from '@melee/protocol/atlas'
+import type { AtlasTargetKind } from '@melee/protocol/atlas'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
+import { pickedChoiceIndexOf } from '@melee/protocol/picked-choice'
 import type { RoundView } from '@melee/protocol/room'
 
 import {
   atlasContent,
   distanceOf,
   estimateContent,
+  fiveCluesContent,
   higherLowerContent,
+  quizContent,
   rightPairsOf,
   swappedPairsOf
 } from '@/helpers/round-content'
@@ -85,7 +88,7 @@ export type AnswerWords = {
 
 /**
  * What a revealed answer reads as: the line it was typed or picked as — a
- * place picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
+ * place, a quiz answer or what five clues hid, picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
  * records a marker as two coordinates, an order as a row of ids and a guess as
  * bare digits and a sheet of pairs as its sides, which are nobody's answer to read:
  * a lone pair reads as the name picked, several as how many were right.
@@ -95,6 +98,11 @@ export const useAnswerWords = (
 ): ((answer: { playerId: string; said: string }) => AnswerWords) => {
   const { locale, translate } = useI18n()
   const atlas = atlasContent(round)
+  const localizedChoices =
+    atlas?.choices ??
+    quizContent(round)?.choices ??
+    fiveCluesContent(round)?.choices ??
+    []
   const distanceWords = useDistanceWords(atlas?.target?.kind ?? 'country')
 
   const orderWords = useOrderWords()
@@ -132,9 +140,9 @@ export const useAnswerWords = (
 
     const distanceKm = distanceOf(round, answer.playerId)
     const swappedPairs = swappedPairsOf(round, answer.playerId)
-    const pickedIndex = atlasPickIndexOf(answer.said)
+    const pickedIndex = pickedChoiceIndexOf(answer.said)
     const pickedName =
-      pickedIndex === null ? undefined : atlas?.choices[pickedIndex]
+      pickedIndex === null ? undefined : localizedChoices[pickedIndex]
 
     if (distanceKm !== null) {
       return { isFigure: true, text: distanceWords(distanceKm, 'away') }

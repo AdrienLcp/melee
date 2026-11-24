@@ -82,15 +82,13 @@ export const GAME_NOTES = {
 export const SETTING_NOTES = {
   atlas:
     '`places` lists the sets a round may be drawn from — "countries", "frenchCities", "portugueseCities", "worldCapitals" — one drawn per round; a city set is placed on that country’s own map. `direction` is "place" (the room names a place, every player pins it) or "name" (the map shows a place, the players name it).',
-  blacksquare:
-    '`answerCount` is how many of the theme’s answers a round hides, 3 to 9. `doublesLoneFinds` pays double a cell one player alone found, in a typed round only — a spoken round has one team guessing.',
+  blacksquare: `\`answerCount\` is how many of the theme’s answers a round hides, 3 to 9. \`doublesLoneFinds\` pays double a cell one player alone found, in a typed round only — a spoken round has one team guessing. ${HOME_COUNTRY_NOTE}`,
   blindtest: `\`source\` is what the clips are drawn from. The default, \`{ "kind": "catalogue", "charts": [], "decades": [], "hasFilmScores": true }\`, mixes three strands: \`charts\` are Deezer genre ids (${GENRE_LIST}), \`decades\` the decades' hits, \`hasFilmScores\` film and series scores, \`hasClassics\` (optional, false by default) the decades' best-known songs alone, whatever the difficulty; for \`charts\` and \`decades\` an empty list is every one and null leaves the strand out, and at least one strand stays in. \`clipWindowMs\` (500–5000, or null for the whole clip) is a **flash**: the room hears that much of the clip from ten seconds in, then answers in silence for the rest of \`roundDurationMs\` — the classics with 1000 is the flash a table plays. \`{ "kind": "search", "query": "…" }\` takes any free query of up to 120 characters — an artist, a film, "french rap 2000s" — and \`{ "kind": "playlist", "playlistId": "…" }\` a Deezer playlist id: those two make a blind test about anything. A list of tracks is not offered — it would need ids an assistant cannot know. ${HOME_COUNTRY_NOTE}`,
   buzzer:
     '`locksOutOnMiss` sits a player out for the rest of the round after a wrong answer: one go each keeps a loud room honest, an open field suits "name five…".',
   challenge: null,
   estimate: `\`topics\` lists what a round may ask, one drawn per round: "population", "area", "height" (summits and buildings), "length" (rivers) and "price". ${HOME_COUNTRY_NOTE}`,
-  fiveclues:
-    '`clueDurationMs` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. `language` is the wording of every clue, the four names and every typed answer, and a person or a place only one culture knows is dealt to that language alone. `subjects` lists what a round may hide, one drawn evenly per round: "country", "person", "character", "film", "animal" and "landmark".',
+  fiveclues: `\`clueDurationMs\` is how long each clue stays open, 5 to 30 seconds; the next opens early once every player still looking has answered on it. Every screen reads the clues and the four names in its own language, and a typed answer counts in any. \`subjects\` lists what a round may hide, one drawn evenly per round: "country", "person", "character", "film", "animal" and "landmark". ${HOME_COUNTRY_NOTE}`,
   higherlower: HOME_COUNTRY_NOTE,
   innerclock:
     'Nothing to set: the target is drawn between 20 and 60 seconds each round.',
@@ -104,7 +102,7 @@ export const SETTING_NOTES = {
   mysteryword: null,
   petitbac:
     '`categories` is null to draw `categoryCount` categories every round, or a fixed list of 3 to 10 played every round, each `{ "kind": "own", "label": "…" }` (40 characters at most) or `{ "kind": "bank", "key": "…" }` (one of the bank’s keys, in the defaults). `categoryCount` is ignored for a fixed list, and `difficulty` applies to drawn categories only. `excludedLetters` are never dealt; `stopsWhenFull` lets a player whose every line is filled close everyone’s sheet.',
-  quiz: '`categories` lists the subjects a round may be drawn from, the rubrics among them — "flags", "capitals", "silhouettes" (a country’s outline), "rebus" (a title in emojis); empty is every subject. `language` is the bank the questions are dealt from, "fr", "en" or "pt".',
+  quiz: '`categories` lists the subjects a round may be drawn from, the rubrics among them — "flags", "capitals", "silhouettes" (a country’s outline), "rebus" (a title in emojis); empty is every subject. `language` is the bank the questions are dealt from, "fr", "en" or "pt"; the flags, capitals and outlines are dealt whatever it is, each screen reading them in its own language.',
   reflex: null,
   slate:
     '`labels` names the sheet’s items, by index — public on every screen, 12 characters at most, unique, null for a plain number. `itemCount` is how many items a sheet opens with, not a cap: the host adds more during the round.',
@@ -112,5 +110,5 @@ export const SETTING_NOTES = {
     '`showMs` is how long the colour stays up; `roundDurationMs` is the time to rebuild it once it has hidden, the showing not counted.',
   thinkalike:
     '`language` is the wording every prompt is dealt in, whatever each screen speaks: the table matches words, so it writes in one language.',
-  timeline: null
+  timeline: HOME_COUNTRY_NOTE
 } as const satisfies Record<GameKind, string | null>

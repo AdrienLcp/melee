@@ -9,7 +9,8 @@ import { shownPoints } from '@/helpers/shown-points'
 import { FiveCluesLadder } from '@/presentation/components/five-clues-ladder'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { Pawn } from '@/presentation/components/pawn'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useAnswerWords } from '@/presentation/components/use-distance-words'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './five-clues-reveal.sass'
 
@@ -38,6 +39,7 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const answerWords = useAnswerWords(round)
   const content = fiveCluesContent(round)
   const answer = content?.answer ?? null
 
@@ -118,15 +120,17 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
           {out.map(({ playerId }) => {
             const seat = players.findIndex((player) => player.id === playerId)
             const player = players[seat]
-            const said = round.revealedAnswers.find(
-              (answered) => answered.playerId === playerId
-            )?.said
+            const answered = round.revealedAnswers.find(
+              (revealed) => revealed.playerId === playerId
+            )
 
             return player === undefined ? null : (
               <li className='miss' key={playerId}>
                 <Pawn seat={seat} />
                 <span className='name'>{player.nickname}</span>
-                {said !== undefined && <s className='said'>{said}</s>}
+                {answered !== undefined && (
+                  <s className='said'>{answerWords(answered).text}</s>
+                )}
               </li>
             )
           })}
@@ -139,7 +143,7 @@ export const FiveCluesReveal: React.FC<FiveCluesRevealProps> = ({
 type FlagClue = Extract<FiveCluesClue, { kind: 'flag' }>
 
 type FiveCluesSummitProps = {
-  /** What the round hid, named as the room says it. */
+  /** What the round hid, named in the reader's language. */
   name: string
   /** The last rung once it is open, which prints the flag and the capital beside the name; `null` before. */
   flag: FlagClue | null
@@ -150,7 +154,7 @@ export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
   flag,
   name
 }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
 
   return (
     <div
@@ -162,17 +166,18 @@ export const FiveCluesSummit: React.FC<FiveCluesSummitProps> = ({
       {flag !== null && (
         <p className='capital'>
           <small>{translate('fiveclues.clue.capital')}</small>
-          {flag.capital}
+          {flag.capital[locale]}
         </p>
       )}
     </div>
   )
 }
 
-/** The summit of a revealed round, named as the room says it. */
+/** The summit of a revealed round, named in the reader's language. */
 export const FiveCluesRoundSummit: React.FC<{ round: RoundView }> = ({
   round
 }) => {
+  const { locale } = useI18n()
   const content = fiveCluesContent(round)
   const answer = content?.answer ?? null
 
@@ -183,7 +188,7 @@ export const FiveCluesRoundSummit: React.FC<{ round: RoundView }> = ({
   return (
     <FiveCluesSummit
       flag={content.clues.find((clue) => clue.kind === 'flag') ?? null}
-      name={answer.name}
+      name={answer.name[locale]}
     />
   )
 }

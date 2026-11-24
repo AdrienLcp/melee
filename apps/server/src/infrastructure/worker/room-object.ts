@@ -15,7 +15,12 @@ import { NOTHING_HEARD } from '@melee/core/blindtest/track-variety'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
-import { withClipSpan, withHoldFields } from '@/domain/room/stored-round'
+import {
+  withClipSpan,
+  withHoldFields,
+  withLocalizedFiveClues,
+  withLocalizedQuiz
+} from '@/domain/room/stored-round'
 import { withSeatPieces } from '@/domain/room/stored-seats'
 import { parseStoredGames } from '@/domain/room/stored-settings'
 import { nowMs } from '@/infrastructure/clock'
@@ -144,7 +149,9 @@ export class RoomObject extends DurableObject<Env> {
         round:
           stored.round === null
             ? null
-            : withClipSpan(withHoldFields(stored.round)),
+            : withLocalizedFiveClues(
+                withLocalizedQuiz(withClipSpan(withHoldFields(stored.round)))
+              ),
         trackHistory: stored.trackHistory ?? NOTHING_HEARD
       })
     }

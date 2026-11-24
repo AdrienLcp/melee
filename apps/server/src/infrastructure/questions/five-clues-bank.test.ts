@@ -1,10 +1,14 @@
+// cspell:words Catmandu
 import { describe, expect, it } from 'vitest'
 
 import { countryCodeSchema } from '@melee/protocol/country-code'
 import { fiveCluesLadderSchema } from '@melee/protocol/five-clues'
 import { questionLanguages } from '@melee/protocol/question'
 
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import {
+  answerInEveryLanguage,
+  gradeQuizGuess
+} from '@melee/core/quiz/question-answer'
 
 import {
   drawFiveCluesCard,
@@ -51,11 +55,9 @@ describe('the five-clues bank', () => {
     expect(countries.length).toBeGreaterThanOrEqual(140)
 
     for (const country of countries) {
-      for (const language of questionLanguages) {
-        expect(() =>
-          fiveCluesLadderSchema.parse(fiveCluesLadderOf({ country, language }))
-        ).not.toThrow()
-      }
+      expect(() =>
+        fiveCluesLadderSchema.parse(fiveCluesLadderOf(country))
+      ).not.toThrow()
     }
   })
 
@@ -92,11 +94,11 @@ describe('the five-clues bank', () => {
       }
     }
 
-    expect(
-      fiveCluesLadderOf({ country: countryOf('CUB'), language: 'fr' })[3]
-    ).not.toEqual(
+    expect(fiveCluesLadderOf(countryOf('CUB'))[3]).not.toEqual(
       expect.objectContaining({
-        cities: expect.arrayContaining(['Santiago de Cuba'])
+        cities: expect.arrayContaining([
+          expect.objectContaining({ fr: 'Santiago de Cuba' })
+        ])
       })
     )
   })
@@ -160,11 +162,11 @@ describe('the five-clues bank', () => {
     })
   })
 
-  it('[fiveclues] writes a ladder from the banks, the names in the room’s language', () => {
-    const [size, region, outline, cities, flag] = fiveCluesLadderOf({
-      country: countryOf('PER'),
-      language: 'fr'
-    })
+  it('[fiveclues] writes a ladder from the banks, the names in every language', () => {
+    const [size, region, outline, cities, flag] = fiveCluesLadderOf(
+      countryOf('PER')
+    )
+    const everywhere = (name: string) => ({ en: name, fr: name, pt: name })
 
     expect(size).toEqual(
       expect.objectContaining({ kind: 'size', population: 34_200_000 })
@@ -175,29 +177,49 @@ describe('the five-clues bank', () => {
       silhouette: expect.stringMatching(/^[0-9a-f]{12}\.svg$/)
     })
     expect(cities).toEqual({
-      cities: ['Cuzco', 'Arequipa', 'Trujillo'],
+      cities: [
+        { en: 'Cusco', fr: 'Cuzco', pt: 'Cusco' },
+        everywhere('Arequipa'),
+        everywhere('Trujillo')
+      ],
       kind: 'cities'
     })
-    expect(flag).toEqual(expect.objectContaining({ capital: 'Lima' }))
-    expect(
-      fiveCluesLadderOf({ country: countryOf('NPL'), language: 'en' })[4]
-    ).toEqual(expect.objectContaining({ capital: 'Kathmandu' }))
-    expect(
-      fiveCluesLadderOf({ country: countryOf('NPL'), language: 'fr' })[4]
-    ).toEqual(expect.objectContaining({ capital: 'Katmandou' }))
+    expect(flag).toEqual(
+      expect.objectContaining({ capital: everywhere('Lima') })
+    )
+    expect(fiveCluesLadderOf(countryOf('NPL'))[4]).toEqual(
+      expect.objectContaining({
+        capital: { en: 'Kathmandu', fr: 'Katmandou', pt: 'Catmandu' }
+      })
+    )
   })
 
-  it('[fiveclues] grades a typed line as the flags rubric does, never paying a decoy', () => {
-    const country = countryOf('PER')
-    const answer = fiveCluesAnswerOf({ country, language: 'fr' })
+  it('[fiveclues] names every choice in all three languages, each the same country in each', () => {
+    const { answer, decoys } = fiveCluesAnswerOf(countryOf('PER'))
 
-    expect(answer.decoys).toEqual(['Équateur', 'Mali', 'Chili'])
-    expect(
-      gradeQuizGuess({ guess: 'le Pérou', question: answer }).isCorrect
-    ).toBe(true)
-    expect(gradeQuizGuess({ guess: 'Chili', question: answer }).isCorrect).toBe(
-      false
+    expect([answer, ...decoys]).toEqual([
+      { en: 'Peru', fr: 'Pérou', pt: 'Peru' },
+      { en: 'Ecuador', fr: 'Équateur', pt: 'Equador' },
+      { en: 'Mali', fr: 'Mali', pt: 'Mali' },
+      { en: 'Chile', fr: 'Chili', pt: 'Chile' }
+    ])
+  })
+
+  it('[fiveclues] grades a typed line as the flags rubric does, in any language, never paying a decoy named in any', () => {
+    const answerOfPeru = answerInEveryLanguage(
+      fiveCluesAnswerOf(countryOf('PER'))
     )
+    const answerOfGermany = answerInEveryLanguage(
+      fiveCluesAnswerOf(countryOf('DEU'))
+    )
+    const graded = (guess: string, question: typeof answerOfPeru) =>
+      gradeQuizGuess({ guess, question }).isCorrect
+
+    expect(graded('le Pérou', answerOfPeru)).toBe(true)
+    expect(graded('Alemanha', answerOfGermany)).toBe(true)
+    expect(graded('Germany', answerOfGermany)).toBe(true)
+    expect(graded('Chili', answerOfPeru)).toBe(false)
+    expect(graded('Equador', answerOfPeru)).toBe(false)
   })
 
   it('[fiveclues] deals a country the room has not climbed, and any once it has climbed them all', () => {
@@ -216,13 +238,13 @@ describe('the five-clues bank', () => {
     expect(
       drawFiveCluesCard({
         difficulty: 'mixed',
-        language: 'en',
+        homeCountry: null,
         playedIds: allButOne,
         subjects: ['country']
       })
     ).toEqual({
-      answer: fiveCluesAnswerOf({ country: kept, language: 'en' }),
-      ladder: fiveCluesLadderOf({ country: kept, language: 'en' }),
+      answer: fiveCluesAnswerOf(kept),
+      ladder: fiveCluesLadderOf(kept),
       playedId: playedFiveCluesId(kept.code),
       subject: 'country'
     })

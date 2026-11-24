@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { estimatePhotoSchema } from './estimate'
 import { playerIdSchema } from './identifiers'
+import { localizedTextSchema } from './locale'
 import { flagFileSchema, silhouetteFileSchema } from './question'
 
 /** Every round climbs five rungs, vaguest first. */
@@ -107,30 +108,30 @@ export const outlineClueSchema = z.object({
 export const MOST_CLUE_CITIES = 3
 
 /**
- * Rung 4: its largest cities, never its capital, in the room's question
- * language — none whose name carries the country's own.
+ * Rung 4: its largest cities, never its capital, in every language a screen
+ * reads — none whose name carries the country's own in any of them.
  */
 export const citiesClueSchema = z.object({
-  cities: z.array(z.string().min(1)).min(1).max(MOST_CLUE_CITIES),
+  cities: z.array(localizedTextSchema).min(1).max(MOST_CLUE_CITIES),
   kind: z.literal('cities')
 })
 
 /** Rung 5: the flag and the capital together, the clue nobody should need. */
 export const flagClueSchema = z.object({
-  capital: z.string().min(1),
+  capital: localizedTextSchema,
   flag: flagFileSchema,
   kind: z.literal('flag')
 })
 
-/** A rung of any subject: one line, worded in the room's question language. */
+/** A rung of any subject: one line, worded in every language a screen reads. */
 export const textClueSchema = z.object({
   kind: z.literal('text'),
-  text: z.string().min(1)
+  text: localizedTextSchema
 })
 
 /** A rung of any subject: a photograph the app serves, and what it shows for a screen reader. */
 export const imageClueSchema = z.object({
-  alt: z.string().min(1),
+  alt: localizedTextSchema,
   kind: z.literal('image'),
   photo: estimatePhotoSchema
 })
@@ -190,9 +191,9 @@ export const yourCluesStandingSchema = z.discriminatedUnion('status', [
   z.object({ status: z.literal('out') })
 ])
 
-/** What the round hid, sent at the reveal: its name in the room's language, as the four choices print it. */
+/** What the round hid, sent at the reveal: its name in every language, as the four choices print it. */
 export const fiveCluesAnswerSchema = z.object({
-  name: z.string().min(1),
+  name: localizedTextSchema,
   subject: fiveCluesSubjectSchema
 })
 

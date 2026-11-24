@@ -2,7 +2,8 @@ import { z } from 'zod'
 
 import {
   type QuestionLanguage,
-  questionLanguages
+  questionLanguages,
+  writtenInOneLanguage
 } from '@melee/protocol/question'
 
 import { contentTiers } from '@melee/core/round/difficulty-draw'
@@ -72,6 +73,10 @@ export const bankedRebusQuestions = (): BankedQuestion[] => {
       .parse(AUTHORED_REBUSES[language])
       .map(({ kind, rebus, ...row }) => ({
         ...row,
+        ...writtenInOneLanguage({
+          ...row,
+          prompt: ASK_BY_KIND[language][kind]
+        }),
         category: 'rebus' as const,
         choiceOnly: false,
         easyDecoys: null,
@@ -79,7 +84,6 @@ export const bankedRebusQuestions = (): BankedQuestion[] => {
         isAdult: false,
         isWellKnown: row.tier === 'easy',
         language,
-        prompt: ASK_BY_KIND[language][kind],
         rebus,
         silhouette: null,
         theme: 'melee-rebus'

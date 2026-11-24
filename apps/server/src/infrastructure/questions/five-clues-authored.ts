@@ -10,7 +10,6 @@ import {
   type FiveCluesLadder,
   type FiveCluesSubject
 } from '@melee/protocol/five-clues'
-import type { QuestionLanguage } from '@melee/protocol/question'
 
 import {
   contentTiers,
@@ -55,7 +54,7 @@ export const authoredRowSchema = z
     }),
     clues: z.array(authoredClueSchema).length(FIVE_CLUES_CLUE_COUNT),
     decoys: z.tuple([wordedSchema, wordedSchema, wordedSchema]),
-    /** The one culture that knows it, whose language alone deals it; `null` for a row any table knows. */
+    /** The one culture that knows it, whose tables alone are dealt it; `null` for a row any table knows. */
     homeCountry: countryCodeSchema.nullable(),
     id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     name: wordedSchema,
@@ -96,15 +95,6 @@ const RAW_ROWS_BY_SUBJECT: Readonly<
   person: [...people, ...peopleAtHome]
 }
 
-/** The cultures a table speaking each language is dealt the rows of, beside the rows any table knows. */
-const HOME_COUNTRIES_BY_LANGUAGE: Readonly<
-  Record<QuestionLanguage, readonly CountryCode[]>
-> = {
-  en: ['GBR', 'USA'],
-  fr: ['FRA'],
-  pt: ['PRT']
-}
-
 let rowsBySubject: Readonly<
   Record<AuthoredSubject, readonly AuthoredRow[]>
 > | null = null
@@ -124,16 +114,14 @@ export const authoredRowsOf = (
   return rowsBySubject[subject]
 }
 
-/** Whether a table playing in `language` is dealt `row`. */
-export const isDealtIn = ({
-  language,
+/** Whether a table sat in `homeCountry` is dealt `row`: everyone's rows, and its own country's beside them. */
+export const isDealtAt = ({
+  homeCountry,
   row
 }: {
-  language: QuestionLanguage
+  homeCountry: CountryCode | null
   row: AuthoredRow
-}): boolean =>
-  row.homeCountry === null ||
-  HOME_COUNTRIES_BY_LANGUAGE[language].includes(row.homeCountry)
+}): boolean => row.homeCountry === null || row.homeCountry === homeCountry
 
 /** The id a dealt row takes in the room's no-repeat set. */
 export const playedAuthoredId = ({
@@ -154,22 +142,22 @@ export const authoredPictureEntity = ({
 }): string => `fiveclues-${subject}-${row.id}`
 
 /**
- * A row of the subject at the room's level, dealt in its language, that the
- * room has not climbed yet — or any such row once it has climbed them all.
+ * A row of the subject at the room's level, dealt at its table, that the room
+ * has not climbed yet — or any such row once it has climbed them all.
  */
 export const drawAuthoredRow = ({
   difficulty,
-  language,
+  homeCountry,
   playedIds,
   subject
 }: {
   difficulty: Difficulty
-  language: QuestionLanguage
+  homeCountry: CountryCode | null
   playedIds: ReadonlySet<string>
   subject: AuthoredSubject
 }): AuthoredRow | null => {
   const dealt = authoredRowsOf(subject).filter((row) =>
-    isDealtIn({ language, row })
+    isDealtAt({ homeCountry, row })
   )
   const unplayed = dealt.filter(
     (row) => !playedIds.has(playedAuthoredId({ row, subject }))
@@ -183,16 +171,14 @@ export const drawAuthoredRow = ({
 }
 
 /**
- * The five rungs in the room's language. The last becomes its photograph
- * where the row asks for one and the picture bank kept a file, and its text
- * is then what a screen reader says in the photograph's place.
+ * The five rungs in every language a screen reads. The last becomes its
+ * photograph where the row asks for one and the picture bank kept a file, and
+ * its text is then what a screen reader says in the photograph's place.
  */
 export const authoredLadderOf = ({
-  language,
   row,
   subject
 }: {
-  language: QuestionLanguage
   row: AuthoredRow
   subject: AuthoredSubject
 }): FiveCluesLadder => {
@@ -200,7 +186,7 @@ export const authoredLadderOf = ({
 
   return row.clues.map((clue) =>
     clue.photo && photo !== null
-      ? { alt: clue.text[language], kind: 'image', photo }
-      : { kind: 'text', text: clue.text[language] }
+      ? { alt: { ...clue.text }, kind: 'image', photo }
+      : { kind: 'text', text: { ...clue.text } }
   )
 }

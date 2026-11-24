@@ -56,3 +56,18 @@ export const byLocale = <Value>(
   fr: valueIn('fr'),
   pt: valueIn('pt')
 })
+
+/**
+ * A line of text in every language a screen speaks, each screen reading its
+ * own: a country's name in a flag question, the prompt above it.
+ */
+export const localizedTextSchema = localizedSchema(z.string().min(1))
+
+export type LocalizedText = z.infer<typeof localizedTextSchema>
+
+/**
+ * One language's text standing in every locale — a bank row written in one,
+ * a line a host typed — so a screen reads `text[locale]` whatever the source.
+ */
+export const sameInEveryLocale = (text: string): LocalizedText =>
+  byLocale(() => text)

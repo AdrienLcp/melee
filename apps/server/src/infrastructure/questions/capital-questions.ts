@@ -1,4 +1,5 @@
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { LocalizedText } from '@melee/protocol/locale'
 import {
   type QuestionLanguage,
   questionLanguages
@@ -11,7 +12,7 @@ import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { bankedCapitals, type CapitalRow } from './capital-bank'
-import type { BankedQuestion } from './question-bank'
+import type { BankedQuestion, WrittenRow } from './question-bank'
 
 /** A state that is one city: asking for its capital names the answer. */
 const CITY_STATES: ReadonlySet<CountryCode> = new Set(['MCO', 'SGP', 'VAT'])
@@ -64,14 +65,64 @@ const ofCountryPt = (withArticle: string): string => {
   return `de ${withArticle}`
 }
 
-const PROMPT_BY_LANGUAGE = {
-  en: (code: CountryCode) =>
-    `What is the capital of ${COUNTRY_NAMES_EN[code].withArticle}?`,
-  fr: (code: CountryCode) =>
-    `Quelle est la capitale ${ofCountryFr(COUNTRY_NAMES_FR[code].withArticle)} ?`,
-  pt: (code: CountryCode) =>
-    `Qual é a capital ${ofCountryPt(COUNTRY_NAMES_PT[code].withArticle)}?`
-} as const satisfies Record<QuestionLanguage, (code: CountryCode) => string>
+const capitalPrompt = (code: CountryCode): LocalizedText => ({
+  en: `What is the capital of ${COUNTRY_NAMES_EN[code].withArticle}?`,
+  fr: `Quelle est la capitale ${ofCountryFr(COUNTRY_NAMES_FR[code].withArticle)} ?`,
+  pt: `Qual é a capital ${ofCountryPt(COUNTRY_NAMES_PT[code].withArticle)}?`
+})
+
+/** A city a capital question may offer: its Wikidata id and its name in every language. */
+type OfferedCity = Pick<CapitalRow['capital'], 'id' | 'names'>
+
+/**
+ * Three cities picked by identity, never by name, so choice i is the same city
+ * in every language. A city is skipped when it is one already taken, or when
+ * any of its names is a name already offered in that language — two places
+ * read the same on a screen would be one choice twice.
+ */
+const threeCities = ({
+  candidates,
+  taken
+}: {
+  candidates: Iterable<OfferedCity>
+  taken: readonly OfferedCity[]
+}): [OfferedCity, OfferedCity, OfferedCity] | null => {
+  const offered = [...taken]
+  const picked: OfferedCity[] = []
+  const readsLikeOneOffered = (city: OfferedCity): boolean =>
+    offered.some(
+      (other) =>
+        other.id === city.id ||
+        questionLanguages.some(
+          (language) => other.names[language] === city.names[language]
+        )
+    )
+
+  for (const city of candidates) {
+    if (picked.length === DECOY_COUNT) {
+      break
+    }
+
+    if (!readsLikeOneOffered(city)) {
+      offered.push(city)
+      picked.push(city)
+    }
+  }
+
+  const [first, second, third] = picked
+
+  return first === undefined || second === undefined || third === undefined
+    ? null
+    : [first, second, third]
+}
+
+const namesOf = (
+  cities: readonly [OfferedCity, OfferedCity, OfferedCity]
+): [LocalizedText, LocalizedText, LocalizedText] => [
+  cities[0].names,
+  cities[1].names,
+  cities[2].names
+]
 
 /**
  * The country's own cities first — Sydney and Melbourne for Canberra, the
@@ -79,33 +130,12 @@ const PROMPT_BY_LANGUAGE = {
  * states, the flags' fill rule. A seat is never one: it is a right answer.
  */
 const decoysFor = ({
-  language,
   row,
   rows
 }: {
-  language: QuestionLanguage
   row: CapitalRow
   rows: readonly CapitalRow[]
-}): [string, string, string] => {
-  const taken = new Set([
-    row.capital.names[language],
-    ...row.seats.map((seat) => seat.names[language])
-  ])
-  const decoys: string[] = []
-
-  const offer = (name: string) => {
-    if (decoys.length < DECOY_COUNT && !taken.has(name)) {
-      taken.add(name)
-      decoys.push(name)
-    }
-  }
-
-  for (const city of row.largestCities) {
-    if (city.sitelinks >= HEARD_OF_SITELINKS) {
-      offer(city.names[language])
-    }
-  }
-
+}): [LocalizedText, LocalizedText, LocalizedText] => {
   const neighbours = rows
     .filter((other) => other.code !== row.code)
     .toSorted(
@@ -113,18 +143,21 @@ const decoysFor = ({
         greatCircleKm(row.capital.point, a.capital.point) -
         greatCircleKm(row.capital.point, b.capital.point)
     )
+  const cities = threeCities({
+    candidates: [
+      ...row.largestCities.filter(
+        ({ sitelinks }) => sitelinks >= HEARD_OF_SITELINKS
+      ),
+      ...neighbours.map(({ capital }) => capital)
+    ],
+    taken: [row.capital, ...row.seats]
+  })
 
-  for (const neighbour of neighbours) {
-    offer(neighbour.capital.names[language])
-  }
-
-  const [first, second, third] = decoys
-
-  if (first === undefined || second === undefined || third === undefined) {
+  if (cities === null) {
     throw new Error(`No three decoys for the capital of ${row.code}`)
   }
 
-  return [first, second, third]
+  return namesOf(cities)
 }
 
 /** A fixed 32-bit FNV-1a of `text`: the same order on every cold start, a different one for every answer. */
@@ -144,16 +177,14 @@ const fnv1a = (text: string): number => {
  * rather than beside Sydney and Melbourne.
  */
 const easyDecoysFor = ({
-  language,
   row,
   rows
 }: {
-  language: QuestionLanguage
   row: CapitalRow
   rows: readonly CapitalRow[]
-}): [string, string, string] => {
+}): [LocalizedText, LocalizedText, LocalizedText] => {
   const regionsTaken = new Set([row.region])
-  const decoys: string[] = []
+  const fromOtherContinents: OfferedCity[] = []
 
   for (const other of rows
     .filter(({ capital }) => capital.tier === 'easy')
@@ -161,19 +192,22 @@ const easyDecoysFor = ({
       (one, other) =>
         fnv1a(`${row.code}:${one.code}`) - fnv1a(`${row.code}:${other.code}`)
     )) {
-    if (decoys.length < DECOY_COUNT && !regionsTaken.has(other.region)) {
+    if (!regionsTaken.has(other.region)) {
       regionsTaken.add(other.region)
-      decoys.push(other.capital.names[language])
+      fromOtherContinents.push(other.capital)
     }
   }
 
-  const [first, second, third] = decoys
+  const cities = threeCities({
+    candidates: fromOtherContinents,
+    taken: [row.capital, ...row.seats]
+  })
 
-  if (first === undefined || second === undefined || third === undefined) {
+  if (cities === null) {
     throw new Error(`No three easy decoys for the capital of ${row.code}`)
   }
 
-  return [first, second, third]
+  return namesOf(cities)
 }
 
 const askedRows = (): CapitalRow[] =>
@@ -194,31 +228,40 @@ const acceptedFor = ({
   ])
 ]
 
+/** What a table may type in any language beside the capital's name in its own. */
+const acceptedInEveryLanguage = (row: CapitalRow): string[] => [
+  ...new Set(
+    questionLanguages.flatMap((language) => acceptedFor({ language, row }))
+  )
+]
+
 let capitalQuestions: BankedQuestion[] | undefined
 
-/** Every capital in both languages, built on the first draw like the bank. */
+/**
+ * Every capital, each one question read in every language, built on the first
+ * draw like the bank. The prompt keeps each language's own contraction of the
+ * country — *du Japon*, *do Japão*.
+ */
 export const bankedCapitalQuestions = (): BankedQuestion[] => {
-  capitalQuestions ??= askedRows().flatMap((row) =>
-    questionLanguages.map((language) => ({
-      accepted: acceptedFor({ language, row }),
-      answer: row.capital.names[language],
-      category: 'capitals' as const,
-      choiceOnly: false,
-      decoys: decoysFor({ language, row, rows: bankedCapitals() }),
-      easyDecoys: easyDecoysFor({ language, row, rows: askedRows() }),
-      flag: null,
-      id: `capital-${language}-${row.code}`,
-      isAdult: false,
-      isWellKnown: row.capital.tier === 'easy',
-      language,
-      note: null,
-      prompt: PROMPT_BY_LANGUAGE[language](row.code),
-      rebus: null,
-      silhouette: null,
-      theme: 'wikidata-capitals',
-      tier: row.capital.tier
-    }))
-  )
+  capitalQuestions ??= askedRows().map((row) => ({
+    accepted: acceptedInEveryLanguage(row),
+    answer: row.capital.names,
+    category: 'capitals' as const,
+    choiceOnly: false,
+    decoys: decoysFor({ row, rows: bankedCapitals() }),
+    easyDecoys: easyDecoysFor({ row, rows: askedRows() }),
+    flag: null,
+    id: `capital-${row.code}`,
+    isAdult: false,
+    isWellKnown: row.capital.tier === 'easy',
+    language: null,
+    note: null,
+    prompt: capitalPrompt(row.code),
+    rebus: null,
+    silhouette: null,
+    theme: 'wikidata-capitals',
+    tier: row.capital.tier
+  }))
 
   return capitalQuestions
 }
@@ -270,7 +313,7 @@ const capitalsAsked = (): Map<string, string[]> => {
  * is never asked it twice under two ids.
  */
 export const asksACapitalTheRubricAsks = (
-  question: BankedQuestion
+  question: Pick<WrittenRow, 'accepted' | 'answer' | 'language' | 'prompt'>
 ): boolean => {
   if (!/capital/i.test(question.prompt)) {
     return false

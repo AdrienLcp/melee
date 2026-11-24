@@ -4,9 +4,8 @@ import {
   type CountryCode,
   countryCodeSchema
 } from '@melee/protocol/country-code'
+import type { LocalizedText } from '@melee/protocol/locale'
 import {
-  type QuestionLanguage,
-  questionLanguages,
   type SilhouetteFile,
   silhouetteFileSchema
 } from '@melee/protocol/question'
@@ -14,8 +13,9 @@ import {
 import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import {
-  acceptedCountryNames,
-  COUNTRY_NAMES_BY_LANGUAGE
+  acceptedCountryNamesInEveryLanguage,
+  localizedCountryName,
+  localizedCountryNames
 } from './country-answers'
 import type { BankedQuestion } from './question-bank'
 import silhouetteBank from './silhouette-bank.json' with { type: 'json' }
@@ -49,51 +49,37 @@ export type SilhouetteOutline = z.infer<
   typeof silhouetteBankSchema
 >[number]['outline']
 
-const PROMPT_BY_LANGUAGE = {
+const SILHOUETTE_PROMPT = {
   en: 'Which country has this shape?',
   fr: 'Quel pays a cette forme ?',
   pt: 'Que país tem esta forma?'
-} as const satisfies Record<QuestionLanguage, string>
+} as const satisfies LocalizedText
 
 let silhouetteQuestions: BankedQuestion[] | undefined
 
-/** Every outline in both languages; the id is the file's, never the country's. */
+/** Every outline, each one question read in every language; the id is the file's, never the country's. */
 export const bankedSilhouetteQuestions = (): BankedQuestion[] => {
   silhouetteQuestions ??= silhouetteBankSchema
     .parse(silhouetteBank)
-    .flatMap((silhouette) =>
-      questionLanguages.map((language) => {
-        const names = COUNTRY_NAMES_BY_LANGUAGE[language]
-
-        return {
-          accepted: acceptedCountryNames({ code: silhouette.code, language }),
-          answer: names[silhouette.code].name,
-          category: 'silhouettes' as const,
-          choiceOnly: false,
-          decoys: [
-            names[silhouette.decoys[0]].name,
-            names[silhouette.decoys[1]].name,
-            names[silhouette.decoys[2]].name
-          ] as const,
-          easyDecoys: [
-            names[silhouette.easyDecoys[0]].name,
-            names[silhouette.easyDecoys[1]].name,
-            names[silhouette.easyDecoys[2]].name
-          ] as const,
-          flag: null,
-          id: `silhouette-${language}-${silhouette.file.replace('.svg', '')}`,
-          isAdult: false,
-          isWellKnown: silhouette.tier === 'easy',
-          language,
-          note: null,
-          prompt: PROMPT_BY_LANGUAGE[language],
-          rebus: null,
-          silhouette: silhouette.file,
-          theme: 'natural-earth',
-          tier: silhouette.tier
-        }
-      })
-    )
+    .map((silhouette) => ({
+      accepted: acceptedCountryNamesInEveryLanguage(silhouette.code),
+      answer: localizedCountryName(silhouette.code),
+      category: 'silhouettes' as const,
+      choiceOnly: false,
+      decoys: localizedCountryNames(silhouette.decoys),
+      easyDecoys: localizedCountryNames(silhouette.easyDecoys),
+      flag: null,
+      id: `silhouette-${silhouette.file.replace('.svg', '')}`,
+      isAdult: false,
+      isWellKnown: silhouette.tier === 'easy',
+      language: null,
+      note: null,
+      prompt: SILHOUETTE_PROMPT,
+      rebus: null,
+      silhouette: silhouette.file,
+      theme: 'natural-earth',
+      tier: silhouette.tier
+    }))
 
   return silhouetteQuestions
 }

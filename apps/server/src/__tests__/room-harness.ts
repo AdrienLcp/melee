@@ -6,6 +6,10 @@ import { DEFAULT_BLINDTEST_SETTINGS, shelvedGames } from '@melee/protocol/game'
 import { createRoomResponseSchema } from '@melee/protocol/http'
 import type { HostToken } from '@melee/protocol/identifiers'
 import {
+  type HostQuestion,
+  writtenInOneLanguage
+} from '@melee/protocol/question'
+import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type HostRoundContent,
@@ -60,69 +64,85 @@ export const PREVIEW_HOST = 'preview.test'
  * assertion — the answers, the accepted spellings and the notes. A suite that
  * kept its own copy would drift and still pass.
  */
-export const QUESTIONS = [
+export const QUESTIONS: (HostQuestion & { choiceOnly: boolean })[] = [
   {
+    ...writtenInOneLanguage({
+      answer: 'Le Cervin',
+      decoys: ['Le Chasseral', 'Le Suchet', 'Le Roti'],
+      prompt: 'Which mountain is the most recognisable in Switzerland?'
+    }),
     accepted: ['Cervin'],
-    answer: 'Le Cervin',
     category: 'geography',
     choiceOnly: false,
-    decoys: ['Le Chasseral', 'Le Suchet', 'Le Roti'],
     flag: null,
     id: 'question-1',
     note: 'Zermatt sits at its foot.',
-    prompt: 'Which mountain is the most recognisable in Switzerland?',
     rebus: null,
     silhouette: null
   },
   {
+    ...writtenInOneLanguage({
+      answer: 'Quatre',
+      decoys: ['Trois', 'Deux', 'Une'],
+      prompt: 'How many national languages does Switzerland have?'
+    }),
     accepted: [],
-    answer: 'Quatre',
     category: 'geography',
     choiceOnly: false,
-    decoys: ['Trois', 'Deux', 'Une'],
     flag: null,
     id: 'question-2',
     note: 'Romansh is the fourth, spoken in Grisons.',
-    prompt: 'How many national languages does Switzerland have?',
     rebus: null,
     silhouette: null
   },
   {
+    ...writtenInOneLanguage({
+      answer: 'Zurich',
+      decoys: ['Lausanne', 'Geneva', 'Basel'],
+      prompt: 'Which is the largest city in Switzerland by area?'
+    }),
     accepted: [],
-    answer: 'Zurich',
     category: 'geography',
     choiceOnly: false,
-    decoys: ['Lausanne', 'Geneva', 'Basel'],
     flag: null,
     id: 'question-3',
     note: 'More than thirty per cent of its residents are foreign.',
-    prompt: 'Which is the largest city in Switzerland by area?',
     rebus: null,
     silhouette: null
   },
   {
-    accepted: [],
-    answer: 'Japan',
+    accepted: ['Nippon'],
+    answer: { en: 'Japan', fr: 'Japon', pt: 'Japão' },
     category: 'flags',
     choiceOnly: false,
-    decoys: ['Bangladesh', 'Palau', 'South Korea'],
+    decoys: [
+      { en: 'Bangladesh', fr: 'Bangladesh', pt: 'Bangladesh' },
+      { en: 'Palau', fr: 'Palaos', pt: 'Palau' },
+      { en: 'South Korea', fr: 'Corée du Sud', pt: 'Coreia do Sul' }
+    ],
     flag: '0123456789ab.svg',
-    id: 'flag-en-0123456789ab',
+    id: 'flag-0123456789ab',
     note: null,
-    prompt: 'Whose flag is this?',
+    prompt: {
+      en: 'Whose flag is this?',
+      fr: 'À qui est ce drapeau ?',
+      pt: 'De quem é esta bandeira?'
+    },
     rebus: null,
     silhouette: null
   },
   {
+    ...writtenInOneLanguage({
+      answer: 'Titanic',
+      decoys: ['The Abyss', 'Pearl Harbor', 'Jaws'],
+      prompt: 'Which film?'
+    }),
     accepted: [],
-    answer: 'Titanic',
     category: 'rebus',
     choiceOnly: false,
-    decoys: ['The Abyss', 'Pearl Harbor', 'Jaws'],
     flag: null,
     id: 'rebus-en-titanic',
     note: 'James Cameron, 1997.',
-    prompt: 'Which film?',
     rebus: '🧊🚢💔',
     silhouette: null
   }

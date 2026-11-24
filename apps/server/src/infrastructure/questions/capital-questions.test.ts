@@ -8,7 +8,10 @@ import {
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
-import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import {
+  answerInEveryLanguage,
+  gradeQuizGuess
+} from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { bankedCapitals } from './capital-bank'
@@ -37,7 +40,7 @@ describe('the capitals rubric', () => {
   it('[capitals] contracts the French article into the question', () => {
     expect(
       ['AUS', 'BRA', 'USA', 'FRA', 'CUB', 'OMN'].map(
-        (code) => questionOf(`capital-fr-${code}`).prompt
+        (code) => questionOf(`capital-${code}`).prompt.fr
       )
     ).toEqual([
       'Quelle est la capitale de l’Australie ?',
@@ -52,7 +55,7 @@ describe('the capitals rubric', () => {
   it('[capitals] contracts the Portuguese article into the question', () => {
     expect(
       ['FRA', 'JPN', 'USA', 'SYC', 'PRT'].map(
-        (code) => questionOf(`capital-pt-${code}`).prompt
+        (code) => questionOf(`capital-${code}`).prompt.pt
       )
     ).toEqual([
       'Qual é a capital da França?',
@@ -64,24 +67,69 @@ describe('the capitals rubric', () => {
   })
 
   it('[capitals] names the country after its article in English', () => {
-    expect(questionOf('capital-en-USA').prompt).toBe(
+    expect(questionOf('capital-USA').prompt.en).toBe(
       'What is the capital of the United States?'
     )
   })
 
   it('[capitals] stands the capital beside its country’s own big cities', () => {
-    expect(questionOf('capital-en-AUS').decoys).toEqual(
+    expect(questionOf('capital-AUS').decoys.map(({ en }) => en)).toEqual(
       expect.arrayContaining(['Sydney', 'Melbourne'])
     )
   })
 
-  it('[capitals] pays every seat and never offers one as a decoy', () => {
-    const sucre = questionOf('capital-en-BOL')
+  it('[capitals] offers the same three cities in every language, in the same order', () => {
+    const misaligned = QUESTIONS.flatMap((question) => {
+      const row = bankedCapitals().find(
+        ({ code }) => `capital-${code}` === question.id
+      )
+      const places = [
+        ...(row?.largestCities ?? []),
+        ...bankedCapitals().map(({ capital }) => capital)
+      ]
 
-    expect(gradeQuizGuess({ guess: 'La Paz', question: sucre }).isCorrect).toBe(
-      true
-    )
-    expect(sucre.decoys).not.toContain('La Paz')
+      return [...question.decoys, ...(question.easyDecoys ?? [])].flatMap(
+        (decoy) =>
+          places.some(({ names }) =>
+            questionLanguages.every(
+              (language) => names[language] === decoy[language]
+            )
+          )
+            ? []
+            : [`${question.id}: ${JSON.stringify(decoy)}`]
+      )
+    })
+
+    expect(misaligned).toEqual([])
+    expect(questionOf('capital-JPN').prompt).toEqual({
+      en: 'What is the capital of Japan?',
+      fr: 'Quelle est la capitale du Japon ?',
+      pt: 'Qual é a capital do Japão?'
+    })
+  })
+
+  it('[capitals] pays every seat and never offers one as a decoy', () => {
+    const sucre = questionOf('capital-BOL')
+
+    expect(
+      gradeQuizGuess({
+        guess: 'La Paz',
+        question: answerInEveryLanguage(sucre)
+      }).isCorrect
+    ).toBe(true)
+    expect(sucre.decoys.map(({ en }) => en)).not.toContain('La Paz')
+  })
+
+  it('[capitals] takes the capital typed in any of the three languages', () => {
+    const answer = answerInEveryLanguage(questionOf('capital-POL'))
+
+    for (const guess of ['Warsaw', 'Varsovie', 'Varsóvia']) {
+      expect(gradeQuizGuess({ guess, question: answer }).isCorrect).toBe(true)
+    }
+
+    expect(
+      gradeQuizGuess({ guess: 'Cracovie', question: answer }).isCorrect
+    ).toBe(false)
   })
 
   it('[capitals] asks no city-state, whose name is its answer', () => {
@@ -95,14 +143,19 @@ describe('the capitals rubric', () => {
       questionLanguages.flatMap((language) => {
         const country = COUNTRY_NAMES[language][row.code].name
         const question = QUESTIONS.find(
-          (candidate) => candidate.id === `capital-${language}-${row.code}`
+          (candidate) => candidate.id === `capital-${row.code}`
         )
 
         return question !== undefined &&
-          !normalizeAnswer(question.answer).includes(
-            normalizeAnswer(country)
+          !questionLanguages.some((answerLanguage) =>
+            normalizeAnswer(question.answer[answerLanguage]).includes(
+              normalizeAnswer(country)
+            )
           ) &&
-          gradeQuizGuess({ guess: country, question }).isCorrect
+          gradeQuizGuess({
+            guess: country,
+            question: answerInEveryLanguage(question)
+          }).isCorrect
           ? [`${question.id}: ${country}`]
           : []
       })
@@ -115,7 +168,7 @@ describe('the capitals rubric', () => {
     const geography = bankedQuestions().filter(
       (question) =>
         question.category !== 'capitals' &&
-        question.prompt === 'What is the capital of Australia?'
+        question.prompt.en === 'What is the capital of Australia?'
     )
 
     expect(geography).toEqual([])

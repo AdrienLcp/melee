@@ -7,6 +7,7 @@ import type {
   YourCluesStanding
 } from '@melee/protocol/five-clues'
 import type { PlayerId } from '@melee/protocol/identifiers'
+import { pickedChoiceSaid } from '@melee/protocol/picked-choice'
 import type { AnswerMode, RoundContent } from '@melee/protocol/room'
 import type { Award } from '@melee/protocol/scoring'
 
@@ -23,8 +24,9 @@ import {
 } from '@melee/core/fiveclues/clue-race'
 import { shuffled } from '@melee/core/helpers/random'
 import {
+  answerInEveryLanguage,
   gradeQuizGuess,
-  type QuestionAnswer
+  type LocalizedQuestionAnswer
 } from '@melee/core/quiz/question-answer'
 import { isExpectedInRound } from '@melee/core/round/round-roster'
 import { isPerfectPay } from '@melee/core/scoring/perfect-pay'
@@ -49,8 +51,8 @@ export const fiveCluesContent = ({
   mode,
   subject
 }: {
-  /** What a typed line is graded against, and the three names `choice` puts beside it. */
-  answer: QuestionAnswer
+  /** What a typed line in any language is graded against, and the three names `choice` puts beside it. */
+  answer: LocalizedQuestionAnswer
   clueDurationMs: number
   ladder: FiveCluesLadder
   /** The room's answer mode as the round opens: `choice` deals the four names, anything else none. */
@@ -201,7 +203,7 @@ const gradeGuess = ({
     return {
       isCorrect: gradeQuizGuess({
         guess: guess.guess,
-        question: content.answer
+        question: answerInEveryLanguage(content.answer)
       }).isCorrect,
       said: guess.guess
     }
@@ -213,7 +215,7 @@ const gradeGuess = ({
     ? null
     : {
         isCorrect: guess.choiceIndex === content.correctChoiceIndex,
-        said: picked
+        said: pickedChoiceSaid(guess.choiceIndex)
       }
 }
 
@@ -330,7 +332,7 @@ export const judgeFiveCluesBuzz = ({
 
   keepAttempt({
     elapsedMs,
-    graded: { isCorrect, said: isCorrect ? content.answer.answer : null },
+    graded: { isCorrect, said: null },
     now: buzzedAt,
     playerId,
     round
@@ -339,8 +341,9 @@ export const judgeFiveCluesBuzz = ({
 
 /**
  * What the shared round view and the reveal read of a seat: who answered,
- * when, and what it said — nothing for a buzz judged wrong, which was said
- * aloud.
+ * when, and what it said — a pick as its place among the choices, which
+ * every screen names in its own language, and nothing for a buzz, which was
+ * said aloud: the summit names a right one.
  */
 const keepAttempt = ({
   elapsedMs,
@@ -513,9 +516,9 @@ export const fiveCluesContentView = ({
 
   return {
     answer: round.revealed
-      ? { name: content.answer.answer, subject: content.subject }
+      ? { name: { ...content.answer.answer }, subject: content.subject }
       : null,
-    choices: [...content.choices],
+    choices: content.choices.map((choice) => ({ ...choice })),
     clueDurationMs: content.clueDurationMs,
     clues: round.revealed ? [...content.ladder] : openClues,
     kind: 'fiveclues',

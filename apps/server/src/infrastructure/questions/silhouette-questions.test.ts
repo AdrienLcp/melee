@@ -3,6 +3,8 @@ import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 
+import { questionLanguages } from '@melee/protocol/question'
+
 import { bankedSilhouetteQuestions } from './silhouette-questions'
 
 const SERVED_SILHOUETTES = join(
@@ -28,21 +30,32 @@ describe('the silhouettes rubric', () => {
   })
 
   it('[silhouettes] stands every outline beside three other countries', () => {
-    const lopsided = bankedSilhouetteQuestions().filter(
-      ({ answer, decoys }) => new Set([answer, ...decoys]).size !== 4
+    const lopsided = bankedSilhouetteQuestions().filter(({ answer, decoys }) =>
+      questionLanguages.some(
+        (language) =>
+          new Set([answer, ...decoys].map((name) => name[language])).size !== 4
+      )
     )
 
     expect(lopsided.map(({ id }) => id)).toEqual([])
   })
 
-  it('[silhouettes] asks France in both languages', () => {
-    const france = bankedSilhouetteQuestions().filter(
-      ({ answer }) => answer === 'France'
+  it('[silhouettes] asks Germany once, read in every language', () => {
+    const outlinesOfGermany = bankedSilhouetteQuestions().filter(
+      ({ answer }) => answer.en === 'Germany'
     )
 
-    expect(france.map(({ language }) => language).toSorted()).toEqual([
-      'en',
-      'fr'
-    ])
+    expect(outlinesOfGermany).toHaveLength(1)
+    expect(outlinesOfGermany[0]?.answer).toEqual({
+      en: 'Germany',
+      fr: 'Allemagne',
+      pt: 'Alemanha'
+    })
+    expect(outlinesOfGermany[0]?.prompt).toEqual({
+      en: 'Which country has this shape?',
+      fr: 'Quel pays a cette forme ?',
+      pt: 'Que país tem esta forma?'
+    })
+    expect(outlinesOfGermany[0]?.id).toMatch(/^silhouette-[0-9a-f]{12}$/)
   })
 })

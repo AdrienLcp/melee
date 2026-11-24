@@ -10,28 +10,44 @@
     grid-template-columns: minmax(0, 1fr)
     min-width: 0
 
+    // One lid wide over the rest, then a cascade that never strands a lid on
+    // a row of its own: one column on a phone, a wide lid over two pairs once
+    // two fit, and two wide lids over three once three fit.
     .rack
       display: grid
       gap: var(--space-m)
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr))
+      grid-template-columns: minmax(0, 1fr)
       list-style: none
       margin: 0
       padding: 0
 
       > li
-        --lid-order: 4
+        --lid-order: 6
 
-        @include piece.shelved(var(--lid-order), 4)
+        @include piece.shelved(var(--lid-order), 6)
 
         display: grid
         min-width: 0
 
-        @for $order from 0 through 3
+        @for $order from 0 through 5
           &:nth-child(#{$order + 1})
             --lid-order: #{$order}
 
       > .featured
         grid-column: 1 / -1
 
-      @container ready-made (width >= 64rem)
-        grid-template-columns: repeat(4, minmax(0, 1fr))
+      @container ready-made (width >= 31.25rem)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+
+        > .featured + li
+          grid-column: 1 / -1
+
+      @container ready-made (width >= 47.5rem)
+        grid-template-columns: repeat(6, minmax(0, 1fr))
+
+        > li
+          grid-column: span 2
+
+        > .featured + li,
+        > .featured + li + li
+          grid-column: span 3

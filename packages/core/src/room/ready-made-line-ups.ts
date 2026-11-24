@@ -1,4 +1,5 @@
 import type { AtlasCityPlaces } from '@melee/protocol/atlas'
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import { fiveCluesSubjects } from '@melee/protocol/five-clues'
 import {
@@ -7,7 +8,9 @@ import {
   DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLACK_SQUARE_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_ESTIMATE_SETTINGS,
   DEFAULT_FIVE_CLUES_SETTINGS,
+  DEFAULT_HIGHER_LOWER_SETTINGS,
   DEFAULT_LONGEST_WORD_SETTINGS,
   DEFAULT_MATCHSTICKS_SETTINGS,
   DEFAULT_MYSTERY_WORD_SETTINGS,
@@ -15,12 +18,14 @@ import {
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SWATCH_SETTINGS,
   DEFAULT_THINK_ALIKE_SETTINGS,
+  DEFAULT_TIMELINE_SETTINGS,
   type GameKind,
   type ShelvedGame,
   shelvedGames
 } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import {
+  everyLanguageCategories,
   type QuestionCategory,
   questionCategories
 } from '@melee/protocol/question'
@@ -38,6 +43,7 @@ import { isShelvedGame } from './shelved-game'
 
 export const readyMadeLineUpIds = [
   'grandMix',
+  'international',
   'firstGame',
   'music',
   'generalKnowledge',
@@ -92,10 +98,10 @@ const blindtestOn = ({
 const FLASH_WINDOW_MS = 1_000
 const FLASH_ROUND_MS = 15_000
 
-const flashOn = (locale: Locale): SavedEntry => ({
+const flashOn = (homeCountry: CountryCode | null): BlindtestSettings => ({
   ...DEFAULT_BLINDTEST_SETTINGS,
   clipWindowMs: FLASH_WINDOW_MS,
-  homeCountry: homeCountryFor(locale),
+  homeCountry,
   roundDurationMs: FLASH_ROUND_MS,
   source: catalogueOf({ hasClassics: true })
 })
@@ -141,7 +147,7 @@ const atlasOn = ({
 
 const fiveCluesIn = (locale: Locale): SavedEntry => ({
   ...DEFAULT_FIVE_CLUES_SETTINGS,
-  language: questionLanguageFor(locale)
+  homeCountry: homeCountryFor(locale)
 })
 
 const GENERAL_QUIZ_CATEGORIES = [
@@ -214,7 +220,8 @@ const grandMixVarietiesOf = (
   ),
   blacksquare: [3, 6, 9].map((answerCount) => ({
     ...DEFAULT_BLACK_SQUARE_SETTINGS,
-    answerCount
+    answerCount,
+    homeCountry: homeCountryFor(locale)
   })),
   blindtest: [
     ...trackDecades.map((decade) =>
@@ -224,11 +231,11 @@ const grandMixVarietiesOf = (
     ...GRAND_MIX_CHARTS_OF_LOCALE[locale].map((genre) =>
       blindtestOn({ locale, source: catalogueOf({ charts: [genre] }) })
     ),
-    flashOn(locale)
+    flashOn(homeCountryFor(locale))
   ],
   fiveclues: fiveCluesSubjects.map((subject) => ({
     ...DEFAULT_FIVE_CLUES_SETTINGS,
-    language: questionLanguageFor(locale),
+    homeCountry: homeCountryFor(locale),
     subjects: [subject]
   })),
   longestword: [
@@ -282,13 +289,89 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
 }
 
 /**
- * The five, in the order the home page and the lobby draw them. A game named
+ * The games a table split between two languages cannot play fairly: a word
+ * matched between two dictionaries never matches, and Petit Bac would pay a
+ * word in the other language double as nobody else's.
+ */
+const WORD_GAMES = new Set<ShelvedGame>([
+  'longestword',
+  'mysteryword',
+  'petitbac',
+  'thinkalike'
+])
+
+/**
+ * The grand mix with nothing tied to one country: no table's own content
+ * (`homeCountry` `null` wherever a game deals one), no city set, no chart, and
+ * of the quiz only the subjects each screen names in its own language.
+ */
+const internationalVarietiesOf = (
+  locale: Locale
+): Partial<Record<ShelvedGame, readonly SavedEntry[]>> => {
+  const varieties = grandMixVarietiesOf(locale)
+
+  return {
+    ...varieties,
+    atlas: (['place', 'name'] as const).flatMap((direction) =>
+      (['countries', 'worldCapitals'] as const).map((place) =>
+        atlasOn({ direction, places: [place] })
+      )
+    ),
+    blacksquare: [3, 6, 9].map((answerCount) => ({
+      ...DEFAULT_BLACK_SQUARE_SETTINGS,
+      answerCount
+    })),
+    blindtest: [
+      ...trackDecades.map((decade) => ({
+        ...DEFAULT_BLINDTEST_SETTINGS,
+        homeCountry: null,
+        source: catalogueOf({ decades: [decade] })
+      })),
+      {
+        ...DEFAULT_BLINDTEST_SETTINGS,
+        homeCountry: null,
+        source: catalogueOf({ hasFilmScores: true })
+      },
+      flashOn(null)
+    ],
+    estimate: [{ ...DEFAULT_ESTIMATE_SETTINGS, homeCountry: null }],
+    fiveclues: fiveCluesSubjects.map((subject) => ({
+      ...DEFAULT_FIVE_CLUES_SETTINGS,
+      homeCountry: null,
+      subjects: [subject]
+    })),
+    higherlower: [{ ...DEFAULT_HIGHER_LOWER_SETTINGS, homeCountry: null }],
+    quiz: everyLanguageCategories.map((category) =>
+      quizOn({
+        categories: [category],
+        difficulty: GRAND_MIX_QUIZ_DIFFICULTY[category],
+        locale
+      })
+    ),
+    timeline: [DEFAULT_TIMELINE_SETTINGS]
+  }
+}
+
+/**
+ * A table where nobody shares one culture — a French grandmother beside a
+ * Portuguese one — each screen reading every round in its own language.
+ */
+const internationalFor = (locale: Locale): SavedEntry[] => {
+  const varieties = internationalVarietiesOf(locale)
+
+  return shelvedGames
+    .filter((game) => !isJudgedInEveryMode(game) && !WORD_GAMES.has(game))
+    .flatMap((game) => varieties[game] ?? [game])
+}
+
+/**
+ * The six, in the order the home page and the lobby draw them. A game named
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * Every game is answered the way it opens (`rememberedOnReadyMade`).
  * *First game* leaves out most likely: it falls flat with two players.
  * *Free-for-all* is a bit of every game nobody has to judge, with no last
- * round.
+ * round, and *Without borders* the same with nothing from one country.
  */
 export const readyMadeLineUpsFor = (
   locale: Locale
@@ -296,6 +379,13 @@ export const readyMadeLineUpsFor = (
   {
     id: 'grandMix',
     lineUp: grandMixFor(locale),
+    lineUpDeals: [],
+    roundCount: null,
+    runningOrder: []
+  },
+  {
+    id: 'international',
+    lineUp: internationalFor(locale),
     lineUpDeals: [],
     roundCount: null,
     runningOrder: []

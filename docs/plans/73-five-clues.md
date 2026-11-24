@@ -177,7 +177,8 @@ _Five clues_ in English, _Cinco pistas_ in Portuguese.
 
 - **The settings arm carries `language` beside `clueDurationMs` and the
   level**: the cities, the capital, the four names and every typed answer
-  are worded in one language for the table, like the quiz's.
+  are worded in one language for the table, like the quiz's. Replaced by
+  `homeCountry` in step 6.
 - **The duel is allowed** (`playsDuels`): the shell's duel stamps two seats
   and the race waits on them alone, asking nothing of the game.
 - **The console climbs blind**: `currentContent` is `{ kind: 'fiveclues' }`
@@ -330,7 +331,8 @@ at the start of the session, each by fun at the table:
   tables, `GBR` and `USA` to English ones, `PRT` to Portuguese ones (58:
   Johnny Hallyday, Amália Rodrigues, Delia Smith, the Viaduc de Millau, _O
   Pátio das Cantigas_). Handoff 11's international evening deals the null
-  rows alone.
+  rows alone. Dealt by the table's `homeCountry` since step 6, which no
+  language seats in GBR or USA: their 20 rows wait for a host who sets it.
 - **The staircase, enforced**: each row names beside its first three rungs
   which decoy each strikes, 0, 1, 2 in order, and the row's schema refuses
   anything else. The bank test adds what a schema cannot: no clue names the
@@ -362,6 +364,21 @@ at the start of the session, each by fun at the table:
   one quiz per category; _Culture générale_ keeps one entry of all six
   mixed. The game's setup gains a strip of six toggles, _À trouver_, the
   estimate's topics' control.
+
+## Step 6 — every screen in its own language ✅ 24/11/2026
+
+Plan 79's mixed table: a French phone beside a Portuguese one reads one
+round. Every string the round sends is a `LocalizedText` — the four
+choices, the answer's name, a country's cities and capital, a written
+rung's text and a photograph's alt — and each screen reads its own. A pick
+is said as its index (`pickedChoiceSaid`); a typed line is graded against
+every language's name, aliases and decoys (`answerInEveryLanguage`). The
+settings arm's `language` goes for `homeCountry`, seeded and re-synced like
+the timeline's, and deals the written rows `homeCountry` null or the
+table's own; a setup remembered with `language` still parses, the key
+stripped. A round stored in the old shape reads its one language in every
+locale (`withLocalizedFiveClues`). A buzz judged right records no line: the
+summit names the answer in the reader's language.
 
 ## How to tell it is done
 

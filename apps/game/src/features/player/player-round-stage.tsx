@@ -1231,7 +1231,7 @@ const Revealed: React.FC<{
   const { locale, translate } = useI18n()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
-  const asked = quizContent(round)?.prompt.prompt ?? null
+  const asked = quizContent(round)?.prompt.prompt[locale] ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
   const silhouette = quizContent(round)?.prompt.silhouette ?? null
   const rebus = quizContent(round)?.prompt.rebus ?? null
@@ -1436,11 +1436,14 @@ const Revealed: React.FC<{
         )}
         {rebus !== null && <RebusLine isNamedBeside rebus={rebus} />}
         <div className='identity'>
-          <p className='revealed-title' style={answerFitting(question.answer)}>
+          <p
+            className='revealed-title'
+            style={answerFitting(question.answer[locale])}
+          >
             <VisuallyHidden elementType='span'>
               {`${translate('quiz.reveal.title')} `}
             </VisuallyHidden>
-            {question.answer}
+            {question.answer[locale]}
           </p>
           {question.note !== null && <p className='note'>{question.note}</p>}
         </div>

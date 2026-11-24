@@ -28,6 +28,7 @@ const PHASE_MARKS = [
 /** The phase inks a running clock or the reveal's hold drains in: playing, buzzed or marking, revealed. */
 const PARTY_FILLS = [
   '--party-grand-mix',
+  '--party-international',
   '--party-first-game',
   '--party-music',
   '--party-general-knowledge',

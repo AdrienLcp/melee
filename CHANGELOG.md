@@ -16,6 +16,22 @@ one part.
   pause and Inner clock's count, and back in after. _Musique_ in the menu,
   under the room volume, picks one style, _Aléatoire_ — a different style
   each piece, the default — or _Aucune_.
+- `[Shared]` **« Sans frontières »: an evening nobody is left out of.** A
+  sixth ready-made line-up, beside _Mêlée générale_, for a table that does not
+  share one language or one culture: every screen reads each round in its own
+  language, and nothing in it belongs to one country — no French or
+  Portuguese cities on the map, no Bastille in the timeline, no French dishes
+  in the black square, no table's own hits, quantities or Five clues ladders.
+  The word games stay out: a word can't be matched between two languages.
+- `[Shared]` **Flags, capitals and silhouettes speak every screen's
+  language.** One question per country, its choices and answer named on each
+  screen in its own locale, a typed answer right in any of the three; what a
+  player picked is named in the reader's language at the reveal. Protocol 79.
+- `[Shared]` **Cinq indices speaks every screen's language too**, and deals
+  its ladders by the table's country rather than by its language.
+- `[Server]` **The timeline and the black square deal a country's own rows to
+  that country's table alone.** Thirty-one French events and nine French
+  themes no longer reach a Portuguese or an English table.
 
 - `[Shared]` **Blind test « Flash »: a song everyone knows, heard for one
   second.** _Ce qu'on entend_ in the blind test's setup plays the whole clip,

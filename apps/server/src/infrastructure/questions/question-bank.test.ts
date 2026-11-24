@@ -14,6 +14,7 @@ import {
   decoysGradedRight,
   spellingsNamingADecoy
 } from '@melee/core/quiz/decoy-checks'
+import { answerInEveryLanguage } from '@melee/core/quiz/question-answer'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import {
@@ -23,6 +24,10 @@ import {
 } from './question-bank'
 
 const BANKED_QUESTIONS = bankedQuestions()
+
+/** Whether a room playing `language` may be dealt the row: one written in it, or a country rubric's. */
+const isReadIn = (question: BankedQuestion, language: QuestionLanguage) =>
+  question.language === null || question.language === language
 
 const NOTHING_PLAYED: ReadonlySet<string> = new Set()
 
@@ -299,7 +304,7 @@ describe('drawQuestion', () => {
     expect(riddles.every(({ choiceOnly }) => choiceOnly)).toBe(true)
 
     const chained = BANKED_QUESTIONS.filter(({ prompt }) =>
-      /il faut .+,.+ et /u.test(prompt)
+      /il faut .+,.+ et /u.test(prompt.fr)
     )
 
     expect(chained.map(({ id }) => id)).toEqual([])
@@ -307,7 +312,8 @@ describe('drawQuestion', () => {
 
   it('[bank] holds no question whose own decoy would be graded right', () => {
     const winnable = BANKED_QUESTIONS.filter(
-      (question) => decoysGradedRight(question).length > 0
+      (question) =>
+        decoysGradedRight(answerInEveryLanguage(question)).length > 0
     )
 
     expect(winnable.map((question) => question.id)).toEqual([])
@@ -326,7 +332,7 @@ describe('drawQuestion', () => {
     const repeated: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      const key = `${question.language}::${question.flag ?? ''}::${question.rebus ?? ''}::${question.silhouette ?? ''}::${normalizeAnswer(question.prompt)}`
+      const key = `${question.language}::${question.flag ?? ''}::${question.rebus ?? ''}::${question.silhouette ?? ''}::${normalizeAnswer(question.prompt.en)}`
 
       if (seen.has(key)) {
         repeated.push(question.id)
@@ -357,9 +363,12 @@ describe('drawQuestion', () => {
     const subjects = new Map<string, string[][]>()
 
     for (const question of BANKED_QUESTIONS) {
-      const subject = `${question.language}/${question.category}`
+      const subject = `${question.language ?? 'every'}/${question.category}`
 
-      subjects.set(subject, [...(subjects.get(subject) ?? []), question.decoys])
+      subjects.set(subject, [
+        ...(subjects.get(subject) ?? []),
+        question.decoys.map(({ en }) => en)
+      ])
     }
 
     const overused: string[] = []
@@ -420,9 +429,46 @@ describe('drawQuestion', () => {
       )
 
       expect(drawn.length).toBe(50)
-      expect(drawn.every((question) => question.language === language)).toBe(
-        true
+      expect(drawn.every((question) => isReadIn(question, language))).toBe(true)
+    }
+  })
+
+  it('[bank] deals a country rubric to a room whatever it speaks, in every language', () => {
+    const drawn = drawMany(
+      { ...DEFAULT_QUIZ_SETTINGS, categories: ['flags'], language: 'fr' },
+      { times: 20 }
+    )
+    const flagOfPortugal = BANKED_QUESTIONS.find(
+      ({ answer, category }) => category === 'flags' && answer.en === 'Portugal'
+    )
+
+    expect(drawn.length).toBe(20)
+    expect(drawn.every(({ language }) => language === null)).toBe(true)
+    expect(
+      drawn.every(({ answer, decoys }) =>
+        [answer, ...decoys].every(
+          (name) =>
+            name.en.length > 0 && name.fr.length > 0 && name.pt.length > 0
+        )
       )
+    ).toBe(true)
+    expect(flagOfPortugal?.answer).toEqual({
+      en: 'Portugal',
+      fr: 'Portugal',
+      pt: 'Portugal'
+    })
+  })
+
+  it('[bank] reads a row written in one language the same in every locale', () => {
+    const written = BANKED_QUESTIONS.filter(
+      ({ category, language }) => category === 'history' && language === 'fr'
+    )
+
+    expect(written.length).toBeGreaterThan(0)
+
+    for (const { answer, prompt } of written.slice(0, 50)) {
+      expect(new Set(Object.values(prompt)).size).toBe(1)
+      expect(new Set(Object.values(answer)).size).toBe(1)
     }
   })
 
@@ -434,8 +480,8 @@ describe('drawQuestion', () => {
    */
   it('[bank] rates some questions as beyond the room and some within it', () => {
     for (const language of questionLanguages) {
-      const rows = BANKED_QUESTIONS.filter(
-        (question) => question.language === language
+      const rows = BANKED_QUESTIONS.filter((question) =>
+        isReadIn(question, language)
       )
 
       expect(rows.some((question) => question.isWellKnown)).toBe(true)
@@ -471,7 +517,7 @@ describe('drawQuestion', () => {
           (question) =>
             question.category === category &&
             question.isWellKnown &&
-            question.language === language
+            isReadIn(question, language)
         )
 
         if (rows.length < ENOUGH_FOR_AN_EVENING) {
@@ -503,7 +549,10 @@ describe('drawQuestion', () => {
     const paying: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      for (const { decoy, spelling } of spellingsNamingADecoy(question)) {
+      for (const { decoy, spelling } of spellingsNamingADecoy({
+        ...answerInEveryLanguage(question),
+        accepted: question.accepted
+      })) {
         paying.push(`${question.id}: “${spelling}” also names ${decoy}`)
       }
     }
@@ -526,7 +575,11 @@ describe('drawQuestion', () => {
 
     for (const question of BANKED_QUESTIONS) {
       if (question.accepted.length > 0) {
-        paying.set(question.language, (paying.get(question.language) ?? 0) + 1)
+        for (const language of questionLanguages.filter((candidate) =>
+          isReadIn(question, candidate)
+        )) {
+          paying.set(language, (paying.get(language) ?? 0) + 1)
+        }
       }
     }
 
@@ -556,8 +609,7 @@ describe('drawQuestion', () => {
 
     for (const category of ['geography', 'history', 'science', 'sport']) {
       const rows = BANKED_QUESTIONS.filter(
-        (question) =>
-          question.category === category && question.language === 'fr'
+        (question) => question.category === category && isReadIn(question, 'fr')
       )
 
       if (rows.length < ENOUGH_FOR_A_SUBJECT) {

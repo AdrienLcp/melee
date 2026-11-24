@@ -40,7 +40,7 @@ export const FiveCluesClue: React.FC<FiveCluesClueProps> = ({
   clue,
   isNamedBeside = false
 }) => {
-  const { translate } = useI18n()
+  const { locale, translate } = useI18n()
   const longFigure = useLongFigure()
 
   switch (clue.kind) {
@@ -79,7 +79,7 @@ export const FiveCluesClue: React.FC<FiveCluesClueProps> = ({
       return (
         <ul className='five-clues-clue' data-kind='cities'>
           {clue.cities.map((city) => (
-            <li key={city}>{city}</li>
+            <li key={city.en}>{city[locale]}</li>
           ))}
         </ul>
       )
@@ -90,7 +90,7 @@ export const FiveCluesClue: React.FC<FiveCluesClueProps> = ({
           <FlagPicture file={clue.flag} isNamedBeside={isNamedBeside} />
           <p className='capital'>
             <small>{translate('fiveclues.clue.capital')}</small>
-            {clue.capital}
+            {clue.capital[locale]}
           </p>
         </div>
       )
@@ -98,14 +98,14 @@ export const FiveCluesClue: React.FC<FiveCluesClueProps> = ({
     case 'text':
       return (
         <p className='five-clues-clue' data-kind='text'>
-          {clue.text}
+          {clue.text[locale]}
         </p>
       )
 
     case 'image':
       return (
         <div
-          aria-label={clue.alt}
+          aria-label={clue.alt[locale]}
           className='five-clues-clue'
           data-kind='image'
           role='img'

@@ -1,5 +1,9 @@
 import { z } from 'zod'
 
+import {
+  type CountryCode,
+  countryCodeSchema
+} from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   type DatedTimelineEvent,
@@ -19,6 +23,12 @@ import bank from './timeline-bank.json' with { type: 'json' }
  */
 const bankedEventSchema = datedTimelineEventSchema.extend({
   /**
+   * The one country whose table knows or cares about it — the Veil law,
+   * Mitterrand's election — `null` for an event any table has heard of,
+   * wherever it happened. On every row, so whoever adds an event has to decide.
+   */
+  homeCountry: countryCodeSchema.nullable(),
+  /**
    * Whether a child at the table has heard of it — Columbus, the Titanic, the
    * first Harry Potter — which is all an `easy` round deals. On every row, so
    * whoever adds an event has to decide.
@@ -36,7 +46,10 @@ const bankedEventSchema = datedTimelineEventSchema.extend({
   ])
 })
 
-type BankedTimelineEvent = DatedTimelineEvent & { knownToChildren: boolean }
+type BankedTimelineEvent = DatedTimelineEvent & {
+  homeCountry: CountryCode | null
+  knownToChildren: boolean
+}
 
 /** Parsed on the first draw, like the quiz's bank, rather than on every cold start. */
 let parsed: readonly BankedTimelineEvent[] | null = null
@@ -45,7 +58,8 @@ export const bankedTimelineEvents = (): readonly BankedTimelineEvent[] => {
   parsed ??= z
     .array(bankedEventSchema)
     .parse(bank)
-    .map(({ id, knownToChildren, labels, year }) => ({
+    .map(({ homeCountry, id, knownToChildren, labels, year }) => ({
+      homeCountry,
       id,
       knownToChildren,
       labels,
@@ -57,15 +71,22 @@ export const bankedTimelineEvents = (): readonly BankedTimelineEvent[] => {
 
 export const playedTimelineEventId = (id: string): string => `timeline:${id}`
 
-/** A round's events, none the room has been dealt; `null` once the bank cannot deal a round. */
+/**
+ * A round's events, everyone's and the table's own country's, none the room
+ * has been dealt; `null` once the bank cannot deal a round.
+ */
 export const drawTimelineEvents = ({
   difficulty,
+  homeCountry,
   playedIds
 }: {
   difficulty: Difficulty
+  homeCountry: CountryCode | null
   playedIds: ReadonlySet<string>
 }): DatedTimelineEvent[] | null => {
-  const events = bankedTimelineEvents()
+  const events = bankedTimelineEvents().filter(
+    (event) => event.homeCountry === null || event.homeCountry === homeCountry
+  )
   const playedEventIds = new Set(
     events
       .filter(({ id }) => playedIds.has(playedTimelineEventId(id)))

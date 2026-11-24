@@ -545,6 +545,7 @@ export const beginRound = async (
       fromDeck === null
         ? drawBlackSquareTheme({
             difficulty: game.difficulty,
+            homeCountry: game.homeCountry,
             playedIds: room.playedContentIds
           })
         : null
@@ -593,6 +594,7 @@ export const beginRound = async (
       fromDeck?.events ??
       drawTimelineEvents({
         difficulty: game.difficulty,
+        homeCountry: game.homeCountry,
         playedIds: room.playedContentIds
       })
 
@@ -698,7 +700,7 @@ export const beginRound = async (
   if (game.kind === 'fiveclues') {
     const drawn = drawFiveCluesCard({
       difficulty: game.difficulty,
-      language: game.language,
+      homeCountry: game.homeCountry,
       playedIds: room.playedContentIds,
       subjects: game.subjects
     })

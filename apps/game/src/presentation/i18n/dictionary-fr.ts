@@ -814,7 +814,6 @@ export const FR_DICTIONARY = defineDictionary({
       size: 'Taille',
       text: 'Indice'
     },
-    language: 'Indices en',
     name: 'Cinq indices',
     outCount: 'Éliminés : {count:number}',
     play: 'Jouer à Cinq indices',
@@ -2329,6 +2328,10 @@ export const FR_DICTIONARY = defineDictionary({
       grandMix: {
         caption: 'Un peu de tout, sans juge, aussi longtemps que vous voulez.',
         name: 'Mêlée générale'
+      },
+      international: {
+        caption: 'Chaque écran dans sa langue, rien d’un seul pays.',
+        name: 'Sans frontières'
       },
       music: {
         caption:

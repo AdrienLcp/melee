@@ -204,7 +204,10 @@ describe('the wall', () => {
     await waitFor(() => hostQuestion(host) !== null, 'the host to hold it')
 
     for (const { answer, note } of QUESTIONS) {
-      for (const secret of note === null ? [answer] : [answer, note]) {
+      for (const secret of [
+        ...Object.values(answer),
+        ...(note === null ? [] : [note])
+      ]) {
         expect(transcriptOf(wall)).not.toContain(secret)
       }
     }

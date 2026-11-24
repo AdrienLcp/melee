@@ -14,6 +14,8 @@ const DIE_PIPS = [
 
 const RECORD_GROOVES = [34, 26] as const
 
+const GLOBE_PARALLELS = ['M12 28h76', 'M6 50h88', 'M12 72h76'] as const
+
 const MOTIFS = {
   firstGame: (
     <g transform='rotate(14 50 50)'>
@@ -42,6 +44,22 @@ const MOTIFS = {
       <circle cx='50' cy='89' r='9' />
     </g>
   ),
+  international: (
+    <g transform='rotate(-16 50 50)'>
+      <circle className='outline' cx='50' cy='50' r='44' strokeWidth='8' />
+      <ellipse
+        className='outline'
+        cx='50'
+        cy='50'
+        rx='18'
+        ry='44'
+        strokeWidth='7'
+      />
+      {GLOBE_PARALLELS.map((parallel) => (
+        <path className='outline' d={parallel} key={parallel} strokeWidth='6' />
+      ))}
+    </g>
+  ),
   music: (
     <g>
       <circle className='outline' cx='50' cy='50' r='46' strokeWidth='7' />
@@ -64,7 +82,9 @@ const MOTIFS = {
 /**
  * What a ready-made line-up plays, as one large mark printed tone on tone in
  * its lid's corner and cropped by it: a die for a first game, a record for
- * music, a question mark for general knowledge, a bolt for the quick one.
+ * music, a question mark for general knowledge, a bolt for the quick one,
+ * and a globe with no border drawn on it for the evening every screen reads
+ * in its own language.
  */
 export const PartyMotif: React.FC<{ id: MotifId }> = ({ id }) => (
   <svg

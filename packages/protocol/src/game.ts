@@ -190,6 +190,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
      * the switch existed still parses.
      */
     doublesLoneFinds: z.boolean().default(false),
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own content is dealt beside everyone's, and `null` deals
+     * everyone's alone. Defaulted so a setup remembered before it existed
+     * still parses.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('blacksquare'),
     /**
      * How long a sheet stays open. Longer than a question's, because a round
@@ -266,6 +273,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({
     /** Defaulted so a setup remembered before the level existed still parses. */
     difficulty: difficultySchema.default('mixed'),
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own content is dealt beside everyone's, and `null` deals
+     * everyone's alone. Defaulted so a setup remembered before it existed
+     * still parses.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('timeline'),
     /** How long the events stay up to be ordered before the round times out. */
     roundDurationMs: z.number().int().min(15_000).max(120_000)
@@ -367,9 +381,16 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
       .max(MAX_CLUE_DURATION_MS),
     /** The tiers of countries dealt, as the flags rubric deals them. */
     difficulty: difficultySchema,
+    /**
+     * The country whose table this is, seeded from the host's language as the
+     * room opens: its own people, films and places are dealt beside
+     * everyone's, and `null` deals everyone's alone. Every screen reads the
+     * clues in its own language whatever it holds. A setup remembered while
+     * this game dealt one language for the table still parses, its
+     * `language` dropped like any key the schema no longer names.
+     */
+    homeCountry: homeCountrySchema,
     kind: z.literal('fiveclues'),
-    /** The wording of every clue, the four names and every typed answer: one language for the table, like the quiz's. */
-    language: questionLanguageSchema,
     /** What a round may hide, each round drawing one of them: a room set before there was more than countries takes them all. */
     subjects: fiveCluesSubjectSetSchema.default([...fiveCluesSubjects])
   }),
@@ -475,6 +496,7 @@ export const DEFAULT_BLACK_SQUARE_SETTINGS: BlackSquareSettings = {
   answerCount: BLACK_SQUARE_DEFAULT_ANSWER_COUNT,
   difficulty: 'mixed',
   doublesLoneFinds: false,
+  homeCountry: null,
   kind: 'blacksquare',
   roundDurationMs: 60_000
 }
@@ -518,6 +540,7 @@ export const DEFAULT_SLATE_SETTINGS: SlateSettings = {
 /** Forty-five seconds, because five rows are dragged into place before anything is sent. */
 export const DEFAULT_TIMELINE_SETTINGS: TimelineSettings = {
   difficulty: 'mixed',
+  homeCountry: null,
   kind: 'timeline',
   roundDurationMs: 45_000
 }
@@ -593,8 +616,8 @@ export const DEFAULT_THINK_ALIKE_SETTINGS: ThinkAlikeSettings = {
 export const DEFAULT_FIVE_CLUES_SETTINGS: FiveCluesSettings = {
   clueDurationMs: DEFAULT_CLUE_DURATION_MS,
   difficulty: 'mixed',
+  homeCountry: null,
   kind: 'fiveclues',
-  language: 'fr',
   subjects: [...fiveCluesSubjects]
 }
 

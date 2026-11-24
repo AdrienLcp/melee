@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { difficultySchema } from './difficulty'
+import { localizedTextSchema, sameInEveryLocale } from './locale'
 
 /**
  * The subjects a host ticks. The fold from a source's own rubrics onto these is
@@ -42,6 +43,24 @@ export const questionCategories = [
 
 export const questionCategorySchema = z.enum(questionCategories)
 
+/** The subjects each screen reads in its own language: a country, named in each. */
+export const everyLanguageCategories = [
+  'flags',
+  'capitals',
+  'silhouettes'
+] as const satisfies readonly QuestionCategory[]
+
+const EVERY_LANGUAGE_CATEGORIES = new Set<QuestionCategory>(
+  everyLanguageCategories
+)
+
+/** Whether a quiz asking `categories` deals nothing its `language` decides. */
+export const isAskedInEveryLanguage = (
+  categories: readonly QuestionCategory[]
+): boolean =>
+  categories.length > 0 &&
+  categories.every((category) => EVERY_LANGUAGE_CATEGORIES.has(category))
+
 /**
  * What the room is trying to answer. Only ever on the wire inside a host-only
  * message, or inside the round's reveal — the same rule the track identity
@@ -53,12 +72,19 @@ export const questionCategorySchema = z.enum(questionCategories)
  * odd one out gives the answer away is not a quiz.
  */
 export const questionSchema = z.object({
-  /** Other spellings a typed answer may take. The matcher folds case and accents already. */
+  /**
+   * Other spellings a typed answer may take, in every language the question
+   * is read in. The matcher folds case and accents already.
+   */
   accepted: z.array(z.string()),
-  answer: z.string().min(1),
+  answer: localizedTextSchema,
   /** `null` for a question an evening brought with no subject of the bank's. */
   category: questionCategorySchema.nullable(),
-  decoys: z.tuple([z.string(), z.string(), z.string()]),
+  decoys: z.tuple([
+    localizedTextSchema,
+    localizedTextSchema,
+    localizedTextSchema
+  ]),
   id: z.string().min(1),
   /**
    * What the room is told once the answer is public — where the beach in the
@@ -89,7 +115,11 @@ export const questionPromptSchema = z.object({
   /** The flag the question is about, drawn beside the prompt; `null` on every other question. */
   flag: flagFileSchema.nullable(),
   id: z.string().min(1),
-  prompt: z.string().min(1),
+  /**
+   * In each screen's language. A country rubric writes it three times; every
+   * other question was written in one, which stands in all three.
+   */
+  prompt: localizedTextSchema,
   /**
    * The title written in emojis, drawn large above the prompt; `null` on every
    * other question. Its own field rather than part of the prompt, because the
@@ -106,13 +136,36 @@ export const questionPromptSchema = z.object({
  * than beside it, because it gives the answer away.
  */
 export const revealedQuestionSchema = z.object({
-  answer: z.string().min(1),
+  answer: localizedTextSchema,
   note: z.string().nullable()
 })
 
 export const hostQuestionSchema = questionPromptSchema.extend(
   questionSchema.shape
 )
+
+/**
+ * The text of a question written in one language — a bank row, a line a host
+ * typed — standing in every locale, so each screen reads its own and finds
+ * the same words.
+ */
+export const writtenInOneLanguage = ({
+  answer,
+  decoys,
+  prompt
+}: {
+  answer: string
+  decoys: readonly [string, string, string]
+  prompt: string
+}): Pick<HostQuestion, 'answer' | 'decoys' | 'prompt'> => ({
+  answer: sameInEveryLocale(answer),
+  decoys: [
+    sameInEveryLocale(decoys[0]),
+    sameInEveryLocale(decoys[1]),
+    sameInEveryLocale(decoys[2])
+  ],
+  prompt: sameInEveryLocale(prompt)
+})
 
 /**
  * The language the questions are drawn in — a property of the room, never of

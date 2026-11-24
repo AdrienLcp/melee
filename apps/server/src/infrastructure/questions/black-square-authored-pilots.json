@@ -266,6 +266,7 @@
         "pt": "Verde por dentro, mas é uma fruta."
       }
     },
+    "homeCountry": null,
     "id": "green-vegetables",
     "labels": {
       "en": "Green vegetables",
@@ -528,6 +529,7 @@
         "pt": "Exótico, sim, mas é uma raiz, não uma fruta."
       }
     },
+    "homeCountry": null,
     "id": "exotic-fruits",
     "labels": {
       "en": "Exotic fruits",
@@ -803,6 +805,7 @@
         "pt": "Um êxito de bilheteira, de qualquer género."
       }
     },
+    "homeCountry": null,
     "id": "film-genres",
     "labels": {
       "en": "Film genres",
@@ -1026,6 +1029,7 @@
         "pt": "Ronda a quinta atrás das galinhas, mas é um animal selvagem."
       }
     },
+    "homeCountry": null,
     "id": "farm-animals",
     "labels": {
       "en": "Farm animals",
@@ -1280,6 +1284,7 @@
         "pt": "Dez provas, mas um só atleta faz todas."
       }
     },
+    "homeCountry": null,
     "id": "team-sports",
     "labels": {
       "en": "Team sports",

@@ -10,6 +10,11 @@ export type ThemeSpec = {
   countries?: readonly CountryCode[]
   /** Candidates read and refused, each one a true answer Wikidata missed or a word too weak to bite. */
   excluded?: string[]
+  /**
+   * The one country whose table can name its answers — the kings of France,
+   * its regions — left out for a theme any table can.
+   */
+  homeCountry?: CountryCode
   /** The theme's wording, where the template's would not read right. */
   labels?: Wording
   /** The second entity a template reads beside the subject. */
@@ -25,6 +30,14 @@ export type ThemeSpec = {
    */
   why?: Wording
 }
+
+/** `template:subject[:neighbour]`: the id a theme is banked and dealt under. */
+export const themeIdOf = ({
+  neighbour,
+  subject,
+  template
+}: ThemeSpec): string =>
+  [template, subject, neighbour].filter((part) => part !== undefined).join(':')
 
 /** A seat is a capital a table may give and be right, so it banks the capital's cell. */
 const seatNamesByCapital = (): Record<string, readonly string[]> =>
@@ -659,6 +672,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q117464',
+    homeCountry: 'FRA',
     subject: 'Q470798',
     template: 'films-directed-by',
     why: {
@@ -669,6 +683,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q778696',
+    homeCountry: 'FRA',
     subject: 'Q358356',
     template: 'films-directed-by',
     why: {
@@ -861,6 +876,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q19509',
+    homeCountry: 'FRA',
     labels: {
       en: 'French football champions',
       fr: 'Les clubs champions de France de football',
@@ -877,6 +893,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q12959',
+    homeCountry: 'FRA',
     labels: {
       en: 'Presidents of the French Republic',
       fr: 'Les présidents de la République française',
@@ -909,6 +926,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q191838',
+    homeCountry: 'FRA',
     labels: {
       en: 'Works by Victor Hugo',
       fr: 'Les œuvres de Victor Hugo',
@@ -924,6 +942,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q339761',
+    homeCountry: 'FRA',
     labels: {
       en: 'Books by Émile Zola',
       fr: "Les livres d'Émile Zola",
@@ -1045,6 +1064,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q1142',
+    homeCountry: 'FRA',
     labels: {
       en: 'Regions of France',
       fr: 'Les régions de France',
@@ -1107,6 +1127,7 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
   },
   {
     blackWord: 'Q517',
+    homeCountry: 'FRA',
     labels: {
       en: 'Kings of France',
       fr: 'Les rois de France',

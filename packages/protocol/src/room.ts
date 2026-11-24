@@ -54,6 +54,7 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import { lightsRoundContentSchema } from './lights'
+import { localizedTextSchema } from './locale'
 import {
   drawnLettersSchema,
   drawnWordSchema,
@@ -738,8 +739,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourSheet: z.array(petitBacAnswerSchema).nullable()
   }),
   z.object({
-    /** Choice mode only, and shuffled per round. */
-    choices: z.array(z.string()),
+    /** Choice mode only, and shuffled per round; each candidate in every screen's language. */
+    choices: z.array(localizedTextSchema),
     kind: z.literal('quiz'),
     prompt: questionPromptSchema,
     revealedQuestion: revealedQuestionSchema.nullable()
@@ -964,10 +965,10 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourAnswer: thinkAlikeAnswerSchema.nullable()
   }),
   z.object({
-    /** What the round hid, named in the room's language, and `null` until the reveal — to the console and the wall too. */
+    /** What the round hid, named in every language, and `null` until the reveal — to the console and the wall too. */
     answer: fiveCluesAnswerSchema.nullable(),
-    /** Four names in the room's language in a `choice` round, shuffled, from the first frame; empty in a `typed` one. */
-    choices: z.array(z.string()),
+    /** Four names, each in every language, in a `choice` round, shuffled, from the first frame; empty in a `typed` one. */
+    choices: z.array(localizedTextSchema),
     /** How long each clue stays open, stamped as the round opened. */
     clueDurationMs: z.number().int().positive(),
     /**
