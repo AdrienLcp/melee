@@ -64,7 +64,11 @@ one part.
 
 - `[Server]` **A table with no country of its own hears the world's hits
   alone.** An English table's decades fell back on France's playlists.
-
+- `[Game]` **The count into a round beeps on its 3 again.** Its snapshot
+  lands a server timer and a network trip after the count began, and a 3
+  more than 150 ms gone went by silent while the screen still showed it: the
+  room heard two beeps under three digits. The first second of that count
+  now sounds up to 600 ms late, still well clear of the 2.
 - `[Server]` **A generated quiz decoy is of the kind the question asks for.**
   _Quel président des États-Unis était le plus grand ?_ stood Lincoln beside
   Karl Marx, Lenin and Catherine II; it now stands him beside Washington,

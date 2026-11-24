@@ -109,6 +109,7 @@ describe('markSecond', () => {
     expect(
       markSecond({
         fromSecond: 5,
+        kind: 'round',
         leftMs: 2_990,
         markedSecond: Number.POSITIVE_INFINITY
       })
@@ -119,27 +120,60 @@ describe('markSecond', () => {
     expect(
       markSecond({
         fromSecond: 5,
+        kind: 'round',
         leftMs: 2_600,
         markedSecond: Number.POSITIVE_INFINITY
       })
     ).toEqual({ kind: 'silent', second: 3 })
   })
 
+  it('[clock] still ticks the first second of a count into a round that landed late', () => {
+    expect(
+      markSecond({
+        fromSecond: 5,
+        kind: 'countdown',
+        leftMs: 2_500,
+        markedSecond: Number.POSITIVE_INFINITY
+      })
+    ).toEqual({ kind: 'tick', second: 3 })
+  })
+
+  it('[clock] keeps a later second of a count into a round to the usual lateness', () => {
+    expect(
+      markSecond({
+        fromSecond: 5,
+        kind: 'countdown',
+        leftMs: 1_600,
+        markedSecond: 3
+      })
+    ).toEqual({ kind: 'silent', second: 2 })
+  })
+
   it('[clock] marks a second once, however many times it is read', () => {
     expect(
-      markSecond({ fromSecond: 5, leftMs: 2_400, markedSecond: 3 })
+      markSecond({
+        fromSecond: 5,
+        kind: 'round',
+        leftMs: 2_400,
+        markedSecond: 3
+      })
     ).toEqual({ kind: 'same' })
   })
 
   it('[clock] keeps a second before the last ones silent', () => {
     expect(
-      markSecond({ fromSecond: 5, leftMs: 6_000, markedSecond: 7 })
+      markSecond({
+        fromSecond: 5,
+        kind: 'round',
+        leftMs: 6_000,
+        markedSecond: 7
+      })
     ).toEqual({ kind: 'silent', second: 6 })
   })
 
   it('[clock] ends at nought', () => {
-    expect(markSecond({ fromSecond: 5, leftMs: 0, markedSecond: 1 })).toEqual({
-      kind: 'end'
-    })
+    expect(
+      markSecond({ fromSecond: 5, kind: 'round', leftMs: 0, markedSecond: 1 })
+    ).toEqual({ kind: 'end' })
   })
 })

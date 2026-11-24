@@ -141,6 +141,14 @@ const RAN_OUT_WITHIN_MS = 400
  */
 const LATEST_TICK_MS = 150
 
+/**
+ * How late the first second of the count into a round may still sound. Its
+ * snapshot lands a server timer and a network trip after the count began, past
+ * `LATEST_TICK_MS` often enough that the room heard two beeps under a 3, 2, 1
+ * on screen. This late, the next tick is still four hundred milliseconds off.
+ */
+const LATEST_COUNT_IN_TICK_MS = 600
+
 export type SecondMark =
   | { kind: 'end' }
   | { kind: 'same' }
@@ -150,14 +158,17 @@ export type SecondMark =
  * What `leftMs` says to do, given the last whole second already marked: the
  * countdown has ended, nothing new has begun, or a new second has — ticked
  * when it is one of the last `fromSecond` and began no more than
- * `LATEST_TICK_MS` ago.
+ * `LATEST_TICK_MS` ago, or `LATEST_COUNT_IN_TICK_MS` for the first second of
+ * the count into a round.
  */
 export const markSecond = ({
   fromSecond,
+  kind,
   leftMs,
   markedSecond
 }: {
   fromSecond: number
+  kind: DeadlineKind
   leftMs: number
   markedSecond: number
 }): SecondMark => {
@@ -172,9 +183,13 @@ export const markSecond = ({
   }
 
   const lateMs = second * 1_000 - leftMs
+  const latestTickMs =
+    kind === 'countdown' && markedSecond === Number.POSITIVE_INFINITY
+      ? LATEST_COUNT_IN_TICK_MS
+      : LATEST_TICK_MS
 
   return {
-    kind: second <= fromSecond && lateMs <= LATEST_TICK_MS ? 'tick' : 'silent',
+    kind: second <= fromSecond && lateMs <= latestTickMs ? 'tick' : 'silent',
     second
   }
 }
@@ -248,6 +263,7 @@ export const useLastSeconds = ({
       const leftMs = marks.endsAt - nowMs()
       const next = markSecond({
         fromSecond,
+        kind,
         leftMs,
         markedSecond: marks.second
       })
