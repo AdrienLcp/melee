@@ -3,9 +3,21 @@ import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 
+import {
+  type AuthoredSubject,
+  authoredPictureEntity,
+  authoredRowsOf
+} from './five-clues-authored'
 import pictureBank from './picture-bank.json' with { type: 'json' }
 import priceBank from './price-bank.json' with { type: 'json' }
 import quantityBank from './quantity-bank.json' with { type: 'json' }
+
+/** The Five clues subjects whose last rung may be a photograph. */
+const PHOTOGRAPHED_SUBJECTS = [
+  'animal',
+  'landmark',
+  'person'
+] as const satisfies readonly AuthoredSubject[]
 
 const SERVED_PICTURES = join(
   import.meta.dirname,
@@ -38,7 +50,12 @@ describe('the picture bank', () => {
   it('[pictures] pictures only rows the banks deal', () => {
     const banked = new Set([
       ...quantityBank.map(({ entity }) => entity),
-      ...priceBank.map(({ entity }) => entity)
+      ...priceBank.map(({ entity }) => entity),
+      ...PHOTOGRAPHED_SUBJECTS.flatMap((subject) =>
+        authoredRowsOf(subject)
+          .filter(({ clues }) => clues.some(({ photo }) => photo))
+          .map((row) => authoredPictureEntity({ row, subject }))
+      )
     ])
     const strays = pictureBank.filter(({ entity }) => !banked.has(entity))
 

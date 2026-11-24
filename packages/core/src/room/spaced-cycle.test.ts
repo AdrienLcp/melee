@@ -333,7 +333,16 @@ describe('spacedCycle', () => {
   })
 })
 
-describe('a ready-made evening, played through', { timeout: 20_000 }, () => {
+/**
+ * A hundred and fifty rounds of Free-for-all, one entry a variety and six of
+ * them Five clues subjects, take a few seconds alone and past twenty under the
+ * whole coverage run, every worker busy.
+ */
+const PLAYED_THROUGH_TIMEOUT_MS = 60_000
+
+describe('a ready-made evening, played through', {
+  timeout: PLAYED_THROUGH_TIMEOUT_MS
+}, () => {
   it('[line-up] keeps Free-for-all’s games half their share apart, past its last row', () => {
     const { lineUp, runningOrder } = readyMade('grandMix')
     const keys = lineUp.map((entry) => spacingKeyOf(entry.kind))
