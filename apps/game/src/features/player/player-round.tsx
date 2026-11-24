@@ -29,7 +29,7 @@ import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { NoticeCard } from '@/presentation/components/notice-card'
-import { OwnPawnPress } from '@/presentation/components/own-pawn-press'
+import { OwnSeatPress } from '@/presentation/components/own-seat-press'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { ScoringRule } from '@/presentation/components/scoring-rule'
@@ -239,8 +239,8 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = (props) => {
                   hasPawns
                   isRoster
                   label={translate('player.table')}
+                  ownRow={(cell) => <OwnSeatPress {...cell} />}
                   players={view.players}
-                  youAction={<OwnPawnPress />}
                   youId={view.youId}
                 />
                 <EmptySockets seated={view.players.length} />

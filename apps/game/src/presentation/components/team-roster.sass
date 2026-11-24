@@ -124,5 +124,16 @@
     &.you
       box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
 
+    &:has(> .own-seat-press)
+      padding: 0rem
+
+    > .own-seat-press
+      align-items: center
+      align-self: stretch
+      display: flex
+      gap: inherit
+      max-width: 100%
+      padding: var(--space-2xs) var(--space-xs)
+
     &.away .name
       color: var(--ink-muted)

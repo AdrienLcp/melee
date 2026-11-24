@@ -252,7 +252,7 @@ A cool printed board under warm, saturated die-cut inks, every value one
   every other spine (0.116, where two neighbours already stand 0.10 apart),
   where no warm hue clears 0.08 with pale ink on it): each
   game's box colour, on the shelf, the band across a game's lid, the player's
-  _up next_ lid, the start of the next-round press. Names print in
+  _up next_ lid. Names print in
   `--on-spine-<game>`: pale `--on-spine` everywhere but reflex, which takes
   the dark `--on-spine-light`. A spine laid as a piece stands on
   `--spine-edge-<game>`, the spine at 62% over black.
@@ -966,26 +966,23 @@ shelf.
 - **Pending** (`data-pending`): the label goes `color: transparent` and the
   spinner paints over it in `--on-control`, so the button keeps its size and
   its accessible name.
-- **The next-round press** (`NextRoundPress`, the console with no wall): the
-  coral piece carries at its start the **spine** of the game it opens — the
-  game's `--spine-*` ground, its glyph and the entry's name in `spine-name`,
-  edged in `--spine-edge-*` (the spine at 62% over black) — so the host
-  reads which box comes off the shelf before the label. A 3px cut in the
-  ground parts the two pieces through their edge, because the buzzer's
-  vermilion beside the coral is 1.35:1. One press, one target: the spine is
-  `aria-hidden` and describes the press (and _As a duel_ beside it). It is
-  capped at `min(18em, 45cqi)` and never shrinks, measured on the footer so
-  it does not reflow while the press eases between two widths. Below the
-  split it runs across the top as a band, the press `min(100%, 24rem)` wide.
-  It slides out from the press's start when a name arrives (the press
-  spilling past its start while it eases), the coral sweeps back over it
-  when the name goes (lifted out of the flow, both on the glide's
-  `--ease-out` so the label keeps to the cut), and a change of game repaints
-  it on `base` and rolls the name (`page-leave` up, `page-enter` from below).
-  The band takes `slow`: a rem of travel on `base` reads as a cut. Disabled,
-  the spine is the socket too — muted name, glyph in the game's colour, the
-  cut a dashed die-line. Beside a wall, `NextRoundCard` names the game
-  instead.
+- **The next-round press** (`NextRoundPress`, the console with no wall): one
+  coral piece, _Next round_ on top and, on a smaller line under it in the
+  press's own ink, the glyph and name of the game it opens — the game's name
+  alone, the entry's only beside another entry of the same game
+  (`useEntryName`), since _Buzzer · One try each_ was a setting the host had
+  not asked to read there (`spine-name`,
+  `clamp(var(--text-s), 2.2 stage units, var(--text-m))`). The game's colour
+  stays off it: a spine at its start beside the coral read as a second piece,
+  and the buzzer's vermilion beside the coral is 1.35:1. One press, one
+  target: the line is `aria-hidden` and describes the press (and _As a duel_
+  beside it). The line unfolds (`fold.opens-in-column`) when a name arrives
+  and folds away keeping its last name when it goes; a change of entry rolls
+  the name (`page-leave` up, `page-enter` from below) while the press eases
+  to its new width (`useSizeGlideOnSwap`). It is at least `min(22rem, 100%)`
+  wide, `min(100%, 24rem)` below the split, and its 4.5rem holds the two
+  lines. Disabled, both lines take the socket's muted ink. Beside a wall,
+  `NextRoundCard` names the game instead.
 
 ### Answer tile (`AnswerTile`)
 
@@ -1296,15 +1293,19 @@ score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
 
-A pawn is picked from one press, a seat's or a team's (`PawnPiecePress`): a
-small outlined control printing the palette glyph and the word _Colour_, whose
-screen-reader name starts with it and says whose (_Colour of the Reds_,
-_Colour of my pawn, Red, square head_). It sits in each team's head on the
-host's table, and in the lobby on a player's own screen — in the head of the
-player's team, or on the player's own chip of the roster when the room plays
-without teams, across the chip under its pawn and name. A head's presses take
-a line of their own before its name loses a letter. It opens a sheet
-(`PawnPiecePicker`), closed by the pick: for a seat, the thirty-six pieces six
+On the host's table a team's pawn is picked from one press in its head
+(`PawnPiecePress`): a small outlined control printing the palette glyph and
+the word _Colour_, whose screen-reader name starts with it and says whose
+(_Colour of the Reds_). A head's presses take a line of their own before its
+name loses a letter. On a player's own screen in the lobby nothing is added to
+the row: **the player's own chip is the press** (`OwnSeatPress`), with or
+without teams, a chevron at its end that turns as the sheet opens, and the
+chip keeps the height of every other — a press under the name grew the chip
+and its neighbour on the row. Pressed or hovered, the chip darkens by the ink
+at 12% and 7%. It opens one sheet, _Your name and pawn_: the rename field and
+its _Change_ beside it, above a hairline, then the pieces. A new name taken by
+the room closes it, and so does a pick. The pieces
+(`PawnPiecePicker`) are: for a seat, the thirty-six pieces six
 to a row and grouped by head — round, square, then pointed, two rows each, a
 hairline between the groups — and for a team, the twelve colours in the round
 head. The pawn's own piece sits in an ink keyline, and a piece another pawn

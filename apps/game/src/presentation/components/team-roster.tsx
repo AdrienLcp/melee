@@ -37,6 +37,14 @@ type TeamRosterProps = {
    * nobody is asked to be ready.
    */
   marksReady?: boolean
+  /**
+   * Draws the reader's own chip in place of the plain one, handed its class
+   * and contents: the press that opens their seat, in a player's lobby.
+   */
+  ownRow?: (cell: {
+    children: React.ReactNode
+    className: string
+  }) => React.ReactNode
   players: readonly PublicPlayer[]
   /**
    * The teams' ids in the order they stood before the reveal moved them, which
@@ -70,6 +78,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   isRanked = false,
   label,
   marksReady,
+  ownRow,
   players,
   rankedBefore,
   seatAction,
@@ -152,6 +161,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
             ) : (
               <SeatChips
                 marksReady={marksReady}
+                ownRow={ownRow}
                 players={members}
                 roster={players}
                 seatAction={seatAction}
@@ -169,6 +179,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
           </div>
           <SeatChips
             marksReady={marksReady}
+            ownRow={ownRow}
             players={unassigned}
             roster={players}
             seatAction={seatAction}
@@ -186,11 +197,13 @@ type SeatChipsProps = {
   /** The whole room, whose order is what picks a pawn's seat. */
   roster: readonly PublicPlayer[]
   seatAction?: (player: PublicPlayer) => React.ReactNode
+  ownRow?: TeamRosterProps['ownRow']
   youId: PlayerId | null
 }
 
 const SeatChips: React.FC<SeatChipsProps> = ({
   marksReady,
+  ownRow,
   players,
   roster,
   seatAction,
@@ -200,25 +213,36 @@ const SeatChips: React.FC<SeatChipsProps> = ({
 
   return (
     <ul className='members'>
-      {players.map((player) => (
-        <li
-          className={classNames(
-            'member',
-            player.id === youId && 'you',
-            !player.isConnected && 'away'
-          )}
-          key={player.id}
-        >
-          <Pawn seat={roster.indexOf(player)} />
-          <span className='name'>{player.nickname}</span>
-          {marksReady === true && <ReadyMark isReady={player.isReady} />}
-          <AwayMark isAway={!player.isConnected} />
-          {player.id === youId && (
-            <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
-          )}
-          {seatAction?.(player)}
-        </li>
-      ))}
+      {players.map((player) => {
+        const isYou = player.id === youId
+        const chip = (
+          <>
+            <Pawn seat={roster.indexOf(player)} />
+            <span className='name'>{player.nickname}</span>
+            {marksReady === true && <ReadyMark isReady={player.isReady} />}
+            <AwayMark isAway={!player.isConnected} />
+            {isYou && (
+              <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
+            )}
+          </>
+        )
+
+        return (
+          <li
+            className={classNames(
+              'member',
+              isYou && 'you',
+              !player.isConnected && 'away'
+            )}
+            key={player.id}
+          >
+            {isYou && ownRow !== undefined
+              ? ownRow({ children: chip, className: 'chip' })
+              : chip}
+            {seatAction?.(player)}
+          </li>
+        )
+      })}
     </ul>
   )
 }

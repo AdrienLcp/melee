@@ -1,19 +1,13 @@
 import type React from 'react'
-import { useState } from 'react'
-import { Form } from 'react-aria-components'
-
-import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { protocolErrorKey } from '@/presentation/i18n/translation'
 import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
 
-import { Button } from './button'
 import { Disclosure } from './disclosure'
 import { QrCodeIcon } from './icons'
 import { MenuPawn } from './menu-pawn'
 import { RoomInvitation } from './room-invitation'
-import { TextField } from './text-field'
+import { SeatNameForm } from './seat-name-form'
 
 /**
  * The name this screen is playing under. A device that has played before never
@@ -22,23 +16,12 @@ import { TextField } from './text-field'
  * itself, which leaves the panel for the rarer half of the job.
  */
 const SeatName: React.FC = () => {
-  const { refusedNickname, rename, seatNickname } = useRoomActions()
+  const { rename, seatNickname } = useRoomActions()
   const translate = useTranslate()
-  const [draft, setDraft] = useState<string | null>(null)
 
   if (rename === null || seatNickname === null) {
     return null
   }
-
-  // Empty rather than filled with the name the row above already carries. A
-  // prefilled field printed it twice in four lines, and editing two characters
-  // of your own name is not what changing it means.
-  const value = draft ?? ''
-  const next = value.trim()
-  // The refusal belongs to the name it was given for, so any other draft
-  // submits again — a controlled `isInvalid` outliving its reason leaves the
-  // field's native validity false and the press a silent no-op.
-  const isRefused = next === refusedNickname
 
   return (
     <Disclosure
@@ -46,41 +29,7 @@ const SeatName: React.FC = () => {
       label={translate('menu.nickname.label')}
       summary={seatNickname}
     >
-      <Form
-        onSubmit={(event) => {
-          event.preventDefault()
-          rename(next)
-        }}
-      >
-        <TextField
-          autoComplete='nickname'
-          enterKeyHint='done'
-          errorMessage={
-            isRefused
-              ? translate(protocolErrorKey('nickname_taken'))
-              : undefined
-          }
-          isInvalid={isRefused}
-          label={translate('menu.nickname.field')}
-          maxLength={NICKNAME_MAX_LENGTH}
-          name='nickname'
-          onChange={setDraft}
-          value={value}
-        />
-        {/*
-          `small`, and beside the field rather than under the width of the
-          popover: a 52px block here is the same shape as the exit below it, and
-          changing a label is not a peer of leaving the room.
-        */}
-        <Button
-          isDisabled={next.length === 0 || next === seatNickname}
-          size='small'
-          type='submit'
-          variant='outlined'
-        >
-          {translate('menu.nickname.action')}
-        </Button>
-      </Form>
+      <SeatNameForm />
     </Disclosure>
   )
 }

@@ -695,7 +695,7 @@ type NextRoundSettings = Pick<RoomSettings, 'lineUp' | 'lineUpAt'>
  * The entry the next round plays, as the reveal announces it: its line-up
  * name, and its most telling setting even where no sibling asks for one —
  * *Blind test · 70s* where the running order says *Blind test* — so the host
- * reads what the press opens. `null` while the line-up points at nothing.
+ * reads, on the card beside a wall, what the next round opens. `null` while the line-up points at nothing.
  */
 export const nextRoundName = ({
   settings,

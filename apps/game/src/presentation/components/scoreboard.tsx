@@ -107,10 +107,14 @@ type ScoreboardProps = {
    */
   trackLength?: number
   /**
-   * Drawn at the end of the reader's own row, after the name gives way: the
-   * press that repaints the pawn, on a player's lobby roster.
+   * Draws the reader's own name cell in place of the plain one, handed the
+   * cell's class and contents: the press that opens their seat, on a player's
+   * lobby roster.
    */
-  youAction?: React.ReactNode
+  ownRow?: (cell: {
+    children: React.ReactNode
+    className: string
+  }) => React.ReactNode
   /**
    * Highlights one row: a player passes their own id, a seated host console its
    * seat, and the wall — nobody's screen — passes none.
@@ -126,13 +130,13 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   label,
   marksReady,
   onRemove,
+  ownRow,
   players,
   rankedBefore,
   seatedBefore,
   skipsPodium = false,
   style,
   trackLength,
-  youAction,
   youId
 }) => {
   const translate = useTranslate()
@@ -192,13 +196,25 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
     >
       {rows.map(({ isLeaving, player, rank, seat }, at) => {
         const placesClimbed = climbs[at] ?? 0
+        const isYou = player.id === youId
+        const nickname = (
+          <>
+            {hasPawns === true && <Pawn seat={seat} />}
+            <span className='name'>{player.nickname}</span>
+            {marksReady === true && <ReadyMark isReady={player.isReady} />}
+            <AwayMark isAway={!player.isConnected} />
+            {isYou && (
+              <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
+            )}
+          </>
+        )
 
         return (
           <li
             aria-hidden={isLeaving || undefined}
             className={[
               player.isConnected ? 'connected' : 'away',
-              player.id === youId && 'you'
+              isYou && 'you'
             ]
               .filter(Boolean)
               .join(' ')}
@@ -230,18 +246,11 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             }
           >
             {isRanked && <span className='rank'>{rank}</span>}
-            <span className='nickname'>
-              {hasPawns === true && <Pawn seat={seat} />}
-              <span className='name'>{player.nickname}</span>
-              {marksReady === true && <ReadyMark isReady={player.isReady} />}
-              <AwayMark isAway={!player.isConnected} />
-              {player.id === youId && (
-                <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
-              )}
-              {player.id === youId && youAction !== undefined && (
-                <span className='you-action'>{youAction}</span>
-              )}
-            </span>
+            {isYou && ownRow !== undefined ? (
+              ownRow({ children: nickname, className: 'nickname' })
+            ) : (
+              <span className='nickname'>{nickname}</span>
+            )}
             {isRanked && player.board !== null && trackLength !== undefined && (
               <span className='case'>
                 <CaseMark at={player.board.case} length={trackLength} />

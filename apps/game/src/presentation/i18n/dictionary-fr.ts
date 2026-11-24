@@ -2045,7 +2045,7 @@ export const FR_DICTIONARY = defineDictionary({
     piece: '{colour}, {head}',
     press: {
       label: 'Couleur',
-      seat: 'Couleur de mon pion, {piece}'
+      sheet: 'Ton nom et ton pion'
     },
     taken: '{pawn}, déjà pris',
     takenBy: '{pawn}, pris par {holder}',

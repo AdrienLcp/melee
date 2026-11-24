@@ -88,6 +88,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Your seat opens.** In the lobby, the _Couleur_ press under your
+  name is gone: your own row is the press now, a chevron at its end, and it
+  opens one sheet with your name and your pawn — a team's colour when you sit
+  in one. The row keeps the height of every other row.
+- `[Game]` **The next-round press is one piece.** _Manche suivante_ on top,
+  the next game's glyph and name on a smaller line under it, in the press's
+  own ink; the strip in the game's colour at its start is gone.
+
 - `[Game]` **Cinq indices' photograph is big enough to know.** The last rung's
   face was drawn at the outline's size, a thumbnail in an empty card: open,
   it now fills the rung on a phone and on a wall standing up, and on a wall

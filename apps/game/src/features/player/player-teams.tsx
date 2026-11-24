@@ -11,7 +11,7 @@ import {
 } from '@melee/core/team/team-board'
 
 import { Button } from '@/presentation/components/button'
-import { OwnPawnPress } from '@/presentation/components/own-pawn-press'
+import { OwnSeatPress } from '@/presentation/components/own-seat-press'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
 import { SectionHeading } from '@/presentation/components/section-heading'
@@ -40,8 +40,8 @@ type LobbyTeamsProps = {
  * The table as teams, on a player's own screen. Under `chosen` every other
  * team's head carries one press to join it, and switching is the same press;
  * under `drawn` the trays are read, and the player's own is the one in a
- * keyline. Either way the player's own team carries the press that repaints
- * its pawn.
+ * keyline. Either way the player's own chip opens their seat: their name and
+ * their team's colour.
  */
 export const LobbyTeams: React.FC<LobbyTeamsProps> = ({ onTeam, view }) => {
   const translate = useTranslate()
@@ -55,11 +55,10 @@ export const LobbyTeams: React.FC<LobbyTeamsProps> = ({ onTeam, view }) => {
       )}
       <TeamRoster
         label={translate('team.title')}
+        ownRow={(cell) => <OwnSeatPress {...cell} />}
         players={view.players}
         teamAction={(team) =>
-          team.id === yours?.id ? (
-            <OwnPawnPress />
-          ) : isChosen ? (
+          team.id !== yours?.id && isChosen ? (
             <Button
               className='join'
               onPress={() =>

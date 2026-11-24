@@ -1,0 +1,55 @@
+@use '../styles/focus'
+
+@layer components
+  .own-seat-press
+    @include focus.ring-inset
+
+    background: none
+    border: none
+    border-radius: inherit
+    color: inherit
+    cursor: pointer
+    font: inherit
+    text-align: start
+    transition: background-color var(--transition-fast, 0s) var(--ease-out)
+
+    > .chevron
+      color: var(--ink-muted)
+      flex: none
+      transition: transform var(--transition-base, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out)
+
+    &[aria-expanded='true'] > .chevron
+      transform: rotate(180deg)
+
+    @media (hover: hover) and (pointer: fine)
+      &[data-hovered]
+        background-color: color-mix(in oklab, var(--ink) 7%, transparent)
+
+        > .chevron
+          color: var(--ink)
+
+    &[data-pressed]
+      background-color: color-mix(in oklab, var(--ink) 12%, transparent)
+
+  // The name above a rule, the pieces under it.
+  .own-seat-leaflet
+    .seat-name-form
+      align-items: start
+      border-bottom: var(--hairline)
+      display: flex
+      gap: var(--space-xs)
+      margin-block-end: var(--space-m)
+      padding-block-end: var(--space-m)
+
+      .text-field
+        flex: 1
+        min-width: 0
+
+      // Level with the input, which sits under the field's label.
+      > .button
+        align-self: end
+        min-height: var(--control-height)
+
+  .own-seat-leaflet.sheet-popover
+    max-width: min(92vw, 22rem)
+    width: 100%

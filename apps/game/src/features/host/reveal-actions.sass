@@ -9,6 +9,11 @@
     gap: var(--space-s)
     max-inline-size: 100%
 
+    // A rem floor, never a share of the group: `100%` here is the group the
+    // press sits in beside the seated host's Ready, and took all of it.
+    > .next-round-press
+      min-inline-size: 22rem
+
     @include layout.narrow
       inline-size: min(100%, 24rem)
 

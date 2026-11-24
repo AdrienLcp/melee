@@ -9,7 +9,7 @@ import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
-import { useNextRoundName } from '@/presentation/i18n/line-up-entry-names'
+import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 
 import { BoardMoves } from './board-moves'
 import { challengePickFor } from './challenge-line'
@@ -61,7 +61,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const { settings } = view
-  const nextName = useNextRoundName(settings)
+  const nextName = useEntryName(settings)
   const nextNameId = useId()
   // One game all evening has nothing to announce: the round it opens is the
   // one just played.
@@ -158,9 +158,9 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         <ConsoleReady isDisabled={!isLive} send={send} view={view} />
         <NextRoundPress
           announced={announced}
+          announcementId={nextNameId}
           isDisabled={!isLive}
           onPress={() => openNextRound({ isDuel: false })}
-          spineId={nextNameId}
         />
       </div>
       {/* Beside the press it varies. */}

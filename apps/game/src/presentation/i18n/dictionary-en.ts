@@ -2144,13 +2144,12 @@ export const EN_DICTIONARY = defineDictionary({
     /** A seat's piece, named whole: its colour's word, then its head. */
     piece: '{colour}, {head}',
     /**
-     * The press that opens the pieces. `label` is all it prints; `seat` is its
-     * whole name for a screen reader, starts with the printed word and ends on
-     * the piece the seat stands as.
+     * `label` is all the host's team recolour press prints; `sheet` names the
+     * sheet a seat's own row opens, its name above its pawn.
      */
     press: {
       label: 'Colour',
-      seat: 'Colour of my pawn, {piece}'
+      sheet: 'Your name and pawn'
     },
     taken: '{pawn}, already taken',
     takenBy: '{pawn}, taken by {holder}',

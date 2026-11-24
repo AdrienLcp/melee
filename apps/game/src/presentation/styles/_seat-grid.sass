@@ -86,19 +86,19 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
       grid-column: 3
       grid-row: 1
 
-    // The reader's own press goes under the pawn and the name, across the
-    // whole chip: under the name alone it ran 9px out of a chip a third of a
-    // phone lying down wide.
-    .you-action
-      grid-column: 1 / -1
-      justify-self: start
-      margin-inline-start: 0rem
+    // The reader's own row is the press, so it takes the chip's padding and
+    // fills it: the row keeps the height of every other.
+    &:has(> .own-seat-press)
+      padding: 0rem
 
-    &:has(.you-action)
-      padding-block: var(--space-xs)
+    > .own-seat-press
+      align-self: stretch
+      grid-template-columns: auto minmax(0, 1fr) auto auto
+      padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-s)
 
-      .nickname
-        row-gap: var(--space-xs)
+      > .chevron
+        grid-column: 4
+        grid-row: 1
 
   // A chip already has its own box, so the ruled board's bleed comes off it.
   .scoreboard li.you
