@@ -1111,20 +1111,21 @@
     @include layout.wide
       column-gap: var(--space-stage-split)
       display: grid
-      grid-template-areas: 'invite side' 'invite footer'
+      grid-template-areas: 'invite corner' 'invite side' 'invite footer'
       grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.5fr)
-      grid-template-rows: minmax(0, 1fr) auto
+      // The corner is a row of its own, empty: the side scrolls, and a seat
+      // scrolled under the menu, or one whose heading was not the side's first
+      // child, was covered by it.
+      grid-template-rows: var(--control-height) minmax(0, 1fr) auto
       row-gap: var(--space-s)
 
-      // Nothing in the header at this phase; the shelf's label keeps the corner
-      // clear for the menu instead.
       > header
         display: none
 
       // A table answering aloud has no invitation to give the left: the
       // table and the launch take the middle, at the shelf's reading width.
       &:has(> .stage.lobby[data-aloud])
-        grid-template-areas: 'side' 'footer'
+        grid-template-areas: 'corner' 'side' 'footer'
         grid-template-columns: minmax(0, 64rem)
         justify-content: center
 
@@ -1149,14 +1150,6 @@
           overscroll-behavior: contain
 
           @include scrollbar.bar($size: thin)
-
-          // The first heading is the row the menu stands on.
-          > :first-child > h2
-            align-items: center
-            display: flex
-            margin-block-end: var(--space-s)
-            min-height: var(--control-height)
-            padding-inline-end: var(--menu-inset)
 
       > footer
         align-items: center

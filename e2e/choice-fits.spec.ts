@@ -2246,7 +2246,7 @@ const squeezedRosterChips = (): string[] =>
   })
 
 for (const lobby of SCORED_LOBBIES) {
-  test(`[layout] ${lobby.role}, the lobby of a scored full table on a track: every chip shows its pawn and its name`, async ({
+  test(`[layout] ${lobby.role}, the lobby of a scored full table on a track: every chip shows its pawn and its name, none under the menu`, async ({
     page
   }) => {
     await serveRoom({ page, view: lobby.view })
@@ -2265,10 +2265,11 @@ for (const lobby of SCORED_LOBBIES) {
           (document.scrollingElement ?? document.documentElement).scrollWidth -
           innerWidth
       )
+      const underTheMenu = await page.evaluate(measureUnderTheMenu)
 
-      if (squeezed.length > 0 || sideways > 0) {
+      if (squeezed.length > 0 || sideways > 0 || underTheMenu.length > 0) {
         faults.push(
-          `${width}×${height} sideways ${sideways}, ${squeezed.length} squeezed: ${squeezed.slice(0, 2).join(' · ')}`
+          `${width}×${height} sideways ${sideways}, ${squeezed.length} squeezed: ${squeezed.slice(0, 2).join(' · ')}, under the menu: ${underTheMenu.slice(0, 2).join(' · ')}`
         )
       }
     }

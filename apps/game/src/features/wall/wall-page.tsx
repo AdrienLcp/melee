@@ -32,6 +32,7 @@ import { ConnectionRefused } from '@/presentation/components/connection-refused'
 import { SoundIcon } from '@/presentation/components/icons'
 import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
 import { Link } from '@/presentation/components/link'
+import { RoundGame } from '@/presentation/components/round-game'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
@@ -229,6 +230,10 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       >
         <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
+          <RoundGame
+            lineUp={view?.settings.lineUp ?? []}
+            round={isRoundOnScreen ? view.round : null}
+          />
           <LeavesInPlace value={roundIndex}>
             {(index) => (
               <p className='round-index'>

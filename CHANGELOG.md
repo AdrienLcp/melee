@@ -62,6 +62,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The menu no longer covers a seat on the console's lobby.** Wider
+  than a phone, the table's first row of seats ran under the corner menu: the
+  heading meant to stand beside it was never the side's first piece. The
+  corner is now a row of its own above the table. `choice-fits` holds a full
+  table clear of the menu on every viewport.
+
 - `[Server]` **A table with no country of its own hears the world's hits
   alone.** An English table's decades fell back on France's playlists.
 - `[Game]` **The count into a round beeps on its 3 again.** Its snapshot
@@ -87,6 +93,17 @@ one part.
   rather than running past it.
 
 ### Improvements
+
+- `[Game]` **Every screen names the game being played.** In a line-up of
+  several games, the console and the wall print the game's spine and name
+  beside the round's number from the countdown to the reveal, and a player's
+  line carries its spine — with the name where the line has the room. The
+  game's name alone, the entry's only beside another entry of the same game,
+  as on the next-round press; it swaps in place when the game changes.
+- `[Game]` **A refused word says it in one short line.** Mot mystère and Mot
+  le plus long print _Pas dans le dictionnaire._ — no more _Essai non
+  compté_ beside it, since the grid keeping its row already says no try was
+  spent. The same in every refusal of both games, in all three languages.
 
 - `[Game]` **Your seat opens.** In the lobby, the _Couleur_ press under your
   name is gone: your own row is the press now, a chevron at its end, and it

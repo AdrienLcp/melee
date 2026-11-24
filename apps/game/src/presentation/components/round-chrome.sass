@@ -86,6 +86,21 @@
     .room
       margin-inline-start: auto
 
+    .round-index .game
+      align-items: center
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+      display: flex
+      gap: 0.4em
+      min-width: 0
+
+    // The game's name is the line's first word to go: its spine still says it.
+    .round-index .game-name
+      overflow: hidden
+      text-overflow: ellipsis
+
+      @container (width < 24rem)
+        display: none
+
     .round-index .label
       @include typography.label
 

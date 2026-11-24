@@ -653,9 +653,8 @@ export const FR_DICTIONARY = defineDictionary({
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
-    not_in_dictionary:
-      'Ce mot n’est pas dans le dictionnaire. Ça ne t’a pas coûté d’essai.',
-    not_one_word: 'Un seul mot, que des lettres. Ça ne t’a pas coûté d’essai.',
+    not_in_dictionary: 'Pas dans le dictionnaire.',
+    not_one_word: 'Un seul mot, que des lettres.',
     not_your_turn: 'Cette manche est un duel entre deux autres joueurs.',
     pairing_not_found:
       'Ce code d’écran a expiré. Rouvre l’écran pour en avoir un nouveau.',
@@ -686,9 +685,8 @@ export const FR_DICTIONARY = defineDictionary({
     wall_dismissed: 'L’hôte a libéré cet écran.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
-    wrong_first_letter:
-      'Le mot commence par la lettre affichée. Ça ne t’a pas coûté d’essai.',
-    wrong_length: 'Pas le bon nombre de lettres. Ça ne t’a pas coûté d’essai.',
+    wrong_first_letter: 'Le mot commence par la lettre affichée.',
+    wrong_length: 'Pas le bon nombre de lettres.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   estimate: {
@@ -1685,11 +1683,9 @@ export const FR_DICTIONARY = defineDictionary({
     ranking: 'Le mot le plus long de chacun',
     refusal: {
       already_buzzed: 'Ton mot est déjà aussi long que le plus long du tirage.',
-      letter_not_in_draw:
-        'Une lettre manque au tirage, ou sert deux fois. Mot non compté.',
-      not_in_dictionary:
-        '« {word} » n’est pas dans le dictionnaire. Mot non compté.',
-      not_one_word: 'Un seul mot, des lettres seulement. Mot non compté.'
+      letter_not_in_draw: 'Une lettre manque au tirage, ou sert deux fois.',
+      not_in_dictionary: 'Pas dans le dictionnaire.',
+      not_one_word: 'Un seul mot, des lettres seulement.'
     },
     reveal: {
       alsoLong: defineTranslation('{length:plural} : {words}', {
@@ -1950,12 +1946,10 @@ export const FR_DICTIONARY = defineDictionary({
     notFound: 'Pas trouvé',
     play: 'Jouer à Mot mystère',
     refusal: {
-      not_in_dictionary:
-        '« {word} » n’est pas dans le dictionnaire. Essai non compté.',
-      not_one_word: 'Un seul mot, des lettres seulement. Essai non compté.',
-      wrong_first_letter:
-        'Le mot commence par la lettre donnée. Essai non compté.',
-      wrong_length: 'Remplis toutes les lettres d’abord. Essai non compté.'
+      not_in_dictionary: 'Pas dans le dictionnaire.',
+      not_one_word: 'Un seul mot, des lettres seulement.',
+      wrong_first_letter: 'Le mot commence par la lettre donnée.',
+      wrong_length: 'Remplis toutes les lettres d’abord.'
     },
     reveal: {
       title: 'Le mot était'

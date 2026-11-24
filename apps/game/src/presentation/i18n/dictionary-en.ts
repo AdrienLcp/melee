@@ -689,9 +689,8 @@ export const EN_DICTIONARY = defineDictionary({
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',
-    not_in_dictionary:
-      'That word is not in the dictionary. It cost you no try.',
-    not_one_word: 'One word, letters only. It cost you no try.',
+    not_in_dictionary: 'Not in the dictionary.',
+    not_one_word: 'One word, letters only.',
     not_your_turn: 'This round is a duel between two other players.',
     pairing_not_found:
       'That screen code has expired. Open the screen again for a new one.',
@@ -721,9 +720,8 @@ export const EN_DICTIONARY = defineDictionary({
     wall_dismissed: 'The host let this screen go.',
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
-    wrong_first_letter:
-      'The word starts with the letter shown. It cost you no try.',
-    wrong_length: 'Not the right number of letters. It cost you no try.',
+    wrong_first_letter: 'The word starts with the letter shown.',
+    wrong_length: 'Not the right number of letters.',
     wrong_phase: 'Too late, the game has moved on.'
   },
   estimate: {
@@ -1764,10 +1762,9 @@ export const EN_DICTIONARY = defineDictionary({
     ranking: 'Everyone’s longest word',
     refusal: {
       already_buzzed: 'Your word is already as long as the draw’s longest.',
-      letter_not_in_draw:
-        'A letter is not in the draw, or is used twice. Not counted.',
-      not_in_dictionary: '“{word}” is not in the dictionary. Not counted.',
-      not_one_word: 'One word, letters only. Not counted.'
+      letter_not_in_draw: 'A letter is not in the draw, or is used twice.',
+      not_in_dictionary: 'Not in the dictionary.',
+      not_one_word: 'One word, letters only.'
     },
     reveal: {
       alsoLong: defineTranslation('{length:plural}: {words}', {
@@ -2047,11 +2044,10 @@ export const EN_DICTIONARY = defineDictionary({
     notFound: 'Not found',
     play: 'Play Mystery word',
     refusal: {
-      not_in_dictionary: '“{word}” is not in the dictionary. No try spent.',
-      not_one_word: 'One word, letters only. No try spent.',
-      wrong_first_letter:
-        'The word starts with the letter given. No try spent.',
-      wrong_length: 'Fill every letter first. No try spent.'
+      not_in_dictionary: 'Not in the dictionary.',
+      not_one_word: 'One word, letters only.',
+      wrong_first_letter: 'The word starts with the letter given.',
+      wrong_length: 'Fill every letter first.'
     },
     reveal: {
       title: 'The word was'

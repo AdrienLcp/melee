@@ -56,6 +56,10 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
   )
   useScreenAwake(status !== 'refused' && view?.phase !== 'finished')
   useTimeOutNudge({ clock, view })
+  const roundOnScreen =
+    view === null || view.phase === 'lobby' || view.phase === 'finished'
+      ? null
+      : view.round
 
   // A table answering aloud turns every phone away without closing the
   // socket, since the host may switch it back; until then this is a dead end.
@@ -89,7 +93,9 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
           {hostReturns}
           <RoundChrome
             duel={view.round?.duel ?? null}
+            lineUp={view.settings.lineUp}
             players={view.players}
+            round={view.round}
             roundCount={view.settings.roundCount}
             roundIndex={view.round?.index ?? 0}
             teams={view.teams}
@@ -138,16 +144,12 @@ export const SeatedScreen: React.FC<SeatedScreenProps> = ({
           <>
             <RoundChrome
               duel={view.round?.duel ?? null}
+              lineUp={view.settings.lineUp}
               players={view.players}
               roomCode={roomCode}
+              round={roundOnScreen}
               roundCount={view.settings.roundCount}
-              roundIndex={
-                view.round === null ||
-                view.phase === 'lobby' ||
-                view.phase === 'finished'
-                  ? null
-                  : view.round.index
-              }
+              roundIndex={roundOnScreen?.index ?? null}
               teams={view.teams}
               youId={view.youId}
             />

@@ -60,8 +60,6 @@ type MysteryWordAnswerProps = {
   youId: PlayerId | null
 }
 
-type ShownRefusal = { code: TryRefusal; word: string }
-
 /**
  * A seat's grid over a keyboard drawn on the screen. The row being typed
  * starts on the given letter and holds as many as the word; a try the server
@@ -96,9 +94,9 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
     setSent(null)
   }
 
-  const shown: ShownRefusal | null =
+  const shown: { code: TryRefusal } | null =
     refusal !== null && refusal !== answered && isTryRefusal(refusal.code)
-      ? { code: refusal.code, word: sent ?? typed }
+      ? { code: refusal.code }
       : null
 
   const length = content?.length ?? 0
@@ -213,13 +211,7 @@ export const MysteryWordAnswer: React.FC<MysteryWordAnswerProps> = ({
       />
       <RefusalNote
         message={
-          shown === null
-            ? null
-            : shown.code === 'not_in_dictionary'
-              ? translate('mysteryword.refusal.not_in_dictionary', {
-                  word: shown.word
-                })
-              : translate(`mysteryword.refusal.${shown.code}`)
+          shown === null ? null : translate(`mysteryword.refusal.${shown.code}`)
         }
       />
       <div className='foot'>

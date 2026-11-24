@@ -9,8 +9,8 @@ import {
   usePlayedRoundName
 } from '@/presentation/i18n/line-up-entry-names'
 
-import { GameIcon } from './icons'
 import { SectionHeading } from './section-heading'
+import { SpineMark } from './spine-mark'
 
 import './this-round-heading.sass'
 
@@ -48,15 +48,7 @@ export const ThisRoundHeading: React.FC<ThisRoundHeadingProps> = ({
         translate('round.thisRound')
       ) : (
         <>
-          <span
-            className='spine-mark'
-            style={{
-              '--spine': `var(--spine-${kind})`,
-              '--spine-ink': `var(--on-spine-${kind})`
-            }}
-          >
-            <GameIcon game={kind} />
-          </span>
+          <SpineMark game={kind} />
           {name}
         </>
       )}

@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import type { GameSettings } from '@melee/protocol/game'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundDuel } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
@@ -10,7 +11,13 @@ import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import {
+  type PlayedRound,
+  playingRoundName
+} from '@/presentation/i18n/line-up-entry-names'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
+
+import { SpineMark } from './spine-mark'
 
 import './round-chrome.sass'
 import { shownPoints } from '@/helpers/shown-points'
@@ -26,6 +33,8 @@ type RoundChromeProps = {
   /** The two seats this round is a duel between, which take the pips' place. */
   duel?: RoundDuel | null
   invitation?: React.ReactNode
+  /** The room's line-up, which names the entry the round was opened from. */
+  lineUp: readonly GameSettings[]
   /**
    * A passing line at the start of the header, which takes the place of the
    * round and the score for as long as it is shown rather than a row of its
@@ -38,6 +47,12 @@ type RoundChromeProps = {
    * lobby and the final board — so the line still says which table this is.
    */
   roomCode?: RoomCode
+  /**
+   * The round being played, whose game the line names beside its number in a
+   * line-up of several entries: its spine always, its name where the line has
+   * the room. `null` outside a round.
+   */
+  round: PlayedRound | null
   /** `null` when the room plays until its host ends it, which draws no pips. */
   roundCount: number | null
   /**
@@ -63,9 +78,11 @@ type RoundChromeProps = {
  */
 export const RoundChrome: React.FC<RoundChromeProps> = ({
   invitation,
+  lineUp,
   notice,
   players,
   roomCode,
+  round,
   roundCount,
   roundIndex,
   teams,
@@ -81,6 +98,8 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   const score = pawn?.score ?? 0
   // A pawn on a track carries its case, and then the case is the only figure.
   const standsOn = pawn?.board?.case ?? null
+  const gameName =
+    round === null ? null : playingRoundName({ lineUp, round, translate })
 
   return (
     <header className='round-chrome'>
@@ -126,6 +145,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
       ) : (
         <p className='round-index'>
           <VisuallyHidden elementType='span'>
+            {gameName !== null && `${gameName}, `}
             {roundCount === null
               ? translate('round.indexOpen', { index: roundIndex })
               : translate('round.index', {
@@ -133,6 +153,16 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
                   total: roundCount
                 })}
           </VisuallyHidden>
+          {gameName !== null && round !== null && (
+            <span
+              aria-hidden='true'
+              className='game'
+              key={`${round.content.kind} ${gameName}`}
+            >
+              <SpineMark game={round.content.kind} />
+              <span className='game-name'>{gameName}</span>
+            </span>
+          )}
           <span aria-hidden='true' className='label'>
             {translate('round.label')}
           </span>

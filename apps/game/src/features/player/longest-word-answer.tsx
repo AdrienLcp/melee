@@ -70,8 +70,6 @@ type LongestWordAnswerProps = {
   round: RoundView
 }
 
-type ShownRefusal = { code: SaidRefusal; word: string }
-
 /**
  * A seat's nine tiles, pressed to lay them into a row of nine slots: a laid
  * tile sinks into its socket, so no letter is used twice. A physical keyboard
@@ -113,9 +111,9 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
     setSent(null)
   }
 
-  const shown: ShownRefusal | null =
+  const shown: { code: SaidRefusal } | null =
     refusal !== null && refusal !== answered && isWordRefusal(refusal.code)
-      ? { code: refusal.code, word: sent ?? typed }
+      ? { code: refusal.code }
       : null
 
   // Sent and not yet answered either way: a second press would send it twice.
@@ -272,11 +270,7 @@ export const LongestWordAnswer: React.FC<LongestWordAnswerProps> = ({
           message={
             shown === null
               ? null
-              : shown.code === 'not_in_dictionary'
-                ? translate('longestword.refusal.not_in_dictionary', {
-                    word: shown.word
-                  })
-                : translate(`longestword.refusal.${shown.code}`)
+              : translate(`longestword.refusal.${shown.code}`)
           }
         />
         <Group aria-label={translate('longestword.draw')} className='tiles'>

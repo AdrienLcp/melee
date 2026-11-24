@@ -1,0 +1,17 @@
+@use '../styles/typography'
+
+@layer components
+  // Read before the round's number beside it, so in the ink the number is
+  // muted against.
+  .round-game
+    @include typography.label
+
+    display: flex
+    min-width: 0
+
+    > span
+      align-items: center
+      animation: swap-in var(--transition-base, 0s) var(--ease-out)
+      display: flex
+      gap: 0.4em
+      min-width: 0

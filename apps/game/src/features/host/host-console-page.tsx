@@ -84,6 +84,7 @@ import { LeavesInPlace } from '@/presentation/components/leaves-in-place'
 import { Loader } from '@/presentation/components/loader'
 import { RefusalNote } from '@/presentation/components/refusal-note'
 import { RoundChrome } from '@/presentation/components/round-chrome'
+import { RoundGame } from '@/presentation/components/round-game'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import {
@@ -651,8 +652,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         <RoundChrome
           duel={choosing.round.duel}
           invitation={<InvitePiece roomCode={roomCode} />}
+          lineUp={view.settings.lineUp}
           notice={<ArrivalNotice arrival={arrival} />}
           players={view.players}
+          round={choosing.round}
           roundCount={view.settings.roundCount}
           roundIndex={choosing.round.index}
           teams={view.teams}
@@ -777,6 +780,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const header = (
     <header>
       <ArrivalNotice arrival={arrival} />
+      <RoundGame
+        lineUp={view?.settings.lineUp ?? []}
+        round={isRoundOnScreen ? view.round : null}
+      />
       <LeavesInPlace value={roundIndex}>
         {(index) => (
           <p className='round-index'>

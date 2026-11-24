@@ -746,6 +746,31 @@ export const playedRoundName = ({
   return tellingNameAt({ at: round.lineUpAt, lineUp, translate })
 }
 
+/**
+ * The round on screen as a room's header names it while it plays: the game
+ * alone, and the entry's own name only beside another entry of the same game
+ * — the next-round press's rule, where the reveal's heading adds the entry's
+ * telling setting. `null` in a room of one entry.
+ */
+export const playingRoundName = ({
+  lineUp,
+  round,
+  translate
+}: LineUp & { round: PlayedRound }): string | null => {
+  if (lineUp.length < 2) {
+    return null
+  }
+
+  const { kind } = round.content
+  const game = translate(gameNameKey(kind))
+
+  if (round.lineUpAt === null || lineUp[round.lineUpAt]?.kind !== kind) {
+    return game
+  }
+
+  return entryNameAt({ at: round.lineUpAt, lineUp, translate }) ?? game
+}
+
 /** `playedRoundName` in the reader's language. */
 export const usePlayedRoundName = ({
   lineUp,

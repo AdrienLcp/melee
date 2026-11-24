@@ -730,9 +730,8 @@ const PORTUGUESE = defineDictionary({
     nickname_taken: 'Esse nome já está ocupado.',
     no_content_available: 'Não resta nada para jogar. Muda as definições.',
     no_game_chosen: 'Escolhe primeiro um jogo.',
-    not_in_dictionary:
-      'Essa palavra não está no dicionário. Não conta como tentativa.',
-    not_one_word: 'Uma só palavra, só letras. Não conta como tentativa.',
+    not_in_dictionary: 'Não está no dicionário.',
+    not_one_word: 'Uma só palavra, só letras.',
     not_your_turn: 'Esta ronda é um duelo entre dois outros jogadores.',
     pairing_not_found:
       'Esse código de ecrã expirou. Abre o ecrã outra vez para ter um novo.',
@@ -762,9 +761,8 @@ const PORTUGUESE = defineDictionary({
     wall_dismissed: 'O anfitrião dispensou este ecrã.',
     wall_not_paired:
       'Este ecrã não está emparelhado. Emparelha-o a partir do ecrã que conduz a mesa.',
-    wrong_first_letter:
-      'A palavra começa pela letra mostrada. Não conta como tentativa.',
-    wrong_length: 'Não é o número certo de letras. Não conta como tentativa.',
+    wrong_first_letter: 'A palavra começa pela letra mostrada.',
+    wrong_length: 'Não é o número certo de letras.',
     wrong_phase: 'Tarde demais, o jogo já avançou.'
   },
   estimate: {
@@ -1893,9 +1891,9 @@ const PORTUGUESE = defineDictionary({
       already_buzzed:
         'A tua palavra já é tão longa como a mais longa do sorteio.',
       letter_not_in_draw:
-        'Uma letra não está no sorteio, ou foi usada duas vezes. Não conta.',
-      not_in_dictionary: '«{word}» não está no dicionário. Não conta.',
-      not_one_word: 'Uma só palavra, só letras. Não conta.'
+        'Uma letra não está no sorteio, ou foi usada duas vezes.',
+      not_in_dictionary: 'Não está no dicionário.',
+      not_one_word: 'Uma só palavra, só letras.'
     },
     reveal: {
       alsoLong: defineTranslation('{length:plural}: {words}', {
@@ -2191,12 +2189,10 @@ const PORTUGUESE = defineDictionary({
     notFound: 'Não encontrada',
     play: 'Jogar Palavra mistério',
     refusal: {
-      not_in_dictionary:
-        '«{word}» não está no dicionário. Tentativa não gasta.',
-      not_one_word: 'Uma só palavra, só letras. Tentativa não gasta.',
-      wrong_first_letter:
-        'A palavra começa pela letra dada. Tentativa não gasta.',
-      wrong_length: 'Preenche todas as letras primeiro. Tentativa não gasta.'
+      not_in_dictionary: 'Não está no dicionário.',
+      not_one_word: 'Uma só palavra, só letras.',
+      wrong_first_letter: 'A palavra começa pela letra dada.',
+      wrong_length: 'Preenche todas as letras primeiro.'
     },
     reveal: {
       title: 'A palavra era'
