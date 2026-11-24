@@ -756,6 +756,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       },
       onPlayRightAway: playRightAway,
       onSettingsChange: changeSettings,
+      onTakeSeat: takeSeat,
       preferences,
       send,
       slateKeys: preparedSlateKeys,

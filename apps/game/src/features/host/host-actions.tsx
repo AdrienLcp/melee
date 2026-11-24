@@ -33,6 +33,8 @@ export type HostActionsProps = {
   onPlayRightAway: (nickname: string) => void
   /** The console's one way of changing a setting, which also remembers it. */
   onSettingsChange: (settings: RoomSettings) => void
+  /** Seats this console under the name, beside a table that already has players. */
+  onTakeSeat: (nickname: string) => void
   /** What this host last left each game set to, so a game drawn or picked opens as they like it. */
   preferences: HostPreferences | null
   send: (message: ClientMessage) => boolean

@@ -7,7 +7,6 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
 import { Button } from '@/presentation/components/button'
-import { Disclosure } from '@/presentation/components/disclosure'
 import { TextField } from '@/presentation/components/text-field'
 import { typedName } from '@/presentation/components/typed-name'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -38,10 +37,9 @@ const storedNicknameOrNone = (): string => {
 }
 
 /**
- * Playing is joining: the console's seat is offered in the roster, where every
- * other player appears as they give a name, rather than as a question asked
- * before the room exists. It stays one folded row until the host opens it, so
- * a console that only runs the room spends no room on it.
+ * The console's seat beside players already at the table, offered under the
+ * launch where an empty table's *play right away* stands, so taking a place
+ * is always looked for in one spot and never moves the seats above it.
  *
  * Under the name this device already answers to, with a way to change it; a
  * device that has none asks for it here.
@@ -56,11 +54,21 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
   const [remembered] = useState(storedNicknameOrNone)
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
-  const [isExpanded, setIsExpanded] = useState(false)
   const nickname = draft.trim()
-  const naming = useRef<HTMLDivElement>(null)
+  const row = useRef<HTMLDivElement>(null)
 
-  useCrossFadeOnReshape({ box: naming, shape: isNaming ? 'naming' : 'named' })
+  useCrossFadeOnReshape({ box: row, shape: isNaming ? 'naming' : 'named' })
+
+  const takeSeat = (
+    <Button
+      isDisabled={isDisabled || nickname === ''}
+      size={isNaming ? 'medium' : 'small'}
+      type='submit'
+      variant='outlined'
+    >
+      {translate('host.seat.action')}
+    </Button>
+  )
 
   return (
     <div
@@ -68,35 +76,33 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
       data-closed={!isOpen || undefined}
       inert={!isOpen}
     >
-      <Disclosure
+      <Form
         className='seat-offer'
-        isExpanded={isExpanded}
-        label={translate('host.seat.offer')}
-        onExpandedChange={setIsExpanded}
-        summary={null}
-      >
-        <Form
-          className='seat-form'
-          onSubmit={(event) => {
-            event.preventDefault()
+        onSubmit={(event) => {
+          event.preventDefault()
 
-            if (nickname !== '' && !isDisabled) {
-              setIsExpanded(false)
-              onTakeSeat(nickname)
-            }
-          }}
-        >
-          <div className='name-field' ref={naming}>
-            {isNaming ? (
+          if (nickname !== '' && !isDisabled) {
+            onTakeSeat(nickname)
+          }
+        }}
+      >
+        <div className='seat-row' data-naming={isNaming || undefined} ref={row}>
+          {isNaming ? (
+            <>
               <TextField
                 autoComplete='nickname'
+                autoFocus={remembered !== ''}
                 enterKeyHint='go'
                 label={translate('join.rightAway.name')}
                 maxLength={NICKNAME_MAX_LENGTH}
                 onChange={setDraft}
                 value={draft}
               />
-            ) : (
+              {takeSeat}
+            </>
+          ) : (
+            <>
+              {takeSeat}
               <p className='as'>
                 <span className='seated-as'>
                   <RichText
@@ -114,24 +120,17 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
                   {translate('join.rightAway.change')}
                 </Button>
               </p>
-            )}
-          </div>
-          <Button
-            isDisabled={isDisabled || nickname === ''}
-            type='submit'
-            variant='outlined'
-          >
-            {translate('host.seat.action')}
-          </Button>
-          <p className='cost'>
-            {translate(
-              game === 'reflex' || game === 'innerclock'
-                ? 'host.seat.cost.sharedScreen'
-                : 'host.seat.cost.hiddenAnswer'
-            )}
-          </p>
-        </Form>
-      </Disclosure>
+            </>
+          )}
+        </div>
+        <p className='cost'>
+          {translate(
+            game === 'reflex' || game === 'innerclock'
+              ? 'host.seat.cost.sharedScreen'
+              : 'host.seat.cost.hiddenAnswer'
+          )}
+        </p>
+      </Form>
     </div>
   )
 }

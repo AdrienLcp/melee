@@ -1,5 +1,7 @@
 import type React from 'react'
 
+import { MAX_PLAYERS_PER_ROOM } from '@melee/protocol/room'
+
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 
 import { Button } from '@/presentation/components/button'
@@ -12,6 +14,7 @@ import { ChallengeLinePicker } from './challenge-line-picker'
 import { ConsoleReady } from './console-ready'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
+import { SeatOffer } from './seat-offer'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   challengeLine,
@@ -19,6 +22,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   isLive,
   onOpenRound,
   onPlayRightAway,
+  onTakeSeat,
   send,
   slateKeys,
   view
@@ -95,6 +99,14 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
           {translate('host.startGame')}
         </Button>
       </div>
+      <SeatOffer
+        game={view.settings.game?.kind ?? null}
+        isDisabled={!isLive}
+        isOpen={
+          view.youId === null && view.players.length < MAX_PLAYERS_PER_ROOM
+        }
+        onTakeSeat={onTakeSeat}
+      />
       <div
         className='reason-fold'
         data-open={reason !== null || undefined}

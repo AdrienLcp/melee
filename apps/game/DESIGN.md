@@ -1218,23 +1218,23 @@ or a poster carries none of them.
 on `--track-a` with the pawn and the name, a socket per empty pawn, the own
 seat in a keyline. It never ranks (`Scoreboard`'s `isRoster`): its chips are
 dealt across where a ranking is read downwards, and a rank, a case and points
-in a chip a third of the roster wide left the name 0px. A name too long for
-its chip wraps, hyphenated where the page's language allows, never an ellipsis
-after five letters (two _Anne-_ read as one seat); its size is the lower of 2.2
-`stage-unit` and 3.3cqi of the roster, so two lines stay inside the chip's
-height, and the clamp holds three. The third is owed where nothing
-hyphenates — an English page reading a French name: `Anne-` takes a line
-alone, and at 1440×900 `Charlotte Vi 22` takes two more, which grows that row
-alone by one line. No size could have spared it: a twenty-character name
-broken that unevenly needs a line about as wide as the name. A word no
-syllable breaks still ends on an ellipsis. `choice-fits.spec.ts` holds 24
+in a chip a third of the roster wide left the name 0px. A name holds one line: wrapped,
+the rows of one roster stood at three heights. Its size is the lower of the
+chip's own (2.2 `stage-unit`, 3.3cqi of the roster) and what the chip's width
+over the name's length allows (`--name-length`, a letter measured at 0.58em
+in the read face), floored at `--text-xs`; only a name still too long at the
+floor ends on an ellipsis, never one cut at full size after five letters
+(two _Anne-_ read as one seat). At 1024 wide, 24 names of 17 to 20
+characters keep about twelve letters each. `choice-fits.spec.ts` holds 24
 names of 17 to 20 characters to this at its sixteen viewports, console and
-player, and fails a name its clamp cut. The console's stage
+player, and fails a name cut above the floor. The console's stage
 carries no ✕ — the room reads that roster, and the Players tab holds the same
-one with its ✕. Its seat offer folds away (the offer fades, then its row
-closes) once the host sits or the table is full, and the Room tab says the
-table is full in the form's place. Above the split the side column scrolls
-inside itself when the offer and a full table are taller than it, so the
+one with its ✕. The console's own seat is offered under the launch, where an
+empty table's _Jouer tout de suite_ stands, so it never pushes the seats; it
+folds away (the offer fades, then its row closes) once the host sits or the
+table is full, and the Room tab says the table is full in the form's place.
+Above the split the side column scrolls inside itself when a full table is
+taller than it, so the
 launch under it never leaves the screen. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — _that_, never _what_. Removing a player is a ✕ named
 `Remove {nickname}`. A seat whose screen has gone mutes its name and carries

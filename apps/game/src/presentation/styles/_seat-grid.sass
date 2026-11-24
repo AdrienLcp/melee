@@ -6,6 +6,8 @@ $-cell-height: clamp(2.5rem, calc(var(--stage-unit) * 5.6), 3.5rem)
 // in the read face; and what a chip spends beside its name.
 $-name-advance: 0.58
 $-chip-trim: 4rem
+// The reader's own chip is a press, its chevron beside the name.
+$-own-chip-trim: 5.5rem
 
 /// Who has sat down, each on a chip beside their pawn, and a socket for every
 /// pawn still in the box — the roster a `Scoreboard` with pawns and an
@@ -48,6 +50,7 @@ $-chip-trim: 4rem
     min-height: $-cell-height
 
   .scoreboard li
+    --seat-chip-trim: #{$-chip-trim}
     --seat-chip-width: calc((100cqi - (var(--seat-columns) - 1) * var(--space-s)) / var(--seat-columns))
 
     align-items: center
@@ -83,7 +86,7 @@ $-chip-trim: 4rem
     // wide kept a long name's first five letters and two Anne- read as the
     // same seat; wrapped, the rows of one roster stood at three heights.
     .name
-      font-size: max(var(--text-xs), min(1em, calc((var(--seat-chip-width) - #{$-chip-trim}) / var(--name-length, 1) / #{$-name-advance})))
+      font-size: max(var(--text-xs), min(1em, calc((var(--seat-chip-width) - var(--seat-chip-trim)) / var(--name-length, 1) / #{$-name-advance})))
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
@@ -95,6 +98,8 @@ $-chip-trim: 4rem
     // The reader's own row is the press, so it takes the chip's padding and
     // fills it: the row keeps the height of every other.
     &:has(> .own-seat-press)
+      --seat-chip-trim: #{$-own-chip-trim}
+
       padding: 0rem
 
     > .own-seat-press

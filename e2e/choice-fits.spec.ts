@@ -2213,9 +2213,8 @@ const SCORED_LOBBIES = [
 
 /**
  * Every roster chip that squeezed out its pawn or its own edge, or cut its
- * name: a name wraps onto the lines its clamp holds and shows whole on them,
- * save a word no syllable breaks, which may end on an ellipsis after two ems
- * of it. A line the clamp hid is an em of overflow; less is the face's ink.
+ * name: a name holds one line, its type shrinking with its length, and may
+ * end on an ellipsis only once that type is down to the 14px floor.
  */
 const squeezedRosterChips = (): string[] =>
   [
@@ -2232,9 +2231,10 @@ const squeezedRosterChips = (): string[] =>
 
     const em = Number.parseFloat(getComputedStyle(name).fontSize)
     const pawnWidth = pawn.getBoundingClientRect().width
+    const isAboveTheFloor = em > 14.5
     const isNameCut =
       name.scrollHeight > name.clientHeight + em / 2 ||
-      name.clientWidth < Math.min(name.scrollWidth, 2 * em)
+      (isAboveTheFloor && name.scrollWidth > name.clientWidth + 1)
     const isSqueezed =
       pawnWidth < em || isNameCut || chip.scrollWidth > chip.clientWidth + 1
 

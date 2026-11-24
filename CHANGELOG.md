@@ -113,9 +113,11 @@ one part.
   long name over up to three lines; its type now shrinks with its length down
   to the smallest size a name is drawn at, and only past that ends on an
   ellipsis.
-- `[Game]` **Playing from the console is one folded row.** _Jouer depuis cet
-  écran_ opens the name and _Prendre place_ on one line, the press aligned on
-  the field, instead of a block standing open over the seats.
+- `[Game]` **The console takes its seat under the launch.** Once a player
+  sits down, _Prendre place_ stands under _À table !_ with the name it plays
+  under, where an empty table's _Jouer tout de suite_ stood, instead of a
+  block over the seats that pushed them down; asked for a name, the field and
+  the press share one line at one height.
 - `[Game]` **The host stepping away is said at the top of the reveal and the
   final board.** A player's screen opens _L'hôte a décroché_ first, above the
   answer and the standings, which stay readable under it, rather than in the

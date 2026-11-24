@@ -1,11 +1,10 @@
 import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import { type HostRoomView, MAX_PLAYERS_PER_ROOM } from '@melee/protocol/room'
+import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
 import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
-import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
@@ -29,7 +28,6 @@ import { BoardPreview } from './board-preview'
 import { MoveSeat } from './move-seat'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
-import { SeatOffer } from './seat-offer'
 import { SlatePreparation } from './slate-preparation'
 import { TableStartHold } from './table-start-hold'
 import { TeamCountField } from './team-count-field'
@@ -70,18 +68,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 }) => {
   const translate = useTranslate()
   const playsAloud = view.settings.teams.kind === 'aloud'
-  // An empty table's launch already seats its host, so the offer would be a
-  // second press doing the same thing.
-  const offersSeat =
-    controls !== null &&
-    youId === null &&
-    !playsAloud &&
-    view.players.length < MAX_PLAYERS_PER_ROOM &&
-    !launchesWithHostSeated({
-      seated: view.players.length,
-      settings: view.settings
-    })
-
   useTeamCountFollowingHeadcount({ controls, view })
   const entryName = useEntryName(view.settings)
   const isRosterBeside = controls?.isRosterBeside === true
@@ -130,14 +116,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
                 count: view.players.length
               })}
             </h2>
-          )}
-          {controls !== null && !playsAloud && (
-            <SeatOffer
-              game={view.settings.game?.kind ?? null}
-              isDisabled={!controls.isLive}
-              isOpen={offersSeat}
-              onTakeSeat={controls.onTakeSeat}
-            />
           )}
           {playsAloud ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
