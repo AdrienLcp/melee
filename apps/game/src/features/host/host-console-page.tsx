@@ -67,6 +67,7 @@ import {
   writeHostToken,
   writeSeatNickname
 } from '@/infrastructure/storage/session-storage'
+import { useAmbientMusic } from '@/presentation/audio/ambient-music'
 import { useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { unlockCues } from '@/presentation/audio/cue-audio'
 import { useTimerCue } from '@/presentation/audio/timer-cue'
@@ -480,10 +481,25 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [keepVolume, send]
   )
 
+  const setPlaysMusic = useCallback(
+    (playsMusic: boolean) => {
+      if (view !== null) {
+        changeSettings({ ...view.settings, playsMusic })
+      }
+    },
+    [changeSettings, view]
+  )
+
   const soundCheck = useSoundCheck({
     isSpeaker,
     send,
     soundCheck: view?.soundCheck ?? null,
+    volume: roomVolume
+  })
+
+  useAmbientMusic({
+    isTestingSound: soundCheck.isTesting,
+    view: isSpeaker ? view : null,
     volume: roomVolume
   })
 
@@ -517,6 +533,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     pauseRound: pausableRoundId === null ? null : pauseRound,
     ...pawn,
     isTestingSound: soundCheck.isTesting,
+    playsMusic: view?.settings.playsMusic ?? null,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname
@@ -527,6 +544,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: view?.players ?? NOBODY,
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
+    setPlaysMusic: view === null ? null : setPlaysMusic,
     setRoomVolume: view === null ? null : setRoomVolume,
     testSound:
       view?.phase === 'lobby' || soundCheck.isTesting

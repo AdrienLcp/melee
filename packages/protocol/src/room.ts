@@ -375,6 +375,15 @@ export const roomSettingsSchema = z.object({
    */
   paysForSpeed: z.boolean().default(true),
   /**
+   * Whether the room's speaker plays a soundtrack from the lobby to the final
+   * board, under everything but a clip and Inner clock's count
+   * (`ambientMoodOf`). A room setting so a wall hears it with the rest, and
+   * remembered with the host's setup.
+   *
+   * On by default, and defaulted, so a stored setup from before it plays it.
+   */
+  playsMusic: z.boolean().default(true),
+  /**
    * Whether the rounds past the running order's last row play it again from
    * its top rather than being drawn: a table that liked the order it played
    * goes round it once more. Read only while every entry holds a row
@@ -461,6 +470,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
   paysForSpeed: true,
+  playsMusic: true,
   repeatsRunningOrder: false,
   roundCount: 10,
   runningOrder: [],

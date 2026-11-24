@@ -106,22 +106,36 @@ describe('isEveningSilent', () => {
     expect(
       isEveningSilent({
         game: DEFAULT_PETIT_BAC_SETTINGS,
-        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS]
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS],
+        playsMusic: false
       })
     ).toBe(true)
+  })
+
+  it('[game-capabilities] hears an evening of written games under its soundtrack', () => {
+    expect(
+      isEveningSilent({
+        game: DEFAULT_PETIT_BAC_SETTINGS,
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS],
+        playsMusic: true
+      })
+    ).toBe(false)
   })
 
   it('[game-capabilities] hears an evening with one blind test ticked anywhere in it', () => {
     expect(
       isEveningSilent({
         game: DEFAULT_PETIT_BAC_SETTINGS,
-        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_BLINDTEST_SETTINGS]
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
+        playsMusic: false
       })
     ).toBe(false)
   })
 
   it('[game-capabilities] never calls an evening silent before a game is picked', () => {
-    expect(isEveningSilent({ game: null, lineUp: [] })).toBe(false)
+    expect(isEveningSilent({ game: null, lineUp: [], playsMusic: false })).toBe(
+      false
+    )
   })
 })
 
@@ -143,9 +157,20 @@ describe('isEveningPaidForSpeed', () => {
     expect(
       isEveningPaidForSpeed({
         game: DEFAULT_PETIT_BAC_SETTINGS,
-        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS]
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS],
+        playsMusic: false
       })
     ).toBe(true)
+  })
+
+  it('[game-capabilities] hears an evening of written games under its soundtrack', () => {
+    expect(
+      isEveningSilent({
+        game: DEFAULT_PETIT_BAC_SETTINGS,
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS],
+        playsMusic: true
+      })
+    ).toBe(false)
   })
 
   it('[game-capabilities] keeps the clock on offer before a game is picked', () => {

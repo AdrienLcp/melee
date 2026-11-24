@@ -380,20 +380,23 @@ export const isPlayableWithTeams = ({
   mode !== 'spoken' || teams.kind === 'drawn' || teams.kind === 'chosen'
 
 /**
- * Whether nothing the evening plays makes a sound — every game ticked and the
- * one on now. An evening whose game is not picked yet is not silent: what the
- * table settles on may be a blind test.
+ * Whether nothing the evening plays makes a sound — no soundtrack, and every
+ * game ticked and the one on now silent. An evening whose game is not picked
+ * yet is not silent: what the table settles on may be a blind test.
  */
 export const isEveningSilent = ({
   game,
-  lineUp
+  lineUp,
+  playsMusic
 }: {
   game: GameSettings | null
   lineUp: readonly GameSettings[]
+  playsMusic: boolean
 }): boolean => {
   const games = game === null ? lineUp : [...lineUp, game]
 
   return (
+    !playsMusic &&
     games.length > 0 &&
     games.every(({ kind }) => !capabilitiesOf(kind).makesSound)
   )

@@ -102,10 +102,17 @@ export type RoomActions = {
    * console alone, so `null` on every other screen.
    */
   roomVolume: number | null
+  /**
+   * Whether the room's speaker plays its soundtrack. Read and set from the
+   * console alone, so `null` on every other screen.
+   */
+  playsMusic: boolean | null
   /** The seats *Points* lists when the room plays without teams. */
   scoredPlayers: readonly PublicPlayer[]
   /** The teams *Points* lists, which take the seats' place whenever there are any. */
   scoredTeams: readonly Team[]
+  /** Turns `playsMusic` for the whole room. The host console's alone. */
+  setPlaysMusic: ((playsMusic: boolean) => void) | null
   /** Sets `roomVolume` for the whole room. The host console's alone. */
   setRoomVolume: ((volume: number) => void) | null
   /**
@@ -134,6 +141,7 @@ const NO_ACTIONS: RoomActions = {
   leaveSeat: null,
   pauseRound: null,
   pawnRoom: null,
+  playsMusic: null,
   recolourPawn: null,
   refusedNickname: null,
   refusedRecolour: null,
@@ -143,6 +151,7 @@ const NO_ACTIONS: RoomActions = {
   scoredPlayers: NOBODY,
   scoredTeams: NOBODY,
   seatNickname: null,
+  setPlaysMusic: null,
   setRoomVolume: null,
   testSound: null,
   trackLength: null
@@ -227,11 +236,13 @@ export const useReportRoomActions = ({
   refusedNickname,
   refusedRecolour,
   rename,
+  playsMusic,
   revealRound,
   roomVolume,
   scoredPlayers,
   scoredTeams,
   seatNickname,
+  setPlaysMusic,
   setRoomVolume,
   testSound,
   isTestingSound,
@@ -253,6 +264,7 @@ export const useReportRoomActions = ({
       leaveSeat,
       pauseRound,
       pawnRoom: keptPawnRoom,
+      playsMusic,
       recolourPawn,
       refusedNickname,
       refusedRecolour,
@@ -262,6 +274,7 @@ export const useReportRoomActions = ({
       scoredPlayers: keptScoredPlayers,
       scoredTeams: keptScoredTeams,
       seatNickname,
+      setPlaysMusic,
       setRoomVolume,
       testSound,
       trackLength
@@ -284,11 +297,13 @@ export const useReportRoomActions = ({
     refusedRecolour,
     rename,
     report,
+    playsMusic,
     revealRound,
     roomVolume,
     keptScoredPlayers,
     keptScoredTeams,
     seatNickname,
+    setPlaysMusic,
     setRoomVolume,
     testSound,
     isTestingSound,

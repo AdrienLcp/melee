@@ -7,6 +7,8 @@ import { noteAudioContext } from '@/infrastructure/diagnostics'
  */
 let context: AudioContext | null = null
 
+const runningListeners = new Set<(running: AudioContext) => void>()
+
 /**
  * MUST be called synchronously inside a user gesture, beside the press that
  * arms the clip. Called from anywhere else the context never starts and no cue
@@ -20,7 +22,32 @@ export const unlockCues = (): void => {
     noteAudioContext(() => created.state)
   }
 
-  void context.resume()
+  const resumed = context
+
+  void resumed.resume().then(() => {
+    for (const listener of runningListeners) {
+      listener(resumed)
+    }
+  })
+}
+
+/**
+ * Calls `listener` with the cue context once it runs — at once if it already
+ * does — for a voice that waits on the room's first press. Returns the
+ * unsubscription.
+ */
+export const onCuesRunning = (
+  listener: (running: AudioContext) => void
+): (() => void) => {
+  runningListeners.add(listener)
+
+  if (context?.state === 'running') {
+    listener(context)
+  }
+
+  return () => {
+    runningListeners.delete(listener)
+  }
 }
 
 /**

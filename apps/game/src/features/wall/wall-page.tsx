@@ -21,6 +21,7 @@ import {
   useReturnToWallPairing,
   useRoomCodeParam
 } from '@/infrastructure/router/navigation'
+import { useAmbientMusic } from '@/presentation/audio/ambient-music'
 import { useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { unlockCues } from '@/presentation/audio/cue-audio'
 import { useTimerCue } from '@/presentation/audio/timer-cue'
@@ -134,6 +135,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     volume
   })
   useTimerCue({ clock, view: speakingView, volume })
+  useAmbientMusic({ isTestingSound: false, view: speakingView, volume })
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,
@@ -144,6 +146,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     leaveSeat: null,
     pauseRound: null,
     pawnRoom: null,
+    playsMusic: null,
     recolourPawn: null,
     refusedNickname: null,
     refusedRecolour: null,
@@ -153,6 +156,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: NOBODY,
     scoredTeams: NOBODY,
     seatNickname: null,
+    setPlaysMusic: null,
     setRoomVolume: null,
     testSound: null,
     trackLength: null

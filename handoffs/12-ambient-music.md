@@ -57,3 +57,59 @@ screen from the lobby to the final board, fades under every clip and during
 Inner clock, survives a reload and a pause (`host.pause` stops it too), and
 the setting turns it off. Changelog, CLAUDE.md where the speaker is
 described, delete this file and its README row.
+
+## Progress (24/11/2026, first session — branch `12-ambient-music`, worktree `C:/git/wt-12-ambient-music`, not pushed)
+
+Built and tested, typecheck green:
+
+- `settings.playsMusic` (protocol, default on) — the wall reads it with the
+  rest of the settings, and the host's setup remembers it like any room-wide
+  setting. `isEveningSilent` now takes it: an evening with music is not
+  silent, so a wall offers its sound press in the lobby.
+- `packages/core/src/room/ambient-music.ts` — `ambientMoodOf`: `calm` /
+  `lively` / `final`, or `null` (give way) when off, paused, a sound check, a
+  blind test round from its countdown to its reveal, and Inner clock's count.
+  **Decided: the reflex race and Lights keep the music** — their flip and
+  their lights fall at random, so a beat tells a press nothing. Tested, broken
+  once.
+- `apps/game/src/presentation/audio/ambient/` — generative music on the cue
+  context, no file and no licence: `theory.ts`, `instruments.ts`, `piece.ts`,
+  five styles in `styles/`, `ambient-player.ts` (pieces of 2–3.5 min, each a
+  fresh key, tempo and progression, crossfading; the bus fades down with a
+  0.45 s time constant and back up with 1.4 s; pieces let go once silent) with
+  `ambient-player.test.ts` (fake fader, broken once), and `soundtrack.ts`, the
+  lazily-imported chunk that binds the chosen style — **lounge as a
+  placeholder until Adrien picks**.
+- `presentation/audio/ambient-music.ts` — `useAmbientMusic`, mounted on the
+  console (when it is the speaker) and the wall (`speakingView`), at
+  `volume × MUSIC_SHARE` (0.35). Any `pointerup`/`keydown` on the page unlocks
+  the cue context, so a reloaded speaker resumes on the first touch.
+- `RoomActions.playsMusic` / `setPlaysMusic` reported by the console (null
+  elsewhere) — **the menu switch itself is not drawn yet**.
+
+Left, in order:
+
+1. **Adrien's pick.** Candidate page:
+   `C:/Users/AdrienLacourpaille/AppData/Local/Temp/claude/9442010d3e26fb24/e546e1df-d18d-4d1c-991f-57f856cbc779/scratchpad/candidates/`
+   (`index.html` + `entry.ts`, bundled to `candidates.js` with
+   `node_modules/.pnpm/esbuild@0.28.2/.../esbuild entry.ts --bundle --format=esm`
+   run from `apps/game`). Serve it with
+   `python -m http.server 5297 --bind 127.0.0.1` from that folder and give
+   Adrien `http://127.0.0.1:5297/` (his own browser). Styles: Salon jazz
+   (`lounge`), Lo-fi (`lofi`), Dérive (`drift`), Terrasse marimba
+   (`marimba`), Arcade (`arcade`). Offline renders (no sound) measured every
+   style at rms 0.03–0.11, peaks ≤ 0.56. Once picked: bind it in
+   `soundtrack.ts`, delete the four other style files.
+2. The menu switch (`app-menu-leaflet.tsx`, under the room volume slider,
+   console only): `Switch` bound to `playsMusic` / `setPlaysMusic`, its label
+   in the three dictionaries (`preferences.music`). Start with `impeccable`.
+3. The wall gives way during its own sound check too (`useWallSoundCheck`
+   does not report `isTesting`; the console's sound check already does).
+4. Browser pass, muted (`melee:volume` `'0'` by init script), full and
+   filmed: lobby → blind test → quiz → inner clock → final board, a pause, a
+   reload, the switch off, a paired wall as speaker. At volume 0 the bus stays
+   at 0 by construction, so check the ambient chunk loads, no console error,
+   and the switch's motion; the fade logic is the unit test's.
+5. Changelog, plan record, CLAUDE.md (_Host_ / _Wall_: the speaker also plays
+   the soundtrack), delete this file and its README row, rebase, `pnpm
+   validate`, `git push origin HEAD:main`.
