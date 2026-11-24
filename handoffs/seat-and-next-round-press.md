@@ -16,8 +16,8 @@ Build the two choices Adrien approved on 2026-11-24 from the mockups:
    smaller line under it, inside the press, in the press's own ink. The
    spine in the game's colour goes.
 
-His words: « je ne suis pas fan du bouton "couleur" qui apparait dans la case
-du pseudo quand on arrive … ça aggrandit la case et sa case voisine » and,
+His words: « je ne suis pas fan du bouton "couleur" qui apparaît dans la case
+du pseudo quand on arrive … ça agrandit la case et sa case voisine » and,
 about the press, « ce bouton est très manche, il faut m'en proposer un
 nouveau ».
 
