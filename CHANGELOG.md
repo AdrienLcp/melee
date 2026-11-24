@@ -101,6 +101,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The blind test's four candidates fill the screen**, as the quiz's
+  do, instead of a band centred in it: four rows on a phone, two by two on a
+  tablet. Two abreast a tile is never taller than it is wide, and the four never
+  wider than the wide column, so a laptop or a television draws no posters.
+  Lying down, with no question to set beside them, they take the whole width
+  rather than leaving an empty column.
 - `[Game]` **Full screen heads the menu.** It sits under the round's own
   presses and above everything else, so a screen across the room goes full
   screen without scrolling the menu; and _Tester le son_ leaves the menu open,

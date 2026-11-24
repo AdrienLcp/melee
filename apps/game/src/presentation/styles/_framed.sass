@@ -69,11 +69,11 @@
   // apart. Never this box's own query, because this box is the one the
   // container is.
   //
-  // A buzzer with no question has nothing to set beside it, and keeps the one
-  // column. The inner clock's target is its question, and a puzzle in matches
-  // is one too.
+  // A blind test or a buzzer with no question has nothing to set beside it,
+  // and keeps the one column. The inner clock's target is its question, and a
+  // puzzle in matches is one too.
   @include lying-down
-    &:has(> .choosing-round, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
+    &:has(> .choosing-round .asked-question, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
       column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
       grid-template: 'chrome choices' auto 'card choices' minmax(0, 1fr) 'status choices' auto / minmax(0, 0.82fr) minmax(0, 1.18fr)
 
@@ -87,7 +87,7 @@
       > .buzzer-area .press
         grid-area: choices
 
-    &:has([data-long-choices])
+    &:has([data-long-choices]):not(:has(> .choosing-round:not(:has(.asked-question))))
       grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr)
 
     // A row of matches runs four times as wide as it is tall, and the buzzer

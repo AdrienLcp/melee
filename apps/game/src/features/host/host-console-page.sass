@@ -1082,7 +1082,7 @@
     grid-template-rows: auto auto minmax(0, 1fr)
 
     @include framed.lying-down
-      &:has(> .choosing-round, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
+      &:has(> .choosing-round .asked-question, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
         grid-template-areas: 'chrome choices' 'notice choices' 'card choices' 'status choices'
         grid-template-rows: auto auto minmax(0, 1fr) auto
 

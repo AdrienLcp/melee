@@ -18,6 +18,7 @@
     --question-cap: min(8cqi, 4.8cqh)
     --choice-k: min(36cqi, 18cqh)
     --choice-cap: min(7cqi, 3.4cqh)
+    --tile-gap: clamp(var(--space-2xs), 1.8cqmin, var(--space-s))
 
     display: grid
     gap: clamp(var(--space-xs), 2.2cqmin, var(--space-s))
@@ -61,7 +62,7 @@
 
       ul
         display: grid
-        gap: clamp(var(--space-2xs), 1.8cqmin, var(--space-s))
+        gap: var(--tile-gap)
         grid-template-rows: repeat(4, minmax(min-content, 1fr))
         list-style: none
         min-height: 0
@@ -70,30 +71,38 @@
         min-height: 0
 
     .printed-choices
-      gap: clamp(var(--space-2xs), 1.8cqmin, var(--space-s))
+      gap: var(--tile-gap)
       grid-area: choices
 
     :is(.answer-form.choices, .printed-choices) .answer-tile
       font-size: clamp(var(--text-xs), calc(var(--choice-k) / sqrt(var(--choice-length, 20))), var(--choice-cap))
 
-    // A blind test asks no question, and its candidates are two lines of
-    // title and two of artist at most: four tiles as tall as the tallest of
-    // them needs, with the box's spare height left around them rather than
-    // poured into each one. A quiz candidate can be a whole sentence, and
-    // keeps its share of the box.
-    &:not(:has(.asked-question)) :is(.answer-form.choices ul, .printed-choices)
-      align-self: center
-      grid-template-rows: repeat(4, 1fr)
+    // A blind test asks no question: its four candidates take the whole box,
+    // as a quiz's take what the question leaves, but two abreast a tile is
+    // never taller than it is wide, and the four never wider than the wide
+    // column — past those a big screen drew four posters for two lines each.
+    &:not(:has(.asked-question))
+      --square-tile: calc((min(100cqi, var(--column-wide-max-width)) - var(--tile-gap)) / 2)
+
+      .answer-form.choices ul
+        align-content: center
+        justify-self: center
+        max-inline-size: var(--column-wide-max-width)
+        width: 100%
+
+      .printed-choices
+        align-self: center
+        grid-template-rows: repeat(4, 1fr)
 
     @media (width >= 35rem) and (aspect-ratio <= 13 / 10)
       &:not(.framed-box *, [data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
-        grid-template-rows: repeat(2, minmax(min-content, 1fr))
+        grid-template-rows: repeat(2, minmax(min-content, var(--square-tile, 1fr)))
 
     @container framed-box (width >= 35rem) and (aspect-ratio <= 13 / 10)
       &:not([data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
-        grid-template-rows: repeat(2, minmax(min-content, 1fr))
+        grid-template-rows: repeat(2, minmax(min-content, var(--square-tile, 1fr)))
 
     // Lying down: the question beside the tiles, placed by the page's grid.
     // Sized from the box's height first, because that is the side that runs
@@ -104,9 +113,12 @@
       --choice-k: min(15cqi, 32cqh)
       --choice-cap: min(2.8cqi, 6cqh)
 
-      &:not([data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
+      // A blind test's longest candidates still go two by two: the chrome
+      // stands over them rather than beside, and four rows of them ran under a
+      // phone held sideways.
+      &:is(:not([data-long-choices]), :not(:has(.asked-question))) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
-        grid-template-rows: repeat(2, minmax(min-content, 1fr))
+        grid-template-rows: repeat(2, minmax(min-content, var(--square-tile, 1fr)))
 
       .answer-form.choices
         display: contents

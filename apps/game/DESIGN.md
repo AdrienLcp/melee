@@ -565,6 +565,16 @@ past its box is a twentieth of its size rather than a pixel, because a line set
 tighter than the face's ascent reaches past it by a sliver that grows with the
 type. Any change to a round screen is checked against it.
 
+**Candidates with no question fill the box too.** The blind test's four
+once stood as tall as their two lines and sat centred, which left two fifths
+of a 390×844 phone empty, and lying down they kept the right column beside an
+empty one. They fill now, four rows upright and two by two from 35rem wide,
+capped where filling turns into posters: two abreast a tile is no taller than
+it is wide (`--square-tile`), and the four no wider than
+`--column-wide-max-width`. At 768×1024 that leaves 100px above and below a
+square block; at 1440×900 and 1920×1080 a 900px block, two by two, full
+height. Lying down the page keeps one column, the chrome over the tiles.
+
 **A keyboard is half the screen.** Chrome and Firefox on Android shrink the
 layout viewport under it because `index.html` asks for
 `interactive-widget=resizes-content`, so `dvh` follows the keys. Safari on iOS
