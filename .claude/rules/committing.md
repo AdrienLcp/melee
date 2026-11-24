@@ -48,3 +48,7 @@ every file on disk, untracked ones included, so another session's scratch
 script — or one new French word in its work in progress — stops your push with
 errors in a file you never touched. Leave the commit local and push once that session has
 committed or removed it — never `--no-verify`, and never edit its file.
+
+A file rewritten from Python on Windows (`open(path, 'w')`) comes back with
+CRLF line endings. The commit stores LF, but the format check reads the copy
+on disk and refuses the push. Write with `newline='\n'`.
