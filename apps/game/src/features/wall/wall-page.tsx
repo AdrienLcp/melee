@@ -101,7 +101,10 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const speakingView = isSpeaker ? view : null
   const { volume: ownVolume } = useVolume()
   const volume = wallView?.volume ?? ownVolume
-  const onSoundTest = useWallSoundCheck({ send, volume })
+  const { isTesting: isTestingSound, onSoundTest } = useWallSoundCheck({
+    send,
+    volume
+  })
   const slateWall = useSlateWall(view)
   const isRoundDealt = useRoundDealt(view)
   const isRefused = status === 'refused'
@@ -135,7 +138,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     volume
   })
   useTimerCue({ clock, view: speakingView, volume })
-  useAmbientMusic({ isTestingSound: false, view: speakingView, volume })
+  useAmbientMusic({ isTestingSound, view: speakingView, volume })
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,

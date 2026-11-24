@@ -2522,6 +2522,16 @@ const PORTUGUESE = defineDictionary({
   },
   preferences: {
     language: 'Idioma',
+    music: {
+      arcade: 'Arcade',
+      drift: 'Deriva',
+      label: 'Música',
+      lofi: 'Lo-fi',
+      lounge: 'Jazz de salão',
+      marimba: 'Marimba na esplanada',
+      mix: 'Aleatória',
+      off: 'Nenhuma'
+    },
     soundCheck: {
       press: 'Testar o som',
       stop: 'Parar o teste'

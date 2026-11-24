@@ -2354,6 +2354,16 @@ export const EN_DICTIONARY = defineDictionary({
   },
   preferences: {
     language: 'Language',
+    music: {
+      arcade: 'Arcade',
+      drift: 'Drift',
+      label: 'Music',
+      lofi: 'Lo-fi',
+      lounge: 'Jazz lounge',
+      marimba: 'Marimba terrace',
+      mix: 'Random',
+      off: 'None'
+    },
     soundCheck: {
       press: 'Test the sound',
       stop: 'Stop the sample'

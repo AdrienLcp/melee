@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
 
@@ -7,6 +7,12 @@ import { saySoundCheck } from '@/features/host/sound-check'
 import type { WallSoundTest } from '@/infrastructure/messaging/use-wall-connection'
 
 type PlayedSample = Extract<WallSoundTest, { type: 'wall.testSound' }>
+
+type WallSoundCheck = {
+  /** Whether the sample is sounding, which the soundtrack gives way to. */
+  isTesting: boolean
+  onSoundTest: (frame: WallSoundTest) => void
+}
 
 /**
  * Plays the sample the console sent and reports how it went, said here as
@@ -20,15 +26,25 @@ export const useWallSoundCheck = ({
   send: (message: ClientMessage) => void
   /** 0 to 1, the room volume. */
   volume: number
-}): ((frame: WallSoundTest) => void) => {
+}): WallSoundCheck => {
+  const [isTesting, setIsTesting] = useState(false)
   const checkRef = useRef<SoundCheck | null>(null)
 
   const play = async ({ checkId, url }: PlayedSample): Promise<void> => {
     checkRef.current?.stop()
 
-    const check = armSoundCheck({ onEnded: () => {}, volume })
+    const check = armSoundCheck({
+      onEnded: () => {
+        if (checkRef.current === check) {
+          checkRef.current = null
+          setIsTesting(false)
+        }
+      },
+      volume
+    })
 
     checkRef.current = check
+    setIsTesting(true)
 
     const outcome = await check.play(url)
 
@@ -48,14 +64,16 @@ export const useWallSoundCheck = ({
     []
   )
 
-  return (frame) => {
-    if (frame.type === 'wall.stopSoundTest') {
-      checkRef.current?.stop()
-      checkRef.current = null
+  return {
+    isTesting,
+    onSoundTest: (frame) => {
+      if (frame.type === 'wall.stopSoundTest') {
+        checkRef.current?.stop()
 
-      return
+        return
+      }
+
+      void play(frame)
     }
-
-    void play(frame)
   }
 }
