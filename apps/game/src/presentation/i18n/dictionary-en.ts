@@ -1245,7 +1245,7 @@ export const EN_DICTIONARY = defineDictionary({
     /** The console laid out in three zones while a wall shows the game. */
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
-      actions: 'Options for {nickname}',
+      actions: '{nickname}, {standing}: change or remove',
       empty:
         'Nobody yet. Read {code} aloud, or show the QR code on the room’s screen.',
       /** The roster's summary on a narrow screen, after its first three seats. */

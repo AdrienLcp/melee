@@ -1,0 +1,62 @@
+// Side-effect module: a seat's standing as a press, and the leaflet it opens.
+@use '../../presentation/styles/typography'
+
+@layer components
+  // A pill rather than the stepper's two squares: the figure is what the row
+  // shows, and the chevron says it opens.
+  .seat-standing-chip.button
+    @include typography.score
+
+    border-radius: var(--radius-full)
+    font-size: var(--text-l)
+    gap: var(--space-2xs)
+    min-block-size: 2.75rem
+    padding-inline: var(--space-s) var(--space-xs)
+    white-space: nowrap
+
+    &:has(.case-mark)
+      font-size: var(--text-m)
+
+    > .control-icon
+      color: var(--ink-muted)
+
+    // The chevron points down at what opens, never sideways like a link's.
+    @media (hover: hover) and (pointer: fine)
+      &[data-hovered] > .control-icon > svg
+        translate: none
+
+  .seat-standing-leaflet.sheet-popover
+    max-width: min(92vw, 18rem)
+    width: 100%
+
+  .seat-standing-sheet
+    display: grid
+    gap: var(--space-s)
+
+  .seat-standing-name
+    @include typography.title
+    @include typography.typed
+
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  .seat-standing-stepper
+    align-items: center
+    display: grid
+    gap: var(--space-xs)
+    grid-template-columns: auto 1fr auto
+
+    > .button
+      padding-inline: 0
+      width: var(--control-height)
+
+  .seat-standing-figure
+    @include typography.score
+
+    font-size: var(--text-xl)
+    text-align: center
+    white-space: nowrap
+
+    &:has(.case-mark)
+      font-size: var(--text-m)

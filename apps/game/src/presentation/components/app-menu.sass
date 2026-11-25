@@ -78,13 +78,14 @@
   :root:has(.host-console-page > .stage:empty, .player-page > .waiting, .wall-page > .stage.arriving)
     --app-menu-animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
 
-  // On the screen of four tiles the trigger is the icon alone, the label kept
-  // for whoever cannot see it: every pixel of that line is the round's. A
-  // round dealt and revealed swaps the two where they stand, the word fading
-  // before its room closes as the icon's opens — `fold.opens-in-line` and
+  // On a player's screen the trigger is the icon alone, the label kept for
+  // whoever cannot see it: the screen of four tiles needs every pixel of
+  // that line, and a word folded there and opened on the reveal came and
+  // went with every round. The fold and the pop are kept for a page that
+  // first draws the trigger worded — `fold.opens-in-line` and
   // `mark.pops-in-line` written out, since the state they turn on is the
   // root's.
-  :root:has(.player-page.framed)
+  :root:has(.player-page)
     --app-menu-label-columns: 0fr
     --app-menu-label-margin: calc(-1 * var(--space-xs))
     --app-menu-label-opacity: 0

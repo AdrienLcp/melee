@@ -1,0 +1,26 @@
+// Side-effect module: the press that takes a seat off the table.
+@layer components
+  .remove-seat.button
+    text-decoration: none
+
+  // A cross alone on the row, as quiet as the dots it replaced.
+  .remove-seat.button:not([data-worded])
+    block-size: var(--control-height)
+    border-radius: var(--radius-s)
+    inline-size: var(--control-height)
+    padding: 0
+
+    &[data-hovered],
+    &[data-pressed]
+      --on-control: var(--danger)
+
+      background: var(--well)
+
+  // The leaflet's last line, set apart from the score by a rule.
+  .remove-seat.button[data-worded]
+    --on-control: var(--danger)
+
+    border-block-start: var(--hairline)
+    justify-content: flex-start
+    min-block-size: 2.75rem
+    padding-block-start: var(--space-s)

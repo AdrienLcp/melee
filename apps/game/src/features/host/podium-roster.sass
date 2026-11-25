@@ -24,7 +24,7 @@
     list-style: none
     row-gap: var(--space-2xs)
 
-  // Rank, pawn, name, tally, menu: the columns line up seat over seat
+  // Rank, pawn, name, tally, cross: the columns line up seat over seat
   // because every row is the same grid.
   .podium-seat
     align-items: center
@@ -54,36 +54,6 @@
 
     &[data-leaving]
       animation: page-leave var(--transition-slow, 0s) var(--ease-in) forwards
-
-    // In a column as narrow as the console's panel, the name and its menu
-    // take the first line and the stepper the second, where it opens with
-    // the game: inline, they left a name five letters.
-    @container podium-roster (width < 26rem)
-      &:has(.podium-tally[data-presses])
-        grid-template-rows: auto auto
-        row-gap: var(--space-2xs)
-
-        > .podium-who
-          display: contents
-
-        .podium-line
-          grid-column: 3 / 5
-          grid-row: 1
-
-        .podium-note
-          grid-column: 3
-          grid-row: 2
-
-        .podium-tally
-          grid-column: 4 / -1
-          grid-row: 2
-
-        > :is(.action-menu-trigger, .podium-menu-slot)
-          grid-column: 5
-          grid-row: 1
-
-        > :is(.podium-rank, .pawn)
-          grid-row: 1
 
   .podium-rank
     @include rank.before-pawn($figures: 2, $gap: var(--space-2xs))
@@ -128,6 +98,14 @@
     justify-self: end
 
     // The fold clips across; a press's ring reaches past its box.
+    > *
+      overflow-clip-margin: focus.$ring-reach
+
+  // The row's own cross while removal is the seat's one action; it folds
+  // away as the standing opens, which takes the removal into its leaflet.
+  .podium-remove
+    @include fold.opens-in-line(var(--space-2xs))
+
     > *
       overflow-clip-margin: focus.$ring-reach
 

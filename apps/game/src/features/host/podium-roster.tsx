@@ -11,24 +11,19 @@ import {
 } from '@melee/core/scoring/scoreboard'
 
 import { shownPoints } from '@/helpers/shown-points'
-import {
-  ActionMenu,
-  ActionMenuItem
-} from '@/presentation/components/action-menu'
-import { Button } from '@/presentation/components/button'
 import { CaseMark } from '@/presentation/components/case-mark'
-import { CrossIcon, MinusIcon, PlusIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import {
   PointsRows,
   usePointsRows
 } from '@/presentation/components/points-rows'
 import { ReadyMark } from '@/presentation/components/ready-mark'
-import { typedName } from '@/presentation/components/typed-name'
 import { useLeavingRows } from '@/presentation/components/use-leaving-rows'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { RichText } from '@/presentation/i18n/rich-text'
+
+import { RemoveSeat } from './remove-seat'
+import { SeatStanding } from './seat-standing'
 
 import './podium-roster.sass'
 
@@ -43,9 +38,9 @@ type PodiumRosterProps = {
 }
 
 /**
- * Who is at the table, ranked, in one list: once the game runs, each seat's
- * standing between the presses that change it, and its removal behind a menu
- * so a press aimed at a `+` never lands on the cross. In a room of teams the
+ * Who is at the table, ranked, in one list, one line a seat: once the game
+ * runs, each seat's standing is the press that opens its `−`, `+` and
+ * removal; before it, the removal is the row's own cross. In a room of teams the
  * presses are the teams', drawn under the seats, because a seat's adjustment
  * never reaches its team. The console's roster, beside a wall or on its own.
  */
@@ -119,6 +114,23 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
             !player.isConnected && translate('player.away'),
             isRanked && sharesRank(rank) && translate('host.podium.tied')
           ].filter((note) => note !== false)
+          // One action is a press of its own; once the standing opens, the
+          // removal goes behind it with the − and +.
+          const isStandingAPress =
+            seatsStand &&
+            seatPresses !== null &&
+            row !== undefined &&
+            !isInLobby
+          const isRemovedFromRow = !isYou && !isStandingAPress
+          const removeThis = () => {
+            onRemovePlayer(player.id)
+          }
+          const standing =
+            board.kind === 'track'
+              ? player.board !== null && (
+                  <CaseMark at={player.board.case} length={board.length} />
+                )
+              : translate('player.score', { points: shownPoints(player.score) })
 
           return (
             <li
@@ -151,81 +163,40 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                 <span
                   className='podium-tally'
                   data-open={!isInLobby || undefined}
-                  data-presses={row !== undefined || undefined}
                   inert={isInLobby}
                 >
                   <span className='podium-tally-pieces'>
-                    {seatPresses !== null && row !== undefined && (
-                      <Button
-                        aria-label={row.takeLabel}
-                        isDisabled={!seatPresses.isLive || !row.canTake}
-                        onPress={() => {
-                          seatPresses.onStep(row, -1)
+                    {seatPresses !== null && row !== undefined ? (
+                      <SeatStanding
+                        isLive={seatPresses.isLive}
+                        nickname={player.nickname}
+                        onRemove={isYou ? null : removeThis}
+                        onStep={(direction) => {
+                          seatPresses.onStep(row, direction)
                         }}
-                        size='small'
-                        variant='outlined'
-                      >
-                        <MinusIcon />
-                      </Button>
-                    )}
-                    <span className='podium-score'>
-                      {board.kind === 'track'
-                        ? player.board !== null && (
-                            <CaseMark
-                              at={player.board.case}
-                              length={board.length}
-                            />
-                          )
-                        : translate('player.score', {
-                            points: shownPoints(player.score)
-                          })}
-                    </span>
-                    {seatPresses !== null && row !== undefined && (
-                      <Button
-                        aria-label={row.giveLabel}
-                        isDisabled={!seatPresses.isLive || !row.canGive}
-                        onPress={() => {
-                          seatPresses.onStep(row, 1)
-                        }}
-                        size='small'
-                        variant='outlined'
-                      >
-                        <PlusIcon />
-                      </Button>
+                        row={row}
+                        standing={standing}
+                      />
+                    ) : (
+                      <span className='podium-score'>{standing}</span>
                     )}
                   </span>
                 </span>
               )}
-              {isYou ? (
-                <span className='podium-menu-slot' />
-              ) : (
-                <ActionMenu
-                  aria-label={translate('host.podium.actions', {
-                    nickname: player.nickname
-                  })}
-                >
-                  <ActionMenuItem
-                    icon={<CrossIcon />}
-                    isDestructive
-                    onAction={() => {
-                      onRemovePlayer(player.id)
-                    }}
-                    textValue={translate
-                      .rich('host.players.removeNamed', {
-                        name: (nickname) => nickname,
-                        nickname: player.nickname
-                      })
-                      .join('')}
-                  >
-                    <RichText
-                      parts={translate.rich('host.players.removeNamed', {
-                        name: typedName,
-                        nickname: player.nickname
-                      })}
+              <span
+                className='podium-remove'
+                data-open={isRemovedFromRow || undefined}
+                inert={!isRemovedFromRow}
+              >
+                <span>
+                  {!isYou && (
+                    <RemoveSeat
+                      nickname={player.nickname}
+                      onRemove={removeThis}
                     />
-                  </ActionMenuItem>
-                </ActionMenu>
-              )}
+                  )}
+                </span>
+              </span>
             </li>
           )
         })}

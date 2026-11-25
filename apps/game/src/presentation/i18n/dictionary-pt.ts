@@ -1328,7 +1328,7 @@ const PORTUGUESE = defineDictionary({
     /** The console laid out in three zones while a wall shows the game. */
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
-      actions: 'Opções para {nickname}',
+      actions: '{nickname}, {standing}: alterar ou retirar',
       empty:
         'Ainda ninguém. Lê {code} em voz alta, ou mostra o código QR no ecrã da sala.',
       /** The roster's summary on a narrow screen, after its first three seats. */

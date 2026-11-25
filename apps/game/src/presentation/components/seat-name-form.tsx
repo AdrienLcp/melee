@@ -11,6 +11,8 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import { Button } from './button'
 import { TextField } from './text-field'
 
+import './seat-name-form.sass'
+
 type SeatNameFormProps = {
   /** Called once the room has taken the name sent, never on a refusal. */
   onRenamed?: () => void
