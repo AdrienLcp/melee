@@ -1365,7 +1365,7 @@ one part.
 - **Operations follow the toolkit's convention.** `pnpm ship` pushes `main`
   and watches CI until staging has the commit; `pnpm secrets:sync` writes the
   deploy's repository secrets from the personal Bitwarden account, through
-  its own CLI profile `~/bitwarden-personal`. `docs/operations/` covers
+  a Bitwarden CLI profile of its own. `docs/operations/` covers
   deploying, hosting, secrets — the three `melee ADMIN_TOKEN` items among
   them — dependencies and troubleshooting, one page per action; the browser
   floor moved to `docs/browser-support.md`.
