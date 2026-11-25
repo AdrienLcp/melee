@@ -80,8 +80,9 @@
       @container (width < 18.75rem)
         display: none
 
-    // A team's name gives way after the pips, never before: "Bleus" cut to
-    // "Bl…" names no team. The threshold grows by the longest, "Turquoise".
+    // A team's name gives way after the pips, never before: a colour cut to
+    // two letters and an ellipsis names no team. The threshold grows by the
+    // longest colour name.
     &:has(> .you .team) .pips
       @container (width < 23.25rem)
         display: none
