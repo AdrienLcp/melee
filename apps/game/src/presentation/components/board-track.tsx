@@ -142,7 +142,9 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
                 style={{
                   '--case-order': caseIndex / length,
                   '--column': column,
+                  '--digits': String(caseIndex).length,
                   '--pawn-scale': pawnScaleFor(drawn.length),
+                  '--pawns-drawn': drawn.length,
                   '--row': row
                 }}
               >
@@ -387,23 +389,20 @@ const stepTowards = ({
 }
 
 /**
- * A pawn's height as a share of the band, measured so a case's whole crowd
- * fits under its number: every pawn starts on one case.
+ * A pawn's width as a share of the band, the size it is drawn at where the
+ * case leaves its number room for it: the stylesheet shrinks it further where
+ * it would reach the number.
  */
-const pawnScaleFor = (standing: number): number => {
-  if (standing <= 1) {
+const pawnScaleFor = (drawn: number): number => {
+  if (drawn <= 1) {
     return 0.6
   }
 
-  if (standing === 2) {
-    return 0.46
+  if (drawn === 2) {
+    return 0.5
   }
 
-  if (standing <= 4) {
-    return 0.34
-  }
-
-  return 0.22
+  return 0.44
 }
 
 /** The edge of the screen a case lies along, which it comes in from and goes back out past. */
@@ -458,7 +457,7 @@ const TrackEnd: React.FC<{ end: TrackEndKind }> = ({ end }) => {
 
 /**
  * The crowd past three on one case, kept mounted on every case so it opens
- * beside the pawns and closes on the last figure it said.
+ * over the pawns and closes on the last figure it said.
  */
 const CrowdCount: React.FC<{ count: number }> = ({ count }) => {
   const translate = useTranslate()

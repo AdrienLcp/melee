@@ -938,8 +938,8 @@ its `AwayMark` tag; a spent tile is a socket.
   mark, and the head alone stands only in a crowd on the track (checked on a
   full quiz reveal at 1440×900 and 390 wide). At
   1440×900 a hundred-square track draws 36px cases: a pawn alone stands
-  21.6px, two 16.6px, a crowd of three or four 12.2px, and only the crowds
-  are dots. The phone's strip never draws one under 13.2px (a 2.75rem case ×
+  whole where it clears the number, and a huddle of two or more is dots.
+  The phone's strip never draws one under 13.2px (a 2.75rem case ×
   0.3), so no silhouette anywhere is smaller than the threshold.
 - **Danger and good stamps**: rectangular blocks, trimmed to cap height.
 
@@ -1294,13 +1294,23 @@ the strip, whose pawns are sized off the case's height, that needs a case
 29/20 as wide as it is tall, so a narrower one draws two pawns (under 7/6,
 one) and a count that says so — at 390 wide a full table's start reads two
 pawns and `+22`, and the whole ribbon's square cases one and `+23`. A case
-narrower than tall sizes its pawns off its width (`30cqi`). On the wall the
-count is a pill, and a plus, two figures and its padding stand 2.6 times its
-size: under the type's floor it follows its case down (`33cqi`, 7.6px on a
-390-wide wall's 23px cases), and a crowd's three pawns stand abreast on a case
-narrower than the band (`33cqi`), where wrapped they stood the count over the
-case's top. Four pawns and no count stand abreast too (`27cqi`): wrapped three
-and one, four teams on the start covered _Départ_ at 1440×900.
+narrower than tall sizes its pawns off its width (`30cqi`).
+
+**On the wall the pawns huddle in the corner across from the number**
+(2026-11-25): bottom right, each half behind the next (`$huddle-step`, 0.55 of
+a pawn showing), so four pawns stand at 0.44 of the band where abreast they
+stood at 0.34, and one alone at 0.6 — centred, it stood beside the number and
+over it on a square case. Past four, three are drawn and the count is a pill
+set on the huddle's shoulder, out of the flow, so it opens and closes on
+opacity and scale without moving a pawn. The huddle is drawn at the band's
+share, held inside its case, and shrunk until it clears the number one way or
+the other: under it (`1.3` of the number's size, the inset and its line) or
+beside it along the line (the number's reach, `0.45 + 0.62` of its size a
+figure; the start's and finish's word `5.2`, `1.6` once a glyph). Each case
+publishes `--number-font` and `--number-reach` for that. A case under 2.75rem
+tall — a hundred squares on a 390-wide wall — has no room for the number, the
+count at the type's floor and a pawn, so the count hides and the huddle alone
+says a crowd: the number wins.
 
 ### Teams (`TeamRoster`, `PawnPiecesProvider`)
 

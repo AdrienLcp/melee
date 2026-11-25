@@ -118,6 +118,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A case's number stays readable under its pawns.** On the
+  board round the wall, a pawn alone stands in the bottom-right corner, across
+  from the number, and several on one case huddle there, each half behind the
+  next, larger than they stood abreast; past four, the `+N` sits on the
+  huddle's shoulder. Every size is held clear of the number.
 - `[Game]` **The blind test's four candidates fill the screen**, as the quiz's
   do, instead of a band centred in it: four rows on a phone, two by two on a
   tablet. Two abreast a tile is never taller than it is wide, and the four never
