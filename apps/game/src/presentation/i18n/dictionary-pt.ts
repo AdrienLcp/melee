@@ -1323,6 +1323,7 @@ const PORTUGUESE = defineDictionary({
           }
         }
       }),
+      remove: 'Retirar',
       removeNamed: 'Retirar <name>{nickname}</name>'
     },
     /** The console laid out in three zones while a wall shows the game. */

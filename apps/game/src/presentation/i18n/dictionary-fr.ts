@@ -1189,6 +1189,7 @@ export const FR_DICTIONARY = defineDictionary({
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} joueur', other: '{?} joueurs' } }
       }),
+      remove: 'Retirer',
       removeNamed: 'Retirer <name>{nickname}</name>'
     },
     podium: {

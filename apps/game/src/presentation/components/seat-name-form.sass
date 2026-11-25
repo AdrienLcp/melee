@@ -9,7 +9,9 @@
       flex: 1
       min-width: 0
 
-    // Level with the input, which sits under the field's label.
-    > .button
+    // Level with the input, which sits under the field's label, and as tall:
+    // a press shorter than the field beside it read as misplaced. After the
+    // field in the selector, to outrank the small press's own height.
+    > .text-field ~ .button.small
       align-self: end
       min-height: var(--control-height)

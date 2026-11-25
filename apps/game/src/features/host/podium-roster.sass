@@ -93,7 +93,7 @@
   // figure with two buttons left beside it. Folded away in the lobby, where
   // nobody stands anywhere yet, and opened with the game.
   .podium-tally
-    @include fold.opens-in-line(0rem, $gives-back-height: true)
+    @include fold.opens-in-line(0rem, $gives-back-height: true, $trades-places: true)
 
     justify-self: end
 
@@ -104,7 +104,7 @@
   // The row's own cross while removal is the seat's one action; it folds
   // away as the standing opens, which takes the removal into its leaflet.
   .podium-remove
-    @include fold.opens-in-line(var(--space-2xs))
+    @include fold.opens-in-line(var(--space-2xs), $trades-places: true)
 
     > *
       overflow-clip-margin: focus.$ring-reach

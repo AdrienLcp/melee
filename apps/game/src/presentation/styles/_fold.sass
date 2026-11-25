@@ -67,12 +67,17 @@ $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
     overflow: clip
     overflow-clip-margin: focus.$ring-reach
 
-@mixin -line-closed($gap, $side, $gives-back-height)
+@mixin -line-closed($gap, $side, $gives-back-height, $trades-places)
   grid-template-columns: 0fr
   margin-inline-#{$side}: calc(-1 * #{$gap})
   opacity: 0
 
-  @if $gives-back-height
+  @if $trades-places and $gives-back-height
+    grid-template-rows: 0fr
+    transition: opacity var(--transition-fast, 0s) var(--ease-in), grid-template-columns $-opens, margin-inline-#{$side} $-opens, grid-template-rows 0s linear var(--transition-base, 0s)
+  @else if $trades-places
+    transition: opacity var(--transition-fast, 0s) var(--ease-in), grid-template-columns $-opens, margin-inline-#{$side} $-opens
+  @else if $gives-back-height
     grid-template-rows: 0fr
     transition: opacity $-closes, grid-template-columns $-closes $-after-the-room, margin-inline-#{$side} $-closes $-after-the-room, grid-template-rows 0s linear calc(var(--transition-base, 0s) + #{$-after-the-room})
   @else
@@ -95,22 +100,25 @@ $-after-the-room: calc(var(--transition-fast, 0s) * 0.5)
 /// in its line. `$gives-back-height` is for a word that sits in a column once
 /// its line is laid out another way: closed, it takes no height either,
 /// handed back at once when it opens and only once it has narrowed and faded
-/// when it closes, so the line never sees the height move.
+/// when it closes, so the line never sees the height move. `$trades-places`
+/// narrows it on the opening curve at once, for two words of one line
+/// swapping places: the line between them moves one way, never squeezed by
+/// both at once.
 ///
 /// One grid column going `0fr → 1fr`, because a word's width is not a length
 /// a transition can reach. The child is clipped across only and held on one
 /// line, or the text wraps as its room narrows. Folded, the word is still read:
 /// it only stops being drawn. Under reduced motion it is shown or gone at once.
-@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null, $side: start, $gives-back-height: false)
+@mixin opens-in-line($gap: var(--space-xs), $open: '&[data-open]', $closed: null, $side: start, $gives-back-height: false, $trades-places: false)
   display: inline-grid
 
   @if $closed
     @include -line-open($side, $gives-back-height)
 
     #{$closed}
-      @include -line-closed($gap, $side, $gives-back-height)
+      @include -line-closed($gap, $side, $gives-back-height, $trades-places)
   @else
-    @include -line-closed($gap, $side, $gives-back-height)
+    @include -line-closed($gap, $side, $gives-back-height, $trades-places)
 
     #{$open}
       @include -line-open($side, $gives-back-height)

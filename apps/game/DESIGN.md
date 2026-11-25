@@ -703,6 +703,16 @@ the list; no _First_ stamp, because the number says it), **Table** (the teams, t
 the judge and the round count), **Room** (the room drawn from above, then the hold
 and the countdown) and **Players** (the roster with its ✕).
 
+A seat of the Players tab is one line at every width — rank, pawn, name,
+then one control: the ✕ in the lobby, and once the game runs the seat's
+standing as an outlined pill (figure and chevron, 2.75rem) opening a
+leaflet of its name, − figure +, and _Retirer_ (never on the console's own
+seat). The two trade places on `fold.opens-in-line`'s `$trades-places`:
+opened and folded on the same curve, the name between them keeps its width
+(199px at 390px, 24 seats), where the ✕ fading before its room closed
+squeezed every name to an ellipsis for 200ms. A room of teams keeps a plain
+figure and the ✕, the presses being the teams'.
+
 The Room tab draws the room as a selector, one `ToggleButtonGroup` of three
 shapes: the room's screen on top (dashed while none is paired), the table in
 the middle with the other seats' pawns round its rim (drawn, not pressable),

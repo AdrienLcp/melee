@@ -29,9 +29,12 @@
     max-width: min(92vw, 18rem)
     width: 100%
 
+  // One column held to the leaflet: a long name in the removal's label
+  // widened it past the popover's edge and cut the `+` off.
   .seat-standing-sheet
     display: grid
     gap: var(--space-s)
+    grid-template-columns: minmax(0rem, 1fr)
 
   .seat-standing-name
     @include typography.title

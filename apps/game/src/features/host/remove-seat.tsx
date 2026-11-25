@@ -2,14 +2,12 @@ import type React from 'react'
 
 import { Button } from '@/presentation/components/button'
 import { CrossIcon } from '@/presentation/components/icons'
-import { typedName } from '@/presentation/components/typed-name'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { RichText } from '@/presentation/i18n/rich-text'
 
 import './remove-seat.sass'
 
 type RemoveSeatProps = {
-  /** Says what it does beside its cross, inside a leaflet; the cross alone on a row. */
+  /** Says its verb beside its cross, inside a leaflet under the seat's name; the cross alone on a row. */
   isWorded?: boolean
   nickname: string
   onRemove: () => void
@@ -25,34 +23,31 @@ export const RemoveSeat: React.FC<RemoveSeatProps> = ({
   onRemove
 }) => {
   const translate = useTranslate()
+  const label = translate
+    .rich('host.players.removeNamed', {
+      name: (name) => name,
+      nickname
+    })
+    .join('')
 
   if (isWorded) {
     return (
       <Button
+        aria-label={label}
         className='remove-seat'
         data-worded
         icon={<CrossIcon />}
         onPress={onRemove}
         variant='underlined'
       >
-        <RichText
-          parts={translate.rich('host.players.removeNamed', {
-            name: typedName,
-            nickname
-          })}
-        />
+        {translate('host.players.remove')}
       </Button>
     )
   }
 
   return (
     <Button
-      aria-label={translate
-        .rich('host.players.removeNamed', {
-          name: (name) => name,
-          nickname
-        })
-        .join('')}
+      aria-label={label}
       className='remove-seat'
       onPress={onRemove}
       variant='underlined'

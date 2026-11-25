@@ -43,7 +43,8 @@ A motion seen twice is a mixin, never retyped:
 - `fold.opens-in-column` — a block of a flex column, its row going `0fr → 1fr`;
   `$closed` where the state names the closed side, `$trades-places` for two
   folds swapping places, `$until-found` for react-aria's `hidden="until-found"`.
-- `fold.opens-in-line` — a word of a line, its column going `0fr → 1fr`.
+- `fold.opens-in-line` — a word of a line, its column going `0fr → 1fr`;
+  `$trades-places` for two pieces of a line swapping places.
 - `fold.opens-row` — one row of a grid among rows that stay.
 - `fade.fades-in-place` — a piece laid over the page, travelling a little as
   it fades, hidden once gone; `fade.stepped-aside` is its leaving half alone.

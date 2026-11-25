@@ -1240,6 +1240,7 @@ export const EN_DICTIONARY = defineDictionary({
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} player', other: '{?} players' } }
       }),
+      remove: 'Remove',
       removeNamed: 'Remove <name>{nickname}</name>'
     },
     /** The console laid out in three zones while a wall shows the game. */

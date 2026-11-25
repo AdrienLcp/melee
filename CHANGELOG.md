@@ -62,18 +62,23 @@ one part.
 
 ### Fixes
 
-- `[Game]` **The console's Players tab is one list.** Each seat's case or
-  points sits between its − and + on the seat's own row, opened with the
-  game, and its removal behind the row's menu — the same list as beside a
-  wall. A press no longer re-ranks the list under the thumb: the order is read
-  again as the phase turns, so a second `+` lands on the seat the first one
-  did. A case beside a name prints its number in the middle; the board's
+- `[Game]` **The console's Players tab is one list, one line a seat.** In the
+  lobby a seat's row carries its ✕; once the game runs, the ✕ gives way to
+  the seat's case or points, a press opening its − and + and _Retirer_ — the
+  same list as beside a wall, and a full table of long names on a phone with
+  no second line. A press no longer re-ranks the list under the thumb: the
+  order is read again as the phase turns, so a second `+` lands on the seat
+  the first one did. A case beside a name prints its number in the middle; the board's
   cases have theirs back in the corner, clear of the pawns.
 - `[Game]` **Cinq indices' shut rungs hold their worth.** A rung still shut is
   never shorter than its worth, which spilled over the dashed edge, and a
   written rung shows no glyph: five quote marks said nothing and read as
   letters. The four choices run the ladder's whole width until a seat is
   out, the seats out widening in beside them.
+- `[Game]` **The rename field's _Changer_ stands beside it**, a gap apart
+  and as tall, in the menu as in the seat's leaflet, and a player's menu
+  button stays the icon alone from the lobby to the reveal instead of
+  growing its label back between two rounds.
 - `[Game]` **_Oui, on ferme_ lands where _Fermer la table_ was.** The
   warning opened above the presses and pushed the confirm a line down, so the
   pointer had to chase it; it opens under them now, the confirm in the same
