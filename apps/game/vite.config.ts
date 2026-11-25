@@ -33,7 +33,7 @@ const HOME_HEAD = PAGE_HEADS[DEFAULT_LOCALE].home
 /**
  * The oldest browsers the syntax is lowered for — a TV of 2020 among them.
  * The built-ins they lack are `src/infrastructure/polyfills.ts`, and the
- * reasoning is `docs/deploying.md`, _Browser support_.
+ * reasoning is `docs/browser-support.md`.
  */
 const SUPPORTED_BROWSERS = ['chrome87', 'edge88', 'firefox78', 'safari14.1']
 

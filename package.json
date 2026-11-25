@@ -2,6 +2,7 @@
   "author": "Adrien Lacourpaille",
   "devDependencies": {
     "@adrienlcp/biome-config": "^0.3.0",
+    "@adrienlcp/result": "^0.1.1",
     "@adrienlcp/tsconfig": "^0.1.1",
     "@biomejs/biome": "2.6.4",
     "@cspell/dict-fr-fr": "^2.3.2",
@@ -31,6 +32,8 @@
     "lint": "biome check --write",
     "lint:ci": "biome ci",
     "prepare": "git config core.hooksPath .githooks",
+    "secrets:sync": "node scripts/operations/sync-secrets.ts",
+    "ship": "node scripts/operations/ship.ts",
     "spell": "cspell --no-progress --gitignore \"**\"",
     "test": "pnpm --filter @melee/protocol --filter @melee/core --filter @melee/server --filter @melee/game test",
     "test:core:watch": "pnpm --filter @melee/core test:watch",

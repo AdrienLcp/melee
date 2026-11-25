@@ -1362,6 +1362,14 @@ one part.
 
 ### Internal
 
+- **Operations follow the toolkit's convention.** `pnpm ship` pushes `main`
+  and watches CI until staging has the commit; `pnpm secrets:sync` writes the
+  deploy's repository secrets from the personal Bitwarden account, through
+  its own CLI profile `~/bitwarden-personal`. `docs/operations/` covers
+  deploying, hosting, secrets — the three `melee ADMIN_TOKEN` items among
+  them — dependencies and troubleshooting, one page per action; the browser
+  floor moved to `docs/browser-support.md`.
+
 - **Every worktree runs its end-to-end servers on ports of its own.** Three
   ports hashed from the checkout's path (`e2e/support/worktree-ports.ts`,
   `MELEE_E2E_PORT_SLOT` to force a slot), so parallel sessions' `pnpm

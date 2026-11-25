@@ -146,18 +146,9 @@ admin key: `GET /api/admin/reports?kind=bug-report` lists them and
 `/admin` on any environment (`https://staging.melee.adrienlcp.com/admin`,
 the production host likewise) asks for the admin key and keeps it in memory
 alone: a reload asks again. The key is the Worker secret `ADMIN_TOKEN`, one
-value per environment, each an item of the owner's personal Bitwarden (folder
-`Projects`), which fills the field:
-
-| Environment | Bitwarden item                 | Where it is set                                                         |
-| ----------- | ------------------------------ | ----------------------------------------------------------------------- |
-| production  | `melee ADMIN_TOKEN production` | Worker `melee`: `wrangler secret put ADMIN_TOKEN`                       |
-| staging     | `melee ADMIN_TOKEN staging`    | Worker `melee-staging`: `wrangler secret put ADMIN_TOKEN --env staging` |
-| `pnpm dev`  | `melee ADMIN_TOKEN dev`        | `apps/server/.dev.vars` (git-ignored)                                   |
-
-From `apps/server`, with the personal Bitwarden CLI profile
-(`$env:BITWARDENCLI_APPDATA_DIR = "$HOME\bitwarden-personal"`):
-`bw get password "melee ADMIN_TOKEN staging" | pnpm exec wrangler secret put ADMIN_TOKEN --env staging`.
+value per environment, each an item of the owner's personal Bitwarden: which
+item, and how it reaches each Worker and `pnpm dev`, is
+[`operations/secrets.md`](operations/secrets.md).
 The page calls
 `GET /api/admin/rooms`, `/api/admin/reports` and `/api/admin/reports/:id`
 with `Authorization: Bearer <key>`; anything else — no key, a wrong one, a

@@ -623,7 +623,7 @@ At 414 px and 1920 px:
 
 ## An old browser, through the repository's Playwright
 
-The floor (`docs/deploying.md`, _Browser support_) is checked on a real old
+The floor (`docs/browser-support.md`) is checked on a real old
 Chromium: a snapshot from
 `storage.googleapis.com/chromium-browser-snapshots/Win_x64/<position>/chrome-win.zip`
 (position 911519 is Chromium 94), unzipped outside the repository and

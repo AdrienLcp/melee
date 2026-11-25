@@ -4,7 +4,7 @@
  * a five-year-old TV running our JavaScript still threw on the first
  * `toSorted` and showed the error screen. Each entry names the first Chrome
  * and Safari that ship it; the list is what the built bundle calls, checked
- * against `docs/deploying.md`, _Browser support_.
+ * against `docs/browser-support.md`.
  */
 
 const defineMissing = (target: object, name: string, value: unknown): void => {

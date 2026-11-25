@@ -169,6 +169,9 @@ importers:
       '@adrienlcp/biome-config':
         specifier: ^0.3.0
         version: 0.3.0(@biomejs/biome@2.6.4)
+      '@adrienlcp/result':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@adrienlcp/tsconfig':
         specifier: ^0.1.1
         version: 0.1.1

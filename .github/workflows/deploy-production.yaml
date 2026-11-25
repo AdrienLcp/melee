@@ -3,7 +3,7 @@ name: Deploy production
 # Run by hand only — `gh workflow run deploy-production.yaml`, or the
 # Actions tab. Every push already lands on staging; production gets the
 # commit staging runs, or any commit of main named in `commit`, which is
-# also how a bad deploy is rolled back. See docs/deploying.md.
+# also how a bad deploy is rolled back. See docs/operations/deploying.md.
 on:
   workflow_dispatch:
     inputs:

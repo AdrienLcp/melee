@@ -108,8 +108,12 @@ Every push to `main`, or `gh workflow run ci.yaml` by hand, deploys `main` to
 (`wrangler deploy --env staging`), with rooms of its own and kept out of search
 engines. Production, `https://melee.adrienlcp.com`, is deployed by hand with
 `gh workflow run deploy-production.yaml` — the commit staging runs, or any
-commit of `main`, which is also the rollback. How, and what each one runs, is
-in [`docs/deploying.md`](docs/deploying.md).
+commit of `main`, which is also the rollback. Shipping is `pnpm ship`: it
+pushes `main` and watches CI until staging has the commit.
+
+Deploying, rolling back, the hosting, the secrets and what to do when a step
+breaks — each with its prerequisites, the exact command and the errors met
+most often — are in [`docs/operations/`](docs/operations/).
 
 Why a Durable Object per room, and what Render cost before it, is in
 [`docs/plans/28-cloudflare.md`](docs/plans/28-cloudflare.md).
@@ -117,6 +121,8 @@ Why a Durable Object per room, and what Render cost before it, is in
 ## Docs
 
 - [`docs/architecture.md`](docs/architecture.md) — how the pieces fit, and why
+- [`docs/operations/`](docs/operations/) — deploying, hosting, secrets,
+  dependencies and troubleshooting, one page per action
 - [`apps/game/DESIGN.md`](apps/game/DESIGN.md) — the visual world: the phase is
   the colour, the three control materials, the icon family. Read it before
   touching anything a user sees
