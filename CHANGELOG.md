@@ -62,6 +62,8 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A team's name is no longer cut short in a round's header** on
+  a phone held upright: the round's progress pips give way first.
 - `[Game]` **The console's Players tab is one list, one line a seat.** In the
   lobby a seat's row carries its ✕; once the game runs, the ✕ gives way to
   the seat's case or points, a press opening its − and + and _Retirer_ — the

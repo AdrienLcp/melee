@@ -80,6 +80,12 @@
       @container (width < 18.75rem)
         display: none
 
+    // A team's name gives way after the pips, never before: "Bleus" cut to
+    // "Bl…" names no team. The threshold grows by the longest, "Turquoise".
+    &:has(> .you .team) .pips
+      @container (width < 23.25rem)
+        display: none
+
     // The seat leads the line, where a glance lands first; the round is the
     // room's, so it waits at the far end beside the menu and the invitation.
     .round-index,
