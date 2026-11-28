@@ -49,6 +49,7 @@ export const newRoom = ({
     keepsBySeat: new Map(),
     lastActivityAt: now,
     openedEntries: [],
+    openingRefusedFor: null,
     ownLines: NO_OWN_LINES,
     paidRounds: [],
     phase: 'lobby',

@@ -23,7 +23,11 @@ import { isAbandoned } from '@melee/core/room/seat-presence'
 
 import type { Participant, Room } from './room'
 
-export type JoinError = 'room_full' | 'nickname_taken' | 'room_plays_aloud'
+export type JoinError =
+  | 'nickname_of_away_seat'
+  | 'nickname_taken'
+  | 'room_full'
+  | 'room_plays_aloud'
 export type HostClaimError = 'host_already_connected' | 'host_reconnecting'
 
 export const touch = (room: Room, now: number): void => {
@@ -42,6 +46,13 @@ export const touch = (room: Room, now: number): void => {
  * the old name in memory until it reloads: honouring the hello here would let a
  * Wi-Fi blink undo a rename nobody asked to undo. The pawn's piece follows the
  * same rule: `askedPiece` is asked for a new seat only.
+ *
+ * **A claim lost is not a seat lost.** A device can come back with a session
+ * nobody holds — the QR opened in a scanner's browser and then the real one —
+ * and a name held by a seat whose screen is away is that player far more often
+ * than a namesake. The join is refused with `nickname_of_away_seat`, and the
+ * same name sent again with `takesBackAwaySeat` takes the seat over, score and
+ * all. Never a connected seat, and never the console's own.
  */
 export const joinAsPlayer = ({
   askedPiece,
@@ -49,7 +60,8 @@ export const joinAsPlayer = ({
   nickname,
   now,
   room,
-  sessionId
+  sessionId,
+  takesBackAwaySeat = false
 }: {
   /** The piece this device last played as, and `null` from one that never picked. */
   askedPiece: PawnPiece | null
@@ -58,6 +70,8 @@ export const joinAsPlayer = ({
   now: number
   room: Room
   sessionId: SessionId
+  /** The screen said it is the away seat holding `nickname`. */
+  takesBackAwaySeat?: boolean
 }): Result<Participant, JoinError> => {
   touch(room, now)
 
@@ -76,12 +90,26 @@ export const joinAsPlayer = ({
     return Result.failure('room_plays_aloud')
   }
 
-  if (room.players.size >= MAX_PLAYERS_PER_ROOM) {
-    return Result.failure('room_full')
+  const namesake = seatNamed({ nickname, room, sessionId })
+
+  if (namesake !== undefined) {
+    if (namesake.isConnected || namesake.sessionId === room.hostSessionId) {
+      return Result.failure('nickname_taken')
+    }
+
+    if (!takesBackAwaySeat) {
+      return Result.failure('nickname_of_away_seat')
+    }
+
+    namesake.sessionId = sessionId
+    namesake.disconnectedAt = null
+    namesake.isConnected = true
+
+    return Result.success(namesake)
   }
 
-  if (isNicknameTaken({ nickname, room, sessionId })) {
-    return Result.failure('nickname_taken')
+  if (room.players.size >= MAX_PLAYERS_PER_ROOM) {
+    return Result.failure('room_full')
   }
 
   const piece = pawnPieceForArrival({
@@ -338,6 +366,11 @@ export const markReady = ({
   }
 
   participant.isReady = isReady
+
+  if (isReady) {
+    room.openingRefusedFor = null
+  }
+
   touch(room, now)
 
   return Result.success()
@@ -394,10 +427,12 @@ export const updateSettings = (
     room.readyStartsAt = null
   }
 
+  room.openingRefusedFor = null
   touch(room, now)
 }
 
-const isNicknameTaken = ({
+/** The other seat already held under `nickname`, whatever its case. */
+const seatNamed = ({
   nickname,
   room,
   sessionId
@@ -405,9 +440,15 @@ const isNicknameTaken = ({
   nickname: Nickname
   room: Room
   sessionId: SessionId
-}): boolean =>
-  [...room.players.values()].some(
+}): Participant | undefined =>
+  [...room.players.values()].find(
     (participant) =>
       participant.sessionId !== sessionId &&
       participant.nickname.toLowerCase() === nickname.toLowerCase()
   )
+
+const isNicknameTaken = (options: {
+  nickname: Nickname
+  room: Room
+  sessionId: SessionId
+}): boolean => seatNamed(options) !== undefined

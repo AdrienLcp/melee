@@ -727,6 +727,8 @@ const PORTUGUESE = defineDictionary({
       'Essa palavra leva uma letra que não saiu, ou mais vezes do que saiu.',
     music_source_unavailable:
       'O Deezer, de onde vem a música, não responde. Não são as tuas colunas: tenta daqui a pouco.',
+    nickname_of_away_seat:
+      'Um lugar com este nome espera o seu jogador, cujo ecrã se desligou.',
     nickname_taken: 'Esse nome já está ocupado.',
     no_content_available: 'Não resta nada para jogar. Muda as definições.',
     no_game_chosen: 'Escolhe primeiro um jogo.',
@@ -2475,6 +2477,10 @@ const PORTUGUESE = defineDictionary({
     nickname: {
       action: 'Entrar',
       label: 'Nome',
+      takeBack: {
+        action: 'Retomar o meu lugar',
+        question: 'És tu? O teu lugar espera por ti, com os teus pontos.'
+      },
       title: 'Como te chamamos?'
     },
     points: defineTranslation('{points:plural}', {
@@ -2676,6 +2682,15 @@ const PORTUGUESE = defineDictionary({
   room: {
     documentTitle: '{game} — Mêlée',
     documentTitleLobby: 'Mêlée',
+    openingRefused: {
+      music_source_unavailable:
+        'A música não responde. Voltamos a tentar daqui a uns segundos.',
+      no_content_available:
+        'Não resta nada de novo para jogar com estas definições: o anfitrião tem de as mudar.',
+      spoken_needs_two_teams:
+        'Em voz alta, são precisas duas equipas com pelo menos um jogador cada.',
+      title: 'A ronda não pôde começar'
+    },
     pause: {
       detail: 'A ronda continua onde parou.',
       press: 'Pausa',

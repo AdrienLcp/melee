@@ -123,8 +123,14 @@ export const commitRoom = (engine: RoomEngine): void => {
  * speaks onto each wall's socket.
  */
 export const publishRoom = (engine: RoomEngine): void => {
-  settleReadyHold(engine.room, engine.now())
-  settleTableStart(engine.room, engine.now())
+  const settling = {
+    isHostConnected: isHostConnected(engine),
+    now: engine.now(),
+    room: engine.room
+  }
+
+  settleReadyHold(settling)
+  settleTableStart(settling)
   electSpeakerWall(engine)
   commitRoom(engine)
   broadcastRoom(engine)

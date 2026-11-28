@@ -3,6 +3,7 @@ import type { Difficulty } from '@melee/protocol/difficulty'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { RoundId, SessionId } from '@melee/protocol/identifiers'
 import { byLocale } from '@melee/protocol/locale'
+import type { OpeningRefusal } from '@melee/protocol/room'
 
 import { randomUnit, shuffled } from '@melee/core/helpers/random'
 import { drawPlayableNumbers } from '@melee/core/makenumber/playable-draw'
@@ -471,11 +472,10 @@ export const beginRound = async (
         : hostQuestionOf({ difficulty: game.difficulty, question: banked }))
 
     if (question === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'No unplayed question is left in those categories'
       })
-      publishRoom(engine)
 
       return
     }
@@ -502,11 +502,10 @@ export const beginRound = async (
     })
 
     if (content === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'No new puzzle is left to deal on those goals'
       })
-      publishRoom(engine)
 
       return
     }
@@ -528,11 +527,10 @@ export const beginRound = async (
 
   if (game.kind === 'blacksquare') {
     if (room.settings.mode.kind === 'spoken' && !canTakeSpokenTurn(room)) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'spoken_needs_two_teams',
         message: 'A spoken round needs two teams with a seat each'
       })
-      publishRoom(engine)
 
       return
     }
@@ -556,11 +554,10 @@ export const beginRound = async (
         : { playedId: playedBlackSquareThemeId(banked.id), theme: banked })
 
     if (dealt === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Every black-square theme has been played in this room'
       })
-      publishRoom(engine)
 
       return
     }
@@ -599,11 +596,10 @@ export const beginRound = async (
       })
 
     if (events === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Not enough unplayed events are left to deal a round'
       })
-      publishRoom(engine)
 
       return
     }
@@ -634,11 +630,10 @@ export const beginRound = async (
     })
 
     if (content === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Every place in the bank has been placed'
       })
-      publishRoom(engine)
 
       return
     }
@@ -671,11 +666,10 @@ export const beginRound = async (
           }
 
     if (line === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'The most-likely bank is empty'
       })
-      publishRoom(engine)
 
       return
     }
@@ -706,11 +700,10 @@ export const beginRound = async (
     })
 
     if (drawn === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Nothing is left to climb to'
       })
-      publishRoom(engine)
 
       return
     }
@@ -751,11 +744,10 @@ export const beginRound = async (
         : { playedId: fromEvening.id, prompt: fromEvening.text }
 
     if (drawn === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'The think-alike bank is empty'
       })
-      publishRoom(engine)
 
       return
     }
@@ -790,11 +782,10 @@ export const beginRound = async (
       })
 
     if (row === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Every quantity in the bank has been estimated'
       })
-      publishRoom(engine)
 
       return
     }
@@ -843,12 +834,11 @@ export const beginRound = async (
         : [fromDeck.pair]
 
     if (pairs === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message:
           'Too few quantities the room has not compared are left to deal five pairs'
       })
-      publishRoom(engine)
 
       return
     }
@@ -882,11 +872,10 @@ export const beginRound = async (
     const drawn = drawLongestWord({ language: game.language })
 
     if (drawn === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'No draw held a long enough word'
       })
-      publishRoom(engine)
 
       return
     }
@@ -908,11 +897,10 @@ export const beginRound = async (
     const drawn = drawPlayableNumbers()
 
     if (drawn === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'No draw made its target from three tiles or more'
       })
-      publishRoom(engine)
 
       return
     }
@@ -940,11 +928,10 @@ export const beginRound = async (
     })
 
     if (drawn === null) {
-      tellHost(engine, {
+      refuseOpening(engine, {
         code: 'no_content_available',
         message: 'Every word of that length has been dealt'
       })
-      publishRoom(engine)
 
       return
     }
@@ -1012,14 +999,22 @@ export const beginRound = async (
       faults: drawn.error.faults,
       reason: drawn.error.code
     })
+    // A source with nothing left to play answers the next request the same.
+    if (drawn.error.code === NOTHING_PLAYABLE.code) {
+      refuseOpening(engine, {
+        code: drawn.error.code,
+        message: 'Nothing left to play from the music catalogue'
+      })
+
+      return
+    }
+
     tellHost(engine, {
       code: drawn.error.code,
       message: 'Could not load a track from the music catalogue'
     })
-    retryHeldDraw(engine, {
-      heldUntil,
-      isExhausted: drawn.error.code === NOTHING_PLAYABLE.code
-    })
+    room.openingRefusedFor = drawn.error.code
+    retryHeldDraw(engine, heldUntil)
     publishRoom(engine)
 
     return
@@ -1163,21 +1158,17 @@ const waitToOpen = async (
 
 /**
  * A hold whose draw failed used to leave the reveal on screen with nothing
- * counting, until somebody thought to press for the next round. A source with
- * nothing left to play is not retried: the next request answers the same, so
- * the hold is spent and the room waits for its host.
+ * counting, until somebody thought to press for the next round. A catalogue
+ * that timed out is tried again, the countdown restarted on every screen
+ * beside the reason it restarted (`openingRefusedFor`).
  */
-const retryHeldDraw = (
-  engine: RoomEngine,
-  { heldUntil, isExhausted }: { heldUntil: number | null; isExhausted: boolean }
-): void => {
+const retryHeldDraw = (engine: RoomEngine, heldUntil: number | null): void => {
   const { room } = engine
-  const retriesAt = isExhausted
-    ? null
-    : engine.now() +
-      DRAW_RETRY_MS +
-      room.settings.countdownMs +
-      TRACK_DRAW_LEAD_MS
+  const retriesAt =
+    engine.now() +
+    DRAW_RETRY_MS +
+    room.settings.countdownMs +
+    TRACK_DRAW_LEAD_MS
 
   if (heldUntil === null) {
     return
@@ -1186,18 +1177,44 @@ const retryHeldDraw = (
   if (room.phase === 'lobby') {
     room.readyStartsAt = retriesAt
 
-    if (retriesAt === null) {
-      for (const seat of room.players.values()) {
-        seat.isReady = false
-      }
-    }
-
     return
   }
 
   if (room.round !== null) {
     room.round.advancesAt = retriesAt
   }
+}
+
+/**
+ * The round the room was waiting for cannot open. The console is told why, and
+ * so is every other screen: a table that pressed ready would otherwise watch a
+ * countdown run out on nothing, and the hold it armed would be due again on the
+ * very next wake, refused the same way, for as long as the table stayed ready.
+ * Every ready is let go, and a reveal's own hold with it, so the room waits for
+ * its host — who changes the settings, or the teams, and opens it.
+ */
+const refuseOpening = (
+  engine: RoomEngine,
+  { code, message }: { code: OpeningRefusal; message: string }
+): void => {
+  const { room } = engine
+
+  tellHost(engine, { code, message })
+
+  for (const seat of room.players.values()) {
+    seat.isReady = false
+  }
+
+  room.readyStartsAt = null
+  room.openingRefusedFor = code
+
+  if (room.round !== null) {
+    room.round.advancesAt = null
+    room.round.isReadyHold = false
+    room.round.settingHoldEndsAt = null
+  }
+
+  publishRoom(engine)
 }
 
 const tellHost = (

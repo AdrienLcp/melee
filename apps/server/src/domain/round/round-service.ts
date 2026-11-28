@@ -243,6 +243,7 @@ export const openRound = ({
   placeUnseatedSeats(room)
 
   clearReady(room)
+  room.openingRefusedFor = null
 
   const duel = takeDuel(room)
 
@@ -2071,7 +2072,8 @@ export const startAutoAdvanceHold = (room: Room, now: number): void => {
   room.round.settingHoldEndsAt = isHeld ? now + holdMs : null
   room.round.advancesAt = room.round.settingHoldEndsAt
   room.round.isReadyHold = false
-  settleReadyHold(room, now)
+  // The broadcast after every caller arms a table already ready over this
+  // (`settleReadyHold`), because only it knows whether the console is there.
 }
 
 /**
@@ -2093,21 +2095,40 @@ const isEveryoneBack = (room: Room): boolean => {
   return awaited.length > 0 && awaited.every(isBackAtTheTable)
 }
 
+/** Where a table's ready is settled: the room, and whether its console is there. */
+type TableSettling = {
+  /**
+   * No deadline waiting on the console runs without it, so a countdown drawn
+   * while it is away would reach zero on every screen and open nothing. The
+   * ready one is called off instead, and armed afresh once it is back.
+   */
+  isHostConnected: boolean
+  now: number
+  room: Room
+}
+
 /**
  * Every seat back at the table arms the next round `READY_HOLD_MS` out — the
  * final board, on the last reveal — unless the setting's hold ends sooner; one
  * of them taking it back, or its screen going away, returns the reveal to the
- * setting's hold. Run on every published change, because a seat leaving undoes
- * the table as surely as a seat taking its ready back.
+ * setting's hold. Nothing is armed while the console is away. Run on every published change, because a seat
+ * leaving undoes the table as surely as a seat taking its ready back.
  */
-export const settleReadyHold = (room: Room, now: number): void => {
+export const settleReadyHold = ({
+  isHostConnected,
+  now,
+  room
+}: TableSettling): void => {
   const round = room.round
 
+  // The console's absence already took the reveal's deadline off
+  // (`holdRoundClock`), and its return starts the reveal's hold over.
   if (
     round === null ||
     room.phase !== 'revealed' ||
     round.isPaused ||
-    round.isHoldWaived
+    round.isHoldWaived ||
+    !isHostConnected
   ) {
     return
   }
@@ -2132,11 +2153,16 @@ export const settleReadyHold = (room: Room, now: number): void => {
  * seat back at the table opens the game, or plays it again, `READY_HOLD_MS`
  * out, and one taking it back calls it off — a lone seat as much as a full
  * table, since a console on the TV across the room is no press for one player
- * to walk up to. Nothing counts in a room whose host keeps every press, or
- * with no game chosen. Run on every published change.
+ * to walk up to. Nothing counts in a room whose host keeps every press, with
+ * no game chosen, or with the console away. Run on every published change.
  */
-export const settleTableStart = (room: Room, now: number): void => {
+export const settleTableStart = ({
+  isHostConnected,
+  now,
+  room
+}: TableSettling): void => {
   const isArmed =
+    isHostConnected &&
     (room.phase === 'lobby' || room.phase === 'finished') &&
     !room.settings.hostOpensNextRound &&
     room.settings.game !== null &&

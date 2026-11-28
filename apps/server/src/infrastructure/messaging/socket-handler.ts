@@ -391,9 +391,12 @@ const seatHost = ({
     placeArrivingSeat(room, seat.data)
   }
 
+  // The console's seat form offers no seat to take back: a name held by an
+  // away seat is a name taken, as the ghost a displaced console left is.
   if (seat?.status === 'failure') {
     sendError(outbound, {
-      code: seat.error,
+      code:
+        seat.error === 'nickname_of_away_seat' ? 'nickname_taken' : seat.error,
       fatal: false,
       message: 'That seat could not be taken'
     })
@@ -411,6 +414,7 @@ const seatHost = ({
 }
 
 const JOIN_REFUSALS: Record<JoinError, string> = {
+  nickname_of_away_seat: 'That name is a seat whose screen went away',
   nickname_taken: 'Someone already took that name',
   room_full: 'This room is full',
   room_plays_aloud: 'This table answers aloud, with no phone'
@@ -448,7 +452,8 @@ const seatPlayer = ({
     nickname: message.nickname,
     now: engine.now(),
     room: engine.room,
-    sessionId
+    sessionId,
+    takesBackAwaySeat: message.takesBackAwaySeat === true
   })
 
   if (joined.status === 'failure') {

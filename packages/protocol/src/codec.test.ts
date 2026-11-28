@@ -38,6 +38,7 @@ const playerView: PlayerRoomView = {
   isHostConnected: true,
   isPaused: false,
   isWallConnected: false,
+  openingRefusedFor: null,
   phase: 'playing',
   playedGames: [],
   players: [

@@ -401,6 +401,7 @@ const toBaseView = ({
   isHostConnected,
   isPaused: room.round?.isPaused === true,
   isWallConnected,
+  openingRefusedFor: room.openingRefusedFor,
   phase: room.phase,
   playedGames: playedGamesOf({
     lineUp: room.settings.lineUp,

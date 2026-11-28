@@ -63,8 +63,9 @@
   .host-console-page:has(> .stage.table-lobby)
     max-block-size: var(--shown-height)
 
-    // The ready table's wait, under the table, in the page's own column.
-    > .table-start-hold
+    // The ready table's wait, under the table, in the page's own column, and
+    // why a table that was ready saw nothing open, above it.
+    > :is(.opening-refusal, .table-start-hold)
       --table-start-gap: var(--space-l)
 
       align-self: center

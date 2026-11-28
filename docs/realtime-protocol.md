@@ -28,6 +28,21 @@ reclaims the same seat and score — after a reload, a screen lock, or a lost
 signal. It is also what makes React's StrictMode double-mount harmless: the
 second socket is a reclaim, not a stranger.
 
+**A claim can be lost while the seat is not.** The id lives in the browser's
+own storage, so a device comes back under a new one whenever it comes back
+through another storage: the QR code opened in a scanner app's built-in
+browser, then the link handed on to the real browser; a private window; a
+fatal refusal that voided the claim. That is the likeliest reading of the
+family evening's _she came back at 0 with the old seat still there_ — the old
+seat stayed (so not `host.removePlayer`, which deletes it), and her name was
+refused `nickname_taken`, so she typed another. **A name held by an away seat
+is that seat's player far more often than a namesake**, so the join is refused
+`nickname_of_away_seat` instead, and the same name sent again with
+`takesBackAwaySeat: true` takes the seat over — its id, score, team and ready —
+under the new `sessionId` (`joinAsPlayer`). Never a seat whose screen is there,
+never the console's own, and a console's seat form is answered
+`nickname_taken` as before: it offers no seat to take back.
+
 `hello` must be the first non-ping frame. Anything else closes the socket.
 
 `hostToken` is the room's own secret, minted with the room and returned by
@@ -132,7 +147,7 @@ reconnect on the token it still holds.
 
 | Type                       | Sent by          | Payload                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | -------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `hello`                    | both             | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `pawnHead?`, `hostToken?` — the piece is asked for a new seat only, its head round when `pawnHead` is absent                                                                                                                                                                                                                                                                                                                                                    |
+| `hello`                    | both             | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `pawnHead?`, `hostToken?`, `takesBackAwaySeat?` — the piece is asked for a new seat only, its head round when `pawnHead` is absent; the last takes the away seat holding `nickname`                                                                                                                                                                                                                                                                             |
 | `time.ping`                | both             | `clientSentAt`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `player.leave`             | any seat         | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `player.rename`            | any seat         | `nickname`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -329,6 +344,23 @@ frame.
   away clears it, a settings change in the lobby starts it over; `finishGame`, `restartGame` and
   `openRound` clear every seat's ready. The host's own start or replay still
   goes at once, and one crossing the deadline in `countdown` is dropped.
+- **Nothing counts down that will not be honoured.** The `start` and
+  `advance` deadlines wait for the console, so neither ready hold is armed
+  while it is away — `settleTableStart` and `settleReadyHold` read
+  `isHostConnected` — and each is armed afresh, a whole hold, once it is
+  back. A screen used to draw the lobby's countdown to zero under a console
+  whose TV had gone to sleep.
+- **A round that cannot open says so, and lets the table go.** A start or
+  an advance refused — nothing left to deal (`no_content_available`), a
+  spoken round short of a second team (`spoken_needs_two_teams`) — goes
+  through `refuseOpening`: the console is told, every seat's ready and the
+  reveal's hold are cleared, and `openingRefusedFor` on every view says why
+  until a round opens, the settings change or a seat presses ready again. It
+  used to keep `readyStartsAt`, already past: the deadline fired again on
+  every wake, refused the same way, a countdown stuck at zero on every
+  screen. A music catalogue that did not answer
+  (`music_source_unavailable`) is retried under a countdown restarted, and
+  says so the same way.
 
 **Teams are the shell's, and no game's arm learns what one is.**
 `settings.teams` is `off`, or `drawn`, `chosen` or `aloud` with a `count` of
@@ -1243,7 +1275,7 @@ for a rung before it opened and for the answer before the reveal — in
 
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
-`nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
+`nickname_taken`, `nickname_of_away_seat`, `room_full`, `room_plays_aloud`, `host_only_action`,
 `invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`, a
 mystery word's four refused tries, a longest word's three refused words and
 `invalid_calculation`.

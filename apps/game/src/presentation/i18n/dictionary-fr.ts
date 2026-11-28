@@ -650,6 +650,8 @@ export const FR_DICTIONARY = defineDictionary({
       'Ce mot prend une lettre absente du tirage, ou plus de fois qu’elle n’y est.',
     music_source_unavailable:
       'Deezer, d’où vient la musique, ne répond plus. Ce ne sont pas tes enceintes : réessaie dans un instant.',
+    nickname_of_away_seat:
+      'Une place à ce nom attend son joueur, son écran s’est éteint.',
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
@@ -2191,6 +2193,10 @@ export const FR_DICTIONARY = defineDictionary({
     nickname: {
       action: 'Rejoindre',
       label: 'Pseudo',
+      takeBack: {
+        action: 'Reprendre ma place',
+        question: 'C’est toi ? Ta place t’attend, avec tes points.'
+      },
       title: 'On t’appelle comment\u00a0?'
     },
     points: defineTranslation('{points:plural}', {
@@ -2378,6 +2384,15 @@ export const FR_DICTIONARY = defineDictionary({
   room: {
     documentTitle: '{game} — Mêlée',
     documentTitleLobby: 'Mêlée',
+    openingRefused: {
+      music_source_unavailable:
+        'La musique ne répond pas. On réessaie dans quelques secondes.',
+      no_content_available:
+        'Il ne reste rien de nouveau à jouer avec ces réglages : l’hôte doit les changer.',
+      spoken_needs_two_teams:
+        'À voix haute, il faut deux équipes d’au moins un joueur chacune.',
+      title: 'La manche n’a pas pu commencer'
+    },
     pause: {
       detail: 'La manche reprendra là où elle s’est arrêtée.',
       press: 'Pause',

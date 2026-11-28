@@ -1,5 +1,6 @@
 @use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/fold'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
@@ -170,6 +171,20 @@
       display: flex
       flex-direction: column
       gap: var(--space-m)
+
+      // The seat a refused name holds, offered under the field that named it:
+      // the question and its press open together, and fold away once the
+      // field names somebody else.
+      .take-back
+        @include fold.opens-in-column(var(--space-m))
+
+        > div
+          display: flex
+          flex-direction: column
+          gap: var(--space-s)
+
+        p
+          @include typography.body
 
     // Upright and under a keyboard, the card centred on what was left ran its
     // corner and the question's end under the menu: it starts under the

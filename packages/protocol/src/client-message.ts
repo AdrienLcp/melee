@@ -90,6 +90,13 @@ export const helloMessageSchema = z.object({
   protocolVersion: z.number().int().positive(),
   role: connectionRoleSchema,
   sessionId: sessionIdSchema.optional(),
+  /**
+   * A player's, asked once the room answered `nickname_of_away_seat` and the
+   * screen said it is that seat: the seat holding `nickname`, away, is handed to this session
+   * with its score, team and ready. A seat whose screen is there is never taken
+   * this way, so the name alone is identity enough at one table.
+   */
+  takesBackAwaySeat: z.literal(true).optional(),
   type: z.literal('hello')
 })
 

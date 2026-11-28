@@ -44,6 +44,7 @@ import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 type StoredRoom = Omit<
   Room,
   | 'decks'
+  | 'openingRefusedFor'
   | 'ownLines'
   | 'paidRounds'
   | 'presenceAnnouncedUntil'
@@ -54,6 +55,7 @@ type StoredRoom = Omit<
     Pick<
       Room,
       | 'decks'
+      | 'openingRefusedFor'
       | 'ownLines'
       | 'paidRounds'
       | 'presenceAnnouncedUntil'
@@ -142,6 +144,7 @@ export class RoomObject extends DurableObject<Env> {
       this.engine = this.engineFor({
         ...stored,
         ...games,
+        openingRefusedFor: stored.openingRefusedFor ?? null,
         paidRounds: stored.paidRounds ?? [],
         players: withSeatPieces(stored.players),
         presenceAnnouncedUntil: stored.presenceAnnouncedUntil ?? 0,

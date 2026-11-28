@@ -82,10 +82,14 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [requestedNickname, setRequestedNickname] = useState<string | null>(
     null
   )
+  // Said on the form once the room answered that the name is an away seat's:
+  // the next hello asks for that seat, and any other name asks for a new one.
+  const [takesBackAwaySeat, setTakesBackAwaySeat] = useState(false)
   const connection = usePlayerConnection({
     fadeOffTheCountdown,
     nickname,
-    roomCode
+    roomCode,
+    takesBackAwaySeat
   })
   const { clearError, send, view } = connection
 
@@ -169,7 +173,8 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // have lost the game to a name clash.
   const rejection =
     seatNickname === null &&
-    (connection.error?.code === 'nickname_taken' ||
+    (connection.error?.code === 'nickname_of_away_seat' ||
+      connection.error?.code === 'nickname_taken' ||
       connection.error?.code === 'room_full')
       ? connection.error.code
       : null
@@ -182,7 +187,15 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           onSubmit={(submitted) => {
             replaceScreen(() => {
               flushSync(() => {
+                setTakesBackAwaySeat(false)
                 setNickname(submitted)
+              })
+            })
+          }}
+          onTakeBack={() => {
+            replaceScreen(() => {
+              flushSync(() => {
+                setTakesBackAwaySeat(true)
               })
             })
           }}
@@ -201,11 +214,13 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
 const NicknameForm: React.FC<{
   onSubmit: (nickname: string) => void
+  /** Takes the away seat the refused name holds, its score with it. */
+  onTakeBack: () => void
   /** The name the refusal was given for, or `null` where none was tried yet. */
   refusedNickname: string | null
   rejection: ProtocolErrorCode | null
   roomCode: RoomCode
-}> = ({ onSubmit, refusedNickname, rejection, roomCode }) => {
+}> = ({ onSubmit, onTakeBack, refusedNickname, rejection, roomCode }) => {
   const translate = useTranslate()
   // A second refusal mounts the form again: read from storage alone, the
   // field came back with the last accepted name and the refusal unsaid.
@@ -224,6 +239,8 @@ const NicknameForm: React.FC<{
   // logged. A stored name refused on arrival made that the first thing a
   // returning screen met.
   const isRefused = rejection !== null && draft.trim() === refusedNickname
+  // Only the name the room said is an away seat's can take that seat back.
+  const isAwaySeat = isRefused && rejection === 'nickname_of_away_seat'
 
   const submit = (event: FormEvent): void => {
     event.preventDefault()
@@ -262,8 +279,20 @@ const NicknameForm: React.FC<{
             }}
             value={draft}
           />
+          <div
+            className='take-back'
+            data-open={isAwaySeat || undefined}
+            inert={!isAwaySeat}
+          >
+            <div>
+              <p>{translate('player.nickname.takeBack.question')}</p>
+              <Button onPress={onTakeBack} size='large'>
+                {translate('player.nickname.takeBack.action')}
+              </Button>
+            </div>
+          </div>
           <Button
-            isDisabled={draft.trim().length === 0}
+            isDisabled={draft.trim().length === 0 || isAwaySeat}
             size='large'
             type='submit'
           >

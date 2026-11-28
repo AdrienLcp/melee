@@ -161,6 +161,7 @@ const choosingView = (question: Question) => ({
   isHostConnected: true,
   isPaused: false,
   isWallConnected: false,
+  openingRefusedFor: null,
   phase: 'playing',
   playedGames: [],
   players,

@@ -23,6 +23,13 @@ one part.
   beside them on a player's screen — where it showed pips. Ballots stay
   hidden while the box is open. Protocol 80: the tally carries `voterIds`
   in place of a count.
+- `[Shared]` **A player back on a new screen takes their seat back.** A name
+  held by a seat whose screen went away — the QR code opened in a scanner's
+  browser, then in the real one — is offered on the join form: _C'est toi ?
+  Reprendre ma place_ hands that seat over, its points, team and ready with
+  it, rather than a second seat at 0 the host has to remove. A seat whose
+  screen is there is never taken this way.
+
 - `[Shared]` **Music between the rounds.** The room's speaker — the wall
   when one is paired — plays a soundtrack generated live from the lobby to
   the final board: a jazz lounge, lo-fi, a slow drift, a marimba terrace and
@@ -81,6 +88,14 @@ one part.
   field keeps a field's edge and says _Écris ton mot ici_ before it is
   touched: bare on the card, it read as decoration and a table looked for
   somewhere to type.
+- `[Server]` **A ready table whose round cannot open is told why.** Every
+  seat ready on a game with nothing left to deal, or a spoken black square
+  with one team, used to leave a countdown stuck at zero on every screen,
+  tried again on every wake; the readies are let go and every screen says
+  why. A music catalogue that does not answer says so beside its retry.
+- `[Server]` **No countdown runs while the console is away.** The lobby's
+  ready countdown is called off when the console's socket goes — a TV
+  browser asleep — and starts over, whole, once it is back.
 - `[Game]` **A team's name is no longer cut short in a round's header** on
   a phone held upright: the round's progress pips give way first.
 - `[Game]` **The console's Players tab is one list, one line a seat.** In the

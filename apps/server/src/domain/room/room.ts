@@ -48,6 +48,7 @@ import type { HostQuestion, QuestionLanguage } from '@melee/protocol/question'
 import type {
   ClipPlayback,
   ModeSettings,
+  OpeningRefusal,
   RoomPhase,
   RoomSettings,
   RoundDuel
@@ -147,6 +148,12 @@ export type Room = {
   hostLeftAt: number | null
   /** `null` between the host closing their tab and reclaiming the room. */
   hostSessionId: SessionId | null
+  /**
+   * Why the round the room was waiting for did not open — the view's
+   * `openingRefusedFor` — until a round opens, the settings change or a seat
+   * presses ready again.
+   */
+  openingRefusedFor: OpeningRefusal | null
   /**
    * Every dropped seat whose `RECONNECT_GRACE_MS` ended by this time has been
    * shown away on the screens. What keeps the `presence` deadline from firing

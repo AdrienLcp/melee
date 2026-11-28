@@ -1,16 +1,23 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
+import {
+  DEFAULT_BLACK_SQUARE_SETTINGS,
+  DEFAULT_BUZZER_SETTINGS
+} from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
+import { hostServerMessageSchema } from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { nowMs } from '@/infrastructure/clock'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  errorsIn,
   FAST_GAME,
   hostView,
   playerView,
   type RoomHarness,
+  sessionIdOf,
   sleep,
   waitFor
 } from './room-harness'
@@ -46,6 +53,15 @@ const BARE_BUZZER: RoomSettings = {
   game: DEFAULT_BUZZER_SETTINGS,
   lineUp: [DEFAULT_BUZZER_SETTINGS],
   mode: DEFAULT_MODE_SETTINGS.buzzer
+}
+
+/** A spoken round needs two teams, so a table sitting in one is refused it. */
+const SPOKEN_ONE_TEAM: RoomSettings = {
+  ...FAST_GAME,
+  game: DEFAULT_BLACK_SQUARE_SETTINGS,
+  lineUp: [DEFAULT_BLACK_SQUARE_SETTINGS],
+  mode: DEFAULT_MODE_SETTINGS.spoken,
+  teams: { count: 2, kind: 'chosen' }
 }
 
 describe('a table that opens, ends and replays its game by itself', () => {
@@ -167,6 +183,81 @@ describe('a table that opens, ends and replays its game by itself', () => {
     await sleep(PAST_THE_HOLD_MS)
 
     expect(hostView(host)?.phase).toBe('lobby')
+  })
+
+  it('[table-start] lets a ready table go when the game it would open is refused', async () => {
+    const { code, host } = await harness.openRoom(SPOKEN_ONE_TEAM)
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+    const ben = await harness.seat({ code, nickname: 'Ben' })
+
+    anna.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    ben.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    await waitFor(
+      () => hostView(host)?.teams[0]?.seatIds.length === 2,
+      'one team holding both'
+    )
+    anna.send({ isReady: true, type: 'player.ready' })
+    ben.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => playerView(anna)?.readyStartsAt != null,
+      'the table’s start'
+    )
+    await sleep(PAST_THE_HOLD_MS)
+
+    expect(hostView(host)?.phase).toBe('lobby')
+    expect(playerView(anna)?.readyStartsAt).toBeNull()
+    expect(playerView(anna)?.players.some((seat) => seat.isReady)).toBe(false)
+    expect(errorsIn(host).map(({ code }) => code)).toEqual([
+      'spoken_needs_two_teams'
+    ])
+    expect(playerView(anna)?.openingRefusedFor).toBe('spoken_needs_two_teams')
+
+    anna.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => playerView(anna)?.openingRefusedFor === null,
+      'a ready press to clear the reason'
+    )
+  })
+
+  it('[table-start] counts nothing down while the console is away, and starts over once it is back', async () => {
+    const { code, host, max, zoe } = await seatedTable(BARE_BUZZER)
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => playerView(zoe)?.readyStartsAt != null,
+      'the table’s start'
+    )
+    host.close()
+    await waitFor(
+      () => playerView(zoe)?.isHostConnected === false,
+      'the room to hear the console leave'
+    )
+
+    expect(playerView(zoe)?.readyStartsAt).toBeNull()
+
+    await sleep(PAST_THE_HOLD_MS)
+
+    const returned = await harness.connect(code, hostServerMessageSchema)
+
+    returned.send({
+      protocolVersion: PROTOCOL_VERSION,
+      role: 'host',
+      sessionId: sessionIdOf(host),
+      type: 'hello'
+    })
+    await waitFor(
+      () => playerView(zoe)?.readyStartsAt != null,
+      'the start counted again'
+    )
+
+    expect((playerView(zoe)?.readyStartsAt ?? 0) - nowMs()).toBeGreaterThan(
+      SHORT_READY_HOLD_MS / 2
+    )
+    await waitFor(
+      () => hostView(returned)?.phase === 'playing',
+      'the round the table opened'
+    )
   })
 
   it('[table-start] opens the game for one seat alone', async () => {

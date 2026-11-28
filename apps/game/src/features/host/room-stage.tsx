@@ -32,6 +32,7 @@ import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { NoticeCard } from '@/presentation/components/notice-card'
+import { OpeningRefusalNotice } from '@/presentation/components/opening-refusal-notice'
 import { RevealHold } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -547,6 +548,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
               youId={youId}
             />
           )}
+          <OpeningRefusalNotice refusal={view.openingRefusedFor} />
           {hold !== null && (
             <RevealHold
               clock={clock}

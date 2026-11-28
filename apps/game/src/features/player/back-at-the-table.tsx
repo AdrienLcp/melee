@@ -11,6 +11,7 @@ import {
 import type { RevealHoldSpan } from '@/helpers/reveal-hold'
 import { nowMs } from '@/infrastructure/clock'
 import { CheckIcon } from '@/presentation/components/icons'
+import { OpeningRefusalNotice } from '@/presentation/components/opening-refusal-notice'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -31,7 +32,8 @@ type BackAtTheTableProps = {
  * still goes on whenever they like. The next game stays unnamed until its
  * countdown, so a planned line-up keeps its surprises. A room whose host
  * keeps every press folds it away, as does a lobby with no game chosen: a
- * press there would arm nothing.
+ * press there would arm nothing. Above it, why nothing opened when the table
+ * was ready.
  */
 export const BackAtTheTable: React.FC<BackAtTheTableProps> = ({
   clock,
@@ -52,27 +54,30 @@ export const BackAtTheTable: React.FC<BackAtTheTableProps> = ({
     (view.phase !== 'lobby' || view.settings.game !== null)
 
   return (
-    <div
-      className='back-at-the-table'
-      data-open={isAsked || undefined}
-      inert={!isAsked}
-    >
-      <div>
-        <ToggleButton
-          isSelected={you.isReady}
-          onChange={(isReady) => {
-            onReady(isReady)
-          }}
-          size='large'
-        >
-          <span aria-hidden className='ready-mark'>
-            <CheckIcon />
-          </span>
-          {label}
-          <ReadyHoldFill clock={clock} hold={hold} label={label} />
-        </ToggleButton>
+    <>
+      <OpeningRefusalNotice refusal={view.openingRefusedFor} />
+      <div
+        className='back-at-the-table'
+        data-open={isAsked || undefined}
+        inert={!isAsked}
+      >
+        <div>
+          <ToggleButton
+            isSelected={you.isReady}
+            onChange={(isReady) => {
+              onReady(isReady)
+            }}
+            size='large'
+          >
+            <span aria-hidden className='ready-mark'>
+              <CheckIcon />
+            </span>
+            {label}
+            <ReadyHoldFill clock={clock} hold={hold} label={label} />
+          </ToggleButton>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

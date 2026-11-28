@@ -124,7 +124,8 @@ export const useRoomSocket = ({
   nickname,
   onFrame,
   role,
-  roomCode
+  roomCode,
+  takesBackAwaySeat = false
 }: {
   enabled: boolean
   /**
@@ -138,6 +139,11 @@ export const useRoomSocket = ({
   onFrame: (raw: string) => void
   role: ConnectionRole
   roomCode: RoomCode
+  /**
+   * The player said the away seat holding `nickname` is theirs, after the
+   * room answered `nickname_of_away_seat`. `false` by default.
+   */
+  takesBackAwaySeat?: boolean
 }): RoomSocket => {
   const [socketStatus, setSocketStatus] = useState<SocketStatus>('connecting')
   const [error, setError] = useState<ProtocolErrorMessage | null>(null)
@@ -219,6 +225,7 @@ export const useRoomSocket = ({
               role === 'wall'
                 ? ensureWallSessionId(roomCode)
                 : ensureSessionId({ role, roomCode }),
+            takesBackAwaySeat: takesBackAwaySeat || undefined,
             type: 'hello'
           })
         )
@@ -430,7 +437,7 @@ export const useRoomSocket = ({
       socketRef.current?.close()
       socketRef.current = null
     }
-  }, [enabled, nickname, role, roomCode])
+  }, [enabled, nickname, role, roomCode, takesBackAwaySeat])
 
   const { reveal, status } = useSettledStatus(socketStatus)
 

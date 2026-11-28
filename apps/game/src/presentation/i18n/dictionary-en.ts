@@ -686,6 +686,8 @@ export const EN_DICTIONARY = defineDictionary({
       'That word takes a letter the draw does not hold, or one more often than it was drawn.',
     music_source_unavailable:
       'Deezer, where the music comes from, is not answering. It is not your speakers: try again in a moment.',
+    nickname_of_away_seat:
+      'A seat under this name is waiting for its player, whose screen went away.',
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',
@@ -2301,6 +2303,10 @@ export const EN_DICTIONARY = defineDictionary({
     nickname: {
       action: 'Join',
       label: 'Nickname',
+      takeBack: {
+        action: 'Take my seat back',
+        question: 'Is that you? Your seat is waiting, with your points.'
+      },
       title: 'What should we call you?'
     },
     points: defineTranslation('{points:plural}', {
@@ -2498,6 +2504,15 @@ export const EN_DICTIONARY = defineDictionary({
   room: {
     documentTitle: '{game} — Mêlée',
     documentTitleLobby: 'Mêlée',
+    openingRefused: {
+      music_source_unavailable:
+        'The music is not answering. Trying again in a few seconds.',
+      no_content_available:
+        'Nothing new is left to play on these settings: the host has to change them.',
+      spoken_needs_two_teams:
+        'Played aloud, it takes two teams of at least one player each.',
+      title: 'The round could not start'
+    },
     pause: {
       detail: 'The round picks up where it stopped.',
       press: 'Pause',

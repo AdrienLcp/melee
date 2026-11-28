@@ -50,6 +50,7 @@ const viewFor = (
   isHostConnected: true,
   isPaused: false,
   isWallConnected: false,
+  openingRefusedFor: null,
   phase,
   playedGames: [],
   players: [

@@ -1091,6 +1091,15 @@ export const roundViewSchema = z.object({
   startsAt: serverTimeSchema.nullable()
 })
 
+/** The refusals a round the room was waiting for can meet as it opens. */
+export const openingRefusalSchema = z.enum([
+  'music_source_unavailable',
+  'no_content_available',
+  'spoken_needs_two_teams'
+])
+
+export type OpeningRefusal = z.infer<typeof openingRefusalSchema>
+
 const baseRoomViewSchema = z.object({
   code: roomCodeSchema,
   /**
@@ -1111,6 +1120,16 @@ const baseRoomViewSchema = z.object({
    * `walls` and the wall's `isSpeaker`, not this.
    */
   isWallConnected: z.boolean(),
+  /**
+   * Why the round the room was about to open did not: nothing new left to deal
+   * on these settings, a spoken round short of a second team — every ready let
+   * go with either — or a music catalogue that did not answer, tried again
+   * under a countdown restarted. Said on every screen, because a table that
+   * pressed ready and saw nothing open would wait on a countdown that already
+   * ran out. Clears once a round opens, the settings change or a seat presses
+   * ready again; `null` the rest of the time.
+   */
+  openingRefusedFor: openingRefusalSchema.nullable(),
   phase: roomPhaseSchema,
   /**
    * Every line-up entry this game has opened a round on, in the order each was

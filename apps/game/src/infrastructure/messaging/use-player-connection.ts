@@ -22,12 +22,15 @@ export type PlayerConnection = RoomSocket & {
 export const usePlayerConnection = ({
   fadeOffTheCountdown,
   nickname,
-  roomCode
+  roomCode,
+  takesBackAwaySeat
 }: {
   /** Lays a still copy of the countdown as drawn over the round it counts in, whose first press a swap would hold. */
   fadeOffTheCountdown: () => void
   nickname: string | null
   roomCode: RoomCode
+  /** The player said the away seat holding `nickname` is theirs. */
+  takesBackAwaySeat: boolean
 }): PlayerConnection => {
   const [view, receiveView] = useRoomView<PlayerRoomView>({
     fadeOffWhatIsDrawn: fadeOffTheCountdown,
@@ -69,7 +72,8 @@ export const usePlayerConnection = ({
     nickname,
     onFrame,
     role: 'player',
-    roomCode
+    roomCode,
+    takesBackAwaySeat
   })
 
   useForgetErrorOnPhaseChange({ clearError: socket.clearError, view })

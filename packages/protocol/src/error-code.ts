@@ -13,6 +13,13 @@ export const protocolErrorCodes = [
    */
   'removed_by_host',
   'nickname_taken',
+  /**
+   * The name asked for is a seat whose screen went away — the same player most
+   * of the time, back on a device that lost its claim (a scanner's own browser,
+   * then the real one). Non-fatal: the form offers to take the seat back
+   * (`takesBackAwaySeat`), or another name.
+   */
+  'nickname_of_away_seat',
   'invalid_message',
   'protocol_version_mismatch',
   'host_already_connected',
