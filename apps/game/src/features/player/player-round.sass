@@ -44,17 +44,6 @@
       grid-area: overall
       margin-block-start: 0
 
-/// The podium giving way as the console's does: the first alone, then how
-/// many more the round paid.
-/// The game's last reveal lists every scorer instead, whatever the height:
-/// the page scrolls to them.
-@mixin podium-first-alone
-  .round-podium:not([data-every-scorer]) .podium li:not(:first-child)
-    display: none
-
-  .round-podium:not([data-every-scorer]) .found .others
-    display: inline
-
 @layer components
   // A still copy (`form-leaving-copy.ts`, `countdown-leaving-copy.ts`): a
   // clone replays every entrance it holds, and would blank what it is meant
@@ -662,8 +651,6 @@
       @include round-beside-standings
 
       @media (height < 50rem)
-        @include podium-first-alone
-
         .answer-card .asked
           -webkit-line-clamp: 1
           line-clamp: 1
@@ -680,9 +667,6 @@
         .answer-card :is(.asked, .note)
           -webkit-line-clamp: 2
           line-clamp: 2
-
-      @media (height < 40rem)
-        @include podium-first-alone
 
       .answer-card .cover
         height: clamp(3.5rem, 12dvh, 8rem)

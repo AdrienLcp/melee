@@ -256,6 +256,24 @@ describe('a higher-or-lower round through the seam', () => {
     ).toEqual(Array(3).fill({ points: MOST_A_ROUND_PAYS, speedBonus: 0 }))
   })
 
+  it('[higherlower] tells every screen how long a paid answer took, and nothing for one that earned none', async () => {
+    const { lou, max, roundId, zoe } = await roundInPlay()
+
+    sendSheet({ picks: RIGHT, roundId, seat: zoe })
+    sendSheet({ picks: flipped(RIGHT), roundId, seat: max })
+    sendSheet({ picks: flipped(RIGHT), roundId, seat: lou })
+    await waitFor(() => playerView(lou)?.phase === 'revealed', 'the reveal')
+
+    const awards = playerView(lou)?.round?.awards ?? []
+    const tookOf = (seat: Peer<PlayerServerMessage>) =>
+      awards.find((award) => award.playerId === playerView(seat)?.youId)
+        ?.scoredAfterMs
+
+    expect(tookOf(zoe)).toBeGreaterThanOrEqual(0)
+    expect(tookOf(max) ?? null).toBeNull()
+    expect(tookOf(lou) ?? null).toBeNull()
+  })
+
   it('[higherlower] pays a right pick with the clock’s share, and reveals both values with every sheet', async () => {
     const { host, lou, max, roundId, zoe } = await roundInPlay()
 

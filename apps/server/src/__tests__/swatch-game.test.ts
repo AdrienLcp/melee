@@ -317,6 +317,7 @@ describe('a shades round through the seam', () => {
     expect(awardOf(zoeId)).toMatchObject({
       isUnsent: true,
       points: MOST_A_ROUND_PAYS,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { distance: 0, kind: 'colour' }
     })

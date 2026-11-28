@@ -405,6 +405,7 @@ export const payFiveClues = (room: Room): void => {
         isUnsent: false,
         playerId: attempts.playerId,
         points: 0,
+        scoredAfterMs: null,
         speedBonus: 0,
         verdict: attempts.verdict
       }
@@ -427,6 +428,7 @@ export const payFiveClues = (room: Room): void => {
       isUnsent: false,
       playerId: attempts.playerId,
       points,
+      scoredAfterMs: attempts.scoredAfterMs,
       speedBonus,
       verdict: attempts.verdict
     }

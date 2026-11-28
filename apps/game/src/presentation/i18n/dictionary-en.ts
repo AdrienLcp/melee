@@ -1974,7 +1974,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A line goes up — who is most likely to talk to their plants? — and everyone votes for one of the people at the table, themselves included. Nobody sees who voted for whom: the reveal counts the votes, and everyone who voted with the table scores.'
+        'A line goes up — who is most likely to talk to their plants? — and everyone votes for one of the people at the table, themselves included. Nobody sees a vote until the reveal, which shows who voted for whom, and everyone who voted with the table scores.'
     },
     name: 'Most likely',
     own: {
@@ -1993,6 +1993,7 @@ export const EN_DICTIONARY = defineDictionary({
     reveal: {
       chose: 'The table chose',
       nobody: 'Nobody: the votes went every which way.',
+      votedBy: 'Voted for by',
       votes: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} vote', other: '{?} votes' } }
       }),
@@ -2574,6 +2575,7 @@ export const EN_DICTIONARY = defineDictionary({
      */
     overallStandings: 'Overall standings',
     scored: '+{points:number}',
+    silent: 'No answer',
     /**
      * Why two players who both got it right did not get the same. The clock
      * replaced a rank the room could count, so what it paid has to be said.
@@ -2586,6 +2588,11 @@ export const EN_DICTIONARY = defineDictionary({
      * paid — your own result, its podium, who found it.
      */
     thisRound: 'This round',
+    took: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
+      }
+    }),
     /** A seat that never sent, paid on what its screen held as the round closed. */
     unsent: 'Never sent: taken as your screen held it.',
     unsentSeats:

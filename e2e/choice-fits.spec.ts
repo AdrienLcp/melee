@@ -753,6 +753,7 @@ const revealedView = (
           isUnsent: false,
           playerId,
           points: 3 + Math.max(0, 3 - order),
+          scoredAfterMs: null,
           speedBonus: Math.max(0, 3 - order),
           verdict: { isCorrect: true, kind: 'single' }
         })),
@@ -869,6 +870,7 @@ const REVEALS = [
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
+          scoredAfterMs: null,
           speedBonus: 0,
           verdict: {
             kind: 'number',
@@ -902,6 +904,7 @@ const REVEALS = [
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
+          scoredAfterMs: null,
           speedBonus: 0,
           verdict: {
             kind: 'number',
@@ -935,6 +938,7 @@ const REVEALS = [
           isUnsent: false,
           playerId: id,
           points: (60 + seat * 5) * 1_000,
+          scoredAfterMs: null,
           speedBonus: 0,
           verdict: {
             kind: 'number',
@@ -1416,6 +1420,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
                 isUnsent: false,
                 playerId: 'p3',
                 points: 1,
+                scoredAfterMs: null,
                 speedBonus: 0,
                 verdict: { isCorrect: true, kind: 'single' }
               }
@@ -2439,6 +2444,7 @@ const wallRevealOfAFullTable = () => {
         isUnsent: false,
         playerId: id,
         points: (5 - order) * 300,
+        scoredAfterMs: null,
         speedBonus: (5 - order) * 100,
         verdict: { isCorrect: true, kind: 'single' }
       })),
@@ -2500,6 +2506,7 @@ const wallShadesRevealOfAFullTable = () => {
         isUnsent: seat % 5 === 0,
         playerId: id,
         points: Math.max(0, 20 - seat) * 5_000,
+        scoredAfterMs: null,
         speedBonus: 0,
         verdict: { distance: seat * 0.005, kind: 'colour' }
       })),
@@ -3899,6 +3906,7 @@ const lightsRoomView = (phase: 'playing' | 'revealed') => {
               isUnsent: false,
               playerId: id,
               points: (100 - seat * 4) * 1_000,
+              scoredAfterMs: null,
               speedBonus: 0,
               verdict: { isCorrect: true, kind: 'single' }
             }))
@@ -4934,6 +4942,7 @@ const fiveCluesRevealView = () => {
         isUnsent: false,
         playerId: player.id,
         points: (90 - rung * 18) * 1_000,
+        scoredAfterMs: null,
         speedBonus: (24 - order) * 400,
         verdict: { isCorrect: true, kind: 'single' }
       })),

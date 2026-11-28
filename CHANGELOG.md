@@ -8,6 +8,21 @@ one part.
 
 ### Features
 
+- `[Shared]` **« Cette manche » lists every seat on a player's screen.** The
+  seats the round paid come first, by points, then everyone else at nought —
+  what each said, or _Pas de réponse_ — and the list is never cut for
+  height, since the player's reveal scrolls. The wall and the console show
+  the best five where the wall is tall enough to keep every answer chip
+  beside them (1080p), three below, then the first alone, then the count.
+- `[Shared]` **The time each seat took.** Every podium row of a clocked
+  game prints how long the answer took on the round's clock, pauses taken
+  out (« 3,4 s »), beside the `90 +7` split. Protocol 80: the award carries
+  `scoredAfterMs`.
+- `[Shared]` **Most likely shows who voted for whom, at the reveal.** Each
+  seat's row carries the pawns of the seats that voted for it — their names
+  beside them on a player's screen — where it showed pips. Ballots stay
+  hidden while the box is open. Protocol 80: the tally carries `voterIds`
+  in place of a count.
 - `[Shared]` **Music between the rounds.** The room's speaker — the wall
   when one is paired — plays a soundtrack generated live from the lobby to
   the final board: a jazz lounge, lo-fi, a slow drift, a marimba terrace and

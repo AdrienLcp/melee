@@ -320,7 +320,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         <ThisRoundHeading lineUp={view.settings.lineUp} round={round} />
         <YourRound round={round} view={view} />
         <RoundPodium
-          isEveryScorer={round.isFinal}
+          isEverySeat
           players={view.players}
           round={round}
           wordsOf={wordsOf}
@@ -1296,6 +1296,7 @@ const Revealed: React.FC<{
       <div className='answer-card most-likely-revealed' data-game='mostlikely'>
         <p className='most-likely-line'>{tallied.labels[locale]}</p>
         <MostLikelyTally
+          isVoterNamed
           players={view.players}
           tally={tallied.tally}
           yourBallot={tallied.yourBallot}

@@ -2111,7 +2111,7 @@ const PORTUGUESE = defineDictionary({
     },
     home: {
       description:
-        'Aparece uma frase — quem de nós seria capaz de falar com as plantas? — e cada um vota numa das pessoas da mesa, incluindo em si. Ninguém vê quem votou em quem: a revelação conta os votos, e quem votou com a mesa ganha pontos.'
+        'Aparece uma frase — quem de nós seria capaz de falar com as plantas? — e cada um vota numa das pessoas da mesa, incluindo em si. Ninguém vê os votos antes da revelação, que mostra quem votou em quem, e quem votou com a mesa ganha pontos.'
     },
     name: 'Quem de nós?',
     own: {
@@ -2130,6 +2130,7 @@ const PORTUGUESE = defineDictionary({
     reveal: {
       chose: 'A mesa escolheu',
       nobody: 'Ninguém: os votos foram para todo o lado.',
+      votedBy: 'Votaram aqui',
       votes: defineTranslation('{count:plural}', {
         plural: {
           count: { one: '{?} voto', other: '{?} votos', zero: '{?} votos' }
@@ -2764,6 +2765,7 @@ const PORTUGUESE = defineDictionary({
      */
     overallStandings: 'Classificação geral',
     scored: '+{points:number}',
+    silent: 'Sem resposta',
     /**
      * Why two players who both got it right did not get the same. The clock
      * replaced a rank the room could count, so what it paid has to be said.
@@ -2776,6 +2778,11 @@ const PORTUGUESE = defineDictionary({
      * paid — your own result, its podium, who found it.
      */
     thisRound: 'Esta ronda',
+    took: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
+      }
+    }),
     /** A seat that never sent, paid on what its screen held as the round closed. */
     unsent: 'Não enviado: conta o que estava no teu ecrã.',
     unsentSeats: 'Não enviado, conta o que estava no ecrã: <name>{names}</name>'

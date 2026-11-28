@@ -215,6 +215,7 @@ export const payLights = (room: Room): void => {
       isUnsent: false,
       playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict
     }

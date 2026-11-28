@@ -433,6 +433,7 @@ describe('a make-the-number round through the seam', () => {
     expect(awardOf(zoe)).toMatchObject({
       isUnsent: true,
       points: answerShareOf(pointsForCalculation({ distance: 3 })),
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { distance: 3, value: 700 }
     })
@@ -443,6 +444,7 @@ describe('a make-the-number round through the seam', () => {
     expect(awardOf(lou)).toMatchObject({
       isUnsent: true,
       points: answerShareOf(MOST_A_ROUND_PAYS),
+      scoredAfterMs: null,
       speedBonus: 0
     })
     expect(draw(playerView(zoe))?.revealedCalculations).toEqual(

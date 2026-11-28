@@ -399,11 +399,13 @@ describe('a longest-word round through the seam', () => {
     expect(awardOf(zoe)).toMatchObject({
       isUnsent: true,
       points: answerShareOf(pointsForLetters({ bestLength: 9, length: 6 })),
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { length: 6 }
     })
     expect(awardOf(lou)).toMatchObject({
       isUnsent: true,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { length: 7 }
     })

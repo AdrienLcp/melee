@@ -291,6 +291,7 @@ describe('a world map round through the seam', () => {
     ).toMatchObject({
       isUnsent: true,
       points: WHOLE_MARKER,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { distanceKm: 0 }
     })

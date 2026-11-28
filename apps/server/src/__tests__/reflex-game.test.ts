@@ -172,6 +172,7 @@ describe('a heat nobody has to judge', () => {
       isUnsent: false,
       playerId: aliceId,
       points: MOST_A_ROUND_PAYS,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { kind: 'place', place: 0 }
     })

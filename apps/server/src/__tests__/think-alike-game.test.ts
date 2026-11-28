@@ -170,6 +170,7 @@ const paidTo = ({
   return {
     points: award?.points ?? null,
     score: view?.players.find(({ id }) => id === idOf(seat))?.score ?? null,
+    scoredAfterMs: null,
     speedBonus: award?.speedBonus ?? null,
     verdict: award?.verdict ?? null
   }
@@ -241,6 +242,7 @@ describe('a think-alike round through the seam', () => {
     expect(paidTo({ host, seat: zoe })).toEqual({
       points: half,
       score: half,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { kind: 'match', matched: 1, others: 2 }
     })

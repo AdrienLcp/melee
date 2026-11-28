@@ -15,13 +15,15 @@ export const mostLikelyLabelsSchema = localizedSchema(
 )
 
 /**
- * How many ballots one seat drew at the reveal. Counts only: who voted for
- * whom is never sent, so a table of family members never has to explain a
- * vote. A seat nobody voted for is absent.
+ * The ballots one seat drew, by who cast them. Sent at the reveal and never
+ * before: who voted for whom is the reveal's whole fun — _who picked me?_ —
+ * but seen while the box is open it is a vote to follow. A seat nobody voted
+ * for is absent.
  */
 export const mostLikelyCountSchema = z.object({
   playerId: playerIdSchema,
-  votes: z.number().int().positive()
+  /** The seats whose ballot named this one, in the order they were cast. */
+  voterIds: z.array(playerIdSchema).min(1)
 })
 
 export type MostLikelyLabels = z.infer<typeof mostLikelyLabelsSchema>

@@ -9,16 +9,22 @@ const [ana, ben, cleo, dan] = ['ana', 'ben', 'cleo', 'dan'].map((id) =>
 )
 
 const ballotsFor = (...seats: string[]) =>
-  seats.map((seat) => ({ seatId: playerIdSchema.parse(seat) }))
+  seats.map((seat, index) => ({
+    playerId: playerIdSchema.parse(`voter-${index}`),
+    seatId: playerIdSchema.parse(seat)
+  }))
+
+const voters = (...indices: number[]) =>
+  indices.map((index) => playerIdSchema.parse(`voter-${index}`))
 
 describe('the most-likely tally', () => {
-  it('[mostlikely] counts each seat once, most first, and leaves out the seats nobody chose', () => {
+  it('[mostlikely] gathers each seat’s voters in the order they voted, most voted first, and leaves out the seats nobody chose', () => {
     expect(
       tallyBallots(ballotsFor('ben', 'ana', 'ben', 'ben', 'cleo'))
     ).toEqual([
-      { playerId: ben, votes: 3 },
-      { playerId: ana, votes: 1 },
-      { playerId: cleo, votes: 1 }
+      { playerId: ben, voterIds: voters(0, 2, 3) },
+      { playerId: ana, voterIds: voters(1) },
+      { playerId: cleo, voterIds: voters(4) }
     ])
   })
 

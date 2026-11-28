@@ -266,6 +266,13 @@
         -webkit-line-clamp: 1
         line-clamp: 1
 
+    // The fourth and fifth places give way before an answer chip does: past
+    // the best three, the room learns more from what the others said. A
+    // 1080p wall holds all five beside the chips, a 900p one three.
+    @container reveal (height < 50rem)
+      .round-podium .podium li:nth-child(n + 4)
+        display: none
+
     @container (height < 20rem)
       .round-podium .podium li:not(:first-child)
         display: none

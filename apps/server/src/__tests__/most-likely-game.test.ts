@@ -180,7 +180,7 @@ describe('a most-likely round through the seam', () => {
     }
   })
 
-  it('[mostlikely] pays every ballot for the room’s choice, nothing for being chosen, and reveals counts but never who voted for whom', async () => {
+  it('[mostlikely] pays every ballot for the room’s choice, nothing for being chosen, and reveals who voted for whom', async () => {
     const { ann, host, max, vote, zoe } = await roundInPlay()
 
     vote(zoe, max)
@@ -194,16 +194,18 @@ describe('a most-likely round through the seam', () => {
 
     expect(awardOf(zoe)).toMatchObject({
       points: MOST_A_ROUND_PAYS,
+      scoredAfterMs: null,
       speedBonus: 0
     })
     expect(awardOf(max)).toMatchObject({
       points: MOST_A_ROUND_PAYS,
+      scoredAfterMs: null,
       speedBonus: 0
     })
     expect(awardOf(ann)).toMatchObject({ points: 0, speedBonus: 0 })
     expect(mostLikelyRound(playerView(ann))?.tally).toEqual([
-      { playerId: idOf(max), votes: 2 },
-      { playerId: idOf(zoe), votes: 1 }
+      { playerId: idOf(max), voterIds: [idOf(zoe), idOf(max)] },
+      { playerId: idOf(zoe), voterIds: [idOf(ann)] }
     ])
     expect(mostLikelyRound(playerView(ann))?.yourBallot).toBe(idOf(zoe))
     expect(view?.round?.revealedAnswers.map(({ said }) => said)).toEqual([

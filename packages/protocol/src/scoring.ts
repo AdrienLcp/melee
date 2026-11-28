@@ -290,6 +290,14 @@ export const awardSchema = z.object({
   /** Everything the round paid, the speed bonus included. */
   points: z.number().int().nonnegative(),
   /**
+   * How long the seat took to its answer on the round's clock, every pause
+   * taken out — the figure the clock paid on, printed beside the seat on the
+   * reveal. Sent only once the round is revealed, like the rest of the award.
+   * `null` on a round with no clock, on an answer the clock does not race
+   * (`isPaidForSpeed`), on one never sent, and on one that earned nothing.
+   */
+  scoredAfterMs: z.number().nonnegative().nullable(),
+  /**
    * How much of `points` the clock paid, so a screen can say why two players
    * who both got it right did not get the same. A curve is less visible than
    * the rank table it replaced — the room watched the order happen and could

@@ -49,6 +49,7 @@ const play = ({
         isPerfect: points >= 3 * POINTS_PER_CASE,
         pawnId,
         points,
+        scoredAfterMs: null,
         speedBonus: 0
       })),
       strategy

@@ -284,6 +284,7 @@ describe('a timeline round through the seam', () => {
     ).toMatchObject({
       isUnsent: true,
       points: answerShareOf(MOST_A_ROUND_PAYS),
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { kind: 'order', swappedPairs: 0 }
     })

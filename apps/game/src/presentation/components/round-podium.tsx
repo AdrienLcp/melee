@@ -14,7 +14,7 @@ import {
   revealedInOrder,
   swatchContent
 } from '@/helpers/round-content'
-import { PODIUM_PLACES, roundScorers } from '@/helpers/round-scorers'
+import { PODIUM_MOST_ROWS, roundScorers } from '@/helpers/round-scorers'
 import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -33,11 +33,12 @@ import { RichText } from '@/presentation/i18n/rich-text'
 
 type RoundPodiumProps = {
   /**
-   * Lists every seat the round paid rather than the best three: the game's
-   * last reveal on a seat's own screen, which scrolls, and the last look at
-   * who earned what before the final board.
+   * Lists every seat the round opened on rather than the best few — the ones
+   * it paid first, then the rest at nought, a wrong answer and a silence each
+   * said as such: a seat's own screen, which scrolls, where everyone looks for
+   * their own line.
    */
-  isEveryScorer?: boolean
+  isEverySeat?: boolean
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
@@ -80,12 +81,14 @@ export const useWordsOf = (
 
 /**
  * The round's podium: the seats it paid the most, each at its place in the
- * round with what it said, over how many of those it opened on scored. Every
- * figure on it is the round's — the game so far is the standings' — so it
- * grows past three only where it is asked to list every scorer.
+ * round with what it said and how long it took, over how many of those it
+ * opened on scored. Every figure on it is the round's — the game so far is the
+ * standings' — so a screen read across the room draws as many of the best as
+ * its height holds, `PODIUM_MOST_ROWS` at most, and a seat's own screen every
+ * seat.
  */
 export const RoundPodium: React.FC<RoundPodiumProps> = ({
-  isEveryScorer = false,
+  isEverySeat = false,
   players,
   round,
   wordsOf,
@@ -101,9 +104,13 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
     isOnTrack
       ? scorers.filter((other) => byBetterAnswer(other, award) < 0).length + 1
       : roundPlacingOf({ awards: round.awards, playerId: award.playerId })
-  const podium = isEveryScorer ? scorers : scorers.slice(0, PODIUM_PLACES)
   const answers = revealedInOrder(round)
-  const stampedCount = round.openedWithPlayerIds?.length ?? players.length
+  const stamped =
+    round.openedWithPlayerIds ?? players.map((player) => player.id)
+  const unpaid = isEverySeat
+    ? stamped.filter((id) => !scorers.some((award) => award.playerId === id))
+    : []
+  const podium = isEverySeat ? scorers : scorers.slice(0, PODIUM_MOST_ROWS)
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
@@ -120,50 +127,93 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
     return null
   }
 
-  if (scorers.length === 0) {
+  if (scorers.length === 0 && unpaid.length === 0) {
     return <p className='round-nobody'>{translate('round.nobody')}</p>
   }
 
+  const wordsCell = (playerId: string): React.ReactNode => {
+    const answer = answers.find((said) => said.playerId === playerId)
+    const words = answer === undefined ? null : answerWords(answer)
+
+    return (
+      wordsOf !== undefined &&
+      words !== null && (
+        <span className='words' data-figure={words.isFigure || undefined}>
+          {wordsOf(playerId, words.text)}
+        </span>
+      )
+    )
+  }
+
+  const youCell = (playerId: string): React.ReactNode =>
+    playerId === youId && (
+      <VisuallyHidden elementType='span'>
+        {` (${translate('player.you')})`}
+      </VisuallyHidden>
+    )
+
   return (
-    <div
-      className='round-podium'
-      data-every-scorer={isEveryScorer || undefined}
-    >
+    <div className='round-podium' data-every-seat={isEverySeat || undefined}>
+      {scorers.length === 0 && (
+        <p className='round-nobody'>{translate('round.nobody')}</p>
+      )}
       <ol className='podium'>
-        {podium.map((award) => {
-          const answer = answers.find(
-            (said) => said.playerId === award.playerId
-          )
-          const words = answer === undefined ? null : answerWords(answer)
+        {podium.map((award) => (
+          <li
+            className={award.playerId === youId ? 'you' : undefined}
+            key={award.playerId}
+          >
+            <span className='place'>{placeOf(award)}</span>
+            <Pawn seat={seatOf(award.playerId)} />
+            <span className='nickname'>{nameOf(award.playerId)}</span>
+            {youCell(award.playerId)}
+            {wordsCell(award.playerId)}
+            {award.scoredAfterMs !== null && (
+              <span className='took'>
+                {translate('round.took', {
+                  seconds: award.scoredAfterMs / 1000
+                })}
+              </span>
+            )}
+            <AwardFigure award={award} board={boardOf(award.playerId)} />
+          </li>
+        ))}
+        {unpaid.map((playerId) => {
+          const award = round.awards.find((paid) => paid.playerId === playerId)
+          const hasAnswered = answers.some((said) => said.playerId === playerId)
 
           return (
             <li
-              className={award.playerId === youId ? 'you' : undefined}
-              key={award.playerId}
+              className={playerId === youId ? 'you' : undefined}
+              data-unpaid
+              key={playerId}
             >
-              <span className='place'>{placeOf(award)}</span>
-              <Pawn seat={seatOf(award.playerId)} />
-              <span className='nickname'>{nameOf(award.playerId)}</span>
-              {award.playerId === youId && (
-                <VisuallyHidden elementType='span'>
-                  {` (${translate('player.you')})`}
-                </VisuallyHidden>
-              )}
-              {wordsOf !== undefined && words !== null && (
-                <span
-                  className='words'
-                  data-figure={words.isFigure || undefined}
-                >
-                  {wordsOf(award.playerId, words.text)}
+              <span aria-hidden='true' className='place' />
+              <Pawn seat={seatOf(playerId)} />
+              <span className='nickname'>{nameOf(playerId)}</span>
+              {youCell(playerId)}
+              {hasAnswered ? (
+                wordsCell(playerId)
+              ) : (
+                <span className='words' data-silent>
+                  {translate('round.silent')}
                 </span>
               )}
-              <AwardFigure award={award} board={boardOf(award.playerId)} />
+              {award === undefined ? (
+                !isOnTrack && (
+                  <span className='points'>
+                    {translate('round.scored', { points: 0 })}
+                  </span>
+                )
+              ) : (
+                <AwardFigure award={award} board={boardOf(playerId)} />
+              )}
             </li>
           )
         })}
       </ol>
       <p className='found'>
-        {scorers.length > 1 && !isEveryScorer && (
+        {scorers.length > 1 && !isEverySeat && (
           <span className='others'>
             {translate('round.othersScored', { count: scorers.length - 1 })}
           </span>
@@ -172,7 +222,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
           <span>
             {translate('round.found', {
               found: scorers.length,
-              total: stampedCount
+              total: stamped.length
             })}
           </span>
         )}

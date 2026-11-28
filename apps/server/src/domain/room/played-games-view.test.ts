@@ -23,6 +23,7 @@ const award = (playerId: string, points: number): Award => ({
   isUnsent: false,
   playerId,
   points,
+  scoredAfterMs: null,
   speedBonus: 0,
   verdict: { isCorrect: true, kind: 'single' }
 })

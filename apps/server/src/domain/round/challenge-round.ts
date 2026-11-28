@@ -189,6 +189,7 @@ const rebuildAwards = ({
       isUnsent: false,
       playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { isCorrect: true, kind: 'single' }
     }

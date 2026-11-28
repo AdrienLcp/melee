@@ -54,6 +54,7 @@ export const payEstimates = (room: Room): void => {
       isUnsent: false,
       playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict
     })

@@ -131,6 +131,7 @@ export const payInnerclockCounts = (room: Room): void => {
       isUnsent: false,
       playerId: press.playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { isCorrect: points > 0, kind: 'single' }
     })

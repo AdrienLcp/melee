@@ -34,7 +34,9 @@ Two floors hold on every role:
   past eight seats keeps the score track to one line that swipes sideways.
 
 A player's reveal scrolls, and its first viewport owes the answer, the
-round's block (_This round_: the seat's own result and the podium), the hold
+round's block (_This round_: the seat's own result and the podium, which
+lists every seat the round opened on — the paid ones first, then the rest at
+nought — and is never cut for height), the hold
 and the Ready press, all in the flow — never positioned over a row. The
 overall standings come after them, at a fixed legible size, and the page
 scrolls to the last row; nothing divides the screen by the room's size. Lying
@@ -67,8 +69,10 @@ height for one — and at the floor a row's padding gives way before the row
 leaves the box. Lying down, a wall splits the answer or the winner from the
 standings at any width, a phone lying down as the room's screen included, and
 under 36rem tall it drops its header at a reveal and on the final board. The
-round's podium drops from three to the first alone
-("+ N autres") to the count alone, and the tally is cut in whole chips
+round's podium starts from the best five where its stage holds them beside
+the answer chips (a 1080p wall), drops to three — the fourth and fifth go
+before any chip — then to the first alone ("+ N autres"), then to the count
+alone, and the tally is cut in whole chips
 (`useWholeChips`), never scrolled. The other screens may use the same order
 to stay legible.
 

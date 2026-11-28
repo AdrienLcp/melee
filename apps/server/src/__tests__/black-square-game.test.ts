@@ -331,6 +331,7 @@ describe('a black-square round through the seam', () => {
     expect(awardOf(zoeId)?.points).toBe(0)
     expect(awardOf(maxId)).toMatchObject({
       points: sheetPays({ found: 2 }),
+      scoredAfterMs: null,
       speedBonus: 0
     })
   })
@@ -387,6 +388,7 @@ describe('a black-square round through the seam', () => {
       )
     ).toMatchObject({
       points: sheetPays({ found: 1 + 2 + 2 + 3 }),
+      scoredAfterMs: null,
       speedBonus: 0
     })
   })

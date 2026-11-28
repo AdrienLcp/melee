@@ -1881,7 +1881,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et chacun vote pour quelqu’un de la table, soi-même compris. Personne ne voit qui a voté pour qui : le dévoilement compte les voix, et tous ceux qui ont voté comme la table marquent.'
+        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et chacun vote pour quelqu’un de la table, soi-même compris. Personne ne voit les votes avant le dévoilement, qui montre qui a voté pour qui, et tous ceux qui ont voté comme la table marquent.'
     },
     name: 'Qui de nous ?',
     own: {
@@ -1900,6 +1900,7 @@ export const FR_DICTIONARY = defineDictionary({
     reveal: {
       chose: 'La table a choisi',
       nobody: 'Personne : les voix sont parties dans tous les sens.',
+      votedBy: 'Ont voté pour',
       votes: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} voix', other: '{?} voix' } }
       }),
@@ -2419,10 +2420,16 @@ export const FR_DICTIONARY = defineDictionary({
     }),
     overallStandings: 'Classement général',
     scored: '+{points:number}',
+    silent: 'Pas de réponse',
     speedBonus: 'dont {points:number} pour la vitesse',
     speedRule:
       'Sur la montre, une réponse parfaite garde 90 points, et la donner tôt ajoute jusqu’à 10 de plus.',
     thisRound: 'Cette manche',
+    took: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
+      }
+    }),
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
     unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : <name>{names}</name>'
   },

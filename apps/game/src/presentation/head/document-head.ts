@@ -122,7 +122,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     mostlikely: {
       description:
-        'A line goes up — who is most likely to talk to their plants? — and the whole room votes for one of the people at the table on their own screens. The reveal counts the votes without saying who voted for whom. Scan the QR code and play — no install, no account.',
+        'A line goes up — who is most likely to talk to their plants? — and the whole room votes for one of the people at the table on their own screens. The reveal shows who voted for whom. Scan the QR code and play — no install, no account.',
       title: 'Most likely — Mêlée'
     },
     mysteryword: {
@@ -254,7 +254,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     mostlikely: {
       description:
-        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et toute la salle vote pour quelqu’un de la table depuis son écran. Le dévoilement compte les voix sans dire qui a voté pour qui. Scannez le QR code et jouez — sans installation, sans compte.',
+        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et toute la salle vote pour quelqu’un de la table depuis son écran. Le dévoilement montre qui a voté pour qui. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Qui de nous ? — Mêlée'
     },
     mysteryword: {
@@ -386,7 +386,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     mostlikely: {
       description:
-        'Aparece uma frase — quem é mais capaz de falar com as plantas? — e a sala inteira vota numa das pessoas à mesa, cada um no seu ecrã. A revelação conta os votos sem dizer quem votou em quem. Lê o código QR e joga — sem instalar nada, sem conta.',
+        'Aparece uma frase — quem é mais capaz de falar com as plantas? — e a sala inteira vota numa das pessoas à mesa, cada um no seu ecrã. A revelação mostra quem votou em quem. Lê o código QR e joga — sem instalar nada, sem conta.',
       title: 'Quem de nós? — Mêlée'
     },
     mysteryword: {

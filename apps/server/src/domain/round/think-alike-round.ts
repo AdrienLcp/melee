@@ -78,6 +78,7 @@ export const payThinkAlike = (room: Room): void => {
       isUnsent: attempts.isUnsent,
       playerId: attempts.playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict
     }

@@ -1202,6 +1202,7 @@ export const settleSimultaneousRound = ({
         isUnsent: attempts.isUnsent,
         playerId: attempts.playerId,
         points: 0,
+        scoredAfterMs: null,
         speedBonus: 0,
         verdict: attempts.verdict
       })
@@ -1232,6 +1233,12 @@ export const settleSimultaneousRound = ({
       isUnsent: attempts.isUnsent,
       playerId: attempts.playerId,
       points,
+      scoredAfterMs:
+        !attempts.isUnsent &&
+        isPaidForSpeed(attempts.verdict) &&
+        roundDurationMs !== null
+          ? attempts.scoredAfterMs
+          : null,
       speedBonus,
       verdict: attempts.verdict
     })
@@ -1431,6 +1438,7 @@ export const settleReflexRound = (room: Room, now: number): void => {
       isUnsent: false,
       playerId: press.playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict
     })
@@ -1523,8 +1531,9 @@ const grade = ({
       : { said: attempt.eventIds.join(TIMELINE_ORDER_SEPARATOR), verdict }
   }
 
-  // A ballot says nothing on the reveal's list, which would tell who voted for
-  // whom, and is worth nothing until the room's choice is counted at the close.
+  // A ballot says nothing on the reveal's list — the tally is where who voted
+  // for whom is shown — and is worth nothing until the room's choice is
+  // counted at the close.
   if (content.kind === 'mostlikely') {
     return attempt.kind === 'seat'
       ? { said: '', verdict: { isCorrect: false, kind: 'single' } }
@@ -1851,6 +1860,7 @@ export const applyVerdict = ({
     isUnsent: false,
     playerId,
     points,
+    scoredAfterMs: null,
     speedBonus: 0,
     verdict
   })

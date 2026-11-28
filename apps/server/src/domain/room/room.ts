@@ -557,7 +557,7 @@ export type Round = {
         showMs: number
       }
     | {
-        /** Every ballot, in the order they landed; who voted for whom never leaves the server. */
+        /** Every ballot, in the order they landed; who voted for whom leaves the server only with the reveal's tally. */
         ballots: { playerId: PlayerId; seatId: PlayerId }[]
         kind: 'mostlikely'
         labels: MostLikelyLabels

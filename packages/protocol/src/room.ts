@@ -852,7 +852,7 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     /** The line, in every locale so each screen reads its own. */
     labels: mostLikelyLabelsSchema,
     /**
-     * How many ballots each seat drew, most first, and `null` until the
+     * Who voted for each seat, most voted first, and `null` until the
      * reveal: a count seen while the box is open is a vote to follow.
      */
     tally: z.array(mostLikelyCountSchema).nullable(),

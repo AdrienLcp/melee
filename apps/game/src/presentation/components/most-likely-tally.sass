@@ -23,7 +23,7 @@
       margin: 0
       padding: 0
 
-    li
+    ol > li
       @include piece.piece($nubs: false)
       @include typography.caption-strong
 
@@ -33,26 +33,27 @@
       column-gap: var(--space-s)
       display: grid
       font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
-      grid-template-areas: 'pawn name pips count'
-      grid-template-columns: auto minmax(0, 1fr) auto auto
+      grid-template-areas: 'pawn name count' 'pawn voters voters'
+      grid-template-columns: auto minmax(0, 1fr) auto
       padding: var(--space-xs) var(--space-s)
+      row-gap: var(--space-2xs)
 
       .pawn
         font-size: var(--text-em-xl)
         grid-area: pawn
 
-    li[data-chosen]
+    ol > li[data-chosen]
       @include typography.title
 
       background: var(--tile-2)
       color: var(--tile-ink)
       font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3.2), var(--text-xl))
 
-    li[data-yours]
+    ol > li[data-yours]
       box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--ink)
-      grid-template-areas: 'pawn name pips count' 'pawn mark pips count'
+      grid-template-areas: 'pawn name count' 'pawn mark count' 'pawn voters voters'
 
-    li[data-chosen][data-yours]
+    ol > li[data-chosen][data-yours]
       box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--tile-ink)
 
     .nickname
@@ -63,16 +64,37 @@
       text-overflow: ellipsis
       white-space: nowrap
 
-    // One dot a vote, printed as a run of one tile rather than an element each.
-    .pips
-      --pip: 0.55em
-      --pip-pitch: 0.8em
+    // A small pawn a ballot, the voter's own piece, wrapping under the name:
+    // a seat holds one ballot, so the whole tally never holds more pawns
+    // than the table has seats.
+    .voters
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-xs)
+      grid-area: voters
+      list-style: none
+      margin: 0
+      min-width: 0
+      padding: 0
 
-      background: radial-gradient(circle closest-side, currentColor 98%, transparent) 0 50% / var(--pip-pitch) var(--pip) repeat-x
-      block-size: var(--pip)
-      grid-area: pips
-      inline-size: calc(var(--votes, 1) * var(--pip-pitch))
-      max-inline-size: calc(10 * var(--pip-pitch))
+      > li
+        align-items: center
+        display: inline-flex
+        gap: 0.25em
+        min-width: 0
+
+      .pawn
+        font-size: 1em
+
+    // The voter's name on a seat's own screen, at the size of a label so the
+    // seat the row is about stays the line that reads first.
+    .voter
+      @include typography.label
+
+      max-inline-size: 10em
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
 
     .count
       @include typography.numeric

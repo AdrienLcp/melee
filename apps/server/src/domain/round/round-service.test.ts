@@ -284,6 +284,7 @@ describe('the make-the-number close', () => {
       expect.objectContaining({
         isUnsent: true,
         playerId: 'player-zoe',
+        scoredAfterMs: null,
         speedBonus: 0,
         verdict: { distance: 3, kind: 'calculation', value: 700 }
       })

@@ -37,6 +37,17 @@
         &.you
           box-shadow: inset 0 0 0 var(--stroke-bold) var(--tile-ink), 0 2px 0 var(--good-edge)
 
+        // A seat the round paid nothing, on a seat's own screen: the same row
+        // unfilled, so the eye finds its own line and still reads who scored.
+        &[data-unpaid]
+          background: var(--track-a)
+          box-shadow: none
+          color: var(--ink)
+          font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
+
+          &.you
+            box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
       .place
         @include rank.before-pawn($figures: 1, $gap: 0.5em, $name-gap: 0.5em)
 
@@ -77,6 +88,25 @@
 
       .words + .points
         margin-inline-start: 0
+
+      // How long the answer took, between what was said and what it paid:
+      // the figure the clock's share was paid on.
+      .took
+        @include typography.numeric
+
+        flex: none
+        font-size: var(--text-em-s)
+        margin-inline-start: auto
+        white-space: nowrap
+
+      .words + .took,
+      .took + .points
+        margin-inline-start: 0
+
+      // Nothing sent: said once, quietly, where the words would be.
+      .words[data-silent]
+        color: var(--ink-muted)
+        font-style: italic
 
       // A figure is what the round paid on, and `à…` is no distance: it keeps
       // its width, so the name is the one that gives way.

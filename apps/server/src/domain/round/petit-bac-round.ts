@@ -807,6 +807,7 @@ const rescore = ({
       isUnsent: false,
       playerId,
       points,
+      scoredAfterMs: null,
       speedBonus: 0,
       verdict: { isCorrect: points > 0, kind: 'single' }
     }
