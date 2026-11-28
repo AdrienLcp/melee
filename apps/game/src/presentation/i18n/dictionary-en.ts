@@ -2844,6 +2844,7 @@ export const EN_DICTIONARY = defineDictionary({
     answer: {
       label: 'Your answer',
       length: '{length:number}/{max:number}',
+      placeholder: 'Write your word here',
       send: 'Send',
       sent: 'Your card is laid face down.'
     },

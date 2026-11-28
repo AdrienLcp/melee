@@ -62,6 +62,10 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Pense comme la table shows where to write.** The answer card's
+  field keeps a field's edge and says _Écris ton mot ici_ before it is
+  touched: bare on the card, it read as decoration and a table looked for
+  somewhere to type.
 - `[Game]` **A team's name is no longer cut short in a round's header** on
   a phone held upright: the round's progress pips give way first.
 - `[Game]` **The console's Players tab is one list, one line a seat.** In the
@@ -120,6 +124,9 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Petit Bac and Slate open with the field to write in already
+  focused**, like every other game whose first act is typing: Petit Bac's
+  first empty line, Slate's open item.
 - `[Game]` **A case's number stays readable under its pawns.** On the
   board round the wall, a pawn alone stands in the bottom-right corner, across
   from the number, and several on one case huddle there, each half behind the

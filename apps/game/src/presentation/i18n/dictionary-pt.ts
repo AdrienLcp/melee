@@ -3050,6 +3050,7 @@ const PORTUGUESE = defineDictionary({
     answer: {
       label: 'A tua resposta',
       length: '{length:number}/{max:number}',
+      placeholder: 'Escreve aqui a tua palavra',
       send: 'Enviar',
       sent: 'A tua carta está pousada, virada para baixo.'
     },

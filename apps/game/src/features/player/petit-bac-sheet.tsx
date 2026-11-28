@@ -187,6 +187,7 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
 
   const { categories, letter } = content
   const answers = categories.map((_, index) => answerAt(index))
+  const firstEmptyLine = answers.indexOf('')
   const filled = answers.filter((answer) => answer !== '').length
   const isFull = filled === categories.length
   const isStoppable =
@@ -235,6 +236,9 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
                     letter
                   })}
                   autoComplete='off'
+                  // The sheet only mounts on `playing`, so the keyboard opens
+                  // with the round, on the line a reload left first to write.
+                  autoFocus={!hasClosedOnScreen && index === firstEmptyLine}
                   enterKeyHint={
                     index === categories.length - 1 ? 'done' : 'next'
                   }

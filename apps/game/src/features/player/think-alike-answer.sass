@@ -22,20 +22,14 @@
       justify-self: center
       max-inline-size: 36rem
 
-    // The field is the card: the seat's pawn in its corner, the spine's rule
-    // under it, the count of what is left, and the line written large.
+    // The seat's pawn in the card's corner, the spine's rule under it, the
+    // count of what is left, and the field the line is written large in.
     .paper-card
       @include piece.card
 
       display: grid
-      gap: var(--space-2xs)
+      gap: var(--space-xs)
       padding: var(--space-s) var(--space-m) var(--space-m)
-      transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
-
-      // The card's own edge thickens to say *typing here*, and it is the one
-      // focus mark: the field's ring drew a second line under the card's head.
-      &:has(.react-aria-TextArea[data-focused])
-        box-shadow: 0 var(--edge) 0 var(--chipboard), var(--shadow-card), inset 0 0 0 var(--stroke-bold) var(--card-ink)
 
     .card-head
       align-items: center
@@ -55,26 +49,25 @@
       > label
         @include accessibility.visually-hidden
 
-      .react-aria-TextArea,
-      .react-aria-TextArea[data-focused]
+      // The primitive's ring and focus edge are kept: a field bare on the
+      // card read as decoration, and a table found nowhere to write.
+      .react-aria-TextArea
         @include typography.billboard-wrapping
 
-        background: transparent
         block-size: auto
-        border: 0
-        box-shadow: none
-        color: var(--card-ink)
-        field-sizing: content
         font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 7.5), var(--text-3xl))
         hyphens: auto
         min-block-size: 2.4em
-        padding: var(--space-xs) 0
-        resize: none
+        padding: var(--space-xs) var(--space-s)
+        transition: box-shadow var(--transition-fast, 0s) var(--ease-out)
         user-select: text
-        width: 100%
 
         &:is([data-focus-visible], :focus-visible)
           outline: none
+
+        // An invitation, not the answer: smaller than the line it stands for.
+        &::placeholder
+          font-size: var(--text-l)
 
     // Sent: the card turned over and laid down a little askew, the seat's
     // pawn on its back and its own line under it, over the table.

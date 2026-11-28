@@ -41,10 +41,10 @@ type ThinkAlikeAnswerProps = {
 }
 
 /**
- * The seat's answer written on a paper card — the field is the card — and
- * sent once. Sent, the card is laid face down, slightly askew, its back
- * carrying the seat's pawn and its own line, over the table where the others'
- * cards land as they send.
+ * The seat's answer written on a paper card, in a field drawn as one before
+ * it is touched, and sent once. Sent, the card is laid face down, slightly
+ * askew, its back carrying the seat's pawn and its own line, over the table
+ * where the others' cards land as they send.
  *
  * Mounted under `key={round.id}`, so every round opens on a blank card.
  */
@@ -132,6 +132,7 @@ export const ThinkAlikeAnswer: React.FC<ThinkAlikeAnswerProps> = ({
             maxLength={THINK_ALIKE_ANSWER_MAX_LENGTH}
             onChange={write}
             onKeyDown={sendOnEnter}
+            placeholder={translate('thinkalike.answer.placeholder')}
             value={draft}
           />
         </div>

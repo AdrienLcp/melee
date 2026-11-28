@@ -153,6 +153,9 @@ export const SlateSheet: React.FC<SlateSheetProps> = ({
         </p>
         <TextField
           autoComplete='off'
+          // The sheet mounts as the first item opens, and writing is all
+          // there is to do on it.
+          autoFocus
           className='answer'
           enterKeyHint={nextOpen === undefined ? 'done' : 'next'}
           inputRef={field}

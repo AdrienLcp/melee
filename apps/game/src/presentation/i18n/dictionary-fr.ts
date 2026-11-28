@@ -2672,6 +2672,7 @@ export const FR_DICTIONARY = defineDictionary({
     answer: {
       label: 'Ta réponse',
       length: '{length:number}/{max:number}',
+      placeholder: 'Écris ton mot ici',
       send: 'Envoyer',
       sent: 'Ta carte est posée, face cachée.'
     },

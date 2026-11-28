@@ -37,6 +37,16 @@ fit a react-aria component's render props. A plain string — a DOM element, a
 conditional class — goes through `classNames` from `@adrienlcp/react`, which
 drops the falsy ones: `classNames('buzzer', isClaimed && 'claimed')`.
 
+## A field looks like one before it is touched
+
+A text field keeps the primitive's fill and edge wherever it sits, a card
+included: Think alike's field, bare on its paper card, read as decoration
+and a family table found nowhere to write. A screen whose first act is
+typing mounts its field `autoFocus` — every typed game does, on `playing`
+only, so never over a countdown. The focus comes from a socket snapshot, not
+a tap, so iOS Safari focuses the field without raising the keyboard: that is
+the platform, and the visible field is what covers it.
+
 ## A line is not a `Separator`
 
 `Separator` renders `role="separator"`, which tells assistive technology that
