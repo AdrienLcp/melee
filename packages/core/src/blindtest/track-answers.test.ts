@@ -16,6 +16,13 @@ describe('trackAnswersOf', () => {
     ).toBe('mixed')
   })
 
+  it('[track-answers] reads the children’s songs as a mix, films’ songs beside nursery rhymes', () => {
+    expect(trackAnswersOf(catalogueOf({ hasChildrenSongs: true }))).toBe(
+      'mixed'
+    )
+    expect(pinsItsOwnFloor(catalogueOf({ hasChildrenSongs: true }))).toBe(true)
+  })
+
   it('[track-answers] asks for a song from every source the composers are not in', () => {
     expect(trackAnswersOf(catalogueOf({ charts: [], decades: [] }))).toBe(
       'songs'

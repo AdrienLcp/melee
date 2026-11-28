@@ -534,6 +534,144 @@ describe('the classics', () => {
   })
 })
 
+describe('the children’s songs', () => {
+  const FRENCH_LISTS = [
+    '/playlist/613860315/tracks',
+    '/playlist/14511914743/tracks',
+    '/playlist/7548451242/tracks',
+    '/playlist/9718814902/tracks',
+    '/playlist/2134531422/tracks'
+  ]
+  const WORLD_LISTS = [
+    '/playlist/6098573684/tracks',
+    '/playlist/1962379246/tracks'
+  ]
+
+  const drawnFor = async (homeCountry: 'FRA' | 'PRT' | null) => {
+    const found = await fetchTracksFor({
+      difficulty: 'easy',
+      homeCountry,
+      source: catalogueOf({ hasChildrenSongs: true })
+    })
+
+    return found.status === 'success' ? found.data.tracks : []
+  }
+
+  it('[deezer] reads a French table’s own lists in place of the world’s', async () => {
+    const requested = catalogueByPath({})
+
+    await drawnFor('FRA')
+
+    const paths = requested().map((path) => path.split('?')[0])
+
+    expect(paths.toSorted()).toEqual(FRENCH_LISTS.toSorted())
+  })
+
+  it('[deezer] reads the world’s lists for a table with no country of its own', async () => {
+    const requested = catalogueByPath({})
+
+    await drawnFor(null)
+
+    expect(
+      requested()
+        .map((path) => path.split('?')[0])
+        .toSorted()
+    ).toEqual(WORLD_LISTS.toSorted())
+  })
+
+  it('[deezer] pins a floor of its own below the easy one, whatever the room asked for', async () => {
+    catalogueByPath({
+      '/playlist/6098573684/tracks': [
+        { ...namedTrack('a', 'Let It Go'), rank: 300_000 },
+        { ...namedTrack('b', 'A forgotten B-side'), rank: 200_000 }
+      ]
+    })
+
+    expect((await drawnFor(null)).map((track) => track.title)).toEqual([
+      'Let It Go'
+    ])
+  })
+
+  it('[deezer] refuses explicit lyrics, backing tracks and score cues', async () => {
+    catalogueByPath({
+      '/playlist/6098573684/tracks': [
+        namedTrack('a', 'Hakuna Matata'),
+        { ...namedTrack('b', 'A rap hit'), explicit_lyrics: true },
+        namedTrack('c', 'Mostra-te (Instrumental)'),
+        namedTrack('d', 'Home (Outtake)'),
+        { ...namedTrack('e', 'Debandada'), artist: { name: 'Hans Zimmer' } }
+      ]
+    })
+
+    expect((await drawnFor(null)).map((track) => track.title)).toEqual([
+      'Hakuna Matata'
+    ])
+  })
+
+  it('[deezer] names a film’s song by its film, and leaves a nursery rhyme its title alone', async () => {
+    catalogueByPath({
+      '/playlist/613860315/tracks': [
+        {
+          ...namedTrack('a', 'Libérée, Délivrée'),
+          album: { title: 'La Reine des Neiges (Bande Originale Française)' }
+        },
+        {
+          ...namedTrack('b', 'Un éléphant qui se balançait'),
+          album: { title: 'Les plus belles comptines d’Okoo' }
+        }
+      ]
+    })
+
+    const drawn = await drawnFor('FRA')
+
+    expect(
+      Object.fromEntries(drawn.map((track) => [track.title, track.film]))
+    ).toEqual({
+      'Libérée, Délivrée': 'La Reine des Neiges',
+      'Un éléphant qui se balançait': null
+    })
+  })
+
+  /** Deezer has few listeners in Portugal: its own dubs rank a tenth of Brazil’s. */
+  it('[deezer] deals a Portuguese table its own dubs from the album, at Portugal’s floor', async () => {
+    vi.stubGlobal('fetch', async (url: string) => {
+      const path = url.replace(/^https?:\/\/[^/]+/, '').split('?')[0] ?? ''
+      const body = path.startsWith('/album/')
+        ? {
+            cover_medium: 'https://example.test/cover.jpg',
+            title:
+              'Encanto (Banda Sonora Original em Português/Deluxe Edition)',
+            tracks: {
+              data: [
+                {
+                  ...namedTrack('a', 'Não Falamos do Bruno'),
+                  album: undefined,
+                  rank: 30_000
+                },
+                {
+                  ...namedTrack('b', 'Todos Nós'),
+                  album: undefined,
+                  rank: 10_000
+                }
+              ]
+            }
+          }
+        : { data: [] }
+
+      return new Response(JSON.stringify(body), {
+        headers: { 'content-type': 'application/json' },
+        status: 200
+      })
+    })
+
+    const drawn = await drawnFor('PRT')
+
+    expect(drawn.map(({ film, title }) => ({ film, title }))).toEqual([
+      { film: 'Encanto', title: 'Não Falamos do Bruno' }
+    ])
+  })
+})
+
 describe('a catalogue mixing strands', () => {
   it('[catalogue] samples the decades and the composers beside the whole chart', async () => {
     const requested = catalogueByPath({})
@@ -673,4 +811,4 @@ describe('a catalogue mixing strands, weighed', () => {
     ).toBe(1)
   })
 })
-// cspell:words Contentores
+// cspell:words Contentores Debandada Encanto Falamos Hakuna Mostra Português Okoo

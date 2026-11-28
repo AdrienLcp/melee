@@ -29,6 +29,7 @@ const PHASE_MARKS = [
 const PARTY_FILLS = [
   '--party-grand-mix',
   '--party-international',
+  '--party-family',
   '--party-first-game',
   '--party-music',
   '--party-general-knowledge',

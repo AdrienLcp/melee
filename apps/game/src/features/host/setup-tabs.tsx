@@ -21,7 +21,8 @@ import {
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor,
   rememberedOnReadyMade,
-  savedEveningOfReadyMade
+  savedEveningOfReadyMade,
+  withReadyMadeRoom
 } from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import {
@@ -182,12 +183,15 @@ export const GameTab: React.FC<SetupTabsProps> = ({
 
     layOver({
       evening,
-      settings: withSavedEvening({
-        evening,
-        locale,
-        rememberedFor: (game) =>
-          rememberedOnReadyMade({ game, locale, preferences }),
-        settings: view.settings
+      settings: withReadyMadeRoom({
+        lineUp,
+        settings: withSavedEvening({
+          evening,
+          locale,
+          rememberedFor: (game) =>
+            rememberedOnReadyMade({ game, locale, preferences }),
+          settings: view.settings
+        })
       })
     })
     onReadyMade(lineUp.id)

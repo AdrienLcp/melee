@@ -3,7 +3,11 @@ import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import { byLocale, type Locale } from '@melee/protocol/locale'
 
-import { nearbyDecoys, spellingsOf } from '@melee/core/atlas/place-naming'
+import {
+  nearbyDecoys,
+  spellingsOf,
+  spreadDecoys
+} from '@melee/core/atlas/place-naming'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 import { COUNTRY_NAMES_PT } from '@melee/core/countries/country-names-pt'
@@ -114,12 +118,21 @@ export const namingOf = ({
   }
 
   const answer = found.place.names
-  const decoys = nearbyDecoys({
-    candidates: found.rivals,
-    count: DECOY_COUNT,
-    from: found.place.point,
-    isWide: difficulty === 'easy'
-  }).map(({ names }) => names)
+  const decoys = (
+    target.kind === 'city'
+      ? spreadDecoys({
+          candidates: found.rivals,
+          count: DECOY_COUNT,
+          difficulty,
+          from: found.place.point
+        })
+      : nearbyDecoys({
+          candidates: found.rivals,
+          count: DECOY_COUNT,
+          from: found.place.point,
+          isWide: difficulty === 'easy'
+        })
+  ).map(({ names }) => names)
   const choices = isChoice ? shuffled([answer, ...decoys]) : []
 
   return {

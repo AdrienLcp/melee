@@ -101,6 +101,8 @@ const strandPicksOf = ({
           translate(decadeLabelKey(decade))
         )
       }
+    case 'childrenSongs':
+      return translate('blindtest.source.children')
     case 'classics':
       return translate('blindtest.source.classics')
     case 'filmScores':

@@ -452,6 +452,8 @@ const PORTUGUESE = defineDictionary({
     source: {
       catalogue: 'O catálogo',
       chart: 'Os tops',
+      children: 'Canções para crianças',
+      childrenHint: 'Disney, desenhos animados e canções infantis.',
       classics: 'Os clássicos',
       decades: 'As décadas',
       film: 'Música de cinema',
@@ -2551,6 +2553,7 @@ const PORTUGUESE = defineDictionary({
       flags: 'Bandeiras',
       geography: 'Geografia',
       history: 'História',
+      kids: 'Perguntas para miúdos',
       label: 'Que temas',
       none: 'Não escolhas nenhum e tens todos os temas.',
       quotes: 'Citações',
@@ -2607,6 +2610,10 @@ const PORTUGUESE = defineDictionary({
     heading: 'Partidas já prontas',
     hint: 'Um toque abre uma mesa já preparada, com os jogos de seguida.',
     lineUps: {
+      family: {
+        caption: 'Miúdos e graúdos à mesma mesa, a rapidez não conta.',
+        name: 'Em família'
+      },
       firstGame: {
         caption: 'Nada para julgar nem explicar.',
         name: 'Primeira partida'

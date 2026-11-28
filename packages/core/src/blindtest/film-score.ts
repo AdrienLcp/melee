@@ -14,7 +14,7 @@ import { normalizeAnswer } from '../round/answer-matching'
  * a round no player can win.
  */
 const SOUNDTRACK_MARKER =
-  /soundtrack|\bscore\b|\bost\b|motion\s+picture|music\s+from|complete\s+recordings|bande\s+originale|bande\s+sonore|musique\s+originale|original\s+(?:series|television)/iu
+  /soundtrack|\bscore\b|\bost\b|motion\s+picture|music\s+from|complete\s+recordings|bande\s+originale|bande\s+sonore|banda\s+sonora|trilha\s+sonora|musique\s+originale|original\s+(?:series|television)/iu
 
 /**
  * A cue that names its own film, which is how a catalogue files a track lifted
@@ -43,6 +43,7 @@ const MARKER_WORDS = new Set([
   'an',
   'and',
   'apple',
+  'banda',
   'bande',
   'by',
   'cinematic',
@@ -50,6 +51,7 @@ const MARKER_WORDS = new Set([
   'de',
   'deluxe',
   'du',
+  'em',
   'edition',
   'expanded',
   'film',
@@ -73,10 +75,12 @@ const MARKER_WORDS = new Set([
   'score',
   'serie',
   'series',
+  'sonora',
   'sonore',
   'soundtrack',
   'television',
-  'the'
+  'the',
+  'trilha'
 ])
 
 /**
@@ -308,3 +312,5 @@ const isNameable = (named: string, artist: string): boolean => {
     !credited.startsWith(folded)
   )
 }
+
+// cspell:words sonora trilha

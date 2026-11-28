@@ -12,6 +12,7 @@ import {
 } from '@melee/protocol/track'
 
 import {
+  filmNamedBy,
   filmsScoredIn,
   isScoredByOneOf
 } from '@melee/core/blindtest/film-score'
@@ -75,6 +76,8 @@ const deezerTrackSchema = z.object({
     .object({ cover_medium: z.string().nullish(), title: z.string().nullish() })
     .nullish(),
   artist: z.object({ name: z.string() }),
+  /** Read by the children's songs alone, and absent on some endpoints. */
+  explicit_lyrics: z.boolean().nullish(),
   id: z.union([z.number(), z.string()]).transform(String),
   /** Empty on tracks Deezer will not stream in this country — unplayable, so unusable. */
   preview: z.string(),
@@ -87,6 +90,30 @@ const deezerTrackSchema = z.object({
 const deezerListSchema = z
   .object({ data: z.array(deezerTrackSchema) })
   .transform(({ data }) => data)
+
+/**
+ * An album answers with its tracks inside it, and only there do they carry the
+ * album's title — `/album/{id}/tracks` leaves it out, and a soundtrack's title
+ * is where its film is named. Deezer serves the first 25, which on a dubbed
+ * soundtrack are its songs, the score cues coming after.
+ */
+const deezerAlbumSchema = z
+  .object({
+    cover_medium: z.string().nullish(),
+    title: z.string(),
+    tracks: z.object({ data: z.array(deezerTrackSchema) })
+  })
+  .transform(({ cover_medium, title, tracks }) =>
+    tracks.data.map((track) => ({
+      ...track,
+      album: {
+        cover_medium: track.album?.cover_medium ?? cover_medium,
+        title: track.album?.title ?? title
+      }
+    }))
+  )
+
+const deezerTracksSchema = z.union([deezerListSchema, deezerAlbumSchema])
 
 type DeezerTrack = z.infer<typeof deezerTrackSchema>
 
@@ -282,6 +309,27 @@ const catalogued = ({
           clearsFloor({ floor: CLASSICS_FLOOR * rankShare, track })
         )
         .map((track) => toCatalogueTrack(track))
+    )
+  }
+
+  if (strand.kind === 'children') {
+    return lists.flatMap(({ rankShare, tracks }) =>
+      tracks
+        .filter(
+          (track) =>
+            clearsFloor({ floor: CHILDREN_FLOOR * rankShare, track }) &&
+            isChildrensSong(track)
+        )
+        .map((track) =>
+          toCatalogueTrack(
+            track,
+            filmNamedBy({
+              albumTitle: track.album?.title ?? '',
+              artist: track.artist.name,
+              trackTitle: track.title
+            })
+          )
+        )
     )
   }
 
@@ -523,6 +571,7 @@ const FILM_SCORE_FLOOR = 200_000
  */
 type Strand =
   | Exclude<TrackSource, { kind: 'catalogue' }>
+  | { kind: 'children' }
   | { kind: 'classics' }
   | { decades: readonly TrackDecade[]; kind: 'decade' }
   | { genreIds: readonly number[]; kind: 'chart' }
@@ -578,11 +627,16 @@ const sharesOf = ({
     ]
   }
 
-  const { charts, decades, hasClassics, hasFilmScores } = source
+  const { charts, decades, hasChildrenSongs, hasClassics, hasFilmScores } =
+    source
   const isMixed =
-    [charts !== null, decades !== null, hasClassics, hasFilmScores].filter(
-      Boolean
-    ).length > 1
+    [
+      charts !== null,
+      decades !== null,
+      hasChildrenSongs,
+      hasClassics,
+      hasFilmScores
+    ].filter(Boolean).length > 1
 
   return [
     ...(charts === null
@@ -606,6 +660,15 @@ const sharesOf = ({
               decadePathsFor({ decade, homeCountry })
             ),
             strand: { kind: 'classics' as const },
+            weight: 1
+          }
+        ]
+      : []),
+    ...(hasChildrenSongs
+      ? [
+          {
+            paths: childrenPathsFor(homeCountry),
+            strand: { kind: 'children' as const },
             weight: 1
           }
         ]
@@ -650,7 +713,7 @@ const decadeShares = ({
 }
 
 const pathsFor = (
-  strand: Exclude<Strand, { kind: 'classics' | 'decade' }>
+  strand: Exclude<Strand, { kind: 'children' | 'classics' | 'decade' }>
 ): string[] => {
   switch (strand.kind) {
     case 'chart': {
@@ -704,6 +767,131 @@ const decadePathsFor = ({
   ]
 }
 
+/**
+ * The floor the children's songs pin in the room's place. Measured 28 November
+ * 2026: Deezer's editors' French Disney lists sit at a median of 640k and the
+ * nursery rhymes of _Okoo_ at 530k, the English lists at 310k–480k, so 250k
+ * keeps nine in ten of every list. A ten-year-old's song is not a hard one,
+ * whatever level the room is set to.
+ */
+const CHILDREN_FLOOR = 250_000
+
+/**
+ * Portugal's dubs are measured at their own floor, because Deezer has few
+ * listeners there: _Muito Mais Além_, Frozen 2's _Into the Unknown_, ranks
+ * 101k, and most of a dubbed soundtrack sits between 20k and 50k where the
+ * Brazilian dub of the same song clears 500k.
+ */
+const CHILDREN_PORTUGAL_FLOOR = 20_000
+
+/**
+ * What a soundtrack holds besides its songs: a sing-along's backing track, a
+ * cut song, a demo, a score cue. The title says so for all but the score.
+ */
+const NOT_A_SONG =
+  /\b(?:instrumental|karaok[eé]|playback|outtake|demo|score)\b/iu
+
+/**
+ * The composers whose cues a dubbed soundtrack files beside its songs, credited
+ * to them and titled like anything else — _Debandada_ under Hans Zimmer, _As
+ * Regras_ under Alan Menken. Measured on the lists below and short on purpose:
+ * Randy Newman and Danny Elfman sing their own songs there, so the film
+ * composers' table would cut _You've Got a Friend in Me_.
+ */
+const SCORE_COMPOSERS = [
+  'Alan Menken',
+  'Christophe Beck',
+  'Dave Metzger',
+  'Germaine Franco',
+  'Hans Zimmer',
+  'Joseph Trapanese',
+  'Mark Mancina',
+  'Michael Giacchino',
+  'Nicholas Britell'
+] as const
+
+/** A song a child may hear at the table: sung, and clean. */
+const isChildrensSong = (track: DeezerTrack): boolean =>
+  track.explicit_lyrics !== true &&
+  !NOT_A_SONG.test(track.title) &&
+  !isScoredByOneOf({ artist: track.artist.name, composers: SCORE_COMPOSERS })
+
+/**
+ * Where the children's songs come from, a table's own country's in place of
+ * the world's: a French table hears Disney in French, never beside it in
+ * English. Deezer's own editors keep the French Disney lists, a Filtr list the
+ * nursery rhymes of _Okoo_, and _Hits des kids_ is what a ten-year-old dances
+ * to. No Portuguese list holds Portugal's own dubs — the ones named so mix in
+ * Brazil's and English — so its are the European-Portuguese Walt Disney
+ * Records albums themselves, _Banda Sonora_ where Brazil's say _Trilha
+ * Sonora_, beside the tops of the children's singers Portugal grew up on.
+ */
+const CHILDREN_LISTS = {
+  FRA: {
+    paths: [
+      '613860315',
+      '14511914743',
+      '7548451242',
+      '9718814902',
+      '2134531422'
+    ].map(playlistPath),
+    rankShare: 1
+  },
+  PRT: {
+    paths: [
+      ...[
+        '103051292',
+        '119544242',
+        '14595562',
+        '272974522',
+        '442369607',
+        '51431212',
+        '514884652',
+        '672681991',
+        '682649481',
+        '97535552',
+        '170203682'
+      ].map((albumId) => `/album/${albumId}`),
+      ...['4926425', '94947', '100938', '1310484'].map(
+        (artistId) => `/artist/${artistId}/top?limit=${POOL_SIZE}`
+      )
+    ],
+    rankShare: CHILDREN_PORTUGAL_FLOOR / CHILDREN_FLOOR
+  },
+  world: {
+    paths: ['6098573684', '1962379246'].map(playlistPath),
+    rankShare: 1
+  }
+} as const satisfies Record<
+  string,
+  { paths: readonly string[]; rankShare: number }
+>
+
+/**
+ * How many of a country's lists one pool asks for. Portugal's are fifteen, a
+ * request each, and a fresh draw on every fill keeps all of them reachable.
+ */
+const CHILDREN_LISTS_PER_POOL = 6
+
+const childrenListsOf = (homeCountry: CountryCode | null) => {
+  switch (homeCountry) {
+    case 'FRA':
+      return CHILDREN_LISTS.FRA
+    case 'PRT':
+      return CHILDREN_LISTS.PRT
+    default:
+      return CHILDREN_LISTS.world
+  }
+}
+
+const childrenPathsFor = (homeCountry: CountryCode | null): SharePath[] => {
+  const lists = childrenListsOf(homeCountry)
+
+  return shuffled(lists.paths)
+    .slice(0, CHILDREN_LISTS_PER_POOL)
+    .map((path) => ({ path, rankShare: lists.rankShare }))
+}
+
 const toCatalogueTrack = (
   track: DeezerTrack,
   film: string | null = null
@@ -725,7 +913,7 @@ const requestList = async (
     return body
   }
 
-  const parsed = deezerListSchema.safeParse(body.data)
+  const parsed = deezerTracksSchema.safeParse(body.data)
 
   if (!parsed.success) {
     return failed({ detail: null, kind: 'unexpected_shape', path })
@@ -786,4 +974,4 @@ const requestJson = async (
   }
 }
 
-// cspell:words Xutos Mariza Contentores Variações Abrunhosa
+// cspell:words Xutos Mariza Contentores Variações Abrunhosa Okoo Debandada Regras Mancina Metzger Trapanese Britell Banda Sonora Trilha Além Filtr Menken Muito karaok Childrens

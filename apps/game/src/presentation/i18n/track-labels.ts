@@ -32,13 +32,15 @@ export const CATALOGUE_STRANDS = [
   'charts',
   'decades',
   'classics',
-  'filmScores'
+  'filmScores',
+  'childrenSongs'
 ] as const
 
 export type CatalogueStrand = (typeof CATALOGUE_STRANDS)[number]
 
 export const STRAND_LABEL_KEYS = {
   charts: 'blindtest.source.chart',
+  childrenSongs: 'blindtest.source.children',
   classics: 'blindtest.source.classics',
   decades: 'blindtest.source.decades',
   filmScores: 'blindtest.source.film'
@@ -54,6 +56,8 @@ const isDrawn = ({
   switch (strand) {
     case 'charts':
       return source.charts !== null
+    case 'childrenSongs':
+      return source.hasChildrenSongs
     case 'classics':
       return source.hasClassics
     case 'decades':

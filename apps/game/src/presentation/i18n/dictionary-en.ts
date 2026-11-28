@@ -431,6 +431,8 @@ export const EN_DICTIONARY = defineDictionary({
     source: {
       catalogue: 'The catalogue',
       chart: 'Top charts',
+      children: 'Children’s songs',
+      childrenHint: 'Disney, cartoons and nursery rhymes.',
       classics: 'The classics',
       decades: 'Decades',
       film: 'Film scores',
@@ -2383,6 +2385,7 @@ export const EN_DICTIONARY = defineDictionary({
       flags: 'Flags',
       geography: 'Geography',
       history: 'History',
+      kids: 'Kids’ questions',
       label: 'Which subjects',
       none: 'Pick none and you get every subject.',
       quotes: 'Quotes',
@@ -2438,6 +2441,10 @@ export const EN_DICTIONARY = defineDictionary({
     heading: 'Ready-made line-ups',
     hint: 'One press opens a table that plays them in a row, already set.',
     lineUps: {
+      family: {
+        caption: 'Young and old at one table, and speed doesn’t count.',
+        name: 'Family game'
+      },
       firstGame: {
         caption: 'Nothing to judge or explain.',
         name: 'First game'

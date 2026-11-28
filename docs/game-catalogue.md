@@ -209,6 +209,20 @@ the clip sounds, stamped on the round as `clip` so every speaker starts and
 stops on the same second, and it combines with any source — the classics at
 one second is the one _Mêlée générale_ plays (`docs/plans/77-blindtest-flash.md`).
 
+The **children's songs** are the fifth strand (`hasChildrenSongs`), and the
+first a room never opens on: `EVERY_STRAND` leaves them out, and the setup's
+_whole catalogue_ label says them beside it, because an evening of adults that
+opened on everything was not asking for nursery rhymes. They pin a floor of
+their own (250k, Portugal's at 20k), refuse explicit lyrics, backing tracks and
+score cues, and read the **table's own country's** lists in the world's place —
+a French table hears Disney in French, never beside it in English. A film's
+song names its film the way a score does (`filmNamedBy`, _banda sonora_ and
+_trilha sonora_ included), so the round asks for the film in the title's place;
+a nursery rhyme keeps its title. Portugal has no list of its own dubs — the
+ones named so mix in Brazil's — so its are the European-Portuguese Walt Disney
+Records albums themselves, read through `/album/{id}` because only there do
+the tracks carry the album's title.
+
 So `QuestionSource: hosted | bank | api`, and each arm is a separate size:
 
 **1. `hosted` — the host asks out loud. An evening.** The server serves a round
@@ -291,7 +305,12 @@ by word, an earlier buzz paying more — and not its content. Flags
 ([stage 37](plans/37-flags.md)), the emoji rebus
 ([stage 39](plans/39-emoji-rebus.md)) and capitals
 ([stage 48](plans/48-capitals.md)) took the same road: a picture or a row
-of emojis is a prompt, and the room names an answer.
+of emojis is a prompt, and the room names an answer. The kids' chip,
+`kids`, is the one rubric chosen for who sits at the table rather than for
+its prompt: the bank's `easy` is a subject the room has heard of, which asks
+a child for a third American president, so a ten-year-old's questions are
+written by hand in all three languages (`kids-questions.ts`) rather than
+filtered out of the bank.
 
 What they do change is an assumption everything shipped so far rests on:
 **exactly one player acts at a time**. That is the expensive part, not the UI.

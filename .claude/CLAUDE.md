@@ -9,7 +9,8 @@ with no content at all — the host brings the charade, the quiz on paper or the
 lesson. **Quiz** serves its own, three question banks bundled with the server in
 French, English and European Portuguese, a flags rubric dealt from every state the map
 names, an emoji rebus rubric — a title written in emojis — a capitals
-rubric, and a silhouettes rubric — a country's outline alone. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
+rubric, a silhouettes rubric — a country's outline alone — and a kids'
+rubric a ten-year-old answers beside the adults. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
 marks on the wall, one item at a time, **Atlas** names a place that
 everyone puts a pawn on, paid by the kilometre to its border — or shows one
 for the table to name, **Challenge**

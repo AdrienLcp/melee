@@ -108,6 +108,12 @@ describe('discardPoolIfStale', () => {
         to: playingFrom(catalogueOf({ charts: [], hasFilmScores: true }))
       })
     ).toBe(false)
+    expect(
+      poolSurvives({
+        from: playingFrom(EVERY_STRAND),
+        to: playingFrom({ ...EVERY_STRAND, hasChildrenSongs: true })
+      })
+    ).toBe(false)
   })
 
   // Empty is the whole strand and `null` none of it: two ways of saying the

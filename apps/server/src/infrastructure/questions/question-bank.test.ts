@@ -35,6 +35,7 @@ const NOTHING_PLAYED: ReadonlySet<string> = new Set()
 const TIERED_RUBRICS: ReadonlySet<QuestionCategory> = new Set([
   'capitals',
   'flags',
+  'kids',
   'rebus',
   'silhouettes'
 ])

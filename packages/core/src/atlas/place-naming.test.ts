@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { nearbyDecoys, spellingsOf } from './place-naming'
+import { greatCircleKm } from './distance'
+import { nearbyDecoys, spellingsOf, spreadDecoys } from './place-naming'
 
 const at = (name: string, latitude: number, longitude: number) => ({
   name,
@@ -54,6 +55,95 @@ describe('nearbyDecoys, wide', () => {
     )
 
     expect(FAR_AWAY.some((place) => drawn.has(place))).toBe(true)
+  })
+})
+
+const FRANCE = [
+  RENNES,
+  ...BRETON_TOWNS,
+  ...FAR_AWAY,
+  at('Lille', 50.629, 3.057),
+  at('Bordeaux', 44.837, -0.579),
+  at('Toulouse', 43.604, 1.444),
+  at('Lyon', 45.764, 4.836),
+  at('Marseille', 43.296, 5.37),
+  at('Dijon', 47.322, 5.041),
+  at('Clermont-Ferrand', 45.778, 3.087),
+  at('Ajaccio', 41.919, 8.739)
+]
+
+describe('spreadDecoys', () => {
+  it('[place-naming] keeps every decoy a quarter of the map away from the answer and from each other at easy', () => {
+    const diagonalKm = greatCircleKm(
+      { latitude: 41.919, longitude: -4.486 },
+      { latitude: 50.629, longitude: 8.739 }
+    )
+
+    for (let draw = 0; draw < 50; draw += 1) {
+      const decoys = spreadDecoys({
+        candidates: FRANCE,
+        count: 3,
+        difficulty: 'easy',
+        from: RENNES.point
+      })
+      const points = [RENNES.point, ...decoys.map(({ point }) => point)]
+
+      expect(decoys).toHaveLength(3)
+
+      for (const [index, point] of points.entries()) {
+        for (const other of points.slice(index + 1)) {
+          expect(greatCircleKm(point, other)).toBeGreaterThanOrEqual(
+            diagonalKm * 0.25
+          )
+        }
+      }
+    }
+  })
+
+  it('[place-naming] never deals a Breton town beside Rennes', () => {
+    for (let draw = 0; draw < 50; draw += 1) {
+      const decoys = spreadDecoys({
+        candidates: FRANCE,
+        count: 3,
+        difficulty: 'mixed',
+        from: RENNES.point
+      })
+
+      for (const decoy of decoys) {
+        expect(['Laval', 'Saint-Malo', 'Vannes', 'Nantes']).not.toContain(
+          decoy.name
+        )
+      }
+    }
+  })
+
+  it('[place-naming] draws at random among the far places', () => {
+    const drawn = new Set(
+      Array.from({ length: 40 }, () =>
+        spreadDecoys({
+          candidates: FRANCE,
+          count: 3,
+          difficulty: 'mixed',
+          from: RENNES.point
+        })
+      )
+        .flat()
+        .map(({ name }) => name)
+    )
+
+    expect(drawn.size).toBeGreaterThan(6)
+  })
+
+  it('[place-naming] gives way rather than deal fewer than asked on a crowded map', () => {
+    const decoys = spreadDecoys({
+      candidates: [RENNES, ...BRETON_TOWNS],
+      count: 3,
+      difficulty: 'easy',
+      from: RENNES.point
+    })
+
+    expect(decoys).toHaveLength(3)
+    expect(new Set(decoys).size).toBe(3)
   })
 })
 

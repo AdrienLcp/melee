@@ -68,6 +68,18 @@ describe('lineUpEntryNames', () => {
     ).toEqual(['Blind test · Rock', 'Blind test · Film scores'])
   })
 
+  it('[line-up] names a variant on the children’s songs by them, with no level', () => {
+    expect(
+      lineUpEntryNames({
+        lineUp: [
+          blindtest(catalogueOf({ hasChildrenSongs: true })),
+          blindtest(catalogueOf({ hasFilmScores: true }))
+        ],
+        translate
+      })
+    ).toEqual(['Blind test · Children’s songs', 'Blind test · Film scores'])
+  })
+
   it('[line-up] calls an entry with several picks by the game alone', () => {
     expect(
       lineUpEntryNames({

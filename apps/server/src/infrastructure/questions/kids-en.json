@@ -1,0 +1,812 @@
+[
+  {
+    "accepted": [],
+    "answer": "8",
+    "choiceOnly": false,
+    "decoys": ["6", "10", "4"],
+    "id": "kids-en-spider-legs",
+    "note": null,
+    "prompt": "How many legs does a spider have?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "6",
+    "choiceOnly": false,
+    "decoys": ["8", "4", "10"],
+    "id": "kids-en-insect-legs",
+    "note": null,
+    "prompt": "How many legs does an insect have?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The blue whale",
+    "choiceOnly": false,
+    "decoys": ["The African elephant", "The giraffe", "The whale shark"],
+    "id": "kids-en-largest-animal",
+    "note": null,
+    "prompt": "Which is the largest animal on Earth?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A butterfly",
+    "choiceOnly": false,
+    "decoys": ["A bee", "A ladybird", "A snail"],
+    "id": "kids-en-caterpillar",
+    "note": null,
+    "prompt": "What does a caterpillar become when it grows up?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The penguin",
+    "choiceOnly": true,
+    "decoys": ["The eagle", "The swallow", "The parrot"],
+    "id": "kids-en-bird-that-cannot-fly",
+    "note": null,
+    "prompt": "Which of these birds cannot fly?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A tadpole",
+    "choiceOnly": false,
+    "decoys": ["A chick", "A cub", "A foal"],
+    "id": "kids-en-baby-frog",
+    "note": null,
+    "prompt": "What is a baby frog called?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The elephant",
+    "choiceOnly": false,
+    "decoys": ["The rhinoceros", "The hippopotamus", "The giraffe"],
+    "id": "kids-en-trunk",
+    "note": null,
+    "prompt": "Which animal has a long trunk?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Honey",
+    "choiceOnly": false,
+    "decoys": ["Milk", "Silk", "Butter"],
+    "id": "kids-en-bee-makes",
+    "note": null,
+    "prompt": "What do bees make in their hive?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The chameleon",
+    "choiceOnly": false,
+    "decoys": ["The tortoise", "The hedgehog", "The rabbit"],
+    "id": "kids-en-changes-colour",
+    "note": null,
+    "prompt": "Which animal can change colour to blend in?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The cheetah",
+    "choiceOnly": false,
+    "decoys": ["The lion", "The horse", "The ostrich"],
+    "id": "kids-en-fastest-land-animal",
+    "note": null,
+    "prompt": "What is the fastest animal on land?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "3",
+    "choiceOnly": false,
+    "decoys": ["1", "2", "8"],
+    "id": "kids-en-octopus-hearts",
+    "note": "Two pump blood through the gills, the third through the rest of the body.",
+    "prompt": "An octopus has how many hearts?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The bat",
+    "choiceOnly": true,
+    "decoys": ["The mole", "The otter", "The hedgehog"],
+    "id": "kids-en-flying-mammal",
+    "note": null,
+    "prompt": "Which of these mammals can really fly?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Around the North Pole",
+    "choiceOnly": false,
+    "decoys": ["Around the South Pole", "In the Sahara", "In the Amazon"],
+    "id": "kids-en-polar-bear-home",
+    "note": "Penguins live around the South Pole, so the two never meet.",
+    "prompt": "Where do polar bears live in the wild?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Bamboo",
+    "choiceOnly": false,
+    "decoys": ["Fish", "Bananas", "Honey"],
+    "id": "kids-en-panda-food",
+    "note": null,
+    "prompt": "What does a giant panda eat most of the day?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A pack",
+    "choiceOnly": false,
+    "decoys": ["A herd", "A swarm", "A flock"],
+    "id": "kids-en-wolf-group",
+    "note": null,
+    "prompt": "What is a group of wolves called?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The shark",
+    "choiceOnly": true,
+    "decoys": ["The dolphin", "The whale", "The seal"],
+    "id": "kids-en-not-a-mammal",
+    "note": "A shark is a fish: it breathes through gills.",
+    "prompt": "Which of these sea animals is not a mammal?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The snail",
+    "choiceOnly": false,
+    "decoys": ["The slug", "The earthworm", "The ant"],
+    "id": "kids-en-house-on-back",
+    "note": null,
+    "prompt": "Which animal carries its house on its back?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Fat",
+    "choiceOnly": false,
+    "decoys": ["Water", "Milk", "Air"],
+    "id": "kids-en-camel-hump",
+    "note": "Not water: the fat feeds it when food runs short.",
+    "prompt": "What is stored in a camel's hump?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "A clownfish",
+    "choiceOnly": false,
+    "decoys": ["A goldfish", "A shark", "A tuna"],
+    "id": "kids-en-nemo",
+    "note": null,
+    "prompt": "In \"Finding Nemo\", what kind of fish is Nemo?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Olaf",
+    "choiceOnly": false,
+    "decoys": ["Sven", "Kristoff", "Hans"],
+    "id": "kids-en-frozen-snowman",
+    "note": null,
+    "prompt": "What is the snowman called in \"Frozen\"?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Scar",
+    "choiceOnly": false,
+    "decoys": ["Mufasa", "Rafiki", "Timon"],
+    "id": "kids-en-simba-uncle",
+    "note": null,
+    "prompt": "In \"The Lion King\", who is Simba's wicked uncle?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Green",
+    "choiceOnly": false,
+    "decoys": ["Blue", "Yellow", "Purple"],
+    "id": "kids-en-shrek-colour",
+    "note": null,
+    "prompt": "What colour is Shrek?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Woody",
+    "choiceOnly": false,
+    "decoys": ["Buzz Lightyear", "Rex", "Slinky"],
+    "id": "kids-en-toy-story-cowboy",
+    "note": null,
+    "prompt": "In \"Toy Story\", what is the cowboy called?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "SpongeBob",
+    "choiceOnly": false,
+    "decoys": ["Patrick", "Squidward", "Mr. Krabs"],
+    "id": "kids-en-pineapple-under-the-sea",
+    "note": null,
+    "prompt": "Who lives in a pineapple under the sea?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Minnie",
+    "choiceOnly": false,
+    "decoys": ["Daisy", "Clarabelle", "Wendy"],
+    "id": "kids-en-mickey-girlfriend",
+    "note": null,
+    "prompt": "What is Mickey Mouse's girlfriend called?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Ratatouille",
+    "choiceOnly": false,
+    "decoys": ["Zootopia", "Cars", "Up"],
+    "id": "kids-en-rat-chef",
+    "note": null,
+    "prompt": "In which film does a rat dream of cooking in Paris?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "It grows",
+    "choiceOnly": false,
+    "decoys": ["It turns red", "It shrinks", "It falls off"],
+    "id": "kids-en-pinocchio-nose",
+    "note": null,
+    "prompt": "What happens to Pinocchio's nose when he lies?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Tinker Bell",
+    "choiceOnly": false,
+    "decoys": ["The Fairy Godmother", "Aurora", "Wendy"],
+    "id": "kids-en-peter-pan-fairy",
+    "note": null,
+    "prompt": "Which little fairy follows Peter Pan everywhere?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Obelix",
+    "choiceOnly": false,
+    "decoys": ["Getafix", "Vitalstatistix", "Dogmatix"],
+    "id": "kids-en-obelix",
+    "note": null,
+    "prompt": "Which friend of Asterix fell into the magic potion as a baby?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Quidditch",
+    "choiceOnly": false,
+    "decoys": ["Croquet", "Polo", "Curling"],
+    "id": "kids-en-broomstick-sport",
+    "note": null,
+    "prompt": "In \"Harry Potter\", which sport is played on broomsticks?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "A glass slipper",
+    "choiceOnly": false,
+    "decoys": ["A crown", "A necklace", "A glove"],
+    "id": "kids-en-cinderella-loses",
+    "note": null,
+    "prompt": "What does Cinderella leave behind at the ball?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "9"],
+    "id": "kids-en-snow-white-dwarfs",
+    "note": null,
+    "prompt": "How many dwarfs does Snow White live with?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The wolf",
+    "choiceOnly": false,
+    "decoys": ["The hunter", "A bear", "A fox"],
+    "id": "kids-en-grandmother-bed",
+    "note": null,
+    "prompt": "In \"Little Red Riding Hood\", who is waiting in grandmother's bed?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A cow",
+    "choiceOnly": false,
+    "decoys": ["A goat", "A horse", "A pig"],
+    "id": "kids-en-magic-beans",
+    "note": null,
+    "prompt": "In \"Jack and the Beanstalk\", what does Jack swap for the magic beans?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The brick house",
+    "choiceOnly": false,
+    "decoys": ["The straw house", "The wooden house", "The glass house"],
+    "id": "kids-en-three-pigs-house",
+    "note": null,
+    "prompt": "In \"The Three Little Pigs\", which house can the wolf not blow down?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Pikachu",
+    "choiceOnly": false,
+    "decoys": ["Bulbasaur", "Squirtle", "Charmander"],
+    "id": "kids-en-yellow-pokemon",
+    "note": null,
+    "prompt": "Which Pokémon is yellow with red cheeks?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Mario",
+    "choiceOnly": false,
+    "decoys": ["Luigi", "Wario", "Toad"],
+    "id": "kids-en-red-cap-plumber",
+    "note": null,
+    "prompt": "Which plumber in a red cap rescues Princess Peach?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "20",
+    "choiceOnly": false,
+    "decoys": ["32", "10", "26"],
+    "id": "kids-en-baby-teeth",
+    "note": null,
+    "prompt": "How many baby teeth does a child have?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The heart",
+    "choiceOnly": false,
+    "decoys": ["The lungs", "The stomach", "The brain"],
+    "id": "kids-en-pumps-blood",
+    "note": null,
+    "prompt": "Which organ pumps blood around the body?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Breathing",
+    "choiceOnly": false,
+    "decoys": ["Digesting", "Seeing", "Hearing"],
+    "id": "kids-en-lungs-for",
+    "note": null,
+    "prompt": "What do we use our lungs for?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The skin",
+    "choiceOnly": false,
+    "decoys": ["The liver", "The brain", "The heart"],
+    "id": "kids-en-largest-organ",
+    "note": null,
+    "prompt": "Which organ of the human body is the biggest?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "206",
+    "choiceOnly": false,
+    "decoys": ["56", "106", "506"],
+    "id": "kids-en-adult-bones",
+    "note": null,
+    "prompt": "About how many bones does an adult have?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Smell",
+    "choiceOnly": false,
+    "decoys": ["Taste", "Hearing", "Touch"],
+    "id": "kids-en-nose-sense",
+    "note": null,
+    "prompt": "Which sense do we use our nose for?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Tooth enamel",
+    "choiceOnly": false,
+    "decoys": ["The skull", "The fingernails", "The knee"],
+    "id": "kids-en-hardest-in-body",
+    "note": null,
+    "prompt": "What is the hardest part of the human body?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Green",
+    "choiceOnly": false,
+    "decoys": ["Orange", "Purple", "Brown"],
+    "id": "kids-en-blue-and-yellow",
+    "note": null,
+    "prompt": "Which colour do you get by mixing blue and yellow?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "0 °C",
+    "choiceOnly": false,
+    "decoys": ["10 °C", "-20 °C", "100 °C"],
+    "id": "kids-en-water-freezes",
+    "note": null,
+    "prompt": "At what temperature does water turn to ice?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Mars",
+    "choiceOnly": false,
+    "decoys": ["Jupiter", "Venus", "Saturn"],
+    "id": "kids-en-red-planet",
+    "note": null,
+    "prompt": "Which planet is called the red planet?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Oxygen",
+    "choiceOnly": false,
+    "decoys": ["Helium", "Carbon dioxide", "Neon"],
+    "id": "kids-en-breathe-gas",
+    "note": null,
+    "prompt": "Which gas in the air do we need to stay alive?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "9"],
+    "id": "kids-en-rainbow-colours",
+    "note": null,
+    "prompt": "How many colours are there in a rainbow?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The Sun",
+    "choiceOnly": false,
+    "decoys": ["The Moon", "The North Star", "Mars"],
+    "id": "kids-en-star-of-solar-system",
+    "note": null,
+    "prompt": "Which star is at the centre of our solar system?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Jupiter",
+    "choiceOnly": false,
+    "decoys": ["Saturn", "Earth", "Neptune"],
+    "id": "kids-en-biggest-planet",
+    "note": null,
+    "prompt": "Which is the biggest planet in the solar system?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "An iron nail",
+    "choiceOnly": true,
+    "decoys": ["A wooden spoon", "A glass marble", "A plastic ruler"],
+    "id": "kids-en-magnet",
+    "note": null,
+    "prompt": "Which of these sticks to a magnet?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Pollen",
+    "choiceOnly": false,
+    "decoys": ["Sand", "Salt", "Seeds"],
+    "id": "kids-en-bees-carry",
+    "note": null,
+    "prompt": "What do bees carry from flower to flower?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The oak",
+    "choiceOnly": false,
+    "decoys": ["The pine", "The birch", "The willow"],
+    "id": "kids-en-acorn-tree",
+    "note": null,
+    "prompt": "Which tree do acorns grow on?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Ice",
+    "choiceOnly": false,
+    "decoys": ["Steam", "Fog", "Dew"],
+    "id": "kids-en-frozen-water",
+    "note": null,
+    "prompt": "What is frozen water called?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A year",
+    "choiceOnly": false,
+    "decoys": ["A day", "A month", "A week"],
+    "id": "kids-en-earth-around-sun",
+    "note": null,
+    "prompt": "How long does the Earth take to go once around the Sun?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The Pacific",
+    "choiceOnly": false,
+    "decoys": ["The Atlantic", "The Indian Ocean", "The Arctic"],
+    "id": "kids-en-largest-ocean",
+    "note": null,
+    "prompt": "Which is the largest ocean in the world?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Africa",
+    "choiceOnly": false,
+    "decoys": ["Asia", "Europe", "Oceania"],
+    "id": "kids-en-sahara-continent",
+    "note": null,
+    "prompt": "On which continent is the Sahara desert?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "11",
+    "choiceOnly": false,
+    "decoys": ["9", "7", "15"],
+    "id": "kids-en-football-players",
+    "note": null,
+    "prompt": "How many players does a football team have on the pitch?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Rugby",
+    "choiceOnly": false,
+    "decoys": ["Football", "Tennis", "Basketball"],
+    "id": "kids-en-try-sport",
+    "note": null,
+    "prompt": "In which sport do you score a try?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "5",
+    "choiceOnly": false,
+    "decoys": ["4", "6", "7"],
+    "id": "kids-en-olympic-rings",
+    "note": null,
+    "prompt": "How many rings are there on the Olympic flag?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Tennis",
+    "choiceOnly": false,
+    "decoys": ["Golf", "Cricket", "Rowing"],
+    "id": "kids-en-wimbledon",
+    "note": null,
+    "prompt": "Which sport is played at Wimbledon?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "A shuttlecock",
+    "choiceOnly": false,
+    "decoys": ["A ball", "A puck", "A ring"],
+    "id": "kids-en-badminton",
+    "note": null,
+    "prompt": "What do you hit with your racket in badminton?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Cycling",
+    "choiceOnly": false,
+    "decoys": ["Swimming", "Skiing", "Football"],
+    "id": "kids-en-yellow-jersey",
+    "note": null,
+    "prompt": "In which sport does the race leader wear a yellow jersey?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The banana",
+    "choiceOnly": false,
+    "decoys": ["The lemon", "The pear", "The mango"],
+    "id": "kids-en-yellow-curved-fruit",
+    "note": null,
+    "prompt": "Which fruit is long, yellow and curved?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Avocado",
+    "choiceOnly": false,
+    "decoys": ["Kiwi", "Cucumber", "Green apple"],
+    "id": "kids-en-guacamole",
+    "note": null,
+    "prompt": "Which fruit is guacamole made from?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Cocoa beans",
+    "choiceOnly": false,
+    "decoys": ["Coffee beans", "Chestnuts", "Sugar beet"],
+    "id": "kids-en-chocolate-from",
+    "note": null,
+    "prompt": "What is chocolate made from?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Maize",
+    "choiceOnly": false,
+    "decoys": ["Rice", "Wheat", "Oats"],
+    "id": "kids-en-popcorn",
+    "note": null,
+    "prompt": "Which grain is popcorn made from?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Eggs",
+    "choiceOnly": false,
+    "decoys": ["Flour", "Rice", "Cheese"],
+    "id": "kids-en-omelette",
+    "note": null,
+    "prompt": "What is the main ingredient of an omelette?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The carrot",
+    "choiceOnly": false,
+    "decoys": ["The leek", "The cucumber", "The courgette"],
+    "id": "kids-en-orange-root",
+    "note": null,
+    "prompt": "Which orange vegetable grows under the ground?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Grapes",
+    "choiceOnly": false,
+    "decoys": ["Plums", "Cherries", "Apricots"],
+    "id": "kids-en-raisins",
+    "note": null,
+    "prompt": "Which fruit are raisins made from?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "The cow",
+    "choiceOnly": false,
+    "decoys": ["The horse", "The pig", "The hen"],
+    "id": "kids-en-breakfast-milk",
+    "note": null,
+    "prompt": "Which animal gives the milk most of us pour on our cereal?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The hen",
+    "choiceOnly": false,
+    "decoys": ["The cow", "The sheep", "The goat"],
+    "id": "kids-en-hen-lays",
+    "note": null,
+    "prompt": "Which farm animal lays eggs?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "10"],
+    "id": "kids-en-days-in-week",
+    "note": null,
+    "prompt": "How many days are there in a week?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "A spindle",
+    "choiceOnly": false,
+    "decoys": ["A rose", "A needle", "A sword"],
+    "id": "kids-en-sleeping-beauty",
+    "note": null,
+    "prompt": "In \"Sleeping Beauty\", what does the princess prick her finger on?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "3",
+    "choiceOnly": false,
+    "decoys": ["2", "4", "7"],
+    "id": "kids-en-goldilocks",
+    "note": null,
+    "prompt": "How many bears live in the house Goldilocks walks into?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "A swan",
+    "choiceOnly": false,
+    "decoys": ["A goose", "An eagle", "A heron"],
+    "id": "kids-en-ugly-duckling",
+    "note": null,
+    "prompt": "What does the ugly duckling turn out to be?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Neil Armstrong",
+    "choiceOnly": false,
+    "decoys": ["Yuri Gagarin", "Buzz Aldrin", "Thomas Pesquet"],
+    "id": "kids-en-moon-landing",
+    "note": null,
+    "prompt": "What was the name of the first person to walk on the Moon?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "4",
+    "choiceOnly": false,
+    "decoys": ["2", "3", "6"],
+    "id": "kids-en-seasons",
+    "note": null,
+    "prompt": "How many seasons are there in a year?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "The kangaroo",
+    "choiceOnly": false,
+    "decoys": ["The monkey", "The bear", "The deer"],
+    "id": "kids-en-kangaroo-pouch",
+    "note": null,
+    "prompt": "Which animal carries its baby in a pouch on its belly?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Gills",
+    "choiceOnly": false,
+    "decoys": ["Lungs", "Fins", "Scales"],
+    "id": "kids-en-gills",
+    "note": null,
+    "prompt": "What do fish use to breathe under water?",
+    "tier": "medium"
+  }
+]

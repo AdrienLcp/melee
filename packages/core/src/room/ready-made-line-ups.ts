@@ -45,6 +45,7 @@ export const readyMadeLineUpIds = [
   'grandMix',
   'international',
   'firstGame',
+  'family',
   'music',
   'generalKnowledge',
   'quick'
@@ -52,12 +53,21 @@ export const readyMadeLineUpIds = [
 
 export type ReadyMadeLineUpId = (typeof readyMadeLineUpIds)[number]
 
+/** The room settings a ready-made line-up may answer beside its entries. */
+export type ReadyMadeRoom = Partial<
+  Pick<RoomSettings, 'isFamilyFriendly' | 'paysForSpeed'>
+>
+
 /**
  * A line-up the app ships, for a host who has never made one: a saved line-up
  * with no name of its own, because its name and caption are the dictionaries'.
+ * `room` is laid over the room as it loads, and the console then remembers it
+ * like anything else the host set — a saved evening carries none, since what a
+ * host keeps under a name is the games and their order.
  */
 export type ReadyMadeLineUp = Omit<SavedEvening, 'decks' | 'name'> & {
   id: ReadyMadeLineUpId
+  room?: ReadyMadeRoom
 }
 
 const FRENCH_CHANSON_GENRE_ID: GenreId = 52
@@ -172,6 +182,7 @@ const GRAND_MIX_QUIZ_DIFFICULTY: Record<QuestionCategory, Difficulty> = {
   flags: 'mixed',
   geography: 'easy',
   history: 'easy',
+  kids: 'easy',
   quotes: 'easy',
   rebus: 'mixed',
   science: 'easy',
@@ -179,6 +190,13 @@ const GRAND_MIX_QUIZ_DIFFICULTY: Record<QuestionCategory, Difficulty> = {
   sport: 'easy',
   videogames: 'mixed'
 }
+
+/**
+ * Every quiz subject but the one written for a child, which the family
+ * evening plays and an evening of adults leaves out.
+ */
+const isForEveryTable = (category: QuestionCategory): boolean =>
+  category !== 'kids'
 
 /**
  * The charts the grand mix plays beside its decades: the ones a table names
@@ -258,7 +276,7 @@ const grandMixVarietiesOf = (
     },
     { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 }
   ],
-  quiz: questionCategories.map((category) =>
+  quiz: questionCategories.filter(isForEveryTable).map((category) =>
     quizOn({
       categories: [category],
       difficulty: GRAND_MIX_QUIZ_DIFFICULTY[category],
@@ -341,7 +359,7 @@ const internationalVarietiesOf = (
       subjects: [subject]
     })),
     higherlower: [{ ...DEFAULT_HIGHER_LOWER_SETTINGS, homeCountry: null }],
-    quiz: everyLanguageCategories.map((category) =>
+    quiz: everyLanguageCategories.filter(isForEveryTable).map((category) =>
       quizOn({
         categories: [category],
         difficulty: GRAND_MIX_QUIZ_DIFFICULTY[category],
@@ -364,8 +382,58 @@ const internationalFor = (locale: Locale): SavedEntry[] => {
     .flatMap((game) => varieties[game] ?? [game])
 }
 
+/** The room a child plays in beside adults: right is what pays. */
+const FAMILY_ROOM = {
+  isFamilyFriendly: true,
+  paysForSpeed: false
+} as const satisfies ReadyMadeRoom
+
+/** The longest look at a colour the game offers, for the youngest eye. */
+const FAMILY_SWATCH_SHOW_MS = Math.max(...SWATCH_SHOW_MS)
+
 /**
- * The six, in the order the home page and the lobby draw them. A game named
+ * A ten-year-old beside the adults, at one table: the games where a reflex,
+ * an eye or a guess matters as much as knowing, the knowledge games at their
+ * easiest — the quiz on the rubric written for a child, the emoji rebus and
+ * the flags — and the children's songs on the blind test. Nothing a host
+ * judges, no spelling or mental arithmetic raced against an adult, no city
+ * map. Speed is not paid (`FAMILY_ROOM`): being right is the game.
+ */
+const familyFor = (locale: Locale): SavedEntry[] => {
+  const homeCountry = homeCountryFor(locale)
+
+  return [
+    {
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      difficulty: 'easy',
+      homeCountry,
+      source: catalogueOf({ hasChildrenSongs: true })
+    },
+    quizOn({ categories: ['kids'], difficulty: 'easy', locale }),
+    quizOn({ categories: ['rebus'], difficulty: 'easy', locale }),
+    quizOn({ categories: ['flags'], difficulty: 'easy', locale }),
+    {
+      ...DEFAULT_FIVE_CLUES_SETTINGS,
+      difficulty: 'easy',
+      homeCountry,
+      subjects: ['animal', 'character', 'film']
+    },
+    { ...DEFAULT_TIMELINE_SETTINGS, difficulty: 'easy', homeCountry },
+    { ...DEFAULT_HIGHER_LOWER_SETTINGS, difficulty: 'easy', homeCountry },
+    { ...DEFAULT_ATLAS_SETTINGS, difficulty: 'easy', places: ['countries'] },
+    { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 4, difficulty: 'easy' },
+    { ...DEFAULT_BLACK_SQUARE_SETTINGS, difficulty: 'easy', homeCountry },
+    { ...DEFAULT_THINK_ALIKE_SETTINGS, language: questionLanguageFor(locale) },
+    'mostlikely',
+    'reflex',
+    'lights',
+    { ...DEFAULT_SWATCH_SETTINGS, showMs: FAMILY_SWATCH_SHOW_MS },
+    'innerclock'
+  ]
+}
+
+/**
+ * The seven, in the order the home page and the lobby draw them. A game named
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * Every game is answered the way it opens (`rememberedOnReadyMade`).
@@ -394,6 +462,14 @@ export const readyMadeLineUpsFor = (
     id: 'firstGame',
     lineUp: ['blindtest', 'quiz', 'higherlower', 'reflex', 'atlas'],
     lineUpDeals: [],
+    roundCount: 20,
+    runningOrder: []
+  },
+  {
+    id: 'family',
+    lineUp: familyFor(locale),
+    lineUpDeals: [],
+    room: FAMILY_ROOM,
     roundCount: 20,
     runningOrder: []
   },
@@ -487,6 +563,15 @@ export const withReadyMadeFiled = ({
 
   return { ...preferences, games }
 }
+
+/** `settings` with what `lineUp` answers of the room laid over them. */
+export const withReadyMadeRoom = ({
+  lineUp,
+  settings
+}: {
+  lineUp: ReadyMadeLineUp
+  settings: RoomSettings
+}): RoomSettings => ({ ...settings, ...lineUp.room })
 
 /** A ready-made line-up as a saved one, under the name the dictionary gives it. */
 export const savedEveningOfReadyMade = ({

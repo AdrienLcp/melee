@@ -66,16 +66,24 @@ export const sourceSummary = ({
   }
 
   const strands = strandsOf(source)
+  const labelOf = (strand: CatalogueStrand): string =>
+    translate(STRAND_LABEL_KEYS[strand])
 
-  // The classics are the decades' best known, so every other strand on is
-  // already the whole catalogue whether they are ticked or not.
-  return EVERY_STRAND_BUT_CLASSICS.every((strand) => strands.includes(strand))
-    ? translate('blindtest.source.wholeCatalogue')
-    : strands.map((strand) => translate(STRAND_LABEL_KEYS[strand])).join(' + ')
+  // The classics are the decades' best known, so the strands a room opens on
+  // are already the whole catalogue whether they are ticked or not. The
+  // children's songs are no part of it, so they are said beside it.
+  return EVERY_STRAND_A_ROOM_OPENS_ON.every((strand) =>
+    strands.includes(strand)
+  )
+    ? [
+        translate('blindtest.source.wholeCatalogue'),
+        ...(source.hasChildrenSongs ? [labelOf('childrenSongs')] : [])
+      ].join(' + ')
+    : strands.map(labelOf).join(' + ')
 }
 
-const EVERY_STRAND_BUT_CLASSICS = CATALOGUE_STRANDS.filter(
-  (strand) => strand !== 'classics'
+const EVERY_STRAND_A_ROOM_OPENS_ON = CATALOGUE_STRANDS.filter(
+  (strand) => strand !== 'classics' && strand !== 'childrenSongs'
 )
 
 /**
@@ -127,6 +135,7 @@ const sourceFromDraft = ({
         : {
             charts: strands.includes('charts') ? charts : null,
             decades: strands.includes('decades') ? decades : null,
+            hasChildrenSongs: strands.includes('childrenSongs'),
             hasClassics: strands.includes('classics'),
             hasFilmScores: strands.includes('filmScores'),
             kind: 'catalogue'
@@ -179,6 +188,8 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const drawsCharts = isCatalogue && draft.strands.includes('charts')
   const drawsDecades = isCatalogue && draft.strands.includes('decades')
   const drawsFilmScores = isCatalogue && draft.strands.includes('filmScores')
+  const drawsChildrenSongs =
+    isCatalogue && draft.strands.includes('childrenSongs')
   const lastTypedPlace =
     useLastShown(isCatalogue ? null : draft.place) ?? 'search'
 
@@ -337,6 +348,10 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
 
           <div className='fold' data-open={drawsFilmScores || undefined}>
             <p className='hint'>{translate('blindtest.source.filmHint')}</p>
+          </div>
+
+          <div className='fold' data-open={drawsChildrenSongs || undefined}>
+            <p className='hint'>{translate('blindtest.source.childrenHint')}</p>
           </div>
         </div>
       </div>

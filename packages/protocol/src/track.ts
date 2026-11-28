@@ -75,9 +75,10 @@ export type GenreId = (typeof GENRE_IDS)[number]
 
 /**
  * The catalogues this product curates, drawn from side by side: Deezer's genre
- * charts, its editors' decade playlists and a table of film composers. Each
- * strand is in or out, and a room opens on all three, because a host who has
- * not chosen yet has not narrowed anything.
+ * charts, its editors' decade playlists, a table of film composers, the
+ * classics and the children's songs. Each strand is in or out, and a room
+ * opens on the first three, because a host who has not chosen yet has not
+ * narrowed anything — and has not asked for nursery rhymes either.
  *
  * At least one strand is in: a catalogue of nothing is not a choice a host can
  * make, and the picker refuses to untick the last.
@@ -95,6 +96,16 @@ const catalogueSourceSchema = z
     charts: z.array(z.number().int().nonnegative()).nullable(),
     /** `null` leaves the decades out; **empty is every decade**, as for the charts. */
     decades: z.array(trackDecadeSchema).nullable(),
+    /**
+     * Songs a child at the table knows: Disney and animated films, nursery
+     * rhymes and the hits a ten-year-old hears, in the table's own language
+     * where its country has dubs — a French table hears *Libérée, délivrée*,
+     * never *Let It Go*. A strand of its own that pins its floor, as the
+     * classics do, and never part of a room's default: an evening of adults
+     * that opened on everything was not asking for nursery rhymes. Defaulted
+     * so a source stored before it existed still parses.
+     */
+    hasChildrenSongs: z.boolean().default(false),
     /**
      * The songs everyone knows from the first second: the decades and the
      * chart above a popularity floor far higher than any difficulty's, the
@@ -118,14 +129,19 @@ const catalogueSourceSchema = z
     kind: z.literal('catalogue')
   })
   .refine(
-    ({ charts, decades, hasClassics, hasFilmScores }) =>
-      charts !== null || decades !== null || hasClassics || hasFilmScores,
+    ({ charts, decades, hasChildrenSongs, hasClassics, hasFilmScores }) =>
+      charts !== null ||
+      decades !== null ||
+      hasChildrenSongs ||
+      hasClassics ||
+      hasFilmScores,
     { message: 'A catalogue draws from at least one strand' }
   )
 
 const NO_STRAND = {
   charts: null,
   decades: null,
+  hasChildrenSongs: false,
   hasClassics: false,
   hasFilmScores: false,
   kind: 'catalogue'
@@ -139,7 +155,11 @@ export const catalogueOf = (
   strands: Partial<Omit<CatalogueSource, 'kind'>>
 ): CatalogueSource => ({ ...NO_STRAND, ...strands })
 
-/** Every chart, every decade and the film scores: what a room opens on. */
+/**
+ * Every chart, every decade and the film scores: what a room opens on. The
+ * classics are the decades' best known, and the children's songs are left out
+ * on purpose — they are an evening's choice, never a default's.
+ */
 export const EVERY_STRAND: CatalogueSource = catalogueOf({
   charts: [],
   decades: [],
@@ -236,3 +256,5 @@ export type TrackDecade = z.infer<typeof trackDecadeSchema>
 export type TrackSource = z.infer<typeof trackSourceSchema>
 export type ClipSpan = z.infer<typeof clipSpanSchema>
 export type CatalogueSource = Extract<TrackSource, { kind: 'catalogue' }>
+
+// cspell:words Libérée délivrée

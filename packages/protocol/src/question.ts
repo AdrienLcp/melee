@@ -24,6 +24,10 @@ import { localizedTextSchema, sameInEveryLocale } from './locale'
  * every screen, and the room names whose it is. `rebus` the third: a title
  * written in emojis. `capitals` the fourth: the room names a country's capital.
  * `silhouettes` the fifth: a country's outline alone, and the room names it.
+ * `kids` names who it is for rather than a subject: questions a ten-year-old
+ * answers beside the adults, because the bank's `easy` is a subject the room
+ * has heard of, not a question a child can answer. Written in each language
+ * on its own row, so it is not one of `everyLanguageCategories`.
  */
 export const questionCategories = [
   'history',
@@ -36,6 +40,7 @@ export const questionCategories = [
   'cinema',
   'quotes',
   'rebus',
+  'kids',
   'videogames',
   'sport',
   'everyday'

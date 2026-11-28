@@ -1,0 +1,820 @@
+[
+  {
+    "accepted": [],
+    "answer": "8",
+    "choiceOnly": false,
+    "decoys": ["6", "10", "4"],
+    "id": "kids-fr-spider-legs",
+    "note": null,
+    "prompt": "Combien de pattes a une araignée ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "6",
+    "choiceOnly": false,
+    "decoys": ["8", "4", "10"],
+    "id": "kids-fr-insect-legs",
+    "note": null,
+    "prompt": "Combien de pattes a un insecte ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "La baleine bleue",
+    "choiceOnly": false,
+    "decoys": ["L'éléphant d'Afrique", "La girafe", "Le requin-baleine"],
+    "id": "kids-fr-largest-animal",
+    "note": null,
+    "prompt": "Quel est le plus gros animal de la planète ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Un papillon",
+    "choiceOnly": false,
+    "decoys": ["Une abeille", "Une coccinelle", "Un escargot"],
+    "id": "kids-fr-caterpillar",
+    "note": null,
+    "prompt": "Que devient une chenille en grandissant ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le manchot",
+    "choiceOnly": true,
+    "decoys": ["L'aigle", "L'hirondelle", "Le perroquet"],
+    "id": "kids-fr-bird-that-cannot-fly",
+    "note": null,
+    "prompt": "Lequel de ces oiseaux ne sait pas voler ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Un têtard",
+    "choiceOnly": false,
+    "decoys": ["Un poussin", "Un louveteau", "Un poulain"],
+    "id": "kids-fr-baby-frog",
+    "note": null,
+    "prompt": "Comment s'appelle le bébé de la grenouille ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "L'éléphant",
+    "choiceOnly": false,
+    "decoys": ["Le rhinocéros", "L'hippopotame", "La girafe"],
+    "id": "kids-fr-trunk",
+    "note": null,
+    "prompt": "Quel animal a une longue trompe ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Du miel",
+    "choiceOnly": false,
+    "decoys": ["Du lait", "De la soie", "Du beurre"],
+    "id": "kids-fr-bee-makes",
+    "note": null,
+    "prompt": "Que fabriquent les abeilles dans leur ruche ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le caméléon",
+    "choiceOnly": false,
+    "decoys": ["La tortue", "Le hérisson", "Le lapin"],
+    "id": "kids-fr-changes-colour",
+    "note": null,
+    "prompt": "Quel animal peut changer de couleur pour se cacher ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le guépard",
+    "choiceOnly": false,
+    "decoys": ["Le lion", "Le cheval", "L'autruche"],
+    "id": "kids-fr-fastest-land-animal",
+    "note": null,
+    "prompt": "Quel est l’animal le plus rapide sur terre ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "3",
+    "choiceOnly": false,
+    "decoys": ["1", "2", "8"],
+    "id": "kids-fr-octopus-hearts",
+    "note": "Deux font passer le sang dans les branchies, le troisième dans le reste du corps.",
+    "prompt": "Combien de cœurs a une pieuvre ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "La chauve-souris",
+    "choiceOnly": true,
+    "decoys": ["La taupe", "La loutre", "Le hérisson"],
+    "id": "kids-fr-flying-mammal",
+    "note": null,
+    "prompt": "Lequel de ces mammifères sait vraiment voler ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Autour du pôle Nord",
+    "choiceOnly": false,
+    "decoys": ["Autour du pôle Sud", "Dans le Sahara", "Dans l'Amazonie"],
+    "id": "kids-fr-polar-bear-home",
+    "note": "Les manchots vivent autour du pôle Sud : les deux ne se croisent jamais.",
+    "prompt": "Où vivent les ours polaires à l'état sauvage ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Du bambou",
+    "choiceOnly": false,
+    "decoys": ["Du poisson", "Des bananes", "Du miel"],
+    "id": "kids-fr-panda-food",
+    "note": null,
+    "prompt": "Que mange le panda géant presque toute la journée ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Une meute",
+    "choiceOnly": false,
+    "decoys": ["Un troupeau", "Un essaim", "Une volée"],
+    "id": "kids-fr-wolf-group",
+    "note": null,
+    "prompt": "Comment appelle-t-on un groupe de loups ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Le requin",
+    "choiceOnly": true,
+    "decoys": ["Le dauphin", "La baleine", "Le phoque"],
+    "id": "kids-fr-not-a-mammal",
+    "note": "Le requin est un poisson : il respire avec des branchies.",
+    "prompt": "Lequel de ces animaux marins n'est pas un mammifère ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "L'escargot",
+    "choiceOnly": false,
+    "decoys": ["La limace", "Le ver de terre", "La fourmi"],
+    "id": "kids-fr-house-on-back",
+    "note": null,
+    "prompt": "Quel animal porte sa maison sur son dos ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "De la graisse",
+    "choiceOnly": false,
+    "decoys": ["De l'eau", "Du lait", "De l'air"],
+    "id": "kids-fr-camel-hump",
+    "note": "Pas de l'eau : la graisse le nourrit quand il manque de nourriture.",
+    "prompt": "Que contient la bosse du chameau ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Un poisson-clown",
+    "choiceOnly": false,
+    "decoys": ["Un poisson rouge", "Un requin", "Un thon"],
+    "id": "kids-fr-nemo",
+    "note": null,
+    "prompt": "Dans « Le Monde de Nemo », quel poisson est Nemo ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Olaf",
+    "choiceOnly": false,
+    "decoys": ["Sven", "Kristoff", "Hans"],
+    "id": "kids-fr-frozen-snowman",
+    "note": null,
+    "prompt": "Comment s’appelle le bonhomme de neige de « La Reine des neiges » ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Scar",
+    "choiceOnly": false,
+    "decoys": ["Mufasa", "Rafiki", "Timon"],
+    "id": "kids-fr-simba-uncle",
+    "note": null,
+    "prompt": "Dans « Le Roi lion », qui est le méchant oncle de Simba ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Vert",
+    "choiceOnly": false,
+    "decoys": ["Bleu", "Jaune", "Violet"],
+    "id": "kids-fr-shrek-colour",
+    "note": null,
+    "prompt": "De quelle couleur est Shrek ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Woody",
+    "choiceOnly": false,
+    "decoys": ["Buzz l’Éclair", "Rex", "Zigzag"],
+    "id": "kids-fr-toy-story-cowboy",
+    "note": null,
+    "prompt": "Dans « Toy Story », comment s’appelle le cow-boy ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Bob l’éponge",
+    "choiceOnly": false,
+    "decoys": ["Patrick", "Carlo", "M. Krabs"],
+    "id": "kids-fr-pineapple-under-the-sea",
+    "note": null,
+    "prompt": "Qui vit dans un ananas au fond de la mer ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Minnie",
+    "choiceOnly": false,
+    "decoys": ["Daisy", "Clarabelle", "Wendy"],
+    "id": "kids-fr-mickey-girlfriend",
+    "note": null,
+    "prompt": "Comment s’appelle l’amoureuse de Mickey ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Ratatouille",
+    "choiceOnly": false,
+    "decoys": ["Zootopie", "Cars", "Là-haut"],
+    "id": "kids-fr-rat-chef",
+    "note": null,
+    "prompt": "Dans quel film un rat rêve-t-il de cuisiner à Paris ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Il s’allonge",
+    "choiceOnly": false,
+    "decoys": ["Il devient rouge", "Il rétrécit", "Il tombe"],
+    "id": "kids-fr-pinocchio-nose",
+    "note": null,
+    "prompt": "Que fait le nez de Pinocchio quand il ment ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "La fée Clochette",
+    "choiceOnly": false,
+    "decoys": ["La bonne fée", "Aurore", "Wendy"],
+    "id": "kids-fr-peter-pan-fairy",
+    "note": null,
+    "prompt": "Quelle petite fée suit Peter Pan partout ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Obélix",
+    "choiceOnly": false,
+    "decoys": ["Panoramix", "Abraracourcix", "Idéfix"],
+    "id": "kids-fr-obelix",
+    "note": null,
+    "prompt": "Quel ami d’Astérix est tombé dans la potion magique quand il était petit ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Quidditch",
+    "choiceOnly": false,
+    "decoys": ["Le croquet", "Le polo", "Le curling"],
+    "id": "kids-fr-broomstick-sport",
+    "note": null,
+    "prompt": "Dans « Harry Potter », quel sport se joue sur des balais ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Une pantoufle de verre",
+    "choiceOnly": false,
+    "decoys": ["Une couronne", "Un collier", "Un gant"],
+    "id": "kids-fr-cinderella-loses",
+    "note": null,
+    "prompt": "Que perd Cendrillon en quittant le bal ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "9"],
+    "id": "kids-fr-snow-white-dwarfs",
+    "note": null,
+    "prompt": "Avec combien de nains vit Blanche-Neige ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le loup",
+    "choiceOnly": false,
+    "decoys": ["Le chasseur", "Un ours", "Un renard"],
+    "id": "kids-fr-grandmother-bed",
+    "note": null,
+    "prompt": "Dans « Le Petit Chaperon rouge », qui attend dans le lit de la grand-mère ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Une vache",
+    "choiceOnly": false,
+    "decoys": ["Une chèvre", "Un cheval", "Un cochon"],
+    "id": "kids-fr-magic-beans",
+    "note": null,
+    "prompt": "Dans « Jack et le Haricot magique », contre quoi Jack échange-t-il les haricots ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "La maison en briques",
+    "choiceOnly": false,
+    "decoys": [
+      "La maison en paille",
+      "La maison en bois",
+      "La maison en verre"
+    ],
+    "id": "kids-fr-three-pigs-house",
+    "note": null,
+    "prompt": "Dans « Les Trois Petits Cochons », quelle maison le loup ne peut-il pas faire tomber ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Pikachu",
+    "choiceOnly": false,
+    "decoys": ["Bulbizarre", "Carapuce", "Salamèche"],
+    "id": "kids-fr-yellow-pokemon",
+    "note": null,
+    "prompt": "Quel Pokémon est jaune avec des joues rouges ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Mario",
+    "choiceOnly": false,
+    "decoys": ["Luigi", "Wario", "Toad"],
+    "id": "kids-fr-red-cap-plumber",
+    "note": null,
+    "prompt": "Quel plombier à casquette rouge sauve la princesse Peach ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "20",
+    "choiceOnly": false,
+    "decoys": ["32", "10", "26"],
+    "id": "kids-fr-baby-teeth",
+    "note": null,
+    "prompt": "Combien de dents de lait a un enfant ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Le cœur",
+    "choiceOnly": false,
+    "decoys": ["Les poumons", "L'estomac", "Le cerveau"],
+    "id": "kids-fr-pumps-blood",
+    "note": null,
+    "prompt": "Quel organe fait circuler le sang dans le corps ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "À respirer",
+    "choiceOnly": false,
+    "decoys": ["À digérer", "À voir", "À entendre"],
+    "id": "kids-fr-lungs-for",
+    "note": null,
+    "prompt": "À quoi nous servent les poumons ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "La peau",
+    "choiceOnly": false,
+    "decoys": ["Le foie", "Le cerveau", "Le cœur"],
+    "id": "kids-fr-largest-organ",
+    "note": null,
+    "prompt": "Quel est le plus grand organe du corps humain ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "206",
+    "choiceOnly": false,
+    "decoys": ["56", "106", "506"],
+    "id": "kids-fr-adult-bones",
+    "note": null,
+    "prompt": "Combien d’os environ compte le squelette d’un adulte ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "L'odorat",
+    "choiceOnly": false,
+    "decoys": ["Le goût", "L'ouïe", "Le toucher"],
+    "id": "kids-fr-nose-sense",
+    "note": null,
+    "prompt": "À quel sens sert le nez ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "L'émail des dents",
+    "choiceOnly": false,
+    "decoys": ["Le crâne", "Les ongles", "Le genou"],
+    "id": "kids-fr-hardest-in-body",
+    "note": null,
+    "prompt": "Quelle est la partie la plus dure du corps humain ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Vert",
+    "choiceOnly": false,
+    "decoys": ["Orange", "Violet", "Marron"],
+    "id": "kids-fr-blue-and-yellow",
+    "note": null,
+    "prompt": "Quelle couleur obtient-on en mélangeant du bleu et du jaune ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "0 °C",
+    "choiceOnly": false,
+    "decoys": ["10 °C", "-20 °C", "100 °C"],
+    "id": "kids-fr-water-freezes",
+    "note": null,
+    "prompt": "À quelle température l'eau se transforme-t-elle en glace ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Mars",
+    "choiceOnly": false,
+    "decoys": ["Jupiter", "Vénus", "Saturne"],
+    "id": "kids-fr-red-planet",
+    "note": null,
+    "prompt": "Quelle planète surnomme-t-on la planète rouge ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "L'oxygène",
+    "choiceOnly": false,
+    "decoys": ["L'hélium", "Le dioxyde de carbone", "Le néon"],
+    "id": "kids-fr-breathe-gas",
+    "note": null,
+    "prompt": "De quel gaz de l'air avons-nous besoin pour vivre ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "9"],
+    "id": "kids-fr-rainbow-colours",
+    "note": null,
+    "prompt": "Combien de couleurs compte l'arc-en-ciel ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Soleil",
+    "choiceOnly": false,
+    "decoys": ["La Lune", "L'étoile Polaire", "Mars"],
+    "id": "kids-fr-star-of-solar-system",
+    "note": null,
+    "prompt": "Quelle étoile se trouve au centre de notre système solaire ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Jupiter",
+    "choiceOnly": false,
+    "decoys": ["Saturne", "La Terre", "Neptune"],
+    "id": "kids-fr-biggest-planet",
+    "note": null,
+    "prompt": "Quelle est la plus grosse planète du système solaire ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Un clou en fer",
+    "choiceOnly": true,
+    "decoys": [
+      "Une cuillère en bois",
+      "Une bille en verre",
+      "Une règle en plastique"
+    ],
+    "id": "kids-fr-magnet",
+    "note": null,
+    "prompt": "Lequel de ces objets est attiré par un aimant ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Du pollen",
+    "choiceOnly": false,
+    "decoys": ["Du sable", "Du sel", "Des graines"],
+    "id": "kids-fr-bees-carry",
+    "note": null,
+    "prompt": "Que transportent les abeilles de fleur en fleur ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le chêne",
+    "choiceOnly": false,
+    "decoys": ["Le pin", "Le bouleau", "Le saule"],
+    "id": "kids-fr-acorn-tree",
+    "note": null,
+    "prompt": "Sur quel arbre poussent les glands ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "La glace",
+    "choiceOnly": false,
+    "decoys": ["La vapeur", "Le brouillard", "La rosée"],
+    "id": "kids-fr-frozen-water",
+    "note": null,
+    "prompt": "Comment appelle-t-on l'eau gelée ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Un an",
+    "choiceOnly": false,
+    "decoys": ["Un jour", "Un mois", "Une semaine"],
+    "id": "kids-fr-earth-around-sun",
+    "note": null,
+    "prompt": "Combien de temps faut-il à la Terre pour tourner une fois autour du Soleil ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Pacifique",
+    "choiceOnly": false,
+    "decoys": ["L'Atlantique", "L'océan Indien", "L'Arctique"],
+    "id": "kids-fr-largest-ocean",
+    "note": null,
+    "prompt": "Quel est le plus grand océan du monde ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "En Afrique",
+    "choiceOnly": false,
+    "decoys": ["En Asie", "En Europe", "En Océanie"],
+    "id": "kids-fr-sahara-continent",
+    "note": null,
+    "prompt": "Sur quel continent se trouve le désert du Sahara ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "11",
+    "choiceOnly": false,
+    "decoys": ["9", "7", "15"],
+    "id": "kids-fr-football-players",
+    "note": null,
+    "prompt": "Combien de joueurs une équipe de football a-t-elle sur le terrain ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le rugby",
+    "choiceOnly": false,
+    "decoys": ["Le football", "Le tennis", "Le basket"],
+    "id": "kids-fr-try-sport",
+    "note": null,
+    "prompt": "Dans quel sport marque-t-on un essai ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "5",
+    "choiceOnly": false,
+    "decoys": ["4", "6", "7"],
+    "id": "kids-fr-olympic-rings",
+    "note": null,
+    "prompt": "Combien d’anneaux y a-t-il sur le drapeau olympique ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le tennis",
+    "choiceOnly": false,
+    "decoys": ["Le golf", "Le cricket", "L'aviron"],
+    "id": "kids-fr-wimbledon",
+    "note": null,
+    "prompt": "Quel sport joue-t-on à Wimbledon ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Un volant",
+    "choiceOnly": false,
+    "decoys": ["Une balle", "Un palet", "Un anneau"],
+    "id": "kids-fr-badminton",
+    "note": null,
+    "prompt": "Que frappe-t-on avec la raquette au badminton ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le cyclisme",
+    "choiceOnly": false,
+    "decoys": ["La natation", "Le ski", "Le football"],
+    "id": "kids-fr-yellow-jersey",
+    "note": null,
+    "prompt": "Dans quel sport le leader de la course porte-t-il un maillot jaune ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "La banane",
+    "choiceOnly": false,
+    "decoys": ["Le citron", "La poire", "La mangue"],
+    "id": "kids-fr-yellow-curved-fruit",
+    "note": null,
+    "prompt": "Quel fruit est long, jaune et courbé ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "L'avocat",
+    "choiceOnly": false,
+    "decoys": ["Le kiwi", "Le concombre", "La pomme verte"],
+    "id": "kids-fr-guacamole",
+    "note": null,
+    "prompt": "Avec quel fruit fait-on le guacamole ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Des fèves de cacao",
+    "choiceOnly": false,
+    "decoys": ["Des grains de café", "Des châtaignes", "Des betteraves"],
+    "id": "kids-fr-chocolate-from",
+    "note": null,
+    "prompt": "Avec quoi fabrique-t-on le chocolat ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Le maïs",
+    "choiceOnly": false,
+    "decoys": ["Le riz", "Le blé", "L'avoine"],
+    "id": "kids-fr-popcorn",
+    "note": null,
+    "prompt": "Avec quelle céréale fait-on le pop-corn ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Les œufs",
+    "choiceOnly": false,
+    "decoys": ["La farine", "Le riz", "Le fromage"],
+    "id": "kids-fr-omelette",
+    "note": null,
+    "prompt": "Quel est l'ingrédient principal d'une omelette ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "La carotte",
+    "choiceOnly": false,
+    "decoys": ["Le poireau", "Le concombre", "La courgette"],
+    "id": "kids-fr-orange-root",
+    "note": null,
+    "prompt": "Quel légume orange pousse sous la terre ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le raisin",
+    "choiceOnly": false,
+    "decoys": ["La prune", "La cerise", "L'abricot"],
+    "id": "kids-fr-raisins",
+    "note": null,
+    "prompt": "Avec quel fruit fait-on les raisins secs ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "La vache",
+    "choiceOnly": false,
+    "decoys": ["Le cheval", "Le cochon", "La poule"],
+    "id": "kids-fr-breakfast-milk",
+    "note": null,
+    "prompt": "Quel animal donne le lait que l’on verse le plus souvent sur ses céréales ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "La poule",
+    "choiceOnly": false,
+    "decoys": ["La vache", "Le mouton", "La chèvre"],
+    "id": "kids-fr-hen-lays",
+    "note": null,
+    "prompt": "Quel animal de la ferme pond des œufs ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "7",
+    "choiceOnly": false,
+    "decoys": ["5", "6", "10"],
+    "id": "kids-fr-days-in-week",
+    "note": null,
+    "prompt": "Combien de jours y a-t-il dans une semaine ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Un fuseau",
+    "choiceOnly": false,
+    "decoys": ["Une rose", "Une aiguille", "Une épée"],
+    "id": "kids-fr-sleeping-beauty",
+    "note": null,
+    "prompt": "Dans « La Belle au bois dormant », sur quoi la princesse se pique-t-elle le doigt ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "3",
+    "choiceOnly": false,
+    "decoys": ["2", "4", "7"],
+    "id": "kids-fr-goldilocks",
+    "note": null,
+    "prompt": "Combien d’ours vivent dans la maison où entre Boucle d’or ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Un cygne",
+    "choiceOnly": false,
+    "decoys": ["Une oie", "Un aigle", "Un héron"],
+    "id": "kids-fr-ugly-duckling",
+    "note": null,
+    "prompt": "Que devient le vilain petit canard en grandissant ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "Neil Armstrong",
+    "choiceOnly": false,
+    "decoys": ["Youri Gagarine", "Buzz Aldrin", "Thomas Pesquet"],
+    "id": "kids-fr-moon-landing",
+    "note": null,
+    "prompt": "Comment s’appelait le premier homme à marcher sur la Lune ?",
+    "tier": "medium"
+  },
+  {
+    "accepted": [],
+    "answer": "4",
+    "choiceOnly": false,
+    "decoys": ["2", "3", "6"],
+    "id": "kids-fr-seasons",
+    "note": null,
+    "prompt": "Combien y a-t-il de saisons dans une année ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Le kangourou",
+    "choiceOnly": false,
+    "decoys": ["Le singe", "L'ours", "Le cerf"],
+    "id": "kids-fr-kangaroo-pouch",
+    "note": null,
+    "prompt": "Quel animal porte son petit dans une poche sur son ventre ?",
+    "tier": "easy"
+  },
+  {
+    "accepted": [],
+    "answer": "Les branchies",
+    "choiceOnly": false,
+    "decoys": ["Les poumons", "Les nageoires", "Les écailles"],
+    "id": "kids-fr-gills",
+    "note": null,
+    "prompt": "Avec quoi les poissons respirent-ils sous l’eau ?",
+    "tier": "medium"
+  }
+]

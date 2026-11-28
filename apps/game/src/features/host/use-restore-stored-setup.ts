@@ -13,7 +13,8 @@ import {
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor,
   rememberedOnReadyMade,
-  savedEveningOfReadyMade
+  savedEveningOfReadyMade,
+  withReadyMadeRoom
 } from '@melee/core/room/ready-made-line-ups'
 import { withSavedEvening } from '@melee/core/room/saved-evening'
 
@@ -83,7 +84,7 @@ export const useRestoreStoredSetup = ({
       return
     }
 
-    const settings = withSavedEvening({
+    const evened = withSavedEvening({
       evening,
       locale,
       rememberedFor: (game) =>
@@ -92,6 +93,10 @@ export const useRestoreStoredSetup = ({
           : rememberedSetupFor({ game, preferences }),
       settings: restored
     })
+    const settings =
+      readyMade === undefined || arrival.evening !== null
+        ? evened
+        : withReadyMadeRoom({ lineUp: readyMade, settings: evened })
     const decks = decksForLineUp({
       decks: evening.decks,
       from: evening.lineUp,

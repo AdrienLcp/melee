@@ -33,7 +33,8 @@ import {
   readyMadeLineUpsFor,
   rememberedOnReadyMade,
   savedEveningOfReadyMade,
-  withReadyMadeFiled
+  withReadyMadeFiled,
+  withReadyMadeRoom
 } from './ready-made-line-ups'
 import { movedToEntry, openedSetup, ROUND_COUNT_STEPS } from './room-settings'
 import { withSavedEvening } from './saved-evening'
@@ -426,6 +427,102 @@ describe.each(LOCALES)('the borderless evening in %s', (locale) => {
     )
 
     expect(categories).toEqual(['flags', 'capitals', 'silhouettes'])
+  })
+})
+
+describe.each(LOCALES)('the family evening in %s', (locale) => {
+  const family = readyMadeLineUpsFor(locale).find(({ id }) => id === 'family')
+
+  if (family === undefined) {
+    throw new Error('The family evening is missing')
+  }
+
+  const played = playedEntries({
+    lineUp: family,
+    locale,
+    preferences: leftEveryGameOn({ locale, mode: 'buzzer' })
+  })
+
+  it('[ready-made] pays the answer alone, in a room that deals nothing for adults', () => {
+    const settings = withReadyMadeRoom({
+      lineUp: family,
+      settings: {
+        ...DEFAULT_ROOM_SETTINGS,
+        isFamilyFriendly: false,
+        paysForSpeed: true
+      }
+    })
+
+    expect(settings.paysForSpeed).toBe(false)
+    expect(settings.isFamilyFriendly).toBe(true)
+  })
+
+  it('[ready-made] plays nothing a host judges, even with every game left on the buzzer', () => {
+    expect(played).toHaveLength(family.lineUp.length)
+
+    for (const { game, mode } of played) {
+      expect(
+        isJudgedByHost({ game: game?.kind ?? null, mode: mode.kind })
+      ).toBe(false)
+    }
+  })
+
+  it('[ready-made] deals every game that knows a level at its easiest', () => {
+    for (const { game } of played) {
+      if (game !== null && 'difficulty' in game) {
+        expect(game.difficulty).toBe('easy')
+      }
+    }
+  })
+
+  it('[ready-made] leaves out the word races, the arithmetic and the city maps', () => {
+    const games = new Set(played.map(({ game }) => game?.kind))
+
+    for (const game of [
+      'mysteryword',
+      'longestword',
+      'makenumber',
+      'matchsticks'
+    ] as const) {
+      expect(games.has(game)).toBe(false)
+    }
+
+    for (const { game } of played) {
+      if (game?.kind === 'atlas') {
+        expect(game.places).toEqual(['countries'])
+      }
+    }
+  })
+
+  it('[ready-made] asks the quiz written for a child, and hears the children’s songs', () => {
+    const quizzes = played.flatMap(({ game }) =>
+      game?.kind === 'quiz' ? game.categories : []
+    )
+
+    expect(quizzes).toContain('kids')
+    expect(played).toContainEqual(
+      expect.objectContaining({
+        game: expect.objectContaining({
+          kind: 'blindtest',
+          source: catalogueOf({ hasChildrenSongs: true })
+        })
+      })
+    )
+  })
+
+  it('[ready-made] keeps the child’s quiz out of every other evening', () => {
+    for (const lineUp of readyMadeLineUpsFor(locale)) {
+      if (lineUp.id !== 'family') {
+        expect(
+          lineUp.lineUp.some(
+            (entry) =>
+              typeof entry !== 'string' &&
+              entry.kind === 'quiz' &&
+              entry.categories.includes('kids')
+          )
+        ).toBe(false)
+      }
+    }
   })
 })
 

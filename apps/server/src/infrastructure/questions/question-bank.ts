@@ -25,6 +25,7 @@ import {
   bankedCapitalQuestions
 } from './capital-questions'
 import { bankedFlagQuestions } from './flag-questions'
+import { bankedKidsQuestions } from './kids-questions'
 import bank from './question-bank.json' with { type: 'json' }
 import { bankedRebusQuestions } from './rebus-questions'
 import { bankedSilhouetteQuestions } from './silhouette-questions'
@@ -141,6 +142,7 @@ export const bankedQuestions = (): BankedQuestion[] => {
     ...bankedFlagQuestions(),
     ...bankedCapitalQuestions(),
     ...bankedRebusQuestions(),
+    ...bankedKidsQuestions(),
     ...bankedSilhouetteQuestions()
   ]
 

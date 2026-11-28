@@ -32,6 +32,23 @@ describe('filmNamedBy', () => {
     ).toBe('Peau d’âne')
   })
 
+  it('[film] names the film of a Portuguese soundtrack, European or Brazilian', () => {
+    expect(
+      release({
+        albumTitle:
+          'Frozen 2: O Reino do Gelo (Banda Sonora Original em Português/Deluxe Edition)',
+        artist: 'Ana Encarnação'
+      })
+    ).toBe('Frozen 2: O Reino do Gelo')
+
+    expect(
+      release({
+        albumTitle: 'O Rei Leão (Trilha Sonora Original em Português)',
+        artist: 'Ivan Parente'
+      })
+    ).toBe('O Rei Leão')
+  })
+
   it('[film] cuts at a colon, a dash or the marker itself', () => {
     expect(
       release({ albumTitle: 'The Last Samurai: Original Motion Picture Score' })
@@ -219,3 +236,5 @@ describe('filmsScoredIn', () => {
     ).toBe('The Imitation Game')
   })
 })
+
+// cspell:words Encarnação Gelo Português Reino Trilha

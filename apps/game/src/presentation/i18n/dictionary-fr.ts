@@ -402,6 +402,8 @@ export const FR_DICTIONARY = defineDictionary({
     source: {
       catalogue: 'Le catalogue',
       chart: 'Le top du moment',
+      children: 'Chansons pour enfants',
+      childrenHint: 'Disney, dessins animés et comptines.',
       classics: 'Les classiques',
       decades: 'Les décennies',
       film: 'Musiques de films',
@@ -2263,6 +2265,7 @@ export const FR_DICTIONARY = defineDictionary({
       flags: 'Drapeaux',
       geography: 'Géographie',
       history: 'Histoire',
+      kids: 'Questions d’enfants',
       label: 'Sur quels sujets',
       none: 'N’en choisis aucun et tu as tous les sujets.',
       quotes: 'Citations',
@@ -2315,6 +2318,10 @@ export const FR_DICTIONARY = defineDictionary({
     heading: 'Des parties toutes prêtes',
     hint: 'Un appui ouvre une table qui les enchaîne, déjà réglée.',
     lineUps: {
+      family: {
+        caption: 'Petits et grands à la même table, la vitesse ne compte pas.',
+        name: 'En famille'
+      },
       firstGame: {
         caption: 'Rien à juger, rien à expliquer.',
         name: 'Première partie'

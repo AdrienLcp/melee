@@ -18,16 +18,14 @@
     padding-top: var(--space-m)
 
     // One row each, measured in French on the page: 489px for the places, and
-    // the four strands with every check showing. Four stamps also sit two by
-    // two, so the strands tile before they stack: a row of three over one
-    // was the shape a sweep caught at 545px.
+    // the five strands with every check showing. Five stamps have no tiling
+    // without a short row — four over one was the shape a sweep caught at
+    // 705px — so the strands go from one row straight to one column.
     .track-place
       @include strip.stacks-below(31rem)
 
     .strands
-      @include strip.stacks-below(44rem)
-      @include strip.tiles-below(44rem, 2)
-      @include strip.tiles-below(26rem, 1)
+      @include strip.stacks-below(56rem)
 
     .catalogue
       display: flex

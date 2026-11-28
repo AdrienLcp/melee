@@ -16,7 +16,32 @@ const RECORD_GROOVES = [34, 26] as const
 
 const GLOBE_PARALLELS = ['M12 28h76', 'M6 50h88', 'M12 72h76'] as const
 
+const KITE_BOWS = [
+  { x: 74, y: 96 },
+  { x: 90, y: 104 }
+] as const
+
 const MOTIFS = {
+  family: (
+    <g transform='rotate(-14 50 50)'>
+      <path
+        className='outline'
+        d='M50 -2 88 38 50 86 12 38z'
+        strokeLinejoin='round'
+        strokeWidth='9'
+      />
+      <path className='outline' d='M50 -2v88M12 38h76' strokeWidth='6' />
+      <path
+        className='outline'
+        d='M50 86c4 10 14 8 22 10s14 6 18 10'
+        strokeLinecap='round'
+        strokeWidth='5'
+      />
+      {KITE_BOWS.map(({ x, y }) => (
+        <circle cx={x} cy={y} key={`${x}-${y}`} r='6' />
+      ))}
+    </g>
+  ),
   firstGame: (
     <g transform='rotate(14 50 50)'>
       <rect
@@ -83,7 +108,7 @@ const MOTIFS = {
  * What a ready-made line-up plays, as one large mark printed tone on tone in
  * its lid's corner and cropped by it: a die for a first game, a record for
  * music, a question mark for general knowledge, a bolt for the quick one,
- * and a globe with no border drawn on it for the evening every screen reads
+ * a kite for the one a child plays beside the adults, and a globe with no border drawn on it for the evening every screen reads
  * in its own language.
  */
 export const PartyMotif: React.FC<{ id: MotifId }> = ({ id }) => (

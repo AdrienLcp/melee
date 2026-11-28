@@ -30,6 +30,27 @@ one part.
   it, rather than a second seat at 0 the host has to remove. A seat whose
   screen is there is never taken this way.
 
+- `[Shared]` **« En famille »: an evening a ten-year-old plays beside the
+  adults.** A seventh ready-made line-up, twenty rounds of the games where a
+  reflex, an eye or a guess counts as much as knowing — Reflex, Lumières,
+  Shades shown eight seconds, Inner clock, Most likely, Think alike — and the
+  knowledge games at their easiest: the timeline, Plus ou moins, Atlas's
+  countries, Black square, Petit Bac, Five clues on animals, characters and
+  films, the emoji rebus and the flags. Speed is not paid, nothing is judged
+  by the host, and no word race, sum or city map is played against an adult.
+  A ready-made line-up may now set the room's `paysForSpeed` and
+  `isFamilyFriendly` as it loads.
+- `[Shared]` **A quiz written for children.** _Questions d’enfants_, a new
+  quiz subject in French, English and European Portuguese — animals,
+  cartoons, fairy tales, the body, nature, food — 81 questions each, on four
+  choices. It plays in the family evening and stays out of every other
+  ready-made one. Protocol 81.
+- `[Shared]` **Children's songs on the blind test.** A fifth strand of the
+  catalogue: Disney and animated film songs, nursery rhymes and the hits a
+  child hears, dubbed in French for a French table and in European
+  Portuguese for a Portuguese one, the film asked in the title's place when
+  the song comes from one. Explicit tracks, instrumentals and score cues are
+  left out. A room opening on every strand still leaves it out.
 - `[Shared]` **Music between the rounds.** The room's speaker — the wall
   when one is paired — plays a soundtrack generated live from the lobby to
   the final board: a jazz lounge, lo-fi, a slow drift, a marimba terrace and
@@ -96,6 +117,12 @@ one part.
 - `[Server]` **No countdown runs while the console is away.** The lobby's
   ready countdown is called off when the console's socket goes — a TV
   browser asleep — and starts over, whole, once it is back.
+- `[Server]` **Atlas: four city choices no longer sit under one dot.** A
+  city round's decoys are drawn at random across the map, each at least a
+  share of the country's span from the answer and from each other — a
+  quarter at easy, 15% at mixed, 8% at hard — instead of among its nearest
+  neighbours, which the whole map of France or Portugal drew on top of
+  each other.
 - `[Game]` **A team's name is no longer cut short in a round's header** on
   a phone held upright: the round's progress pips give way first.
 - `[Game]` **The console's Players tab is one list, one line a seat.** In the
