@@ -6,13 +6,13 @@ words, points at the code, says what is decided and how to verify. Delete a
 file once everything in it has landed, and its row here with it; delete this
 folder when the table is empty.
 
-| File                                             | Topic                                                                                      | Wave |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------ | ---- |
-| [ready-and-reconnect.md](ready-and-reconnect.md) | The ready countdown stuck at zero, a returning player given a new seat at 0                | 1    |
-| [kids-evening.md](kids-evening.md)               | A ready-made evening for a ten-year-old beside adults, Atlas decoys spread out             | 1    |
-| [change-game-in-room.md](change-game-in-room.md) | Change what the room plays without closing it, a default end to every evening              | 2    |
-| [console-on-a-tv.md](console-on-a-tv.md)         | The console's reveals on a TV: texts drawn over texts (seven photos)                       | 2    |
-| [answer-at-time-out.md](answer-at-time-out.md)   | An unsent answer still counts when the clock runs out, in every game                       | 3    |
+| File                                             | Topic                                                                          | Wave |
+| ------------------------------------------------ | ------------------------------------------------------------------------------ | ---- |
+| [ready-and-reconnect.md](ready-and-reconnect.md) | The ready countdown stuck at zero, a returning player given a new seat at 0    | 1    |
+| [kids-evening.md](kids-evening.md)               | A ready-made evening for a ten-year-old beside adults, Atlas decoys spread out | 1    |
+| [change-game-in-room.md](change-game-in-room.md) | Change what the room plays without closing it, a default end to every evening  | 2    |
+| [console-on-a-tv.md](console-on-a-tv.md)         | The console's reveals on a TV: texts drawn over texts (seven photos)           | 2    |
+| [answer-at-time-out.md](answer-at-time-out.md)   | An unsent answer still counts when the clock runs out, in every game           | 3    |
 
 **Waves.** The four of wave 1 touch separate files and run side by side, each
 in its own worktree (`.claude/rules/worktrees.md`). Wave 2 starts once wave 1
