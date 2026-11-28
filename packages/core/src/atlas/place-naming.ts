@@ -89,17 +89,21 @@ const spreadDraw = <TPlace extends { point: GeoPoint }>({
   from: GeoPoint
   leastKm: number
   order: readonly TPlace[]
-}): TPlace[] =>
-  order.reduce<TPlace[]>(
-    (picked, place) =>
-      picked.length < count &&
-      [from, ...picked.map(({ point }) => point)].every(
-        (point) => greatCircleKm(point, place.point) >= leastKm
-      )
-        ? [...picked, place]
-        : picked,
-    []
-  )
+}): TPlace[] => {
+  const picked: TPlace[] = []
+
+  for (const place of order) {
+    const isApart = [from, ...picked.map(({ point }) => point)].every(
+      (point) => greatCircleKm(point, place.point) >= leastKm
+    )
+
+    if (picked.length < count && isApart) {
+      picked.push(place)
+    }
+  }
+
+  return picked
+}
 
 /**
  * Three cities drawn at random across the map of `from`, each at least a
